@@ -6,20 +6,20 @@
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
 # Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>, 2007-2007.
 # lcc <lcc@6zap.com>, 2009-2009.
-# André Marcelo Alvarenga <alvarenga@kde.org>, 2011, 2012.
+# André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-10 21:46+0100\n"
 "PO-Revision-Date: 2012-08-14 23:13-0300\n"
-"Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
-"Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
+"Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
+"Language-Team: Brazilian Portuguese\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.0\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -2106,15 +2106,13 @@ msgstr ""
 "depuração\n"
 "  -l                                          Lista as árvores genealógicas\n"
 "  -L                                          Lista as árvores genealógicas "
-"em "
-"detalhes\n"
+"em detalhes\n"
 "  -u, --force-unlock                          Força o desbloqueio da árvore "
 "genealógica\n"
 "  -s, --show                                  Mostra as opções de "
 "configuração\n"
 "  -c, --config=[opções.configuração[:valor]]  Define as opções de "
-"configuração e "
-"inicia o Gramps\n"
+"configuração e inicia o Gramps\n"
 "  -v, --version                               Mostra as versões\n"
 
 #: ../src/cli/argparser.py:80
@@ -9325,8 +9323,8 @@ msgstr ""
 "erro que ocorreu e o ambiente de operação. No final do assistente, você será "
 "orientado a incluir um relatório de erro no sistema de gerenciamento de "
 "erros do Gramps. O assistente deixará o relatório de erro na área de "
-"transferência, de forma que possa copiá-lo para o formulário da página web "
-"e rever a informação que deseja incluir."
+"transferência, de forma que possa copiá-lo para o formulário da página web e "
+"rever a informação que deseja incluir."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:70
 msgid "Report a bug: Step 1 of 5"
@@ -9375,9 +9373,9 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
-"Essa é a informação detalhada de erros do Gramps, não se preocupe se "
-"não entendê-la. Você terá a oportunidade de adicionar mais detalhes sobre o "
-"erro nas próximas páginas do assistente."
+"Essa é a informação detalhada de erros do Gramps, não se preocupe se não "
+"entendê-la. Você terá a oportunidade de adicionar mais detalhes sobre o erro "
+"nas próximas páginas do assistente."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:255
 msgid ""
@@ -9515,8 +9513,7 @@ msgstr ""
 "Seus dados estarão a salvo, mas é aconselhável que reinicie o Gramps "
 "imediatamente. Se você quiser preencher um relatório de erro para a equipe "
 "do Gramps, então por favor, clique em Relatório e o Assistente de Relatório "
-"de "
-"Erros irá ajudá-lo a produzir um relatório."
+"de Erros irá ajudá-lo a produzir um relatório."
 
 #: ../src/GrampsLogger/_ErrorView.py:114 ../src/GrampsLogger/_ErrorView.py:127
 msgid "Error Detail"
@@ -12211,8 +12208,8 @@ msgid ""
 "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
 "change the order of spouses?</a>\n"
 msgstr ""
-"  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Como "
-"altero a ordem dos cônjuges?</a>\n"
+"  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>Como altero "
+"a ordem dos cônjuges?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
@@ -12220,8 +12217,8 @@ msgid ""
 "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an "
 "additional spouse?</a>\n"
 msgstr ""
-"  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Como "
-"adiciono outro cônjuge?</a>\n"
+"  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>Como adiciono "
+"outro cônjuge?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
@@ -12229,8 +12226,8 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Como removo um "
-"cônjuge?</a>\n"
+"  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>Como removo um cônjuge?</"
+"a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -12310,9 +12307,8 @@ msgid ""
 "website with Gramps and my tree?</a>\n"
 msgstr ""
 " 10. <a wiki='%s_-"
-"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Como posso "
-"publicar uma página Web com a minha árvore genealógica produzida pelo Gramps?"
-"</a>\n"
+"_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Como posso publicar "
+"uma página Web com a minha árvore genealógica produzida pelo Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid ""
@@ -14326,12 +14322,11 @@ msgid ""
 msgstr ""
 "A versão do banco de dados não é suportada por esta versão do Gramps. Você "
 "deveria usar uma cópia antiga do Gramps na versão 3.0.x e importar o banco "
-"de "
-"para esta versão e depois exportar a cópia do seus dados para o Gramps XML "
-"(árvore genealógica). Depois você deve atualizar para a última versão do "
+"de para esta versão e depois exportar a cópia do seus dados para o Gramps "
+"XML (árvore genealógica). Depois você deve atualizar para a última versão do "
 "Gramps (esta versão, por exemplo), criar um novo banco de dados vazio e "
-"importar o Gramps XML para esta versão. Por favor, consulte: "
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
+"importar o Gramps XML para esta versão. Por favor, consulte: http://www."
+"gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
 "_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
@@ -14888,8 +14883,7 @@ msgid ""
 msgstr ""
 "Erro: family '%(family)s' (entrada como @%(orig_family)s@) pessoa %(person)s "
 "(input as %(orig_person)s) não é membro da família em referência. A "
-"referência da "
-"Família foi removida da pessoa"
+"referência da Família foi removida da pessoa"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -21588,8 +21582,8 @@ msgid ""
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
 "Os objetos referenciados por esta nota estavam referenciados mas estava "
-"faltando, por isso eles foram criados quando você executou verificação "
-"e reparação em %s."
+"faltando, por isso eles foram criados quando você executou verificação e "
+"reparação em %s."
 
 #: ../src/plugins/tool/Check.py:252
 msgid "Looking for invalid name format references"
@@ -23363,8 +23357,8 @@ msgstr "Todos os locais conhecidos para uma família"
 #: ../src/plugins/view/geography.gpr.py:104
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Visualização que mostra os locais visitados por uma família durante a "
-"sua vida."
+"Visualização que mostra os locais visitados por uma família durante a sua "
+"vida."
 
 #: ../src/plugins/view/geography.gpr.py:120
 #: ../src/plugins/view/geoclose.py:128
@@ -23388,8 +23382,8 @@ msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
-"Visualização que mostra os locais visitados por todos os membros da "
-"família durante a sua vida: essas duas pessoas foram capazes de atender?"
+"Visualização que mostra os locais visitados por todos os membros da família "
+"durante a sua vida: essas duas pessoas foram capazes de atender?"
 
 #: ../src/plugins/view/geoclose.py:158
 msgid "GeoClose"
@@ -31161,112 +31155,3 @@ msgstr ""
 "2003&quot;. Você também pode indicar o nível de confiança na data e até "
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
-
-#~ msgid "Vertical (top to bottom)"
-#~ msgstr "Vertical (de cima para baixo)"
-
-#~ msgid "Vertical (bottom to top)"
-#~ msgstr "Vertical (de baixo para cima)"
-
-#~ msgid "Horizontal (right to left)"
-#~ msgstr "Horizontal (da direita para a esquerda)"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "Colour"
-#~ msgstr "Cor"
-
-#~ msgid "Install Addons"
-#~ msgstr "Instalar extensões"
-
-#~ msgid "Individuals with incomplete names"
-#~ msgstr "Indivíduos com nomes incompletos"
-
-#~ msgid "Coloured outline"
-#~ msgstr "Contorno colorido"
-
-#~ msgid "Colour fill"
-#~ msgstr "Preenchimento de cor"
-
-#~ msgid "Rebuild reference map"
-#~ msgstr "Reconstruir mapeamento de referências"
-
-#~ msgid "The Database version is not supported by this version of Gramps."
-#~ msgstr ""
-#~ "A versão do banco de dados não é suportada por esta versão do Gramps."
-
-#~ msgid ""
-#~ "Your family tree groups name %(key)s together with %(present)s, did not "
-#~ "change this grouping to %(value)s"
-#~ msgstr ""
-#~ "A sua árvore genealógica agrupa o nome%(key)s com %(present)s, não se "
-#~ "alterou este agrupamento para %(value)s"
-
-#~ msgid "Import database"
-#~ msgstr "Importar banco de dados"
-
-#~ msgid "%(quantity)d invalid event reference was removed\n"
-#~ msgid_plural "%(quantity)d invalid event references were removed\n"
-#~ msgstr[0] "%(quantity)d referência de evento inválida foi removida\n"
-#~ msgstr[1] "%(quantity)d referências de evento inválidas foram removidas\n"
-
-#~ msgid "Source Reference: %s"
-#~ msgstr "Referência de fontes: %s"
-
-#~ msgid "Every object"
-#~ msgstr "Todos os objetos"
-
-#~ msgid "Matches every object in the database"
-#~ msgstr "Coincide com todos os objetos do banco de dados"
-
-#~ msgid "Object with <Id>"
-#~ msgstr "Objeto com <Id>"
-
-#~ msgid "Matches objects with a specified Gramps ID"
-#~ msgstr "Coincide com objetos com o ID Gramps especificado"
-
-#~ msgid "Objects with records containing <substring>"
-#~ msgstr "Objetos com registros contendo <substring>"
-
-#~ msgid "Matches objects whose records contain text matching a substring"
-#~ msgstr ""
-#~ "Coincide com objetos cujos registros contêm texto que coincide com uma "
-#~ "cadeia de caracteres"
-
-#~ msgid "Objects marked private"
-#~ msgstr "Objetos marcados como privados"
-
-#~ msgid "Matches objects that are indicated as private"
-#~ msgstr "Coincide com objetos marcados como privados"
-
-#~ msgid "Export:"
-#~ msgstr "Exportar:"
-
-#~ msgid "Filt_er:"
-#~ msgstr "_Filtro:"
-
-#~ msgid "I_ndividuals"
-#~ msgstr "I_ndivíduos"
-
-#~ msgid "Translate _Headers"
-#~ msgstr "Traduzir cabeçalhos"
-
-#~ msgid "_Marriages"
-#~ msgstr "Casa_mentos"
-
-#~ msgid "_Restrict data on living people"
-#~ msgstr "_Restringir dados de pessoas vivas"
-
-#~ msgid "Exclude _notes"
-#~ msgstr "Excluir _notas"
-
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "R_eferenciar imagens a partir da localização:  "
-
-# Check this translation
-#~ msgid "Use _Living as first name"
-#~ msgstr "Usar _Living como primeiro nome"
