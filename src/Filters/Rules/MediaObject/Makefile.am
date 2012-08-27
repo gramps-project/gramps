@@ -6,13 +6,17 @@ pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
 pkgpython_PYTHON = \
 	_AllMedia.py\
 	_ChangedSince.py\
+	_HasCitation.py \
 	_HasIdOf.py\
 	_HasMedia.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasReferenceCountOf.py\
+	_HasSourceCount.py \
+	_HasSourceOf.py \
 	_HasTag.py\
 	_MatchesFilter.py\
+	_MatchesSourceConfidence.py \
 	_MediaPrivate.py\
 	_HasAttribute.py\
 	_RegExpIdOf.py\

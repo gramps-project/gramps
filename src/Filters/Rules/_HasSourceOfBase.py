@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasSourceOf.py 18548 2011-12-04 17:09:17Z kulath $
 
 #-------------------------------------------------------------------------
 #
@@ -33,52 +33,45 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------
 #
-# HasCitation
+# HasSourceOf
 #
 #-------------------------------------------------------------------------
-class HasCitationBase(Rule):
-    """Rule that checks for a citation with a particular value
-    
-    First parameter is [Volume/page, Date, Confidence]
-    """
+class HasSourceOfBase(Rule):
+    """Rule that checks for objects that have a particular source."""
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
-                    _('Confidence:') ]
-    name        = _('Citations matching parameters')
-    description = _("Matches citations with particular parameters")
+    labels      = [ _('Source ID:') ]
+    name        = _('Object with the <source>')
     category    = _('Citation/source filters')
-
-    def prepare(self, db):
-        self.date = None
-        try:
-            if self.list[1]:
-                self.date = DateHandler.parser.parse(self.list[1])
-        except:
-            pass
-
-    def apply(self, dbase, object):
-        for citation_handle in object.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if self._apply(dbase, citation):
-                return True
-        return False
+    description = _('Matches objects who have a particular source')
     
-    def _apply(self, db, citation):
-        if not self.match_substring(0, citation.get_page()):
+    def prepare(self,db):
+        if self.list[0] == '':
+            self.source_handle = None
+            self.nosource = True
+            return
+
+        self.nosource = False
+        try:
+            self.source_handle = db.get_source_from_gramps_id(
+                    self.list[0]).get_handle()
+        except:
+            self.source_handle = None
+
+    def apply(self, db, object):
+        if not self.source_handle:
+            if self.nosource:
+                # check whether the citation list is empty as a proxy for
+                # there being no sources
+                return len(object.get_all_citation_lists()) == 0
+            else:
+                return False
+        else:
+            for citation_handle in object.get_all_citation_lists():
+                citation = db.get_citation_from_handle(citation_handle)
+                if citation.get_reference_handle() == self.source_handle:
+                    return True
             return False
-
-        if self.date:
-            if not citation.get_date_object().match(self.date):
-                return False
-        
-        if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
-                return False
-
-        return True

@@ -454,6 +454,7 @@ src/Filters/Rules/_HasGrampsId.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/_IsPrivate.py
 src/Filters/Rules/_Rule.py
+src/Filters/Rules/_HasSourceOfBase.py
 
 # Filters.Rules.Person package
 src/Filters/Rules/Person/_ChangedSince.py
@@ -553,6 +554,7 @@ src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
 src/Filters/Rules/Family/_HasSourceCount.py
+src/Filters/Rules/Family/_HasSourceOf.py
 src/Filters/Rules/Family/_HasTag.py
 src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_MatchesFilter.py
@@ -604,6 +606,10 @@ src/Filters/Rules/Place/_MatchesFilter.py
 src/Filters/Rules/Place/_MatchesEventFilter.py
 src/Filters/Rules/Place/_PlacePrivate.py
 src/Filters/Rules/Place/_RegExpIdOf.py
+src/Filters/Rules/Place/_HasSourceOf.py
+src/Filters/Rules/Place/_MatchesSourceConfidence.py
+src/Filters/Rules/Place/_HasSourceCount.py
+src/Filters/Rules/Place/_HasCitation.py
 
 # Filters.Rules.Source package
 src/Filters/Rules/Source/_AllSources.py
@@ -652,6 +658,10 @@ src/Filters/Rules/MediaObject/_HasTag.py
 src/Filters/Rules/MediaObject/_MatchesFilter.py
 src/Filters/Rules/MediaObject/_MediaPrivate.py
 src/Filters/Rules/MediaObject/_RegExpIdOf.py
+src/Filters/Rules/MediaObject/_HasSourceCount.py
+src/Filters/Rules/MediaObject/_HasCitation.py
+src/Filters/Rules/MediaObject/_HasSourceOf.py
+src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py
 
 # Filters.Rules.Repository package
 src/Filters/Rules/Repository/_AllRepos.py

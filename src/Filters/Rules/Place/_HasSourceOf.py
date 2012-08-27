@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasSourceOf.py 18548 2011-12-04 17:09:17Z kulath $
 
 #-------------------------------------------------------------------------
 #
@@ -33,52 +33,17 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import DateHandler
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasSourceOfBase import HasSourceOfBase
 
 #-------------------------------------------------------------------------
 #
-# HasCitation
+# HasSourceOf
 #
 #-------------------------------------------------------------------------
-class HasCitationBase(Rule):
-    """Rule that checks for a citation with a particular value
-    
-    First parameter is [Volume/page, Date, Confidence]
-    """
+class HasSourceOf(HasSourceOfBase):
+    """Rule that checks family that have a particular source."""
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
-                    _('Confidence:') ]
-    name        = _('Citations matching parameters')
-    description = _("Matches citations with particular parameters")
+    labels      = [ _('Source ID:') ]
+    name        = _('Places with the <source>')
     category    = _('Citation/source filters')
-
-    def prepare(self, db):
-        self.date = None
-        try:
-            if self.list[1]:
-                self.date = DateHandler.parser.parse(self.list[1])
-        except:
-            pass
-
-    def apply(self, dbase, object):
-        for citation_handle in object.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if self._apply(dbase, citation):
-                return True
-        return False
-    
-    def _apply(self, db, citation):
-        if not self.match_substring(0, citation.get_page()):
-            return False
-
-        if self.date:
-            if not citation.get_date_object().match(self.date):
-                return False
-        
-        if self.list[2]:
-            if citation.get_confidence_level() < int(self.list[2]):
-                return False
-
-        return True
+    description = _('Matches places who have a particular source')

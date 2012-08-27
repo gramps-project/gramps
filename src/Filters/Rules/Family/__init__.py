@@ -48,6 +48,7 @@ from _HasCitation import HasCitation
 from _FamilyPrivate import FamilyPrivate
 from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
+from _HasSourceOf import HasSourceOf
 from _IsBookmarked import IsBookmarked
 from _MatchesFilter import MatchesFilter
 from _MatchesSourceConfidence import MatchesSourceConfidence
@@ -72,6 +73,7 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
     HasSourceCount,
+    HasSourceOf,
     HasCitation, 
     FamilyPrivate,
     HasEvent,

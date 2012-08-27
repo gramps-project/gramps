@@ -19,6 +19,7 @@ pkgpython_PYTHON = \
 	_HasReferenceCountOf.py\
 	_HasRelType.py\
 	_HasSourceCount.py \
+	_HasSourceOf.py \
 	_HasTag.py \
 	__init__.py\
 	_IsBookmarked.py\

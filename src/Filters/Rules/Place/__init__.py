@@ -29,12 +29,16 @@ from _AllPlaces import AllPlaces
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
+from _HasCitation import HasCitation
+from _HasSourceOf import HasSourceOf
+from _HasSourceCount import HasSourceCount
 from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
 from _PlacePrivate import PlacePrivate
 from _MatchesFilter import MatchesFilter
+from _MatchesSourceConfidence import MatchesSourceConfidence
 from _HasPlace import HasPlace
 from _HasNoLatOrLon import HasNoLatOrLon
 from _InLatLonNeighborhood import InLatLonNeighborhood
@@ -46,12 +50,16 @@ editor_rule_list = [
     HasGallery,
     HasIdOf,
     RegExpIdOf,
+    HasCitation,
     HasNote,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
+    HasSourceOf,
+    HasSourceCount,
     PlacePrivate,
     MatchesFilter,
+    MatchesSourceConfidence,
     HasPlace,
     HasNoLatOrLon,
     InLatLonNeighborhood,

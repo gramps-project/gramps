@@ -19,6 +19,7 @@ pkgpython_PYTHON = \
 	_HasReferenceCountBase.py \
 	_HasSourceCountBase.py \
 	_HasSourceBase.py \
+	_HasSourceOfBase.py \
 	_HasTagBase.py \
 	_HasTextMatchingRegexpOf.py\
 	_HasTextMatchingSubstringOf.py\
@@ -28,10 +29,10 @@ pkgpython_PYTHON = \
 	_RegExpIdBase.py\
 	_Rule.py\
 	_MatchesFilterBase.py\
-    _MatchesEventFilterBase.py \
-    _MatchesSourceConfidenceBase.py \
-    _MatchesSourceFilterBase.py \
-    _HasCitationBase.py
+	_MatchesEventFilterBase.py \
+	_MatchesSourceConfidenceBase.py \
+	_MatchesSourceFilterBase.py \
+	_HasCitationBase.py
 
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules
