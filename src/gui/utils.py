@@ -491,5 +491,6 @@ def color_to_hex(color):
     
 def hex_to_color(hex):
     """Convert hex string to Gdk.Color."""
+    from gi.repository import Gdk
     color = Gdk.color_parse(hex)
     return color
