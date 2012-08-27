@@ -1,8 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008  Jerome Rapinat
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasSourceCount.py 18548 2011-12-04 17:09:17Z kulath $
 
 #-------------------------------------------------------------------------
 #
@@ -33,17 +35,13 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hassourceofbase import HasSourceOfBase
+from gen.filters.rules._hassourcecountbase import HasSourceCountBase
 
 #-------------------------------------------------------------------------
-#
-# HasSourceOf
-#
+# "People having sources"
 #-------------------------------------------------------------------------
-class HasSourceOf(HasSourceOfBase):
-    """Rule that checks people that have a particular source."""
+class HasSourceCount(HasSourceCountBase):
+    """Media with sources"""
 
-    labels      = [ _('Source ID:') ]
-    name        = _('People with the <source>')
-    category    = _('Citation/source filters')
-    description = _('Matches people who have a particular source')
+    name        = _('Media with <count> sources')
+    description = _("Matches media with a certain number of sources connected to it")

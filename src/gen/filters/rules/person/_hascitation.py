@@ -51,10 +51,3 @@ class HasCitation(HasCitationBase):
     name        =  _('People with the <citation>')
     description = _("Matches people with a citation of a particular "
                     "value")
-    
-    def apply(self, dbase, person):
-        for citation_handle in person.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if HasCitationBase.apply(self, dbase, citation):
-                return True
-        return False

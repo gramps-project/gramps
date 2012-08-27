@@ -19,6 +19,7 @@ pkgpython_PYTHON = \
 	_hasreferencecountbase.py \
 	_hassourcecountbase.py \
 	_hassourcebase.py \
+	_hassourceofbase.py \
 	_hastagbase.py \
 	_hastextmatchingregexpof.py\
 	_hastextmatchingsubstringof.py\

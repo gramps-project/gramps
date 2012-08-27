@@ -43,6 +43,7 @@ from _hasnote import HasNote
 from _hasnoteregexp import HasNoteRegexp
 from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from _hassourcecount import HasSourceCount
+from _hassourceof import HasSourceOf
 from _hasreferencecountof import HasReferenceCountOf
 from _hascitation import HasCitation
 from _familyprivate import FamilyPrivate
@@ -72,6 +73,7 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
     HasSourceCount,
+    HasSourceOf,
     HasCitation, 
     FamilyPrivate,
     HasEvent,

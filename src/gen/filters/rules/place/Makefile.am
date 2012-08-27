@@ -6,6 +6,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/gen/filters/rules/place
 pkgpython_PYTHON = \
 	_allplaces.py\
 	_changedsince.py\
+	_hascitation.py \
 	_hasidof.py\
 	_hasnolatorlon.py\
 	_inlatlonneighborhood.py\
@@ -15,8 +16,11 @@ pkgpython_PYTHON = \
 	_hasplace.py\
 	_hasnote.py \
 	_hasreferencecountof.py\
+	_hassourcecount.py \
+	_hassourceof \
 	_matchesfilter.py\
 	_matcheseventfilter.py\
+        _matchessourceconfidence.py\
 	_placeprivate.py\
 	_regexpidof.py\
 	__init__.py

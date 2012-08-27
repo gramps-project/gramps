@@ -52,10 +52,3 @@ class HasCitation(HasCitationBase):
     name        =  _('Family with the <citation>')
     description = _("Matches families with a citation of a particular "
                     "value")
-    
-    def apply(self, dbase, family):
-        for citation_handle in family.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if HasCitationBase.apply(self, dbase, citation):
-                return True
-        return False

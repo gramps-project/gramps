@@ -47,12 +47,11 @@ class HasCitationBase(Rule):
     First parameter is [Volume/page, Date, Confidence]
     """
 
-
-    labels      = [ 'Volume/Page:', 
-                    'Date:', 
-                    'Confidence:' ]
-    name        = 'Citations matching parameters'
-    description = "Matches citations with particular parameters"
+    labels      = [ _('Volume/Page:'), 
+                    _('Date:'), 
+                    _('Confidence:') ]
+    name        = _('Citations matching parameters')
+    description = _("Matches citations with particular parameters")
     category    = _('Citation/source filters')
 
     def prepare(self, db):
@@ -63,8 +62,15 @@ class HasCitationBase(Rule):
         except:
             pass
 
-    def apply(self,db,citation):
-        if not self.match_substring(0,citation.get_page()):
+    def apply(self, dbase, object):
+        for citation_handle in object.get_citation_list():
+            citation = dbase.get_citation_from_handle(citation_handle)
+            if self._apply(dbase, citation):
+                return True
+        return False
+    
+    def _apply(self, db, citation):
+        if not self.match_substring(0, citation.get_page()):
             return False
 
         if self.date:

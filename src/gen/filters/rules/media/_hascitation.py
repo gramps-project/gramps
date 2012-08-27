@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,8 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasCitation.py 18548 2011-12-04 17:09:17Z kulath $
 
+"""
+Filter rule to match persons with a particular citation.
+"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -33,17 +35,19 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hassourceofbase import HasSourceOfBase
+from gen.filters.rules._hascitationbase import HasCitationBase
 
 #-------------------------------------------------------------------------
 #
-# HasSourceOf
+# HasEvent
 #
 #-------------------------------------------------------------------------
-class HasSourceOf(HasSourceOfBase):
-    """Rule that checks people that have a particular source."""
+class HasCitation(HasCitationBase):
+    """Rule that checks for a person with a particular value"""
 
-    labels      = [ _('Source ID:') ]
-    name        = _('People with the <source>')
-    category    = _('Citation/source filters')
-    description = _('Matches people who have a particular source')
+    labels      = [ _('Volume/Page:'), 
+                    _('Date:'), 
+                    _('Confidence level:')]
+    name        =  _('Media with the <citation>')
+    description = _("Matches media with a citation of a particular "
+                    "value")

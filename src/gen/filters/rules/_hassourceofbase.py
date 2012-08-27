@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasSourceOf.py 18548 2011-12-04 17:09:17Z kulath $
 
 #-------------------------------------------------------------------------
 #
@@ -33,17 +33,45 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hassourceofbase import HasSourceOfBase
+from gen.filters.rules import Rule
 
 #-------------------------------------------------------------------------
 #
 # HasSourceOf
 #
 #-------------------------------------------------------------------------
-class HasSourceOf(HasSourceOfBase):
-    """Rule that checks people that have a particular source."""
+class HasSourceOfBase(Rule):
+    """Rule that checks for objects that have a particular source."""
 
     labels      = [ _('Source ID:') ]
-    name        = _('People with the <source>')
+    name        = _('Object with the <source>')
     category    = _('Citation/source filters')
-    description = _('Matches people who have a particular source')
+    description = _('Matches objects who have a particular source')
+    
+    def prepare(self,db):
+        if self.list[0] == '':
+            self.source_handle = None
+            self.nosource = True
+            return
+
+        self.nosource = False
+        try:
+            self.source_handle = db.get_source_from_gramps_id(
+                    self.list[0]).get_handle()
+        except:
+            self.source_handle = None
+
+    def apply(self, db, object):
+        if not self.source_handle:
+            if self.nosource:
+                # check whether the citation list is empty as a proxy for
+                # there being no sources
+                return len(object.get_all_citation_lists()) == 0
+            else:
+                return False
+        else:
+            for citation_handle in object.get_all_citation_lists():
+                citation = db.get_citation_from_handle(citation_handle)
+                if citation.get_reference_handle() == self.source_handle:
+                    return True
+            return False

@@ -27,11 +27,15 @@ Package providing filter rules for GRAMPS.
 from _allmedia import AllMedia
 from _hasidof import HasIdOf
 from _regexpidof import RegExpIdOf
+from _hascitation import HasCitation
 from _hasnoteregexp import HasNoteRegexp
 from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from _hasreferencecountof import HasReferenceCountOf
+from _hassourcecount import HasSourceCount
+from _hassourceof import HasSourceOf
 from _mediaprivate import MediaPrivate
 from _matchesfilter import MatchesFilter
+from _matchessourceconfidence import MatchesSourceConfidence
 from _hasmedia import HasMedia
 from _hasattribute import HasAttribute
 from _changedsince import ChangedSince
@@ -39,13 +43,17 @@ from _hastag import HasTag
 
 editor_rule_list = [
     AllMedia,
+    HasCitation, 
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
+    HasSourceCount,
+    HasSourceOf,
     MediaPrivate,
     MatchesFilter,
+    MatchesSourceConfidence,
     HasAttribute,
     ChangedSince,
     HasTag,

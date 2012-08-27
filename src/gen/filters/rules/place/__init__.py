@@ -26,6 +26,7 @@ Package providing filter rules for GRAMPS.
 """
 
 from _allplaces import AllPlaces
+from _hascitation import HasCitation
 from _hasgallery import HasGallery
 from _hasidof import HasIdOf
 from _regexpidof import RegExpIdOf
@@ -33,16 +34,20 @@ from _hasnote import HasNote
 from _hasnoteregexp import HasNoteRegexp
 from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from _hasreferencecountof import HasReferenceCountOf
+from _hassourcecount import HasSourceCount
+from _hassourceof import HasSourceOf
 from _placeprivate import PlacePrivate
 from _matchesfilter import MatchesFilter
 from _hasplace import HasPlace
 from _hasnolatorlon import HasNoLatOrLon
 from _inlatlonneighborhood import InLatLonNeighborhood
 from _matcheseventfilter import MatchesEventFilter
+from _matchessourceconfidence import MatchesSourceConfidence
 from _changedsince import ChangedSince
 
 editor_rule_list = [
     AllPlaces,
+    HasCitation, 
     HasGallery,
     HasIdOf,
     RegExpIdOf,
@@ -50,8 +55,11 @@ editor_rule_list = [
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
+    HasSourceCount,
+    HasSourceOf,
     PlacePrivate,
     MatchesFilter,
+    MatchesSourceConfidence,
     HasPlace,
     HasNoLatOrLon,
     InLatLonNeighborhood,

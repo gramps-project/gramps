@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: _HasSourceOf.py 18548 2011-12-04 17:09:17Z kulath $
 
 #-------------------------------------------------------------------------
 #
@@ -41,9 +41,9 @@ from gen.filters.rules._hassourceofbase import HasSourceOfBase
 #
 #-------------------------------------------------------------------------
 class HasSourceOf(HasSourceOfBase):
-    """Rule that checks people that have a particular source."""
+    """Rule that checks family that have a particular source."""
 
     labels      = [ _('Source ID:') ]
-    name        = _('People with the <source>')
+    name        = _('Places with the <source>')
     category    = _('Citation/source filters')
-    description = _('Matches people who have a particular source')
+    description = _('Matches places who have a particular source')

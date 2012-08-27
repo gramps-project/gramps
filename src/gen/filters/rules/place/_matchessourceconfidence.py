@@ -1,8 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011  Jerome Rapinat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,32 +17,30 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
+# Filters/Rules/Person/_MatchesSourceConfidence.py
+# $Id: _MatchesSourceConfidence.py 18361 2011-10-23 03:13:50Z paul-franklin $
+#
 
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hassourceofbase import HasSourceOfBase
+from gen.filters.rules._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
 #-------------------------------------------------------------------------
-#
-# HasSourceOf
-#
+# "Confidence level"
 #-------------------------------------------------------------------------
-class HasSourceOf(HasSourceOfBase):
-    """Rule that checks people that have a particular source."""
+class MatchesSourceConfidence(MatchesSourceConfidenceBase):
+    """Media matching a specific confidence level on its 'direct' source references"""
 
-    labels      = [ _('Source ID:') ]
-    name        = _('People with the <source>')
-    category    = _('Citation/source filters')
-    description = _('Matches people who have a particular source')
+    labels    = [_('Confidence level:')]
+    name        = _('Place with a direct source >= <confidence level>')
+    description = _("Matches places with at least one direct source with confidence level(s)")

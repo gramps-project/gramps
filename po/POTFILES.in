@@ -31,6 +31,7 @@ src/gen/filters/_filterparser.py
 # gen.filters.rules package
 src/gen/filters/rules/_everything.py
 src/gen/filters/rules/_hasgrampsid.py
+src/gen/filters/rules/_hassourceofbase.py
 src/gen/filters/rules/_hastextmatchingsubstringof.py
 src/gen/filters/rules/_isprivate.py
 src/gen/filters/rules/_rule.py
@@ -133,6 +134,7 @@ src/gen/filters/rules/family/_hasnotematchingsubstringof.py
 src/gen/filters/rules/family/_hasnoteregexp.py
 src/gen/filters/rules/family/_hasreferencecountof.py
 src/gen/filters/rules/family/_hasreltype.py
+src/gen/filters/rules/family/_hassourceof.py
 src/gen/filters/rules/family/_hassourcecount.py
 src/gen/filters/rules/family/_hastag.py
 src/gen/filters/rules/family/_isbookmarked.py
@@ -185,6 +187,10 @@ src/gen/filters/rules/place/_matchesfilter.py
 src/gen/filters/rules/place/_matcheseventfilter.py
 src/gen/filters/rules/place/_placeprivate.py
 src/gen/filters/rules/place/_regexpidof.py
+src/gen/filters/rules/place/_hassourceof.py
+src/gen/filters/rules/place/_matchessourceconfidence.py
+src/gen/filters/rules/place/_hassourcecount.py
+src/gen/filters/rules/place/_hascitation.py
 
 # gen.filters.rules.source package
 src/gen/filters/rules/source/_allsources.py
@@ -233,6 +239,10 @@ src/gen/filters/rules/media/_hastag.py
 src/gen/filters/rules/media/_matchesfilter.py
 src/gen/filters/rules/media/_mediaprivate.py
 src/gen/filters/rules/media/_regexpidof.py
+src/gen/filters/rules/media/_hassourcecount.py
+src/gen/filters/rules/media/_hassourceof.py
+src/gen/filters/rules/media/_matchessourceconfidence.py
+src/gen/filters/rules/media/_hascitation.py
 
 # gen.filters.rules.repository package
 src/gen/filters/rules/repository/_allrepos.py
