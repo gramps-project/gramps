@@ -905,31 +905,31 @@ class ProxyDbBase(DbReadBase):
         return self.bookmarks
 
     def get_family_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Family handles in the bookmarks"""
         return self.family_bookmarks
 
     def get_event_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Event handles in the bookmarks"""
         return self.event_bookmarks
 
     def get_place_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Place handles in the bookmarks"""
         return self.place_bookmarks
 
     def get_source_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Source handles in the bookmarks"""
         return self.source_bookmarks
 
     def get_citation_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Citation handles in the bookmarks"""
         return self.citation_bookmarks
 
     def get_media_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Media handles in the bookmarks"""
         return self.media_bookmarks
 
     def get_repo_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """returns the list of Repository handles in the bookmarks"""
         return self.repo_bookmarks
 
     def get_note_bookmarks(self):
