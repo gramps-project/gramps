@@ -68,11 +68,11 @@ _LOG = logging.getLogger("GeoGraphy.markerlayer")
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class MarkerLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
+class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display the markers.
     """

@@ -51,11 +51,11 @@ _LOG = logging.getLogger("maps.selectionlayer")
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class SelectionLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
+class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
     def __init__(self):
         """
         Initialize thz selection layer

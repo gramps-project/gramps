@@ -60,11 +60,11 @@ import cairo
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class LifeWayLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
+class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display tracks or the life way for one or several
     individuals.

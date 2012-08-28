@@ -35,16 +35,17 @@ try :
     if Gtk.get_major_version() >= 3:
         OSMGPSMAP = False
         NEWGTK = True
-    if not NEWGTK:
-        # current osmgpsmap does not support GTK3
-        import osmgpsmap
+    if NEWGTK:
+        # current osmgpsmap support GTK3
+        from gi.repository import OsmGpsMap as osmgpsmap
+        print "OsmGpsMap version : ", osmgpsmap._version
         OSMGPSMAP = True
-        if osmgpsmap.__version__ < '0.7.0':
+        if osmgpsmap._version < '1.0':
             OSMGPSMAP = False
             import logging
             logging.warning( _("WARNING: osmgpsmap module not loaded. "
-                               "osmgpsmap must be >= 0.7.0. yours is %s") %
-                            osmgpsmap.__version__)
+                               "osmgpsmap must be >= 1.0. yours is %s") %
+                            osmgpsmap._version)
 except:
     OSMGPSMAP = False
     import logging

@@ -33,6 +33,7 @@ Geography for one person and all his descendant
 from gen.ggettext import gettext as _
 import operator
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GObject
 import time
 import threading
@@ -520,11 +521,12 @@ class GeoMoves(GeoGraphyView):
                         death = high_date
                 new_list.append([level, plxp, birth, death])
             pidx = 0;
-            try:
-                color = Gdk.color_parse(color)
-            except:
-                # We have already a Gdk.color
-                pass
+            color = Gdk.color_parse(color)
+            #try:
+            #    color = Gdk.color_parse(color)
+            #except:
+            #    # We have already a Gdk.color
+            #    pass
             for (level, plxp, birth, death) in sorted(new_list, key=operator.itemgetter(0,2)):
                 if index == int(self._config.get("geography.maximum_generations")):
                    break

@@ -57,7 +57,7 @@ from gen.config import config
 from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gui.selectors.selectplace import SelectPlace
 
-import osmgpsmap
+from gi.repository import OsmGpsMap as osmgpsmap
 import constants
 from osmGps import OsmGps
 from selectionlayer import SelectionLayer
@@ -529,6 +529,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Is this marker in the visible area ?
         """
+        return True
+        # BUG here : how to replace that ?
         bbox = self.osm.get_bbox()
         s_lon = lon + 10.0
         s_lat = lat + 10.0
@@ -579,8 +581,15 @@ class GeoGraphyView(OsmGps, NavigationView):
         We must use function called by timeout to force map updates.
         """
         level_start = self.osm.props.zoom
-        p1lat, p1lon = self.begin_selection.get_degrees()
-        p2lat, p2lon = self.end_selection.get_degrees()
+        # BUG here : how to replace that ?
+        #p1lat = p1lon = 0.0
+        #p1lat, p1lon = self.begin_selection.get_degrees(p1lat, p1lon)
+        #print p1lat, p1lon
+        #p2lat, p2lon = self.end_selection.get_degrees(0.0, 0.0)
+        p1lat = self.begin_selection.rlat
+        p1lon = self.begin_selection.rlon
+        p2lat = self.end_selection.rlat
+        p2lon = self.end_selection.rlon
         lat = p1lat + ( p2lat - p1lat ) / 2
         lon = p1lon + ( p2lon - p1lon ) / 2
         # We center the map on the center of the region
@@ -609,9 +618,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         signminlat = _get_sign(self.minlat)
         signmaxlon = _get_sign(self.maxlon)
         signmaxlat = _get_sign(self.maxlat)
-        current = osmgpsmap.point_new_degrees(self.minlat, self.minlon)
+        current = osmgpsmap.MapPoint.new_degrees(self.minlat, self.minlon)
         self.end_selection = current 
-        current = osmgpsmap.point_new_degrees(self.maxlat, self.maxlon)
+        current = osmgpsmap.MapPoint.new_degrees(self.maxlat, self.maxlon)
         self.begin_selection = current 
         if signminlon == signmaxlon:
             maxlong = abs(abs(self.minlon) - abs(self.maxlon))

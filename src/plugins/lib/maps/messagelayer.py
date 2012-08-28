@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-import gobject
+from gi.repository import GObject
 import operator
 from math import *
 
@@ -46,7 +46,8 @@ _LOG = logging.getLogger("maps.messagelayer")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
-from gi.repository import Cairo
+#from gi.repository import Cairo
+import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -61,11 +62,11 @@ from gi.repository import Cairo
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
+class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display messages over the map
     """
@@ -73,7 +74,7 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         Initialize the layer
         """
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
         self.message = []
         self.color = "black"
         self.font = "Arial"
@@ -163,5 +164,5 @@ class MessageLayer(gobject.GObject, osmgpsmap.GpsMapLayer):
         """
         return False
 
-gobject.type_register(MessageLayer)
+GObject.type_register(MessageLayer)
 

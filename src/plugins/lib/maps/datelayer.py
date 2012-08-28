@@ -61,11 +61,11 @@ import cairo
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class DateLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
+class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display the two extreme dates on the top left of the view
     """

@@ -51,11 +51,11 @@ _LOG = logging.getLogger("maps.dummylayer")
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class DummyLayer(GObject.GObject, osmgpsmap.GpsMapLayer):
+class DummyLayer(GObject.GObject, osmgpsmap.MapLayer):
     def __init__(self):
         """
         Initialize the dummy layer

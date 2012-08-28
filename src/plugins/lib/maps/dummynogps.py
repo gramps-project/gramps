@@ -51,11 +51,11 @@ _LOG = logging.getLogger("maps.dummynogps")
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
-class DummyMapNoGpsPoint(osmgpsmap.GpsMap):
+class DummyMapNoGpsPoint(osmgpsmap.Map):
     def do_draw_gps_point(self, drawable):
         pass
 

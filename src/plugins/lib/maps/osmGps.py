@@ -45,6 +45,7 @@ _LOG = logging.getLogger("maps.osmgps")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -70,7 +71,7 @@ from gui.dialog import ErrorDialog
 #-------------------------------------------------------------------------
 
 try:
-    import osmgpsmap
+    from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
 
@@ -134,9 +135,9 @@ class OsmGps():
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
-            self.osm = osmgpsmap.GpsMap(tile_cache=tiles_path,
+            self.osm = osmgpsmap.Map(tile_cache=tiles_path,
                                         map_source=constants.map_type[map_type])
-        current_map = osmgpsmap.GpsMapOsd( show_dpad=False, show_zoom=True)
+        current_map = osmgpsmap.MapOsd( show_dpad=False, show_zoom=True)
         self.end_selection = None
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
@@ -145,7 +146,7 @@ class OsmGps():
         self.marker_layer = self.add_marker_layer()
         self.date_layer = self.add_date_layer()
         self.message_layer = self.add_message_layer()
-        self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=False)
+        self.cross_map = osmgpsmap.MapOsd( show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
                                      config.get("geography.center-lon"),
@@ -246,9 +247,14 @@ class OsmGps():
         """
         Moving during selection
         """
-        current = osmgpsmap.point_new_degrees(0.0, 0.0)
-        osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
-        lat, lon = current.get_degrees()
+        # BUG here : how to replace that ?
+        #current = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
+        current = osmgpsmap.MapPoint.new_degrees(int(event.x), int(event.y))
+        # BUG here : how to replace that ?
+        #osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        #lat, lon = current.get_degrees()
+        lat = current.rlat
+        lon = current.rlon
         if self.zone_selection:
             # We draw a rectangle to show the selected region.
             layer = self.get_selection_layer()
@@ -302,10 +308,18 @@ class OsmGps():
         mouse button 2 : begin zone selection
         mouse button 3 : call the menu
         """
-        lat, lon = self.osm.get_event_location(event).get_degrees()
-        current = osmgpsmap.point_new_degrees(0.0, 0.0)
-        osm.convert_screen_to_geographic(int(event.x), int(event.y), current)
-        lat, lon = current.get_degrees()
+        # BUG here : how to replace that ?
+        #lat, lon = self.osm.get_event_location(event).get_degrees()
+        lat = self.osm.get_event_location(event).rlat
+        lon = self.osm.get_event_location(event).rlon
+        current = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
+        # BUG here : how to replace that ?
+        #osm.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        current = osm.convert_screen_to_geographic(int(event.x), int(event.y))
+        # BUG here : how to replace that ?
+        #lat, lon = current.get_degrees()
+        lat = current.rlat
+        lon = current.rlon
         if event.button == 1:
             if self.end_selection is not None:
                 self.activate_selection_zoom(osm, event)
