@@ -196,7 +196,7 @@ class DbReadBase(object):
 
     def get_event_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Event handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -246,7 +246,7 @@ class DbReadBase(object):
 
     def get_family_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Family handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -315,7 +315,7 @@ class DbReadBase(object):
 
     def get_media_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Media handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -528,7 +528,7 @@ class DbReadBase(object):
 
     def get_place_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Place handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -644,7 +644,7 @@ class DbReadBase(object):
 
     def get_repo_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Repository handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -700,7 +700,7 @@ class DbReadBase(object):
 
     def get_source_bookmarks(self):
         """
-        Return the list of Person handles in the bookmarks.
+        Return the list of Source handles in the bookmarks.
         """
         raise NotImplementedError
 
