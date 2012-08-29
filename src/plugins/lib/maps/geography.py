@@ -32,6 +32,7 @@ import os
 import re
 from gi.repository import GObject
 import time
+from math import pi
 
 #-------------------------------------------------------------------------
 #
@@ -294,6 +295,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             changemapitem.show()
             changemapitem.connect("activate", self.change_map, map)
             changemap.append(changemapitem)
+        menu.show()
         menu.popup(None, None, None, None, 0, event.time)
         return 1
 
@@ -529,9 +531,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Is this marker in the visible area ?
         """
-        return True
+        #return True
         # BUG here : how to replace that ?
-        bbox = self.osm.get_bbox()
+        pt1 = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
+        pt2 = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
+        bbox = self.osm.get_bbox(pt1,pt2)
+        print bbox
         s_lon = lon + 10.0
         s_lat = lat + 10.0
         s_bbox_lat1 = bbox[0] + 10.0
@@ -582,14 +587,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         level_start = self.osm.props.zoom
         # BUG here : how to replace that ?
-        #p1lat = p1lon = 0.0
-        #p1lat, p1lon = self.begin_selection.get_degrees(p1lat, p1lon)
-        #print p1lat, p1lon
-        #p2lat, p2lon = self.end_selection.get_degrees(0.0, 0.0)
-        p1lat = self.begin_selection.rlat
-        p1lon = self.begin_selection.rlon
-        p2lat = self.end_selection.rlat
-        p2lon = self.end_selection.rlon
+        #p1lat, p1lon = self.begin_selection.get_degrees()
+        #p2lat, p2lon = self.end_selection.get_degrees()
+        p1lat = 180 * self.begin_selection.rlat / pi
+        p1lon = 180 * self.begin_selection.rlon / pi
+        p2lat = 180 * self.end_selection.rlat / pi
+        p2lon = 180 * self.end_selection.rlon / pi
         lat = p1lat + ( p2lat - p1lat ) / 2
         lon = p1lon + ( p2lon - p1lon ) / 2
         # We center the map on the center of the region

@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from math import pi
 from gi.repository import GObject
 
 #------------------------------------------------------------------------
@@ -247,14 +248,11 @@ class OsmGps():
         """
         Moving during selection
         """
-        # BUG here : how to replace that ?
-        #current = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
-        current = osmgpsmap.MapPoint.new_degrees(int(event.x), int(event.y))
-        # BUG here : how to replace that ?
-        #osmmap.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        current = osmmap.convert_screen_to_geographic(int(event.x), int(event.y))
         #lat, lon = current.get_degrees()
-        lat = current.rlat
-        lon = current.rlon
+        lat = 180 * current.rlat / pi
+        lon = 180 * current.rlon / pi
+        print event.x, event.y, lat, lon
         if self.zone_selection:
             # We draw a rectangle to show the selected region.
             layer = self.get_selection_layer()
@@ -308,18 +306,13 @@ class OsmGps():
         mouse button 2 : begin zone selection
         mouse button 3 : call the menu
         """
-        # BUG here : how to replace that ?
         #lat, lon = self.osm.get_event_location(event).get_degrees()
-        lat = self.osm.get_event_location(event).rlat
-        lon = self.osm.get_event_location(event).rlon
-        current = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
-        # BUG here : how to replace that ?
-        #osm.convert_screen_to_geographic(int(event.x), int(event.y), current)
+        lat = 180 * self.osm.get_event_location(event).rlat / pi
+        lon = 180 * self.osm.get_event_location(event).rlon / pi
         current = osm.convert_screen_to_geographic(int(event.x), int(event.y))
-        # BUG here : how to replace that ?
         #lat, lon = current.get_degrees()
-        lat = current.rlat
-        lon = current.rlon
+        lat = 180 * current.rlat / pi
+        lon = 180 * current.rlon / pi
         if event.button == 1:
             if self.end_selection is not None:
                 self.activate_selection_zoom(osm, event)
@@ -334,8 +327,19 @@ class OsmGps():
         elif event.button == 2 and event.type == Gdk.EventType.BUTTON_RELEASE:
             self.end_selection = current
             self.zone_selection = False
-        elif event.button == 3:
-            self.build_nav_menu(osm, event, lat, lon )
+        elif event.button == 3 and event.type == Gdk.EventType.BUTTON_PRESS:
+            # I don't see the menu. Why ?
+            #self.build_nav_menu(osm, event, lat, lon )
+            menu = Gtk.Menu()
+            menu.set_title(_('Map Menu'))
+
+            add_item = Gtk.MenuItem(label="title")
+            add_item.connect("activate", self.config_crosshair, event, lat , lon)
+            add_item.show()
+            menu.append(add_item)
+            menu.show()
+            menu.popup(None, None, None, None, event.button, event.time)
+            return 1
         else:
             self.save_center(lat, lon)
 
@@ -405,7 +409,7 @@ class OsmGps():
         Show or hide the crosshair ?
         """
         if active:
-            self.cross_map = osmgpsmap.GpsMapOsd( show_crosshair=True)
+            self.cross_map = osmgpsmap.MapOsd( show_crosshair=True)
             self.osm.layer_add( self.cross_map )
             # The two following are to force the map to update
             self.osm.zoom_in()
