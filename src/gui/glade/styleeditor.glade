@@ -181,9 +181,10 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="shadow_type">in</property>
+                    <property name="min_content_width">140</property>
                     <child>
                       <object class="GtkTreeView" id="ptree">
-                        <property name="width_request">175</property>
+                        <property name="width_request">160</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <child internal-child="selection">
