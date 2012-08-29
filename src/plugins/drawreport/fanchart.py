@@ -202,9 +202,7 @@ class FanChart(Report):
             self.apply_filter(family.get_father_handle(),index*2)
             self.apply_filter(family.get_mother_handle(),(index*2)+1)
 
-
     def write_report(self):
-
         self.doc.start_page()
         
         self.apply_filter(self.center_person.get_handle(),1)
@@ -259,9 +257,7 @@ class FanChart(Report):
             self.draw_circular (x, y, start_angle, max_angle, block_size, generation)
         for generation in range (max_circular, self.max_generations):
             self.draw_radial (x, y, start_angle, max_angle, block_size, generation)
-
         self.doc.end_page()
-
 
     def get_info(self,person_handle,generation):
         person = self.database.get_person_from_handle(person_handle)
@@ -324,7 +320,6 @@ class FanChart(Report):
         else:
             return [ pn.get_first_name(), pn.get_surname(), val ]
 
-
     def draw_circular(self, x, y, start_angle, max_angle, size, generation):
         segments = 2**generation
         delta = max_angle / segments
@@ -348,7 +343,6 @@ class FanChart(Report):
                 self.doc.rotate_text(text_style, self.text[index],
                                      xc, yc, text_angle, mark)
             text_angle += delta
-
 
     def draw_radial(self, x, y, start_angle, max_angle, size, generation):
         segments = 2**generation

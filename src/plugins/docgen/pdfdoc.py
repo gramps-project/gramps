@@ -95,19 +95,15 @@ class PdfDoc(libcairodoc.CairoDoc):
         except:
             raise ReportError(_("Could not create %s") % filename)
         surface.set_fallback_resolution(300, 300)
-        cr = PangoCairo.create_context(cairo.Context(surface))
-
-        fontmap = PangoCairo.font_map_get_default()
-        saved_resolution = fontmap.get_resolution()
+        cr = cairo.Context(surface)
+        fontmap = PangoCairo.font_map_new()
         fontmap.set_resolution(DPI)
-        
         pango_context = fontmap.create_context()
         options = cairo.FontOptions()
         options.set_hint_metrics(cairo.HINT_METRICS_OFF)
         PangoCairo.context_set_font_options(pango_context, options)
         layout = Pango.Layout(pango_context)
-        cr.update_context(pango_context)
-        
+        PangoCairo.update_context(cr, pango_context)
         # paginate the document
         self.paginate_document(layout, page_width, page_height, DPI, DPI)
         body_pages = self._pages
@@ -180,13 +176,9 @@ class PdfDoc(libcairodoc.CairoDoc):
                            DPI, DPI)
             cr.show_page()
             cr.restore()
-            
+
         # close the surface (file)
         surface.finish()
-        
-        # Restore the resolution. On windows, Gramps UI fonts will be smaller
-        # if we don't restore the resolution.
-        fontmap.set_resolution(saved_resolution)
 
     def __increment_pages(self, toc, index, start_page, offset):
         """

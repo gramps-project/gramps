@@ -714,7 +714,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         # 3/4 of the spacing is added above the text, 1/4 is added below
         cr.move_to(x, t_margin + v_padding + spacing * 0.75)
         cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
-        cr.show_layout(layout)
+        PangoCairo.show_layout(cr, layout)
         
         # calculate the full paragraph height
         height = layout_height + spacing + t_margin + 2*v_padding + b_margin
@@ -1295,7 +1295,7 @@ class GtkDocText(GtkDocBaseElement):
         cr.rotate(radians(self._angle))
         cr.move_to(align_x, align_y)
         cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
-        cr.show_layout(layout)
+        PangoCairo.show_layout(cr, layout)
         cr.restore()
 
         return layout_height
