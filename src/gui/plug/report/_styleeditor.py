@@ -100,7 +100,7 @@ class StyleListDisplay(object):
                                         [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
-            self.set_transient_for(parent_window)
+            self.window.set_transient_for(parent_window)
         self.window.run()
         self.window.destroy()
 
@@ -229,7 +229,7 @@ class StyleEditor(object):
         self.plist.select_row(0)
         
         if self.parent:
-            self.set_transient_for(parent.window)
+            self.window.set_transient_for(parent.window)
         self.window.run()
         self.window.destroy()
 
