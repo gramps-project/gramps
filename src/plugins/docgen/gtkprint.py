@@ -132,7 +132,7 @@ def paperstyle_to_pagesetup(paper_style):
     # All sizes not included in the translation table (even if a standard size)
     # are handled as custom format, because we are not intelligent enough.
     if gramps_paper_name in gramps_to_gtk:
-        paper_size = Gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
+        paper_size = Gtk.PaperSize.new(name=gramps_to_gtk[gramps_paper_name])
         log.debug("Selected paper size: %s" % gramps_to_gtk[gramps_paper_name])
     else:
         if paper_style.get_orientation() == PAPER_PORTRAIT:
@@ -145,7 +145,7 @@ def paperstyle_to_pagesetup(paper_style):
                                                "Custom Size",
                                                paper_width,
                                                paper_height,
-                                               Gtk.UNIT_MM)
+                                               Gtk.Unit.MM)
         log.debug("Selected paper size: (%f,%f)" % (paper_width, paper_height))
         
     page_setup = Gtk.PageSetup()
@@ -153,19 +153,19 @@ def paperstyle_to_pagesetup(paper_style):
     
     # Set paper orientation
     if paper_style.get_orientation() == PAPER_PORTRAIT:
-        page_setup.set_orientation(Gtk.PAGE_ORIENTATION_PORTRAIT)
+        page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
     else:
-        page_setup.set_orientation(Gtk.PAGE_ORIENTATION_LANDSCAPE)
+        page_setup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
 
     # Set paper margins
     page_setup.set_top_margin(paper_style.get_top_margin() * 10,
-                              Gtk.UNIT_MM)
+                              Gtk.Unit.MM)
     page_setup.set_bottom_margin(paper_style.get_bottom_margin() * 10,
-                                 Gtk.UNIT_MM)
+                                 Gtk.Unit.MM)
     page_setup.set_left_margin(paper_style.get_left_margin() * 10,
-                               Gtk.UNIT_MM)
+                               Gtk.Unit.MM)
     page_setup.set_right_margin(paper_style.get_right_margin() * 10,
-                                Gtk.UNIT_MM)
+                                Gtk.Unit.MM)
     
     return page_setup
 
@@ -377,13 +377,13 @@ class PrintPreview(object):
         cr.set_line_width(1)
         cr.stroke()
         
-        if self._orientation == Gtk.PAGE_ORIENTATION_LANDSCAPE:
+        if self._orientation == Gtk.PageOrientation.LANDSCAPE:
             cr.rotate(radians(-90))
             cr.translate(-paper_h, 0)
             
         ##page_setup = self._context.get_page_setup()
-        ##cr.translate(page_setup.get_left_margin(Gtk.UNIT_POINTS),
-                     ##page_setup.get_top_margin(Gtk.UNIT_POINTS))
+        ##cr.translate(page_setup.get_left_margin(Gtk.Unit.POINTS),
+                     ##page_setup.get_top_margin(Gtk.Unit.POINTS))
         
         ##cr.set_source_surface(self.get_page(0))
         ##cr.paint()
@@ -470,10 +470,10 @@ class PrintPreview(object):
     def start(self):
         # get paper/page dimensions
         page_setup = self._context.get_page_setup()
-        self._paper_width = page_setup.get_paper_width(Gtk.UNIT_POINTS)
-        self._paper_height = page_setup.get_paper_height(Gtk.UNIT_POINTS)
-        self._page_width = page_setup.get_page_width(Gtk.UNIT_POINTS)
-        self._page_height = page_setup.get_page_height(Gtk.UNIT_POINTS)
+        self._paper_width = page_setup.get_paper_width(Gtk.Unit.POINTS)
+        self._paper_height = page_setup.get_paper_height(Gtk.Unit.POINTS)
+        self._page_width = page_setup.get_page_width(Gtk.Unit.POINTS)
+        self._page_height = page_setup.get_page_height(Gtk.Unit.POINTS)
         self._orientation = page_setup.get_orientation()
 
         # get the total number of pages
@@ -524,7 +524,7 @@ class GtkPrint(libcairodoc.CairoDoc):
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(Gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG)
+            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG, None)
             if self.preview is None: # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?
@@ -539,7 +539,7 @@ class GtkPrint(libcairodoc.CairoDoc):
                 operation.set_print_settings(PRINT_SETTINGS)
         
         # store print settings if printing was successful
-        if res == Gtk.PRINT_OPERATION_RESULT_APPLY:
+        if res == Gtk.PrintOperationResult.APPLY:
             PRINT_SETTINGS = operation.get_print_settings()
 
     def on_begin_print(self, operation, context):
