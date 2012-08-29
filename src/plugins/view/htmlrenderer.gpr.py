@@ -54,15 +54,10 @@ TOOLKIT = NOWEB
 repository = Repository.get_default()
 if repository.enumerate_versions("WebKit"):
     try:
-        print "import Webkit"
         from gi.repository import WebKit
         TOOLKIT = WEBKIT
     except:
-        ##try:
-        ##    import gtkmozembed
-        ##    TOOLKIT = MOZILLA
-        ##except:
-            pass
+        pass
 else:
     _LOG.warning("Webkit is not installed");
 
