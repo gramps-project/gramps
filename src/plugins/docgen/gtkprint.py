@@ -62,6 +62,7 @@ log = logging.getLogger(".GtkPrint")
 #-------------------------------------------------------------------------
 import cairo
 try: # the Gramps-Connect server has no DISPLAY
+    from gi.repository import GObject
     from gi.repository import Gtk
 except:
     pass
@@ -227,6 +228,7 @@ class PrintPreview(object):
 
         # connect the signals
         glade_xml.connect_signals(self)
+        self._drawing_area.connect("draw", self.on_drawingarea_draw_event)
 
     ##def create_surface(self):
         ##return cairo.PDFSurface(StringIO(),
@@ -321,32 +323,37 @@ class PrintPreview(object):
     def __get_view_size(self):
         """Get the dimensions of the scrolled window.
         """
-        width = self._swin.allocation.width - 2 * MARGIN
-        height = self._swin.allocation.height - 2 * MARGIN
+        width = self._swin.get_allocated_width() - 2 * MARGIN
+        height = self._swin.get_allocated_height() - 2 * MARGIN
 
         if self._swin.get_shadow_type() != Gtk.ShadowType.NONE:
-            width -= 2 * self._swin.style.xthickness
-            height -= 2 * self._swin.style.ythickness
+            width -= 2 * self._swin.get_style().xthickness
+            height -= 2 * self._swin.get_style().ythickness
 
-        spacing = self._swin.style_get_property('scrollbar-spacing')
+        spacing = GObject.Value()
+        spacing.init(GObject.TYPE_INT)
+        spacing = self._swin.style_get_property('scrollbar-spacing', spacing)
+        if spacing:
+            spacing = spacing.get_int()
+        else:
+            spacing = 0
         
-        vsb_w, vsb_h = self._swin.get_vscrollbar().size_request()
-        vsb_w += spacing
-        
-        hsb_w, hsb_h = self._swin.get_hscrollbar().size_request()
-        hsb_h += spacing
+        reqmin, req = self._swin.get_vscrollbar().get_preferred_size()
+        vsb_w = spacing + req.width
+        reqmin, req = self._swin.get_hscrollbar().get_preferred_size()
+        hsb_h = spacing + req.height
         
         return width, height, vsb_w, hsb_h
-        
+
     def __end_preview(self):
         self._operation.end_preview()
         
     # Signal handlers
     
-    def on_drawingarea_expose_event(self, drawing_area, event):
-        cr = drawing_area.window.cairo_create()
-        cr.rectangle(event.area)
-        cr.clip()
+    def on_drawingarea_draw_event(self, drawing_area, context):
+        cr = context
+        #cr.rectangle(event.area)
+        #cr.clip()
         
         # get the extents of the page and the screen
         paper_w = int(self._paper_width * self._zoom)
