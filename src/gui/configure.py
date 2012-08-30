@@ -638,9 +638,7 @@ class GrampsPreferences(ConfigureDialog):
         node = self.fmt_model.append(row=[i, f, fmt, 
                                    _nd.format_str(self.examplename, fmt)])
         path = self.fmt_model.get_path(node)
-        self.format_list.set_cursor(path, 
-                                    focus_column=self.name_column, 
-                                    start_editing=True)
+        self.format_list.set_cursor(path, self.name_column, True)
         self.edit_button.set_sensitive(False)
         self.remove_button.set_sensitive(False)
         self.insert_button.set_sensitive(False)
@@ -651,9 +649,7 @@ class GrampsPreferences(ConfigureDialog):
         self.edit_button.set_sensitive(False)
         self.remove_button.set_sensitive(False)
         self.insert_button.set_sensitive(False)
-        self.format_list.set_cursor(path, 
-                                    focus_column=self.name_column, 
-                                    start_editing=True)
+        self.format_list.set_cursor(path, self.name_column, True)
 
     def __check_for_name(self, name, oldnode):
         """
