@@ -166,7 +166,7 @@ class FanChart(Report):
 
         self.background_style = []
         self.text_style = []
-        for i in range (0, self.max_generations):
+        for i in range (0, self.max_generations+1):
             if self.background == BACKGROUND_WHITE:
                 background_style_name = 'background_style_white'
             else:
