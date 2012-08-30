@@ -693,7 +693,7 @@ class DbManager(CLIDbManager):
         message
         """
         self.msg.set_label(msg)
-        self.top.window.set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.top.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
         while (Gtk.events_pending()):
             Gtk.main_iteration()
 
@@ -701,7 +701,7 @@ class DbManager(CLIDbManager):
         """
         Set the cursor back to normal and clears the message
         """
-        self.top.window.set_cursor(None)
+        self.top.get_window().set_cursor(None)
         self.msg.set_label("")
 
     def __new_db(self, obj):
