@@ -1495,7 +1495,7 @@ class ViewManager(CLIManager):
         path_entry = Gtk.Entry()
         text = config.get('paths.quick-backup-directory')
         path_entry.set_text(text)
-        hbox.pack_start(path_entry, True)
+        hbox.pack_start(path_entry, True, True, 0)
         file_entry = Gtk.Entry()
         button = Gtk.Button()
         button.connect("clicked",
@@ -1523,7 +1523,7 @@ class ViewManager(CLIManager):
                              "seconds": struct_time.tm_sec,
                              "extension": "gpkg",
                              })
-        hbox.pack_end(file_entry, True)
+        hbox.pack_end(file_entry, True, True, 0)
         vbox.pack_start(hbox, False, True, 0)
         hbox = Gtk.HBox()
         bytes = 0
@@ -1548,8 +1548,8 @@ class ViewManager(CLIManager):
                                                         mbytes, _("Megabyte|MB")))
         exclude = Gtk.RadioButton(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
-        hbox.pack_start(include, True)
-        hbox.pack_end(exclude, True)
+        hbox.pack_start(include, False, True, 0)
+        hbox.pack_end(exclude, False, True, 0)
         vbox.pack_start(hbox, False, True, 0)
         window.show_all()
         d = window.run()
