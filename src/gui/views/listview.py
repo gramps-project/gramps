@@ -123,7 +123,11 @@ class ListView(NavigationView):
         self.connect_signals()
 
     def no_database(self):
+        ## TODO GTK3: This is never called!! Dbguielement disconnects 
+        ## signals on database changed, so it cannot be called
+        ## Undo part of Revision 20296 if all works good.
         self.list.set_model(None)
+        self.model.destroy()
         self.model = None
         self.build_tree()
         
@@ -654,6 +658,7 @@ class ListView(NavigationView):
         """
         Called when the database is changed.
         """
+        self.list.set_model(None)
         self._change_db(db)
         self.connect_signals()
 
