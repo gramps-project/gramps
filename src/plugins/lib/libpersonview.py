@@ -128,7 +128,8 @@ class BasePersonView(ListView):
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
-            'tag-update' : self.tag_updated
+            'tag-update' : self.tag_updated,
+            'no-database': self.no_database,
             }
  
         ListView.__init__(

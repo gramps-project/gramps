@@ -291,23 +291,28 @@ class DbLoader(CLIDbLoader):
         else:
             mode = 'w'
 
-        self.dbstate.change_database(gen.db.DbBsddb())
-        self.dbstate.db.disable_signals()
+        db = gen.db.DbBsddb()
+        db.disable_signals()
+        self.dbstate.no_database()
 
         self._begin_progress()
         
         try:
             try:
-                self.dbstate.db.load(filename, self._pulse_progress, 
+                db.load(filename, self._pulse_progress, 
                                      mode, upgrade=False)
+                self.dbstate.change_database(db)
             except gen.db.exceptions.DbUpgradeRequiredError, msg:
                 if QuestionDialog2(_("Need to upgrade database!"), 
                                    str(msg), 
                                    _("Upgrade now"), 
                                    _("Cancel")).run():
-                    self.dbstate.db.load(filename, self._pulse_progress, 
+                    db = gen.db.DbBsddb()
+                    db.disable_signals()
+                    db.load(filename, self._pulse_progress, 
                                          mode, upgrade=True)
-                    self.dbstate.db.set_save_path(filename)
+                    db.set_save_path(filename)
+                    self.dbstate.change_database(db)
                 else:
                     self.dbstate.no_database()
         except gen.db.exceptions.BsddbDowngradeError, msg:

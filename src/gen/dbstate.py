@@ -55,6 +55,7 @@ class DbState(Callback):
         Closes the existing db, and opens a new one.
         Retained for backward compatibility.
         """
+        self.emit('no-database', ())
         self.db.close()
         self.change_database_noclose(database)
 
@@ -74,6 +75,7 @@ class DbState(Callback):
             config.get('preferences.rprefix'),
             config.get('preferences.nprefix') )
         self.open = True
+        self.signal_change()
 
     def signal_change(self):
         """
@@ -85,6 +87,7 @@ class DbState(Callback):
         """
         Closes the database without a new database
         """
+        self.emit('no-database', ())
         self.db.close()
         self.db = DbBsddbRead()
         self.db.db_is_open = False

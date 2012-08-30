@@ -122,6 +122,11 @@ class ListView(NavigationView):
         dbstate.connect('database-changed', self.change_db)
         self.connect_signals()
 
+    def no_database(self):
+        self.list.set_model(None)
+        self.model = None
+        self.build_tree()
+        
     def type_list(self):
         """
         set the listtype, this governs eg keybinding
