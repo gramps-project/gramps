@@ -327,12 +327,13 @@ class DbManager(CLIDbManager):
         iter = self.model.get_iter_first()
         while (iter):
             path = self.model.get_path(iter)
-            iter = self.model.iter_next(iter)
             if path == skippath:
-                continue
-            itername = self.model.get_value(iter, NAME_COL)
-            if itername.strip() == name.strip():
-                return True
+                pass
+            else:
+                itername = self.model.get_value(iter, NAME_COL)
+                if itername.strip() == name.strip():
+                    return True
+            iter = self.model.iter_next(iter)
         return False
 
     def run(self):
