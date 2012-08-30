@@ -35,6 +35,14 @@ import cgi
 
 #-------------------------------------------------------------------------
 #
+# Set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+_LOG = logging.getLogger("plugin.relview")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -474,6 +482,9 @@ class RelationshipView(NavigationView):
         try:
             return self._change_person(obj)
         except AttributeError, msg:
+            import traceback
+            exc = traceback.format_exc()
+            _LOG.error(str(msg) +"\n" + exc)
             from gui.dialog import RunDatabaseRepair
             RunDatabaseRepair(str(msg))
             self.redrawing = False
@@ -482,14 +493,14 @@ class RelationshipView(NavigationView):
     def _change_person(self, obj):
         if obj == self.old_handle:
             #same object, keep present scroll position
-            old_vadjust = self.scroll.get_vadjustment().value
+            old_vadjust = self.scroll.get_vadjustment().get_value()
             self.old_handle = obj
         else:
             #different object, scroll to top
             old_vadjust = self.scroll.get_vadjustment().get_lower()
             self.old_handle = obj
-        self.scroll.get_vadjustment().value = \
-                            self.scroll.get_vadjustment().get_lower()
+        self.scroll.get_vadjustment().set_value(
+                            self.scroll.get_vadjustment().get_lower())
         if self.redrawing:
             return False
         self.redrawing = True
@@ -571,7 +582,7 @@ class RelationshipView(NavigationView):
 
         self.vbox.pack_start(self.child, False, True, 0)
         #reset scroll position as it was before
-        self.scroll.get_vadjustment().value = old_vadjust
+        self.scroll.get_vadjustment().set_value(old_vadjust)
         self.redrawing = False
         self.uistate.modify_statusbar(self.dbstate)
 
