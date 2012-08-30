@@ -64,6 +64,7 @@ class FanChartView(NavigationView):
                                       nav_group)        
 
         dbstate.connect('active-changed', self.active_changed)
+        dbstate.connect('database-changed', self.change_db)
         self.dbstate = dbstate
         self.uistate = uistate
         self.generations = 9
@@ -128,6 +129,13 @@ class FanChartView(NavigationView):
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
+        self.update()
+
+    def change_db(self, db):
+        self._change_db(db)
+        #self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
+        #if self.active:
+        #    self.bookmarks.redraw()
         self.update()
 
     def update(self):
