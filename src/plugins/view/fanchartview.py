@@ -75,7 +75,7 @@ class FanChartView(NavigationView):
         return 'Person'
 
     def build_widget(self):
-        self.fan = FanChartWidget(self.generations, 
+        self.fan = FanChartWidget(self.generations, self.dbstate,
                                   context_popup_callback=self.on_popup)
         self.fan.format_helper = self.format_helper
         self.scrolledwindow = Gtk.ScrolledWindow(None, None)
@@ -141,8 +141,8 @@ class FanChartView(NavigationView):
         Returns True if a person has parents.
         """
         if person:
-            m = self.get_parent(person, "female")
-            f = self.get_parent(person, "male")
+            m = self.get_parent(person, False)
+            f = self.get_parent(person, True)
             return not m is f is None
         return False
             
@@ -157,9 +157,9 @@ class FanChartView(NavigationView):
                     return True
         return False
             
-    def get_parent(self, person, gender):
+    def get_parent(self, person, father):
         """
-        Get the father if gender == "male", or get mother otherwise.
+        Get the father of the family if father == True, otherwise mother
         """
         if person:
             parent_handle_list = person.get_parent_family_handle_list()
@@ -167,7 +167,7 @@ class FanChartView(NavigationView):
                 family_id = parent_handle_list[0]
                 family = self.dbstate.db.get_family_from_handle(family_id)
                 if family:
-                    if gender == "male":
+                    if father:
                         person_handle = gen.lib.Family.get_father_handle(family)
                     else:
                         person_handle = gen.lib.Family.get_mother_handle(family)
@@ -194,7 +194,7 @@ class FanChartView(NavigationView):
             # name, person, parents, children
             for (n,p,q,c) in self.fan.data[current - 1]:
                 # Get father's details:
-                person = self.get_parent(p, "male")
+                person = self.get_parent(p, True)
                 if person:
                     name = name_displayer.display(person)
                 else:
@@ -209,7 +209,7 @@ class FanChartView(NavigationView):
                     self.fan.angle[current][parent][3] = self.fan.COLLAPSED
                 parent += 1
                 # Get mother's details:
-                person = self.get_parent(p, "female")
+                person = self.get_parent(p, False)
                 if person:
                     name = name_displayer.display(person)
                 else:
@@ -225,7 +225,7 @@ class FanChartView(NavigationView):
                 parent += 1
         self.fan.queue_draw()
 
-    def on_childmenu_changed(self, obj,person_handle):
+    def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
         self.change_active(person_handle)
@@ -235,11 +235,15 @@ class FanChartView(NavigationView):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
-                EditPerson(self.dbstate, self.uistate, [], person)
+                EditPerson(self.dbstate, self.uistate, [], person,
+                           callback=self.edit_callback)
             except WindowActiveError:
                 pass
             return True
         return False
+
+    def edit_callback(self, *args):
+        self.update()
 
     def copy_person_to_clipboard_cb(self, obj, person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
@@ -274,7 +278,7 @@ class FanChartView(NavigationView):
         menu.append(go_item)
 
         edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT, accel_group=None)
-        edit_item.connect("activate",self.edit_person_cb,person_handle)
+        edit_item.connect("activate", self.edit_person_cb, person_handle)
         edit_item.show()
         menu.append(edit_item)
 
@@ -354,7 +358,7 @@ class FanChartView(NavigationView):
                 label.set_alignment(0,0)
                 sib_item.add(label)
                 linked_persons.append(sib_id)
-                sib_item.connect("activate",self.on_childmenu_changed,sib_id)
+                sib_item.connect("activate", self.on_childmenu_changed, sib_id)
                 sib_item.show()
                 sib_menu.append(sib_item)
 
@@ -366,7 +370,7 @@ class FanChartView(NavigationView):
         # Go over children and build their menu
         item = Gtk.MenuItem(label=_("Children"))
         no_children = 1
-        childlist = find_children(self.dbstate.db,person)
+        childlist = find_children(self.dbstate.db, person)
         for child_handle in childlist:
             child = self.dbstate.db.get_person_from_handle(child_handle)
             if not child:
@@ -391,7 +395,7 @@ class FanChartView(NavigationView):
             label.set_alignment(0,0)
             child_item.add(label)
             linked_persons.append(child_handle)
-            child_item.connect("activate",self.on_childmenu_changed,child_handle)
+            child_item.connect("activate", self.on_childmenu_changed, child_handle)
             child_item.show()
             child_menu.append(child_item)
 

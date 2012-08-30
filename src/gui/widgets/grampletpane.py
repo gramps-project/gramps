@@ -535,7 +535,7 @@ class GuiGramplet(object):
         labels = Gtk.VBox(True)
         options = Gtk.VBox(True)
         hbox.pack_start(labels, False, True, 0)
-        hbox.pack_start(options, True)
+        hbox.pack_start(options, True, True, 0)
         topbox.pack_start(hbox, False, False, 0)
         for item in self.pui.option_order:
             label = Gtk.Label(label=item + ":")
@@ -543,7 +543,7 @@ class GuiGramplet(object):
             labels.pack_start(label, True, True, 0)
             options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
         save_button = Gtk.Button(stock=Gtk.STOCK_SAVE)
-        topbox.pack_end(save_button, False, False)
+        topbox.pack_end(save_button, False, False, 0)
         save_button.connect('clicked', self.pui.save_update_options)
         frame.add(topbox)
         frame.show_all()

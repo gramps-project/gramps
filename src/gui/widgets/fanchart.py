@@ -1,7 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
+# Copyright (C) 2009 Douglas S. Blank
+# Copyright (C) 2012 Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,6 +52,7 @@ from gen.display.name import displayer as name_displayer
 import gen.lib
 import gui.utils
 from gui.ddtargets import DdTargets
+from gen.utils.alive import probably_alive
 
 #-------------------------------------------------------------------------
 #
@@ -85,12 +88,13 @@ class FanChartWidget(Gtk.DrawingArea):
     NORMAL = 1
     EXPANDED = 2
 
-    def __init__(self, generations, context_popup_callback=None):
+    def __init__(self, generations, dbstate, context_popup_callback=None):
         """
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
         GObject.GObject.__init__(self)
+        self.dbstate = dbstate
         self.translating = False
         self.last_x, self.last_y = None, None
         self.connect("button_release_event", self.on_mouse_up)
@@ -126,6 +130,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
+        self.gen_color = True
         self.layout = self.create_pango_layout('cairo')
         self.layout.set_font_description(Pango.FontDescription("sans 8"))
         self.set_size_request(120,120)
@@ -152,7 +157,7 @@ class FanChartWidget(Gtk.DrawingArea):
             gender = True
             for count in range(len(self.data[i])):
                 # start, stop, male, state
-                self.angle[i].append([angle, angle + slice,gender,self.NORMAL])
+                self.angle[i].append([angle, angle + slice, gender, self.NORMAL])
                 angle += slice
                 gender = not gender
 
@@ -213,7 +218,7 @@ class FanChartWidget(Gtk.DrawingArea):
                     if state in [self.NORMAL, self.EXPANDED]:
                         self.draw_person(cr, gender_code(male), 
                                          text, start, stop, 
-                                         generation, state, parents, child)
+                                         generation, state, parents, child, person)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
@@ -242,20 +247,29 @@ class FanChartWidget(Gtk.DrawingArea):
         PangoCairo.show_layout(cr, self.layout)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
-                    state, parents, child):
+                    state, parents, child, person):
         """
         Display the piece of pie for a given person. start and stop
-        are in degrees.
+        are in degrees. Gender is indication of father position or mother 
+        position in the chart
         """
         alloc = self.get_allocation()
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
-        r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
-        if gender == gen.lib.Person.MALE:
-            r *= .9
-            g *= .9
-            b *= .9
+        if self.gen_color:
+            r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
+            if gender == gen.lib.Person.MALE:
+                r *= .9
+                g *= .9
+                b *= .9
+        else:
+            try:
+                alive = probably_alive(person, self.dbstate.db)
+            except RuntimeError:
+                alive = False
+            backgr, border = gui.utils.color_graph_box(alive, person.gender)
+            r, g, b = gui.utils.hex_to_rgb(backgr)
         radius = generation * self.pixels_per_generation + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
