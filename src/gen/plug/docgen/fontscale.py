@@ -275,6 +275,14 @@ def string_width(font, text):
             r = r + l[ord('n')]
     return (r+1)*s
 
+def string_multiline_width(font, text):
+  max = 0
+  for line in text.splitlines():
+    width = string_width(font, line)
+    if width > max:
+      max = width
+  return max 
+
 def string_trim(font, text, width, ellipses = "..."):
     """
     Like string_width, but this makes sure the length of the

@@ -89,6 +89,10 @@ class DrawDoc(object):
         "Determine the width need for text in given font"
         return fontscale.string_width(fontstyle, text)
 
+    def string_multiline_width(self, fontstyle, text):
+        "Determine the width need for multiline text in given font"
+        return fontscale.string_multiline_width(fontstyle, text)
+
     def draw_path(self, style, path):
         raise NotImplementedError
     

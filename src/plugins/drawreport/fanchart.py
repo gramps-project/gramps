@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012      Paul Franklin
+# Copyright (C) 2012      Paul Franklin, Nicolas Adenis-Lamarre, Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,13 +29,13 @@
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-from math import pi, cos, sin, log10
+from math import pi, cos, sin, log10, acos
 
 def log2(val):
-	"""
-	Calculate the log base 2 of a value.
-	"""
-	return int(log10(val)/log10(2))
+    """
+    Calculate the log base 2 of a value.
+    """
+    return int(log10(val)/log10(2))
 
 #------------------------------------------------------------------------
 #
@@ -46,9 +46,10 @@ from gen.errors import ReportError
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                              IndexMark, INDEX_TYPE_TOC)
-from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
+from gen.plug.menu import (EnumeratedListOption, NumberOption, PersonOption,
+                           BooleanOption)
 from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
+from gen.plug.report import utils
 from gen.plug.report import MenuReportOptions
 from gen.config import config
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -69,7 +70,11 @@ BACKGROUND_GEN   = 1
 RADIAL_UPRIGHT    = 0
 RADIAL_ROUNDABOUT = 1
 
-pt2cm = ReportUtils.pt2cm
+# minor offset just usefull for generation 11, 
+# to not a bit offset between the text and the polygon
+# this can be considered as a bad hack
+WEDGE_TEXT_BARRE_OFFSET = 0.0016
+pt2cm = utils.pt2cm
 
 cal = config.get('preferences.calendar-format-report')
 
@@ -79,7 +84,7 @@ cal = config.get('preferences.calendar-format-report')
 #
 #------------------------------------------------------------------------
 def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
-               end_angle,  short_radius=0):
+               end_angle, do_rendering, short_radius=0):
     """
     Draw a wedge shape.
     """
@@ -124,13 +129,14 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
             y = centery + sin(angle) * short_radius
             p.append((x, y))
             angle -= radiansdelta
-    doc.draw_path(style, p)
+    if do_rendering:
+        doc.draw_path(style, p)
 
     delta = (eangle - sangle) / 2.0
     rad = short_radius + (radius - short_radius) / 2.0
 
-    return ( (centerx + cos(sangle + delta) * rad), 
-             (centery + sin(sangle + delta) * rad))
+    return ( (centerx + cos(sangle + delta + WEDGE_TEXT_BARRE_OFFSET) * rad), 
+             (centery + sin(sangle + delta + WEDGE_TEXT_BARRE_OFFSET) * rad))
 
 #------------------------------------------------------------------------
 #
@@ -156,6 +162,8 @@ class FanChart(Report):
         circle          - Draw a full circle, half circle, or quarter circle.
         background      - Background color is generation dependent or white.
         radial          - Print radial texts roundabout or as upright as possible.
+        draw_empty      - draw background when there is no information
+        same_style      - use the same style for all generation
         """
 
         menu = options.menu
@@ -164,20 +172,17 @@ class FanChart(Report):
         self.background      = menu.get_option_by_name('background').get_value()
         self.radial          = menu.get_option_by_name('radial').get_value()
         pid                  = menu.get_option_by_name('pid').get_value()
+        self.draw_empty      = menu.get_option_by_name('draw_empty').get_value()
+        self.same_style      = menu.get_option_by_name('same_style').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
-        self.background_style = []
+        self.graphic_style = []
         self.text_style = []
         for i in range (0, self.max_generations):
-            if self.background == BACKGROUND_WHITE:
-                background_style_name = 'background_style_white'
-            else:
-                background_style_name = 'background_style' + '%d' % i
-            self.background_style.append(background_style_name)
-            text_style_name = 'text_style' + '%d' % i
-            self.text_style.append(text_style_name)
+            self.graphic_style.append('FC-Graphic' + '%02d' % i)
+            self.text_style.append('FC-Text' + '%02d' % i)
         
         self.calendar = 0
 
@@ -234,27 +239,57 @@ class FanChart(Report):
             y = self.doc.get_usable_height()
             min_xy = min (self.doc.get_usable_width(), y)
 
+        # choose  one line or two lines translation according to the width
+        title = _("%(generations)d Generation Fan Chart for %(person)s" ) % \
+                 { 'generations' : self.max_generations, 'person' : n }
+        title_nb_lines = 1
+        style_sheet = self.doc.get_style_sheet()
+        if style_sheet:
+          paragraph_style = style_sheet.get_paragraph_style('FC-Title')
+          if paragraph_style:
+            font = paragraph_style.get_font()
+            if font:
+              title_width = pt2cm(self.doc.string_width(font, title))
+              if title_width > self.doc.get_usable_width():
+                title = _("%(generations)d Generation Fan Chart for\n%(person)s" ) % \
+                       { 'generations' : self.max_generations, 'person' : n }
+                title_nb_lines = 2
+
         if self.circle == FULL_CIRCLE or self.circle == QUAR_CIRCLE:
             # adjust only if full circle or 1/4 circle in landscape mode
             if self.doc.get_usable_height() <= self.doc.get_usable_width():
                 # Should be in Landscape now
                 style_sheet = self.doc.get_style_sheet()
-                fontsize = pt2cm(style_sheet.get_paragraph_style('FC-Title').get_font().get_size())
-                # y is vertical distance to center of circle, move center down 1 fontsize
-                y += fontsize
-                # min_XY is the diameter of the circle, subtract two fontsize
-                # so we dont draw outside bottom of the paper
-                min_xy = min(min_xy,y-2*fontsize)
+                paragraph_style = style_sheet.get_paragraph_style('FC-Title')
+                if paragraph_style:
+                    font = paragraph_style.get_font()
+                    if font:
+                        fontsize = pt2cm(font.get_size())
+                        # y is vertical distance to center of circle, move center down 1 fontsize
+                        y += fontsize*title_nb_lines
+                        # min_XY is the diameter of the circle, subtract two fontsize
+                        # so we dont draw outside bottom of the paper
+                        min_xy = min(min_xy, y - 2*fontsize*title_nb_lines)
         if self.max_generations > max_circular:
             block_size = min_xy / (self.max_generations * 2 - max_circular)
         else:
             block_size = min_xy / self.max_generations
-        text = _("%(generations)d Generation Fan Chart for %(person)s" ) % \
-                 { 'generations' : self.max_generations, 'person' : n }
-        mark = IndexMark(text, INDEX_TYPE_TOC, 1)
-        self.doc.center_text ('t', text,
-                              self.doc.get_usable_width() / 2, 0, mark)
 
+        # adaptation of the fonts (title and others)
+        optimized_style_sheet = self.get_optimized_style_sheet(title,
+                        max_circular, block_size, self.same_style,
+                        not self.same_style,
+                        # if same_style, use default generated colors
+                        self.background == BACKGROUND_WHITE)
+
+        if optimized_style_sheet:
+          self.doc.set_style_sheet(optimized_style_sheet)
+
+        # title
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.center_text ('FC-Graphic-title', title,
+                              self.doc.get_usable_width() / 2, 0, mark)
+        #wheel
         for generation in range (0, min (max_circular, self.max_generations)):
             self.draw_circular (x, y, start_angle, max_angle, block_size, generation)
         for generation in range (max_circular, self.max_generations):
@@ -292,7 +327,17 @@ class FanChart(Report):
         else:
             val = ""
 
-        if generation == 7:
+        if generation > 7:
+            if (pn.get_first_name() != "") and (pn.get_surname() != ""):
+                name = pn.get_first_name() + " " + pn.get_surname()
+            else:
+                name = pn.get_first_name() + pn.get_surname()
+            if (name != "") and (val != ""):
+                string = name + ", " + val
+            else:
+                string = name + val
+            return [ string ]
+        elif generation == 7:
             if (pn.get_first_name() != "") and (pn.get_surname() != ""):
                 name = pn.get_first_name() + " " + pn.get_surname()
             else:
@@ -321,62 +366,257 @@ class FanChart(Report):
                 return [ name, val ]
         else:
             return [ pn.get_first_name(), pn.get_surname(), val ]
+ 
+    def get_max_width_for_circles(self, rad1, rad2, max_centering_proportion):
+        """
+           __
+          /__\ <- compute the line width which is drawable between 2 circles.
+         /  _ \   max_centering_proportion : 0, touching the circle1, 1,
+        |  |_| |   touching the circle2, 0.5 : middle between the 2 circles
+        |      |
+         \    /
+          \__/
+                 basically, max_centering_proportion is 
+                 max_centering_proportion/nb_lines
+        """
+        # radius at the center of the 2 circles
+        rmid = rad2 - (rad2-rad1)*max_centering_proportion
+        return sin(acos(rmid/rad2)) * rad2 * 2
+ 
+    def get_max_width_for_circles_line(self, rad1, rad2, line, nb_lines, 
+                                       centering = False):
+        """
+           __
+          /__\ <- compute the line width which is drawable between 2 circles.
+         /  _ \   instead of a max_centering_proportion, you get a line/nb_lines position.
+        |  |_| |  (we suppose that lines have the same heights)
+        |      |  for example, if you've 2 lines to draw,
+         \    /   line 2 max width is at the 2/3 between the 2 circles
+          \__/
+        """
+        if centering:
+            return self.get_max_width_for_circles(rad1, rad2, 1.0)
+        else:
+            return self.get_max_width_for_circles(rad1, rad2, 
+                                                  line/float(nb_lines+1))
+
+    def get_optimized_font_size_for_text(self, rad1, rad2, text, font, 
+                                         centering = False):
+        """
+        a text can be several lines
+        find the font size equals or lower than font.get_size() which fit
+        between rad1 and rad2 to display the text.
+        centering is a special case when you've the full circle
+        available to draw the text in the middle of it
+        """
+        min_font_size = font.get_size()
+        i = 1
+        nb_lines = len(text)
+        for line in text:
+            font_size = self.get_optimized_font_size(line, font,
+                self.get_max_width_for_circles_line(rad1, rad2, i, nb_lines, 
+                                                    centering))
+            i += 1
+            if min_font_size > font_size:
+                min_font_size = font_size
+        return min_font_size
+
+    def get_optimized_font_size(self, line, font, max_width):
+        """
+        for a given width, guess the best font size which is equals
+        or smaller than font which make line fit into max_width
+        """
+        test_font = FontStyle(font)
+        w = pt2cm(self.doc.string_width(test_font, line))
+        while w > max_width and test_font.get_size() > 1:
+            test_font.set_size(test_font.get_size() -1)
+            w = pt2cm(self.doc.string_width(test_font, line))
+        return test_font.get_size()
+
+    def get_optimized_style_sheet(self, title, max_circular, block_size,
+                                  map_style_from_single,
+                                  map_paragraphs_colors_to_graphics,
+                                  make_background_white):
+        """
+        returns an optimized (modified) style sheet which make fanchart 
+        look nicer
+        """
+        redefined_style_sheet = self.doc.get_style_sheet()
+        if not redefined_style_sheet:
+            return self.doc.get_style_sheet()
+
+        # update title font size
+        pstyle_name = 'FC-Title'
+        paragraph_style = redefined_style_sheet.get_paragraph_style(pstyle_name)
+        if paragraph_style:
+            title_font  = paragraph_style.get_font()
+            if title_font:
+                title_width = pt2cm(self.doc.string_multiline_width(title_font,
+                                                                    title))
+                while (title_width > self.doc.get_usable_width() and 
+                       title_font.get_size() > 1):
+                    title_font.set_size(title_font.get_size()-1)
+                    title_width = pt2cm(self.doc.string_multiline_width(
+                                                            title_font, title))
+                redefined_style_sheet.add_paragraph_style(pstyle_name, 
+                                                          paragraph_style)
+
+        # biggest font allowed is the one of the fist generation, after,
+        # always lower than the previous one
+        paragraph_style = redefined_style_sheet.get_paragraph_style(self.text_style[0])
+        font = None
+        if paragraph_style:
+            font = paragraph_style.get_font()
+        if font:
+            previous_generation_font_size = font.get_size()
+  
+            for generation in range (0, self.max_generations):
+                gstyle_name = self.graphic_style[generation]
+                pstyle_name = self.text_style [generation]
+                g           = redefined_style_sheet.get_draw_style(gstyle_name)
+      
+                # paragraph_style is a copy of 'FC-Text' - use different style
+                # to be able to auto change some fonts for some generations
+                if map_style_from_single:
+                    paragraph_style = redefined_style_sheet.get_paragraph_style('FC-Text')
+                else:
+                    paragraph_style = redefined_style_sheet.get_paragraph_style(pstyle_name)
+
+                if g and paragraph_style:
+                    # set graphic colors to paragraph colors, while it's fonctionnaly
+                    # the same for fanchart or make backgrounds white
+                    if make_background_white:
+                        g.set_fill_color((255,255,255))
+                        redefined_style_sheet.add_draw_style(gstyle_name, g)
+                    elif map_paragraphs_colors_to_graphics:
+                        pstyle = redefined_style_sheet.get_paragraph_style(pstyle_name)
+                        if pstyle:
+                            g.set_fill_color(pstyle.get_background_color())
+                            redefined_style_sheet.add_draw_style(gstyle_name, g)
+            
+                    # adapt font size if too big
+                    segments = 2**generation
+                    if generation < min (max_circular, self.max_generations):
+                        # adpatation for circular fonts
+                        rad1, rad2 = self.get_circular_radius(block_size, 
+                                                    generation, self.circle)
+                        font = paragraph_style.get_font()
+                        if font:
+                            min_font_size = font.get_size()
+                            # find the smallest font required
+                            for index in range(segments - 1, 2*segments - 1):
+                                if self.map[index]:
+                                    font_size = \
+                                        self.get_optimized_font_size_for_text(
+                                                rad1, rad2, self.text[index],
+                                                paragraph_style.get_font(),
+                                                (self.circle == FULL_CIRCLE and 
+                                                 generation == 0)
+                                                )
+                                if font_size < min_font_size:
+                                    min_font_size = font_size
+                            font.set_size(min(previous_generation_font_size, 
+                                          min_font_size))
+                    else:
+                        # adaptation for radial fonts
+                
+                        # find the largest string for the generation
+                        longest_line  = ""
+                        longest_width = 0
+                        for index in range(segments - 1, 2*segments - 1):
+                            if self.map[index]:
+                                for line in self.text[index]:
+                                    width = pt2cm(self.doc.string_multiline_width(
+                                            paragraph_style.get_font(), line))
+                                    if width > longest_width:
+                                        longest_line  = line
+                                        longest_width = width
+                
+                        # determine maximum width allowed for this generation
+                        rad1, rad2 = self.get_radial_radius(block_size, 
+                                                    generation, self.circle)
+                        max_width = rad2 - rad1
+                
+                        # reduce the font so that longest_width fit into max_width
+                        font = paragraph_style.get_font()
+                        if font:
+                            font.set_size(min(previous_generation_font_size,
+                                    self.get_optimized_font_size(longest_line,
+                                            paragraph_style.get_font(),
+                                            max_width))
+                                         )
+
+                    # redefine the style
+                    redefined_style_sheet.add_paragraph_style(pstyle_name,
+                                                              paragraph_style)
+                    font = paragraph_style.get_font()
+        if font:
+            previous_generation_font_size = font.get_size()
+
+        # finished
+        return redefined_style_sheet
 
     def draw_circular(self, x, y, start_angle, max_angle, size, generation):
         segments = 2**generation
         delta = max_angle / segments
         end_angle = start_angle
         text_angle = start_angle - 270 + (delta / 2.0)
-        rad1 = size * generation
-        rad2 = size * (generation + 1)
-        background_style = self.background_style[generation]
-        text_style = self.text_style[generation]
+        rad1, rad2 = self.get_circular_radius(size, generation, self.circle)
+        graphic_style = self.graphic_style[generation]
 
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = draw_wedge(self.doc, background_style, x, y, rad2,
-                                 start_angle, end_angle, rad1)
+            (xc,yc) = draw_wedge(self.doc, graphic_style, x, y, rad2,
+                                 start_angle, end_angle,
+                                 self.map[index] or self.draw_empty, rad1)
             if self.map[index]:
                 if (generation == 0) and self.circle == FULL_CIRCLE:
                     yc = y
                 person = self.database.get_person_from_handle(self.map[index])
-                mark = ReportUtils.get_person_mark(self.database, person)
-                self.doc.rotate_text(text_style, self.text[index],
+                mark = utils.get_person_mark(self.database, person)
+                self.doc.rotate_text(graphic_style, self.text[index],
                                      xc, yc, text_angle, mark)
             text_angle += delta
+ 
+    def get_radial_radius(self, size, generation, circle):
+        if circle == FULL_CIRCLE:
+            rad1 = size * ((generation * 2) - 5)
+            rad2 = size * ((generation * 2) - 3)
+        elif circle == HALF_CIRCLE:
+            rad1 = size * ((generation * 2) - 3)
+            rad2 = size * ((generation * 2) - 1)
+        else:  # quarter circle
+            rad1 = size * ((generation * 2) - 2)
+            rad2 = size * (generation * 2)
+        return rad1, rad2 
+
+    def get_circular_radius(self, size, generation, circle):
+        return size * generation, size * (generation + 1)
 
     def draw_radial(self, x, y, start_angle, max_angle, size, generation):
         segments = 2**generation
         delta = max_angle / segments
         end_angle = start_angle
         text_angle = start_angle - delta / 2.0
-        background_style = self.background_style[generation]
-        text_style = self.text_style[generation]
-        if self.circle == FULL_CIRCLE:
-            rad1 = size * ((generation * 2) - 5)
-            rad2 = size * ((generation * 2) - 3)
-        elif self.circle == HALF_CIRCLE:
-            rad1 = size * ((generation * 2) - 3)
-            rad2 = size * ((generation * 2) - 1)
-        else:  # quarter circle
-            rad1 = size * ((generation * 2) - 2)
-            rad2 = size * (generation * 2)
-            
+        graphic_style = self.graphic_style[generation]
+
+        rad1, rad2 = self.get_radial_radius(size, generation, self.circle)
         for index in range(segments - 1, 2*segments - 1):
             start_angle = end_angle
             end_angle = start_angle + delta
-            (xc,yc) = draw_wedge(self.doc,background_style, x, y, rad2,
-                                 start_angle, end_angle, rad1)
+            (xc,yc) = draw_wedge(self.doc, graphic_style, x, y, rad2,
+                                 start_angle, end_angle,
+                                 self.map[index] or self.draw_empty, rad1)
             text_angle += delta
             if self.map[index]:
                 person = self.database.get_person_from_handle(self.map[index])
-                mark = ReportUtils.get_person_mark(self.database, person)
+                mark = utils.get_person_mark(self.database, person)
                 if self.radial == RADIAL_UPRIGHT and (start_angle >= 90) and (start_angle < 270):
-                    self.doc.rotate_text(text_style, self.text[index],
+                    self.doc.rotate_text(graphic_style, self.text[index],
                                          xc, yc, text_angle + 180, mark)
                 else:
-                    self.doc.rotate_text(text_style, self.text[index],
+                    self.doc.rotate_text(graphic_style, self.text[index],
                                          xc, yc, text_angle, mark)
 
 #------------------------------------------------------------------------
@@ -387,7 +627,7 @@ class FanChart(Report):
 class FanChartOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
-        self.MAX_GENERATIONS = 8
+        self.MAX_GENERATIONS = 11
         
         MenuReportOptions.__init__(self, name, dbase)
         
@@ -401,31 +641,38 @@ class FanChartOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
             
-        max_gen = NumberOption(_("Generations"),5,1,self.MAX_GENERATIONS)
+        max_gen = NumberOption(_("Generations"), 5, 1, self.MAX_GENERATIONS)
         max_gen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"maxgen",max_gen)
+        menu.add_option(category_name, "maxgen", max_gen)
         
-        circle = EnumeratedListOption(_('Type of graph'),HALF_CIRCLE)
-        circle.add_item(FULL_CIRCLE,_('full circle'))
-        circle.add_item(HALF_CIRCLE,_('half circle'))
-        circle.add_item(QUAR_CIRCLE,_('quarter circle'))
+        circle = EnumeratedListOption(_('Type of graph'), HALF_CIRCLE)
+        circle.add_item(FULL_CIRCLE, _('full circle'))
+        circle.add_item(HALF_CIRCLE, _('half circle'))
+        circle.add_item(QUAR_CIRCLE, _('quarter circle'))
         circle.set_help( _("The form of the graph: full circle, half circle,"
                            " or quarter circle."))
-        menu.add_option(category_name,"circle",circle)
+        menu.add_option(category_name, "circle", circle)
         
-        background = EnumeratedListOption(_('Background color'),BACKGROUND_GEN)
-        background.add_item(BACKGROUND_WHITE,_('white'))
-        background.add_item(BACKGROUND_GEN,_('generation dependent'))
+        background = EnumeratedListOption(_('Background color'), BACKGROUND_GEN)
+        background.add_item(BACKGROUND_WHITE, _('white'))
+        background.add_item(BACKGROUND_GEN, _('generation dependent'))
         background.set_help(_("Background color is either white or generation"
                               " dependent"))
-        menu.add_option(category_name,"background",background)
+        menu.add_option(category_name, "background", background)
         
         radial = EnumeratedListOption( _('Orientation of radial texts'),
                                        RADIAL_UPRIGHT )
-        radial.add_item(RADIAL_UPRIGHT,_('upright'))
-        radial.add_item(RADIAL_ROUNDABOUT,_('roundabout'))
+        radial.add_item(RADIAL_UPRIGHT, _('upright'))
+        radial.add_item(RADIAL_ROUNDABOUT, _('roundabout'))
         radial.set_help(_("Print radial texts upright or roundabout"))
-        menu.add_option(category_name,"radial",radial)
+        menu.add_option(category_name, "radial", radial)
+        draw_empty = BooleanOption(_("Draw empty boxes"), True)
+        draw_empty.set_help(_("Draw the background although there is no information"))
+        menu.add_option(category_name, "draw_empty", draw_empty)
+
+        same_style = BooleanOption(_("Use one font style for all generations"), True)
+        same_style.set_help(_("You can customize font and color for each generation in the style editor"))
+        menu.add_option(category_name, "same_style", same_style)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""
@@ -437,7 +684,10 @@ class FanChartOptions(MenuReportOptions):
                              (159,255,159), 
                              (111,215,255), 
                              ( 79,151,255), 
-                             (231, 23,255)   
+                             (231, 23,255),
+                             (231, 23,221),
+                             (210,170,124),
+                             (189,153,112)  
                             ]
 
         #Paragraph Styles
@@ -457,30 +707,26 @@ class FanChartOptions(MenuReportOptions):
         p = ParagraphStyle()
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("text_style", p)
+        p.set_description(_('The basic style used for the default text display.'))
+        default_style.add_paragraph_style("FC-Text", p)
+
+        for i in range (0, self.MAX_GENERATIONS):
+            f = FontStyle()
+            f.set_size(9)
+            f.set_type_face(FONT_SANS_SERIF)
+            p = ParagraphStyle()
+            p.set_font(f)
+            p.set_alignment(PARA_ALIGN_CENTER)
+            p.set_description(_('The style used for the text display of generation ' + "%d" % i))
+            default_style.add_paragraph_style("FC-Text" + "%02d" % i, p)
             
         # GraphicsStyles
         g = GraphicsStyle()
         g.set_paragraph_style('FC-Title')
-        g.set_line_width(0)
-        default_style.add_draw_style("t",g)
+        default_style.add_draw_style('FC-Graphic-title', g)
 
         for i in range (0, self.MAX_GENERATIONS):
             g = GraphicsStyle()
+            g.set_paragraph_style('FC-Text' + '%02d' % i)
             g.set_fill_color(BACKGROUND_COLORS[i])
-            g.set_paragraph_style('FC-Normal')
-            background_style_name = 'background_style' + '%d' % i
-            default_style.add_draw_style(background_style_name,g)
-
-            g = GraphicsStyle()
-            g.set_fill_color(BACKGROUND_COLORS[i])
-            g.set_paragraph_style('text_style')
-            g.set_line_width(0)
-            text_style_name = 'text_style' + '%d' % i
-            default_style.add_draw_style(text_style_name,g)
-            
-        g = GraphicsStyle()
-        g.set_fill_color((255,255,255))
-        g.set_paragraph_style('FC-Normal')
-        default_style.add_draw_style('background_style_white',g)
+            default_style.add_draw_style('FC-Graphic' + '%02d' % i, g)
