@@ -51,6 +51,8 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.config import config
+from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+import gen.lib
 
 #------------------------------------------------------------------------
 #
@@ -264,23 +266,23 @@ class FanChart(Report):
         pn = person.get_primary_name()
         self.calendar = config.get('preferences.calendar-format-report')
 
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth = self.database.get_event_from_handle(birth_ref.ref)
-            b = birth.get_date_object().to_calendar(self.calendar).get_year()
+        birth = get_birth_or_fallback(self.database, person)
+        b = ""
+        if birth:
+            b = str(birth.get_date_object().to_calendar(self.calendar).get_year())
             if b == 0:
                 b = ""
-        else:
-            b = ""
+            elif birth.get_type() != gen.lib.EventType.BIRTH:
+                b += '*'
 
-        death_ref = person.get_death_ref()
-        if death_ref:
-            death = self.database.get_event_from_handle(death_ref.ref)
-            d = death.get_date_object().to_calendar(self.calendar).get_year()
+        death = get_death_or_fallback(self.database, person)
+        d = ""
+        if death:
+            d = str(death.get_date_object().to_calendar(self.calendar).get_year())
             if d == 0:
                 d = ""
-        else:
-            d = ""
+            elif death.get_type() != gen.lib.EventType.DEATH:
+                d += '*'
         if b and d:
             val = "%s - %s" % (str(b),str(d))
         elif b:
@@ -440,7 +442,7 @@ class FanChartOptions(MenuReportOptions):
 
         #Paragraph Styles
         f = FontStyle()
-        f.set_size(20)
+        f.set_size(18)
         f.set_bold(1)
         f.set_type_face(FONT_SANS_SERIF)
         p = ParagraphStyle()
