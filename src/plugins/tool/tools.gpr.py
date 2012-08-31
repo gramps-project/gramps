@@ -365,7 +365,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Rebuild Secondary Indices
+# Rebuild Reference Maps
 #
 #------------------------------------------------------------------------
 
@@ -382,6 +382,28 @@ authors_email = ["shura@gramps-project.org"],
 category = TOOL_DBFIX,
 toolclass = 'RebuildRefMap',
 optionclass = 'RebuildRefMapOptions',
+tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+  )
+
+#------------------------------------------------------------------------
+#
+# Rebuild Gender Statistics
+#
+#------------------------------------------------------------------------
+
+register(TOOL,
+id    = 'rebuild_genstats',
+name  = _("Rebuild Gender Statistics"),
+description =  _("Rebuilds gender statistics for name gender guessing..."),
+version = '1.0',
+gramps_target_version = '4.0',
+status = STABLE,
+fname = 'rebuildgenderstat.py',
+authors = ["Benny Malengier"],
+authors_email = ["benny.malengier@gramps-project.org"],
+category = TOOL_DBFIX,
+toolclass = 'RebuildGenderStat',
+optionclass = 'RebuildGenderStatOptions',
 tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
 

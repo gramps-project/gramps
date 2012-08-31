@@ -677,6 +677,7 @@ src/plugins/tool/ownereditor.py
 src/plugins/tool/patchnames.py
 src/plugins/tool/rebuild.py
 src/plugins/tool/rebuildrefmap.py
+src/plugins/tool/rebuildgenderstat.py
 src/plugins/tool/relcalc.py
 src/plugins/tool/removeunused.py
 src/plugins/tool/reorderids.py

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2012       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,6 +54,10 @@ class GenderStats(object):
     def save_stats(self):
         return self.stats
 
+    def clear_stats(self):
+        self.stats = {}
+        return self.stats
+
     def _get_key (self, person):
         name = person.get_primary_name().get_first_name()
         return self._get_key_from_name (name)
@@ -65,17 +70,29 @@ class GenderStats(object):
             return self.stats[name]
         return (0, 0, 0)
 
+    def count_name (self, name, gender):
+        """count a given name under gender in the gender stats
+        """
+        keyname = self._get_key_from_name(name)
+        if not keyname:
+            return
+
+        self._set_stats(keyname, gender)
+        
     def count_person (self, person, undo = 0):
         if not person:
             return
         # Let the Person do their own counting later
 
-        name = self._get_key (person)
-        if not name:
+        keyname = self._get_key (person)
+        if not keyname:
             return
 
         gender = person.get_gender()
-        (male, female, unknown) = self.name_stats (name)
+        self._set_stats(keyname, gender, undo)
+
+    def _set_stats (self, keyname, gender, undo=0):
+        (male, female, unknown) = self.name_stats (keyname)
         if not undo:
             increment = 1
         else:
@@ -83,13 +100,18 @@ class GenderStats(object):
 
         if gender == Person.MALE:
             male += increment
+            if male < 0:
+                male = 0
         elif gender == Person.FEMALE:
             female += increment
+            if female < 0:
+                female = 0
         elif gender == Person.UNKNOWN:
             unknown += increment
+            if unknown < 0:
+                unknown = 0
 
-        self.stats[name] = (male, female, unknown)
-        return
+        self.stats[keyname] = (male, female, unknown)
 
     def uncount_person (self, person):
         return self.count_person (person, undo = 1)
@@ -113,4 +135,3 @@ class GenderStats(object):
             return Person.FEMALE
 
         return Person.UNKNOWN
-

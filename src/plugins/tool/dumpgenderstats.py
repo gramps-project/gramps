@@ -67,17 +67,17 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
                 ]
         
             treeview = Gtk.TreeView()
-            model = ListModel(treeview,titles)
+            model = ListModel(treeview, titles)
             for entry in stats_list:
-                model.add(entry,entry[0])
+                model.add(entry, entry[0])
                 
             window = Gtk.Window()
-            window.set_default_size(400,300)
+            window.set_default_size(400, 300)
             s = Gtk.ScrolledWindow()
             s.add(treeview)
             window.add(s)
             window.show_all()
-            self.set_window(window,None,self.label)
+            self.set_window(window, None, self.label)
             self.show()
             
         else:
@@ -99,5 +99,5 @@ class DumpGenderStatsOptions(tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)

@@ -22,6 +22,7 @@ pkgpython_PYTHON = \
 	ownereditor.py \
 	patchnames.py \
 	rebuild.py \
+	rebuildgenderstat.py \
 	rebuildrefmap.py \
 	relcalc.py \
 	removeunused.py \
