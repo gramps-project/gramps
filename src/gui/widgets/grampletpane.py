@@ -186,11 +186,20 @@ class LinkTag(Gtk.TextTag):
     Class for keeping track of link data.
     """
     lid = 0
+    #obtaining the theme link color once. Restart needed on theme change!
+    linkcolor = Gtk.Label(label='test') #needed to avoid label destroyed to early
+    linkcolor = linkcolor.get_style_context().lookup_color('link_color')
+    if linkcolor[0]:
+        linkcolor = gui.utils.rgb_to_hex((linkcolor[1].red, linkcolor[1].green,
+                                linkcolor[1].blue))
+    else:
+        linkcolor = 'blue'
+    
     def __init__(self, buffer):
         LinkTag.lid += 1
         GObject.GObject.__init__(self, name=str(LinkTag.lid))
         tag_table = buffer.get_tag_table()
-        self.set_property('foreground', "blue")
+        self.set_property('foreground', self.linkcolor)
         #self.set_property('underline', Pango.Underline.SINGLE)
         try:
             tag_table.add(self)
