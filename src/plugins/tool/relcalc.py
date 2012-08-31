@@ -37,6 +37,7 @@ from gen.ggettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
+from gi.repository import Gdk
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------

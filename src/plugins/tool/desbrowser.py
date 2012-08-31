@@ -89,7 +89,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
         self.tree.append_column(col)
         self.tree.set_rules_hint(True)
         self.tree.set_headers_visible(False)
-        self.tree.connect('event',self.button_press_event)
+        self.tree.connect('button-press-event', self.button_press_event)
         self.make_new_model()
 
         self.show()
@@ -120,7 +120,7 @@ class DesBrowse(tool.ActivePersonTool, ManagedWindow):
                 prev_id = self.add_to_tree(item_id, prev_id, child_ref.ref)
         return item_id
     
-    def button_press_event(self, obj,event):
+    def button_press_event(self, obj, event):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             store, node = self.tree.get_selection().get_selected()
             if node:
