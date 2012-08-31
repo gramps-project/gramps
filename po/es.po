@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-08-28 16:02+0200\n"
+"PO-Revision-Date: 2012-09-01 00:20+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -685,8 +685,8 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps ha detectado un problema en la base de datos Berkeley subyacente. "
-"Este problema puede repararse utilizando el Gestor de Árboles Genealógicos. "
-"Seleccione la base de datos y haga clic en el botón Reparar"
+"Este problema puede repararse utilizando el Administrador de Árboles "
+"Genealógicos. Seleccione la base de datos y haga clic en el botón Reparar"
 
 #: ../src/QuestionDialog.py:322 ../src/gui/utils.py:304
 msgid "Attempt to force closing the dialog"
@@ -2162,7 +2162,7 @@ msgid ""
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
 "\n"
-"Ejemplo de uso de la interfaz de línea de mandatos de Gramps\n"
+"Ejemplo de uso de la interfaz de línea de órdenes de Gramps\n"
 "\n"
 "1. Para importar cuatro bases de datos (cuyos formatos pueden determinarse "
 "de sus nombres)\n"
@@ -2218,7 +2218,7 @@ msgstr ""
 "11. Por último, para comenzar una sesión interactiva normal teclee:\n"
 "gramps\n"
 "\n"
-"Nota: Estos ejemplos son para el intérprete de mandatos Bash.\n"
+"Nota: Estos ejemplos son para el intérprete de órdenes Bash.\n"
 "La sintaxis puede ser diferente con otros intépretes o en Windows.\n"
 
 #: ../src/cli/argparser.py:232 ../src/cli/argparser.py:355
@@ -2242,7 +2242,7 @@ msgid ""
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
 "Error analizando los argumentos: %s \n"
-"Para utilizar desde la línea de mandatos, proporcione al menos un archivo de "
+"Para utilizar desde la línea de órdenes, proporcione al menos un archivo de "
 "entrada a procesar."
 
 #: ../src/cli/clidbman.py:78
@@ -2564,8 +2564,8 @@ msgstr ""
 "\n"
 "\n"
 "Puede que quiera ejecutar\n"
-"Herramientas -> Proceso de árboles genealógicos -> Mezclar\n"
-"para mezclar citas que contengan información\n"
+"Herramientas -> Proceso de árboles genealógicos -> Fusionar\n"
+"para fusionar citas que contengan información\n"
 "similar"
 
 #: ../src/gen/db/upgrade.py:426
@@ -3615,7 +3615,7 @@ msgstr "Nota de referencia a hijo"
 
 #: ../src/gen/lib/person.py:450
 msgid "Merged Gramps ID"
-msgstr "ID Gramps mezclados"
+msgstr "ID Gramps fusionados"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
@@ -3730,7 +3730,7 @@ msgstr "FTP"
 #: ../src/gen/plug/_gramplet.py:335
 #, python-format
 msgid "Gramplet %s caused an error"
-msgstr "El bloque %s causó un error"
+msgstr "El gramplete %s causó un error"
 
 #. -------------------------------------------------------------------------
 #.
@@ -3790,7 +3790,7 @@ msgstr "Relaciones"
 #: ../src/gui/grampsbar.py:562 ../src/gui/widgets/grampletpane.py:205
 #: ../src/gui/widgets/grampletpane.py:930 ../src/glade/grampletpane.glade.h:8
 msgid "Gramplet"
-msgstr "Bloque"
+msgstr "Gramplete"
 
 #: ../src/gen/plug/_pluginreg.py:87
 msgid "Sidebar"
@@ -4247,15 +4247,15 @@ msgstr "Archivo de GraphViz"
 
 #: ../src/gen/plug/report/_constants.py:47
 msgid "Text Reports"
-msgstr "Reportes en Texto"
+msgstr "Reportes en texto"
 
 #: ../src/gen/plug/report/_constants.py:48
 msgid "Graphical Reports"
-msgstr "Reportes Gráficos"
+msgstr "Reportes gráficos"
 
 #: ../src/gen/plug/report/_constants.py:49
 msgid "Code Generators"
-msgstr "Generadores de Código"
+msgstr "Generadores de código"
 
 #: ../src/gen/plug/report/_constants.py:50
 msgid "Web Pages"
@@ -4687,7 +4687,7 @@ msgstr "Barra de estado"
 #: ../src/gui/configure.py:944
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr ""
-"Mostrar texto en los botones de la barra lateral (no surte afecto hasta "
+"Mostrar texto en los botones de la barra lateral (no surte efecto hasta "
 "rearrancar)"
 
 #: ../src/gui/configure.py:955
@@ -5558,7 +5558,7 @@ msgstr "Eliminar filtro"
 
 #: ../src/gui/grampsbar.py:152 ../src/gui/widgets/grampletpane.py:1130
 msgid "Unnamed Gramplet"
-msgstr "Bloque sin nombre"
+msgstr "Gramplete sin nombre"
 
 #: ../src/gui/grampsbar.py:305
 msgid "Gramps Bar"
@@ -5568,19 +5568,19 @@ msgstr "Barra de Gramps"
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr ""
 "Haga clic con el botón derecho a la derecha de la pestaña para agregar un "
-"bloque."
+"gramplete."
 
 #: ../src/gui/grampsbar.py:421 ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
-msgstr "Agregar un bloque"
+msgstr "Agregar un gramplete"
 
 #: ../src/gui/grampsbar.py:431
 msgid "Remove a gramplet"
-msgstr "Eliminar un bloque"
+msgstr "Eliminar un gramplete"
 
 #: ../src/gui/grampsbar.py:441
 msgid "Restore default gramplets"
-msgstr "Restaurar bloques predeterminados"
+msgstr "Restaurar grampletes predeterminados"
 
 #: ../src/gui/grampsbar.py:481
 msgid "Restore to defaults?"
@@ -5591,7 +5591,7 @@ msgid ""
 "The Grampsbar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"La barra de Gramps se restaurará para que contenga los bloques "
+"La barra de Gramps se restaurará para que contenga los grampletes "
 "predeterminados.  Esta acción no puede deshacerse."
 
 #: ../src/gui/grampsbar.py:484 ../src/gui/plug/_windows.py:491
@@ -5697,7 +5697,7 @@ msgstr "Color del fondo de letra"
 #: ../src/gui/grampsgui.py:118 ../src/plugins/view/grampletview.py:52
 #: ../src/plugins/view/view.gpr.py:71
 msgid "Gramplets"
-msgstr "Bloques"
+msgstr "Grampletes"
 
 #: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
 #: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:58
@@ -5733,7 +5733,7 @@ msgstr "Público"
 
 #: ../src/gui/grampsgui.py:128
 msgid "Merge"
-msgstr "Mezclar"
+msgstr "Fusionar"
 
 #: ../src/gui/grampsgui.py:129 ../src/plugins/gramplet/bottombar.gpr.py:301
 #: ../src/plugins/gramplet/bottombar.gpr.py:315
@@ -6050,7 +6050,7 @@ msgstr "Conectar con una base de datos reciente"
 
 #: ../src/gui/viewmanager.py:741
 msgid "_Family Trees"
-msgstr "Árboles _genealógicos"
+msgstr "Árboles gene_alógicos"
 
 #: ../src/gui/viewmanager.py:742
 msgid "_Manage Family Trees..."
@@ -6110,7 +6110,7 @@ msgstr "A_cerca de"
 
 #: ../src/gui/viewmanager.py:763
 msgid "_Plugin Manager"
-msgstr "_Gestor de complementos"
+msgstr "Administrador de com_plementos"
 
 #: ../src/gui/viewmanager.py:765
 msgid "_FAQ"
@@ -6194,7 +6194,7 @@ msgstr "_Navegador"
 
 #: ../src/gui/viewmanager.py:837
 msgid "_Toolbar"
-msgstr "_Barra de herramientas"
+msgstr "Barra de herramien_tas"
 
 #: ../src/gui/viewmanager.py:839
 msgid "F_ull Screen"
@@ -6382,7 +6382,7 @@ msgstr ""
 "complemento (%(firstauthoremail)s).\n"
 "\n"
 "Si no desea que Gramps intente cargar este complemento de nuevo, puede "
-"ocultarlo usando el Gestor de complementos en el menú de Ayuda."
+"ocultarlo usando el Administrador de complementos en el menú de Ayuda."
 
 #: ../src/gui/viewmanager.py:1927
 msgid "Failed Loading View"
@@ -6411,7 +6411,7 @@ msgstr ""
 "cista (%(firstauthoremail)s).\n"
 "\n"
 "Si no desea que Gramps intente cargar esta vista de nuevo, puede ocultarla "
-"usando el Gestor de complementos en el menú de Ayuda."
+"usando el Administrador de complementos en el menú de Ayuda."
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -6534,7 +6534,7 @@ msgstr "Eliminar nota"
 
 #: ../src/gui/editors/editaddress.py:83 ../src/gui/editors/editaddress.py:156
 msgid "Address Editor"
-msgstr "Editor de Direcciones"
+msgstr "Editor de direcciones"
 
 #: ../src/gui/editors/editattribute.py:84
 #: ../src/gui/editors/editattribute.py:136
@@ -6629,7 +6629,7 @@ msgstr "Borrar cita (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
-msgstr "Editar información de los eventos"
+msgstr "Editar_información_de_los_eventos"
 
 #: ../src/gui/editors/editevent.py:98 ../src/gui/editors/editeventref.py:240
 #, python-format
@@ -7005,7 +7005,7 @@ msgstr "Ordenanza SUD"
 
 #: ../src/gui/editors/editlocation.py:51
 msgid "Location Editor"
-msgstr "Editor de Lugares"
+msgstr "Editor de lugares"
 
 #: ../src/gui/editors/editlink.py:77 ../src/gui/editors/editlink.py:201
 msgid "Link Editor"
@@ -7069,7 +7069,7 @@ msgstr "Y"
 
 #: ../src/gui/editors/editname.py:119 ../src/gui/editors/editname.py:308
 msgid "Name Editor"
-msgstr "Editor de Nombres"
+msgstr "Editor de nombres"
 
 #: ../src/gui/editors/editname.py:169 ../src/gui/editors/editperson.py:302
 msgid "Call name must be the given name that is normally used."
@@ -7550,7 +7550,7 @@ msgstr "Editar la cita seleccionada"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:74
 msgid "Add an existing citation or source"
-msgstr "Agregar una cita existente"
+msgstr "Agregar una cita o fuente existente"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:75
 msgid "Move the selected citation upwards"
@@ -8204,7 +8204,7 @@ msgstr "Guardar como"
 #: ../src/gui/plug/report/_reportdialog.py:317
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
-msgstr "Editor de Estilos"
+msgstr "Editor de estilos"
 
 #: ../src/gui/plug/_windows.py:75
 msgid "Hidden"
@@ -8216,7 +8216,7 @@ msgstr "Visible"
 
 #: ../src/gui/plug/_windows.py:82
 msgid "Plugin Manager"
-msgstr "Gestor de complementos"
+msgstr "Administrador de complementos"
 
 #: ../src/gui/plug/_windows.py:129 ../src/gui/plug/_windows.py:184
 msgid "Info"
@@ -8335,7 +8335,7 @@ msgstr "Autores"
 #. Save Frame
 #: ../src/gui/plug/_windows.py:599 ../src/gui/plug/report/_reportdialog.py:479
 msgid "Filename"
-msgstr "Nombre del Archivo"
+msgstr "Nombre del archivo"
 
 #: ../src/gui/plug/_windows.py:602
 msgid "Detailed Info"
@@ -8352,7 +8352,7 @@ msgstr "Ventana principal"
 #: ../src/gui/plug/report/_docreportdialog.py:123
 #: ../src/gui/plug/report/_graphvizreportdialog.py:173
 msgid "Paper Options"
-msgstr "Opciones del Papel"
+msgstr "Opciones del papel"
 
 #: ../src/gui/plug/report/_docreportdialog.py:128
 msgid "HTML Options"
@@ -8361,7 +8361,7 @@ msgstr "Opciones HTML"
 #: ../src/gui/plug/report/_docreportdialog.py:158
 #: ../src/gui/plug/report/_graphvizreportdialog.py:149
 msgid "Output Format"
-msgstr "Formato de Salida"
+msgstr "Formato de salida"
 
 #: ../src/gui/plug/report/_docreportdialog.py:165
 #: ../src/gui/plug/report/_graphvizreportdialog.py:156
@@ -8642,7 +8642,7 @@ msgstr "_Eliminar"
 
 #: ../src/gui/views/listview.py:206 ../src/plugins/lib/libpersonview.py:368
 msgid "_Merge..."
-msgstr "_Mezclar..."
+msgstr "_Fusionar..."
 
 #: ../src/gui/views/listview.py:208 ../src/plugins/lib/libpersonview.py:370
 msgid "Export View..."
@@ -8801,7 +8801,7 @@ msgstr "Barra _lateral"
 
 #: ../src/gui/views/pageview.py:409
 msgid "_Bottombar"
-msgstr "Barra _inferior"
+msgstr "_Barra inferior"
 
 #: ../src/gui/views/pageview.py:589
 #, python-format
@@ -8984,11 +8984,11 @@ msgstr ""
 #. build the GUI:
 #: ../src/gui/widgets/grampletpane.py:958
 msgid "Right click to add gramplets"
-msgstr "Haga clic con el botón derecho para agregar bloques"
+msgstr "Haga clic con el botón derecho para agregar grampletes"
 
 #: ../src/gui/widgets/grampletpane.py:997
 msgid "Untitled Gramplet"
-msgstr "Bloque sin nombre"
+msgstr "Gramplete sin nombre"
 
 #: ../src/gui/widgets/grampletpane.py:1472
 msgid "Number of Columns"
@@ -8996,7 +8996,7 @@ msgstr "Número de columnas"
 
 #: ../src/gui/widgets/grampletpane.py:1477
 msgid "Gramplet Layout"
-msgstr "Diseño del bloque"
+msgstr "Disposición del gramplete"
 
 #: ../src/gui/widgets/grampletpane.py:1507
 msgid "Use maximum height available"
@@ -9160,31 +9160,31 @@ msgstr "Registro privado"
 
 #: ../src/Merge/mergecitation.py:50
 msgid "manual|Merge_Citations"
-msgstr "Mezclar_citas"
+msgstr "Fusionar_citas"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
-msgstr "Mezclar citas"
+msgstr "Fusionar citas"
 
 #: ../src/Merge/mergecitation.py:193 ../src/plugins/tool/MergeCitations.py:188
 msgid "Merge Citation"
-msgstr "Mezclar cita"
+msgstr "Fusionar cita"
 
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
-msgstr "Mezclar_eventos"
+msgstr "Fusionar_eventos"
 
 #: ../src/Merge/mergeevent.py:71
 msgid "Merge Events"
-msgstr "Mezclar eventos"
+msgstr "Fusionar eventos"
 
 #: ../src/Merge/mergeevent.py:216
 msgid "Merge Event Objects"
-msgstr "Mezclar objetos del evento"
+msgstr "Fusionaar objetos del evento"
 
 #: ../src/Merge/mergefamily.py:49
 msgid "manual|Merge_Families"
-msgstr "Mezclar_familias"
+msgstr "Fusionar_familias"
 
 #: ../src/Merge/mergefamily.py:71
 msgid "Merge Families"
@@ -9193,7 +9193,7 @@ msgstr "Mazclar familias"
 #: ../src/Merge/mergefamily.py:225 ../src/Merge/mergeperson.py:334
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Cannot merge people"
-msgstr "No se pueden mezclar estas personas"
+msgstr "No se pueden fusionar estas personas"
 
 #: ../src/Merge/mergefamily.py:278
 msgid "A parent should be a father or mother."
@@ -9205,28 +9205,29 @@ msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
 msgstr ""
-"No es posible mezclar una persona con uno de sus hijos.  Para poder mezclar "
-"estas personas, debe antes deshacer la relación existente entre ambas."
+"No es posible fusionar una persona con uno de sus hijos.  Para poder "
+"fusionar estas personas, debe antes deshacer la relación existente entre "
+"ambas."
 
 #: ../src/Merge/mergefamily.py:323
 msgid "Merge Family"
-msgstr "Mezclar familia"
+msgstr "Fusionar familia"
 
 #: ../src/Merge/mergemedia.py:48
 msgid "manual|Merge_Media_Objects"
-msgstr "Mezclar_objetos"
+msgstr "Fusionar_objetos"
 
 #: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
 msgid "Merge Media Objects"
-msgstr "Mezclar objetos"
+msgstr "Fusionar objetos"
 
 #: ../src/Merge/mergenote.py:49
 msgid "manual|Merge_Notes"
-msgstr "Mezclar_notas"
+msgstr "Fusionar_notas"
 
 #: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:205
 msgid "Merge Notes"
-msgstr "Mezclar notas"
+msgstr "Fusionar notas"
 
 #: ../src/Merge/mergenote.py:98
 msgid "flowed"
@@ -9238,11 +9239,11 @@ msgstr "preformateado"
 
 #: ../src/Merge/mergeperson.py:59
 msgid "manual|Merge_People"
-msgstr "Mezclar personas"
+msgstr "Fusionar_personas"
 
 #: ../src/Merge/mergeperson.py:85
 msgid "Merge People"
-msgstr "Mezclar Personas"
+msgstr "Fusionar Personas"
 
 #: ../src/Merge/mergeperson.py:189
 #: ../src/plugins/textreport/IndivComplete.py:351
@@ -9281,54 +9282,54 @@ msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
 msgstr ""
-"No es posible mezclar una persona con su cónyuge.  Para poder mezclar estas "
-"personas, debe antes deshacer la relación existente entre ambas."
+"No es posible fusionar una persona con su cónyuge.  Para poder fusionar "
+"estas personas, debe antes deshacer la relación existente entre ambas."
 
 #: ../src/Merge/mergeperson.py:415
 msgid "Merge Person"
-msgstr "Mezclar persona"
+msgstr "Fusionar persona"
 
 #: ../src/Merge/mergeperson.py:454
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr ""
-"Está a punto de mezclarse una persona que tiene relaciones múltiples con el "
+"Está a punto de fusionarse una persona que tiene relaciones múltiples con el "
 "mismo cónyuge. Este escenario es demasiado complejo para el sistema de "
-"mezcla. Se cancela la mezcla."
+"fusionarse. Se cancela la fusión."
 
 #: ../src/Merge/mergeperson.py:465
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
-"Se mezclan varias familias. Esto no es corriente, se cancela la mezcla."
+"Se fusionan varias familias. Esto no es corriente, se cancela la fusión."
 
 #: ../src/Merge/mergeplace.py:55
 msgid "manual|Merge_Places"
-msgstr "Mezclar_lugares"
+msgstr "Fusionar_lugares"
 
 #: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:217
 msgid "Merge Places"
-msgstr "Mezclar lugares"
+msgstr "Fusionar lugares"
 
 #: ../src/Merge/mergerepository.py:47
 msgid "manual|Merge_Repositories"
-msgstr "Mezclar_repositorios"
+msgstr "Fusionar_repositorios"
 
 #: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
 msgid "Merge Repositories"
-msgstr "Mezclar repositorios"
+msgstr "Fusionar repositorios"
 
 #: ../src/Merge/mergesource.py:50
 msgid "manual|Merge_Sources"
-msgstr "Mezclar fuentes"
+msgstr "Fusionar_fuentes"
 
 #: ../src/Merge/mergesource.py:72
 msgid "Merge Sources"
-msgstr "Mezclar fuentes"
+msgstr "Fusionar fuentes"
 
 #: ../src/Merge/mergesource.py:205
 msgid "Merge Source"
-msgstr "Mezclar fuente"
+msgstr "Fusionar fuente"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:56
 msgid "Report a bug"
@@ -9690,7 +9691,7 @@ msgstr "Muestra algunos récords interesantes de personas y familias"
 
 #: ../src/plugins/records.gpr.py:48
 msgid "Records Gramplet"
-msgstr "Bloque de récords"
+msgstr "Gramplete de récords"
 
 #: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
 msgid "Records"
@@ -9997,7 +9998,8 @@ msgstr "No se pudo crear la versión jpeg de la imagen %(name)s"
 msgid "Could not open %s"
 msgstr "No se pudo abrir %s"
 
-# Should be translated as Índice de materias or just Índice (the Index is Índice alfabético instead)  That is the traditional usage in book publishing, printed books use those terms.  Sumario is more common on magazines and other periodicals, but we will follow French in this.
+# TBC
+# Should be translated as Índice de materias or just Índice (the Index is Índice alfabético instead)  That is the traditional usage in book publishing, printed books use those terms.  Sumario is more common on magazines and other periodicals, but we will follow French in this for now.
 #: ../src/plugins/docgen/ODFDoc.py:1616
 msgid "Contents"
 msgstr "Sumario"
@@ -11763,7 +11765,7 @@ msgstr "Detalles de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:32
 msgid "Gramplet showing details of a person"
-msgstr "Bloque que muestra los detalles de una persona"
+msgstr "Gramplete que muestra los detalles de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:39
 #: ../src/plugins/gramplet/bottombar.gpr.py:53
@@ -11778,7 +11780,7 @@ msgstr "Detalles del repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:46
 msgid "Gramplet showing details of a repository"
-msgstr "Bloque que muestra los detalles de un repositorio"
+msgstr "Gramplete que muestra los detalles de un repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
 msgid "Place Details"
@@ -11786,7 +11788,7 @@ msgstr "Detalles del lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:60
 msgid "Gramplet showing details of a place"
-msgstr "Bloque que muestra los detalles de un lugar"
+msgstr "Gramplete que muestra los detalles de un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
 msgid "Media Preview"
@@ -11794,7 +11796,7 @@ msgstr "Previsualización de objetos audiovisuales"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:74
 msgid "Gramplet showing a preview of a media object"
-msgstr "Bloque que muestra una previsualización de un objeto audiovisual"
+msgstr "Gramplete que muestra una previsualización de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:90
 msgid ""
@@ -11810,7 +11812,7 @@ msgstr "Visor de metadatos"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:98
 msgid "Gramplet showing metadata for a media object"
-msgstr "Bloque que muestra los metadatos de un objeto audiovisual"
+msgstr "Gramplete que muestra los metadatos de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:105
 msgid "Image Metadata"
@@ -11822,7 +11824,7 @@ msgstr "Residencia de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:112
 msgid "Gramplet showing residence events for a person"
-msgstr "Bloque que muestra los eventos de residencia de una persona"
+msgstr "Gramplete que muestra los eventos de residencia de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:125
 msgid "Person Events"
@@ -11830,11 +11832,11 @@ msgstr "Eventos personales"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:126
 msgid "Gramplet showing the events for a person"
-msgstr "Bloque que muestra los eventos de una persona"
+msgstr "Gramplete que muestra los eventos de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:140
 msgid "Gramplet showing the events for a family"
-msgstr "Bloque que muestra los eventos de una familia"
+msgstr "Gramplete que muestra los eventos de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:153
 msgid "Person Gallery"
@@ -11842,7 +11844,7 @@ msgstr "Galería de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:154
 msgid "Gramplet showing media objects for a person"
-msgstr "Bloque que muestra los objetos audiovisuales de una persona"
+msgstr "Gramplete que muestra los objetos audiovisuales de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:161
 #: ../src/plugins/gramplet/bottombar.gpr.py:175
@@ -11859,7 +11861,7 @@ msgstr "Galería de la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:168
 msgid "Gramplet showing media objects for a family"
-msgstr "Bloque que muestra los objetos audiovisuales de una familia"
+msgstr "Gramplete que muestra los objetos audiovisuales de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:181
 msgid "Event Gallery"
@@ -11867,7 +11869,7 @@ msgstr "Galería del evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:182
 msgid "Gramplet showing media objects for an event"
-msgstr "Bloque que muestra los objetos audiovisuales de un evento"
+msgstr "Gramplete que muestra los objetos audiovisuales de un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:195
 msgid "Place Gallery"
@@ -11875,7 +11877,7 @@ msgstr "Galería del lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:196
 msgid "Gramplet showing media objects for a place"
-msgstr "Bloque que muestra los objetos audiovisuales de un lugar"
+msgstr "Gramplete que muestra los objetos audiovisuales de un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:209
 msgid "Source Gallery"
@@ -11883,7 +11885,7 @@ msgstr "Galería de la fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:210
 msgid "Gramplet showing media objects for a source"
-msgstr "Bloque que muestra los objetos audiovisuales de una fuente"
+msgstr "Gramplete que muestra los objetos audiovisuales de una fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
 msgid "Citation Gallery"
@@ -11891,7 +11893,7 @@ msgstr "Galería de cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
 msgid "Gramplet showing media objects for a citation"
-msgstr "Bloque que muestra los objetos audiovisuales de una cita"
+msgstr "Gramplete que muestra los objetos audiovisuales de una cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Person Attributes"
@@ -11899,7 +11901,7 @@ msgstr "Atributos personales"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:238
 msgid "Gramplet showing the attributes of a person"
-msgstr "Bloque que muestra los atributos de una persona"
+msgstr "Gramplete que muestra los atributos de una persona"
 
 #. there is no need to add an ending "</script>",
 #. as it will be added automatically by libhtml()
@@ -11923,7 +11925,7 @@ msgstr "Atributos del evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:252
 msgid "Gramplet showing the attributes of an event"
-msgstr "Bloque que muestra los atributos de un evento"
+msgstr "Gramplete que muestra los atributos de un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:265
 msgid "Family Attributes"
@@ -11931,7 +11933,7 @@ msgstr "Atributos familiares"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:266
 msgid "Gramplet showing the attributes of a family"
-msgstr "Bloque que muestra los atributos de una familia"
+msgstr "Gramplete que muestra los atributos de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:279
 msgid "Media Attributes"
@@ -11939,7 +11941,7 @@ msgstr "Atributos del objeto"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:280
 msgid "Gramplet showing the attributes of a media object"
-msgstr "Bloque que muestra los atributos de un objeto audiovisual"
+msgstr "Gramplete que muestra los atributos de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
 msgid "Person Notes"
@@ -11947,7 +11949,7 @@ msgstr "Notas de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:294
 msgid "Gramplet showing the notes for a person"
-msgstr "Bloque que muestra las notas de una persona"
+msgstr "Gramplete que muestra las notas de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:307
 msgid "Event Notes"
@@ -11955,7 +11957,7 @@ msgstr "Notas del evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:308
 msgid "Gramplet showing the notes for an event"
-msgstr "Bloque que muestra las notas de un evento"
+msgstr "Gramplete que muestra las notas de un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:321
 msgid "Family Notes"
@@ -11963,7 +11965,7 @@ msgstr "Notas de la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:322
 msgid "Gramplet showing the notes for a family"
-msgstr "Bloque que muestra las notas de una familia"
+msgstr "Gramplete que muestra las notas de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:335
 msgid "Place Notes"
@@ -11971,7 +11973,7 @@ msgstr "Notas del lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:336
 msgid "Gramplet showing the notes for a place"
-msgstr "Bloque que muestra las notas de un lugar"
+msgstr "Gramplete que muestra las notas de un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:349
 msgid "Source Notes"
@@ -11979,7 +11981,7 @@ msgstr "Notas de la fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:350
 msgid "Gramplet showing the notes for a source"
-msgstr "Bloque que muestra las notas de una fuente"
+msgstr "Gramplete que muestra las notas de una fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
 msgid "Citation Notes"
@@ -11987,7 +11989,7 @@ msgstr "Notas de la cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:364
 msgid "Gramplet showing the notes for a citation"
-msgstr "Bloque que muestra las notas de una cita"
+msgstr "Gramplete que muestra las notas de una cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Repository Notes"
@@ -11995,7 +11997,7 @@ msgstr "Notas del repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:378
 msgid "Gramplet showing the notes for a repository"
-msgstr "Bloque que muestra las notas de un repositorio"
+msgstr "Gramplete que muestra las notas de un repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:391
 msgid "Media Notes"
@@ -12003,7 +12005,7 @@ msgstr "Notas del objeto"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:392
 msgid "Gramplet showing the notes for a media object"
-msgstr "Bloque que muestra las notas de un objeto audiovisual"
+msgstr "Gramplete que muestra las notas de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
 msgid "Person Citations"
@@ -12011,7 +12013,7 @@ msgstr "Citas de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
 msgid "Gramplet showing the citations for a person"
-msgstr "Bloque que muestra las citas de una persona"
+msgstr "Gramplete que muestra las citas de una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
 msgid "Event Citations"
@@ -12019,7 +12021,7 @@ msgstr "Citas del evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
 msgid "Gramplet showing the citations for an event"
-msgstr "Bloque que muestra las citas de un evento"
+msgstr "Gramplete que muestra las citas de un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
 msgid "Family Citations"
@@ -12027,7 +12029,7 @@ msgstr "Citas de la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
 msgid "Gramplet showing the citations for a family"
-msgstr "Bloque que muestra las citas de una familia"
+msgstr "Gramplete que muestra las citas de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
 msgid "Place Citations"
@@ -12035,7 +12037,7 @@ msgstr "Citas del lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
 msgid "Gramplet showing the citations for a place"
-msgstr "Bloque que muestra ls citas de un lugar"
+msgstr "Gramplete que muestra ls citas de un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Media Citations"
@@ -12043,7 +12045,7 @@ msgstr "Citas de un objeto de audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
 msgid "Gramplet showing the citations for a media object"
-msgstr "Bloque que muestra las citas de un objeto audiovisual"
+msgstr "Gramplete que muestra las citas de un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Person Children"
@@ -12051,7 +12053,7 @@ msgstr "Hijos de la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:476
 msgid "Gramplet showing the children of a person"
-msgstr "Bloque que muestra los hijos/as de una persona"
+msgstr "Gramplete que muestra los hijos/as de una persona"
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
@@ -12072,7 +12074,7 @@ msgstr "Hijos de la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:490
 msgid "Gramplet showing the children of a family"
-msgstr "Bloque que muestra los hijos/as de una familia"
+msgstr "Gramplete que muestra los hijos/as de una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
 msgid "Person Backlinks"
@@ -12080,7 +12082,7 @@ msgstr "Referencias a la persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:504
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Bloque que muestra las referencias a una persona"
+msgstr "Gramplete que muestra las referencias a una persona"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:511
 #: ../src/plugins/gramplet/bottombar.gpr.py:525
@@ -12103,7 +12105,7 @@ msgstr "Referencias al evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:518
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Bloque que muestra las referencias a un evento"
+msgstr "Gramplete que muestra las referencias a un evento"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:531
 msgid "Family Backlinks"
@@ -12111,7 +12113,7 @@ msgstr "Referencias a la familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:532
 msgid "Gramplet showing the backlinks for a family"
-msgstr "Bloque que muestra las referencias a una familia"
+msgstr "Gramplete que muestra las referencias a una familia"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
 msgid "Place Backlinks"
@@ -12119,7 +12121,7 @@ msgstr "Referencias al lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:546
 msgid "Gramplet showing the backlinks for a place"
-msgstr "Bloque que muestra ls referencias a un lugar"
+msgstr "Gramplete que muestra ls referencias a un lugar"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
 msgid "Source Backlinks"
@@ -12127,7 +12129,7 @@ msgstr "Referencias a la fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:560
 msgid "Gramplet showing the backlinks for a source"
-msgstr "Bloque que muestra las referencias a una fuente"
+msgstr "Gramplete que muestra las referencias a una fuente"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
 msgid "Citation Backlinks"
@@ -12135,7 +12137,7 @@ msgstr "Referencias de la cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Bloque que muestra las referencias a una cita"
+msgstr "Gramplete que muestra las referencias a una cita"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Repository Backlinks"
@@ -12143,7 +12145,7 @@ msgstr "Referencias al repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:588
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Bloque que muestra las referencias a un repositorio"
+msgstr "Gramplete que muestra las referencias a un repositorio"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:601
 msgid "Media Backlinks"
@@ -12151,7 +12153,7 @@ msgstr "Referencias al objeto"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:602
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Bloque que muestra las referencias a un objeto audiovisual"
+msgstr "Gramplete que muestra las referencias a un objeto audiovisual"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:615
 msgid "Note Backlinks"
@@ -12159,7 +12161,7 @@ msgstr "Referencias a la nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:616
 msgid "Gramplet showing the backlinks for a note"
-msgstr "Bloque que muestra las referencias a una nota"
+msgstr "Gramplete que muestra las referencias a una nota"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:629
 msgid "Person Filter"
@@ -12167,7 +12169,7 @@ msgstr "Filtro de personas"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:630
 msgid "Gramplet providing a person filter"
-msgstr "Bloque que proporciona un filtro de personas"
+msgstr "Gramplete que proporciona un filtro de personas"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
 msgid "Family Filter"
@@ -12175,7 +12177,7 @@ msgstr "Filtro de familias"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:644
 msgid "Gramplet providing a family filter"
-msgstr "Bloque que proporciona un filtro de familias"
+msgstr "Gramplete que proporciona un filtro de familias"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
 msgid "Event Filter"
@@ -12183,7 +12185,7 @@ msgstr "Filtro de eventos"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:658
 msgid "Gramplet providing an event filter"
-msgstr "Bloque que proporciona un filtro de eventos"
+msgstr "Gramplete que proporciona un filtro de eventos"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
 msgid "Source Filter"
@@ -12191,7 +12193,7 @@ msgstr "Filtro de fuentes"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:672
 msgid "Gramplet providing a source filter"
-msgstr "Bloque que proporciona un filtro de fuentes"
+msgstr "Gramplete que proporciona un filtro de fuentes"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
 msgid "Citation Filter"
@@ -12199,7 +12201,7 @@ msgstr "Filtro de citas"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
 msgid "Gramplet providing a citation filter"
-msgstr "Bloque que proporciona un filtro de citas"
+msgstr "Gramplete que proporciona un filtro de citas"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
 msgid "Place Filter"
@@ -12207,7 +12209,7 @@ msgstr "Filtro de lugares"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:700
 msgid "Gramplet providing a place filter"
-msgstr "Bloque que proporciona un filtro de lugares"
+msgstr "Gramplete que proporciona un filtro de lugares"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:713
 msgid "Media Filter"
@@ -12215,7 +12217,7 @@ msgstr "Filtro de objetos"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:714
 msgid "Gramplet providing a media filter"
-msgstr "Bloque que proporciona un filtro de objetos audiovisuales"
+msgstr "Gramplete que proporciona un filtro de objetos audiovisuales"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:727
 msgid "Repository Filter"
@@ -12223,7 +12225,7 @@ msgstr "Filtro de repositorios"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:728
 msgid "Gramplet providing a repository filter"
-msgstr "Bloque que proporciona un filtro de repositorios"
+msgstr "Gramplete que proporciona un filtro de repositorios"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:741
 msgid "Note Filter"
@@ -12231,7 +12233,7 @@ msgstr "Filtro de notas"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:742
 msgid "Gramplet providing a note filter"
-msgstr "Bloque que proporciona un filtro de notas"
+msgstr "Gramplete que proporciona un filtro de notas"
 
 #: ../src/plugins/gramplet/CalendarGramplet.py:39
 msgid "Double-click a day for details"
@@ -12683,7 +12685,7 @@ msgid ""
 "<b><a wiki='%s_-_FAQ'>Frequently Asked Questions</a></b>\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"<b><a wiki='%s_-_FAQ'>Preguntas frecuentes</a></b>\n"
+"<b><a wiki='%s_-_FAQ/es'>Preguntas frecuentes</a></b>\n"
 "(se necesita conexión a Internet)\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
@@ -12696,6 +12698,8 @@ msgid ""
 "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
 "change the order of spouses?</a>\n"
 msgstr ""
+"  1. <a wiki='%s_-_FAQ/es#¿Cómo_cambio_el_orden_de_los_cónyuges.3F'>¿Cómo "
+"cambio el orden de los cónyuges?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
@@ -12703,6 +12707,8 @@ msgid ""
 "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add an "
 "additional spouse?</a>\n"
 msgstr ""
+"  2. <a wiki='%s_-_FAQ/es#¿Cómo_agrego_otro_cónyuge.3F'>¿Cómo agrego otro "
+"cónyuge?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
@@ -12710,6 +12716,8 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
+"  3. <a wiki='%s_-_FAQ/es#¿Cómo_elimino_un_cónyuge.3F'>¿Cómo elimino un "
+"cónyuge?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -12721,6 +12729,8 @@ msgid ""
 "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
 "safely?</a>\n"
 msgstr ""
+"  4. <a wiki='%s_-_FAQ/es#¿Cómo_mantengo_copias_de_seguridad.3F'>¿Cómo puedo "
+"hacer copias de seguridad?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:50
 #, python-format
@@ -12728,6 +12738,8 @@ msgid ""
 "  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Is it necessary to update "
 "Gramps every time an update is released?</a>\n"
 msgstr ""
+"  5. <a wiki='%s_-_FAQ/es#¿Cómo_actualizo_Gramps.3F'>¿Es necesario "
+"actualizar Gramps cada vez que se publica una actualización?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
 msgid "Data Entry"
@@ -12740,6 +12752,9 @@ msgid ""
 "_part_1#Editing_Information_About_Relationships'>How should information "
 "about marriages be entered?</a>\n"
 msgstr ""
+"  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1/"
+"es#Editar_información_sobre_las_relaciones'>¿Cómo se introduce la "
+"información de matrimonios?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:55
 #, python-format
@@ -12748,6 +12763,9 @@ msgid ""
 "_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>What's "
 "the difference between a residence and an address?</a>\n"
 msgstr ""
+"  7. <a wiki='%s_-_FAQ/es#"
+"¿Cuál_es_la_diferencia_entre_residencia_y_dirección.3F'>¿Cuál es la "
+"diferencia entre residencia y dirección?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:57
 msgid "Media Files"
@@ -12759,6 +12777,8 @@ msgid ""
 "  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>How do you add a "
 "photo of a person/source/event?</a>\n"
 msgstr ""
+"  8. <a wiki='%s_-_FAQ/es#¿Cómo_agregar_fotos_a_un_elemento.3F'>¿Cómo se "
+"agrega una foto a una persona/fuente/evento?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:60
 #, python-format
@@ -12766,6 +12786,9 @@ msgid ""
 "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>How do you "
 "find unused media objects?</a>\n"
 msgstr ""
+"  9. <a wiki='%s_-_FAQ/es#"
+"¿Cómo_encontrar_objetos_audiovisuales_no_utilizados.3F'>¿Cómo encontrar "
+"objetos audiovisuales no utilizados?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:64
 #, python-format
@@ -12774,12 +12797,17 @@ msgid ""
 "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
 "website with Gramps and my tree?</a>\n"
 msgstr ""
+" 10. <a wiki='%s_-_FAQ/es#"
+"¿Cómo_puedo_publicar_sitios_web_generados_con_Gramps.3F'>¿Cómo puedo hacer "
+"un sitio web de mi árbol genealógico con Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?"
+"msg_id=21487967'>¿Cómo anoto la ocupación de alguien?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -12787,22 +12815,25 @@ msgid ""
 " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do "
 "if I have found a bug?</a>\n"
 msgstr ""
+" 12. <a wiki='%s_-_FAQ/es#¿Qué_hago_si_encuentro_un_error_en_el_programa.3F'>"
+"¿Qué hago si encuentro un error en el programa?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:67
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr " 13. <a wiki='Portal:Using_GRAMPS'>¿Existe manual de Gramps?</a>\n"
+msgstr " 13. <a wiki='Portal:Using_GRAMPS/es'>¿Existe manual de Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:68
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
 msgstr ""
+" 14. <a wiki='Category:Es:Tutorials'>¿Hay tutoriales disponibles?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:69
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr ""
+msgstr " 15. <a wiki='Category:Es:Cómo_puedo...'>¿Cómo puedo ...?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 16. <a wiki='How_you_can_help'>¿Cómo puedo ayudar en Gramps?</a>\n"
+msgstr " 16. <a wiki='How_you_can_help/es'>¿Cómo puedo ayudar en Gramps?</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -12830,7 +12861,7 @@ msgstr "Edad en la fecha"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
-msgstr "Bloque que muestra las edades de personas vivas en una fecha dada"
+msgstr "Gramplete que muestra las edades de personas vivas en una fecha dada"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:43
 #: ../src/plugins/gramplet/gramplet.gpr.py:50
@@ -12839,16 +12870,16 @@ msgstr "Estadísticas de edad"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:44
 msgid "Gramplet showing graphs of various ages"
-msgstr "Bloque que muestra gráficos de diversas edades"
+msgstr "Gramplete que muestra gráficos de diversas edades"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:60
 msgid "Gramplet showing active person's attributes"
-msgstr "Bloque que muestra los atributos de la persona activa"
+msgstr "Gramplete que muestra los atributos de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:77
 msgid "Gramplet showing calendar and events on specific dates in history"
 msgstr ""
-"Bloque que muestra el calendario y los eventos en fechas concretas en la "
+"Gramplete que muestra el calendario y los eventos en fechas concretas en la "
 "historia"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:89
@@ -12857,7 +12888,7 @@ msgstr "Descendiente"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:90
 msgid "Gramplet showing active person's descendants"
-msgstr "Bloque que muestra los descendientes de la persona activa"
+msgstr "Gramplete que muestra los descendientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:96
 msgid "Descendants"
@@ -12866,8 +12897,8 @@ msgstr "Descendientes"
 #: ../src/plugins/gramplet/gramplet.gpr.py:107
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr ""
-"Bloque que muestra los ascendientes directos de la persona activa mediante "
-"un diagrama en abanico"
+"Gramplete que muestra los ascendientes directos de la persona activa "
+"mediante un diagrama en abanico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:123
 #: ../src/plugins/gramplet/gramplet.gpr.py:129
@@ -12876,7 +12907,7 @@ msgstr "Preguntas frecuentes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:124
 msgid "Gramplet showing frequently asked questions"
-msgstr "Bloque que muestra las preguntas frecuentes"
+msgstr "Gramplete que muestra las preguntas frecuentes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:136
 #: ../src/plugins/gramplet/gramplet.gpr.py:143
@@ -12885,15 +12916,15 @@ msgstr "Nube de nombres de pila"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:137
 msgid "Gramplet showing all given names as a text cloud"
-msgstr "Bloque que muestra todos los nombres de pila como una nube de texto"
+msgstr "Gramplete que muestra todos los nombres de pila como una nube de texto"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:151
 msgid "Gramplet showing active person's ancestors"
-msgstr "Bloque que muestra los ascendientes de la persona activa"
+msgstr "Gramplete que muestra los ascendientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:168
 msgid "Gramplet showing an active item Quick View"
-msgstr "Bloque que muestra la vista rápida de un elemento activo"
+msgstr "Gramplete que muestra la vista rápida de un elemento activo"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:183
 #: ../src/plugins/gramplet/gramplet.gpr.py:189
@@ -12902,7 +12933,7 @@ msgstr "Parientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:184
 msgid "Gramplet showing active person's relatives"
-msgstr "Bloque que muestra los parientes de la persona activa"
+msgstr "Gramplete que muestra los parientes de la persona activa"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:199
 #: ../src/plugins/gramplet/gramplet.gpr.py:206
@@ -12911,11 +12942,11 @@ msgstr "Registro de la sesión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:200
 msgid "Gramplet showing all activity for this session"
-msgstr "Bloque que muestra toda la actividad para esta sesión"
+msgstr "Gramplete que muestra toda la actividad para esta sesión"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing summary data of the family tree"
-msgstr "Bloque que muestra los datos de resumen del árbol genealógico"
+msgstr "Gramplete que muestra los datos de resumen del árbol genealógico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
@@ -12924,7 +12955,7 @@ msgstr "Nube de apellidos"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:228
 msgid "Gramplet showing all surnames as a text cloud"
-msgstr "Bloque que muestra todos los apellidos como una nube de texto"
+msgstr "Gramplete que muestra todos los apellidos como una nube de texto"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:241
 msgid "TODO"
@@ -12932,7 +12963,7 @@ msgstr "Tareas pendientes"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:242
 msgid "Gramplet for generic notes"
-msgstr "Bloque para notas genéricas"
+msgstr "Gramplete para notas genéricas"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:248
 msgid "TODO List"
@@ -12946,7 +12977,7 @@ msgstr "Apellidos más frecuentes"
 #: ../src/plugins/gramplet/gramplet.gpr.py:256
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr ""
-"Bloque que muestra los apellidos más frecuentes en este árbol genealógico"
+"Gramplete que muestra los apellidos más frecuentes en este árbol genealógico"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:268
 msgid "Welcome"
@@ -12954,7 +12985,7 @@ msgstr "Bienvenido"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:269
 msgid "Gramplet showing a welcome message"
-msgstr "Bloque que muestra un mensaje de bienvenida"
+msgstr "Gramplete que muestra un mensaje de bienvenida"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:275
 msgid "Welcome to Gramps!"
@@ -12966,7 +12997,7 @@ msgstr "Y ahora qué"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:283
 msgid "Gramplet suggesting items to research"
-msgstr "Bloque con sugerencias de temas a investigar"
+msgstr "Gramplete con sugerencias de temas a investigar"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:289
 msgid "What's Next?"
@@ -12974,7 +13005,7 @@ msgstr "¿Y ahora qué?"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:300
 msgid "Gramplet to view, edit, and save image Exif metadata"
-msgstr "Bloque para ver, editar y guardar metadatos Exif"
+msgstr "Gramplete para ver, editar y guardar metadatos Exif"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:304
 msgid "Edit Exif Metadata"
@@ -13442,7 +13473,7 @@ msgstr ""
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
 #: ../src/plugins/view/view.gpr.py:63
 msgid "Gramplet View"
-msgstr "Vista de bloques"
+msgstr "Vista de grampletes"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:132
 msgid ""
@@ -13455,6 +13486,9 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Está viendo en este momento la vista \"Grampletes\", en la que puede agregar sus propios grampletes. También puede agregar grampletes a cualquier vista agregando una barra lateral y/o una barra inferior y haciendo clic con el botón derecho a la derecha de la pestaña.\n"
+"\n"
+"Puede hacer clic en el icono de configuración es la barra de herramientas para agregar más columnas, mientras que hacer clic con el botón derecho le permite agregar grampletes. Tambiénpuede arrastrar el botón Propiedades para reposicionar el gramplete en esta página o desacoplar el grampete para que flote sobre la ventana principal de Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -13882,11 +13916,11 @@ msgstr "Si se deben incluir nombres, fechas y familias marcadas como privadas."
 
 #: ../src/plugins/graph/GVFamilyLines.py:341
 msgid "Empty report"
-msgstr ""
+msgstr "Reporte vacío"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "No especificó ninguna persona"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -14315,6 +14349,14 @@ msgid ""
 "php?title=Gramps_3.4_Wiki_Manual_-"
 "_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr ""
+"La versión de la base de datos no es compatible con esta versión de of "
+"Gramps. Debería usar una copia anterior de Gramps de la versión 3.0.x e "
+"importar su base de datos a esa versión. A continuación, exporte una copia "
+"de sus datos al formato XML Gramps. Después debe actualizarse a la última "
+"versión de Gramps (por ejemplo esta versión), crear una nueva base de datos "
+"vacía e importar el archivo XML Gramps a esa versión. Por favor, consulte "
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
+"_Manage_Family_Trees/es#Llevar_una_base_de_datos_de_Gramps_2.2_a_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -14358,7 +14400,7 @@ msgstr "Importando personas"
 #: ../src/plugins/import/ImportProGen.py:815
 #, python-format
 msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
-msgstr ""
+msgstr "Nombre patronímico ignorado: '%(patronym)s' (%(msg)s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1059
@@ -14529,7 +14571,7 @@ msgstr "  Nota %(id)s con %(id2)s\n"
 #: ../src/plugins/import/ImportXml.py:276
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr ""
+msgstr "  Cita %(id)s con %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:284
 #, python-format
@@ -14596,6 +14638,14 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unkown' objects are referenced by note %s.\n"
 msgstr ""
+"\n"
+" El archivo importado no era autocontenido.\n"
+"Para compensarlo, se crearon %d objetos y\n"
+"su atributo de tipo se fijó a 'Desconocido'.\n"
+"El desglose por categoría lo indica el\n"
+"número en paréntesis. Si es posible, estos\n"
+"objetos 'Desconocidos' están referenciados\n"
+"por la nota %s.\n"
 
 #: ../src/plugins/import/ImportXml.py:312
 msgid ""
@@ -14618,6 +14668,9 @@ msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
+"\n"
+"\n"
+"Objetos candidatos a ser fusionados:\n"
 
 #. there is no old style XML
 #: ../src/plugins/import/ImportXml.py:762
@@ -14625,11 +14678,11 @@ msgstr ""
 #: ../src/plugins/import/ImportXml.py:1444
 #: ../src/plugins/import/ImportXml.py:1819
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr ""
+msgstr "El XML Gramps que intenta importar no tiene un formato correcto."
 
 #: ../src/plugins/import/ImportXml.py:763
 msgid "Attributes that link the data together are missing."
-msgstr ""
+msgstr "Faltan los atributos que enlazan los datos unos con otros."
 
 #: ../src/plugins/import/ImportXml.py:867
 msgid "Gramps XML import"
@@ -14808,16 +14861,16 @@ msgstr "Importación de GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:2572
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "Reporte de importación GEDCOM: No se detectaron errores"
 
 #: ../src/plugins/lib/libgedcom.py:2574
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "Reporte de importación GEDCOM: Se detectaron %s errores"
 
 #: ../src/plugins/lib/libgedcom.py:2826
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Etiqueta reconocida pero no compatible"
 
 #: ../src/plugins/lib/libgedcom.py:2837
 msgid "Line ignored as not understood"
@@ -14837,6 +14890,8 @@ msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
+"Error: %(msg)s  '%(gramps_id)s' (@%(xref)s@ en entrada) no está en el GEDCOM "
+"de entrada. Se ha sintetizado el registro"
 
 #: ../src/plugins/lib/libgedcom.py:2938
 #, python-format
@@ -14844,6 +14899,8 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
+"Error: %(msg)s '%(gramps_id)s' (@%(xref)s@ en entrada) no está en el GEDCOM "
+"de entrada. Se ha creado un registro con atributo de tipo 'Desconocido'"
 
 #: ../src/plugins/lib/libgedcom.py:2977
 #, python-format
@@ -14852,6 +14909,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
+"Error: familia '%(family)s' (@%(orig_family)s@ en entrada) persona "
+"%(person)s (%(orig_person)s en entrada) no es miembro de la familia "
+"referenciada. La referencia a la familia se eliminó de la persona"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -14863,15 +14923,21 @@ msgid ""
 "Where possible these 'Unkown' objects are \n"
 "referenced by note %s.\n"
 msgstr ""
+"\n"
+"El archivo importado no era autocontenido.\n"
+"Para compensarlo, se crearon %d objetos y\n"
+"su atributo de tipo se fijó a 'Desconocido'.\n"
+"Si es posible, estos objetos 'Desconocidos'\n"
+"están referenciados por la nota %s.\n"
 
 #: ../src/plugins/lib/libgedcom.py:3051
 msgid "TRLR (trailer)"
-msgstr ""
+msgstr "TRLR (registro de cola)"
 
 #: ../src/plugins/lib/libgedcom.py:3080
 #, python-format
 msgid "SUBM (Submitter): @%s@"
-msgstr ""
+msgstr "SUBM (Remitente): @%s@"
 
 #: ../src/plugins/lib/libgedcom.py:3104 ../src/plugins/lib/libgedcom.py:6559
 msgid "GEDCOM data"
@@ -14889,7 +14955,7 @@ msgstr "Nivel superior"
 #: ../src/plugins/lib/libgedcom.py:3260
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "INDI (persona) con ID Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:3454 ../src/plugins/lib/libgedcom.py:4749
 #: ../src/plugins/lib/libgedcom.py:4952 ../src/plugins/lib/libgedcom.py:5083
@@ -14901,7 +14967,7 @@ msgstr "Nombre de archivo omitido"
 #: ../src/plugins/lib/libgedcom.py:4954 ../src/plugins/lib/libgedcom.py:5085
 #: ../src/plugins/lib/libgedcom.py:5710 ../src/plugins/lib/libgedcom.py:5847
 msgid "Form omitted"
-msgstr ""
+msgstr "Formato omitido"
 
 #: ../src/plugins/lib/libgedcom.py:4521
 #, python-format
@@ -14916,16 +14982,16 @@ msgstr "Nota de evento vacía ignorada"
 
 #: ../src/plugins/lib/libgedcom.py:5551 ../src/plugins/lib/libgedcom.py:6362
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Aviso: ADDR sobreescrito"
 
 #: ../src/plugins/lib/libgedcom.py:5722 ../src/plugins/lib/libgedcom.py:6104
 msgid "REFN ignored"
-msgstr ""
+msgstr "REFN ignorado"
 
 #: ../src/plugins/lib/libgedcom.py:5814
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Sin título - ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:5819
 #, python-format
@@ -14935,7 +15001,7 @@ msgstr "SOUR (fuente) con ID Gramps %s"
 #: ../src/plugins/lib/libgedcom.py:6030
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (objeto audiovisual) con ID Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:6058 ../src/plugins/lib/libgedcom.py:7052
 #, python-format
@@ -14944,15 +15010,15 @@ msgstr "No se pudo importar %s"
 
 #: ../src/plugins/lib/libgedcom.py:6094
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignorado"
 
 #: ../src/plugins/lib/libgedcom.py:6114
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "REFN:TYPE de objeto audiovisual ignorado"
 
 #: ../src/plugins/lib/libgedcom.py:6124
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "RIN de objeto audiovisual ignorado"
 
 #: ../src/plugins/lib/libgedcom.py:6211
 #, python-format
@@ -14961,11 +15027,11 @@ msgstr "REPO (repositorio) con ID Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:6487
 msgid "Head (header)"
-msgstr "Head (encabezado)"
+msgstr "Head (registro de cabecera)"
 
 #: ../src/plugins/lib/libgedcom.py:6503
 msgid "Approved system identification"
-msgstr ""
+msgstr "Identificación de sistema aprobado"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6513
@@ -14974,16 +15040,16 @@ msgstr "Generado por"
 
 #: ../src/plugins/lib/libgedcom.py:6527
 msgid "Name of software product"
-msgstr ""
+msgstr "Nombre del producto software"
 
 #: ../src/plugins/lib/libgedcom.py:6539
 msgid "Version number of software product"
-msgstr ""
+msgstr "Número de versión del producto software"
 
 #: ../src/plugins/lib/libgedcom.py:6556
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Oranización que produjo el producto: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6577
 msgid "Name of source data"
@@ -14991,11 +15057,11 @@ msgstr "Nombre de los datos originales"
 
 #: ../src/plugins/lib/libgedcom.py:6591
 msgid "Copyright of source data"
-msgstr ""
+msgstr "Derechos de reproducción de los datos incluidos"
 
 #: ../src/plugins/lib/libgedcom.py:6605
 msgid "Publication date of source data"
-msgstr "Fecha de publicación de los datos originales"
+msgstr "Fecha de publicación de los datos incluidos"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/lib/libgedcom.py:6618
@@ -15005,11 +15071,11 @@ msgstr "Importar desde %s"
 
 #: ../src/plugins/lib/libgedcom.py:6656
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Identificador del registro de remesa"
 
 #: ../src/plugins/lib/libgedcom.py:6667
 msgid "Language of GEDCOM text"
-msgstr ""
+msgstr "Idioma del texto del GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6691
 #, python-format
@@ -15034,7 +15100,7 @@ msgstr "Codificación de caracteres y versión"
 
 #: ../src/plugins/lib/libgedcom.py:6735
 msgid "GEDCOM version not supported"
-msgstr ""
+msgstr "Versión de GEDCOM no compatible"
 
 #: ../src/plugins/lib/libgedcom.py:6738
 msgid "GEDCOM version"
@@ -15046,15 +15112,15 @@ msgstr "Formato de GEDCOM no manejado por Gramps"
 
 #: ../src/plugins/lib/libgedcom.py:6743
 msgid "GEDCOM form"
-msgstr "Formato de GEDCOM"
+msgstr "Formato del GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6789
 msgid "Creation date of GEDCOM"
-msgstr ""
+msgstr "Fecha de creación del GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6793
 msgid "Creation date and time of GEDCOM"
-msgstr ""
+msgstr "Fecha y hora de creación del GEDCOM"
 
 #: ../src/plugins/lib/libgedcom.py:6830 ../src/plugins/lib/libgedcom.py:6867
 msgid "Empty note ignored"
@@ -15067,27 +15133,27 @@ msgstr "NOTE (Nota) con ID Gramps %s"
 
 #: ../src/plugins/lib/libgedcom.py:6932
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Remesa: Remitente"
 
 #: ../src/plugins/lib/libgedcom.py:6934
 msgid "Submission: Family file"
-msgstr "Envío: Archivo familiar"
+msgstr "Remesa: Archivo familiar"
 
 #: ../src/plugins/lib/libgedcom.py:6936
 msgid "Submission: Temple code"
-msgstr "Envío; Código del templo"
+msgstr "Remesa: Código del templo"
 
 #: ../src/plugins/lib/libgedcom.py:6938
 msgid "Submission: Generations of ancestors"
-msgstr "Envío: Generaciones de ascendientes"
+msgstr "Remesa: Generaciones de ascendientes"
 
 #: ../src/plugins/lib/libgedcom.py:6940
 msgid "Submission: Generations of descendants"
-msgstr "Envío: Generaciones de descendientes"
+msgstr "Remesa: Generaciones de descendientes"
 
 #: ../src/plugins/lib/libgedcom.py:6942
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Remesa: Indicador de proceso de la ordenanza"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
@@ -15160,7 +15226,7 @@ msgstr "Formato inválido"
 #: ../src/plugins/lib/libmetadata.py:52
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../src/plugins/lib/libmetadata.py:55
 #, python-format
@@ -15175,11 +15241,11 @@ msgstr "Imagen"
 
 #: ../src/plugins/lib/libmetadata.py:90
 msgid "Camera"
-msgstr ""
+msgstr "Cámara"
 
 #: ../src/plugins/lib/libmetadata.py:91
 msgid "GPS"
-msgstr ""
+msgstr "GPS"
 
 #: ../src/plugins/lib/libmetadata.py:92
 msgid "Advanced"
@@ -18465,7 +18531,7 @@ msgstr "Eliminar la persona seleccionada"
 
 #: ../src/plugins/lib/libpersonview.py:116
 msgid "Merge the selected persons"
-msgstr "Mezclar las personas seleccionadas"
+msgstr "Fusionar las personas seleccionadas"
 
 #: ../src/plugins/lib/libpersonview.py:295
 msgid "Deleting the person will remove the person from the database."
@@ -18483,7 +18549,7 @@ msgstr "Borrar Persona (%s)"
 #: ../src/plugins/lib/libpersonview.py:352
 #: ../src/plugins/view/pedigreeview.py:838 ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
-msgstr "Editor de Filtros de Personas"
+msgstr "Editor de filtros de personas"
 
 #: ../src/plugins/lib/libpersonview.py:357
 msgid "Web Connection"
@@ -18495,7 +18561,7 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Deben seleccionarse exactamente dos personas para poder mezclarlas.  Es "
+"Deben seleccionarse exactamente dos personas para poder fusionarlas.  Es "
 "posible seleccionar una segunda persona manteniendo pulsada la tecla control "
 "mientras se pulsa en la persona deseada."
 
@@ -18521,7 +18587,7 @@ msgstr "Borrar el lugar seleccionado"
 
 #: ../src/plugins/lib/libplaceview.py:121
 msgid "Merge the selected places"
-msgstr "Mezclar los lugares seleccionados"
+msgstr "Fusionar los lugares seleccionados"
 
 #: ../src/plugins/lib/libplaceview.py:162
 msgid "Loading..."
@@ -18577,7 +18643,7 @@ msgstr ""
 
 #: ../src/plugins/lib/libplaceview.py:409
 msgid "Cannot merge places."
-msgstr "No se pudieron mezclar los lugares."
+msgstr "No se pudieron fusionar los lugares."
 
 #: ../src/plugins/lib/libplaceview.py:410
 msgid ""
@@ -18585,7 +18651,7 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos lugares. Se "
+"Para realizar una fusión deben seleccionarse exactamente dos lugares. Se "
 "puede seleccionar un segundo lugar manteniendo pulsada la tecla control "
 "mientras se pulsa en el lugar deseado."
 
@@ -18724,7 +18790,7 @@ msgstr "Italiano"
 
 #: ../src/plugins/lib/libtranslate.py:65
 msgid "Japanese"
-msgstr ""
+msgstr "Japonés"
 
 #: ../src/plugins/lib/libtranslate.py:66
 msgid "Lithuanian"
@@ -18967,7 +19033,7 @@ msgstr "Janucá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:31
 msgid "Japan"
-msgstr ""
+msgstr "Japón"
 
 #: ../src/plugins/lib/holidays.xml.in.h:32
 msgid "Jewish Holidays"
@@ -18995,7 +19061,7 @@ msgstr "Shavuot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:38
 msgid "Simhat Tora"
-msgstr ""
+msgstr "Simjat Torá"
 
 #: ../src/plugins/lib/holidays.xml.in.h:39
 msgid "Sukot"
@@ -19024,16 +19090,19 @@ msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"Escoja el radio de la selección.\n"
+"En el mapa verá un círculo o un óvalo dependiendo de la latitud."
 
 #: ../src/plugins/lib/maps/geography.py:197
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
+"Los valores verdes de la fila corresponden a los valores del lugar actual."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
 #: ../src/plugins/lib/maps/geography.py:236
 msgid "New place with empty fields"
-msgstr ""
+msgstr "Nuevo lugar con campos vacíos"
 
 #: ../src/plugins/lib/maps/geography.py:427
 msgid "Map Menu"
@@ -19792,7 +19861,7 @@ msgstr "Verificar enlaces"
 
 #: ../src/plugins/quickview/LinkReferences.py:57
 msgid "Ok"
-msgstr ""
+msgstr "Correcto"
 
 #: ../src/plugins/quickview/LinkReferences.py:60
 msgid "Failed: missing object"
@@ -20190,7 +20259,7 @@ msgstr "c. %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:235
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "cony. ver  %(reference)s: %(spouse)s"
 
 # TBC
 #: ../src/plugins/textreport/DescendReport.py:290
@@ -20594,7 +20663,7 @@ msgstr "Descendientes de %(person_name)s"
 #: ../src/plugins/textreport/DetDescendantReport.py:576
 #, python-format
 msgid "Ref: %s. %s"
-msgstr ""
+msgstr "Ref: %s. %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:669
 #, python-format
@@ -21380,7 +21449,7 @@ msgstr "Produce un resumen de la base de datos actual"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Índice de materias"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
 msgid "Produces a table of contents for book reports."
@@ -21388,7 +21457,7 @@ msgstr "Produce un índice de materias para los reportes de tipo libro."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:387
 msgid "Alphabetical Index"
-msgstr ""
+msgstr "Índice alfabético"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:388
 msgid "Produces an alphabetical index for book reports."
@@ -21396,7 +21465,7 @@ msgstr "Produce un índice alfabético para los reportes de tipo libro."
 
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Arreglar mayúsculas/minúsculas en los apellidos..."
+msgstr "Arreglar_mayúsculas/minúsculas_en_los_apellidos..."
 
 #: ../src/plugins/tool/ChangeNames.py:75
 #: ../src/plugins/tool/ChangeNames.py:234
@@ -21476,6 +21545,13 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
+"Su árbol genealógicos contiene identificadores internos\n"
+"duplicados en la tabla cruzada.\n"
+" Esto es malo y puede arreglarse haciendo una copia de\n"
+"seguridad de su árbol genealógico e importando esa copia\n"
+"en un árbol genealógico vacío. Se omiten el resto de las\n"
+"comprobaciones, la herramienta de Comprobar y Reparar debe\n"
+"usarse otra vez en el nuevo árbol genealógico."
 
 #: ../src/plugins/tool/Check.py:150
 msgid "Check Integrity"
@@ -21487,6 +21563,9 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
+"Los objetos referenciados por esta nota estaban referenciados por no estaban "
+"presentes, razón por la que se crearon cuando ejecutó la herramienta "
+"Comprobar y Reparar el %s."
 
 #: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
@@ -21845,7 +21924,7 @@ msgstr "Comprobar y reparar"
 
 #: ../src/plugins/tool/Desbrowser.py:54
 msgid "manual|Interactive_Descendant_Browser..."
-msgstr "Navegador interactivo de descendientes..."
+msgstr "Navegador_interactivo_de_descendientes..."
 
 #: ../src/plugins/tool/Desbrowser.py:69
 #, python-format
@@ -21862,7 +21941,7 @@ msgstr "Ventana de evaluación de Python"
 
 #: ../src/plugins/tool/EventCmp.py:70
 msgid "manual|Compare_Individual_Events..."
-msgstr "Comparar eventos individuales..."
+msgstr "Comparar_eventos_individuales..."
 
 #: ../src/plugins/tool/EventCmp.py:138
 msgid "Event comparison filter selection"
@@ -21970,7 +22049,7 @@ msgstr "Medio"
 
 #: ../src/plugins/tool/FindDupes.py:67
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Buscar personas posiblemente duplicadas..."
+msgstr "Buscar_personas_posiblemente_duplicadas..."
 
 #: ../src/plugins/tool/FindDupes.py:127 ../src/plugins/tool/tools.gpr.py:218
 msgid "Find Possible Duplicate People"
@@ -22011,7 +22090,7 @@ msgstr "Paso 2; Calculando las coincidencias potenciales"
 
 #: ../src/plugins/tool/FindDupes.py:546
 msgid "Potential Merges"
-msgstr "Mezclas Posibles"
+msgstr "Fusiones posibles"
 
 #: ../src/plugins/tool/FindDupes.py:557
 msgid "Rating"
@@ -22027,7 +22106,7 @@ msgstr "Segunda Persona"
 
 #: ../src/plugins/tool/FindDupes.py:569
 msgid "Merge candidates"
-msgstr "Candidatos para la mezcla"
+msgstr "Candidatos para la fusión"
 
 #: ../src/plugins/tool/Leak.py:68
 msgid "Uncollected Objects Tool"
@@ -22061,15 +22140,15 @@ msgstr "Objetos perdidos: %s"
 
 #: ../src/plugins/tool/MediaManager.py:69
 msgid "manual|Media_Manager..."
-msgstr "Gestor de objetos audiovisuales..."
+msgstr "Administrador_de_objetos_audiovisuales..."
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
-msgstr "Gestor de objetos audiovisuales"
+msgstr "Administrador de objetos audiovisuales"
 
 #: ../src/plugins/tool/MediaManager.py:94
 msgid "Gramps Media Manager"
-msgstr "Gestor de objetos de Gramps"
+msgstr "Administrador de objetos de Gramps"
 
 #: ../src/plugins/tool/MediaManager.py:96
 msgid "Selecting operation"
@@ -22249,7 +22328,7 @@ msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:75
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Coincidencia en Página/Volumen, Fecha y Confianza"
 
 #: ../src/plugins/tool/MergeCitations.py:76
 msgid "Ignore Date"
@@ -22257,15 +22336,15 @@ msgstr "Ignorar la fecha"
 
 #: ../src/plugins/tool/MergeCitations.py:77
 msgid "Ignore Confidence"
-msgstr "Ignorar la confianza"
+msgstr "Ignorar confianza"
 
 #: ../src/plugins/tool/MergeCitations.py:78
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Ignorar fecha y confianza"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
-msgstr "Mezclar citas..."
+msgstr "Fusionar citas..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
 msgid ""
@@ -22276,7 +22355,7 @@ msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:159
 msgid "Merge citations tool"
-msgstr "Herramienta de mezcla de citas"
+msgstr "Herramienta de fusión de citas"
 
 #: ../src/plugins/tool/MergeCitations.py:180
 msgid "Checking Sources"
@@ -22288,18 +22367,18 @@ msgstr "Buscando los campos de las citas"
 
 #: ../src/plugins/tool/MergeCitations.py:225
 msgid "Number of merges done"
-msgstr "Número de mezclas realizadas"
+msgstr "Número de fusiones realizadas"
 
 #: ../src/plugins/tool/MergeCitations.py:226
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d citation fusionada"
+msgstr[1] "%(num)d citas fusionadas"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
-msgstr "No relacionados..."
+msgstr "No_relacionados..."
 
 #: ../src/plugins/tool/NotRelated.py:86
 #, python-format
@@ -22352,7 +22431,7 @@ msgstr[1] "Buscando el nombre de %d personas"
 
 #: ../src/plugins/tool/OwnerEditor.py:57
 msgid "manual|Edit_Database_Owner_Information..."
-msgstr ""
+msgstr "Editar_información_del_propietario_de_la_base_de_datos..."
 
 #: ../src/plugins/tool/OwnerEditor.py:102
 msgid "Database Owner Editor"
@@ -22364,7 +22443,7 @@ msgstr "Editar información del propietario de la base de datos"
 
 #: ../src/plugins/tool/PatchNames.py:64
 msgid "manual|Extract_Information_from_Names"
-msgstr "Extraer la información de los nombres"
+msgstr "Extraer_la_información_de_los_nombres"
 
 #: ../src/plugins/tool/PatchNames.py:106
 msgid "Name and title extraction tool"
@@ -22571,7 +22650,7 @@ msgstr "Ordenar los eventos familiares de la persona"
 
 #: ../src/plugins/tool/SoundGen.py:47
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Generar códigos SoundEx"
+msgstr "Generar_códigos_SoundEx"
 
 #: ../src/plugins/tool/SoundGen.py:58
 msgid "SoundEx code generator"
@@ -23009,6 +23088,7 @@ msgstr "No se pudo agregar la cita."
 msgid ""
 "In order to add a citation to an existing source,  you must select a source."
 msgstr ""
+"Para agregar una cita a una fuente existente, debe seleccionar una fuente."
 
 #: ../src/plugins/view/citationtreeview.py:514
 msgid ""
@@ -23028,7 +23108,7 @@ msgstr ""
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
 msgid "Cannot merge citations."
-msgstr "No se pudieron mezclar las citas."
+msgstr "No se pudieron fusionar las citas."
 
 #: ../src/plugins/view/citationtreeview.py:528
 #: ../src/plugins/view/citationlistview.py:322
@@ -23037,7 +23117,7 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos citas. Se puede "
+"Para realizar una fusión deben seleccionarse exactamente dos citas. Se puede "
 "seleccionar una segunda cita manteniendo pulsada la tecla control mientras "
 "se pulsa en la cita deseada."
 
@@ -23047,16 +23127,20 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
+"Las dos citas seleccionadas deben tener la misma fuente para realizar una "
+"fusión. Si quiere fusionar estas dos citas, debe fusionar las fuentes antes."
 
 #: ../src/plugins/view/citationtreeview.py:562
 msgid "Cannot perform merge."
-msgstr "No se pudo realizar la mezcla."
+msgstr "No se pudo realizar la fusión."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Ambos objetos deben ser del mismo tipo, o ambos debe ser fuentes, o ambos "
+"deben ser citas."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
@@ -23081,7 +23165,7 @@ msgstr "Borrar la cita seleccionada"
 
 #: ../src/plugins/view/citationlistview.py:123
 msgid "Merge the selected citations"
-msgstr "Mezclar las citas seleccionadas"
+msgstr "Fusionar las citas seleccionadas"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
@@ -23115,7 +23199,7 @@ msgstr "Borrar el evento seleccionado"
 
 #: ../src/plugins/view/eventview.py:101
 msgid "Merge the selected events"
-msgstr "Mezclar los eventos seleccionados"
+msgstr "Fusionar los eventos seleccionados"
 
 #: ../src/plugins/view/eventview.py:219
 msgid "Event Filter Editor"
@@ -23123,7 +23207,7 @@ msgstr "Editor de filtros de eventos"
 
 #: ../src/plugins/view/eventview.py:273
 msgid "Cannot merge event objects."
-msgstr "No se pudieron mezclar los objetos del evento."
+msgstr "No se pudieron fusionar los objetos del evento."
 
 #: ../src/plugins/view/eventview.py:274
 msgid ""
@@ -23131,7 +23215,7 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
-"Deben seleccionarse exactamente dos eventos para poder mezclarlos.  Es "
+"Deben seleccionarse exactamente dos eventos para poder fusionarlos.  Es "
 "posible seleccionar un segundo objeto manteniendo pulsada la tecla control "
 "mientras se pulsa en el evento deseado."
 
@@ -23153,7 +23237,7 @@ msgstr "Borrar la familia seleccionada"
 
 #: ../src/plugins/view/familyview.py:99
 msgid "Merge the selected families"
-msgstr "Mezclar las familias seleccionadas"
+msgstr "Fusionar las familias seleccionadas"
 
 #: ../src/plugins/view/familyview.py:204
 msgid "Family Filter Editor"
@@ -23169,7 +23253,7 @@ msgstr "Hacer que la madre sea la persona activa"
 
 #: ../src/plugins/view/familyview.py:282
 msgid "Cannot merge families."
-msgstr "No se pudieron mezclar las familias."
+msgstr "No se pudieron fusionar las familias."
 
 #: ../src/plugins/view/familyview.py:283
 msgid ""
@@ -23177,7 +23261,7 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired family."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos familias. Se "
+"Para realizar una fusión deben seleccionarse exactamente dos familias. Se "
 "puede seleccionar una segunda familia manteniendo pulsada la tecla control "
 "mientras se pulsa en la familia deseada."
 
@@ -23318,7 +23402,7 @@ msgstr "Mostrar todos los lugares"
 
 #: ../src/plugins/view/grampletview.py:96
 msgid "Restore a gramplet"
-msgstr "Restaurar un bloque"
+msgstr "Restaurar un gramplete"
 
 #: ../src/plugins/view/htmlrenderer.py:445
 msgid "HtmlView"
@@ -23379,7 +23463,7 @@ msgstr "Borrar el objeto audiovisual seleccionado"
 
 #: ../src/plugins/view/mediaview.py:113
 msgid "Merge the selected media objects"
-msgstr "Mezclar los objetos audiovisuales seleccionados"
+msgstr "Fusionar los objetos audiovisuales seleccionados"
 
 #: ../src/plugins/view/mediaview.py:218
 msgid "Media Filter Editor"
@@ -23395,7 +23479,7 @@ msgstr "Abrir la carpeta que contiene el archivo audiovisual"
 
 #: ../src/plugins/view/mediaview.py:383
 msgid "Cannot merge media objects."
-msgstr "No se pudieron mezclar los objetos audiovisuales."
+msgstr "No se pudieron fusionar los objetos audiovisuales."
 
 #: ../src/plugins/view/mediaview.py:384
 msgid ""
@@ -23403,7 +23487,7 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos objetos "
+"Para realizar una fusión deben seleccionarse exactamente dos objetos "
 "audiovisuales. Se puede seleccionar un segundo objeto audiovisual "
 "manteniendo pulsada la tecla control mientras se pulsa en el objeto "
 "audiovisual deseado."
@@ -23414,7 +23498,7 @@ msgstr "Borrar la nota seleccionada"
 
 #: ../src/plugins/view/noteview.py:92
 msgid "Merge the selected notes"
-msgstr "Mezclar las notas seleccionadas"
+msgstr "Fusionar las notas seleccionadas"
 
 #: ../src/plugins/view/noteview.py:212
 msgid "Note Filter Editor"
@@ -23422,14 +23506,14 @@ msgstr "Editor de filtros de notas"
 
 #: ../src/plugins/view/noteview.py:269
 msgid "Cannot merge notes."
-msgstr "No se pudieron mezclar las notas."
+msgstr "No se pudieron fusionar las notas."
 
 #: ../src/plugins/view/noteview.py:270
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos notas. Se puede "
+"Para realizar una fusión deben seleccionarse exactamente dos notas. Se puede "
 "seleccionar una segunda nota manteniendo pulsada la tecla control mientras "
 "se pulsa en la nota deseada."
 
@@ -23759,7 +23843,7 @@ msgstr "Borrar el repositorio seleccionado"
 
 #: ../src/plugins/view/repoview.py:109
 msgid "Merge the selected repositories"
-msgstr "Mezclar los repositorios seleccionados"
+msgstr "Fusionar los repositorios seleccionados"
 
 #: ../src/plugins/view/repoview.py:149
 msgid "Repository Filter Editor"
@@ -23767,7 +23851,7 @@ msgstr "Editor de filtros de repositorios"
 
 #: ../src/plugins/view/repoview.py:248
 msgid "Cannot merge repositories."
-msgstr "No se pudieron mezclar los repositorios."
+msgstr "No se pudieron fusionar los repositorios."
 
 #: ../src/plugins/view/repoview.py:249
 msgid ""
@@ -23775,7 +23859,7 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos repositorios. "
+"Para realizar una fusión deben seleccionarse exactamente dos repositorios. "
 "Se puede seleccionar un segund repositorio manteniendo pulsada la tecla "
 "control mientras se pulsa en el repositorio deseado."
 
@@ -23807,7 +23891,7 @@ msgstr "Editor de filtros de fuentes"
 
 #: ../src/plugins/view/sourceview.py:240
 msgid "Cannot merge sources."
-msgstr "No se pudieron mezclar las fuentes."
+msgstr "No se pudieron fusionar las fuentes."
 
 #: ../src/plugins/view/sourceview.py:241
 msgid ""
@@ -23815,7 +23899,7 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
-"Para realizar una mezcla deben seleccionarse exactamente dos fuentes. Se "
+"Para realizar una fusión deben seleccionarse exactamente dos fuentes. Se "
 "puede seleccionar una segunda fuente manteniendo pulsada la tecla control "
 "mientras se pulsa en la fuente deseada."
 
@@ -23837,7 +23921,7 @@ msgstr "Vista que muestra todas las familias"
 
 #: ../src/plugins/view/view.gpr.py:64
 msgid "The view showing Gramplets"
-msgstr "La vista que muestra los bloques"
+msgstr "La vista que muestra los grampletes"
 
 #: ../src/plugins/view/view.gpr.py:78
 msgid "Media View"
@@ -24011,7 +24095,7 @@ msgstr "Enlaces web"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2204
 msgid " [Click to Go]"
-msgstr ""
+msgstr " [Haga clic para continuar]"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2227
 msgid "Latter-Day Saints/ LDS Ordinance"
@@ -24268,7 +24352,7 @@ msgstr "Modificado por última vez"
 #: ../src/plugins/webreport/NarrativeWeb.py:5577
 #, python-format
 msgid "Tracking %s"
-msgstr ""
+msgstr "Seguimiento de %s"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5581
@@ -24279,10 +24363,15 @@ msgid ""
 "any?).  Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Esta página de mapa representa a la persona y sus descendientes con todos "
+"sus eventos/ lugares.  Si coloca su ratón sobre el marcador, mostrará el "
+"nombre del sitio.  Los marcadores y la lista de referencias están ordenados "
+"por fecha (¿si consta?).  Hacer clic en el nombre de un lugar le llevará a "
+"la página de ese lugar."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5633
 msgid "Drop Markers"
-msgstr ""
+msgstr "Dejar caer marcadores"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5653
 msgid "Place Title"
@@ -24644,6 +24733,10 @@ msgid ""
 "the Media Page, and only a thumb- sized images.  This will allow you to have "
 "a much smaller total upload size to your web hosting site."
 msgstr ""
+"Esta opción le permite la opción de no crear ninguna imagen de tamaño "
+"completo como las de la Página de Objetos y crear sólo una imagen de tamaño "
+"miniatura.  Esto le permitirá tener un tamaño total de subida a su sitio web "
+"mucho más pequeño."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7832
 msgid "Max width of initial image"
@@ -24902,6 +24995,8 @@ msgstr "Servicio de mapas"
 #: ../src/plugins/webreport/NarrativeWeb.py:7998
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
+"Escoja el servicio de mapas que prefiere para las páginas de mapas de "
+"lugares."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8003
 msgid "Include Place map on Place Pages"
@@ -24934,7 +25029,7 @@ msgstr "Enlaces a familias"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8020
 msgid "Drop"
-msgstr ""
+msgstr "Soltar"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8021
 msgid "Markers"
@@ -24942,19 +25037,21 @@ msgstr "Marcadores"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8022
 msgid "Google/ FamilyMap Option"
-msgstr ""
+msgstr "Opción de Google/ Mapa de familia"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8025
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
 msgstr ""
+"Seleccione que opción que desea para las páginas de mapa de familia Google "
+"Maps..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:8338
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Menú alfabético: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -25272,7 +25369,7 @@ msgstr "Produce calendarios web (HTML)."
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:33
 msgid "Webstuff"
-msgstr ""
+msgstr "Recursos en la web"
 
 #: ../src/plugins/webstuff/webstuff.gpr.py:34
 msgid "Provides a collection of resources for the web"
@@ -27909,7 +28006,7 @@ msgstr "_Tipo:"
 
 #: ../src/glade/grampletpane.glade.h:1
 msgid "Click to delete gramplet from view"
-msgstr "Haga clic para borrar el bloque de esta vista"
+msgstr "Haga clic para borrar el gramplete de esta vista"
 
 #: ../src/glade/grampletpane.glade.h:2
 msgid "Click to expand/collapse"
@@ -27917,7 +28014,7 @@ msgstr "Haga click para expandir/colapsar"
 
 #: ../src/glade/grampletpane.glade.h:3
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 #: ../src/glade/grampletpane.glade.h:4
 msgid "Config"
@@ -27949,11 +28046,11 @@ msgstr "<b>Relaciones con los padres</b>"
 
 #: ../src/glade/reorder.glade.h:3
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Flecha abajo"
 
 #: ../src/glade/reorder.glade.h:4
 msgid "Arrow top"
-msgstr ""
+msgstr "Flecha arriba"
 
 #: ../src/glade/reorder.glade.h:5
 msgid "Move family down"
@@ -28841,7 +28938,7 @@ msgstr "Título descriptivo de este objeto audiovisual."
 
 #: ../src/glade/editmedia.glade.h:6 ../src/glade/editmediaref.glade.h:9
 msgid "Folder"
-msgstr ""
+msgstr "Carpeta"
 
 #: ../src/glade/editmedia.glade.h:7
 msgid "Image preview"
@@ -28865,8 +28962,8 @@ msgstr ""
 "Gramps no almacena internamente el objeto audiovisual, sólo almacena la "
 "ruta, ije, Fije la 'Ruta relativa' en Preferencias para evitar teclear cada "
 "vez la directorio base común donde están todos sus archivos audiovisuales. "
-"La herramienta 'Gestor de audiovisuales' puede ayudarle a gestionar las "
-"rutas de un conjunto de objetos audiovisuales. "
+"La herramienta 'Administrador de audiovisuales' puede ayudarle a gestionar "
+"las rutas de un conjunto de objetos audiovisuales. "
 
 #: ../src/glade/editmedia.glade.h:18 ../src/glade/editmediaref.glade.h:31
 msgid "_Path:"
@@ -29012,9 +29109,8 @@ msgid "A unique ID to identify the note."
 msgstr "Un ID distintivo que identifica la nota."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Editor de Estilos"
+msgstr "Editor de estilos"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -29289,7 +29385,7 @@ msgid ""
 "primary data for the merged citation."
 msgstr ""
 "Seleccione la cita que proporcionará los\n"
-"datos primarios para la cita mezclada."
+"datos primarios para la cita fusionada."
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
@@ -29297,7 +29393,7 @@ msgstr "<b>Selección de título</b>"
 
 #: ../src/glade/mergedata.glade.h:7
 msgid "Merge and _edit"
-msgstr "Mezclar y _editar"
+msgstr "Fusionar y _editar"
 
 #: ../src/glade/mergedata.glade.h:8
 msgid "Other"
@@ -29316,7 +29412,7 @@ msgid ""
 "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Seleccione la persona que proporcionará los datos primarios para la persona "
-"mezclada."
+"fusionada."
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "_Merge and close"
@@ -29343,7 +29439,7 @@ msgid ""
 "primary data for the merged event."
 msgstr ""
 "Seleccione el evento que proporcionará los\n"
-"datos primarios para el evento mezclado."
+"datos primarios para el evento fusionado."
 
 #: ../src/glade/mergefamily.glade.h:1
 msgid "<b>Family 1</b>"
@@ -29379,7 +29475,7 @@ msgid ""
 "primary data for the merged family."
 msgstr ""
 "Seleccione la familia que proporcionará\n"
-"los datos primarios para la familia mezclada."
+"los datos primarios para la familia fusionada."
 
 #: ../src/glade/mergemedia.glade.h:1
 msgid "<b>Object 1</b>"
@@ -29401,7 +29497,7 @@ msgid ""
 "primary data for the merged object."
 msgstr ""
 "Seleccione el objeto que proporcionará los\n"
-"datos primarios para el objeto mezclado."
+"datos primarios para el objeto fusionado."
 
 #: ../src/glade/mergenote.glade.h:1
 msgid "<b>Note 1</b>"
@@ -29417,7 +29513,7 @@ msgid ""
 "primary data for the merged note."
 msgstr ""
 "Seleccione la nota que proporcionará los\n"
-"datos primarios para la nota mezclada."
+"datos primarios para la nota fusionada."
 
 #: ../src/glade/mergeperson.glade.h:1
 msgid "<b>Person 1</b>"
@@ -29449,7 +29545,7 @@ msgid ""
 "primary data for the merged person."
 msgstr ""
 "Seleccione la persona que proporcionará los\n"
-"datos primarios para la persona mezclada."
+"datos primarios para la persona fusionada."
 
 #: ../src/glade/mergeplace.glade.h:1
 msgid "<b>Place 1</b>"
@@ -29477,7 +29573,7 @@ msgid ""
 "primary data for the merged place."
 msgstr ""
 "Seleccione el lugar que proporcionará los\n"
-"datos primarios para el lugar mezclado."
+"datos primarios para el lugar fusionado."
 
 #: ../src/glade/mergerepository.glade.h:1
 msgid "<b>Repository 1</b>"
@@ -29497,7 +29593,7 @@ msgid ""
 "primary data for the merged repository."
 msgstr ""
 "Seleccione el repositorio que proporcionará los\n"
-"datos primarios para el repositorio mezclado."
+"datos primarios para el repositorio fusionado."
 
 #: ../src/glade/mergesource.glade.h:7
 msgid ""
@@ -29513,7 +29609,7 @@ msgid ""
 "primary data for the merged source."
 msgstr ""
 "Seleccione la fuente que proporcionará\n"
-"los datos primarios para la fuente mezclada."
+"los datos primarios para la fuente fusionada."
 
 #: ../src/glade/plugins.glade.h:1
 msgid "Author's email:"
@@ -29668,7 +29764,7 @@ msgstr ""
 "Gramps viene con un juego esencial de complementos que proporcionan todas "
 "las funcionalidades necesarias. Sin embargo, puede extender esta "
 "funcionalidad con extensiones adicionales. Estas extensiones proporcionan "
-"reportes, listados, vistas, bloques y otras funciones. Puede seleccionar "
+"reportes, listados, vistas, grampletes y otras funciones. Puede seleccionar "
 "aquí entre las extensiones disponibles, se bajarán del sitio web de Gramps "
 "en Internet y se instalarán localmente en su equipo. Si cierra este diálogo "
 "ahora, podrá instalar las extensiones posteriormente desde el menú Editar -> "
@@ -29819,7 +29915,7 @@ msgstr "Usar códigos SoundEx"
 
 #: ../src/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "No fusionar si la cita tiene notas"
 
 #: ../src/plugins/tool/ownereditor.glade.h:1
 msgid "_City:"
@@ -30156,10 +30252,10 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Agregar imágenes</b><br/>Se puede agregar una imagen a cualquier galería "
-"o a la vista de objetos, arrastrando y soltando la imagen desde un gestor de "
-"archivos o un navegador web.  En realidad, se puede agregar cualquier "
-"archivo de esta manera, lo que es útil para documentos escaneados y otras "
-"fuentes digitales."
+"o a la vista de objetos, arrastrando y soltando la imagen desde un "
+"administrador de archivos o un navegador web.  En realidad, se puede agregar "
+"cualquier archivo de esta manera, lo que es útil para documentos escaneados "
+"y otras fuentes digitales."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -30268,7 +30364,7 @@ msgid ""
 msgstr ""
 "<b>Entradas duplicadas</b><br/>&quot;Herramientas &gt; Procesos sobre la "
 "Base de Datos &gt; Buscar personas posiblemente duplicadas&quot; le permite "
-"localizar (y mezclar) múltiples entradas de la misma persona resultantes de "
+"localizar (y fusionar) múltiples entradas de la misma persona resultantes de "
 "haber sido introducida más de una vez en la base de datos."
 
 #: ../src/data/tips.xml.in.h:11
@@ -30568,7 +30664,7 @@ msgid ""
 "your sources."
 msgstr ""
 "<b>Gestionar fuentes</b><br/>La vista Fuentes muestra la lista de todas las "
-"fuentes en una única ventana.  Aquí puede editar sus fuentes, mezclar "
+"fuentes en una única ventana.  Aquí puede editar sus fuentes, fusionar "
 "duplicados y ver qué personas referencian esa fuente. Puede utilizar filtros "
 "para agrupar sus fuentes."
 
@@ -30593,9 +30689,9 @@ msgid ""
 "the Places, Sources and Repositories views."
 msgstr ""
 "<b>Mezclar entradas</b><br/>La función &quot;Editar &gt; Comparar y "
-"mezclar...&quot; le permite combinar varias personas en una sola. Seleccione "
-"la segunda persona manteniendo pulsada la tecla Control al hacer clic. Esto "
-"es muy útil para combinar dos bases de datos que tienen personas "
+"fusionar...&quot; le permite combinar varias personas en una sola. "
+"Seleccione la segunda persona manteniendo pulsada la tecla Control al hacer "
+"clic. Esto es muy útil para combinar dos bases de datos que tienen personas "
 "coincidentes o combinar personas que se han introducido varias veces por "
 "error. Esta facilidad también existe para lugares, fuentes y repositorios."
 
@@ -30963,1086 +31059,3 @@ msgstr ""
 "puede indicar el nivel de confianza en una fecha e incluso escoger entre "
 "siete distintos sistemas de calendario. Pruebe el botón contiguo al campo de "
 "fecha en el editor de eventos."
-
-#~ msgid "Gramplet showing available third-party plugins (addons)"
-#~ msgstr "Bloque que muestra los módulos de extensión de terceros disponibles"
-
-#~ msgid ""
-#~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official plugins, "
-#~ "contact the plugin author otherwise. "
-#~ msgstr ""
-#~ "El módulo de extensión no se cargó. Para más información, entre en el "
-#~ "Menú de Ayuda, Gestor de Módulos de Extensión.\n"
-#~ "Use http://bugs.gramps-project.org para reportar problemas en los módulos "
-#~ "de extensión oficiales, diríjase al autor correspondiente para los "
-#~ "problemas en los demás módulos. "
-
-#~ msgid ""
-#~ "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
-#~ "info.\n"
-#~ "Use http://bugs.gramps-project.org to submit bugs of official views, "
-#~ "contact the view author (%(firstauthoremail)s) otherwise. "
-#~ msgstr ""
-#~ "No se pudo cargar la vista %(name)s. Para más información, vea el menú de "
-#~ "Ayuda, Gestor de módulos de extensión.\n"
-#~ "Use http://bugs.gramps-project.org para reportar problemas en las vistas "
-#~ "oficiales, contacte con el autor de la vista (%(firstauthoremail)s) en "
-#~ "los demás casos. "
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "Install Addons"
-#~ msgstr "Instalar extensiones"
-
-#~ msgid "Rebuild reference map"
-#~ msgstr "Reconstruir el mapa de referencias"
-
-#~ msgid "The Database version is not supported by this version of Gramps."
-#~ msgstr ""
-#~ "La versión de la base de datos es incompatible con esta versión de Gramps."
-
-#~ msgid ""
-#~ "Your family tree groups name %(key)s together with %(present)s, did not "
-#~ "change this grouping to %(value)s"
-#~ msgstr ""
-#~ "Su árbol agrupa el nombre %(key)s con %(present)s, no se cambió este "
-#~ "agrupamiento a %(value)s"
-
-#~ msgid "Import database"
-#~ msgstr "Importar una base de datos"
-
-#~ msgid "%(quantity)d invalid event reference was removed\n"
-#~ msgid_plural "%(quantity)d invalid event references were removed\n"
-#~ msgstr[0] "Se eliminó %(quantity)d referencia inválida a un evento\n"
-#~ msgstr[1] "Se eliminaron %(quantity)d referencias inválidas a eventos\n"
-
-#~ msgid "Source Reference: %s"
-#~ msgstr "Referencia a la fuente: %s"
-
-#~ msgid "Media |Gallery"
-#~ msgstr "Galería"
-
-#~ msgid "Media | Gallery"
-#~ msgstr "Galería"
-
-#~ msgid " and "
-#~ msgstr " y "
-
-#~ msgid "Export:"
-#~ msgstr "Exportar:"
-
-#~ msgid "Filt_er:"
-#~ msgstr "_Filtro:"
-
-#~ msgid "I_ndividuals"
-#~ msgstr "Perso_nas"
-
-#~ msgid "Translate _Headers"
-#~ msgstr "Traducir _encabezamientos"
-
-#~ msgid "_Marriages"
-#~ msgstr "_Matrimonios"
-
-#~ msgid "_Restrict data on living people"
-#~ msgstr "_Restringir datos de personas vivas"
-
-#~ msgid "Exclude _notes"
-#~ msgstr "Excluir _notas"
-
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "Referenciar las i_mágenes desde la ruta:  "
-
-#~ msgid "Use _Living as first name"
-#~ msgstr "Usar _Living como nombre de pila"
-
-#~ msgid "Source ref"
-#~ msgstr "Ref. fuente"
-
-#~ msgid "Make Active %s"
-#~ msgstr "Activar %s"
-
-#~ msgid "Afrikaans"
-#~ msgstr "Afrikáans"
-
-#~ msgid "Amharic"
-#~ msgstr "Amhárico"
-
-#~ msgid "Arabic"
-#~ msgstr "Árabe"
-
-#~ msgid "Azerbaijani"
-#~ msgstr "Azerí"
-
-#~ msgid "Belarusian"
-#~ msgstr "Bielorruso"
-
-#~ msgid "Bengali"
-#~ msgstr "Bengalí"
-
-#~ msgid "Breton"
-#~ msgstr "Bretón"
-
-#~ msgid "Kashubian"
-#~ msgstr "Casubio"
-
-#~ msgid "Welsh"
-#~ msgstr "Galés"
-
-#~ msgid "German - Old Spelling"
-#~ msgstr "Alemán - Ortografía antigua"
-
-#~ msgid "Greek"
-#~ msgstr "Griego"
-
-#~ msgid "Estonian"
-#~ msgstr "Estonio"
-
-#~ msgid "Persian"
-#~ msgstr "Persa"
-
-#~ msgid "Faroese"
-#~ msgstr "Feroés"
-
-#~ msgid "Frisian"
-#~ msgstr "Frisón"
-
-#~ msgid "Irish"
-#~ msgstr "Irlandés"
-
-#~ msgid "Scottish Gaelic"
-#~ msgstr "Gaélico escocés"
-
-#~ msgid "Galician"
-#~ msgstr "Gallego"
-
-#~ msgid "Gujarati"
-#~ msgstr "Guyaratí"
-
-#~ msgid "Manx Gaelic"
-#~ msgstr "Gaélico manés"
-
-#~ msgid "Hindi"
-#~ msgstr "Hindi"
-
-#~ msgid "Hiligaynon"
-#~ msgstr "Panayano"
-
-#~ msgid "Upper Sorbian"
-#~ msgstr "Alto sorbio"
-
-#~ msgid "Armenian"
-#~ msgstr "Armenio"
-
-#~ msgid "Interlingua"
-#~ msgstr "Interlingua"
-
-#~ msgid "Indonesian"
-#~ msgstr "Indonesio"
-
-#~ msgid "Icelandic"
-#~ msgstr "Islandés"
-
-#~ msgid "Kurdi"
-#~ msgstr "Kurdo"
-
-#~ msgid "Latin"
-#~ msgstr "Latín"
-
-#~ msgid "Latvian"
-#~ msgstr "Letón"
-
-#~ msgid "Malagasy"
-#~ msgstr "Malgache"
-
-#~ msgid "Maori"
-#~ msgstr "Maorí"
-
-#~ msgid "Mongolian"
-#~ msgstr "Mongol"
-
-#~ msgid "Marathi"
-#~ msgstr "Maratí"
-
-#~ msgid "Malay"
-#~ msgstr "Malayo"
-
-#~ msgid "Maltese"
-#~ msgstr "Maltés"
-
-#~ msgid "Low Saxon"
-#~ msgstr "Bajo sajón"
-
-#~ msgid "Chichewa"
-#~ msgstr "Chichewa"
-
-#~ msgid "Oriya"
-#~ msgstr "Oriya"
-
-#~ msgid "Punjabi"
-#~ msgstr "Panyabí"
-
-#~ msgid "Brazilian Portuguese"
-#~ msgstr "Portugués brasileño"
-
-#~ msgid "Quechua"
-#~ msgstr "Quechua"
-
-#~ msgid "Kinyarwanda"
-#~ msgstr "Kinyarwanda"
-
-#~ msgid "Sardinian"
-#~ msgstr "Sardo"
-
-#~ msgid "Serbian"
-#~ msgstr "Serbio"
-
-#~ msgid "Swahili"
-#~ msgstr "Suajili"
-
-#~ msgid "Tamil"
-#~ msgstr "Tamil"
-
-#~ msgid "Telugu"
-#~ msgstr "Telugú"
-
-#~ msgid "Tetum"
-#~ msgstr "Tetun"
-
-#~ msgid "Tagalog"
-#~ msgstr "Tagalo"
-
-#~ msgid "Setswana"
-#~ msgstr "Setsuana"
-
-#~ msgid "Uzbek"
-#~ msgstr "Uzbeko"
-
-#~ msgid "Walloon"
-#~ msgstr "Valón"
-
-#~ msgid "Yiddish"
-#~ msgstr "Yídish"
-
-#~ msgid "Zulu"
-#~ msgstr "Zulú"
-
-#~ msgid ""
-#~ "Warning: spelling checker language limited to locale 'en'; install "
-#~ "pyenchant/python-enchant for better options."
-#~ msgstr ""
-#~ "Aviso: el único idioma con detección de erores ortográficos es 'en'; "
-#~ "instale pyenchant/python-enchant para mejorar el apoyo."
-
-#~ msgid ""
-#~ "Warning: spelling checker language limited to locale '%s'; install "
-#~ "pyenchant/python-enchant for better options."
-#~ msgstr ""
-#~ "Aviso: el único idioma con detección de erores ortográficos es '%s'; "
-#~ "instale pyenchant/python-enchant para mejorar el apoyo."
-
-#~ msgid ""
-#~ "Warning: spelling checker disabled; install pyenchant/python-enchant to "
-#~ "enable."
-#~ msgstr ""
-#~ "Aviso: desactivado el detector de errores ortográficos; instale pyenchant/"
-#~ "python-enchant para activarlo."
-
-#~ msgid "Note %(ind)d - Type: %(type)s"
-#~ msgstr "Nota %(ind)d - Tipo: %(type)s"
-
-#~ msgid "Baptism:"
-#~ msgstr "Bautismo:"
-
-#~ msgid "Burial:"
-#~ msgstr "Entierro:"
-
-#~ msgid "Source Reference Editor"
-#~ msgstr "Editor de referencias a fuentes"
-
-#~ msgid "Modify Source"
-#~ msgstr "Modificar fuente"
-
-#~ msgid "Remove the existing source"
-#~ msgstr "Eliminar la fuente existente"
-
-#~ msgid "Move the selected source upwards"
-#~ msgstr "Mover la fuente seleccionada hacia arriba"
-
-#~ msgid "Move the selected source downwards"
-#~ msgstr "Mover la fuente seleccionada hacia abajo"
-
-#~ msgid "_Sources"
-#~ msgstr "_Fuentes"
-
-#~ msgid "Processing File"
-#~ msgstr "Procesando el archivo"
-
-#~ msgid "Selection Options"
-#~ msgstr "Opciones de selección"
-
-#~ msgid "Go to the next person in the history"
-#~ msgstr "Ir a la siguiente persona en la historia"
-
-#~ msgid "Go to the previous person in the history"
-#~ msgstr "Ir a la persona anterior en la historia"
-
-#~ msgid "Building People View"
-#~ msgstr "Construyendo la vista de personas"
-
-#~ msgid "The range of dates chosen was not valid"
-#~ msgstr "El rango de fechas elegido no es válido"
-
-#~ msgid "Person Sources"
-#~ msgstr "Fuentes de la persona"
-
-#~ msgid "Gramplet showing the sources for a person"
-#~ msgstr "Bloque que muestra las fuentes de una persona"
-
-#~ msgid "Event Sources"
-#~ msgstr "Fuentes del evento"
-
-#~ msgid "Gramplet showing the sources for an event"
-#~ msgstr "Bloque que muestra las fuentes de un evento"
-
-#~ msgid "Family Sources"
-#~ msgstr "Fuentes familiares"
-
-#~ msgid "Gramplet showing the sources for a family"
-#~ msgstr "Bloque que muestra las fuentes de una familia"
-
-#~ msgid "Place Sources"
-#~ msgstr "Fuentes del lugar"
-
-#~ msgid "Gramplet showing the sources for a place"
-#~ msgstr "Bloque que muestra las fuentes de un lugar"
-
-#~ msgid "Media Sources"
-#~ msgstr "Fuentes del objeto"
-
-#~ msgid "Gramplet showing the sources for a media object"
-#~ msgstr "Bloque que muestra las fuentes de un objeto audiovisual"
-
-#~ msgid ""
-#~ "You need to install, %s or greater, for this addon to work...\n"
-#~ "I would recommend installing, %s, and it may be downloaded from here: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Debe instalar, %s o posterior para que funcione esta extensión...\n"
-#~ "Recomendaría instalar %s que se puede descargar de:\n"
-#~ "%s"
-
-#~ msgid "Failed to load 'Edit Image Exif Metadata'..."
-#~ msgstr "No se pudo cargar 'Modificar los metadatos Exif de la imagen'..."
-
-#~ msgid ""
-#~ "ImageMagick's convert program was not found on this computer.\n"
-#~ "You may download it from here: %s..."
-#~ msgstr ""
-#~ "No se encontró en este equipo el programa convert de ImageMagick.\n"
-#~ "Puede descargarlo de aquí: %s..."
-
-#~ msgid ""
-#~ "Jhead program was not found on this computer.\n"
-#~ "You may download it from: %s..."
-#~ msgstr ""
-#~ "No se encontró en este equipo el programa jhead.\n"
-#~ "Puede descargarlo de: %s..."
-
-#~ msgid ""
-#~ "Allows you to select a date from a pop-up window calendar. \n"
-#~ "Warning:  You will still need to edit the time..."
-#~ msgstr ""
-#~ "Le permite seleccionar una fecha del calendario en una ventana "
-#~ "emergente. \n"
-#~ "Aviso:  Aún tendrá que modificar la hora..."
-
-#~ msgid ""
-#~ "Original Date/ Time of this image.\n"
-#~ "Example: 1826-Apr-12 14:30:00, 1826-April-12, 1998-01-31 13:30:00"
-#~ msgstr ""
-#~ "Fecha/ Hora original de esta imagen.\n"
-#~ "Ejemplo: 1826-Abr-12 14:30:00, 1826-Abril-12, 1998-01-31 13:30:00"
-
-#~ msgid ""
-#~ "Converts Degree, Minutes, Seconds GPS Coordinates to a Decimal "
-#~ "representation."
-#~ msgstr ""
-#~ "Convierte coordenadas GPS en Grados, Minutos, Segundos a representación "
-#~ "decimal."
-
-#~ msgid ""
-#~ "Converts Decimal GPS Coordinates to a Degrees, Minutes, Seconds "
-#~ "representation."
-#~ msgstr ""
-#~ "Convierte coordenadas GPS decimales a representación en Grados, Minutos, "
-#~ "Segundos."
-
-#~ msgid "Copies information from the Display area to the Edit area."
-#~ msgstr "Copia información del área de presentación al área de edición."
-
-#~ msgid ""
-#~ "Saves/ writes the Exif metadata to this image.\n"
-#~ "WARNING: Exif metadata will be erased if you save a blank entry field..."
-#~ msgstr ""
-#~ "Guarda/ escribe los metadatos Exif a esta imagen.\n"
-#~ "AVISO: Los metadatos Exif se borrarán si guarda un campo en blanco..."
-
-#~ msgid "If your image is not a jpeg image, convert it to jpeg?"
-#~ msgstr "Si su imagen no tiene formato jpeg, ¿desea convertirla a jpeg?"
-
-#~ msgid "Click an image to begin..."
-#~ msgstr "Haga clic en una imagen para comenzar..."
-
-#~ msgid "Select Date"
-#~ msgstr "Seleccionar fecha"
-
-#~ msgid "Convert GPS"
-#~ msgstr "Convertir GPS"
-
-#~ msgid "Decimal"
-#~ msgstr "Decimal"
-
-#~ msgid "Deg. Min. Sec."
-#~ msgstr "Grad. Min. Seg."
-
-#~ msgid ""
-#~ "Image is either missing or deleted,\n"
-#~ "Choose a different image..."
-#~ msgstr ""
-#~ "La imagen falta o ha sido borrada,\n"
-#~ "Escoja una imagen diferente..."
-
-#~ msgid "Choose a different image..."
-#~ msgstr "Escoja una imagen diferente..."
-
-#~ msgid "Save Exif metadata to this image?"
-#~ msgstr "¿Guardar los metadatos Exif en esta imagen?"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgid "Copying Exif metadata to the Edit Area..."
-#~ msgstr "Copiando los metadatos Exif al área de edición..."
-
-#~ msgid "Edit area has been cleared..."
-#~ msgstr "Se ha limpiado el área de edición..."
-
-#~ msgid ""
-#~ "Converting image,\n"
-#~ "You will need to delete the original image file..."
-#~ msgstr ""
-#~ "Convertir imagen,\n"
-#~ "Tendrá que borrar el archivo de imagen original..."
-
-#~ msgid "Image Exif metadata has been cleared from this image..."
-#~ msgstr "Los metadatos Exif se han borrado de esta imagen..."
-
-#~ msgid "Deleting all Exif metadata..."
-#~ msgstr "Borrando todos los metadatos Exif..."
-
-#~ msgid "Double click a day to return the date."
-#~ msgstr "Haga doble clic en un día para obtener la fecha."
-
-#~ msgid ""
-#~ "Welcome to Gramps!\n"
-#~ "\n"
-#~ "Gramps is a software package designed for genealogical research. Although "
-#~ "similar to other genealogical programs, Gramps offers some unique and "
-#~ "powerful features.\n"
-#~ "\n"
-#~ "Gramps is an Open Source Software package, which means you are free to "
-#~ "make copies and distribute it to anyone you like. It's developed and "
-#~ "maintained by a worldwide team of volunteers whose goal is to make Gramps "
-#~ "powerful, yet easy to use.\n"
-#~ "\n"
-#~ "Getting Started\n"
-#~ "\n"
-#~ "The first thing you must do is to create a new Family Tree. To create a "
-#~ "new Family Tree (sometimes called a database) select \"Family Trees\" "
-#~ "from the menu, pick \"Manage Family Trees\", press \"New\" and name your "
-#~ "database. For more details, please read the User Manual, or the on-line "
-#~ "manual at http://gramps-project.org.\n"
-#~ "\n"
-#~ "You are currently reading from the \"Gramplets\" page, where you can add "
-#~ "your own gramplets.\n"
-#~ "\n"
-#~ "You can right-click on the background of this page to add additional "
-#~ "gramplets and change the number of columns. You can also drag the "
-#~ "Properties button to reposition the gramplet on this page, and detach the "
-#~ "gramplet to float above Gramps. If you close Gramps with a gramplet "
-#~ "detached, it will re-open detached the next time you start Gramps."
-#~ msgstr ""
-#~ "¡Bienvenido a Gramps!\n"
-#~ "\n"
-#~ "Gramps es un programa diseñado para la investigación genealógica.  Aunque "
-#~ "es similar a otros programas genealógicos, Gramps ofrece algunas "
-#~ "características distintivas y potentes.\n"
-#~ "\n"
-#~ "Gramps es un paquete Open Source, lo que quiere decir que puede copiarlo "
-#~ "libremente y distribuirlo a quien desee.  Está desarrollado y mantenido "
-#~ "por un equipo mundial de voluntarios cuyo objetivo es hacer Gramps "
-#~ "potente, aunque fácil de usar.\n"
-#~ "\n"
-#~ "\n"
-#~ "Cómo comenzar a usar Gramps\n"
-#~ "\n"
-#~ "Lo primero que debe hacer es crear un nuevo árbol genealógico.  Para "
-#~ "crear un nuevo árbol genealógico (a veces lo llamaremos también \"base de "
-#~ "datos\") seleccione \"Árboles genealógicos\" del menu, escoja \"Gestionar "
-#~ "árboles genealógicos\", haga clic en \"Nuevo\" y dé un nombre a su base "
-#~ "de datos.  Para más detalles, consulte el Manual de Usuario o el manual "
-#~ "en Internet disponible en http://gramps-project.org.\n"
-#~ "\n"
-#~ "En este momento está leyendo en la página \"Bloques\" desde la que puede "
-#~ "agregar sus propios bloques.\n"
-#~ "\n"
-#~ "Puede hacer clic con el botón derecho en el fondo de esta página para "
-#~ "agregar bloques adicionales y cambiar el número de columnas.  También "
-#~ "puede arrastrar el botón de Propiedades para reposicionar el bloque en "
-#~ "esta página y desacoplar el bloque para que flote por encima de Gramps.  "
-#~ "Si cierra Gramps con un bloque desacoplado, se volverá a abrir "
-#~ "desacoplado la próxima vez que arranque Gramps."
-
-#~ msgid "Limit the number of children"
-#~ msgstr "Limitar el número máximo de hijos"
-
-#~ msgid "The maximum number of children to include."
-#~ msgstr "Número máximo de hijos a incluir."
-
-#~ msgid "Generating Family Lines"
-#~ msgstr "Generando líneas familiares"
-
-#~ msgid "Finding ancestors and children"
-#~ msgstr "Buscando ascendientes e hijos"
-
-#~ msgid "Writing family lines"
-#~ msgstr "Escribiendo líneas familiares"
-
-#~ msgid "  Tag %(name)s\n"
-#~ msgstr "  Etiqueta %(name)s\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Objects merged-overwritten on import:\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Objectos mezclados-sobreescritos durante la importación:\n"
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció el %(death_date)s en %(death_place)s a "
-#~ "los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció el %(death_date)s en %(death_place)s con "
-#~ "%(age)d meses de edad."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s falleció el %(death_date)s en %(death_place)s a los %(age)d "
-#~ "años."
-
-#~ msgid ""
-#~ "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s falleció el %(death_date)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s falleció el %(death_date)s en %(death_place)s a los %(age)"
-#~ "d años."
-
-#~ msgid ""
-#~ "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció el %(death_date)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr "Falleció el %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Falleció el %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció el %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Falleció el %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció el %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "She died on %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Falleció el %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Falleció %(death_date)s en %(death_place)s (edad %(age)d años)."
-
-#~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Falleció %(death_date)s en %(death_place)s (edad %(age)d meses)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció %(death_date)s en %(death_place)s a los "
-#~ "%(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age "
-#~ "of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció %(death_date)s en %(death_place)s con "
-#~ "%(age)d meses de edad."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr ""
-#~ "%(male_name)s falleció %(death_date)s en %(death_place)s a los %(age)d "
-#~ "años."
-
-#~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "%(male_name)s falleció %(death_date)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s falleció %(death_date)s en %(death_place)s a los %(age)d "
-#~ "años."
-
-#~ msgid ""
-#~ "%(female_name)s died %(death_date)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció %(death_date)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr "Falleció %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "This person died %(death_date)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Falleció %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "He died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Falleció %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció %(death_date)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Falleció %(death_date)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció el %(death_date)s con %(age)d meses de "
-#~ "edad."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s falleció el %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid "%(female_name)s died on %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció el %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid "This person died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció el %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid "He died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció el %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció el %(death_date)s a los %(age)d años."
-
-#~ msgid "She died on %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció el %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "Died %(death_date)s (age %(age)d years)."
-#~ msgstr "Falleció %(death_date)s (edad %(age)d años)."
-
-#~ msgid "Died %(death_date)s (age %(age)d months)."
-#~ msgstr "Falleció %(death_date)s (edad %(age)d meses)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(unknown_gender_name)s falleció %(death_date)s a los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s falleció %(death_date)s a los %(age)d años."
-
-#~ msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s falleció %(death_date)s a los %(age)d años."
-
-#~ msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-#~ msgstr "%(female_name)s falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció %(death_date)s a los %(age)d años."
-
-#~ msgid "This person died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció %(death_date)s a los %(age)d años."
-
-#~ msgid "He died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d years."
-#~ msgstr "Falleció %(death_date)s a los %(age)d años."
-
-#~ msgid "She died %(death_date)s at the age of %(age)d months."
-#~ msgstr "Falleció %(death_date)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(month_year)s en %(death_place)s a "
-#~ "los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the "
-#~ "age of %(age)d months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(month_year)s en %(death_place)s con "
-#~ "%(age)d meses de edad."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(male_name)s falleció en %(month_year)s en %(death_place)s a los %(age)d "
-#~ "años."
-
-#~ msgid ""
-#~ "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s falleció en %(month_year)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d years."
-#~ msgstr ""
-#~ "%(female_name)s falleció en %(month_year)s en %(death_place)s a los %(age)"
-#~ "d años."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
-#~ "%(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció en %(month_year)s en %(death_place)s con %(age)d "
-#~ "meses de edad."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d years."
-#~ msgstr "Falleció en %(month_year)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d months."
-#~ msgstr ""
-#~ "Falleció en %(month_year)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(month_year)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "Falleció en %(month_year)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(month_year)s en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "She died in %(month_year)s in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "Falleció en %(month_year)s en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-#~ msgstr "Falleció en %(month_year)s en %(death_place)s (edad %(age)d años)."
-
-#~ msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-#~ msgstr "Falleció en %(month_year)s en %(death_place)s (edad %(age)d meses)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(month_year)s con %(age)d meses de "
-#~ "edad."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "%(male_name)s falleció en %(month_year)s con %(age)d meses de edad."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció en %(month_year)s con %(age)d meses de edad."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid "This person died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(month_year)s con %(age)d meses de edad."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid "He died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(month_year)s con %(age)d meses de edad."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(month_year)s a los %(age)d años."
-
-#~ msgid "She died in %(month_year)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(month_year)s con %(age)d meses de edad."
-
-#~ msgid "Died %(month_year)s (age %(age)d years)."
-#~ msgstr "Falleció en %(month_year)s (edad %(age)d años)."
-
-#~ msgid "Died %(month_year)s (age %(age)d months)."
-#~ msgstr "Falleció en %(month_year)s (edad %(age)d meses)."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "years."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d "
-#~ "months."
-#~ msgstr ""
-#~ "%(unknown_gender_name)s falleció en %(death_place)s con %(age)d meses de "
-#~ "edad."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "%(male_name)s falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(male_name)s falleció en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "%(female_name)s falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid ""
-#~ "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-#~ msgstr ""
-#~ "%(female_name)s falleció en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid "This person died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid "He died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d years."
-#~ msgstr "Falleció en %(death_place)s a los %(age)d años."
-
-#~ msgid "She died in %(death_place)s at the age of %(age)d months."
-#~ msgstr "Falleció en %(death_place)s con %(age)d meses de edad."
-
-#~ msgid "Died in %(death_place)s (age %(age)d years)."
-#~ msgstr "Falleció en %(death_place)s (edad %(age)d años)."
-
-#~ msgid "Died in %(death_place)s (age %(age)d months)."
-#~ msgstr "Falleció en %(death_place)s (edad %(age)d meses)."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-#~ msgstr "%(unknown_gender_name)s falleció a los %(age)d años."
-
-#~ msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-#~ msgstr "%(unknown_gender_name)s falleció con %(age)d meses de edad."
-
-#~ msgid "%(male_name)s died at the age of %(age)d years."
-#~ msgstr "%(male_name)s falleció a los %(age)d años."
-
-#~ msgid "%(male_name)s died at the age of %(age)d months."
-#~ msgstr "%(male_name)s falleció con %(age)d meses de edad."
-
-#~ msgid "%(female_name)s died at the age of %(age)d years."
-#~ msgstr "%(female_name)s falleció a los %(age)d años."
-
-#~ msgid "%(female_name)s died at the age of %(age)d months."
-#~ msgstr "%(female_name)s falleció con %(age)d meses de edad."
-
-#~ msgid "This person died at the age of %(age)d years."
-#~ msgstr "Falleció a los %(age)d años."
-
-#~ msgid "This person died at the age of %(age)d months."
-#~ msgstr "Falleció con %(age)d meses de edad."
-
-#~ msgid "He died at the age of %(age)d years."
-#~ msgstr "Falleció a los %(age)d años."
-
-#~ msgid "He died at the age of %(age)d months."
-#~ msgstr "Falleció con %(age)d meses de edad."
-
-#~ msgid "She died at the age of %(age)d years."
-#~ msgstr "Falleció a los %(age)d años."
-
-#~ msgid "She died at the age of %(age)d months."
-#~ msgstr "Falleció con %(age)d meses de edad."
-
-#~ msgid "Died (age %(age)d years)."
-#~ msgstr "Falleció (edad %(age)d años)."
-
-#~ msgid "Died (age %(age)d months)."
-#~ msgstr "Falleció (edad %(age)d meses)."
-
-#~ msgid "Main Navigation Item %s"
-#~ msgstr "Elemento de navegación principal %s"
-
-#~ msgid ""
-#~ "The place markers on this page represent a different location based upon "
-#~ "your spouse, your children (if any), and your personal events and their "
-#~ "places.  The list has been sorted in chronological date order.  Clicking "
-#~ "on the place&#8217;s name in the References will take you to that "
-#~ "place&#8217;s page.  Clicking on the markers will display its place title."
-#~ msgstr ""
-#~ "Los marcadores de lugar en esta página representan posiciones diferentes "
-#~ "en función de su cónyuge, sus hijos/as (si los tiene) y sus eventos "
-#~ "personales y sus sitios.  La lista se ha ordenado por fecha.  Al hacer "
-#~ "clic en el nombre del lugar en Referencias se mostrará la página de ese "
-#~ "lugar.  Al hacer clic en los marcadores se mostrará el nombre del lugar."
-
-#~ msgid "Horizontal -- No Change"
-#~ msgstr "Horizontal -- Sin cambio"
-
-#~ msgid "Vertical"
-#~ msgstr "Vertical"
-
-#~ msgid "Alphabet Navigation Menu Item "
-#~ msgstr "Menú de navegación alfabética elemento "
-
-#~ msgid "Sub Navigation Menu Item: Year %04d"
-#~ msgstr "Elemento del menú de sub navegación: Año %04d"
-
-#~ msgid "html|Home"
-#~ msgstr "Página web personal"
-
-#~ msgid "Main Navigation Menu Item: %s"
-#~ msgstr "Elemento del menú principal de navegación: %s"
-
-#~ msgid "Matches sources with particular parameters"
-#~ msgstr "Concide con las fuentes que tienen ciertos parámetros"
-
-#~ msgid "Bottom:"
-#~ msgstr "Abajo:"
-
-#~ msgid "Left:"
-#~ msgstr "Izquierda:"
-
-#~ msgid "Right:"
-#~ msgstr "Derecha:"
-
-#~ msgid "Top:"
-#~ msgstr "Arriba:"
-
-#~ msgid "State/County:"
-#~ msgstr "Estado/Condado:"
