@@ -142,11 +142,9 @@ def paperstyle_to_pagesetup(paper_style):
         else:
             paper_width = gramps_paper_size.get_height() * 10
             paper_height = gramps_paper_size.get_width() * 10
-        paper_size = Gtk.paper_size_new_custom("custom",
-                                               "Custom Size",
-                                               paper_width,
-                                               paper_height,
-                                               Gtk.Unit.MM)
+        paper_size = Gtk.PaperSize.new_custom("custom", "Custom Size",
+                                              paper_width, paper_height,
+                                              Gtk.Unit.MM)
         log.debug("Selected paper size: (%f,%f)" % (paper_width, paper_height))
         
     page_setup = Gtk.PageSetup()
