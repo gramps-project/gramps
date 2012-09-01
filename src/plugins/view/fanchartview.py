@@ -120,6 +120,12 @@ class FanChartView(NavigationView):
                 <menuitem action="PrintView"/>
               </placeholder>
             </menu>
+            <menu action="BookMenu">
+              <placeholder name="AddEditBook">
+                <menuitem action="AddBook"/>
+                <menuitem action="EditBook"/>
+              </placeholder>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
@@ -155,17 +161,31 @@ class FanChartView(NavigationView):
         # Reset everything but rotation angle (leave it as is)
         self.update()
 
+    def _connect_db_signals(self):
+        """
+        Connect database signals.
+        """
+        self._add_db_signal('person-add', self.person_rebuild)
+        self._add_db_signal('person-update', self.person_rebuild)
+        self._add_db_signal('person-delete', self.person_rebuild)
+        self._add_db_signal('person-rebuild', self.person_rebuild_bm)
+        self._add_db_signal('family-update', self.person_rebuild)
+        self._add_db_signal('family-add', self.person_rebuild)
+        self._add_db_signal('family-delete', self.person_rebuild)
+        self._add_db_signal('family-rebuild', self.person_rebuild)
+    
     def change_db(self, db):
         self._change_db(db)
-        #self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
-        #if self.active:
-        #    self.bookmarks.redraw()
+        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
+        if self.active:
+            self.bookmarks.redraw()
         self.update()
 
     def update(self):
         self.main()
         
     def goto_handle(self, handle):
+        self.change_active(handle)
         self.main()
 
     def have_parents(self, person):
@@ -267,16 +287,21 @@ class FanChartView(NavigationView):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
-                EditPerson(self.dbstate, self.uistate, [], person,
-                           callback=self.edit_callback)
+                EditPerson(self.dbstate, self.uistate, [], person)
             except WindowActiveError:
                 pass
             return True
         return False
 
-    def edit_callback(self, *args):
+    def person_rebuild(self, *args):
         self.update()
 
+    def person_rebuild_bm(self, *args):
+        """Large change to person database"""
+        self.person_rebuild()
+        if self.active:
+            self.bookmarks.redraw()
+    
     def copy_person_to_clipboard_cb(self, obj, person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.dbstate.db.get_person_from_handle(person_handle)
