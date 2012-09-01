@@ -77,7 +77,7 @@ class FanChartWidget(Gtk.DrawingArea):
     """
     Interactive Fan Chart Widget. 
     """
-    BORDER_WIDTH = 10
+    BORDER_EDGE_WIDTH = 10
     GENCOLOR = ((229,191,252),
                 (191,191,252),
                 (191,222,252),
@@ -131,9 +131,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
         self.gen_color = True
-        self.layout = self.create_pango_layout('cairo')
-        self.layout.set_font_description(Pango.FontDescription("sans 8"))
-        self.set_size_request(120,120)
+        self.set_size_request(120, 120)
 
     def reset_generations(self):
         """
@@ -165,9 +163,8 @@ class FanChartWidget(Gtk.DrawingArea):
         """
         Overridden method to handle size request events.
         """
-        width, height = self.layout.get_size()
-        requisition.width = (width // Pango.SCALE + self.BORDER_WIDTH*4)* 1.45
-        requisition.height = (3 * height // Pango.SCALE + self.BORDER_WIDTH*4) * 1.2
+        requisition.width = 2 * self.halfdist()
+        requisition.height = requisition.width
 
     def do_get_preferred_width(self):
         """ GTK3 uses width for height sizing model. This method will 
@@ -185,11 +182,8 @@ class FanChartWidget(Gtk.DrawingArea):
         self.do_size_request(req)
         return req.height, req.height
 
-    def on_draw(self, widget, cr):
-        """
-        The main method to do the drawing.
-        """
-        # first do size request of what we will need
+    def nrgen(self):
+        #compute the number of generations present
         nrgen = None
         for generation in range(self.generations - 1, 0, -1):
             for p in range(len(self.data[generation])):
@@ -201,13 +195,35 @@ class FanChartWidget(Gtk.DrawingArea):
                 break
         if nrgen is None:
             nrgen = 1
+        return nrgen
+
+    def halfdist(self):
+        """
+        Compute the half radius of the circle
+        """
+        nrgen = self.nrgen()
+        return self.pixels_per_generation * nrgen + self.center \
+                + self.BORDER_EDGE_WIDTH
+
+    def on_draw(self, widget, cr, scale=1.):
+        """
+        The main method to do the drawing.
+        If widget is given, we assume we draw in GTK3 and use the allocation. 
+        To draw raw on the cairo context cr, set widget=None.
+        """
+        # first do size request of what we will need
+        nrgen = self.nrgen()
         halfdist = self.pixels_per_generation * nrgen + self.center
         self.set_size_request(2 * halfdist, 2 * halfdist)
         
         #obtain the allocation
         alloc = self.get_allocation()
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        cr.translate(w/2. - self.center_xy[0], h/2. - self.center_xy[1])
+        cr.scale(scale, scale)
+        if widget:
+            cr.translate(w/2. - self.center_xy[0], h/2. - self.center_xy[1])
+        else:
+            cr.translate(halfdist - self.center_xy[0], halfdist - self.center_xy[1])
         cr.save()
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
@@ -241,10 +257,6 @@ class FanChartWidget(Gtk.DrawingArea):
                 cr.arc(0, 0, self.TRANSLATE_PX, 0, 2 * math.pi)
                 cr.move_to(0,0)
                 cr.fill()
-        fontw, fonth = self.layout.get_pixel_size()
-        cr.move_to((w - fontw - 4), (h - fonth ))
-        self.layout.context_changed()
-        PangoCairo.show_layout(cr, self.layout)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
                     state, parents, child, person):
@@ -276,11 +288,11 @@ class FanChartWidget(Gtk.DrawingArea):
             # draw an indicator
             cr.move_to(0, 0)
             cr.set_source_rgb(255, 255, 255) # white
-            cr.arc(0, 0, radius + 10, start_rad, stop_rad) 
+            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad) 
             cr.fill()
             cr.move_to(0, 0)
             cr.set_source_rgb(0, 0, 0) # black
-            cr.arc(0, 0, radius + 10, start_rad, stop_rad) 
+            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad) 
             cr.line_to(0, 0)
             cr.stroke()
         cr.set_source_rgb(r/255., g/255., b/255.) 

@@ -34,6 +34,7 @@
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
+import cairo
 from cgi import escape
 from gen.ggettext import gettext as _
 
@@ -51,6 +52,10 @@ from gui.views.navigationview import NavigationView
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 from gui.editors import EditPerson
+
+
+# the print settings to remember between print sessions
+PRINT_SETTINGS = None
 
 class FanChartView(NavigationView):
     """
@@ -110,6 +115,11 @@ class FanChartView(NavigationView):
                 <separator/>
               </placeholder>
             </menu>
+            <menu action="EditMenu">
+              <placeholder name="CommonEdit">
+                <menuitem action="PrintView"/>
+              </placeholder>
+            </menu>
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
@@ -117,10 +127,24 @@ class FanChartView(NavigationView):
               <toolitem action="Forward"/>  
               <toolitem action="HomePerson"/>
             </placeholder>
+            <placeholder name="CommonEdit">
+              <toolitem action="PrintView"/>
+            </placeholder>
           </toolbar>
         </ui>
         '''
 
+    def define_actions(self):
+        """
+        Required define_actions function for PageView. Builds the action
+        group information required.
+        """
+        NavigationView.define_actions(self)
+
+        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print/Save View..."), 
+                         accel="<PRIMARY>P", 
+                         tip=_("Print or save the Fan Chart View"), 
+                         callback=self.printview)
     def build_tree(self):
         pass # will build when active_changes
 
@@ -473,9 +497,9 @@ class FanChartView(NavigationView):
             per_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0,0)
+            label.set_alignment(0, 0)
             per_item.add(label)
-            per_item.connect("activate",self.on_childmenu_changed,p_id)
+            per_item.connect("activate", self.on_childmenu_changed, p_id)
             per_item.show()
             per_menu.append(per_item)
         
@@ -485,3 +509,146 @@ class FanChartView(NavigationView):
         menu.append(item)
         menu.popup(None, None, None, None, event.button, event.time)
         return 1
+
+    def printview(self, obj):
+        """
+        Print or save the view that is currently shown
+        """
+        widthpx = 2*(self.fan.pixels_per_generation * self.fan.nrgen() 
+                        + self.fan.center)
+        prt = CairoPrintSave(widthpx, self.fan.on_draw, self.uistate.window)
+        prt.run()
+
+#------------------------------------------------------------------------
+#
+# CairoPrintSave class
+#
+#------------------------------------------------------------------------
+class CairoPrintSave():
+    """Act as an abstract document that can render onto a cairo context.
+    
+    It can render the model onto cairo context pages, according to the received
+    page style.
+        
+    """
+    
+    def __init__(self, widthpx, drawfunc, parent):
+        """
+        This class provides the things needed so as to dump a cairo drawing on
+        a context to output
+        """
+        self.widthpx = widthpx
+        self.drawfunc = drawfunc
+        self.parent = parent
+    
+    def run(self):
+        """Create the physical output from the meta document.
+                
+        """
+        global PRINT_SETTINGS
+        
+        # set up a print operation
+        operation = Gtk.PrintOperation()
+        operation.connect("draw_page", self.on_draw_page)
+        operation.connect("preview", self.on_preview)
+        operation.connect("paginate", self.on_paginate)
+        operation.set_n_pages(1)
+        #paper_size = Gtk.PaperSize.new(name="iso_a4")
+        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert 
+        ## Pixels to MM ??
+        paper_size = Gtk.PaperSize.new_custom("custom",
+                                              "Custom Size",
+                                              round(self.widthpx * 0.2646),
+                                              round(self.widthpx * 0.2646),
+                                              Gtk.Unit.MM)
+        page_setup = Gtk.PageSetup()
+        page_setup.set_paper_size(paper_size)
+        #page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
+        operation.set_default_page_setup(page_setup)
+        #operation.set_use_full_page(True)
+        
+        if PRINT_SETTINGS is not None:
+            operation.set_print_settings(PRINT_SETTINGS)
+        
+        # run print dialog
+        while True:
+            self.preview = None
+            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG, self.parent)
+            if self.preview is None: # cancel or print
+                break
+            # set up printing again; can't reuse PrintOperation?
+            operation = Gtk.PrintOperation()
+            operation.set_default_page_setup(page_setup)
+            operation.connect("draw_page", self.on_draw_page)
+            operation.connect("preview", self.on_preview)
+            operation.connect("paginate", self.on_paginate)
+            # set print settings if it was stored previously
+            if PRINT_SETTINGS is not None:
+                operation.set_print_settings(PRINT_SETTINGS)
+
+        # store print settings if printing was successful
+        if res == Gtk.PrintOperationResult.APPLY:
+            PRINT_SETTINGS = operation.get_print_settings()
+    
+    def on_draw_page(self, operation, context, page_nr):
+        """Draw a page on a Cairo context.
+        """
+        cr = context.get_cairo_context()
+        pxwidth = round(context.get_width())
+        pxheight = round(context.get_height())
+        dpi_x = context.get_dpi_x()
+        dpi_y = context.get_dpi_y()
+        self.drawfunc(None, cr, scale=pxwidth/self.widthpx)
+
+    def on_paginate(self, operation, context):
+        """Paginate the whole document in chunks.
+           We don't need this as there is only one page, however,
+           we provide a dummy holder here, because on_preview crashes if no 
+           default application is set with gir 3.3.2 (typically evince not installed)!
+           It will provide the start of the preview dialog, which cannot be
+           started in on_preview
+        """
+        finished = True
+        # update page number
+        operation.set_n_pages(1)
+        
+        # start preview if needed
+        if self.preview:
+            self.preview.run()
+            
+        return finished
+
+    def on_preview(self, operation, preview, context, parent):
+        """Implement custom print preview functionality.
+           We provide a dummy holder here, because on_preview crashes if no 
+           default application is set with gir 3.3.2 (typically evince not installed)!
+        """
+        dlg = Gtk.MessageDialog(parent,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   type=Gtk.MessageType.WARNING,
+                                   buttons=Gtk.ButtonsType.CLOSE,
+                                   message_format=_('No preview available'))
+        self.preview = dlg
+        self.previewopr = operation
+        #dlg.format_secondary_markup(msg2)
+        dlg.set_title("Fan Chart Preview - Gramps")
+        dlg.connect('response', self.previewdestroy)
+        
+        # give a dummy cairo context to Gtk.PrintContext,
+        try:
+            width = int(round(context.get_width()))
+        except ValueError:
+            width = 0
+        try:
+            height = int(round(context.get_height()))
+        except ValueError:
+            height = 0
+        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        cr = cairo.Context(surface)
+        context.set_cairo_context(cr, 72.0, 72.0)
+        
+        return True 
+
+    def previewdestroy(self, dlg, res):
+        self.preview.destroy()
+        self.previewopr.end_preview()

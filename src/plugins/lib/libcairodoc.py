@@ -1699,5 +1699,3 @@ links (like ODF) and write PDF from that format.
             cr.stroke()
 
         self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
-
-
