@@ -42,6 +42,7 @@ from gi.repository import Gtk
 from gi.repository import PangoCairo
 import math
 import cPickle as pickle
+from cgi import escape
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +54,8 @@ import gen.lib
 import gui.utils
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
+from gen.utils.libformatting import FormattingHelper
+from gen.utils.db import (find_children, find_parents, find_witnessed_people)
 
 #-------------------------------------------------------------------------
 #
@@ -78,17 +81,37 @@ class FanChartWidget(Gtk.DrawingArea):
     Interactive Fan Chart Widget. 
     """
     BORDER_EDGE_WIDTH = 10
-    GENCOLOR = ((229,191,252),
-                (191,191,252),
-                (191,222,252),
-                (183,219,197),
-                (206,246,209))
     TRANSLATE_PX = 10
+    
+    BACKGROUND_SCHEME1 = 0
+    BACKGROUND_SCHEME2 = 1
+    BACKGROUND_GENDER = 2
+    BACKGROUND_WHITE = 3
+    GENCOLOR = {
+        BACKGROUND_SCHEME1: ((255, 63,  0),
+                             (255,175, 15),
+                             (255,223, 87),
+                             (255,255,111),
+                             (159,255,159),
+                             (111,215,255),
+                             ( 79,151,255),
+                             (231, 23,255),
+                             (231, 23,121),
+                             (210,170,124),
+                             (189,153,112)),
+        BACKGROUND_SCHEME2: ((229,191,252),
+                             (191,191,252),
+                             (191,222,252),
+                             (183,219,197),
+                             (206,246,209)),
+        BACKGROUND_WHITE: ((255,255,255),),
+        }
+
     COLLAPSED = 0
     NORMAL = 1
     EXPANDED = 2
 
-    def __init__(self, generations, dbstate, context_popup_callback=None):
+    def __init__(self, dbstate, callback_popup=None):
         """
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
@@ -96,6 +119,7 @@ class FanChartWidget(Gtk.DrawingArea):
         GObject.GObject.__init__(self)
         self.dbstate = dbstate
         self.translating = False
+        self.on_popup = callback_popup
         self.last_x, self.last_y = None, None
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
@@ -104,7 +128,6 @@ class FanChartWidget(Gtk.DrawingArea):
         self.connect("drag_data_get", self.on_drag_data_get)
         self.connect("drag_begin", self.on_drag_begin)
         self.connect("drag_end", self.on_drag_end)
-        self.context_popup_callback = context_popup_callback
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
                         Gdk.EventMask.POINTER_MOTION_MASK)
@@ -122,22 +145,26 @@ class FanChartWidget(Gtk.DrawingArea):
         self.pixels_per_generation = 50 # size of radius for generation
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
-        self._mouse_click = False
         ## Other fonts will have different settings. Can you compute that
         ## from the font size? I have no idea.
-        self.generations = generations
+        self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
         self.center_xy = [0, 0] # distance from center (x, y)
-        self.set_generations(self.generations)
         self.center = 50 # pixel radius of center
-        self.gen_color = True
+        #default values
+        self.reset(9, self.BACKGROUND_SCHEME1)
         self.set_size_request(120, 120)
 
-    def reset_generations(self):
+    def reset(self, maxgen, background):
         """
-        Reset all of the data on where slices appear, and if they are expanded.
+        Reset all of the data on where/how slices appear, and if they are expanded.
         """
-        self.set_generations(self.generations)
+        self.background = background
+        if self.background == self.BACKGROUND_GENDER:
+            self.colors =  None
+        else:
+            self.colors = self.GENCOLOR[self.background]
+        self.set_generations(maxgen)
 
     def set_generations(self, generations):
         """
@@ -269,19 +296,19 @@ class FanChartWidget(Gtk.DrawingArea):
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
-        if self.gen_color:
-            r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
-            if gender == gen.lib.Person.MALE:
-                r *= .9
-                g *= .9
-                b *= .9
-        else:
+        if self.background == self.BACKGROUND_GENDER:
             try:
                 alive = probably_alive(person, self.dbstate.db)
             except RuntimeError:
                 alive = False
             backgr, border = gui.utils.color_graph_box(alive, person.gender)
             r, g, b = gui.utils.hex_to_rgb(backgr)
+        else:
+            r,g,b = self.colors[generation % len(self.colors)]
+            if gender == gen.lib.Person.MALE:
+                r *= .9
+                g *= .9
+                b *= .9
         radius = generation * self.pixels_per_generation + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
@@ -572,8 +599,8 @@ class FanChartWidget(Gtk.DrawingArea):
         # Do things based on state, event.get_state(), or button, event.button
         if gui.utils.is_right_click(event):
             text, person, parents, child = self.data[generation][selected]
-            if person and self.context_popup_callback:
-                self.context_popup_callback(widget, event, person.handle)
+            if person and self.on_popup:
+                self.on_popup(widget, event, person.handle)
                 return True
 
         return False
@@ -619,3 +646,358 @@ class FanChartWidget(Gtk.DrawingArea):
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
         elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
             sel_data.set_text(self.format_helper.format_person(person, 11), -1)
+    
+class FanChartGrampsGUI(object):
+    """ class for functions fanchart GUI elements will need in Gramps
+    """
+    def __init__(self, maxgen, background, on_childmenu_changed):
+        """
+        Common part of GUI that shows Fan Chart, needs to know what to do if
+        one moves via Fan Chart to a new person
+        on_childmenu_changed: in popup, function called on moving to a new person
+        """
+        self.fan = None
+        self.on_childmenu_changed = on_childmenu_changed
+        self.format_helper = FormattingHelper(self.dbstate)
+
+        self.maxgen = maxgen 
+        self.background = background
+
+    def have_parents(self, person):
+        """
+        Returns True if a person has parents.
+        """
+        if person:
+            m = self.get_parent(person, False)
+            f = self.get_parent(person, True)
+            return not m is f is None
+        return False
+            
+    def have_children(self, person):
+        """
+        Returns True if a person has children.
+        """
+        if person:
+            for family_handle in person.get_family_handle_list():
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                if family and len(family.get_child_ref_list()) > 0:
+                    return True
+        return False
+
+    def get_parent(self, person, father):
+        """
+        Get the father of the family if father == True, otherwise mother
+        """
+        if person:
+            parent_handle_list = person.get_parent_family_handle_list()
+            if parent_handle_list:
+                family_id = parent_handle_list[0]
+                family = self.dbstate.db.get_family_from_handle(family_id)
+                if family:
+                    if father:
+                        person_handle = gen.lib.Family.get_father_handle(family)
+                    else:
+                        person_handle = gen.lib.Family.get_mother_handle(family)
+                    if person_handle:
+                        return self.dbstate.db.get_person_from_handle(person_handle)
+        return None
+    
+    def set_fan(self, fan):
+        """
+        Set the fanchartwidget to work on
+        """
+        self.fan = fan
+        self.fan.format_helper = self.format_helper
+
+    def main(self):
+        """
+        Fill the data structures with the active data. This initializes all 
+        data.
+        """
+        self.fan.reset(self.maxgen, self.background)
+        person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
+        if not person: 
+            name = None
+        else:
+            name = name_displayer.display(person)
+        parents = self.have_parents(person)
+        child = self.have_children(person)
+        self.fan.data[0][0] = (name, person, parents, child)
+        for current in range(1, self.maxgen):
+            parent = 0
+            # name, person, parents, children
+            for (n,p,q,c) in self.fan.data[current - 1]:
+                # Get father's details:
+                person = self.get_parent(p, True)
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                if current == self.maxgen - 1:
+                    parents = self.have_parents(person)
+                else:
+                    parents = None
+                self.fan.data[current][parent] = (name, person, parents, None)
+                if person is None:
+                    # start,stop,male/right,state
+                    self.fan.angle[current][parent][3] = self.fan.COLLAPSED
+                parent += 1
+                # Get mother's details:
+                person = self.get_parent(p, False)
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                if current == self.maxgen - 1:
+                    parents = self.have_parents(person)
+                else:
+                    parents = None
+                self.fan.data[current][parent] = (name, person, parents, None)
+                if person is None:
+                    # start,stop,male/right,state
+                    self.fan.angle[current][parent][3] = self.fan.COLLAPSED
+                parent += 1
+        self.fan.queue_draw()
+
+    def on_popup(self, obj, event, person_handle):
+        """
+        Builds the full menu (including Siblings, Spouses, Children, 
+        and Parents) with navigation. Copied from PedigreeView.
+        """
+        #store menu for GTK3 to avoid it being destroyed before showing
+        self.menu = Gtk.Menu()
+        menu = self.menu
+        menu.set_title(_('People Menu'))
+
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        if not person:
+            return 0
+
+        go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+        go_image.show()
+        go_item = Gtk.ImageMenuItem(name_displayer.display(person))
+        go_item.set_image(go_image)
+        go_item.connect("activate",self.on_childmenu_changed,person_handle)
+        go_item.show()
+        menu.append(go_item)
+
+        edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT, accel_group=None)
+        edit_item.connect("activate", self.edit_person_cb, person_handle)
+        edit_item.show()
+        menu.append(edit_item)
+
+        clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
+        clipboard_item.connect("activate",self.copy_person_to_clipboard_cb,person_handle)
+        clipboard_item.show()
+        menu.append(clipboard_item)
+
+        # collect all spouses, parents and children
+        linked_persons = []
+        
+        # Go over spouses and build their menu
+        item = Gtk.MenuItem(label=_("Spouses"))
+        fam_list = person.get_family_handle_list()
+        no_spouses = 1
+        for fam_id in fam_list:
+            family = self.dbstate.db.get_family_from_handle(fam_id)
+            if family.get_father_handle() == person.get_handle():
+                sp_id = family.get_mother_handle()
+            else:
+                sp_id = family.get_father_handle()
+            spouse = self.dbstate.db.get_person_from_handle(sp_id)
+            if not spouse:
+                continue
+
+            if no_spouses:
+                no_spouses = 0
+                item.set_submenu(Gtk.Menu())
+                sp_menu = item.get_submenu()
+
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image.show()
+            sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
+            sp_item.set_image(go_image)
+            linked_persons.append(sp_id)
+            sp_item.connect("activate",self.on_childmenu_changed, sp_id)
+            sp_item.show()
+            sp_menu.append(sp_item)
+
+        if no_spouses:
+            item.set_sensitive(0)
+
+        item.show()
+        menu.append(item)
+        
+        # Go over siblings and build their menu
+        item = Gtk.MenuItem(label=_("Siblings"))
+        pfam_list = person.get_parent_family_handle_list()
+        no_siblings = 1
+        for f in pfam_list:
+            fam = self.dbstate.db.get_family_from_handle(f)
+            sib_list = fam.get_child_ref_list()
+            for sib_ref in sib_list:
+                sib_id = sib_ref.ref
+                if sib_id == person.get_handle():
+                    continue
+                sib = self.dbstate.db.get_person_from_handle(sib_id)
+                if not sib:
+                    continue
+
+                if no_siblings:
+                    no_siblings = 0
+                    item.set_submenu(Gtk.Menu())
+                    sib_menu = item.get_submenu()
+
+                if find_children(self.dbstate.db,sib):
+                    label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
+                else:
+                    label = Gtk.Label(label=escape(name_displayer.display(sib)))
+
+                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+                go_image.show()
+                sib_item = Gtk.ImageMenuItem(None)
+                sib_item.set_image(go_image)
+                label.set_use_markup(True)
+                label.show()
+                label.set_alignment(0,0)
+                sib_item.add(label)
+                linked_persons.append(sib_id)
+                sib_item.connect("activate", self.on_childmenu_changed, sib_id)
+                sib_item.show()
+                sib_menu.append(sib_item)
+
+        if no_siblings:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+        
+        # Go over children and build their menu
+        item = Gtk.MenuItem(label=_("Children"))
+        no_children = 1
+        childlist = find_children(self.dbstate.db, person)
+        for child_handle in childlist:
+            child = self.dbstate.db.get_person_from_handle(child_handle)
+            if not child:
+                continue
+        
+            if no_children:
+                no_children = 0
+                item.set_submenu(Gtk.Menu())
+                child_menu = item.get_submenu()
+
+            if find_children(self.dbstate.db,child):
+                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(child)))
+            else:
+                label = Gtk.Label(label=escape(name_displayer.display(child)))
+
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image.show()
+            child_item = Gtk.ImageMenuItem(None)
+            child_item.set_image(go_image)
+            label.set_use_markup(True)
+            label.show()
+            label.set_alignment(0,0)
+            child_item.add(label)
+            linked_persons.append(child_handle)
+            child_item.connect("activate", self.on_childmenu_changed, child_handle)
+            child_item.show()
+            child_menu.append(child_item)
+
+        if no_children:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+
+        # Go over parents and build their menu
+        item = Gtk.MenuItem(label=_("Parents"))
+        no_parents = 1
+        par_list = find_parents(self.dbstate.db,person)
+        for par_id in par_list:
+            par = self.dbstate.db.get_person_from_handle(par_id)
+            if not par:
+                continue
+
+            if no_parents:
+                no_parents = 0
+                item.set_submenu(Gtk.Menu())
+                par_menu = item.get_submenu()
+
+            if find_parents(self.dbstate.db,par):
+                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(par)))
+            else:
+                label = Gtk.Label(label=escape(name_displayer.display(par)))
+
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image.show()
+            par_item = Gtk.ImageMenuItem(None)
+            par_item.set_image(go_image)
+            label.set_use_markup(True)
+            label.show()
+            label.set_alignment(0,0)
+            par_item.add(label)
+            linked_persons.append(par_id)
+            par_item.connect("activate",self.on_childmenu_changed, par_id)
+            par_item.show()
+            par_menu.append(par_item)
+
+        if no_parents:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+    
+        # Go over parents and build their menu
+        item = Gtk.MenuItem(label=_("Related"))
+        no_related = 1
+        for p_id in find_witnessed_people(self.dbstate.db,person):
+            #if p_id in linked_persons:
+            #    continue    # skip already listed family members
+            
+            per = self.dbstate.db.get_person_from_handle(p_id)
+            if not per:
+                continue
+
+            if no_related:
+                no_related = 0
+                item.set_submenu(Gtk.Menu())
+                per_menu = item.get_submenu()
+
+            label = Gtk.Label(label=escape(name_displayer.display(per)))
+
+            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image.show()
+            per_item = Gtk.ImageMenuItem(None)
+            per_item.set_image(go_image)
+            label.set_use_markup(True)
+            label.show()
+            label.set_alignment(0, 0)
+            per_item.add(label)
+            per_item.connect("activate", self.on_childmenu_changed, p_id)
+            per_item.show()
+            per_menu.append(per_item)
+        
+        if no_related:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+        menu.popup(None, None, None, None, event.button, event.time)
+        return 1
+    
+    def edit_person_cb(self, obj,person_handle):
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        if person:
+            try:
+                EditPerson(self.dbstate, self.uistate, [], person)
+            except WindowActiveError:
+                pass
+            return True
+        return False
+
+    def copy_person_to_clipboard_cb(self, obj,person_handle):
+        """Renders the person data into some lines of text and puts that into the clipboard"""
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        if person:
+            cb = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                        Gdk.SELECTION_CLIPBOARD)
+            cb.set_text( self.format_helper.format_person(person,11))
+            return True
+        return False

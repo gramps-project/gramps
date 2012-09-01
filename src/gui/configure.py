@@ -1110,7 +1110,7 @@ class GrampsPreferences(ConfigureDialog):
         self.add_spinner(table, 
                 _('Date before range'),
                 2, 'behavior.date-before-range', (1, 80))
-        self.add_spinner(table, 
+        self.add_spinner(table,
                 _('Maximum age probably alive'),
                 3, 'behavior.max-age-prob-alive', (80, 140))
         self.add_spinner(table, 

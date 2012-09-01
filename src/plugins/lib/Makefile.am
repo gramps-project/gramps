@@ -17,7 +17,6 @@ SUBDIRS = maps
 
 pkgpython_PYTHON = \
 	libcairodoc.py\
-	libformatting.py\
 	libgedcom.py\
 	libgrampsxml.py\
 	libgrdb.py\

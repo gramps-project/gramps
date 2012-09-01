@@ -218,6 +218,7 @@ src/gen/utils/debug.py
 src/gen/utils/file.py
 src/gen/utils/id.py
 src/gen/utils/image.py
+src/gen/utils/libformatting.py
 
 # gen.utils.docgen
 src/gen/utils/docgen/__init__.py
@@ -316,7 +317,6 @@ src/plugins/sidebar/sidebar.gpr.py
 src/plugins/docgen/pdfdoc.py
 
 # plugins/lib directory
-src/plugins/lib/libformatting.py
 src/plugins/lib/libgrampsxml.py
 src/plugins/lib/libhtml.py
 src/plugins/lib/libhtmlbackend.py

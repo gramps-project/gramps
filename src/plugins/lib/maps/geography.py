@@ -50,7 +50,7 @@ from gi.repository import GdkPixbuf
 import gen.lib
 from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
-from libformatting import FormattingHelper
+from gen.utils.libformatting import FormattingHelper
 from gen.errors import WindowActiveError
 from gen.const import HOME_DIR, ROOT_DIR
 from gui.managedwindow import ManagedWindow

@@ -42,24 +42,6 @@ authors_email = ["http://gramps-project.org"],
 
 #------------------------------------------------------------------------
 #
-# libformatting
-#
-#------------------------------------------------------------------------
-register(GENERAL, 
-id    = 'libformatting',
-name  = "FormattingHelper lib",
-description =  _("Provides a FormattingHelper class for common strings"),
-version = '1.0',
-gramps_target_version = '4.0',
-status = STABLE,
-fname = 'libformatting.py',
-authors = ["The Gramps project"],
-authors_email = ["http://gramps-project.org"],
-#load_on_reg = True
-  )
-
-#------------------------------------------------------------------------
-#
 # libgedcom
 #
 #------------------------------------------------------------------------

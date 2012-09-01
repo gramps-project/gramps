@@ -60,7 +60,7 @@ from gen.display.name import displayer as name_displayer
 from gen.utils.alive import probably_alive
 from gen.utils.file import media_path_full
 from gen.utils.db import find_children, find_parents, find_witnessed_people
-from libformatting import FormattingHelper
+from gen.utils.libformatting import FormattingHelper
 from gui.thumbnails import get_thumbnail_path
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily

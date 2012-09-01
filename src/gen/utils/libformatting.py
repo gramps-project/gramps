@@ -40,7 +40,8 @@ from cgi import escape
 import gen.lib
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback, get_marriage_or_fallback
+from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
+                            get_marriage_or_fallback)
 
 #-------------------------------------------------------------------------
 #
@@ -198,3 +199,4 @@ class FormattingHelper(object):
         """
         self._text_cache = {}
         self._markup_cache = {}
+
