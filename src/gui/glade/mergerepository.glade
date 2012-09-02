@@ -120,6 +120,7 @@ primary data for the merged repository.</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
+                        <property name="width_request">300</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -144,6 +145,7 @@ primary data for the merged repository.</property>
                     <property name="group">handle_btn1</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn2">
+                        <property name="width_request">300</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -190,7 +192,7 @@ primary data for the merged repository.</property>
                           </object>
                           <packing>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -204,7 +206,7 @@ primary data for the merged repository.</property>
                             <property name="left_attach">2</property>
                             <property name="right_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -223,7 +225,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -245,7 +247,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -264,7 +266,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -286,7 +288,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -305,7 +307,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -327,7 +329,7 @@ primary data for the merged repository.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -341,7 +343,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -355,7 +357,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -369,7 +371,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -383,7 +385,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -397,7 +399,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -414,7 +416,7 @@ primary data for the merged repository.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>

@@ -96,6 +96,7 @@
               <object class="GtkLabel" id="label2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="label" translatable="yes">Select the family that will provide the
 primary data for the merged family.</property>
               </object>
@@ -115,11 +116,13 @@ primary data for the merged family.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="hexpand">True</property>
                     <property name="use_action_appearance">False</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
+                        <property name="width_request">400</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -138,12 +141,14 @@ primary data for the merged family.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="hexpand">True</property>
                     <property name="use_action_appearance">False</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn2">
+                        <property name="width_request">400</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -190,7 +195,7 @@ primary data for the merged family.</property>
                           </object>
                           <packing>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -204,7 +209,7 @@ primary data for the merged family.</property>
                             <property name="left_attach">2</property>
                             <property name="right_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -223,7 +228,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -245,7 +250,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -264,7 +269,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -286,7 +291,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -305,7 +310,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -327,7 +332,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -346,7 +351,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -368,7 +373,7 @@ primary data for the merged family.</property>
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -382,7 +387,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -396,7 +401,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -410,7 +415,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -424,7 +429,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -438,7 +443,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -452,7 +457,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -466,7 +471,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -483,7 +488,7 @@ primary data for the merged family.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">4</property>
                             <property name="bottom_attach">5</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -528,7 +533,7 @@ primary data for the merged family.</property>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
