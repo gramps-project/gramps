@@ -531,18 +531,15 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Is this marker in the visible area ?
         """
-        #return True
-        # BUG here : how to replace that ?
-        pt1 = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
-        pt2 = osmgpsmap.MapPoint.new_degrees(0.0, 0.0)
-        bbox = self.osm.get_bbox(pt1,pt2)
-        print bbox
+        bbox = self.osm.get_bbox()
         s_lon = lon + 10.0
         s_lat = lat + 10.0
-        s_bbox_lat1 = bbox[0] + 10.0
-        s_bbox_lon1 = bbox[1] + 10.0
-        s_bbox_lat2 = bbox[2] + 10.0
-        s_bbox_lon2 = bbox[3] + 10.0
+        pt1 = bbox[0]
+        s_bbox_lat1 = pt1.rlat + 10.0
+        s_bbox_lon1 = pt1.rlon + 10.0
+        pt2 = bbox[1]
+        s_bbox_lat2 = pt2.rlat + 10.0
+        s_bbox_lon2 = pt2.rlon + 10.0
         result = ( s_bbox_lat1 > s_lat > s_bbox_lat2 ) and \
                  ( s_bbox_lon1 < s_lon < s_bbox_lon2 )
         return result
@@ -586,13 +583,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         We must use function called by timeout to force map updates.
         """
         level_start = self.osm.props.zoom
-        # BUG here : how to replace that ?
-        #p1lat, p1lon = self.begin_selection.get_degrees()
-        #p2lat, p2lon = self.end_selection.get_degrees()
-        p1lat = 180 * self.begin_selection.rlat / pi
-        p1lon = 180 * self.begin_selection.rlon / pi
-        p2lat = 180 * self.end_selection.rlat / pi
-        p2lon = 180 * self.end_selection.rlon / pi
+        p1lat, p1lon = self.begin_selection.get_degrees()
+        p2lat, p2lon = self.end_selection.get_degrees()
+        #p1lat = 180 * self.begin_selection.rlat / pi
+        #p1lon = 180 * self.begin_selection.rlon / pi
+        #p2lat = 180 * self.end_selection.rlat / pi
+        #p2lon = 180 * self.end_selection.rlon / pi
         lat = p1lat + ( p2lat - p1lat ) / 2
         lon = p1lon + ( p2lon - p1lon ) / 2
         # We center the map on the center of the region

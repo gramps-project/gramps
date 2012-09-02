@@ -249,10 +249,10 @@ class OsmGps():
         Moving during selection
         """
         current = osmmap.convert_screen_to_geographic(int(event.x), int(event.y))
-        #lat, lon = current.get_degrees()
-        lat = 180 * current.rlat / pi
-        lon = 180 * current.rlon / pi
-        print event.x, event.y, lat, lon
+        lat, lon = current.get_degrees()
+        #lat = 180 * current.rlat / pi
+        #lon = 180 * current.rlon / pi
+        #print event.x, event.y, lat, lon
         if self.zone_selection:
             # We draw a rectangle to show the selected region.
             layer = self.get_selection_layer()
@@ -306,13 +306,13 @@ class OsmGps():
         mouse button 2 : begin zone selection
         mouse button 3 : call the menu
         """
-        #lat, lon = self.osm.get_event_location(event).get_degrees()
-        lat = 180 * self.osm.get_event_location(event).rlat / pi
-        lon = 180 * self.osm.get_event_location(event).rlon / pi
+        lat, lon = self.osm.get_event_location(event).get_degrees()
+        #lat = 180 * self.osm.get_event_location(event).rlat / pi
+        #lon = 180 * self.osm.get_event_location(event).rlon / pi
         current = osm.convert_screen_to_geographic(int(event.x), int(event.y))
-        #lat, lon = current.get_degrees()
-        lat = 180 * current.rlat / pi
-        lon = 180 * current.rlon / pi
+        lat, lon = current.get_degrees()
+        #lat = 180 * current.rlat / pi
+        #lon = 180 * current.rlon / pi
         if event.button == 1:
             if self.end_selection is not None:
                 self.activate_selection_zoom(osm, event)
