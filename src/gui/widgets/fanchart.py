@@ -81,6 +81,7 @@ class FanChartWidget(Gtk.DrawingArea):
     Interactive Fan Chart Widget. 
     """
     BORDER_EDGE_WIDTH = 10
+    CHILDRING_WIDTH = 12
     TRANSLATE_PX = 10
     
     BACKGROUND_SCHEME1 = 0
@@ -104,7 +105,8 @@ class FanChartWidget(Gtk.DrawingArea):
                              (191,222,252),
                              (183,219,197),
                              (206,246,209)),
-        BACKGROUND_WHITE: ((255,255,255),),
+        BACKGROUND_WHITE: ((255,255,255),
+                           (255,255,255),),
         }
 
     COLLAPSED = 0
@@ -152,13 +154,14 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_SCHEME1)
+        self.reset(9, self.BACKGROUND_SCHEME1, True)
         self.set_size_request(120, 120)
 
-    def reset(self, maxgen, background):
+    def reset(self, maxgen, background, childring):
         """
         Reset all of the data on where/how slices appear, and if they are expanded.
         """
+        self.childring = childring
         self.background = background
         if self.background == self.BACKGROUND_GENDER:
             self.colors =  None
@@ -173,6 +176,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.generations = generations
         self.angle = {}
         self.data = {}
+        self.childrenroot = []
         for i in range(self.generations):
             # name, person, parents?, children?
             self.data[i] = [(None,) * 4] * 2 ** i
@@ -278,12 +282,16 @@ class FanChartWidget(Gtk.DrawingArea):
             name = name_displayer.display(person)
             self.draw_text(cr, name, self.center - 10, 95, 455)
             cr.restore()
+            #draw center to move chart
+            cr.set_source_rgb(0, 0, 0) # black
+            cr.move_to(self.TRANSLATE_PX, 0)
+            cr.arc(0, 0, self.TRANSLATE_PX, 0, 2 * math.pi)
             if child: # has at least one child
-                cr.set_source_rgb(0, 0, 0) # black
-                cr.move_to(0, 0)
-                cr.arc(0, 0, self.TRANSLATE_PX, 0, 2 * math.pi)
-                cr.move_to(0,0)
                 cr.fill()
+            else:
+                cr.stroke()
+            if child and self.childring:
+                self.drawchildring(cr)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
                     state, parents, child, person):
@@ -292,8 +300,9 @@ class FanChartWidget(Gtk.DrawingArea):
         are in degrees. Gender is indication of father position or mother 
         position in the chart
         """
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        #alloc = self.get_allocation()
+        #x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        cr.save()
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         if self.background == self.BACKGROUND_GENDER:
@@ -341,6 +350,64 @@ class FanChartWidget(Gtk.DrawingArea):
         if self.last_x is None or self.last_y is None: 
             self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
                            start, stop)
+        cr.restore()
+
+    def drawchildring(self, cr):
+        cr.move_to(self.TRANSLATE_PX + self.CHILDRING_WIDTH, 0)
+        cr.set_source_rgb(0, 0, 0) # black
+        cr.set_line_width(1)
+        cr.arc(0, 0, self.TRANSLATE_PX + self.CHILDRING_WIDTH, 0, 2 * math.pi)
+        cr.stroke()
+        nrchild = len(self.childrenroot)
+        #Y axis is downward. positve angles are hence clockwise
+        startangle = math.pi
+        if nrchild <= 4:
+            angleinc = math.pi/2
+        else:
+            angleinc = 2 * math.pi / nrchild
+        self.angle[-2] = []
+        for child in self.childrenroot:
+            self.drawchild(cr, child, startangle, angleinc)
+            startangle += angleinc
+
+    def drawchild(self, cr, childdata, start, inc):
+        child_handle, child_gender, has_child = childdata
+        # in polar coordinates what is to draw
+        rmin = self.TRANSLATE_PX
+        rmax = self.TRANSLATE_PX + self.CHILDRING_WIDTH
+        thetamin = start
+        thetamax = start + inc
+        # add child to angle storage
+        self.angle[-2].append([thetamin, thetamax, child_gender, None])
+        def _childpath(cr):
+            cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+            cr.arc(0, 0, rmin, thetamin, thetamax)
+            cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+            cr.arc_negative(0, 0, rmax, thetamax, thetamin)
+            cr.line_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        _childpath(cr)
+        cr.set_source_rgb(0, 0, 0) # black
+        cr.set_line_width(1)
+        cr.stroke()
+        #now fill
+        if self.background == self.BACKGROUND_GENDER:
+            person = self.dbstate.db.get_person_from_handle(child_handle)
+            try:
+                alive = probably_alive(person, self.dbstate.db)
+            except RuntimeError:
+                alive = False
+            backgr, border = gui.utils.color_graph_box(alive, child_gender)
+            r, g, b = gui.utils.hex_to_rgb(backgr)
+        else:
+            #children in color as parents
+            r,g,b = self.colors[1]
+            if child_gender == gen.lib.Person.MALE:
+                r *= .9
+                g *= .9
+                b *= .9
+        _childpath(cr)
+        cr.set_source_rgb(r/255., g/255., b/255.) 
+        cr.fill()
 
     def text_degrees(self, text, radius):
         """
@@ -367,8 +434,6 @@ class FanChartWidget(Gtk.DrawingArea):
         # center text:
         # offset for cairo-font system is 90:
         pos = start + ((stop - start) - self.text_degrees(text,radius))/2.0 + 90
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         cr.save()
         # Create a PangoLayout, set the font and text 
         # Draw the layout N_WORDS times in a circle 
@@ -500,10 +565,14 @@ class FanChartWidget(Gtk.DrawingArea):
             # while mouse is moving, we must update the tooltip based on person
             generation, selected = self.person_under_cursor(event.x, event.y)
             tooltip = ""
-            if selected is not None:
+            person = None
+            if selected is not None and generation >= 0:
                 text, person, parents, child = self.data[generation][selected]
-                if person:
-                    tooltip = self.format_helper.format_person(person, 11)
+            elif selected is not None and generation == -2:
+                child_handle, child_gender, has_child = self.childrenroot[selected]
+                person = self.dbstate.db.get_person_from_handle(child_handle)
+            if person:
+                tooltip = self.format_helper.format_person(person, 11)
             self.set_tooltip_text(tooltip)
             return False
         
@@ -544,6 +613,9 @@ class FanChartWidget(Gtk.DrawingArea):
         radius = math.sqrt((curx - cx) ** 2 + (cury - cy) ** 2)
         if radius < self.TRANSLATE_PX:
             generation = -1
+        elif (self.childring and self.childrenroot and 
+                    radius < self.TRANSLATE_PX + self.CHILDRING_WIDTH):
+            generation = -2  # indication of one of the children
         elif radius < self.center:
             generation = 0
         else:
@@ -554,6 +626,10 @@ class FanChartWidget(Gtk.DrawingArea):
         if rads < 0: # second half of unit circle
             rads = math.pi + (math.pi + rads)
         pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
+        #children are in cairo angle (clockwise) from pi to 3 pi
+        #rads however is clock 0 to 2 pi
+        if rads < math.pi:
+            rads += 2 * math.pi
         # if generation is in expand zone:
         # FIXME: add a way of expanding 
         # find what person is in this position:
@@ -568,6 +644,13 @@ class FanChartWidget(Gtk.DrawingArea):
                         break
         elif generation == 0:
             selected = 0
+        elif generation == -2:
+            for p in range(len(self.angle[generation])):
+                start, stop, male, state = self.angle[generation][p]
+                if start <= rads <= stop:
+                    selected = p
+                    break
+            
         return generation, selected
 
     def on_mouse_down(self, widget, event):
@@ -598,7 +681,11 @@ class FanChartWidget(Gtk.DrawingArea):
         #right click on person, context menu
         # Do things based on state, event.get_state(), or button, event.button
         if gui.utils.is_right_click(event):
-            text, person, parents, child = self.data[generation][selected]
+            if generation == -2:
+                child_handle, child_gender, has_child = self.childrenroot[selected]
+                person = self.dbstate.db.get_person_from_handle(child_handle)
+            else:
+                text, person, parents, child = self.data[generation][selected]
             if person and self.on_popup:
                 self.on_popup(widget, event, person.handle)
                 return True
@@ -650,7 +737,8 @@ class FanChartWidget(Gtk.DrawingArea):
 class FanChartGrampsGUI(object):
     """ class for functions fanchart GUI elements will need in Gramps
     """
-    def __init__(self, maxgen, background, on_childmenu_changed):
+    def __init__(self, maxgen, background, childring,
+                 on_childmenu_changed):
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
         one moves via Fan Chart to a new person
@@ -662,6 +750,7 @@ class FanChartGrampsGUI(object):
 
         self.maxgen = maxgen 
         self.background = background
+        self.childring = childring
 
     def have_parents(self, person):
         """
@@ -714,7 +803,7 @@ class FanChartGrampsGUI(object):
         Fill the data structures with the active data. This initializes all 
         data.
         """
-        self.fan.reset(self.maxgen, self.background)
+        self.fan.reset(self.maxgen, self.background, self.childring)
         person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
         if not person: 
             name = None
@@ -723,6 +812,17 @@ class FanChartGrampsGUI(object):
         parents = self.have_parents(person)
         child = self.have_children(person)
         self.fan.data[0][0] = (name, person, parents, child)
+        self.fan.childrenroot = []
+        if child:
+            childlist = find_children(self.dbstate.db, person)
+            for child_handle in childlist:
+                child = self.dbstate.db.get_person_from_handle(child_handle)
+                if not child:
+                    continue
+                else:
+                    self.fan.childrenroot.append((child_handle, 
+                                                  child.get_gender(),
+                                                  self.have_children(child)))
         for current in range(1, self.maxgen):
             parent = 0
             # name, person, parents, children

@@ -60,6 +60,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
     CONFIGSETTINGS = (
         ('interface.fanview-maxgen', 9),
         ('interface.fanview-background', 0),
+        ('interface.fanview-childrenring', True),
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -72,6 +73,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         FanChartGrampsGUI.__init__(self, 
                     self._config.get('interface.fanview-maxgen'),
                     self._config.get('interface.fanview-background'),
+                    self._config.get('interface.fanview-childrenring'),
                     self.on_childmenu_changed)
 
         dbstate.connect('active-changed', self.active_changed)
@@ -245,9 +247,12 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         configdialog.add_spinner(table, _("Max generations"), 0,
                 'interface.fanview-maxgen', (1, 11), 
                 callback=self.cb_update_maxgen)
+        configdialog.add_checkbox(table, 
+                _('Show children ring'), 
+                1, 'interface.fanview-childrenring')
         configdialog.add_combo(table, 
                 _('Background'), 
-                4, 'interface.fanview-background',
+                2, 'interface.fanview-background',
                 ((0, _('Color Scheme 1')),
                 (1, _('Color Scheme 2')),
                 (2, _('Gender Colors')),
@@ -255,6 +260,15 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 callback=self.cb_update_background)
 
         return _('Layout'), table
+
+    def config_connect(self):
+        """
+        Overwriten from  :class:`~gui.views.pageview.PageView method
+        This method will be called after the ini file is initialized,
+        use it to monitor changes in the ini file
+        """
+        self._config.connect('interface.fanview-childrenring',
+                          self.cb_update_childrenring)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self.maxgen = spinbtn.get_value_as_int()
@@ -265,6 +279,16 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         entry = obj.get_active()
         self._config.set(constant, entry)
         self.background = int(entry)
+        self.update()
+
+    def cb_update_childrenring(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the childrenring setting. 
+        """
+        if entry == 'True':
+            self.childring = True
+        else:
+            self.childring = False
         self.update()
 
 #------------------------------------------------------------------------
