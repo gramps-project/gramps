@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-09-01 00:20+0200\n"
+"PO-Revision-Date: 2012-09-02 09:29+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -5708,22 +5708,18 @@ msgid "Geography"
 msgstr "Geografía"
 
 #: ../src/gui/grampsgui.py:122 ../src/plugins/view/geoperson.py:166
-#, fuzzy
 msgid "GeoPerson"
 msgstr "Persona"
 
 #: ../src/gui/grampsgui.py:123 ../src/plugins/view/geofamily.py:138
-#, fuzzy
 msgid "GeoFamily"
 msgstr "Familia"
 
 #: ../src/gui/grampsgui.py:124 ../src/plugins/view/geoevents.py:139
-#, fuzzy
 msgid "GeoEvents"
 msgstr "Eventos"
 
 #: ../src/gui/grampsgui.py:125 ../src/plugins/view/geoplaces.py:139
-#, fuzzy
 msgid "GeoPlaces"
 msgstr "Lugares"
 
@@ -8614,7 +8610,7 @@ msgstr "Seleccional objeto audiovisual"
 
 #: ../src/gui/selectors/selectperson.py:82
 msgid "Last Change"
-msgstr "Último Cambio"
+msgstr "Último cambio"
 
 #: ../src/gui/selectors/selectplace.py:55
 msgid "Select Place"
@@ -13486,9 +13482,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Está viendo en este momento la vista \"Grampletes\", en la que puede agregar sus propios grampletes. También puede agregar grampletes a cualquier vista agregando una barra lateral y/o una barra inferior y haciendo clic con el botón derecho a la derecha de la pestaña.\n"
+"Está viendo en este momento la vista \"Grampletes\", en la que puede agregar "
+"sus propios grampletes. También puede agregar grampletes a cualquier vista "
+"agregando una barra lateral y/o una barra inferior y haciendo clic con el "
+"botón derecho a la derecha de la pestaña.\n"
 "\n"
-"Puede hacer clic en el icono de configuración es la barra de herramientas para agregar más columnas, mientras que hacer clic con el botón derecho le permite agregar grampletes. Tambiénpuede arrastrar el botón Propiedades para reposicionar el gramplete en esta página o desacoplar el grampete para que flote sobre la ventana principal de Gramps."
+"Puede hacer clic en el icono de configuración es la barra de herramientas "
+"para agregar más columnas, mientras que hacer clic con el botón derecho le "
+"permite agregar grampletes. Tambiénpuede arrastrar el botón Propiedades para "
+"reposicionar el gramplete en esta página o desacoplar el grampete para que "
+"flote sobre la ventana principal de Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -18569,13 +18572,13 @@ msgstr ""
 #: ../src/plugins/view/placetreeview.py:83
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "Place Name"
-msgstr "Nombres del lugar"
+msgstr "Nombre del lugar"
 
 #: ../src/plugins/lib/libplaceview.py:101
 #: ../src/plugins/view/placetreeview.py:79
 #: ../src/plugins/webreport/NarrativeWeb.py:333
 msgid "Church Parish"
-msgstr "Iglesia Parroquia"
+msgstr "Parroquia"
 
 #: ../src/plugins/lib/libplaceview.py:119
 msgid "Edit the selected place"
@@ -19110,11 +19113,11 @@ msgstr "Menú de mapa"
 
 #: ../src/plugins/lib/maps/geography.py:430
 msgid "Remove cross hair"
-msgstr "Eliminar retícula"
+msgstr "Eliminar retículo"
 
 #: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
-msgstr "Añadir retícula"
+msgstr "Añadir retículo"
 
 #: ../src/plugins/lib/maps/geography.py:439
 msgid "Unlock zoom and position"
@@ -22378,7 +22381,7 @@ msgstr[1] "%(num)d citas fusionadas"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
-msgstr "No_relacionados..."
+msgstr "No_emparentados..."
 
 #: ../src/plugins/tool/NotRelated.py:86
 #, python-format
@@ -22387,7 +22390,7 @@ msgstr "No emparentado con \"%s\""
 
 #: ../src/plugins/tool/NotRelated.py:109
 msgid "NotRelated"
-msgstr "No relacionados"
+msgstr "No emparentados"
 
 #. start the progress indicator
 #: ../src/plugins/tool/NotRelated.py:117 ../src/plugins/tool/NotRelated.py:261
@@ -22398,7 +22401,7 @@ msgstr "Comenzando"
 #: ../src/plugins/tool/NotRelated.py:177
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Todos en la base de datos están relacionados con %s"
+msgstr "Todos en la base de datos están emparentados con %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:263
@@ -22737,12 +22740,12 @@ msgstr "Gestiona las operaciones masivas sobre los archivos de objetos"
 
 #: ../src/plugins/tool/tools.gpr.py:285
 msgid "Not Related"
-msgstr "No relacionados"
+msgstr "No emparentados"
 
 #: ../src/plugins/tool/tools.gpr.py:286
 msgid "Find people who are not in any way related to the selected person"
 msgstr ""
-"Encuentra las personas que no están relacionadas de ningún modo con la "
+"Encuentra las personas que no están emparentadas de ningún modo con la "
 "persona seleccionada"
 
 #: ../src/plugins/tool/tools.gpr.py:308
@@ -23053,7 +23056,7 @@ msgstr "Mexclar las citas seleccionadas o las fuentes seleccionadas"
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
 msgid "Citation Tree View"
-msgstr "Vista en árbol de las citas"
+msgstr "Vista de árbol de citas"
 
 #: ../src/plugins/view/citationtreeview.py:279
 msgid "Add source..."
@@ -23157,7 +23160,7 @@ msgstr "Fuente: ID"
 
 #: ../src/plugins/view/citationlistview.py:105
 msgid "Source: Last Changed"
-msgstr "Fuente: Último Cambio"
+msgstr "Fuente: Último cambio"
 
 #: ../src/plugins/view/citationlistview.py:122
 msgid "Delete the selected citation"
@@ -23827,11 +23830,11 @@ msgstr "Mostrar hermanos"
 
 #: ../src/plugins/view/repoview.py:85
 msgid "Home URL"
-msgstr "URL de principal"
+msgstr "Página web"
 
 #: ../src/plugins/view/repoview.py:93
 msgid "Search URL"
-msgstr "URL para búsquedas"
+msgstr "Página para búsquedas"
 
 #: ../src/plugins/view/repoview.py:106
 msgid "Add a new repository"
@@ -23871,7 +23874,7 @@ msgstr "Abreviatura"
 
 #: ../src/plugins/view/sourceview.py:83
 msgid "Publication Information"
-msgstr "Información de la Publicación"
+msgstr "Información de la publicación"
 
 #: ../src/plugins/view/sourceview.py:94
 msgid "Edit the selected source"
