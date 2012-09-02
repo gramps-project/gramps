@@ -241,9 +241,9 @@ def show_settings():
         cairover_str = 'not found'
 
     try:
-        import osmgpsmap
+        from gi.repository import OsmGpsMap as osmgpsmap
         try:
-            osmgpsmap_str = osmgpsmap.__version__
+            osmgpsmap_str = osmgpsmap._version
         except :# any failure to 'get' the version
             osmgpsmap_str = 'unknown version'
 
