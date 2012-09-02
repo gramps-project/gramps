@@ -81,8 +81,11 @@
             <property name="can_focus">False</property>
             <child>
               <object class="GtkLabel" id="person_title">
+                <property name="width_request">200</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
               </object>
               <packing>
@@ -94,14 +97,16 @@
             </child>
             <child>
               <object class="GtkLabel" id="label2">
+                <property name="width_request">200</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="label" translatable="yes">Select the person that will provide the
 primary data for the merged person.</property>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -109,19 +114,23 @@ primary data for the merged person.</property>
               <object class="GtkVButtonBox" id="vbuttonbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn1">
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="hexpand">True</property>
                     <property name="use_action_appearance">False</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
+                        <property name="width_request">200</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                         <property name="wrap">True</property>
                       </object>
                     </child>
@@ -138,14 +147,17 @@ primary data for the merged person.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
+                    <property name="hexpand">True</property>
                     <property name="use_action_appearance">False</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn2">
+                        <property name="width_request">200</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                         <property name="wrap">True</property>
                       </object>
                     </child>
@@ -159,7 +171,7 @@ primary data for the merged person.</property>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="padding">5</property>
                 <property name="position">2</property>
               </packing>
@@ -189,8 +201,8 @@ primary data for the merged person.</property>
                             <property name="use_markup">True</property>
                           </object>
                           <packing>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="x_options"></property>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -203,8 +215,8 @@ primary data for the merged person.</property>
                           <packing>
                             <property name="left_attach">2</property>
                             <property name="right_attach">3</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="x_options"></property>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -223,7 +235,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -245,7 +257,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -264,7 +276,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -286,7 +298,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -305,7 +317,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -327,7 +339,7 @@ primary data for the merged person.</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
                             <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -341,7 +353,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -355,7 +367,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -369,7 +381,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -383,7 +395,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">2</property>
                             <property name="bottom_attach">3</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -397,7 +409,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">2</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -414,7 +426,7 @@ primary data for the merged person.</property>
                             <property name="right_attach">4</property>
                             <property name="top_attach">3</property>
                             <property name="bottom_attach">4</property>
-                            <property name="y_options"/>
+                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -422,8 +434,8 @@ primary data for the merged person.</property>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -431,12 +443,13 @@ primary data for the merged person.</property>
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined.</property>
                         <property name="wrap">True</property>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="padding">6</property>
                         <property name="position">1</property>
                       </packing>
@@ -453,7 +466,7 @@ primary data for the merged person.</property>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="position">3</property>
               </packing>
             </child>
@@ -530,7 +543,7 @@ primary data for the merged person.</property>
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>

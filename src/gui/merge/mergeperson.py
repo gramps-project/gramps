@@ -174,7 +174,7 @@ class MergePerson(ManagedWindow):
         indent.set_property('pixels-below-lines', 1)
         title = tobj.create_tag()
         title.set_property('weight', Pango.Weight.BOLD)
-        title.set_property('scale', Pango.SCALE_LARGE)
+        title.set_property('scale', 1.2)
         self.add(tobj, title, name_displayer.display(person))
         self.add(tobj, normal, "%s:\t%s" % (_('ID'), 
                  person.get_gramps_id()))
