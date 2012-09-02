@@ -40,7 +40,6 @@ from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
 import socket
 from gi.repository import Gtk
-import glib
 
 #-------------------------------------------------------------------------
 #

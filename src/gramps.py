@@ -241,11 +241,16 @@ def show_settings():
         cairover_str = 'not found'
 
     try:
-        from gi.repository import OsmGpsMap as osmgpsmap
-        try:
-            osmgpsmap_str = osmgpsmap._version
-        except :# any failure to 'get' the version
-            osmgpsmap_str = 'unknown version'
+        from gi import Repository
+        repository = Repository.get_default()
+        if repository.enumerate_versions("OsmGpsMap"):
+            from gi.repository import OsmGpsMap as osmgpsmap
+            try:
+                osmgpsmap_str = osmgpsmap._version
+            except :# any failure to 'get' the version
+                osmgpsmap_str = 'unknown version'
+        else:
+            osmgpsmap_str = 'not found'
 
     except ImportError:
         osmgpsmap_str = 'not found'
