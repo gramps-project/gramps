@@ -61,6 +61,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         ('interface.fanview-maxgen', 9),
         ('interface.fanview-background', 0),
         ('interface.fanview-childrenring', True),
+        ('interface.fanview-radialtext', True),
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -74,6 +75,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                     self._config.get('interface.fanview-maxgen'),
                     self._config.get('interface.fanview-background'),
                     self._config.get('interface.fanview-childrenring'),
+                    self._config.get('interface.fanview-radialtext'),
                     self.on_childmenu_changed)
 
         dbstate.connect('active-changed', self.active_changed)
@@ -239,7 +241,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(3, 2)
+        table = Gtk.Table(4, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -258,6 +260,9 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 (2, _('Gender Colors')),
                 (3, _('White'))),
                 callback=self.cb_update_background)
+        configdialog.add_checkbox(table, 
+                _('Allow radial text at generation 6'), 
+                3, 'interface.fanview-radialtext')
 
         return _('Layout'), table
 
@@ -269,6 +274,8 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         """
         self._config.connect('interface.fanview-childrenring',
                           self.cb_update_childrenring)
+        self._config.connect('interface.fanview-radialtext',
+                          self.cb_update_radialtext)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self.maxgen = spinbtn.get_value_as_int()
@@ -289,6 +296,16 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
             self.childring = True
         else:
             self.childring = False
+        self.update()
+
+    def cb_update_radialtext(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the childrenring setting. 
+        """
+        if entry == 'True':
+            self.radialtext = True
+        else:
+            self.radialtext = False
         self.update()
 
 #------------------------------------------------------------------------

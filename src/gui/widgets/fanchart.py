@@ -30,6 +30,8 @@
 ## Found by redwood:
 ## http://www.gramps-project.org/bugs/view.php?id=2611
 
+from __future__ import division
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -80,6 +82,8 @@ class FanChartWidget(Gtk.DrawingArea):
     """
     Interactive Fan Chart Widget. 
     """
+    
+    PIXELS_PER_GENERATION = 50 # size of radius for generation
     BORDER_EDGE_WIDTH = 10
     CHILDRING_WIDTH = 12
     TRANSLATE_PX = 10
@@ -124,6 +128,8 @@ class FanChartWidget(Gtk.DrawingArea):
         self.goto = None
         self.on_popup = callback_popup
         self.last_x, self.last_y = None, None
+        self.fontdescr = "Times New Roman" #"sans"
+        self.fontsize = 8
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
@@ -158,23 +164,19 @@ class FanChartWidget(Gtk.DrawingArea):
         self.drag_dest_set_target_list(tglist)
         self.connect('drag_data_received', self.on_drag_data_received)
 
-        self.pixels_per_generation = 50 # size of radius for generation
-        ## gotten from experiments with "sans serif 8":
-        self.degrees_per_radius = .80
-        ## Other fonts will have different settings. Can you compute that
-        ## from the font size? I have no idea.
         self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_SCHEME1, True)
+        self.reset(9, self.BACKGROUND_SCHEME1, True, True)
         self.set_size_request(120, 120)
 
-    def reset(self, maxgen, background, childring):
+    def reset(self, maxgen, background, childring, radialtext):
         """
         Reset all of the data on where/how slices appear, and if they are expanded.
         """
+        self.radialtext = radialtext
         self.childring = childring
         self.background = background
         if self.background == self.BACKGROUND_GENDER:
@@ -247,7 +249,7 @@ class FanChartWidget(Gtk.DrawingArea):
         Compute the half radius of the circle
         """
         nrgen = self.nrgen()
-        return self.pixels_per_generation * nrgen + self.center \
+        return self.PIXELS_PER_GENERATION * nrgen + self.center \
                 + self.BORDER_EDGE_WIDTH
 
     def on_draw(self, widget, cr, scale=1.):
@@ -258,7 +260,7 @@ class FanChartWidget(Gtk.DrawingArea):
         """
         # first do size request of what we will need
         nrgen = self.nrgen()
-        halfdist = self.pixels_per_generation * nrgen + self.center
+        halfdist = self.PIXELS_PER_GENERATION * nrgen + self.center
         self.set_size_request(2 * halfdist, 2 * halfdist)
         
         #obtain the allocation
@@ -314,8 +316,6 @@ class FanChartWidget(Gtk.DrawingArea):
         are in degrees. Gender is indication of father position or mother 
         position in the chart
         """
-        #alloc = self.get_allocation()
-        #x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         cr.save()
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
@@ -332,7 +332,7 @@ class FanChartWidget(Gtk.DrawingArea):
                 r *= .9
                 g *= .9
                 b *= .9
-        radius = generation * self.pixels_per_generation + self.center
+        radius = generation * self.PIXELS_PER_GENERATION + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
             # draw an indicator
@@ -345,16 +345,19 @@ class FanChartWidget(Gtk.DrawingArea):
             cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad) 
             cr.line_to(0, 0)
             cr.stroke()
+        def pathperson(cr):
+            """ we are lazy here, as we draw from out to in, we do a piewedge
+                instead of the actual person box
+            """
+            cr.move_to(0, 0)
+            cr.arc(0, 0, radius, start_rad, stop_rad) 
+            cr.line_to(0, 0)
+            
         cr.set_source_rgb(r/255., g/255., b/255.) 
-        cr.move_to(0, 0)
-        cr.arc(0, 0, radius, start_rad, stop_rad) 
-        cr.move_to(0, 0)
+        pathperson(cr)
         cr.fill()
         cr.set_source_rgb(0, 0, 0) # black
-        cr.arc(0, 0, radius, start_rad, stop_rad) 
-        cr.line_to(0, 0)
-        cr.arc(0, 0, radius, start_rad, stop_rad) 
-        cr.line_to(0, 0)
+        pathperson(cr)
         if state == self.NORMAL: # normal
             cr.set_line_width(1)
         else: # EXPANDED
@@ -362,8 +365,13 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.stroke()
         cr.set_line_width(1)
         if self.last_x is None or self.last_y is None: 
-            self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
-                           start, stop)
+            #we are not in a move, so draw text
+            radial = False
+            radstart = radius - self.PIXELS_PER_GENERATION/2
+            if self.radialtext and generation >= 6:
+                radial = True
+                radstart = radius - self.PIXELS_PER_GENERATION + 4
+            self.draw_text(cr, name, radstart, start, stop, radial)
         cr.restore()
 
     def drawchildring(self, cr):
@@ -423,47 +431,127 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.set_source_rgb(r/255., g/255., b/255.) 
         cr.fill()
 
-    def text_degrees(self, text, radius):
-        """
-        Returns the number of degrees of text at a given radius.
-        """
-        return 360.0 * len(text)/(radius * self.degrees_per_radius)
-
-    def text_limit(self, text, degrees, radius):
-        """
-        Trims the text to fit a given angle at a given radius. Probably 
-        a better way to do this.
-        """
-        while self.text_degrees(text, radius) > degrees:
-            text = text[:-1]
-        return text
-
-    def draw_text(self, cr, text, radius, start, stop):
+    def draw_text(self, cr, text, radius, start, stop, radial=False):
         """
         Display text at a particular radius, between start and stop
         degrees.
         """
-        # trim to fit:
-        text = self.text_limit(text, stop - start, radius - 15)
-        # center text:
-        # offset for cairo-font system is 90:
-        pos = start + ((stop - start) - self.text_degrees(text,radius))/2.0 + 90
         cr.save()
-        # Create a PangoLayout, set the font and text 
-        # Draw the layout N_WORDS times in a circle 
-        for i in range(len(text)):
+        font = Pango.FontDescription(self.fontdescr)
+        fontsize = self.fontsize
+        font.set_size(fontsize * Pango.SCALE)
+        if radial and self.radialtext:
             cr.save()
-            layout = self.create_pango_layout(text[i])
-            layout.set_font_description(Pango.FontDescription("sans 8"))
-            angle = 360.0 * i / (radius * self.degrees_per_radius) + pos
+            layout = self.create_pango_layout(text)
+            layout.set_font_description(font)
+            w, h = layout.get_size()
+            w = w / Pango.SCALE + 5 # 5 pixel padding
+            h = h / Pango.SCALE + 4 # 4 pixel padding
+            #first we check if height is ok
+            degneedheight = h / radius * (180 / math.pi)
+            degavailheight = stop-start
+            degoffsetheight = 0
+            if degneedheight > degavailheight:
+                #reduce height
+                fontsize = degavailheight / degneedheight * fontsize / 2
+                font.set_size(fontsize * Pango.SCALE)
+                layout = self.create_pango_layout(text)
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 5 # 5 pixel padding
+                h = h / Pango.SCALE + 4 # 4 pixel padding
+                #first we check if height is ok
+                degneedheight = h / radius * (180 / math.pi)
+                degavailheight = stop-start
+                if degneedheight > degavailheight:
+                    #we could not fix it, no text
+                    text = ""
+            if text:
+                #spread rest
+                degoffsetheight = (degavailheight - degneedheight) / 2
+            txlen = len(text)
+            if w > self.PIXELS_PER_GENERATION:
+                txlen = int(w/self.PIXELS_PER_GENERATION * txlen)
+            cont = True
+            while cont:
+                layout = self.create_pango_layout(text[:txlen])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 5 # 5 pixel padding
+                h = h / Pango.SCALE + 4 # 4 pixel padding
+                if w > self.PIXELS_PER_GENERATION:
+                    if txlen <= 1:
+                        cont = False
+                        txlen = 0
+                    else:
+                        txlen -= 1
+                else:
+                    cont = False
             cr.set_source_rgb(0, 0, 0) # black 
-            cr.rotate(angle * (math.pi / 180));
-            # Inform Pango to re-layout the text with the new transformation
+            # offset for cairo-font system is 90
+            if start > 179:
+                pos = start + degoffsetheight + 90 - 90
+            else:
+                pos = stop - degoffsetheight + 180
+            cr.rotate(pos * math.pi / 180)
             layout.context_changed()
-            width, height = layout.get_size()
-            cr.move_to(- (width / Pango.SCALE) / 2.0, - radius)
+            if start > 179:
+                cr.move_to(radius+2, 0)
+            else:
+                cr.move_to(-radius-self.PIXELS_PER_GENERATION+6, 0)
             PangoCairo.show_layout(cr, layout)
             cr.restore()
+        else:
+            # center text:
+            #  1. determine degrees of the text we can draw
+            degpadding = 5 / radius * (180 / math.pi) # degrees for 5 pixel padding
+            degneed = degpadding
+            maxlen = len(text)
+            for i in range(len(text)):
+                layout = self.create_pango_layout(text[i])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 2 # 2 pixel padding after letter
+                h = h / Pango.SCALE + 2 # 2 pixel padding
+                degneed += w / radius * (180 / math.pi)
+                if degneed > stop - start:
+                    #outside of the box
+                    maxlen = i
+                    break
+            #  2. determine degrees over we can distribute before and after
+            if degneed > stop - start:
+                degover = 0
+            else:
+                degover = stop - start - degneed - degpadding
+            #  3. now draw this text, letter per letter
+            text = text[:maxlen]
+            
+            # offset for cairo-font system is 90, padding used is 5:
+            pos = start + 90 + degpadding + degover / 2
+            # Create a PangoLayout, set the font and text 
+            # Draw the layout N_WORDS times in a circle 
+            for i in range(len(text)):
+                layout = self.create_pango_layout(text[i])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 2 # 4 pixel padding after word
+                h = h / Pango.SCALE + 2 # 4 pixel padding
+                degneed = w / radius * (180 / math.pi)
+                if pos+degneed > stop + 90:
+                    #failsafe, outside of the box, redo
+                    break
+
+                cr.save()
+                cr.set_source_rgb(0, 0, 0) # black 
+                cr.rotate(pos * math.pi / 180)
+                pos = pos + degneed
+                # Inform Pango to re-layout the text with the new transformation
+                layout.context_changed()
+                #width, height = layout.get_size()
+                #r.move_to(- (width / Pango.SCALE) / 2.0, - radius)
+                cr.move_to(0, - radius)
+                PangoCairo.show_layout(cr, layout)
+                cr.restore()
         cr.restore()
 
     def expand_parents(self, generation, selected, current):
@@ -634,7 +722,7 @@ class FanChartWidget(Gtk.DrawingArea):
             generation = 0
         else:
             generation = int((radius - self.center) / 
-                             self.pixels_per_generation) + 1
+                             self.PIXELS_PER_GENERATION) + 1
 
         rads = math.atan2( (cury - cy), (curx - cx) )
         if rads < 0: # second half of unit circle
@@ -771,7 +859,7 @@ class FanChartWidget(Gtk.DrawingArea):
 class FanChartGrampsGUI(object):
     """ class for functions fanchart GUI elements will need in Gramps
     """
-    def __init__(self, maxgen, background, childring,
+    def __init__(self, maxgen, background, childring, radialtext,
                  on_childmenu_changed):
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
@@ -785,6 +873,7 @@ class FanChartGrampsGUI(object):
         self.maxgen = maxgen 
         self.background = background
         self.childring = childring
+        self.radialtext = radialtext
 
     def have_parents(self, person):
         """on_childmenu_changed
@@ -838,7 +927,8 @@ class FanChartGrampsGUI(object):
         Fill the data structures with the active data. This initializes all 
         data.
         """
-        self.fan.reset(self.maxgen, self.background, self.childring)
+        self.fan.reset(self.maxgen, self.background, self.childring,
+                       self.radialtext)
         person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
         if not person: 
             name = None
