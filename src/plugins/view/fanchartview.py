@@ -48,6 +48,7 @@ from gui.views.navigationview import NavigationView
 from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
 from gui.editors import EditPerson
+from gui.utils import SystemFonts
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
@@ -62,6 +63,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         ('interface.fanview-background', 0),
         ('interface.fanview-childrenring', True),
         ('interface.fanview-radialtext', True),
+        ('interface.fanview-font', 'Sans'),
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -76,12 +78,14 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                     self._config.get('interface.fanview-background'),
                     self._config.get('interface.fanview-childrenring'),
                     self._config.get('interface.fanview-radialtext'),
+                    self._config.get('interface.fanview-font'),
                     self.on_childmenu_changed)
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
 
         self.additional_uis.append(self.additional_ui())
+        self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
     def navigation_type(self):
         return 'Person'
@@ -263,6 +267,10 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         configdialog.add_checkbox(table, 
                 _('Allow radial text at generation 6'), 
                 3, 'interface.fanview-radialtext')
+        configdialog.add_combo(table, 
+                _('Text Font'), 
+                4, 'interface.fanview-font',
+                self.allfonts, callback=self.cb_update_font, valueactive=True)
 
         return _('Layout'), table
 
@@ -306,6 +314,12 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
             self.radialtext = True
         else:
             self.radialtext = False
+        self.update()
+
+    def cb_update_font(self, obj, constant):
+        entry = obj.get_active()
+        self._config.set(constant, self.allfonts[entry][1])
+        self.fonttype = self.allfonts[entry][1]
         self.update()
 
 #------------------------------------------------------------------------

@@ -362,11 +362,13 @@ class ConfigureDialog(ManagedWindow):
         return entry
 
     def add_combo(self, table, label, index, constant, opts, callback=None,
-                  config=None):
+                  config=None, valueactive=False):
         """
         A drop-down list allowing selection from a number of fixed options.
         :param opts: A list of options.  Each option is a tuple containing an
         integer code and a textual description.
+        If valueactive = True, the constant stores the value, not the position
+        in the list
         """
         if not config:
             config = self.__config
@@ -379,8 +381,17 @@ class ConfigureDialog(ManagedWindow):
         combo = Gtk.ComboBox(model=store)
         cell = Gtk.CellRendererText()
         combo.pack_start(cell, True)
-        combo.add_attribute(cell, 'text', 1)  
-        combo.set_active(config.get(constant))
+        combo.add_attribute(cell, 'text', 1)
+        if valueactive:
+            val = config.get(constant)
+            pos = 0
+            for nr, item in enumerate(opts):
+                if item[-1] == val:
+                    pos = nr
+                    break
+            combo.set_active(pos)
+        else:
+            combo.set_active(config.get(constant))
         combo.connect('changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)

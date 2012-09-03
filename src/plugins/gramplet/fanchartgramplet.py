@@ -63,7 +63,7 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
 
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
-        FanChartGrampsGUI.__init__(self, 6, 0, True, True, 
+        FanChartGrampsGUI.__init__(self, 6, 0, True, True, 'Sans',
                                    self.on_childmenu_changed)
         self.set_fan(FanChartWidget(self.dbstate, self.on_popup))
         # Replace the standard textview with the fan chart widget:

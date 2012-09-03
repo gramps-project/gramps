@@ -128,7 +128,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.goto = None
         self.on_popup = callback_popup
         self.last_x, self.last_y = None, None
-        self.fontdescr = "Times New Roman" #"sans"
+        self.fontdescr = "Sans"
         self.fontsize = 8
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
@@ -169,16 +169,17 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_SCHEME1, True, True)
+        self.reset(9, self.BACKGROUND_SCHEME1, True, True, 'Sans')
         self.set_size_request(120, 120)
 
-    def reset(self, maxgen, background, childring, radialtext):
+    def reset(self, maxgen, background, childring, radialtext, fontdescr):
         """
         Reset all of the data on where/how slices appear, and if they are expanded.
         """
         self.radialtext = radialtext
         self.childring = childring
         self.background = background
+        self.fontdescr = fontdescr
         if self.background == self.BACKGROUND_GENDER:
             self.colors =  None
         else:
@@ -859,7 +860,7 @@ class FanChartWidget(Gtk.DrawingArea):
 class FanChartGrampsGUI(object):
     """ class for functions fanchart GUI elements will need in Gramps
     """
-    def __init__(self, maxgen, background, childring, radialtext,
+    def __init__(self, maxgen, background, childring, radialtext, font,
                  on_childmenu_changed):
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
@@ -874,6 +875,7 @@ class FanChartGrampsGUI(object):
         self.background = background
         self.childring = childring
         self.radialtext = radialtext
+        self.fonttype = font
 
     def have_parents(self, person):
         """on_childmenu_changed
@@ -928,7 +930,7 @@ class FanChartGrampsGUI(object):
         data.
         """
         self.fan.reset(self.maxgen, self.background, self.childring,
-                       self.radialtext)
+                       self.radialtext, self.fonttype)
         person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
         if not person: 
             name = None
