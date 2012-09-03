@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-09-02 09:29+0200\n"
+"PO-Revision-Date: 2012-09-03 09:30+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -1851,7 +1851,7 @@ msgstr "Acción"
 
 #: ../src/UndoHistory.py:176
 msgid "Delete confirmation"
-msgstr "Confirmación del borrado"
+msgstr "Confirmación de la eliminación"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
@@ -2323,7 +2323,7 @@ msgstr "No se pudo cargar un árbol genealógico reciente."
 
 #: ../src/cli/grampscli.py:220
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "No existe el árbol genealógico porque ha sido borrado."
+msgstr "No existe el árbol genealógico porque ha sido eliminado."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
@@ -2424,19 +2424,19 @@ msgstr "Agregar hijo a la familia"
 
 #: ../src/gen/db/base.py:1613 ../src/gen/db/base.py:1618
 msgid "Remove child from family"
-msgstr "Eliminar hijo de la familia"
+msgstr "Quitar hijo de la familia"
 
 #: ../src/gen/db/base.py:1693 ../src/gen/db/base.py:1697
 msgid "Remove Family"
-msgstr "Eliminar familia"
+msgstr "Quitar familia"
 
 #: ../src/gen/db/base.py:1738
 msgid "Remove father from family"
-msgstr "Eliminar padre de la familia"
+msgstr "Quitar padre de la familia"
 
 #: ../src/gen/db/base.py:1740
 msgid "Remove mother from family"
-msgstr "Eliminar madre de la familia"
+msgstr "Quitar madre de la familia"
 
 #: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:60
 msgid ""
@@ -4470,7 +4470,7 @@ msgstr ""
 "\n"
 "</tt>\n"
 "Las claves en mayúsculas producen el mismo resultado en mayúsculas. Los "
-"paréntesis innecesarios y las comas se eliminan. Otro texto aparece "
+"paréntesis innecesarios y las comas se quitan. Otro texto aparece "
 "literalmente.\n"
 "\n"
 "<b>Ejemplo</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") "
@@ -5026,39 +5026,37 @@ msgstr "Importando archivo..."
 #: ../src/gui/dbman.py:528
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "¿Eliminar el árbol genealógico '%s'?"
+msgstr "¿Quitar el árbol genealógico '%s'?"
 
 #: ../src/gui/dbman.py:529
 msgid "Removing this family tree will permanently destroy the data."
-msgstr ""
-"La eliminación de este árbol genealógico destruirá de forma permanente los "
-"datos."
+msgstr "Quitar este árbol genealógico destruirá de forma permanente los datos."
 
 #: ../src/gui/dbman.py:530
 msgid "Remove family tree"
-msgstr "Eliminar el árbol genealógico"
+msgstr "Quitar el árbol genealógico"
 
 #: ../src/gui/dbman.py:536
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Eliminar la versión '%(revision)s' de '%(database)s'"
+msgstr "Quitar la versión '%(revision)s' de '%(database)s'"
 
 #: ../src/gui/dbman.py:540
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
-msgstr "Si elimina esta versión ya no podrá extraerla en un futuro."
+msgstr "Si quita esta versión ya no podrá extraerla en un futuro."
 
 #: ../src/gui/dbman.py:542
 msgid "Remove version"
-msgstr "Eliminar versión"
+msgstr "Quitar versión"
 
 #: ../src/gui/dbman.py:571
 msgid "Could not delete family tree"
-msgstr "No se pudo borrar el árbol genealógico"
+msgstr "No se pudo eliminar el árbol genealógico"
 
 #: ../src/gui/dbman.py:596
 msgid "Deletion failed"
-msgstr "Falló el borrado"
+msgstr "Falló la eliminación"
 
 #: ../src/gui/dbman.py:597
 #, python-format
@@ -5067,7 +5065,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"El intento de borrar una versión falló con el siguiente mensaje:\n"
+"El intento de eliminar una versión falló con el siguiente mensaje:\n"
 "\n"
 "%s"
 
@@ -5124,8 +5122,8 @@ msgstr ""
 "Antes de hacer una reparación, intente abrir el árbol genealógico "
 "normalmente.  Varios errores que hacen que se muestre el botón de reparación "
 "pueden arreglarse automáticamente. En tal caso, puede desactivar el botón de "
-"reparación eliminando el archivo <i>need_recover</i> del directorio del "
-"árbol genealógico."
+"reparación quitando el archivo <i>need_recover</i> del directorio del árbol "
+"genealógico."
 
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
@@ -5549,7 +5547,7 @@ msgid ""
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
-"Este filtro está en uso actualmente como base para otros. Si lo borra, "
+"Este filtro está en uso actualmente como base para otros. Si lo elimina, "
 "quedarán eliminados todos los demás filtros que dependen de éste."
 
 #: ../src/gui/filtereditor.py:1103
@@ -5576,7 +5574,7 @@ msgstr "Agregar un gramplete"
 
 #: ../src/gui/grampsbar.py:431
 msgid "Remove a gramplet"
-msgstr "Eliminar un gramplete"
+msgstr "Quitar un gramplete"
 
 #: ../src/gui/grampsbar.py:441
 msgid "Restore default gramplets"
@@ -6476,7 +6474,7 @@ msgstr "Agregar un nuevo lugar"
 
 #: ../src/gui/editors/objectentries.py:255
 msgid "Remove place"
-msgstr "Eliminar lugar"
+msgstr "Quitar lugar"
 
 #: ../src/gui/editors/objectentries.py:300
 msgid "To select a media object, use drag-and-drop or use the buttons"
@@ -6501,7 +6499,7 @@ msgstr "Agregar un nuevo objeto audiovisual"
 
 #: ../src/gui/editors/objectentries.py:306
 msgid "Remove media object"
-msgstr "Eliminar objeto audiovisual"
+msgstr "Quitar objeto audiovisual"
 
 #: ../src/gui/editors/objectentries.py:351
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -6526,7 +6524,7 @@ msgstr "Agregar una nueva nota"
 
 #: ../src/gui/editors/objectentries.py:357
 msgid "Remove note"
-msgstr "Eliminar nota"
+msgstr "Quitar nota"
 
 #: ../src/gui/editors/editaddress.py:83 ../src/gui/editors/editaddress.py:156
 msgid "Address Editor"
@@ -6621,7 +6619,7 @@ msgstr "Editar cita (%s)"
 #: ../src/gui/editors/editcitation.py:532
 #, python-format
 msgid "Delete Citation (%s)"
-msgstr "Borrar cita (%s)"
+msgstr "Eliminar cita (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
@@ -6688,7 +6686,7 @@ msgstr "Editar evento (%s)"
 #: ../src/gui/editors/editevent.py:337
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Borrar evento (%s)"
+msgstr "Eliminar evento (%s)"
 
 #: ../src/gui/editors/editeventref.py:68
 #: ../src/gui/editors/editeventref.py:243
@@ -6715,7 +6713,7 @@ msgstr "Crear una nueva persona y agregarla como hijo a la familia"
 
 #: ../src/gui/editors/editfamily.py:106
 msgid "Remove the child from the family"
-msgstr "Eliminar el hijo de la familia"
+msgstr "Quitar el hijo de la familia"
 
 #: ../src/gui/editors/editfamily.py:107
 msgid "Edit the child reference"
@@ -6855,7 +6853,7 @@ msgid ""
 msgstr ""
 "El %(object)s que está modificando ha sido modificado fuera de este editor.  "
 "Puede deberse a un cambio en una de las vistas principales, por ejemplo, una "
-"fuente utilizada aquí ha sido borrada en la vista de fuentes.\n"
+"fuente utilizada aquí ha sido eliminada en la vista de fuentes.\n"
 "Para asegurar que la información presentada aquí sigue siendo correcta, se "
 "han actualizado los datos presentados.  Puede que algunas modificaciones "
 "realizadas aquí se hayan perdido."
@@ -6884,7 +6882,7 @@ msgstr "Agregar una nueva persona como madre"
 
 #: ../src/gui/editors/editfamily.py:528
 msgid "Remove the person as the mother"
-msgstr "Eliminar la persona como madre"
+msgstr "Quitar la persona como madre"
 
 #: ../src/gui/editors/editfamily.py:541
 msgid "Select a person as the father"
@@ -6896,7 +6894,7 @@ msgstr "Agregar una nueva persona como padre"
 
 #: ../src/gui/editors/editfamily.py:543
 msgid "Remove the person as the father"
-msgstr "Eliminar la persona como padre"
+msgstr "Quitar la persona como padre"
 
 #: ../src/gui/editors/editfamily.py:742
 msgid "Select Mother"
@@ -7051,7 +7049,7 @@ msgstr "Editar objeto audiovisual (%s)"
 
 #: ../src/gui/editors/editmedia.py:341
 msgid "Remove Media Object"
-msgstr "Eliminar objeto audiovisual"
+msgstr "Quitar objeto audiovisual"
 
 #: ../src/gui/editors/editmediaref.py:83
 #: ../src/gui/editors/editmediaref.py:432
@@ -7161,7 +7159,7 @@ msgstr "Agregar nota"
 #: ../src/gui/editors/editnote.py:345
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Borrar nota (%s)"
+msgstr "Eliminar nota (%s)"
 
 #: ../src/gui/editors/editperson.py:149
 #, python-format
@@ -7341,7 +7339,7 @@ msgstr "Editar lugar (%s)"
 #: ../src/gui/editors/editplace.py:344
 #, python-format
 msgid "Delete Place (%s)"
-msgstr "Borrar lugar (%s)"
+msgstr "Eliminar lugar (%s)"
 
 #: ../src/gui/editors/editprimary.py:235
 msgid "Save Changes?"
@@ -7409,7 +7407,7 @@ msgstr "Editar repositorio (%s)"
 #: ../src/gui/editors/editrepository.py:202
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr "Borrar repositorio (%s)"
+msgstr "Eliminar repositorio (%s)"
 
 #: ../src/gui/editors/editsource.py:79
 msgid "New Source"
@@ -7422,7 +7420,7 @@ msgstr "Editar fuente"
 #: ../src/gui/editors/editsource.py:222
 #, python-format
 msgid "Delete Source (%s)"
-msgstr "Borrar fuente (%s)"
+msgstr "Eliminar fuente (%s)"
 
 #: ../src/gui/editors/editurl.py:61 ../src/gui/editors/editurl.py:91
 msgid "Internet Address Editor"
@@ -7434,7 +7432,7 @@ msgstr "Crear y agregar una nueva dirección"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:63
 msgid "Remove the existing address"
-msgstr "Eliminar la dirección existente"
+msgstr "Quitar la dirección existente"
 
 #: ../src/gui/editors/displaytabs/addrembedlist.py:64
 msgid "Edit the selected address"
@@ -7468,7 +7466,7 @@ msgstr "Crear y agregar un nuev attributo"
 
 #: ../src/gui/editors/displaytabs/attrembedlist.py:54
 msgid "Remove the existing attribute"
-msgstr "Eliminar el atributo existente"
+msgstr "Quitar el atributo existente"
 
 #: ../src/gui/editors/displaytabs/attrembedlist.py:55
 msgid "Edit the selected attribute"
@@ -7510,7 +7508,7 @@ msgstr "Agregar"
 #: ../src/glade/grampletpane.glade.h:9 ../src/glade/styleeditor.glade.h:27
 #: ../src/glade/editfamily.glade.h:18 ../src/glade/rule.glade.h:24
 msgid "Remove"
-msgstr "Eliminar"
+msgstr "Quitar"
 
 #: ../src/gui/editors/displaytabs/buttontab.py:71
 #: ../src/gui/editors/displaytabs/embeddedlist.py:124
@@ -7537,7 +7535,7 @@ msgstr "Crear y agregar una nueva citar y una nueva fuente"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:72
 msgid "Remove the existing citation"
-msgstr "Eliminar la cita existente"
+msgstr "Quitar la cita existente"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:73
 #: ../src/plugins/view/citationlistview.py:121
@@ -7605,7 +7603,7 @@ msgstr "Crear y agregar una nueva entrada de datos"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:50
 msgid "Remove the existing data entry"
-msgstr "Eliminar la entrada de datos existente"
+msgstr "Quitar la entrada de datos existente"
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:51
 msgid "Edit the selected data entry"
@@ -7649,7 +7647,7 @@ msgstr "Agregar un nuevo evento familiar"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:64
 msgid "Remove the selected family event"
-msgstr "Eliminar el evento familiar seleccionado"
+msgstr "Quitar el evento familiar seleccionado"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Edit the selected family event or edit person"
@@ -7753,7 +7751,7 @@ msgstr "Crear y agregar una nueva ordenanza SUD"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Remove the existing LDS ordinance"
-msgstr "Eliminar la ordenanza SUD existente"
+msgstr "Quitar la ordenanza SUD existente"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Edit the selected LDS ordinance"
@@ -7804,7 +7802,7 @@ msgstr "Crear y agregar un nuevo nombre"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:63
 msgid "Remove the existing name"
-msgstr "Eliminar el nombre existente"
+msgstr "Quitar el nombre existente"
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Edit the selected name"
@@ -7866,7 +7864,7 @@ msgstr "Crear y agregar una nueva nota"
 
 #: ../src/gui/editors/displaytabs/notetab.py:67
 msgid "Remove the existing note"
-msgstr "Eliminar la nota existente"
+msgstr "Quitar la nota existente"
 
 #: ../src/gui/editors/displaytabs/notetab.py:68
 #: ../src/plugins/view/noteview.py:90
@@ -7915,7 +7913,7 @@ msgstr "Agregar un nuevo evento personal"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Remove the selected personal event"
-msgstr "Borrar el evento personal seleccionado"
+msgstr "Quitar el evento personal seleccionado"
 
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Edit the selected personal event or edit family"
@@ -7945,7 +7943,7 @@ msgstr "Crear y agregar una nueva asociación"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:54
 msgid "Remove the existing association"
-msgstr "Eliminar la asociación existente"
+msgstr "Quitar la asociación existente"
 
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:55
 msgid "Edit the selected association"
@@ -7977,7 +7975,7 @@ msgstr "Crear y agregar un nuevo repositorio"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:57
 msgid "Remove the existing repository"
-msgstr "Eliminar el repositorio existente"
+msgstr "Quitar el repositorio existente"
 
 #: ../src/gui/editors/displaytabs/repoembedlist.py:58
 #: ../src/plugins/view/repoview.py:107
@@ -8024,7 +8022,7 @@ msgstr "Crear y agregar un nuevo apellido"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:66
 msgid "Remove the selected surname"
-msgstr "Eliminar el apellido seleccionado"
+msgstr "Quitar el apellido seleccionado"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:67
 msgid "Edit the selected surname"
@@ -8061,7 +8059,7 @@ msgstr "Crear y agregar una nueva dirección web"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:55
 msgid "Remove the existing web address"
-msgstr "Eliminar la dirección web existente"
+msgstr "Quitar la dirección web existente"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:56
 msgid "Edit the selected web address"
@@ -8555,7 +8553,7 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Si continúa con esta herramienta se borrará las historia de cambios de esta "
+"Si continúa con esta herramienta se borrará la historia de cambios de esta "
 "sesión.  En particular, no podrá deshacer los cambios realizados por esta "
 "herramienta ni ninguno de los cambios realizados con anterioridad a ella.\n"
 "\n"
@@ -8634,7 +8632,7 @@ msgstr "A_gregar..."
 
 #: ../src/gui/views/listview.py:204 ../src/plugins/lib/libpersonview.py:366
 msgid "_Remove"
-msgstr "_Eliminar"
+msgstr "Quita_r"
 
 #: ../src/gui/views/listview.py:206 ../src/plugins/lib/libpersonview.py:368
 msgid "_Merge..."
@@ -8663,37 +8661,37 @@ msgstr "No se pudo establecer el marcador porque no había nada seleccionado."
 
 #: ../src/gui/views/listview.py:498
 msgid "Remove selected items?"
-msgstr "¿Borrar los elementos seleccionados?"
+msgstr "¿Quitar los elementos seleccionados?"
 
 #: ../src/gui/views/listview.py:499
 msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
 msgstr ""
-"Se ha seleccionado más de un elemento para borrar.  ¿Preguntar antes de "
-"borrar cada uno?"
+"Se ha seleccionado más de un elemento para eliminar.  ¿Preguntar antes de "
+"eliminar cada uno?"
 
 #: ../src/gui/views/listview.py:512
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
 msgstr ""
-"Este elemento está en uso actualmente. Si lo borra, se eliminará de la base "
+"Este elemento está en uso actualmente. Si lo elimina, se quitará de la base "
 "de datos y de todos los elementos que lo referencian."
 
 #: ../src/gui/views/listview.py:516 ../src/plugins/view/familyview.py:256
 msgid "Deleting item will remove it from the database."
-msgstr "Borrar el elemento lo eliminará de la base de datos."
+msgstr "Eliminar el elemento lo quitará de la base de datos."
 
 #: ../src/gui/views/listview.py:523 ../src/plugins/lib/libpersonview.py:298
 #: ../src/plugins/view/familyview.py:258
 #, python-format
 msgid "Delete %s?"
-msgstr "¿Borrar %s?"
+msgstr "¿Eliminar %s?"
 
 #: ../src/gui/views/listview.py:524 ../src/plugins/view/familyview.py:259
 msgid "_Delete Item"
-msgstr "_Borrar elemento"
+msgstr "_Eliminar elemento"
 
 #: ../src/gui/views/listview.py:566
 msgid "Column clicked, sorting..."
@@ -8860,24 +8858,24 @@ msgstr "Color"
 #: ../src/gui/views/tags.py:475
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "¿Eliminar etiqueta '%s'?"
+msgstr "¿Quitar etiqueta '%s'?"
 
 #: ../src/gui/views/tags.py:476
 msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Se eliminará la definición de la etiqueta.  La etiqueta también se eliminará "
-"de todos los objetos de la base de datos."
+"Se quitará la definición de la etiqueta.  La etiqueta también se quitará de "
+"todos los objetos de la base de datos."
 
 #: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
-msgstr "Eliminando etiquetas"
+msgstr "Quitando etiquetas"
 
 #: ../src/gui/views/tags.py:510
 #, python-format
 msgid "Delete Tag (%s)"
-msgstr "Borrar etiqueta (%s)"
+msgstr "Eliminar etiqueta (%s)"
 
 #: ../src/gui/views/tags.py:558
 msgid "Cannot save tag"
@@ -9387,7 +9385,7 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
-"Si observa información personal incluida con el error, elimínela, por favor."
+"Si observa información personal incluida con el error, quítela, por favor."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:232
 msgid "Error Details"
@@ -9410,8 +9408,8 @@ msgid ""
 "report."
 msgstr ""
 "Por favor, compruebe la información siguiente y corrija cualquier cosa que "
-"sepa que es incorrecta o elimine lo que no le guste que aparezca en el "
-"reporte de error."
+"sepa que es incorrecta o quite lo que no le guste que aparezca en el reporte "
+"de error."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:302
 msgid "System Information"
@@ -10109,7 +10107,7 @@ msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
 msgstr ""
-"Si se deben eliminar los espacios en blanco dejados para las personas "
+"Si se deben quitar los espacios en blanco dejados para las personas "
 "desconocidas"
 
 #. better to 'Show siblings of\nthe center person
@@ -10272,7 +10270,7 @@ msgstr ""
 "  la altura de la página se cambia a la altura del árbol\n"
 "\n"
 "Con 'Ajustar el árbol al tamaño de una página'\n"
-"  la página se cambia de tamaño para eliminar cualquier margen\n"
+"  la página se cambia de tamaño para quitar cualquier margen\n"
 "  vertical u horizontal"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
@@ -12468,7 +12466,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
 msgid "Convert and Delete"
-msgstr "Convertir y borrar"
+msgstr "Convertir y eliminar"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
 msgid "Convert"
@@ -12613,7 +12611,7 @@ msgid ""
 "WARNING!  You are about to completely delete the Exif metadata from this "
 "image?"
 msgstr ""
-"AVISO:  Está a punto de borrar completamente los metadatos Exif de esta "
+"AVISO:  Está a punto de eliminar completamente los metadatos Exif de esta "
 "imagen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
@@ -12631,7 +12629,7 @@ msgstr "Guardando los metadatos Exif en la imagen..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1468
 msgid "All Exif metadata has been deleted from this image..."
-msgstr "Se han borrado todos los metadatos Exif de esta imagen..."
+msgstr "Se han eliminado todos los metadatos Exif de esta imagen..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1473
 msgid "There was an error in stripping the Exif metadata from this image..."
@@ -12712,8 +12710,8 @@ msgid ""
 "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?"
 "</a>\n"
 msgstr ""
-"  3. <a wiki='%s_-_FAQ/es#¿Cómo_elimino_un_cónyuge.3F'>¿Cómo elimino un "
-"cónyuge?</a>\n"
+"  3. <a wiki='%s_-_FAQ/es#¿Cómo_quito_un_cónyuge.3F'>¿Cómo quito un cónyuge?"
+"</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -13226,7 +13224,7 @@ msgstr "Agregado"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Deleted"
-msgstr "Borrado"
+msgstr "Eliminado"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Edited"
@@ -13714,7 +13712,7 @@ msgstr "Se considerarán los hijos para determinar las \"líneas familiares\"."
 
 #: ../src/plugins/graph/GVFamilyLines.py:132
 msgid "Try to remove extra people and families"
-msgstr "Intentar eliminar las personas y familias sobrantes"
+msgstr "Intentar quitar las personas y familias sobrantes"
 
 #: ../src/plugins/graph/GVFamilyLines.py:133
 msgid ""
@@ -13722,7 +13720,7 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Las personas y las familias no relacionadas directamente a las personas de "
-"interés se eliminarán al determinar las \"líneas familiares\"."
+"interés se quitarán al determinar las \"líneas familiares\"."
 
 #. ----------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:140
@@ -14914,7 +14912,7 @@ msgid ""
 msgstr ""
 "Error: familia '%(family)s' (@%(orig_family)s@ en entrada) persona "
 "%(person)s (%(orig_person)s en entrada) no es miembro de la familia "
-"referenciada. La referencia a la familia se eliminó de la persona"
+"referenciada. La referencia a la familia se quitó de la persona"
 
 #: ../src/plugins/lib/libgedcom.py:3033
 #, python-format
@@ -18518,7 +18516,7 @@ msgstr "También relación con %(spouse)s%(endnotes)s."
 #: ../src/plugins/view/placetreeview.py:82 ../src/plugins/view/repoview.py:94
 #: ../src/plugins/view/sourceview.py:84
 msgid "Last Changed"
-msgstr "Último Cambio"
+msgstr "Último cambio"
 
 #: ../src/plugins/lib/libpersonview.py:113
 msgid "Add a new person"
@@ -18530,7 +18528,7 @@ msgstr "Editar la persona seleccionada"
 
 #: ../src/plugins/lib/libpersonview.py:115
 msgid "Remove the selected person"
-msgstr "Eliminar la persona seleccionada"
+msgstr "Quitar la persona seleccionada"
 
 #: ../src/plugins/lib/libpersonview.py:116
 msgid "Merge the selected persons"
@@ -18538,16 +18536,16 @@ msgstr "Fusionar las personas seleccionadas"
 
 #: ../src/plugins/lib/libpersonview.py:295
 msgid "Deleting the person will remove the person from the database."
-msgstr "Borrar una persona la eliminará de la base de datos."
+msgstr "Eliminar una persona la quitará de la base de datos."
 
 #: ../src/plugins/lib/libpersonview.py:300
 msgid "_Delete Person"
-msgstr "_Borrar Persona"
+msgstr "_Eliminar persona"
 
 #: ../src/plugins/lib/libpersonview.py:315
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "Borrar Persona (%s)"
+msgstr "Eliminar persona (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:352
 #: ../src/plugins/view/pedigreeview.py:838 ../src/plugins/view/relview.py:412
@@ -18586,7 +18584,7 @@ msgstr "Editar el lugar seleccionado"
 
 #: ../src/plugins/lib/libplaceview.py:120
 msgid "Delete the selected place"
-msgstr "Borrar el lugar seleccionado"
+msgstr "Eliminar el lugar seleccionado"
 
 #: ../src/plugins/lib/libplaceview.py:121
 msgid "Merge the selected places"
@@ -19113,7 +19111,7 @@ msgstr "Menú de mapa"
 
 #: ../src/plugins/lib/maps/geography.py:430
 msgid "Remove cross hair"
-msgstr "Eliminar retículo"
+msgstr "Quitar retículo"
 
 #: ../src/plugins/lib/maps/geography.py:432
 msgid "Add cross hair"
@@ -19171,7 +19169,7 @@ msgid ""
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 "Si no le queda espacio en su sistema de archivos\n"
-"Puede eliminar todas las baldosas guardadas en esa ruta.\n"
+"Puede quitar todas las baldosas guardadas en esa ruta.\n"
 "Tenga cuidado. Si no tiene Internet, no podrá ver mapas."
 
 #: ../src/plugins/lib/maps/geography.py:1101
@@ -21611,7 +21609,7 @@ msgstr ""
 "El archivo:\n"
 " %(file_name)s \n"
 "se referencia en la base de datos, pero ya no existe. El archivo puede haber "
-"sido borrado o movido a un luhar diferente. Puede elegir eliminar la "
+"sido eliminado o movido a un lugar diferente. Puede elegir quitar la "
 "referencia de la base de datos, mantener la referencia al archivo perdido o "
 "seleccionar un nuevo archivo."
 
@@ -21721,7 +21719,7 @@ msgstr "Hijo inexistente"
 #: ../src/plugins/tool/Check.py:1962
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr "%(person)s fue eliminado de la familia de %(family)s\n"
+msgstr "Se quitó %(person)s de la familia de %(family)s\n"
 
 #: ../src/plugins/tool/Check.py:1968
 #, python-format
@@ -21748,13 +21746,12 @@ msgstr[1] "Se encontraron %(quantity)d enlaces duplicados de cónyuge/familia\n"
 
 #: ../src/plugins/tool/Check.py:2014
 msgid "1 family with no parents or children found, removed.\n"
-msgstr "Se encontró 1 familia sin padres ni hijos, eliminada.\n"
+msgstr "Se encontró 1 familia sin padres ni hijos, quitada.\n"
 
 #: ../src/plugins/tool/Check.py:2019
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
-msgstr ""
-"Se encontraron %(quantity)d familias sin padres ni hijos, eliminadas.\n"
+msgstr "Se encontraron %(quantity)d familias sin padres ni hijos, quitadas.\n"
 
 #: ../src/plugins/tool/Check.py:2025
 #, python-format
@@ -21819,8 +21816,8 @@ msgstr[1] "Faltaban %(quantity)d objetos audiovisuales y fueron reemplazados\n"
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] "Faltaba %(quantity)d objeto audiovisual y fue eliminado\n"
-msgstr[1] "Faltaban %(quantity)d objetos audiovisuales y fueron eliminados\n"
+msgstr[0] "Faltaba %(quantity)d objeto audiovisual y se quitó\n"
+msgstr[1] "Faltaban %(quantity)d objetos audiovisuales y se quitaron\n"
 
 #: ../src/plugins/tool/Check.py:2085
 #, python-format
@@ -21891,8 +21888,8 @@ msgstr[1] "%(quantity)d objetos de etiqueta referenciados inexistentes\n"
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
-msgstr[0] "%(quantity)d referencia inválida a nombre de formato eliminada\n"
-msgstr[1] "%(quantity)d referencias inválidas a nombre de formato eliminadas\n"
+msgstr[0] "%(quantity)d referencia inválida a nombre de formato quitada\n"
+msgstr[1] "%(quantity)d referencias inválidas a nombre de formato quitadas\n"
 
 #: ../src/plugins/tool/Check.py:2158
 #, python-format
@@ -21907,7 +21904,7 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
-"%(empty_obj)d objetos vacíos eliminados:\n"
+"%(empty_obj)d objetos vacíos quitados:\n"
 "   %(person)d de personas\n"
 "   %(family)d de familias\n"
 "   %(event)d de eventos\n"
@@ -22565,7 +22562,7 @@ msgstr "Marca"
 
 #: ../src/plugins/tool/RemoveUnused.py:283
 msgid "Remove unused objects"
-msgstr "Eliminar objetos sin uso"
+msgstr "Quitar objetos sin uso"
 
 #: ../src/plugins/tool/ReorderIds.py:67
 msgid "Reordering Gramps IDs"
@@ -22794,11 +22791,11 @@ msgstr "Calcula el parentesco entre dos personas"
 
 #: ../src/plugins/tool/tools.gpr.py:418
 msgid "Remove Unused Objects"
-msgstr "Eliminar objetos sin uso"
+msgstr "Quitar objetos sin uso"
 
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
-msgstr "Elimina de la base de datos objetos no utilizados"
+msgstr "Quita de la base de datos objetos no utilizados"
 
 #: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -23047,11 +23044,11 @@ msgstr "Editar la cita seleccionada o la fuente"
 
 #: ../src/plugins/view/citationtreeview.py:122
 msgid "Delete the selected citation or source"
-msgstr "Borrar la cita seleccionada o la fuente"
+msgstr "Eliminar la cita seleccionada o la fuente"
 
 #: ../src/plugins/view/citationtreeview.py:123
 msgid "Merge the selected citations or selected sources"
-msgstr "Mexclar las citas seleccionadas o las fuentes seleccionadas"
+msgstr "Mezclar las citas seleccionadas o las fuentes seleccionadas"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
@@ -23164,7 +23161,7 @@ msgstr "Fuente: Último cambio"
 
 #: ../src/plugins/view/citationlistview.py:122
 msgid "Delete the selected citation"
-msgstr "Borrar la cita seleccionada"
+msgstr "Eliminar la cita seleccionada"
 
 #: ../src/plugins/view/citationlistview.py:123
 msgid "Merge the selected citations"
@@ -23198,7 +23195,7 @@ msgstr "Editar el evento seleccionado"
 
 #: ../src/plugins/view/eventview.py:100
 msgid "Delete the selected event"
-msgstr "Borrar el evento seleccionado"
+msgstr "Eliminar el evento seleccionado"
 
 #: ../src/plugins/view/eventview.py:101
 msgid "Merge the selected events"
@@ -23236,7 +23233,7 @@ msgstr "Editar la familia seleccionada"
 
 #: ../src/plugins/view/familyview.py:98
 msgid "Delete the selected family"
-msgstr "Borrar la familia seleccionada"
+msgstr "Eliminar la familia seleccionada"
 
 #: ../src/plugins/view/familyview.py:99
 msgid "Merge the selected families"
@@ -23462,7 +23459,7 @@ msgstr "Editar el objeto audiovisual seleccionado"
 
 #: ../src/plugins/view/mediaview.py:112
 msgid "Delete the selected media object"
-msgstr "Borrar el objeto audiovisual seleccionado"
+msgstr "Eliminar el objeto audiovisual seleccionado"
 
 #: ../src/plugins/view/mediaview.py:113
 msgid "Merge the selected media objects"
@@ -23497,7 +23494,7 @@ msgstr ""
 
 #: ../src/plugins/view/noteview.py:91
 msgid "Delete the selected note"
-msgstr "Borrar la nota seleccionada"
+msgstr "Eliminar la nota seleccionada"
 
 #: ../src/plugins/view/noteview.py:92
 msgid "Merge the selected notes"
@@ -23709,7 +23706,7 @@ msgstr "Reordenar padres"
 
 #: ../src/plugins/view/relview.py:799
 msgid "Remove person as child of these parents"
-msgstr "Eliminar la persona como hija de estos padres"
+msgstr "Quitar la persona como hija de estos padres"
 
 #: ../src/plugins/view/relview.py:803
 msgid "Edit family"
@@ -23721,7 +23718,7 @@ msgstr "Reordenar familias"
 
 #: ../src/plugins/view/relview.py:805
 msgid "Remove person as parent in this family"
-msgstr "Eliminar la persona como padre o madre de esta familia"
+msgstr "Quitar la persona como padre o madre de esta familia"
 
 #: ../src/plugins/view/relview.py:858 ../src/plugins/view/relview.py:914
 #, python-format
@@ -23842,7 +23839,7 @@ msgstr "Agregar un nuevo repositorio"
 
 #: ../src/plugins/view/repoview.py:108
 msgid "Delete the selected repository"
-msgstr "Borrar el repositorio seleccionado"
+msgstr "Eliminar el repositorio seleccionado"
 
 #: ../src/plugins/view/repoview.py:109
 msgid "Merge the selected repositories"
@@ -23882,11 +23879,11 @@ msgstr "Editar la fuente seleccionada"
 
 #: ../src/plugins/view/sourceview.py:95
 msgid "Delete the selected source"
-msgstr "Borrar la fuente seleccionada"
+msgstr "Eliminar la fuente seleccionada"
 
 #: ../src/plugins/view/sourceview.py:96
 msgid "Merge the selected sources"
-msgstr "Mexclar las fuentes seleccionadas"
+msgstr "Mezclar las fuentes seleccionadas"
 
 #: ../src/plugins/view/sourceview.py:136
 msgid "Source Filter Editor"
@@ -24241,7 +24238,7 @@ msgstr "Siguiente"
 #. missing media error message
 #: ../src/plugins/webreport/NarrativeWeb.py:3924
 msgid "The file has been moved or deleted."
-msgstr "El archivo ha sido movido o borrado."
+msgstr "El archivo ha sido movido o eliminado."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4063
 msgid "File Type"
@@ -28009,7 +28006,7 @@ msgstr "_Tipo:"
 
 #: ../src/glade/grampletpane.glade.h:1
 msgid "Click to delete gramplet from view"
-msgstr "Haga clic para borrar el gramplete de esta vista"
+msgstr "Haga clic para eliminar el gramplete de esta vista"
 
 #: ../src/glade/grampletpane.glade.h:2
 msgid "Click to expand/collapse"
@@ -28025,7 +28022,7 @@ msgstr "Configuración"
 
 #: ../src/glade/grampletpane.glade.h:5
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: ../src/glade/grampletpane.glade.h:6
 msgid "Detach"
@@ -28122,8 +28119,7 @@ msgstr "Mantener la referencia al archivo que falta"
 
 #: ../src/glade/questiondialog.glade.h:6
 msgid "Remove object and all references to it from the database"
-msgstr ""
-"Eliminar el objeto y todas las referencias al mismo de la base de datos"
+msgstr "Quitar el objeto y todas las referencias al mismo de la base de datos"
 
 #: ../src/glade/questiondialog.glade.h:7
 msgid "Select replacement for the missing file"
@@ -28135,7 +28131,7 @@ msgstr "_Mantener Referencia"
 
 #: ../src/glade/questiondialog.glade.h:9
 msgid "_Remove Object"
-msgstr "_Eliminar objeto"
+msgstr "Quita_r objeto"
 
 #: ../src/glade/questiondialog.glade.h:10
 msgid "_Select File"
@@ -28367,7 +28363,7 @@ msgstr "Cen_trar"
 
 #: ../src/glade/styleeditor.glade.h:18
 msgid "Delete the selected style"
-msgstr "Borrar el estilo seleccionado"
+msgstr "Eliminar el estilo seleccionado"
 
 #: ../src/glade/styleeditor.glade.h:20
 msgid "Edit the selected style"
@@ -29672,11 +29668,11 @@ msgstr "Co_mentario:"
 
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
-msgstr "Borrar el filtro seleccionado"
+msgstr "Eliminar el filtro seleccionado"
 
 #: ../src/glade/rule.glade.h:16
 msgid "Delete the selected rule"
-msgstr "Borrar la regla seleccionada"
+msgstr "Eliminar la regla seleccionada"
 
 #: ../src/glade/rule.glade.h:18
 msgid "Edit the selected filter"
@@ -29823,7 +29819,7 @@ msgstr "Abrir un libro creado previamente"
 
 #: ../src/plugins/bookreport.glade.h:10
 msgid "Remove currently selected item from the book"
-msgstr "Eliminar el objeto seleccionado del libro"
+msgstr "Quitar el objeto seleccionado del libro"
 
 #: ../src/plugins/bookreport.glade.h:11
 msgid "Save current set of configured selections"
