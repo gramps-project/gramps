@@ -638,16 +638,16 @@ class GVPsDoc(GVDocBase):
         # multip pages, but the output is clipped, some margins have 
         # disappeared. I used 1 inch margins always.
         # See bug tracker issue 2815
-        # :cairo does not work with Graphviz 2.26.3 See issue 4164
+        # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         # Covert filename to str using file system encoding.
         fname = self._filename.encode(sys.getfilesystemencoding())
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        # Problem with dot 2.26.3 and multiple pages, which gives "cairo: out of
+        # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
         # result.
-        if dotversion.find('2.26.3') != -1 and (self.vpages * self.hpages) > 1:
+        if (dotversion.find('2.26.3') or dotversion.find('2.28.0')) != -1 and (self.vpages * self.hpages) > 1:
             command = command.replace(':cairo','')
         os.system(command)
         # Delete the temporary dot file
@@ -912,14 +912,14 @@ class GVPdfGsDoc(GVDocBase):
         # Generate PostScript using dot
         # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
         # See bug tracker issue 2815
-        # :cairo does not work with Graphviz 2.26.3 See issue 4164
+        # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        # Problem with dot 2.26.3 and multiple pages, which gives "cairo: out 
+        # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out 
         # of memory". If the :cairo is skipped for these cases it gives 
         # acceptable result.
-        if dotversion.find('2.26.3') != -1 and (self.vpages * self.hpages) > 1:
+        if (dotversion.find('2.26.3') or dotversion.find('2.28.0')) != -1 and (self.vpages * self.hpages) > 1:
             command = command.replace(':cairo','')
         os.system(command)
         
