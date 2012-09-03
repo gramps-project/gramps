@@ -121,18 +121,17 @@ class FanChartWidget(Gtk.DrawingArea):
         GObject.GObject.__init__(self)
         self.dbstate = dbstate
         self.translating = False
+        self.goto = None
         self.on_popup = callback_popup
         self.last_x, self.last_y = None, None
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
         self.connect("draw", self.on_draw)
-        self.connect("drag_data_get", self.on_drag_data_get)
-        self.connect("drag_begin", self.on_drag_begin)
-        self.connect("drag_end", self.on_drag_end)
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
                         Gdk.EventMask.POINTER_MOTION_MASK)
+
         # Enable drag
         self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                             [],
@@ -144,6 +143,21 @@ class FanChartWidget(Gtk.DrawingArea):
         #allow drag to a text document, info on drag_get will be 0L !
         tglist.add_text_targets(0L)
         self.drag_source_set_target_list(tglist)
+        self.connect("drag_data_get", self.on_drag_data_get)
+        self.connect("drag_begin", self.on_drag_begin)
+        self.connect("drag_end", self.on_drag_end)
+        # Enable drop
+        self.drag_dest_set(Gtk.DestDefaults.MOTION |
+                            Gtk.DestDefaults.DROP,
+                            [],
+                            Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        self.drag_dest_set_target_list(tglist)
+        self.connect('drag_data_received', self.on_drag_data_received)
+
         self.pixels_per_generation = 50 # size of radius for generation
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
@@ -726,14 +740,34 @@ class FanChartWidget(Gtk.DrawingArea):
         Specified for 'person-link', for others return text info about person.
         """
         tgs = [x.name() for x in context.list_targets()]
-        text, person, parents, child = self.data[self._mouse_click_gen][self._mouse_click_sel]
+        if self._mouse_click_gen == -2:
+            #children
+            child_handle, child_gender, has_child \
+                    = self.childrenroot[self._mouse_click_sel]
+            person = self.dbstate.db.get_person_from_handle(child_handle)
+        else:
+            text, person, parents, child \
+                    = self.data[self._mouse_click_gen][self._mouse_click_sel]
         if info == DdTargets.PERSON_LINK.app_id:
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), person.get_handle(), 0)
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
         elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
             sel_data.set_text(self.format_helper.format_person(person, 11), -1)
-    
+
+    def on_drag_data_received(self, widget, context, x, y, sel_data, info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+
+        If the selection data is defined, extract the value from sel_data.data
+        """
+        gen, persatcurs = self.person_under_cursor(x, y)
+        if gen == -1 or gen == 0:
+            if sel_data and sel_data.get_data():
+                (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+                self.goto(self, handle)
+                
+
 class FanChartGrampsGUI(object):
     """ class for functions fanchart GUI elements will need in Gramps
     """
@@ -741,7 +775,7 @@ class FanChartGrampsGUI(object):
                  on_childmenu_changed):
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
-        one moves via Fan Chart to a new person
+        one moves via Fan Ch    def set_fan(self, fan):art to a new person
         on_childmenu_changed: in popup, function called on moving to a new person
         """
         self.fan = None
@@ -753,7 +787,7 @@ class FanChartGrampsGUI(object):
         self.childring = childring
 
     def have_parents(self, person):
-        """
+        """on_childmenu_changed
         Returns True if a person has parents.
         """
         if person:
@@ -797,6 +831,7 @@ class FanChartGrampsGUI(object):
         """
         self.fan = fan
         self.fan.format_helper = self.format_helper
+        self.fan.goto = self.on_childmenu_changed
 
     def main(self):
         """
@@ -877,7 +912,7 @@ class FanChartGrampsGUI(object):
         go_image.show()
         go_item = Gtk.ImageMenuItem(name_displayer.display(person))
         go_item.set_image(go_image)
-        go_item.connect("activate",self.on_childmenu_changed,person_handle)
+        go_item.connect("activate", self.on_childmenu_changed, person_handle)
         go_item.show()
         menu.append(go_item)
 
@@ -887,7 +922,8 @@ class FanChartGrampsGUI(object):
         menu.append(edit_item)
 
         clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
-        clipboard_item.connect("activate",self.copy_person_to_clipboard_cb,person_handle)
+        clipboard_item.connect("activate", self.copy_person_to_clipboard_cb,
+                               person_handle)
         clipboard_item.show()
         menu.append(clipboard_item)
 
@@ -918,7 +954,7 @@ class FanChartGrampsGUI(object):
             sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
             sp_item.set_image(go_image)
             linked_persons.append(sp_id)
-            sp_item.connect("activate",self.on_childmenu_changed, sp_id)
+            sp_item.connect("activate", self.on_childmenu_changed, sp_id)
             sp_item.show()
             sp_menu.append(sp_item)
 
