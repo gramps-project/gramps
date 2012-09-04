@@ -276,9 +276,9 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 callback=self.cb_update_background)
         #colors, stored as hex values
         configdialog.add_color(table, _('Start gradient/Main color'), 3, 
-                        'interface.color-start-grad')
+                        'interface.color-start-grad', col=1)
         configdialog.add_color(table, _('End gradient/2nd color'), 4, 
-                        'interface.color-end-grad')
+                        'interface.color-end-grad',  col=1)
         
         # options users should not change:
         configdialog.add_checkbox(table, 

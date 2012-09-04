@@ -43,6 +43,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import PangoCairo
 import math
+import colorsys
 import cPickle as pickle
 from cgi import escape
 
@@ -328,11 +329,18 @@ class FanChartWidget(Gtk.DrawingArea):
             #compute the colors, -1, 0, ..., maxgen
             cstart = gui.utils.hex_to_rgb(self.grad_start)
             cend = gui.utils.hex_to_rgb(self.grad_end)
-            divs = [x/(maxgen+1) for x in range(maxgen+2)]
-            self.colors = [(int((1-x) * cstart[0] + x * cend[0]), 
-                            int((1-x) * cstart[1] + x * cend[1]),
-                            int((1-x) * cstart[2] + x * cend[2]),
+            cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
+                                             cstart[2]/255)
+            cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
+                                           cend[2]/255)
+            divs = [x/(maxgen-1) for x in range(maxgen)]
+            rgb_colors = [colorsys.hsv_to_rgb(
+                            (1-x) * cstart_hsv[0] + x * cend_hsv[0], 
+                            (1-x) * cstart_hsv[1] + x * cend_hsv[1],
+                            (1-x) * cstart_hsv[2] + x * cend_hsv[2],
                             ) for x in divs]
+            self.colors = [(int(255*r), int(255*g), int(255*b)) 
+                                            for r, g, b in rgb_colors]
         else:
             # known colors per generation, set or compute them
             self.colors = self.GENCOLOR[self.background]
