@@ -213,6 +213,7 @@ src/gen/filters/rules/source/_regexpidof.py
 src/gen/filters/rules/citation/_allcitations.py
 src/gen/filters/rules/citation/_changedsince.py
 src/gen/filters/rules/citation/_citationprivate.py
+src/gen/filters/rules/citation/_hascitation.py
 src/gen/filters/rules/citation/_hasgallery.py
 src/gen/filters/rules/citation/_hasidof.py
 src/gen/filters/rules/citation/_hasnote.py

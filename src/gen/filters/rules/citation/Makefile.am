@@ -8,6 +8,7 @@ pkgpython_PYTHON = \
 	_allcitations.py \
 	_changedsince.py \
 	_citationprivate.py \
+	_hascitation.py \
 	_hasgallery.py \
 	_hasidof.py \
 	_hasnote.py \
