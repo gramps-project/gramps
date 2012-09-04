@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 18:56+0200\n"
-"PO-Revision-Date: 2012-08-27 20:31+0200\n"
+"POT-Creation-Date: 2012-09-04 18:48+0200\n"
+"PO-Revision-Date: 2012-09-04 18:56+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5472,6 +5472,7 @@ msgstr "Markierung:"
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:45
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Place/_HasCitation.py:51
+#: ../src/Filters/Rules/Citation/_HasCitation.py:51
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:50
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:44
 msgid "Confidence level:"
@@ -25709,6 +25710,7 @@ msgstr "Entspricht Personen mit einem bestimmten persönlichen Ereignis"
 #: ../src/Filters/Rules/Event/_HasCitation.py:50
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/Place/_HasCitation.py:50
+#: ../src/Filters/Rules/Citation/_HasCitation.py:50
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:49
 #: ../src/glade/mergecitation.glade.h:6 ../src/glade/mergeevent.glade.h:6
@@ -25737,6 +25739,7 @@ msgstr "Entspricht der Person mit bestimmten Geburtsdaten"
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:49
 #: ../src/Filters/Rules/Place/_HasCitation.py:49
+#: ../src/Filters/Rules/Citation/_HasCitation.py:49
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:48
 #: ../src/glade/mergecitation.glade.h:5
 msgid "Volume/Page:"
@@ -27288,6 +27291,14 @@ msgstr "Als vertraulich markierte Fundstellen"
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
 msgid "Matches citations that are indicated as private"
 msgstr "Liefert Fundstellen, die als vertraulich markiert sind"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:52
+msgid "Citations matching parameters"
+msgstr "Fundstellen entsprechend Parametern"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:53
+msgid "Matches citations with particular parameters"
+msgstr "Passt auf Fundstellen mit bestimmten Parametern"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
 msgid "Citations with <count> media"
