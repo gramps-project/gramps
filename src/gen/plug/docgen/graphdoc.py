@@ -649,7 +649,7 @@ class GVPsDoc(GVDocBase):
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
         # result.
-        if (dotversion.find('2.26.3') or dotversion.find('2.28.0')) != -1 and (self.vpages * self.hpages) > 1:
+        if (dotversion.find('2.26.3') or dotversion.find('2.28.0') != -1) and (self.vpages * self.hpages) > 1:
             command = command.replace(':cairo','')
         os.system(command)
         # Delete the temporary dot file
@@ -921,7 +921,7 @@ class GVPdfGsDoc(GVDocBase):
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out 
         # of memory". If the :cairo is skipped for these cases it gives 
         # acceptable result.
-        if (dotversion.find('2.26.3') or dotversion.find('2.28.0')) != -1 and (self.vpages * self.hpages) > 1:
+        if (dotversion.find('2.26.3') or dotversion.find('2.28.0') != -1) and (self.vpages * self.hpages) > 1:
             command = command.replace(':cairo','')
         os.system(command)
         
