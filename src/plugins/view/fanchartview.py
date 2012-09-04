@@ -64,6 +64,8 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         ('interface.fanview-childrenring', True),
         ('interface.fanview-radialtext', True),
         ('interface.fanview-font', 'Sans'),
+        ('interface.color-start-grad', '#0000FF'),
+        ('interface.color-end-grad', '#FF0000'),
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -80,6 +82,9 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                     self._config.get('interface.fanview-radialtext'),
                     self._config.get('interface.fanview-font'),
                     self.on_childmenu_changed)
+        
+        self.grad_start =  self._config.get('interface.color-start-grad')
+        self.grad_end =  self._config.get('interface.color-end-grad')
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
@@ -245,7 +250,8 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(4, 2)
+        nrentry = 7
+        table = Gtk.Table(6, 3)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -253,24 +259,34 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         configdialog.add_spinner(table, _("Max generations"), 0,
                 'interface.fanview-maxgen', (1, 11), 
                 callback=self.cb_update_maxgen)
-        configdialog.add_checkbox(table, 
-                _('Show children ring'), 
-                1, 'interface.fanview-childrenring')
+        configdialog.add_combo(table, 
+                _('Text Font'), 
+                1, 'interface.fanview-font',
+                self.allfonts, callback=self.cb_update_font, valueactive=True)
         configdialog.add_combo(table, 
                 _('Background'), 
                 2, 'interface.fanview-background',
-                ((0, _('Color Scheme 1')),
-                (1, _('Color Scheme 2')),
-                (2, _('Gender Colors')),
-                (3, _('White'))),
+                (
+                (0, _('Color scheme 1')),
+                (1, _('Color scheme 2')),
+                (2, _('Gender colors')),
+                (3, _('White')),
+                (4, _('Generation based gradient')),
+                ),
                 callback=self.cb_update_background)
+        #colors, stored as hex values
+        configdialog.add_color(table, _('Start gradient/Main color'), 3, 
+                        'interface.color-start-grad')
+        configdialog.add_color(table, _('End gradient/2nd color'), 4, 
+                        'interface.color-end-grad')
+        
+        # options users should not change:
+        configdialog.add_checkbox(table, 
+                _('Show children ring'), 
+                nrentry-2, 'interface.fanview-childrenring')
         configdialog.add_checkbox(table, 
                 _('Allow radial text at generation 6'), 
-                3, 'interface.fanview-radialtext')
-        configdialog.add_combo(table, 
-                _('Text Font'), 
-                4, 'interface.fanview-font',
-                self.allfonts, callback=self.cb_update_font, valueactive=True)
+                nrentry-1, 'interface.fanview-radialtext')
 
         return _('Layout'), table
 
@@ -284,6 +300,10 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                           self.cb_update_childrenring)
         self._config.connect('interface.fanview-radialtext',
                           self.cb_update_radialtext)
+        self._config.connect('interface.color-start-grad',
+                          self.cb_update_color)
+        self._config.connect('interface.color-end-grad',
+                          self.cb_update_color)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self.maxgen = spinbtn.get_value_as_int()
@@ -314,6 +334,14 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
             self.radialtext = True
         else:
             self.radialtext = False
+        self.update()
+
+    def cb_update_color(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the childrenring setting. 
+        """
+        self.grad_start = self._config.get('interface.color-start-grad')
+        self.grad_end = self._config.get('interface.color-end-grad')
         self.update()
 
     def cb_update_font(self, obj, constant):

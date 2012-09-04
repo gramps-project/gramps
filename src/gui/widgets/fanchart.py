@@ -92,6 +92,7 @@ class FanChartWidget(Gtk.DrawingArea):
     BACKGROUND_SCHEME2 = 1
     BACKGROUND_GENDER = 2
     BACKGROUND_WHITE = 3
+    BACKGROUND_GRAD_GEN = 4
     GENCOLOR = {
         BACKGROUND_SCHEME1: ((255, 63,  0),
                              (255,175, 15),
@@ -169,10 +170,12 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_SCHEME1, True, True, 'Sans')
+        self.reset(9, self.BACKGROUND_SCHEME1, True, True, 'Sans', '#0000FF',
+                    '#FF0000')
         self.set_size_request(120, 120)
 
-    def reset(self, maxgen, background, childring, radialtext, fontdescr):
+    def reset(self, maxgen, background, childring, radialtext, fontdescr,
+              grad_start, grad_end):
         """
         Reset all of the data on where/how slices appear, and if they are expanded.
         """
@@ -180,11 +183,12 @@ class FanChartWidget(Gtk.DrawingArea):
         self.childring = childring
         self.background = background
         self.fontdescr = fontdescr
-        if self.background == self.BACKGROUND_GENDER:
-            self.colors =  None
-        else:
-            self.colors = self.GENCOLOR[self.background]
+        self.grad_start = grad_start
+        self.grad_end = grad_end
+        
         self.set_generations(maxgen)
+        # prepare the colors for the boxes 
+        self.prepare_background_box()
 
     def set_generations(self, generations):
         """
@@ -310,6 +314,49 @@ class FanChartWidget(Gtk.DrawingArea):
             if child and self.childring:
                 self.drawchildring(cr)
 
+ 
+    def prepare_background_box(self):
+        """
+        Method that is called every reset of the chart, to precomputed values
+        needed for the background of the boxes
+        """
+        maxgen = self.generations
+        if self.background == self.BACKGROUND_GENDER:
+            # nothing to precompute
+            self.colors =  None
+        elif self.background == self.BACKGROUND_GRAD_GEN:
+            #compute the colors, -1, 0, ..., maxgen
+            cstart = gui.utils.hex_to_rgb(self.grad_start)
+            cend = gui.utils.hex_to_rgb(self.grad_end)
+            divs = [x/(maxgen+1) for x in range(maxgen+2)]
+            self.colors = [(int((1-x) * cstart[0] + x * cend[0]), 
+                            int((1-x) * cstart[1] + x * cend[1]),
+                            int((1-x) * cstart[2] + x * cend[2]),
+                            ) for x in divs]
+        else:
+            # known colors per generation, set or compute them
+            self.colors = self.GENCOLOR[self.background]
+
+    def background_box(self, person, gender, generation):
+        """
+        determine red, green, blue value of background of the box of person,
+        which has gender gender, and is in ring generation
+        """
+        if self.background == self.BACKGROUND_GENDER:
+            try:
+                alive = probably_alive(person, self.dbstate.db)
+            except RuntimeError:
+                alive = False
+            backgr, border = gui.utils.color_graph_box(alive, person.gender)
+            r, g, b = gui.utils.hex_to_rgb(backgr)
+        else:
+            r, g, b = self.colors[generation % len(self.colors)]
+            if gender == gen.lib.Person.MALE:
+                r *= .9
+                g *= .9
+                b *= .9
+        return r, g, b
+
     def draw_person(self, cr, gender, name, start, stop, generation, 
                     state, parents, child, person):
         """
@@ -320,19 +367,7 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.save()
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
-        if self.background == self.BACKGROUND_GENDER:
-            try:
-                alive = probably_alive(person, self.dbstate.db)
-            except RuntimeError:
-                alive = False
-            backgr, border = gui.utils.color_graph_box(alive, person.gender)
-            r, g, b = gui.utils.hex_to_rgb(backgr)
-        else:
-            r,g,b = self.colors[generation % len(self.colors)]
-            if gender == gen.lib.Person.MALE:
-                r *= .9
-                g *= .9
-                b *= .9
+        r, g, b = self.background_box(person, gender, generation)
         radius = generation * self.PIXELS_PER_GENERATION + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
@@ -876,6 +911,8 @@ class FanChartGrampsGUI(object):
         self.childring = childring
         self.radialtext = radialtext
         self.fonttype = font
+        self.grad_start = '#0000FF'
+        self.grad_end = '#FF0000'
 
     def have_parents(self, person):
         """on_childmenu_changed
@@ -930,7 +967,8 @@ class FanChartGrampsGUI(object):
         data.
         """
         self.fan.reset(self.maxgen, self.background, self.childring,
-                       self.radialtext, self.fonttype)
+                       self.radialtext, self.fonttype,
+                       self.grad_start, self.grad_end)
         person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
         if not person: 
             name = None
