@@ -5,6 +5,7 @@ pkgpythondir = $(datadir)/@PACKAGE@/Filters/Rules/Citation
 
 pkgpython_PYTHON = \
 	__init__.py \
+	_HasCitation.py \
 	_AllCitations.py \
 	_ChangedSince.py \
 	_CitationPrivate.py \

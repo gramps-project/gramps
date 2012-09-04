@@ -26,8 +26,7 @@
 Package providing filter rules for GRAMPS.
 """
 
-from Filters.Rules._HasCitationBase import HasCitationBase as HasCitation
-
+from _HasCitation import HasCitation
 from _AllCitations import AllCitations
 from _ChangedSince import ChangedSince
 from _CitationPrivate import CitationPrivate

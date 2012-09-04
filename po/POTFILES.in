@@ -632,6 +632,7 @@ src/Filters/Rules/Source/_RegExpIdOf.py
 src/Filters/Rules/Citation/_AllCitations.py
 src/Filters/Rules/Citation/_ChangedSince.py
 src/Filters/Rules/Citation/_CitationPrivate.py
+src/Filters/Rules/Citation/_HasCitation.py
 src/Filters/Rules/Citation/_HasGallery.py
 src/Filters/Rules/Citation/_HasIdOf.py
 src/Filters/Rules/Citation/_HasNote.py
