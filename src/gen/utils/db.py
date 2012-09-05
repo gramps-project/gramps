@@ -89,6 +89,45 @@ def get_death_or_fallback(db, person, format=None):
                 return event
     return None    
 
+def get_age(db, person, fallback=True, calendar="gregorian"):
+    """
+    Compute the age of person. Allow fallback events if fallback=True
+    person : person handle or person object
+    Return: tuple of year, month day if valid, None otherwise
+    """
+    birth = None
+    death = None
+    if isinstance(person, str):
+        # a handle is passed
+        person = db.get_person_from_handle(person)
+    if fallback:
+        birth = get_birth_or_fallback(db, person)
+        death = get_death_or_fallback(db, person)
+    else:
+        birth_ref = person.get_birth_ref()
+        if birth_ref:   # regular birth found
+            event = db.get_event_from_handle(birth_ref.ref)
+            if event:
+                birth = event
+        death_ref = person.get_death_ref()
+        if death_ref:   # regular death found
+            event = db.get_event_from_handle(death_ref.ref)
+            if event:
+                death = event
+    age = None
+    if birth is not None:
+        birth_date = birth.get_date_object().to_calendar("gregorian")
+        if (birth_date and birth_date.get_valid()):
+            if death is not None:
+                death_date = death.get_date_object().to_calendar("gregorian")
+                if (death_date and death_date.get_valid()):
+                    age = death_date - birth_date
+                    if not age.is_valid():
+                        age = None
+                    else:
+                        age = age.tuple()
+    return age
+
 def get_event_ref(db, family, event_type):
     """
     Return a reference to a primary family event of the given event type.

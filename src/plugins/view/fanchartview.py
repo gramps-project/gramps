@@ -45,9 +45,7 @@ from gen.ggettext import gettext as _
 import gen.lib
 from gui.widgets.fanchart import FanChartWidget, FanChartGrampsGUI
 from gui.views.navigationview import NavigationView
-from gen.errors import WindowActiveError
 from gui.views.bookmarks import PersonBookmarks
-from gui.editors import EditPerson
 from gui.utils import SystemFonts
 
 # the print settings to remember between print sessions
@@ -263,17 +261,27 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 _('Text Font'), 
                 1, 'interface.fanview-font',
                 self.allfonts, callback=self.cb_update_font, valueactive=True)
-        configdialog.add_combo(table, 
-                _('Background'), 
-                2, 'interface.fanview-background',
-                (
+        backgrvals = (
                 (self.fan.BACKGROUND_GENDER, _('Gender colors')),
                 (self.fan.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
+                (self.fan.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
                 (self.fan.BACKGROUND_WHITE, _('White')),
                 (self.fan.BACKGROUND_SCHEME1, _('Color scheme classic report')),
                 (self.fan.BACKGROUND_SCHEME2, _('Color scheme classic view')),
-                ),
-                callback=self.cb_update_background)
+                )
+        curval = self._config.get('interface.fanview-background')
+        nrval = 0
+        for nr, val in backgrvals:
+            if curval == nr:
+                break
+            nrval += 1
+        print nrval
+        configdialog.add_combo(table, 
+                _('Background'), 
+                2, 'interface.fanview-background',
+                backgrvals,
+                callback=self.cb_update_background, valueactive=False, setactive=nrval
+                )
         #colors, stored as hex values
         configdialog.add_color(table, _('Start gradient/Main color'), 3, 
                         'interface.color-start-grad', col=1)

@@ -362,7 +362,7 @@ class ConfigureDialog(ManagedWindow):
         return entry
 
     def add_combo(self, table, label, index, constant, opts, callback=None,
-                  config=None, valueactive=False):
+                  config=None, valueactive=False, setactive=None):
         """
         A drop-down list allowing selection from a number of fixed options.
         :param opts: A list of options.  Each option is a tuple containing an
@@ -391,7 +391,10 @@ class ConfigureDialog(ManagedWindow):
                     break
             combo.set_active(pos)
         else:
-            combo.set_active(config.get(constant))
+            if setactive is None:
+                combo.set_active(config.get(constant))
+            else:
+                combo.set_active(setactive)
         combo.connect('changed', callback, constant)
         table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)

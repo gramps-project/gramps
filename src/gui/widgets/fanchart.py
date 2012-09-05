@@ -42,6 +42,7 @@ from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import PangoCairo
+import cairo
 import math
 import colorsys
 import cPickle as pickle
@@ -53,12 +54,15 @@ from cgi import escape
 #
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
+from gen.errors import WindowActiveError
+from gui.editors import EditPerson
 import gen.lib
 import gui.utils
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
 from gen.utils.libformatting import FormattingHelper
-from gen.utils.db import (find_children, find_parents, find_witnessed_people)
+from gen.utils.db import (find_children, find_parents, find_witnessed_people,
+                          get_age)
 
 #-------------------------------------------------------------------------
 #
@@ -115,6 +119,8 @@ class FanChartWidget(Gtk.DrawingArea):
         BACKGROUND_WHITE: ((255,255,255),
                            (255,255,255),),
         }
+    
+    MAX_AGE = 100
 
     COLLAPSED = 0
     NORMAL = 1
@@ -172,14 +178,21 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
+        self.reset(None, 9, self.BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
                     '#FF0000')
         self.set_size_request(120, 120)
 
-    def reset(self, maxgen, background, childring, radialtext, fontdescr,
-              grad_start, grad_end):
+    def reset(self, root_person_handle, maxgen, background, childring,
+              radialtext, fontdescr, grad_start, grad_end):
         """
-        Reset all of the data on where/how slices appear, and if they are expanded.
+        Reset all of the data:
+         root_person_handle = person to show
+         maxgen = maximum generations to show
+         background = config setting of which background procedure to use (int)
+         childring = to show the center ring with children or not
+         radialtext = try to use radial text or not
+         fontdescr = string describing the font to use
+         grad_start, grad_end: colors to use for background procedure
         """
         self.cache_fontcolor = {}
         
@@ -191,9 +204,110 @@ class FanChartWidget(Gtk.DrawingArea):
         self.grad_end = grad_end
         
         self.set_generations(maxgen)
+        
+        # fill the data structure: self.data, self.childrenroot, self.angle
+        self._fill_data_structures(root_person_handle)
+    
         # prepare the colors for the boxes 
         self.prepare_background_box()
 
+    def _fill_data_structures(self, root_person_handle):
+        person = self.dbstate.db.get_person_from_handle(root_person_handle)
+        if not person: 
+            name = None
+        else:
+            name = name_displayer.display(person)
+        parents = self._have_parents(person)
+        child = self._have_children(person)
+        # our data structure is the text, the person object, parents, child and
+        # list for userdata which we might fill in later.
+        self.data[0][0] = (name, person, parents, child, [])
+        self.childrenroot = []
+        if child:
+            childlist = find_children(self.dbstate.db, person)
+            for child_handle in childlist:
+                child = self.dbstate.db.get_person_from_handle(child_handle)
+                if not child:
+                    continue
+                else:
+                    self.childrenroot.append((child_handle, child.get_gender(),
+                                              self._have_children(child), []))
+        for current in range(1, self.generations):
+            parent = 0
+            # name, person, parents, children
+            for (n, p, q, c, d) in self.data[current - 1]:
+                # Get father's details:
+                person = self._get_parent(p, True)
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                if current == self.generations - 1:
+                    parents = self._have_parents(person)
+                else:
+                    parents = None
+                self.data[current][parent] = (name, person, parents, None, [])
+                if person is None:
+                    # start,stop,male/right,state
+                    self.angle[current][parent][3] = self.COLLAPSED
+                parent += 1
+                # Get mother's details:
+                person = self._get_parent(p, False)
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                if current == self.generations - 1:
+                    parents = self._have_parents(person)
+                else:
+                    parents = None
+                self.data[current][parent] = (name, person, parents, None, [])
+                if person is None:
+                    # start,stop,male/right,state
+                    self.angle[current][parent][3] = self.COLLAPSED
+                parent += 1
+
+    def _have_parents(self, person):
+        """
+        Returns True if a person has parents. 
+        TODO: is there no util function for this
+        """
+        if person:
+            m = self._get_parent(person, False)
+            f = self._get_parent(person, True)
+            return not m is f is None
+        return False
+            
+    def _have_children(self, person):
+        """
+        Returns True if a person has children.
+        TODO: is there no util function for this
+        """
+        if person:
+            for family_handle in person.get_family_handle_list():
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                if family and len(family.get_child_ref_list()) > 0:
+                    return True
+        return False
+
+    def _get_parent(self, person, father):
+        """
+        Get the father of the family if father == True, otherwise mother
+        """
+        if person:
+            parent_handle_list = person.get_parent_family_handle_list()
+            if parent_handle_list:
+                family_id = parent_handle_list[0]
+                family = self.dbstate.db.get_family_from_handle(family_id)
+                if family:
+                    if father:
+                        person_handle = gen.lib.Family.get_father_handle(family)
+                    else:
+                        person_handle = gen.lib.Family.get_mother_handle(family)
+                    if person_handle:
+                        return self.dbstate.db.get_person_from_handle(person_handle)
+        return None
+    
     def set_generations(self, generations):
         """
         Set the generations to max, and fill data structures with initial data.
@@ -204,7 +318,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.childrenroot = []
         for i in range(self.generations):
             # name, person, parents?, children?
-            self.data[i] = [(None,) * 4] * 2 ** i
+            self.data[i] = [(None,) * 5] * 2 ** i
             self.angle[i] = []
             angle = 0
             slice = 360.0 / (2 ** i)
@@ -243,7 +357,7 @@ class FanChartWidget(Gtk.DrawingArea):
         nrgen = None
         for generation in range(self.generations - 1, 0, -1):
             for p in range(len(self.data[generation])):
-                (text, person, parents, child) = self.data[generation][p]
+                (text, person, parents, child, userdata) = self.data[generation][p]
                 if person:
                     nrgen = generation
                     break
@@ -284,14 +398,14 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
             for p in range(len(self.data[generation])):
-                (text, person, parents, child) = self.data[generation][p]
+                (text, person, parents, child, userdata) = self.data[generation][p]
                 if person:
                     start, stop, male, state = self.angle[generation][p]
                     if state in [self.NORMAL, self.EXPANDED]:
                         self.draw_person(cr, gender_code(male), 
                                          text, start, stop, 
                                          generation, state, parents, child,
-                                         person)
+                                         person, userdata)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
@@ -302,9 +416,9 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.stroke()
         cr.restore()
         # Draw center person:
-        (text, person, parents, child) = self.data[0][0]
+        (text, person, parents, child, userdata) = self.data[0][0]
         if person:
-            r, g, b = self.background_box(person, person.gender, 0)
+            r, g, b = self.background_box(person, person.gender, 0, userdata)
             cr.arc(0, 0, self.center, 0, 2 * math.pi)
             cr.set_source_rgb(r/255, g/255, b/255)
             cr.fill()
@@ -323,79 +437,11 @@ class FanChartWidget(Gtk.DrawingArea):
                 cr.stroke()
             if child and self.childring:
                 self.drawchildring(cr)
-
-    def prepare_background_box(self):
-        """
-        Method that is called every reset of the chart, to precomputed values
-        needed for the background of the boxes
-        """
-        maxgen = self.generations
-        if self.background == self.BACKGROUND_GENDER:
-            # nothing to precompute
-            self.colors =  None
-        elif self.background == self.BACKGROUND_GRAD_GEN:
-            #compute the colors, -1, 0, ..., maxgen
-            cstart = gui.utils.hex_to_rgb(self.grad_start)
-            cend = gui.utils.hex_to_rgb(self.grad_end)
-            cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
-                                             cstart[2]/255)
-            cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
-                                           cend[2]/255)
-            divs = [x/(maxgen-1) for x in range(maxgen)]
-            rgb_colors = [colorsys.hsv_to_rgb(
-                            (1-x) * cstart_hsv[0] + x * cend_hsv[0], 
-                            (1-x) * cstart_hsv[1] + x * cend_hsv[1],
-                            (1-x) * cstart_hsv[2] + x * cend_hsv[2],
-                            ) for x in divs]
-            self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
-        else:
-            # known colors per generation, set or compute them
-            self.colors = self.GENCOLOR[self.background]
-
-    def background_box(self, person, gender, generation):
-        """
-        determine red, green, blue value of background of the box of person,
-        which has gender gender, and is in ring generation
-        """
-        if generation == 0 and self.background in [self.BACKGROUND_GENDER, 
-                self.BACKGROUND_GRAD_GEN, self.BACKGROUND_SCHEME1,
-                self.BACKGROUND_SCHEME2]:
-            # white for center person:
-            return (255, 255, 255)
-        if self.background == self.BACKGROUND_GENDER:
-            try:
-                alive = probably_alive(person, self.dbstate.db)
-            except RuntimeError:
-                alive = False
-            backgr, border = gui.utils.color_graph_box(alive, person.gender)
-            r, g, b = gui.utils.hex_to_rgb(backgr)
-        else:
-            if self.background == self.BACKGROUND_GRAD_GEN and generation < 0:
-                generation = 0
-            r, g, b = self.colors[generation % len(self.colors)]
-            if gender == gen.lib.Person.MALE:
-                r *= .9
-                g *= .9
-                b *= .9
-        return r, g, b
-    
-    def fontcolor(self, r, g, b):
-        """
-        return the font color based on the r, g, b of the background
-        """
-        try:
-            return self.cache_fontcolor[(r, g, b)]
-        except KeyError:
-            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
-            # we use the lightness value to determine white or black font
-            if hls[1] > 0.4:
-                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
-            else:
-                self.cache_fontcolor[(r, g, b)] = (255, 255, 255)
-        return self.cache_fontcolor[(r, g, b)]
+        if self.background in [self.BACKGROUND_GRAD_AGE]:
+            self.draw_gradient(cr, widget, halfdist)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
-                    state, parents, child, person):
+                    state, parents, child, person, userdata):
         """
         Display the piece of pie for a given person. start and stop
         are in degrees. Gender is indication of father position or mother 
@@ -404,7 +450,7 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.save()
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
-        r, g, b = self.background_box(person, gender, generation)
+        r, g, b = self.background_box(person, gender, generation, userdata)
         radius = generation * self.PIXELS_PER_GENERATION + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
@@ -467,7 +513,7 @@ class FanChartWidget(Gtk.DrawingArea):
             startangle += angleinc
 
     def drawchild(self, cr, childdata, start, inc):
-        child_handle, child_gender, has_child = childdata
+        child_handle, child_gender, has_child, userdata = childdata
         # in polar coordinates what is to draw
         rmin = self.TRANSLATE_PX
         rmax = self.TRANSLATE_PX + self.CHILDRING_WIDTH
@@ -487,7 +533,7 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.stroke()
         #now fill
         person = self.dbstate.db.get_person_from_handle(child_handle)
-        r, g, b = self.background_box(person, person.gender, -1)
+        r, g, b = self.background_box(person, person.gender, -1, userdata)
         _childpath(cr)
         cr.set_source_rgb(r/255., g/255., b/255.) 
         cr.fill()
@@ -615,6 +661,153 @@ class FanChartWidget(Gtk.DrawingArea):
                 cr.restore()
         cr.restore()
 
+    def draw_gradient(self, cr, widget, halfdist):
+        gradwidth = 10
+        gradheight = 10
+        starth = 25
+        startw = 5
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        cr.save()
+        if widget:
+            cr.translate(-w/2. + self.center_xy[0], -h/2. + self.center_xy[1])
+        else:
+            cr.translate(-halfdist + self.center_xy[0], -halfdist + self.center_xy[1])
+        font = Pango.FontDescription(self.fontdescr)
+        fontsize = self.fontsize
+        font.set_size(fontsize * Pango.SCALE)
+        for color, text in zip(self.gradcol, self.gradval):
+            cr.move_to(startw, starth)
+            cr.rectangle(startw, starth, gradwidth, gradheight)
+            cr.set_source_rgb(color[0], color[1], color[2])
+            cr.fill()
+            layout = self.create_pango_layout(text)
+            layout.set_font_description(font)
+            cr.move_to(startw+gradwidth+4, starth)
+            cr.set_source_rgb(0, 0, 0) #black
+            PangoCairo.show_layout(cr, layout)
+            starth = starth+gradheight
+        cr.restore()
+
+    def prepare_background_box(self):
+        """
+        Method that is called every reset of the chart, to precomputed values
+        needed for the background of the boxes
+        """
+        maxgen = self.generations
+        cstart = gui.utils.hex_to_rgb(self.grad_start)
+        cend = gui.utils.hex_to_rgb(self.grad_end)
+        cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
+                                         cstart[2]/255)
+        cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
+                                       cend[2]/255)
+        if self.background == self.BACKGROUND_GENDER:
+            # nothing to precompute
+            self.colors =  None
+        elif self.background == self.BACKGROUND_GRAD_GEN:
+            #compute the colors, -1, 0, ..., maxgen
+            divs = [x/(maxgen-1) for x in range(maxgen)]
+            rgb_colors = [colorsys.hsv_to_rgb(
+                            (1-x) * cstart_hsv[0] + x * cend_hsv[0], 
+                            (1-x) * cstart_hsv[1] + x * cend_hsv[1],
+                            (1-x) * cstart_hsv[2] + x * cend_hsv[2],
+                            ) for x in divs]
+            self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
+        elif self.background == self.BACKGROUND_GRAD_AGE:
+            # we fill in in the data structure what the age is, None if no age
+            for generation in range(self.generations):
+                for p in range(len(self.data[generation])):
+                    agecol = (255, 255, 255)  # white
+                    (text, person, parents, child, userdata) = self.data[generation][p]
+                    if person:
+                        age = get_age(self.dbstate.db, person)
+                        if age is not None:
+                            age = age[0]
+                            if age < 0:
+                                age = 0
+                            #now determine fraction for gradient
+                            agefrac = age / self.MAX_AGE
+                            agecol = colorsys.hsv_to_rgb(
+                                (1-agefrac) * cstart_hsv[0] + agefrac * cend_hsv[0], 
+                                (1-agefrac) * cstart_hsv[1] + agefrac * cend_hsv[1],
+                                (1-agefrac) * cstart_hsv[2] + agefrac * cend_hsv[2],
+                                )
+                    userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
+            # same for child
+            for childdata in self.childrenroot:
+                agecol = (255, 255, 255)  # white
+                child_handle, child_gender, has_child, userdata = childdata
+                child = self.dbstate.db.get_person_from_handle(child_handle)
+                age = get_age(self.dbstate.db, child)
+                if age is not None:
+                    age = age.tuple()[0]
+                    if age < 0:
+                        age = 0
+                    #now determine fraction for gradient
+                    agefrac = age / self.MAX_AGE
+                    agecol = colorsys.hsv_to_rgb(
+                        (1-agefrac) * cstart_hsv[0] + agefrac * cend_hsv[0], 
+                        (1-agefrac) * cstart_hsv[1] + agefrac * cend_hsv[1],
+                        (1-agefrac) * cstart_hsv[2] + agefrac * cend_hsv[2],
+                        )
+                userdata.append(agecol)
+            #now create gradient data, 5 values from 0 to max
+            steps = 5
+            divs = [x/steps for x in range(steps+1)]
+            self.gradval = ['%d' % int(x*self.MAX_AGE) for x in divs]
+            self.gradcol = [colorsys.hsv_to_rgb(
+                        (1-div) * cstart_hsv[0] + div * cend_hsv[0], 
+                        (1-div) * cstart_hsv[1] + div * cend_hsv[1],
+                        (1-div) * cstart_hsv[2] + div * cend_hsv[2],
+                        ) for div in divs]
+        else:
+            # known colors per generation, set or compute them
+            self.colors = self.GENCOLOR[self.background]
+
+    def background_box(self, person, gender, generation, userdata):
+        """
+        determine red, green, blue value of background of the box of person,
+        which has gender gender, and is in ring generation
+        """
+        if generation == 0 and self.background in [self.BACKGROUND_GENDER, 
+                self.BACKGROUND_GRAD_GEN, self.BACKGROUND_SCHEME1,
+                self.BACKGROUND_SCHEME2]:
+            # white for center person:
+            return (255, 255, 255)
+        if self.background == self.BACKGROUND_GENDER:
+            try:
+                alive = probably_alive(person, self.dbstate.db)
+            except RuntimeError:
+                alive = False
+            backgr, border = gui.utils.color_graph_box(alive, person.gender)
+            r, g, b = gui.utils.hex_to_rgb(backgr)
+        elif self.background == self.BACKGROUND_GRAD_AGE:
+            r, g, b = userdata[0]
+        else:
+            if self.background == self.BACKGROUND_GRAD_GEN and generation < 0:
+                generation = 0
+            r, g, b = self.colors[generation % len(self.colors)]
+            if gender == gen.lib.Person.MALE:
+                r *= .9
+                g *= .9
+                b *= .9
+        return r, g, b
+    
+    def fontcolor(self, r, g, b):
+        """
+        return the font color based on the r, g, b of the background
+        """
+        try:
+            return self.cache_fontcolor[(r, g, b)]
+        except KeyError:
+            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
+            # we use the lightness value to determine white or black font
+            if hls[1] > 0.4:
+                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
+            else:
+                self.cache_fontcolor[(r, g, b)] = (255, 255, 255)
+        return self.cache_fontcolor[(r, g, b)]
+
     def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
@@ -730,9 +923,11 @@ class FanChartWidget(Gtk.DrawingArea):
             tooltip = ""
             person = None
             if selected is not None and generation >= 0:
-                text, person, parents, child = self.data[generation][selected]
+                text, person, parents, child, userdata = \
+                                                self.data[generation][selected]
             elif selected is not None and generation == -2:
-                child_handle, child_gender, has_child = self.childrenroot[selected]
+                child_handle, child_gender, has_child, userdata = \
+                                                self.childrenroot[selected]
                 person = self.dbstate.db.get_person_from_handle(child_handle)
             if person:
                 tooltip = self.format_helper.format_person(person, 11)
@@ -845,10 +1040,12 @@ class FanChartWidget(Gtk.DrawingArea):
         # Do things based on state, event.get_state(), or button, event.button
         if gui.utils.is_right_click(event):
             if generation == -2:
-                child_handle, child_gender, has_child = self.childrenroot[selected]
+                child_handle, child_gender, has_child, userdata = \
+                                                self.childrenroot[selected]
                 person = self.dbstate.db.get_person_from_handle(child_handle)
             else:
-                text, person, parents, child = self.data[generation][selected]
+                text, person, parents, child, userdata = \
+                                                self.data[generation][selected]
             if person and self.on_popup:
                 self.on_popup(widget, event, person.handle)
                 return True
@@ -891,11 +1088,11 @@ class FanChartWidget(Gtk.DrawingArea):
         tgs = [x.name() for x in context.list_targets()]
         if self._mouse_click_gen == -2:
             #children
-            child_handle, child_gender, has_child \
-                    = self.childrenroot[self._mouse_click_sel]
+            child_handle, child_gender, has_child, userdata = \
+                                    self.childrenroot[self._mouse_click_sel]
             person = self.dbstate.db.get_person_from_handle(child_handle)
         else:
-            text, person, parents, child \
+            text, person, parents, child, userdata \
                     = self.data[self._mouse_click_gen][self._mouse_click_sel]
         if info == DdTargets.PERSON_LINK.app_id:
             data = (DdTargets.PERSON_LINK.drag_type,
@@ -938,45 +1135,6 @@ class FanChartGrampsGUI(object):
         self.fonttype = font
         self.grad_start = '#0000FF'
         self.grad_end = '#FF0000'
-
-    def have_parents(self, person):
-        """on_childmenu_changed
-        Returns True if a person has parents.
-        """
-        if person:
-            m = self.get_parent(person, False)
-            f = self.get_parent(person, True)
-            return not m is f is None
-        return False
-            
-    def have_children(self, person):
-        """
-        Returns True if a person has children.
-        """
-        if person:
-            for family_handle in person.get_family_handle_list():
-                family = self.dbstate.db.get_family_from_handle(family_handle)
-                if family and len(family.get_child_ref_list()) > 0:
-                    return True
-        return False
-
-    def get_parent(self, person, father):
-        """
-        Get the father of the family if father == True, otherwise mother
-        """
-        if person:
-            parent_handle_list = person.get_parent_family_handle_list()
-            if parent_handle_list:
-                family_id = parent_handle_list[0]
-                family = self.dbstate.db.get_family_from_handle(family_id)
-                if family:
-                    if father:
-                        person_handle = gen.lib.Family.get_father_handle(family)
-                    else:
-                        person_handle = gen.lib.Family.get_mother_handle(family)
-                    if person_handle:
-                        return self.dbstate.db.get_person_from_handle(person_handle)
-        return None
     
     def set_fan(self, fan):
         """
@@ -991,62 +1149,10 @@ class FanChartGrampsGUI(object):
         Fill the data structures with the active data. This initializes all 
         data.
         """
-        self.fan.reset(self.maxgen, self.background, self.childring,
+        root_person_handle = self.get_active('Person')
+        self.fan.reset(root_person_handle, self.maxgen, self.background, self.childring,
                        self.radialtext, self.fonttype,
                        self.grad_start, self.grad_end)
-        person = self.dbstate.db.get_person_from_handle(self.get_active('Person'))
-        if not person: 
-            name = None
-        else:
-            name = name_displayer.display(person)
-        parents = self.have_parents(person)
-        child = self.have_children(person)
-        self.fan.data[0][0] = (name, person, parents, child)
-        self.fan.childrenroot = []
-        if child:
-            childlist = find_children(self.dbstate.db, person)
-            for child_handle in childlist:
-                child = self.dbstate.db.get_person_from_handle(child_handle)
-                if not child:
-                    continue
-                else:
-                    self.fan.childrenroot.append((child_handle, 
-                                                  child.get_gender(),
-                                                  self.have_children(child)))
-        for current in range(1, self.maxgen):
-            parent = 0
-            # name, person, parents, children
-            for (n,p,q,c) in self.fan.data[current - 1]:
-                # Get father's details:
-                person = self.get_parent(p, True)
-                if person:
-                    name = name_displayer.display(person)
-                else:
-                    name = None
-                if current == self.maxgen - 1:
-                    parents = self.have_parents(person)
-                else:
-                    parents = None
-                self.fan.data[current][parent] = (name, person, parents, None)
-                if person is None:
-                    # start,stop,male/right,state
-                    self.fan.angle[current][parent][3] = self.fan.COLLAPSED
-                parent += 1
-                # Get mother's details:
-                person = self.get_parent(p, False)
-                if person:
-                    name = name_displayer.display(person)
-                else:
-                    name = None
-                if current == self.maxgen - 1:
-                    parents = self.have_parents(person)
-                else:
-                    parents = None
-                self.fan.data[current][parent] = (name, person, parents, None)
-                if person is None:
-                    # start,stop,male/right,state
-                    self.fan.angle[current][parent][3] = self.fan.COLLAPSED
-                parent += 1
         self.fan.queue_draw()
 
     def on_popup(self, obj, event, person_handle):
