@@ -19,7 +19,7 @@ pkgpython_PYTHON = \
 	_hasreferencecountof.py\
 	_hasreltype.py\
 	_hassourcecount.py \
-	_hassourceof \
+	_hassourceof.py \
 	_hastag.py \
 	__init__.py\
 	_isbookmarked.py\

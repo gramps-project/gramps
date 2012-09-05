@@ -17,7 +17,7 @@ pkgpython_PYTHON = \
 	_hasnote.py \
 	_hasreferencecountof.py\
 	_hassourcecount.py \
-	_hassourceof \
+	_hassourceof.py \
 	_matchesfilter.py\
 	_matcheseventfilter.py\
         _matchessourceconfidence.py\

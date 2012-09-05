@@ -14,7 +14,7 @@ pkgpython_PYTHON = \
 	_hasreferencecountof.py\
 	_hastag.py\
 	_hassourcecount.py \
-	_hassourceof \
+	_hassourceof.py \
 	_matchesfilter.py\
         _matchessourceconfidence.py\
 	_mediaprivate.py\
