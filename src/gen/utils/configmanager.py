@@ -492,7 +492,7 @@ class ConfigManager(object):
                                  (section, setting))
         # Check value to see if right type:
         if self.has_default(key):
-	    if not self.check_type(self.get_default(key), value):
+            if not self.check_type(self.get_default(key), value):
                 raise AttributeError("attempting to set '%s' to wrong type "
                                      "'%s'; should be '%s'" %
                                      (key, type(value), 
@@ -511,17 +511,17 @@ class ConfigManager(object):
 
     def check_type(self, value1, value2):
         """
-	Check if value1 and value2 are different types.
-	"""
-	type1 = type(value1)
+        Check if value1 and value2 are different types.
+        """
+        type1 = type(value1)
         type2 = type(value2)
         if type1 == type2:
             return True
-	elif (isinstance(value1, basestring) and
-	      isinstance(value2, basestring)):
+        elif (isinstance(value1, basestring) and
+              isinstance(value2, basestring)):
             return True
         elif (type1 in [int, float, long] and 
-	      type2 in [int, float, long]):
+              type2 in [int, float, long]):
             return True
-	else:
+        else:
             return False
