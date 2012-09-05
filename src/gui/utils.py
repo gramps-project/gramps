@@ -452,6 +452,8 @@ def color_graph_box(alive=False, gender=gen.lib.Person.MALE):
 ##    print 'border unknown alive', rgb_to_hex((143/256.0, 89/256.0, 2/256.0))
 ##    print 'empty', rgb_to_hex((211/256.0, 215/256.0, 207/256.0))
 
+# color functions. For hsv and hls values, use import colorsys !
+
 def hex_to_rgb_float(value):
     """
     Convert a hexademical value #FF00FF to rgb. Returns tuple of float between

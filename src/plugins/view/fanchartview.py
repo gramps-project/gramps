@@ -64,8 +64,8 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         ('interface.fanview-childrenring', True),
         ('interface.fanview-radialtext', True),
         ('interface.fanview-font', 'Sans'),
-        ('interface.color-start-grad', '#0000FF'),
-        ('interface.color-end-grad', '#FF0000'),
+        ('interface.color-start-grad', '#ef2929'),
+        ('interface.color-end-grad', '#3d37e9'),
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate

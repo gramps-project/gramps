@@ -180,6 +180,8 @@ class FanChartWidget(Gtk.DrawingArea):
         """
         Reset all of the data on where/how slices appear, and if they are expanded.
         """
+        self.cache_fontcolor = {}
+        
         self.radialtext = radialtext
         self.childring = childring
         self.background = background
@@ -287,7 +289,8 @@ class FanChartWidget(Gtk.DrawingArea):
                     if state in [self.NORMAL, self.EXPANDED]:
                         self.draw_person(cr, gender_code(male), 
                                          text, start, stop, 
-                                         generation, state, parents, child, person)
+                                         generation, state, parents, child,
+                                         person)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
@@ -296,13 +299,18 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.set_source_rgb(0, 0, 0) # black
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
         cr.stroke()
+        cr.restore()
         # Draw center person:
         (text, person, parents, child) = self.data[0][0]
-        cr.restore()
         if person:
+            r, g, b = self.background_box(person, person.gender, 0)
+            cr.arc(0, 0, self.center, 0, 2 * math.pi)
+            cr.set_source_rgb(r/255, g/255, b/255)
+            cr.fill()
             cr.save()
             name = name_displayer.display(person)
-            self.draw_text(cr, name, self.center - 10, 95, 455)
+            self.draw_text(cr, name, self.center - 10, 95, 455, False,
+                           self.fontcolor(r,g,b))
             cr.restore()
             #draw center to move chart
             cr.set_source_rgb(0, 0, 0) # black
@@ -315,7 +323,6 @@ class FanChartWidget(Gtk.DrawingArea):
             if child and self.childring:
                 self.drawchildring(cr)
 
- 
     def prepare_background_box(self):
         """
         Method that is called every reset of the chart, to precomputed values
@@ -339,8 +346,7 @@ class FanChartWidget(Gtk.DrawingArea):
                             (1-x) * cstart_hsv[1] + x * cend_hsv[1],
                             (1-x) * cstart_hsv[2] + x * cend_hsv[2],
                             ) for x in divs]
-            self.colors = [(int(255*r), int(255*g), int(255*b)) 
-                                            for r, g, b in rgb_colors]
+            self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
         else:
             # known colors per generation, set or compute them
             self.colors = self.GENCOLOR[self.background]
@@ -350,6 +356,11 @@ class FanChartWidget(Gtk.DrawingArea):
         determine red, green, blue value of background of the box of person,
         which has gender gender, and is in ring generation
         """
+        if generation == 0 and self.background in [self.BACKGROUND_GENDER, 
+                self.BACKGROUND_GRAD_GEN, self.BACKGROUND_SCHEME1,
+                self.BACKGROUND_SCHEME2]:
+            # white for center person:
+            return (255, 255, 255)
         if self.background == self.BACKGROUND_GENDER:
             try:
                 alive = probably_alive(person, self.dbstate.db)
@@ -358,12 +369,29 @@ class FanChartWidget(Gtk.DrawingArea):
             backgr, border = gui.utils.color_graph_box(alive, person.gender)
             r, g, b = gui.utils.hex_to_rgb(backgr)
         else:
+            if self.background == self.BACKGROUND_GRAD_GEN and generation < 0:
+                generation = 0
             r, g, b = self.colors[generation % len(self.colors)]
             if gender == gen.lib.Person.MALE:
                 r *= .9
                 g *= .9
                 b *= .9
         return r, g, b
+    
+    def fontcolor(self, r, g, b):
+        """
+        return the font color based on the r, g, b of the background
+        """
+        try:
+            return self.cache_fontcolor[(r, g, b)]
+        except KeyError:
+            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
+            # we use the lightness value to determine white or black font
+            if hls[1] > 0.4:
+                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
+            else:
+                self.cache_fontcolor[(r, g, b)] = (255, 255, 255)
+        return self.cache_fontcolor[(r, g, b)]
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
                     state, parents, child, person):
@@ -415,7 +443,8 @@ class FanChartWidget(Gtk.DrawingArea):
             if self.radialtext and generation >= 6:
                 radial = True
                 radstart = radius - self.PIXELS_PER_GENERATION + 4
-            self.draw_text(cr, name, radstart, start, stop, radial)
+            self.draw_text(cr, name, radstart, start, stop, radial, 
+                           self.fontcolor(r, g, b))
         cr.restore()
 
     def drawchildring(self, cr):
@@ -456,26 +485,14 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.set_line_width(1)
         cr.stroke()
         #now fill
-        if self.background == self.BACKGROUND_GENDER:
-            person = self.dbstate.db.get_person_from_handle(child_handle)
-            try:
-                alive = probably_alive(person, self.dbstate.db)
-            except RuntimeError:
-                alive = False
-            backgr, border = gui.utils.color_graph_box(alive, child_gender)
-            r, g, b = gui.utils.hex_to_rgb(backgr)
-        else:
-            #children in color as parents
-            r,g,b = self.colors[1]
-            if child_gender == gen.lib.Person.MALE:
-                r *= .9
-                g *= .9
-                b *= .9
+        person = self.dbstate.db.get_person_from_handle(child_handle)
+        r, g, b = self.background_box(person, person.gender, -1)
         _childpath(cr)
         cr.set_source_rgb(r/255., g/255., b/255.) 
         cr.fill()
 
-    def draw_text(self, cr, text, radius, start, stop, radial=False):
+    def draw_text(self, cr, text, radius, start, stop, radial=False,
+                  fontcolor=(0, 0, 0)):
         """
         Display text at a particular radius, between start and stop
         degrees.
@@ -484,6 +501,7 @@ class FanChartWidget(Gtk.DrawingArea):
         font = Pango.FontDescription(self.fontdescr)
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
+        cr.set_source_rgb(fontcolor[0], fontcolor[1], fontcolor[2])
         if radial and self.radialtext:
             cr.save()
             layout = self.create_pango_layout(text)
@@ -531,7 +549,6 @@ class FanChartWidget(Gtk.DrawingArea):
                         txlen -= 1
                 else:
                     cont = False
-            cr.set_source_rgb(0, 0, 0) # black 
             # offset for cairo-font system is 90
             if start > 179:
                 pos = start + degoffsetheight + 90 - 90
@@ -586,7 +603,6 @@ class FanChartWidget(Gtk.DrawingArea):
                     break
 
                 cr.save()
-                cr.set_source_rgb(0, 0, 0) # black 
                 cr.rotate(pos * math.pi / 180)
                 pos = pos + degneed
                 # Inform Pango to re-layout the text with the new transformation
