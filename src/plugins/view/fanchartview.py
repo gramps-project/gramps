@@ -60,7 +60,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
     #settings in the config file
     CONFIGSETTINGS = (
         ('interface.fanview-maxgen', 9),
-        ('interface.fanview-background', 0),
+        ('interface.fanview-background', 4),
         ('interface.fanview-childrenring', True),
         ('interface.fanview-radialtext', True),
         ('interface.fanview-font', 'Sans'),
@@ -267,11 +267,11 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 _('Background'), 
                 2, 'interface.fanview-background',
                 (
-                (0, _('Color scheme 1')),
-                (1, _('Color scheme 2')),
-                (2, _('Gender colors')),
-                (3, _('White')),
-                (4, _('Generation based gradient')),
+                (self.fan.BACKGROUND_GENDER, _('Gender colors')),
+                (self.fan.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
+                (self.fan.BACKGROUND_WHITE, _('White')),
+                (self.fan.BACKGROUND_SCHEME1, _('Color scheme classic report')),
+                (self.fan.BACKGROUND_SCHEME2, _('Color scheme classic view')),
                 ),
                 callback=self.cb_update_background)
         #colors, stored as hex values
@@ -312,8 +312,11 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
 
     def cb_update_background(self, obj, constant):
         entry = obj.get_active()
-        self._config.set(constant, entry)
-        self.background = int(entry)
+        Gtk.TreePath.new_from_string('%d' % entry)
+        val = int(obj.get_model().get_value(
+                obj.get_model().get_iter_from_string('%d' % entry), 0))
+        self._config.set(constant, val)
+        self.background = val
         self.update()
 
     def cb_update_childrenring(self, client, cnxn_id, entry, data):

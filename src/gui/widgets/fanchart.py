@@ -94,6 +94,7 @@ class FanChartWidget(Gtk.DrawingArea):
     BACKGROUND_GENDER = 2
     BACKGROUND_WHITE = 3
     BACKGROUND_GRAD_GEN = 4
+    BACKGROUND_GRAD_AGE = 5
     GENCOLOR = {
         BACKGROUND_SCHEME1: ((255, 63,  0),
                              (255,175, 15),
@@ -171,7 +172,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center_xy = [0, 0] # distance from center (x, y)
         self.center = 50 # pixel radius of center
         #default values
-        self.reset(9, self.BACKGROUND_SCHEME1, True, True, 'Sans', '#0000FF',
+        self.reset(9, self.BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
                     '#FF0000')
         self.set_size_request(120, 120)
 
