@@ -249,16 +249,15 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                                   0, alloc.height-5,
                                   0, alloc.height-8)
             context.close_path()
-            return self.context.copy_path()
+            return context.copy_path()
 
         # pylint: disable-msg=E1101
         minw = 120
         minh = 25
         alw = self.get_allocated_width()
         alh = self.get_allocated_height()
-        self.context = context
         if not self.textlayout:
-            self.textlayout = PangoCairo.create_layout(self.context)
+            self.textlayout = PangoCairo.create_layout(context)
             self.textlayout.set_font_description(self.get_style().font_desc)
             self.textlayout.set_markup(self.text, -1)
         size = self.textlayout.get_pixel_size()
@@ -275,67 +274,68 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         alh = self.get_allocated_height()
 
         # widget area for debugging
-        ##self.context.rectangle(0, 0, alloc.width, alloc.height)
-        ##self.context.set_source_rgb(1, 0, 1)
-        ##self.context.fill_preserve()
-        ##self.context.stroke()
+        ##context.rectangle(0, 0, alloc.width, alloc.height)
+        ##context.set_source_rgb(1, 0, 1)
+        ##context.fill_preserve()
+        ##context.stroke()
 
         # Create box shape and store path
-        self.context.save()
-        path = _boxpath(self.context, alloc)
+        context.save()
+        path = _boxpath(context, alloc)
 
         # shadow
-        self.context.translate(3, 3)
-        self.context.new_path()
-        self.context.append_path(path)
-        self.context.set_source_rgba(*(self.bordercolor[:3] + (0.4,)))
-        self.context.fill_preserve()
-        self.context.set_line_width(0)
-        self.context.stroke()
-        self.context.restore()
+        context.translate(3, 3)
+        context.new_path()
+        context.append_path(path)
+        context.set_source_rgba(*(self.bordercolor[:3] + (0.4,)))
+        context.fill_preserve()
+        context.set_line_width(0)
+        context.stroke()
+        context.restore()
 
-        self.context.save()
+        context.save()
         # box shape used for clipping
-        _boxpath(self.context, alloc)
-        self.context.clip()
+        _boxpath(context, alloc)
+        context.clip()
 
         # background (while clipped)
-        _boxpath(self.context, alloc)
-        self.context.set_source_rgb(*self.bgcolor[:3])
-        self.context.fill_preserve()
-        self.context.stroke()
+        _boxpath(context, alloc)
+        context.set_source_rgb(*self.bgcolor[:3])
+        context.fill_preserve()
+        context.stroke()
 
         # image
         if self.img_surf:
-            self.context.set_source_surface(self.img_surf,
+            context.set_source_surface(self.img_surf,
                 alloc.width-4-self.img_surf.get_width(), 1)
-            self.context.paint()
+            context.paint()
 
         # Mark deceased
-        self.context.new_path()
+        context.new_path()
         if self.person and not self.alive:
-            self.context.set_source_rgb(0, 0, 0)
-            self.context.set_line_width(2)
-            self.context.move_to(0, 10)
-            self.context.line_to(10, 0)
-            self.context.stroke()
+            context.set_source_rgb(0, 0, 0)
+            context.set_line_width(2)
+            context.move_to(0, 10)
+            context.line_to(10, 0)
+            context.stroke()
 
         #border
-        _boxpath(self.context, alloc)
+        _boxpath(context, alloc)
         if self.hightlight:
-            self.context.set_line_width(5)
+            context.set_line_width(5)
         else:
-            self.context.set_line_width(2)
-        self.context.set_source_rgb(*self.bordercolor[:3])
-        self.context.stroke()
-        self.context.restore()
-        self.context.save()
+            context.set_line_width(2)
+        context.set_source_rgb(*self.bordercolor[:3])
+        context.stroke()
+        context.restore()
+        context.save()
         
         # text
-        self.context.move_to(5, 4)
-        self.context.set_source_rgb(0, 0, 0)
-        PangoCairo.show_layout(self.context, self.textlayout)
-        self.context.restore()
+        context.move_to(5, 4)
+        context.set_source_rgb(0, 0, 0)
+        PangoCairo.show_layout(context, self.textlayout)
+        context.restore()
+        context.get_target().flush()
 
 class LineWidget(Gtk.DrawingArea):
     """
@@ -357,9 +357,8 @@ class LineWidget(Gtk.DrawingArea):
         """
         Redraw the contents of the widget.
         """
-        self.cairocontext = context
         self.set_size_request(20, 20)
-        self.cairocontext.set_source_rgb(0.,0.,0.)
+        context.set_source_rgb(0.,0.,0.)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
         child = self.child_box.get_allocation()
@@ -393,42 +392,42 @@ class LineWidget(Gtk.DrawingArea):
             parent_side = 0
 
         if self.father_box:
-            self.draw_link(parent_side, middle, child_side, centre,
+            self.draw_link(context, parent_side, middle, child_side, centre,
                            father_side, self.mrel)
 
         if self.mother_box:
-            self.draw_link(parent_side, middle, child_side, centre,
+            self.draw_link(context, parent_side, middle, child_side, centre,
                            mother_side, self.frel)
 
-    def draw_link(self, parent_side, middle, child_side, centre, side, rela):
+    def draw_link(self, cr, parent_side, middle, child_side, centre, side, rela):
         """
         Draw a link between parent and child.
         """
         
-        self.cairocontext.set_line_width(3)
+        cr.set_line_width(3)
         if rela:
-            self.cairocontext.set_dash([], 0) #SOLID
+            cr.set_dash([], 0) #SOLID
         else:
-            self.cairocontext.set_dash([9.], 1) #DASH
+            cr.set_dash([9.], 1) #DASH
         
-        self.draw_line(parent_side, side, centre, side)
-        self.draw_line(centre, side, centre, middle, True)
-        self.draw_line(centre, middle, child_side, middle, True)
-        self.cairocontext.stroke()
+        self.draw_line(cr, parent_side, side, centre, side)
+        self.draw_line(cr, centre, side, centre, middle, True)
+        self.draw_line(cr, centre, middle, child_side, middle, True)
+        cr.stroke()
 
-    def draw_line(self, x_from, y_from, x_to, y_to, join=False):
+    def draw_line(self, cr, x_from, y_from, x_to, y_to, join=False):
         """
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
         if self.direction in [2, 3]: # horizontal
             if not join:
-                self.cairocontext.move_to(x_from, y_from)
-            self.cairocontext.line_to(x_to, y_to)
+                cr.move_to(x_from, y_from)
+            cr.line_to(x_to, y_to)
         else:
             if not join:
-                self.cairocontext.move_to(y_from, x_from)
-            self.cairocontext.line_to(y_to, x_to)
+                cr.move_to(y_from, x_from)
+            cr.line_to(y_to, x_to)
 
 class LineWidget2(Gtk.DrawingArea):
     """
@@ -447,9 +446,8 @@ class LineWidget2(Gtk.DrawingArea):
         """
         Redraw the contents of the widget.
         """
-        self.cairocontext = context
         self.set_size_request(20, -1)
-        self.cairocontext.set_source_rgb(0.,0.,0.)
+        context.set_source_rgb(0.,0.,0.)
         # pylint: disable-msg=E1101
         alloc = self.get_allocation()
 
@@ -468,11 +466,11 @@ class LineWidget2(Gtk.DrawingArea):
             mid_y = alloc.width / 2
             mid_x = alloc.height / 2
 
-        self.cairocontext.set_line_width(3)
+        context.set_line_width(3)
         if self.rela:
-            self.cairocontext.set_dash([], 0) #SOLID
+            context.set_dash([], 0) #SOLID
         else:
-            self.cairocontext.set_dash([9.], 1) #DASH
+            context.set_dash([9.], 1) #DASH
 
         if self.direction in [1, 3]:
             parent_x = 0
@@ -480,22 +478,22 @@ class LineWidget2(Gtk.DrawingArea):
         if not self.male:
             child_y = 0
 
-        self.draw_line(child_x, child_y, mid_x, mid_y)
-        self.draw_line(mid_x, mid_y, parent_x, parent_y, True)
+        self.draw_line(context, child_x, child_y, mid_x, mid_y)
+        self.draw_line(context, mid_x, mid_y, parent_x, parent_y, True)
         
-    def draw_line(self, x_from, y_from, x_to, y_to, join=False):
+    def draw_line(self, cr, x_from, y_from, x_to, y_to, join=False):
         """
         Draw a single line in a link.
         """
         # pylint: disable-msg=E1101
         if self.direction in [2, 3]: # horizontal
             if not join:
-                self.cairocontext.move_to(x_from, y_from)
-            self.cairocontext.line_to(x_to, y_to)
+                cr.move_to(x_from, y_from)
+            cr.line_to(x_to, y_to)
         else:
             if not join:
-                self.cairocontext.move_to(y_from, x_from)
-            self.cairocontext.line_to(y_to, x_to)
+                cr.move_to(y_from, x_from)
+            cr.line_to(y_to, x_to)
 
 #-------------------------------------------------------------------------
 #
