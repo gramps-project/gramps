@@ -600,7 +600,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # These are cousins in the same generation
             if Ga == 2:
                 rel_str = "primos hermanos"
-            elif level < len(_level_name_plural):
+            elif (Ga-1) < len(_level_name_plural):
                 rel_str = "primos %s" % (_level_name_plural[Ga-1])
             else:
                 rel_str = "primos %d-ésimos" % (Ga-1)
