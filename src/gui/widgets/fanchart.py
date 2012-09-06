@@ -1153,7 +1153,7 @@ class FanChartGrampsGUI(object):
         self.grad_start = '#0000FF'
         self.grad_end = '#FF0000'
         self.generic_filter = None   # the filter to use. Named as in PageView
-        self.alpha_filter = 0.5      # transparency of filtered out values
+        self.alpha_filter = 0.2      # transparency of filtered out values
     
     def set_fan(self, fan):
         """
