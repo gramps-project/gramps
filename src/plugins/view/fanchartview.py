@@ -217,7 +217,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         """
         Print or save the view that is currently shown
         """
-        widthpx = 2*(self.fan.pixels_per_generation * self.fan.nrgen() 
+        widthpx = 2*(self.fan.PIXELS_PER_GENERATION * self.fan.nrgen() 
                         + self.fan.center)
         prt = CairoPrintSave(widthpx, self.fan.on_draw, self.uistate.window)
         prt.run()
