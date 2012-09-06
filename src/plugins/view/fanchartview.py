@@ -68,6 +68,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
         self.uistate = uistate
+
         NavigationView.__init__(self, _('Fan Chart'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_bookmarks(), 
@@ -163,13 +164,21 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                          tip=_("Print or save the Fan Chart View"), 
                          callback=self.printview)
     def build_tree(self):
-        pass # will build when active_changes
+        """
+        Generic method called by PageView to construct the view.
+        Here the tree builds when active person changes or db changes or on 
+        callbacks like person_rebuild, so build will be double sometimes.
+        However, change in generic filter also triggers build_tree ! So we
+        need to reset.
+        """
+        self.update()
 
     def active_changed(self, handle):
         """
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
+        print 'active changed'
         self.update()
 
     def _connect_db_signals(self):
@@ -360,6 +369,13 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         self._config.set(constant, self.allfonts[entry][1])
         self.fonttype = self.allfonts[entry][1]
         self.update()
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("Person Filter",),
+                ())
 
 #------------------------------------------------------------------------
 #

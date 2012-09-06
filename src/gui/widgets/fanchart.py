@@ -179,11 +179,12 @@ class FanChartWidget(Gtk.DrawingArea):
         self.center = 50 # pixel radius of center
         #default values
         self.reset(None, 9, self.BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
-                    '#FF0000')
+                    '#FF0000', None, 0.5)
         self.set_size_request(120, 120)
 
     def reset(self, root_person_handle, maxgen, background, childring,
-              radialtext, fontdescr, grad_start, grad_end):
+              radialtext, fontdescr, grad_start, grad_end,
+              filter, alpha_filter):
         """
         Reset all of the data:
          root_person_handle = person to show
@@ -193,6 +194,8 @@ class FanChartWidget(Gtk.DrawingArea):
          radialtext = try to use radial text or not
          fontdescr = string describing the font to use
          grad_start, grad_end: colors to use for background procedure
+         filter = the person filter to apply to the people in the chart
+         alpha = the alpha transparency value (0-1) to apply to filtered out data
         """
         self.cache_fontcolor = {}
         
@@ -202,6 +205,8 @@ class FanChartWidget(Gtk.DrawingArea):
         self.fontdescr = fontdescr
         self.grad_start = grad_start
         self.grad_end = grad_end
+        self.filter = filter
+        self.alpha_filter = alpha_filter
         
         self.set_generations(maxgen)
         
@@ -418,9 +423,9 @@ class FanChartWidget(Gtk.DrawingArea):
         # Draw center person:
         (text, person, parents, child, userdata) = self.data[0][0]
         if person:
-            r, g, b = self.background_box(person, person.gender, 0, userdata)
+            r, g, b, a = self.background_box(person, person.gender, 0, userdata)
             cr.arc(0, 0, self.center, 0, 2 * math.pi)
-            cr.set_source_rgb(r/255, g/255, b/255)
+            cr.set_source_rgba(r/255, g/255, b/255, a)
             cr.fill()
             cr.save()
             name = name_displayer.display(person)
@@ -450,33 +455,37 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.save()
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
-        r, g, b = self.background_box(person, gender, generation, userdata)
+        r, g, b, a = self.background_box(person, gender, generation, userdata)
         radius = generation * self.PIXELS_PER_GENERATION + self.center
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
             # draw an indicator
-            cr.move_to(0, 0)
+            radmax = radius + self.BORDER_EDGE_WIDTH
+            cr.move_to(radmax*math.cos(start_rad), radmax*math.sin(start_rad))
+            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad)
+            cr.line_to(radius*math.cos(stop_rad), radius*math.sin(stop_rad))
+            cr.arc_negative(0, 0, radius, stop_rad, start_rad)
+            cr.close_path()
+            path = cr.copy_path()
             cr.set_source_rgb(255, 255, 255) # white
-            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad) 
             cr.fill()
-            cr.move_to(0, 0)
+            #and again for the border
+            cr.append_path(path)
             cr.set_source_rgb(0, 0, 0) # black
-            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad) 
-            cr.line_to(0, 0)
             cr.stroke()
-        def pathperson(cr):
-            """ we are lazy here, as we draw from out to in, we do a piewedge
-                instead of the actual person box
-            """
-            cr.move_to(0, 0)
-            cr.arc(0, 0, radius, start_rad, stop_rad) 
-            cr.line_to(0, 0)
-            
-        cr.set_source_rgb(r/255., g/255., b/255.) 
-        pathperson(cr)
+        # now draw the person
+        cr.move_to(radius * math.cos(start_rad), radius * math.sin(start_rad))
+        cr.arc(0, 0, radius, start_rad, stop_rad)
+        radmin = radius - self.PIXELS_PER_GENERATION
+        cr.line_to(radmin * math.cos(stop_rad), radmin * math.sin(stop_rad))
+        cr.arc_negative(0, 0, radmin, stop_rad, start_rad)
+        cr.close_path()
+        path = cr.copy_path()
+        cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
+        #and again for the border
+        cr.append_path(path)
         cr.set_source_rgb(0, 0, 0) # black
-        pathperson(cr)
         if state == self.NORMAL: # normal
             cr.set_line_width(1)
         else: # EXPANDED
@@ -524,21 +533,21 @@ class FanChartWidget(Gtk.DrawingArea):
         thetamax = start + inc
         # add child to angle storage
         self.angle[-2].append([thetamin, thetamax, child_gender, None])
-        def _childpath(cr):
-            cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-            cr.arc(0, 0, rmin, thetamin, thetamax)
-            cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
-            cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-            cr.line_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        _childpath(cr)
+        #draw child now
+        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        cr.arc(0, 0, rmin, thetamin, thetamax)
+        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
+        cr.line_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        path = cr.copy_path()
         cr.set_source_rgb(0, 0, 0) # black
         cr.set_line_width(1)
         cr.stroke()
-        #now fill
+        #now again to fill
         person = self.dbstate.db.get_person_from_handle(child_handle)
-        r, g, b = self.background_box(person, person.gender, -1, userdata)
-        _childpath(cr)
-        cr.set_source_rgb(r/255., g/255., b/255.) 
+        r, g, b, a = self.background_box(person, person.gender, -1, userdata)
+        cr.append_path(path)
+        cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
 
     def draw_text(self, cr, text, radius, start, stop, radial=False,
@@ -777,25 +786,29 @@ class FanChartWidget(Gtk.DrawingArea):
                 self.BACKGROUND_GRAD_GEN, self.BACKGROUND_SCHEME1,
                 self.BACKGROUND_SCHEME2]:
             # white for center person:
-            return (255, 255, 255)
-        if self.background == self.BACKGROUND_GENDER:
+            color = (255, 255, 255)
+        elif self.background == self.BACKGROUND_GENDER:
             try:
                 alive = probably_alive(person, self.dbstate.db)
             except RuntimeError:
                 alive = False
             backgr, border = gui.utils.color_graph_box(alive, person.gender)
-            r, g, b = gui.utils.hex_to_rgb(backgr)
+            color = gui.utils.hex_to_rgb(backgr)
         elif self.background == self.BACKGROUND_GRAD_AGE:
-            r, g, b = userdata[0]
+            color = userdata[0]
         else:
             if self.background == self.BACKGROUND_GRAD_GEN and generation < 0:
                 generation = 0
-            r, g, b = self.colors[generation % len(self.colors)]
+            color = self.colors[generation % len(self.colors)]
             if gender == gen.lib.Person.MALE:
-                r *= .9
-                g *= .9
-                b *= .9
-        return r, g, b
+                color = [x*.9 for x in color]
+        # now we set transparency data
+        if self.filter and not self.filter.match(person.handle, self.dbstate.db):
+            alpha = self.alpha_filter
+        else:
+            alpha = 1.
+        
+        return color[0], color[1], color[2], alpha
     
     def fontcolor(self, r, g, b):
         """
@@ -1139,6 +1152,8 @@ class FanChartGrampsGUI(object):
         self.fonttype = font
         self.grad_start = '#0000FF'
         self.grad_end = '#FF0000'
+        self.generic_filter = None   # the filter to use. Named as in PageView
+        self.alpha_filter = 0.5      # transparency of filtered out values
     
     def set_fan(self, fan):
         """
@@ -1156,7 +1171,8 @@ class FanChartGrampsGUI(object):
         root_person_handle = self.get_active('Person')
         self.fan.reset(root_person_handle, self.maxgen, self.background, self.childring,
                        self.radialtext, self.fonttype,
-                       self.grad_start, self.grad_end)
+                       self.grad_start, self.grad_end,
+                       self.generic_filter, self.alpha_filter)
         self.fan.queue_draw()
 
     def on_popup(self, obj, event, person_handle):
