@@ -272,11 +272,12 @@ class EmbeddedList(ButtonTab):
         if row is None:
             return len(self.get_data())
         else:
+            path = row[0].get_indices()
             if row[1] in (Gtk.TreeViewDropPosition.BEFORE,
                           Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
-                return row[0][0]
+                return path[0]
             else:
-                return row[0][0]+1
+                return path[0]+1
 
     def _handle_drag(self, row, obj):
         self.get_data().insert(row, obj)

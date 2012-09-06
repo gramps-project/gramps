@@ -214,8 +214,9 @@ class GroupEmbeddedList(EmbeddedList):
             else:
                 return [self._WORKGROUP, len(self.get_data()[self._WORKGROUP])]
         else:
-            wgroup = dest[0][0]
-            if len(dest[0]) == 1:
+            path = dest[0].get_indices()
+            wgroup = path[0]
+            if len(path) == 1:
                 # On a heading
                 if dest[1] == Gtk.TreeViewDropPosition.BEFORE:
                     if wgroup != 0:
@@ -229,9 +230,9 @@ class GroupEmbeddedList(EmbeddedList):
             else:
                 if dest[1] in (Gtk.TreeViewDropPosition.BEFORE,
                                Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
-                    return (wgroup, dest[0][1])
+                    return (wgroup, path[1])
                 else:
-                    return (wgroup, dest[0][1]+1)
+                    return (wgroup, path[1]+1)
 
     def _handle_drag(self, row, obj):
         """
