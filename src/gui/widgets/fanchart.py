@@ -488,8 +488,11 @@ class FanChartWidget(Gtk.DrawingArea):
             radial = False
             radstart = radius - self.PIXELS_PER_GENERATION/2
             if self.radialtext and generation >= 6:
-                radial = True
-                radstart = radius - self.PIXELS_PER_GENERATION + 4
+                spacepolartext = radstart * (stop-start)*math.pi/180
+                if spacepolartext < self.PIXELS_PER_GENERATION * 1.1:
+                    # more space to print it radial
+                    radial = True
+                    radstart = radius - self.PIXELS_PER_GENERATION + 4
             self.draw_text(cr, name, radstart, start, stop, radial, 
                            self.fontcolor(r, g, b))
         cr.restore()
@@ -597,13 +600,14 @@ class FanChartWidget(Gtk.DrawingArea):
                 else:
                     cont = False
             # offset for cairo-font system is 90
-            if start > 179:
+            rotval = self.rotate_value % 360 - 90
+            if (start + rotval) % 360 > 179:
                 pos = start + degoffsetheight + 90 - 90
             else:
                 pos = stop - degoffsetheight + 180
             cr.rotate(pos * math.pi / 180)
             layout.context_changed()
-            if start > 179:
+            if (start + rotval) % 360 > 179:
                 cr.move_to(radius+2, 0)
             else:
                 cr.move_to(-radius-self.PIXELS_PER_GENERATION+6, 0)
@@ -740,7 +744,7 @@ class FanChartWidget(Gtk.DrawingArea):
                 child = self.dbstate.db.get_person_from_handle(child_handle)
                 age = get_age(self.dbstate.db, child)
                 if age is not None:
-                    age = age.tuple()[0]
+                    age = age[0]
                     if age < 0:
                         age = 0
                     #now determine fraction for gradient
@@ -750,7 +754,7 @@ class FanChartWidget(Gtk.DrawingArea):
                         (1-agefrac) * cstart_hsv[1] + agefrac * cend_hsv[1],
                         (1-agefrac) * cstart_hsv[2] + agefrac * cend_hsv[2],
                         )
-                userdata.append(agecol)
+                userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
             #now create gradient data, 5 values from 0 to max
             steps = 5
             divs = [x/steps for x in range(steps+1)]
