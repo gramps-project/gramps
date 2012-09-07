@@ -466,11 +466,16 @@ class FanChartWidget(Gtk.DrawingArea):
             cr.line_to(radius*math.cos(stop_rad), radius*math.sin(stop_rad))
             cr.arc_negative(0, 0, radius, stop_rad, start_rad)
             cr.close_path()
-            path = cr.copy_path()
+            ##path = cr.copy_path() # not working correct
             cr.set_source_rgb(255, 255, 255) # white
             cr.fill()
             #and again for the border
-            cr.append_path(path)
+            cr.move_to(radmax*math.cos(start_rad), radmax*math.sin(start_rad))
+            cr.arc(0, 0, radius + self.BORDER_EDGE_WIDTH, start_rad, stop_rad)
+            cr.line_to(radius*math.cos(stop_rad), radius*math.sin(stop_rad))
+            cr.arc_negative(0, 0, radius, stop_rad, start_rad)
+            cr.close_path()
+            ##cr.append_path(path) # not working correct
             cr.set_source_rgb(0, 0, 0) # black
             cr.stroke()
         # now draw the person
@@ -480,11 +485,17 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.line_to(radmin * math.cos(stop_rad), radmin * math.sin(stop_rad))
         cr.arc_negative(0, 0, radmin, stop_rad, start_rad)
         cr.close_path()
-        path = cr.copy_path()
+        ##path = cr.copy_path() # not working correct
         cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
         #and again for the border
-        cr.append_path(path)
+        cr.move_to(radius * math.cos(start_rad), radius * math.sin(start_rad))
+        cr.arc(0, 0, radius, start_rad, stop_rad)
+        radmin = radius - self.PIXELS_PER_GENERATION
+        cr.line_to(radmin * math.cos(stop_rad), radmin * math.sin(stop_rad))
+        cr.arc_negative(0, 0, radmin, stop_rad, start_rad)
+        cr.close_path()
+        ##cr.append_path(path) # not working correct
         cr.set_source_rgb(0, 0, 0) # black
         if state == self.NORMAL: # normal
             cr.set_line_width(1)
@@ -538,15 +549,20 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.arc(0, 0, rmin, thetamin, thetamax)
         cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
         cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-        cr.line_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        path = cr.copy_path()
+        cr.close_path()
+        ##path = cr.copy_path() # not working correct
         cr.set_source_rgb(0, 0, 0) # black
         cr.set_line_width(1)
         cr.stroke()
         #now again to fill
         person = self.dbstate.db.get_person_from_handle(child_handle)
         r, g, b, a = self.background_box(person, person.gender, -1, userdata)
-        cr.append_path(path)
+        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        cr.arc(0, 0, rmin, thetamin, thetamax)
+        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
+        cr.close_path()
+        ##cr.append_path(path) # not working correct
         cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
 
