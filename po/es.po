@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 3.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-06 10:10+0200\n"
-"PO-Revision-Date: 2012-09-06 10:22+0200\n"
+"POT-Creation-Date: 2012-09-07 09:55+0200\n"
+"PO-Revision-Date: 2012-09-07 09:54+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -1911,12 +1911,12 @@ msgid ""
 "   %s"
 msgstr ""
 "AVISO: El archivo de salida ya existe.\n"
-"AVISO: Resultará sobreescrito:\n"
+"AVISO: Resultará sobrescrito:\n"
 "   %s"
 
 #: ../src/cli/arghandler.py:289
 msgid "OK to overwrite? (yes/no) "
-msgstr "¿Está de acuerdo en sobreescribir? (sí/no) "
+msgstr "¿Está de acuerdo en sobrescribir? (sí/no) "
 
 #: ../src/cli/arghandler.py:294
 msgid "YES"
@@ -1925,7 +1925,7 @@ msgstr "SÍ"
 #: ../src/cli/arghandler.py:295
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Se sobreescribirá el archivo existente: %s"
+msgstr "Se sobrescribirá el archivo existente: %s"
 
 #: ../src/cli/arghandler.py:315
 #, python-format
@@ -6325,7 +6325,7 @@ msgstr "Excluir"
 
 #: ../src/gui/viewmanager.py:1564
 msgid "Backup file already exists! Overwrite?"
-msgstr "El archivo de salvaguarda ya existe. ¿Sobreescribir?"
+msgstr "El archivo de salvaguarda ya existe. ¿Sobrescribir?"
 
 #: ../src/gui/viewmanager.py:1565
 #, python-format
@@ -6334,7 +6334,7 @@ msgstr "El archivo '%s' existe."
 
 #: ../src/gui/viewmanager.py:1566
 msgid "Proceed and overwrite"
-msgstr "Continuar y sobreescribir"
+msgstr "Continuar y sobrescribir"
 
 #: ../src/gui/viewmanager.py:1567
 msgid "Cancel the backup"
@@ -8459,12 +8459,12 @@ msgstr "El archivo ya existe"
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
-"Puede escoger o bien sobreescribir ese archivo o cambiar el nombre de "
-"archivo seleccionado."
+"Puede escoger o bien sobrescribir ese archivo o cambiar el nombre de archivo "
+"seleccionado."
 
 #: ../src/gui/plug/report/_reportdialog.py:524
 msgid "_Overwrite"
-msgstr "_Sobreescribir"
+msgstr "_Sobrescribir"
 
 #: ../src/gui/plug/report/_reportdialog.py:525
 msgid "_Change filename"
@@ -14877,15 +14877,17 @@ msgstr "Reporte de importación GEDCOM: No se detectaron errores"
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Reporte de importación GEDCOM: Se detectaron %s errores"
 
-# TBC: Limitado a 32 caracteres
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:2826
 msgid "Tag recognised but not supported"
-msgstr "Etiqueta reconocida pero no compatible"
+msgstr "Reconocida pero no compatible"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:2837
 msgid "Line ignored as not understood"
 msgstr "Linea ignorada por no entendida"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:2862
 msgid "Skipped subordinate line"
 msgstr "Saltada una línea subordinada"
@@ -14953,6 +14955,7 @@ msgstr "SUBM (Remitente): @%s@"
 msgid "GEDCOM data"
 msgstr "Datos GEDCOM"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:3150
 msgid "Unknown tag"
 msgstr "Etiqueta desconocida"
@@ -14967,12 +14970,14 @@ msgstr "Nivel superior"
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (persona) con ID Gramps %s"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:3454 ../src/plugins/lib/libgedcom.py:4749
 #: ../src/plugins/lib/libgedcom.py:4952 ../src/plugins/lib/libgedcom.py:5083
 #: ../src/plugins/lib/libgedcom.py:5708 ../src/plugins/lib/libgedcom.py:5845
 msgid "Filename omitted"
 msgstr "Nombre de archivo omitido"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:3456 ../src/plugins/lib/libgedcom.py:4751
 #: ../src/plugins/lib/libgedcom.py:4954 ../src/plugins/lib/libgedcom.py:5085
 #: ../src/plugins/lib/libgedcom.py:5710 ../src/plugins/lib/libgedcom.py:5847
@@ -14984,16 +14989,19 @@ msgstr "Formato omitido"
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (familia) con ID Gramps %s"
 
+# TBC: Limited length: 32 characters
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/plugins/lib/libgedcom.py:5234
 msgid "Empty event note ignored"
 msgstr "Nota de evento vacía ignorada"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:5551 ../src/plugins/lib/libgedcom.py:6362
 msgid "Warn: ADDR overwritten"
-msgstr "Aviso: ADDR sobreescrito"
+msgstr "Aviso: ADDR sobrescrito"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:5722 ../src/plugins/lib/libgedcom.py:6104
 msgid "REFN ignored"
 msgstr "REFN ignorado"
@@ -15013,22 +15021,26 @@ msgstr "SOUR (fuente) con ID Gramps %s"
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (objeto audiovisual) con ID Gramps %s"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6058 ../src/plugins/lib/libgedcom.py:7052
 #, python-format
 msgid "Could not import %s"
 msgstr "No se pudo importar %s"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6094
 msgid "BLOB ignored"
 msgstr "BLOB ignorado"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6114
 msgid "Multimedia REFN:TYPE ignored"
-msgstr "REFN:TYPE de objeto audiovisual ignorado"
+msgstr "REFN:TYPE ignorado"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6124
 msgid "Mutimedia RIN ignored"
-msgstr "RIN de objeto audiovisual ignorado"
+msgstr "RIN ignorado"
 
 #: ../src/plugins/lib/libgedcom.py:6211
 #, python-format
@@ -15108,6 +15120,7 @@ msgstr "Codificación de caracteres"
 msgid "Character set and version"
 msgstr "Codificación de caracteres y versión"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6735
 msgid "GEDCOM version not supported"
 msgstr "Versión de GEDCOM no compatible"
@@ -15116,9 +15129,10 @@ msgstr "Versión de GEDCOM no compatible"
 msgid "GEDCOM version"
 msgstr "Versión de GEDCOM"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6741
 msgid "GEDCOM form not supported"
-msgstr "Formato de GEDCOM no manejado por Gramps"
+msgstr "Formato GEDCOM no compatible"
 
 #: ../src/plugins/lib/libgedcom.py:6743
 msgid "GEDCOM form"
@@ -15132,6 +15146,7 @@ msgstr "Fecha de creación del GEDCOM"
 msgid "Creation date and time of GEDCOM"
 msgstr "Fecha y hora de creación del GEDCOM"
 
+# TBC: Limited length: 32 characters
 #: ../src/plugins/lib/libgedcom.py:6830 ../src/plugins/lib/libgedcom.py:6867
 msgid "Empty note ignored"
 msgstr "Nota vacía ignorada"
@@ -15165,6 +15180,7 @@ msgstr "Remesa: Generaciones de descendientes"
 msgid "Submission: Ordinance process flag"
 msgstr "Remesa: Indicador de proceso de la ordenanza"
 
+# TBC: Limited length: 32 characters
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
 #: ../src/plugins/lib/libgedcom.py:7154
