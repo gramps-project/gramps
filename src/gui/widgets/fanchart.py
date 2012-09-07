@@ -86,8 +86,10 @@ def gender_code(is_male):
 
 PIXELS_PER_GENERATION = 50 # size of radius for generation
 BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
+CENTER = 50                # pixel radius of center
 CHILDRING_WIDTH = 12       # width of the children ring inside the person
 TRANSLATE_PX = 10          # size of the central circle, used to move the chart
+PAD_PX = 4                 # padding with edges
 
 BACKGROUND_SCHEME1 = 0
 BACKGROUND_SCHEME2 = 1
@@ -119,6 +121,10 @@ GENCOLOR = {
 
 MAX_AGE = 100
 GRADIENTSCALE = 5
+
+FORM_CIRCLE = 0
+FORM_HALFCIRCLE = 1
+FORM_QUADRANT = 2
 
 COLLAPSED = 0
 NORMAL = 1
@@ -185,15 +191,14 @@ class FanChartWidget(Gtk.DrawingArea):
         self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
         self.center_xy = [0, 0] # distance from center (x, y)
-        self.center = 50 # pixel radius of center
         #default values
         self.reset(None, 9, BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
-                    '#FF0000', None, 0.5)
+                    '#FF0000', None, 0.5, FORM_CIRCLE)
         self.set_size_request(120, 120)
 
     def reset(self, root_person_handle, maxgen, background, childring,
               radialtext, fontdescr, grad_start, grad_end,
-              filter, alpha_filter):
+              filter, alpha_filter, form):
         """
         Reset all of the data:
          root_person_handle = person to show
@@ -205,6 +210,7 @@ class FanChartWidget(Gtk.DrawingArea):
          grad_start, grad_end: colors to use for background procedure
          filter = the person filter to apply to the people in the chart
          alpha = the alpha transparency value (0-1) to apply to filtered out data
+         form = the FORM_ constant for the fanchart 
         """
         self.cache_fontcolor = {}
         
@@ -216,6 +222,7 @@ class FanChartWidget(Gtk.DrawingArea):
         self.grad_end = grad_end
         self.filter = filter
         self.alpha_filter = alpha_filter
+        self.form = form
         
         self.set_generations(maxgen)
         
@@ -334,8 +341,15 @@ class FanChartWidget(Gtk.DrawingArea):
             # name, person, parents?, children?
             self.data[i] = [(None,) * 5] * 2 ** i
             self.angle[i] = []
+            factor = 1
             angle = 0
-            slice = 360.0 / (2 ** i)
+            if self.form == FORM_HALFCIRCLE:
+                factor = 1/2
+                angle = 90
+            elif self.form == FORM_QUADRANT:
+                angle = 180
+                factor = 1/4
+            slice = 360.0 / (2 ** i) * factor
             gender = True
             for count in range(len(self.data[i])):
                 # start, stop, male, state
@@ -347,8 +361,15 @@ class FanChartWidget(Gtk.DrawingArea):
         """
         Overridden method to handle size request events.
         """
-        requisition.width = 2 * self.halfdist()
-        requisition.height = requisition.width
+        if self.form == FORM_CIRCLE:
+            requisition.width = 2 * self.halfdist()
+            requisition.height = requisition.width
+        elif self.form == FORM_HALFCIRCLE:
+            requisition.width = 2 * self.halfdist()
+            requisition.height = requisition.width / 2 + CENTER + PAD_PX
+        elif self.form == FORM_QUADRANT:
+            requisition.width = self.halfdist() + CENTER + PAD_PX
+            requisition.height = requisition.width
 
     def do_get_preferred_width(self):
         """ GTK3 uses width for height sizing model. This method will 
@@ -386,8 +407,7 @@ class FanChartWidget(Gtk.DrawingArea):
         Compute the half radius of the circle
         """
         nrgen = self.nrgen()
-        return PIXELS_PER_GENERATION * nrgen + self.center \
-                + BORDER_EDGE_WIDTH
+        return PIXELS_PER_GENERATION * nrgen + CENTER + BORDER_EDGE_WIDTH
 
     def on_draw(self, widget, cr, scale=1.):
         """
@@ -397,17 +417,34 @@ class FanChartWidget(Gtk.DrawingArea):
         """
         # first do size request of what we will need
         nrgen = self.nrgen()
-        halfdist = PIXELS_PER_GENERATION * nrgen + self.center
-        self.set_size_request(2 * halfdist, 2 * halfdist)
+        halfdist = PIXELS_PER_GENERATION * nrgen + CENTER
+        if self.form == FORM_CIRCLE:
+            self.set_size_request(2 * halfdist, 2 * halfdist)
+        elif self.form == FORM_HALFCIRCLE:
+            self.set_size_request(2 * halfdist, halfdist + CENTER + PAD_PX)
+        elif self.form == FORM_QUADRANT:
+            self.set_size_request(halfdist + CENTER + PAD_PX, halfdist + CENTER + PAD_PX)
         
         #obtain the allocation
         alloc = self.get_allocation()
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        if widget is None:  # printing, use the size we need
+            w = 2 * halfdist
+            h = 2 * halfdist
+
         cr.scale(scale, scale)
-        if widget:
-            cr.translate(w/2. - self.center_xy[0], h/2. - self.center_xy[1])
-        else:
-            cr.translate(halfdist - self.center_xy[0], halfdist - self.center_xy[1])
+        
+        if self.form == FORM_CIRCLE:
+            self.center_x = w/2 - self.center_xy[0]
+            self.center_y = h/2 - self.center_xy[1]
+        elif self.form == FORM_HALFCIRCLE:
+            self.center_x = w/2. - self.center_xy[0]
+            self.center_y = h - CENTER - PAD_PX- self.center_xy[1]
+        elif self.form == FORM_QUADRANT:
+            self.center_x = CENTER + PAD_PX - self.center_xy[0]
+            self.center_y = h - CENTER - PAD_PX - self.center_xy[1]
+        cr.translate(self.center_x, self.center_y)
+
         cr.save()
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
@@ -422,23 +459,23 @@ class FanChartWidget(Gtk.DrawingArea):
                                          person, userdata)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
-        cr.arc(0, 0, self.center, 0, 2 * math.pi)
+        cr.arc(0, 0, CENTER, 0, 2 * math.pi)
         cr.move_to(0,0)
         cr.fill()
         cr.set_source_rgb(0, 0, 0) # black
-        cr.arc(0, 0, self.center, 0, 2 * math.pi)
+        cr.arc(0, 0, CENTER, 0, 2 * math.pi)
         cr.stroke()
         cr.restore()
         # Draw center person:
         (text, person, parents, child, userdata) = self.data[0][0]
         if person:
             r, g, b, a = self.background_box(person, person.gender, 0, userdata)
-            cr.arc(0, 0, self.center, 0, 2 * math.pi)
+            cr.arc(0, 0, CENTER, 0, 2 * math.pi)
             cr.set_source_rgba(r/255, g/255, b/255, a)
             cr.fill()
             cr.save()
             name = name_displayer.display(person)
-            self.draw_text(cr, name, self.center - 10, 95, 455, False,
+            self.draw_text(cr, name, CENTER - 10, 95, 455, False,
                            self.fontcolor(r, g, b), self.fontbold(a))
             cr.restore()
             #draw center to move chart
@@ -465,7 +502,7 @@ class FanChartWidget(Gtk.DrawingArea):
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         r, g, b, a = self.background_box(person, gender, generation, userdata)
-        radius = generation * PIXELS_PER_GENERATION + self.center
+        radius = generation * PIXELS_PER_GENERATION + CENTER
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
             # draw an indicator
@@ -1004,7 +1041,12 @@ class FanChartWidget(Gtk.DrawingArea):
         alloc = self.get_allocation()
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         if self.translating:
-            self.center_xy = w/2 - event.x, h/2 - event.y
+            if self.form == FORM_CIRCLE:
+                self.center_xy = w/2 - event.x, h/2 - event.y
+            elif self.form == FORM_HALFCIRCLE:
+                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+            elif self.form == FORM_QUADRANT:
+                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
         else:
             cx = w/2 - self.center_xy[0]
             cy = h/2 - self.center_xy[1]
@@ -1030,20 +1072,20 @@ class FanChartWidget(Gtk.DrawingArea):
         generation >= self.generations outside of diagram
         """
         # compute angle, radius, find out who would be there (rotated)
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        cx = w/2 - self.center_xy[0]
-        cy = h/2 - self.center_xy[1]
+
+        # center coordinate
+        cx = self.center_x
+        cy = self.center_y
         radius = math.sqrt((curx - cx) ** 2 + (cury - cy) ** 2)
         if radius < TRANSLATE_PX:
             generation = -1
         elif (self.childring and self.childrenroot and 
                     radius < TRANSLATE_PX + CHILDRING_WIDTH):
             generation = -2  # indication of one of the children
-        elif radius < self.center:
+        elif radius < CENTER:
             generation = 0
         else:
-            generation = int((radius - self.center)/PIXELS_PER_GENERATION) + 1
+            generation = int((radius - CENTER)/PIXELS_PER_GENERATION) + 1
 
         rads = math.atan2( (cury - cy), (curx - cx) )
         if rads < 0: # second half of unit circle
@@ -1131,7 +1173,14 @@ class FanChartWidget(Gtk.DrawingArea):
             self.translating = False
             alloc = self.get_allocation()
             x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-            self.center_xy = w/2 - event.x, h/2 - event.y
+            if self.form == FORM_CIRCLE:
+                self.center_xy = w/2 - event.x, h/2 - event.y
+                self.center_xy = w/2 - event.x, h/2 - event.y
+            elif self.form == FORM_HALFCIRCLE:
+                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+            elif self.form == FORM_QUADRANT:
+                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
+        
         self.last_x, self.last_y = None, None
         self.queue_draw()
         return True
@@ -1202,6 +1251,7 @@ class FanChartGrampsGUI(object):
         self.grad_end = '#FF0000'
         self.generic_filter = None   # the filter to use. Named as in PageView
         self.alpha_filter = 0.2      # transparency of filtered out values
+        self.form = FORM_HALFCIRCLE
     
     def set_fan(self, fan):
         """
@@ -1220,7 +1270,7 @@ class FanChartGrampsGUI(object):
         self.fan.reset(root_person_handle, self.maxgen, self.background, self.childring,
                        self.radialtext, self.fonttype,
                        self.grad_start, self.grad_end,
-                       self.generic_filter, self.alpha_filter)
+                       self.generic_filter, self.alpha_filter, self.form)
         self.fan.queue_draw()
 
     def on_popup(self, obj, event, person_handle):

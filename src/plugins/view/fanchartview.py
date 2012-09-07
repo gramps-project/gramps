@@ -58,10 +58,11 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
     #settings in the config file
     CONFIGSETTINGS = (
         ('interface.fanview-maxgen', 9),
-        ('interface.fanview-background', 4),
+        ('interface.fanview-background', fanchart.BACKGROUND_GRAD_GEN),
         ('interface.fanview-childrenring', True),
         ('interface.fanview-radialtext', True),
         ('interface.fanview-font', 'Sans'),
+        ('interface.fanview-form', fanchart.FORM_CIRCLE),
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         )
@@ -84,6 +85,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
+        self.form = self._config.get('interface.fanview-form')
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
@@ -298,7 +300,13 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                         'interface.color-start-grad', col=1)
         configdialog.add_color(table, _('End gradient/2nd color'), 4, 
                         'interface.color-end-grad',  col=1)
-        
+        # form of the fan
+        configdialog.add_combo(table, _('Fan chart type'), 5,
+                        'interface.fanview-form',
+                        ((0, _('Full Circle')), (1,_('Half Circle')), 
+                         (2, _('Quadrant'))),
+                        callback=self.cb_update_form)
+
         # options users should not change:
         configdialog.add_checkbox(table, 
                 _('Show children ring'), 
@@ -337,6 +345,12 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                 obj.get_model().get_iter_from_string('%d' % entry), 0))
         self._config.set(constant, val)
         self.background = val
+        self.update()
+
+    def cb_update_form(self, obj, constant):
+        entry = obj.get_active()
+        self._config.set(constant, entry)
+        self.form = entry
         self.update()
 
     def cb_update_childrenring(self, client, cnxn_id, entry, data):
