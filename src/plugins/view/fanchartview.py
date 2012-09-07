@@ -300,10 +300,11 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         # options users should not change:
         configdialog.add_checkbox(table, 
                 _('Show children ring'), 
-                nrentry-2, 'interface.fanview-childrenring')
-        configdialog.add_checkbox(table, 
-                _('Allow radial text at generation 6'), 
-                nrentry-1, 'interface.fanview-radialtext')
+                nrentry-1, 'interface.fanview-childrenring')
+        # options we don't show on the dialog
+        ##configdialog.add_checkbox(table, 
+        ##        _('Allow radial text'), 
+        ##        ??, 'interface.fanview-radialtext')
 
         return _('Layout'), table
 

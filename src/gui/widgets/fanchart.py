@@ -507,7 +507,7 @@ class FanChartWidget(Gtk.DrawingArea):
             #we are not in a move, so draw text
             radial = False
             radstart = radius - self.PIXELS_PER_GENERATION/2
-            if self.radialtext and generation >= 6:
+            if self.radialtext: ## and generation >= 6:
                 spacepolartext = radstart * (stop-start)*math.pi/180
                 if spacepolartext < self.PIXELS_PER_GENERATION * 1.1:
                     # more space to print it radial
