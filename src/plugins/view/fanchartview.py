@@ -43,7 +43,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from gui.widgets.fanchart import FanChartWidget, FanChartGrampsGUI
+import gui.widgets.fanchart as fanchart
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 from gui.utils import SystemFonts
@@ -51,7 +51,7 @@ from gui.utils import SystemFonts
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
 
-class FanChartView(FanChartGrampsGUI, NavigationView):
+class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget. 
     """
@@ -74,7 +74,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                                       dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
-        FanChartGrampsGUI.__init__(self, 
+        fanchart.FanChartGrampsGUI.__init__(self, 
                     self._config.get('interface.fanview-maxgen'),
                     self._config.get('interface.fanview-background'),
                     self._config.get('interface.fanview-childrenring'),
@@ -95,7 +95,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         return 'Person'
 
     def build_widget(self):
-        self.set_fan(FanChartWidget(self.dbstate, self.on_popup))
+        self.set_fan(fanchart.FanChartWidget(self.dbstate, self.on_popup))
         self.scrolledwindow = Gtk.ScrolledWindow(None, None)
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
@@ -226,7 +226,7 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
         """
         Print or save the view that is currently shown
         """
-        widthpx = 2*(self.fan.PIXELS_PER_GENERATION * self.fan.nrgen() 
+        widthpx = 2*(fanchart.PIXELS_PER_GENERATION * self.fan.nrgen() 
                         + self.fan.center)
         prt = CairoPrintSave(widthpx, self.fan.on_draw, self.uistate.window)
         prt.run()
@@ -271,12 +271,12 @@ class FanChartView(FanChartGrampsGUI, NavigationView):
                 1, 'interface.fanview-font',
                 self.allfonts, callback=self.cb_update_font, valueactive=True)
         backgrvals = (
-                (self.fan.BACKGROUND_GENDER, _('Gender colors')),
-                (self.fan.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
-                (self.fan.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
-                (self.fan.BACKGROUND_WHITE, _('White')),
-                (self.fan.BACKGROUND_SCHEME1, _('Color scheme classic report')),
-                (self.fan.BACKGROUND_SCHEME2, _('Color scheme classic view')),
+                (fanchart.BACKGROUND_GENDER, _('Gender colors')),
+                (fanchart.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
+                (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
+                (fanchart.BACKGROUND_WHITE, _('White')),
+                (fanchart.BACKGROUND_SCHEME1, _('Color scheme classic report')),
+                (fanchart.BACKGROUND_SCHEME2, _('Color scheme classic view')),
                 )
         curval = self._config.get('interface.fanview-background')
         nrval = 0
