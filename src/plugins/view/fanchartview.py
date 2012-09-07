@@ -274,6 +274,8 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                 (fanchart.BACKGROUND_GENDER, _('Gender colors')),
                 (fanchart.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
                 (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
+                (fanchart.BACKGROUND_SINGLE_COLOR, 
+                                            _('Single main (filter) color')),
                 (fanchart.BACKGROUND_WHITE, _('White')),
                 (fanchart.BACKGROUND_SCHEME1, _('Color scheme classic report')),
                 (fanchart.BACKGROUND_SCHEME2, _('Color scheme classic view')),

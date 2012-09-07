@@ -85,9 +85,9 @@ def gender_code(is_male):
 #-------------------------------------------------------------------------
 
 PIXELS_PER_GENERATION = 50 # size of radius for generation
-BORDER_EDGE_WIDTH = 10
-CHILDRING_WIDTH = 12
-TRANSLATE_PX = 10
+BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
+CHILDRING_WIDTH = 12       # width of the children ring inside the person
+TRANSLATE_PX = 10          # size of the central circle, used to move the chart
 
 BACKGROUND_SCHEME1 = 0
 BACKGROUND_SCHEME2 = 1
@@ -439,7 +439,7 @@ class FanChartWidget(Gtk.DrawingArea):
             cr.save()
             name = name_displayer.display(person)
             self.draw_text(cr, name, self.center - 10, 95, 455, False,
-                           self.fontcolor(r,g,b))
+                           self.fontcolor(r, g, b), self.fontbold(a))
             cr.restore()
             #draw center to move chart
             cr.set_source_rgb(0, 0, 0) # black
@@ -523,7 +523,7 @@ class FanChartWidget(Gtk.DrawingArea):
                     radial = True
                     radstart = radius - PIXELS_PER_GENERATION + 4
             self.draw_text(cr, name, radstart, start, stop, radial, 
-                           self.fontcolor(r, g, b))
+                           self.fontcolor(r, g, b), self.fontbold(a))
         cr.restore()
 
     def drawchildring(self, cr):
@@ -576,7 +576,7 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.fill()
 
     def draw_text(self, cr, text, radius, start, stop, radial=False,
-                  fontcolor=(0, 0, 0)):
+                  fontcolor=(0, 0, 0), bold=False):
         """
         Display text at a particular radius, between start and stop
         degrees.
@@ -585,6 +585,8 @@ class FanChartWidget(Gtk.DrawingArea):
         font = Pango.FontDescription(self.fontdescr)
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
+        if bold:
+            font.set_weight(Pango.Weight.BOLD)
         cr.set_source_rgb(fontcolor[0], fontcolor[1], fontcolor[2])
         if radial and self.radialtext:
             cr.save()
@@ -739,9 +741,10 @@ class FanChartWidget(Gtk.DrawingArea):
                                          cstart[2]/255)
         cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
                                        cend[2]/255)
-        if self.background == BACKGROUND_GENDER:
+        if self.background in [BACKGROUND_GENDER, BACKGROUND_SINGLE_COLOR]:
             # nothing to precompute
             self.colors =  None
+            self.maincolor = cstart
         elif self.background == BACKGROUND_GRAD_GEN:
             #compute the colors, -1, 0, ..., maxgen
             divs = [x/(maxgen-1) for x in range(maxgen)]
@@ -827,6 +830,8 @@ class FanChartWidget(Gtk.DrawingArea):
                 alive = False
             backgr, border = gui.utils.color_graph_box(alive, person.gender)
             color = gui.utils.hex_to_rgb(backgr)
+        elif self.background == BACKGROUND_SINGLE_COLOR:
+            color = self.maincolor
         elif self.background == BACKGROUND_GRAD_AGE:
             color = userdata[0]
         else:
@@ -837,7 +842,10 @@ class FanChartWidget(Gtk.DrawingArea):
                 color = [x*.9 for x in color]
         # now we set transparency data
         if self.filter and not self.filter.match(person.handle, self.dbstate.db):
-            alpha = self.alpha_filter
+            if self.background == BACKGROUND_SINGLE_COLOR:
+                alpha = 0.  # no color shown
+            else:
+                alpha = self.alpha_filter
         else:
             alpha = 1.
         
@@ -857,6 +865,15 @@ class FanChartWidget(Gtk.DrawingArea):
             else:
                 self.cache_fontcolor[(r, g, b)] = (255, 255, 255)
         return self.cache_fontcolor[(r, g, b)]
+
+    def fontbold(self, a):
+        """
+        The font should be bold if no transparency and font is set.
+        In that case, True is returned
+        """
+        if a >= 1. and self.filter:
+            return True
+        return False
 
     def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
@@ -941,7 +958,7 @@ class FanChartWidget(Gtk.DrawingArea):
                 self.angle[generation][selected-1] = [start,start,male,
                                                       COLLAPSED]
                 self.hide_parents(generation+1, selected-1, start)
-        elif gstate == self.EXPANDED: # let's shrink
+        elif gstate == EXPANDED: # let's shrink
             if gmale:
                 # shrink from right
                 slice = (gstop - gstart)/2.0
