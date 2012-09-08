@@ -602,7 +602,10 @@ class FanChartWidget(Gtk.DrawingArea):
         cr.stroke()
         #now again to fill
         person = self.dbstate.db.get_person_from_handle(child_handle)
-        r, g, b, a = self.background_box(person, person.gender, -1, userdata)
+        if person:
+            r, g, b, a = self.background_box(person, person.gender, -1, userdata)
+        else:
+            r=255; g=255; b=255; a=1
         cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
         cr.arc(0, 0, rmin, thetamin, thetamax)
         cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))

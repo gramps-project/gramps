@@ -117,10 +117,12 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
     age = None
     if birth is not None:
         birth_date = birth.get_date_object().to_calendar("gregorian")
-        if (birth_date and birth_date.get_valid()):
+        if (birth_date and birth_date.get_valid()
+                        and not birth_date.is_empty()):
             if death is not None:
                 death_date = death.get_date_object().to_calendar("gregorian")
-                if (death_date and death_date.get_valid()):
+                if (death_date and death_date.get_valid()
+                        and not death_date.is_empty()):
                     age = death_date - birth_date
                     if not age.is_valid():
                         age = None
@@ -141,13 +143,15 @@ def get_timeperiod(db, person):
     birth = get_birth_or_fallback(db, person)
     if birth is not None:
         birth_date = birth.get_date_object().to_calendar("gregorian")
-        if (birth_date and birth_date.get_valid()):
+        if (birth_date and birth_date.get_valid()
+                        and not birth_date.is_empty()):
             return birth_date.get_year()
     death = get_death_or_fallback(db, person)
     # no birth, period is death - 20
     if death is not None:
         death_date = death.get_date_object().to_calendar("gregorian")
-        if (death_date and death_date.get_valid()):
+        if (death_date and death_date.get_valid()
+                and not death_date.is_empty()):
             return death_date.get_year() - 20
     # no birth and death, look for another event date we can use
     for event_ref in person.get_primary_event_ref_list():
@@ -155,7 +159,8 @@ def get_timeperiod(db, person):
             event = db.get_event_from_handle(event_ref.ref)
             if event:
                 event_date = event.get_date_object().to_calendar("gregorian")
-                if (event_date and event_date.get_valid()):
+                if (event_date and event_date.get_valid()
+                        and not event_date.is_empty()):
                     return event_date.get_year()
     return None
     
