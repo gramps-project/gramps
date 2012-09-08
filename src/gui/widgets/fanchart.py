@@ -62,7 +62,7 @@ from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
 from gen.utils.libformatting import FormattingHelper
 from gen.utils.db import (find_children, find_parents, find_witnessed_people,
-                          get_age)
+                          get_age, get_timeperiod)
 
 #-------------------------------------------------------------------------
 #
@@ -98,6 +98,7 @@ BACKGROUND_WHITE = 3
 BACKGROUND_GRAD_GEN = 4
 BACKGROUND_GRAD_AGE = 5
 BACKGROUND_SINGLE_COLOR = 6
+BACKGROUND_GRAD_PERIOD = 7
 GENCOLOR = {
     BACKGROUND_SCHEME1: ((255, 63,  0),
                          (255,175, 15),
@@ -418,31 +419,30 @@ class FanChartWidget(Gtk.DrawingArea):
         # first do size request of what we will need
         nrgen = self.nrgen()
         halfdist = PIXELS_PER_GENERATION * nrgen + CENTER
-        if self.form == FORM_CIRCLE:
-            self.set_size_request(2 * halfdist, 2 * halfdist)
-        elif self.form == FORM_HALFCIRCLE:
-            self.set_size_request(2 * halfdist, halfdist + CENTER + PAD_PX)
-        elif self.form == FORM_QUADRANT:
-            self.set_size_request(halfdist + CENTER + PAD_PX, halfdist + CENTER + PAD_PX)
-        
-        #obtain the allocation
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        if widget is None:  # printing, use the size we need
-            w = 2 * halfdist
-            h = 2 * halfdist
+        if widget:
+            if self.form == FORM_CIRCLE:
+                self.set_size_request(2 * halfdist, 2 * halfdist)
+            elif self.form == FORM_HALFCIRCLE:
+                self.set_size_request(2 * halfdist, halfdist + CENTER + PAD_PX)
+            elif self.form == FORM_QUADRANT:
+                self.set_size_request(halfdist + CENTER + PAD_PX, halfdist + CENTER + PAD_PX)
+            
+            #obtain the allocation
+            alloc = self.get_allocation()
+            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
 
         cr.scale(scale, scale)
-        
-        if self.form == FORM_CIRCLE:
-            self.center_x = w/2 - self.center_xy[0]
-            self.center_y = h/2 - self.center_xy[1]
-        elif self.form == FORM_HALFCIRCLE:
-            self.center_x = w/2. - self.center_xy[0]
-            self.center_y = h - CENTER - PAD_PX- self.center_xy[1]
-        elif self.form == FORM_QUADRANT:
-            self.center_x = CENTER + PAD_PX - self.center_xy[0]
-            self.center_y = h - CENTER - PAD_PX - self.center_xy[1]
+        # when printing, we need not recalculate
+        if widget:
+            if self.form == FORM_CIRCLE:
+                self.center_x = w/2 - self.center_xy[0]
+                self.center_y = h/2 - self.center_xy[1]
+            elif self.form == FORM_HALFCIRCLE:
+                self.center_x = w/2. - self.center_xy[0]
+                self.center_y = h - CENTER - PAD_PX- self.center_xy[1]
+            elif self.form == FORM_QUADRANT:
+                self.center_x = CENTER + PAD_PX - self.center_xy[0]
+                self.center_y = h - CENTER - PAD_PX - self.center_xy[1]
         cr.translate(self.center_x, self.center_y)
 
         cr.save()
@@ -488,7 +488,7 @@ class FanChartWidget(Gtk.DrawingArea):
                 cr.stroke()
             if child and self.childring:
                 self.drawchildring(cr)
-        if self.background in [BACKGROUND_GRAD_AGE]:
+        if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
             self.draw_gradient(cr, widget, halfdist)
 
     def draw_person(self, cr, gender, name, start, stop, generation, 
@@ -746,10 +746,9 @@ class FanChartWidget(Gtk.DrawingArea):
         alloc = self.get_allocation()
         x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
         cr.save()
-        if widget:
-            cr.translate(-w/2. + self.center_xy[0], -h/2. + self.center_xy[1])
-        else:
-            cr.translate(-halfdist + self.center_xy[0], -halfdist + self.center_xy[1])
+
+        cr.translate(-self.center_x, -self.center_y)
+
         font = Pango.FontDescription(self.fontdescr)
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
@@ -774,9 +773,9 @@ class FanChartWidget(Gtk.DrawingArea):
         maxgen = self.generations
         cstart = gui.utils.hex_to_rgb(self.grad_start)
         cend = gui.utils.hex_to_rgb(self.grad_end)
-        cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
+        self.cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
                                          cstart[2]/255)
-        cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
+        self.cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
                                        cend[2]/255)
         if self.background in [BACKGROUND_GENDER, BACKGROUND_SINGLE_COLOR]:
             # nothing to precompute
@@ -786,13 +785,63 @@ class FanChartWidget(Gtk.DrawingArea):
             #compute the colors, -1, 0, ..., maxgen
             divs = [x/(maxgen-1) for x in range(maxgen)]
             rgb_colors = [colorsys.hsv_to_rgb(
-                            (1-x) * cstart_hsv[0] + x * cend_hsv[0], 
-                            (1-x) * cstart_hsv[1] + x * cend_hsv[1],
-                            (1-x) * cstart_hsv[2] + x * cend_hsv[2],
+                            (1-x) * self.cstart_hsv[0] + x * self.cend_hsv[0], 
+                            (1-x) * self.cstart_hsv[1] + x * self.cend_hsv[1],
+                            (1-x) * self.cstart_hsv[2] + x * self.cend_hsv[2],
                             ) for x in divs]
             self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
+        elif self.background == BACKGROUND_GRAD_PERIOD:
+            # we fill in in the data structure what the period is, None if not found
+            self.colors =  None
+            self.minperiod = 1e10
+            self.maxperiod = -1e10
+            for generation in range(self.generations):
+                for p in range(len(self.data[generation])):
+                    period = None
+                    (text, person, parents, child, userdata) = self.data[generation][p]
+                    if person:
+                        period = get_timeperiod(self.dbstate.db, person)
+                        if period is not None:
+                            if period > self.maxperiod:
+                                self.maxperiod = period
+                            if period < self.minperiod:
+                                self.minperiod = period
+                    userdata.append(period)
+            # same for child
+            for childdata in self.childrenroot:
+                period = None
+                child_handle, child_gender, has_child, userdata = childdata
+                child = self.dbstate.db.get_person_from_handle(child_handle)
+                period = get_timeperiod(self.dbstate.db, child)
+                if period is not None:
+                    if period > self.maxperiod:
+                        self.maxperiod = period
+                    if period < self.minperiod:
+                        self.minperiod = period
+                userdata.append(period)
+            #now create gradient data, 5 values from min to max rounded to nearest 50
+            if self.maxperiod < self.minperiod:
+                self.maxperiod = self.minperiod = gen.lib.date.Today().get_year()
+            rper = self.maxperiod // 50
+            if rper * 50 != self.maxperiod:
+                self.maxperiod = rper * 50 + 50
+            self.minperiod = 50 * (self.minperiod // 50)
+            periodrange = self.maxperiod - self.minperiod
+            steps = 2 * GRADIENTSCALE - 1
+            divs = [x/(steps-1) for x in range(steps)]
+            self.gradval = ['%d' % int(self.minperiod + x * periodrange) for x in divs]
+            for i in range(len(self.gradval)):
+                if i % 2 == 1:
+                    self.gradval[i] = ''
+            self.gradcol = [colorsys.hsv_to_rgb(
+                        (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0], 
+                        (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
+                        (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
+                        ) for div in divs]
+            
         elif self.background == BACKGROUND_GRAD_AGE:
-            # we fill in in the data structure what the age is, None if no age
+            # we fill in in the data structure what the color age is, white if no age
+            self.colors =  None
             for generation in range(self.generations):
                 for p in range(len(self.data[generation])):
                     agecol = (255, 255, 255)  # white
@@ -808,9 +857,9 @@ class FanChartWidget(Gtk.DrawingArea):
                             #now determine fraction for gradient
                             agefrac = age / MAX_AGE
                             agecol = colorsys.hsv_to_rgb(
-                                (1-agefrac) * cstart_hsv[0] + agefrac * cend_hsv[0], 
-                                (1-agefrac) * cstart_hsv[1] + agefrac * cend_hsv[1],
-                                (1-agefrac) * cstart_hsv[2] + agefrac * cend_hsv[2],
+                (1-agefrac) * self.cstart_hsv[0] + agefrac * self.cend_hsv[0], 
+                (1-agefrac) * self.cstart_hsv[1] + agefrac * self.cend_hsv[1],
+                (1-agefrac) * self.cstart_hsv[2] + agefrac * self.cend_hsv[2],
                                 )
                     userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
             # same for child
@@ -828,9 +877,9 @@ class FanChartWidget(Gtk.DrawingArea):
                     #now determine fraction for gradient
                     agefrac = age / MAX_AGE
                     agecol = colorsys.hsv_to_rgb(
-                        (1-agefrac) * cstart_hsv[0] + agefrac * cend_hsv[0], 
-                        (1-agefrac) * cstart_hsv[1] + agefrac * cend_hsv[1],
-                        (1-agefrac) * cstart_hsv[2] + agefrac * cend_hsv[2],
+                (1-agefrac) * self.cstart_hsv[0] + agefrac * self.cend_hsv[0], 
+                (1-agefrac) * self.cstart_hsv[1] + agefrac * self.cend_hsv[1],
+                (1-agefrac) * self.cstart_hsv[2] + agefrac * self.cend_hsv[2],
                         )
                 userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
             #now create gradient data, 5 values from 0 to max
@@ -842,9 +891,9 @@ class FanChartWidget(Gtk.DrawingArea):
                 if i % 2 == 1:
                     self.gradval[i] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
-                        (1-div) * cstart_hsv[0] + div * cend_hsv[0], 
-                        (1-div) * cstart_hsv[1] + div * cend_hsv[1],
-                        (1-div) * cstart_hsv[2] + div * cend_hsv[2],
+                        (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0], 
+                        (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
+                        (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
                         ) for div in divs]
         else:
             # known colors per generation, set or compute them
@@ -871,6 +920,19 @@ class FanChartWidget(Gtk.DrawingArea):
             color = self.maincolor
         elif self.background == BACKGROUND_GRAD_AGE:
             color = userdata[0]
+        elif self.background == BACKGROUND_GRAD_PERIOD:
+            period = userdata[0]
+            if period is None:
+                color = (255, 255, 255)  # white
+            else:
+                periodfrac = ((period - self.minperiod) 
+                              / (self.maxperiod - self.minperiod))
+                periodcol = colorsys.hsv_to_rgb(
+            (1-periodfrac) * self.cstart_hsv[0] + periodfrac * self.cend_hsv[0], 
+            (1-periodfrac) * self.cstart_hsv[1] + periodfrac * self.cend_hsv[1],
+            (1-periodfrac) * self.cstart_hsv[2] + periodfrac * self.cend_hsv[2],
+                        )
+                color = (periodcol[0]*255, periodcol[1]*255, periodcol[2]*255)
         else:
             if self.background == BACKGROUND_GRAD_GEN and generation < 0:
                 generation = 0

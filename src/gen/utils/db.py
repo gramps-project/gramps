@@ -128,6 +128,37 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
                         age = age.tuple()
     return age
 
+def get_timeperiod(db, person):
+    """
+    Compute the timeperiod a person lived in
+    person : person handle or person object
+    Return: the year, None otherwise
+    """
+    if isinstance(person, str):
+        # a handle is passed
+        person = db.get_person_from_handle(person)
+    # the period is the year of birth
+    birth = get_birth_or_fallback(db, person)
+    if birth is not None:
+        birth_date = birth.get_date_object().to_calendar("gregorian")
+        if (birth_date and birth_date.get_valid()):
+            return birth_date.get_year()
+    death = get_death_or_fallback(db, person)
+    # no birth, period is death - 20
+    if death is not None:
+        death_date = death.get_date_object().to_calendar("gregorian")
+        if (death_date and death_date.get_valid()):
+            return death_date.get_year() - 20
+    # no birth and death, look for another event date we can use
+    for event_ref in person.get_primary_event_ref_list():
+        if event_ref:
+            event = db.get_event_from_handle(event_ref.ref)
+            if event:
+                event_date = event.get_date_object().to_calendar("gregorian")
+                if (event_date and event_date.get_valid()):
+                    return event_date.get_year()
+    return None
+    
 def get_event_ref(db, family, event_type):
     """
     Return a reference to a primary family event of the given event type.

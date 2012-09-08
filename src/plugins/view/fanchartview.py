@@ -180,7 +180,6 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
-        print 'active changed'
         self.update()
 
     def _connect_db_signals(self):
@@ -229,8 +228,15 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         Print or save the view that is currently shown
         """
         widthpx = 2*(fanchart.PIXELS_PER_GENERATION * self.fan.nrgen() 
-                        + self.fan.center)
-        prt = CairoPrintSave(widthpx, self.fan.on_draw, self.uistate.window)
+                    + fanchart.CENTER)
+        heightpx = widthpx
+        if self.form == fanchart.FORM_HALFCIRCLE:
+            heightpx = heightpx / 2 + fanchart.CENTER + fanchart.PAD_PX
+        elif self.form == fanchart.FORM_QUADRANT:
+            heightpx = heightpx / 2 + fanchart.CENTER + fanchart.PAD_PX
+            widthpx = heightpx
+        
+        prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
         prt.run()
 
     def on_childmenu_changed(self, obj, person_handle):
@@ -278,6 +284,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                 (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
                 (fanchart.BACKGROUND_SINGLE_COLOR, 
                                             _('Single main (filter) color')),
+                (fanchart.BACKGROUND_GRAD_PERIOD, _('Time period based gradient')),
                 (fanchart.BACKGROUND_WHITE, _('White')),
                 (fanchart.BACKGROUND_SCHEME1, _('Color scheme classic report')),
                 (fanchart.BACKGROUND_SCHEME2, _('Color scheme classic view')),
@@ -288,7 +295,6 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
             if curval == nr:
                 break
             nrval += 1
-        print nrval
         configdialog.add_combo(table, 
                 _('Background'), 
                 2, 'interface.fanview-background',
@@ -407,12 +413,13 @@ class CairoPrintSave():
         
     """
     
-    def __init__(self, widthpx, drawfunc, parent):
+    def __init__(self, widthpx, heightpx, drawfunc, parent):
         """
         This class provides the things needed so as to dump a cairo drawing on
         a context to output
         """
         self.widthpx = widthpx
+        self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
     
@@ -434,7 +441,7 @@ class CairoPrintSave():
         paper_size = Gtk.PaperSize.new_custom("custom",
                                               "Custom Size",
                                               round(self.widthpx * 0.2646),
-                                              round(self.widthpx * 0.2646),
+                                              round(self.heightpx * 0.2646),
                                               Gtk.Unit.MM)
         page_setup = Gtk.PageSetup()
         page_setup.set_paper_size(paper_size)
@@ -471,9 +478,10 @@ class CairoPrintSave():
         cr = context.get_cairo_context()
         pxwidth = round(context.get_width())
         pxheight = round(context.get_height())
-        dpi_x = context.get_dpi_x()
-        dpi_y = context.get_dpi_y()
-        self.drawfunc(None, cr, scale=pxwidth/self.widthpx)
+        scale = min(pxwidth/self.widthpx, pxheight/self.heightpx)
+        if scale > 1:
+            scale = 1
+        self.drawfunc(None, cr, scale=scale)
 
     def on_paginate(self, operation, context):
         """Paginate the whole document in chunks.
