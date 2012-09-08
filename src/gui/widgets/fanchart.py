@@ -471,6 +471,9 @@ class FanChartWidget(Gtk.DrawingArea):
         if person:
             r, g, b, a = self.background_box(person, person.gender, 0, userdata)
             cr.arc(0, 0, CENTER, 0, 2 * math.pi)
+            if self.childring and child:
+                cr.arc_negative(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 2 * math.pi, 0)
+                cr.close_path()
             cr.set_source_rgba(r/255, g/255, b/255, a)
             cr.fill()
             cr.save()
