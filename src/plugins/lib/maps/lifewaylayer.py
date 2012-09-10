@@ -93,6 +93,8 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         alpha is the transparence
         radius is the size of the track.
         """
+        if isinstance(color,str):
+            color = Gdk.color_parse(color)
         self.lifeways_ref.append((points, color, radius))
 
     def add_way(self, points, color):
