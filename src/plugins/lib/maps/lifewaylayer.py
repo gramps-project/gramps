@@ -45,6 +45,7 @@ _LOG = logging.getLogger("maps.lifeway")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -98,31 +99,31 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Add a track or life way.
         """
+        if isinstance(color,str):
+            color = Gdk.color_parse(color)
         self.lifeways.append((points, color))
 
-    def do_draw(self, gpsmap, drawable):
+    def do_draw(self, gpsmap, ctx):
         """
         Draw all tracks or life ways.
         """
-        ctx = drawable.cairo_create()
         for lifeway in self.lifeways_ref:
             ctx.set_line_cap(cairo.LINE_CAP_ROUND)
             ctx.set_line_join(cairo.LINE_JOIN_ROUND)
             ctx.set_line_width(3)
-            color = Gdk.color_parse(lifeway[1])
+            color = lifeway[1]
             ctx.set_source_rgba(float(color.red / 65535.0),
                                 float(color.green / 65535.0),
                                 float(color.blue / 65535.0),
                                 0.1) # transparency
-            ggc = drawable.new_gc()
             rds = float(lifeway[2])
             for point in lifeway[0]:
-                conv_pt1 = osmgpsmap.point_new_degrees(point[0], point[1])
+                conv_pt1 = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
                 coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(conv_pt1)
-                conv_pt2 = osmgpsmap.point_new_degrees(point[0]+rds, point[1])
+                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0]+rds, point[1])
                 coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
                 coy = abs(coord_y2-coord_y1)
-                conv_pt2 = osmgpsmap.point_new_degrees(point[0], point[1]+rds)
+                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0], point[1]+rds)
                 coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
                 cox = abs(coord_x2-coord_x1)
                 cox = cox if cox > 0.001 else 0.001
@@ -135,25 +136,21 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 ctx.translate(coord_x1, coord_y1/coz)
                 ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
                 ctx.fill()
+                ctx.set_line_width(2.0)
+                ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
+                ctx.set_source_rgba(1.0,0.0,0.0,0.5)
+                ctx.stroke()
                 ctx.restore()
-                top_left = osmgpsmap.point_new_degrees(point[0] + lifeway[2],
-                                                       point[1] - lifeway[2])
-                bottom_right = osmgpsmap.point_new_degrees(point[0] - lifeway[2],
-                                                           point[1] + lifeway[2])
-                crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
-                crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
-                drawable.draw_arc(ggc, False, crd_x, crd_y, crd_x2 - crd_x,
-                                  crd_y2 - crd_y, 0, 360*64)
 
         for lifeway in self.lifeways:
             ctx.set_operator(cairo.OPERATOR_ATOP)
             ctx.set_line_width(3.0)
             map_points = []
             for point in lifeway[0]:
-                conv_pt = osmgpsmap.point_new_degrees(point[0], point[1])
+                conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
                 coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
                 map_points.append((coord_x, coord_y))
-            color = Gdk.color_parse(lifeway[1])
+            color = lifeway[1]
             ctx.set_source_rgb(float(color.red / 65535.0),
                                float(color.green / 65535.0),
                                float(color.blue / 65535.0))

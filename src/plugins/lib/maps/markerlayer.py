@@ -115,13 +115,12 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             self.min_value = count
         self.nb_ref_by_places = self.max_references / self.max_places
 
-    def do_draw(self, gpsmap, drawable):
+    def do_draw(self, gpsmap, ctx):
         """
         Draw all markers here. Calculate where to draw the marker.
         Depending of the average, minimum and maximum value, resize the marker.
         We use cairo to resize the marker.
         """
-        ctx = drawable.cairo_create()
         max_interval = self.max_value - self.nb_ref_by_places
         min_interval = self.nb_ref_by_places - self.min_value  
         if max_interval == 0: # This to avoid divide by zero
@@ -144,7 +143,7 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
                 size -= (0.3 * ((self.nb_ref_by_places - mark)
                                  / min_interval) )
 
-            conv_pt = osmgpsmap.point_new_degrees(float(marker[0][0]),
+            conv_pt = osmgpsmap.MapPoint.new_degrees(float(marker[0][0]),
                                                   float(marker[0][1]))
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             ctx.translate(coord_x, coord_y)
@@ -156,7 +155,7 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             # So we shift the image position.
             posY = - int( 48 * size + 0.5 ) - 10
             posX = - int(( 48 * size ) / 6 + 0.5 ) - 10
-            ctx.set_source_pixbuf(marker[1], posX, posY)
+            ctx.set_source_surface(marker[1], posX, posY)
             ctx.paint()
             ctx.restore()
         _LOG.debug("%s" % time.strftime("end drawing     : "

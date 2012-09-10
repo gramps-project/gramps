@@ -41,6 +41,7 @@ from math import pi
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
+import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -145,14 +146,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.place_list = []
         self.places_found = []
         self.select_fct = None
-        self.geo_mainmap = GdkPixbuf.Pixbuf.new_from_file_at_size(
+        self.geo_mainmap = cairo.ImageSurface.create_from_png(
             os.path.join(ROOT_DIR, "images", "48x48",
-                         ('gramps-geo-mainmap' + '.png' )),
-                                 48, 48)
-        self.geo_altmap = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                         ('gramps-geo-mainmap' + '.png' )))
+        self.geo_altmap = cairo.ImageSurface.create_from_png(
             os.path.join(ROOT_DIR, "images", "48x48",
-                         ('gramps-geo-altmap' + '.png' )),
-                                 48, 48)
+                         ('gramps-geo-altmap' + '.png' )))
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP, constants.OPENSTREETMAP_RENDERER )):
             default_image = self.geo_mainmap
@@ -162,10 +161,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( gen.lib.EventType.BIRTH,
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
-            self.geo_othermap[ident] = GdkPixbuf.Pixbuf.new_from_file_at_size(
+            self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(
                 os.path.join(ROOT_DIR, "images", "48x48",
-                    (constants.ICONS.get(int(ident), default_image) + '.png' )),
-                    48, 48)
+                    (constants.ICONS.get(int(ident), default_image) + '.png' )))
 
     def change_page(self):
         """
@@ -174,6 +172,29 @@ class GeoGraphyView(OsmGps, NavigationView):
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
         self.end_selection = None
+
+    def do_size_request(self, requisition):
+        """
+        Overridden method to handle size request events.
+        """
+        requisition.width = 400
+        requisition.height = 300
+
+    def do_get_preferred_width(self):
+        """ GTK3 uses width for height sizing model. This method will 
+            override the virtual method
+        """
+        req = Gtk.Requisition()
+        self.do_size_request(req)
+        return req.width, req.width
+
+    def do_get_preferred_height(self):
+        """ GTK3 uses width for height sizing model. This method will 
+            override the virtual method
+        """
+        req = Gtk.Requisition()
+        self.do_size_request(req)
+        return req.height, req.height
 
     def on_delete(self):
         """
@@ -585,10 +606,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         level_start = self.osm.props.zoom
         p1lat, p1lon = self.begin_selection.get_degrees()
         p2lat, p2lon = self.end_selection.get_degrees()
-        #p1lat = 180 * self.begin_selection.rlat / pi
-        #p1lon = 180 * self.begin_selection.rlon / pi
-        #p2lat = 180 * self.end_selection.rlat / pi
-        #p2lon = 180 * self.end_selection.rlon / pi
         lat = p1lat + ( p2lat - p1lat ) / 2
         lon = p1lon + ( p2lon - p1lon ) / 2
         # We center the map on the center of the region
@@ -754,7 +771,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         Edit the selected family at the marker position
         """
         _LOG.debug("edit_family : %s" % mark[11])
-        # need to add code here to edit the family.
         family = self.dbstate.db.get_family_from_gramps_id(mark[11])
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
@@ -766,7 +782,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         Edit the selected event at the marker position
         """
         _LOG.debug("edit_event : %s" % mark[10])
-        # need to add code here to edit the event.
         event = self.dbstate.db.get_event_from_gramps_id(mark[10])
         try:
             EditEvent(self.dbstate, self.uistate, [], event)
@@ -833,7 +848,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Edit the selected place at the marker position
         """
-        # need to add code here to edit the event.
         self.select_fct.close()
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         place.set_latitude(str(plat))

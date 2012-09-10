@@ -521,30 +521,26 @@ class GeoMoves(GeoGraphyView):
                         death = high_date
                 new_list.append([level, plxp, birth, death])
             pidx = 0;
-            color = Gdk.color_parse(color)
-            #try:
-            #    color = Gdk.color_parse(color)
-            #except:
-            #    # We have already a Gdk.color
-            #    pass
+            if isinstance(color, str) :
+                color = Gdk.color_parse(color)
             for (level, plxp, birth, death) in sorted(new_list, key=operator.itemgetter(0,2)):
                 if index == int(self._config.get("geography.maximum_generations")):
                    break
                 if level == index:
                     pidx += 1
-                    self._createmap_for_one_person(plxp, str(color))
-                    color.red = (float(color.red - (index)*3000))
+                    self._createmap_for_one_person(plxp, color)
+                    color.red = (float(color.red - (index)*3000)%65535)
                     if ( index % 2 ):
-                        color.green = float((color.green + (index)*3000))
+                        color.green = float((color.green + (index)*3000)%65535)
                     else:
-                        color.blue = float((color.blue + (index)*3000))
-                    self._createmap_for_one_person(person, str(color))
+                        color.blue = float((color.blue + (index)*3000)%65535)
+                    self._createmap_for_one_person(person, color)
             if index < int(self._config.get("geography.maximum_generations")):
                 time_to_wait = int(self._config.get("geography.generation_interval"))
                 self._create_markers()
                 # process next generation in a few milliseconds
                 GObject.timeout_add(time_to_wait, self.animate_moves,
-                                                  index+1, person, str(color))
+                                                  index+1, person, color)
             else:
                 self.started = False
             return False

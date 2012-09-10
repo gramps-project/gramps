@@ -76,20 +76,20 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         self.rectangles.append((cp1, cp2))
 
-    def do_draw(self, gpsmap, drawable):
+    def do_draw(self, gpsmap, ctx):
         """
         draw the circles and the rectangles
         """
-        ggc = drawable.new_gc()
         for circle in self.circles:
-            top_left = osmgpsmap.point_new_degrees(circle[1] + circle[0],
+            top_left = osmgpsmap.MapPoint.new_degrees(circle[1] + circle[0],
                                                    circle[2] - circle[0])
-            bottom_right = osmgpsmap.point_new_degrees(circle[1] - circle[0],
+            bottom_right = osmgpsmap.MapPoint.new_degrees(circle[1] - circle[0],
                                                        circle[2] + circle[0])
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
-            drawable.draw_arc(ggc, False, crd_x, crd_y, crd_x2 - crd_x,
-                              crd_y2 - crd_y, 0, 360*64)
+            #drawable.draw_arc(ggc, False, crd_x, crd_y, crd_x2 - crd_x,
+            #                  crd_y2 - crd_y, 0, 360*64)
+            ctx.arc(crd_x, crd_y, crd_x2 - crd_x, crd_y2 - crd_y, 0, 360*64)
         for rectangle in self.rectangles:
             top_left, bottom_right = rectangle
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
@@ -97,18 +97,22 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
             # be sure when can select a region in all case.
             if ( crd_x < crd_x2 ):
                 if ( crd_y < crd_y2 ):
-                    drawable.draw_rectangle(ggc, False, crd_x, crd_y,
-                                            crd_x2 - crd_x, crd_y2 - crd_y)
+                    #drawable.draw_rectangle(ggc, False, crd_x, crd_y,
+                    #                        crd_x2 - crd_x, crd_y2 - crd_y)
+                    ctx.rectangle(crd_x, crd_y, crd_x2 - crd_x, crd_y2 - crd_y)
                 else:
-                    drawable.draw_rectangle(ggc, False, crd_x, crd_y2,
-                                            crd_x2 - crd_x, crd_y - crd_y2)
+                    #drawable.draw_rectangle(ggc, False, crd_x, crd_y2,
+                    #                        crd_x2 - crd_x, crd_y - crd_y2)
+                    ctx.rectangle(crd_x, crd_y2, crd_x2 - crd_x, crd_y - crd_y2)
             else:
                 if ( crd_y < crd_y2 ):
-                    drawable.draw_rectangle(ggc, False, crd_x2, crd_y,
-                                            crd_x - crd_x2, crd_y2 - crd_y)
+                    #drawable.draw_rectangle(ggc, False, crd_x2, crd_y,
+                    #                        crd_x - crd_x2, crd_y2 - crd_y)
+                    ctx.rectangle(crd_x2, crd_y, crd_x - crd_x2, crd_y2 - crd_y)
                 else:
-                    drawable.draw_rectangle(ggc, False, crd_x2, crd_y2,
-                                            crd_x - crd_x2, crd_y - crd_y2)
+                    #drawable.draw_rectangle(ggc, False, crd_x2, crd_y2,
+                    #                        crd_x - crd_x2, crd_y - crd_y2)
+                    ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2, crd_y - crd_y2)
 
     def do_render(self, gpsmap):
         """

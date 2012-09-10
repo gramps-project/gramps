@@ -48,6 +48,7 @@ _LOG = logging.getLogger("maps.messagelayer")
 from gi.repository import Gdk
 #from gi.repository import Cairo
 import cairo
+import pangocairo
 
 #-------------------------------------------------------------------------
 #
@@ -112,11 +113,10 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         self.message.append(message)
 
-    def do_draw(self, gpsmap, drawable):
+    def do_draw(self, gpsmap, ctx):
         """
         Draw the two extreme dates
         """
-        ctx = drawable.cairo_create()
         ctx.select_font_face(self.font,
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
@@ -128,12 +128,19 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
                             0.9) # transparency
         coord_x = 100
         coord_y = int(self.size) # Show the first line under the zoom button
-        (d_width, d_height) = drawable.get_size()
+        #(d_width, d_height) = drawable.get_size()
+        pcr = pangocairo.CairoContext(ctx)
+        ctx_layout = pcr.create_layout()
+        (d_width, d_height) = ctx_layout.get_size()
+        print d_width, d_height
         d_width -= 100
         for line in self.message:
             line_to_print = line
             (x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents(line_to_print)
-            while ( width > d_width):
+            #while ( width > d_width):
+            # BUG here d_with is negative
+            while ( width > 1000):
+                print width, " > ", d_width
                 line_length = len(line_to_print)
                 character_length = int(width/line_length) + 1
                 max_length = int(d_width / character_length) - 5

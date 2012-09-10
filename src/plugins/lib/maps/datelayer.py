@@ -46,6 +46,7 @@ _LOG = logging.getLogger("maps.datelayer")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -109,11 +110,10 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         if date > self.last or self.last == "    ":
             self.last = date
 
-    def do_draw(self, gpsmap, drawable):
+    def do_draw(self, gpsmap, ctx):
         """
         Draw the two extreme dates
         """
-        ctx = drawable.cairo_create()
         ctx.select_font_face(self.font,
                              cairo.FONT_SLANT_NORMAL,
                              cairo.FONT_WEIGHT_NORMAL)
