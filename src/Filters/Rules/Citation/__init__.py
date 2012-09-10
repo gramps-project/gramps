@@ -44,6 +44,7 @@ from _MatchesSourceFilter import MatchesSourceFilter
 from _RegExpIdOf import RegExpIdOf
 
 editor_rule_list = [
+    HasCitation,
     AllCitations,
     ChangedSince,
     CitationPrivate,
