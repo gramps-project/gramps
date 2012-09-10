@@ -320,18 +320,7 @@ class OsmGps():
             self.end_selection = current
             self.zone_selection = False
         elif event.button == 3 and event.type == Gdk.EventType.BUTTON_PRESS:
-            # I don't see the menu. Why ?
-            #self.build_nav_menu(osm, event, lat, lon )
-            menu = Gtk.Menu()
-            menu.set_title(_('Map Menu'))
-
-            add_item = Gtk.MenuItem(label="title")
-            add_item.connect("activate", self.config_crosshair, event, lat , lon)
-            add_item.show()
-            menu.append(add_item)
-            menu.show()
-            menu.popup(None, None, None, None, event.button, event.time)
-            return 1
+            self.build_nav_menu(osm, event, lat, lon )
         else:
             self.save_center(lat, lon)
 
