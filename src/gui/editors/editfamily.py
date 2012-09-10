@@ -550,6 +550,30 @@ class EditFamily(EditPrimary):
 
         #allow for a context menu
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
+        
+        #allow for drop:
+        ftable = self.top.get_object('ftable')
+        ftable.drag_dest_set(Gtk.DestDefaults.MOTION |
+                            Gtk.DestDefaults.DROP,
+                            [],
+                            Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        ftable.drag_dest_set_target_list(tglist)
+        ftable.connect('drag_data_received', self.on_drag_fatherdata_received)
+        mtable = self.top.get_object('mtable')
+        mtable.drag_dest_set(Gtk.DestDefaults.MOTION |
+                            Gtk.DestDefaults.DROP,
+                            [],
+                            Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        mtable.drag_dest_set_target_list(tglist)
+        mtable.connect('drag_data_received', self.on_drag_motherdata_received)
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'), self.save)
@@ -905,6 +929,46 @@ class EditFamily(EditPrimary):
                 person = self.db.get_person_from_handle(new_handle)
                 person.family_list.append(self.obj.handle)
                 self.db.commit_person(person, trans)
+
+    def on_drag_fatherdata_received(self, widget, context, x, y, sel_data,
+                                    info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+        """
+        if self.obj.get_father_handle():
+            return
+        for i in self.hidden:
+            i.set_sensitive(True)
+        if sel_data and sel_data.get_data():
+            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            person = self.db.get_person_from_handle(handle)
+
+            if person:
+                self.check_for_existing_family(person.handle,
+                                               self.obj.get_mother_handle(),
+                                               self.obj.handle)
+                self.obj.set_father_handle(person.handle) 
+                self.update_father(person.handle)
+
+    def on_drag_motherdata_received(self, widget, context, x, y, sel_data,
+                                    info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+        """
+        if self.obj.get_mother_handle():
+            return
+        for i in self.hidden:
+            i.set_sensitive(True)
+        if sel_data and sel_data.get_data():
+            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            person = self.db.get_person_from_handle(handle)
+
+            if person:
+                self.check_for_existing_family(self.obj.get_father_handle(),
+                                               person.handle,
+                                               self.obj.handle)
+                self.obj.set_mother_handle(person.handle) 
+                self.update_mother(person.handle)
 
     def object_is_empty(self):
         return (not self.obj.get_father_handle() and
