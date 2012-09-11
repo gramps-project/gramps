@@ -55,7 +55,7 @@ from cgi import escape
 #-------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
-from gui.editors import EditPerson
+from gui.editors import EditPerson, EditFamily
 import gen.lib
 import gui.utils
 from gui.ddtargets import DdTargets
@@ -1493,6 +1493,8 @@ class FanChartGrampsGUI(object):
 
         # Go over parents and build their menu
         item = Gtk.MenuItem(label=_("Parents"))
+        item.set_submenu(Gtk.Menu())
+        par_menu = item.get_submenu()
         no_parents = 1
         par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
@@ -1502,8 +1504,6 @@ class FanChartGrampsGUI(object):
 
             if no_parents:
                 no_parents = 0
-                item.set_submenu(Gtk.Menu())
-                par_menu = item.get_submenu()
 
             if find_parents(self.dbstate.db,par):
                 label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(par)))
@@ -1519,12 +1519,17 @@ class FanChartGrampsGUI(object):
             label.set_alignment(0,0)
             par_item.add(label)
             linked_persons.append(par_id)
-            par_item.connect("activate",self.on_childmenu_changed, par_id)
+            par_item.connect("activate", self.on_childmenu_changed, par_id)
             par_item.show()
             par_menu.append(par_item)
 
         if no_parents:
-            item.set_sensitive(0)
+            #show an add button
+            add_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_ADD, None)
+            add_item.connect("activate", self.on_add_parents, person_handle)
+            add_item.show()
+            par_menu.append(add_item)
+            
         item.show()
         menu.append(item)
     
@@ -1565,7 +1570,7 @@ class FanChartGrampsGUI(object):
         menu.popup(None, None, None, None, event.button, event.time)
         return 1
     
-    def edit_person_cb(self, obj,person_handle):
+    def edit_person_cb(self, obj, person_handle):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
@@ -1574,6 +1579,16 @@ class FanChartGrampsGUI(object):
                 pass
             return True
         return False
+
+    def on_add_parents(self, obj, person_handle):
+        family = gen.lib.Family()
+        childref = gen.lib.ChildRef()
+        childref.set_reference_handle(person_handle)
+        family.add_child_ref(childref)
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except WindowActiveError:
+            return
 
     def copy_person_to_clipboard_cb(self, obj,person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
