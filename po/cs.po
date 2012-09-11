@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-22 11:27+0200\n"
-"PO-Revision-Date: 2012-08-22 11:29+0100\n"
+"POT-Creation-Date: 2012-09-11 12:20+0200\n"
+"PO-Revision-Date: 2012-09-11 12:24+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -775,7 +775,7 @@ msgid "Quick View"
 msgstr "Rychlý pohled"
 
 #: ../src/Relationship.py:800
-#: ../src/plugins/view/pedigreeview.py:1677
+#: ../src/plugins/view/pedigreeview.py:1679
 msgid "Relationship loop detected"
 msgstr "Detekována smyčka ve vztazích"
 
@@ -4148,22 +4148,22 @@ msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2198
+#: ../src/plugins/view/pedigreeview.py:2200
 msgid "Vertical (top to bottom)"
 msgstr "Vertikální (shora dolů)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2199
+#: ../src/plugins/view/pedigreeview.py:2201
 msgid "Vertical (bottom to top)"
 msgstr "Vertikální (zdola nahoru)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2200
+#: ../src/plugins/view/pedigreeview.py:2202
 msgid "Horizontal (left to right)"
 msgstr "Horizontální (zleva doprava)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2201
+#: ../src/plugins/view/pedigreeview.py:2203
 msgid "Horizontal (right to left)"
 msgstr "Horizontální (zprava doleva)"
 
@@ -5460,7 +5460,11 @@ msgid "ID:"
 msgstr "ID:"
 
 #: ../src/gui/filtereditor.py:522
+#: ../src/Filters/Rules/_HasSourceOfBase.py:46
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:46
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:46
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:46
 msgid "Source ID:"
 msgstr "ID pramene:"
 
@@ -5556,6 +5560,11 @@ msgstr "Štítek:"
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Event/_HasCitation.py:51
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:45
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:44
+#: ../src/Filters/Rules/Place/_HasCitation.py:51
+#: ../src/Filters/Rules/Citation/_HasCitation.py:51
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:50
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:44
 msgid "Confidence level:"
 msgstr "Úroveň důvěryhodnosti:"
 
@@ -5849,7 +5858,7 @@ msgstr "Poznámky"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:906
-#: ../src/plugins/view/pedigreeview.py:1957
+#: ../src/plugins/view/pedigreeview.py:1959
 #: ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848
 #: ../src/plugins/view/relview.py:882
@@ -5871,7 +5880,7 @@ msgstr "Vybrat rodiče"
 #: ../src/gui/grampsgui.py:133
 #: ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
-#: ../src/plugins/view/pedigreeview.py:690
+#: ../src/plugins/view/pedigreeview.py:692
 #: ../src/plugins/webreport/NarrativeWeb.py:5964
 msgid "Pedigree"
 msgstr "Rodokmen"
@@ -6947,7 +6956,7 @@ msgid "New Family"
 msgstr "Nová rodina"
 
 #: ../src/gui/editors/editfamily.py:493
-#: ../src/gui/editors/editfamily.py:996
+#: ../src/gui/editors/editfamily.py:1050
 #: ../src/plugins/view/geofamily.py:364
 msgid "Edit Family"
 msgstr "Změnit rodinu"
@@ -6976,23 +6985,23 @@ msgstr "Přidat novou osobu jako otce"
 msgid "Remove the person as the father"
 msgstr "Odstranit osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:742
+#: ../src/gui/editors/editfamily.py:756
 msgid "Select Mother"
 msgstr "Vybrat matku"
 
-#: ../src/gui/editors/editfamily.py:787
+#: ../src/gui/editors/editfamily.py:801
 msgid "Select Father"
 msgstr "Vybrat otce"
 
-#: ../src/gui/editors/editfamily.py:811
+#: ../src/gui/editors/editfamily.py:825
 msgid "Duplicate Family"
 msgstr "Duplikovat rodinu"
 
-#: ../src/gui/editors/editfamily.py:812
+#: ../src/gui/editors/editfamily.py:826
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Rodina s těmito rodiči už v databázi existuje. Pokud budete pokračovat, vytvoříte duplicitní rodinu. Doporučuji zrušit editaci v tomto okně a vybrat existující rodinu"
 
-#: ../src/gui/editors/editfamily.py:860
+#: ../src/gui/editors/editfamily.py:874
 #: ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989
 #: ../src/plugins/view/relview.py:1037
@@ -7002,43 +7011,43 @@ msgstr "Rodina s těmito rodiči už v databázi existuje. Pokud budete pokračo
 msgid "Edit %s"
 msgstr "Upravit %s"
 
-#: ../src/gui/editors/editfamily.py:928
+#: ../src/gui/editors/editfamily.py:982
 msgid "A father cannot be his own child"
 msgstr "Otec nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:929
+#: ../src/gui/editors/editfamily.py:983
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s je vypsán zároveň jako otec i syn rodiny."
 
-#: ../src/gui/editors/editfamily.py:938
+#: ../src/gui/editors/editfamily.py:992
 msgid "A mother cannot be her own child"
 msgstr "Matka nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:939
+#: ../src/gui/editors/editfamily.py:993
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s je vypsána zároveň jako matka i dcera rodiny."
 
-#: ../src/gui/editors/editfamily.py:946
+#: ../src/gui/editors/editfamily.py:1000
 msgid "Cannot save family"
 msgstr "Nelze uložit rodinu"
 
-#: ../src/gui/editors/editfamily.py:947
+#: ../src/gui/editors/editfamily.py:1001
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "O této rodině neexistují žádné informace. Vložte informace, nebo operaci zrušte."
 
-#: ../src/gui/editors/editfamily.py:954
+#: ../src/gui/editors/editfamily.py:1008
 msgid "Cannot save family. ID already exists."
 msgstr "Rodinu nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editfamily.py:955
+#: ../src/gui/editors/editfamily.py:1009
 #: ../src/gui/editors/editnote.py:313
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Pokusili jste se použít existující Gramps ID  s hodnotou %(id)s. Tato hodnota je již použita. Vložte prosím jiné ID, nebo ponechte pole prázdné - automaticky bude použito další volná hodnota."
 
-#: ../src/gui/editors/editfamily.py:970
+#: ../src/gui/editors/editfamily.py:1024
 msgid "Add Family"
 msgstr "Vytvořit rodinu"
 
@@ -9316,7 +9325,7 @@ msgstr "Nenalezeni žádní rodiče"
 #: ../src/plugins/gramplet/FanChartGramplet.py:724
 #: ../src/plugins/textreport/KinshipReport.py:125
 #: ../src/plugins/view/fanchartview.py:792
-#: ../src/plugins/view/pedigreeview.py:1837
+#: ../src/plugins/view/pedigreeview.py:1839
 msgid "Spouses"
 msgstr "Partneři(ky)"
 
@@ -11957,7 +11966,7 @@ msgstr "Gramplet zobrazující děti dané osoby"
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/view/fanchartview.py:869
-#: ../src/plugins/view/pedigreeview.py:1917
+#: ../src/plugins/view/pedigreeview.py:1919
 #: ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:628
 msgid "Children"
@@ -12491,8 +12500,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:696
 #: ../src/plugins/view/fanchartview.py:764
-#: ../src/plugins/view/pedigreeview.py:1781
-#: ../src/plugins/view/pedigreeview.py:1807
+#: ../src/plugins/view/pedigreeview.py:1783
+#: ../src/plugins/view/pedigreeview.py:1809
 msgid "People Menu"
 msgstr "Menu osob"
 
@@ -12500,7 +12509,7 @@ msgstr "Menu osob"
 #: ../src/plugins/gramplet/FanChartGramplet.py:758
 #: ../src/plugins/quickview/quickview.gpr.py:316
 #: ../src/plugins/view/fanchartview.py:826
-#: ../src/plugins/view/pedigreeview.py:1872
+#: ../src/plugins/view/pedigreeview.py:1874
 #: ../src/plugins/view/relview.py:898
 #: ../src/plugins/webreport/NarrativeWeb.py:6364
 msgid "Siblings"
@@ -12509,7 +12518,7 @@ msgstr "Sourozenci"
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:875
 #: ../src/plugins/view/fanchartview.py:943
-#: ../src/plugins/view/pedigreeview.py:2005
+#: ../src/plugins/view/pedigreeview.py:2007
 msgid "Related"
 msgstr "Související"
 
@@ -14522,9 +14531,9 @@ msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
 #: ../src/plugins/lib/libgedcom.py:3080
-#, python-format
+#, fuzzy, python-format
 msgid "SUBM (Submitter): @%s@"
-msgstr ""
+msgstr "Zařazení: Vkladatel "
 
 #: ../src/plugins/lib/libgedcom.py:3104
 #: ../src/plugins/lib/libgedcom.py:6559
@@ -14543,9 +14552,9 @@ msgid "Top Level"
 msgstr "Nejvyšší úroveň"
 
 #: ../src/plugins/lib/libgedcom.py:3260
-#, python-format
+#, fuzzy, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "FAM (rodina) Gramps ID: %s "
 
 #: ../src/plugins/lib/libgedcom.py:3454
 #: ../src/plugins/lib/libgedcom.py:4749
@@ -14578,14 +14587,15 @@ msgstr "Prázdná poznámka události byla ignorována"
 
 #: ../src/plugins/lib/libgedcom.py:5551
 #: ../src/plugins/lib/libgedcom.py:6362
+#, fuzzy
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "          EtherTalk Phase 2 adr:%s\n"
 
 #: ../src/plugins/lib/libgedcom.py:5722
 #: ../src/plugins/lib/libgedcom.py:6104
 #, fuzzy
 msgid "REFN ignored"
-msgstr "Prázdná poznámka byla ignorována"
+msgstr "%s: dveře ignorovány"
 
 #: ../src/plugins/lib/libgedcom.py:5814
 #, python-format
@@ -14595,7 +14605,7 @@ msgstr "Žádný titulek - ID %s"
 #: ../src/plugins/lib/libgedcom.py:5819
 #, fuzzy, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Přeskupit Gramps ID"
+msgstr "Vyhovuje pramen se zadaným GRAMPS ID"
 
 #: ../src/plugins/lib/libgedcom.py:6030
 #, python-format
@@ -14609,24 +14619,26 @@ msgid "Could not import %s"
 msgstr "Nemohu importovat %s"
 
 #: ../src/plugins/lib/libgedcom.py:6094
+#, fuzzy
 msgid "BLOB ignored"
-msgstr ""
+msgstr "%s: dveře ignorovány"
 
 #: ../src/plugins/lib/libgedcom.py:6114
+#, fuzzy
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "%s: Neznámý typ souboru; soubor ignorován"
 
 #: ../src/plugins/lib/libgedcom.py:6124
+#, fuzzy
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "příkaz `domain %s' ignorován"
 
 #: ../src/plugins/lib/libgedcom.py:6211
 #, fuzzy, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Přeskupit Gramps ID"
+msgstr "Vyhovuje zdroj se zadaným GRAMPS ID"
 
 #: ../src/plugins/lib/libgedcom.py:6487
-#, fuzzy
 msgid "Head (header)"
 msgstr "Hlavička"
 
@@ -14671,8 +14683,9 @@ msgid "Import from %s"
 msgstr "Importovat z %s"
 
 #: ../src/plugins/lib/libgedcom.py:6656
+#, fuzzy
 msgid "Submission record identifier"
-msgstr ""
+msgstr "duplicitní identifikátor zprávy"
 
 #: ../src/plugins/lib/libgedcom.py:6667
 msgid "Language of GEDCOM text"
@@ -14727,30 +14740,32 @@ msgstr "Prázdná poznámka byla ignorována"
 #: ../src/plugins/lib/libgedcom.py:6882
 #, fuzzy, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Gramps ID: %s "
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/plugins/lib/libgedcom.py:6932
+#, fuzzy
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Zařazení: Vkladatel "
 
 #: ../src/plugins/lib/libgedcom.py:6934
 #, fuzzy
 msgid "Submission: Family file"
-msgstr "Smithův rodokmen"
+msgstr "(Chyba čtení souboru)"
 
 #: ../src/plugins/lib/libgedcom.py:6936
+#, fuzzy
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Neplatný kód kostela"
 
 #: ../src/plugins/lib/libgedcom.py:6938
 #, fuzzy
 msgid "Submission: Generations of ancestors"
-msgstr "Omezit počet předků"
+msgstr "Zařazení: Genrací předků"
 
 #: ../src/plugins/lib/libgedcom.py:6940
 #, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Omezit počet potomků"
+msgstr "Zařazení: Genrací  potomků"
 
 #: ../src/plugins/lib/libgedcom.py:6942
 msgid "Submission: Ordinance process flag"
@@ -17657,7 +17672,7 @@ msgid "Delete Person (%s)"
 msgstr "Odstranit osobu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:352
-#: ../src/plugins/view/pedigreeview.py:836
+#: ../src/plugins/view/pedigreeview.py:838
 #: ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Editor filtrů osob"
@@ -19005,6 +19020,7 @@ msgstr "Vyhovují lidé s chybějícím příjmením"
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:48
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:48
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:47
+#: ../src/Filters/Rules/Citation/_HasCitation.py:53
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:47
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:51
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:53
@@ -22448,88 +22464,88 @@ msgstr "pohř."
 msgid "short for cremated|crem."
 msgstr "krem."
 
-#: ../src/plugins/view/pedigreeview.py:1289
+#: ../src/plugins/view/pedigreeview.py:1291
 msgid "Jump to child..."
 msgstr "Přejít na potomka..."
 
-#: ../src/plugins/view/pedigreeview.py:1302
+#: ../src/plugins/view/pedigreeview.py:1304
 msgid "Jump to father"
 msgstr "Přejít na otce"
 
-#: ../src/plugins/view/pedigreeview.py:1315
+#: ../src/plugins/view/pedigreeview.py:1317
 msgid "Jump to mother"
 msgstr "Přejít na matku"
 
-#: ../src/plugins/view/pedigreeview.py:1678
+#: ../src/plugins/view/pedigreeview.py:1680
 msgid "A person was found to be his/her own ancestor."
 msgstr "Osoba nemůže být svým vlastním rodičem."
 
-#: ../src/plugins/view/pedigreeview.py:1725
-#: ../src/plugins/view/pedigreeview.py:1731
+#: ../src/plugins/view/pedigreeview.py:1727
+#: ../src/plugins/view/pedigreeview.py:1733
 #: ../src/plugins/webreport/NarrativeWeb.py:4328
 #: ../src/plugins/webreport/WebCal.py:516
 msgid "Home"
 msgstr "Domů"
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1751
+#: ../src/plugins/view/pedigreeview.py:1753
 msgid "Mouse scroll direction"
 msgstr "Směr pohybu kolečka myši"
 
-#: ../src/plugins/view/pedigreeview.py:1759
+#: ../src/plugins/view/pedigreeview.py:1761
 msgid "Top <-> Bottom"
 msgstr "nahoru <-> dolů"
 
-#: ../src/plugins/view/pedigreeview.py:1766
+#: ../src/plugins/view/pedigreeview.py:1768
 msgid "Left <-> Right"
 msgstr "vlevo <-> vpravo"
 
-#: ../src/plugins/view/pedigreeview.py:1994
+#: ../src/plugins/view/pedigreeview.py:1996
 #: ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Přidat nové rodiče..."
 
-#: ../src/plugins/view/pedigreeview.py:2054
+#: ../src/plugins/view/pedigreeview.py:2056
 msgid "Family Menu"
 msgstr "Menu rodin"
 
-#: ../src/plugins/view/pedigreeview.py:2180
+#: ../src/plugins/view/pedigreeview.py:2182
 msgid "Show images"
 msgstr "Zobrazení obrázků"
 
-#: ../src/plugins/view/pedigreeview.py:2183
+#: ../src/plugins/view/pedigreeview.py:2185
 msgid "Show marriage data"
 msgstr "Zobrazit informace o sňatku"
 
-#: ../src/plugins/view/pedigreeview.py:2186
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Show unknown people"
 msgstr "Ukázat neznámé osoby"
 
-#: ../src/plugins/view/pedigreeview.py:2189
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Tree style"
 msgstr "Styl stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Standard"
 msgstr "Standardní"
 
-#: ../src/plugins/view/pedigreeview.py:2192
+#: ../src/plugins/view/pedigreeview.py:2194
 msgid "Compact"
 msgstr "Kompaktní"
 
-#: ../src/plugins/view/pedigreeview.py:2193
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Expanded"
 msgstr "Rozbaleno"
 
-#: ../src/plugins/view/pedigreeview.py:2196
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Tree direction"
 msgstr "Směr stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2203
+#: ../src/plugins/view/pedigreeview.py:2205
 msgid "Tree size"
 msgstr "Velikost stromu"
 
-#: ../src/plugins/view/pedigreeview.py:2207
+#: ../src/plugins/view/pedigreeview.py:2209
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "Uspořádání"
@@ -24284,6 +24300,23 @@ msgstr "Vyhovují objekty označené jako důvěrné"
 msgid "Miscellaneous filters"
 msgstr "Různé filtry"
 
+#: ../src/Filters/Rules/_HasSourceOfBase.py:47
+msgid "Object with the <source>"
+msgstr "Objekt s <source>"
+
+#: ../src/Filters/Rules/_HasSourceOfBase.py:48
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:48
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:48
+#: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:48
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:48
+msgid "Citation/source filters"
+msgstr "Filtry citací/pramenů"
+
+#: ../src/Filters/Rules/_HasSourceOfBase.py:49
+msgid "Matches objects who have a particular source"
+msgstr "Vyhovují objekty s konkrétním pramenem"
+
 #: ../src/Filters/Rules/Person/_ChangedSince.py:46
 #: ../src/Filters/Rules/Family/_ChangedSince.py:46
 #: ../src/Filters/Rules/Event/_ChangedSince.py:46
@@ -24429,7 +24462,10 @@ msgstr "Vyhovují osoby s osobním atributem určité hodnoty"
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:50
 #: ../src/Filters/Rules/Event/_HasData.py:47
+#: ../src/Filters/Rules/Place/_HasCitation.py:50
+#: ../src/Filters/Rules/Citation/_HasCitation.py:50
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:49
 #: ../src/glade/mergecitation.glade.h:6
 #: ../src/glade/mergeevent.glade.h:6
 #: ../src/glade/mergemedia.glade.h:7
@@ -24457,6 +24493,9 @@ msgstr "Vyhovují osoby s určitým datem narození"
 #: ../src/Filters/Rules/Person/_HasCitation.py:48
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:49
+#: ../src/Filters/Rules/Place/_HasCitation.py:49
+#: ../src/Filters/Rules/Citation/_HasCitation.py:49
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:48
 #: ../src/glade/mergecitation.glade.h:5
 msgid "Volume/Page:"
 msgstr "Ročník/Stránka:"
@@ -24692,11 +24731,6 @@ msgstr "Vyhovují osoby s určitým počtem připojených pramenů"
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:47
 msgid "People with the <source>"
 msgstr "Osoby se <source>"
-
-#: ../src/Filters/Rules/Person/_HasSourceOf.py:48
-#: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-msgid "Citation/source filters"
-msgstr "Filtry citací/pramenů"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -25239,6 +25273,14 @@ msgstr "Rodiny s <count> pramenů"
 msgid "Matches families with a certain number of sources connected to it"
 msgstr "Vyhovují rodiny s určitým počtem připojených pramenů"
 
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:47
+msgid "Families with the <source>"
+msgstr "Rodiny s <source>"
+
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:49
+msgid "Matches families who have a particular source"
+msgstr "Vyhovují rodiny s konkrétním pramenem"
+
 #: ../src/Filters/Rules/Family/_HasTag.py:49
 msgid "Families with the <tag>"
 msgstr "Rodiny s <tag>"
@@ -25662,6 +25704,38 @@ msgstr "Místa s <Id> vyhovujícími regulárnímu výrazu"
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr "Vyhovují místa jejichž Gramps ID odpovídá regulárnímu výrazu"
 
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:47
+msgid "Places with the <source>"
+msgstr "Místo s <source>"
+
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:49
+msgid "Matches places who have a particular source"
+msgstr "Vyhovují místa s konkrétním pramenem"
+
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
+msgid "Place with direct source >= <confidence level>"
+msgstr "Místo s přímým pramenem >= <confidence level> "
+
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:46
+msgid "Matches places with at least one direct source with confidence level(s)"
+msgstr "Vyhovuje místo s alespoň jedním pramenem určitého stupně důvěryhodnosti"
+
+#: ../src/Filters/Rules/Place/_HasSourceCount.py:46
+msgid "Place with <count> sources"
+msgstr "Místo s <count> prameny"
+
+#: ../src/Filters/Rules/Place/_HasSourceCount.py:47
+msgid "Matches places with a certain number of sources connected to it"
+msgstr "Vyhovují místa s určitým počtem připojených pramenů"
+
+#: ../src/Filters/Rules/Place/_HasCitation.py:52
+msgid "Place with the <citation>"
+msgstr "Místo s <citation>"
+
+#: ../src/Filters/Rules/Place/_HasCitation.py:53
+msgid "Matches places with a citation of a particular value"
+msgstr "Vyhovují místa s citací konkrétní hodnoty"
+
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
 msgstr "Všechny prameny"
@@ -25813,6 +25887,14 @@ msgstr "Citace označené jako důvěrné"
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
 msgid "Matches citations that are indicated as private"
 msgstr "Vyhovují citace označené jako důvěrné"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:52
+msgid "Citations matching parameters"
+msgstr "Citace vyhovující parametrům"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:54
+msgid "Matches citations with particular parameters"
+msgstr "Vyhovují citace konkrétních parametrů"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
 msgid "Citations with <count> media"
@@ -26046,6 +26128,38 @@ msgstr "Mediální objekty s <Id> vyhovujícím regulárnímu výrazu"
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr "Odpovídají mediální objekty jejichž Gramps ID odpovídá regulárnímu výrazu"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:46
+msgid "Media with <count> sources"
+msgstr "Média s <count> prameny"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:47
+msgid "Matches media with a certain number of sources connected to it"
+msgstr "Vyhovují média s určitým počtem připojených pramenů"
+
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:51
+msgid "Media with the <citation>"
+msgstr "Média s <citation>"
+
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:52
+msgid "Matches media with a citation of a particular value"
+msgstr "Vyhovují média s citací konkrétní hodnoty"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:47
+msgid "Media with the <source>"
+msgstr "Média s <source>"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:49
+msgid "Matches media who have a particular source"
+msgstr "Vyhovují média s konkrétním pramenem"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:45
+msgid "Media with at least one direct source >= <confidence level>"
+msgstr "Vyhovují média s alespoň jedním přímým pramenem >= <confidence level>"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:46
+msgid "Matches media with at least one direct source with confidence level(s)"
+msgstr "Vyhovují média s alespoň jedním pramenem určitého stupně důvěryhodnosti"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
