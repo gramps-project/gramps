@@ -54,7 +54,8 @@ class RegExpName(Rule):
         
         try:
             self.match = re.compile(list[0],re.I|re.U|re.L)
-        except:
+        except re.error:
+            #indicate error by matching everyone
             self.match = re.compile('')
 
     def apply(self,db,person):
