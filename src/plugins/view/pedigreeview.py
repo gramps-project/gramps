@@ -100,9 +100,9 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         self.person = person
         self.force_mouse_over = False
         self.in_drag = False
+        self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
+        self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
         if self.person:
-            self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-            self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
             self.connect("button-release-event", self.cb_on_button_release)
             self.connect("drag_data_get", self.cb_drag_data_get)
             self.connect("drag_begin", self.cb_drag_begin)
@@ -1494,7 +1494,6 @@ class PedigreeView(NavigationView):
             ErrorDialog(_('Relationship loop detected'),
                         _('A person was found to be his/her own ancestor.'))
             alive = False
-
         lst[index] = [person, val, None, alive, None]
 
         parent_families = person.get_parent_family_handle_list()
@@ -1511,7 +1510,6 @@ class PedigreeView(NavigationView):
                 if child_ref.ref == person.handle:
                     mrel = child_ref.mrel == gen.lib.ChildRefType.BIRTH
                     frel = child_ref.frel == gen.lib.ChildRefType.BIRTH
-
                     lst[index] = [person, val, family, alive, None]
                     father_handle = family.get_father_handle()
                     if father_handle:
