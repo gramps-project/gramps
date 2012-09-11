@@ -233,7 +233,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         """
         def _boxpath(context, alloc):
             # Create box shape and store path
-            context.new_path()
+            #context.new_path()
             context.move_to(0, 5)
             context.curve_to(0, 2, 2, 0, 5, 0)
             context.line_to(alloc.width-8, 0)
@@ -249,7 +249,6 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                                   0, alloc.height-5,
                                   0, alloc.height-8)
             context.close_path()
-            return context.copy_path()
 
         # pylint: disable-msg=E1101
         minw = 120
@@ -281,12 +280,10 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
 
         # Create box shape and store path
         context.save()
-        path = _boxpath(context, alloc)
 
         # shadow
         context.translate(3, 3)
-        context.new_path()
-        context.append_path(path)
+        _boxpath(context, alloc)
         context.set_source_rgba(*(self.bordercolor[:3] + (0.4,)))
         context.fill_preserve()
         context.set_line_width(0)
