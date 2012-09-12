@@ -42,6 +42,7 @@ from gen.ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import Pango
 
 #-------------------------------------------------------------------------
