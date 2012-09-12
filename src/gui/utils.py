@@ -329,7 +329,7 @@ class SystemFonts(object):
         """
         if SystemFonts.__FONTS is None:
             families = PangoCairo.font_map_get_default().list_families()
-            print ('GRAMPS GTK3: a g_value_get_object warning:')
+            #print ('GRAMPS GTK3: a g_value_get_object warning:')
             SystemFonts.__FONTS = [family.get_name() for family in families]
             SystemFonts.__FONTS.sort()
 
