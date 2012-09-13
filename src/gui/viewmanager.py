@@ -1924,6 +1924,10 @@ def get_available_views():
         mod = pmgr.load_plugin(pdata)
         if not mod or not hasattr(mod, pdata.viewclass):
             #import of plugin failed
+            try:
+                lasterror = pmgr.get_fail_list()[-1][1][1]
+            except:
+                lasterror = '*** No error found, probably error in gpr.py file ***'
             ErrorDialog(
                 _('Failed Loading View'),
                 _('The view %(name)s did not load and reported an error.\n\n'
@@ -1937,7 +1941,7 @@ def get_available_views():
                     'name': pdata.name,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
-                    'error_msg': pmgr.get_fail_list()[-1][1][1]})
+                    'error_msg': lasterror})
             continue
         viewclass = getattr(mod, pdata.viewclass)
 
