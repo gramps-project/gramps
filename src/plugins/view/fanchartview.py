@@ -75,17 +75,19 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                                       dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
-        fanchart.FanChartGrampsGUI.__init__(self, 
-                    self._config.get('interface.fanview-maxgen'),
-                    self._config.get('interface.fanview-background'),
-                    self._config.get('interface.fanview-childrenring'),
-                    self._config.get('interface.fanview-radialtext'),
-                    self._config.get('interface.fanview-font'),
-                    self.on_childmenu_changed)
+        fanchart.FanChartGrampsGUI.__init__(self, self.on_childmenu_changed)
+        #set needed values
+        self.maxgen = self._config.get('interface.fanview-maxgen') 
+        self.background = self._config.get('interface.fanview-background')
+        self.childring =  self._config.get('interface.fanview-childrenring')
+        self.radialtext = self._config.get('interface.fanview-radialtext')
+        self.fonttype = self._config.get('interface.fanview-font')
         
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
         self.form = self._config.get('interface.fanview-form')
+        self.generic_filter = None
+        self.alpha_filter = 0.2
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
@@ -227,8 +229,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         """
         Print or save the view that is currently shown
         """
-        widthpx = 2*(fanchart.PIXELS_PER_GENERATION * self.fan.nrgen() 
-                    + fanchart.CENTER)
+        widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
         if self.form == fanchart.FORM_HALFCIRCLE:
             heightpx = heightpx / 2 + fanchart.CENTER + fanchart.PAD_PX

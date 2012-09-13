@@ -54,7 +54,8 @@ import gen.lib
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
 import gui.utils
-from gui.widgets.fanchart import FanChartWidget, FanChartGrampsGUI
+from gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
+                    FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
 
 class FanChartGramplet(FanChartGrampsGUI, Gramplet):
     """
@@ -63,8 +64,17 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
 
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
-        FanChartGrampsGUI.__init__(self, 6, 0, True, True, 'Sans',
-                                   self.on_childmenu_changed)
+        FanChartGrampsGUI.__init__(self, self.on_childmenu_changed)
+        self.maxgen = 6
+        self.background = BACKGROUND_SCHEME1
+        self.childring = True
+        self.radialtext = True
+        self.fonttype = 'Sans'
+        self.grad_start = '#0000FF'
+        self.grad_end = '#FF0000'
+        self.generic_filter = None
+        self.alpha_filter = 0.2
+        self.form = FORM_HALFCIRCLE
         self.set_fan(FanChartWidget(self.dbstate, self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
