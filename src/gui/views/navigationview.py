@@ -448,7 +448,7 @@ class NavigationView(PageView):
                          "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
  
-        self.mru_action = Gtk.ActionGroup(nav_type)
+        self.mru_action = Gtk.ActionGroup(self.title + '/MRU')
         self.mru_action.add_actions(data)
         self.mru_enable()
 
