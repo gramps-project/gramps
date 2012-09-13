@@ -438,7 +438,7 @@ class FanChartWidget(FanChartBaseWidget):
         """
         self.set_values(None, 9, BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
                     '#FF0000', None, 0.5, FORM_CIRCLE)
-        FanChartBaseWidget.__init__(self, dbstate, callback_popup=None)
+        FanChartBaseWidget.__init__(self, dbstate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, background, childring,
               radialtext, fontdescr, grad_start, grad_end,
