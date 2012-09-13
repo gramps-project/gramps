@@ -284,8 +284,10 @@ class DbManager(CLIDbManager):
 
         # build the icon column
         render = Gtk.CellRendererPixbuf()
-        icon_column = Gtk.TreeViewColumn(_('Status'), render, 
-                                         stock_id=STOCK_COL)
+        #icon_column = Gtk.TreeViewColumn(_('Status'), render, 
+                                         #stock_id=STOCK_COL)
+        icon_column = Gtk.TreeViewColumn(_('Status'), render)
+        icon_column.set_cell_data_func(render, bug_fix)
         self.dblist.append_column(icon_column)
 
         # build the last accessed column
@@ -900,3 +902,16 @@ def check_in(dbase, filename, user, cursor_func = None):
             _("An attempt to archive the data failed "
               "with the following message:\n\n%s") % message
             )
+
+def bug_fix(column, renderer, model, iter_, data):
+    """
+    Cell data function to set the status column.
+    
+    There is a bug in pygobject which prevents us from setting a value to
+    None using the TreeModel set_value method.  Instead we set it to an empty
+    string and convert it to None here.
+    """
+    stock_id = model.get_value(iter_, STOCK_COL)
+    if stock_id == '':
+        stock_id = None
+    renderer.set_property('stock_id', stock_id)
