@@ -84,7 +84,8 @@ class UndoHistory(ManagedWindow):
         self.window.connect('response', self._response)
 
         scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
+                                   Gtk.PolicyType.AUTOMATIC)
         self.tree = Gtk.TreeView()
         self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
                                    GObject.TYPE_STRING, GObject.TYPE_STRING)
@@ -93,15 +94,21 @@ class UndoHistory(ManagedWindow):
         self.renderer = Gtk.CellRendererText()
         self.tree.set_model(self.model)
         self.tree.set_rules_hint(True)
-        self.tree.append_column(
-            Gtk.TreeViewColumn(_('Original time'), self.renderer,
-                               text=0, foreground=2, background=3))
-        self.tree.append_column(
-            Gtk.TreeViewColumn(_('Action'), self.renderer,
-                               text=1, foreground=2, background=3))
+        #self.tree.append_column(
+            #Gtk.TreeViewColumn(_('Original time'), self.renderer,
+                               #text=0, foreground=2, background=3))
+        #self.tree.append_column(
+            #Gtk.TreeViewColumn(_('Action'), self.renderer,
+                               #text=1, foreground=2, background=3))
+        column = Gtk.TreeViewColumn(_('Original time'), self.renderer, text=0)
+        column.set_cell_data_func(self.renderer, bug_fix)
+        self.tree.append_column(column)
+        column = Gtk.TreeViewColumn(_('Action'), self.renderer, text=1)
+        column.set_cell_data_func(self.renderer, bug_fix)
+        self.tree.append_column(column)
 
         scrolled_window.add(self.tree)
-        self.window.vbox.add(scrolled_window)
+        self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
 
         self._build_model()
@@ -133,9 +140,9 @@ class UndoHistory(ManagedWindow):
 
     def _paint_rows(self, start, end, selected=False):
         if selected:
-            (fg, bg) = get_colors(self.tree, Gtk.StateType.SELECTED)
+            (fg, bg) = get_colors(self.tree, Gtk.StateFlags.SELECTED)
         else:
-            fg = bg = None
+            fg = bg = ''
 
         for idx in range(start, end+1):
             the_iter = self.model.get_iter( (idx,) )
@@ -229,17 +236,38 @@ class UndoHistory(ManagedWindow):
         self._build_model()
         self._update_ui()
 
-def gtk_color_to_str(color):
-    color_str = u"#%02x%02x%02x" % (color.red/256,
-                                    color.green/256,
-                                    color.blue/256)
+def gdk_color_to_str(color):
+    """
+    Convert a Gdk.Color into a #rrggbb string.
+    """
+    color_str = u"#%02x%02x%02x" % (color.red * 255,
+                                    color.green * 255,
+                                    color.blue * 255)
     return color_str
 
 def get_colors(obj, state):
-    fg_color = obj.style.fg[state]
-    bg_color = obj.style.bg[state]
+    """
+    Return the foreground and background colors for a given state.
+    """
+    context =  obj.get_style_context()
+    fg_color = gdk_color_to_str(context.get_color(state))
+    bg_color = gdk_color_to_str(context.get_background_color(state))
+    return (fg_color, bg_color)
 
-    fg_color_str = gtk_color_to_str(fg_color)
-    bg_color_str = gtk_color_to_str(bg_color)
+def bug_fix(column, renderer, model, iter_, data):
+    """
+    Cell data function to set the column colors.
+    
+    There is a bug in pygobject which prevents us from setting a value to
+    None using the TreeModel set_value method.  Instead we set it to an empty
+    string and convert it to None here.
+    """
+    fg_color = model.get_value(iter_, 2)
+    if fg_color == '':
+        fg_color = None
+    renderer.set_property('foreground', fg_color)
 
-    return (fg_color_str, bg_color_str)
+    bg_color = model.get_value(iter_, 3)
+    if bg_color == '':
+        bg_color = None
+    renderer.set_property('background', bg_color)
