@@ -656,6 +656,33 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """Set up some inital conditions for drag. Set up icon."""
         self.in_drag = False
 
+    def on_drag_data_get(self, widget, context, sel_data, info, time):
+        """
+        Returned parameters after drag.
+        Specified for 'person-link', for others return text info about person.
+        """
+        tgs = [x.name() for x in context.list_targets()]
+        person = self.person_at(self._mouse_click_gen, self._mouse_click_sel,
+                                self._mouse_click_btype)
+        if info == DdTargets.PERSON_LINK.app_id:
+            data = (DdTargets.PERSON_LINK.drag_type,
+                    id(self), person.get_handle(), 0)
+            sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
+        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
+            sel_data.set_text(self.format_helper.format_person(person, 11), -1)
+
+    def on_drag_data_received(self, widget, context, x, y, sel_data, info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+
+        If the selection data is defined, extract the value from sel_data.data
+        """
+        gen, persatcurs, btype = self.person_under_cursor(x, y)
+        if gen == -1 or gen == 0:
+            if sel_data and sel_data.get_data():
+                (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+                self.goto(self, handle)
+
 #-------------------------------------------------------------------------
 #
 # FanChartWidget
@@ -1357,39 +1384,6 @@ class FanChartWidget(FanChartBaseWidget):
         self.change_slice(self._mouse_click_gen, self._mouse_click_sel)
         self._mouse_click = False
         self.queue_draw()
-
-    def on_drag_data_get(self, widget, context, sel_data, info, time):
-        """
-        Returned parameters after drag.
-        Specified for 'person-link', for others return text info about person.
-        """
-        tgs = [x.name() for x in context.list_targets()]
-        if self._mouse_click_gen == -2:
-            #children
-            child_handle, child_gender, has_child, userdata = \
-                                    self.childrenroot[self._mouse_click_sel]
-            person = self.dbstate.db.get_person_from_handle(child_handle)
-        else:
-            text, person, parents, child, userdata \
-                    = self.data[self._mouse_click_gen][self._mouse_click_sel]
-        if info == DdTargets.PERSON_LINK.app_id:
-            data = (DdTargets.PERSON_LINK.drag_type,
-                    id(self), person.get_handle(), 0)
-            sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
-        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
-            sel_data.set_text(self.format_helper.format_person(person, 11), -1)
-
-    def on_drag_data_received(self, widget, context, x, y, sel_data, info, time):
-        """
-        Handle the standard gtk interface for drag_data_received.
-
-        If the selection data is defined, extract the value from sel_data.data
-        """
-        gen, persatcurs, btype = self.person_under_cursor(x, y)
-        if gen == -1 or gen == 0:
-            if sel_data and sel_data.get_data():
-                (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
-                self.goto(self, handle)
 
 class FanChartGrampsGUI(object):
     """ class for functions fanchart GUI elements will need in Gramps
