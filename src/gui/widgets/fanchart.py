@@ -430,7 +430,41 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             alpha = 1.
         
         return color[0], color[1], color[2], alpha
-    
+
+    def draw_innerring(self, cr, person, userdata, start, inc):
+        """
+        Procedure to draw a person in the inner ring position
+        """
+        # in polar coordinates what is to draw
+        rmin = TRANSLATE_PX
+        rmax = TRANSLATE_PX + CHILDRING_WIDTH
+        thetamin = start
+        thetamax = start + inc
+        # add child to angle storage
+        self.angle[-2].append([thetamin, thetamax, None])
+        #draw child now
+        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        cr.arc(0, 0, rmin, thetamin, thetamax)
+        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
+        cr.close_path()
+        ##path = cr.copy_path() # not working correct
+        cr.set_source_rgb(0, 0, 0) # black
+        cr.set_line_width(1)
+        cr.stroke()
+        #now again to fill
+        if person:
+            r, g, b, a = self.background_box(person, -1, userdata)
+        else:
+            r=255; g=255; b=255; a=1
+        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        cr.arc(0, 0, rmin, thetamin, thetamax)
+        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
+        cr.close_path()
+        ##cr.append_path(path) # not working correct
+        cr.set_source_rgba(r/255., g/255., b/255., a) 
+        cr.fill()
 
 #-------------------------------------------------------------------------
 #
@@ -485,6 +519,8 @@ class FanChartWidget(FanChartBaseWidget):
         Set the generations to max, and fill data structures with initial data.
         """
         self.angle = {}
+        if self.childring:
+            self.angle[-2] = []
         self.data = {}
         self.childrenroot = []
         for i in range(self.generations):
@@ -721,7 +757,7 @@ class FanChartWidget(FanChartBaseWidget):
             else:
                 cr.stroke()
             if child and self.childring:
-                self.drawchildring(cr)
+                self.draw_childring(cr)
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
             self.draw_gradient(cr, widget, halfdist)
 
@@ -797,7 +833,7 @@ class FanChartWidget(FanChartBaseWidget):
                            self.fontcolor(r, g, b), self.fontbold(a))
         cr.restore()
 
-    def drawchildring(self, cr):
+    def draw_childring(self, cr):
         cr.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
         cr.set_source_rgb(0, 0, 0) # black
         cr.set_line_width(1)
@@ -810,44 +846,11 @@ class FanChartWidget(FanChartBaseWidget):
             angleinc = math.pi/2
         else:
             angleinc = 2 * math.pi / nrchild
-        self.angle[-2] = []
-        for child in self.childrenroot:
-            self.drawchild(cr, child, startangle, angleinc)
+        for childdata in self.childrenroot:
+            child_handle, child_gender, has_child, userdata = childdata
+            child = self.dbstate.db.get_person_from_handle(child_handle)
+            self.draw_innerring(cr, child, userdata, startangle, angleinc)
             startangle += angleinc
-
-    def drawchild(self, cr, childdata, start, inc):
-        child_handle, child_gender, has_child, userdata = childdata
-        # in polar coordinates what is to draw
-        rmin = TRANSLATE_PX
-        rmax = TRANSLATE_PX + CHILDRING_WIDTH
-        thetamin = start
-        thetamax = start + inc
-        # add child to angle storage
-        self.angle[-2].append([thetamin, thetamax, None])
-        #draw child now
-        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        cr.arc(0, 0, rmin, thetamin, thetamax)
-        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
-        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-        cr.close_path()
-        ##path = cr.copy_path() # not working correct
-        cr.set_source_rgb(0, 0, 0) # black
-        cr.set_line_width(1)
-        cr.stroke()
-        #now again to fill
-        person = self.dbstate.db.get_person_from_handle(child_handle)
-        if person:
-            r, g, b, a = self.background_box(person, -1, userdata)
-        else:
-            r=255; g=255; b=255; a=1
-        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        cr.arc(0, 0, rmin, thetamin, thetamax)
-        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
-        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-        cr.close_path()
-        ##cr.append_path(path) # not working correct
-        cr.set_source_rgba(r/255., g/255., b/255., a) 
-        cr.fill()
 
     def draw_text(self, cr, text, radius, start, stop, radial=False,
                   fontcolor=(0, 0, 0), bold=False):
