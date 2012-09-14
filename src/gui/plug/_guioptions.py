@@ -1309,7 +1309,7 @@ class GuiPlaceListOption(Gtk.HBox):
                                           Gtk.PolicyType.AUTOMATIC)
         self.__scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
 
-        self.pack_start(self.__scrolled_window, expand=True, fill=True)
+        self.pack_start(self.__scrolled_window, True, True, 0)
 
         self.__value_changed()
 
@@ -1323,7 +1323,7 @@ class GuiPlaceListOption(Gtk.HBox):
         self.__vbbox.add(self.__add_place)
         self.__vbbox.add(self.__del_place)
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
-        self.pack_end(self.__vbbox, expand=False)
+        self.pack_end(self.__vbbox, False, False, 0)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
         
