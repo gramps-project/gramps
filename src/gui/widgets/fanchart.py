@@ -131,6 +131,9 @@ COLLAPSED = 0
 NORMAL = 1
 EXPANDED = 2
 
+TYPE_BOX_NORMAL = 0
+TYPE_BOX_FAMILY = 1
+
 #-------------------------------------------------------------------------
 #
 # FanChartBaseWidget
@@ -242,6 +245,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     def halfdist(self):
         """
         Compute the half radius of the circle
+        """
+        raise NotImplementedError
+
+    def gen_pixels(self):
+        """
+        how many pixels a generation takes up in the fanchart
         """
         raise NotImplementedError
 
@@ -466,6 +475,187 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
 
+    def person_under_cursor(self, curx, cury):
+        """
+        Determine the generation and the position in the generation at 
+        position x and y, as well as the type of box. 
+        generation = -1 on center black dot
+        generation >= self.generations outside of diagram
+        """
+        # compute angle, radius, find out who would be there (rotated)
+
+        # center coordinate
+        cx = self.center_x
+        cy = self.center_y
+        radius = math.sqrt((curx - cx) ** 2 + (cury - cy) ** 2)
+        if radius < TRANSLATE_PX:
+            generation = -1
+        elif (self.angle[-2] and 
+                    radius < TRANSLATE_PX + CHILDRING_WIDTH):
+            generation = -2  # indication of one of the children
+        elif radius < CENTER:
+            generation = 0
+        else:
+            generation = int((radius - CENTER)/self.gen_pixels()) + 1
+        btype = self.boxtype(radius)
+
+        rads = math.atan2( (cury - cy), (curx - cx) )
+        if rads < 0: # second half of unit circle
+            rads = math.pi + (math.pi + rads)
+        #angle before rotation:
+        pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
+        #children are in cairo angle (clockwise) from pi to 3 pi
+        #rads however is clock 0 to 2 pi
+        if rads < math.pi:
+            rads += 2 * math.pi
+        # if generation is in expand zone:
+        # FIXME: add a way of expanding 
+        # find what person is in this position:
+        selected = None
+        if (0 < generation < self.generations):
+            selected = self.personpos_at_angle(generation, pos, btype)
+        elif generation == 0:
+            selected = 0
+        elif generation == -2:
+            for p in range(len(self.angle[generation])):
+                start, stop, state = self.angle[generation][p]
+                if start <= rads <= stop:
+                    selected = p
+                    break
+            
+        return generation, selected, btype
+
+    def boxtype(self, radius):
+        """
+        default is only one type of box type
+        """
+        return TYPE_BOX_NORMAL
+
+    def personpos_at_angle(generation, angledeg, btype):
+        """
+        returns the person in generation generation at angle of type btype.
+        """
+        raise NotImplementedError
+
+    def person_at(self, generation, pos, btype):
+        """
+        returns the person at generation, pos, btype
+        """
+        raise NotImplementedError
+
+    def on_mouse_down(self, widget, event):
+        self.translating = False # keep track of up/down/left/right movement
+        generation, selected, btype = self.person_under_cursor(event.x, event.y)
+
+        # left mouse on center dot, we translate on left click
+        if generation == -1: 
+            if event.button == 1: # left mouse
+                # save the mouse location for movements
+                self.translating = True
+                self.last_x, self.last_y = event.x, event.y
+                return True
+
+        #click in open area, prepare for a rotate
+        if selected is None:
+            # save the mouse location for movements
+            self.last_x, self.last_y = event.x, event.y
+            return True
+
+        #left click on person, prepare for expand/collapse or drag
+        if event.button == 1:
+            self._mouse_click = True
+            self._mouse_click_gen = generation
+            self._mouse_click_sel = selected
+            self._mouse_click_btype = btype
+            return False
+    
+        #right click on person, context menu
+        # Do things based on state, event.get_state(), or button, event.button
+        if gui.utils.is_right_click(event):
+            person = self.person_at(generation, selected, btype)
+            if person and self.on_popup:
+                self.on_popup(widget, event, person.handle)
+                return True
+
+        return False
+
+    def on_mouse_move(self, widget, event):
+        self._mouse_click = False
+        if self.last_x is None or self.last_y is None:
+            # while mouse is moving, we must update the tooltip based on person
+            generation, selected, btype = self.person_under_cursor(event.x, event.y)
+            tooltip = ""
+            person = self.person_at(generation, selected, btype)
+            if person:
+                tooltip = self.format_helper.format_person(person, 11)
+            self.set_tooltip_text(tooltip)
+            return False
+        
+        #translate or rotate should happen
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        if self.translating:
+            if self.form == FORM_CIRCLE:
+                self.center_xy = w/2 - event.x, h/2 - event.y
+            elif self.form == FORM_HALFCIRCLE:
+                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+            elif self.form == FORM_QUADRANT:
+                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
+        else:
+            cx = w/2 - self.center_xy[0]
+            cy = h/2 - self.center_xy[1]
+            # get the angles of the two points from the center:
+            start_angle = math.atan2(event.y - cy, event.x - cx)
+            end_angle = math.atan2(self.last_y - cy, self.last_x - cx)
+            if start_angle < 0: # second half of unit circle
+                start_angle = math.pi + (math.pi + start_angle)
+            if end_angle < 0: # second half of unit circle
+                end_angle = math.pi + (math.pi + end_angle)
+            # now look at change in angle:
+            diff_angle = (end_angle - start_angle) % (math.pi * 2.0)
+            self.rotate_value -= diff_angle * 180.0/ math.pi
+            self.last_x, self.last_y = event.x, event.y
+        self.queue_draw()
+        return True
+
+    def do_mouse_click(self):
+        """
+        action to take on left mouse click
+        """
+        pass
+
+    def on_mouse_up(self, widget, event):
+        if self._mouse_click:
+            self.do_mouse_click()
+            return True
+        if self.last_x is None or self.last_y is None:
+            # No translate or rotate
+            return True
+        if self.translating:
+            self.translating = False
+            alloc = self.get_allocation()
+            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+            if self.form == FORM_CIRCLE:
+                self.center_xy = w/2 - event.x, h/2 - event.y
+                self.center_xy = w/2 - event.x, h/2 - event.y
+            elif self.form == FORM_HALFCIRCLE:
+                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+            elif self.form == FORM_QUADRANT:
+                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
+        
+        self.last_x, self.last_y = None, None
+        self.queue_draw()
+        return True
+
+    def on_drag_begin(self, widget, data):
+        """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = True
+        self.drag_source_set_icon_stock('gramps-person')
+
+    def on_drag_end(self, widget, data):
+        """Set up some inital conditions for drag. Set up icon."""
+        self.in_drag = False
+
 #-------------------------------------------------------------------------
 #
 # FanChartWidget
@@ -638,6 +828,12 @@ class FanChartWidget(FanChartBaseWidget):
                     if person_handle:
                         return self.dbstate.db.get_person_from_handle(person_handle)
         return None
+
+    def gen_pixels(self):
+        """
+        how many pixels a generation takes up in the fanchart
+        """
+        return PIXELS_PER_GENERATION
 
     def nrgen(self):
         #compute the number of generations present
@@ -1129,181 +1325,38 @@ class FanChartWidget(FanChartBaseWidget):
                                                       NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
-    def on_mouse_move(self, widget, event):
-        self._mouse_click = False
-        if self.last_x is None or self.last_y is None:
-            # while mouse is moving, we must update the tooltip based on person
-            generation, selected = self.person_under_cursor(event.x, event.y)
-            tooltip = ""
-            person = None
-            if selected is not None and generation >= 0:
-                text, person, parents, child, userdata = \
-                                                self.data[generation][selected]
-            elif selected is not None and generation == -2:
-                child_handle, child_gender, has_child, userdata = \
-                                                self.childrenroot[selected]
-                person = self.dbstate.db.get_person_from_handle(child_handle)
-            if person:
-                tooltip = self.format_helper.format_person(person, 11)
-            self.set_tooltip_text(tooltip)
-            return False
-        
-        #translate or rotate should happen
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        if self.translating:
-            if self.form == FORM_CIRCLE:
-                self.center_xy = w/2 - event.x, h/2 - event.y
-            elif self.form == FORM_HALFCIRCLE:
-                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
-            elif self.form == FORM_QUADRANT:
-                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
-        else:
-            cx = w/2 - self.center_xy[0]
-            cy = h/2 - self.center_xy[1]
-            # get the angles of the two points from the center:
-            start_angle = math.atan2(event.y - cy, event.x - cx)
-            end_angle = math.atan2(self.last_y - cy, self.last_x - cx)
-            if start_angle < 0: # second half of unit circle
-                start_angle = math.pi + (math.pi + start_angle)
-            if end_angle < 0: # second half of unit circle
-                end_angle = math.pi + (math.pi + end_angle)
-            # now look at change in angle:
-            diff_angle = (end_angle - start_angle) % (math.pi * 2.0)
-            self.rotate_value -= diff_angle * 180.0/ math.pi
-            self.last_x, self.last_y = event.x, event.y
-        self.queue_draw()
-        return True
-
-    def person_under_cursor(self, curx, cury):
+    def personpos_at_angle(self, generation, angledeg, btype):
         """
-        Determine the generation and the position in the generation at 
-        position x and y. 
-        generation = -1 on center black dot
-        generation >= self.generations outside of diagram
+        returns the person in generation generation at angle.
         """
-        # compute angle, radius, find out who would be there (rotated)
-
-        # center coordinate
-        cx = self.center_x
-        cy = self.center_y
-        radius = math.sqrt((curx - cx) ** 2 + (cury - cy) ** 2)
-        if radius < TRANSLATE_PX:
-            generation = -1
-        elif (self.childring and self.childrenroot and 
-                    radius < TRANSLATE_PX + CHILDRING_WIDTH):
-            generation = -2  # indication of one of the children
-        elif radius < CENTER:
-            generation = 0
-        else:
-            generation = int((radius - CENTER)/PIXELS_PER_GENERATION) + 1
-
-        rads = math.atan2( (cury - cy), (curx - cx) )
-        if rads < 0: # second half of unit circle
-            rads = math.pi + (math.pi + rads)
-        pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
-        #children are in cairo angle (clockwise) from pi to 3 pi
-        #rads however is clock 0 to 2 pi
-        if rads < math.pi:
-            rads += 2 * math.pi
-        # if generation is in expand zone:
-        # FIXME: add a way of expanding 
-        # find what person is in this position:
         selected = None
-        if (0 < generation < self.generations):
-            for p in range(len(self.angle[generation])):
-                if self.data[generation][p][1]: # there is a person there
-                    start, stop, state = self.angle[generation][p]
-                    if state == COLLAPSED: continue
-                    if start <= pos <= stop:
-                        selected = p
-                        break
-        elif generation == 0:
-            selected = 0
-        elif generation == -2:
-            for p in range(len(self.angle[generation])):
+        for p in range(len(self.angle[generation])):
+            if self.data[generation][p][1]: # there is a person there
                 start, stop, state = self.angle[generation][p]
-                if start <= rads <= stop:
+                if state == COLLAPSED: continue
+                if start <= angledeg <= stop:
                     selected = p
                     break
-            
-        return generation, selected
+        return selected
 
-    def on_mouse_down(self, widget, event):
-        self.translating = False # keep track of up/down/left/right movement
-        generation, selected = self.person_under_cursor(event.x, event.y)
+    def person_at(self, generation, pos, btype):
+        """
+        returns the person at generation, pos, btype
+        """
+        if pos is None:
+            return None
+        if generation == -2:
+            child_handle = self.childrenroot[pos][0]
+            person = self.dbstate.db.get_person_from_handle(child_handle)
+        else:
+            person = self.data[generation][pos][1]
+        return person
 
-        # left mouse on center dot, we translate on left click
-        if generation == -1: 
-            if event.button == 1: # left mouse
-                # save the mouse location for movements
-                self.translating = True
-                self.last_x, self.last_y = event.x, event.y
-                return True
-
-        #click in open area, prepare for a rotate
-        if selected is None:
-            # save the mouse location for movements
-            self.last_x, self.last_y = event.x, event.y
-            return True
-
-        #left click on person, prepare for expand/collapse or drag
-        if event.button == 1:
-            self._mouse_click = True
-            self._mouse_click_gen = generation
-            self._mouse_click_sel = selected
-            return False
-    
-        #right click on person, context menu
-        # Do things based on state, event.get_state(), or button, event.button
-        if gui.utils.is_right_click(event):
-            if generation == -2:
-                child_handle, child_gender, has_child, userdata = \
-                                                self.childrenroot[selected]
-                person = self.dbstate.db.get_person_from_handle(child_handle)
-            else:
-                text, person, parents, child, userdata = \
-                                                self.data[generation][selected]
-            if person and self.on_popup:
-                self.on_popup(widget, event, person.handle)
-                return True
-
-        return False
-
-    def on_mouse_up(self, widget, event):
-        if self._mouse_click:
-            # no drag occured, expand or collapse the section
-            self.change_slice(self._mouse_click_gen, self._mouse_click_sel)
-            self._mouse_click = False
-            self.queue_draw()
-            return True
-        if self.last_x is None or self.last_y is None:
-            # No translate or rotate
-            return True
-        if self.translating:
-            self.translating = False
-            alloc = self.get_allocation()
-            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-            if self.form == FORM_CIRCLE:
-                self.center_xy = w/2 - event.x, h/2 - event.y
-                self.center_xy = w/2 - event.x, h/2 - event.y
-            elif self.form == FORM_HALFCIRCLE:
-                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
-            elif self.form == FORM_QUADRANT:
-                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
-        
-        self.last_x, self.last_y = None, None
+    def do_mouse_click(self):
+        # no drag occured, expand or collapse the section
+        self.change_slice(self._mouse_click_gen, self._mouse_click_sel)
+        self._mouse_click = False
         self.queue_draw()
-        return True
-
-    def on_drag_begin(self, widget, data):
-        """Set up some inital conditions for drag. Set up icon."""
-        self.in_drag = True
-        self.drag_source_set_icon_stock('gramps-person')
-
-    def on_drag_end(self, widget, data):
-        """Set up some inital conditions for drag. Set up icon."""
-        self.in_drag = False
 
     def on_drag_data_get(self, widget, context, sel_data, info, time):
         """
@@ -1332,7 +1385,7 @@ class FanChartWidget(FanChartBaseWidget):
 
         If the selection data is defined, extract the value from sel_data.data
         """
-        gen, persatcurs = self.person_under_cursor(x, y)
+        gen, persatcurs, btype = self.person_under_cursor(x, y)
         if gen == -1 or gen == 0:
             if sel_data and sel_data.get_data():
                 (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
