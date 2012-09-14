@@ -145,6 +145,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
     def __init__(self, dbstate, callback_popup=None):
         GObject.GObject.__init__(self)
+        st_cont = self.get_style_context()
+        col = st_cont.lookup_color('text_color')
+        if col[0]:
+            self.textcolor = (col[1].red, col[1].green, col[1].blue)
+        else:
+            self.textcolor = (0, 0, 0)
         self.dbstate = dbstate
         self.translating = False
         self.goto = None
@@ -440,6 +446,32 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         
         return color[0], color[1], color[2], alpha
 
+    def fontcolor(self, r, g, b, a):
+        """
+        return the font color based on the r, g, b of the background
+        """
+        if a == 0:
+            return self.textcolor
+        try:
+            return self.cache_fontcolor[(r, g, b)]
+        except KeyError:
+            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
+            # we use the lightness value to determine white or black font
+            if hls[1] > 0.4:
+                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
+            else:
+                self.cache_fontcolor[(r, g, b)] = (1, 1, 1)
+        return self.cache_fontcolor[(r, g, b)]
+
+    def fontbold(self, a):
+        """
+        The font should be bold if no transparency and font is set.
+        In that case, True is returned
+        """
+        if a >= 1. and self.filter:
+            return True
+        return False
+
     def draw_innerring(self, cr, person, userdata, start, inc):
         """
         Procedure to draw a person in the inner ring position
@@ -474,6 +506,163 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         ##cr.append_path(path) # not working correct
         cr.set_source_rgba(r/255., g/255., b/255., a) 
         cr.fill()
+
+    def draw_text(self, cr, text, radius, start, stop,
+                  height=PIXELS_PER_GENERATION, radial=False,
+                  fontcolor=(0, 0, 0), bold=False):
+        """
+        Display text at a particular radius, between start and stop
+        degrees.
+        """
+        cr.save()
+        font = Pango.FontDescription(self.fontdescr)
+        fontsize = self.fontsize
+        font.set_size(fontsize * Pango.SCALE)
+        if bold:
+            font.set_weight(Pango.Weight.BOLD)
+        cr.set_source_rgb(fontcolor[0], fontcolor[1], fontcolor[2])
+        if radial and self.radialtext:
+            cr.save()
+            layout = self.create_pango_layout(text)
+            layout.set_font_description(font)
+            w, h = layout.get_size()
+            w = w / Pango.SCALE + 5 # 5 pixel padding
+            h = h / Pango.SCALE + 4 # 4 pixel padding
+            #first we check if height is ok
+            degneedheight = h / radius * (180 / math.pi)
+            degavailheight = stop-start
+            degoffsetheight = 0
+            if degneedheight > degavailheight:
+                #reduce height
+                fontsize = degavailheight / degneedheight * fontsize / 2
+                font.set_size(fontsize * Pango.SCALE)
+                layout = self.create_pango_layout(text)
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 5 # 5 pixel padding
+                h = h / Pango.SCALE + 4 # 4 pixel padding
+                #first we check if height is ok
+                degneedheight = h / radius * (180 / math.pi)
+                degavailheight = stop-start
+                if degneedheight > degavailheight:
+                    #we could not fix it, no text
+                    text = ""
+            if text:
+                #spread rest
+                degoffsetheight = (degavailheight - degneedheight) / 2
+            txlen = len(text)
+            if w > height:
+                txlen = int(w/height * txlen)
+            cont = True
+            while cont:
+                layout = self.create_pango_layout(text[:txlen])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 5 # 5 pixel padding
+                h = h / Pango.SCALE + 4 # 4 pixel padding
+                if w > height:
+                    if txlen <= 1:
+                        cont = False
+                        txlen = 0
+                    else:
+                        txlen -= 1
+                else:
+                    cont = False
+            # offset for cairo-font system is 90
+            rotval = self.rotate_value % 360 - 90
+            if (start + rotval) % 360 > 179:
+                pos = start + degoffsetheight + 90 - 90
+            else:
+                pos = stop - degoffsetheight + 180
+            cr.rotate(pos * math.pi / 180)
+            layout.context_changed()
+            if (start + rotval) % 360 > 179:
+                cr.move_to(radius+2, 0)
+            else:
+                cr.move_to(-radius-height+6, 0)
+            PangoCairo.show_layout(cr, layout)
+            cr.restore()
+        else:
+            # center text:
+            #  1. determine degrees of the text we can draw
+            degpadding = 5 / radius * (180 / math.pi) # degrees for 5 pixel padding
+            degneed = degpadding
+            maxlen = len(text)
+            hoffset = 0
+            for i in range(len(text)):
+                layout = self.create_pango_layout(text[i])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 2 # 2 pixel padding after letter
+                h = h / Pango.SCALE + 2 # 2 pixel padding
+                if h/2 > hoffset:
+                    hoffset = h/2
+                degneed += w / radius * (180 / math.pi)
+                if degneed > stop - start:
+                    #outside of the box
+                    maxlen = i
+                    break
+            #  2. determine degrees over we can distribute before and after
+            if degneed > stop - start:
+                degover = 0
+            else:
+                degover = stop - start - degneed - degpadding
+            #  3. now draw this text, letter per letter
+            text = text[:maxlen]
+            
+            # offset for cairo-font system is 90, padding used is 5:
+            pos = start + 90 + degpadding + degover / 2
+            # Create a PangoLayout, set the font and text 
+            # Draw the layout N_WORDS times in a circle 
+            for i in range(len(text)):
+                layout = self.create_pango_layout(text[i])
+                layout.set_font_description(font)
+                w, h = layout.get_size()
+                w = w / Pango.SCALE + 2 # 4 pixel padding after word
+                h = h / Pango.SCALE + 2 # 4 pixel padding
+                degneed = w / radius * (180 / math.pi)
+                if pos+degneed > stop + 90:
+                    #failsafe, outside of the box, redo
+                    break
+
+                cr.save()
+                cr.rotate(pos * math.pi / 180)
+                pos = pos + degneed
+                # Inform Pango to re-layout the text with the new transformation
+                layout.context_changed()
+                #width, height = layout.get_size()
+                #r.move_to(- (width / Pango.SCALE) / 2.0, - radius)
+                cr.move_to(0, - radius - hoffset)
+                PangoCairo.show_layout(cr, layout)
+                cr.restore()
+        cr.restore()
+
+    def draw_gradient(self, cr, widget, halfdist):
+        gradwidth = 10
+        gradheight = 10
+        starth = 15
+        startw = 5
+        alloc = self.get_allocation()
+        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
+        cr.save()
+
+        cr.translate(-self.center_x, -self.center_y)
+
+        font = Pango.FontDescription(self.fontdescr)
+        fontsize = self.fontsize
+        font.set_size(fontsize * Pango.SCALE)
+        for color, text in zip(self.gradcol, self.gradval):
+            cr.move_to(startw, starth)
+            cr.rectangle(startw, starth, gradwidth, gradheight)
+            cr.set_source_rgb(color[0], color[1], color[2])
+            cr.fill()
+            layout = self.create_pango_layout(text)
+            layout.set_font_description(font)
+            cr.move_to(startw+gradwidth+4, starth)
+            cr.set_source_rgb(0, 0, 0) #black
+            PangoCairo.show_layout(cr, layout)
+            starth = starth+gradheight
+        cr.restore()
 
     def person_under_cursor(self, curx, cury):
         """
@@ -512,10 +701,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         # FIXME: add a way of expanding 
         # find what person is in this position:
         selected = None
-        if (0 < generation < self.generations):
+        if (0 <= generation < self.generations):
             selected = self.personpos_at_angle(generation, pos, btype)
-        elif generation == 0:
-            selected = 0
         elif generation == -2:
             for p in range(len(self.angle[generation])):
                 start, stop, state = self.angle[generation][p]
@@ -968,8 +1155,10 @@ class FanChartWidget(FanChartBaseWidget):
             cr.fill()
             cr.save()
             name = name_displayer.display(person)
-            self.draw_text(cr, name, CENTER - 10, 95, 455, False,
-                           self.fontcolor(r, g, b), self.fontbold(a))
+            self.draw_text(cr, name, CENTER - 
+                        (CENTER - (CHILDRING_WIDTH + TRANSLATE_PX))/2, 95, 455, 
+                        10, False,
+                        self.fontcolor(r, g, b, a), self.fontbold(a))
             cr.restore()
             #draw center to move chart
             cr.set_source_rgb(0, 0, 0) # black
@@ -1052,8 +1241,9 @@ class FanChartWidget(FanChartBaseWidget):
                     # more space to print it radial
                     radial = True
                     radstart = radius - PIXELS_PER_GENERATION + 4
-            self.draw_text(cr, name, radstart, start, stop, radial, 
-                           self.fontcolor(r, g, b), self.fontbold(a))
+            self.draw_text(cr, name, radstart, start, stop, 
+                           PIXELS_PER_GENERATION, radial, 
+                           self.fontcolor(r, g, b, a), self.fontbold(a))
         cr.restore()
 
     def draw_childring(self, cr):
@@ -1074,183 +1264,6 @@ class FanChartWidget(FanChartBaseWidget):
             child = self.dbstate.db.get_person_from_handle(child_handle)
             self.draw_innerring(cr, child, userdata, startangle, angleinc)
             startangle += angleinc
-
-    def draw_text(self, cr, text, radius, start, stop, radial=False,
-                  fontcolor=(0, 0, 0), bold=False):
-        """
-        Display text at a particular radius, between start and stop
-        degrees.
-        """
-        cr.save()
-        font = Pango.FontDescription(self.fontdescr)
-        fontsize = self.fontsize
-        font.set_size(fontsize * Pango.SCALE)
-        if bold:
-            font.set_weight(Pango.Weight.BOLD)
-        cr.set_source_rgb(fontcolor[0], fontcolor[1], fontcolor[2])
-        if radial and self.radialtext:
-            cr.save()
-            layout = self.create_pango_layout(text)
-            layout.set_font_description(font)
-            w, h = layout.get_size()
-            w = w / Pango.SCALE + 5 # 5 pixel padding
-            h = h / Pango.SCALE + 4 # 4 pixel padding
-            #first we check if height is ok
-            degneedheight = h / radius * (180 / math.pi)
-            degavailheight = stop-start
-            degoffsetheight = 0
-            if degneedheight > degavailheight:
-                #reduce height
-                fontsize = degavailheight / degneedheight * fontsize / 2
-                font.set_size(fontsize * Pango.SCALE)
-                layout = self.create_pango_layout(text)
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 5 # 5 pixel padding
-                h = h / Pango.SCALE + 4 # 4 pixel padding
-                #first we check if height is ok
-                degneedheight = h / radius * (180 / math.pi)
-                degavailheight = stop-start
-                if degneedheight > degavailheight:
-                    #we could not fix it, no text
-                    text = ""
-            if text:
-                #spread rest
-                degoffsetheight = (degavailheight - degneedheight) / 2
-            txlen = len(text)
-            if w > PIXELS_PER_GENERATION:
-                txlen = int(w/PIXELS_PER_GENERATION * txlen)
-            cont = True
-            while cont:
-                layout = self.create_pango_layout(text[:txlen])
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 5 # 5 pixel padding
-                h = h / Pango.SCALE + 4 # 4 pixel padding
-                if w > PIXELS_PER_GENERATION:
-                    if txlen <= 1:
-                        cont = False
-                        txlen = 0
-                    else:
-                        txlen -= 1
-                else:
-                    cont = False
-            # offset for cairo-font system is 90
-            rotval = self.rotate_value % 360 - 90
-            if (start + rotval) % 360 > 179:
-                pos = start + degoffsetheight + 90 - 90
-            else:
-                pos = stop - degoffsetheight + 180
-            cr.rotate(pos * math.pi / 180)
-            layout.context_changed()
-            if (start + rotval) % 360 > 179:
-                cr.move_to(radius+2, 0)
-            else:
-                cr.move_to(-radius-PIXELS_PER_GENERATION+6, 0)
-            PangoCairo.show_layout(cr, layout)
-            cr.restore()
-        else:
-            # center text:
-            #  1. determine degrees of the text we can draw
-            degpadding = 5 / radius * (180 / math.pi) # degrees for 5 pixel padding
-            degneed = degpadding
-            maxlen = len(text)
-            for i in range(len(text)):
-                layout = self.create_pango_layout(text[i])
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 2 # 2 pixel padding after letter
-                h = h / Pango.SCALE + 2 # 2 pixel padding
-                degneed += w / radius * (180 / math.pi)
-                if degneed > stop - start:
-                    #outside of the box
-                    maxlen = i
-                    break
-            #  2. determine degrees over we can distribute before and after
-            if degneed > stop - start:
-                degover = 0
-            else:
-                degover = stop - start - degneed - degpadding
-            #  3. now draw this text, letter per letter
-            text = text[:maxlen]
-            
-            # offset for cairo-font system is 90, padding used is 5:
-            pos = start + 90 + degpadding + degover / 2
-            # Create a PangoLayout, set the font and text 
-            # Draw the layout N_WORDS times in a circle 
-            for i in range(len(text)):
-                layout = self.create_pango_layout(text[i])
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 2 # 4 pixel padding after word
-                h = h / Pango.SCALE + 2 # 4 pixel padding
-                degneed = w / radius * (180 / math.pi)
-                if pos+degneed > stop + 90:
-                    #failsafe, outside of the box, redo
-                    break
-
-                cr.save()
-                cr.rotate(pos * math.pi / 180)
-                pos = pos + degneed
-                # Inform Pango to re-layout the text with the new transformation
-                layout.context_changed()
-                #width, height = layout.get_size()
-                #r.move_to(- (width / Pango.SCALE) / 2.0, - radius)
-                cr.move_to(0, - radius)
-                PangoCairo.show_layout(cr, layout)
-                cr.restore()
-        cr.restore()
-
-    def draw_gradient(self, cr, widget, halfdist):
-        gradwidth = 10
-        gradheight = 10
-        starth = 15
-        startw = 5
-        alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        cr.save()
-
-        cr.translate(-self.center_x, -self.center_y)
-
-        font = Pango.FontDescription(self.fontdescr)
-        fontsize = self.fontsize
-        font.set_size(fontsize * Pango.SCALE)
-        for color, text in zip(self.gradcol, self.gradval):
-            cr.move_to(startw, starth)
-            cr.rectangle(startw, starth, gradwidth, gradheight)
-            cr.set_source_rgb(color[0], color[1], color[2])
-            cr.fill()
-            layout = self.create_pango_layout(text)
-            layout.set_font_description(font)
-            cr.move_to(startw+gradwidth+4, starth)
-            cr.set_source_rgb(0, 0, 0) #black
-            PangoCairo.show_layout(cr, layout)
-            starth = starth+gradheight
-        cr.restore()
-
-    def fontcolor(self, r, g, b):
-        """
-        return the font color based on the r, g, b of the background
-        """
-        try:
-            return self.cache_fontcolor[(r, g, b)]
-        except KeyError:
-            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
-            # we use the lightness value to determine white or black font
-            if hls[1] > 0.4:
-                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
-            else:
-                self.cache_fontcolor[(r, g, b)] = (255, 255, 255)
-        return self.cache_fontcolor[(r, g, b)]
-
-    def fontbold(self, a):
-        """
-        The font should be bold if no transparency and font is set.
-        In that case, True is returned
-        """
-        if a >= 1. and self.filter:
-            return True
-        return False
 
     def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
@@ -1356,6 +1369,8 @@ class FanChartWidget(FanChartBaseWidget):
         """
         returns the person in generation generation at angle.
         """
+        if generation == 0:
+            return 0
         selected = None
         for p in range(len(self.angle[generation])):
             if self.data[generation][p][1]: # there is a person there
