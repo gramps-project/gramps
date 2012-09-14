@@ -241,12 +241,8 @@ class BasePersonView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
-            <menu name="WebConnect" action="WebConnect">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
+            <menu name="WebConnect" action="WebConnect"/>
           </popup>
         </ui>'''
 
@@ -324,13 +320,6 @@ class BasePersonView(ListView):
 
         self.uistate.set_busy_cursor(False)
 
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
-
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
@@ -357,7 +346,6 @@ class BasePersonView(ListView):
                 "<PRIMARY>Return", self.EDIT_MSG, self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('WebConnect', None, _("Web Connection"), None, None, None), 
-                ('Dummy', None, '  ', None, None, self.dummy_report), 
                 ])
 
 

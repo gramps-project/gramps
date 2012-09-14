@@ -227,7 +227,6 @@ class MediaView(ListView):
                          callback=self.open_containing_folder)
 
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
                         
     def set_active(self):
         """
@@ -329,18 +328,9 @@ class MediaView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
           </popup>
         </ui>'''
-
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
 
     def add(self, obj):
         """Add a new media object to the media list"""

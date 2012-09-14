@@ -181,7 +181,6 @@ class CitationListView(ListView):
         self._add_action('FilterEdit', None, _('Citation Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
         self._add_action_group(self.edit_action)
         self._add_action_group(self.all_action)
@@ -244,18 +243,9 @@ class CitationListView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
           </popup>
         </ui>'''
-
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
 
     def add(self, obj):
         """

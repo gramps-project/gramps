@@ -208,9 +208,7 @@ class EventView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
           </popup>
         </ui>'''
 
@@ -220,8 +218,6 @@ class EventView(ListView):
                         callback=self.filter_editor,)
         self._add_action('QuickReport', None, 
                          _("Quick View"), None, None, None)
-        self._add_action('Dummy', None, 
-                         '  ', None, None, self.dummy_report)
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_event_from_gramps_id(gid)
@@ -277,13 +273,6 @@ class EventView(ListView):
             ErrorDialog(msg, msg2)
         else:
             MergeEvent(self.dbstate, self.uistate, mlist[0], mlist[1])
-
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
 
     def get_default_gramplets(self):
         """

@@ -151,8 +151,6 @@ class RepositoryView(ListView):
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, 
                          _("Quick View"), None, None, None)
-        self._add_action('Dummy', None, 
-                         '  ', None, None, self.dummy_report)
 
     def get_stock(self):
         return 'gramps-repository'
@@ -209,9 +207,7 @@ class RepositoryView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
           </popup>
         </ui>'''
 
@@ -261,13 +257,6 @@ class RepositoryView(ListView):
             return obj.get_handle()
         else:
             return None
-
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
 
     def get_default_gramplets(self):
         """

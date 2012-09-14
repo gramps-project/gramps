@@ -195,25 +195,15 @@ class NoteView(ListView):
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
-          </popup>
+            <menu name="QuickReport" action="QuickReport"/>
+         </popup>
         </ui>'''
-
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
 
     def define_actions(self):
         ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-        self._add_action('Dummy', None, '  ', None, None, self.dummy_report)
 
     def set_active(self):
         """

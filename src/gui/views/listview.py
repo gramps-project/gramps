@@ -802,48 +802,46 @@ class ListView(NavigationView):
                         return True
         elif gui.utils.is_right_click(event):
             menu = self.uistate.uimanager.get_widget('/Popup')
-            #construct quick reports if needed
-            if menu and self.QR_CATEGORY > -1 :
+            if menu:
+                # Quick Reports
                 qr_menu = self.uistate.uimanager.\
-                            get_widget('/Popup/QuickReport').get_submenu()
-                if qr_menu :
-                    self.uistate.uimanager.\
-                            get_widget('/Popup/QuickReport').set_submenu(None)
-                reportactions = []
-                if menu and self.get_active():
-                    (ui, reportactions) = create_quickreport_menu(
+                            get_widget('/Popup/QuickReport')
+                if qr_menu and self.QR_CATEGORY > -1 :
+                    (ui, qr_actions) = create_quickreport_menu(
                                             self.QR_CATEGORY, 
                                             self.dbstate, 
                                             self.uistate,
                                             self.first_selected())
-                if len(reportactions) > 1 :
-                    qr_menu = Gtk.Menu()
-                    for action in reportactions[1:] :
-                        add_menuitem(qr_menu, action[2], None, action[5])
-                    self.uistate.uimanager.get_widget('/Popup/QuickReport').\
-                            set_submenu(qr_menu)
-            if menu and self.get_active():
-                popup = self.uistate.uimanager.get_widget('/Popup/WebConnect')
-                if popup:
-                    qr_menu = popup.get_submenu()
-                    webconnects = []
-                    if qr_menu:
-                        popup.set_submenu(None)
-                        webconnects = create_web_connect_menu(
-                            self.dbstate, 
-                            self.uistate,
-                            self.navigation_type(),
-                            self.first_selected())
-                    if len(webconnects) > 1 :
-                        qr_menu = Gtk.Menu()
-                        for action in webconnects[1:] :
-                            add_menuitem(qr_menu, action[2], None, action[5])
-                        popup.set_submenu(qr_menu)
-            if menu:
+                    self.__build_menu(qr_menu, qr_actions)
+
+                # Web Connects
+                web_menu = self.uistate.uimanager.\
+                                get_widget('/Popup/WebConnect')
+                if web_menu:
+                    web_actions = create_web_connect_menu(
+                                        self.dbstate, 
+                                        self.uistate,
+                                        self.navigation_type(),
+                                        self.first_selected())
+                    self.__build_menu(web_menu, web_actions)
+
                 menu.popup(None, None, None, None, event.button, event.time)
                 return True
             
         return False
+
+    def __build_menu(self, menu, actions):
+        """
+        Build a submenu for quick reports and web connects
+        """
+        if self.get_active() and len(actions) > 1:
+            sub_menu = Gtk.Menu()
+            for action in actions[1:]:
+                add_menuitem(sub_menu, action[2], None, action[5])
+            menu.set_submenu(sub_menu)
+            menu.show()
+        else:
+            menu.hide()
     
     def _key_press(self, obj, event):
         """

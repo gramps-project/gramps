@@ -191,9 +191,7 @@ class FamilyView(ListView):
             <menuitem action="MakeFatherActive"/>
             <menuitem action="MakeMotherActive"/>
             <separator/>
-            <menu name="QuickReport" action="QuickReport">
-              <menuitem action="Dummy"/>
-            </menu>
+            <menu name="QuickReport" action="QuickReport"/>
           </popup>
         </ui>'''
 
@@ -212,7 +210,6 @@ class FamilyView(ListView):
                 ('MakeMotherActive', Gtk.STOCK_APPLY, _("Make Mother Active Person"), 
                  None, None, self._make_mother_active),
                 ('QuickReport', None, _("Quick View"), None, None, None),
-                ('Dummy', None, '  ', None, None, self.dummy_report),
                 ])
         self._add_action_group(self.all_action)
 
@@ -308,13 +305,6 @@ class FamilyView(ListView):
             if family:
                 self.uistate.set_active(family.mother_handle, 'Person')
             
-    def dummy_report(self, obj):
-        """ For the xml UI definition of popup to work, the submenu 
-            Quick Report must have an entry in the xml
-            As this submenu will be dynamically built, we offer a dummy action
-        """
-        pass
-
     def drag_info(self):
         """
         Indicate that the drag type is a FAMILY_LINK
