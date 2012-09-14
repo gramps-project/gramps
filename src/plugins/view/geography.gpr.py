@@ -49,10 +49,10 @@ if repository.enumerate_versions("OsmGpsMap"):
         # current osmgpsmap support GTK3
         from gi.repository import OsmGpsMap as osmgpsmap
         OSMGPSMAP = True
-        if osmgpsmap._version < '1.0':
+        if osmgpsmap._version < '0.8':
             OSMGPSMAP = False
             _LOG.warning( _("WARNING: osmgpsmap module not loaded. "
-                               "osmgpsmap must be >= 1.0. yours is %s") %
+                               "osmgpsmap must be >= 0.8. yours is %s") %
                             osmgpsmap._version)
         else:
             _LOG.info("OsmGpsMap loaded, version : " +  osmgpsmap._version)

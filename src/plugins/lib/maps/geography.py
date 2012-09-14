@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 import os
+import sys
 import re
 from gi.repository import GObject
 import time
@@ -146,14 +147,19 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.place_list = []
         self.places_found = []
         self.select_fct = None
-        self.geo_mainmap = cairo.ImageSurface.create_from_png(
-            os.path.join(ROOT_DIR, "images", "48x48",
-                         ('gramps-geo-mainmap' + '.png' )))
-        self.geo_altmap = cairo.ImageSurface.create_from_png(
-            os.path.join(ROOT_DIR, "images", "48x48",
-                         ('gramps-geo-altmap' + '.png' )))
+        self.geo_mainmap = None
+        path = os.path.join(ROOT_DIR, "images", "48x48",
+                            ('gramps-geo-mainmap' + '.png' ))
+        pathu = path.encode(sys.getfilesystemencoding())
+        self.geo_mainmap = cairo.ImageSurface.create_from_png(pathu)
+        path = os.path.join(ROOT_DIR, "images", "48x48",
+                            ('gramps-geo-altmap' + '.png' ))
+        pathu = path.encode(sys.getfilesystemencoding())
+        self.geo_altmap = cairo.ImageSurface.create_from_png(pathu)
         if ( config.get('geography.map_service') in
-            ( constants.OPENSTREETMAP, constants.OPENSTREETMAP_RENDERER )):
+            ( constants.OPENSTREETMAP,
+              constants.OPENSTREETMAP_RENDERER
+             )):
             default_image = self.geo_mainmap
         else:
             default_image = self.geo_altmap
@@ -161,9 +167,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( gen.lib.EventType.BIRTH,
                     gen.lib.EventType.DEATH,
                     gen.lib.EventType.MARRIAGE ):
-            self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(
-                os.path.join(ROOT_DIR, "images", "48x48",
-                    (constants.ICONS.get(int(ident), default_image) + '.png' )))
+            path = os.path.join(ROOT_DIR, "images", "48x48",
+                                (constants.ICONS.get(int(ident), default_image) + '.png' ))
+            pathu = path.encode(sys.getfilesystemencoding())
+            self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(pathu)
 
     def change_page(self):
         """
