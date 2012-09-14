@@ -195,8 +195,20 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         Reset the fan chart. This should trigger computation of all data 
         structures needed
         """
-        raise NotImplementedError
+        self.cache_fontcolor = {}
+        
+        # fill the data structure
+        self._fill_data_structures()
+    
+        # prepare the colors for the boxes 
+        self.prepare_background_box()
 
+    def _fill_data_structures(self):
+        """
+        fill in the data structures that will be needed to draw the chart
+        """
+        raise NotImplementedError
+        
     def do_size_request(self, requisition):
         """
         Overridden method to handle size request events.
@@ -467,20 +479,6 @@ class FanChartWidget(FanChartBaseWidget):
         self.filter = filter
         self.alpha_filter = alpha_filter
         self.form = form
-        
-    def reset(self):
-        """
-        Reset the fan chart. This triggers computation of all data 
-        structures needed
-        """
-        self.cache_fontcolor = {}
-        self.set_generations()
-        
-        # fill the data structure: self.data, self.childrenroot, self.angle
-        self._fill_data_structures()
-    
-        # prepare the colors for the boxes 
-        self.prepare_background_box()
 
     def set_generations(self):
         """
@@ -502,14 +500,13 @@ class FanChartWidget(FanChartBaseWidget):
                 angle = 180
                 factor = 1/4
             slice = 360.0 / (2 ** i) * factor
-            gender = True
             for count in range(len(self.data[i])):
                 # start, stop, male, state
-                self.angle[i].append([angle, angle + slice, gender, NORMAL])
+                self.angle[i].append([angle, angle + slice, NORMAL])
                 angle += slice
-                gender = not gender
 
     def _fill_data_structures(self):
+        self.set_generations()
         person = self.dbstate.db.get_person_from_handle(self.rootpersonh)
         if not person: 
             name = None
@@ -547,7 +544,7 @@ class FanChartWidget(FanChartBaseWidget):
                 self.data[current][parent] = (name, person, parents, None, [])
                 if person is None:
                     # start,stop,male/right,state
-                    self.angle[current][parent][3] = COLLAPSED
+                    self.angle[current][parent][2] = COLLAPSED
                 parent += 1
                 # Get mother's details:
                 person = self._get_parent(p, False)
@@ -562,7 +559,7 @@ class FanChartWidget(FanChartBaseWidget):
                 self.data[current][parent] = (name, person, parents, None, [])
                 if person is None:
                     # start,stop,male/right,state
-                    self.angle[current][parent][3] = COLLAPSED
+                    self.angle[current][parent][2] = COLLAPSED
                 parent += 1
 
     def _have_parents(self, person):
@@ -686,9 +683,9 @@ class FanChartWidget(FanChartBaseWidget):
             for p in range(len(self.data[generation])):
                 (text, person, parents, child, userdata) = self.data[generation][p]
                 if person:
-                    start, stop, male, state = self.angle[generation][p]
+                    start, stop, state = self.angle[generation][p]
                     if state in [NORMAL, EXPANDED]:
-                        self.draw_person(cr, gender_code(male), 
+                        self.draw_person(cr, gender_code(p%2 == 0), 
                                          text, start, stop, 
                                          generation, state, parents, child,
                                          person, userdata)
@@ -826,7 +823,7 @@ class FanChartWidget(FanChartBaseWidget):
         thetamin = start
         thetamax = start + inc
         # add child to angle storage
-        self.angle[-2].append([thetamin, thetamax, child_gender, None])
+        self.angle[-2].append([thetamin, thetamax, None])
         #draw child now
         cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
         cr.arc(0, 0, rmin, thetamin, thetamax)
@@ -1032,18 +1029,17 @@ class FanChartWidget(FanChartBaseWidget):
     def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        start,stop,male,state = self.angle[generation][selected]
+        start, stop, state = self.angle[generation][selected]
         if state in [NORMAL, EXPANDED]:
             slice = (stop - start) * 2.0
-            self.angle[generation][selected] = [current,current+slice,
-                                                male,state]
+            self.angle[generation][selected] = [current, current+slice, state]
             self.expand_parents(generation + 1, selected, current)
             current += slice
-        start,stop,male,state = self.angle[generation][selected+1]
+        start, stop, state = self.angle[generation][selected+1]
         if state in [NORMAL, EXPANDED]:
             slice = (stop - start) * 2.0
             self.angle[generation][selected+1] = [current,current+slice,
-                                                  male,state]
+                                                  state]
             self.expand_parents(generation + 1, selected+1, current)
 
     def show_parents(self, generation, selected, angle, slice):
@@ -1051,11 +1047,11 @@ class FanChartWidget(FanChartBaseWidget):
         selected *= 2
         self.angle[generation][selected][0] = angle
         self.angle[generation][selected][1] = angle + slice
-        self.angle[generation][selected][3] = NORMAL
+        self.angle[generation][selected][2] = NORMAL
         self.show_parents(generation+1, selected, angle, slice/2.0)
         self.angle[generation][selected+1][0] = angle + slice
         self.angle[generation][selected+1][1] = angle + slice + slice
-        self.angle[generation][selected+1][3] = NORMAL
+        self.angle[generation][selected+1][2] = NORMAL
         self.show_parents(generation+1, selected + 1, angle + slice, slice/2.0)
 
     def hide_parents(self, generation, selected, angle):
@@ -1063,75 +1059,70 @@ class FanChartWidget(FanChartBaseWidget):
         selected = 2 * selected
         self.angle[generation][selected][0] = angle
         self.angle[generation][selected][1] = angle
-        self.angle[generation][selected][3] = COLLAPSED
+        self.angle[generation][selected][2] = COLLAPSED
         self.hide_parents(generation + 1, selected, angle)
         self.angle[generation][selected+1][0] = angle
         self.angle[generation][selected+1][1] = angle
-        self.angle[generation][selected+1][3] = COLLAPSED
+        self.angle[generation][selected+1][2] = COLLAPSED
         self.hide_parents(generation + 1, selected+1, angle)
 
     def shrink_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        start,stop,male,state = self.angle[generation][selected]
+        start, stop, state = self.angle[generation][selected]
         if state in [NORMAL, EXPANDED]:
             slice = (stop - start) / 2.0
             self.angle[generation][selected] = [current, current + slice, 
-                                                male,state]
+                                                state]
             self.shrink_parents(generation + 1, selected, current)
             current += slice
-        start,stop,male,state = self.angle[generation][selected+1]
+        start, stop, state = self.angle[generation][selected+1]
         if state in [NORMAL, EXPANDED]:
             slice = (stop - start) / 2.0
-            self.angle[generation][selected+1] = [current,current+slice,
-                                                  male,state]
+            self.angle[generation][selected+1] = [current, current+slice,
+                                                  state]
             self.shrink_parents(generation + 1, selected+1, current)
 
     def change_slice(self, generation, selected):
         if generation < 1:
             return
-        gstart, gstop, gmale, gstate = self.angle[generation][selected]
+        gstart, gstop, gstate = self.angle[generation][selected]
         if gstate == NORMAL: # let's expand
-            if gmale:
+            if selected % 2 == 0:
                 # go to right
                 stop = gstop + (gstop - gstart)
-                self.angle[generation][selected] = [gstart,stop,gmale,
-                                                    EXPANDED]
+                self.angle[generation][selected] = [gstart, stop, EXPANDED]
                 self.expand_parents(generation + 1, selected, gstart)
                 start,stop,male,state = self.angle[generation][selected+1]
-                self.angle[generation][selected+1] = [stop,stop,male,
-                                                      COLLAPSED]
+                self.angle[generation][selected+1] = [stop, stop, COLLAPSED]
                 self.hide_parents(generation+1, selected+1, stop)
             else:
                 # go to left
                 start = gstart - (gstop - gstart)
-                self.angle[generation][selected] = [start,gstop,gmale,
-                                                    EXPANDED]
+                self.angle[generation][selected] = [start, gstop, EXPANDED]
                 self.expand_parents(generation + 1, selected, start)
-                start,stop,male,state = self.angle[generation][selected-1]
-                self.angle[generation][selected-1] = [start,start,male,
-                                                      COLLAPSED]
+                start, stop, state = self.angle[generation][selected-1]
+                self.angle[generation][selected-1] = [start, start, COLLAPSED]
                 self.hide_parents(generation+1, selected-1, start)
         elif gstate == EXPANDED: # let's shrink
-            if gmale:
+            if selected % 2 == 0:
                 # shrink from right
                 slice = (gstop - gstart)/2.0
                 stop = gstop - slice
-                self.angle[generation][selected] = [gstart,stop,gmale,
-                                                    NORMAL]
+                self.angle[generation][selected] = [gstart, stop, NORMAL]
                 self.shrink_parents(generation+1, selected, gstart)
                 self.angle[generation][selected+1][0] = stop # start
                 self.angle[generation][selected+1][1] = stop + slice # stop
-                self.angle[generation][selected+1][3] = NORMAL
+                self.angle[generation][selected+1][2] = NORMAL
                 self.show_parents(generation+1, selected+1, stop, slice/2.0)
             else:
                 # shrink from left
                 slice = (gstop - gstart)/2.0
                 start = gstop - slice
-                self.angle[generation][selected] = [start,gstop,gmale, NORMAL]
+                self.angle[generation][selected] = [start, gstop, NORMAL]
                 self.shrink_parents(generation+1, selected, start)
-                start,stop,male,state = self.angle[generation][selected-1]
-                self.angle[generation][selected-1] = [start,start+slice,male,
+                start, stop, state = self.angle[generation][selected-1]
+                self.angle[generation][selected-1] = [start, start+slice,
                                                       NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
@@ -1219,7 +1210,7 @@ class FanChartWidget(FanChartBaseWidget):
         if (0 < generation < self.generations):
             for p in range(len(self.angle[generation])):
                 if self.data[generation][p][1]: # there is a person there
-                    start, stop, male, state = self.angle[generation][p]
+                    start, stop, state = self.angle[generation][p]
                     if state == COLLAPSED: continue
                     if start <= pos <= stop:
                         selected = p
@@ -1228,7 +1219,7 @@ class FanChartWidget(FanChartBaseWidget):
             selected = 0
         elif generation == -2:
             for p in range(len(self.angle[generation])):
-                start, stop, male, state = self.angle[generation][p]
+                start, stop, state = self.angle[generation][p]
                 if start <= rads <= stop:
                     selected = p
                     break
