@@ -513,8 +513,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         done already
         """
         if self._plaintext is None:
-            self._attrlist, self._plaintext, dummy = \
-                                Pango.parse_markup(self._text)
+            parse_ok, self._attrlist, self._plaintext, accel_char= \
+                                Pango.parse_markup(self._text, -1, '\000')
         
     def divide(self, layout, width, height, dpi_x, dpi_y):
         self.__parse_text()
@@ -559,7 +559,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_height = height - t_margin - 2 * v_padding
         
         # calculate where to cut the paragraph
-        layout.set_text(self._plaintext)
+        layout.set_text(self._plaintext, -1)
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         line_count = layout.get_line_count()
@@ -703,7 +703,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_spacing(int(round(spacing * Pango.SCALE)))
 
         # layout the text
-        layout.set_text(self._plaintext)
+        layout.set_text(self._plaintext, -1)
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         
