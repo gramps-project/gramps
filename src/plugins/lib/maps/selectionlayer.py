@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from math import pi
 from gi.repository import GObject
 
 #------------------------------------------------------------------------
@@ -87,32 +88,34 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
                                                        circle[2] + circle[0])
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
-            #drawable.draw_arc(ggc, False, crd_x, crd_y, crd_x2 - crd_x,
-            #                  crd_y2 - crd_y, 0, 360*64)
-            ctx.arc(crd_x, crd_y, crd_x2 - crd_x, crd_y2 - crd_y, 0, 360*64)
+            width = float(crd_x2 - crd_x)
+            height = float(crd_y2 - crd_y)
+            ctx.set_line_width(3.0)
+            ctx.set_source_rgba(0.0, 0.0, 0.0, 0.8)
+            ctx.scale(1.0, (height/width))
+            #ctx.arc(float(crd_x + crd_x2)/2, float(crd_y + crd_y2)/2, width, 0.0, 2*pi)
+            # TODO : placement bug : waiting bug correction on osm-gps-map
+            ctx.arc(float(crd_x + crd_x2)/2, float(crd_y+height*(height/width)/2), width, 0.0, 2*pi)
+            ctx.stroke()
+
         for rectangle in self.rectangles:
             top_left, bottom_right = rectangle
+            ctx.set_source_rgba(0.0, 0.0, 0.0, 0.8)
+            ctx.set_line_width(3.0)
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
             # be sure when can select a region in all case.
             if ( crd_x < crd_x2 ):
                 if ( crd_y < crd_y2 ):
-                    #drawable.draw_rectangle(ggc, False, crd_x, crd_y,
-                    #                        crd_x2 - crd_x, crd_y2 - crd_y)
                     ctx.rectangle(crd_x, crd_y, crd_x2 - crd_x, crd_y2 - crd_y)
                 else:
-                    #drawable.draw_rectangle(ggc, False, crd_x, crd_y2,
-                    #                        crd_x2 - crd_x, crd_y - crd_y2)
                     ctx.rectangle(crd_x, crd_y2, crd_x2 - crd_x, crd_y - crd_y2)
             else:
                 if ( crd_y < crd_y2 ):
-                    #drawable.draw_rectangle(ggc, False, crd_x2, crd_y,
-                    #                        crd_x - crd_x2, crd_y2 - crd_y)
                     ctx.rectangle(crd_x2, crd_y, crd_x - crd_x2, crd_y2 - crd_y)
                 else:
-                    #drawable.draw_rectangle(ggc, False, crd_x2, crd_y2,
-                    #                        crd_x - crd_x2, crd_y - crd_y2)
                     ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2, crd_y - crd_y2)
+            ctx.stroke()
 
     def do_render(self, gpsmap):
         """

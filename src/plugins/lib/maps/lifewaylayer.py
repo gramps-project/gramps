@@ -138,9 +138,9 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 ctx.translate(coord_x1, coord_y1/coz)
                 ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
                 ctx.fill()
+                ctx.set_source_rgba(1.0,0.0,0.0,0.5)
                 ctx.set_line_width(2.0)
                 ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
-                ctx.set_source_rgba(1.0,0.0,0.0,0.5)
                 ctx.stroke()
                 ctx.restore()
 

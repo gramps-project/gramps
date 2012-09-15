@@ -130,8 +130,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.window.vbox.pack_start(alignment, False, True, 0)
         adj = Gtk.Adjustment(1.0, 0.1, 3.0, 0.1, 0, 0)
         # default value is 1.0, minimum is 0.1 and max is 3.0
-        slider = Gtk.HScale(adj)
-        slider.set_update_policy(Gtk.UPDATE_DISCONTINUOUS)
+        slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL,
+                           adjustment=adj)
         slider.set_digits(1)
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', self.slider_change, self.lat, self.lon)

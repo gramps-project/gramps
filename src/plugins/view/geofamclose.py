@@ -119,7 +119,7 @@ class GeoFamClose(GeoGraphyView):
 
         # specific to geoclose :
 
-        ('geography.color1', 'red'),
+        ('geography.color1', 'blue'),
         ('geography.color2', 'green'),
         ('geography.maximum_meeting_zone', 5),
 
@@ -309,7 +309,7 @@ class GeoFamClose(GeoGraphyView):
                 points.append((startlat, startlon))
         self.lifeway_layer.add_way(points, color)
         if reference:
-            self.lifeway_layer.add_way_ref(points, color,
+            self.lifeway_layer.add_way_ref(points, 'orange',
                      float(self._config.get("geography.maximum_meeting_zone")) / 10)
         return False
 
@@ -665,7 +665,10 @@ class GeoFamClose(GeoGraphyView):
                                    event, lat, lon, prevmark)
                     itemoption.append(center)
                     menu.show()
-                    menu.popup(None, None, None, None, 0, event.time)
+                    menu.popup(None, None,
+                               lambda menu, data: (event.get_root_coords()[0],
+                                                   event.get_root_coords()[1], True),
+                               None, event.button, event.time)
         return 0
 
     def add_specific_menu(self, menu, event, lat, lon): 

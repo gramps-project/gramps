@@ -144,6 +144,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
             ctx.move_to(coord_x, coord_y)
             ctx.show_text(line_to_print)
             coord_y += int(self.size) # calculate the next line position
+        ctx.stroke()
 
     def do_render(self, gpsmap):
         """

@@ -305,7 +305,7 @@ class OsmGps():
         lat, lon = self.osm.get_event_location(event).get_degrees()
         current = osm.convert_screen_to_geographic(int(event.x), int(event.y))
         lat, lon = current.get_degrees()
-        if event.button == 1:
+        if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
             if self.end_selection is not None:
                 self.activate_selection_zoom(osm, event)
                 self.end_selection = None

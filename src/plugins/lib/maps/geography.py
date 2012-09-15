@@ -819,20 +819,40 @@ class GeoGraphyView(OsmGps, NavigationView):
             oldv = (loc.get_country(), loc.get_state(),
                     loc.get_county()) if loc else None
             places_handle = self.dbstate.db.iter_place_handles()
+            nb_places = 0
+            gids = ""
             for place_hdl in places_handle:
                 plce = self.dbstate.db.get_place_from_handle(place_hdl)
                 if plce.get_title() == place.get_title():
-                    self.mark = [None, None, None, None, None, None, None,
-                                 None, None, plce.gramps_id, None, None]
-                    self.select_fct = PlaceSelection(self.uistate,
-                                                     self.dbstate,
-                                                     self.osm,
-                                                     self.selection_layer,
-                                                     self.place_list,
-                                                     lat,
-                                                     lon,
-                                                     self.__edit_place,
-                                                     oldv)
+                    nb_places += 1
+                    if gids == "":
+                        gids = plce.gramps_id
+                    else:
+                        gids = gids + ", " + plce.gramps_id
+            if nb_places > 1:
+                from QuestionDialog import WarningDialog
+                WarningDialog(
+                      _('You have at least two places with the same title.'),
+                      _("The title of the places is :\n"
+                        "<b>%(title)s</b>\n"
+                        "The following places are similar : %(gid)s\n"
+                        "Eiher you rename the places either you merge them."
+                        "\n\n<b>I can't proceed your request</b>.\n") % {
+                                              'title': plce.get_title(),
+                                              'gid': gids}
+                      )
+            else:
+                self.mark = [None, None, None, None, None, None, None,
+                             None, None, plce.gramps_id, None, None]
+                self.select_fct = PlaceSelection(self.uistate,
+                                                 self.dbstate,
+                                                 self.osm,
+                                                 self.selection_layer,
+                                                 self.place_list,
+                                                 lat,
+                                                 lon,
+                                                 self.__edit_place,
+                                                 oldv)
 
     def __add_place(self, pcountry, pcounty, pstate, plat, plon):
         """
