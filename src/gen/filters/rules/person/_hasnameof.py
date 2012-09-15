@@ -62,22 +62,36 @@ class HasNameOf(Rule):
     category    = _('General filters')
 
     def prepare(self, db):
-        self.firstn = self.list[0].upper()
-        self.lastn = self.list[1].upper()
-        self.title = self.list[2].upper()
-        self.suffix = self.list[3].upper()
-        self.calln = self.list[4].upper()
-        self.nick = self.list[5].upper()
-        self.famnick = self.list[10].upper()
-        #surname parts
-        self.prefix = self.list[6].upper()
-        self.surn = self.list[7].upper()
-        self.con = self.list[8].upper()
-        self.patr = self.list[9].upper()
         if len(self.list) >= 12:
             self.regular_expression = bool(int(self.list[11]))
         else:
             self.regular_expression = False
+        if self.regular_expression:
+            self.firstn = self.list[0]
+            self.lastn = self.list[1]
+            self.title = self.list[2]
+            self.suffix = self.list[3]
+            self.calln = self.list[4]
+            self.nick = self.list[5]
+            self.famnick = self.list[10]
+            #surname parts
+            self.prefix = self.list[6]
+            self.surn = self.list[7]
+            self.con = self.list[8]
+            self.patr = self.list[9]
+        else:
+            self.firstn = self.list[0].upper()
+            self.lastn = self.list[1].upper()
+            self.title = self.list[2].upper()
+            self.suffix = self.list[3].upper()
+            self.calln = self.list[4].upper()
+            self.nick = self.list[5].upper()
+            self.famnick = self.list[10].upper()
+            #surname parts
+            self.prefix = self.list[6].upper()
+            self.surn = self.list[7].upper()
+            self.con = self.list[8].upper()
+            self.patr = self.list[9].upper()
         
     def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
