@@ -50,21 +50,27 @@ OPENSTREETMAP           = 1
 OPENSTREETMAP_RENDERER  = 2
 OPENAERIALMAP           = 3
 MAPS_FOR_FREE           = 4
-GOOGLE_STREET           = 5
-GOOGLE_SATELLITE        = 6
-GOOGLE_HYBRID           = 7
-VIRTUAL_EARTH_STREET    = 8
-VIRTUAL_EARTH_SATELLITE = 9
-VIRTUAL_EARTH_HYBRID    = 10
-YAHOO_STREET            = 11
-YAHOO_SATELLITE         = 12
-YAHOO_HYBRID            = 13
+OPENCYCLEMAP            = 5
+OSM_PUBLIC_TRANSPORT    = 6
+OSMC_TRAILS             = 7
+GOOGLE_STREET           = 8
+GOOGLE_SATELLITE        = 9
+GOOGLE_HYBRID           = 10
+VIRTUAL_EARTH_STREET    = 11
+VIRTUAL_EARTH_SATELLITE = 12
+VIRTUAL_EARTH_HYBRID    = 13
+YAHOO_STREET            = 14
+YAHOO_SATELLITE         = 15
+YAHOO_HYBRID            = 16
 
 tiles_path = {
     OPENSTREETMAP           : "openstreetmap",
     OPENSTREETMAP_RENDERER  : "openstreetmaprenderer",
     OPENAERIALMAP           : "openaerialmap",
     MAPS_FOR_FREE           : "mapsforfree",
+    OPENCYCLEMAP            : "opencyclemap",
+    OSM_PUBLIC_TRANSPORT    : "publictransport",
+    OSMC_TRAILS             : "osmctrails",
     GOOGLE_STREET           : "googlestreet",
     GOOGLE_SATELLITE        : "googlesat",
     GOOGLE_HYBRID           : "googlehybrid",
@@ -81,6 +87,9 @@ map_title = {
     OPENSTREETMAP_RENDERER  : "OpenStreetMap renderer",
     OPENAERIALMAP           : "OpenAerialMap",
     MAPS_FOR_FREE           : "Maps For Free",
+    OPENCYCLEMAP            : "OpenCycleMap",
+    OSM_PUBLIC_TRANSPORT    : "Public Transport",
+    OSMC_TRAILS             : "OSMC Trails",
     GOOGLE_STREET           : "Google street",
     GOOGLE_SATELLITE        : "Google sat",
     GOOGLE_HYBRID           : "Google hybrid",
@@ -97,6 +106,9 @@ map_type = {
     OPENSTREETMAP_RENDERER  : osmgpsmap.MapSource_t.OPENSTREETMAP_RENDERER,
     OPENAERIALMAP           : osmgpsmap.MapSource_t.OPENAERIALMAP,
     MAPS_FOR_FREE           : osmgpsmap.MapSource_t.MAPS_FOR_FREE,
+    OPENCYCLEMAP            : osmgpsmap.MapSource_t.OPENCYCLEMAP,
+    OSM_PUBLIC_TRANSPORT    : osmgpsmap.MapSource_t.OSM_PUBLIC_TRANSPORT,
+    OSMC_TRAILS             : osmgpsmap.MapSource_t.OSMC_TRAILS,
     GOOGLE_STREET           : osmgpsmap.MapSource_t.GOOGLE_STREET,
     GOOGLE_SATELLITE        : osmgpsmap.MapSource_t.GOOGLE_SATELLITE,
     GOOGLE_HYBRID           : osmgpsmap.MapSource_t.GOOGLE_HYBRID,
