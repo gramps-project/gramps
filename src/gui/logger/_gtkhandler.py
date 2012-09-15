@@ -38,14 +38,12 @@ class GtkHandler(logging.Handler):
         logging.Handler.__init__(self)
         self._rotate_handler = rotate_handler
 
-
-
     def emit(self, record):
         """
         Add the record to the rotating buffer.
         """
         self._record = record
-        ErrorView(error_detail=self,rotate_handler=self._rotate_handler)
+        ErrorView(error_detail=self, rotate_handler=self._rotate_handler)
 
     def get_formatted_log(self):
         return self.format(self._record)

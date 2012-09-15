@@ -329,7 +329,14 @@ def __startgramps(errors, argparser):
     except:
         quit_now = True
         exit_code = 1
-        LOG.error("Gramps failed to start.", exc_info=True)
+        LOG.error(_(
+    "\nGramps failed to start. Please report a bug about this.\n"
+    "This could be because of an error in a (third party) View on startup.\n"
+    "To use another view, don't load a family tree, change view, and then load"
+    " your family tree.\n"
+    "You can also change manually the startup view in the gramps.ini file \n"
+    "by changing the last-view parameter.\n"
+                   ), exc_info=True)
 
     if quit_now:
         #stop gtk loop and quit
