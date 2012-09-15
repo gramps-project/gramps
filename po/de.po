@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-04 18:48+0200\n"
-"PO-Revision-Date: 2012-09-04 18:56+0200\n"
+"POT-Creation-Date: 2012-09-15 15:51+0200\n"
+"PO-Revision-Date: 2012-09-15 15:58+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -6876,7 +6876,7 @@ msgstr "Familie"
 msgid "New Family"
 msgstr "Neue Familie"
 
-#: ../src/gui/editors/editfamily.py:493 ../src/gui/editors/editfamily.py:996
+#: ../src/gui/editors/editfamily.py:493 ../src/gui/editors/editfamily.py:1050
 #: ../src/plugins/view/geofamily.py:364
 msgid "Edit Family"
 msgstr "Familie bearbeiten"
@@ -6905,19 +6905,19 @@ msgstr "Neue Person als Vater hinzufügen"
 msgid "Remove the person as the father"
 msgstr "Die Person als Vater entfernen"
 
-#: ../src/gui/editors/editfamily.py:742
+#: ../src/gui/editors/editfamily.py:756
 msgid "Select Mother"
 msgstr "Mutter wählen"
 
-#: ../src/gui/editors/editfamily.py:787
+#: ../src/gui/editors/editfamily.py:801
 msgid "Select Father"
 msgstr "Vater wählen"
 
-#: ../src/gui/editors/editfamily.py:811
+#: ../src/gui/editors/editfamily.py:825
 msgid "Duplicate Family"
 msgstr "Doppelte Familie"
 
-#: ../src/gui/editors/editfamily.py:812
+#: ../src/gui/editors/editfamily.py:826
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -6927,46 +6927,46 @@ msgstr ""
 "du speicherst, wird eine doppelte Familie erstellt. Es wird empfohlen "
 "abzubrechen und die bestehende Familie zu bearbeiten"
 
-#: ../src/gui/editors/editfamily.py:860 ../src/plugins/view/relview.py:586
+#: ../src/gui/editors/editfamily.py:874 ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
 #: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Bearbeiten von %s"
 
-#: ../src/gui/editors/editfamily.py:928
+#: ../src/gui/editors/editfamily.py:982
 msgid "A father cannot be his own child"
 msgstr "Ein Vater kann nicht sein eigenes Kind sein"
 
-#: ../src/gui/editors/editfamily.py:929
+#: ../src/gui/editors/editfamily.py:983
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s wird als Vater und Kind dieser Familie geführt."
 
-#: ../src/gui/editors/editfamily.py:938
+#: ../src/gui/editors/editfamily.py:992
 msgid "A mother cannot be her own child"
 msgstr "Eine Mutter kann nicht ihr eigenes Kind sein"
 
-#: ../src/gui/editors/editfamily.py:939
+#: ../src/gui/editors/editfamily.py:993
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s wird als Mutter und Kind dieser Familie geführt."
 
-#: ../src/gui/editors/editfamily.py:946
+#: ../src/gui/editors/editfamily.py:1000
 msgid "Cannot save family"
 msgstr "Kann Familie nicht speichern"
 
-#: ../src/gui/editors/editfamily.py:947
+#: ../src/gui/editors/editfamily.py:1001
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für diese Familie. Bitte gib Daten ein oder brich "
 "die Bearbeitung ab."
 
-#: ../src/gui/editors/editfamily.py:954
+#: ../src/gui/editors/editfamily.py:1008
 msgid "Cannot save family. ID already exists."
 msgstr "Kann Familie nicht sichern. ID existiert bereits."
 
-#: ../src/gui/editors/editfamily.py:955 ../src/gui/editors/editnote.py:313
+#: ../src/gui/editors/editfamily.py:1009 ../src/gui/editors/editnote.py:313
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -6977,7 +6977,7 @@ msgstr ""
 "verwenden. Dieser Wert wird bereits benutzt. Bitte gib eine andere ID ein "
 "oder lass sie leer um den nächsten verfügbaren ID Wert zu erhalten."
 
-#: ../src/gui/editors/editfamily.py:970
+#: ../src/gui/editors/editfamily.py:1024
 msgid "Add Family"
 msgstr "Familie hinzufügen"
 
@@ -19171,19 +19171,34 @@ msgstr "Ersetze '%(map)s' durch =>"
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../src/plugins/lib/maps/geography.py:1076
+#: ../src/plugins/lib/maps/geography.py:976
+msgid "You have at least two places with the same title."
+msgstr "Du hast mindestens zwei Orte mit dem selben Titel."
+
+#: ../src/plugins/lib/maps/geography.py:977
+#, python-format
+msgid ""
+"The title of the places is :\n"
+"<b>%(title)s</b>\n"
+"The following places are similar : %(gid)s\n"
+"Eiher you rename the places either you merge them.\n"
+"\n"
+"<b>I can't proceed your request</b>.\n"
+msgstr ""
+
+#: ../src/plugins/lib/maps/geography.py:1096
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../src/plugins/lib/maps/geography.py:1077
+#: ../src/plugins/lib/maps/geography.py:1097
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../src/plugins/lib/maps/geography.py:1091
+#: ../src/plugins/lib/maps/geography.py:1111
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../src/plugins/lib/maps/geography.py:1096
+#: ../src/plugins/lib/maps/geography.py:1116
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -19193,7 +19208,7 @@ msgstr ""
 "Du kannst alle Kacheln die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../src/plugins/lib/maps/geography.py:1101
+#: ../src/plugins/lib/maps/geography.py:1121
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
@@ -19202,7 +19217,7 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1110
+#: ../src/plugins/lib/maps/geography.py:1130
 msgid "The map"
 msgstr "Die Karte"
 
@@ -19958,6 +19973,7 @@ msgstr "Entspricht Personen, bei denen der Familienname fehlt"
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:48
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:48
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:47
+#: ../src/Filters/Rules/Citation/_HasCitation.py:53
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:47
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:51
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:53
@@ -27296,7 +27312,7 @@ msgstr "Liefert Fundstellen, die als vertraulich markiert sind"
 msgid "Citations matching parameters"
 msgstr "Fundstellen entsprechend Parametern"
 
-#: ../src/Filters/Rules/Citation/_HasCitation.py:53
+#: ../src/Filters/Rules/Citation/_HasCitation.py:54
 msgid "Matches citations with particular parameters"
 msgstr "Passt auf Fundstellen mit bestimmten Parametern"
 
