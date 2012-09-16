@@ -489,6 +489,7 @@ src/gui/views/treemodels/treebasemodel.py
 src/gui/widgets/buttons.py
 src/gui/widgets/expandcollapsearrow.py
 src/gui/widgets/fanchart.py
+src/gui/widgets/fanchartdesc.py
 src/gui/widgets/grampletpane.py
 src/gui/widgets/labels.py
 src/gui/widgets/monitoredwidgets.py
@@ -693,6 +694,7 @@ src/plugins/view/citationlistview.py
 src/plugins/view/eventview.py
 src/plugins/view/familyview.py
 src/plugins/view/fanchartview.py
+src/plugins/view/fanchartdescview.py
 src/plugins/view/geography.gpr.py
 src/plugins/view/geoclose.py
 src/plugins/view/geoevents.py

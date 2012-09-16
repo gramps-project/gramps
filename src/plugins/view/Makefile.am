@@ -12,13 +12,14 @@ pkgpython_PYTHON = \
 	eventview.py \
 	familyview.py \
 	fanchartview.py \
+	fanchartdescview.py \
 	geoclose.py \
 	geoevents.py \
 	geoplaces.py \
 	geoperson.py \
 	geofamily.py \
-    geofamclose.py \
-    geomoves.py \
+	geofamclose.py \
+	geomoves.py \
 	geography.gpr.py \
 	htmlrenderer.gpr.py \
 	grampletview.py \

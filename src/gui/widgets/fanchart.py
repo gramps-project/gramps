@@ -86,7 +86,6 @@ def gender_code(is_male):
 
 PIXELS_PER_GENERATION = 50 # size of radius for generation
 BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
-CENTER = 50                # pixel radius of center
 CHILDRING_WIDTH = 12       # width of the children ring inside the person
 TRANSLATE_PX = 10          # size of the central circle, used to move the chart
 PAD_PX = 4                 # padding with edges
@@ -142,9 +141,11 @@ TYPE_BOX_FAMILY = 1
 
 class FanChartBaseWidget(Gtk.DrawingArea):
     """ a base widget for fancharts"""
+    CENTER = 50                # pixel radius of center, changes per fanchart
 
     def __init__(self, dbstate, callback_popup=None):
         GObject.GObject.__init__(self)
+        self.radialtext = True
         st_cont = self.get_style_context()
         col = st_cont.lookup_color('text_color')
         if col[0]:
@@ -227,9 +228,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             requisition.height = requisition.width
         elif self.form == FORM_HALFCIRCLE:
             requisition.width = 2 * self.halfdist()
-            requisition.height = requisition.width / 2 + CENTER + PAD_PX
+            requisition.height = requisition.width / 2 + self.CENTER + PAD_PX
         elif self.form == FORM_QUADRANT:
-            requisition.width = self.halfdist() + CENTER + PAD_PX
+            requisition.width = self.halfdist() + self.CENTER + PAD_PX
             requisition.height = requisition.width
 
     def do_get_preferred_width(self):
@@ -293,7 +294,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         userdata.append(period)
 
     def set_userdata_age(self, person, userdata):
-        agecol = (255, 255, 255)  # white
+        agecol = (1, 1, 1)  # white
         if person:
             age = get_age(self.dbstate.db, person)
             if age is not None:
@@ -471,6 +472,31 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         if a >= 1. and self.filter:
             return True
         return False
+
+    def draw_radbox(self, cr, radiusin, radiusout, start_rad, stop_rad, color,
+                    thick=False):
+        cr.move_to(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
+        cr.arc(0, 0, radiusout, start_rad, stop_rad)
+        cr.line_to(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
+        cr.arc_negative(0, 0, radiusin, stop_rad, start_rad)
+        cr.close_path()
+        ##path = cr.copy_path() # not working correct
+        cr.set_source_rgba(color[0], color[1], color[2], color[3])
+        cr.fill()
+        #and again for the border
+        cr.move_to(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
+        cr.arc(0, 0, radiusout, start_rad, stop_rad)
+        cr.line_to(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
+        cr.arc_negative(0, 0, radiusin, stop_rad, start_rad)
+        cr.close_path()
+        ##cr.append_path(path) # not working correct
+        cr.set_source_rgb(0, 0, 0) # black
+        if thick:
+            cr.set_line_width(3)
+        else:
+            cr.set_line_width(1)
+        cr.stroke()
+        cr.set_line_width(1)
 
     def draw_innerring(self, cr, person, userdata, start, inc):
         """
@@ -682,10 +708,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         elif (self.angle[-2] and 
                     radius < TRANSLATE_PX + CHILDRING_WIDTH):
             generation = -2  # indication of one of the children
-        elif radius < CENTER:
+        elif radius < self.CENTER:
             generation = 0
         else:
-            generation = int((radius - CENTER)/self.gen_pixels()) + 1
+            generation = int((radius - self.CENTER)/self.gen_pixels()) + 1
         btype = self.boxtype(radius)
 
         rads = math.atan2( (cury - cy), (curx - cx) )
@@ -729,6 +755,18 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         returns the person at generation, pos, btype
         """
         raise NotImplementedError
+
+    def _have_children(self, person):
+        """
+        Returns True if a person has children.
+        TODO: is there no util function for this
+        """
+        if person:
+            for family_handle in person.get_family_handle_list():
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                if family and len(family.get_child_ref_list()) > 0:
+                    return True
+        return False
 
     def on_mouse_down(self, widget, event):
         self.translating = False # keep track of up/down/left/right movement
@@ -785,9 +823,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             if self.form == FORM_CIRCLE:
                 self.center_xy = w/2 - event.x, h/2 - event.y
             elif self.form == FORM_HALFCIRCLE:
-                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+                self.center_xy = w/2 - event.x, h - self.CENTER - PAD_PX - event.y
             elif self.form == FORM_QUADRANT:
-                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
+                self.center_xy = self.CENTER + PAD_PX - event.x, h - self.CENTER - PAD_PX - event.y
         else:
             cx = w/2 - self.center_xy[0]
             cy = h/2 - self.center_xy[1]
@@ -826,9 +864,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 self.center_xy = w/2 - event.x, h/2 - event.y
                 self.center_xy = w/2 - event.x, h/2 - event.y
             elif self.form == FORM_HALFCIRCLE:
-                self.center_xy = w/2 - event.x, h - CENTER - PAD_PX - event.y
+                self.center_xy = w/2 - event.x, h - self.CENTER - PAD_PX - event.y
             elif self.form == FORM_QUADRANT:
-                self.center_xy = CENTER + PAD_PX - event.x, h - CENTER - PAD_PX - event.y
+                self.center_xy = self.CENTER + PAD_PX - event.x, h - self.CENTER - PAD_PX - event.y
         
         self.last_x, self.last_y = None, None
         self.queue_draw()
@@ -1012,18 +1050,6 @@ class FanChartWidget(FanChartBaseWidget):
             f = self._get_parent(person, True)
             return not m is f is None
         return False
-            
-    def _have_children(self, person):
-        """
-        Returns True if a person has children.
-        TODO: is there no util function for this
-        """
-        if person:
-            for family_handle in person.get_family_handle_list():
-                family = self.dbstate.db.get_family_from_handle(family_handle)
-                if family and len(family.get_child_ref_list()) > 0:
-                    return True
-        return False
 
     def _get_parent(self, person, father):
         """
@@ -1069,7 +1095,7 @@ class FanChartWidget(FanChartBaseWidget):
         Compute the half radius of the circle
         """
         nrgen = self.nrgen()
-        return PIXELS_PER_GENERATION * nrgen + CENTER + BORDER_EDGE_WIDTH
+        return PIXELS_PER_GENERATION * nrgen + self.CENTER + BORDER_EDGE_WIDTH
 
     def people_generator(self):
         """
@@ -1101,9 +1127,9 @@ class FanChartWidget(FanChartBaseWidget):
             if self.form == FORM_CIRCLE:
                 self.set_size_request(2 * halfdist, 2 * halfdist)
             elif self.form == FORM_HALFCIRCLE:
-                self.set_size_request(2 * halfdist, halfdist + CENTER + PAD_PX)
+                self.set_size_request(2 * halfdist, halfdist + self.CENTER + PAD_PX)
             elif self.form == FORM_QUADRANT:
-                self.set_size_request(halfdist + CENTER + PAD_PX, halfdist + CENTER + PAD_PX)
+                self.set_size_request(halfdist + self.CENTER + PAD_PX, halfdist + self.CENTER + PAD_PX)
             
             #obtain the allocation
             alloc = self.get_allocation()
@@ -1117,10 +1143,10 @@ class FanChartWidget(FanChartBaseWidget):
                 self.center_y = h/2 - self.center_xy[1]
             elif self.form == FORM_HALFCIRCLE:
                 self.center_x = w/2. - self.center_xy[0]
-                self.center_y = h - CENTER - PAD_PX- self.center_xy[1]
+                self.center_y = h - self.CENTER - PAD_PX- self.center_xy[1]
             elif self.form == FORM_QUADRANT:
-                self.center_x = CENTER + PAD_PX - self.center_xy[0]
-                self.center_y = h - CENTER - PAD_PX - self.center_xy[1]
+                self.center_x = self.CENTER + PAD_PX - self.center_xy[0]
+                self.center_y = h - self.CENTER - PAD_PX - self.center_xy[1]
         cr.translate(self.center_x, self.center_y)
 
         cr.save()
@@ -1137,17 +1163,17 @@ class FanChartWidget(FanChartBaseWidget):
                                          person, userdata)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
-        cr.arc(0, 0, CENTER, 0, 2 * math.pi)
+        cr.arc(0, 0, self.CENTER, 0, 2 * math.pi)
         cr.fill()
         cr.set_source_rgb(0, 0, 0) # black
-        cr.arc(0, 0, CENTER, 0, 2 * math.pi)
+        cr.arc(0, 0, self.CENTER, 0, 2 * math.pi)
         cr.stroke()
         cr.restore()
         # Draw center person:
         (text, person, parents, child, userdata) = self.data[0][0]
         if person:
             r, g, b, a = self.background_box(person, 0, userdata)
-            cr.arc(0, 0, CENTER, 0, 2 * math.pi)
+            cr.arc(0, 0, self.CENTER, 0, 2 * math.pi)
             if self.childring and child:
                 cr.arc_negative(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 2 * math.pi, 0)
                 cr.close_path()
@@ -1155,8 +1181,8 @@ class FanChartWidget(FanChartBaseWidget):
             cr.fill()
             cr.save()
             name = name_displayer.display(person)
-            self.draw_text(cr, name, CENTER - 
-                        (CENTER - (CHILDRING_WIDTH + TRANSLATE_PX))/2, 95, 455, 
+            self.draw_text(cr, name, self.CENTER - 
+                        (self.CENTER - (CHILDRING_WIDTH + TRANSLATE_PX))/2, 95, 455, 
                         10, False,
                         self.fontcolor(r, g, b, a), self.fontbold(a))
             cr.restore()
@@ -1184,7 +1210,7 @@ class FanChartWidget(FanChartBaseWidget):
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         r, g, b, a = self.background_box(person, generation, userdata)
-        radius = generation * PIXELS_PER_GENERATION + CENTER
+        radius = generation * PIXELS_PER_GENERATION + self.CENTER
         # If max generation, and they have parents:
         if generation == self.generations - 1 and parents:
             # draw an indicator

@@ -12,6 +12,7 @@ pkgpython_PYTHON = \
 	buttons.py \
 	expandcollapsearrow.py \
 	fanchart.py \
+	fanchartdesc.py \
 	grampletpane.py \
 	labels.py \
 	linkbox.py \
