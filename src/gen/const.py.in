@@ -180,12 +180,13 @@ MERGE_GLADE    = os.path.join(GLADE_DIR, "mergedata.glade")
 RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
-PLUGINS_DIR      = os.path.join(ROOT_DIR, "plugins")
-DATA_DIR         = os.path.join(ROOT_DIR, "data")
-WEB_DIR          = os.path.join(ROOT_DIR, 'webapp')
-#SYSTEM_FILTERS  = os.path.join(DATA_DIR, "system_filters.xml")
-TIP_DATA         = os.path.join(DATA_DIR, "tips.xml")
-WEBSTUFF_DIR     = os.path.join(PLUGINS_DIR, "webstuff")
+PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
+DATA_DIR           = os.path.join(ROOT_DIR, "data")
+WEB_DIR            = os.path.join(ROOT_DIR, 'webapp')
+#SYSTEM_FILTERS    = os.path.join(DATA_DIR, "system_filters.xml")
+TIP_DATA           = os.path.join(DATA_DIR, "tips.xml")
+WEBSTUFF_DIR       = os.path.join(PLUGINS_DIR, "webstuff")
+WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
 PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
 

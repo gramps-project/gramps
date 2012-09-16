@@ -47,7 +47,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.utils.image import resize_to_jpeg
-from gen.const import DATA_DIR, WEBSTUFF_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
+from gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from libhtmlbackend import HtmlBackend, process_spaces
 from libhtml import Html
@@ -296,7 +296,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             if os.path.exists(fullpath):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
-        self.copy_file(os.path.join(WEBSTUFF_DIR + "/images", 'favicon.ico'), 
+        self.copy_file(os.path.join(WEBSTUFF_IMAGE_DIR, 'favicon.ico'), 
                         'favicon.ico')
 
     def __reduce_list(self):
