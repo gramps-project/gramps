@@ -843,7 +843,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                       )
             else:
                 self.mark = [None, None, None, None, None, None, None,
-                             None, None, plce.gramps_id, None, None]
+                             None, None, place.gramps_id, None, None]
                 self.select_fct = PlaceSelection(self.uistate,
                                                  self.dbstate,
                                                  self.osm,
