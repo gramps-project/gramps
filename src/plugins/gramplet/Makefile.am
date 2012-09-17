@@ -19,6 +19,7 @@ pkgpython_PYTHON = \
         editexifmetadata.py \
 	events.py \
 	fanchartgramplet.py \
+	fanchartdescgramplet.py \
 	faqgramplet.py \
 	filter.py \
 	gallery.py \

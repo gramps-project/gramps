@@ -557,6 +557,7 @@ src/plugins/gramplet/descendgramplet.py
 src/plugins/gramplet/editexifmetadata.py
 src/plugins/gramplet/events.py
 src/plugins/gramplet/fanchartgramplet.py
+src/plugins/gramplet/fanchartdescgramplet.py
 src/plugins/gramplet/faqgramplet.py
 src/plugins/gramplet/givennamegramplet.py
 src/plugins/gramplet/gramplet.gpr.py

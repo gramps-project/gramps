@@ -121,6 +121,23 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
+         id= "Descendant Fan Chart", 
+         name=_("Descendant Fan Chart"), 
+         description = _("Gramplet showing active person's direct descendants as a fanchart"),
+         status = STABLE,
+         fname="fanchartdescgramplet.py",
+         height=430,
+         expand=True,
+         gramplet = 'FanChartDescGramplet',
+         detached_height = 550,
+         detached_width = 475,
+         gramplet_title=_("Descendant Fan"),
+         version="1.0.0",
+         gramps_target_version="4.0",
+         navtypes=["Person"],
+         )
+
+register(GRAMPLET, 
          id="FAQ", 
          name=_("FAQ"), 
          description = _("Gramplet showing frequently asked questions"),
