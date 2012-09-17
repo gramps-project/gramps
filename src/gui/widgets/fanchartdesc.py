@@ -643,6 +643,14 @@ class FanChartDescWidget(FanChartBaseWidget):
             person = self.gen2fam[generation][pos][8]
         return person
 
+    def family_at(self, generation, pos, btype):
+        """
+        returns the family at generation, pos, btype
+        """
+        if pos is None or btype == TYPE_BOX_NORMAL or generation < 0:
+            return None
+        return self.gen2fam[generation][pos][0]
+
     def do_mouse_click(self):
         # no drag occured, expand or collapse the section
         self.change_slice(self._mouse_click_gen, self._mouse_click_sel, 

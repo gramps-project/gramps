@@ -53,6 +53,7 @@ from cgi import escape
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
@@ -62,7 +63,7 @@ from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
 from gen.utils.libformatting import FormattingHelper
 from gen.utils.db import (find_children, find_parents, find_witnessed_people,
-                          get_age, get_timeperiod)
+                          get_age, get_timeperiod, preset_name)
 
 #-------------------------------------------------------------------------
 #
@@ -756,6 +757,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """
         raise NotImplementedError
 
+    def family_at(self, generation, pos, btype):
+        """
+        returns the family at generation, pos, btype
+        """
+        raise NotImplementedError
+
     def _have_children(self, person):
         """
         Returns True if a person has children.
@@ -798,8 +805,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         # Do things based on state, event.get_state(), or button, event.button
         if gui.utils.is_right_click(event):
             person = self.person_at(generation, selected, btype)
+            family = self.family_at(generation, selected, btype)
+            fhandle = None
+            if family:
+                fhandle = family.handle
             if person and self.on_popup:
-                self.on_popup(widget, event, person.handle)
+                self.on_popup(widget, event, person.handle, fhandle)
                 return True
 
         return False
@@ -1358,7 +1369,7 @@ class FanChartWidget(FanChartBaseWidget):
                 stop = gstop + (gstop - gstart)
                 self.angle[generation][selected] = [gstart, stop, EXPANDED]
                 self.expand_parents(generation + 1, selected, gstart)
-                start,stop,male,state = self.angle[generation][selected+1]
+                start, stop, state = self.angle[generation][selected+1]
                 self.angle[generation][selected+1] = [stop, stop, COLLAPSED]
                 self.hide_parents(generation+1, selected+1, stop)
             else:
@@ -1420,6 +1431,14 @@ class FanChartWidget(FanChartBaseWidget):
             person = self.data[generation][pos][1]
         return person
 
+    def family_at(self, generation, pos, btype):
+        """
+        returns the family at generation, pos, btype
+        Difficult here, we would need to go to child, and then obtain the first
+        parent family, as that is the family that is shown.
+        """
+        return None
+
     def do_mouse_click(self):
         # no drag occured, expand or collapse the section
         self.change_slice(self._mouse_click_gen, self._mouse_click_sel)
@@ -1460,10 +1479,10 @@ class FanChartGrampsGUI(object):
         self.fan.reset()
         self.fan.queue_draw()
 
-    def on_popup(self, obj, event, person_handle):
+    def on_popup(self, obj, event, person_handle, family_handle=None):
         """
         Builds the full menu (including Siblings, Spouses, Children, 
-        and Parents) with navigation. Copied from PedigreeView.
+        and Parents) with navigation.
         """
         #store menu for GTK3 to avoid it being destroyed before showing
         self.menu = Gtk.Menu()
@@ -1482,10 +1501,18 @@ class FanChartGrampsGUI(object):
         go_item.show()
         menu.append(go_item)
 
-        edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT, accel_group=None)
+        edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT,
+                                                     accel_group=None)
         edit_item.connect("activate", self.edit_person_cb, person_handle)
         edit_item.show()
         menu.append(edit_item)
+        if family_handle:
+            edit_fam_item = Gtk.ImageMenuItem.new_from_stock(
+                                    stock_id=Gtk.STOCK_EDIT, accel_group=None)
+            edit_fam_item.set_label(_("Edit family"))
+            edit_fam_item.connect("activate", self.edit_fam_cb, family_handle)
+            edit_fam_item.show()
+            menu.append(edit_fam_item)
 
         clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
         clipboard_item.connect("activate", self.copy_person_to_clipboard_cb,
@@ -1686,6 +1713,30 @@ class FanChartGrampsGUI(object):
             item.set_sensitive(0)
         item.show()
         menu.append(item)
+        
+        #we now construct an add menu
+        item = Gtk.MenuItem(label=_("Add"))
+        item.set_submenu(Gtk.Menu())
+        add_menu = item.get_submenu()
+        if family_handle:
+            # allow to add a child to this family
+            add_child_item = Gtk.ImageMenuItem.new_from_stock(
+                                    stock_id=Gtk.STOCK_ADD, accel_group=None)
+            add_child_item.set_label(_("Add child to family"))
+            add_child_item.connect("activate", self.add_child_to_fam_cb,
+                                   family_handle)
+            add_child_item.show()
+            add_menu.append(add_child_item)
+            
+        add_pers_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_ADD,
+                                                         accel_group=None)
+        add_pers_item.set_label(_("Add a person"))
+        add_pers_item.connect("activate", self.add_person_cb)
+        add_pers_item.show()
+        add_menu.append(add_pers_item)
+        item.show()
+        menu.append(item)
+        
         menu.popup(None, None, None, None, event.button, event.time)
         return 1
     
@@ -1698,6 +1749,62 @@ class FanChartGrampsGUI(object):
                 pass
             return True
         return False
+
+    def edit_fam_cb(self, obj, family_handle):
+        fam = self.dbstate.db.get_family_from_handle(family_handle)
+        if fam:
+            try:
+                EditFamily(self.dbstate, self.uistate, [], fam)
+            except WindowActiveError:
+                pass
+            return True
+        return False
+
+    def add_person_cb(self, obj):
+        """
+        Add a person
+        """
+        person = gen.lib.Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.set_primary_surname(0)
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except WindowActiveError:
+            pass
+
+    def add_child_to_fam_cb(self, obj, family_handle):
+        callback = lambda x: self.callback_add_child(x, family_handle)
+        person = gen.lib.Person()
+        name = gen.lib.Name()
+        #the editor requires a surname
+        name.add_surname(gen.lib.Surname())
+        name.set_primary_surname(0)
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        father = self.dbstate.db.get_person_from_handle(
+                                    family.get_father_handle())
+        if father:
+            preset_name(father, name)
+        person.set_primary_name(name)
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person, 
+                       callback=callback)
+        except WindowActiveError:
+            pass
+
+    def callback_add_child(self, person, family_handle):
+        ref = gen.lib.ChildRef()
+        ref.ref = person.get_handle()
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        family.add_child_ref(ref)
+        
+        with DbTxn(_("Add Child to Family"), self.dbstate.db) as trans:
+            #add parentref to child
+            person.add_parent_family_handle(family_handle)
+            #default relationship is used
+            self.dbstate.db.commit_person(person, trans)
+            #add child to family
+            self.dbstate.db.commit_family(family, trans)
 
     def on_add_parents(self, obj, person_handle):
         family = gen.lib.Family()
