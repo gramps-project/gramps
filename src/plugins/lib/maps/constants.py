@@ -103,20 +103,20 @@ map_title = {
 
 map_type = {
     OPENSTREETMAP           : osmgpsmap.MapSource_t.OPENSTREETMAP,
-    OPENSTREETMAP_RENDERER  : osmgpsmap.MapSource_t.OPENSTREETMAP_RENDERER,
-    OPENAERIALMAP           : osmgpsmap.MapSource_t.OPENAERIALMAP,
+    #OPENSTREETMAP_RENDERER  : osmgpsmap.MapSource_t.OPENSTREETMAP_RENDERER,
+    #OPENAERIALMAP           : osmgpsmap.MapSource_t.OPENAERIALMAP,
     MAPS_FOR_FREE           : osmgpsmap.MapSource_t.MAPS_FOR_FREE,
     OPENCYCLEMAP            : osmgpsmap.MapSource_t.OPENCYCLEMAP,
     OSM_PUBLIC_TRANSPORT    : osmgpsmap.MapSource_t.OSM_PUBLIC_TRANSPORT,
-    OSMC_TRAILS             : osmgpsmap.MapSource_t.OSMC_TRAILS,
+    #OSMC_TRAILS             : osmgpsmap.MapSource_t.OSMC_TRAILS,
     GOOGLE_STREET           : osmgpsmap.MapSource_t.GOOGLE_STREET,
     GOOGLE_SATELLITE        : osmgpsmap.MapSource_t.GOOGLE_SATELLITE,
     GOOGLE_HYBRID           : osmgpsmap.MapSource_t.GOOGLE_HYBRID,
     VIRTUAL_EARTH_STREET    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_STREET,
     VIRTUAL_EARTH_SATELLITE : osmgpsmap.MapSource_t.VIRTUAL_EARTH_SATELLITE,
     VIRTUAL_EARTH_HYBRID    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_HYBRID,
-    YAHOO_STREET            : osmgpsmap.MapSource_t.YAHOO_STREET,
-    YAHOO_SATELLITE         : osmgpsmap.MapSource_t.YAHOO_SATELLITE,
-    YAHOO_HYBRID            : osmgpsmap.MapSource_t.YAHOO_HYBRID,
+    #YAHOO_STREET            : osmgpsmap.MapSource_t.YAHOO_STREET,
+    #YAHOO_SATELLITE         : osmgpsmap.MapSource_t.YAHOO_SATELLITE,
+    #YAHOO_HYBRID            : osmgpsmap.MapSource_t.YAHOO_HYBRID,
 }
 
