@@ -168,8 +168,9 @@ stock_icon = 'gramps-fanchart',
 
 register(VIEW, 
 id    = 'personview',
-name  = _("Person Tree"),
-description =  _("The view showing all people in the family tree"),
+name  = _("Grouped People"),
+description =  _("The view showing all people in the family tree grouped per"
+                 " family name"),
 version = '1.0',
 gramps_target_version = '4.0',
 status = STABLE,
@@ -184,7 +185,7 @@ stock_icon = 'gramps-tree-group',
 
 register(VIEW, 
 id    = 'personlistview',
-name  = _("Persons"),
+name  = _("People"),
 description =  _("The view showing all people in the family tree"
                  " in a flat list"),
 version = '1.0',
