@@ -495,6 +495,7 @@ src/gui/widgets/labels.py
 src/gui/widgets/monitoredwidgets.py
 src/gui/widgets/photo.py
 src/gui/widgets/progressdialog.py
+src/gui/widgets/reorderfam.py
 src/gui/widgets/styledtexteditor.py
 src/gui/widgets/undoableentry.py
 src/gui/widgets/validatedmaskedentry.py

@@ -57,6 +57,7 @@ from gen.db import DbTxn
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
+from gui.widgets.reorderfam import Reorder
 import gen.lib
 import gui.utils
 from gui.ddtargets import DdTargets
@@ -90,6 +91,7 @@ BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
 CHILDRING_WIDTH = 12       # width of the children ring inside the person
 TRANSLATE_PX = 10          # size of the central circle, used to move the chart
 PAD_PX = 4                 # padding with edges
+PAD_TEXT = 2               # padding for text in boxes
 
 BACKGROUND_SCHEME1 = 0
 BACKGROUND_SCHEME2 = 1
@@ -578,15 +580,15 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 #spread rest
                 degoffsetheight = (degavailheight - degneedheight) / 2
             txlen = len(text)
-            if w > height:
+            if w > height - PAD_TEXT:
                 txlen = int(w/height * txlen)
             cont = True
             while cont:
                 layout = self.create_pango_layout(text[:txlen])
                 layout.set_font_description(font)
                 w, h = layout.get_size()
-                w = w / Pango.SCALE + 5 # 5 pixel padding
-                h = h / Pango.SCALE + 4 # 4 pixel padding
+                w = w / Pango.SCALE + 2*PAD_TEXT # padding before/after
+                h = h / Pango.SCALE + 4 # padding in height text
                 if w > height:
                     if txlen <= 1:
                         cont = False
@@ -604,15 +606,15 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             cr.rotate(pos * math.pi / 180)
             layout.context_changed()
             if (start + rotval) % 360 > 179:
-                cr.move_to(radius+2, 0)
+                cr.move_to(radius + PAD_TEXT, 0)
             else:
-                cr.move_to(-radius-height+6, 0)
+                cr.move_to(-radius - height + PAD_TEXT, 0)
             PangoCairo.show_layout(cr, layout)
             cr.restore()
         else:
             # center text:
             #  1. determine degrees of the text we can draw
-            degpadding = 5 / radius * (180 / math.pi) # degrees for 5 pixel padding
+            degpadding = PAD_TEXT / radius * (180 / math.pi) # degrees for padding
             degneed = degpadding
             maxlen = len(text)
             hoffset = 0
@@ -625,12 +627,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 if h/2 > hoffset:
                     hoffset = h/2
                 degneed += w / radius * (180 / math.pi)
-                if degneed > stop - start:
+                if degneed > stop - start - degpadding:
                     #outside of the box
                     maxlen = i
                     break
             #  2. determine degrees over we can distribute before and after
-            if degneed > stop - start:
+            if degneed > stop - start - degpadding:
                 degover = 0
             else:
                 degover = stop - start - degneed - degpadding
@@ -1277,7 +1279,7 @@ class FanChartWidget(FanChartBaseWidget):
                 if spacepolartext < PIXELS_PER_GENERATION * 1.1:
                     # more space to print it radial
                     radial = True
-                    radstart = radius - PIXELS_PER_GENERATION + 4
+                    radstart = radius - PIXELS_PER_GENERATION
             self.draw_text(cr, name, radstart, start, stop, 
                            PIXELS_PER_GENERATION, radial, 
                            self.fontcolor(r, g, b, a), self.fontbold(a))
@@ -1507,12 +1509,31 @@ class FanChartGrampsGUI(object):
         edit_item.show()
         menu.append(edit_item)
         if family_handle:
+            family = self.dbstate.db.get_family_from_handle(family_handle)
             edit_fam_item = Gtk.ImageMenuItem.new_from_stock(
                                     stock_id=Gtk.STOCK_EDIT, accel_group=None)
             edit_fam_item.set_label(_("Edit family"))
             edit_fam_item.connect("activate", self.edit_fam_cb, family_handle)
             edit_fam_item.show()
             menu.append(edit_fam_item)
+            #see if a reorder button is needed
+            if family.get_father_handle() == person_handle:
+                parth = family.get_mother_handle()
+            else:
+                parth = family.get_father_handle()
+            lenfams = 0
+            if parth:
+                partner = self.dbstate.db.get_person_from_handle(parth)
+                lenfams = len(partner.get_family_handle_list())
+                if lenfams in [0, 1]:
+                    lenfams = len(partner.get_parent_family_handle_list())
+            reord_fam_item = Gtk.ImageMenuItem.new_from_stock(
+                           stock_id=Gtk.STOCK_SORT_ASCENDING, accel_group=None)
+            reord_fam_item.set_label(_("Reorder families"))
+            reord_fam_item.connect("activate", self.reord_fam_cb, parth)
+            reord_fam_item.set_sensitive(lenfams > 1)
+            reord_fam_item.show()
+            menu.append(reord_fam_item)
 
         clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
         clipboard_item.connect("activate", self.copy_person_to_clipboard_cb,
@@ -1759,6 +1780,13 @@ class FanChartGrampsGUI(object):
                 pass
             return True
         return False
+
+    def reord_fam_cb(self, obj, person_handle):
+        try:
+            Reorder(self.dbstate, self.uistate, [], person_handle)
+        except WindowActiveError:
+            pass
+        return True
 
     def add_person_cb(self, obj):
         """

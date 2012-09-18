@@ -22,6 +22,7 @@ pkgpython_PYTHON = \
 	multitreeview.py \
 	photo.py \
 	progressdialog.py \
+	reorderfam.py \
 	shortlistcomboentry.py \
 	springseparator.py \
 	statusbar.py \

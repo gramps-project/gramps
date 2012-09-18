@@ -553,7 +553,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             if spacepolartext < width * 1.1:
                 # more space to print it radial
                 radial = True
-                radstart = radius + 4
+                radstart = radius
             self.draw_text(cr, name, radstart, start_rad/ math.pi*180,
                            stop_rad/ math.pi*180, width, radial, 
                            self.fontcolor(r, g, b, a), self.fontbold(a))
