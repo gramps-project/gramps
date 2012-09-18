@@ -518,7 +518,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         else:
             #duplicate color
             a = 1
-            r, g, b = (0.2, 0.2, 0.2)
+            r, g, b = (136, 138, 133)
         # If max generation, and they have children:
         if (not family and generation == self.generations - 1 
                 and self._have_children(person)):

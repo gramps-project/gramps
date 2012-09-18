@@ -1748,6 +1748,15 @@ class FanChartGrampsGUI(object):
                                    family_handle)
             add_child_item.show()
             add_menu.append(add_child_item)
+        elif person_handle:
+            #allow to add a partner to this person
+            add_partner_item = Gtk.ImageMenuItem.new_from_stock(
+                                    stock_id=Gtk.STOCK_ADD, accel_group=None)
+            add_partner_item.set_label(_("Add partner to person"))
+            add_partner_item.connect("activate", self.add_partner_to_pers_cb,
+                                   person_handle)
+            add_partner_item.show()
+            add_menu.append(add_partner_item)
             
         add_pers_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_ADD,
                                                          accel_group=None)
@@ -1819,7 +1828,7 @@ class FanChartGrampsGUI(object):
                        callback=callback)
         except WindowActiveError:
             pass
-
+   
     def callback_add_child(self, person, family_handle):
         ref = gen.lib.ChildRef()
         ref.ref = person.get_handle()
@@ -1833,6 +1842,26 @@ class FanChartGrampsGUI(object):
             self.dbstate.db.commit_person(person, trans)
             #add child to family
             self.dbstate.db.commit_family(family, trans)
+
+    def add_partner_to_pers_cb(self, obj, person_handle):
+        """
+        Add a family with the person preset
+        """
+        family = gen.lib.Family()
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+
+        if not person:
+            return
+            
+        if person.gender == gen.lib.Person.MALE:
+            family.set_father_handle(person.handle)
+        else:
+            family.set_mother_handle(person.handle)
+
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except WindowActiveError:
+            pass
 
     def on_add_parents(self, obj, person_handle):
         family = gen.lib.Family()
