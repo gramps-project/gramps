@@ -94,14 +94,14 @@ class FanChartDescWidget(FanChartBaseWidget):
     """
     CENTER = 60    # we require a larger center
 
-    def __init__(self, dbstate, callback_popup=None):
+    def __init__(self, dbstate, uistate, callback_popup=None):
         """
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
         self.set_values(None, 9, BACKGROUND_GRAD_GEN, 'Sans', '#0000FF',
                     '#FF0000', None, 0.5, FORM_CIRCLE, ANGLE_WEIGHT)
-        FanChartBaseWidget.__init__(self, dbstate, callback_popup)
+        FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, background,
               fontdescr, grad_start, grad_end,

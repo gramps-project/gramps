@@ -146,7 +146,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     """ a base widget for fancharts"""
     CENTER = 50                # pixel radius of center, changes per fanchart
 
-    def __init__(self, dbstate, callback_popup=None):
+    def __init__(self, dbstate, uistate, callback_popup=None):
         GObject.GObject.__init__(self)
         self.radialtext = True
         st_cont = self.get_style_context()
@@ -156,6 +156,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         else:
             self.textcolor = (0, 0, 0)
         self.dbstate = dbstate
+        self.uistate = uistate
         self.translating = False
         self.goto = None
         self.on_popup = callback_popup
@@ -165,10 +166,15 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
+        #we want to grab key events also
+        self.set_can_focus(True)
+        self.connect("key-press-event", self.on_key_press)
+        
         self.connect("draw", self.on_draw)
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK |
                         Gdk.EventMask.BUTTON_RELEASE_MASK |
-                        Gdk.EventMask.POINTER_MOTION_MASK)
+                        Gdk.EventMask.POINTER_MOTION_MASK |
+                        Gdk.EventMask.KEY_PRESS_MASK)
 
         # Enable drag
         self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
@@ -199,6 +205,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
         self.center_xy = [0, 0] # distance from center (x, y)
+        self.center_x = 0
+        self.center_y = 0
+        self.mouse_x = 0
+        self.mouse_y = 0
         #(re)compute everything
         self.reset()
         self.set_size_request(120, 120)
@@ -777,9 +787,34 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                     return True
         return False
 
+    def on_key_press(self, widget, eventkey):
+        """grab key press
+        """
+        if self.mouse_x and self.mouse_y:
+            generation, selected, btype = self.person_under_cursor(self.mouse_x,
+                                                self.mouse_y)
+            if selected is None:
+                return False
+            person = self.person_at(generation, selected, btype)
+            family = self.family_at(generation, selected, btype)
+            if person and (Gdk.keyval_name(eventkey.keyval) == 'e'):
+                # we edit the person
+                self.edit_person_cb(None, person.handle)
+                return True
+            elif family and (Gdk.keyval_name(eventkey.keyval) == 'f'):
+                # we edit the family
+                self.edit_fam_cb(None, family.handle)
+                return True
+            
+        return False
+
     def on_mouse_down(self, widget, event):
         self.translating = False # keep track of up/down/left/right movement
         generation, selected, btype = self.person_under_cursor(event.x, event.y)
+
+        if event.button == 1:
+            #we grab the focus to enable to see key_press events
+            self.grab_focus()
 
         # left mouse on center dot, we translate on left click
         if generation == -1: 
@@ -822,6 +857,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         if self.last_x is None or self.last_y is None:
             # while mouse is moving, we must update the tooltip based on person
             generation, selected, btype = self.person_under_cursor(event.x, event.y)
+            self.mouse_x = event.x
+            self.mouse_y = event.y
             tooltip = ""
             person = self.person_at(generation, selected, btype)
             if person:
@@ -921,6 +958,26 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
                 self.goto(self, handle)
 
+    def edit_person_cb(self, obj, person_handle):
+        person = self.dbstate.db.get_person_from_handle(person_handle)
+        if person:
+            try:
+                EditPerson(self.dbstate, self.uistate, [], person)
+            except WindowActiveError:
+                pass
+            return True
+        return False
+
+    def edit_fam_cb(self, obj, family_handle):
+        fam = self.dbstate.db.get_family_from_handle(family_handle)
+        if fam:
+            try:
+                EditFamily(self.dbstate, self.uistate, [], fam)
+            except WindowActiveError:
+                pass
+            return True
+        return False
+    
 #-------------------------------------------------------------------------
 #
 # FanChartWidget
@@ -932,14 +989,14 @@ class FanChartWidget(FanChartBaseWidget):
     Interactive Fan Chart Widget. 
     """
 
-    def __init__(self, dbstate, callback_popup=None):
+    def __init__(self, dbstate, uistate, callback_popup=None):
         """
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
         self.set_values(None, 9, BACKGROUND_GRAD_GEN, True, True, 'Sans', '#0000FF',
                     '#FF0000', None, 0.5, FORM_CIRCLE)
-        FanChartBaseWidget.__init__(self, dbstate, callback_popup)
+        FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, background, childring,
               radialtext, fontdescr, grad_start, grad_end,

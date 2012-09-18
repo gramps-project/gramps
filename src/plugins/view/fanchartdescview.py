@@ -98,7 +98,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         return 'Person'
 
     def build_widget(self):
-        self.set_fan(fanchartdesc.FanChartDescWidget(self.dbstate, self.on_popup))
+        self.set_fan(fanchartdesc.FanChartDescWidget(self.dbstate, self.uistate,
+                                                     self.on_popup))
         self.scrolledwindow = Gtk.ScrolledWindow(None, None)
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
