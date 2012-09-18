@@ -163,7 +163,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print/Save View..."), 
+        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print..."), 
                          accel="<PRIMARY>P", 
                          tip=_("Print or save the Fan Chart View"), 
                          callback=self.printview)

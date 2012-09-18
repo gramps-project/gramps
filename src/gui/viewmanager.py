@@ -190,17 +190,15 @@ UIDEFAULT = '''<ui>
 <toolbar name="ToolBar">
   <placeholder name="CommonNavigation"/>
   <separator/>
-  <toolitem action="Clipboard"/>
-  <toolitem action="Reports"/>
-  <toolitem action="Tools"/>
-  <separator/>
-  <placeholder name="TagTool"/>
-  <separator/>
   <placeholder name="CommonEdit"/>
-  <separator/>
-  <placeholder name="ViewsInCategory"/>
+  <placeholder name="TagTool"/>
+  <toolitem action="Clipboard"/>
   <separator/>
   <toolitem action="ConfigView"/>
+  <placeholder name="ViewsInCategory"/>
+  <separator/>
+  <toolitem action="Reports"/>
+  <toolitem action="Tools"/>
 </toolbar>
 <accelerator action="F2"/>
 <accelerator action="F3"/>
@@ -830,7 +828,7 @@ class ViewManager(CLIManager):
              _("Open the tools dialog"), self.tools_clicked),
             ('BookMenu', None, _('_Bookmarks')),
             ('ToolsMenu', None, _('_Tools')),
-            ('ConfigView', 'gramps-config', _('_Configure View...'),
+            ('ConfigView', 'gramps-config', _('_Configure...'),
              '<shift><PRIMARY>c', _('Configure the active view'),
              self.config_view),
             ]
