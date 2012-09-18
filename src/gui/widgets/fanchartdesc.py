@@ -100,12 +100,12 @@ class FanChartDescWidget(FanChartBaseWidget):
         See main() of FanChartGramplet for example of model format.
         """
         self.set_values(None, 9, BACKGROUND_GRAD_GEN, 'Sans', '#0000FF',
-                    '#FF0000', None, 0.5, FORM_CIRCLE, ANGLE_WEIGHT)
+                    '#FF0000', None, 0.5, FORM_CIRCLE, ANGLE_WEIGHT, '#888a85')
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, background,
               fontdescr, grad_start, grad_end,
-              filter, alpha_filter, form, angle_algo):
+              filter, alpha_filter, form, angle_algo, dupcolor):
         """
         Reset the values to be used:
          root_person_handle = person to show
@@ -114,8 +114,10 @@ class FanChartDescWidget(FanChartBaseWidget):
          fontdescr = string describing the font to use
          grad_start, grad_end: colors to use for background procedure
          filter = the person filter to apply to the people in the chart
-         alpha = the alpha transparency value (0-1) to apply to filtered out data
-         form = the FORM_ constant for the fanchart 
+         alpha_filter = the alpha transparency value (0-1) to apply to filtered out data
+         form = the FORM_ constant for the fanchart
+         angle_algo = alorithm to use to calculate the sizes of the boxes
+         dupcolor = color to use for people or families that occur a second or more time
         """
         self.rootpersonh = root_person_handle
         self.generations = maxgen
@@ -127,6 +129,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.alpha_filter = alpha_filter
         self.form = form
         self.anglealgo = angle_algo
+        self.dupcolor = gui.utils.hex_to_rgb(dupcolor)
 
     def gen_pixels(self):
         """
@@ -518,7 +521,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         else:
             #duplicate color
             a = 1
-            r, g, b = (136, 138, 133)
+            r, g, b = self.dupcolor #(136, 138, 133)
         # If max generation, and they have children:
         if (not family and generation == self.generations - 1 
                 and self._have_children(person)):
@@ -707,6 +710,6 @@ class FanChartDescGrampsGUI(FanChartGrampsGUI):
         self.fan.set_values(root_person_handle, self.maxgen, self.background,
                         self.fonttype, self.grad_start, self.grad_end,
                         self.generic_filter, self.alpha_filter, self.form,
-                        self.angle_algo)
+                        self.angle_algo, self.dupcolor)
         self.fan.reset()
         self.fan.queue_draw()

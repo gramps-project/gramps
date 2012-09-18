@@ -65,6 +65,7 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.fonttype = 'Sans'
         self.grad_start = '#0000FF'
         self.grad_end = '#FF0000'
+        self.dupcolor = '#888A85'  #light grey
         self.generic_filter = None
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE

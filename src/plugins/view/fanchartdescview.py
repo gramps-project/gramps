@@ -65,6 +65,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         ('interface.angle-algorithm', fanchartdesc.ANGLE_WEIGHT),
+        ('interface.duplicate-color', '#888a85')
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -85,6 +86,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.grad_end =  self._config.get('interface.color-end-grad')
         self.form = self._config.get('interface.fanview-form')
         self.angle_algo = self._config.get('interface.angle-algorithm')
+        self.dupcolor = self._config.get('interface.duplicate-color')
         self.generic_filter = None
         self.alpha_filter = 0.2
 
@@ -266,7 +268,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        nrentry = 7
+        nrentry = 8
         table = Gtk.Table(6, 3)
         table.set_border_width(12)
         table.set_col_spacings(6)
@@ -308,15 +310,17 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                         'interface.color-start-grad', col=1)
         configdialog.add_color(table, _('End gradient/2nd color'), 4, 
                         'interface.color-end-grad',  col=1)
+        configdialog.add_color(table, _('Color for duplicates'), 5,
+                        'interface.duplicate-color', col=1)
         # form of the fan
-        configdialog.add_combo(table, _('Fan chart type'), 5,
+        configdialog.add_combo(table, _('Fan chart type'), 6,
                         'interface.fanview-form',
                         ((fanchart.FORM_CIRCLE, _('Full Circle')),
                          (fanchart.FORM_HALFCIRCLE, _('Half Circle')), 
                          (fanchart.FORM_QUADRANT, _('Quadrant'))),
                         callback=self.cb_update_form)
         # algo for the fan angle distribution
-        configdialog.add_combo(table, _('Fan chart distribution'), 6,
+        configdialog.add_combo(table, _('Fan chart distribution'), 7,
                         'interface.angle-algorithm',
                         ((fanchartdesc.ANGLE_CHEQUI, 
                           _('Homogeneous children distribution')),
@@ -336,6 +340,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self._config.connect('interface.color-start-grad',
                           self.cb_update_color)
         self._config.connect('interface.color-end-grad',
+                          self.cb_update_color)
+        self._config.connect('interface.duplicate-color',
                           self.cb_update_color)
 
     def cb_update_maxgen(self, spinbtn, constant):
@@ -370,6 +376,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         self.grad_start = self._config.get('interface.color-start-grad')
         self.grad_end = self._config.get('interface.color-end-grad')
+        self.dupcolor = self._config.get('interface.duplicate-color')
         self.update()
 
     def cb_update_font(self, obj, constant):
