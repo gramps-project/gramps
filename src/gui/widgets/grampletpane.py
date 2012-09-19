@@ -1423,7 +1423,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu is not None:
-                    rg_menu.remove_submenu()
+                    rg_menu.set_submenu(None)
                 names = [gramplet.title for gramplet in self.closed_gramplets]
                 names.extend(opts["title"] for opts in self.closed_opts)
                 names.sort()
