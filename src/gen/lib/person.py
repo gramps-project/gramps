@@ -437,8 +437,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                  self.address_list +
                  self.attribute_list +
                  self.lds_ord_list +
-                 self.person_ref_list +
-                 self.event_ref_list
+                 self.person_ref_list
                 )
 
     def get_note_child_list(self):
