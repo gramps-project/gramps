@@ -26,6 +26,7 @@ dist_pkgdata_DATA = \
 	gramps-event.png \
 	gramps-family.png \
         gramps-fanchart.png \
+        gramps-fanchartdesc.png \
 	gramps-font-bgcolor.png \
 	gramps-font-color.png \
 	gramps-font.png \

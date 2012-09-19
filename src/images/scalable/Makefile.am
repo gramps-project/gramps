@@ -26,6 +26,7 @@ dist_pkgdata_DATA = \
 	gramps-event.svg \
 	gramps-family.svg \
 	gramps-fanchart.svg \
+	gramps-fanchartdesc.svg \
 	gramps-font-bgcolor.svg \
 	gramps-font-color.svg \
 	gramps-font.svg \

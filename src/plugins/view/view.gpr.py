@@ -163,7 +163,7 @@ fname = 'fanchartdescview.py',
 authors = [u"B. Malengier"],
 authors_email = ["benny.malengier@gmail.com"],
 viewclass = 'FanChartDescView',
-stock_icon = 'gramps-fanchart',
+stock_icon = 'gramps-fanchartdesc',
   )
 
 register(VIEW, 

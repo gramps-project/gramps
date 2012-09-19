@@ -128,6 +128,7 @@ def register_stock_icons ():
         ('gramps-event', _('Events'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-family', _('Family'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-fanchart', _('Fan Chart'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
+        ('gramps-fanchartdesc', _('Descendant Fan Chart'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-font', _('Font'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-font-color', _('Font Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-font-bgcolor', _('Font Background Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
