@@ -221,6 +221,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 spname = name_displayer.display(spouse)
             else:
                 spname = ''
+                spouse = None
             if family_handle in self.famhandle2desc:
                 #family occurs via father and via mother in the chart, only
                 #first to show and count.
@@ -285,9 +286,18 @@ class FanChartDescWidget(FanChartBaseWidget):
             for data in self.gen2fam[gen-1]:
                 #obtain start and stop of partner
                 partnerdata = self.gen2people[gen-1][data[5]]
-                nrdescfam = self.famhandle2desc[data[0].handle]
-                nrdescpartner = self.handle2desc[partnerdata[0].handle]
-                nrfam = partnerdata[6]
+                dupfam = data[1]
+                if dupfam:
+                    # we don't show the descendants here, but in the first
+                    # occurrence of the family
+                    nrdescfam = 0
+                    nrdescpartner = self.handle2desc[partnerdata[0].handle]
+                    nrfam = partnerdata[6]
+                    nrdescfam = 0
+                else:
+                    nrdescfam = self.famhandle2desc[data[0].handle]
+                    nrdescpartner = self.handle2desc[partnerdata[0].handle]
+                    nrfam = partnerdata[6]
                 partstart = partnerdata[2]
                 partslice = partnerdata[3]
                 if prevpartnerdatahandle != partnerdata[0].handle:
@@ -346,7 +356,6 @@ class FanChartDescWidget(FanChartBaseWidget):
                 elif self.anglealgo == ANGLE_WEIGHT:
                     slice = famslice/(nrdescfam) * (nrdesc + 1)
                 else:
-                    print self.anglealgo == ANGLE_WEIGHT,self.anglealgo, ANGLE_WEIGHT
                     raise NotImplementedError, 'Unknown angle algorithm %d' % self.anglealgo
                 if prevfamdatahandle != parentfamdata[0].handle:
                     #reset the offset
@@ -516,7 +525,11 @@ class FanChartDescWidget(FanChartBaseWidget):
         if abs(slice - 2*pi) < 1e-6:
             full = True
         stop_rad = start_rad + slice
-        if not dup:
+        if not person:
+            #an family with partner not set. Don't have a color for this, 
+            # let's make it transparent
+            r, g, b, a = (255, 255, 255, 0)
+        elif not dup:
             r, g, b, a = self.background_box(person, generation, userdata)
         else:
             #duplicate color
