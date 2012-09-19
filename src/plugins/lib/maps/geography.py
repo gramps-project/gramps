@@ -957,7 +957,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        configdialog.add_text(table, _('Nothing for this view.'), 1)
+        configdialog.add_text(table, _('Nothing for this view.'), 0)
         return _('Specific parameters'), table
 
     def map_options(self, configdialog):
@@ -976,21 +976,21 @@ class GeoGraphyView(OsmGps, NavigationView):
         table.set_row_spacings(6)
         configdialog.add_text(table,
                 _('Where to save the tiles for offline mode.'),
-                1)
+                0, line_wrap=False)
         configdialog.add_entry(table, '',
-                2, 'geography.path')
+                1, 'geography.path')
         configdialog.add_text(table,
-                _('If you have no more space in your file system\n'
+                _('If you have no more space in your file system. '
                   'You can remove all tiles placed in the above path.\n'
                   'Be careful! If you have no internet, you\'ll get no map.'),
-                3)
+                2, line_wrap=False)
         configdialog.add_slider(table,
                 _('Zoom used when centering'),
-                4, 'geography.zoom_when_center',
+                3, 'geography.zoom_when_center',
                 (2, 16))
         configdialog.add_slider(table,
                 _('The maximum number of places to show'),
-                5, 'geography.max_places',
+                4, 'geography.max_places',
                 (1000, 10000))
         # there is no button. I need to found a solution for this.
         # it can be very dangerous ! if someone put / in geography.path ...

@@ -707,7 +707,7 @@ class GeoFamClose(GeoGraphyView):
                   'The value 9 means about 42 miles or 67 kms.\n'
                   'The value 1 means about 4.6 miles or 7.5 kms.\n'
                   'The value is in tenth of degree.'),
-                1)
+                1, line_wrap=False)
         self.config_meeting_slider = configdialog.add_slider(table, 
                 "", 
                 2, 'geography.maximum_meeting_zone',

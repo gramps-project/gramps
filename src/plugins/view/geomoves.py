@@ -635,15 +635,15 @@ class GeoMoves(GeoGraphyView):
         table.set_row_spacings(6)
         configdialog.add_text(table,
                 _('The maximum number of generations.\n'),
-                1)
-        self.max_generations = configdialog.add_slider(table, 
+                1, line_wrap=False)
+        configdialog.add_slider(table, 
                 "", 
                 2, 'geography.maximum_generations',
                 (1, 20))
         configdialog.add_text(table,
                 _('Time in milliseconds between drawing two generations.\n'),
-                3)
-        self.max_generations = configdialog.add_slider(table, 
+                3, line_wrap=False)
+        configdialog.add_slider(table, 
                 "", 
                 4, 'geography.generation_interval',
                 (500, 3000))

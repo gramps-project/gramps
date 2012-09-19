@@ -517,14 +517,14 @@ class GeoPerson(GeoGraphyView):
         table.set_row_spacings(6)
         configdialog.add_text(table,
                 _('Animation speed in milliseconds (big value means slower)'),
-                1)
+                1, line_wrap=False)
         configdialog.add_slider(table, 
                 "", 
                 2, 'geography.speed',
                 (100, 1000))
         configdialog.add_text(table,
                 _('How many steps between two markers when we are on large move ?'),
-                3)
+                3, line_wrap=False)
         configdialog.add_slider(table, 
                 "", 
                 4, 'geography.steps',
@@ -532,7 +532,7 @@ class GeoPerson(GeoGraphyView):
         configdialog.add_text(table,
                 _('The minimum latitude/longitude to select large move.\n'
                   'The value is in tenth of degree.'),
-                5)
+                5, line_wrap=False)
         configdialog.add_slider(table, 
                 "", 
                 6, 'geography.maximum_lon_lat',
