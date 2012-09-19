@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-15 15:51+0200\n"
-"PO-Revision-Date: 2012-09-15 15:58+0200\n"
+"POT-Creation-Date: 2012-09-19 18:06+0200\n"
+"PO-Revision-Date: 2012-09-19 18:20+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3616,7 +3616,7 @@ msgstr "Medienreferenznotiz"
 msgid "Child Reference Note"
 msgstr "Kind-Referenzen Notiz"
 
-#: ../src/gen/lib/person.py:450
+#: ../src/gen/lib/person.py:449
 msgid "Merged Gramps ID"
 msgstr "Zusammengefasste Gramps-ID"
 
@@ -19185,6 +19185,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
+"Der Titel dieses Ortes ist :\n"
+"<b>%(title)s</b>\n"
+"Die folgenden Orte sind identisch : %(gid)s\n"
+"Entweder nennst du die Orte um oder fast sie zusammen.\n"
+"\n"
+"<b>Ich kann deine Anfrage nicht durchführen</b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:1096
 msgid "Nothing for this view."
