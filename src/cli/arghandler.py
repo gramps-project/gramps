@@ -399,23 +399,27 @@ class ArgHandler(object):
         """
 
         if self.list:
-            print _('List of known family trees in your database path\n')
+            print _('List of known family trees in your database path\n').\
+                    encode(sys.getfilesystemencoding())
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
-                print _("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
+                
+                print (_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
                         {'full_DB_path' : dirname,
-                         'f_t_name' : name.encode(sys.getfilesystemencoding())}
+                         'f_t_name' : name}).encode(sys.getfilesystemencoding())
             sys.exit(0)
             
         if self.list_more:
-            print _('Gramps Family Trees:')
+            print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
                                   key=lambda sum: sum["Family tree"].lower()):
-                print _("Family Tree \"%s\":") % summary["Family tree"]
+                print _("Family Tree \"%s\":").\
+                        encode(sys.getfilesystemencoding()) % summary["Family tree"]
                 for item in sorted(summary):
                     if item != "Family tree":
-                        print "   %s: %s" % (item, summary[item])
+                        print ("   %s: %s" % (item, summary[item])).\
+                               encode(sys.getfilesystemencoding())
             sys.exit(0)
            
         self.__open_action()
