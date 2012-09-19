@@ -284,8 +284,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
-            self.lds_ord_list + self.child_ref_list + \
-            self.event_ref_list
+            self.lds_ord_list + self.child_ref_list
         return check_list
 
     def get_note_child_list(self):
