@@ -313,26 +313,25 @@ register(GRAMPLET,
 #------------------------------------------------------------------------
 # Edit Image Exif Metadata class
 #------------------------------------------------------------------------
-# GTK3 TODO: The pyexiv2 module causes problems - see bug #6042
-#register(GRAMPLET, 
-         #id                    = "Edit Image Exif Metadata", 
-         #name                  = _("Edit Image Exif Metadata"), 
-         #description           = _("Gramplet to view, edit, and save image Exif metadata"),
-         #height                = 450,
-         #expand                = False,
-         #gramplet              = 'EditExifMetadata',
-         #gramplet_title        = _("Edit Exif Metadata"),
-         #detached_width        = 510,
-         #detached_height       = 550,
-         #version               = '1.5.0',
-         #gramps_target_version = '4.0',
-         #status                = STABLE,
-         #fname                 = "editexifmetadata.py",
-         #help_url              = "Edit Image Exif Metadata",
-         #authors               = ['Rob G. Healey'],
-         #authors_email         = ['robhealey1@gmail.com'],
-         #navtypes              = ["Media"],
-    #)
+register(GRAMPLET, 
+         id                    = "Edit Image Exif Metadata", 
+         name                  = _("Edit Image Exif Metadata"), 
+         description           = _("Gramplet to view, edit, and save image Exif metadata"),
+         height                = 450,
+         expand                = False,
+         gramplet              = 'EditExifMetadata',
+         gramplet_title        = _("Edit Exif Metadata"),
+         detached_width        = 510,
+         detached_height       = 550,
+         version               = '1.5.0',
+         gramps_target_version = '4.0',
+         status                = STABLE,
+         fname                 = "editexifmetadata.py",
+         help_url              = "Edit Image Exif Metadata",
+         authors               = ['Rob G. Healey'],
+         authors_email         = ['robhealey1@gmail.com'],
+         navtypes              = ["Media"],
+    )
 
 #------------------------------------------------------------------------
 # Bottombar
@@ -393,30 +392,29 @@ register(GRAMPLET,
          navtypes=["Media"],
          )
 
-# GTK3 TODO: The pyexiv2 module causes problems - see bug #6042
-#try:
-    #import pyexiv2
-    #available = True
-#except:
-    #import logging
-    #logging.warning(_("WARNING: pyexiv2 module not loaded.  "
-                      #"Image metadata functionality will not be available."))
-    #available = False
+try:
+    import pyexiv2
+    available = True
+except:
+    import logging
+    logging.warning(_("WARNING: pyexiv2 module not loaded.  "
+                      "Image metadata functionality will not be available."))
+    available = False
 
-#if available:
-    #register(GRAMPLET, 
-            #id = "Metadata Viewer", 
-            #name = _("Metadata Viewer"), 
-            #description = _("Gramplet showing metadata for a media object"),
-            #version = "1.0.0",
-            #gramps_target_version = "4.0",
-            #status = STABLE,
-            #fname = "metadataviewer.py",
-            #height = 200,
-            #gramplet = 'MetadataViewer',
-            #gramplet_title = _("Image Metadata"),
-            #navtypes=["Media"],
-            #)
+if available:
+    register(GRAMPLET, 
+            id = "Metadata Viewer", 
+            name = _("Metadata Viewer"), 
+            description = _("Gramplet showing metadata for a media object"),
+            version = "1.0.0",
+            gramps_target_version = "4.0",
+            status = STABLE,
+            fname = "metadataviewer.py",
+            height = 200,
+            gramplet = 'MetadataViewer',
+            gramplet_title = _("Image Metadata"),
+            navtypes=["Media"],
+            )
 
 register(GRAMPLET, 
          id="Person Residence", 
