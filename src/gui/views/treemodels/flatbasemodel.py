@@ -233,8 +233,10 @@ class FlatNodeMap(object):
         :param type: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
-        handle = iter.user_data
-        return self.get_path_from_handle(handle)
+        index = iter.user_data
+        if index is None:
+            return None
+        return Gtk.TreePath((self.real_path(index),))
 
     def get_path_from_handle(self, handle):
         """
@@ -269,7 +271,8 @@ class FlatNodeMap(object):
         """
         iter = Gtk.TreeIter()
         iter.stamp = self.stamp
-        iter.user_data = handle
+        ##GTK3: user data may only be an integer, we store the index
+        iter.user_data = self._hndl2index[handle]
         return iter
 
     def get_iter(self, path):
@@ -313,12 +316,11 @@ class FlatNodeMap(object):
                         in the treeview is needed
         :param type: an object handle
         """
-        handle = iter.user_data
-        if handle is None:
+        index = iter.user_data
+        if index is None:
             #Nothing on this level
             return False
-            
-        index = self._hndl2index.get(handle)
+
         if self._reverse : 
             index -= 1
             if index < 0:
@@ -748,8 +750,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel. 
         col is the model column that is needed, not the visible column!
         """
-        #print 'do_get_val', iter, iter.user_data, col,
-        handle = iter.user_data
+        #print 'do_get_val', iter, iter.user_data, col
+        handle = self.node_map._index2hndl[iter.user_data][1]
         if handle != self.prev_handle:
             data = self.map(str(handle))
             if data is None:
@@ -781,7 +783,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         #print 'do_iter_next', iter, iter.user_data
         handle = self.node_map.find_next_handle(iter)
         if handle:
-            iter.user_data = handle[1]
+            iter.user_data = self.node_map._hndl2index[handle[1]]
             return True
         else:
             return False
