@@ -163,7 +163,24 @@ class BackRefList(EmbeddedList):
                 citation = self.dbstate.db.get_citation_from_handle(ref)
                 EditCitation(self.dbstate, self.uistate, [], citation)
             except WindowActiveError:
-                pass
+                """
+                Return the text used when citation cannot be edited
+                """
+                blocked_text = _("Cannot open new citation editor at this time. "
+                                 "Either the citation is already being edited, "
+                                 "or the associated source is already being "
+                                 "edited, and opening a citation editor "
+                                 "(which also allows the source "
+                                 "to be edited), would create ambiguity "
+                                 "by opening two editor on the same source. "
+                                 "\n\n"
+                                 "To edit the citation, close the source "
+                                 "editor and open an editor for the citation "
+                                 "alone")
+                
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot open new citation editor"),
+                              blocked_text)
         elif reftype == 'Place':
             try:
                 place = self.dbstate.db.get_place_from_handle(ref)
