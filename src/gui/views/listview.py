@@ -619,7 +619,11 @@ class ListView(NavigationView):
             filter_info = (False, value, value[0] in self.exact_search())
 
         if same_col:
+            ##TODO GTK3 rows_reordered not exposed by gi, we need to reconnect
+            ## model to obtain desired effect, but this collapses nodes ...
+            self.list.set_model(None)
             self.model.reverse_order()
+            self.list.set_model(self.model)
         else:
             self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                          self.sort_order, 

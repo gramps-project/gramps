@@ -717,7 +717,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             else:
                 iternode = self.get_iter(node)
                 path = self.do_get_path(iternode)
-            self.rows_reordered(path, iter, rows)
+            ##TODO GTK3: rows_reordered is not exposed in gi
+            #self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
                 for child in node.children:
                     self._reverse_level(self.nodemap.node(child[1]))
