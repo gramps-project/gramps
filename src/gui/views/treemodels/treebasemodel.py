@@ -808,7 +808,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         iter.stamp = self.stamp
         #user data should be an object, so we store the long as str
         
-        iter.user_data = str(nodeid)
+        iter.user_data = nodeid
         return iter
 
     def get_iter(self, node):
@@ -872,7 +872,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         See Gtk.TreeModel
         """
-        nodeid = long(iter.user_data)
+        nodeid = iter.user_data
         node = self.nodemap.node(nodeid)
         if node.handle is None:
             # Header rows dont get the foreground color set
@@ -933,7 +933,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
     def get_node_from_iter(self, iter):
         if iter and iter.user_data:
-            return self.nodemap.node(long(iter.user_data))
+            return self.nodemap.node(iter.user_data)
         else:
             print ('Problem', iter, iter.user_data)
             raise NotImplementedError
@@ -972,7 +972,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         val = node.prev if self.__reverse else node.next
         if val:
             #user_data contains the nodeid
-            iter.user_data = str(val)
+            iter.user_data = val
             return True
         else:
             return False
