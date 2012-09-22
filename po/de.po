@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 18:06+0200\n"
-"PO-Revision-Date: 2012-09-19 18:20+0200\n"
+"POT-Creation-Date: 2012-09-22 15:23+0200\n"
+"PO-Revision-Date: 2012-09-22 16:14+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1943,94 +1943,94 @@ msgstr "FEHLER: Nicht erkanntes Format für Exportdatei %s"
 msgid "List of known family trees in your database path\n"
 msgstr "Liste bekannter Stammbäume in deinem Datenbankpfad\n"
 
-#: ../src/cli/arghandler.py:405
+#: ../src/cli/arghandler.py:407
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s mit Name \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:413
 msgid "Gramps Family Trees:"
 msgstr "Gramps Stammbäume:"
 
-#: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:417
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Stammbaum \"%s\":"
 
-#: ../src/cli/arghandler.py:425
+#: ../src/cli/arghandler.py:429
 #, python-format
 msgid "Performing action: %s."
 msgstr "Ausführen von Aktion: %s."
 
-#: ../src/cli/arghandler.py:427
+#: ../src/cli/arghandler.py:431
 #, python-format
 msgid "Using options string: %s"
 msgstr "Verwende Optionstext: %s"
 
-#: ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:439
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:443
+#: ../src/cli/arghandler.py:447
 msgid "Exiting."
 msgstr "Beenden."
 
-#: ../src/cli/arghandler.py:447
+#: ../src/cli/arghandler.py:451
 msgid "Cleaning up."
 msgstr "Räume auf."
 
-#: ../src/cli/arghandler.py:477
+#: ../src/cli/arghandler.py:481
 msgid "Created empty family tree successfully"
 msgstr "Leerer Stammbaum erfolgreich erstellt"
 
-#: ../src/cli/arghandler.py:480 ../src/cli/arghandler.py:507
+#: ../src/cli/arghandler.py:484 ../src/cli/arghandler.py:511
 msgid "Error opening the file."
 msgstr "Fehler beim Öffnen der Datei."
 
-#: ../src/cli/arghandler.py:481 ../src/cli/arghandler.py:508
+#: ../src/cli/arghandler.py:485 ../src/cli/arghandler.py:512
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: ../src/cli/arghandler.py:487
+#: ../src/cli/arghandler.py:491
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:505
+#: ../src/cli/arghandler.py:509
 msgid "Opened successfully!"
 msgstr "Erfolgreich geöffnet!"
 
-#: ../src/cli/arghandler.py:519
+#: ../src/cli/arghandler.py:523
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank ist gesperrt, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:520
+#: ../src/cli/arghandler.py:524
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/cli/arghandler.py:523
+#: ../src/cli/arghandler.py:527
 msgid "Database needs recovery, cannot open it!"
 msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:580 ../src/cli/arghandler.py:627
+#: ../src/cli/arghandler.py:584 ../src/cli/arghandler.py:631
 msgid "Ignoring invalid options string."
 msgstr "Ignoriere ungültigen Optionstext."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:603
+#: ../src/cli/arghandler.py:607
 msgid "Unknown report name."
 msgstr "Unbekannter Berichtname."
 
-#: ../src/cli/arghandler.py:605
+#: ../src/cli/arghandler.py:609
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Berichtname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=reportname"
 
-#: ../src/cli/arghandler.py:609 ../src/cli/arghandler.py:650
+#: ../src/cli/arghandler.py:613 ../src/cli/arghandler.py:654
 #, python-format
 msgid ""
 "%s\n"
@@ -2039,18 +2039,18 @@ msgstr ""
 "%s\n"
 " Verfügbare Namen sind:"
 
-#: ../src/cli/arghandler.py:644
+#: ../src/cli/arghandler.py:648
 msgid "Unknown tool name."
 msgstr "Unbekannter Werkzeugname."
 
-#: ../src/cli/arghandler.py:646
+#: ../src/cli/arghandler.py:650
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Werkzeugname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:662
+#: ../src/cli/arghandler.py:666
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
@@ -7501,6 +7501,28 @@ msgstr "_Referenzen"
 #: ../src/gui/editors/displaytabs/backreflist.py:100
 msgid "Edit reference"
 msgstr "Referenz bearbeiten"
+
+#: ../src/gui/editors/displaytabs/backreflist.py:169
+msgid ""
+"Cannot open new citation editor at this time. Either the citation is already "
+"being edited, or the associated source is already being edited, and opening "
+"a citation editor (which also allows the source to be edited), would create "
+"ambiguity by opening two editor on the same source. \n"
+"\n"
+"To edit the citation, close the source editor and open an editor for the "
+"citation alone"
+msgstr ""
+"Kann im Moment keinen neuen Fundstelleneditor öffnen. Entweder wird die "
+"Fundstelle oder die dazugehörige Quelle bereits bearbeitet und das Öffnen "
+"eines Fundstelleneditors (der auch ermöglicht die Quelle zu bearbeiten), "
+"erzeugt Unklarheit durch öffnen von zwei Editoren für die selbe Quelle.\n"
+"\n"
+"Um die Fundstelle zu bearbeiten schließe den Quelleneditor und öffne nur den "
+"Fundstelleneditor"
+
+#: ../src/gui/editors/displaytabs/backreflist.py:182
+msgid "Cannot open new citation editor"
+msgstr "Kann neuen Fundstelleneditor nicht öffnen"
 
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
