@@ -1,6 +1,6 @@
 # Brazilian-Portuguese translation for Gramps.
 # Tradução português-brasileiro para o Gramps.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2012 Free Software Foundation, Inc.
 #
 #
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
@@ -9,13 +9,13 @@
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2011, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 3.4\n"
+"Project-Id-Version: GRAMPS trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-10 21:46+0100\n"
-"PO-Revision-Date: 2012-08-14 23:13-0300\n"
+"PO-Revision-Date: 2012-09-22 22:51-0300\n"
 "Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
 "Language-Team: Brazilian Portuguese\n"
-"Language: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19980,7 +19980,7 @@ msgstr "Subtexto:"
 
 #: ../src/plugins/quickview/SameSurnames.py:51
 msgid "People matching the <surname>"
-msgstr "Pessoas coincidentes com <sobrenome>"
+msgstr "Pessoas que coincidem com <sobrenome>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
@@ -19988,7 +19988,7 @@ msgstr "Coincide com as pessoas com o mesmo último nome"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
-msgstr "Pessoas coincidentes com o <nome próprio>"
+msgstr "Pessoas que coincidem com o <nome próprio>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
@@ -26367,7 +26367,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
-msgstr "Pessoas coincidentes com o <filter>"
+msgstr "Pessoas que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
@@ -26472,7 +26472,7 @@ msgstr "Expressão:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
-msgstr "Pessoas coincidentes com <regex_name>"
+msgstr "Pessoas que coincidem com <regex_name>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
@@ -26504,7 +26504,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Pessoas que coincidem com <name>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
@@ -26711,7 +26711,7 @@ msgstr "Localiza as famílias na lista de marcações"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
-msgstr "Famílias coincidentes com o <filter>"
+msgstr "Famílias que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
@@ -26760,7 +26760,7 @@ msgstr "Famílias com pai coincidente com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
-msgstr "Famílias com qualquer filho(a) coincidentes com <name>"
+msgstr "Famílias com qualquer filho(a) que coincidem com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
@@ -26942,7 +26942,7 @@ msgstr "Localiza os eventos com o tipo específico "
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
-msgstr "Eventos coincidentes com o <filter>"
+msgstr "Eventos que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
@@ -26950,7 +26950,7 @@ msgstr "Localiza os eventos que foram encontrados pelo filtro especificado"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
-msgstr "Eventos de pessoas coincidentes com o <person filter>"
+msgstr "Eventos de pessoas que coincidem com o <person filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
@@ -27090,7 +27090,7 @@ msgstr "Paróquia:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:58
 msgid "Places matching parameters"
-msgstr "Locais coincidentes com os parâmetros"
+msgstr "Locais que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Matches places with particular parameters"
@@ -27138,7 +27138,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 msgid "Places matching the <filter>"
-msgstr "Locais coincidentes com o <filter>"
+msgstr "Locais que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
@@ -27146,7 +27146,7 @@ msgstr "Localiza os locais que foram encontrados pelo filtro especificado"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
 msgid "Places of events matching the <event filter>"
-msgstr "Locais dos eventos coincidentes com o <event filter>"
+msgstr "Locais dos eventos que coincidem com o <event filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
 msgid ""
@@ -27276,7 +27276,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
-msgstr "Fontes de referência coincidentes com o <filter>"
+msgstr "Fontes de referência que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
@@ -27427,7 +27427,7 @@ msgstr "Publicação:"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:52
 msgid "Sources matching parameters"
-msgstr "Fontes de referência coincidentes com os parâmetros"
+msgstr "Fontes de referência que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
 msgid "Matches citations with a source of a particular value"
@@ -27537,7 +27537,7 @@ msgstr "Tipo:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Objetos multimídia coincidentes com os parâmetros"
+msgstr "Objetos multimídia que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
@@ -27583,7 +27583,7 @@ msgstr "Localiza os objetos multimídia com uma etiqueta específica"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Objetos multimídia coincidentes com o <filter>"
+msgstr "Objetos multimídia que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
@@ -27673,7 +27673,7 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr "Repositórios coincidentes com os parâmetros"
+msgstr "Repositórios que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
@@ -27681,7 +27681,7 @@ msgstr "Localiza os repositórios com parâmetros específicos"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Repositórios coincidentes com o <filter>"
+msgstr "Repositórios que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
@@ -27773,7 +27773,7 @@ msgstr "Texto:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr "Notas coincidentes com os parâmetros"
+msgstr "Notas que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
@@ -27797,7 +27797,7 @@ msgstr "Localiza as notas com um determinado número de referências"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr "Notas coincidentes com o <filter>"
+msgstr "Notas que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
@@ -31155,3 +31155,4 @@ msgstr ""
 "2003&quot;. Você também pode indicar o nível de confiança na data e até "
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
+
