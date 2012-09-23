@@ -361,4 +361,6 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
             return '<i>%s</i>' % cgi.escape(node.name)
         else:
             level = len(self.do_get_path(self.get_iter(node)).get_indices())
-            return '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
+            heading = '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
+            # This causes a problem with Gtk3 unless we cast to str.
+            return str(heading)
