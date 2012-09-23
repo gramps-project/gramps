@@ -3030,6 +3030,28 @@ class GedcomParser(UpdateCallback):
                                     'orig_mother' : 
                                             __input_pid(mother.gramps_id)})
 
+            for child_ref in family.get_child_ref_list():
+                child_handle = child_ref.ref
+                child = self.dbase.get_person_from_handle(child_handle)
+                if child:
+                    if family_handle not in \
+                        child.get_parent_family_handle_list():
+                        # The referenced child has no reference to the family.
+                        # There was a link from the FAM record to the child, but
+                        # no FAMC link from the child to the FAM.
+                        child.add_parent_family_handle(family_handle)
+                        self.dbase.commit_person(child, self.trans)
+                        self.__add_msg("Error: family '%(family)s' (input as"
+                                       " @%(orig_family)s@) child '%(child)s'"
+                                       " (input as '%(orig_child)s') does not "
+                                       "refer back to the family. "
+                                       "Reference added." % 
+                                       {'family' : family.gramps_id, 
+                                        'orig_family' : input_id, 
+                                        'child' : child.gramps_id,
+                                        'orig_child' : 
+                                                __input_pid(child.gramps_id)})
+
         if self.missing_references:
             self.dbase.commit_note(self.explanation, self.trans, time.time())
             txt = _("\nThe imported file was not self-contained.\n"

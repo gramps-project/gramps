@@ -485,12 +485,11 @@ class CheckIntegrity(object):
                         # is "Broken8"
                         logging.warning("    FAIL: family '%(fam_gid)s' "
                                         "child '%(child_gid)s' has no reference"
-                                        " to the family" % 
+                                        " to the family. Reference added" % 
                                         {'fam_gid' : family.gramps_id,
                                          'child_gid' : child.gramps_id})
-                        family.remove_child_ref(child_ref)
-                        self.db.commit_family(family, self.trans)
-                        self.broken_links.append((child_handle, family_handle))
+                        child.add_parent_family_handle(family_handle)
+                        self.db.commit_person(child, self.trans)
                 else:
                     # The person referenced by the child handle
                     # does not exist in the database
