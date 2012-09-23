@@ -187,11 +187,12 @@ class GeoPlaces(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        active = self.uistate.get_active('Place')
-        if active:
-            self._createmap(active)
-        else:
-            self._createmap(None)
+        #active = self.uistate.get_active('Place')
+        #if active:
+        #    self._createmap(active)
+        #else:
+        #    self._createmap(None)
+        self._createmap(None)
 
     def _create_one_place(self,place):
         """
