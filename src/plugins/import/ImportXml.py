@@ -137,6 +137,7 @@ def importData(database, filename, callback=None):
             return
         except ExpatError, msg:
             ErrorDialog(_("Error reading %s") % filename, 
+                        str(msg) + "\n" +
                         _("The file is probably either corrupt or not a "
                           "valid Gramps database."))
             return
@@ -220,6 +221,7 @@ class ImportInfo(object):
         self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
         self.data_newobject = [0] * 10
         self.data_unknownobject = [0] * 10
+        self.data_families = ''
         self.expl_note = ''
         self.data_relpath = False
         
@@ -237,6 +239,11 @@ class ImportInfo(object):
             self.data_unknownobject[self.key2data[key]] += 1
         elif category == 'relative-path':
             self.data_relpath = True
+        elif category == 'unlinked-family':
+            # This is a bit ugly because it isn't using key in the same way as
+            # the rest of the categories, but it is only the calling routine
+            # that really knows what the error message should be.
+            self.data_families += key + "\n"
 
     def _extract_mergeinfo(self, key, obj, sec_obj):
         """
@@ -325,6 +332,11 @@ class ImportInfo(object):
                 datakey = self.key2data[key]
                 for handle in self.data_mergecandidate[datakey].keys():
                     txt += self.data_mergecandidate[datakey][handle]
+        
+        if self.data_families:
+            txt += "\n\n"
+            txt += self.data_families
+        
         return txt
 
 class LineParser(object):
@@ -903,6 +915,7 @@ class GrampsParser(UpdateCallback):
                          ) % self.mediapath )
     
             self.fix_not_instantiated()
+            self.fix_families()
             for key in self.func_map.keys():
                 del self.func_map[key]
             del self.func_map
@@ -2961,6 +2974,72 @@ class GrampsParser(UpdateCallback):
                 for obj in objs:
                     key = CLASS_TO_KEY_MAP[obj.__class__.__name__]
                     self.info.add('unknown-object', key, obj)
+
+    def fix_families(self):
+        # Fix any imported families where there is a link from the family to an
+        # individual, but no corresponding link from the individual to the
+        # family.
+        for orig_handle in self.import_handles.keys():
+            for target in self.import_handles[orig_handle].keys():
+                if target == 'family':
+                    family_handle = self.import_handles[orig_handle][target][HANDLE]
+                    family = self.db.get_family_from_handle(family_handle)
+                    father_handle = family.get_father_handle()
+                    mother_handle = family.get_mother_handle()
+                                
+                    if father_handle:
+                        father = self.db.get_person_from_handle(father_handle)
+                        if father and \
+                            family_handle not in father.get_family_handle_list():
+                            father.add_family_handle(family_handle)
+                            self.db.commit_person(father, self.trans)
+                            txt = _("Error: family '%(family)s'"
+                                           " father '%(father)s'"
+                                           " does not refer"
+                                           " back to the family."
+                                           " Reference added." % 
+                                           {'family' : family.gramps_id, 
+                                            'father' : father.gramps_id})
+                            self.info.add('unlinked-family', txt, None)
+                            LOG.warn(txt)
+        
+                    if mother_handle:
+                        mother = self.db.get_person_from_handle(mother_handle)
+                        if mother and \
+                            family_handle not in mother.get_family_handle_list():
+                            mother.add_family_handle(family_handle)
+                            self.db.commit_person(mother, self.trans)
+                            txt = _("Error: family '%(family)s'"
+                                           " mother '%(mother)s'"
+                                           " does not refer"
+                                           " back to the family."
+                                           " Reference added." % 
+                                           {'family' : family.gramps_id, 
+                                            'mother' : mother.gramps_id})
+                            self.info.add('unlinked-family', txt, None)
+                            LOG.warn(txt)
+        
+                    for child_ref in family.get_child_ref_list():
+                        child_handle = child_ref.ref
+                        child = self.db.get_person_from_handle(child_handle)
+                        if child:
+                            if family_handle not in \
+                                child.get_parent_family_handle_list():
+                                # The referenced child has no reference to the
+                                # family. There was a link from the FAM record
+                                # to the child, but no FAMC link from the child
+                                # to the FAM.
+                                child.add_parent_family_handle(family_handle)
+                                self.db.commit_person(child, self.trans)
+                                txt = _("Error: family '%(family)s'"
+                                               " child '%(child)s'"
+                                               " does not "
+                                               "refer back to the family. "
+                                               "Reference added." % 
+                                               {'family' : family.gramps_id, 
+                                                'child' : child.gramps_id})
+                                self.info.add('unlinked-family', txt, None)
+                                LOG.warn(txt)
 
 def append_value(orig, val):
     if orig:

@@ -1208,7 +1208,8 @@ class GrampsXmlWriter(UpdateCallback):
             # from Windows to Linux of gpkg's path to images does not work. 
             path = path.replace('\\','/')
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
-                     % ("  "*(index+1), self.fix(path), mime_type, desc_text))
+                     % ("  "*(index+1), self.fix(path), self.fix(mime_type), 
+                        desc_text))
         self.write_attribute_list(obj.get_attribute_list())
         self.write_note_list(obj.get_note_list(), index+1)
         dval = obj.get_date_object()
