@@ -1,6 +1,6 @@
 # Brazilian-Portuguese translation for Gramps.
 # Tradução do Gramps para português do Brasil.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002-2012 Free Software Foundation, Inc.
 #
 #
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
@@ -11,11 +11,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-08-14 23:14-0300\n"
+"POT-Creation-Date: 2012-09-17 07:19+0200\n"
+"PO-Revision-Date: 2012-09-22 22:50-0300\n"
 "Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
 "Language-Team: Brazilian Portuguese\n"
-"Language: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5373,8 +5373,11 @@ msgstr "Número de gerações:"
 msgid "ID:"
 msgstr "ID:"
 
-#: ../src/gui/filtereditor.py:522
+#: ../src/gui/filtereditor.py:522 ../src/Filters/Rules/_HasSourceOfBase.py:46
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:46
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:46
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:46
 msgid "Source ID:"
 msgstr "ID da fonte:"
 
@@ -5469,6 +5472,11 @@ msgstr "Etiqueta:"
 #: ../src/Filters/Rules/Family/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Event/_HasCitation.py:51
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:45
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:44
+#: ../src/Filters/Rules/Place/_HasCitation.py:51
+#: ../src/Filters/Rules/Citation/_HasCitation.py:51
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:50
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:44
 msgid "Confidence level:"
 msgstr "Nível de confiança:"
 
@@ -6858,7 +6866,7 @@ msgstr "família"
 msgid "New Family"
 msgstr "Nova família"
 
-#: ../src/gui/editors/editfamily.py:493 ../src/gui/editors/editfamily.py:996
+#: ../src/gui/editors/editfamily.py:493 ../src/gui/editors/editfamily.py:1050
 #: ../src/plugins/view/geofamily.py:364
 msgid "Edit Family"
 msgstr "Editar família"
@@ -6887,19 +6895,19 @@ msgstr "Adicionar uma nova pessoa como pai"
 msgid "Remove the person as the father"
 msgstr "Remover a pessoa como pai"
 
-#: ../src/gui/editors/editfamily.py:742
+#: ../src/gui/editors/editfamily.py:756
 msgid "Select Mother"
 msgstr "Selecionar mãe"
 
-#: ../src/gui/editors/editfamily.py:787
+#: ../src/gui/editors/editfamily.py:801
 msgid "Select Father"
 msgstr "Selecionar pai"
 
-#: ../src/gui/editors/editfamily.py:811
+#: ../src/gui/editors/editfamily.py:825
 msgid "Duplicate Family"
 msgstr "Família duplicada"
 
-#: ../src/gui/editors/editfamily.py:812
+#: ../src/gui/editors/editfamily.py:826
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -6909,46 +6917,46 @@ msgstr ""
 "criará uma família duplicada. É recomendado que você cancele a edição nesta "
 "janela, e selecione a família existente"
 
-#: ../src/gui/editors/editfamily.py:860 ../src/plugins/view/relview.py:586
+#: ../src/gui/editors/editfamily.py:874 ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
 #: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Editar %s"
 
-#: ../src/gui/editors/editfamily.py:928
+#: ../src/gui/editors/editfamily.py:982
 msgid "A father cannot be his own child"
 msgstr "Um pai não pode ser seu próprio filho"
 
-#: ../src/gui/editors/editfamily.py:929
+#: ../src/gui/editors/editfamily.py:983
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s está indicado como pai e filho da família ao mesmo tempo."
 
-#: ../src/gui/editors/editfamily.py:938
+#: ../src/gui/editors/editfamily.py:992
 msgid "A mother cannot be her own child"
 msgstr "Uma mãe não pode ser sua própria filha"
 
-#: ../src/gui/editors/editfamily.py:939
+#: ../src/gui/editors/editfamily.py:993
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s está indicada como mãe e filha da família ao mesmo tempo."
 
-#: ../src/gui/editors/editfamily.py:946
+#: ../src/gui/editors/editfamily.py:1000
 msgid "Cannot save family"
 msgstr "Não é possível salvar a família"
 
-#: ../src/gui/editors/editfamily.py:947
+#: ../src/gui/editors/editfamily.py:1001
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Não há dados existentes para esta família. Por favor, informe dados os "
 "cancele a edição."
 
-#: ../src/gui/editors/editfamily.py:954
+#: ../src/gui/editors/editfamily.py:1008
 msgid "Cannot save family. ID already exists."
 msgstr "Não é possível salvar a família. O ID já existe."
 
-#: ../src/gui/editors/editfamily.py:955 ../src/gui/editors/editnote.py:313
+#: ../src/gui/editors/editfamily.py:1009 ../src/gui/editors/editnote.py:313
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -6959,7 +6967,7 @@ msgstr ""
 "favor, informe um ID diferente ou deixe-o em branco para que o próximo ID "
 "disponível seja atribuído automaticamente."
 
-#: ../src/gui/editors/editfamily.py:970
+#: ../src/gui/editors/editfamily.py:1024
 msgid "Add Family"
 msgstr "Adicionar família"
 
@@ -19180,19 +19188,40 @@ msgstr "Substituir '%(map)s' por =>"
 msgid "Center on this place"
 msgstr "Centralizar neste local"
 
-#: ../src/plugins/lib/maps/geography.py:1076
+#: ../src/plugins/lib/maps/geography.py:976
+msgid "You have at least two places with the same title."
+msgstr "Você possui pelo menos dois locais com o mesmo título."
+
+#: ../src/plugins/lib/maps/geography.py:977
+#, python-format
+msgid ""
+"The title of the places is :\n"
+"<b>%(title)s</b>\n"
+"The following places are similar : %(gid)s\n"
+"Eiher you rename the places either you merge them.\n"
+"\n"
+"<b>I can't proceed your request</b>.\n"
+msgstr ""
+"O título dos locais são:\n"
+"<b>%(title)s</b>\n"
+"Os locais a seguir são parecidos: %(gid)s\n"
+"Você pode renomear os locais ou então mesclá-los.\n"
+"\n"
+"<b>Não é possível prosseguir com a sua solicitação</b>.\n"
+
+#: ../src/plugins/lib/maps/geography.py:1096
 msgid "Nothing for this view."
 msgstr "Nada para esta exibição."
 
-#: ../src/plugins/lib/maps/geography.py:1077
+#: ../src/plugins/lib/maps/geography.py:1097
 msgid "Specific parameters"
 msgstr "Parâmetros específicos"
 
-#: ../src/plugins/lib/maps/geography.py:1091
+#: ../src/plugins/lib/maps/geography.py:1111
 msgid "Where to save the tiles for offline mode."
 msgstr "Onde salvar os 'tiles' deste modo desconectado."
 
-#: ../src/plugins/lib/maps/geography.py:1096
+#: ../src/plugins/lib/maps/geography.py:1116
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -19202,7 +19231,7 @@ msgstr ""
 "você pode remover todos os 'tiles' de local da localização acima.\n"
 "Tome cuidado! Se não tiver acesso à Interne, você não obterá o mapa."
 
-#: ../src/plugins/lib/maps/geography.py:1101
+#: ../src/plugins/lib/maps/geography.py:1121
 msgid "Zoom used when centering"
 msgstr "Nível de zoom usado na centralização"
 
@@ -19211,7 +19240,7 @@ msgstr "Nível de zoom usado na centralização"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1110
+#: ../src/plugins/lib/maps/geography.py:1130
 msgid "The map"
 msgstr "O mapa"
 
@@ -19967,6 +19996,7 @@ msgstr "Coincide com as pessoas sem o último nome"
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:48
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:48
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:47
+#: ../src/Filters/Rules/Citation/_HasCitation.py:53
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:47
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:51
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:53
@@ -19994,7 +20024,7 @@ msgstr "Subtexto:"
 
 #: ../src/plugins/quickview/SameSurnames.py:51
 msgid "People matching the <surname>"
-msgstr "Pessoas coincidentes com <sobrenome>"
+msgstr "Pessoas que coincidem com <sobrenome>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
@@ -20002,7 +20032,7 @@ msgstr "Coincide com as pessoas com o mesmo último nome"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
-msgstr "Pessoas coincidentes com o <nome próprio>"
+msgstr "Pessoas que coincidem com o <nome próprio>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
@@ -25568,6 +25598,23 @@ msgstr "Coincide com objetos marcados como privados"
 msgid "Miscellaneous filters"
 msgstr "Filtros diversos"
 
+#: ../src/Filters/Rules/_HasSourceOfBase.py:47
+msgid "Object with the <source>"
+msgstr "Objeto com a <source>"
+
+#: ../src/Filters/Rules/_HasSourceOfBase.py:48
+#: ../src/Filters/Rules/Person/_HasSourceOf.py:48
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:48
+#: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:48
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:48
+msgid "Citation/source filters"
+msgstr "Filtros de citação/fonte"
+
+#: ../src/Filters/Rules/_HasSourceOfBase.py:49
+msgid "Matches objects who have a particular source"
+msgstr "Encontra objetos que possuem uma fonte de referência específica"
+
 #: ../src/Filters/Rules/Person/_ChangedSince.py:46
 #: ../src/Filters/Rules/Family/_ChangedSince.py:46
 #: ../src/Filters/Rules/Event/_ChangedSince.py:46
@@ -25733,7 +25780,10 @@ msgstr "Encontra pessoas com o atributo pessoal que tenha um valor específico"
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:50
 #: ../src/Filters/Rules/Event/_HasData.py:47
+#: ../src/Filters/Rules/Place/_HasCitation.py:50
+#: ../src/Filters/Rules/Citation/_HasCitation.py:50
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:49
 #: ../src/glade/mergecitation.glade.h:4 ../src/glade/mergeevent.glade.h:4
 #: ../src/glade/mergemedia.glade.h:4
 msgid "Date:"
@@ -25760,6 +25810,9 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasCitation.py:48
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
 #: ../src/Filters/Rules/Event/_HasCitation.py:49
+#: ../src/Filters/Rules/Place/_HasCitation.py:49
+#: ../src/Filters/Rules/Citation/_HasCitation.py:49
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:48
 #: ../src/glade/mergecitation.glade.h:10
 msgid "Volume/Page:"
 msgstr "Volume/Página:"
@@ -26007,11 +26060,6 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:47
 msgid "People with the <source>"
 msgstr "Pessoas com a <source>"
-
-#: ../src/Filters/Rules/Person/_HasSourceOf.py:48
-#: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
-msgid "Citation/source filters"
-msgstr "Filtros de citação/fonte"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:49
 msgid "Matches people who have a particular source"
@@ -26296,7 +26344,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
-msgstr "Pessoas coincidentes com o <filter>"
+msgstr "Pessoas que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
@@ -26401,7 +26449,7 @@ msgstr "Expressão:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
-msgstr "Pessoas coincidentes com <regex_name>"
+msgstr "Pessoas que coincidem com <regex_name>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
@@ -26433,7 +26481,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Pessoas que coincidem com <name>"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
@@ -26622,6 +26670,14 @@ msgstr ""
 "Localiza as famílias com um determinado número de fontes de referência "
 "ligadas a elas"
 
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:47
+msgid "Families with the <source>"
+msgstr "Famílias com a <source>"
+
+#: ../src/Filters/Rules/Family/_HasSourceOf.py:49
+msgid "Matches families who have a particular source"
+msgstr "Encontra famílias que possuem uma fonte de referência específica"
+
 #: ../src/Filters/Rules/Family/_HasTag.py:49
 msgid "Families with the <tag>"
 msgstr "Famílias com a <tag>"
@@ -26640,7 +26696,7 @@ msgstr "Localiza as famílias na lista de marcações"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
-msgstr "Famílias coincidentes com o <filter>"
+msgstr "Famílias que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
@@ -26689,7 +26745,7 @@ msgstr "Famílias com pai coincidente com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
-msgstr "Famílias com qualquer filho(a) coincidentes com <name>"
+msgstr "Famílias com qualquer filho(a) que coincidem com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
@@ -26871,7 +26927,7 @@ msgstr "Localiza os eventos com o tipo específico "
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
-msgstr "Eventos coincidentes com o <filter>"
+msgstr "Eventos que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
@@ -26879,7 +26935,7 @@ msgstr "Localiza os eventos que foram encontrados pelo filtro especificado"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
-msgstr "Eventos de pessoas coincidentes com o <person filter>"
+msgstr "Eventos de pessoas que coincidem com o <person filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
@@ -27019,7 +27075,7 @@ msgstr "Paróquia:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:58
 msgid "Places matching parameters"
-msgstr "Locais coincidentes com os parâmetros"
+msgstr "Locais que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Matches places with particular parameters"
@@ -27067,7 +27123,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 msgid "Places matching the <filter>"
-msgstr "Locais coincidentes com o <filter>"
+msgstr "Locais que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
@@ -27075,7 +27131,7 @@ msgstr "Localiza os locais que foram encontrados pelo filtro especificado"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
 msgid "Places of events matching the <event filter>"
-msgstr "Locais dos eventos coincidentes com o <event filter>"
+msgstr "Locais dos eventos que coincidem com o <event filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
 msgid ""
@@ -27100,6 +27156,42 @@ msgstr "Locais com <Id> que coincidem com a expressão regular"
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr "Localiza os locais cujo ID Gramps coincide com a expressão regular"
+
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:47
+msgid "Places with the <source>"
+msgstr "Locais com a <source>"
+
+#: ../src/Filters/Rules/Place/_HasSourceOf.py:49
+msgid "Matches places who have a particular source"
+msgstr "Encontra locais que possuem uma fonte de referência específica"
+
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
+msgid "Place with direct source >= <confidence level>"
+msgstr "Locais com fonte de referência direta >= <confidence level>"
+
+#: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:46
+msgid "Matches places with at least one direct source with confidence level(s)"
+msgstr ""
+"Encontra locais com pelo menos uma fonte de referência direta com que "
+"correspondem ao(s) nível(is) de confidencialidade"
+
+#: ../src/Filters/Rules/Place/_HasSourceCount.py:46
+msgid "Place with <count> sources"
+msgstr "Local com <count> de fontes de referência"
+
+#: ../src/Filters/Rules/Place/_HasSourceCount.py:47
+msgid "Matches places with a certain number of sources connected to it"
+msgstr ""
+"Encontra locais com um determinado número de fontes de referência a eles "
+"ligadas"
+
+#: ../src/Filters/Rules/Place/_HasCitation.py:52
+msgid "Place with the <citation>"
+msgstr "Local com a <citation>"
+
+#: ../src/Filters/Rules/Place/_HasCitation.py:53
+msgid "Matches places with a citation of a particular value"
+msgstr "Encontra locais com uma citação que possui um valor específico"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -27205,7 +27297,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
-msgstr "Fontes de referência coincidentes com o <filter>"
+msgstr "Fontes de referência que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
@@ -27282,6 +27374,14 @@ msgstr "Citações marcadas como privadas"
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
 msgid "Matches citations that are indicated as private"
 msgstr "Corresponde a citações marcadas como privadas"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:52
+msgid "Citations matching parameters"
+msgstr "Citações que coincidem com os parâmetros"
+
+#: ../src/Filters/Rules/Citation/_HasCitation.py:54
+msgid "Matches citations with particular parameters"
+msgstr "Localiza notas com parâmetros específicos"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
 msgid "Citations with <count> media"
@@ -27361,7 +27461,7 @@ msgstr "Publicação:"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:53
 msgid "Sources matching parameters"
-msgstr "Fontes de referência coincidentes com os parâmetros"
+msgstr "Fontes de referência que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:54
 msgid "Matches citations with a source of a particular value"
@@ -27471,7 +27571,7 @@ msgstr "Tipo:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Objetos multimídia coincidentes com os parâmetros"
+msgstr "Objetos multimídia que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
@@ -27517,7 +27617,7 @@ msgstr "Localiza os objetos multimídia com uma etiqueta específica"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Objetos multimídia coincidentes com o <filter>"
+msgstr "Objetos multimídia que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
@@ -27541,6 +27641,43 @@ msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
 "Localiza os objetos multimídia cujo ID Gramps coincide com a expressão "
 "regular"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:46
+msgid "Media with <count> sources"
+msgstr "Mídia com <count> de fontes de referência"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:47
+msgid "Matches media with a certain number of sources connected to it"
+msgstr ""
+"Localiza mídia com um determinado número de fontes de referência "
+"ligadas a ela"
+
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:51
+msgid "Media with the <citation>"
+msgstr "Mídia com a <citation>"
+
+#: ../src/Filters/Rules/MediaObject/_HasCitation.py:52
+msgid "Matches media with a citation of a particular value"
+msgstr "Localiza mídia com uma citação que tenha um valor específico"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:47
+msgid "Media with the <source>"
+msgstr "Mídia com a <source>"
+
+#: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:49
+msgid "Matches media who have a particular source"
+msgstr "Encontra mídia que possui uma fonte de referência específica"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:45
+msgid "Media with at least one direct source >= <confidence level>"
+msgstr ""
+"Mídia com pelo menos uma fonte de referência direta >= <confidence level>"
+
+#: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:46
+msgid "Matches media with at least one direct source with confidence level(s)"
+msgstr ""
+"Localiza mídia com pelo menos uma fonte de referência direta com o(s) "
+"nível(is) de confidencialidade"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -27607,7 +27744,7 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr "Repositórios coincidentes com os parâmetros"
+msgstr "Repositórios que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
@@ -27615,7 +27752,7 @@ msgstr "Localiza os repositórios com parâmetros específicos"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Repositórios coincidentes com o <filter>"
+msgstr "Repositórios que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
@@ -27707,7 +27844,7 @@ msgstr "Texto:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr "Notas coincidentes com os parâmetros"
+msgstr "Notas que correspondem aos parâmetros"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
@@ -27731,7 +27868,7 @@ msgstr "Localiza as notas com um determinado número de referências"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr "Notas coincidentes com o <filter>"
+msgstr "Notas que coincidem com o <filter>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
@@ -31085,3 +31222,5 @@ msgstr ""
 "2003&quot;. Você também pode indicar o nível de confiança na data e até "
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
+
+
