@@ -325,7 +325,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citation_child_list() 
+        return self.media_list + self.attribute_list + \
+            self.lds_ord_list + self.child_ref_list + self.event_ref_list
 
     def merge(self, acquisition):
         """
