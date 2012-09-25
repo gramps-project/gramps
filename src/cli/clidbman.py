@@ -176,15 +176,15 @@ class CLIDbManager(object):
              tval, enable, stock_id) = item
             count, version = self.get_dbdir_summary(dirpath)
             retval = {}
-            retval["Number of people"] = count
+            retval[_("Number of people")] = count
             if enable:
-                retval["Locked?"] = "yes"
+                retval[_("Locked?")] = _("yes")
             else:
-                retval["Locked?"] = "no"
-            retval["DB version"] = version
-            retval["Family tree"] = name.encode(sys.getfilesystemencoding())
-            retval["Path"] = dirpath
-            retval["Last accessed"] = time.strftime('%x %X', 
+                retval[_("Locked?")] = _("no")
+            retval[_("DB version")] = version
+            retval[_("Family tree")] = name.encode(sys.getfilesystemencoding())
+            retval[_("Path")] = dirpath
+            retval[_("Last accessed")] = time.strftime('%x %X', 
                                                     time.localtime(tval))
             list.append( retval )
         return list

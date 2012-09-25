@@ -165,7 +165,7 @@ def _validate_options(options, dbase):
                         phandle = None
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
-                        print _("ERROR: Please specify a person")
+                        print _("ERROR: Please specify a person").encode(sys.getfilesystemencoding())
             if person:
                 option.set_value(person.get_gramps_id())
             
@@ -189,7 +189,7 @@ def _validate_options(options, dbase):
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
                 else:
-                    print _("ERROR: Please specify a family")
+                    print _("ERROR: Please specify a family").encode(sys.getfilesystemencoding())
 
 #------------------------------------------------------------------------
 #
@@ -293,7 +293,7 @@ class CommandLineReport(object):
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
                 self.options_help['off'][2].append(
-                    graph_format["ext"] + "\t" + graph_format["descr"] )
+                    graph_format["type"] + "\t" + graph_format["descr"] )
         else:
             self.options_help['off'][2] = "NA"
 
@@ -400,12 +400,12 @@ class CommandLineReport(object):
             elif isinstance(option, Option):
                 self.options_help[name].append(option.get_help())
             else:
-                print _("Unknown option: %s") % option
-                print _("   Valid options are:"), ", ".join(
-                                                     self.options_dict.keys())
+                print (_("Unknown option: %s") % option).encode(sys.getfilesystemencoding())
+                print (_("   Valid options are:"), ", ".join(
+                                                     self.options_dict.keys())).encode(sys.getfilesystemencoding())
                 print (_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
-                       {'donottranslate' : "show=option"})
+                       {'donottranslate' : "show=option"}).encode(sys.getfilesystemencoding())
                 
     def parse_options(self):
         """
@@ -430,12 +430,12 @@ class CommandLineReport(object):
                     option.set_value(self.options_dict[opt])
                 
             else:
-                print _("Ignoring unknown option: %s") % opt
-                print _("   Valid options are:"), ", ".join(
-                                                     self.options_dict.keys())
+                print (_("Ignoring unknown option: %s") % opt).encode(sys.getfilesystemencoding())
+                print (_("   Valid options are:"), ", ".join(
+                                                     self.options_dict.keys())).encode(sys.getfilesystemencoding())
                 print (_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
-                       {'donottranslate' : "show=option"})
+                       {'donottranslate' : "show=option"}).encode(sys.getfilesystemencoding())
         
         self.option_class.handler.output = self.options_dict['of']
 
@@ -468,13 +468,13 @@ class CommandLineReport(object):
                 _chosen_format = self.__bookdoc_plugins[0].get_extension()
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
-                if graph_format['ext'] == self.options_dict['off']:
+                if graph_format['type'] == self.options_dict['off']:
                     if not self.format: # choose the first one, not the last
                         self.format = graph_format["class"]
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = graphdoc.FORMATS[0]["class"]
-                _chosen_format = graphdoc.FORMATS[0]["ext"]
+                _chosen_format = graphdoc.FORMATS[0]["type"]
         else:
             self.format = None
         if _chosen_format and self.options_str_dict.has_key('off'):
@@ -482,9 +482,9 @@ class CommandLineReport(object):
                      "and using '%(notranslate1)s=%(notranslate3)s'.") %
                    {'notranslate1' : "off",
                     'notranslate2' : self.options_dict['off'],
-                    'notranslate3' : _chosen_format})
+                    'notranslate3' : _chosen_format}).encode(sys.getfilesystemencoding())
             print (_("Use '%(notranslate)s' to see valid values.") %
-                   {'notranslate' : "show=off"})
+                   {'notranslate' : "show=off"}).encode(sys.getfilesystemencoding())
 
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
@@ -517,7 +517,7 @@ class CommandLineReport(object):
         if not self.show:
             return
         elif self.show == 'all':
-            print _("   Available options:")
+            print _("   Available options:").encode(sys.getfilesystemencoding())
             for key in sorted(self.options_dict.keys()):
                 if key in self.options_help:
                     opt = self.options_help[key]
@@ -530,12 +530,12 @@ class CommandLineReport(object):
                     print optmsg.encode(sys.getfilesystemencoding())
             print (_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
-                   {'donottranslate' : "show=option"})
+                   {'donottranslate' : "show=option"}).encode(sys.getfilesystemencoding())
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
             print '   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0])
-            print _("   Available values are:")
+            print _("   Available values are:").encode(sys.getfilesystemencoding())
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
@@ -549,7 +549,7 @@ class CommandLineReport(object):
             #there was a show option given, but the option is invalid
             print (_("option '%(optionname)s' not valid. "
                      "Use '%(donottranslate)s' to see all valid options.") %
-                   {'optionname' : self.show, 'donottranslate' : "show=all"})
+                   {'optionname' : self.show, 'donottranslate' : "show=all"}).encode(sys.getfilesystemencoding())
 
 #------------------------------------------------------------------------
 #
@@ -559,7 +559,7 @@ class CommandLineReport(object):
 def cl_report(database, name, category, report_class, options_class, 
               options_str_dict):
     
-    err_msg = _("Failed to write report. ")
+    err_msg = _("Failed to write report. ").encode(sys.getfilesystemencoding())
     clr = CommandLineReport(database, name, category, options_class, 
                             options_str_dict)
 

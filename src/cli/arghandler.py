@@ -403,9 +403,8 @@ class ArgHandler(object):
                     encode(sys.getfilesystemencoding())
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
-                
                 print (_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
-                        {'full_DB_path' : dirname,
+                        {'full_DB_path' : dirname.decode(sys.getfilesystemencoding()),
                          'f_t_name' : name}).encode(sys.getfilesystemencoding())
             sys.exit(0)
             
@@ -413,11 +412,13 @@ class ArgHandler(object):
             print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
-                                  key=lambda sum: sum["Family tree"].lower()):
+                                  key=lambda sum: sum[_("Family tree")].lower()):
                 print _("Family Tree \"%s\":").\
-                        encode(sys.getfilesystemencoding()) % summary["Family tree"]
+                        encode(sys.getfilesystemencoding()) % summary[_("Family tree")]
                 for item in sorted(summary):
-                    if item != "Family tree":
+                    if item == _("Path"):
+                        summary[item] = (summary[item]).decode(sys.getfilesystemencoding())
+                    if item != _("Family tree"):
                         print ("   %s: %s" % (item, summary[item])).\
                                encode(sys.getfilesystemencoding())
             sys.exit(0)
@@ -426,9 +427,9 @@ class ArgHandler(object):
         self.__import_action()
             
         for (action, op_string) in self.actions:
-            print >> sys.stderr, _("Performing action: %s.") % action
+            print >> sys.stderr, (_("Performing action: %s.") % action).encode(sys.getfilesystemencoding())
             if op_string:
-                print >> sys.stderr, _("Using options string: %s") % op_string
+                print >> sys.stderr, (_("Using options string: %s") % op_string).encode(sys.getfilesystemencoding())
             self.cl_action(action, op_string)
 
         for expt in self.exports:
@@ -444,11 +445,11 @@ class ArgHandler(object):
 
         if cleanup:
             self.cleanup()
-            print >> sys.stderr, _("Exiting.")
+            print >> sys.stderr, _("Exiting.").encode(sys.getfilesystemencoding())
             sys.exit(0)
 
     def cleanup(self):
-        print >> sys.stderr, _("Cleaning up.")
+        print >> sys.stderr, _("Cleaning up.").encode(sys.getfilesystemencoding())
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
@@ -478,11 +479,11 @@ class ArgHandler(object):
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
-                    msg = _("Created empty family tree successfully")
+                    msg = _("Created empty family tree successfully").encode(sys.getfilesystemencoding())
                     print >> sys.stderr, msg
                 except:
-                    print >> sys.stderr, _("Error opening the file.")
-                    print >> sys.stderr, _("Exiting...")
+                    print >> sys.stderr, _("Error opening the file.").encode(sys.getfilesystemencoding())
+                    print >> sys.stderr, _("Exiting...").encode(sys.getfilesystemencoding())
                     sys.exit(0)
 
             for imp in self.imports:
@@ -490,7 +491,7 @@ class ArgHandler(object):
                 fmt = str(imp[1])
                 msg = _("Importing: file %(filename)s, format %(format)s.") % \
                         {'filename' : fn, 'format' : fmt}
-                print >> sys.stderr, msg
+                print >> sys.stderr, msg.encode(sys.getfilesystemencoding())
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
@@ -506,10 +507,10 @@ class ArgHandler(object):
             # we load this file for use
             try:
                 self.sm.open_activate(self.open)
-                print >> sys.stderr, _("Opened successfully!")
+                print >> sys.stderr, _("Opened successfully!").encode(sys.getfilesystemencoding())
             except:
-                print >> sys.stderr, _("Error opening the file.")
-                print >> sys.stderr, _("Exiting...")
+                print >> sys.stderr, _("Error opening the file.").encode(sys.getfilesystemencoding())
+                print >> sys.stderr, _("Exiting...").encode(sys.getfilesystemencoding())
                 sys.exit(0)
 
     def check_db(self, dbpath, force_unlock = False):
@@ -581,7 +582,7 @@ class ArgHandler(object):
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print >> sys.stderr, _("Ignoring invalid options string.")
+                print >> sys.stderr, _("Ignoring invalid options string.").encode(sys.getfilesystemencoding())
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -609,8 +610,8 @@ class ArgHandler(object):
                 msg = _("Report name not given. "
                         "Please use one of %(donottranslate)s=reportname") % \
                         {'donottranslate' : '[-p|--options] name'}
-            
-            print >> sys.stderr, _("%s\n Available names are:") % msg
+   
+            print >> sys.stderr, (_("%s\n Available names are:") % msg).encode(sys.getfilesystemencoding())
             for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
@@ -628,7 +629,7 @@ class ArgHandler(object):
                                            chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print >> sys.stderr, _("Ignoring invalid options string.")
+                print >> sys.stderr, _("Ignoring invalid options string.").encode(sys.getfilesystemencoding())
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
