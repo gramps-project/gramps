@@ -2362,6 +2362,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__event_place_note, 
             TOKEN_RNOTE  : self.__event_place_note, 
             TOKEN_FORM   : self.__event_place_form, 
+            # Not legal.
             TOKEN_OBJE   : self.__event_place_object, 
             TOKEN_SOUR   : self.__event_place_sour, 
             TOKEN__LOC   : self.__ignore, 
@@ -4766,7 +4767,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level, state)
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            
+            handle = self.__find_object_handle(gramps_id)
+            ref = gen.lib.MediaRef()
+            ref.set_reference_handle(handle)
+            state.family.add_media_reference(ref)
         else:
             (form, filename, title, note) = self.__obje(state.level + 1, state)
             if filename == "":
@@ -4969,7 +4976,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level, state)
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            
+            handle = self.__find_object_handle(gramps_id)
+            ref = gen.lib.MediaRef()
+            ref.set_reference_handle(handle)
+            state.event.add_media_reference(ref)
         else:
             (form, filename, title, note) = self.__obje(state.level + 1, state)
             if filename == "":
@@ -5099,7 +5112,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level, state)
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            
+            handle = self.__find_object_handle(gramps_id)
+            ref = gen.lib.MediaRef()
+            ref.set_reference_handle(handle)
+            state.place.add_media_reference(ref)
         else:
             # FIXME this should probably be level+1
             (form, filename, title, note) = self.__obje(state.level, state)
@@ -5725,7 +5744,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level, state)
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            
+            handle = self.__find_object_handle(gramps_id)
+            ref = gen.lib.MediaRef()
+            ref.set_reference_handle(handle)
+            state.citation.add_media_reference(ref)
         else:
             (form, filename, title, note) = self.__obje(state.level+1, state)
             if filename == "":
@@ -5862,7 +5887,13 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            self.__not_recognized(line, state.level, state)
+            # Reference to a named multimedia object defined elsewhere
+            gramps_id = self.oid_map[line.data]
+            
+            handle = self.__find_object_handle(gramps_id)
+            ref = gen.lib.MediaRef()
+            ref.set_reference_handle(handle)
+            state.source.add_media_reference(ref)
         else:
             (form, filename, title, note) = self.__obje(state.level+1, state)
             if filename == "":
