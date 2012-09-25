@@ -953,7 +953,11 @@ class GeoGraphyView(osmGpsMap, NavigationView):
         """
         Link an existing place using longitude and latitude of location centered
         on the map
+        If we have a place history, we must show all places to avoid an empty
+        place selection in the PlaceSelection.
         """
+        if self.uistate.get_active('Place'):
+            self._createmap(None)
         selector = SelectPlace(self.dbstate, self.uistate, [])
         place = selector.run()
         if place:
