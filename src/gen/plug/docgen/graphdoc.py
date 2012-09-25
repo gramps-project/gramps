@@ -643,7 +643,7 @@ class GVPsDoc(GVDocBase):
         fname = self._filename.encode(sys.getfilesystemencoding())
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
-        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        dotversion = Popen(['dot', '-V'], stdout=PIPE, stdin=PIPE, stderr=PIPE).communicate(input=None)[1]
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
         # result.
@@ -915,7 +915,7 @@ class GVPdfGsDoc(GVDocBase):
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
-        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        dotversion = Popen(['dot', '-V'], stdout=PIPE, stdin=PIPE, stderr=PIPE).communicate(input=None)[1]
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out 
         # of memory". If the :cairo is skipped for these cases it gives 
         # acceptable result.
