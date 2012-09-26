@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 12:20+0200\n"
-"PO-Revision-Date: 2012-09-11 12:24+0100\n"
+"POT-Creation-Date: 2012-09-26 11:21+0200\n"
+"PO-Revision-Date: 2012-09-26 11:23+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -681,7 +681,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
-#: ../src/plugins/tool/Check.py:1959
+#: ../src/plugins/tool/Check.py:1958
 #: ../src/plugins/view/geofamily.py:403
 #: ../src/plugins/view/geoperson.py:450
 #: ../src/plugins/view/relview.py:450
@@ -2112,96 +2112,113 @@ msgstr "CHYBA: Formát souboru %s pro export nebyl rozpoznán"
 msgid "List of known family trees in your database path\n"
 msgstr "Seznam známých rodokmenů v databázi\n"
 
-#: ../src/cli/arghandler.py:405
+#: ../src/cli/arghandler.py:406
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s s názvem \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:412
 msgid "Gramps Family Trees:"
 msgstr "Rodokmeny Gramps:"
 
 #: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:417
+#: ../src/cli/arghandler.py:421
+#: ../src/cli/clidbman.py:185
+msgid "Family tree"
+msgstr "Rodokmen"
+
+#: ../src/cli/arghandler.py:416
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Rodokmen \"%s\":"
 
-#: ../src/cli/arghandler.py:425
+#: ../src/cli/arghandler.py:419
+#: ../src/cli/clidbman.py:186
+#: ../src/gui/editors/displaytabs/webembedlist.py:66
+#: ../src/plugins/view/mediaview.py:96
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
+#: ../src/glade/editmedia.glade.h:13
+#: ../src/glade/editmediaref.glade.h:28
+msgid "Path"
+msgstr "Cesta"
+
+#: ../src/cli/arghandler.py:430
 #, python-format
 msgid "Performing action: %s."
 msgstr "Prováděná akce: %s."
 
-#: ../src/cli/arghandler.py:427
+#: ../src/cli/arghandler.py:432
 #, python-format
 msgid "Using options string: %s"
 msgstr "Použitý řetězec voleb: %s"
 
-#: ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:440
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../src/cli/arghandler.py:443
+#: ../src/cli/arghandler.py:448
 msgid "Exiting."
 msgstr "Ukončuje se."
 
-#: ../src/cli/arghandler.py:447
+#: ../src/cli/arghandler.py:452
 msgid "Cleaning up."
 msgstr "Probíhá vyčištění."
 
-#: ../src/cli/arghandler.py:477
+#: ../src/cli/arghandler.py:482
 msgid "Created empty family tree successfully"
 msgstr "Prázdný rodokmen byl úspěšně vytvořen"
 
-#: ../src/cli/arghandler.py:480
-#: ../src/cli/arghandler.py:507
+#: ../src/cli/arghandler.py:485
+#: ../src/cli/arghandler.py:512
 msgid "Error opening the file."
 msgstr "Chyba při otevírání souboru."
 
-#: ../src/cli/arghandler.py:481
-#: ../src/cli/arghandler.py:508
+#: ../src/cli/arghandler.py:486
+#: ../src/cli/arghandler.py:513
 msgid "Exiting..."
 msgstr "Ukončuje se..."
 
-#: ../src/cli/arghandler.py:487
+#: ../src/cli/arghandler.py:492
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../src/cli/arghandler.py:505
+#: ../src/cli/arghandler.py:510
 msgid "Opened successfully!"
 msgstr "Úspěšně otevřeno!"
 
-#: ../src/cli/arghandler.py:519
+#: ../src/cli/arghandler.py:524
 msgid "Database is locked, cannot open it!"
 msgstr "Databázi nelze otevřít, protože je uzamčená!"
 
-#: ../src/cli/arghandler.py:520
+#: ../src/cli/arghandler.py:525
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/cli/arghandler.py:523
+#: ../src/cli/arghandler.py:528
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databázi nelze otevřít, je nutná obnova!"
 
-#: ../src/cli/arghandler.py:580
-#: ../src/cli/arghandler.py:627
+#: ../src/cli/arghandler.py:585
+#: ../src/cli/arghandler.py:632
 msgid "Ignoring invalid options string."
 msgstr "Ignoruji neplatný řetězec voleb."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:603
+#: ../src/cli/arghandler.py:608
 msgid "Unknown report name."
 msgstr "Neznámý název zprávy."
 
-#: ../src/cli/arghandler.py:605
+#: ../src/cli/arghandler.py:610
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr "Nebyl zadán název zprávy. Použijte prosím jeden z %(donottranslate)s=reportname"
 
-#: ../src/cli/arghandler.py:609
-#: ../src/cli/arghandler.py:650
+#: ../src/cli/arghandler.py:614
+#: ../src/cli/arghandler.py:655
 #, python-format
 msgid ""
 "%s\n"
@@ -2210,16 +2227,16 @@ msgstr ""
 "%s\n"
 " Dostupné hodnoty jsou:"
 
-#: ../src/cli/arghandler.py:644
+#: ../src/cli/arghandler.py:649
 msgid "Unknown tool name."
 msgstr "Neznámé jméno nástroje."
 
-#: ../src/cli/arghandler.py:646
+#: ../src/cli/arghandler.py:651
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr "Nebyl zadán název nástroje. Použijte prosím jeden z %(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:662
+#: ../src/cli/arghandler.py:667
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Neznámá akce: %s."
@@ -2395,6 +2412,32 @@ msgid ""
 msgstr ""
 "Chyba: %s \n"
 "       %s"
+
+#: ../src/cli/clidbman.py:179
+msgid "Number of people"
+msgstr "Počet osob"
+
+#: ../src/cli/clidbman.py:181
+#: ../src/cli/clidbman.py:183
+msgid "Locked?"
+msgstr "Uzamčeno?"
+
+#: ../src/cli/clidbman.py:181
+msgid "yes"
+msgstr "ano"
+
+#: ../src/cli/clidbman.py:183
+msgid "no"
+msgstr "ne"
+
+#: ../src/cli/clidbman.py:184
+msgid "DB version"
+msgstr "Verze DB"
+
+#: ../src/cli/clidbman.py:187
+#: ../src/gui/dbman.py:287
+msgid "Last accessed"
+msgstr "Poslední přístup"
 
 #: ../src/cli/clidbman.py:241
 #, python-format
@@ -2913,7 +2956,7 @@ msgstr "Čas"
 
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:2005
+#: ../src/plugins/tool/Check.py:2004
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:161
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:160
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:217
@@ -3786,7 +3829,7 @@ msgstr "Poznámka k odkazu na médium"
 msgid "Child Reference Note"
 msgstr "Poznámka k odkazu na potomka"
 
-#: ../src/gen/lib/person.py:450
+#: ../src/gen/lib/person.py:457
 msgid "Merged Gramps ID"
 msgstr "Sloučená Gramps ID"
 
@@ -5084,10 +5127,6 @@ msgstr "Název rodokmenu"
 #: ../src/plugins/webreport/NarrativeWeb.py:1151
 msgid "Status"
 msgstr "Stav"
-
-#: ../src/gui/dbman.py:287
-msgid "Last accessed"
-msgstr "Poslední přístup"
 
 #: ../src/gui/dbman.py:369
 #, python-format
@@ -7562,6 +7601,18 @@ msgstr "Odka_zy"
 msgid "Edit reference"
 msgstr "Upravit odkaz"
 
+#: ../src/gui/editors/displaytabs/backreflist.py:169
+msgid ""
+"Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editor on the same source. \n"
+"\n"
+"To edit the citation, close the source editor and open an editor for the citation alone"
+msgstr ""
+
+#: ../src/gui/editors/displaytabs/backreflist.py:182
+#, fuzzy
+msgid "Cannot open new citation editor"
+msgstr "Citace nelze sloučit."
+
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
 msgid "%(part1)s - %(part2)s"
@@ -8138,14 +8189,6 @@ msgstr "Posunout vybranou  webovou adresu níže"
 #: ../src/gui/editors/displaytabs/webembedlist.py:59
 msgid "Jump to the selected web address"
 msgstr "Přejít na vybranou webovou adresu"
-
-#: ../src/gui/editors/displaytabs/webembedlist.py:66
-#: ../src/plugins/view/mediaview.py:96
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
-#: ../src/glade/editmedia.glade.h:13
-#: ../src/glade/editmediaref.glade.h:28
-msgid "Path"
-msgstr "Cesta"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:72
 msgid "_Internet"
@@ -11527,7 +11570,7 @@ msgid "No families matched by selected filter"
 msgstr "Vybranému filtru nevyhovují žádné rodiny"
 
 #: ../src/plugins/export/ExportPkg.py:166
-#: ../src/plugins/tool/Check.py:665
+#: ../src/plugins/tool/Check.py:664
 msgid "Select file"
 msgstr "Vybrat soubor"
 
@@ -14026,8 +14069,8 @@ msgstr "importovat GeneWeb"
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
-#: ../src/plugins/import/ImportXml.py:421
-#: ../src/plugins/import/ImportXml.py:424
+#: ../src/plugins/import/ImportXml.py:433
+#: ../src/plugins/import/ImportXml.py:436
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s nemůže být otevřen"
@@ -14175,110 +14218,110 @@ msgstr "%(event_name)s - %(person)s"
 msgid "Error reading %s"
 msgstr "Chyba při čtení %s"
 
-#: ../src/plugins/import/ImportXml.py:140
+#: ../src/plugins/import/ImportXml.py:141
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Soubor je pravděpodobně poškozen nebo není platnou databází Gramps."
 
-#: ../src/plugins/import/ImportXml.py:247
+#: ../src/plugins/import/ImportXml.py:254
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:253
+#: ../src/plugins/import/ImportXml.py:260
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Rodina %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:256
+#: ../src/plugins/import/ImportXml.py:263
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Pramen %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:259
+#: ../src/plugins/import/ImportXml.py:266
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Událost %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:262
+#: ../src/plugins/import/ImportXml.py:269
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Objekt medií %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:265
+#: ../src/plugins/import/ImportXml.py:272
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Místo %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:268
+#: ../src/plugins/import/ImportXml.py:275
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Archiv %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:271
+#: ../src/plugins/import/ImportXml.py:278
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Poznámka %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:276
+#: ../src/plugins/import/ImportXml.py:283
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Citace %(id)s s %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:284
+#: ../src/plugins/import/ImportXml.py:291
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Osoby: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:285
+#: ../src/plugins/import/ImportXml.py:292
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Rodiny: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:286
+#: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Prameny: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:287
+#: ../src/plugins/import/ImportXml.py:294
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Události: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:288
+#: ../src/plugins/import/ImportXml.py:295
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Mediální objekty: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:289
+#: ../src/plugins/import/ImportXml.py:296
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Místa: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:290
+#: ../src/plugins/import/ImportXml.py:297
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Archivy: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:291
+#: ../src/plugins/import/ImportXml.py:298
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Poznámky: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:292
+#: ../src/plugins/import/ImportXml.py:299
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Štítky: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:293
+#: ../src/plugins/import/ImportXml.py:300
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "Citací: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:295
+#: ../src/plugins/import/ImportXml.py:302
 msgid "Number of new objects imported:\n"
 msgstr "Počet nově importovaných objektů:\n"
 
-#: ../src/plugins/import/ImportXml.py:304
+#: ../src/plugins/import/ImportXml.py:311
 #, python-format
 msgid ""
 "\n"
@@ -14296,7 +14339,7 @@ msgstr ""
 "Jejich počet v každé kategorii je indikován číslem v závorce.\n"
 "Kde je to možné,  jsou tyto 'Neznámé' objekty odkazovány poznámkou %s.\n"
 
-#: ../src/plugins/import/ImportXml.py:312
+#: ../src/plugins/import/ImportXml.py:319
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -14310,7 +14353,7 @@ msgstr ""
 "který je možné nastavit v Předvolbách, nebo pokud\n"
 "není nastaven k domovskému adresáři uživatele.\n"
 
-#: ../src/plugins/import/ImportXml.py:323
+#: ../src/plugins/import/ImportXml.py:330
 msgid ""
 "\n"
 "\n"
@@ -14321,31 +14364,31 @@ msgstr ""
 "Objekty, které jsou kandidáty pro sloučení:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:762
-#: ../src/plugins/import/ImportXml.py:1194
-#: ../src/plugins/import/ImportXml.py:1444
-#: ../src/plugins/import/ImportXml.py:1819
+#: ../src/plugins/import/ImportXml.py:774
+#: ../src/plugins/import/ImportXml.py:1207
+#: ../src/plugins/import/ImportXml.py:1457
+#: ../src/plugins/import/ImportXml.py:1832
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Gramps Xml které se snažíte importovat je porušené."
 
-#: ../src/plugins/import/ImportXml.py:763
+#: ../src/plugins/import/ImportXml.py:775
 msgid "Attributes that link the data together are missing."
 msgstr "Atributy, které spojují data dohromady chybí."
 
-#: ../src/plugins/import/ImportXml.py:867
+#: ../src/plugins/import/ImportXml.py:879
 msgid "Gramps XML import"
 msgstr "Import Gramps XML"
 
-#: ../src/plugins/import/ImportXml.py:897
+#: ../src/plugins/import/ImportXml.py:909
 msgid "Could not change media path"
 msgstr "Nemohu změnit cestu k médiím"
 
-#: ../src/plugins/import/ImportXml.py:898
+#: ../src/plugins/import/ImportXml.py:910
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Cesta %s k médiím otevřeného souboru je v konfliktu s cestou k médiím rodokmenu do kterého importujete. Původní cesta k médiím byla zachována. Zkopírujte prosím soubory do správného adresáře, nebo v Předvolbách změňte cestu k médiím."
 
-#: ../src/plugins/import/ImportXml.py:954
+#: ../src/plugins/import/ImportXml.py:967
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -14355,11 +14398,11 @@ msgstr ""
 "\n"
 "Soubor nebude importován."
 
-#: ../src/plugins/import/ImportXml.py:957
+#: ../src/plugins/import/ImportXml.py:970
 msgid "Import file misses Gramps version"
 msgstr "V souboru importu chybí verze Gramps"
 
-#: ../src/plugins/import/ImportXml.py:959
+#: ../src/plugins/import/ImportXml.py:972
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
@@ -14369,16 +14412,16 @@ msgstr ""
 "\n"
 "Soubor nebude importován."
 
-#: ../src/plugins/import/ImportXml.py:962
+#: ../src/plugins/import/ImportXml.py:975
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Soubor importu obsahuje nepřijatelnou verzi jmenného prostoru XML"
 
-#: ../src/plugins/import/ImportXml.py:965
+#: ../src/plugins/import/ImportXml.py:978
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Soubor .gramps, který se pokoušíte importovat byl vytvořen v Gramps verze %(newer)s, zatímco Vy pracujete se starší verzí %(older)s. Soubor proto nemůže být importován. Aktualizujte prosím Gramps na poslední verzi a zkuste operaci znovu."
 
-#: ../src/plugins/import/ImportXml.py:973
+#: ../src/plugins/import/ImportXml.py:986
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -14395,11 +14438,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "Gramps wiki."
 
-#: ../src/plugins/import/ImportXml.py:985
+#: ../src/plugins/import/ImportXml.py:998
 msgid "The file will not be imported"
 msgstr "Soubor nemůže být importován"
 
-#: ../src/plugins/import/ImportXml.py:987
+#: ../src/plugins/import/ImportXml.py:1000
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -14416,45 +14459,60 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "."
 
-#: ../src/plugins/import/ImportXml.py:1000
+#: ../src/plugins/import/ImportXml.py:1013
 msgid "Old xml file"
 msgstr "Původní xmls soubor"
 
-#: ../src/plugins/import/ImportXml.py:1115
-#: ../src/plugins/import/ImportXml.py:2465
+#: ../src/plugins/import/ImportXml.py:1128
+#: ../src/plugins/import/ImportXml.py:2478
 #, python-format
 msgid "Witness name: %s"
 msgstr "Jméno svědka: %s"
 
-#: ../src/plugins/import/ImportXml.py:1195
+#: ../src/plugins/import/ImportXml.py:1208
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na událost musí mít 'hlink' atribut."
 
-#: ../src/plugins/import/ImportXml.py:1445
+#: ../src/plugins/import/ImportXml.py:1458
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na osobu musí mít 'hlink' atribut."
 
-#: ../src/plugins/import/ImportXml.py:1606
+#: ../src/plugins/import/ImportXml.py:1619
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Ve vašem rodokmenu se jméno \"%(key)s\"  seskupuje se jménem \" %(parent)s\" , seskupování na \" %(value)s\"  nebylo změněno."
 
-#: ../src/plugins/import/ImportXml.py:1609
+#: ../src/plugins/import/ImportXml.py:1622
 msgid "Gramps ignored namemap value"
 msgstr "Gramps ignoroval hodnotu jmenné mapy"
 
-#: ../src/plugins/import/ImportXml.py:1668
+#: ../src/plugins/import/ImportXml.py:1681
 msgid "Unknown when imported"
 msgstr "Neznámý při importu"
 
-#: ../src/plugins/import/ImportXml.py:1820
+#: ../src/plugins/import/ImportXml.py:1833
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 
-#: ../src/plugins/import/ImportXml.py:2356
+#: ../src/plugins/import/ImportXml.py:2369
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Poznámka svědka: %s"
+
+#: ../src/plugins/import/ImportXml.py:2996
+#, python-format
+msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:3012
+#, python-format
+msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:3034
+#, python-format
+msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:1721
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -14465,52 +14523,52 @@ msgstr "Váš GEDCOM soubor je porušený. Zdá se, že byl zkrácen."
 msgid "Import from GEDCOM (%s)"
 msgstr "Importovat z GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2550
-#: ../src/plugins/lib/libgedcom.py:2903
+#: ../src/plugins/lib/libgedcom.py:2551
+#: ../src/plugins/lib/libgedcom.py:2904
 msgid "GEDCOM import"
 msgstr "GEDCOM Import"
 
-#: ../src/plugins/lib/libgedcom.py:2572
+#: ../src/plugins/lib/libgedcom.py:2573
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM import report: Nebyly detekovány chyby"
 
-#: ../src/plugins/lib/libgedcom.py:2574
+#: ../src/plugins/lib/libgedcom.py:2575
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM import report: %s detekovaných chyb"
 
-#: ../src/plugins/lib/libgedcom.py:2826
+#: ../src/plugins/lib/libgedcom.py:2827
 msgid "Tag recognised but not supported"
 msgstr "Štítek byl rozpoznán ale není podporován"
 
-#: ../src/plugins/lib/libgedcom.py:2837
+#: ../src/plugins/lib/libgedcom.py:2838
 msgid "Line ignored as not understood"
 msgstr "Řádek byl ignorovnán jako nesrozumitelný"
 
-#: ../src/plugins/lib/libgedcom.py:2862
+#: ../src/plugins/lib/libgedcom.py:2863
 msgid "Skipped subordinate line"
 msgstr "Vynechaná podřízená řádka"
 
-#: ../src/plugins/lib/libgedcom.py:2894
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Records not imported into "
 msgstr "Záznamy neimportované do "
 
-#: ../src/plugins/lib/libgedcom.py:2929
+#: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
 msgstr "Chyba: %(msg)s  '%(gramps_id)s' (vložené jako @%(xref)s@) není v GEDCOM vstupu. Záznam byl sloučen"
 
-#: ../src/plugins/lib/libgedcom.py:2938
+#: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
 msgstr "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
 
-#: ../src/plugins/lib/libgedcom.py:2977
+#: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Chyba: rodina '%(family)s' (vložena jako @%(orig_family)s@) osoba %(person)s (vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na rodinu byl osobě odejmut"
 
-#: ../src/plugins/lib/libgedcom.py:3033
+#: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
 msgid ""
 "\n"
@@ -14526,266 +14584,266 @@ msgstr ""
 "Jejich typizační atribut byl nastaven na hodnotu 'Neznámý'.\n"
 "Kde je to možné,  jsou tyto 'Neznámé' objekty odkazovány poznámkou %s.\n"
 
-#: ../src/plugins/lib/libgedcom.py:3051
+#: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
-#: ../src/plugins/lib/libgedcom.py:3080
+#: ../src/plugins/lib/libgedcom.py:3103
 #, fuzzy, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "Zařazení: Vkladatel "
 
-#: ../src/plugins/lib/libgedcom.py:3104
-#: ../src/plugins/lib/libgedcom.py:6559
+#: ../src/plugins/lib/libgedcom.py:3127
+#: ../src/plugins/lib/libgedcom.py:6612
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
-#: ../src/plugins/lib/libgedcom.py:3150
+#: ../src/plugins/lib/libgedcom.py:3173
 msgid "Unknown tag"
 msgstr "Neznámý štítek"
 
-#: ../src/plugins/lib/libgedcom.py:3152
-#: ../src/plugins/lib/libgedcom.py:3166
-#: ../src/plugins/lib/libgedcom.py:3170
-#: ../src/plugins/lib/libgedcom.py:3191
+#: ../src/plugins/lib/libgedcom.py:3175
+#: ../src/plugins/lib/libgedcom.py:3189
+#: ../src/plugins/lib/libgedcom.py:3193
+#: ../src/plugins/lib/libgedcom.py:3214
 msgid "Top Level"
 msgstr "Nejvyšší úroveň"
 
-#: ../src/plugins/lib/libgedcom.py:3260
+#: ../src/plugins/lib/libgedcom.py:3283
 #, fuzzy, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "FAM (rodina) Gramps ID: %s "
 
-#: ../src/plugins/lib/libgedcom.py:3454
-#: ../src/plugins/lib/libgedcom.py:4749
-#: ../src/plugins/lib/libgedcom.py:4952
-#: ../src/plugins/lib/libgedcom.py:5083
-#: ../src/plugins/lib/libgedcom.py:5708
-#: ../src/plugins/lib/libgedcom.py:5845
+#: ../src/plugins/lib/libgedcom.py:3477
+#: ../src/plugins/lib/libgedcom.py:4778
+#: ../src/plugins/lib/libgedcom.py:4987
+#: ../src/plugins/lib/libgedcom.py:5124
+#: ../src/plugins/lib/libgedcom.py:5755
+#: ../src/plugins/lib/libgedcom.py:5898
 msgid "Filename omitted"
 msgstr "Vynechaný název souboru"
 
-#: ../src/plugins/lib/libgedcom.py:3456
-#: ../src/plugins/lib/libgedcom.py:4751
-#: ../src/plugins/lib/libgedcom.py:4954
-#: ../src/plugins/lib/libgedcom.py:5085
-#: ../src/plugins/lib/libgedcom.py:5710
-#: ../src/plugins/lib/libgedcom.py:5847
+#: ../src/plugins/lib/libgedcom.py:3479
+#: ../src/plugins/lib/libgedcom.py:4780
+#: ../src/plugins/lib/libgedcom.py:4989
+#: ../src/plugins/lib/libgedcom.py:5126
+#: ../src/plugins/lib/libgedcom.py:5757
+#: ../src/plugins/lib/libgedcom.py:5900
 msgid "Form omitted"
 msgstr "Vynechaný formulář"
 
-#: ../src/plugins/lib/libgedcom.py:4521
+#: ../src/plugins/lib/libgedcom.py:4544
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (rodina) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5234
+#: ../src/plugins/lib/libgedcom.py:5275
 msgid "Empty event note ignored"
 msgstr "Prázdná poznámka události byla ignorována"
 
-#: ../src/plugins/lib/libgedcom.py:5551
-#: ../src/plugins/lib/libgedcom.py:6362
+#: ../src/plugins/lib/libgedcom.py:5592
+#: ../src/plugins/lib/libgedcom.py:6415
 #, fuzzy
 msgid "Warn: ADDR overwritten"
 msgstr "          EtherTalk Phase 2 adr:%s\n"
 
-#: ../src/plugins/lib/libgedcom.py:5722
-#: ../src/plugins/lib/libgedcom.py:6104
+#: ../src/plugins/lib/libgedcom.py:5769
+#: ../src/plugins/lib/libgedcom.py:6157
 #, fuzzy
 msgid "REFN ignored"
 msgstr "%s: dveře ignorovány"
 
-#: ../src/plugins/lib/libgedcom.py:5814
+#: ../src/plugins/lib/libgedcom.py:5861
 #, python-format
 msgid "No title - ID %s"
 msgstr "Žádný titulek - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5819
+#: ../src/plugins/lib/libgedcom.py:5866
 #, fuzzy, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "Vyhovuje pramen se zadaným GRAMPS ID"
 
-#: ../src/plugins/lib/libgedcom.py:6030
+#: ../src/plugins/lib/libgedcom.py:6083
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multimediální objekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6058
-#: ../src/plugins/lib/libgedcom.py:7052
+#: ../src/plugins/lib/libgedcom.py:6111
+#: ../src/plugins/lib/libgedcom.py:7105
 #, python-format
 msgid "Could not import %s"
 msgstr "Nemohu importovat %s"
 
-#: ../src/plugins/lib/libgedcom.py:6094
+#: ../src/plugins/lib/libgedcom.py:6147
 #, fuzzy
 msgid "BLOB ignored"
 msgstr "%s: dveře ignorovány"
 
-#: ../src/plugins/lib/libgedcom.py:6114
+#: ../src/plugins/lib/libgedcom.py:6167
 #, fuzzy
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "%s: Neznámý typ souboru; soubor ignorován"
 
-#: ../src/plugins/lib/libgedcom.py:6124
+#: ../src/plugins/lib/libgedcom.py:6177
 #, fuzzy
 msgid "Mutimedia RIN ignored"
 msgstr "příkaz `domain %s' ignorován"
 
-#: ../src/plugins/lib/libgedcom.py:6211
+#: ../src/plugins/lib/libgedcom.py:6264
 #, fuzzy, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "Vyhovuje zdroj se zadaným GRAMPS ID"
 
-#: ../src/plugins/lib/libgedcom.py:6487
+#: ../src/plugins/lib/libgedcom.py:6540
 msgid "Head (header)"
 msgstr "Hlavička"
 
-#: ../src/plugins/lib/libgedcom.py:6503
+#: ../src/plugins/lib/libgedcom.py:6556
 msgid "Approved system identification"
 msgstr "Schválená identifikace systému"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6513
+#: ../src/plugins/lib/libgedcom.py:6566
 msgid "Generated by"
 msgstr "Vytvořeno v"
 
-#: ../src/plugins/lib/libgedcom.py:6527
+#: ../src/plugins/lib/libgedcom.py:6580
 msgid "Name of software product"
 msgstr "Název softwarového produktu"
 
-#: ../src/plugins/lib/libgedcom.py:6539
+#: ../src/plugins/lib/libgedcom.py:6592
 msgid "Version number of software product"
 msgstr "Číslo verze softwarového produktu"
 
-#: ../src/plugins/lib/libgedcom.py:6556
+#: ../src/plugins/lib/libgedcom.py:6609
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Tvůrce produktu: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6577
+#: ../src/plugins/lib/libgedcom.py:6630
 msgid "Name of source data"
 msgstr "Název zdrojových dat"
 
-#: ../src/plugins/lib/libgedcom.py:6591
+#: ../src/plugins/lib/libgedcom.py:6644
 msgid "Copyright of source data"
 msgstr "Autorská práva zdrojových dat"
 
-#: ../src/plugins/lib/libgedcom.py:6605
+#: ../src/plugins/lib/libgedcom.py:6658
 msgid "Publication date of source data"
 msgstr "Datum vydání zdrojových dat"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6618
+#: ../src/plugins/lib/libgedcom.py:6671
 #, python-format
 msgid "Import from %s"
 msgstr "Importovat z %s"
 
-#: ../src/plugins/lib/libgedcom.py:6656
+#: ../src/plugins/lib/libgedcom.py:6709
 #, fuzzy
 msgid "Submission record identifier"
 msgstr "duplicitní identifikátor zprávy"
 
-#: ../src/plugins/lib/libgedcom.py:6667
+#: ../src/plugins/lib/libgedcom.py:6720
 msgid "Language of GEDCOM text"
 msgstr "Jazyk textu GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6691
+#: ../src/plugins/lib/libgedcom.py:6744
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importovat GEDCOM soubor %s umístěný v DEST=%s může výsledné databázi způsobit problémy!"
 
-#: ../src/plugins/lib/libgedcom.py:6694
+#: ../src/plugins/lib/libgedcom.py:6747
 msgid "Look for nameless events."
 msgstr "Najít nepojmenované události."
 
-#: ../src/plugins/lib/libgedcom.py:6717
+#: ../src/plugins/lib/libgedcom.py:6770
 msgid "Character set"
 msgstr "Znaková sada"
 
-#: ../src/plugins/lib/libgedcom.py:6719
+#: ../src/plugins/lib/libgedcom.py:6772
 msgid "Character set and version"
 msgstr "Znaková sada a verze"
 
-#: ../src/plugins/lib/libgedcom.py:6735
+#: ../src/plugins/lib/libgedcom.py:6788
 msgid "GEDCOM version not supported"
 msgstr "Verze GEDCOM není podporována"
 
-#: ../src/plugins/lib/libgedcom.py:6738
+#: ../src/plugins/lib/libgedcom.py:6791
 msgid "GEDCOM version"
 msgstr "Verze GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6741
+#: ../src/plugins/lib/libgedcom.py:6794
 msgid "GEDCOM form not supported"
 msgstr "Nepodporovaný GEDCOM formulář"
 
-#: ../src/plugins/lib/libgedcom.py:6743
+#: ../src/plugins/lib/libgedcom.py:6796
 msgid "GEDCOM form"
 msgstr "GEDCOM formulář"
 
-#: ../src/plugins/lib/libgedcom.py:6789
+#: ../src/plugins/lib/libgedcom.py:6842
 msgid "Creation date of GEDCOM"
 msgstr "Datum vytvoření GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6793
+#: ../src/plugins/lib/libgedcom.py:6846
 msgid "Creation date and time of GEDCOM"
 msgstr "Datum a čas vytvoření GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6830
-#: ../src/plugins/lib/libgedcom.py:6867
+#: ../src/plugins/lib/libgedcom.py:6883
+#: ../src/plugins/lib/libgedcom.py:6920
 msgid "Empty note ignored"
 msgstr "Prázdná poznámka byla ignorována"
 
-#: ../src/plugins/lib/libgedcom.py:6882
+#: ../src/plugins/lib/libgedcom.py:6935
 #, fuzzy, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "%(father)s [%(gramps_id)s]"
 
-#: ../src/plugins/lib/libgedcom.py:6932
+#: ../src/plugins/lib/libgedcom.py:6985
 #, fuzzy
 msgid "Submission: Submitter"
 msgstr "Zařazení: Vkladatel "
 
-#: ../src/plugins/lib/libgedcom.py:6934
+#: ../src/plugins/lib/libgedcom.py:6987
 #, fuzzy
 msgid "Submission: Family file"
 msgstr "(Chyba čtení souboru)"
 
-#: ../src/plugins/lib/libgedcom.py:6936
+#: ../src/plugins/lib/libgedcom.py:6989
 #, fuzzy
 msgid "Submission: Temple code"
 msgstr "Neplatný kód kostela"
 
-#: ../src/plugins/lib/libgedcom.py:6938
+#: ../src/plugins/lib/libgedcom.py:6991
 #, fuzzy
 msgid "Submission: Generations of ancestors"
 msgstr "Zařazení: Genrací předků"
 
-#: ../src/plugins/lib/libgedcom.py:6940
+#: ../src/plugins/lib/libgedcom.py:6993
 #, fuzzy
 msgid "Submission: Generations of descendants"
 msgstr "Zařazení: Genrací  potomků"
 
-#: ../src/plugins/lib/libgedcom.py:6942
+#: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
 msgstr ""
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7154
+#: ../src/plugins/lib/libgedcom.py:7207
 msgid "Invalid temple code"
 msgstr "Neplatný kód kostela"
 
-#: ../src/plugins/lib/libgedcom.py:7235
+#: ../src/plugins/lib/libgedcom.py:7288
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódování, ale neobsahuje značku BOM."
 
-#: ../src/plugins/lib/libgedcom.py:7238
+#: ../src/plugins/lib/libgedcom.py:7291
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM soubor je prázdný."
 
-#: ../src/plugins/lib/libgedcom.py:7301
+#: ../src/plugins/lib/libgedcom.py:7354
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Neplatný řádek %d v GEDCOM souboru."
@@ -18245,19 +18303,34 @@ msgstr "Zaměnit '%(map)s' za =>"
 msgid "Center on this place"
 msgstr "Vystředit na tomto místě"
 
-#: ../src/plugins/lib/maps/geography.py:1076
+#: ../src/plugins/lib/maps/geography.py:980
+msgid "You have at least two places with the same title."
+msgstr "Máte nejméně dvě místa stejného názvu."
+
+#: ../src/plugins/lib/maps/geography.py:981
+#, python-format
+msgid ""
+"The title of the places is :\n"
+"<b>%(title)s</b>\n"
+"The following places are similar : %(gid)s\n"
+"Eiher you rename the places either you merge them.\n"
+"\n"
+"<b>I can't proceed your request</b>.\n"
+msgstr ""
+
+#: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
 msgstr "Nic pro tento pohled."
 
-#: ../src/plugins/lib/maps/geography.py:1077
+#: ../src/plugins/lib/maps/geography.py:1101
 msgid "Specific parameters"
 msgstr "Specifické parametry"
 
-#: ../src/plugins/lib/maps/geography.py:1091
+#: ../src/plugins/lib/maps/geography.py:1115
 msgid "Where to save the tiles for offline mode."
 msgstr "Kde budou uloženy dlaždice pro offline režim."
 
-#: ../src/plugins/lib/maps/geography.py:1096
+#: ../src/plugins/lib/maps/geography.py:1120
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18267,7 +18340,7 @@ msgstr ""
 "můžete odstranit všechny dlaždice umístěné v cestě výše.\n"
 "Buďte opatrní! Pokud nemáte přístup k Internetu, nebudete mítm žádnou mapu."
 
-#: ../src/plugins/lib/maps/geography.py:1101
+#: ../src/plugins/lib/maps/geography.py:1125
 msgid "Zoom used when centering"
 msgstr "Přiblížení použité pro vystředění"
 
@@ -18276,7 +18349,7 @@ msgstr "Přiblížení použité pro vystředění"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1110
+#: ../src/plugins/lib/maps/geography.py:1134
 msgid "The map"
 msgstr "Mapa"
 
@@ -20636,15 +20709,15 @@ msgstr "Hledat kontrolní znaky v poznámkách"
 msgid "Looking for broken family links"
 msgstr "Vyhledávají se přerušení vazby rodin"
 
-#: ../src/plugins/tool/Check.py:591
+#: ../src/plugins/tool/Check.py:590
 msgid "Looking for unused objects"
 msgstr "Vyhledávají se nepoužité objekty"
 
-#: ../src/plugins/tool/Check.py:697
+#: ../src/plugins/tool/Check.py:696
 msgid "Media object could not be found"
 msgstr "Mediální objekt nebyl nalezen"
 
-#: ../src/plugins/tool/Check.py:698
+#: ../src/plugins/tool/Check.py:697
 #, python-format
 msgid ""
 "The file:\n"
@@ -20655,99 +20728,99 @@ msgstr ""
 " %(file_name)s \n"
 "je odkazován v databázi, ale již neexistuje. Soubor mohl být smazán nebo přesunut na jiné místo. Můžete buď odstranit odkaz na soubor z databáze, ponechat odkaz na chybějící soubor nebo vybrat soubor nový."
 
-#: ../src/plugins/tool/Check.py:775
+#: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty people records"
 msgstr "Vyhledávají se prázdné záznamy osob"
 
-#: ../src/plugins/tool/Check.py:783
+#: ../src/plugins/tool/Check.py:782
 msgid "Looking for empty family records"
 msgstr "Vyhledávají se prázdné záznamy rodin"
 
-#: ../src/plugins/tool/Check.py:791
+#: ../src/plugins/tool/Check.py:790
 msgid "Looking for empty event records"
 msgstr "Vyhledávají se prázdné záznamy událostí"
 
-#: ../src/plugins/tool/Check.py:799
+#: ../src/plugins/tool/Check.py:798
 msgid "Looking for empty source records"
 msgstr "Vyhledávají se prázdné záznamy pramenů"
 
-#: ../src/plugins/tool/Check.py:807
+#: ../src/plugins/tool/Check.py:806
 msgid "Looking for empty citation records"
 msgstr "Vyhledávají se prázdné záznamy citací"
 
-#: ../src/plugins/tool/Check.py:815
+#: ../src/plugins/tool/Check.py:814
 msgid "Looking for empty place records"
 msgstr "Vyhledávají se prázdné záznamy míst"
 
-#: ../src/plugins/tool/Check.py:823
+#: ../src/plugins/tool/Check.py:822
 msgid "Looking for empty media records"
 msgstr "Vyhledávají se prázdné záznamy médií"
 
-#: ../src/plugins/tool/Check.py:831
+#: ../src/plugins/tool/Check.py:830
 msgid "Looking for empty repository records"
 msgstr "Vyhledávají se prázdné záznamy archivů"
 
-#: ../src/plugins/tool/Check.py:839
+#: ../src/plugins/tool/Check.py:838
 msgid "Looking for empty note records"
 msgstr "Vyhledávají se prázdné záznamy poznámek"
 
-#: ../src/plugins/tool/Check.py:885
+#: ../src/plugins/tool/Check.py:884
 msgid "Looking for empty families"
 msgstr "Vyhledávají se prázdné rodiny"
 
-#: ../src/plugins/tool/Check.py:920
+#: ../src/plugins/tool/Check.py:919
 msgid "Looking for broken parent relationships"
 msgstr "Vyhledávají se přerušené vztahy rodičů"
 
-#: ../src/plugins/tool/Check.py:957
+#: ../src/plugins/tool/Check.py:956
 msgid "Looking for event problems"
 msgstr "Vyhledávají se problémy událostí"
 
-#: ../src/plugins/tool/Check.py:1121
+#: ../src/plugins/tool/Check.py:1120
 msgid "Looking for person reference problems"
 msgstr "Hledají se problémové odkazy na osoby"
 
-#: ../src/plugins/tool/Check.py:1151
+#: ../src/plugins/tool/Check.py:1150
 msgid "Looking for family reference problems"
 msgstr "Hledají se problémy s odkazy na rodiny"
 
-#: ../src/plugins/tool/Check.py:1175
+#: ../src/plugins/tool/Check.py:1174
 msgid "Looking for repository reference problems"
 msgstr "Hledají se problémové odkazy na archivy"
 
-#: ../src/plugins/tool/Check.py:1206
+#: ../src/plugins/tool/Check.py:1205
 msgid "Looking for place reference problems"
 msgstr "Hledají se problémy s odkazy na místa"
 
-#: ../src/plugins/tool/Check.py:1286
+#: ../src/plugins/tool/Check.py:1285
 msgid "Looking for citation reference problems"
 msgstr "Hledají se problémové odkazy na citace"
 
-#: ../src/plugins/tool/Check.py:1415
+#: ../src/plugins/tool/Check.py:1414
 msgid "Looking for source reference problems"
 msgstr "Hledají se problémové odkazy na prameny"
 
-#: ../src/plugins/tool/Check.py:1454
+#: ../src/plugins/tool/Check.py:1453
 msgid "Looking for media object reference problems"
 msgstr "Hledají se problémové odkazy na média"
 
-#: ../src/plugins/tool/Check.py:1590
+#: ../src/plugins/tool/Check.py:1589
 msgid "Looking for note reference problems"
 msgstr "Hledají se problémové odkazy na poznámky"
 
-#: ../src/plugins/tool/Check.py:1742
+#: ../src/plugins/tool/Check.py:1741
 msgid "Looking for tag reference problems"
 msgstr "Hledají se problémové odkazy na štítky"
 
-#: ../src/plugins/tool/Check.py:1935
+#: ../src/plugins/tool/Check.py:1934
 msgid "No errors were found"
 msgstr "Nebyly nalezeny žádné chyby"
 
-#: ../src/plugins/tool/Check.py:1936
+#: ../src/plugins/tool/Check.py:1935
 msgid "The database has passed internal checks"
 msgstr "Všechny vnitřní testy databáze proběhly úspěšně"
 
-#: ../src/plugins/tool/Check.py:1945
+#: ../src/plugins/tool/Check.py:1944
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
@@ -20755,16 +20828,16 @@ msgstr[0] "%(quantity)d chybný odkaz dítě/rodina byl opraven\n"
 msgstr[1] "%(quantity)d chybné odkazy dítě-rodina byly opraveny\n"
 msgstr[2] "%(quantity)d chybných odkazů dítě-rodina bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:1954
+#: ../src/plugins/tool/Check.py:1953
 msgid "Non existing child"
 msgstr "Neexistující dítě"
 
-#: ../src/plugins/tool/Check.py:1962
+#: ../src/plugins/tool/Check.py:1961
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "osoba %(person)s byla odstraněn z rodiny  %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1968
+#: ../src/plugins/tool/Check.py:1967
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
@@ -20772,18 +20845,18 @@ msgstr[0] "%(quantity)d chybný odkaz na rodinu/manžela(ku) byl opraven\n"
 msgstr[1] "%(quantity)d chybné odkazy na rodinu/manžela(ku) byly opraveny\n"
 msgstr[2] "%(quantity)d chybných odkazů na rodinu/manžela(ku) bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:1977
-#: ../src/plugins/tool/Check.py:2000
+#: ../src/plugins/tool/Check.py:1976
+#: ../src/plugins/tool/Check.py:1999
 msgid "Non existing person"
 msgstr "Neexistující osoba"
 
-#: ../src/plugins/tool/Check.py:1985
-#: ../src/plugins/tool/Check.py:2008
+#: ../src/plugins/tool/Check.py:1984
+#: ../src/plugins/tool/Check.py:2007
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1991
+#: ../src/plugins/tool/Check.py:1990
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
@@ -20791,16 +20864,16 @@ msgstr[0] "Byl nalezen %(quantity)d duplikátní odkaz na rodinu/manžela(ku)\n"
 msgstr[1] "Byly nalezeny %(quantity)d duplikátní odkazy na rodinu/manžela(ku)\n"
 msgstr[2] "Bylo nalezeno %(quantity)d duplikátních odkazů na rodinu/manžela(ku)\n"
 
-#: ../src/plugins/tool/Check.py:2014
+#: ../src/plugins/tool/Check.py:2013
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 rodina bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
 
-#: ../src/plugins/tool/Check.py:2019
+#: ../src/plugins/tool/Check.py:2018
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d rodin bez rodičů a dětí bylo odstraněno.\n"
 
-#: ../src/plugins/tool/Check.py:2025
+#: ../src/plugins/tool/Check.py:2024
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
@@ -20808,7 +20881,7 @@ msgstr[0] "%d poškozený rodinný vztah byl opraven\n"
 msgstr[1] "%d poškozené rodinné vztahy byly opraveny\n"
 msgstr[2] "%d poškozených rodinných vztahů bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:2032
+#: ../src/plugins/tool/Check.py:2031
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
@@ -20816,7 +20889,7 @@ msgstr[0] "%d odkazovaná osoba nebyla nenalezena\n"
 msgstr[1] "%d odkazované osoby nebyly nenalezeny\n"
 msgstr[2] "%d odkazovaných osob nebylo nenalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2039
+#: ../src/plugins/tool/Check.py:2038
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
@@ -20824,7 +20897,7 @@ msgstr[0] "%d odkazovaná rodina nebyla nenalezena\n"
 msgstr[1] "%d odkazované rodiny nebyly nenalezeny\n"
 msgstr[2] "%d odkazovaných rodin nebylo nenalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2045
+#: ../src/plugins/tool/Check.py:2044
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
@@ -20832,7 +20905,7 @@ msgstr[0] "%d datum byl opraven\n"
 msgstr[1] "%d data byla opravena\n"
 msgstr[2] "%d dat bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:2051
+#: ../src/plugins/tool/Check.py:2050
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -20840,7 +20913,7 @@ msgstr[0] "%(quantity)d odkazovaný archiv nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované archivy nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných archivů nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2057
+#: ../src/plugins/tool/Check.py:2056
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -20848,7 +20921,7 @@ msgstr[0] "%(quantity)d odkazovaný objekt médií nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované objekty médií nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných objektů médií nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2064
+#: ../src/plugins/tool/Check.py:2063
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
@@ -20856,7 +20929,7 @@ msgstr[0] "Odkaz na  %(quantity)d chybějící objekt médií byl ponechán\n"
 msgstr[1] "Odkaz na  %(quantity)d chybějící objekty médií byly ponechány\n"
 msgstr[2] "Odkaz na %(quantity)d chybějících objektů médií byl ponecháno\n"
 
-#: ../src/plugins/tool/Check.py:2071
+#: ../src/plugins/tool/Check.py:2070
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
@@ -20864,7 +20937,7 @@ msgstr[0] "%(quantity)d chybějící objekt médií byl nahrazen\n"
 msgstr[1] "%(quantity)d chybějící objekty médií byl nahrazeny\n"
 msgstr[2] "%(quantity)d chybějících objekt médií bylo nahrazeno\n"
 
-#: ../src/plugins/tool/Check.py:2078
+#: ../src/plugins/tool/Check.py:2077
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
@@ -20872,7 +20945,7 @@ msgstr[0] "%(quantity)d chybějící objekt médií byl odstraněn\n"
 msgstr[1] "%(quantity)d chybějící objekty médií byly odstraněny\n"
 msgstr[2] "%(quantity)d chybějících objektů médií bylo odstraněno\n"
 
-#: ../src/plugins/tool/Check.py:2085
+#: ../src/plugins/tool/Check.py:2084
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
@@ -20880,7 +20953,7 @@ msgstr[0] "%(quantity)d odkazovaná  událost nebyla nalezena\n"
 msgstr[1] "%(quantity)d odkazované  události nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných  událostí nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2092
+#: ../src/plugins/tool/Check.py:2091
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
@@ -20888,7 +20961,7 @@ msgstr[0] "%(quantity)d neplatný název události narození byl opraven\n"
 msgstr[1] "%(quantity)d neplatné názvy událostí narození byly opraveny\n"
 msgstr[2] "%(quantity)d neplatných názvů událostí narození bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:2099
+#: ../src/plugins/tool/Check.py:2098
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
@@ -20896,7 +20969,7 @@ msgstr[0] "%(quantity)d neplatný název události úmrtí byl opraven\n"
 msgstr[1] "%(quantity)d neplatné názvy událostí úmrtí byly opraveny\n"
 msgstr[2] "%(quantity)d neplatných názvůudálostí úmrtí bylo opraveno\n"
 
-#: ../src/plugins/tool/Check.py:2106
+#: ../src/plugins/tool/Check.py:2105
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
@@ -20904,7 +20977,7 @@ msgstr[0] "%(quantity)d odkazované místo nebylo nalezeno\n"
 msgstr[1] "%(quantity)d odkazovaná místa nebyla nenalezena\n"
 msgstr[2] "%(quantity)d odkazovaných míst nebylo nenalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2113
+#: ../src/plugins/tool/Check.py:2112
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
@@ -20912,7 +20985,7 @@ msgstr[0] "%(quantity)d odkazovaná citace nebyla nalezena\n"
 msgstr[1] "%(quantity)d odkazované citace nebyly nenalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných citací nebylo nenalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2120
+#: ../src/plugins/tool/Check.py:2119
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
@@ -20920,7 +20993,7 @@ msgstr[0] "%(quantity)d odkazovaný pramen nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované prameny nebyly nenalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných pramenů nebylo nenalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2127
+#: ../src/plugins/tool/Check.py:2126
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
@@ -20928,7 +21001,7 @@ msgstr[0] "%(quantity)d odkazovaný objekt médií nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované objekty médií nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných objektů médií nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2134
+#: ../src/plugins/tool/Check.py:2133
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -20936,8 +21009,8 @@ msgstr[0] "%(quantity)d odkazovaný objekt poznámek nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované objekty poznámek nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných objektů poznámek nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2140
-#: ../src/plugins/tool/Check.py:2146
+#: ../src/plugins/tool/Check.py:2139
+#: ../src/plugins/tool/Check.py:2145
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
@@ -20945,7 +21018,7 @@ msgstr[0] "%(quantity)d odkazovaný štítek nebyl nalezen\n"
 msgstr[1] "%(quantity)d odkazované štítky nebyly nalezeny\n"
 msgstr[2] "%(quantity)d odkazovaných štítků nebylo nalezeno\n"
 
-#: ../src/plugins/tool/Check.py:2152
+#: ../src/plugins/tool/Check.py:2151
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
@@ -20953,7 +21026,7 @@ msgstr[0] "%(quantity)d neplatný odkaz formátu jmen byl odstraněn\n"
 msgstr[1] "%(quantity)d neplatné odkazy formátu jmen byly odstraněny\n"
 msgstr[2] "%(quantity)d neplatných odkazů formátu jmen bylo odstraněno\n"
 
-#: ../src/plugins/tool/Check.py:2158
+#: ../src/plugins/tool/Check.py:2157
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -20976,11 +21049,11 @@ msgstr ""
 "   %(repo)d objektů archivů\n"
 "   %(note)d objektů poznámek\n"
 
-#: ../src/plugins/tool/Check.py:2205
+#: ../src/plugins/tool/Check.py:2204
 msgid "Integrity Check Results"
 msgstr "Výsledky ověření integrity"
 
-#: ../src/plugins/tool/Check.py:2210
+#: ../src/plugins/tool/Check.py:2209
 msgid "Check and Repair"
 msgstr "Ověření integrity databáze a oprava"
 
@@ -28890,8 +28963,8 @@ msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only abou
 msgstr "<b>'Jak a proč' vašeho výzkumu</b><br/> Genealogii netvoří pouze data a jména. Týká se lidí. Popisujte. Zapisujte proč se věci udály a jak mohli být předkové utvářeni událostmi, kterými prošli. Příběh ujde dlouhou cestu, než vaše rodinná historie ožije."
 
 #: ../src/data/tips.xml.in.h:56
-msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "<b>Nemluvíte anglicky?</b><br/>Gramps byl přeložen dobrovolníky do více než 20 jazyků. Pokud Gramps podporuje váš jazyk ale není v něm zobrazeno, nastavte výchozí jazyk na vašem počítači a Gramps restartuje."
+msgid "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
+msgstr "<b>Nemluvíte anglicky?</b><br/>Gramps byl přeložen dobrovolníky do více než 20 jazyků. Pokud Gramps podporuje váš jazyk ale není v něm zobrazen, nastavte výchozí jazyk na vašem operačním systému a Gramps restartuje."
 
 #: ../src/data/tips.xml.in.h:57
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
@@ -30406,9 +30479,6 @@ msgstr "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat 
 
 #~ msgid "Time period"
 #~ msgstr "Časové rozmezí"
-
-#~ msgid "years"
-#~ msgstr "let"
 
 #~ msgid "All"
 #~ msgstr "Vše"
