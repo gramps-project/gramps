@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-24 14:18+0200\n"
-"PO-Revision-Date: 2012-09-24 14:44+0200\n"
+"POT-Creation-Date: 2012-09-26 13:28+0200\n"
+"PO-Revision-Date: 2012-09-26 13:20+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1943,94 +1943,107 @@ msgstr "FEHLER: Nicht erkanntes Format für Exportdatei %s"
 msgid "List of known family trees in your database path\n"
 msgstr "Liste bekannter Stammbäume in deinem Datenbankpfad\n"
 
-#: ../src/cli/arghandler.py:407
+#: ../src/cli/arghandler.py:406
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s mit Name \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:413
+#: ../src/cli/arghandler.py:412
 msgid "Gramps Family Trees:"
 msgstr "Gramps Stammbäume:"
 
-#: ../src/cli/arghandler.py:417
+#: ../src/cli/arghandler.py:415 ../src/cli/arghandler.py:417
+#: ../src/cli/arghandler.py:421 ../src/cli/clidbman.py:185
+msgid "Family tree"
+msgstr "Stammbaum"
+
+#: ../src/cli/arghandler.py:416
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Stammbaum \"%s\":"
 
-#: ../src/cli/arghandler.py:429
+#: ../src/cli/arghandler.py:419 ../src/cli/clidbman.py:186
+#: ../src/gui/editors/displaytabs/webembedlist.py:66
+#: ../src/plugins/view/mediaview.py:96
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
+#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:28
+msgid "Path"
+msgstr "Pfad"
+
+#: ../src/cli/arghandler.py:430
 #, python-format
 msgid "Performing action: %s."
 msgstr "Ausführen von Aktion: %s."
 
-#: ../src/cli/arghandler.py:431
+#: ../src/cli/arghandler.py:432
 #, python-format
 msgid "Using options string: %s"
 msgstr "Verwende Optionstext: %s"
 
-#: ../src/cli/arghandler.py:439
+#: ../src/cli/arghandler.py:440
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:447
+#: ../src/cli/arghandler.py:448
 msgid "Exiting."
 msgstr "Beenden."
 
-#: ../src/cli/arghandler.py:451
+#: ../src/cli/arghandler.py:452
 msgid "Cleaning up."
 msgstr "Räume auf."
 
-#: ../src/cli/arghandler.py:481
+#: ../src/cli/arghandler.py:482
 msgid "Created empty family tree successfully"
 msgstr "Leerer Stammbaum erfolgreich erstellt"
 
-#: ../src/cli/arghandler.py:484 ../src/cli/arghandler.py:511
+#: ../src/cli/arghandler.py:485 ../src/cli/arghandler.py:512
 msgid "Error opening the file."
 msgstr "Fehler beim Öffnen der Datei."
 
-#: ../src/cli/arghandler.py:485 ../src/cli/arghandler.py:512
+#: ../src/cli/arghandler.py:486 ../src/cli/arghandler.py:513
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: ../src/cli/arghandler.py:491
+#: ../src/cli/arghandler.py:492
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:509
+#: ../src/cli/arghandler.py:510
 msgid "Opened successfully!"
 msgstr "Erfolgreich geöffnet!"
 
-#: ../src/cli/arghandler.py:523
+#: ../src/cli/arghandler.py:524
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank ist gesperrt, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:524
+#: ../src/cli/arghandler.py:525
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/cli/arghandler.py:527
+#: ../src/cli/arghandler.py:528
 msgid "Database needs recovery, cannot open it!"
 msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:584 ../src/cli/arghandler.py:631
+#: ../src/cli/arghandler.py:585 ../src/cli/arghandler.py:632
 msgid "Ignoring invalid options string."
 msgstr "Ignoriere ungültigen Optionstext."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:607
+#: ../src/cli/arghandler.py:608
 msgid "Unknown report name."
 msgstr "Unbekannter Berichtname."
 
-#: ../src/cli/arghandler.py:609
+#: ../src/cli/arghandler.py:610
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Berichtname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=reportname"
 
-#: ../src/cli/arghandler.py:613 ../src/cli/arghandler.py:654
+#: ../src/cli/arghandler.py:614 ../src/cli/arghandler.py:655
 #, python-format
 msgid ""
 "%s\n"
@@ -2039,18 +2052,18 @@ msgstr ""
 "%s\n"
 " Verfügbare Namen sind:"
 
-#: ../src/cli/arghandler.py:648
+#: ../src/cli/arghandler.py:649
 msgid "Unknown tool name."
 msgstr "Unbekannter Werkzeugname."
 
-#: ../src/cli/arghandler.py:650
+#: ../src/cli/arghandler.py:651
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Werkzeugname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:666
+#: ../src/cli/arghandler.py:667
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
@@ -2259,6 +2272,30 @@ msgid ""
 msgstr ""
 "FEHLER: %s \n"
 "       %s"
+
+#: ../src/cli/clidbman.py:179
+msgid "Number of people"
+msgstr "Personenzahl"
+
+#: ../src/cli/clidbman.py:181 ../src/cli/clidbman.py:183
+msgid "Locked?"
+msgstr "Gesperrt?"
+
+#: ../src/cli/clidbman.py:181
+msgid "yes"
+msgstr "ja"
+
+#: ../src/cli/clidbman.py:183
+msgid "no"
+msgstr "nein"
+
+#: ../src/cli/clidbman.py:184
+msgid "DB version"
+msgstr "DB Version"
+
+#: ../src/cli/clidbman.py:187 ../src/gui/dbman.py:287
+msgid "Last accessed"
+msgstr "Letzter Zugriff"
 
 #: ../src/cli/clidbman.py:241
 #, python-format
@@ -3616,7 +3653,7 @@ msgstr "Medienreferenznotiz"
 msgid "Child Reference Note"
 msgstr "Kind-Referenzen Notiz"
 
-#: ../src/gen/lib/person.py:449
+#: ../src/gen/lib/person.py:457
 msgid "Merged Gramps ID"
 msgstr "Zusammengefasste Gramps-ID"
 
@@ -4955,10 +4992,6 @@ msgstr "Stammbaumname:"
 #: ../src/plugins/webreport/NarrativeWeb.py:1151
 msgid "Status"
 msgstr "Status"
-
-#: ../src/gui/dbman.py:287
-msgid "Last accessed"
-msgstr "Letzter Zugriff"
 
 #: ../src/gui/dbman.py:369
 #, python-format
@@ -8113,13 +8146,6 @@ msgstr "Gewählte Webadresse nach unten verschieben"
 #: ../src/gui/editors/displaytabs/webembedlist.py:59
 msgid "Jump to the selected web address"
 msgstr "Zur gewählten Webadresse springen"
-
-#: ../src/gui/editors/displaytabs/webembedlist.py:66
-#: ../src/plugins/view/mediaview.py:96
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
-#: ../src/glade/editmedia.glade.h:13 ../src/glade/editmediaref.glade.h:28
-msgid "Path"
-msgstr "Pfad"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:72
 msgid "_Internet"
@@ -14869,8 +14895,8 @@ msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Fehler: Familie '%(family)s' Vater '%(father)s' Verweist nicht zurück auf die "
-"Familie. Referenz hinzugefügt."
+"Fehler: Familie '%(family)s' Vater '%(father)s' Verweist nicht zurück auf "
+"die Familie. Referenz hinzugefügt."
 
 #: ../src/plugins/import/ImportXml.py:3012
 #, python-format
@@ -14900,36 +14926,36 @@ msgstr ""
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2550 ../src/plugins/lib/libgedcom.py:2903
+#: ../src/plugins/lib/libgedcom.py:2551 ../src/plugins/lib/libgedcom.py:2904
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:2572
+#: ../src/plugins/lib/libgedcom.py:2573
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2574
+#: ../src/plugins/lib/libgedcom.py:2575
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2826
+#: ../src/plugins/lib/libgedcom.py:2827
 msgid "Tag recognised but not supported"
 msgstr "Tag erkannt aber nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:2837
+#: ../src/plugins/lib/libgedcom.py:2838
 msgid "Line ignored as not understood"
 msgstr "Zeile wurde ignoriert da sie nicht verstanden wurde"
 
-#: ../src/plugins/lib/libgedcom.py:2862
+#: ../src/plugins/lib/libgedcom.py:2863
 msgid "Skipped subordinate line"
 msgstr "Untergeordnete Zeile übersprungen"
 
-#: ../src/plugins/lib/libgedcom.py:2894
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Records not imported into "
 msgstr "Datensätze nicht importiert nach "
 
-#: ../src/plugins/lib/libgedcom.py:2929
+#: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -14938,7 +14964,7 @@ msgstr ""
 "Fehler: %(msg)s  '%(gramps_id)s' (eingelesen als @%(xref)s@) nicht im "
 "eingelesenen GEDCOM. Datensatz synthetisiert"
 
-#: ../src/plugins/lib/libgedcom.py:2938
+#: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -14948,7 +14974,7 @@ msgstr ""
 "eingelesenen GEDCOM. Datensatz mit versinnbildlichenden Attribut 'Unbekannt' "
 "erstellt"
 
-#: ../src/plugins/lib/libgedcom.py:2977
+#: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -14959,7 +14985,7 @@ msgstr ""
 "%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
 "der Familie. Familienreferenz wurde von der Person entfernt"
 
-#: ../src/plugins/lib/libgedcom.py:3055
+#: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
 msgid ""
 "\n"
@@ -14976,154 +15002,154 @@ msgstr ""
 "gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
 "durch Notiz %s referenziert.\n"
 
-#: ../src/plugins/lib/libgedcom.py:3073
+#: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
 msgstr "TRLR (Anhang)"
 
-#: ../src/plugins/lib/libgedcom.py:3102
+#: ../src/plugins/lib/libgedcom.py:3103
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Ersteller): @%s@"
 
-#: ../src/plugins/lib/libgedcom.py:3126 ../src/plugins/lib/libgedcom.py:6581
+#: ../src/plugins/lib/libgedcom.py:3127 ../src/plugins/lib/libgedcom.py:6612
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../src/plugins/lib/libgedcom.py:3172
+#: ../src/plugins/lib/libgedcom.py:3173
 msgid "Unknown tag"
 msgstr "Unbekannter Tag"
 
-#: ../src/plugins/lib/libgedcom.py:3174 ../src/plugins/lib/libgedcom.py:3188
-#: ../src/plugins/lib/libgedcom.py:3192 ../src/plugins/lib/libgedcom.py:3213
+#: ../src/plugins/lib/libgedcom.py:3175 ../src/plugins/lib/libgedcom.py:3189
+#: ../src/plugins/lib/libgedcom.py:3193 ../src/plugins/lib/libgedcom.py:3214
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../src/plugins/lib/libgedcom.py:3282
+#: ../src/plugins/lib/libgedcom.py:3283
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3476 ../src/plugins/lib/libgedcom.py:4771
-#: ../src/plugins/lib/libgedcom.py:4974 ../src/plugins/lib/libgedcom.py:5105
-#: ../src/plugins/lib/libgedcom.py:5730 ../src/plugins/lib/libgedcom.py:5867
+#: ../src/plugins/lib/libgedcom.py:3477 ../src/plugins/lib/libgedcom.py:4778
+#: ../src/plugins/lib/libgedcom.py:4987 ../src/plugins/lib/libgedcom.py:5124
+#: ../src/plugins/lib/libgedcom.py:5755 ../src/plugins/lib/libgedcom.py:5898
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:3478 ../src/plugins/lib/libgedcom.py:4773
-#: ../src/plugins/lib/libgedcom.py:4976 ../src/plugins/lib/libgedcom.py:5107
-#: ../src/plugins/lib/libgedcom.py:5732 ../src/plugins/lib/libgedcom.py:5869
+#: ../src/plugins/lib/libgedcom.py:3479 ../src/plugins/lib/libgedcom.py:4780
+#: ../src/plugins/lib/libgedcom.py:4989 ../src/plugins/lib/libgedcom.py:5126
+#: ../src/plugins/lib/libgedcom.py:5757 ../src/plugins/lib/libgedcom.py:5900
 msgid "Form omitted"
 msgstr "Formular ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:4543
+#: ../src/plugins/lib/libgedcom.py:4544
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5256
+#: ../src/plugins/lib/libgedcom.py:5275
 msgid "Empty event note ignored"
 msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5573 ../src/plugins/lib/libgedcom.py:6384
+#: ../src/plugins/lib/libgedcom.py:5592 ../src/plugins/lib/libgedcom.py:6415
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../src/plugins/lib/libgedcom.py:5744 ../src/plugins/lib/libgedcom.py:6126
+#: ../src/plugins/lib/libgedcom.py:5769 ../src/plugins/lib/libgedcom.py:6157
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5836
+#: ../src/plugins/lib/libgedcom.py:5861
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5841
+#: ../src/plugins/lib/libgedcom.py:5866
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6052
+#: ../src/plugins/lib/libgedcom.py:6083
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6080 ../src/plugins/lib/libgedcom.py:7074
+#: ../src/plugins/lib/libgedcom.py:6111 ../src/plugins/lib/libgedcom.py:7105
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6116
+#: ../src/plugins/lib/libgedcom.py:6147
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6136
+#: ../src/plugins/lib/libgedcom.py:6167
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6146
+#: ../src/plugins/lib/libgedcom.py:6177
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6233
+#: ../src/plugins/lib/libgedcom.py:6264
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6509
+#: ../src/plugins/lib/libgedcom.py:6540
 msgid "Head (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../src/plugins/lib/libgedcom.py:6525
+#: ../src/plugins/lib/libgedcom.py:6556
 msgid "Approved system identification"
 msgstr "Anerkannte Systemidentifikation"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6535
+#: ../src/plugins/lib/libgedcom.py:6566
 msgid "Generated by"
 msgstr "Erstellt von"
 
-#: ../src/plugins/lib/libgedcom.py:6549
+#: ../src/plugins/lib/libgedcom.py:6580
 msgid "Name of software product"
 msgstr "Name der Software"
 
-#: ../src/plugins/lib/libgedcom.py:6561
+#: ../src/plugins/lib/libgedcom.py:6592
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../src/plugins/lib/libgedcom.py:6578
+#: ../src/plugins/lib/libgedcom.py:6609
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6599
+#: ../src/plugins/lib/libgedcom.py:6630
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6613
+#: ../src/plugins/lib/libgedcom.py:6644
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6627
+#: ../src/plugins/lib/libgedcom.py:6658
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6640
+#: ../src/plugins/lib/libgedcom.py:6671
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6678
+#: ../src/plugins/lib/libgedcom.py:6709
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../src/plugins/lib/libgedcom.py:6689
+#: ../src/plugins/lib/libgedcom.py:6720
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../src/plugins/lib/libgedcom.py:6713
+#: ../src/plugins/lib/libgedcom.py:6744
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -15132,82 +15158,82 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:6716
+#: ../src/plugins/lib/libgedcom.py:6747
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:6739
+#: ../src/plugins/lib/libgedcom.py:6770
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../src/plugins/lib/libgedcom.py:6741
+#: ../src/plugins/lib/libgedcom.py:6772
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../src/plugins/lib/libgedcom.py:6757
+#: ../src/plugins/lib/libgedcom.py:6788
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6760
+#: ../src/plugins/lib/libgedcom.py:6791
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../src/plugins/lib/libgedcom.py:6763
+#: ../src/plugins/lib/libgedcom.py:6794
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6765
+#: ../src/plugins/lib/libgedcom.py:6796
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../src/plugins/lib/libgedcom.py:6811
+#: ../src/plugins/lib/libgedcom.py:6842
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6815
+#: ../src/plugins/lib/libgedcom.py:6846
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6852 ../src/plugins/lib/libgedcom.py:6889
+#: ../src/plugins/lib/libgedcom.py:6883 ../src/plugins/lib/libgedcom.py:6920
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6904
+#: ../src/plugins/lib/libgedcom.py:6935
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6954
+#: ../src/plugins/lib/libgedcom.py:6985
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../src/plugins/lib/libgedcom.py:6956
+#: ../src/plugins/lib/libgedcom.py:6987
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../src/plugins/lib/libgedcom.py:6958
+#: ../src/plugins/lib/libgedcom.py:6989
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:6960
+#: ../src/plugins/lib/libgedcom.py:6991
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../src/plugins/lib/libgedcom.py:6962
+#: ../src/plugins/lib/libgedcom.py:6993
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../src/plugins/lib/libgedcom.py:6964
+#: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7176
+#: ../src/plugins/lib/libgedcom.py:7207
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:7257
+#: ../src/plugins/lib/libgedcom.py:7288
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15215,11 +15241,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:7260
+#: ../src/plugins/lib/libgedcom.py:7291
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:7323
+#: ../src/plugins/lib/libgedcom.py:7354
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -19220,11 +19246,11 @@ msgstr "Ersetze '%(map)s' durch =>"
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../src/plugins/lib/maps/geography.py:976
+#: ../src/plugins/lib/maps/geography.py:980
 msgid "You have at least two places with the same title."
 msgstr "Du hast mindestens zwei Orte mit dem selben Titel."
 
-#: ../src/plugins/lib/maps/geography.py:977
+#: ../src/plugins/lib/maps/geography.py:981
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -19241,19 +19267,19 @@ msgstr ""
 "\n"
 "<b>Ich kann deine Anfrage nicht durchführen</b>.\n"
 
-#: ../src/plugins/lib/maps/geography.py:1096
+#: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../src/plugins/lib/maps/geography.py:1097
+#: ../src/plugins/lib/maps/geography.py:1101
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../src/plugins/lib/maps/geography.py:1111
+#: ../src/plugins/lib/maps/geography.py:1115
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../src/plugins/lib/maps/geography.py:1116
+#: ../src/plugins/lib/maps/geography.py:1120
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -19263,7 +19289,7 @@ msgstr ""
 "Du kannst alle Kacheln die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../src/plugins/lib/maps/geography.py:1121
+#: ../src/plugins/lib/maps/geography.py:1125
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
@@ -19272,7 +19298,7 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1130
+#: ../src/plugins/lib/maps/geography.py:1134
 msgid "The map"
 msgstr "Die Karte"
 
@@ -31125,15 +31151,14 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:56
 msgid ""
-"<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more "
+"<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 20 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Du nicht sprechen deutsch?</b><br/>Helfer haben Gramps in über 20 "
-"Sprachen übersetzt. Wenn Gramps deine Sprache unterstützt und diese nicht "
-"angezeigt wird, setze die Standardsprache auf deinem Computer und starte "
-"Gramps neu."
+"<b>Du sprichst kein Deutsch?</b><br/>Helfer haben Gramps in über 20 Sprachen "
+"übersetzt. Wenn Gramps deine Sprache unterstützt und diese nicht angezeigt "
+"wird, setze die Standardsprache auf deinem Computer und starte Gramps neu."
 
 #: ../src/data/tips.xml.in.h:57
 msgid ""
@@ -32764,9 +32789,6 @@ msgstr ""
 
 #~ msgid "Time period"
 #~ msgstr "Zeitspanne"
-
-#~ msgid "years"
-#~ msgstr "Jahre"
 
 #~ msgid "All"
 #~ msgstr "Alles"
