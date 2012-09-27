@@ -1116,9 +1116,16 @@ class GrampsPreferences(ConfigureDialog):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_entry(table, 
-                _('Family Tree Database path'), 
-                0, 'behavior.database-path')
+
+        self.dbpath_entry = gtk.Entry()
+        self.add_path_box(table, 
+                _('Family Tree Database path'),
+                0, self.dbpath_entry, config.get('behavior.database-path'),
+                self.set_dbpath, self.select_dbpath)
+
+        #self.add_entry(table, 
+        #        _('Family Tree Database path'), 
+        #        0, 'behavior.database-path')
         self.add_checkbox(table, 
                 _('Automatically load last family tree'), 
                 1, 'behavior.autoload')
@@ -1149,6 +1156,30 @@ class GrampsPreferences(ConfigureDialog):
             val = Utils.get_unicode_path_from_file_chooser(f.get_filename())
             if val:
                 self.path_entry.set_text(val)
+        f.destroy()
+
+    def set_dbpath(self, *obj):
+        path = self.dbpath_entry.get_text().strip()
+        config.set('behavior.database-path', path)
+
+    def select_dbpath(self, *obj):
+        f = gtk.FileChooserDialog(
+            _("Select database directory"),
+            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+            buttons=(gtk.STOCK_CANCEL,
+                     gtk.RESPONSE_CANCEL,
+                     gtk.STOCK_APPLY,
+                     gtk.RESPONSE_OK))
+        dbpath = config.get('behavior.database-path')
+        if not dbpath:
+            dbpath = os.path.join(os.environ['HOME'], '.gramps','grampsdb')
+        f.set_current_folder(os.path.dirname(dbpath))
+
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            val = Utils.get_unicode_path_from_file_chooser(f.get_filename())
+            if val:
+                self.dbpath_entry.set_text(val)
         f.destroy()
 
     def update_idformat_entry(self, obj, constant):

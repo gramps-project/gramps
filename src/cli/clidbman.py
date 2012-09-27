@@ -195,26 +195,26 @@ class CLIDbManager(object):
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         dbdir = dbdir.encode(sys.getfilesystemencoding())
-        make_dbdir(dbdir)
+        db_ok = make_dbdir(dbdir)
 
         self.current_names = []
-        
-        for dpath in os.listdir(dbdir):
-            dirpath = os.path.join(dbdir, dpath)
-            path_name = os.path.join(dirpath, NAME_FILE)
-            if os.path.isfile(path_name):
-                name = file(path_name).readline().strip()
+        if db_ok:
+            for dpath in os.listdir(dbdir):
+                dirpath = os.path.join(dbdir, dpath)
+                path_name = os.path.join(dirpath, NAME_FILE)
+                if os.path.isfile(path_name):
+                    name = file(path_name).readline().strip()
 
-                (tval, last) = time_val(dirpath)
-                (enable, stock_id) = self.icon_values(dirpath, self.active, 
-                                                 self.dbstate.db.is_open())
+                    (tval, last) = time_val(dirpath)
+                    (enable, stock_id) = self.icon_values(dirpath, self.active, 
+                                                     self.dbstate.db.is_open())
 
-                if (stock_id == 'gramps-lock'):
-                    last = find_locker_name(dirpath)
+                    if (stock_id == 'gramps-lock'):
+                        last = find_locker_name(dirpath)
 
-                self.current_names.append(
-                    (name, os.path.join(dbdir, dpath), path_name,
-                     last, tval, enable, stock_id))
+                    self.current_names.append(
+                        (name, os.path.join(dbdir, dpath), path_name,
+                         last, tval, enable, stock_id))
 
         self.current_names.sort()
 
@@ -395,7 +395,11 @@ def make_dbdir(dbdir):
             os.makedirs(dbdir)
     except (IOError, OSError), msg:
         msg = unicode(str(msg), sys.getfilesystemencoding())
-        LOG.error(_("Could not make database directory: ") + msg)
+        LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
+                    "Open preferences and set correct database path.\n\n"
+                    "Details: Could not make database directory:\n    %s\n\n") % msg)
+        return False
+    return True
 
 def find_next_db_name(name_list):
     """
