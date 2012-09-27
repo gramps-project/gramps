@@ -24,14 +24,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-17 07:19+0200\n"
-"PO-Revision-Date: 2012-09-17 07:24+0100\n"
-"Last-Translator: Jérôme Rapinat <romjerome@yahoo.fr>\n"
+"POT-Creation-Date: 2012-09-27 16:17+0200\n"
+"PO-Revision-Date: 2012-09-27 16:35+0100\n"
+"Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338
@@ -654,7 +654,7 @@ msgstr ""
 #: ../src/Utils.py:1660
 #: ../src/Utils.py:1666
 #: ../src/Utils.py:1671
-#: ../src/cli/clidbman.py:469
+#: ../src/cli/clidbman.py:473
 #: ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58
@@ -685,7 +685,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
-#: ../src/plugins/tool/Check.py:1959
+#: ../src/plugins/tool/Check.py:1958
 #: ../src/plugins/view/geofamily.py:403
 #: ../src/plugins/view/geoperson.py:450
 #: ../src/plugins/view/relview.py:450
@@ -1427,7 +1427,7 @@ msgstr "Valeur"
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917
 #: ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1126
+#: ../src/gui/configure.py:1133
 msgid "Family Tree"
 msgstr "Arbre familial"
 
@@ -2174,99 +2174,116 @@ msgstr "Erreur : format non-reconnu pour le fichier %s à exporter"
 msgid "List of known family trees in your database path\n"
 msgstr "Liste des arbres familiaux connus dans votre chemin de base de données\n"
 
-#: ../src/cli/arghandler.py:405
+#: ../src/cli/arghandler.py:406
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s avec le nom « %(f_t_name)s »"
 
-#: ../src/cli/arghandler.py:411
+#: ../src/cli/arghandler.py:412
 msgid "Gramps Family Trees:"
 msgstr "Arbres généalogiques Gramps :"
 
 #: ../src/cli/arghandler.py:415
+#: ../src/cli/arghandler.py:417
+#: ../src/cli/arghandler.py:421
+#: ../src/cli/clidbman.py:185
+msgid "Family tree"
+msgstr "Arbre familial"
+
+#: ../src/cli/arghandler.py:416
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Arbre familial « %s » :"
 
-#: ../src/cli/arghandler.py:425
+#: ../src/cli/arghandler.py:419
+#: ../src/cli/clidbman.py:186
+#: ../src/gui/editors/displaytabs/webembedlist.py:66
+#: ../src/plugins/view/mediaview.py:96
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
+#: ../src/glade/editmedia.glade.h:10
+#: ../src/glade/editmediaref.glade.h:17
+msgid "Path"
+msgstr "Chemin"
+
+#: ../src/cli/arghandler.py:430
 #, python-format
 msgid "Performing action: %s."
 msgstr "Action demandée : %s."
 
-#: ../src/cli/arghandler.py:427
+#: ../src/cli/arghandler.py:432
 #, python-format
 msgid "Using options string: %s"
 msgstr "Utilisation de la chaîne d'options : %s"
 
 # Substantif (GNOME fr)
-#: ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:440
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportation : fichier %(filename)s, format %(format)s."
 
-#: ../src/cli/arghandler.py:443
+#: ../src/cli/arghandler.py:448
 msgid "Exiting."
 msgstr "Sortie."
 
-#: ../src/cli/arghandler.py:447
+#: ../src/cli/arghandler.py:452
 msgid "Cleaning up."
 msgstr "Nettoyage."
 
-#: ../src/cli/arghandler.py:477
+#: ../src/cli/arghandler.py:482
 msgid "Created empty family tree successfully"
 msgstr "Arbre familial vide créé avec succès"
 
-#: ../src/cli/arghandler.py:480
-#: ../src/cli/arghandler.py:507
+#: ../src/cli/arghandler.py:485
+#: ../src/cli/arghandler.py:512
 msgid "Error opening the file."
 msgstr "Erreur à l'ouverture du fichier."
 
-#: ../src/cli/arghandler.py:481
-#: ../src/cli/arghandler.py:508
+#: ../src/cli/arghandler.py:486
+#: ../src/cli/arghandler.py:513
 msgid "Exiting..."
 msgstr "Sortie..."
 
 # Substantif (GNOME fr)
-#: ../src/cli/arghandler.py:487
+#: ../src/cli/arghandler.py:492
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importation : fichier %(filename)s, format %(format)s."
 
 # trunk
-#: ../src/cli/arghandler.py:505
+#: ../src/cli/arghandler.py:510
 msgid "Opened successfully!"
 msgstr "Ouverture réussie !"
 
-#: ../src/cli/arghandler.py:519
+#: ../src/cli/arghandler.py:524
 msgid "Database is locked, cannot open it!"
 msgstr "La base de données est verrouillée, impossible de l'ouvrir !"
 
-#: ../src/cli/arghandler.py:520
+#: ../src/cli/arghandler.py:525
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info : %s"
 
-#: ../src/cli/arghandler.py:523
+#: ../src/cli/arghandler.py:528
 msgid "Database needs recovery, cannot open it!"
 msgstr "La base de données doit être réparée, impossible de l'ouvrir !"
 
-#: ../src/cli/arghandler.py:580
-#: ../src/cli/arghandler.py:627
+#: ../src/cli/arghandler.py:585
+#: ../src/cli/arghandler.py:632
 msgid "Ignoring invalid options string."
 msgstr "Ignore la chaîne d'options invalide."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:603
+#: ../src/cli/arghandler.py:608
 msgid "Unknown report name."
 msgstr "Nom de rapport inconnu."
 
-#: ../src/cli/arghandler.py:605
+#: ../src/cli/arghandler.py:610
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr "Nom de rapport absent. Utilisez %(donottranslate)s=reportname."
 
-#: ../src/cli/arghandler.py:609
-#: ../src/cli/arghandler.py:650
+#: ../src/cli/arghandler.py:614
+#: ../src/cli/arghandler.py:655
 #, python-format
 msgid ""
 "%s\n"
@@ -2275,16 +2292,16 @@ msgstr ""
 "%s\n"
 " Les noms disponibles sont :"
 
-#: ../src/cli/arghandler.py:644
+#: ../src/cli/arghandler.py:649
 msgid "Unknown tool name."
 msgstr "Nom d'outil inconnu."
 
-#: ../src/cli/arghandler.py:646
+#: ../src/cli/arghandler.py:651
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr "Nom d'outil absent. Utilisez %(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:662
+#: ../src/cli/arghandler.py:667
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Action inconnue : %s."
@@ -2461,6 +2478,34 @@ msgstr ""
 "ERREUR : %s \n"
 "         %s"
 
+#: ../src/cli/clidbman.py:179
+msgid "Number of people"
+msgstr "Nombre d'individus"
+
+#: ../src/cli/clidbman.py:181
+#: ../src/cli/clidbman.py:183
+msgid "Locked?"
+msgstr "Verrouillé ?"
+
+#: ../src/cli/clidbman.py:181
+msgid "yes"
+msgstr "oui"
+
+# The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
+#: ../src/cli/clidbman.py:183
+msgid "no"
+msgstr "non"
+
+# trunk
+#: ../src/cli/clidbman.py:184
+msgid "DB version"
+msgstr "Version DB"
+
+#: ../src/cli/clidbman.py:187
+#: ../src/gui/dbman.py:287
+msgid "Last accessed"
+msgstr "Dernier accès"
+
 # Substantif (GNOME fr)
 #: ../src/cli/clidbman.py:241
 #, python-format
@@ -2483,16 +2528,32 @@ msgid "Could not rename family tree"
 msgstr "Impossible de renommer l'arbre familial"
 
 #: ../src/cli/clidbman.py:398
-msgid "Could not make database directory: "
-msgstr "Impossible de créer le répertoire de la base de données : "
+#, python-format
+msgid ""
+"\n"
+"ERROR: Wrong database path in Edit Menu->Preferences.\n"
+"Open preferences and set correct database path.\n"
+"\n"
+"Details: Could not make database directory:\n"
+"    %s\n"
+"\n"
+msgstr ""
+"\n"
+"ERREUR : mauvais chemin de base de données dans\n"
+"le menu Édition -> Préférences.\n"
+"Ouvrez les préférences et définissez un bon chemin.\n"
+"\n"
+"Détails : impossible de créer le chemin de base de données:\n"
+"    %s\n"
+"\n"
 
-#: ../src/cli/clidbman.py:446
+#: ../src/cli/clidbman.py:450
 #: ../src/gui/configure.py:1070
 msgid "Never"
 msgstr "Jamais"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:466
+#: ../src/cli/clidbman.py:470
 #, python-format
 msgid "Locked by %s"
 msgstr "Verrouillé par %s"
@@ -3000,7 +3061,7 @@ msgstr "Heure"
 
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:70
-#: ../src/plugins/tool/Check.py:2005
+#: ../src/plugins/tool/Check.py:2004
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:161
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:160
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:217
@@ -3895,7 +3956,7 @@ msgstr "Note sur la référence du medium"
 msgid "Child Reference Note"
 msgstr "Note sur la référence de l'enfant"
 
-#: ../src/gen/lib/person.py:450
+#: ../src/gen/lib/person.py:457
 msgid "Merged Gramps ID"
 msgstr "ID Gramps fusionné"
 
@@ -4734,7 +4795,7 @@ msgstr " Éditeur de noms"
 
 #: ../src/gui/configure.py:130
 #: ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1204
+#: ../src/gui/configure.py:1235
 #: ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Préférences"
@@ -5117,17 +5178,21 @@ msgid "Check now"
 msgstr "Vérifier maintenant"
 
 #  L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1120
+#: ../src/gui/configure.py:1122
 msgid "Family Tree Database path"
 msgstr "Répertoire des bases de données "
 
-#: ../src/gui/configure.py:1123
+#: ../src/gui/configure.py:1130
 msgid "Automatically load last family tree"
 msgstr "Charger automatiquement le dernier arbre familial"
 
-#: ../src/gui/configure.py:1136
+#: ../src/gui/configure.py:1143
 msgid "Select media directory"
 msgstr "Sélectionner un répertoire media"
+
+#: ../src/gui/configure.py:1167
+msgid "Select database directory"
+msgstr "Sélectionner le répertoire de la base de données"
 
 #: ../src/gui/dbloader.py:117
 #: ../src/gui/plug/tool.py:110
@@ -5246,10 +5311,6 @@ msgstr "Nom de l'arbre familial"
 #: ../src/plugins/webreport/NarrativeWeb.py:1151
 msgid "Status"
 msgstr "Statut"
-
-#: ../src/gui/dbman.py:287
-msgid "Last accessed"
-msgstr "Dernier accès"
 
 #: ../src/gui/dbman.py:369
 #, python-format
@@ -7785,6 +7846,21 @@ msgstr "_Références"
 msgid "Edit reference"
 msgstr "Éditer la référence"
 
+#: ../src/gui/editors/displaytabs/backreflist.py:169
+msgid ""
+"Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editor on the same source. \n"
+"\n"
+"To edit the citation, close the source editor and open an editor for the citation alone"
+msgstr ""
+"Impossible d'ouvrir l'éditeur de citation pour l'instant. Soit la citation est déjà en train d'être éditée, soit la source associée est éditée, ouvrir l'éditeur de citation (qui permet également l'édition de la source), va créer un problème avec deux éditeurs pour la même source.\n"
+"\n"
+"Pour éditer la citation, fermez l'éditeur de source et ouvrez un éditeur pour une seule citation."
+
+# trunk
+#: ../src/gui/editors/displaytabs/backreflist.py:182
+msgid "Cannot open new citation editor"
+msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
+
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
 msgid "%(part1)s - %(part2)s"
@@ -8380,14 +8456,6 @@ msgstr "Déplacer l'adresse internet sélectionnée vers le bas"
 #: ../src/gui/editors/displaytabs/webembedlist.py:59
 msgid "Jump to the selected web address"
 msgstr "Aller à l'adresse internet sélectionnée"
-
-#: ../src/gui/editors/displaytabs/webembedlist.py:66
-#: ../src/plugins/view/mediaview.py:96
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
-#: ../src/glade/editmedia.glade.h:10
-#: ../src/glade/editmediaref.glade.h:17
-msgid "Path"
-msgstr "Chemin"
 
 #: ../src/gui/editors/displaytabs/webembedlist.py:72
 msgid "_Internet"
@@ -11865,7 +11933,7 @@ msgid "No families matched by selected filter"
 msgstr "Aucune famille ne correspondent au filtre sélectionné"
 
 #: ../src/plugins/export/ExportPkg.py:166
-#: ../src/plugins/tool/Check.py:665
+#: ../src/plugins/tool/Check.py:664
 msgid "Select file"
 msgstr "Sélectionner un fichier"
 
@@ -14396,8 +14464,8 @@ msgstr "Importation GeneWeb"
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
-#: ../src/plugins/import/ImportXml.py:421
-#: ../src/plugins/import/ImportXml.py:424
+#: ../src/plugins/import/ImportXml.py:433
+#: ../src/plugins/import/ImportXml.py:436
 #, python-format
 msgid "%s could not be opened"
 msgstr "Ouverture impossible de %s"
@@ -14548,110 +14616,110 @@ msgstr "%(event_name)s de %(person)s"
 msgid "Error reading %s"
 msgstr "Erreur de lecture de %s"
 
-#: ../src/plugins/import/ImportXml.py:140
+#: ../src/plugins/import/ImportXml.py:141
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Ce fichier est probablement corrompu ou n'est pas une base Gramps valide."
 
-#: ../src/plugins/import/ImportXml.py:247
+#: ../src/plugins/import/ImportXml.py:254
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:253
+#: ../src/plugins/import/ImportXml.py:260
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Famille %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:256
+#: ../src/plugins/import/ImportXml.py:263
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Source %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:259
+#: ../src/plugins/import/ImportXml.py:266
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Événement %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:262
+#: ../src/plugins/import/ImportXml.py:269
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Objet Medium %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:265
+#: ../src/plugins/import/ImportXml.py:272
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Lieu %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:268
+#: ../src/plugins/import/ImportXml.py:275
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Dépôt %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:271
+#: ../src/plugins/import/ImportXml.py:278
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Note %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:276
+#: ../src/plugins/import/ImportXml.py:283
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Citation %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:284
+#: ../src/plugins/import/ImportXml.py:291
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Individus : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:285
+#: ../src/plugins/import/ImportXml.py:292
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Familles : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:286
+#: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Sources : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:287
+#: ../src/plugins/import/ImportXml.py:294
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Événements : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:288
+#: ../src/plugins/import/ImportXml.py:295
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Objets Media : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:289
+#: ../src/plugins/import/ImportXml.py:296
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Lieux : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:290
+#: ../src/plugins/import/ImportXml.py:297
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Dépôts : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:291
+#: ../src/plugins/import/ImportXml.py:298
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Notes : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:292
+#: ../src/plugins/import/ImportXml.py:299
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Étiquettes : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:293
+#: ../src/plugins/import/ImportXml.py:300
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "  Citations : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:295
+#: ../src/plugins/import/ImportXml.py:302
 msgid "Number of new objects imported:\n"
 msgstr "Nombre de nouveaux objets importés :\n"
 
-#: ../src/plugins/import/ImportXml.py:304
+#: ../src/plugins/import/ImportXml.py:311
 #, python-format
 msgid ""
 "\n"
@@ -14670,7 +14738,7 @@ msgstr ""
 "du nombre de parenthèses. Où ces objets\n"
 "'Inconnu' ont été référencés par la note %s.\n"
 
-#: ../src/plugins/import/ImportXml.py:312
+#: ../src/plugins/import/ImportXml.py:319
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -14684,7 +14752,7 @@ msgstr ""
 "relatifs par rapport au répertoire défini dans les\n"
 "préférences, ou, si absent, le répertoire utilisateur.\n"
 
-#: ../src/plugins/import/ImportXml.py:323
+#: ../src/plugins/import/ImportXml.py:330
 msgid ""
 "\n"
 "\n"
@@ -14695,31 +14763,31 @@ msgstr ""
 "Candidats à la fusion :\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:762
-#: ../src/plugins/import/ImportXml.py:1194
-#: ../src/plugins/import/ImportXml.py:1444
-#: ../src/plugins/import/ImportXml.py:1819
+#: ../src/plugins/import/ImportXml.py:774
+#: ../src/plugins/import/ImportXml.py:1207
+#: ../src/plugins/import/ImportXml.py:1457
+#: ../src/plugins/import/ImportXml.py:1832
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Le fichier Gramps Xml que vous tentez d'importer est malformé."
 
-#: ../src/plugins/import/ImportXml.py:763
+#: ../src/plugins/import/ImportXml.py:775
 msgid "Attributes that link the data together are missing."
 msgstr "Les attributs qui lient les données sont absents."
 
-#: ../src/plugins/import/ImportXml.py:867
+#: ../src/plugins/import/ImportXml.py:879
 msgid "Gramps XML import"
 msgstr "Importation XML Gramps"
 
-#: ../src/plugins/import/ImportXml.py:897
+#: ../src/plugins/import/ImportXml.py:909
 msgid "Could not change media path"
 msgstr "Impossible de changer le chemin media"
 
-#: ../src/plugins/import/ImportXml.py:898
+#: ../src/plugins/import/ImportXml.py:910
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
 
-#: ../src/plugins/import/ImportXml.py:954
+#: ../src/plugins/import/ImportXml.py:967
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -14729,11 +14797,11 @@ msgstr ""
 "\n"
 "Votre fichier ne sera pas importé."
 
-#: ../src/plugins/import/ImportXml.py:957
+#: ../src/plugins/import/ImportXml.py:970
 msgid "Import file misses Gramps version"
 msgstr "Le numéro de version Gramps est manquant sur le fichier importé"
 
-#: ../src/plugins/import/ImportXml.py:959
+#: ../src/plugins/import/ImportXml.py:972
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
@@ -14743,16 +14811,16 @@ msgstr ""
 "\n"
 "Votre fichier ne sera pas importé."
 
-#: ../src/plugins/import/ImportXml.py:962
+#: ../src/plugins/import/ImportXml.py:975
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Le fichier importé a un espace de nommage XML non-accepté"
 
-#: ../src/plugins/import/ImportXml.py:965
+#: ../src/plugins/import/ImportXml.py:978
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
-#: ../src/plugins/import/ImportXml.py:973
+#: ../src/plugins/import/ImportXml.py:986
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -14769,11 +14837,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "pour plus d'informations."
 
-#: ../src/plugins/import/ImportXml.py:985
+#: ../src/plugins/import/ImportXml.py:998
 msgid "The file will not be imported"
 msgstr "Le fichier n'a pas pu être importé"
 
-#: ../src/plugins/import/ImportXml.py:987
+#: ../src/plugins/import/ImportXml.py:1000
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -14790,45 +14858,60 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "pour plus d'informations."
 
-#: ../src/plugins/import/ImportXml.py:1000
+#: ../src/plugins/import/ImportXml.py:1013
 msgid "Old xml file"
 msgstr "Ancien fichier xml"
 
-#: ../src/plugins/import/ImportXml.py:1115
-#: ../src/plugins/import/ImportXml.py:2465
+#: ../src/plugins/import/ImportXml.py:1128
+#: ../src/plugins/import/ImportXml.py:2478
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin : %s"
 
-#: ../src/plugins/import/ImportXml.py:1195
+#: ../src/plugins/import/ImportXml.py:1208
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Toute référence à un événement doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:1445
+#: ../src/plugins/import/ImportXml.py:1458
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Toute référence à un individu doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:1606
+#: ../src/plugins/import/ImportXml.py:1619
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Votre arbre familial groupe le nom \"%(key)s\" avec \"%(parent)s\", ne pas modifier ce regroupement par \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1609
+#: ../src/plugins/import/ImportXml.py:1622
 msgid "Gramps ignored namemap value"
 msgstr "Groupement de noms ignorés"
 
-#: ../src/plugins/import/ImportXml.py:1668
+#: ../src/plugins/import/ImportXml.py:1681
 msgid "Unknown when imported"
 msgstr "Inconnu lors de l'importation"
 
-#: ../src/plugins/import/ImportXml.py:1820
+#: ../src/plugins/import/ImportXml.py:1833
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Toute référence à la note doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:2356
+#: ../src/plugins/import/ImportXml.py:2369
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin : %s"
+
+#: ../src/plugins/import/ImportXml.py:2996
+#, python-format
+msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
+msgstr "Erreur : la référence famille '%(family)s' père '%(father)s' est manquante. Cette référence a été ajoutée."
+
+#: ../src/plugins/import/ImportXml.py:3012
+#, python-format
+msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
+msgstr "Erreur : la référence famille '%(family)s' mère '%(mother)s' est manquante. Cette référence a été ajoutée."
+
+#: ../src/plugins/import/ImportXml.py:3034
+#, python-format
+msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
+msgstr "Erreur : la référence famille '%(family)s' enfant '%(child)s' est manquante. Cette référence a été ajoutée."
 
 #: ../src/plugins/lib/libgedcom.py:1721
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -14839,59 +14922,59 @@ msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2550
-#: ../src/plugins/lib/libgedcom.py:2903
+#: ../src/plugins/lib/libgedcom.py:2551
+#: ../src/plugins/lib/libgedcom.py:2904
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2572
+#: ../src/plugins/lib/libgedcom.py:2573
 msgid "GEDCOM import report: No errors detected"
 msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2574
+#: ../src/plugins/lib/libgedcom.py:2575
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
 # limite à 32 caractères !
-#: ../src/plugins/lib/libgedcom.py:2826
+#: ../src/plugins/lib/libgedcom.py:2827
 msgid "Tag recognised but not supported"
 msgstr "Reconnu mais non-supporté (TAG)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2837
+#: ../src/plugins/lib/libgedcom.py:2838
 msgid "Line ignored as not understood"
 msgstr "Ligne ignorée car non-comprise"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2862
+#: ../src/plugins/lib/libgedcom.py:2863
 msgid "Skipped subordinate line"
 msgstr "Ligne suivante ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2894
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Records not imported into "
 msgstr "Enregistrements non-importés dans "
 
-#: ../src/plugins/lib/libgedcom.py:2929
+#: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
 msgstr "Erreur : %(msg)s  '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement synthétisé"
 
-#: ../src/plugins/lib/libgedcom.py:2938
+#: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
 msgstr "Erreur : %(msg)s '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement avec le type d'attribut 'Inconnu' créé"
 
-#: ../src/plugins/lib/libgedcom.py:2977
+#: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Erreur: famille '%(family)s' (saisie comme @%(orig_family)s@) individu %(person)s (saisi comme %(orig_person)s) n'est pas un membre d'une famille référencée. La référence de la famille a été enlevée pour cet individu"
 
-#: ../src/plugins/lib/libgedcom.py:3033
+#: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
 msgid ""
 "\n"
@@ -14909,63 +14992,63 @@ msgstr ""
 "par la note %s.\n"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3051
+#: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer-piste)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3080
+#: ../src/plugins/lib/libgedcom.py:3103
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Soumetteur) : @%s@"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3104
-#: ../src/plugins/lib/libgedcom.py:6559
+#: ../src/plugins/lib/libgedcom.py:3127
+#: ../src/plugins/lib/libgedcom.py:6612
 msgid "GEDCOM data"
 msgstr "Donnée GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3150
+#: ../src/plugins/lib/libgedcom.py:3173
 msgid "Unknown tag"
 msgstr "Balise inconnue"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3152
-#: ../src/plugins/lib/libgedcom.py:3166
-#: ../src/plugins/lib/libgedcom.py:3170
-#: ../src/plugins/lib/libgedcom.py:3191
+#: ../src/plugins/lib/libgedcom.py:3175
+#: ../src/plugins/lib/libgedcom.py:3189
+#: ../src/plugins/lib/libgedcom.py:3193
+#: ../src/plugins/lib/libgedcom.py:3214
 msgid "Top Level"
 msgstr "Niveau supérieur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3260
+#: ../src/plugins/lib/libgedcom.py:3283
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (individu) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3454
-#: ../src/plugins/lib/libgedcom.py:4749
-#: ../src/plugins/lib/libgedcom.py:4952
-#: ../src/plugins/lib/libgedcom.py:5083
-#: ../src/plugins/lib/libgedcom.py:5708
-#: ../src/plugins/lib/libgedcom.py:5845
+#: ../src/plugins/lib/libgedcom.py:3477
+#: ../src/plugins/lib/libgedcom.py:4778
+#: ../src/plugins/lib/libgedcom.py:4987
+#: ../src/plugins/lib/libgedcom.py:5124
+#: ../src/plugins/lib/libgedcom.py:5755
+#: ../src/plugins/lib/libgedcom.py:5898
 msgid "Filename omitted"
 msgstr "Nom de fichier ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3456
-#: ../src/plugins/lib/libgedcom.py:4751
-#: ../src/plugins/lib/libgedcom.py:4954
-#: ../src/plugins/lib/libgedcom.py:5085
-#: ../src/plugins/lib/libgedcom.py:5710
-#: ../src/plugins/lib/libgedcom.py:5847
+#: ../src/plugins/lib/libgedcom.py:3479
+#: ../src/plugins/lib/libgedcom.py:4780
+#: ../src/plugins/lib/libgedcom.py:4989
+#: ../src/plugins/lib/libgedcom.py:5126
+#: ../src/plugins/lib/libgedcom.py:5757
+#: ../src/plugins/lib/libgedcom.py:5900
 msgid "Form omitted"
 msgstr "Forme ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:4521
+#: ../src/plugins/lib/libgedcom.py:4544
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (famille) Gramps ID %s"
@@ -14974,239 +15057,239 @@ msgstr "FAM (famille) Gramps ID %s"
 # limite à 32 caractères !
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5234
+#: ../src/plugins/lib/libgedcom.py:5275
 msgid "Empty event note ignored"
 msgstr "Note vide ignorée (événement)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5551
-#: ../src/plugins/lib/libgedcom.py:6362
+#: ../src/plugins/lib/libgedcom.py:5592
+#: ../src/plugins/lib/libgedcom.py:6415
 msgid "Warn: ADDR overwritten"
 msgstr "Attention : ADDR réécrite"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5722
-#: ../src/plugins/lib/libgedcom.py:6104
+#: ../src/plugins/lib/libgedcom.py:5769
+#: ../src/plugins/lib/libgedcom.py:6157
 msgid "REFN ignored"
 msgstr "REFN ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5814
+#: ../src/plugins/lib/libgedcom.py:5861
 #, python-format
 msgid "No title - ID %s"
 msgstr "Aucun titre - ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5819
+#: ../src/plugins/lib/libgedcom.py:5866
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6030
+#: ../src/plugins/lib/libgedcom.py:6083
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (objet multimédia) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6058
-#: ../src/plugins/lib/libgedcom.py:7052
+#: ../src/plugins/lib/libgedcom.py:6111
+#: ../src/plugins/lib/libgedcom.py:7105
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6094
+#: ../src/plugins/lib/libgedcom.py:6147
 msgid "BLOB ignored"
 msgstr "BLOB ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6114
+#: ../src/plugins/lib/libgedcom.py:6167
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6124
+#: ../src/plugins/lib/libgedcom.py:6177
 msgid "Mutimedia RIN ignored"
 msgstr "RIN multimedia ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6211
+#: ../src/plugins/lib/libgedcom.py:6264
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (dépôt) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6487
+#: ../src/plugins/lib/libgedcom.py:6540
 msgid "Head (header)"
 msgstr "En-tête (header)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6503
+#: ../src/plugins/lib/libgedcom.py:6556
 msgid "Approved system identification"
 msgstr "Système d'identification approuvé"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6513
+#: ../src/plugins/lib/libgedcom.py:6566
 msgid "Generated by"
 msgstr "Généré par"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6527
+#: ../src/plugins/lib/libgedcom.py:6580
 msgid "Name of software product"
 msgstr "Nom du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6539
+#: ../src/plugins/lib/libgedcom.py:6592
 msgid "Version number of software product"
 msgstr "Numéro de version du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6556
+#: ../src/plugins/lib/libgedcom.py:6609
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Entreprise produisant : %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6577
+#: ../src/plugins/lib/libgedcom.py:6630
 msgid "Name of source data"
 msgstr "Nom de la source des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6591
+#: ../src/plugins/lib/libgedcom.py:6644
 msgid "Copyright of source data"
 msgstr "Droit à la copie des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6605
+#: ../src/plugins/lib/libgedcom.py:6658
 msgid "Publication date of source data"
 msgstr "Date de publication des données"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6618
+#: ../src/plugins/lib/libgedcom.py:6671
 #, python-format
 msgid "Import from %s"
 msgstr "Importé depuis %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6656
+#: ../src/plugins/lib/libgedcom.py:6709
 msgid "Submission record identifier"
 msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6667
+#: ../src/plugins/lib/libgedcom.py:6720
 msgid "Language of GEDCOM text"
 msgstr "Language du texte GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6691
+#: ../src/plugins/lib/libgedcom.py:6744
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libgedcom.py:6694
+#: ../src/plugins/lib/libgedcom.py:6747
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6717
+#: ../src/plugins/lib/libgedcom.py:6770
 msgid "Character set"
 msgstr "Encodage du caractère"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6719
+#: ../src/plugins/lib/libgedcom.py:6772
 msgid "Character set and version"
 msgstr "Encodage du caractère et la version"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6735
+#: ../src/plugins/lib/libgedcom.py:6788
 msgid "GEDCOM version not supported"
 msgstr "Version du GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6738
+#: ../src/plugins/lib/libgedcom.py:6791
 msgid "GEDCOM version"
 msgstr "Version du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6741
+#: ../src/plugins/lib/libgedcom.py:6794
 msgid "GEDCOM form not supported"
 msgstr "Forme de GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6743
+#: ../src/plugins/lib/libgedcom.py:6796
 msgid "GEDCOM form"
 msgstr "Forme de GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6789
+#: ../src/plugins/lib/libgedcom.py:6842
 msgid "Creation date of GEDCOM"
 msgstr "Date de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6793
+#: ../src/plugins/lib/libgedcom.py:6846
 msgid "Creation date and time of GEDCOM"
 msgstr "Date et heure de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6830
-#: ../src/plugins/lib/libgedcom.py:6867
+#: ../src/plugins/lib/libgedcom.py:6883
+#: ../src/plugins/lib/libgedcom.py:6920
 msgid "Empty note ignored"
 msgstr "Note vide ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6882
+#: ../src/plugins/lib/libgedcom.py:6935
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6932
+#: ../src/plugins/lib/libgedcom.py:6985
 msgid "Submission: Submitter"
 msgstr "Soumission : soumetteur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6934
+#: ../src/plugins/lib/libgedcom.py:6987
 msgid "Submission: Family file"
 msgstr "Soumission : fichier de famille"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6936
+#: ../src/plugins/lib/libgedcom.py:6989
 msgid "Submission: Temple code"
 msgstr "Soumission : code du temple (LDS)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6938
+#: ../src/plugins/lib/libgedcom.py:6991
 msgid "Submission: Generations of ancestors"
 msgstr "Soumission : générations d'ascendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6940
+#: ../src/plugins/lib/libgedcom.py:6993
 msgid "Submission: Generations of descendants"
 msgstr "Soumission : générations de descendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6942
+#: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
 msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7154
+#: ../src/plugins/lib/libgedcom.py:7207
 msgid "Invalid temple code"
 msgstr "Code de temple invalide"
 
-#: ../src/plugins/lib/libgedcom.py:7235
+#: ../src/plugins/lib/libgedcom.py:7288
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:7238
+#: ../src/plugins/lib/libgedcom.py:7291
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:7301
+#: ../src/plugins/lib/libgedcom.py:7354
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -18789,11 +18872,11 @@ msgstr "Remplacer '%(map)s' par =>"
 msgid "Center on this place"
 msgstr "Centrer sur ce lieu"
 
-#: ../src/plugins/lib/maps/geography.py:976
+#: ../src/plugins/lib/maps/geography.py:980
 msgid "You have at least two places with the same title."
 msgstr "Vous avez au moins deux lieux avec le même nom."
 
-#: ../src/plugins/lib/maps/geography.py:977
+#: ../src/plugins/lib/maps/geography.py:981
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -18810,19 +18893,19 @@ msgstr ""
 "\n"
 "<b>On ne peut accéder à votre requête</b>.\n"
 
-#: ../src/plugins/lib/maps/geography.py:1096
+#: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
 msgstr "Rien pour cette vue."
 
-#: ../src/plugins/lib/maps/geography.py:1097
+#: ../src/plugins/lib/maps/geography.py:1101
 msgid "Specific parameters"
 msgstr "Paramètres spécifiques"
 
-#: ../src/plugins/lib/maps/geography.py:1111
+#: ../src/plugins/lib/maps/geography.py:1115
 msgid "Where to save the tiles for offline mode."
 msgstr "Où stocker les tuiles en mode hors ligne."
 
-#: ../src/plugins/lib/maps/geography.py:1116
+#: ../src/plugins/lib/maps/geography.py:1120
 msgid ""
 "If you have no more space in your file system\n"
 "You can remove all tiles placed in the above path.\n"
@@ -18833,7 +18916,7 @@ msgstr ""
 "Soyez prudent(e) ! Si vous n'avez pas internet, vous n'aurez\n"
 "pas de carte."
 
-#: ../src/plugins/lib/maps/geography.py:1121
+#: ../src/plugins/lib/maps/geography.py:1125
 msgid "Zoom used when centering"
 msgstr "Zoom utilisé pour centrer"
 
@@ -18842,7 +18925,7 @@ msgstr "Zoom utilisé pour centrer"
 #. perhaps we need some contrôl on this path :
 #. should begin with : /home, /opt, /map, ...
 #. configdialog.add_button(table, '', 4, 'geography.clean')
-#: ../src/plugins/lib/maps/geography.py:1130
+#: ../src/plugins/lib/maps/geography.py:1134
 msgid "The map"
 msgstr "La carte"
 
@@ -21254,15 +21337,15 @@ msgid "Looking for broken family links"
 msgstr "Recherche de liens familiaux brisés"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:591
+#: ../src/plugins/tool/Check.py:590
 msgid "Looking for unused objects"
 msgstr "Recherche d'objets non-référencés"
 
-#: ../src/plugins/tool/Check.py:697
+#: ../src/plugins/tool/Check.py:696
 msgid "Media object could not be found"
 msgstr "L'objet medium est introuvable"
 
-#: ../src/plugins/tool/Check.py:698
+#: ../src/plugins/tool/Check.py:697
 #, python-format
 msgid ""
 "The file:\n"
@@ -21274,256 +21357,256 @@ msgstr ""
 "est référencé dans la base mais n'existe plus. Le fichier a sans doute été effacé ou déplacé. Vous pouvez choisir de retirer la référence de la base, de garder la référence à un fichier absent ou de sélectionner un nouveau fichier."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:775
+#: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty people records"
 msgstr "Recherche d'individus vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:783
+#: ../src/plugins/tool/Check.py:782
 msgid "Looking for empty family records"
 msgstr "Recherche de familles vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:791
+#: ../src/plugins/tool/Check.py:790
 msgid "Looking for empty event records"
 msgstr "Recherche de problèmes dans les événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:799
+#: ../src/plugins/tool/Check.py:798
 msgid "Looking for empty source records"
 msgstr "Recherche de problèmes dans les sources"
 
 # Substantif (GNOME fr)
 # trunk
-#: ../src/plugins/tool/Check.py:807
+#: ../src/plugins/tool/Check.py:806
 msgid "Looking for empty citation records"
 msgstr "Recherche de citations vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:815
+#: ../src/plugins/tool/Check.py:814
 msgid "Looking for empty place records"
 msgstr "Recherche de problèmes dans les lieux"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:823
+#: ../src/plugins/tool/Check.py:822
 msgid "Looking for empty media records"
 msgstr "Recherche de problèmes dans les objets media"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:831
+#: ../src/plugins/tool/Check.py:830
 msgid "Looking for empty repository records"
 msgstr "Recherche de problèmes dans les dépôts"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:839
+#: ../src/plugins/tool/Check.py:838
 msgid "Looking for empty note records"
 msgstr "Recherche de notes vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:885
+#: ../src/plugins/tool/Check.py:884
 msgid "Looking for empty families"
 msgstr "Recherche de familles vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:920
+#: ../src/plugins/tool/Check.py:919
 msgid "Looking for broken parent relationships"
 msgstr "Recherche de relations parentales brisées"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:957
+#: ../src/plugins/tool/Check.py:956
 msgid "Looking for event problems"
 msgstr "Recherche de problèmes pour les événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1121
+#: ../src/plugins/tool/Check.py:1120
 msgid "Looking for person reference problems"
 msgstr "Recherche de problèmes dans la référence de l'individu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1151
+#: ../src/plugins/tool/Check.py:1150
 msgid "Looking for family reference problems"
 msgstr "Recherche de problèmes dans la référence de la famille"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1175
+#: ../src/plugins/tool/Check.py:1174
 msgid "Looking for repository reference problems"
 msgstr "Recherche de problèmes dans la référence de dépôt"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1206
+#: ../src/plugins/tool/Check.py:1205
 msgid "Looking for place reference problems"
 msgstr "Recherche de problèmes dans la référence du lieu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1286
+#: ../src/plugins/tool/Check.py:1285
 msgid "Looking for citation reference problems"
 msgstr "Recherche de problèmes dans la référence de la citation"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1415
+#: ../src/plugins/tool/Check.py:1414
 msgid "Looking for source reference problems"
 msgstr "Recherche de problèmes dans la référence de la source"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1454
+#: ../src/plugins/tool/Check.py:1453
 msgid "Looking for media object reference problems"
 msgstr "Recherche de problèmes dans la référence du medium"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1590
+#: ../src/plugins/tool/Check.py:1589
 msgid "Looking for note reference problems"
 msgstr "Recherche de problèmes dans la référence de la note"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1742
+#: ../src/plugins/tool/Check.py:1741
 msgid "Looking for tag reference problems"
 msgstr "Recherche de problèmes dans la référence de l'étiquette"
 
-#: ../src/plugins/tool/Check.py:1935
+#: ../src/plugins/tool/Check.py:1934
 msgid "No errors were found"
 msgstr "Aucune erreur trouvée"
 
 # avec succès
-#: ../src/plugins/tool/Check.py:1936
+#: ../src/plugins/tool/Check.py:1935
 msgid "The database has passed internal checks"
 msgstr "Test de la base de données terminé"
 
-#: ../src/plugins/tool/Check.py:1945
+#: ../src/plugins/tool/Check.py:1944
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
 msgstr[0] "%(quantity)d lien enfant/famille a été réparé\n"
 msgstr[1] "%(quantity)d liens enfant/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1954
+#: ../src/plugins/tool/Check.py:1953
 msgid "Non existing child"
 msgstr "Enfant non-existant"
 
-#: ../src/plugins/tool/Check.py:1962
+#: ../src/plugins/tool/Check.py:1961
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s a été supprimé(e) de la famille de %(family)s\n"
 
 # ngettext
-#: ../src/plugins/tool/Check.py:1968
+#: ../src/plugins/tool/Check.py:1967
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
 msgstr[0] "%(quantity)d lien conjoint/famille a été réparé\n"
 msgstr[1] "%(quantity)d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1977
-#: ../src/plugins/tool/Check.py:2000
+#: ../src/plugins/tool/Check.py:1976
+#: ../src/plugins/tool/Check.py:1999
 msgid "Non existing person"
 msgstr "Individu non-existant"
 
-#: ../src/plugins/tool/Check.py:1985
-#: ../src/plugins/tool/Check.py:2008
+#: ../src/plugins/tool/Check.py:1984
+#: ../src/plugins/tool/Check.py:2007
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s a été restitué(e) dans la famille de %(family)s\n"
 
-#: ../src/plugins/tool/Check.py:1991
+#: ../src/plugins/tool/Check.py:1990
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d lien conjoint/famille en double a été trouvé\n"
 msgstr[1] "%(quantity)d liens conjoint/famille en double ont été trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2014
+#: ../src/plugins/tool/Check.py:2013
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 famille sans parent ni enfant a été trouvée et effacée.\n"
 
-#: ../src/plugins/tool/Check.py:2019
+#: ../src/plugins/tool/Check.py:2018
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d familles sans parent ni enfant ont été trouvées et effacées.\n"
 
-#: ../src/plugins/tool/Check.py:2025
+#: ../src/plugins/tool/Check.py:2024
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d relation familiale corrompue a été corrigée\n"
 msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 
-#: ../src/plugins/tool/Check.py:2032
+#: ../src/plugins/tool/Check.py:2031
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d individu a été référencé, mais non-trouvé\n"
 msgstr[1] "%d individus ont été référencés, mais non-trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2039
+#: ../src/plugins/tool/Check.py:2038
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d famille a été référencée, mais non-trouvée\n"
 msgstr[1] "%d familles ont été référencées, mais non-trouvées\n"
 
-#: ../src/plugins/tool/Check.py:2045
+#: ../src/plugins/tool/Check.py:2044
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d date a été corrigée\n"
 msgstr[1] "%d dates ont été corrigées\n"
 
-#: ../src/plugins/tool/Check.py:2051
+#: ../src/plugins/tool/Check.py:2050
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
 msgstr[0] "%(quantity)d dépôt a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d dépôts ont été référencés, mais non-trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2057
+#: ../src/plugins/tool/Check.py:2056
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 msgstr[0] "%(quantity)d objet medium a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d objets media ont été référencés, mais non-trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2064
+#: ../src/plugins/tool/Check.py:2063
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Une référence à %(quantity)d medium manquant a été conservée\n"
 msgstr[1] "Les références à %(quantity)d media manquants ont été conservées\n"
 
-#: ../src/plugins/tool/Check.py:2071
+#: ../src/plugins/tool/Check.py:2070
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d medium manquant a été remplacé\n"
 msgstr[1] "%(quantity)d media manquants ont été remplacés\n"
 
-#: ../src/plugins/tool/Check.py:2078
+#: ../src/plugins/tool/Check.py:2077
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d medium manquant a été supprimé\n"
 msgstr[1] "%(quantity)d media manquants ont été supprimés\n"
 
-#: ../src/plugins/tool/Check.py:2085
+#: ../src/plugins/tool/Check.py:2084
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
 msgstr[0] "%(quantity)d événement a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d événements ont été référencés, mais non-trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2092
+#: ../src/plugins/tool/Check.py:2091
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d naissance invalide a été réparée\n"
 msgstr[1] "%(quantity)d naissances invalides ont été réparées\n"
 
-#: ../src/plugins/tool/Check.py:2099
+#: ../src/plugins/tool/Check.py:2098
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d décès invalide a été réparé\n"
 msgstr[1] "%(quantity)d décès invalides ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:2106
+#: ../src/plugins/tool/Check.py:2105
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
@@ -21531,7 +21614,7 @@ msgstr[0] "%(quantity)d lieu a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d lieux ont été référencés, mais non-trouvés\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:2113
+#: ../src/plugins/tool/Check.py:2112
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
@@ -21539,43 +21622,43 @@ msgstr[0] "%(quantity)d citation a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d citations ont été référencées, mais non-trouvées\n"
 
 # trunk
-#: ../src/plugins/tool/Check.py:2120
+#: ../src/plugins/tool/Check.py:2119
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d source a été référencée, mais non-trouvée\n"
 msgstr[1] "%(quantity)d sources ont été référencées, mais non-trouvées\n"
 
-#: ../src/plugins/tool/Check.py:2127
+#: ../src/plugins/tool/Check.py:2126
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] "%(quantity)d objet medium a été référencé, mais non-trouvé\n"
 msgstr[1] "%(quantity)d objets media ont été référencés, mais non-trouvés\n"
 
-#: ../src/plugins/tool/Check.py:2134
+#: ../src/plugins/tool/Check.py:2133
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] "%(quantity)d note a été référencée, mais non-trouvée\n"
 msgstr[1] "%(quantity)d notes ont été référencées, mais non-trouvées\n"
 
-#: ../src/plugins/tool/Check.py:2140
-#: ../src/plugins/tool/Check.py:2146
+#: ../src/plugins/tool/Check.py:2139
+#: ../src/plugins/tool/Check.py:2145
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] "%(quantity)d étiquette a été référencée, mais non-trouvée\n"
 msgstr[1] "%(quantity)d étiquettes ont été référencées, mais non-trouvées\n"
 
-#: ../src/plugins/tool/Check.py:2152
+#: ../src/plugins/tool/Check.py:2151
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d référence à un format de nom invalide a été enlevée\n"
 msgstr[1] "%(quantity)d références à un format de nom invalide ont été enlevées\n"
 
-#: ../src/plugins/tool/Check.py:2158
+#: ../src/plugins/tool/Check.py:2157
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -21598,11 +21681,11 @@ msgstr ""
 "   %(repo)d dépôts\n"
 "   %(note)d notes\n"
 
-#: ../src/plugins/tool/Check.py:2205
+#: ../src/plugins/tool/Check.py:2204
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../src/plugins/tool/Check.py:2210
+#: ../src/plugins/tool/Check.py:2209
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
@@ -29882,120 +29965,120 @@ msgid "<b>Directing Your Research</b><br/>Go from what you know to what you do n
 msgstr "<b>Direction de vos recherches</b><br/>Allez de ce que vous savez vers ce que vous ne savez pas. Enregistrez toujours tout ce qui est connu avant de faire des hypothèses. Connaître les faits avérés permet souvent de déterminer des directions de recherche. Ne perdez pas de temps à consulter des milliers de documents dans l'espoir de trouver une piste alors que celles qui vous avez ne sont pas encore explorées."
 
 #: ../src/data/tips.xml.in.h:10
+msgid "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
+msgstr "<b>Don't speak English ?</b><br/>Gramps a été traduit dans plus de 20 langues. Si Gramps existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez Gramps."
+
+#: ../src/data/tips.xml.in.h:11
 msgid "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find Possible Duplicate People...&quot; allows you to locate (and merge) entries of the same person entered more than once in the database."
 msgstr "<b>Entrées doubles</b><br/> L'outil &quot;Modification de la base de données &gt; Recherche de doublons&quot; vous permet de trouver et éventuellement de fusionner les entrées d'un même individu."
 
-#: ../src/data/tips.xml.in.h:11
+#: ../src/data/tips.xml.in.h:12
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
 msgstr "<b>Édition d'objets</b><br/>Dans la plupart des cas, en double-cliquant sur un nom, une source ou un lieu, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquez sur un parent ou un enfant ouvre l'éditeur de relations."
 
-#: ../src/data/tips.xml.in.h:12
+#: ../src/data/tips.xml.in.h:13
 msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Édition de la relation parent-enfant</b><br/>Vous pouvez éditer la relation d'un enfant avec ses parents en cliquant deux fois sur l'enfant dans l'éditeur de famille. Les relations peuvent être du type Adopté, Naissance, Aucun, Enfant du conjoint, En nourrice, Parrainé et Inconnu."
 
-#: ../src/data/tips.xml.in.h:13
+#: ../src/data/tips.xml.in.h:14
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
 msgstr "<b>Rapports et outils supplémentaires</b><br/>Des outils et rapports supplémentaires peuvent être ajoutés à Gramps via un système &quot;Addon&quot;. Voir sous &quot;Aide &gt; Rapports/Outils supplémentaires&quot;. C'est le meilleur moyen pour les utilisateurs avancés d'expérimenter et de créer de nouvelles fonctionnalités."
 
 # Substantif (GNOME fr)
-#: ../src/data/tips.xml.in.h:14
+#: ../src/data/tips.xml.in.h:15
 msgid "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter."
 msgstr "<b>Filtrage des individus</b><br/>Dans la vue Individus, vous pouvez filtrer les individus selon plusieurs critères. Sélectionnez &quot;Affichage &gt; Barre de filtre&quot; et choisissez un des nombreux filtres présents. Par exemple, les enfants adoptés peuvent être localisés. Les individus sans date de naissance peuvent également être filtrés. Pour obtenir ce tri, cliquez sur Rechercher. Si la barre de filtre n'est pas visible, activez-la par Affichage &gt; Barre de filtre."
 
-#: ../src/data/tips.xml.in.h:15
+#: ../src/data/tips.xml.in.h:16
 msgid "<b>Filters</b><br/>Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created limited only by your imagination. Custom filters are created from &quot;Edit &gt; Person Filter Editor&quot;."
 msgstr "<b>Les filtres</b><br/>Les filtres permettent de limiter l'affichage dans la vue Individus. En plus des filtres prédéfinis, d'autres filtres (personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre imagination. Ces filtres sont éditables via <b>Édition &gt; Éditeur de filtre sur l'individu</b>."
 
-#: ../src/data/tips.xml.in.h:16
+#: ../src/data/tips.xml.in.h:17
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr "<b>Les annonces Gramps</b><br/>Vous voulez être alerté par la sortie des dernières versions de Gramps ? Rejoignez-nous sur la liste gramps-annonce via &quot;Aide &gt; Listes Gramps&quot;."
 
-#: ../src/data/tips.xml.in.h:17
+#: ../src/data/tips.xml.in.h:18
 msgid "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
 msgstr "<b>Gramps mailing listes</b><br/>Vous voulez des réponses à vos questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps (gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une réponse rapide. Si vous avez des questions sur le développement de Gramps, essayez gramps-devel. Toutes les informations sur les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez également y accéder en sélectionnant &quot;Aide &gt; Listes Gramps&quot;."
 
-#: ../src/data/tips.xml.in.h:18
+#: ../src/data/tips.xml.in.h:19
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well."
 msgstr "<b>Rapports Gramps</b><br/>Gramps permet d'éditer de nombreux rapports. Le rapport de texte est particulièrement utile si vous voulez diffuser votre arbre généalogique aux membres de votre famille sur support numérique (message électronique, CD, etc.)."
 
-#: ../src/data/tips.xml.in.h:19
+#: ../src/data/tips.xml.in.h:20
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr "<b>Les outils Gramps</b><br/>Gramps possède des outils puissants. Ils permettent d'exécuter des opérations comme la recherche d'erreurs et d'inconstance de la base de données, aussi bien que la recherche et l'analyse via la comparaison d'événements, de trouver des doublons d'individus, d'utiliser un navigateur de descendants, etc. Ces outils sont accessibles par le menu &quot;Outils&quot;."
 
-#: ../src/data/tips.xml.in.h:20
+#: ../src/data/tips.xml.in.h:21
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
 msgstr "<b>Traducteurs Gramps</b><br/>Gramps est prévu pour que toute nouvelle traduction puisse facilement être ajoutée avec un minimum d'effort. Si vous êtes intéressé(e) pour participer à la traduction, envoyez un message à la liste gramps-devel@lists.sf.net"
 
-#: ../src/data/tips.xml.in.h:21
+#: ../src/data/tips.xml.in.h:22
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
-#: ../src/data/tips.xml.in.h:22
+#: ../src/data/tips.xml.in.h:23
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
 msgstr "<b>Hello, привет or 喂</b><br/>Quel que soit vos caractères, Gramps offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
 
 # Substantif (GNOME fr)
-#: ../src/data/tips.xml.in.h:23
+#: ../src/data/tips.xml.in.h:24
 msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists."
 msgstr "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des améliorations pour Gramps. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/. Il est également apprécié d'en discuter sur l'une des listes Gramps."
 
-#: ../src/data/tips.xml.in.h:24
+#: ../src/data/tips.xml.in.h:25
 msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
 msgstr "<b>Dates incorrectes</b><br/>Tout le monde entre occasionnellement des dates non-valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton Date. Le format de la date est défini dans &quot;Édition &gt; Préférences &gt; Affichage&quot;."
 
-#: ../src/data/tips.xml.in.h:25
+#: ../src/data/tips.xml.in.h:26
 msgid "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
 msgstr "<b>Filtre inversé</b><br/>Les filtres peuvent facilement être inversés en utilisant l'option &quot;Inverser les résultats&quot;. Par exemple, en inversant &quot;Individus avec enfants&quot; vous obtenez tous les individus sans enfant."
 
-#: ../src/data/tips.xml.in.h:26
+#: ../src/data/tips.xml.in.h:27
 msgid "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
 msgstr "<b>Conservez de bons enregistrements</b><br/>Soyez précis quand vous enregistrez vos informations généalogiques. Évitez les hypothèses quand vous éditez les informations principales ; écrivez-les exactement comme vous les avez vues. Utilisez des parenthèses pour vos ajouts, suppressions ou commentaires. La locution latine 'sic' est recommandée pour confirmer la fidélité de la transcription et indiquer ainsi ce qui pourrait être une erreur des sources."
 
-#: ../src/data/tips.xml.in.h:27
+#: ../src/data/tips.xml.in.h:28
 msgid "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
 msgstr "<b>Les raccourcis claviers</b><br/>Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses fonctions de Gramps possèdent un raccourci clavier. Ils sont renseignés sur la droite des menus."
 
-#: ../src/data/tips.xml.in.h:28
+#: ../src/data/tips.xml.in.h:29
 msgid "<b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated."
 msgstr "<b>Liste des événéments</b><br/>Les événements sont ajoutés en utilisant l'éditeur disponible dans l'&quot;Individus &gt; Édition de l'individu &gt; Événements&quot;. Il existe une longue liste de types d'événement. Vous pouvez ajouter vos propres types d'événements en les saisissant dans le champ textuel, ils seront ajoutés à la liste des événements disponibles, mais non-traduits."
 
 # Substantif (GNOME fr)
-#: ../src/data/tips.xml.in.h:29
+#: ../src/data/tips.xml.in.h:30
 msgid "<b>Locating People</b><br/>By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name. To locate any Family Name from a long list, select a Family Name (not a person) and start typing. The view will jump to the first Family Name matching the letters you enter."
 msgstr "<b>Localisation des individus</b><br/>Par défaut, chaque nom de famille dans la vue Individus est listé une seule fois. Cliquez sur la flèche à la gauche du nom pour dérouler la liste et afficher tous les individus avec le même patronyme. Pour retrouver un nom de famille dans une longue liste, sélectionnez un nom de famille (pas une personne) et commencez par saisir. La vue va automatiquement trouver les premiers noms de famille qui correspondent aux premières lettres entrées."
 
-#: ../src/data/tips.xml.in.h:30
+#: ../src/data/tips.xml.in.h:31
 msgid "<b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr "<b>Faire un site internet</b><br/>Vous pouvez facilement exporter votre arbre vers une page internet. Sélectionnez toute la base, une lignée ou un individu vers un ensemble de pages internet prêtes à être mises sur le World Wide Web. Le projet Gramps fournit un hébergement gratuit pour les sites internet générés avec Gramps."
 
-#: ../src/data/tips.xml.in.h:31
+#: ../src/data/tips.xml.in.h:32
 msgid "<b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the prefered name by dragging it to the Prefered Name section."
 msgstr "<b>Gestion des noms</b><br/>Il est facile de gérer des individus avec plusieurs noms dans Gramps. Dans l'éditeur d'individu, sélectionnez l'onglet Noms. Vous pouvez ajouter différents types et de définir le nom préféré en le glissant dans la section Nom d'usage."
 
 # comté, province (Canada, Belgique)
-#: ../src/data/tips.xml.in.h:32
+#: ../src/data/tips.xml.in.h:33
 msgid "<b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
 msgstr "<b>Gérer les lieux</b><br/>La vue Lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le département (comté) ou la région (province)."
 
-#: ../src/data/tips.xml.in.h:33
+#: ../src/data/tips.xml.in.h:34
 msgid "<b>Managing Sources</b><br/>The Sources View shows a list of all sources in a single window. From here you can edit your sources, merge duplicates and see which individuals reference each source. You can use filters to group your sources."
 msgstr "<b>Gérer les sources</b><br/>La vue Sources affiche une liste de toutes les sources. Double-cliquez sur une source pour l'éditer, lui ajouter des notes ou consulter la liste des individus qui la référencent."
 
-#: ../src/data/tips.xml.in.h:34
+#: ../src/data/tips.xml.in.h:35
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
 msgstr "<b>La vue media</b><br/>La vue media affiche une liste de tous les media. Ces media peuvent être des images, des vidéos, des fichiers audio, des documents bureautique, etc."
 
-#: ../src/data/tips.xml.in.h:35
+#: ../src/data/tips.xml.in.h:36
 msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge...&quot; allows you to combine separately listed people into one. Select the second entry by holding the Control key as you click. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual. This also works for the Places, Sources and Repositories views."
 msgstr "<b>Fusionner des entrées</b><br/>La fonction &quot;Fusionner&quot; vous permet de combiner les personnes listées séparément en une seule liste. C'est très utile pour fusionner deux bases de données dont les individus se chevauchent ou pour combiner deux fiches d'une même personne entrée avec des noms différents. Ceci fonctionne également pour les lieux, les sources et les dépôts."
 
-#: ../src/data/tips.xml.in.h:36
+#: ../src/data/tips.xml.in.h:37
 msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
 msgstr "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de &quot;Aller à &gt; Suivant&quot; et &quot;Aller à  &gt; Précédent&quot;."
-
-#: ../src/data/tips.xml.in.h:37
-msgid "<b>No Speaka de English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "<b>No Speaka de English ?</b><br/>Gramps a été traduit dans plus de 20 langues. Si Gramps existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez Gramps."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
@@ -30102,6 +30185,8 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
 
+#~ msgid "Could not make database directory: "
+#~ msgstr "Impossible de créer le répertoire de la base de données : "
 #~ msgid "Gramplet showing available third-party plugins (addons)"
 #~ msgstr "Gramplet affichant les greffons additionnels disponibles (addons)"
 
