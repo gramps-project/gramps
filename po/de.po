@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 13:28+0200\n"
-"PO-Revision-Date: 2012-09-26 13:20+0200\n"
+"POT-Creation-Date: 2012-09-27 23:43+0200\n"
+"PO-Revision-Date: 2012-09-28 00:09+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -608,7 +608,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1654 ../src/Utils.py:1656 ../src/Utils.py:1660
-#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:469
+#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:473
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1286,7 +1286,7 @@ msgstr "Wert"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1126
+#: ../src/gui/configure.py:1133
 msgid "Family Tree"
 msgstr "Stammbaum"
 
@@ -2316,15 +2316,30 @@ msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
 #: ../src/cli/clidbman.py:398
-msgid "Could not make database directory: "
-msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
+#, python-format
+msgid ""
+"\n"
+"ERROR: Wrong database path in Edit Menu->Preferences.\n"
+"Open preferences and set correct database path.\n"
+"\n"
+"Details: Could not make database directory:\n"
+"    %s\n"
+"\n"
+msgstr ""
+"\n"
+"Fehler: Falscher Pfad im Bearbeiten Menü->Einstellungen.\n"
+"Öffne die Einstellungen und gib den korrekten Datenbankpfad ein.\n"
+"\n"
+"Details: Kann Datenbankverzeichnis nicht erstellen:\n"
+"    %s\n"
+"\n"
 
-#: ../src/cli/clidbman.py:446 ../src/gui/configure.py:1070
+#: ../src/cli/clidbman.py:450 ../src/gui/configure.py:1070
 msgid "Never"
 msgstr "Nie"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:466
+#: ../src/cli/clidbman.py:470
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -4522,7 +4537,7 @@ msgid " Name Editor"
 msgstr " Namenseditor"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1204 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1235 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -4860,17 +4875,21 @@ msgstr "Nicht erneut für früher benachrichtigte Erweiterungen fragen"
 msgid "Check now"
 msgstr "Jetzt prüfen"
 
-#: ../src/gui/configure.py:1120
+#: ../src/gui/configure.py:1122
 msgid "Family Tree Database path"
 msgstr "Stammbaumdatenbankpfad"
 
-#: ../src/gui/configure.py:1123
+#: ../src/gui/configure.py:1130
 msgid "Automatically load last family tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
-#: ../src/gui/configure.py:1136
+#: ../src/gui/configure.py:1143
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
+
+#: ../src/gui/configure.py:1167
+msgid "Select database directory"
+msgstr "Wähle Datenbankverzeichnis"
 
 #: ../src/gui/dbloader.py:117 ../src/gui/plug/tool.py:110
 msgid "Undo history warning"
@@ -31243,6 +31262,9 @@ msgstr ""
 "<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps egal "
 "welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
 "Bibliotheken installiert sind, läuft es hervorragend."
+
+#~ msgid "Could not make database directory: "
+#~ msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 
 #~ msgid "Gramplet showing available third-party plugins (addons)"
 #~ msgstr "Gramplet zeigt verfügbare Fremd Zusatzmodule (Erweiterungen)"
