@@ -24851,7 +24851,7 @@ msgstr "Année de départ pour les calendrier(s)"
 
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Entrez le début de l'année pour les calendriers entre 1900 et 3000"
+msgstr "Entrez la première année pour les calendriers entre 1900 et 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1382
 msgid "End Year for the Calendar(s)"
@@ -24859,7 +24859,7 @@ msgstr "Dernière année pour les calendrier(s)"
 
 #: ../src/plugins/webreport/WebCal.py:1384
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr "Entrez le début de l'année pour les calendriers entre 1900 et 3000."
+msgstr "Entrez la dernière année pour les calendriers entre 1900 et 3000."
 
 #: ../src/plugins/webreport/WebCal.py:1401
 msgid "Holidays will be included for the selected country"
