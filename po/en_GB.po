@@ -74,7 +74,7 @@ msgstr "Email:"
 
 #: ../src/Bookmarks.py:66
 msgid "manual|Bookmarks"
-msgstr "manual|Bookmarks"
+msgstr "Bookmarks"
 
 #. pylint: disable-msg=E1101
 #: ../src/Bookmarks.py:199 ../src/gui/views/tags.py:371
@@ -216,7 +216,7 @@ msgstr "Calculated"
 
 #: ../src/DateEdit.py:102
 msgid "manual|Editing_Dates"
-msgstr "manual|Editing_Dates"
+msgstr "Editing_Dates"
 
 #: ../src/DateEdit.py:152
 msgid "Bad Date"
@@ -770,7 +770,7 @@ msgstr "wife"
 
 #: ../src/Relationship.py:1677
 msgid "gender unknown|spouse"
-msgstr "gender unknown|spouse"
+msgstr "spouse"
 
 #: ../src/Relationship.py:1680
 msgid "ex-husband"
@@ -782,79 +782,79 @@ msgstr "ex-wife"
 
 #: ../src/Relationship.py:1684
 msgid "gender unknown|ex-spouse"
-msgstr "gender unknown|ex-spouse"
+msgstr "ex-spouse"
 
 #: ../src/Relationship.py:1687
 msgid "unmarried|husband"
-msgstr "unmarried|husband"
+msgstr "husband"
 
 #: ../src/Relationship.py:1689
 msgid "unmarried|wife"
-msgstr "unmarried|wife"
+msgstr "wife"
 
 #: ../src/Relationship.py:1691
 msgid "gender unknown,unmarried|spouse"
-msgstr "gender unknown,unmarried|spouse"
+msgstr "spouse"
 
 #: ../src/Relationship.py:1694
 msgid "unmarried|ex-husband"
-msgstr "unmarried|ex-husband"
+msgstr "ex-husband"
 
 #: ../src/Relationship.py:1696
 msgid "unmarried|ex-wife"
-msgstr "unmarried|ex-wife"
+msgstr "ex-wife"
 
 #: ../src/Relationship.py:1698
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "gender unknown,unmarried|ex-spouse"
+msgstr "ex-spouse"
 
 #: ../src/Relationship.py:1701
 msgid "male,civil union|partner"
-msgstr "male,civil union|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1703
 msgid "female,civil union|partner"
-msgstr "female,civil union|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1705
 msgid "gender unknown,civil union|partner"
-msgstr "gender unknown,civil union|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1708
 msgid "male,civil union|former partner"
-msgstr "male,civil union|former partner"
+msgstr "former partner"
 
 #: ../src/Relationship.py:1710
 msgid "female,civil union|former partner"
-msgstr "female,civil union|former partner"
+msgstr "former partner"
 
 #: ../src/Relationship.py:1712
 msgid "gender unknown,civil union|former partner"
-msgstr "gender unknown,civil union|former partner"
+msgstr "former partner"
 
 #: ../src/Relationship.py:1715
 msgid "male,unknown relation|partner"
-msgstr "male,unknown relation|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1717
 msgid "female,unknown relation|partner"
-msgstr "female,unknown relation|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1719
 msgid "gender unknown,unknown relation|partner"
-msgstr "gender unknown,unknown relation|partner"
+msgstr "partner"
 
 #: ../src/Relationship.py:1724
 msgid "male,unknown relation|former partner"
-msgstr "male,unknown relation|former partner"
+msgstr "former partner"
 
 #: ../src/Relationship.py:1726
 msgid "female,unknown relation|former partner"
-msgstr "female,unknown relation|former partner"
+msgstr "former partner"
 
 #: ../src/Relationship.py:1728
 msgid "gender unknown,unknown relation|former partner"
-msgstr "gender unknown,unknown relation|former partner"
+msgstr "former partner"
 
 #: ../src/Reorder.py:40 ../src/ToolTips.py:235
 #: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:216
@@ -919,7 +919,7 @@ msgstr "Reorder Relationships: %s"
 
 #: ../src/ScratchPad.py:66
 msgid "manual|Using_the_Clipboard"
-msgstr "manual|Using_the_Clipboard"
+msgstr "Using_the_Clipboard"
 
 #: ../src/ScratchPad.py:183 ../src/ScratchPad.py:184
 #: ../src/gui/plug/_windows.py:473
@@ -1045,7 +1045,7 @@ msgstr "Citation"
 
 #: ../src/ScratchPad.py:494
 msgid "not available|NA"
-msgstr "not available|NA"
+msgstr "NA"
 
 #: ../src/ScratchPad.py:503
 #, python-format
@@ -1306,18 +1306,18 @@ msgstr "Clipboard"
 #: ../src/ScratchPad.py:1439 ../src/Simple/_SimpleTable.py:137
 #, python-format
 msgid "the object|See %s details"
-msgstr "the object|See %s details"
+msgstr "See %s details"
 
 #. ---------------------------
 #: ../src/ScratchPad.py:1445 ../src/Simple/_SimpleTable.py:147
 #, python-format
 msgid "the object|Make %s active"
-msgstr "the object|Make %s active"
+msgstr "Make %s active"
 
 #: ../src/ScratchPad.py:1461
 #, python-format
 msgid "the object|Create Filter from %s selected..."
-msgstr "the object|Create Filter from %s selected..."
+msgstr "Create Filter from %s selected..."
 
 #: ../src/Spell.py:60
 msgid "Spelling checker is not installed"
@@ -1446,7 +1446,7 @@ msgstr "female"
 
 #: ../src/Utils.py:85
 msgid "gender|unknown"
-msgstr "gender|unknown"
+msgstr "unknown"
 
 #: ../src/Utils.py:89
 msgid "Invalid"
@@ -1647,11 +1647,11 @@ msgstr "no evidence"
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
-msgstr "Person|Title"
+msgstr "Title"
 
 #: ../src/Utils.py:1273
 msgid "Person|TITLE"
-msgstr "Person|TITLE"
+msgstr "TITLE"
 
 #: ../src/Utils.py:1274 ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:541 ../src/gui/configure.py:543
@@ -1679,21 +1679,21 @@ msgstr "SURNAME"
 
 #: ../src/Utils.py:1276
 msgid "Name|Call"
-msgstr "Name|Call"
+msgstr "Call"
 
 #: ../src/Utils.py:1276
 msgid "Name|CALL"
-msgstr "Name|CALL"
+msgstr "CALL"
 
 #: ../src/Utils.py:1277 ../src/gui/configure.py:545
 #: ../src/gui/configure.py:547 ../src/gui/configure.py:550
 #: ../src/gui/configure.py:551 ../src/gui/configure.py:557
 msgid "Name|Common"
-msgstr "Name|Common"
+msgstr "Common"
 
 #: ../src/Utils.py:1277
 msgid "Name|COMMON"
-msgstr "Name|COMMON"
+msgstr "COMMON"
 
 #: ../src/Utils.py:1278
 msgid "Initials"
@@ -1720,7 +1720,7 @@ msgstr "SUFFIX"
 #. name, sort, width, modelcol
 #: ../src/Utils.py:1280 ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
-msgstr "Name|Primary"
+msgstr "Primary"
 
 #: ../src/Utils.py:1280
 msgid "PRIMARY"
@@ -2589,7 +2589,7 @@ msgstr "Patronymic, Given"
 #: ../src/gen/display/name.py:540 ../src/gen/display/name.py:640
 #: ../src/plugins/import/ImportCsv.py:178
 msgid "Person|title"
-msgstr "Person|title"
+msgstr "title"
 
 #: ../src/gen/display/name.py:542 ../src/gen/display/name.py:642
 #: ../src/plugins/import/ImportCsv.py:174
@@ -2608,11 +2608,11 @@ msgstr "suffix"
 
 #: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
 msgid "Name|call"
-msgstr "Name|call"
+msgstr "call"
 
 #: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
 msgid "Name|common"
-msgstr "Name|common"
+msgstr "common"
 
 #: ../src/gen/display/name.py:555 ../src/gen/display/name.py:653
 msgid "initials"
@@ -2620,7 +2620,7 @@ msgstr "initials"
 
 #: ../src/gen/display/name.py:558 ../src/gen/display/name.py:655
 msgid "Name|primary"
-msgstr "Name|primary"
+msgstr "primary"
 
 #: ../src/gen/display/name.py:561 ../src/gen/display/name.py:657
 msgid "primary[pre]"
@@ -2656,7 +2656,7 @@ msgstr "notpatronymic"
 
 #: ../src/gen/display/name.py:580 ../src/gen/display/name.py:673
 msgid "Remaining names|rest"
-msgstr "Remaining names|rest"
+msgstr "rest"
 
 #: ../src/gen/display/name.py:583 ../src/gen/display/name.py:675
 #: ../src/gui/editors/editperson.py:384 ../src/plugins/import/ImportCsv.py:179
@@ -2841,7 +2841,7 @@ msgstr "less than"
 #: ../src/gen/lib/date.py:407 ../src/gen/lib/date.py:413
 #: ../src/gen/lib/date.py:440
 msgid "age|about"
-msgstr "age|about"
+msgstr "about"
 
 #. v1 = self.date1.sortval - stop.sortval  # min
 #. v2 = self.date1.sortval - start.sortval # max
@@ -2914,31 +2914,31 @@ msgstr "0 days"
 
 #: ../src/gen/lib/date.py:665
 msgid "calendar|Gregorian"
-msgstr "calendar|Gregorian"
+msgstr "Gregorian"
 
 #: ../src/gen/lib/date.py:666
 msgid "calendar|Julian"
-msgstr "calendar|Julian"
+msgstr "Julian"
 
 #: ../src/gen/lib/date.py:667
 msgid "calendar|Hebrew"
-msgstr "calendar|Hebrew"
+msgstr "Hebrew"
 
 #: ../src/gen/lib/date.py:668
 msgid "calendar|French Republican"
-msgstr "calendar|French Republican"
+msgstr "French Republican"
 
 #: ../src/gen/lib/date.py:669
 msgid "calendar|Persian"
-msgstr "calendar|Persian"
+msgstr "Persian"
 
 #: ../src/gen/lib/date.py:670
 msgid "calendar|Islamic"
-msgstr "calendar|Islamic"
+msgstr "Islamic"
 
 #: ../src/gen/lib/date.py:671
 msgid "calendar|Swedish"
-msgstr "calendar|Swedish"
+msgstr "Swedish"
 
 #: ../src/gen/lib/date.py:1665
 msgid "estimated"
@@ -2974,7 +2974,7 @@ msgstr "textonly"
 
 #: ../src/gen/lib/eventroletype.py:60
 msgid "Role|Primary"
-msgstr "Role|Primary"
+msgstr "Primary"
 
 #: ../src/gen/lib/eventroletype.py:61
 msgid "Clergy"
@@ -2998,7 +2998,7 @@ msgstr "Groom"
 
 #: ../src/gen/lib/eventroletype.py:67
 msgid "Role|Family"
-msgstr "Role|Family"
+msgstr "Family"
 
 #: ../src/gen/lib/eventroletype.py:68
 msgid "Informant"
@@ -3190,187 +3190,187 @@ msgstr "Alternate Marriage"
 
 #: ../src/gen/lib/eventtype.py:192
 msgid "birth abbreviation|b."
-msgstr "birth abbreviation|b."
+msgstr "b."
 
 #: ../src/gen/lib/eventtype.py:193
 msgid "death abbreviation|d."
-msgstr "death abbreviation|d."
+msgstr "d."
 
 #: ../src/gen/lib/eventtype.py:194
 msgid "marriage abbreviation|m."
-msgstr "marriage abbreviation|m."
+msgstr "m."
 
 #: ../src/gen/lib/eventtype.py:195
 msgid "Unknown abbreviation|unkn."
-msgstr "Unknown abbreviation|unkn."
+msgstr "unkn."
 
 #: ../src/gen/lib/eventtype.py:196
 msgid "Custom abbreviation|cust."
-msgstr "Custom abbreviation|cust."
+msgstr "cust."
 
 #: ../src/gen/lib/eventtype.py:197
 msgid "Adopted abbreviation|adop."
-msgstr "Adopted abbreviation|adop."
+msgstr "adop."
 
 #: ../src/gen/lib/eventtype.py:198
 msgid "Adult Christening abbreviation|a.chr."
-msgstr "Adult Christening abbreviation|a.chr."
+msgstr "a.chr."
 
 #: ../src/gen/lib/eventtype.py:199
 msgid "Baptism abbreviation|bap."
-msgstr "Baptism abbreviation|bap."
+msgstr "bap."
 
 #: ../src/gen/lib/eventtype.py:200
 msgid "Bar Mitzvah abbreviation|bar."
-msgstr "Bar Mitzvah abbreviation|bar."
+msgstr "bar."
 
 #: ../src/gen/lib/eventtype.py:201
 msgid "Bas Mitzvah abbreviation|bas."
-msgstr "Bas Mitzvah abbreviation|bas."
+msgstr "bas."
 
 #: ../src/gen/lib/eventtype.py:202
 msgid "Blessing abbreviation|bles."
-msgstr "Blessing abbreviation|bles."
+msgstr "bles."
 
 #: ../src/gen/lib/eventtype.py:203
 msgid "Burial abbreviation|bur."
-msgstr "Burial abbreviation|bur."
+msgstr "bur."
 
 #: ../src/gen/lib/eventtype.py:204
 msgid "Cause Of Death abbreviation|d.cau."
-msgstr "Cause Of Death abbreviation|d.cau."
+msgstr "d.cau."
 
 #: ../src/gen/lib/eventtype.py:205
 msgid "Census abbreviation|cens."
-msgstr "Census abbreviation|cens."
+msgstr "cens."
 
 #: ../src/gen/lib/eventtype.py:206
 msgid "Christening abbreviation|chr."
-msgstr "Christening abbreviation|chr."
+msgstr "chr."
 
 #: ../src/gen/lib/eventtype.py:207
 msgid "Confirmation abbreviation|conf."
-msgstr "Confirmation abbreviation|conf."
+msgstr "conf."
 
 #: ../src/gen/lib/eventtype.py:208
 msgid "Cremation abbreviation|crem."
-msgstr "Cremation abbreviation|crem."
+msgstr "crem."
 
 #: ../src/gen/lib/eventtype.py:209
 msgid "Degree abbreviation|deg."
-msgstr "Degree abbreviation|deg."
+msgstr "deg."
 
 #: ../src/gen/lib/eventtype.py:210
 msgid "Education abbreviation|edu."
-msgstr "Education abbreviation|edu."
+msgstr "edu."
 
 #: ../src/gen/lib/eventtype.py:211
 msgid "Elected abbreviation|elec."
-msgstr "Elected abbreviation|elec."
+msgstr "elec."
 
 #: ../src/gen/lib/eventtype.py:212
 msgid "Emigration abbreviation|em."
-msgstr "Emigration abbreviation|em."
+msgstr "em."
 
 #: ../src/gen/lib/eventtype.py:213
 msgid "First Communion abbreviation|f.comm."
-msgstr "First Communion abbreviation|f.comm."
+msgstr "f.comm."
 
 #: ../src/gen/lib/eventtype.py:214
 msgid "Immigration abbreviation|im."
-msgstr "Immigration abbreviation|im."
+msgstr "im."
 
 #: ../src/gen/lib/eventtype.py:215
 msgid "Graduation abbreviation|grad."
-msgstr "Graduation abbreviation|grad."
+msgstr "grad."
 
 #: ../src/gen/lib/eventtype.py:216
 msgid "Medical Information abbreviation|medinf."
-msgstr "Medical Information abbreviation|medinf."
+msgstr "medinf."
 
 #: ../src/gen/lib/eventtype.py:217
 msgid "Military Service abbreviation|milser."
-msgstr "Military Service abbreviation|milser."
+msgstr "milser."
 
 #: ../src/gen/lib/eventtype.py:218
 msgid "Naturalization abbreviation|nat."
-msgstr "Naturalization abbreviation|nat."
+msgstr "nat."
 
 #: ../src/gen/lib/eventtype.py:219
 msgid "Nobility Title abbreviation|nob."
-msgstr "Nobility Title abbreviation|nob."
+msgstr "nob."
 
 #: ../src/gen/lib/eventtype.py:220
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "Number of Marriages abbreviation|n.o.mar."
+msgstr "n.o.mar."
 
 #: ../src/gen/lib/eventtype.py:221
 msgid "Occupation abbreviation|occ."
-msgstr "Occupation abbreviation|occ."
+msgstr "occ."
 
 #: ../src/gen/lib/eventtype.py:222
 msgid "Ordination abbreviation|ord."
-msgstr "Ordination abbreviation|ord."
+msgstr "ord."
 
 #: ../src/gen/lib/eventtype.py:223
 msgid "Probate abbreviation|prob."
-msgstr "Probate abbreviation|prob."
+msgstr "prob."
 
 #: ../src/gen/lib/eventtype.py:224
 msgid "Property abbreviation|prop."
-msgstr "Property abbreviation|prop."
+msgstr "prop."
 
 #: ../src/gen/lib/eventtype.py:225
 msgid "Religion abbreviation|rel."
-msgstr "Religion abbreviation|rel."
+msgstr "rel."
 
 #: ../src/gen/lib/eventtype.py:226
 msgid "Residence abbreviation|res."
-msgstr "Residence abbreviation|res."
+msgstr "res."
 
 #: ../src/gen/lib/eventtype.py:227
 msgid "Retirement abbreviation|ret."
-msgstr "Retirement abbreviation|ret."
+msgstr "ret."
 
 #: ../src/gen/lib/eventtype.py:228
 msgid "Will abbreviation|will."
-msgstr "Will abbreviation|will."
+msgstr "will."
 
 #: ../src/gen/lib/eventtype.py:229
 msgid "Marriage Settlement abbreviation|m.set."
-msgstr "Marriage Settlement abbreviation|m.set."
+msgstr "m.set."
 
 #: ../src/gen/lib/eventtype.py:230
 msgid "Marriage License abbreviation|m.lic."
-msgstr "Marriage License abbreviation|m.lic."
+msgstr "m.lic."
 
 #: ../src/gen/lib/eventtype.py:231
 msgid "Marriage Contract abbreviation|m.con."
-msgstr "Marriage Contract abbreviation|m.con."
+msgstr "m.con."
 
 #: ../src/gen/lib/eventtype.py:232
 msgid "Marriage Banns abbreviation|m.ban."
-msgstr "Marriage Banns abbreviation|m.ban."
+msgstr "m.ban."
 
 #: ../src/gen/lib/eventtype.py:233
 msgid "Alternate Marriage abbreviation|alt.mar."
-msgstr "Alternate Marriage abbreviation|alt.mar."
+msgstr "alt.mar."
 
 #: ../src/gen/lib/eventtype.py:234
 msgid "Engagement abbreviation|engd."
-msgstr "Engagement abbreviation|engd."
+msgstr "engd."
 
 #: ../src/gen/lib/eventtype.py:235
 msgid "Divorce abbreviation|div."
-msgstr "Divorce abbreviation|div."
+msgstr "div."
 
 #: ../src/gen/lib/eventtype.py:236
 msgid "Divorce Filing abbreviation|div.f."
-msgstr "Divorce Filing abbreviation|div.f."
+msgstr "div.f."
 
 #: ../src/gen/lib/eventtype.py:237
 msgid "Annulment abbreviation|annul."
-msgstr "Annulment abbreviation|annul."
+msgstr "annul."
 
 #: ../src/gen/lib/familyreltype.py:54
 msgid "Civil Union"
@@ -3471,15 +3471,15 @@ msgstr "Married Name"
 
 #: ../src/gen/lib/nameorigintype.py:83
 msgid "Surname|Inherited"
-msgstr "Surname|Inherited"
+msgstr "Inherited"
 
 #: ../src/gen/lib/nameorigintype.py:84
 msgid "Surname|Given"
-msgstr "Surname|Given"
+msgstr "Given"
 
 #: ../src/gen/lib/nameorigintype.py:85
 msgid "Surname|Taken"
-msgstr "Surname|Taken"
+msgstr "Taken"
 
 #: ../src/gen/lib/nameorigintype.py:87
 msgid "Matronymic"
@@ -3487,7 +3487,7 @@ msgstr "Matronymic"
 
 #: ../src/gen/lib/nameorigintype.py:88
 msgid "Surname|Feudal"
-msgstr "Surname|Feudal"
+msgstr "Feudal"
 
 #: ../src/gen/lib/nameorigintype.py:89
 msgid "Pseudonym"
@@ -6260,7 +6260,7 @@ msgstr "Include"
 
 #: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:194
 msgid "Megabyte|MB"
-msgstr "Megabyte|MB"
+msgstr "MB"
 
 #: ../src/gui/viewmanager.py:1547
 #: ../src/plugins/webreport/NarrativeWeb.py:7930
@@ -6572,7 +6572,7 @@ msgstr "Delete Citation (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
-msgstr "manual|Editing_Information_About_Events"
+msgstr "Editing_Information_About_Events"
 
 #: ../src/gui/editors/editevent.py:98 ../src/gui/editors/editeventref.py:240
 #, python-format
@@ -7000,7 +7000,7 @@ msgstr "Media Reference Editor"
 #: ../src/gui/editors/editmediaref.py:85 ../src/gui/editors/editmediaref.py:86
 #: ../src/glade/editmediaref.glade.h:26
 msgid "Y coordinate|Y"
-msgstr "Y coordinate|Y"
+msgstr "Y"
 
 #: ../src/gui/editors/editname.py:119 ../src/gui/editors/editname.py:308
 msgid "Name Editor"
@@ -8320,7 +8320,7 @@ msgstr "cm"
 
 #: ../src/gui/plug/report/_papermenu.py:208
 msgid "inch|in."
-msgstr "inch|in."
+msgstr "in."
 
 #: ../src/gui/plug/report/_reportdialog.py:144
 msgid "Configuration"
@@ -8445,7 +8445,7 @@ msgstr "Style editor"
 #: ../src/gui/plug/report/_styleeditor.py:217
 #: ../src/glade/styleeditor.glade.h:42
 msgid "point size|pt"
-msgstr "point size|pt"
+msgstr "pt"
 
 #: ../src/gui/plug/report/_styleeditor.py:219
 msgid "Paragraph"
@@ -8577,7 +8577,7 @@ msgstr "Export View..."
 
 #: ../src/gui/views/listview.py:213 ../src/plugins/lib/libpersonview.py:354
 msgid "action|_Edit..."
-msgstr "action|_Edit..."
+msgstr "_Edit..."
 
 #: ../src/gui/views/listview.py:400
 msgid "Active object not visible"
@@ -8745,7 +8745,7 @@ msgstr "View %(name)s: %(msg)s"
 
 #: ../src/gui/views/tags.py:85 ../src/gui/widgets/tageditor.py:49
 msgid "manual|Tags"
-msgstr "manual|Tags"
+msgstr "Tags"
 
 #: ../src/gui/views/tags.py:220
 msgid "New Tag..."
@@ -9072,7 +9072,7 @@ msgstr "Private Record"
 
 #: ../src/Merge/mergecitation.py:50
 msgid "manual|Merge_Citations"
-msgstr "manual|Merge_Citations"
+msgstr "Merge_Citations"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
@@ -9084,7 +9084,7 @@ msgstr "Merge Citation"
 
 #: ../src/Merge/mergeevent.py:49
 msgid "manual|Merge_Events"
-msgstr "manual|Merge_Events"
+msgstr "Merge_Events"
 
 #: ../src/Merge/mergeevent.py:71
 msgid "Merge Events"
@@ -9096,7 +9096,7 @@ msgstr "Merge Event Objects"
 
 #: ../src/Merge/mergefamily.py:49
 msgid "manual|Merge_Families"
-msgstr "manual|Merge_Families"
+msgstr "Merge_Families"
 
 #: ../src/Merge/mergefamily.py:71
 msgid "Merge Families"
@@ -9126,7 +9126,7 @@ msgstr "Merge Family"
 
 #: ../src/Merge/mergemedia.py:48
 msgid "manual|Merge_Media_Objects"
-msgstr "manual|Merge_Media_Objects"
+msgstr "Merge_Media_Objects"
 
 #: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
 msgid "Merge Media Objects"
@@ -9134,7 +9134,7 @@ msgstr "Merge Media Objects"
 
 #: ../src/Merge/mergenote.py:49
 msgid "manual|Merge_Notes"
-msgstr "manual|Merge_Notes"
+msgstr "Merge_Notes"
 
 #: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:203
 msgid "Merge Notes"
@@ -9150,7 +9150,7 @@ msgstr "preformatted"
 
 #: ../src/Merge/mergeperson.py:59
 msgid "manual|Merge_People"
-msgstr "manual|Merge_People"
+msgstr "Merge_People"
 
 #: ../src/Merge/mergeperson.py:85
 msgid "Merge People"
@@ -9214,7 +9214,7 @@ msgstr "Multiple families get merged. This is unusual, the merge is aborted."
 
 #: ../src/Merge/mergeplace.py:55
 msgid "manual|Merge_Places"
-msgstr "manual|Merge_Places"
+msgstr "Merge_Places"
 
 #: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:217
 msgid "Merge Places"
@@ -9222,7 +9222,7 @@ msgstr "Merge Places"
 
 #: ../src/Merge/mergerepository.py:47
 msgid "manual|Merge_Repositories"
-msgstr "manual|Merge_Repositories"
+msgstr "Merge_Repositories"
 
 #: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
 msgid "Merge Repositories"
@@ -9230,7 +9230,7 @@ msgstr "Merge Repositories"
 
 #: ../src/Merge/mergesource.py:50
 msgid "manual|Merge_Sources"
-msgstr "manual|Merge_Sources"
+msgstr "Merge_Sources"
 
 #: ../src/Merge/mergesource.py:72
 msgid "Merge Sources"
@@ -9428,7 +9428,7 @@ msgstr ""
 
 #: ../src/GrampsLogger/_ErrorView.py:47
 msgid "manual|General"
-msgstr "manual|General"
+msgstr "General"
 
 #: ../src/GrampsLogger/_ErrorView.py:85
 msgid "Error Report"
@@ -9921,18 +9921,18 @@ msgstr "Index"
 #: ../src/plugins/drawreport/DescendTree.py:59
 #: ../src/plugins/view/pedigreeview.py:83
 msgid "short for born|b."
-msgstr "short for born|b."
+msgstr "b."
 
 #: ../src/plugins/drawreport/AncestorTree.py:73
 #: ../src/plugins/drawreport/DescendTree.py:60
 #: ../src/plugins/view/pedigreeview.py:84
 msgid "short for died|d."
-msgstr "short for died|d."
+msgstr "d."
 
 #: ../src/plugins/drawreport/AncestorTree.py:74
 #: ../src/plugins/drawreport/DescendTree.py:61
 msgid "short for married|m."
-msgstr "short for married|m."
+msgstr "m."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/drawreport/AncestorTree.py:151
@@ -10918,7 +10918,7 @@ msgstr "Women"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:316
 msgid "person|Title"
-msgstr "person|Title"
+msgstr "Title"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:320
 msgid "Forename"
@@ -12934,7 +12934,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:253
 msgid "percent sign or text string|%"
-msgstr "percent sign or text string|%"
+msgstr "%"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:260
 msgid "Generation 1"
@@ -19259,124 +19259,124 @@ msgstr "There are %d people with a matching attribute name.\n"
 
 #: ../src/plugins/quickview/FilterByName.py:41
 msgid "Filtering_on|all"
-msgstr "Filtering_on|all"
+msgstr "all"
 
 #: ../src/plugins/quickview/FilterByName.py:42
 msgid "Filtering_on|Inverse Person"
-msgstr "Filtering_on|Inverse Person"
+msgstr "Inverse Person"
 
 #: ../src/plugins/quickview/FilterByName.py:43
 msgid "Filtering_on|Inverse Family"
-msgstr "Filtering_on|Inverse Family"
+msgstr "Inverse Family"
 
 #: ../src/plugins/quickview/FilterByName.py:44
 msgid "Filtering_on|Inverse Event"
-msgstr "Filtering_on|Inverse Event"
+msgstr "Inverse Event"
 
 #: ../src/plugins/quickview/FilterByName.py:45
 msgid "Filtering_on|Inverse Place"
-msgstr "Filtering_on|Inverse Place"
+msgstr "Inverse Place"
 
 #: ../src/plugins/quickview/FilterByName.py:46
 msgid "Filtering_on|Inverse Source"
-msgstr "Filtering_on|Inverse Source"
+msgstr "Inverse Source"
 
 #: ../src/plugins/quickview/FilterByName.py:47
 msgid "Filtering_on|Inverse Repository"
-msgstr "Filtering_on|Inverse Repository"
+msgstr "Inverse Repository"
 
 #: ../src/plugins/quickview/FilterByName.py:48
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "Filtering_on|Inverse MediaObject"
+msgstr "Inverse MediaObject"
 
 #: ../src/plugins/quickview/FilterByName.py:49
 msgid "Filtering_on|Inverse Note"
-msgstr "Filtering_on|Inverse Note"
+msgstr "Inverse Note"
 
 #: ../src/plugins/quickview/FilterByName.py:50
 msgid "Filtering_on|all people"
-msgstr "Filtering_on|all people"
+msgstr "all people"
 
 #: ../src/plugins/quickview/FilterByName.py:51
 #: ../src/plugins/quickview/FilterByName.py:67
 msgid "Filtering_on|all families"
-msgstr "Filtering_on|all families"
+msgstr "all families"
 
 #: ../src/plugins/quickview/FilterByName.py:52
 msgid "Filtering_on|all events"
-msgstr "Filtering_on|all events"
+msgstr "all events"
 
 #: ../src/plugins/quickview/FilterByName.py:53
 msgid "Filtering_on|all places"
-msgstr "Filtering_on|all places"
+msgstr "all places"
 
 #: ../src/plugins/quickview/FilterByName.py:54
 msgid "Filtering_on|all sources"
-msgstr "Filtering_on|all sources"
+msgstr "all sources"
 
 #: ../src/plugins/quickview/FilterByName.py:55
 msgid "Filtering_on|all repositories"
-msgstr "Filtering_on|all repositories"
+msgstr "all repositories"
 
 #: ../src/plugins/quickview/FilterByName.py:56
 msgid "Filtering_on|all media"
-msgstr "Filtering_on|all media"
+msgstr "all media"
 
 #: ../src/plugins/quickview/FilterByName.py:57
 msgid "Filtering_on|all notes"
-msgstr "Filtering_on|all notes"
+msgstr "all notes"
 
 #: ../src/plugins/quickview/FilterByName.py:58
 msgid "Filtering_on|males"
-msgstr "Filtering_on|males"
+msgstr "males"
 
 #: ../src/plugins/quickview/FilterByName.py:59
 msgid "Filtering_on|females"
-msgstr "Filtering_on|females"
+msgstr "females"
 
 #: ../src/plugins/quickview/FilterByName.py:61
 msgid "Filtering_on|people with unknown gender"
-msgstr "Filtering_on|people with unknown gender"
+msgstr "people with unknown gender"
 
 #: ../src/plugins/quickview/FilterByName.py:63
 msgid "Filtering_on|incomplete names"
-msgstr "Filtering_on|incomplete names"
+msgstr "incomplete names"
 
 #: ../src/plugins/quickview/FilterByName.py:65
 msgid "Filtering_on|people with missing birth dates"
-msgstr "Filtering_on|people with missing birth dates"
+msgstr "people with missing birth dates"
 
 #: ../src/plugins/quickview/FilterByName.py:66
 msgid "Filtering_on|disconnected people"
-msgstr "Filtering_on|disconnected people"
+msgstr "disconnected people"
 
 #: ../src/plugins/quickview/FilterByName.py:68
 msgid "Filtering_on|unique surnames"
-msgstr "Filtering_on|unique surnames"
+msgstr "unique surnames"
 
 #: ../src/plugins/quickview/FilterByName.py:69
 msgid "Filtering_on|people with media"
-msgstr "Filtering_on|people with media"
+msgstr "people with media"
 
 #: ../src/plugins/quickview/FilterByName.py:70
 msgid "Filtering_on|media references"
-msgstr "Filtering_on|media references"
+msgstr "media references"
 
 #: ../src/plugins/quickview/FilterByName.py:71
 msgid "Filtering_on|unique media"
-msgstr "Filtering_on|unique media"
+msgstr "unique media"
 
 #: ../src/plugins/quickview/FilterByName.py:72
 msgid "Filtering_on|missing media"
-msgstr "Filtering_on|missing media"
+msgstr "missing media"
 
 #: ../src/plugins/quickview/FilterByName.py:73
 msgid "Filtering_on|media by size"
-msgstr "Filtering_on|media by size"
+msgstr "media by size"
 
 #: ../src/plugins/quickview/FilterByName.py:74
 msgid "Filtering_on|list of people"
-msgstr "Filtering_on|list of people"
+msgstr "list of people"
 
 #: ../src/plugins/quickview/FilterByName.py:86
 msgid "Summary counts of current selection"
@@ -20607,16 +20607,16 @@ msgstr "Marriage:"
 
 #: ../src/plugins/textreport/FamilyGroup.py:458
 msgid "acronym for male|M"
-msgstr "acronym for male|M"
+msgstr "M"
 
 #: ../src/plugins/textreport/FamilyGroup.py:460
 msgid "acronym for female|F"
-msgstr "acronym for female|F"
+msgstr "F"
 
 #: ../src/plugins/textreport/FamilyGroup.py:462
 #, python-format
 msgid "acronym for unknown|%dU"
-msgstr "acronym for unknown|%dU"
+msgstr "%dU"
 
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #, python-format
@@ -21016,7 +21016,7 @@ msgstr "File %s does not exist"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:131
 msgid "book|Title"
-msgstr "book|Title"
+msgstr "Title"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:131
 msgid "Title of the Book"
@@ -21301,7 +21301,7 @@ msgstr "Produces an alphabetical index for book reports."
 
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "manual|Fix_Capitalization_of_Family_Names..."
+msgstr "Fix_Capitalization_of_Family_Names..."
 
 #: ../src/plugins/tool/ChangeNames.py:75
 #: ../src/plugins/tool/ChangeNames.py:234
@@ -21751,7 +21751,7 @@ msgstr "Check and Repair"
 
 #: ../src/plugins/tool/Desbrowser.py:54
 msgid "manual|Interactive_Descendant_Browser..."
-msgstr "manual|Interactive_Descendant_Browser..."
+msgstr "Interactive_Descendant_Browser..."
 
 #: ../src/plugins/tool/Desbrowser.py:69
 #, python-format
@@ -21768,7 +21768,7 @@ msgstr "Python evaluation window"
 
 #: ../src/plugins/tool/EventCmp.py:70
 msgid "manual|Compare_Individual_Events..."
-msgstr "manual|Compare_Individual_Events..."
+msgstr "Compare_Individual_Events..."
 
 #: ../src/plugins/tool/EventCmp.py:138
 msgid "Event comparison filter selection"
@@ -21875,7 +21875,7 @@ msgstr "Medium"
 
 #: ../src/plugins/tool/FindDupes.py:67
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "manual|Find_Possible_Duplicate_People..."
+msgstr "Find_Possible_Duplicate_People..."
 
 #: ../src/plugins/tool/FindDupes.py:127 ../src/plugins/tool/tools.gpr.py:218
 msgid "Find Possible Duplicate People"
@@ -21965,7 +21965,7 @@ msgstr "Uncollected Objects: %s"
 
 #: ../src/plugins/tool/MediaManager.py:69
 msgid "manual|Media_Manager..."
-msgstr "manual|Media_Manager..."
+msgstr "Media_Manager..."
 
 #: ../src/plugins/tool/MediaManager.py:90 ../src/plugins/tool/tools.gpr.py:263
 msgid "Media Manager"
@@ -22163,7 +22163,7 @@ msgstr "Ignore Date and Confidence"
 
 #: ../src/plugins/tool/MergeCitations.py:82
 msgid "manual|Merge citations..."
-msgstr "manual|Merge citations..."
+msgstr "Merge citations..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
 msgid ""
@@ -22196,7 +22196,7 @@ msgstr[1] "%(num)d citations merged"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
-msgstr "manual|Not_Related..."
+msgstr "Not_Related..."
 
 #: ../src/plugins/tool/NotRelated.py:86
 #, python-format
@@ -22249,7 +22249,7 @@ msgstr[1] "Looking up the names of %d people"
 
 #: ../src/plugins/tool/OwnerEditor.py:56
 msgid "manual|Edit_Database_Owner_Information..."
-msgstr "manual|Edit_Database_Owner_Information..."
+msgstr "Edit_Database_Owner_Information..."
 
 #: ../src/plugins/tool/OwnerEditor.py:101
 msgid "Database Owner Editor"
@@ -22261,7 +22261,7 @@ msgstr "Edit database owner information"
 
 #: ../src/plugins/tool/PatchNames.py:64
 msgid "manual|Extract_Information_from_Names"
-msgstr "manual|Extract_Information_from_Names"
+msgstr "Extract_Information_from_Names"
 
 #: ../src/plugins/tool/PatchNames.py:106
 msgid "Name and title extraction tool"
@@ -22468,7 +22468,7 @@ msgstr "Sort family events of the person"
 
 #: ../src/plugins/tool/SoundGen.py:47
 msgid "manual|Generate_SoundEx_codes"
-msgstr "manual|Generate_SoundEx_codes"
+msgstr "Generate_SoundEx_codes"
 
 #: ../src/plugins/tool/SoundGen.py:58
 msgid "SoundEx code generator"
@@ -22644,7 +22644,7 @@ msgstr ""
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
-msgstr "manual|Verify_the_Data..."
+msgstr "Verify_the_Data..."
 
 #: ../src/plugins/tool/Verify.py:244
 msgid "Data Verify tool"
@@ -23394,19 +23394,19 @@ msgstr ""
 
 #: ../src/plugins/view/pedigreeview.py:85
 msgid "short for baptized|bap."
-msgstr "short for baptized|bap."
+msgstr "bap."
 
 #: ../src/plugins/view/pedigreeview.py:86
 msgid "short for christened|chr."
-msgstr "short for christened|chr."
+msgstr "chr."
 
 #: ../src/plugins/view/pedigreeview.py:87
 msgid "short for buried|bur."
-msgstr "short for buried|bur."
+msgstr "bur."
 
 #: ../src/plugins/view/pedigreeview.py:88
 msgid "short for cremated|crem."
-msgstr "short for cremated|crem."
+msgstr "crem."
 
 #: ../src/plugins/view/pedigreeview.py:1288
 msgid "Jump to child..."
@@ -23934,7 +23934,7 @@ msgstr "Visually Impaired"
 #: ../src/plugins/webreport/NarrativeWeb.py:1647
 #: ../src/plugins/webreport/NarrativeWeb.py:1797
 msgid "Html|Home"
-msgstr "Html|Home"
+msgstr "Home"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1648
 #: ../src/plugins/webreport/NarrativeWeb.py:1754
@@ -24091,7 +24091,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3370
 msgid "Place Name | Name"
-msgstr "Place Name | Name"
+msgstr " Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3406
 #, python-format
@@ -24182,7 +24182,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4395
 msgid "Source Name|Name"
-msgstr "Source Name|Name"
+msgstr "Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4485
 msgid "Publication information"
@@ -24207,7 +24207,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4886
 msgid "Media | Name"
-msgstr "Media | Name"
+msgstr " Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4888
 msgid "Mime Type"
@@ -24314,7 +24314,7 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6548
 msgid "Repository |Name"
-msgstr "Repository |Name"
+msgstr "Name"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6667
 msgid "Referenced Sources"
@@ -25668,7 +25668,7 @@ msgstr "Full Family name:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "person|Title:"
-msgstr "person|Title:"
+msgstr "Title:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Suffix:"
