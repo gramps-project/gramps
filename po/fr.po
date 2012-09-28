@@ -4776,6 +4776,7 @@ msgid "Source text"
 msgstr "Texte source"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gen/lib/notetype.py:84
 #: ../src/gui/clipboard.py:482
 #: ../src/gui/configure.py:501
@@ -6226,6 +6227,7 @@ msgid "Address"
 msgstr "Adresse "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 0 this order range above
 #: ../src/gui/clipboard.py:332
 #: ../src/gui/configure.py:505
@@ -6244,6 +6246,7 @@ msgid "Event"
 msgstr "Événement "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 5
 #: ../src/gui/clipboard.py:359
 #: ../src/gui/configure.py:497
@@ -6400,6 +6403,7 @@ msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 4
 #. ------------------------------------------------------------------------
 #.
@@ -6443,6 +6447,7 @@ msgid "Person"
 msgstr "Individu "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 1
 #. get the family events
 #. show "> Family: ..." and nothing else
@@ -6470,6 +6475,7 @@ msgid "Family"
 msgstr "Famille "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 7
 #: ../src/gui/clipboard.py:752
 #: ../src/gui/configure.py:499
@@ -6490,6 +6496,7 @@ msgid "Source"
 msgstr "Source "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #. 6
 #: ../src/gui/clipboard.py:779
 #: ../src/gui/configure.py:507
@@ -6715,6 +6722,7 @@ msgid "Enter your information so people can contact you when you distribute your
 msgstr ""
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:476
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
@@ -6729,6 +6737,7 @@ msgid "Locality"
 msgstr "Lieu-dit "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:477
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/gui/editors/displaytabs/locationembedlist.py:57
@@ -6744,6 +6753,7 @@ msgstr "Ville "
 
 # comté (Canada)
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:478
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/plugins/view/repoview.py:90
@@ -6751,6 +6761,7 @@ msgid "State/County"
 msgstr "Région/Départ./Comté "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:479
 #: ../src/gui/editors/displaytabs/addrembedlist.py:77
 #: ../src/gui/editors/displaytabs/locationembedlist.py:60
@@ -6769,6 +6780,7 @@ msgstr "Pays "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:480
 #: ../src/plugins/lib/libplaceview.py:102
 #: ../src/plugins/tool/extractcity.py:388
@@ -6778,6 +6790,7 @@ msgid "ZIP/Postal Code"
 msgstr "Code lieu "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:481
 #: ../src/plugins/gramplet/repositorydetails.py:111
 #: ../src/plugins/webreport/narrativeweb.py:341
@@ -6785,6 +6798,7 @@ msgid "Phone"
 msgstr "Téléphone "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:482
 #: ../src/gui/plug/_windows.py:602
 #: ../src/plugins/view/repoview.py:93
@@ -6796,6 +6810,7 @@ msgid "Researcher"
 msgstr "Chercheur"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
 #: ../src/gui/configure.py:503
 #: ../src/gui/editors/editperson.py:623
 msgid "Media Object"
