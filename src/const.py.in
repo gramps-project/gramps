@@ -82,9 +82,9 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 #
 #-------------------------------------------------------------------------
 if sys.platform == "win32":
-    if sys.prefix == os.path.dirname(os.getcwd()):
-        PREFIXDIR = sys.prefix
-        SYSCONFDIR = os.path.join(sys.prefix, "etc")
+    if sys.prefix.upper() == os.path.dirname(os.getcwd()).upper():
+        PREFIXDIR = sys.prefix.capitalize()
+        SYSCONFDIR = os.path.join(PREFIXDIR, "etc")
 elif  sys.platform == "darwin" and sys.prefix != sys.exec_prefix:
     PREFIXDIR = sys.prefix
     SYSCONFDIR = os.path.join(sys.prefix, "etc")
