@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-25 19:10+0200\n"
-"PO-Revision-Date: 2012-09-25 19:23+0200\n"
+"POT-Creation-Date: 2012-09-27 16:17+0200\n"
+"PO-Revision-Date: 2012-09-29 18:26+0200\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -615,7 +615,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1654 ../src/Utils.py:1656 ../src/Utils.py:1660
-#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:469
+#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:473
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1293,7 +1293,7 @@ msgstr "Värde"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1126
+#: ../src/gui/configure.py:1133
 msgid "Family Tree"
 msgstr "Släktträd"
 
@@ -2312,15 +2312,30 @@ msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
 #: ../src/cli/clidbman.py:398
-msgid "Could not make database directory: "
-msgstr "Kunde inte skapa databasmappen: "
+#, python-format
+msgid ""
+"\n"
+"ERROR: Wrong database path in Edit Menu->Preferences.\n"
+"Open preferences and set correct database path.\n"
+"\n"
+"Details: Could not make database directory:\n"
+"    %s\n"
+"\n"
+msgstr ""
+"\n"
+"FEL: Felaktig sökväg till databas i Redigera Meny->Inställningar.\n"
+"Öppna Inställningar och ställ in korrekt sökväg för databas.\n"
+"\n"
+"Detaljer: Kunde ej skapa databas mapp:\n"
+"    %s\n"
+"\n"
 
-#: ../src/cli/clidbman.py:446 ../src/gui/configure.py:1070
+#: ../src/cli/clidbman.py:450 ../src/gui/configure.py:1070
 msgid "Never"
 msgstr "Aldrig"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:466
+#: ../src/cli/clidbman.py:470
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -4517,7 +4532,7 @@ msgid " Name Editor"
 msgstr " Redigerare för namn"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1204 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1235 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -4852,17 +4867,21 @@ msgstr "Fråga ej om tidigare  noterade tillägg"
 msgid "Check now"
 msgstr "Kontrollera nu"
 
-#: ../src/gui/configure.py:1120
+#: ../src/gui/configure.py:1122
 msgid "Family Tree Database path"
 msgstr "Sökväg för databas till Släktträd"
 
-#: ../src/gui/configure.py:1123
+#: ../src/gui/configure.py:1130
 msgid "Automatically load last family tree"
 msgstr "Läs in senaste Släktträd automatiskt"
 
-#: ../src/gui/configure.py:1136
+#: ../src/gui/configure.py:1143
 msgid "Select media directory"
 msgstr "Välj en mediamapp"
+
+#: ../src/gui/configure.py:1167
+msgid "Select database directory"
+msgstr "Välj en mapp för databas"
 
 #: ../src/gui/dbloader.py:117 ../src/gui/plug/tool.py:110
 msgid "Undo history warning"
@@ -6029,12 +6048,6 @@ msgstr "Tillgängliga uppdateringar av Gramps tillägg"
 #, python-format
 msgid "%(adjective)s: %(addon)s"
 msgstr "%(adjective)s: %(addon)s"
-
-#. checkbox visible?
-#. initially selected?
-#: ../src/gui/viewmanager.py:482 ../src/gui/viewmanager.py:493
-msgid "t"
-msgstr ""
 
 #: ../src/gui/viewmanager.py:537
 msgid "Downloading and installing selected addons..."
@@ -7516,10 +7529,9 @@ msgid ""
 "citation alone"
 msgstr ""
 "Kan inte nu öppna ny citeringsredigerare. Antingen redideras citeringen "
-"redan "
-"eller redigeras den kopplade källan. Öppnande av en citeringsredigerare "
-"(som också medger att källan kan redigeras, leder till otydlighet genom att "
-"öppna två redigerare för samma källa.\n"
+"redan eller redigeras den kopplade källan. Öppnande av en "
+"citeringsredigerare (som också medger att källan kan redigeras, leder till "
+"otydlighet genom att öppna två redigerare för samma källa.\n"
 "\n"
 "För att redigera citeringen, stäng källredigeraren och öppna en redigerare "
 "embart för citeringen"
@@ -12815,7 +12827,7 @@ msgid "Total given names showing"
 msgstr "Visning av totalt antal förnamn"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:169
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:109
 msgid "Total people"
 msgstr "Antal personer"
@@ -13302,29 +13314,29 @@ msgid "Double-click surname for details"
 msgstr "Dubbelklicka på efternamn för detaljer"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:173
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:172
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:180
 msgid "Number of surnames"
 msgstr "Antal efternamn"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:83
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:175
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:181
 msgid "Min font size"
 msgstr "Minsta typsnittsstorlek"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:84
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:177
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:183
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:176
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:182
 msgid "Max font size"
 msgstr "Största typsnittsstorlek"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:166
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
 msgid "Total unique surnames"
 msgstr "Antal unika efternamn"
 
-#: ../src/plugins/gramplet/SurnameCloudGramplet.py:168
+#: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
 msgid "Total surnames showing"
 msgstr "Visning av totalt antal efternamn"
 
@@ -14834,36 +14846,36 @@ msgstr "Din GEDCOM-fil är trasig. Den verkar ha blivit avkortad."
 msgid "Import from GEDCOM (%s)"
 msgstr "Import från GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2550 ../src/plugins/lib/libgedcom.py:2903
+#: ../src/plugins/lib/libgedcom.py:2551 ../src/plugins/lib/libgedcom.py:2904
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/plugins/lib/libgedcom.py:2572
+#: ../src/plugins/lib/libgedcom.py:2573
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM importrappport: Inga fel hittade"
 
-#: ../src/plugins/lib/libgedcom.py:2574
+#: ../src/plugins/lib/libgedcom.py:2575
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM importrappport: %s fel hittades"
 
-#: ../src/plugins/lib/libgedcom.py:2826
+#: ../src/plugins/lib/libgedcom.py:2827
 msgid "Tag recognised but not supported"
 msgstr "Flagga upptäck, men stöds ej"
 
-#: ../src/plugins/lib/libgedcom.py:2837
+#: ../src/plugins/lib/libgedcom.py:2838
 msgid "Line ignored as not understood"
 msgstr "Rad gick inte att förstå, så den ignorerades."
 
-#: ../src/plugins/lib/libgedcom.py:2862
+#: ../src/plugins/lib/libgedcom.py:2863
 msgid "Skipped subordinate line"
 msgstr "Hoppade över underordnad rad"
 
-#: ../src/plugins/lib/libgedcom.py:2894
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Records not imported into "
 msgstr "Poster, som ej importerats till "
 
-#: ../src/plugins/lib/libgedcom.py:2929
+#: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -14872,7 +14884,7 @@ msgstr ""
 "Fel: %(msg)s  '%(gramps_id)s' (indata som @%(xref)s@) ej i GEDCOM indata. "
 "Post syntesiserad"
 
-#: ../src/plugins/lib/libgedcom.py:2938
+#: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -14881,7 +14893,7 @@ msgstr ""
 "Fel: %(msg)s '%(gramps_id)s' (indata som @%(xref)s@) ej i GEDCOM indata. "
 "Post med typattribut \"Okänt\" skapad."
 
-#: ../src/plugins/lib/libgedcom.py:2977
+#: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -14892,7 +14904,7 @@ msgstr ""
 "(indata som %(orig_person)s) är ej medlem i den refererade familjen. "
 "Familje- referens borttagen från person"
 
-#: ../src/plugins/lib/libgedcom.py:3055
+#: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
 msgid ""
 "\n"
@@ -14909,154 +14921,154 @@ msgstr ""
 "Om möjligt är dessa \"Okända\"\n"
 "objekt refererade av notisen %s.\n"
 
-#: ../src/plugins/lib/libgedcom.py:3073
+#: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
-#: ../src/plugins/lib/libgedcom.py:3102
+#: ../src/plugins/lib/libgedcom.py:3103
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "Submitter (SUBM): @%s@"
 
-#: ../src/plugins/lib/libgedcom.py:3126 ../src/plugins/lib/libgedcom.py:6581
+#: ../src/plugins/lib/libgedcom.py:3127 ../src/plugins/lib/libgedcom.py:6612
 msgid "GEDCOM data"
 msgstr "GEDCOM-data"
 
-#: ../src/plugins/lib/libgedcom.py:3172
+#: ../src/plugins/lib/libgedcom.py:3173
 msgid "Unknown tag"
 msgstr "Okänd flagga"
 
-#: ../src/plugins/lib/libgedcom.py:3174 ../src/plugins/lib/libgedcom.py:3188
-#: ../src/plugins/lib/libgedcom.py:3192 ../src/plugins/lib/libgedcom.py:3213
+#: ../src/plugins/lib/libgedcom.py:3175 ../src/plugins/lib/libgedcom.py:3189
+#: ../src/plugins/lib/libgedcom.py:3193 ../src/plugins/lib/libgedcom.py:3214
 msgid "Top Level"
 msgstr "Översta nivå"
 
-#: ../src/plugins/lib/libgedcom.py:3282
+#: ../src/plugins/lib/libgedcom.py:3283
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (individual) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3476 ../src/plugins/lib/libgedcom.py:4771
-#: ../src/plugins/lib/libgedcom.py:4974 ../src/plugins/lib/libgedcom.py:5105
-#: ../src/plugins/lib/libgedcom.py:5730 ../src/plugins/lib/libgedcom.py:5867
+#: ../src/plugins/lib/libgedcom.py:3477 ../src/plugins/lib/libgedcom.py:4778
+#: ../src/plugins/lib/libgedcom.py:4987 ../src/plugins/lib/libgedcom.py:5124
+#: ../src/plugins/lib/libgedcom.py:5755 ../src/plugins/lib/libgedcom.py:5898
 msgid "Filename omitted"
 msgstr "Filnamn uteslutet"
 
-#: ../src/plugins/lib/libgedcom.py:3478 ../src/plugins/lib/libgedcom.py:4773
-#: ../src/plugins/lib/libgedcom.py:4976 ../src/plugins/lib/libgedcom.py:5107
-#: ../src/plugins/lib/libgedcom.py:5732 ../src/plugins/lib/libgedcom.py:5869
+#: ../src/plugins/lib/libgedcom.py:3479 ../src/plugins/lib/libgedcom.py:4780
+#: ../src/plugins/lib/libgedcom.py:4989 ../src/plugins/lib/libgedcom.py:5126
+#: ../src/plugins/lib/libgedcom.py:5757 ../src/plugins/lib/libgedcom.py:5900
 msgid "Form omitted"
 msgstr "Form uteslutet"
 
-#: ../src/plugins/lib/libgedcom.py:4543
+#: ../src/plugins/lib/libgedcom.py:4544
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (family) Gramps ID %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5256
+#: ../src/plugins/lib/libgedcom.py:5275
 msgid "Empty event note ignored"
 msgstr "Tom händelsenotis ignorerades"
 
-#: ../src/plugins/lib/libgedcom.py:5573 ../src/plugins/lib/libgedcom.py:6384
+#: ../src/plugins/lib/libgedcom.py:5592 ../src/plugins/lib/libgedcom.py:6415
 msgid "Warn: ADDR overwritten"
 msgstr "Varning: ADDR överskrivet"
 
-#: ../src/plugins/lib/libgedcom.py:5744 ../src/plugins/lib/libgedcom.py:6126
+#: ../src/plugins/lib/libgedcom.py:5769 ../src/plugins/lib/libgedcom.py:6157
 msgid "REFN ignored"
 msgstr "REFN ignorerad"
 
-#: ../src/plugins/lib/libgedcom.py:5836
+#: ../src/plugins/lib/libgedcom.py:5861
 #, python-format
 msgid "No title - ID %s"
 msgstr "Ingen titel - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5841
+#: ../src/plugins/lib/libgedcom.py:5866
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6052
+#: ../src/plugins/lib/libgedcom.py:6083
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multi-media objekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6080 ../src/plugins/lib/libgedcom.py:7074
+#: ../src/plugins/lib/libgedcom.py:6111 ../src/plugins/lib/libgedcom.py:7105
 #, python-format
 msgid "Could not import %s"
 msgstr "Kunde inte importera %s"
 
-#: ../src/plugins/lib/libgedcom.py:6116
+#: ../src/plugins/lib/libgedcom.py:6147
 msgid "BLOB ignored"
 msgstr "BLOB ignorerad"
 
-#: ../src/plugins/lib/libgedcom.py:6136
+#: ../src/plugins/lib/libgedcom.py:6167
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignorerad"
 
-#: ../src/plugins/lib/libgedcom.py:6146
+#: ../src/plugins/lib/libgedcom.py:6177
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignorerad"
 
-#: ../src/plugins/lib/libgedcom.py:6233
+#: ../src/plugins/lib/libgedcom.py:6264
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (repository) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6509
+#: ../src/plugins/lib/libgedcom.py:6540
 msgid "Head (header)"
 msgstr "Head (header)"
 
-#: ../src/plugins/lib/libgedcom.py:6525
+#: ../src/plugins/lib/libgedcom.py:6556
 msgid "Approved system identification"
 msgstr "Godkänd systemidentifiering"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6535
+#: ../src/plugins/lib/libgedcom.py:6566
 msgid "Generated by"
 msgstr "Skapad av"
 
-#: ../src/plugins/lib/libgedcom.py:6549
+#: ../src/plugins/lib/libgedcom.py:6580
 msgid "Name of software product"
 msgstr "Namn på programvaruprodukt"
 
-#: ../src/plugins/lib/libgedcom.py:6561
+#: ../src/plugins/lib/libgedcom.py:6592
 msgid "Version number of software product"
 msgstr "Versionsnummer på programvaruprodukt"
 
-#: ../src/plugins/lib/libgedcom.py:6578
+#: ../src/plugins/lib/libgedcom.py:6609
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Företag som framställt produkten: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6599
+#: ../src/plugins/lib/libgedcom.py:6630
 msgid "Name of source data"
 msgstr "Namn på källdata"
 
-#: ../src/plugins/lib/libgedcom.py:6613
+#: ../src/plugins/lib/libgedcom.py:6644
 msgid "Copyright of source data"
 msgstr "Copyright för källdata"
 
-#: ../src/plugins/lib/libgedcom.py:6627
+#: ../src/plugins/lib/libgedcom.py:6658
 msgid "Publication date of source data"
 msgstr "Publiceringsdatum för källdata"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6640
+#: ../src/plugins/lib/libgedcom.py:6671
 #, python-format
 msgid "Import from %s"
 msgstr "Import från %s"
 
-#: ../src/plugins/lib/libgedcom.py:6678
+#: ../src/plugins/lib/libgedcom.py:6709
 msgid "Submission record identifier"
 msgstr "Identifierare av inlämningspost"
 
-#: ../src/plugins/lib/libgedcom.py:6689
+#: ../src/plugins/lib/libgedcom.py:6720
 msgid "Language of GEDCOM text"
 msgstr "Språk i GEDCOM-text"
 
-#: ../src/plugins/lib/libgedcom.py:6713
+#: ../src/plugins/lib/libgedcom.py:6744
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -15064,82 +15076,82 @@ msgid ""
 msgstr ""
 "Import av GEDCOM fil %s med DEST=%s, kan orsaka del i den skapade databasen!"
 
-#: ../src/plugins/lib/libgedcom.py:6716
+#: ../src/plugins/lib/libgedcom.py:6747
 msgid "Look for nameless events."
 msgstr "Sök efter namnlösa händelser."
 
-#: ../src/plugins/lib/libgedcom.py:6739
+#: ../src/plugins/lib/libgedcom.py:6770
 msgid "Character set"
 msgstr "Teckentabell"
 
-#: ../src/plugins/lib/libgedcom.py:6741
+#: ../src/plugins/lib/libgedcom.py:6772
 msgid "Character set and version"
 msgstr "Teckentabell och version"
 
-#: ../src/plugins/lib/libgedcom.py:6757
+#: ../src/plugins/lib/libgedcom.py:6788
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM-versionen stöds ej"
 
-#: ../src/plugins/lib/libgedcom.py:6760
+#: ../src/plugins/lib/libgedcom.py:6791
 msgid "GEDCOM version"
 msgstr "GEDCOM-version"
 
-#: ../src/plugins/lib/libgedcom.py:6763
+#: ../src/plugins/lib/libgedcom.py:6794
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM-form ej stödd"
 
-#: ../src/plugins/lib/libgedcom.py:6765
+#: ../src/plugins/lib/libgedcom.py:6796
 msgid "GEDCOM form"
 msgstr "GEDCOM-form"
 
-#: ../src/plugins/lib/libgedcom.py:6811
+#: ../src/plugins/lib/libgedcom.py:6842
 msgid "Creation date of GEDCOM"
 msgstr "Skapelsedatum för GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6815
+#: ../src/plugins/lib/libgedcom.py:6846
 msgid "Creation date and time of GEDCOM"
 msgstr "Skapelsedatum och tid för GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6852 ../src/plugins/lib/libgedcom.py:6889
+#: ../src/plugins/lib/libgedcom.py:6883 ../src/plugins/lib/libgedcom.py:6920
 msgid "Empty note ignored"
 msgstr "Tom notis ignorerades"
 
-#: ../src/plugins/lib/libgedcom.py:6904
+#: ../src/plugins/lib/libgedcom.py:6935
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6954
+#: ../src/plugins/lib/libgedcom.py:6985
 msgid "Submission: Submitter"
 msgstr "Inlämning: Inlämnare"
 
-#: ../src/plugins/lib/libgedcom.py:6956
+#: ../src/plugins/lib/libgedcom.py:6987
 msgid "Submission: Family file"
 msgstr "Inlämning: Släktfil"
 
-#: ../src/plugins/lib/libgedcom.py:6958
+#: ../src/plugins/lib/libgedcom.py:6989
 msgid "Submission: Temple code"
 msgstr "Inlämning: Tempelkod"
 
-#: ../src/plugins/lib/libgedcom.py:6960
+#: ../src/plugins/lib/libgedcom.py:6991
 msgid "Submission: Generations of ancestors"
 msgstr "Inlämning: Generationer av förfäder"
 
-#: ../src/plugins/lib/libgedcom.py:6962
+#: ../src/plugins/lib/libgedcom.py:6993
 msgid "Submission: Generations of descendants"
 msgstr "Inlämning: Generationer av ättlingar"
 
-#: ../src/plugins/lib/libgedcom.py:6964
+#: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
 msgstr "Inlämning: Prästvigselprocessmärke"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7176
+#: ../src/plugins/lib/libgedcom.py:7207
 msgid "Invalid temple code"
 msgstr "Ogiltig tempelkod"
 
-#: ../src/plugins/lib/libgedcom.py:7257
+#: ../src/plugins/lib/libgedcom.py:7288
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15147,11 +15159,11 @@ msgstr ""
 "Din GEDCOM-fil är förstörd. Filen verkar varar kodad med UTF16-"
 "teckenuppsättning, men saknar BOM-markering."
 
-#: ../src/plugins/lib/libgedcom.py:7260
+#: ../src/plugins/lib/libgedcom.py:7291
 msgid "Your GEDCOM file is empty."
 msgstr "Din GEDCOM-fil är tom."
 
-#: ../src/plugins/lib/libgedcom.py:7323
+#: ../src/plugins/lib/libgedcom.py:7354
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ogiltig rad %d i GEDCOM-fil."
@@ -30217,9 +30229,9 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Talar ej engelska?</b><br/>Gramps har översatts till 20 språk. Om "
-"Gramps stödjer ditt språk och det inte visas, så ställ in standardspråket på "
-"din maskin och starta om Gramps."
+"<b>Talar ej engelska?</b><br/>Gramps har översatts till 20 språk. Om Gramps "
+"stödjer ditt språk och det inte visas, så ställ in standardspråket på din "
+"maskin och starta om Gramps."
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -30891,6 +30903,9 @@ msgstr ""
 "formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
 "indikera konfidensnivån på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
+
+#~ msgid "Could not make database directory: "
+#~ msgstr "Kunde inte skapa databasmappen: "
 
 #~ msgid "Gramplet showing available third-party plugins (addons)"
 #~ msgstr "Gramplet med tillgängliga tredjepart insticksmoduler (addons)"
