@@ -49,7 +49,7 @@ VERSION = '4.0.0'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
-INTLTOOL_FILES = ('src/data/tips.xml', 'src/plugins/lib/holidays.xml')
+INTLTOOL_FILES = ('gramps/data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
 def intltool_version():
     '''
@@ -230,8 +230,8 @@ def write_const_py(install_cmd):
     '''
     Write the const.py file.
     '''
-    const_py_in = os.path.join('src', 'gen', 'const.py.in')
-    const_py = os.path.join('src', 'gen', 'const.py')
+    const_py_in = os.path.join('gramps', 'gen', 'const.py.in')
+    const_py = os.path.join('gramps', 'gen', 'const.py')
     if hasattr(install_cmd, 'install_data'):
         #during install
         prefix = "'%s'" % install_cmd.install_data
@@ -316,7 +316,7 @@ data_list = [
             ]
 
 # add all subdirs of plugin with glade:
-basedir = os.path.join('src', 'plugins')
+basedir = os.path.join('gramps', 'plugins')
 for (dirpath, dirnames, filenames) in os.walk(basedir):
     root, subdir = os.path.split(dirpath)
     if subdir.startswith("."): 
@@ -326,7 +326,7 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         # Skip hidden and system directories:
         if dirname.startswith("."):
             dirnames.remove(dirname)
-        #we add to data_list so glade , xml, files are found, we don't need the src/ part
+        #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
         data_list.append(os.path.join(dirpath[4:], '*.glade'))
         data_list.append(os.path.join(dirpath[4:], '*.xml'))
         data_list.append(os.path.join(dirpath[4:], '*.png'))
@@ -390,7 +390,7 @@ setup(name = 'gramps',
       license = 'GPL v2 or greater', 
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
       cmdclass = {'build': build, 'install': install},
-      package_dir = {'gramps': 'src'}, 
+      package_dir = {'gramps': 'gramps'}, 
       packages = ['gramps',
             'gramps.cli',
             'gramps.cli.plug',
@@ -464,7 +464,7 @@ setup(name = 'gramps',
                     + '48x48' + os.sep + 'mimetypes', PNG_FILES), 
                   ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
                     + 'scalable' + os.sep + 'mimetypes', SVG_FILES), 
-                  ('share' + os.sep + 'icons', ['src' + os.sep + 'images' 
+                  ('share' + os.sep + 'icons', ['gramps' + os.sep + 'images' 
                     + os.sep + 'gramps.png']), 
                   ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
                     + 'example' + os.sep + 'gedcom', GEDCOM_FILES), 
