@@ -50,10 +50,22 @@ Typical install directories in linux (ubuntu) are:
   * /usr/local/share/man/man1/xx/man1       : xx language code, man file
   * /usr/local/share/mime
   * /usr/local/share/mime-info
-running Gramps
+
+Running Gramps
 --------------
 Gramps is python only, so no compilation is needed, you can even run gramps
 from the source directory. 
+
+ a) running with gramps installed globally
+   You can run gramps with the command:
+
+     python -c 'from gramps.grampsapp import main; main()'
+
+   You find in /usr/local/bin or /usr/bin the executable 'gramps' which does 
+   this for you.
+
+ b) running from the source directory (where you extracted the Gramps source):
+     python Gramps.py
 
 
 Custom directory installation
