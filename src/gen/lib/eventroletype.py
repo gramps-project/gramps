@@ -28,14 +28,14 @@ Provide the different event roles.
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from ..ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType
+from grampstype import GrampsType
 
 class EventRoleType(GrampsType):
 

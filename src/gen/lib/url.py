@@ -38,10 +38,10 @@ from urlparse import urlparse
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.secondaryobj import SecondaryObject
-from gen.lib.privacybase import PrivacyBase
-from gen.lib.urltype import UrlType
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from secondaryobj import SecondaryObject
+from privacybase import PrivacyBase
+from urltype import UrlType
+from const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

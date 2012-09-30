@@ -34,8 +34,8 @@ import sys
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters._filterparser import FilterParser
-from gen.plug import BasePluginManager
+from _filterparser import FilterParser
+from ..plug import BasePluginManager
 
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------

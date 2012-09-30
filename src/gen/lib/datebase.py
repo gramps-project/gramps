@@ -29,7 +29,7 @@ DateBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.date import Date
+from date import Date
 
 #-------------------------------------------------------------------------
 #

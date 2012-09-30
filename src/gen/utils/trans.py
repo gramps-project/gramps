@@ -41,8 +41,8 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import PREFIXDIR, ROOT_DIR
-from gen.constfunc import mac
+from ..const import PREFIXDIR, ROOT_DIR
+from ..constfunc import mac
 #-------------------------------------------------------------------------
 #
 # Public Constants

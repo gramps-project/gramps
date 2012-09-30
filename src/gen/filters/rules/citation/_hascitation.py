@@ -28,15 +28,15 @@ Filter rule to match citation data.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import Rule
-import gen.datehandler
+from .. import Rule
+from ....datehandler import parser
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class HasCitation(Rule):
         self.date = None
         try:
             if self.list[1]:
-                self.date = gen.datehandler.parser.parse(self.list[1])
+                self.date = parser.parse(self.list[1])
         except:
             pass
 

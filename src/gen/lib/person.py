@@ -32,23 +32,23 @@ Person object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.citationbase import CitationBase
-from gen.lib.notebase import NoteBase
-from gen.lib.mediabase import MediaBase
-from gen.lib.attrbase import AttributeBase
-from gen.lib.addressbase import AddressBase
-from gen.lib.ldsordbase import LdsOrdBase
-from gen.lib.urlbase import UrlBase
-from gen.lib.tagbase import TagBase
-from gen.lib.name import Name
-from gen.lib.eventref import EventRef
-from gen.lib.personref import PersonRef
-from gen.lib.attrtype import AttributeType
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.attribute import Attribute
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
-from gen.ggettext import gettext as _
+from primaryobj import PrimaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from mediabase import MediaBase
+from attrbase import AttributeBase
+from addressbase import AddressBase
+from ldsordbase import LdsOrdBase
+from urlbase import UrlBase
+from tagbase import TagBase
+from name import Name
+from eventref import EventRef
+from personref import PersonRef
+from attrtype import AttributeType
+from eventroletype import EventRoleType
+from attribute import Attribute
+from const import IDENTICAL, EQUAL, DIFFERENT
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

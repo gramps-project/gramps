@@ -42,8 +42,6 @@ import datetime
 from gen.ggettext import sgettext as _
 from gen.ggettext import ngettext
 from cStringIO import StringIO
-from collections import defaultdict
-from gui.user import User
 import sys
 import posixpath
 
@@ -68,6 +66,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIManager
+from gui.user import User
 from gui.plug import tool
 from gen.plug import (START, END)
 from gen.plug import REPORT
@@ -263,7 +262,6 @@ def get_count(addon_update_list, category):
 # ViewManager
 #
 #-------------------------------------------------------------------------
-
 class ViewManager(CLIManager):
     """
     Overview

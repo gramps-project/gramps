@@ -21,62 +21,62 @@
 
 # $Id$
 
-"""The core library of GRAMPS objects"""
-
+"""The core library of GRAMPS objects
+"""
 # Dates
-from gen.lib.date import Date, DateError, Span
+from date import Date, DateError, Span
 
 # Secondary objects
-from gen.lib.secondaryobj import SecondaryObject
-from gen.lib.address import Address
-from gen.lib.location import Location
-from gen.lib.attribute import Attribute
-from gen.lib.eventref import EventRef
-from gen.lib.ldsord import LdsOrd
-from gen.lib.mediaref import MediaRef 
-from gen.lib.name import Name
-from gen.lib.reporef import RepoRef
-from gen.lib.surname import Surname
-from gen.lib.url import Url
-from gen.lib.witness import Witness
-from gen.lib.childref import ChildRef
+from secondaryobj import SecondaryObject
+from address import Address
+from location import Location
+from attribute import Attribute
+from eventref import EventRef
+from ldsord import LdsOrd
+from mediaref import MediaRef 
+from name import Name
+from reporef import RepoRef
+from surname import Surname
+from url import Url
+from witness import Witness
+from childref import ChildRef
 
 # Primary objects
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.person import Person
-from gen.lib.personref import PersonRef
-from gen.lib.family import Family
-from gen.lib.event import Event
-from gen.lib.place import Place
-from gen.lib.src import Source
-from gen.lib.mediaobj import MediaObject
-from gen.lib.repo import Repository
-from gen.lib.note import Note
-from gen.lib.citation import Citation
+from primaryobj import PrimaryObject
+from person import Person
+from personref import PersonRef
+from family import Family
+from event import Event
+from place import Place
+from src import Source
+from mediaobj import MediaObject
+from repo import Repository
+from note import Note
+from citation import Citation
 
 # Table objects
-from gen.lib.tag import Tag
+from tag import Tag
 
 # These are actually metadata
-from gen.lib.genderstats import GenderStats
-from gen.lib.researcher import Researcher
+from genderstats import GenderStats
+from researcher import Researcher
 
 # Type classes
-from gen.lib.grampstype import GrampsType
-from gen.lib.nametype import NameType
-from gen.lib.attrtype import AttributeType
-from gen.lib.urltype import UrlType
-from gen.lib.childreftype import ChildRefType
-from gen.lib.repotype import RepositoryType
-from gen.lib.eventtype import EventType
-from gen.lib.familyreltype import FamilyRelType
-from gen.lib.srcmediatype import SourceMediaType
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.markertype import MarkerType
-from gen.lib.nameorigintype import NameOriginType
-from gen.lib.notetype import NoteType
-from gen.lib.styledtexttagtype import StyledTextTagType
+from grampstype import GrampsType
+from nametype import NameType
+from attrtype import AttributeType
+from urltype import UrlType
+from childreftype import ChildRefType
+from repotype import RepositoryType
+from eventtype import EventType
+from familyreltype import FamilyRelType
+from srcmediatype import SourceMediaType
+from eventroletype import EventRoleType
+from markertype import MarkerType
+from nameorigintype import NameOriginType
+from notetype import NoteType
+from styledtexttagtype import StyledTextTagType
 
 # Text
-from gen.lib.styledtexttag import StyledTextTag
-from gen.lib.styledtext import StyledText
+from styledtexttag import StyledTextTag
+from styledtext import StyledText

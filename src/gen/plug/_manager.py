@@ -38,15 +38,15 @@ importers, exporters, quick reports, and document generators.
 import os
 import sys
 import re
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
-from gen.plug import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
+from ..config import config
+from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
 
 #-------------------------------------------------------------------------
 #

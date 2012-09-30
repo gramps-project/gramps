@@ -31,11 +31,11 @@ Source object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.mediabase import MediaBase
-from gen.lib.notebase import NoteBase
-from gen.lib.reporef import RepoRef
-from gen.lib.const import DIFFERENT, EQUAL, IDENTICAL
+from primaryobj import PrimaryObject
+from mediabase import MediaBase
+from notebase import NoteBase
+from reporef import RepoRef
+from const import DIFFERENT, EQUAL, IDENTICAL
 
 #-------------------------------------------------------------------------
 #

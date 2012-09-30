@@ -42,8 +42,8 @@ from functools import wraps
 import logging
 from sys import maxint
 
-from gen.ggettext import gettext as _
-from gen.config import config
+from ..ggettext import gettext as _
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import dbshelve, db
 else:
@@ -54,18 +54,29 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
-                     Citation, MediaObject, Repository, Note, Tag)
-from gen.db import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
+from ..lib.person import Person
+from ..lib.family import Family
+from ..lib.src import Source
+from ..lib.citation import Citation
+from ..lib.event import Event
+from ..lib.place import Place
+from ..lib.repo import Repository
+from ..lib.mediaobj import MediaObject
+from ..lib.note import Note
+from ..lib.tag import Tag
+from ..lib.genderstats import GenderStats
+from ..lib.researcher import Researcher 
+
+from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
                     find_surname_name, DbUndoBSDDB as DbUndo)
-from gen.db.dbconst import *
-from gen.utils.callback import Callback
-from gen.utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
-from gen.updatecallback import UpdateCallback
-from gen.errors import DbError
-from gen.constfunc import win
+from dbconst import *
+from ..utils.callback import Callback
+from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
+from ..updatecallback import UpdateCallback
+from ..errors import DbError
+from ..constfunc import win
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")

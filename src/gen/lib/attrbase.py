@@ -30,8 +30,8 @@ AttributeBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.attribute import Attribute
-from gen.lib.const import IDENTICAL, EQUAL
+from attribute import Attribute
+from const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #

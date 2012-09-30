@@ -53,7 +53,7 @@ Specific symbols for parts of a name are defined:
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from ..ggettext import sgettext as _
 import re
 
 #-------------------------------------------------------------------------
@@ -61,10 +61,11 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Name, NameOriginType
+from ..lib.name import Name
+from ..lib.nameorigintype import NameOriginType
 
 try:
-    from gen.config import config
+    from ..config import config
     WITH_GRAMPS_CONFIG=True
 except ImportError:
     WITH_GRAMPS_CONFIG=False

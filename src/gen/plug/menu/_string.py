@@ -29,7 +29,7 @@ Option class representing a string.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import Option
+from . import Option
 
 #-------------------------------------------------------------------------
 #

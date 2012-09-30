@@ -47,7 +47,7 @@ log = logging.getLogger(".gen.datehandler")
 #-------------------------------------------------------------------------
 from _dateparser import DateParser
 from _datedisplay import DateDisplay, DateDisplayEn
-from gen.constfunc import win
+from ..constfunc import win
 
 #-------------------------------------------------------------------------
 #

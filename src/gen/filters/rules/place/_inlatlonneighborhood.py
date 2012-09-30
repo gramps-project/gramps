@@ -27,15 +27,15 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import Rule
-from gen.utils.place import conv_lat_lon
+from .. import Rule
+from ....utils.place import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #

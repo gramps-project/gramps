@@ -26,14 +26,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hasnoteregexbase import HasNoteRegexBase
+from .._hasnoteregexbase import HasNoteRegexBase
 
 #-------------------------------------------------------------------------
 # "Sources having notes that contain a substring"

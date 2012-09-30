@@ -25,15 +25,15 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
-from gen.filters.rules import Rule
+from ....datehandler import parser
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class HasMedia(Rule):
         self.date = None
         try:
             if self.list[3]:
-                self.date = gen.datehandler.parser.parse(self.list[3])
+                self.date = parser.parse(self.list[3])
         except:
             pass
 

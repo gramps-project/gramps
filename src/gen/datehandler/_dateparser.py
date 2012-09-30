@@ -48,7 +48,7 @@ log = logging.getLogger(".DateParser")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Date, DateError
+from ..lib.date import Date, DateError
 import _grampslocale
 
 #-------------------------------------------------------------------------

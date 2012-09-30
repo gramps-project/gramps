@@ -29,7 +29,7 @@ The base option class for all other option classes.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.callback import Callback
+from ...utils.callback import Callback
 
 #-------------------------------------------------------------------------
 #

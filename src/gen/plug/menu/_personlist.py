@@ -29,8 +29,7 @@ Option class representing a list of people.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import Option
-
+from . import Option
 
 #-------------------------------------------------------------------------
 #

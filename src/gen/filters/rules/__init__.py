@@ -68,20 +68,27 @@ _Everything                  Match every object in the database
 """
 
 # Need to expose this to be available for filter plugins:
-# the plugins should say: from gen.filters.rules import Rule
-from gen.filters.rules._rule import Rule
+# the plugins should say: from .. import Rule
+from _rule import Rule
 
-from gen.filters.rules._everything import Everything
-from gen.filters.rules._hasgrampsid import HasGrampsId
-from gen.filters.rules._isprivate import IsPrivate
-from gen.filters.rules._ispublic import IsPublic
-from gen.filters.rules._hastextmatchingsubstringof import HasTextMatchingSubstringOf
-from gen.filters.rules._hastextmatchingregexpof import HasTextMatchingRegexpOf
-from gen.filters.rules._matchesfilterbase import MatchesFilterBase
-from gen.filters.rules._matcheseventfilterbase import MatchesEventFilterBase
-from gen.filters.rules._matchessourceconfidencebase import MatchesSourceConfidenceBase
-from gen.filters.rules._matchessourcefilterbase import MatchesSourceFilterBase
-from gen.filters.rules._changedsincebase import ChangedSinceBase
-
-from gen.filters.rules import (person, family, event, source, citation, place, 
-                           media, repository, note)
+from _everything import Everything
+from _hasgrampsid import HasGrampsId
+from _isprivate import IsPrivate
+from _ispublic import IsPublic
+from _hastextmatchingsubstringof import HasTextMatchingSubstringOf
+from _hastextmatchingregexpof import HasTextMatchingRegexpOf
+from _matchesfilterbase import MatchesFilterBase
+from _matcheseventfilterbase import MatchesEventFilterBase
+from _matchessourceconfidencebase import MatchesSourceConfidenceBase
+from _matchessourcefilterbase import MatchesSourceFilterBase
+from _changedsincebase import ChangedSinceBase
+#object filters
+import person
+import family
+import event
+import source
+import citation
+import place
+import media
+import repository
+import note

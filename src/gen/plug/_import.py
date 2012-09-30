@@ -23,7 +23,7 @@
 This module provides the Plugin class for import plugins.
 """
 
-from gen.plug import Plugin
+from . import Plugin
 
 class ImportPlugin(Plugin):
     """

@@ -24,15 +24,15 @@
 SurnameBase class for GRAMPS.
 """
 
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.surname import Surname
-from gen.lib.const import IDENTICAL, EQUAL
+from surname import Surname
+from const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #

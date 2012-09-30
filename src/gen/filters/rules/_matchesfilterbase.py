@@ -25,15 +25,15 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ...ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.filters
-from gen.filters.rules import Rule
+from .. import CustomFilters
+from . import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -55,24 +55,24 @@ class MatchesFilterBase(Rule):
     category    = _('General filters')
 
     def prepare(self, db):
-        if gen.filters.CustomFilters:
-            filters = gen.filters.CustomFilters.get_filters_dict(self.namespace)
+        if CustomFilters:
+            filters = CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
                     rule.requestprepare(db)
 
     def reset(self):
-        if gen.filters.CustomFilters:
-            filters = gen.filters.CustomFilters.get_filters_dict(self.namespace)
+        if CustomFilters:
+            filters = CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
                     rule.requestreset()
 
     def apply(self, db, obj):
-        if gen.filters.CustomFilters:
-            filters = gen.filters.CustomFilters.get_filters_dict(self.namespace)
+        if CustomFilters:
+            filters = CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 return filt.check(db, obj.handle)
@@ -82,8 +82,8 @@ class MatchesFilterBase(Rule):
         """
         Return the selected filter or None.
         """
-        if gen.filters.CustomFilters:
-            filters = gen.filters.CustomFilters.get_filters_dict(self.namespace)
+        if CustomFilters:
+            filters = CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 return filters[self.list[0]]
         return None

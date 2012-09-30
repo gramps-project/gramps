@@ -28,15 +28,15 @@ Filter rule to match persons with a particular event.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import EventRoleType
-from gen.filters.rules._haseventbase import HasEventBase
+from ....lib.eventroletype import EventRoleType
+from .._haseventbase import HasEventBase
 
 #-------------------------------------------------------------------------
 #

@@ -29,8 +29,8 @@ Package providing filtering framework for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters._genericfilter import GenericFilter
-from gen.errors import FilterError
+from _genericfilter import GenericFilter
+from ..errors import FilterError
 
 #-------------------------------------------------------------------------
 #

@@ -32,14 +32,15 @@ from this class.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from ..lib.childreftype import ChildRefType
+from ..lib.childref import ChildRef
 from txn import DbTxn
 from exceptions import DbTransactionCancel
 
@@ -1596,13 +1597,13 @@ class DbWriteBase(DbReadBase):
         raise NotImplementedError
 
     def add_child_to_family(self, family, child,
-                            mrel=gen.lib.ChildRefType(),
-                            frel=gen.lib.ChildRefType(),
+                            mrel=ChildRefType(),
+                            frel=ChildRefType(),
                             trans=None):
         """
         Adds a child to a family.
         """
-        cref = gen.lib.ChildRef()
+        cref = ChildRef()
         cref.ref = child.handle
         cref.set_father_relation(frel)
         cref.set_mother_relation(mrel)

@@ -25,14 +25,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules.person import HasNameOf
+from ..person import HasNameOf
 from _memberbase import child_base
 
 #-------------------------------------------------------------------------

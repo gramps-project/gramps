@@ -29,7 +29,7 @@ Option class representing an enumerated list of possible values.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import Option
+from . import Option
 
 #-------------------------------------------------------------------------
 #

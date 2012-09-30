@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2012       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,33 +18,22 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: grampsapp.py -1   $
 
 """
-Package providing filtering framework for GRAMPS.
+This is a stub to start Gramps. It is provided for the sole reason of being
+able to run gramps from the source directory without setting PYTHONPATH
+
+From this position, import gramps works great
 """
 
-#SystemFilters = None
-CustomFilters = None
+# here import gramps works. As __temporary__ workaround, we also put the gramps
+# folder itself on the systempath
+import sys, os
+pathgramps = os.path.dirname(os.path.abspath(__file__))
+pathgramps += os.sep + 'gramps'
+sys.path.append(pathgramps)
 
-from ..const import CUSTOM_FILTERS
-from _filterlist import FilterList
-from _genericfilter import GenericFilter, GenericFilterFactory
-from _paramfilter import ParamFilter
-from _searchfilter import SearchFilter, ExactSearchFilter
-
-#def reload_system_filters():
-    #global SystemFilters
-    #SystemFilters = FilterList(SYSTEM_FILTERS)
-    #SystemFilters.load()
-    
-def reload_custom_filters():
-    global CustomFilters
-    CustomFilters = FilterList(CUSTOM_FILTERS)
-    CustomFilters.load()
-    
-#if not SystemFilters:
-    #reload_system_filters()
-
-if not CustomFilters:
-    reload_custom_filters()
+#now start gramps
+import gramps.grampsapp as app
+app.main()

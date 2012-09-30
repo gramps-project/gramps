@@ -25,7 +25,7 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import HasTextMatchingSubstringOf
+from . import HasTextMatchingSubstringOf
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"

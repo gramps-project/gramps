@@ -40,7 +40,6 @@ import gen.user
 from gui.utils import ProgressMeter
 from gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
                             InfoDialog)
-
 #-------------------------------------------------------------------------
 #
 # User class

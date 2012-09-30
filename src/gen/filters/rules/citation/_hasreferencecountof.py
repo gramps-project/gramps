@@ -26,14 +26,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hasreferencecountbase import HasReferenceCountBase
+from .._hasreferencecountbase import HasReferenceCountBase
 
 #-------------------------------------------------------------------------
 # "Source objects with a certain reference count"

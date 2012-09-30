@@ -31,12 +31,12 @@ Place object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.citationbase import CitationBase
-from gen.lib.notebase import NoteBase
-from gen.lib.mediabase import MediaBase
-from gen.lib.urlbase import UrlBase
-from gen.lib.location import Location
+from primaryobj import PrimaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from mediabase import MediaBase
+from urlbase import UrlBase
+from location import Location
 
 _EMPTY_LOC = Location().serialize()
 

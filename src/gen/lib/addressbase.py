@@ -30,8 +30,8 @@ AddressBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.address import Address
-from gen.lib.const import IDENTICAL, EQUAL
+from address import Address
+from const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #

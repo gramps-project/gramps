@@ -29,7 +29,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 import math
 
 #-------------------------------------------------------------------------

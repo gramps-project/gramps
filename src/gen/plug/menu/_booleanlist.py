@@ -28,7 +28,7 @@ Option class representing a list of boolean values.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import Option
+from . import Option
 
 #-------------------------------------------------------------------------
 #

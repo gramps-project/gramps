@@ -29,8 +29,8 @@ Option class representing a document style.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import EnumeratedListOption
-from gen.plug.docgen import StyleSheetList
+from . import EnumeratedListOption
+from ..docgen import StyleSheetList
 
 #-------------------------------------------------------------------------
 #

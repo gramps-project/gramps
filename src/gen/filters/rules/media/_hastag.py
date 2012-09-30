@@ -27,14 +27,14 @@ Rule that checks for a media object with a particular tag.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hastagbase import HasTagBase
+from .._hastagbase import HasTagBase
 
 #-------------------------------------------------------------------------
 #

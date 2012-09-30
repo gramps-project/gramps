@@ -27,14 +27,14 @@
 #
 #-------------------------------------------------------------------------
 import re
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import Rule
+from .. import Rule
 
 #-------------------------------------------------------------------------
 # "Repos having notes that contain a substring"

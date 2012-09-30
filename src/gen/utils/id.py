@@ -41,7 +41,7 @@ import uuid
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import GRAMPS_UUID
+from ..const import GRAMPS_UUID
 
 #-------------------------------------------------------------------------
 #

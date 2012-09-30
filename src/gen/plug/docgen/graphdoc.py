@@ -42,12 +42,12 @@ import sys
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.utils.file import search_for
-from gen.plug.docgen import BaseDoc
-from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
+from ...ggettext import gettext as _
+from ...utils.file import search_for
+from . import BaseDoc
+from ..menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
-from gen.constfunc import win
+from ...constfunc import win
 
 #-------------------------------------------------------------------------
 #

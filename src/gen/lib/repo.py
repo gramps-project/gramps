@@ -31,11 +31,11 @@ Repository object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.notebase import NoteBase
-from gen.lib.addressbase import AddressBase
-from gen.lib.urlbase import UrlBase
-from gen.lib.repotype import RepositoryType
+from primaryobj import PrimaryObject
+from notebase import NoteBase
+from addressbase import AddressBase
+from urlbase import UrlBase
+from repotype import RepositoryType
 
 #-------------------------------------------------------------------------
 #

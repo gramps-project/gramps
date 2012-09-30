@@ -27,15 +27,15 @@ Provide the different family reference types.
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType
-from gen.config import config
+from grampstype import GrampsType
+from ..config import config
 
 class FamilyRelType(GrampsType):
 

@@ -26,16 +26,16 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import ProgressMeter
-from gen.filters.rules import Rule
-from gen.filters.rules.person import MatchesFilter
+from gramps.gui.utils import ProgressMeter
+from .. import Rule
+from . import MatchesFilter
 
 #-------------------------------------------------------------------------
 #

@@ -29,7 +29,7 @@ Secondary Object class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.baseobj import BaseObject
+from baseobj import BaseObject
 
 #-------------------------------------------------------------------------
 #

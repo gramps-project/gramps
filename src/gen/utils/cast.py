@@ -38,7 +38,7 @@ import locale
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.datehandler import codeset
+from ..datehandler import codeset
 
 """
 strxfrm needs it's unicode argument correctly cast before used.

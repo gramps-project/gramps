@@ -34,7 +34,6 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os, sys
-from gen.ggettext import gettext as _
 import logging
 
 #---------------------------------------------------------------
@@ -42,8 +41,9 @@ import logging
 # Gramps imports
 #
 #---------------------------------------------------------------
-from gen.const import HOME_DIR, USER_HOME, VERSION_DIR
-from gen.utils.configmanager import ConfigManager
+from ggettext import gettext as _
+from const import HOME_DIR, USER_HOME, VERSION_DIR
+from utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
 #

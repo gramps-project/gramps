@@ -38,7 +38,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType
+from grampstype import GrampsType
 
 class MarkerType(GrampsType):
     """

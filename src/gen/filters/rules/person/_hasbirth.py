@@ -25,16 +25,17 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
-from gen.lib import EventType,EventRoleType
-from gen.filters.rules import Rule
+from ....datehandler import parser
+from ....lib.eventtype import EventType
+from ....lib.eventroletype import EventRoleType
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +53,7 @@ class HasBirth(Rule):
     def __init__(self,list):
         Rule.__init__(self,list)
         if self.list[0]:
-            self.date = gen.datehandler.parser.parse(self.list[0])
+            self.date = parser.parse(self.list[0])
         else:
             self.date = None
         

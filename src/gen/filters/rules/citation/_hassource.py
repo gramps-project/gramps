@@ -29,14 +29,14 @@ Filter rule to match citation with a particular source.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hassourcebase import HasSourceBase
+from .._hassourcebase import HasSourceBase
 
 #-------------------------------------------------------------------------
 #

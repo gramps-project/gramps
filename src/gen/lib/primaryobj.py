@@ -30,10 +30,10 @@ Basic Primary Object class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.tableobj import TableObject
-from gen.lib.privacybase import PrivacyBase
-from gen.lib.citationbase import CitationBase
-from gen.lib.mediabase import MediaBase
+from tableobj import TableObject
+from privacybase import PrivacyBase
+from citationbase import CitationBase
+from mediabase import MediaBase
 
 #-------------------------------------------------------------------------
 #

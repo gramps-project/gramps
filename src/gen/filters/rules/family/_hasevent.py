@@ -28,14 +28,14 @@ Filter rule to match families with a particular event.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._haseventbase import HasEventBase
+from .._haseventbase import HasEventBase
 
 #-------------------------------------------------------------------------
 #

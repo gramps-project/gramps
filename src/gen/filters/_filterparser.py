@@ -26,15 +26,15 @@
 #
 #-------------------------------------------------------------------------
 from xml.sax import handler
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.filters._genericfilter import GenericFilterFactory
-from gen.filters import rules
+from _genericfilter import GenericFilterFactory
+import rules
 
 #-------------------------------------------------------------------------
 #

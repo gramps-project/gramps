@@ -25,15 +25,15 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.db import for_each_ancestor
-from gen.filters.rules import Rule
+from ....utils.db import for_each_ancestor
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #

@@ -66,7 +66,7 @@ DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
-from gen.config import config
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
 else:

@@ -31,10 +31,10 @@ Note class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import BasicPrimaryObject
-from gen.lib.tagbase import TagBase
-from gen.lib.notetype import NoteType
-from gen.lib.styledtext import StyledText
+from primaryobj import BasicPrimaryObject
+from tagbase import TagBase
+from notetype import NoteType
+from styledtext import StyledText
 
 #-------------------------------------------------------------------------
 #

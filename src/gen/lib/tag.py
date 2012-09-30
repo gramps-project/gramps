@@ -29,7 +29,7 @@ Tag object for GRAMPS.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.tableobj import TableObject
+from tableobj import TableObject
 
 #-------------------------------------------------------------------------
 #

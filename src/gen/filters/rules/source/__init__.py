@@ -26,7 +26,7 @@
 Package providing filter rules for GRAMPS.
 """
 
-from gen.filters.rules._hassourcebase import HasSourceBase as HasSource
+from .._hassourcebase import HasSourceBase as HasSource
 
 from _allsources import AllSources
 from _hasgallery import HasGallery

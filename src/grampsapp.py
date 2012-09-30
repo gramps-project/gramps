@@ -450,7 +450,11 @@ def run():
         from cli.grampscli import startcli
         startcli(error, argpars)
 
-errors = run()
-if errors and isinstance(errors, list):
-    for error in errors:
-        logging.warning(error[0] + error[1])
+def main():
+    errors = run()
+    if errors and isinstance(errors, list):
+        for error in errors:
+            logging.warning(error[0] + error[1])
+
+if __name__ == '__main__':
+    main()

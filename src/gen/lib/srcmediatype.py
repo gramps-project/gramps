@@ -28,14 +28,14 @@ SourceMedia types.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType
+from grampstype import GrampsType
 
 class SourceMediaType(GrampsType):
 

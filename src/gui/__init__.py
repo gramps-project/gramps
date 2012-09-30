@@ -27,4 +27,4 @@ Package init for the gui package.
 # DO NOT IMPORT METHODS/CLASSES FROM src/gui HERE ! Only __all__ 
 
 __all__ = [ "editors", "filters", "logger", "merge", "selectors", "views", 
-            "widgets" ]
+            "widgets"]

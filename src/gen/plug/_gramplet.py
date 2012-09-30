@@ -21,13 +21,13 @@
 
 # $Id$
 
-from gen.config import config
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     import bsddb3 as bsddb
 else:
     import bsddb
 import types
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 import logging
 LOG = logging.getLogger(".Gramplets")
@@ -395,7 +395,7 @@ class Gramplet(object):
         """
         Add an option to the GUI gramplet.
         """
-        from gui.plug import make_gui_option
+        from gramps.gui.plug import make_gui_option
         widget, label = make_gui_option(
             option, self.dbstate, self.uistate, self.track)
         self.option_dict.update({option.get_label(): [widget, option]})

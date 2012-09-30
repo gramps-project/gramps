@@ -39,14 +39,14 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.citationbase import CitationBase
-from gen.lib.notebase import NoteBase
-from gen.lib.mediabase import MediaBase
-from gen.lib.attrbase import AttributeBase
-from gen.lib.datebase import DateBase
-from gen.lib.placebase import PlaceBase
-from gen.lib.eventtype import EventType
+from primaryobj import PrimaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from mediabase import MediaBase
+from attrbase import AttributeBase
+from datebase import DateBase
+from placebase import PlaceBase
+from eventtype import EventType
 
 #-------------------------------------------------------------------------
 #

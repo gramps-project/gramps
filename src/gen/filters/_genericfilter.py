@@ -26,7 +26,23 @@
 Package providing filtering framework for GRAMPS.
 """
 from __future__ import with_statement
-import gen.lib
+
+#------------------------------------------------------------------------
+#
+# Gramps imports
+#
+#------------------------------------------------------------------------
+from ..lib.person import Person
+from ..lib.family import Family
+from ..lib.src import Source
+from ..lib.citation import Citation
+from ..lib.event import Event
+from ..lib.place import Place
+from ..lib.repo import Repository
+from ..lib.mediaobj import MediaObject
+from ..lib.note import Note
+from ..lib.tag import Tag
+
 #-------------------------------------------------------------------------
 #
 # GenericFilter
@@ -110,7 +126,7 @@ class GenericFilter(object):
         return db.get_person_cursor()
 
     def make_obj(self):
-        return gen.lib.Person()
+        return Person()
 
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
@@ -244,7 +260,7 @@ class GenericFamilyFilter(GenericFilter):
         return db.get_family_cursor()
 
     def make_obj(self):
-        return gen.lib.Family()
+        return Family()
 
     def find_from_handle(self, db, handle):
         return db.get_family_from_handle(handle)
@@ -258,7 +274,7 @@ class GenericEventFilter(GenericFilter):
         return db.get_event_cursor()
 
     def make_obj(self):
-        return gen.lib.Event()
+        return Event()
 
     def find_from_handle(self, db, handle):
         return db.get_event_from_handle(handle)
@@ -272,7 +288,7 @@ class GenericSourceFilter(GenericFilter):
         return db.get_source_cursor()
 
     def make_obj(self):
-        return gen.lib.Source()
+        return Source()
 
     def find_from_handle(self, db, handle):
         return db.get_source_from_handle(handle)
@@ -286,7 +302,7 @@ class GenericCitationFilter(GenericFilter):
         return db.get_citation_cursor()
 
     def make_obj(self):
-        return gen.lib.Citation()
+        return Citation()
 
     def find_from_handle(self, db, handle):
         return db.get_citation_from_handle(handle)
@@ -300,7 +316,7 @@ class GenericPlaceFilter(GenericFilter):
         return db.get_place_cursor()
 
     def make_obj(self):
-        return gen.lib.Place()
+        return Place()
 
     def find_from_handle(self, db, handle):
         return db.get_place_from_handle(handle)
@@ -314,7 +330,7 @@ class GenericMediaFilter(GenericFilter):
         return db.get_media_cursor()
 
     def make_obj(self):
-        return gen.lib.MediaObject()
+        return MediaObject()
 
     def find_from_handle(self, db, handle):
         return db.get_object_from_handle(handle)
@@ -328,7 +344,7 @@ class GenericRepoFilter(GenericFilter):
         return db.get_repository_cursor()
 
     def make_obj(self):
-        return gen.lib.Repository()
+        return Repository()
 
     def find_from_handle(self, db, handle):
         return db.get_repository_from_handle(handle)
@@ -342,7 +358,7 @@ class GenericNoteFilter(GenericFilter):
         return db.get_note_cursor()
 
     def make_obj(self):
-        return gen.lib.Note()
+        return Note()
 
     def find_from_handle(self, db, handle):
         return db.get_note_from_handle(handle)

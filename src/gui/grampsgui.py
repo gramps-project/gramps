@@ -223,6 +223,7 @@ class Gramps(object):
 
     def __init__(self, argparser):
         from gen.dbstate import DbState
+        import viewmanager
         from viewmanager import ViewManager
         from cli.arghandler import ArgHandler
         from gui.tipofday import TipOfDay

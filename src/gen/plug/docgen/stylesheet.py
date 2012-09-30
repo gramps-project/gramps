@@ -43,7 +43,7 @@ def escxml(string):
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.utils import gformat, gfloat
+from ..utils import gformat, gfloat
 from paragraphstyle import ParagraphStyle
 from fontstyle import FontStyle
 from tablestyle import TableStyle, TableCellStyle

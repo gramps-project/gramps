@@ -28,14 +28,14 @@
 #-------------------------------------------------------------------------
 import logging
 LOG = logging.getLogger(".citation")
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import MatchesFilterBase
+from .. import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 # "Sources which reference a repository by selection"

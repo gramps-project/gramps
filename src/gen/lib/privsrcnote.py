@@ -24,8 +24,8 @@
 PrivateSourceNote class for GRAMPS.
 """
 
-from gen.lib.srcnote import SourceNote
-from gen.lib.privacybase import PrivacyBase
+from srcnote import SourceNote
+from privacybase import PrivacyBase
 
 #-------------------------------------------------------------------------
 #

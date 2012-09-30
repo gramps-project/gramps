@@ -36,21 +36,21 @@ import time, os
 import cPickle as pickle
 from collections import deque
 
-from gen.config import config
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db.dbconst import *
-from gen.db import BSDDBTxn
-from gen.errors import DbError
+from dbconst import *
+from . import BSDDBTxn
+from ..errors import DbError
 
 #-------------------------------------------------------------------------
 #

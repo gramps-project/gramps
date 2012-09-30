@@ -36,9 +36,10 @@ LOG = logging.getLogger(".gui.utils.db")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-from gen.display.name import displayer as name_displayer
-from gen.ggettext import sgettext as _
+from ..lib.nameorigintype import NameOriginType
+from ..lib.surname import Surname
+from ..display.name import displayer as name_displayer
+from ..ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -168,7 +169,7 @@ def get_event_ref(db, family, event_type):
     """
     Return a reference to a primary family event of the given event type.
     """
-    from gen.lib import EventRoleType
+    from ..lib.eventroletype import EventRoleType
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if (event and event.get_type() == event_type and 
@@ -181,7 +182,7 @@ def get_primary_event_ref_list(db, family):
     """
     Return a reference to the primary events of the family.
     """
-    from gen.lib import EventRoleType
+    from ..lib.eventroletype import EventRoleType
     retval = []
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
@@ -196,7 +197,8 @@ def get_marriage_or_fallback(db, family, format=None):
     Get a MARRIAGE event from a family, or fallback to an
     alternative event type.
     """
-    from gen.lib import EventType, EventRoleType
+    from ..lib.eventroletype import EventRoleType
+    from ..lib.eventtype import EventType
     marriage_ref = get_event_ref(db, family, EventType.MARRIAGE)
     if marriage_ref:   # regular marriage found
         event = db.get_event_from_handle(marriage_ref.ref)
@@ -220,7 +222,8 @@ def get_divorce_or_fallback(db, family, format=None):
     Get a DIVORCE event from a family, or fallback to an
     alternative event type.
     """
-    from gen.lib import EventType, EventRoleType
+    from ..lib.eventroletype import EventRoleType
+    from ..lib.eventtype import EventType
     divorce_ref = get_event_ref(db, family, EventType.DIVORCE)
     if divorce_ref:   # regular marriage found
         event = db.get_event_from_handle(divorce_ref.ref)
@@ -492,14 +495,14 @@ def preset_name(basepers, name, sibling=False):
     prim = False
     for surn in primname.get_surname_list():
         if (not sibling) and (surn.get_origintype().value in 
-                        [gen.lib.NameOriginType.PATRONYMIC, 
-                         gen.lib.NameOriginType.MATRONYMIC]):
+                        [NameOriginType.PATRONYMIC, 
+                         NameOriginType.MATRONYMIC]):
             continue
-        surnlist.append(gen.lib.Surname(source=surn))
+        surnlist.append(Surname(source=surn))
         if surn.primary:
             prim=True
     if not surnlist:
-        surnlist = [gen.lib.Surname()]
+        surnlist = [Surname()]
     name.set_surname_list(surnlist)
     if not prim:
         name.set_primary_surname(0)

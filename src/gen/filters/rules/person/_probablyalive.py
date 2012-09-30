@@ -25,16 +25,16 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.alive import probably_alive
-from gen.filters.rules import Rule
-import gen.datehandler
+from ....utils.alive import probably_alive
+from .. import Rule
+from ....datehandler import parser
 
 #-------------------------------------------------------------------------
 # "People probably alive"
@@ -49,7 +49,7 @@ class ProbablyAlive(Rule):
 
     def prepare(self,db):
         try:
-            self.current_date = gen.datehandler.parser.parse(unicode(self.list[0]))
+            self.current_date = parser.parse(unicode(self.list[0]))
         except:
             self.current_date = None
 

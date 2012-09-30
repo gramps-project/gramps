@@ -28,14 +28,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._hasnotebase import HasNoteBase
+from .._hasnotebase import HasNoteBase
 
 #-------------------------------------------------------------------------
 # "People having notes"

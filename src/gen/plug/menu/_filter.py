@@ -29,7 +29,7 @@ Option class representing a list of filters.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.menu import EnumeratedListOption
+from . import EnumeratedListOption
 
 #-------------------------------------------------------------------------
 #

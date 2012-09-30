@@ -26,7 +26,7 @@
 Package providing filter rules for GRAMPS.
 """
 
-from gen.filters.rules._haseventbase import HasEventBase as HasEvent
+from .._haseventbase import HasEventBase as HasEvent
 
 from _hastype import HasType
 from _allevents import AllEvents

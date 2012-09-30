@@ -4,7 +4,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012 Nick Hall
-# Copyright (C) 2012 Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2012 Rob G. Healey
+# Copyright (C) 2012 Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,13 +26,20 @@
 '''
 Gramps distutils module.
 '''
+
+#check python version first
+import sys
+major, minor1, minor2, s, tmp = sys.version_info
+
+if (major==2 and minor1<7) or major<2 or major>3:
+    raise SystemExit("""Gramps requires Python 2.7 or later, Python 3 not supported.""")
+
 from distutils import log
 from distutils.core import setup
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
 from distutils.command.install import install as _install
 import os
-import sys
 import glob
 import codecs
 import commands
@@ -86,7 +94,8 @@ def build_trans(build_cmd):
                 msg = 'ERROR: Building language translation files failed.'
                 raise SystemExit(msg)
 
-        target = 'share/locale/' + lang + '/LC_MESSAGES'
+        #linux specific piece:
+        target = os.path.join(['share', 'locale', lang, 'LC_MESSAGES'])
         data_files.append((target, [mo_file]))
 
         log.info('Compiling %s >> %s.', po_file, target)
@@ -96,7 +105,7 @@ def build_man(build_cmd):
     Compresses Gramps manual files
     '''
     data_files = build_cmd.distribution.data_files
-    build_data = build_cmd.build_base + '/data/'
+    build_data = build_cmd.build_base + os.sep + 'data' + os.sep
     for man_dir, dirs, files in os.walk(os.path.join('data', 'man')):
         if 'gramps.1.in' in files:
             filename = os.path.join(man_dir, 'gramps.1.in')
@@ -128,8 +137,8 @@ def build_man(build_cmd):
                 filename = False
 
             lang = man_dir[8:]
-            src = build_data + 'man' + lang + '/gramps.1.gz'
-            target = 'share/man/' + lang + '/man1'
+            src = build_data + 'man' + lang + os.sep + 'gramps.1.gz'
+            target = os.path.join('share', 'man', lang, 'man1')
             data_files.append((target, [src]))
 
             log.info('Compiling %s >> %s.', src, target)
@@ -143,14 +152,14 @@ def build_intl(build_cmd):
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data/gramps.desktop',
-                    'share/applications',
+    merge_files = (('data' + os.sep + 'gramps.desktop',
+                    'share' + os.sep + 'applications',
                     '-d'),
-                    ('data/gramps.keys',
-                    'share/mime-info',
+                    ('data' + os.sep + 'gramps.keys',
+                    'share' + os.sep + 'mime-info',
                     '-k'),
-                    ('data/gramps.xml',
-                    'share/mime/packages',
+                    ('data' + os.sep + 'gramps.xml',
+                    'share' + os.sep + 'mime' + os.sep + 'packages',
                     '-x'))
 
     for filename, target, option in merge_files:
@@ -160,11 +169,12 @@ def build_intl(build_cmd):
         if not(os.path.isdir(newdir) or os.path.islink(newdir)):
             os.makedirs(newdir)
         merge(filename + '.in', newfile, option)
-        data_files.append((target, [base + '/' + filename]))
+        data_files.append((target, [base + os.sep + filename]))
 
     for filename in INTLTOOL_FILES:
         filename = convert_path(filename)
-        merge(filename + '.in', filename, '-x', po_dir='/tmp', cache=False)
+        merge(filename + '.in', filename, '-x', po_dir=os.sep + 'tmp',
+              cache=False)
 
 def merge(in_file, out_file, option, po_dir='po', cache=True):
     '''
@@ -196,7 +206,7 @@ def install_template(install_cmd):
         os.makedirs(build_scripts)
     data_files = install_cmd.distribution.data_files
     write_gramps_script(install_cmd, build_scripts)
-    data_files.append(('bin', [build_scripts + '/gramps']))
+    data_files.append(('bin', [build_scripts + os.sep + 'gramps']))
     write_const_py(install_cmd)
 
 def write_gramps_script(install_cmd, build_scripts):
@@ -222,12 +232,18 @@ def write_const_py(install_cmd):
     '''
     const_py_in = os.path.join('src', 'gen', 'const.py.in')
     const_py = os.path.join('src', 'gen', 'const.py')
-    prefix = install_cmd.install_data
-    sysconfdir = os.path.join(prefix, 'etc') # Is this correct?
+    if hasattr(install_cmd, 'install_data'):
+        #during install
+        prefix = "'%s'" % install_cmd.install_data
+        sysconfdir = "'%s'" % os.path.join(install_cmd.install_data, 'etc') # Is this correct?
+    else:
+        #in build
+        prefix = 'os.path.join(os.path.dirname(__file__), os.pardir)'
+        sysconfdir = prefix + ' + "' + os.sep + 'etc"'  # Is this correct?
     
     subst_vars = ((u'@VERSIONSTRING@', VERSION), 
-                  (u'@prefix@', prefix),
-                  (u'@sysconfdir@', sysconfdir))
+                  (u'"@prefix@"', prefix),
+                  (u'"@sysconfdir@"', sysconfdir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
@@ -256,6 +272,7 @@ class build(_build):
         build_trans(self)
         build_man(self)
         build_intl(self)
+        write_const_py(self)
         _build.run(self)
 
 class install(_install):
@@ -284,11 +301,84 @@ GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
 
+data_list = [
+            os.path.join('data', '*.txt'), 
+            os.path.join('data', '*.xml'),
+            os.path.join('gui', 'glade', '*.glade'), 
+            os.path.join('images','*.ico'), 
+            os.path.join('images', '*.png'),
+            os.path.join('images', 'splash.jpg'), 
+            os.path.join('images', '*.svg'), 
+            os.path.join('images', '16x16', '*.png'), 
+            os.path.join('images', '22x22', '*.png'), 
+            os.path.join('images', '48x48', '*.png'), 
+            os.path.join('images', 'scalable', '*.svg')
+            ]
+
+# add all subdirs of plugin with glade:
+basedir = os.path.join('src', 'plugins')
+for (dirpath, dirnames, filenames) in os.walk(basedir):
+    root, subdir = os.path.split(dirpath)
+    if subdir.startswith("."): 
+        dirnames[:] = []
+        continue
+    for dirname in dirnames:
+        # Skip hidden and system directories:
+        if dirname.startswith("."):
+            dirnames.remove(dirname)
+        #we add to data_list so glade , xml, files are found, we don't need the src/ part
+        data_list.append(os.path.join(dirpath[4:], '*.glade'))
+        data_list.append(os.path.join(dirpath[4:], '*.xml'))
+        data_list.append(os.path.join(dirpath[4:], '*.png'))
+        data_list.append(os.path.join(dirpath[4:], '*.svg'))
+        data_list.append(os.path.join(dirpath[4:], '*.css'))
+        data_list.append(os.path.join(dirpath[4:], '*.html'))
+        data_list.append(os.path.join(dirpath[4:], '*.js'))
+data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.gif'))
+data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.ico'))
+#                               'plugins' + os.sep + '*.glade', 
+#                               'plugins' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'docgen' + os.sep + '*.glade', 
+#                               'plugins' + os.sep + 'docgen' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'drawreport' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'export' + os.sep + '*.glade', 
+#                               'plugins' + os.sep + 'export' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'gramplet' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'graph' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'import' + os.sep + '*.glade', 
+#                               'plugins' + os.sep + 'import' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'lib' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'lib' + os.sep + '*.xml', 
+#                               'plugins' + os.sep + 'lib' + os.sep + 'maps' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'mapservices' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'quickview' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'rel' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'sidebar' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'textreport' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'tool' + os.sep + '*.glade', 
+#                               'plugins' + os.sep + 'tool' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'view' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'webreport' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + '*.html', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + '*.py', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css' 
+#                                    + os.sep + '*.css', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css' 
+#                                    + os.sep + 'swanky-purse' + os.sep + '*.css', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css'
+#                                    + os.sep + 'swanky-purse' + os.sep + 'images' + os.sep + '*.png',
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'images'
+#                                    + os.sep + '*.png', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'images'
+#                                    + os.sep + '*.svg', 
+#                               'plugins' + os.sep + 'webstuff' + os.sep + 'javascript'
+#                                    + os.sep + '*.js']
+
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
                      'Programming System)'), 
       long_description = ('Gramps (Genealogical Research and Analysis '
-                          'Management Programming System) is a GNOME based '
+                          'Management Programming System) is a full featured '
                           'genealogy program supporting a Python based plugin '
                           'system.'),
       version = VERSION, 
@@ -331,6 +421,7 @@ setup(name = 'gramps',
             'gramps.gen.proxy',
             'gramps.gen.simple',
             'gramps.gen.utils',
+            'gramps.gen.utils.docgen',
             'gramps.gui',
             'gramps.gui.editors',
             'gramps.gui.editors.displaytabs',
@@ -346,56 +437,38 @@ setup(name = 'gramps',
             'gramps.gui.views',
             'gramps.gui.views.treemodels',
             'gramps.gui.widgets',
-            'gramps.test'],
-      package_data={'gramps': ['data/*.txt', 
-                               'data/*.xml',
-                               'gui/glade/*.glade', 
-                               'images/*.ico', 
-                               'images/*.png',
-                               'images/splash.jpg', 
-                               'images/*.svg', 
-                               'images/16x16/*.png', 
-                               'images/22x22/*.png', 
-                               'images/48x48/*.png', 
-                               'images/scalable/*.svg', 
-                               'plugins/*.glade', 
-                               'plugins/*.py', 
-                               'plugins/docgen/*.glade', 
-                               'plugins/docgen/*.py', 
-                               'plugins/drawreport/*.py', 
-                               'plugins/export/*.glade', 
-                               'plugins/export/*.py', 
-                               'plugins/gramplet/*.py', 
-                               'plugins/graph/*.py', 
-                               'plugins/import/*.glade', 
-                               'plugins/import/*.py', 
-                               'plugins/lib/*.py', 
-                               'plugins/lib/*.xml', 
-                               'plugins/lib/maps/*.py', 
-                               'plugins/mapservices/*.py', 
-                               'plugins/quickview/*.py', 
-                               'plugins/rel/*.py', 
-                               'plugins/sidebar/*.py', 
-                               'plugins/textreport/*.py', 
-                               'plugins/tool/*.glade', 
-                               'plugins/tool/*.py', 
-                               'plugins/view/*.py', 
-                               'plugins/webreport/*.py', 
-                               'plugins/webstuff/*.html', 
-                               'plugins/webstuff/*.py', 
-                               'plugins/webstuff/css/*.css', 
-                               'plugins/webstuff/css/swanky-purse/*.css', 
-                               'plugins/webstuff/css/swanky-purse/images/*.png',
-                               'plugins/webstuff/images/*.gif', 
-                               'plugins/webstuff/images/*.ico', 
-                               'plugins/webstuff/images/*.png', 
-                               'plugins/webstuff/images/*.svg', 
-                               'plugins/webstuff/javascript/*.js']},
-      data_files=[('share/mime-info', ['data/gramps.mime']),
-                  ('share/icons/gnome/48x48/mimetypes', PNG_FILES), 
-                  ('share/icons/gnome/scalable/mimetypes', SVG_FILES), 
-                  ('share/icons', ['src/images/gramps.png']), 
-                  ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
-                  ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
-                  ('share/doc/gramps', DOC_FILES)]
+            'gramps.test',
+            'gramps.plugins', 
+            'gramps.plugins.docgen', 
+            'gramps.plugins.drawreport', 
+            'gramps.plugins.export', 
+            'gramps.plugins.gramplet', 
+            'gramps.plugins.graph',
+            'gramps.plugins.import', 
+            'gramps.plugins.lib', 
+            'gramps.plugins.lib.maps', 
+            'gramps.plugins.mapservices', 
+            'gramps.plugins.quickview', 
+            'gramps.plugins.rel', 
+            'gramps.plugins.sidebar', 
+            'gramps.plugins.textreport',
+            'gramps.plugins.tool', 
+            'gramps.plugins.view', 
+            'gramps.plugins.webreport', 
+            'gramps.plugins.webstuff',
+            ],
+      package_data={'gramps': data_list},
+      data_files=[('share' + os.sep + 'mime-info', 
+                        ['data' + os.sep + 'gramps.mime']),
+                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
+                    + '48x48' + os.sep + 'mimetypes', PNG_FILES), 
+                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
+                    + 'scalable' + os.sep + 'mimetypes', SVG_FILES), 
+                  ('share' + os.sep + 'icons', ['src' + os.sep + 'images' 
+                    + os.sep + 'gramps.png']), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
+                    + 'example' + os.sep + 'gedcom', GEDCOM_FILES), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
+                    + 'example' + os.sep + 'gramps', GRAMPS_FILES), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps', DOC_FILES)]
 )

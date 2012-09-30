@@ -31,8 +31,8 @@ import base64
 import time
 import gen
 import re
-from gen.db import DbReadBase, DbWriteBase, DbTxn
-from gen.db import (PERSON_KEY,
+from . import DbReadBase, DbWriteBase, DbTxn
+from . import (PERSON_KEY,
                     FAMILY_KEY,
                     CITATION_KEY,
                     SOURCE_KEY,
@@ -41,9 +41,17 @@ from gen.db import (PERSON_KEY,
                     PLACE_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
-from gen.utils.id import create_id
-from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
-                     Place, Repository, Note, Tag)
+from ..utils.id import create_id
+from ..lib.mediaobj import MediaObject
+from ..lib.person import Person
+from ..lib.family import Family
+from ..lib.src import Source
+from ..lib.citation import Citation
+from ..lib.event import Event
+from ..lib.place import Place
+from ..lib.repo import Repository
+from ..lib.note import Note
+from ..lib.tag import Tag
 
 class Cursor(object):
     """

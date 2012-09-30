@@ -22,7 +22,7 @@
 # $Id$
 
 import locale
-from gen.constfunc import mac, win
+from ..constfunc import mac, win
 
 """
 Some OS environments do not support the locale.nl_langinfo() method

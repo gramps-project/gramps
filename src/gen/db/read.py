@@ -38,12 +38,12 @@ import locale
 import os
 from sys import maxint
 
-from gen.config import config
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 import re
 
 import logging
@@ -53,15 +53,26 @@ import logging
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import (MediaObject, Person, Family, Source, Citation, Event,
-                     Place, Repository, Note, Tag, GenderStats, Researcher, 
-                     NameOriginType)
-from gen.db.dbconst import *
-from gen.utils.callback import Callback
-from gen.utils.cast import conv_dbstr_to_unicode
-from gen.db import (BsddbBaseCursor, DbReadBase)
-from gen.utils.id import create_id
-from gen.errors import DbError
+from ..lib.mediaobj import MediaObject
+from ..lib.person import Person
+from ..lib.family import Family
+from ..lib.src import Source
+from ..lib.citation import Citation
+from ..lib.event import Event
+from ..lib.place import Place
+from ..lib.repo import Repository
+from ..lib.note import Note
+from ..lib.tag import Tag
+from ..lib.genderstats import GenderStats
+from ..lib.researcher import Researcher 
+from ..lib.nameorigintype import NameOriginType
+
+from dbconst import *
+from ..utils.callback import Callback
+from ..utils.cast import conv_dbstr_to_unicode
+from . import (BsddbBaseCursor, DbReadBase)
+from ..utils.id import create_id
+from ..errors import DbError
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -70,7 +81,7 @@ LOG = logging.getLogger(".citation")
 # constants
 #
 #-------------------------------------------------------------------------
-from gen.db.dbconst import *
+from dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'citation', 
             'event',  'media', 'place', 'repository',

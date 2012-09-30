@@ -29,8 +29,8 @@ UrlBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.url import Url
-from gen.lib.const import IDENTICAL, EQUAL
+from url import Url
+from const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #

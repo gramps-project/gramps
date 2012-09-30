@@ -25,17 +25,17 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ...ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
-from gen.lib import EventType
-from gen.filters.rules import Rule
-from gen.utils.db import get_participant_from_event
+from ...datehandler import parser
+from ...lib.eventtype import EventType
+from . import Rule
+from ...utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,7 @@ class HasEventBase(Rule):
             self.etype = None
         try:
             if self.list[1]:
-                self.date = gen.datehandler.parser.parse(self.list[1])
+                self.date = parser.parse(self.list[1])
         except:
             pass
 

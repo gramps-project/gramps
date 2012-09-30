@@ -51,8 +51,8 @@ except:
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.cast import get_type_converter
-import gen
+from ..utils.cast import get_type_converter
+from menu import Menu
 
 #-------------------------------------------------------------------------
 #
@@ -483,7 +483,7 @@ class MenuOptions(object):
     options to a menu.
     """
     def __init__(self):
-        self.menu = gen.plug.menu.Menu()
+        self.menu = Menu()
         
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}

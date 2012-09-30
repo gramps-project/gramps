@@ -26,14 +26,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from ....ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules._matchessourceconfidencebase import MatchesSourceConfidenceBase
+from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 
 #-------------------------------------------------------------------------
 # "Confidence level"

@@ -28,8 +28,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from ..ggettext import sgettext as _
+from ..ggettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -51,13 +51,12 @@ log = logging.getLogger(".Date")
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.lib.calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
-                              french_sdn, persian_sdn, islamic_sdn, 
-                              swedish_sdn,
-                              gregorian_ymd, julian_ymd, hebrew_ymd, 
-                              french_ymd, persian_ymd, islamic_ymd,
-                              swedish_ymd)
-from gen.config import config
+from calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
+                      french_sdn, persian_sdn, islamic_sdn, swedish_sdn,
+                      gregorian_ymd, julian_ymd, hebrew_ymd, 
+                      french_ymd, persian_ymd, islamic_ymd,
+                      swedish_ymd)
+from ..config import config
 
 #-------------------------------------------------------------------------
 #

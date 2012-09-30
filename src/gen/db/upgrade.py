@@ -23,8 +23,8 @@
 
 from __future__ import with_statement
 
-from gen.lib.markertype import MarkerType
-from gen.lib.tag import Tag
+from ..lib.markertype import MarkerType
+from ..lib.tag import Tag
 import time
 import logging
 LOG = logging.getLogger(".citation")
@@ -34,17 +34,17 @@ from gen.ggettext import gettext as _
 """
 methods to upgrade a database from version 13 to current version
 """
-from gen.config import config
+from ..config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.db import BSDDBTxn
-from gen.lib.nameorigintype import NameOriginType
-from gen.db.write import _mkname, SURNAMES
-from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
+from . import BSDDBTxn
+from ..lib.nameorigintype import NameOriginType
+from write import _mkname, SURNAMES
+from dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
-from gui.dialog import (InfoDialog)
+from gramps.gui.dialog import (InfoDialog)
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all

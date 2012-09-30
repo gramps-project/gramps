@@ -25,16 +25,16 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
-from gen.lib import EventType
-from gen.filters.rules import Rule
+from ....datehandler import parser
+from ....lib.eventtype import EventType
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +63,7 @@ class HasData(Rule):
             self.event_type.set_from_xml_str(self.list[0])
 
         if self.date:
-            self.date = gen.datehandler.parser.parse(self.date)
+            self.date = parser.parse(self.date)
         
     def apply(self, db, event):
         if self.event_type and event.get_type() != self.event_type:

@@ -30,14 +30,14 @@ Class handling language-specific selection for date parser and displayer.
 #
 #-------------------------------------------------------------------------
 import time
-from gen.lib import Date
+from ..lib.date import Date
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.datehandler import LANG_TO_DISPLAY, LANG, parser, displayer
+from . import LANG_TO_DISPLAY, LANG, parser, displayer
 
 #--------------------------------------------------------------
 #

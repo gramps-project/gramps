@@ -27,7 +27,7 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.styledtexttag import StyledTextTag
+from styledtexttag import StyledTextTag
 
 #-------------------------------------------------------------------------
 #

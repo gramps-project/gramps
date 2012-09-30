@@ -31,7 +31,7 @@ Utility functions that depend on GUI components or for GUI components
 #-------------------------------------------------------------------------
 import os
 import sys
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).
@@ -48,9 +48,9 @@ from gi.repository import PangoCairo
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-from gen.constfunc import has_display, is_quartz, mac, win
-from gen.config import config
+from gramps.gen.lib.person import Person
+from gramps.gen.constfunc import has_display, is_quartz, mac, win
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -411,27 +411,27 @@ def is_right_click(event):
         if event.button == 3:
             return True
 
-def color_graph_box(alive=False, gender=gen.lib.Person.MALE):
+def color_graph_box(alive=False, gender=Person.MALE):
     """
     Returns based on the config the color for graph boxes in hex
     If gender is None, an empty box is assumed
     Return type: tuple (hex color fill, hex color border)
     """
-    if gender == gen.lib.Person.MALE:
+    if gender == Person.MALE:
         if alive:
             return (config.get('preferences.color-gender-male-alive'),
                     config.get('preferences.bordercolor-gender-male-alive'))
         else:
             return (config.get('preferences.color-gender-male-death'),
                     config.get('preferences.bordercolor-gender-male-death'))
-    elif gender == gen.lib.Person.FEMALE:
+    elif gender == Person.FEMALE:
         if alive:
             return (config.get('preferences.color-gender-female-alive'),
                     config.get('preferences.bordercolor-gender-female-alive'))
         else:
             return (config.get('preferences.color-gender-female-death'),
                     config.get('preferences.bordercolor-gender-female-death'))
-    elif gender == gen.lib.Person.UNKNOWN:
+    elif gender == Person.UNKNOWN:
         if alive:
             return (config.get('preferences.color-gender-unknown-alive'),
                     config.get('preferences.bordercolor-gender-unknown-alive'))

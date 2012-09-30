@@ -34,7 +34,13 @@ Provides constants for other modules
 import os
 import sys
 import uuid
-from gen.ggettext import sgettext as _
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

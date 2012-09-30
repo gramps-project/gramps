@@ -31,7 +31,7 @@ LDS Ordinance class for GRAMPS.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 from warnings import warn
 
 #-------------------------------------------------------------------------
@@ -39,13 +39,13 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.secondaryobj import SecondaryObject
-from gen.lib.citationbase import CitationBase
-from gen.lib.notebase import NoteBase
-from gen.lib.datebase import DateBase
-from gen.lib.placebase import PlaceBase
-from gen.lib.privacybase import PrivacyBase
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from secondaryobj import SecondaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from datebase import DateBase
+from placebase import PlaceBase
+from privacybase import PrivacyBase
+from const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

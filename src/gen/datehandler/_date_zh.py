@@ -39,7 +39,7 @@ import re
 #
 #-------------------------------------------------------------------------
 
-from gen.lib import Date
+from ..lib.date import Date
 from _dateparser import DateParser
 from _datedisplay import DateDisplay
 from _datehandler import register_datehandler

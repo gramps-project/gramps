@@ -30,7 +30,7 @@ Base type for all gramps types.
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 _UNKNOWN = _('Unknown')
 
 #-------------------------------------------------------------------------

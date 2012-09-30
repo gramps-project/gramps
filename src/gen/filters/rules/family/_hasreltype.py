@@ -25,15 +25,15 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import FamilyRelType
-from gen.filters.rules import Rule
+from ....lib.familyreltype import FamilyRelType
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #

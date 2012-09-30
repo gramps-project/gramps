@@ -31,13 +31,13 @@ Event Reference class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.secondaryobj import SecondaryObject
-from gen.lib.privacybase import PrivacyBase
-from gen.lib.notebase import NoteBase
-from gen.lib.attrbase import AttributeBase
-from gen.lib.refbase import RefBase
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from secondaryobj import SecondaryObject
+from privacybase import PrivacyBase
+from notebase import NoteBase
+from attrbase import AttributeBase
+from refbase import RefBase
+from eventroletype import EventRoleType
+from const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

@@ -30,8 +30,8 @@ MediaBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.mediaref import MediaRef
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from mediaref import MediaRef
+from const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

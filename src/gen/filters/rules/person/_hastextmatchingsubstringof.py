@@ -26,7 +26,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".citationfilter")
 
@@ -35,8 +35,8 @@ LOG = logging.getLogger(".citationfilter")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.db import get_source_and_citation_referents
-from gen.filters.rules import Rule
+from ....utils.db import get_source_and_citation_referents
+from .. import Rule
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"

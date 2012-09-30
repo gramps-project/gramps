@@ -42,12 +42,12 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.primaryobj import PrimaryObject
-from gen.lib.citationbase import CitationBase
-from gen.lib.notebase import NoteBase
-from gen.lib.datebase import DateBase
-from gen.lib.attrbase import AttributeBase
-from gen.lib.tagbase import TagBase
+from primaryobj import PrimaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from datebase import DateBase
+from attrbase import AttributeBase
+from tagbase import TagBase
 
 #-------------------------------------------------------------------------
 #

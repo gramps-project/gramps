@@ -25,14 +25,14 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.db import for_each_ancestor
+from ....utils.db import for_each_ancestor
 from _hascommonancestorwith import HasCommonAncestorWith
 from _matchesfilter import MatchesFilter
 

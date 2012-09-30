@@ -41,7 +41,7 @@ from collections import defaultdict
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db.dbconst import (DBLOGNAME, TXNADD, TXNUPD, TXNDEL)
+from dbconst import (DBLOGNAME, TXNADD, TXNUPD, TXNDEL)
 
 _LOG = logging.getLogger(DBLOGNAME)
 

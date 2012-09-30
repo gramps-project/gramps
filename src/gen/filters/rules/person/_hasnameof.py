@@ -26,7 +26,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from ....ggettext import sgettext as _
 import re
 
 #-------------------------------------------------------------------------
@@ -34,8 +34,8 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters.rules import Rule
-from gen.lib import NameOriginType
+from .. import Rule
+from ....lib.nameorigintype import NameOriginType
 
 #-------------------------------------------------------------------------
 #

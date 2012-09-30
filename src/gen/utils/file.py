@@ -43,8 +43,8 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.constfunc import win, mac
-from gen.const import TEMP_DIR, USER_HOME
+from ..constfunc import win, mac
+from ..const import TEMP_DIR, USER_HOME
 
 #-------------------------------------------------------------------------
 #

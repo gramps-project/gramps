@@ -38,10 +38,10 @@ import os
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug._pluginreg import make_environment
-from gen.const import USER_PLUGINS, VERSION_TUPLE
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gen.ggettext import gettext as _
+from _pluginreg import make_environment
+from ..const import USER_PLUGINS, VERSION_TUPLE
+from ..utils.file import get_unicode_path_from_file_chooser
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
