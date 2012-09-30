@@ -40,6 +40,21 @@ where the last must be done as root. You can work with Gramps if you only build
 it by pointing the PYTHONPATH to the build directory, but things like MIME type
 and desktop entries will not be created then.
 
+Typical install directories in linux (ubuntu) are:
+  * /usr/local/lib/python2.7/dist-packages/gramps/  : the gramps python module
+  * /usr/local/share/mime-info    : mime info so gramps opens files automatically
+  * /usr/local/share/icons/gnome  : our icons
+  * /usr/local/share/doc/gramps   : documentation, also example .gramps and .gedcom
+  * /usr/local/bin                : the gramps executable
+  * /usr/local/share/locale/xx/LC_MESSAGES  : xx language code, translation
+  * /usr/local/share/man/man1/xx/man1       : xx language code, man file
+  * /usr/local/share/mime
+  * /usr/local/share/mime-info
+running Gramps
+--------------
+Gramps is python only, so no compilation is needed, you can even run gramps
+from the source directory. 
+
 
 Custom directory installation
 -------------------------------------

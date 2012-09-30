@@ -95,7 +95,7 @@ def build_trans(build_cmd):
                 raise SystemExit(msg)
 
         #linux specific piece:
-        target = os.path.join(['share', 'locale', lang, 'LC_MESSAGES'])
+        target = os.path.join('share', 'locale', lang, 'LC_MESSAGES')
         data_files.append((target, [mo_file]))
 
         log.info('Compiling %s >> %s.', po_file, target)
@@ -327,53 +327,30 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         if dirname.startswith("."):
             dirnames.remove(dirname)
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
-        data_list.append(os.path.join(dirpath[4:], '*.glade'))
-        data_list.append(os.path.join(dirpath[4:], '*.xml'))
-        data_list.append(os.path.join(dirpath[4:], '*.png'))
-        data_list.append(os.path.join(dirpath[4:], '*.svg'))
-        data_list.append(os.path.join(dirpath[4:], '*.css'))
-        data_list.append(os.path.join(dirpath[4:], '*.html'))
-        data_list.append(os.path.join(dirpath[4:], '*.js'))
+        data_list.append(os.path.join(dirpath[7:], '*.glade'))
+        data_list.append(os.path.join(dirpath[7:], '*.xml'))
+        data_list.append(os.path.join(dirpath[7:], '*.png'))
+        data_list.append(os.path.join(dirpath[7:], '*.svg'))
+        data_list.append(os.path.join(dirpath[7:], '*.css'))
+        data_list.append(os.path.join(dirpath[7:], '*.html'))
+        data_list.append(os.path.join(dirpath[7:], '*.js'))
 data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.gif'))
 data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.ico'))
-#                               'plugins' + os.sep + '*.glade', 
-#                               'plugins' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'docgen' + os.sep + '*.glade', 
-#                               'plugins' + os.sep + 'docgen' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'drawreport' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'export' + os.sep + '*.glade', 
-#                               'plugins' + os.sep + 'export' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'gramplet' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'graph' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'import' + os.sep + '*.glade', 
-#                               'plugins' + os.sep + 'import' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'lib' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'lib' + os.sep + '*.xml', 
-#                               'plugins' + os.sep + 'lib' + os.sep + 'maps' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'mapservices' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'quickview' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'rel' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'sidebar' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'textreport' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'tool' + os.sep + '*.glade', 
-#                               'plugins' + os.sep + 'tool' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'view' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'webreport' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + '*.html', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + '*.py', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css' 
-#                                    + os.sep + '*.css', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css' 
-#                                    + os.sep + 'swanky-purse' + os.sep + '*.css', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'css'
-#                                    + os.sep + 'swanky-purse' + os.sep + 'images' + os.sep + '*.png',
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'images'
-#                                    + os.sep + '*.png', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'images'
-#                                    + os.sep + '*.svg', 
-#                               'plugins' + os.sep + 'webstuff' + os.sep + 'javascript'
-#                                    + os.sep + '*.js']
 
+print [('share' + os.sep + 'mime-info', 
+                        ['data' + os.sep + 'gramps.mime']),
+                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
+                    + '48x48' + os.sep + 'mimetypes', PNG_FILES), 
+                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
+                    + 'scalable' + os.sep + 'mimetypes', SVG_FILES), 
+                  ('share' + os.sep + 'icons', ['gramps' + os.sep + 'images' 
+                    + os.sep + 'gramps.png']), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
+                    + 'example' + os.sep + 'gedcom', GEDCOM_FILES), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
+                    + 'example' + os.sep + 'gramps', GRAMPS_FILES), 
+                  ('share' + os.sep + 'doc' + os.sep + 'gramps', DOC_FILES)]
+raw_input()
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
                      'Programming System)'), 
