@@ -8,107 +8,56 @@ Uninstall old version
 ---------------------
 If you do a source install in the same place of an existing install,
 you need to remove the old version first. You can delete the old
-version by:
+version by deleting the installed directories (for example,
+        /usr/share/gramps
+        /usr/local/lib/pythonx.x/site-packages/gramps
+        /usr/local/lib/pythonx.x/dist-packages/
+        /usr/lib/pythonx.x/site-packages/gramps
+        /usr/lib/pythonx.x/dist-packages/
+    where pythonx.x is python2.7 or whatever version you installed gramps with.
 
-  * deleting the installed directories (for example,
-    /usr/share/gramps)
-  * OR by running "make uninstall" from the old directory where you
-    ran "make install" (not the new GRAMPS directory)
+If you don't know the list of all files that Gramps installed, you can reinstall
+it with the --record option, and take a look at the list this produces (so
+python setup.py install --record grampsfiles.txt
 
 GRAMPS is a python application, so loading happens on reading the
 files, meaning that files of a previous version that are no longer
 present in the new version can still be loaded, making the new install
-unstable.
+unstable!
 
-Configure vs autogen scripts
-----------------------------
-Configure does not check all dependencies of Gramps, see README for a 
+distutils install
+-----------------
+We do not check all dependencies of Gramps, see README for a 
 list of all required and optional dependencies.
 
 If you are building from released tarball, you should be able to just
-run "./configure && make". However, if you're building from the SVN,
-the configure is not present. You should auto-generate it by
-running ./autogen.sh and then "make" and, finally, "make install".
+run 
 
-Running ./autogen.sh on this branch of gramps requires the following
-packages to be installed:
-   * autoconf >=2.53
-   * automake >=1.9
-   * intltool >=0.25
-   * glib-gettext >=2.2.0, included in libglib2.0-dev (may be called
-differently on other distros) and maybe something else. If autogen.sh
-fails, it should inform you what's missing.
+   python setup.py build
+   python setup.py install
+
+where the last must be done as root. You can work with Gramps if you only build
+it by pointing the PYTHONPATH to the build directory, but things like MIME type
+and desktop entries will not be created then.
+
 
 Custom directory installation
 -------------------------------------
 If you would like to install GRAMPS without being root, or in an 
-alternative location on windows, supply the --prefix argument to autogen 
-or configure. 
+alternative location on windows, supply the --root argument to setup.py
 
 For example:
-   ./autogen.sh --prefix=$HOME/my_gramps_path
+   python setup.py install --root ~/test
    or
-   ./autogen.sh --prefix=/cygdrive/c/Projects/gramps
+   python setup.py install --root ~/test --enable-packager-mode
 
-Regular vs local installation
------------------------------
-This version of gramps REQUIRES, among other things, the mime types for 
-gramps be properly installed.
-
-The usual ./configure, make, and make install as a root should do the trick.
-
-But be careful if you're using the non-default options or would like
-to install without being root.
-
-The latter is possible, but you should supply additional arguments to
-autogen or configure:
-   --with-mime-dir=$HOME/.local/share/mime
-Most likely, such local install will also need some prefix with write
-permissions for you:
-   --prefix=$HOME/my_gramps_path
-
-Whether you're doing local install or regular install, YOU MUST INSTALL 
-MIME TYPES. YOU HAVE BEEN WARNED!
-
-Installing under non-default prefix
------------------------------------
-As hinted above, mime types for gramps MUST be properly installed. 
-The "proper install" means installing them where the shared mime system 
-will find them.
-
-By default, the shared mime systems will look in these places:
-   1. /usr/share/mime
-   2. /usr/local/share/mime   : this may be broken on some systems
-   3. $HOME/.local/share/mime : this is a per-user setup, not system-wide
-There's a number of ways to instruct the shared mime system
-to look in other places, but this is the whole other story.
-
-So if you install some place other than /usr/share, you will most
-likely need to add this option to autogen.sh/configure scripts:
-   --with-mime-dir=/usr/share/mime
-
-Using the --prefix=/usr/share and installing as a root will most
-likely do everything correctly, so no extra care needs to be
-taken. You should take extra care only if you are installing under
-something like --prefix=/usr/local/my_gramps, /var/gramps123/blah, etc.
+The last option, --enable-packager-mode, is needed if you want to disable
+execution of post-install mime processing.
 
 Packager's issues
 ------------------
-The above mime types must be installed. However, the 
-update-mime-database call to process the newly installed types and 
-schemas must be done in POST-INSTALLATION.
+There is a MANIFEST.in file to indicate the work needed.
+To create a source distribution run:
 
-In packager's world, the install happens on packager's machine
-into something like /tmp/gramps-tmp. However, the postinstall
-should happen on the user's machine.
+   python setup.py sdist
 
-To assist with that, there's an argument available in configure
-(or autogen, which will pass it to configure) which disables
-mime type processing:
-   --enable-packager-mode
-This argument should disable postinstall calls made during
-make install, and print a nasty warning during configure.
-IT IS PACKAGER'S RESPONSIBILITY to follow the advice given
-by the configure output and to copy the appropriate code
-from the data/Makefile.am into the post-install (and post-uninstall)
-of the particular packaging system.

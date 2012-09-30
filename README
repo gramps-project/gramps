@@ -65,16 +65,6 @@ Documentation
 ---------------------------------
 The User Manual is now maintained on the gramps website,
 http://www.gramps-project.org/wiki/index.php?title=User_manual
-We might in the future distribute again a manual via gnome-doc-utils, this has not
-been decided yet though.
-
-
-Building on non-Linux systems: i18n support and GNU make
---------------------------------------------------------
-If make fails, use gmake (the name FreeBSD gives to GNU make) instead.
-You might need a patch also. FreeBSD has in ports a patch (  /usr/ports/science/gramps/files)
-you need to apply to po/Makefile.in.in 
-
 
 --------------------------------
 The Gramps Project

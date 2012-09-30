@@ -14,7 +14,7 @@ recursive-include docs *
 recursive-include help *
 recursive-include mac *
 recursive-include po *
-recursive-include src *
+recursive-include gramps *
 recursive-include test *
 recursive-include windows *
 
@@ -24,14 +24,16 @@ exclude data/gramps.keys
 exclude data/gramps.xml
 recursive-exclude data/man *.1
 recursive-exclude data/man *.1.gz
-exclude src/const.py
-exclude src/data/tips.xml
-exclude src/plugins/lib/holidays.xml
+exclude gramps/const.py
+exclude gramps/data/tips.xml
+exclude gramps/plugins/lib/holidays.xml
 exclude po/*.gmo
 exclude po/.intltool-merge-cache
 exclude po/stamp-it
 exclude po/POTFILES
 global-exclude *.pyc
+global-exclude *.py~
+global-exclude *.pyo
 
 # Remove directories which should not be included in the distribution
 prune src/guiQML
