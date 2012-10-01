@@ -131,7 +131,7 @@ def TipsParse(filename, mark):
     "Editor."
     '''
     
-    tips = open('../src/data/tips.xml.in.h', 'w')
+    tips = open('../gramps/data/tips.xml.in.h', 'w')
     
     for key in root.getiterator(mark):
         tip = ElementTree.tostring(key, encoding="UTF-8")
@@ -186,7 +186,7 @@ def HolidaysParse(filename, mark):
     msgid "Yom Kippur"
     '''
     
-    holidays = open('../src/plugins/lib/holidays.xml.in.h', 'w')
+    holidays = open('../gramps/plugins/lib/holidays.xml.in.h', 'w')
             
     for key in root.getiterator():
         if key.attrib.get(mark):
@@ -327,10 +327,10 @@ def headers():
     headers = []
            
     # in.h; extract_xml
-    if os.path.isfile('''../src/data/tips.xml.in.h'''):
-        headers.append('''../src/data/tips.xml.in.h''')
-    if os.path.isfile('''../src/plugins/lib/holidays.xml.in.h'''):
-        headers.append('''../src/plugins/lib/holidays.xml.in.h''')
+    if os.path.isfile('''../gramps/data/tips.xml.in.h'''):
+        headers.append('''../gramps/data/tips.xml.in.h''')
+    if os.path.isfile('''../gramps/plugins/lib/holidays.xml.in.h'''):
+        headers.append('''../gramps/plugins/lib/holidays.xml.in.h''')
         
     # cosmetic
     if os.path.isfile('''../data/gramps.xml.in.h'''):
@@ -350,11 +350,11 @@ def extract_xml():
     Need to look at own XML files parsing and custom translation marks.
     """
     
-    #os.system('''intltool-extract --type=gettext/xml ../src/data/tips.xml.in''')
-    #os.system('''intltool-extract --type=gettext/xml ../src/plugins/lib/holidays.xml.in''')
+    #os.system('''intltool-extract --type=gettext/xml ../gramps/data/tips.xml.in''')
+    #os.system('''intltool-extract --type=gettext/xml ../gramps/plugins/lib/holidays.xml.in''')
     
-    TipsParse('../src/data/tips.xml.in', '_tip')
-    HolidaysParse('../src/plugins/lib/holidays.xml.in', '_name')
+    TipsParse('../gramps/data/tips.xml.in', '_tip')
+    HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
         
     # cosmetic
     # could be simple copies without .in extension
@@ -398,7 +398,7 @@ def retrieve():
         create_template()
         
     listing('python.txt', '.py')
-    os.system('''%(xgettext)s --add-comments -j --directory=. -d gramps '''
+    os.system('''%(xgettext)s --add-comments -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
