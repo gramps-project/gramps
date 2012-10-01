@@ -28,16 +28,17 @@ Provide a simplified database access interface to the GRAMPS database.
 from __future__ import with_statement
 from types import NoneType
 
-import gen.lib
-import gen.datehandler
-from gen.utils.string import gender as gender_map
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gen.plug.report.utils import place_name
+from ..lib import (Person, Family, Event, Source, Place, Citation, 
+                   MediaObject, Repository, Note, Date)
+from ..datehandler import displayer
+from ..utils.string import gender as gender_map
+from ..utils.db import get_birth_or_fallback, get_death_or_fallback
+from ..plug.report.utils import place_name
 
-from gen.display.name import displayer as name_displayer
-from gen.lib import EventType
-from gen.config import config
-from gen.ggettext import gettext as _
+from ..display.name import displayer as name_displayer
+from ..lib import EventType
+from ..config import config
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +128,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         if person:
             return name_displayer.display(person)
         else:
@@ -144,7 +145,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         if person:
             surname = person.get_primary_name().get_surname()
             return surname or config.get('preferences.no-surname-text')
@@ -162,7 +163,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         if person:
             return person.get_primary_name().get_first_name()
         else:
@@ -193,7 +194,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         if person:
             return gender_map[person.get_gender()]
         return u''
@@ -209,7 +210,7 @@ class SimpleAccess(object):
         @return: mother or father of the associated person
         @rtype: L{gen.lib.Person}
         """
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             parent_handle_list = person.get_parent_family_handle_list()
@@ -230,7 +231,7 @@ class SimpleAccess(object):
         @return: mother or father of the associated family
         @rtype: L{gen.lib.Family}
         """
-        assert(isinstance(family, (gen.lib.Family, NoneType)))
+        assert(isinstance(family, (Family, NoneType)))
 
         if family:
             handle = func(family)
@@ -249,7 +250,7 @@ class SimpleAccess(object):
         @return: Returns a string describing the date
         @rtype: unicode
         """
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             ref = func(person)
@@ -259,7 +260,7 @@ class SimpleAccess(object):
                     event = self.dbase.get_event_from_handle(event_handle)
                     date_obj = event.get_date_object()
                     if date_obj:
-                        return gen.datehandler.displayer.display(date_obj)
+                        return displayer.display(date_obj)
         return u''
 
     def __event_date_obj(self, person, func):
@@ -273,7 +274,7 @@ class SimpleAccess(object):
         @return: Returns the date
         @rtype: l{gen.lib.Date}
         """
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             ref = func(person)
@@ -285,8 +286,8 @@ class SimpleAccess(object):
                     if date_obj:
                         return date_obj
                     else:
-                        return gen.lib.Date()
-        return gen.lib.Date()
+                        return Date()
+        return Date()
 
     def __event_place(self, person, func):
         """
@@ -299,7 +300,7 @@ class SimpleAccess(object):
         @return: Returns a string describing the place
         @rtype: unicode
         """
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             ref = func(person)
@@ -322,7 +323,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -350,7 +351,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -374,7 +375,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -406,7 +407,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -423,7 +424,7 @@ class SimpleAccess(object):
                         if events:
                             date_obj = events[0].get_date_object()
                             if date_obj:
-                                return gen.datehandler.displayer.display(date_obj)
+                                return displayer.display(date_obj)
         return u''
 
     def children(self, obj):
@@ -435,9 +436,9 @@ class SimpleAccess(object):
         @return: Returns a list of L{gen.lib.Person} objects representing the children
         @rtype: list
         """
-        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
+        assert(isinstance(obj, (Person, Family, NoneType)))
 
-        if isinstance(obj, gen.lib.Person):
+        if isinstance(obj, Person):
             family_handle_list = obj.get_family_handle_list()
             if family_handle_list:
                 family_id = family_handle_list[0]
@@ -445,7 +446,7 @@ class SimpleAccess(object):
                 
                 return [ self.dbase.get_person_from_handle(hndl.ref) 
                          for hndl in family.get_child_ref_list() ]
-        elif isinstance(obj, gen.lib.Family):
+        elif isinstance(obj, Family):
             return [ self.dbase.get_person_from_handle(hndl.ref) 
                      for hndl in obj.get_child_ref_list() ]
         return []
@@ -461,10 +462,10 @@ class SimpleAccess(object):
                  family
         @rtype: L{gen.lib.Person}
         """
-        if isinstance(obj, gen.lib.Person):
-            return self.__parent(obj, gen.lib.Family.get_father_handle)
-        elif isinstance(obj, gen.lib.Family):
-            return self.__family_parent(obj, gen.lib.Family.get_father_handle)
+        if isinstance(obj, Person):
+            return self.__parent(obj, Family.get_father_handle)
+        elif isinstance(obj, Family):
+            return self.__family_parent(obj, Family.get_father_handle)
         else:
             return None
 
@@ -479,10 +480,10 @@ class SimpleAccess(object):
                  family
         @rtype: L{gen.lib.Person}
         """
-        if isinstance(obj, gen.lib.Person):
-            return self.__parent(obj, gen.lib.Family.get_mother_handle)
-        elif isinstance(obj, gen.lib.Family):
-            return self.__family_parent(obj, gen.lib.Family.get_mother_handle)
+        if isinstance(obj, Person):
+            return self.__parent(obj, Family.get_mother_handle)
+        elif isinstance(obj, Family):
+            return self.__family_parent(obj, Family.get_mother_handle)
         else:
             return None
         
@@ -497,7 +498,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_date(person, gen.lib.Person.get_birth_ref)
+        return self.__event_date(person, Person.get_birth_ref)
 
     def birth_date_obj(self, person):
         """
@@ -510,7 +511,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_date_obj(person, gen.lib.Person.get_birth_ref)
+        return self.__event_date_obj(person, Person.get_birth_ref)
 
 
     def birth_or_fallback(self, person, get_event=False):
@@ -530,7 +531,7 @@ class SimpleAccess(object):
         elif event:
             return event.date
         else:
-            return gen.lib.Date()
+            return Date()
 
     def birth_place(self, person):
         """
@@ -543,7 +544,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_place(person, gen.lib.Person.get_birth_ref)
+        return self.__event_place(person, Person.get_birth_ref)
 
     def death_date(self, person):
         """
@@ -556,7 +557,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_date(person, gen.lib.Person.get_death_ref)
+        return self.__event_date(person, Person.get_death_ref)
 
     def death_date_obj(self, person):
         """
@@ -569,7 +570,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_date_obj(person, gen.lib.Person.get_death_ref)
+        return self.__event_date_obj(person, Person.get_death_ref)
 
     def death_or_fallback(self, person, get_event=False):
         """
@@ -588,7 +589,7 @@ class SimpleAccess(object):
         elif event:
             return event.date
         else:
-            return gen.lib.Date()
+            return Date()
 
     def death_place(self, person):
         """
@@ -601,7 +602,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        return self.__event_place(person, gen.lib.Person.get_death_ref)
+        return self.__event_place(person, Person.get_death_ref)
 
     def event_place(self, event):
         """
@@ -612,7 +613,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (gen.lib.Event, NoneType)))
+        assert(isinstance(event, (Event, NoneType)))
 
         if event:
             place_handle = event.get_place_handle()
@@ -630,7 +631,7 @@ class SimpleAccess(object):
         @rtype: unicode
         """
         if date_obj:
-            return gen.datehandler.displayer.display(date_obj)
+            return displayer.display(date_obj)
         else:
             return u''
 
@@ -643,10 +644,10 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (gen.lib.Event, NoneType)))
+        assert(isinstance(event, (Event, NoneType)))
         date_obj = event.get_date_object()
         if date_obj:
-            return gen.datehandler.displayer.display(date_obj)
+            return displayer.display(date_obj)
         else:
             return u''
 
@@ -659,7 +660,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (gen.lib.Event, NoneType)))
+        assert(isinstance(event, (Event, NoneType)))
         if event:
             return event.get_date_object()
 
@@ -672,7 +673,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the type of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (gen.lib.Event, NoneType)))
+        assert(isinstance(event, (Event, NoneType)))
         if event:
             return str(event.get_type())
         else:
@@ -691,7 +692,7 @@ class SimpleAccess(object):
         @return: list of events associated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
+        assert(isinstance(obj, (Person, Family, NoneType)))
         assert(isinstance(restrict, list) or restrict is None)
 
         if obj:
@@ -716,7 +717,7 @@ class SimpleAccess(object):
         @return: list of events associated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, gen.lib.Event, NoneType)))
+        assert(isinstance(obj, (Person, Family, Event, NoneType)))
 
         if obj:
             handles = [ ref.ref for ref in obj.get_source_references() ]
@@ -736,7 +737,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -755,7 +756,7 @@ class SimpleAccess(object):
         """
         if type(person) in [str, unicode]: 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (gen.lib.Person, NoneType)))
+        assert(isinstance(person, (Person, NoneType)))
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -842,7 +843,7 @@ class SimpleAccess(object):
         @return: title of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (gen.lib.Source, NoneType)))
+        assert(isinstance(source, (Source, NoneType)))
         if source:
             return source.get_title()
         return u''
@@ -856,7 +857,7 @@ class SimpleAccess(object):
         @return: title of the citation
         @rtype: unicode
         """
-        assert(isinstance(citation, (gen.lib.Citation, NoneType)))
+        assert(isinstance(citation, (Citation, NoneType)))
         if citation:
             return citation.get_page()
         return u''
@@ -870,7 +871,7 @@ class SimpleAccess(object):
         @return: author of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (gen.lib.Source, NoneType)))
+        assert(isinstance(source, (Source, NoneType)))
         if source:
             return source.get_author()
         return u''
@@ -899,40 +900,40 @@ class SimpleAccess(object):
             obj = self.dbase.get_table_metadata(object_class)\
                            [prop + "_func"](value)
             if obj:
-                if isinstance(obj, gen.lib.Person):
+                if isinstance(obj, Person):
                     return "%s: %s [%s]" % (_(object_class), 
                                             self.name(obj), 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Event):
+                elif isinstance(obj, Event):
                     return "%s: %s [%s]" % (_(object_class), 
                                             self.event_type(obj),
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Family):
+                elif isinstance(obj, Family):
                     return "%s: %s/%s [%s]" % (_(object_class), 
                                             self.name(self.mother(obj)), 
                                             self.name(self.father(obj)), 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.MediaObject):
+                elif isinstance(obj, MediaObject):
                     return "%s: %s [%s]" % (_(object_class), 
                                             obj.desc, 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Source):
+                elif isinstance(obj, Source):
                     return "%s: %s [%s]" % (_(object_class), 
                                             self.title(obj), 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Citation):
+                elif isinstance(obj, Citation):
                     return "%s: [%s]" % (_(object_class), 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Place):
+                elif isinstance(obj, Place):
                     return "%s: %s [%s]" % (_(object_class), 
                                             place_name(self.dbase, 
                                                        obj.handle), 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Repository):
+                elif isinstance(obj, Repository):
                     return "%s: %s [%s]" % (_(object_class), 
                                             obj.type, 
                                             self.gid(obj))
-                elif isinstance(obj, gen.lib.Note):
+                elif isinstance(obj, Note):
                     return "%s: %s [%s]" % (_(object_class), 
                                             obj.type, 
                                             self.gid(obj))
@@ -947,11 +948,11 @@ class SimpleAccess(object):
         """
         Given a object, return a string describing the object.  
         """
-        if isinstance(obj, gen.lib.Person):
+        if isinstance(obj, Person):
             return self.name(obj)
-        elif isinstance(obj, gen.lib.Event):
+        elif isinstance(obj, Event):
             return self.event_type(obj)
-        elif isinstance(obj, gen.lib.Family):
+        elif isinstance(obj, Family):
             father = self.father(obj)
             mother = self.mother(obj)
             if father:
@@ -963,17 +964,17 @@ class SimpleAccess(object):
             else:
                 mother_text = _("Unknown mother")
             return "%s and %s" % (mother_text, father_text)
-        elif isinstance(obj, gen.lib.MediaObject):
+        elif isinstance(obj, MediaObject):
             return obj.desc
-        elif isinstance(obj, gen.lib.Citation):
+        elif isinstance(obj, Citation):
             return obj.gramps_id
-        elif isinstance(obj, gen.lib.Source):
+        elif isinstance(obj, Source):
             return self.title(obj)
-        elif isinstance(obj, gen.lib.Place):
+        elif isinstance(obj, Place):
             return place_name(self.dbase, obj.handle)
-        elif isinstance(obj, gen.lib.Repository):
+        elif isinstance(obj, Repository):
             return obj.gramps_id
-        elif isinstance(obj, gen.lib.Note):
+        elif isinstance(obj, Note):
             return obj.gramps_id
         elif obj is None:
             return ""

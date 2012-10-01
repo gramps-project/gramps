@@ -41,9 +41,9 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.datehandler
-from gen.utils.file import media_path_full
-from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
+from ...datehandler import get_date
+from ...utils.file import media_path_full
+from ..docgen import IndexMark, INDEX_TYPE_ALP
    
 #-------------------------------------------------------------------------
 #
@@ -190,12 +190,12 @@ def get_person_mark(db, person):
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birthEvt = db.get_event_from_handle(birth_ref.ref)
-        birth = gen.datehandler.get_date(birthEvt)
+        birth = get_date(birthEvt)
 
     death_ref = person.get_death_ref()
     if death_ref:
         deathEvt = db.get_event_from_handle(death_ref.ref)
-        death = gen.datehandler.get_date(deathEvt)
+        death = get_date(deathEvt)
 
     if birth == death == " ":
         key = name
@@ -247,8 +247,8 @@ def get_person_filters(person, include_single=True):
     @param include_single: include a filter to include the single person
     @type person: boolean
     """
-    from gen.filters import GenericFilter, rules, CustomFilters
-    from gen.display.name import displayer as name_displayer
+    from ...filters import GenericFilter, rules, CustomFilters
+    from ...display.name import displayer as name_displayer
 
     if person:
         name = name_displayer.display(person)

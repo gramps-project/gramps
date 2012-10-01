@@ -29,7 +29,6 @@
 import cPickle
 import base64
 import time
-import gen
 import re
 from . import DbReadBase, DbWriteBase, DbTxn
 from . import (PERSON_KEY,
@@ -42,6 +41,7 @@ from . import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from ..utils.id import create_id
+from ..lib.researcher import Researcher
 from ..lib.mediaobj import MediaObject
 from ..lib.person import Person
 from ..lib.family import Family
@@ -509,7 +509,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return None
 
     def get_researcher(self):
-        obj = gen.lib.Researcher()
+        obj = Researcher()
         return obj
 
     def get_person_handles(self, sort_handles=False):

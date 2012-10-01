@@ -27,8 +27,24 @@ import sys
 import os
 sys.path.append(os.curdir)
 
-import gen.lib
-from gen.lib.const import IDENTICAL, EQUAL, DIFFERENT
+from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
+                 Event, EventType, Source, Place, Citation,
+                 Repository, RepositoryType, MediaObject, Note, NoteType,
+                 StyledText, StyledTextTag, StyledTextTagType, Tag,
+                 ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
+                 Url, UrlType, Address, EventRef, EventRoleType, RepoRef,
+                 FamilyRelType, LdsOrd, MediaRef, PersonRef, Location)
+from ..privacybase import PrivacyBase
+from ..urlbase import UrlBase
+from ..addressbase import AddressBase
+from ..attrbase import AttributeBase
+from ..ldsordbase import LdsOrdBase
+from ..mediabase import MediaBase
+from ..notebase import NoteBase
+from ..citationbase import CitationBase
+from ..surnamebase import SurnameBase
+from ..tagbase import TagBase
+from ..const import IDENTICAL, EQUAL, DIFFERENT
 
 class PrivacyBaseTest:
     def test_privacy_merge(self):
@@ -48,7 +64,7 @@ class NoteBaseTest:
 
 class CitationBaseTest:
     def test_citation_merge(self):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('123456')
         citation.set_page('p.10')
         self.titanic.add_citation(citation.handle)
@@ -58,7 +74,7 @@ class CitationBaseTest:
 
 class MediaBaseTest:
     def test_media_merge(self):
-        mediaref = gen.lib.MediaRef()
+        mediaref = MediaRef()
         mediaref.set_reference_handle('123456')
         self.titanic.add_media_reference(mediaref)
         self.ref_obj.add_media_reference(mediaref)
@@ -67,8 +83,8 @@ class MediaBaseTest:
 
 class AttrBaseTest:
     def test_attribute_merge(self):
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.AGE)
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
         attr.set_value(10)
         self.titanic.add_attribute(attr)
         self.ref_obj.add_attribute(attr)
@@ -77,7 +93,7 @@ class AttrBaseTest:
 
 class UrlBaseTest:
     def test_url_merge(self):
-        url = gen.lib.Url()
+        url = Url()
         url.set_path('http://example.com')
         self.titanic.add_url(url)
         self.ref_obj.add_url(url)
@@ -91,8 +107,8 @@ class PrivacyCheck(unittest.TestCase):
                          (True, False, True),
                          (False, True, True),
                          (True, True, True) )
-        phoenix = gen.lib.privacybase.PrivacyBase()
-        titanic = gen.lib.privacybase.PrivacyBase()
+        phoenix = PrivacyBase()
+        titanic = PrivacyBase()
         for value1, value2, value_merge in known_values:
             phoenix.set_privacy(value1)
             titanic.set_privacy(value2)
@@ -101,12 +117,12 @@ class PrivacyCheck(unittest.TestCase):
 
 class UrlCheck(unittest.TestCase, PrivacyBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Url()
+        self.phoenix = Url()
         self.phoenix.set_path('http://example1.com')
         self.phoenix.set_description('hello world')
-        self.phoenix.set_type(gen.lib.UrlType.WEB_HOME)
-        self.titanic = gen.lib.Url(self.phoenix)
-        self.ref_obj = gen.lib.Url(self.phoenix)
+        self.phoenix.set_type(UrlType.WEB_HOME)
+        self.titanic = Url(self.phoenix)
+        self.ref_obj = Url(self.phoenix)
 
     def test_path_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -114,7 +130,7 @@ class UrlCheck(unittest.TestCase, PrivacyBaseTest):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_type_equivalence(self):
-        self.titanic.set_type(gen.lib.UrlType.UNKNOWN)
+        self.titanic.set_type(UrlType.UNKNOWN)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_desc_equivalence(self):
@@ -132,25 +148,25 @@ class UrlCheck(unittest.TestCase, PrivacyBaseTest):
 
 class UrlBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.urlbase.UrlBase()
-        self.titanic = gen.lib.urlbase.UrlBase()
-        url = gen.lib.Url()
+        self.phoenix = UrlBase()
+        self.titanic = UrlBase()
+        url = Url()
         url.set_path('example.com')
         self.phoenix.add_url(url)
 
     def test_identical(self):
-        ref_url_list = gen.lib.urlbase.UrlBase(self.phoenix)
-        url = gen.lib.Url()
+        ref_url_list = UrlBase(self.phoenix)
+        url = Url()
         url.set_path('example.com')
         self.titanic.add_url(url)
         self.phoenix._merge_url_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
 
     def test_equal(self):
-        ref_url_list = gen.lib.urlbase.UrlBase(self.phoenix)
+        ref_url_list = UrlBase(self.phoenix)
         ref_url = ref_url_list.get_url_list()[0]
         ref_url.set_privacy(True)
-        url = gen.lib.Url()
+        url = Url()
         url.set_path('example.com')
         url.set_privacy(True)
         self.titanic.add_url(url)
@@ -158,8 +174,8 @@ class UrlBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), ref_url_list.serialize())
 
     def test_different(self):
-        ref_url_list = gen.lib.urlbase.UrlBase(self.phoenix)
-        url = gen.lib.Url()
+        ref_url_list = UrlBase(self.phoenix)
+        url = Url()
         url.set_path('other.com')
         ref_url_list.add_url(url)
         self.titanic.add_url(url)
@@ -169,10 +185,10 @@ class UrlBaseCheck(unittest.TestCase):
 class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Address()
+        self.phoenix = Address()
         self.phoenix.set_city('Amsterdam')
-        self.titanic = gen.lib.Address(self.phoenix)
-        self.ref_obj = gen.lib.Address(self.phoenix)
+        self.titanic = Address(self.phoenix)
+        self.ref_obj = Address(self.phoenix)
 
     def test_location_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -180,7 +196,7 @@ class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_date_equivalence(self):
-        date = gen.lib.Date()
+        date = Date()
         date.set_yr_mon_day(1999,12,5)
         self.titanic.set_date_object(date)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
@@ -196,15 +212,15 @@ class AddressCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 class AddressBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.addressbase.AddressBase()
-        self.titanic = gen.lib.addressbase.AddressBase()
-        self.ref_list = gen.lib.addressbase.AddressBase()
-        address = gen.lib.Address()
+        self.phoenix = AddressBase()
+        self.titanic = AddressBase()
+        self.ref_list = AddressBase()
+        address = Address()
         address.set_city('Amsterdam')
         self.phoenix.add_address(address)
 
     def test_identical(self):
-        address = gen.lib.Address()
+        address = Address()
         address.set_city('Amsterdam')
         self.ref_list.add_address(address)
         self.titanic.add_address(address)
@@ -213,7 +229,7 @@ class AddressBaseCheck(unittest.TestCase):
 
     def test_equal(self):
         note_handle = '123456'
-        address = gen.lib.Address()
+        address = Address()
         address.set_city('Amsterdam')
         address.add_note(note_handle)
         self.titanic.add_address(address)
@@ -222,10 +238,10 @@ class AddressBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_different(self):
-        address = gen.lib.Address()
+        address = Address()
         address.set_country('Netherlands')
         self.titanic.add_address(address)
-        self.ref_list = gen.lib.addressbase.AddressBase(self.phoenix)
+        self.ref_list = AddressBase(self.phoenix)
         self.ref_list.add_address(address)
         self.phoenix._merge_address_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
@@ -233,15 +249,15 @@ class AddressBaseCheck(unittest.TestCase):
 class AttributeCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Attribute()
-        self.phoenix.set_type(gen.lib.AttributeType.AGE)
+        self.phoenix = Attribute()
+        self.phoenix.set_type(AttributeType.AGE)
         self.phoenix.set_value(10)
-        self.titanic = gen.lib.Attribute(self.phoenix)
-        self.ref_obj = gen.lib.Attribute(self.phoenix)
+        self.titanic = Attribute(self.phoenix)
+        self.ref_obj = Attribute(self.phoenix)
 
     def test_type_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
-        self.titanic.set_type(gen.lib.AttributeType.MOTHER_AGE)
+        self.titanic.set_type(AttributeType.MOTHER_AGE)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_value_equivalence(self):
@@ -259,17 +275,17 @@ class AttributeCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 class AttributeBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.attrbase.AttributeBase()
-        self.titanic = gen.lib.attrbase.AttributeBase()
-        self.ref_list = gen.lib.attrbase.AttributeBase()
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.AGE)
+        self.phoenix = AttributeBase()
+        self.titanic = AttributeBase()
+        self.ref_list = AttributeBase()
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
         attr.set_value(10)
         self.phoenix.add_attribute(attr)
 
     def test_identical(self):
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.AGE)
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
         attr.set_value(10)
         self.ref_list.add_attribute(attr)
         self.titanic.add_attribute(attr)
@@ -278,8 +294,8 @@ class AttributeBaseCheck(unittest.TestCase):
 
     def test_equal(self):
         note_handle = '123456'
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.AGE)
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
         attr.set_value(10)
         attr.add_note(note_handle)
         self.titanic.add_attribute(attr)
@@ -288,11 +304,11 @@ class AttributeBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_different(self):
-        attr = gen.lib.Attribute()
-        attr.set_type(gen.lib.AttributeType.AGE)
+        attr = Attribute()
+        attr.set_type(AttributeType.AGE)
         attr.set_value(12)
         self.titanic.add_attribute(attr)
-        self.ref_list = gen.lib.attrbase.AttributeBase(self.phoenix)
+        self.ref_list = AttributeBase(self.phoenix)
         self.ref_list.add_attribute(attr)
         self.phoenix._merge_attribute_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
@@ -300,18 +316,18 @@ class AttributeBaseCheck(unittest.TestCase):
 class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.ChildRef()
+        self.phoenix = ChildRef()
         self.phoenix.set_reference_handle('123456')
-        self.phoenix.set_father_relation(gen.lib.ChildRefType.UNKNOWN)
-        self.phoenix.set_mother_relation(gen.lib.ChildRefType.UNKNOWN)
-        self.titanic = gen.lib.ChildRef()
+        self.phoenix.set_father_relation(ChildRefType.UNKNOWN)
+        self.phoenix.set_mother_relation(ChildRefType.UNKNOWN)
+        self.titanic = ChildRef()
         self.titanic.set_reference_handle('123456')
-        self.titanic.set_father_relation(gen.lib.ChildRefType.UNKNOWN)
-        self.titanic.set_mother_relation(gen.lib.ChildRefType.UNKNOWN)
-        self.ref_obj = gen.lib.ChildRef()
+        self.titanic.set_father_relation(ChildRefType.UNKNOWN)
+        self.titanic.set_mother_relation(ChildRefType.UNKNOWN)
+        self.ref_obj = ChildRef()
         self.ref_obj.set_reference_handle('123456')
-        self.ref_obj.set_father_relation(gen.lib.ChildRefType.UNKNOWN)
-        self.ref_obj.set_mother_relation(gen.lib.ChildRefType.UNKNOWN)
+        self.ref_obj.set_father_relation(ChildRefType.UNKNOWN)
+        self.ref_obj.set_mother_relation(ChildRefType.UNKNOWN)
 
     def test_handle_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -323,32 +339,32 @@ class ChildRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
 
     def test_mrel_merge(self):
-        self.titanic.set_mother_relation(gen.lib.ChildRefType.BIRTH)
-        self.ref_obj.set_mother_relation(gen.lib.ChildRefType.BIRTH)
+        self.titanic.set_mother_relation(ChildRefType.BIRTH)
+        self.ref_obj.set_mother_relation(ChildRefType.BIRTH)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
 
     def test_frel_merge(self):
-        self.titanic.set_father_relation(gen.lib.ChildRefType.ADOPTED)
-        self.ref_obj.set_father_relation(gen.lib.ChildRefType.ADOPTED)
+        self.titanic.set_father_relation(ChildRefType.ADOPTED)
+        self.ref_obj.set_father_relation(ChildRefType.ADOPTED)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.is_equal(self.ref_obj), True)
 
 class EventCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest, MediaBaseTest, AttrBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Event()
+        self.phoenix = Event()
         self.phoenix.set_description("hello world")
-        self.titanic = gen.lib.Event(self.phoenix)
-        self.ref_obj = gen.lib.Event(self.phoenix)
+        self.titanic = Event(self.phoenix)
+        self.ref_obj = Event(self.phoenix)
 
 class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         AttrBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.EventRef()
+        self.phoenix = EventRef()
         self.phoenix.set_reference_handle('123456')
-        self.titanic = gen.lib.EventRef(self.phoenix)
-        self.ref_obj = gen.lib.EventRef(self.phoenix)
+        self.titanic = EventRef(self.phoenix)
+        self.ref_obj = EventRef(self.phoenix)
 
     def test_handle_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -356,7 +372,7 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_role_equivalence(self):
-        self.titanic.set_role(gen.lib.EventRoleType.WITNESS)
+        self.titanic.set_role(EventRoleType.WITNESS)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_privacy_equivalence(self):
@@ -364,24 +380,24 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), EQUAL)
 
     def test_replace(self):
-        attr1 = gen.lib.Attribute()
-        attr1.set_type(gen.lib.AttributeType.AGE)
+        attr1 = Attribute()
+        attr1.set_type(AttributeType.AGE)
         attr1.set_value(10)
-        citation1 = gen.lib.Citation()
+        citation1 = Citation()
         citation1.set_reference_handle('123456')
         citation1.set_page('p.10')
-        citation2 = gen.lib.Citation()
+        citation2 = Citation()
         citation2.set_reference_handle('234567')
         citation2.set_page('p.20')
         attr1.add_citation(citation1.handle)
         attr1.add_citation(citation2.handle)
-        attr2 = gen.lib.Attribute()
-        attr2.set_type(gen.lib.AttributeType.AGE)
+        attr2 = Attribute()
+        attr2.set_type(AttributeType.AGE)
         attr2.set_value(10)
-        citation3 = gen.lib.Citation()
+        citation3 = Citation()
         citation3.set_reference_handle('123456')
         citation3.set_page('p.10')
-        citation4 = gen.lib.Citation()
+        citation4 = Citation()
         citation4.set_reference_handle('654321')
         citation4.set_page('p.20')
         attr2.add_citation(citation3.handle)
@@ -394,36 +410,36 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest, MediaBaseTest, AttrBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Family()
+        self.phoenix = Family()
         self.phoenix.set_father_handle('123456')
         self.phoenix.set_mother_handle('654321')
-        self.phoenix.set_relationship(gen.lib.FamilyRelType.MARRIED)
-        self.titanic = gen.lib.Family()
+        self.phoenix.set_relationship(FamilyRelType.MARRIED)
+        self.titanic = Family()
         self.titanic.set_father_handle('123456')
         self.titanic.set_mother_handle('654321')
-        self.titanic.set_relationship(gen.lib.FamilyRelType.MARRIED)
-        self.ref_obj = gen.lib.Family()
+        self.titanic.set_relationship(FamilyRelType.MARRIED)
+        self.ref_obj = Family()
         self.ref_obj.set_father_handle('123456')
         self.ref_obj.set_mother_handle('654321')
-        self.ref_obj.set_relationship(gen.lib.FamilyRelType.MARRIED)
+        self.ref_obj.set_relationship(FamilyRelType.MARRIED)
 
     def test_relation_merge(self):
-        self.phoenix.set_relationship(gen.lib.FamilyRelType.UNKNOWN)
-        self.titanic.set_relationship(gen.lib.FamilyRelType.UNMARRIED)
-        self.ref_obj.set_relationship(gen.lib.FamilyRelType.UNMARRIED)
+        self.phoenix.set_relationship(FamilyRelType.UNKNOWN)
+        self.titanic.set_relationship(FamilyRelType.UNMARRIED)
+        self.ref_obj.set_relationship(FamilyRelType.UNMARRIED)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventref_merge(self):
-        evtref = gen.lib.EventRef()
-        evtref.set_role(gen.lib.EventRoleType.WITNESS)
+        evtref = EventRef()
+        evtref.set_role(EventRoleType.WITNESS)
         self.titanic.add_event_ref(evtref)
         self.ref_obj.add_event_ref(evtref)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_ldsord_merge(self):
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         ldsord.set_temple('London')
         self.titanic.add_lds_ord(ldsord)
         self.ref_obj.add_lds_ord(ldsord)
@@ -431,7 +447,7 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_childref_merge(self):
-        childref = gen.lib.ChildRef()
+        childref = ChildRef()
         childref.set_reference_handle('123456')
         self.titanic.add_child_ref(childref)
         self.ref_obj.add_child_ref(childref)
@@ -439,11 +455,11 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergechildref_identical(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('123456')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('123456')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('123456')
         self.phoenix.add_child_ref(childref1)
         self.titanic.add_child_ref(childref2)
@@ -452,12 +468,12 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergechildref_equal(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('123456')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('123456')
         childref2.add_note('N1')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('123456')
         childref3.add_note('N1')
         self.phoenix.add_child_ref(childref1)
@@ -467,13 +483,13 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergechildref_different(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('123456')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('654321')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('123456')
-        childref4 = gen.lib.ChildRef()
+        childref4 = ChildRef()
         childref4.set_reference_handle('654321')
         self.phoenix.add_child_ref(childref1)
         self.titanic.add_child_ref(childref2)
@@ -483,13 +499,13 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_childref_absent(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('234567')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('345678')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('765432')
-        childref4 = gen.lib.ChildRef()
+        childref4 = ChildRef()
         childref4.set_reference_handle('345678')
         self.phoenix.add_child_ref(childref1)
         self.phoenix.add_child_ref(childref2)
@@ -499,11 +515,11 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_childref_identical(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('234567')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('765432')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('765432')
         self.phoenix.add_child_ref(childref1)
         self.phoenix.add_child_ref(childref2)
@@ -512,12 +528,12 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_childref_equal(self):
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('234567')
         childref1.set_privacy(True)
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('765432')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('765432')
         childref3.set_privacy(True)
         self.phoenix.add_child_ref(childref1)
@@ -528,12 +544,12 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
     def test_replace_childref_different(self):
         # impossible, is_equivalent is only DIFFERENT if handles differ.
-        childref1 = gen.lib.ChildRef()
+        childref1 = ChildRef()
         childref1.set_reference_handle('234567')
         childref1.set_mother_relation('Adopted')
-        childref2 = gen.lib.ChildRef()
+        childref2 = ChildRef()
         childref2.set_reference_handle('765432')
-        childref3 = gen.lib.ChildRef()
+        childref3 = ChildRef()
         childref3.set_reference_handle('765432')
         self.phoenix.add_child_ref(childref1)
         self.phoenix.add_child_ref(childref2)
@@ -542,12 +558,12 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergeeventref_identical(self):
-        eventref1 = gen.lib.EventRef()
-        eventref1.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref2 = gen.lib.EventRef()
-        eventref2.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref3 = gen.lib.EventRef()
-        eventref3.set_role(gen.lib.EventRoleType.WITNESS)
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.WITNESS)
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
         self.phoenix.add_event_ref(eventref1)
         self.titanic.add_event_ref(eventref2)
         self.ref_obj.add_event_ref(eventref3)
@@ -555,13 +571,13 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergeeventref_equal(self):
-        eventref1 = gen.lib.EventRef()
-        eventref1.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref2 = gen.lib.EventRef()
-        eventref2.set_role(gen.lib.EventRoleType.WITNESS)
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.WITNESS)
         eventref2.add_note('N1')
-        eventref3 = gen.lib.EventRef()
-        eventref3.set_role(gen.lib.EventRoleType.WITNESS)
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
         eventref3.add_note('N1')
         self.phoenix.add_event_ref(eventref1)
         self.titanic.add_event_ref(eventref2)
@@ -570,14 +586,14 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_mergeeventref_different(self):
-        eventref1 = gen.lib.EventRef()
-        eventref1.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref2 = gen.lib.EventRef()
-        eventref2.set_role(gen.lib.EventRoleType.CLERGY)
-        eventref3 = gen.lib.EventRef()
-        eventref3.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref4 = gen.lib.EventRef()
-        eventref4.set_role(gen.lib.EventRoleType.CLERGY)
+        eventref1 = EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
+        eventref2.set_role(EventRoleType.CLERGY)
+        eventref3 = EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
+        eventref4 = EventRef()
+        eventref4.set_role(EventRoleType.CLERGY)
         self.phoenix.add_event_ref(eventref1)
         self.titanic.add_event_ref(eventref2)
         self.ref_obj.add_event_ref(eventref3)
@@ -586,13 +602,13 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_absent(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
-        eventref2 = gen.lib.EventRef()
+        eventref2 = EventRef()
         eventref2.set_reference_handle('234567')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
-        eventref4 = gen.lib.EventRef()
+        eventref4 = EventRef()
         eventref4.set_reference_handle('234567')
         self.phoenix.add_event_ref(eventref1)
         self.phoenix.add_event_ref(eventref2)
@@ -602,11 +618,11 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_identical(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
-        eventref2 = gen.lib.EventRef()
+        eventref2 = EventRef()
         eventref2.set_reference_handle('654321')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
         self.phoenix.add_event_ref(eventref1)
         self.phoenix.add_event_ref(eventref2)
@@ -615,12 +631,12 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_equal(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
         eventref1.set_privacy(True)
-        eventref2 = gen.lib.EventRef()
+        eventref2 = EventRef()
         eventref2.set_reference_handle('654321')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
         eventref3.set_privacy(True)
         self.phoenix.add_event_ref(eventref1)
@@ -630,15 +646,15 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_different(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
-        eventref1.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref2 = gen.lib.EventRef()
+        eventref1.set_role(EventRoleType.WITNESS)
+        eventref2 = EventRef()
         eventref2.set_reference_handle('654321')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
-        eventref3.set_role(gen.lib.EventRoleType.WITNESS)
-        eventref4 = gen.lib.EventRef()
+        eventref3.set_role(EventRoleType.WITNESS)
+        eventref4 = EventRef()
         eventref4.set_reference_handle('654321')
         self.phoenix.add_event_ref(eventref1)
         self.phoenix.add_event_ref(eventref2)
@@ -648,15 +664,15 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_order_first(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
-        eventref2 = gen.lib.EventRef()
+        eventref2 = EventRef()
         eventref2.set_reference_handle('234567')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
-        eventref4 = gen.lib.EventRef()
+        eventref4 = EventRef()
         eventref4.set_reference_handle('123456')
-        eventref5 = gen.lib.EventRef()
+        eventref5 = EventRef()
         eventref5.set_reference_handle('234567')
         self.phoenix.add_event_ref(eventref1)
         self.phoenix.add_event_ref(eventref2)
@@ -667,15 +683,15 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_event_order_last(self):
-        eventref1 = gen.lib.EventRef()
+        eventref1 = EventRef()
         eventref1.set_reference_handle('123456')
-        eventref2 = gen.lib.EventRef()
+        eventref2 = EventRef()
         eventref2.set_reference_handle('234567')
-        eventref3 = gen.lib.EventRef()
+        eventref3 = EventRef()
         eventref3.set_reference_handle('654321')
-        eventref4 = gen.lib.EventRef()
+        eventref4 = EventRef()
         eventref4.set_reference_handle('234567')
-        eventref5 = gen.lib.EventRef()
+        eventref5 = EventRef()
         eventref5.set_reference_handle('654321')
         self.phoenix.add_event_ref(eventref1)
         self.phoenix.add_event_ref(eventref2)
@@ -689,18 +705,18 @@ class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.LdsOrd()
+        self.phoenix = LdsOrd()
         self.phoenix.set_temple('London, England')
-        self.titanic = gen.lib.LdsOrd(self.phoenix)
-        self.ref_obj = gen.lib.LdsOrd(self.phoenix)
+        self.titanic = LdsOrd(self.phoenix)
+        self.ref_obj = LdsOrd(self.phoenix)
 
     def test_type_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
-        self.titanic.set_type(gen.lib.LdsOrd.CONFIRMATION)
+        self.titanic.set_type(LdsOrd.CONFIRMATION)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_date_equivalence(self):
-        date = gen.lib.Date()
+        date = Date()
         date.set_yr_mon_day(1999,12,5)
         self.titanic.set_date_object(date)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
@@ -710,7 +726,7 @@ class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_status_equivalence(self):
-        self.titanic.set_status(gen.lib.LdsOrd.STATUS_CLEARED)
+        self.titanic.set_status(LdsOrd.STATUS_CLEARED)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_famc_equivalence(self):
@@ -723,15 +739,15 @@ class LdsordCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 class LdsordBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.ldsordbase.LdsOrdBase()
-        self.titanic = gen.lib.ldsordbase.LdsOrdBase()
-        self.ref_list = gen.lib.ldsordbase.LdsOrdBase()
-        ldsord = gen.lib.LdsOrd()
+        self.phoenix = LdsOrdBase()
+        self.titanic = LdsOrdBase()
+        self.ref_list = LdsOrdBase()
+        ldsord = LdsOrd()
         ldsord.set_temple('London, England')
         self.phoenix.add_lds_ord(ldsord)
 
     def test_identical(self):
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         ldsord.set_temple('London, England')
         self.titanic.add_lds_ord(ldsord)
         self.ref_list.add_lds_ord(ldsord)
@@ -739,7 +755,7 @@ class LdsordBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_equal(self):
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         ldsord.set_temple('London, England')
         ldsord.set_privacy(True)
         self.titanic.add_lds_ord(ldsord)
@@ -748,26 +764,26 @@ class LdsordBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_different(self):
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         ldsord.set_temple('Baton Rouge, Louisiana')
         self.titanic.add_lds_ord(ldsord)
-        self.ref_list = gen.lib.ldsordbase.LdsOrdBase(self.phoenix)
+        self.ref_list = LdsOrdBase(self.phoenix)
         self.ref_list.add_lds_ord(ldsord)
         self.phoenix._merge_lds_ord_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 class MediaBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.mediabase.MediaBase()
-        self.titanic = gen.lib.mediabase.MediaBase()
-        self.ref_list = gen.lib.mediabase.MediaBase()
-        mediaref = gen.lib.MediaRef()
+        self.phoenix = MediaBase()
+        self.titanic = MediaBase()
+        self.ref_list = MediaBase()
+        mediaref = MediaRef()
         mediaref.set_reference_handle('123456')
         mediaref.set_rectangle('10 10 90 90')
         self.phoenix.add_media_reference(mediaref)
 
     def test_merge_identical(self):
-        mediaref = gen.lib.MediaRef()
+        mediaref = MediaRef()
         mediaref.set_reference_handle('123456')
         mediaref.set_rectangle('10 10 90 90')
         self.titanic.add_media_reference(mediaref)
@@ -776,7 +792,7 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_merge_equal(self):
-        mediaref = gen.lib.MediaRef()
+        mediaref = MediaRef()
         mediaref.set_reference_handle('123456')
         mediaref.set_rectangle('10 10 90 90')
         mediaref.set_privacy(True)
@@ -786,10 +802,10 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_merge_different(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('123456')
         mediaref1.set_rectangle('10 10 90 90')
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('123456')
         mediaref2.set_rectangle('20 10 90 90')
         self.titanic.add_media_reference(mediaref2)
@@ -799,7 +815,7 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_absent(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('654321')
         mediaref1.set_rectangle('10 10 90 90')
         self.ref_list.add_media_reference(mediaref1)
@@ -807,10 +823,10 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_identical(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('654321')
         mediaref1.set_rectangle('10 10 90 90')
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('654321')
         mediaref2.set_rectangle('10 10 90 90')
         self.phoenix.add_media_reference(mediaref1)
@@ -819,11 +835,11 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_equal(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('654321')
         mediaref1.set_rectangle('10 10 90 90')
         mediaref1.set_privacy(True)
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('654321')
         mediaref2.set_rectangle('10 10 90 90')
         mediaref2.set_privacy(True)
@@ -833,13 +849,13 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_different(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('654321')
         mediaref1.set_rectangle('20 20 90 90')
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('654321')
         mediaref2.set_rectangle('10 10 90 90')
-        mediaref3 = gen.lib.MediaRef()
+        mediaref3 = MediaRef()
         mediaref3.set_reference_handle('654321')
         mediaref3.set_rectangle('20 20 90 90')
         self.phoenix.add_media_reference(mediaref1)
@@ -849,16 +865,16 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_order_first(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('234567')
         mediaref1.set_rectangle('10 10 90 90')
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('654321')
         mediaref2.set_rectangle('10 10 90 90')
-        mediaref3 = gen.lib.MediaRef()
+        mediaref3 = MediaRef()
         mediaref3.set_reference_handle('123456')
         mediaref3.set_rectangle('10 10 90 90')
-        mediaref4 = gen.lib.MediaRef()
+        mediaref4 = MediaRef()
         mediaref4.set_reference_handle('234567')
         mediaref4.set_rectangle('10 10 90 90')
         self.phoenix.add_media_reference(mediaref1)
@@ -869,16 +885,16 @@ class MediaBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_replace_order_last(self):
-        mediaref1 = gen.lib.MediaRef()
+        mediaref1 = MediaRef()
         mediaref1.set_reference_handle('234567')
         mediaref1.set_rectangle('10 10 90 90')
-        mediaref2 = gen.lib.MediaRef()
+        mediaref2 = MediaRef()
         mediaref2.set_reference_handle('654321')
         mediaref2.set_rectangle('10 10 90 90')
-        mediaref3 = gen.lib.MediaRef()
+        mediaref3 = MediaRef()
         mediaref3.set_reference_handle('234567')
         mediaref3.set_rectangle('10 10 90 90')
-        mediaref4 = gen.lib.MediaRef()
+        mediaref4 = MediaRef()
         mediaref4.set_reference_handle('654321')
         mediaref4.set_rectangle('10 10 90 90')
         self.phoenix.add_media_reference(mediaref1)
@@ -891,18 +907,18 @@ class MediaBaseCheck(unittest.TestCase):
 class MediaObjectCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         NoteBaseTest, CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.MediaObject()
+        self.phoenix = MediaObject()
         self.phoenix.set_path('example.png')
-        self.titanic = gen.lib.MediaObject(self.phoenix)
-        self.ref_obj = gen.lib.MediaObject(self.phoenix)
+        self.titanic = MediaObject(self.phoenix)
+        self.ref_obj = MediaObject(self.phoenix)
 
 class MediaRefCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         CitationBaseTest, NoteBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.MediaRef()
+        self.phoenix = MediaRef()
         self.phoenix.set_rectangle("10 10 90 90")
-        self.titanic = gen.lib.MediaRef(self.phoenix)
-        self.ref_obj = gen.lib.MediaRef(self.phoenix)
+        self.titanic = MediaRef(self.phoenix)
+        self.ref_obj = MediaRef(self.phoenix)
 
     def test_ref_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -920,13 +936,13 @@ class MediaRefCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
 class NameCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Name()
+        self.phoenix = Name()
         self.phoenix.set_first_name('Willem')
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname("Oranje")
         self.phoenix.add_surname(surname)
-        self.titanic = gen.lib.Name(self.phoenix)
-        self.ref_obj = gen.lib.Name(self.phoenix)
+        self.titanic = Name(self.phoenix)
+        self.ref_obj = Name(self.phoenix)
 
     def test_datalist_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -934,13 +950,13 @@ class NameCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_date_equivalence(self):
-        date = gen.lib.Date()
+        date = Date()
         date.set_yr_mon_day(1999,12,5)
         self.titanic.set_date_object(date)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
 
     def test_surname_equivalence(self):
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname("Nassau")
         self.titanic.add_surname(surname)
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), DIFFERENT)
@@ -951,48 +967,48 @@ class NameCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 class NoteCheck(unittest.TestCase, PrivacyBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Note("hello world")
-        self.titanic = gen.lib.Note("hello world")
-        self.ref_obj = gen.lib.Note("hello world")
+        self.phoenix = Note("hello world")
+        self.titanic = Note("hello world")
+        self.ref_obj = Note("hello world")
 
 class NoteBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.notebase.NoteBase()
-        self.titanic = gen.lib.notebase.NoteBase()
-        note = gen.lib.Note("hello world")
+        self.phoenix = NoteBase()
+        self.titanic = NoteBase()
+        note = Note("hello world")
         note.set_handle('123456')
         self.phoenix.add_note(note.get_handle())
 
     def test_identical(self):
-        ref_note_list = gen.lib.notebase.NoteBase(self.phoenix)
+        ref_note_list = NoteBase(self.phoenix)
         self.titanic.add_note(self.phoenix.get_note_list()[0])
         self.phoenix._merge_note_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
     def test_different(self):
-        ref_note_list = gen.lib.notebase.NoteBase(self.phoenix)
-        note = gen.lib.Note("note other")
+        ref_note_list = NoteBase(self.phoenix)
+        note = Note("note other")
         self.titanic.add_note(note.get_handle())
         ref_note_list.add_note(note.get_handle())
         self.phoenix._merge_note_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
     def test_replace_nonew(self):
-        note = gen.lib.Note("note other")
+        note = Note("note other")
         note.set_handle('654321')
-        ref_note_list = gen.lib.notebase.NoteBase()
+        ref_note_list = NoteBase()
         ref_note_list.add_note(note.get_handle())
         self.phoenix.replace_note_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
     def test_replace_newpresent(self):
-        note = gen.lib.Note("note other")
+        note = Note("note other")
         note.set_handle('654321')
-        note2 = gen.lib.Note("yet another note")
+        note2 = Note("yet another note")
         note2.set_handle('234567')
         self.phoenix.add_note(note2.get_handle())
         self.phoenix.add_note(note.get_handle())
-        ref_note_list = gen.lib.notebase.NoteBase()
+        ref_note_list = NoteBase()
         ref_note_list.add_note(note2.get_handle())
         ref_note_list.add_note(note.get_handle())
         self.phoenix.replace_note_references('123456','654321')
@@ -1005,19 +1021,19 @@ class NoteBaseCheck(unittest.TestCase):
 class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         AttrBaseTest, NoteBaseTest, CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Person()
-        name = gen.lib.Name()
+        self.phoenix = Person()
+        name = Name()
         name.set_first_name('Adam')
         self.phoenix.set_primary_name(name)
-        self.titanic = gen.lib.Person()
+        self.titanic = Person()
         self.titanic.set_primary_name(name)
-        self.ref_obj = gen.lib.Person()
+        self.ref_obj = Person()
         self.ref_obj.set_primary_name(name)
 
     def test_replace_eventhandle_nonew(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('654321')
         self.phoenix.add_event_ref(evtref)
         self.ref_obj.add_event_ref(evtref2)
@@ -1025,11 +1041,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_eventhandle_identical(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
-        evtref3 = gen.lib.EventRef()
+        evtref3 = EventRef()
         evtref3.set_reference_handle('654321')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1040,11 +1056,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_eventhandle_equal(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
-        evtref3 = gen.lib.EventRef()
+        evtref3 = EventRef()
         evtref3.set_reference_handle('654321')
         evtref3.set_privacy(True)
         self.phoenix.add_event_ref(evtref)
@@ -1056,11 +1072,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_eventhandle_different(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
-        evtref3 = gen.lib.EventRef()
+        evtref3 = EventRef()
         evtref3.set_reference_handle('654321')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1070,9 +1086,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_birth_lower(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('654321')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1083,9 +1099,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_birth_minusone(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('654321')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('123456')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1096,9 +1112,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_death_lower(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('654321')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1109,9 +1125,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_death_minusone(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('654321')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('123456')
         self.phoenix.add_event_ref(evtref)
         self.phoenix.add_event_ref(evtref2)
@@ -1122,21 +1138,21 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_personhandle_nonew(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
         self.phoenix.add_person_ref(personref)
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('654321')
         self.ref_obj.add_person_ref(personref2)
         self.phoenix._replace_handle_reference('Person', '123456', '654321')
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_personhandle_identical(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('234567')
-        personref3 = gen.lib.PersonRef()
+        personref3 = PersonRef()
         personref3.set_reference_handle('654321')
         self.phoenix.add_person_ref(personref)
         self.phoenix.add_person_ref(personref2)
@@ -1147,14 +1163,14 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_personhandle_equal(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
         personref.set_privacy(True)
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('234567')
-        personref3 = gen.lib.PersonRef()
+        personref3 = PersonRef()
         personref3.set_reference_handle('654321')
-        personref4 = gen.lib.PersonRef()
+        personref4 = PersonRef()
         personref4.set_reference_handle('654321')
         personref4.set_privacy(True)
         self.phoenix.add_person_ref(personref)
@@ -1166,11 +1182,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_personhandle_different(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('234567')
-        personref3 = gen.lib.PersonRef()
+        personref3 = PersonRef()
         personref3.set_reference_handle('654321')
         self.phoenix.add_person_ref(personref)
         self.phoenix.add_person_ref(personref2)
@@ -1180,7 +1196,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_primaryname(self):
-        name = gen.lib.Name()
+        name = Name()
         name.set_first_name('Abel')
         self.titanic.set_primary_name(name)
         self.ref_obj.add_alternate_name(name)
@@ -1188,7 +1204,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_altname(self):
-        name = gen.lib.Name()
+        name = Name()
         name.set_first_name('Abel')
         self.titanic.add_alternate_name(name)
         self.ref_obj.add_alternate_name(name)
@@ -1196,7 +1212,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_eventref(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
         self.titanic.add_event_ref(evtref)
         self.ref_obj.add_event_ref(evtref)
@@ -1204,15 +1220,15 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_ldsord(self):
-        ldsord = gen.lib.LdsOrd()
-        ldsord.set_type(gen.lib.LdsOrd.BAPTISM)
+        ldsord = LdsOrd()
+        ldsord.set_type(LdsOrd.BAPTISM)
         self.titanic.add_lds_ord(ldsord)
         self.ref_obj.add_lds_ord(ldsord)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_address(self):
-        address = gen.lib.Address()
+        address = Address()
         address.set_city('The Hague')
         self.titanic.add_address(address)
         self.ref_obj.add_address(address)
@@ -1220,7 +1236,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_person_personref(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
         self.titanic.add_person_ref(personref)
         self.ref_obj.add_person_ref(personref)
@@ -1234,9 +1250,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         pass
 
     def test_altname_identical(self):
-        name = gen.lib.Name()
+        name = Name()
         name.set_first_name('Abel')
-        name2 = gen.lib.Name()
+        name2 = Name()
         name2.set_first_name('Abel')
         self.phoenix.add_alternate_name(name)
         self.titanic.add_alternate_name(name2)
@@ -1245,9 +1261,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_altname_equal(self):
-        name = gen.lib.Name()
+        name = Name()
         name.set_first_name('Abel')
-        name2 = gen.lib.Name()
+        name2 = Name()
         name2.set_first_name('Abel')
         name2.set_privacy(True)
         self.phoenix.add_alternate_name(name)
@@ -1257,9 +1273,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_altname_different(self):
-        name = gen.lib.Name()
+        name = Name()
         name.set_first_name('Abel')
-        name2 = gen.lib.Name()
+        name2 = Name()
         name2.set_first_name('Cain')
         self.phoenix.add_alternate_name(name)
         self.titanic.add_alternate_name(name2)
@@ -1269,9 +1285,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventrefs_identical(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('123456')
         self.phoenix.add_event_ref(evtref)
         self.titanic.add_event_ref(evtref2)
@@ -1280,9 +1296,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventrefs_equal(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('123456')
         evtref2.set_privacy(True)
         self.phoenix.add_event_ref(evtref)
@@ -1292,9 +1308,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventrefs_different(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
         self.phoenix.add_event_ref(evtref)
         self.titanic.add_event_ref(evtref2)
@@ -1304,11 +1320,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventrefs_birthref(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
-        evtref3 = gen.lib.EventRef()
+        evtref3 = EventRef()
         evtref3.set_reference_handle('123456')
         self.phoenix.add_event_ref(evtref2)
         self.titanic.add_event_ref(evtref)
@@ -1320,11 +1336,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_eventrefs_deathref(self):
-        evtref = gen.lib.EventRef()
+        evtref = EventRef()
         evtref.set_reference_handle('123456')
-        evtref2 = gen.lib.EventRef()
+        evtref2 = EventRef()
         evtref2.set_reference_handle('234567')
-        evtref3 = gen.lib.EventRef()
+        evtref3 = EventRef()
         evtref3.set_reference_handle('123456')
         self.phoenix.add_event_ref(evtref2)
         self.titanic.add_event_ref(evtref)
@@ -1336,7 +1352,7 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_personrefs_identical(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
         self.phoenix.add_person_ref(personref)
         self.titanic.add_person_ref(personref)
@@ -1345,9 +1361,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_personrefs_equal(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('123456')
         personref2.set_privacy(True)
         self.phoenix.add_person_ref(personref)
@@ -1357,9 +1373,9 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_personrefs_different(self):
-        personref = gen.lib.PersonRef()
+        personref = PersonRef()
         personref.set_reference_handle('123456')
-        personref2 = gen.lib.PersonRef()
+        personref2 = PersonRef()
         personref2.set_reference_handle('234567')
         self.phoenix.add_person_ref(personref)
         self.titanic.add_person_ref(personref2)
@@ -1371,17 +1387,17 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
 class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         UrlBaseTest, NoteBaseTest, CitationBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Place()
+        self.phoenix = Place()
         self.phoenix.set_title('Place 1')
-        self.titanic = gen.lib.Place(self.phoenix)
-        self.ref_obj = gen.lib.Place(self.phoenix)
+        self.titanic = Place(self.phoenix)
+        self.ref_obj = Place(self.phoenix)
 
     def test_merge_primary_identical(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.set_main_location(loc)
         self.titanic.set_title('Place 2')
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Amsterdam')
         self.titanic.set_main_location(loc2)
         self.ref_obj.set_main_location(loc)
@@ -1389,11 +1405,11 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_primary_different(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.set_main_location(loc)
         self.titanic.set_title('Place 2')
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Rotterdam')
         self.titanic.set_main_location(loc2)
         self.ref_obj.set_main_location(loc)
@@ -1406,7 +1422,7 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         Even if primary location of phoenix is null, still add titanics 
         primary to alternate locations.
         """
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.titanic.set_title('Place2')
         self.titanic.set_main_location(loc)
@@ -1415,10 +1431,10 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_alternate_identical(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.add_alternate_locations(loc)
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Amsterdam')
         self.titanic.add_alternate_locations(loc2)
         self.ref_obj.add_alternate_locations(loc)
@@ -1426,10 +1442,10 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_alternate_different(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.add_alternate_locations(loc)
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Rotterdam')
         self.titanic.add_alternate_locations(loc2)
         self.ref_obj.add_alternate_locations(loc)
@@ -1438,10 +1454,10 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_prialt_identical(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.set_main_location(loc)
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Amsterdam')
         self.titanic.add_alternate_locations(loc2)
         self.ref_obj.set_main_location(loc)
@@ -1449,12 +1465,12 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_prialt2(self):
-        loc = gen.lib.Location()
+        loc = Location()
         loc.set_city('Amsterdam')
         self.phoenix.set_main_location(loc)
-        loc2 = gen.lib.Location()
+        loc2 = Location()
         loc2.set_city('Rotterdam')
-        loc3 = gen.lib.Location()
+        loc3 = Location()
         loc3.set_city('Rotterdam')
         self.phoenix.add_alternate_locations(loc2)
         self.titanic.set_main_location(loc3)
@@ -1465,18 +1481,18 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
 
 class RepoCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, UrlBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Repository()
+        self.phoenix = Repository()
         self.phoenix.set_name('Repo 1')
-        self.phoenix.set_type(gen.lib.RepositoryType.LIBRARY)
-        self.titanic = gen.lib.Repository()
+        self.phoenix.set_type(RepositoryType.LIBRARY)
+        self.titanic = Repository()
         self.titanic.set_name('Repo 1')
-        self.titanic.set_type(gen.lib.RepositoryType.LIBRARY)
-        self.ref_obj = gen.lib.Repository()
+        self.titanic.set_type(RepositoryType.LIBRARY)
+        self.ref_obj = Repository()
         self.ref_obj.set_name('Repo 1')
-        self.ref_obj.set_type(gen.lib.RepositoryType.LIBRARY)
+        self.ref_obj.set_type(RepositoryType.LIBRARY)
 
     def test_address(self):
-        address = gen.lib.Address()
+        address = Address()
         address.set_city('Amsterdam')
         self.titanic.add_address(address)
         self.ref_obj.add_address(address)
@@ -1484,15 +1500,15 @@ class RepoCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, UrlBaseTest):
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace(self):
-        address = gen.lib.Address()
+        address = Address()
         address.set_city('Utrecht')
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('123456')
         address.add_citation(citation.handle)
         self.phoenix.add_address(address)
-        address2 = gen.lib.Address()
+        address2 = Address()
         address2.set_city('Utrecht')
-        citation2 = gen.lib.Citation()
+        citation2 = Citation()
         citation2.set_reference_handle('654321')
         address2.add_citation(citation2.handle)
         self.ref_obj.add_address(address2)
@@ -1501,10 +1517,10 @@ class RepoCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest, UrlBaseTest):
 
 class RepoRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.RepoRef()
+        self.phoenix = RepoRef()
         self.phoenix.set_reference_handle('123456')
-        self.titanic = gen.lib.RepoRef(self.phoenix)
-        self.ref_obj = gen.lib.RepoRef(self.phoenix)
+        self.titanic = RepoRef(self.phoenix)
+        self.ref_obj = RepoRef(self.phoenix)
 
     def test_handle_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -1522,11 +1538,11 @@ class RepoRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest):
 class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         MediaBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Source()
+        self.phoenix = Source()
         self.phoenix.set_title("Source 1")
-        self.titanic = gen.lib.Source()
+        self.titanic = Source()
         self.titanic.set_title("Source 1")
-        self.ref_obj = gen.lib.Source()
+        self.ref_obj = Source()
         self.ref_obj.set_title("Source 1")
 
     def todo_test_replace(self):
@@ -1544,7 +1560,7 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_reporef(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
         self.titanic.add_repo_reference(reporef)
         self.ref_obj.add_repo_reference(reporef)
@@ -1552,7 +1568,7 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_reporef_identical(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
         self.phoenix.add_repo_reference(reporef)
         self.titanic.add_repo_reference(reporef)
@@ -1561,9 +1577,9 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_merge_reporef_equal(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('123456')
         reporef2.set_privacy(True)
         self.phoenix.add_repo_reference(reporef)
@@ -1574,9 +1590,9 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 
     def test_merge_reporef_different(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('234567')
         self.phoenix.add_repo_reference(reporef)
         self.titanic.add_repo_reference(reporef2)
@@ -1586,9 +1602,9 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_reporef_nonew(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('654321')
         self.phoenix.add_repo_reference(reporef)
         self.ref_obj.add_repo_reference(reporef2)
@@ -1596,11 +1612,11 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_reporef_identical(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('234567')
-        reporef3 = gen.lib.RepoRef()
+        reporef3 = RepoRef()
         reporef3.set_reference_handle('654321')
         self.phoenix.add_repo_reference(reporef)
         self.phoenix.add_repo_reference(reporef2)
@@ -1611,11 +1627,11 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_reporef_equal(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('234567')
-        reporef3 = gen.lib.RepoRef()
+        reporef3 = RepoRef()
         reporef3.set_reference_handle('654321')
         reporef3.set_privacy(True)
         self.phoenix.add_repo_reference(reporef)
@@ -1627,14 +1643,14 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
     def test_replace_reporef_different(self):
-        reporef = gen.lib.RepoRef()
+        reporef = RepoRef()
         reporef.set_reference_handle('123456')
-        reporef2 = gen.lib.RepoRef()
+        reporef2 = RepoRef()
         reporef2.set_reference_handle('234567')
-        reporef3 = gen.lib.RepoRef()
+        reporef3 = RepoRef()
         reporef3.set_reference_handle('654321')
         reporef3.set_call_number('100')
-        reporef4 = gen.lib.RepoRef()
+        reporef4 = RepoRef()
         reporef4.set_reference_handle('654321')
         self.phoenix.add_repo_reference(reporef)
         self.phoenix.add_repo_reference(reporef2)
@@ -1647,25 +1663,25 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
 
 class CitationBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.citationbase.CitationBase()
-        citation = gen.lib.Citation()
+        self.phoenix = CitationBase()
+        citation = Citation()
         citation.set_reference_handle('123456')
         self.phoenix.add_citation(citation.handle)
-        self.titanic = gen.lib.citationbase.CitationBase()
-        self.obj_list = gen.lib.citationbase.CitationBase()
+        self.titanic = CitationBase()
+        self.obj_list = CitationBase()
 
     def test_replace_nonew(self):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('654321')
         self.obj_list.add_citation(citation.handle)
         self.phoenix.replace_citation_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
     def test_replace_newpresent(self):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('654321')
         citation.set_page('p.10')
-        citation2 = gen.lib.Citation()
+        citation2 = Citation()
         citation2.set_reference_handle('234567')
         self.phoenix.add_citation(citation.handle)
         self.phoenix.add_citation(citation2.handle)
@@ -1678,7 +1694,7 @@ class CitationBaseCheck(unittest.TestCase):
         pass
 
     def test_merge_identical(self):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('123456')
         self.titanic.add_citation(citation.handle)
         self.obj_list.add_citation(citation.handle)
@@ -1686,9 +1702,9 @@ class CitationBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
             
     def test_merge_different(self):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle('234567')
-        citation2 = gen.lib.Citation()
+        citation2 = Citation()
         citation2.set_reference_handle('123456')
         self.titanic.add_citation(citation.handle)
         self.obj_list.add_citation(citation2.handle)
@@ -1699,13 +1715,13 @@ class CitationBaseCheck(unittest.TestCase):
 class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         NoteBaseTest):
     def setUp(self):
-        self.phoenix = gen.lib.Citation()
+        self.phoenix = Citation()
         self.phoenix.set_reference_handle('123456')
         self.phoenix.set_page('p.10')
-        self.titanic = gen.lib.Citation()
+        self.titanic = Citation()
         self.titanic.set_reference_handle('123456')
         self.titanic.set_page('p.10')
-        self.ref_obj = gen.lib.Citation()
+        self.ref_obj = Citation()
         self.ref_obj.set_reference_handle('123456')
         self.ref_obj.set_page('p.10')
 
@@ -1735,9 +1751,9 @@ class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
 
 class SurnameCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.Surname()
+        self.phoenix = Surname()
         self.phoenix.set_prefix('van')
-        self.titanic = gen.lib.Surname(self.phoenix)
+        self.titanic = Surname(self.phoenix)
 
     def test_datalist_equivalence(self):
         self.assertEqual(self.phoenix.is_equivalent(self.titanic), IDENTICAL)
@@ -1754,15 +1770,15 @@ class SurnameCheck(unittest.TestCase):
 
 class SurnameBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.surnamebase.SurnameBase()
-        surname = gen.lib.Surname()
+        self.phoenix = SurnameBase()
+        surname = Surname()
         surname.set_surname("Oranje")
         self.phoenix.add_surname(surname)
-        self.titanic = gen.lib.surnamebase.SurnameBase()
-        self.ref_list = gen.lib.surnamebase.SurnameBase()
+        self.titanic = SurnameBase()
+        self.ref_list = SurnameBase()
 
     def test_identical(self):
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname("Oranje")
         self.ref_list.add_surname(surname)
         self.titanic.add_surname(surname)
@@ -1770,23 +1786,23 @@ class SurnameBaseCheck(unittest.TestCase):
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
     def test_different(self):
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname("Biesterfelt")
         self.titanic.add_surname(surname)
-        self.ref_list = gen.lib.surnamebase.SurnameBase(self.phoenix)
+        self.ref_list = SurnameBase(self.phoenix)
         self.ref_list.add_surname(surname)
         self.phoenix._merge_surname_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
 class TagBaseCheck(unittest.TestCase):
     def setUp(self):
-        self.phoenix = gen.lib.tagbase.TagBase()
+        self.phoenix = TagBase()
         tag_handle = '123456'
         self.phoenix.add_tag(tag_handle)
-        self.titanic = gen.lib.tagbase.TagBase()
+        self.titanic = TagBase()
 
     def test_identical(self):
-        self.ref_list = gen.lib.tagbase.TagBase(self.phoenix)
+        self.ref_list = TagBase(self.phoenix)
         self.titanic.add_tag(self.phoenix.get_tag_list()[0])
         self.phoenix._merge_tag_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
@@ -1795,7 +1811,7 @@ class TagBaseCheck(unittest.TestCase):
         self.titanic.set_tag_list([])
         tag_handle = '654321'
         self.titanic.add_tag(tag_handle)
-        self.ref_list = gen.lib.tagbase.TagBase(self.phoenix)
+        self.ref_list = TagBase(self.phoenix)
         self.ref_list.add_tag(tag_handle)
         self.phoenix._merge_tag_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())

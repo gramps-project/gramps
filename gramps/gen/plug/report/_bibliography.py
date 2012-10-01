@@ -26,7 +26,7 @@ Contain and organize bibliographic information.
 """
 import string
 import math
-import gen.lib
+from ...lib.citation import Citation as lib_Citation
 
 class Citation(object):
     """
@@ -213,7 +213,7 @@ class Bibliography(object):
         if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
             confidence = source_ref.get_confidence_level()
             if confidence is not None and confidence != \
-                                        gen.lib.Citation.CONF_NORMAL:
+                                        lib_Citation.CONF_NORMAL:
                 return True
         if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
             if len(source_ref.get_note_list()) != 0:

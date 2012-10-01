@@ -31,8 +31,8 @@ Configuration based utilities
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-from gen.config import config
+from ..lib import Researcher
+from ..config import config
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +53,7 @@ def get_researcher():
     phone = config.get('researcher.researcher-phone')
     email  = config.get('researcher.researcher-email')
 
-    owner = gen.lib.Researcher()
+    owner = Researcher()
     owner.set_name(name)
     owner.set_address(address)
     owner.set_locality(locality)

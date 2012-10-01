@@ -31,8 +31,8 @@ String mappings for constants
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-from gen.ggettext import sgettext as _
+from ..lib import Person, Citation, FamilyRelType
+from ..ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -40,32 +40,32 @@ from gen.ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 gender = {
-    gen.lib.Person.MALE    : _("male"), 
-    gen.lib.Person.FEMALE  : _("female"), 
-    gen.lib.Person.UNKNOWN : _("gender|unknown"), 
+    Person.MALE    : _("male"), 
+    Person.FEMALE  : _("female"), 
+    Person.UNKNOWN : _("gender|unknown"), 
     }
 
 def format_gender( type):
     return gender.get(type[0], _("Invalid"))
 
 confidence = {
-    gen.lib.Citation.CONF_VERY_HIGH : _("Very High"), 
-    gen.lib.Citation.CONF_HIGH      : _("High"), 
-    gen.lib.Citation.CONF_NORMAL    : _("Normal"), 
-    gen.lib.Citation.CONF_LOW       : _("Low"), 
-    gen.lib.Citation.CONF_VERY_LOW  : _("Very Low"), 
+    Citation.CONF_VERY_HIGH : _("Very High"), 
+    Citation.CONF_HIGH      : _("High"), 
+    Citation.CONF_NORMAL    : _("Normal"), 
+    Citation.CONF_LOW       : _("Low"), 
+    Citation.CONF_VERY_LOW  : _("Very Low"), 
    }
 
 family_rel_descriptions = {
-    gen.lib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
+    FamilyRelType.MARRIED     : _("A legal or common-law relationship "
                                          "between a husband and wife"), 
-    gen.lib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
+    FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
                                          "between man and woman"), 
-    gen.lib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
+    FamilyRelType.CIVIL_UNION : _("An established relationship between "
                                          "members of the same sex"), 
-    gen.lib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
+    FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
                                          "and woman"), 
-    gen.lib.FamilyRelType.CUSTOM      : _("An unspecified relationship between "
+    FamilyRelType.CUSTOM      : _("An unspecified relationship between "
                                          "a man and woman"), 
     }
 

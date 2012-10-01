@@ -38,10 +38,14 @@ import time
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-from gen.utils.id import create_id
-from gen.const import IMAGE_DIR
-from gen.ggettext import sgettext as _
+from ..lib import (Person, Surname, Name, NameType, Family, FamilyRelType,
+                   Event, EventType, Source, Place, Citation,
+                   Repository, RepositoryType, MediaObject, Note, NoteType,
+                   StyledText, StyledTextTag, StyledTextTagType, Tag,
+                   ChildRef, ChildRefType)
+from id import create_id
+from ..const import IMAGE_DIR
+from ..ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -86,19 +90,19 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     """
     retval = []
     obj = class_func(class_arg)
-    if isinstance(obj, gen.lib.Person):
-        surname = gen.lib.Surname()
+    if isinstance(obj, Person):
+        surname = Surname()
         surname.set_surname('Unknown')
-        name = gen.lib.Name()
+        name = Name()
         name.add_surname(surname)
-        name.set_type(gen.lib.NameType.UNKNOWN)
+        name.set_type(NameType.UNKNOWN)
         obj.set_primary_name(name)
-    elif isinstance(obj, gen.lib.Family):
-        obj.set_relationship(gen.lib.FamilyRelType.UNKNOWN)
+    elif isinstance(obj, Family):
+        obj.set_relationship(FamilyRelType.UNKNOWN)
         handle = obj.handle
         if getattr(argv['db'].transaction, 'no_magic', False):
             backlinks = argv['db'].find_backlink_handles(
-                    handle, [gen.lib.Person.__name__])
+                    handle, [Person.__name__])
             for dummy, person_handle in backlinks:
                 person = argv['db'].get_person_from_handle(person_handle)
                 add_personref_to_family(obj, person)
@@ -106,16 +110,16 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
             for person in argv['db'].iter_people():
                 if person._has_handle_reference('Family', handle):
                     add_personref_to_family(obj, person)
-    elif isinstance(obj, gen.lib.Event):
+    elif isinstance(obj, Event):
         if 'type' in argv:
             obj.set_type(argv['type'])
         else:
-            obj.set_type(gen.lib.EventType.UNKNOWN)
-    elif isinstance(obj, gen.lib.Place):
+            obj.set_type(EventType.UNKNOWN)
+    elif isinstance(obj, Place):
         obj.set_title(_('Unknown'))
-    elif isinstance(obj, gen.lib.Source):
+    elif isinstance(obj, Source):
         obj.set_title(_('Unknown'))
-    elif isinstance(obj, gen.lib.Citation):
+    elif isinstance(obj, Citation):
         #TODO create a new source for every citation?
         obj2 = argv['source_class_func'](argv['source_class_arg'])
         obj2.set_title(_('Unknown'))
@@ -123,23 +127,23 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
         argv['source_commit_func'](obj2, transaction, time.time())
         retval.append(obj2)
         obj.set_reference_handle(obj2.handle)
-    elif isinstance(obj, gen.lib.Repository):
+    elif isinstance(obj, Repository):
         obj.set_name(_('Unknown'))
-        obj.set_type(gen.lib.RepositoryType.UNKNOWN)
-    elif isinstance(obj, gen.lib.MediaObject):
+        obj.set_type(RepositoryType.UNKNOWN)
+    elif isinstance(obj, MediaObject):
         obj.set_path(os.path.join(IMAGE_DIR, "image-missing.png"))
         obj.set_mime_type('image/png')
         obj.set_description(_('Unknown'))
-    elif isinstance(obj, gen.lib.Note):
-        obj.set_type(gen.lib.NoteType.UNKNOWN);
+    elif isinstance(obj, Note):
+        obj.set_type(NoteType.UNKNOWN);
         text = _('Unknown, created to replace a missing note object.')
         link_start = text.index(',') + 2
         link_end = len(text) - 1
-        tag = gen.lib.StyledTextTag(gen.lib.StyledTextTagType.LINK,
+        tag = StyledTextTag(StyledTextTagType.LINK,
                 'gramps://Note/handle/%s' % explanation,
                 [(link_start, link_end)])
-        obj.set_styledtext(gen.lib.StyledText(text, [tag]))
-    elif isinstance(obj, gen.lib.Tag):
+        obj.set_styledtext(StyledText(text, [tag]))
+    elif isinstance(obj, Tag):
         if not hasattr(make_unknown, 'count'):
             make_unknown.count = 1 #primitive static variable
         obj.set_name(_("Unknown, was missing %(time)s (%(count)d)") % {
@@ -161,7 +165,7 @@ def create_explanation_note(dbase):
     those objects of type "Unknown" need a explanatory note. This funcion
     provides such a note for import methods.
     """
-    note = gen.lib.Note( _('Objects referenced by this note '
+    note = Note( _('Objects referenced by this note '
                                     'were missing in a file imported on %s.') %
                                     time.strftime('%x %X', time.localtime()))
     note.set_handle(create_id())
@@ -177,18 +181,18 @@ def add_personref_to_family(family, person):
     handle = family.handle
     person_handle = person.handle
     if handle in person.get_family_handle_list():
-        if ((person.get_gender() == gen.lib.Person.FEMALE) and
+        if ((person.get_gender() == Person.FEMALE) and
                 (family.get_mother_handle() is None)):
             family.set_mother_handle(person_handle)
         else:
-            # This includes cases of gen.lib.Person.UNKNOWN
+            # This includes cases of Person.UNKNOWN
             if family.get_father_handle() is None:
                 family.set_father_handle(person_handle)
             else:
                 family.set_mother_handle(person_handle)
     if handle in person.get_parent_family_handle_list():
-        childref = gen.lib.ChildRef()
+        childref = ChildRef()
         childref.set_reference_handle(person_handle)
-        childref.set_mother_relation(gen.lib.ChildRefType.UNKNOWN)
-        childref.set_father_relation(gen.lib.ChildRefType.UNKNOWN)
+        childref.set_mother_relation(ChildRefType.UNKNOWN)
+        childref.set_father_relation(ChildRefType.UNKNOWN)
         family.add_child_ref(childref)

@@ -35,12 +35,12 @@ import os
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
-MALE = gen.lib.Person.MALE
-FEMALE = gen.lib.Person.FEMALE
-UNKNOWN = gen.lib.Person.UNKNOWN
-from gen.ggettext import sgettext as _
-from gen.plug import PluginRegister, BasePluginManager
+from lib import Person, ChildRefType, EventType, FamilyRelType
+MALE = Person.MALE
+FEMALE = Person.FEMALE
+UNKNOWN = Person.UNKNOWN
+from ggettext import sgettext as _
+from plug import PluginRegister, BasePluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -610,9 +610,9 @@ class RelationshipCalculator(object):
                              ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
                                 if ref.ref == person.handle]
-            if not birthmother and childrel[0][0] == gen.lib.ChildRefType.BIRTH:
+            if not birthmother and childrel[0][0] == ChildRefType.BIRTH:
                 birthmother = family.get_mother_handle()
-            if not birthfather and childrel[0][1] == gen.lib.ChildRefType.BIRTH:
+            if not birthfather and childrel[0][1] == ChildRefType.BIRTH:
                 birthfather = family.get_father_handle()
             if birthmother and birthfather:
                 break
@@ -631,11 +631,11 @@ class RelationshipCalculator(object):
                              ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
                                 if ref.ref == person.handle]
-            if not childrel[0][0] == gen.lib.ChildRefType.BIRTH \
-                    and not childrel[0][0] == gen.lib.ChildRefType.UNKNOWN :
+            if not childrel[0][0] == ChildRefType.BIRTH \
+                    and not childrel[0][0] == ChildRefType.UNKNOWN :
                 nb_parents.append(family.get_mother_handle())
-            if not childrel[0][1] == gen.lib.ChildRefType.BIRTH \
-                    and not childrel[0][1] == gen.lib.ChildRefType.UNKNOWN :
+            if not childrel[0][1] == ChildRefType.BIRTH \
+                    and not childrel[0][1] == ChildRefType.UNKNOWN :
                 nb_parents.append(family.get_father_handle())
         #make every person appear only once:
         return list(set(nb_parents))
@@ -658,21 +658,21 @@ class RelationshipCalculator(object):
                 ex = False
                 for eventref in family.get_event_ref_list():
                     event = db.get_event_from_handle(eventref.ref)
-                    if event and (event.get_type() == gen.lib.EventType.DIVORCE
-                        or event.get_type() == gen.lib.EventType.ANNULMENT):
+                    if event and (event.get_type() == EventType.DIVORCE
+                        or event.get_type() == EventType.ANNULMENT):
                         ex = True
                         break
-                if family_rel == gen.lib.FamilyRelType.MARRIED:
+                if family_rel == FamilyRelType.MARRIED:
                     if ex:
                         val.append(self.PARTNER_EX_MARRIED)
                     else:
                         val.append(self.PARTNER_MARRIED)
-                elif family_rel == gen.lib.FamilyRelType.UNMARRIED:
+                elif family_rel == FamilyRelType.UNMARRIED:
                     if ex:
                         val.append(self.PARTNER_EX_UNMARRIED)
                     else:
                         val.append(self.PARTNER_UNMARRIED)
-                elif family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
+                elif family_rel == FamilyRelType.CIVIL_UNION:
                     if ex:
                         val.append(self.PARTNER_EX_CIVIL_UNION)
                     else:
@@ -967,7 +967,7 @@ class RelationshipCalculator(object):
                                 self.REL_MOTHER_NOTBIRTH, childrel[0][0])]:
                     if data[0] and data[0] not in parentstodo :
                         persontodo = db.get_person_from_handle(data[0])
-                        if data[3] == gen.lib.ChildRefType.BIRTH :
+                        if data[3] == ChildRefType.BIRTH :
                             addstr = data[1]
                         elif not self.__only_birth :
                             addstr = data[2]

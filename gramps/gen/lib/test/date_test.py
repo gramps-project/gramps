@@ -45,11 +45,11 @@ except ValueError:
 from test import test_util
 test_util.path_append_parent() 
 
-from gen.config import config
-import gen.datehandler
-from gen.datehandler import parser as _dp
-from gen.datehandler import displayer as _dd
-from gen.lib.date import Date, Span
+from ...config import config
+from ...datehandler import get_date_formats, set_format
+from ...datehandler import parser as _dp
+from ...datehandler import displayer as _dd
+from ...lib.date import Date, Span
 
 gettext.textdomain("gramps")
 gettext.install("gramps",loc,unicode=1)
@@ -221,7 +221,7 @@ cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH",
 mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", 
            "MOD_SPAN", "MOD_TEXTONLY"]
 qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
-formats = gen.datehandler.get_date_formats()
+formats = get_date_formats()
 
 class Eval(unittest.TestCase):
     def __init__(self, method_name, dateval, e1, e2, e3, format):
@@ -247,12 +247,12 @@ def suite3():
     suite = unittest.TestSuite()            
     count = 1
     for testset in date_tests:
-        for format in range( len( gen.datehandler.get_date_formats())):
-            gen.datehandler.set_format(format)
+        for format in range( len( get_date_formats())):
+            set_format(format)
             for dateval in date_tests[testset]:
                 if dateval.modifier != Date.MOD_TEXTONLY:
                     dateval.text = ("Comment. Format: %s" % 
-                                    gen.datehandler.get_date_formats()[format])
+                                    get_date_formats()[format])
                 suite.addTest(
                     Eval("testset '%s' test_eval%04d" % (testset, count), 
                          dateval, 

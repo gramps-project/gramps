@@ -28,9 +28,10 @@ Provide a simplified table creation interface
 
 import cgi
 from gen.ggettext import sgettext as _
-import gen.lib
-from gen.config import config
-import gen.datehandler
+from ..lib import (Person, Family, Event, Source, Place, Citation,
+                   Repository, MediaObject, Note, Date, Span)
+from ..config import config
+from ..datehandler import displayer
 
 class SimpleTable(object):
     """
@@ -108,44 +109,44 @@ class SimpleTable(object):
             elif isinstance(item, (int, float, long)):
                 retval.append(item)
                 self.row_sort_val(col, item)
-            elif isinstance(item, gen.lib.Person):
+            elif isinstance(item, Person):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Person', item.handle)
-            elif isinstance(item, gen.lib.Family): 
+            elif isinstance(item, Family): 
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Family', item.handle)
-            elif isinstance(item, gen.lib.Citation): 
+            elif isinstance(item, Citation): 
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Citation', item.handle)
-            elif isinstance(item, gen.lib.Source): 
+            elif isinstance(item, Source): 
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Source', item.handle)
-            elif isinstance(item, gen.lib.Event):
+            elif isinstance(item, Event):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Event', item.handle)
-            elif isinstance(item, gen.lib.MediaObject):
+            elif isinstance(item, MediaObject):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Media', item.handle)
-            elif isinstance(item, gen.lib.Place):
+            elif isinstance(item, Place):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Place', item.handle)
-            elif isinstance(item, gen.lib.Repository):
+            elif isinstance(item, Repository):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Repository', item.handle)
-            elif isinstance(item, gen.lib.Note):
+            elif isinstance(item, Note):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Note', item.handle)
-            elif isinstance(item, gen.lib.Date):
-                text = gen.datehandler.displayer.display(item)
+            elif isinstance(item, Date):
+                text = displayer.display(item)
                 retval.append(text)
                 if item.get_valid():
                     if item.format:
@@ -161,7 +162,7 @@ class SimpleTable(object):
                                          invalid_date_format % cgi.escape(text))
                 if (self._link_col == col or link is None):
                     link = ('Date', item)
-            elif isinstance(item, gen.lib.Span):
+            elif isinstance(item, Span):
                 text = str(item)
                 retval.append(text)
                 self.row_sort_val(col, item)

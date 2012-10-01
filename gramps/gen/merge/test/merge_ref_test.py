@@ -37,8 +37,8 @@ import libxslt
 
 from libgrampsxml import GRAMPS_XML_VERSION
 from gen.const import ROOT_DIR, VERSION, USER_PLUGINS
-import gen.lib
-from gen.ggettext import sgettext as _
+from ...lib import Name, Surname
+from ...ggettext import sgettext as _
 
 class CopiedDoc(object):
     """Context manager that creates a deep copy of an libxml-xml document."""
@@ -1029,9 +1029,9 @@ class BirthCheck(BaseMergeCheck):
         </database>"""
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname(u"Person 0")
-        name = gen.lib.Name()
+        name = Name()
         name.add_surname(surname)
         self.expect_str = "person: i0000 ('i0000', 'I0000', 1, %s, [], " % str(
                           name.serialize())

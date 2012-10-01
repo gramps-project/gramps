@@ -37,11 +37,11 @@ from cgi import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-import gen.datehandler
-from gen.display.name import displayer as name_displayer
-from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
-                            get_marriage_or_fallback)
+from ..lib import EventType
+from ..datehandler import get_date
+from ..display.name import displayer as name_displayer
+from .db import (get_birth_or_fallback, get_death_or_fallback, 
+                 get_marriage_or_fallback)
 
 #-------------------------------------------------------------------------
 #
@@ -73,19 +73,19 @@ class FormattingHelper(object):
 
         text = ""
         marriage = get_marriage_or_fallback(self.dbstate.db, family)
-        if marriage and use_markup and marriage.get_type() != gen.lib.EventType.MARRIAGE:
+        if marriage and use_markup and marriage.get_type() != EventType.MARRIAGE:
             mdate  = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(), 
-                                       escape(gen.datehandler.get_date(marriage)))
+                                       escape(get_date(marriage)))
             mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
             name = "<i>%s</i>" % str(marriage.get_type())
         elif marriage and use_markup:
             mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
-                                escape(gen.datehandler.get_date(marriage)))
+                                escape(get_date(marriage)))
             mplace = escape(self.get_place_name(marriage.get_place_handle()))
             name = str(marriage.get_type())
         elif marriage:
             mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
-                                gen.datehandler.get_date(marriage))
+                                get_date(marriage))
             mplace = self.get_place_name(marriage.get_place_handle())
             name = str(marriage.get_type())
         else:
@@ -149,31 +149,29 @@ class FormattingHelper(object):
         text = name
         if line_count >= 3:
             birth = get_birth_or_fallback(self.dbstate.db, person)
-            if birth and use_markup and birth.get_type() != \
-                                                    gen.lib.EventType.BIRTH:
-                bdate  = "<i>%s</i>" % escape(gen.datehandler.get_date(birth))
+            if birth and use_markup and birth.get_type() != EventType.BIRTH:
+                bdate  = "<i>%s</i>" % escape(get_date(birth))
                 bplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     birth.get_place_handle()))
             elif birth and use_markup:
-                bdate  = escape(gen.datehandler.get_date(birth))
+                bdate  = escape(get_date(birth))
                 bplace = escape(self.get_place_name(birth.get_place_handle()))
             elif birth:
-                bdate  = gen.datehandler.get_date(birth)
+                bdate  = get_date(birth)
                 bplace = self.get_place_name(birth.get_place_handle())
             else:
                 bdate = ""
                 bplace = ""
             death = get_death_or_fallback(self.dbstate.db, person)
-            if death and use_markup and death.get_type() != \
-                                                    gen.lib.EventType.DEATH:
-                ddate  = "<i>%s</i>" % escape(gen.datehandler.get_date(death))
+            if death and use_markup and death.get_type() != EventType.DEATH:
+                ddate  = "<i>%s</i>" % escape(get_date(death))
                 dplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     death.get_place_handle()))
             elif death and use_markup:
-                ddate  = escape(gen.datehandler.get_date(death))
+                ddate  = escape(get_date(death))
                 dplace = escape(self.get_place_name(death.get_place_handle()))
             elif death:
-                ddate  = gen.datehandler.get_date(death)
+                ddate  = get_date(death)
                 dplace = self.get_place_name(death.get_place_handle())
             else:
                 ddate = ""
