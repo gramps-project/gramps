@@ -31,7 +31,7 @@ when loading old database files.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
