@@ -93,15 +93,6 @@ def TipsParse(filename, mark):
     
     tree = ElementTree.parse(filename)
     root = tree.getroot()
-
-    python_v = sys.version_info
-    
-    #if python_v[1] != 6:    
-    
-    # python 2.7
-    # iter() is the new name for getiterator; 
-    # in ET 1.3, it is implemented as a generator method,
-    # but is otherwise identical
         
     '''
     <?xml version="1.0" encoding="UTF-8"?>
@@ -132,7 +123,13 @@ def TipsParse(filename, mark):
     '''
     
     tips = open('../gramps/data/tips.xml.in.h', 'w')
+
+    # python 2.7
+    # iter() is the new name for getiterator; 
+    # in ET 1.3, it is implemented as a generator method,
+    # but is otherwise identical
     
+    # it works with python 2.6 only !
     for key in root.getiterator(mark):
         tip = ElementTree.tostring(key, encoding="UTF-8")
         tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
@@ -160,13 +157,18 @@ def HolidaysParse(filename, mark):
     root = tree.getroot()
 
     python_v = sys.version_info
-    
-    #if python_v[1] != 6:    
-    
+        
     # python 2.7
     # iter() is the new name for getiterator; 
     # in ET 1.3, it is implemented as a generator method,
     # but is otherwise identical
+
+    # getiterator() for python 2.6
+    ITERATION = root.getiterator()
+            
+    # iter() for python 2.7 and greater versions
+    if sys.version_info[1] ==7:
+        ITERATION = root.iter()
             
     '''
     <?xml version="1.0" encoding="utf-8"?>
@@ -188,7 +190,7 @@ def HolidaysParse(filename, mark):
     
     holidays = open('../gramps/plugins/lib/holidays.xml.in.h', 'w')
             
-    for key in root.getiterator():
+    for key in ITERATION:
         if key.attrib.get(mark):
             line = key.attrib
             string = line.items
