@@ -337,20 +337,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
 data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.gif'))
 data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.ico'))
 
-print [('share' + os.sep + 'mime-info', 
-                        ['data' + os.sep + 'gramps.mime']),
-                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
-                    + '48x48' + os.sep + 'mimetypes', PNG_FILES), 
-                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
-                    + 'scalable' + os.sep + 'mimetypes', SVG_FILES), 
-                  ('share' + os.sep + 'icons', ['gramps' + os.sep + 'images' 
-                    + os.sep + 'gramps.png']), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
-                    + 'example' + os.sep + 'gedcom', GEDCOM_FILES), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
-                    + 'example' + os.sep + 'gramps', GRAMPS_FILES), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps', DOC_FILES)]
-raw_input()
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
                      'Programming System)'), 
