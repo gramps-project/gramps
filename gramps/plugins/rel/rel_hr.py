@@ -33,7 +33,7 @@ Croatian-specific classes for calculating relationships and kinship names.
 #-------------------------------------------------------------------------
 
 #import gen.lib
-import gen.relationship
+import gramps.gen.relationship
 
 _PARENTS = ['', 'otac i majka', 'djedovi i bake', 'pradjedovi i prabake',
     '%s pradjedovi i %s prabake']
@@ -149,12 +149,12 @@ def _get_uncles(gen, inlaw):
 #
 #-------------------------------------------------------------------------
 
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
     def __init__(self):
-        gen.relationship.RelationshipCalculator.__init__(self)
+        gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
     def get_plural_relationship_string(self, gena, genb, reltocommon_a='',
         reltocommon_b='', only_birth=True, in_law_a=False, in_law_b=False):
@@ -193,6 +193,6 @@ if __name__ == "__main__":
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
     # python src/plugins/rel/rel_ru.py
-    from gen.relationship import test
+    from gramps.gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

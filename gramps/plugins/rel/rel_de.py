@@ -47,7 +47,7 @@ import re
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
-import gen.relationship
+import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 #
@@ -127,12 +127,12 @@ _schwippschwager = {
 #
 #-------------------------------------------------------------------------
 
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
     def __init__(self):
-        gen.relationship.RelationshipCalculator.__init__(self)
+        gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
     def _make_roman(self, num):
         roman = ''
@@ -300,6 +300,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from gen.relationship import test
+    from gramps.gen.relationship import test
     rc = RelationshipCalculator()
     test(rc, True)

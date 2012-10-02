@@ -34,7 +34,7 @@ Russian-specific definitions of relationships
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
-import gen.relationship
+import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -299,13 +299,13 @@ _nephews_nieces_level = [
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
 
     def __init__(self):
-        gen.relationship.RelationshipCalculator.__init__(self)
+        gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
     def get_parents(self, level):
         if level > len(_parents_level)-1:
@@ -502,6 +502,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from gen.relationship import test
+    from gramps.gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

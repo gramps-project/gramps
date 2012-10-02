@@ -34,7 +34,7 @@ Slovenian-specific definitions of relationships
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
-import gen.relationship
+import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -66,13 +66,13 @@ _neph_niec = [ u"", u"nečaki", u"pranečaki", u"prapranečaki" ]
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
   """
   RelationshipCalculator Class
   """
 
   def __init__(self):
-    gen.relationship.RelationshipCalculator.__init__(self)
+    gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
   def getAncestor(self, level):
     if level > len(_ancestors)-1:
@@ -329,7 +329,7 @@ if __name__ == "__main__":
       rel_xx.py module, and test your work with:
       python src/plugins/rel/rel_xx.py
   """
-  from gen.relationship import test
+  from gramps.gen.relationship import test
   RC = RelationshipCalculator()
   test(RC, True)
 #  

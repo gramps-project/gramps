@@ -34,7 +34,7 @@ Czech-specific classes for relationships.
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
-import gen.relationship
+import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 #
@@ -73,13 +73,13 @@ _niece_level = [ "", "neteř", "praneteř", "prapraneteř", ]
 #
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
 
     def __init__(self):
-        gen.relationship.RelationshipCalculator.__init__(self)
+        gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
     def get_male_cousin(self, level):
         if level > len(_level_name)-1:
@@ -227,6 +227,6 @@ if __name__ == "__main__":
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """
-    from gen.relationship import test
+    from gramps.gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)

@@ -39,7 +39,7 @@ not explicitly in the dictionary, but "netastre" is.
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import Person
-import gen.relationship
+import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 
@@ -807,7 +807,7 @@ def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
         stramplada = _LEVEL_NAME_F[amplada]
     return retorn+u" valenciana "+ stramplada+inlaw
 
-class RelationshipCalculator(gen.relationship.RelationshipCalculator):
+class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
@@ -815,7 +815,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     INLAW = u' polític'
 
     def __init__(self):
-        gen.relationship.RelationshipCalculator.__init__(self)
+        gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
 # kinship report
 
@@ -1114,6 +1114,6 @@ if __name__ == "__main__":
     #   rel_xx.py module, and test your work with:
     #   python src/plugins/rel/rel_xx.py
     #""
-    from gen.relationship import test
+    from gramps.gen.relationship import test
     RC = RelationshipCalculator()
     test(RC, True)
