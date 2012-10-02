@@ -47,7 +47,7 @@ import cgi
 #
 #-------------------------------------------------------------------------
 from gui.widgets.undoablebuffer import UndoableBuffer
-import gen.datehandler
+from gramps.gen.datehandler import get_date, get_date_valid
 from gen.config import config
 
 #-------------------------------------------------------------------------
@@ -134,8 +134,8 @@ class EventRefModel(Gtk.TreeStore):
 
     def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
-        retval = gen.datehandler.get_date(event)
-        if not gen.datehandler.get_date_valid(event):
+        retval = get_date(event)
+        if not get_date_valid(event):
             return invalid_date_format % cgi.escape(retval)
         else:
             return retval

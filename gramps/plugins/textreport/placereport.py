@@ -44,7 +44,7 @@ from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.proxy import PrivateProxyDb
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.sort import Sort
 from gen.display.name import displayer as _nd
 
@@ -193,7 +193,7 @@ class PlaceReport(Report):
         for evt_handle in event_handles:
             event = self.database.get_event_from_handle(evt_handle)
             if event:
-                date = gen.datehandler.get_date(event)
+                date = get_date(event)
                 descr = event.get_description()
                 event_type = str(event.get_type())
 
@@ -315,7 +315,7 @@ class PlaceReport(Report):
             for evt_handle in person_dict[entry]:
                 event = self.database.get_event_from_handle(evt_handle)
                 if event:
-                    date = gen.datehandler.get_date(event)
+                    date = get_date(event)
                     descr = event.get_description()
                     event_type = str(event.get_type())
                 event_details = [people, event_type, descr, date]

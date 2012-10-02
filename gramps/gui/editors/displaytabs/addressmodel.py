@@ -36,7 +36,7 @@ from gi.repository import Gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +56,7 @@ class AddressModel(Gtk.ListStore):
         self.db = dbase
         for obj in obj_list:
             self.append(row=[
-                gen.datehandler.get_date(obj), 
+                get_date(obj), 
                 obj.street, 
                 obj.locality, 
                 obj.city, 

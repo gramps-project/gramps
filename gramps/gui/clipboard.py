@@ -49,7 +49,7 @@ from gi.repository import GdkPixbuf
 from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gen.config import config
 import gen.lib
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
 from gen.ggettext import sgettext as _
@@ -297,7 +297,7 @@ class ClipAddress(ClipObjWrapper):
 
     def refresh(self):
         if self._obj:
-            self._title = gen.datehandler.get_date(self._obj)
+            self._title = get_date(self._obj)
             self._value = "%s %s %s %s" % (self._obj.get_street(),
                                            self._obj.get_city(),
                                            self._obj.get_state(),

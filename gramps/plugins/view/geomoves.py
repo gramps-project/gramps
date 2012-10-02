@@ -54,7 +54,7 @@ _LOG = logging.getLogger("GeoGraphy.geomoves")
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.config import config
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 from gen.display.name import displayer as _nd
 from gen.utils.place import conv_lat_lon
 from gui.views.navigationview import NavigationView
@@ -570,7 +570,7 @@ class GeoMoves(GeoGraphyView):
                 message = ""
             evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
             # format the date as described in preferences.
-            date = gen.datehandler.displayer.display(evt.get_date_object())
+            date = displayer.display(evt.get_date_object())
             if date == "":
                 date = _("Unknown")
             if ( mark[11] == gen.lib.EventRoleType.PRIMARY ):

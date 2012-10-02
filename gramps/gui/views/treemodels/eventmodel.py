@@ -40,7 +40,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import format_time, get_date, get_date_valid
 import gen.lib
 from gen.utils.db import get_participant_from_event
 from gen.config import config
@@ -134,10 +134,10 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_DATE]:
             event = gen.lib.Event()
             event.unserialize(data)
-            date_str =  gen.datehandler.get_date(event)
+            date_str =  get_date(event)
             if date_str != "":
                 retval = cgi.escape(date_str)
-            if not gen.datehandler.get_date_valid(event):
+            if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -148,7 +148,7 @@ class EventModel(FlatBaseModel):
             event = gen.lib.Event()
             event.unserialize(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
-            if not gen.datehandler.get_date_valid(event):
+            if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -162,7 +162,7 @@ class EventModel(FlatBaseModel):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self,data):
-        return gen.datehandler.format_time(data[COLUMN_CHANGE])
+        return format_time(data[COLUMN_CHANGE])
 
     def column_tooltip(self,data):
         return u'Event tooltip'

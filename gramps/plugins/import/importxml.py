@@ -51,7 +51,7 @@ from gen.errors import GrampsImportError
 from gen.utils.id import create_id
 from gen.utils.db import family_name
 from gen.utils.unknown import make_unknown, create_explanation_note
-import gen.datehandler
+from gramps.gen.datehandler import parser, set_date
 from gen.display.name import displayer as name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
@@ -464,7 +464,7 @@ class GrampsParser(UpdateCallback):
         self.gid2nid = {}
         self.childref_map = {}
         self.change = change
-        self.dp = gen.datehandler.parser
+        self.dp = parser
         self.info = ImportInfo()
         self.all_abs = True
         self.db = database
@@ -2589,9 +2589,9 @@ class GrampsParser(UpdateCallback):
     def stop_date(self, tag):
         if tag:
             if self.address:
-                gen.datehandler.set_date(self.address, tag)
+                set_date(self.address, tag)
             else:
-                gen.datehandler.set_date(self.event, tag)
+                set_date(self.event, tag)
 
     def stop_first(self, tag):
         self.name.set_first_name(tag)

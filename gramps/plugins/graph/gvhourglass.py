@@ -45,7 +45,7 @@ from gen.plug.menu import (PersonOption, BooleanOption, NumberOption,
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -175,13 +175,13 @@ class HourGlassReport(Report):
         
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
-            birth = gen.datehandler.get_date(birth_evt)
+            birth = get_date(birth_evt)
         else:
             birth = ""
         
         death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
-            death = gen.datehandler.get_date(death_evt)
+            death = get_date(death_evt)
         else:
             death = ""
 
@@ -198,7 +198,7 @@ class HourGlassReport(Report):
         label = ""
         marriage = ReportUtils.find_marriage(self.__db, family)
         if marriage:
-            label = gen.datehandler.get_date(marriage)
+            label = get_date(marriage)
         color = ""
         fill = ""
         style = "solid"

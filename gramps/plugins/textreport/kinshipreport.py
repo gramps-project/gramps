@@ -48,7 +48,7 @@ from gen.plug.menu import (NumberOption, BooleanOption, PersonOption,
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -302,12 +302,12 @@ class KinshipReport(Report):
         birth_date = ""
         birth = get_birth_or_fallback(self.database, person)
         if birth:
-            birth_date = gen.datehandler.get_date(birth)
+            birth_date = get_date(birth)
         
         death_date = ""
         death = get_death_or_fallback(self.database, person)
         if death:
-            death_date = gen.datehandler.get_date(death)
+            death_date = get_date(death)
         dates = _(" (%(birth_date)s - %(death_date)s)") % { 
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }

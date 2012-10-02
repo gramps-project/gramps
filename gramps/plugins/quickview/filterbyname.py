@@ -32,7 +32,7 @@ from gui.plug.quick import QuickTable
 from gen.utils.file import media_path_full
 from gui.plug.quick import run_quick_report_by_name_direct
 from gen.lib import Person
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 
 import posixpath
 from collections import defaultdict
@@ -304,7 +304,7 @@ def run(database, document, filter_name, *args, **kwargs):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
-                if not gen.datehandler.get_date(birth):
+                if not get_date(birth):
                     stab.row(person, _("birth event but no date"))
                     matches += 1
             else:

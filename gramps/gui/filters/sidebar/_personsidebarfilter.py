@@ -43,7 +43,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gui import widgets
 import gen.lib
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 from gui.filters import build_filter_model
 from gui.filters.sidebar import SidebarFilter
 from gen.filters import GenericFilter, rules
@@ -122,8 +122,8 @@ class PersonSidebarFilter(SidebarFilter):
         exdate2.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_BEFORE, 
                     gen.lib.Date.CAL_GREGORIAN, (0, 0, 1850, False))
 
-        msg1 = gen.datehandler.displayer.display(exdate1)
-        msg2 = gen.datehandler.displayer.display(exdate2)
+        msg1 = displayer.display(exdate1)
+        msg2 = displayer.display(exdate2)
 
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)

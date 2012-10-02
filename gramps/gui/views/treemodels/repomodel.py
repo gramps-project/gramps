@@ -40,7 +40,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import gen.datehandler
+from gramps.gen.datehandler import format_time
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -231,4 +231,4 @@ class RepositoryModel(FlatBaseModel):
         return "%012x" % data[7]
 
     def column_change(self,data):
-        return gen.datehandler.format_time(data[7])
+        return format_time(data[7])

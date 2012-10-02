@@ -43,7 +43,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.display.name import displayer as name_displayer
 from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.errors import MergeError
 from gui.dialog import ErrorDialog
 from gui.managedwindow import ManagedWindow
@@ -282,7 +282,7 @@ class MergePerson(ManagedWindow):
         place = ""
         if handle:
             event = self.database.get_event_from_handle(handle)
-            date = gen.datehandler.get_date(event)
+            date = get_date(event)
             place = self.place_name(event)
             if date:
                 return ("%s, %s" % (date, place)) if place else date

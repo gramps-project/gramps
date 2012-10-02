@@ -33,7 +33,7 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.display.name import displayer as name_displayer
 from gen.utils.string import gender as gender_map
 import gen.lib
@@ -74,9 +74,9 @@ class ChildModel(Gtk.ListStore):
         birth = get_birth_or_fallback(self.db, data)
         if birth:
             if birth.get_type() == gen.lib.EventType.BIRTH:
-                return gen.datehandler.get_date(birth)
+                return get_date(birth)
             else:
-                return '<i>%s</i>' % cgi.escape(gen.datehandler.get_date(birth))
+                return '<i>%s</i>' % cgi.escape(get_date(birth))
         else:
             return u""
 
@@ -97,9 +97,9 @@ class ChildModel(Gtk.ListStore):
         death = get_death_or_fallback(self.db, data)
         if death:
             if death.get_type() == gen.lib.EventType.DEATH:
-                return gen.datehandler.get_date(death)
+                return get_date(death)
             else:
-                return '<i>%s</i>' % cgi.escape(gen.datehandler.get_date(death))
+                return '<i>%s</i>' % cgi.escape(get_date(death))
         else:
             return u""
 

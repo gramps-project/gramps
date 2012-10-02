@@ -24,7 +24,7 @@ from gui.listmodel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.db import get_birth_or_fallback, get_marriage_or_fallback
 from gen.errors import WindowActiveError
 from gi.repository import Gtk
@@ -66,7 +66,7 @@ class Events(Gramplet):
         Add an event to the model.
         """
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-        event_date = gen.datehandler.get_date(event)
+        event_date = get_date(event)
         event_sort = '%012d' % event.get_date_object().get_sort_value()
         person_age      = self.column_age(event)
         person_age_sort = self.column_sort_age(event)

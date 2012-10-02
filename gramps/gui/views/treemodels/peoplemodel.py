@@ -58,7 +58,7 @@ _LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gen.lib import Name, EventRef, EventType, EventRoleType
 from gen.display.name import displayer as name_displayer
-import gen.datehandler
+from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from lru import LRU
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gui.views.treemodels.treebasemodel import TreeBaseModel
@@ -243,7 +243,7 @@ class PeopleBaseModel(object):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self, data):
-        return gen.datehandler.format_time(data[COLUMN_CHANGE])
+        return format_time(data[COLUMN_CHANGE])
 
     def column_gender(self, data):
         return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]
@@ -273,10 +273,10 @@ class PeopleBaseModel(object):
                 if sort_mode:
                     retval = "%09d" % birth.get_date_object().get_sort_value()
                 else:
-                    date_str = gen.datehandler.get_date(birth)
+                    date_str = get_date(birth)
                     if date_str != "":
                         retval = cgi.escape(date_str)
-                if not gen.datehandler.get_date_valid(birth):
+                if not get_date_valid(birth):
                     return invalid_date_format % retval
                 else:
                     return retval
@@ -288,7 +288,7 @@ class PeopleBaseModel(object):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            date_str = gen.datehandler.get_date(event)
+            date_str = get_date(event)
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
@@ -296,7 +296,7 @@ class PeopleBaseModel(object):
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
                     retval = "<i>%s</i>" % cgi.escape(date_str)
-                if not gen.datehandler.get_date_valid(event):
+                if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
                     return retval
@@ -328,10 +328,10 @@ class PeopleBaseModel(object):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
-                    date_str = gen.datehandler.get_date(event)
+                    date_str = get_date(event)
                     if date_str != "":
                         retval = cgi.escape(date_str)
-                if not gen.datehandler.get_date_valid(event):
+                if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
                     return retval
@@ -343,7 +343,7 @@ class PeopleBaseModel(object):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            date_str = gen.datehandler.get_date(event)
+            date_str = get_date(event)
             if (etype in [EventType.BURIAL,
                           EventType.CREMATION,
                           EventType.CAUSE_DEATH]
@@ -353,7 +353,7 @@ class PeopleBaseModel(object):
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
                     retval = "<i>%s</i>" % cgi.escape(date_str)
-                if not gen.datehandler.get_date_valid(event):
+                if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
                     return retval

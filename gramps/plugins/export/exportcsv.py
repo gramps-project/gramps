@@ -53,7 +53,7 @@ import gen.lib
 from gen.lib.eventroletype import EventRoleType
 from gui.plug.export import WriterOptionBox
 from gen.utils.string import gender as gender_map
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gui.glade import Glade
 
 #-------------------------------------------------------------------------
@@ -519,4 +519,4 @@ class CSVWriter(object):
         return True 
     
     def format_date(self, date):
-        return gen.datehandler.get_date(date)
+        return get_date(date)

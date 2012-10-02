@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui.managedwindow import ManagedWindow
-import gen.datehandler
+from gramps.gen.datehandler import displayer, parser
 from gen.display.name import displayer as name_displayer
 from gen.config import config
 from gramps.gui.utils import is_right_click
@@ -62,8 +62,8 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         Associate a person with the window.
         
         """
-        self.dp  = gen.datehandler.parser
-        self.dd  = gen.datehandler.displayer
+        self.dp  = parser
+        self.dd  = displayer
         self.name_displayer  = name_displayer
         self.obj = obj
         self.dbstate = state

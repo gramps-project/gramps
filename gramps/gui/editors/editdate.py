@@ -63,7 +63,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
 from gen.lib.date import Date
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -89,13 +89,13 @@ QUAL_TEXT = (
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = { 
-    Date.CAL_GREGORIAN  : gen.datehandler.displayer.short_months,
-    Date.CAL_JULIAN     : gen.datehandler.displayer.short_months,
-    Date.CAL_HEBREW     : gen.datehandler.displayer.hebrew,
-    Date.CAL_FRENCH     : gen.datehandler.displayer.french,
-    Date.CAL_PERSIAN    : gen.datehandler.displayer.persian,
-    Date.CAL_ISLAMIC    : gen.datehandler.displayer.islamic,
-    Date.CAL_SWEDISH    : gen.datehandler.displayer.swedish }
+    Date.CAL_GREGORIAN  : displayer.short_months,
+    Date.CAL_JULIAN     : displayer.short_months,
+    Date.CAL_HEBREW     : displayer.hebrew,
+    Date.CAL_FRENCH     : displayer.french,
+    Date.CAL_PERSIAN    : displayer.persian,
+    Date.CAL_ISLAMIC    : displayer.islamic,
+    Date.CAL_SWEDISH    : displayer.swedish }
 
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')

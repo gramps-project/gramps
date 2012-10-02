@@ -34,7 +34,7 @@ from gen.ggettext import sgettext as _
 from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.string import confidence
 from gen.merge import MergeCitationQuery
 
@@ -82,8 +82,8 @@ class MergeCitation(ManagedWindow):
 
         entry1 = self.get_widget("date1")
         entry2 = self.get_widget("date2")
-        entry1.set_text(gen.datehandler.get_date(self.citation1))
-        entry2.set_text(gen.datehandler.get_date(self.citation2))
+        entry1.set_text(get_date(self.citation1))
+        entry2.set_text(get_date(self.citation2))
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('date1', 'date2', 'date_btn1',
                     'date_btn2'):

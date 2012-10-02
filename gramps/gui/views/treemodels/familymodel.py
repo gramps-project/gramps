@@ -41,7 +41,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import displayer, format_time, get_date_valid
 from gen.display.name import displayer as name_displayer
 from gen.lib import EventRoleType, FamilyRelType
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -147,11 +147,11 @@ class FamilyModel(FlatBaseModel):
         event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
         if event:
             if event.date.format:
-                return event.date.format % gen.datehandler.displayer.display(event.date)
-            elif not gen.datehandler.get_date_valid(event):
-                return invalid_date_format % gen.datehandler.displayer.display(event.date)
+                return event.date.format % displayer.display(event.date)
+            elif not get_date_valid(event):
+                return invalid_date_format % displayer.display(event.date)
             else:
-                return "%s" % gen.datehandler.displayer.display(event.date)
+                return "%s" % displayer.display(event.date)
         else:
             return u''
 
@@ -170,7 +170,7 @@ class FamilyModel(FlatBaseModel):
         return "%012x" % data[12]
     
     def column_change(self, data):
-        return gen.datehandler.format_time(data[12])
+        return format_time(data[12])
 
     def column_tooltip(self, data):
         return u'Family tooltip'

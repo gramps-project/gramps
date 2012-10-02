@@ -31,7 +31,7 @@ from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
 from gen.utils.alive import probably_alive
 from gen.ggettext import gettext as _
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 import gen.lib
 from gen.config import config
 
@@ -49,10 +49,10 @@ def run(database, document, date):
     # display the title
     if date.get_day_valid():
         sdoc.title(_("People probably alive and their ages the %s") % 
-               gen.datehandler.displayer.display(date))
+               displayer.display(date))
     else:
         sdoc.title(_("People probably alive and their ages on %s") % 
-               gen.datehandler.displayer.display(date))
+               displayer.display(date))
     stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
     matches = 0
     for person in sdb.all_people():

@@ -24,7 +24,7 @@ from gen.plug import Gramplet
 from gui.widgets import Photo
 from gen.display.name import displayer as name_displayer
 from gen.ggettext import gettext as _
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.file import media_path_full
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -204,7 +204,7 @@ class PersonDetails(Gramplet):
         """
         Format the event for display.
         """
-        date = gen.datehandler.get_date(event)
+        date = get_date(event)
         handle = event.get_place_handle()
         if handle:
             place = self.dbstate.db.get_place_from_handle(handle).get_title()

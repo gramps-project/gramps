@@ -39,7 +39,7 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import format_time, get_date, get_date_valid
 import gen.lib
 from gen.utils.string import confidence
 from gen.config import config
@@ -83,10 +83,10 @@ class CitationBaseModel(object):
         if data[COLUMN_DATE]:
             citation = gen.lib.Citation()
             citation.unserialize(data)
-            date_str =  gen.datehandler.get_date(citation)
+            date_str =  get_date(citation)
             if date_str != "":
                 retval = cgi.escape(date_str)
-            if not gen.datehandler.get_date_valid(citation):
+            if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -97,7 +97,7 @@ class CitationBaseModel(object):
             citation = gen.lib.Citation()
             citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
-            if not gen.datehandler.get_date_valid(citation):
+            if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
@@ -116,7 +116,7 @@ class CitationBaseModel(object):
         return unicode(data[COLUMN_HANDLE])
 
     def citation_change(self, data):
-        return gen.datehandler.format_time(data[COLUMN_CHANGE])
+        return format_time(data[COLUMN_CHANGE])
     
     def citation_sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
@@ -168,7 +168,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return gen.datehandler.format_time(source.change)
+            return format_time(source.change)
         except:
             return u''
 
@@ -196,7 +196,7 @@ class CitationBaseModel(object):
         return unicode(data[COLUMN2_PUBINFO])
 
     def source_src_chan(self, data):
-        return gen.datehandler.format_time(data[COLUMN2_CHANGE])
+        return format_time(data[COLUMN2_CHANGE])
 
     def source_sort2_change(self, data):
         return "%012x" % data[COLUMN2_CHANGE]

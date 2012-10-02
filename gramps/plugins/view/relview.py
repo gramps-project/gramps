@@ -64,7 +64,7 @@ from gen.display.name import displayer as name_displayer
 from gen.utils.file import media_path_full
 from gen.utils.alive import probably_alive
 from gui.utils import open_file_with_default_application
-import gen.datehandler
+from gramps.gen.datehandler import displayer, get_date
 from gui.thumbnails import get_thumbnail_image
 from gen.config import config
 from gui import widgets
@@ -721,7 +721,7 @@ class RelationshipView(NavigationView):
                 pname = None
 
             value = {
-                'date' : gen.datehandler.displayer.display(dobj), 
+                'date' : displayer.display(dobj), 
                 'place' : pname, 
                 }
         else:
@@ -749,7 +749,7 @@ class RelationshipView(NavigationView):
                 pname = None
 
             value = {
-                'date' : gen.datehandler.displayer.display(dobj), 
+                'date' : displayer.display(dobj), 
                 'place' : pname, 
                 }
         else:
@@ -1169,25 +1169,25 @@ class RelationshipView(NavigationView):
 
         birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth and birth.get_type() != gen.lib.EventType.BIRTH:
-            sdate = gen.datehandler.get_date(birth)
+            sdate = get_date(birth)
             if sdate:
                 bdate  = "<i>%s</i>" % cgi.escape(sdate)
             else:
                 bdate = ""
         elif birth:
-            bdate  = cgi.escape(gen.datehandler.get_date(birth))
+            bdate  = cgi.escape(get_date(birth))
         else:
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
         if death and death.get_type() != gen.lib.EventType.DEATH:
-            sdate = gen.datehandler.get_date(death)
+            sdate = get_date(death)
             if sdate:
                 ddate  = "<i>%s</i>" % cgi.escape(sdate)
             else:
                 ddate = ""
         elif death:
-            ddate  = cgi.escape(gen.datehandler.get_date(death))
+            ddate  = cgi.escape(get_date(death))
         else:
             ddate = ""
 
@@ -1292,7 +1292,7 @@ class RelationshipView(NavigationView):
                 pname = None
 
             value = {
-                'date' : gen.datehandler.displayer.display(dobj), 
+                'date' : displayer.display(dobj), 
                 'place' : pname, 
                 'event_type' : ename, 
                 }

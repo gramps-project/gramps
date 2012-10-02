@@ -40,7 +40,7 @@ from gen.ggettext import gettext as _
 from gen.utils.place import conv_lat_lon
 from fractions import Fraction
 import gen.lib
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 import datetime
 import pyexiv2
 
@@ -60,7 +60,7 @@ def format_datetime(exif_dt):
         return _('Invalid format')
     date_part = gen.lib.Date()
     date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
-    date_str = gen.datehandler.displayer.display(date_part)
+    date_str = displayer.display(date_part)
     time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': exif_dt.hour,
                                                     'min': exif_dt.minute,
                                                     'sec': exif_dt.second}

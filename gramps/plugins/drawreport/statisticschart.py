@@ -55,7 +55,7 @@ from gen.plug.menu import (BooleanOption, NumberOption, EnumeratedListOption,
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import gen.datehandler
+from gramps.gen.datehandler import displayer, parser
 
 #------------------------------------------------------------------------
 #
@@ -192,7 +192,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         start_y += size * 1.3
 
 _t = time.localtime(time.time())
-_TODAY = gen.datehandler.parser.parse("%04d-%02d-%02d" % _t[:3])
+_TODAY = parser.parse("%04d-%02d-%02d" % _t[:3])
 
 def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     """
@@ -410,7 +410,7 @@ class Extract(object):
         if date:
             month = date.get_month()
             if month:
-                return [gen.datehandler.displayer.long_months[month]]
+                return [displayer.long_months[month]]
         return [_("Date(s) missing")]
 
     def get_place(self, event):

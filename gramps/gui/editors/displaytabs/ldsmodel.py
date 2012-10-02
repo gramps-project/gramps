@@ -38,7 +38,7 @@ from gi.repository import Gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.lds import TEMPLES
 
 #-------------------------------------------------------------------------
@@ -57,7 +57,7 @@ class LdsModel(Gtk.ListStore):
         for lds_ord in lds_list:
             self.append(row=[
                 lds_ord.type2str(), 
-                gen.datehandler.get_date(lds_ord), 
+                get_date(lds_ord), 
                 lds_ord.status2str(), 
                 TEMPLES.name(lds_ord.get_temple()),
                 self.column_place(lds_ord), 

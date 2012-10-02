@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gen.config import config
 from gen.const import HOME_DIR
-import gen.datehandler
+from gramps.gen.datehandler import get_date_formats
 from gen.display.name import displayer as _nd
 from gen.display.name import NameDisplayError
 from gen.utils.file import get_unicode_path_from_file_chooser
@@ -946,7 +946,7 @@ class GrampsPreferences(ConfigureDialog):
 
         # Date format:
         obox = Gtk.ComboBoxText()
-        formats = gen.datehandler.get_date_formats()
+        formats = get_date_formats()
         map(obox.append_text, formats)
         active = config.get('preferences.date-format')
         if active >= len(formats):

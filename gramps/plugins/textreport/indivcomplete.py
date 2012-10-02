@@ -44,7 +44,7 @@ from gen.lib import EventRoleType, EventType, Person, NoteType
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                              PARA_ALIGN_CENTER)
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                            BooleanListOption, EnumeratedListOption)
 from gen.plug.report import Report
@@ -199,7 +199,7 @@ class IndivCompleteReport(Report):
         role = event_ref.get_role()
         description = event.get_description()
         
-        date = gen.datehandler.get_date(event)
+        date = get_date(event)
         place = ''
         place_handle = event.get_place_handle()
         if place_handle:
@@ -385,7 +385,7 @@ class IndivCompleteReport(Report):
         
         for addr in alist:
             text = ReportUtils.get_address_str(addr)
-            date = gen.datehandler.get_date(addr)
+            date = get_date(addr)
             endnotes = ""
             if self.use_srcs:
                 endnotes = Endnotes.cite_source(self.bibli, self.database, addr)

@@ -51,7 +51,7 @@ from gen.errors import ReportError
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.sort import Sort
 from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                        get_marriage_or_fallback, get_divorce_or_fallback)
@@ -157,7 +157,7 @@ class Printinfo():
 
     def __date_place(self,event):
         if event:
-            date = gen.datehandler.get_date(event)
+            date = get_date(event)
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(

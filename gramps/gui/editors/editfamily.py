@@ -65,7 +65,7 @@ from gen.display.name import displayer as name_displayer
 import gen.lib
 from gen.db import DbTxn
 from gen.errors import WindowActiveError
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 from gui.glade import Glade
 
 from editprimary import EditPrimary
@@ -909,12 +909,12 @@ class EditFamily(EditPrimary):
         if name_obj:
             name_obj.set_text(name)
         if birth:
-            birth_str = gen.datehandler.displayer.display(birth.get_date_object())
+            birth_str = displayer.display(birth.get_date_object())
         else:
             birth_str = ""
         birth_obj.set_text(birth_str)
         if death:
-            death_str = gen.datehandler.displayer.display(death.get_date_object())
+            death_str = displayer.display(death.get_date_object())
         else:
             death_str = ""
         death_obj.set_text(death_str)

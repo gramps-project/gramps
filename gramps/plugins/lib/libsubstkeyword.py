@@ -38,7 +38,7 @@ Mary Smith was born on 3/28/1923.
 #
 #------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
-import gen.datehandler
+from gramps.gen.datehandler import displayer
 import gen.lib
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
@@ -191,7 +191,7 @@ class DateFormat(GenericFormat):
         return None
 
     def _default_format(self, date):
-        return gen.datehandler.displayer.display(date)
+        return displayer.display(date)
     
     def __count_chars(self, char, max_amount):
         """ count the year/month/day codes """
@@ -248,9 +248,9 @@ class DateFormat(GenericFormat):
                 tmp = "0" + month
                 return tmp[-2:]
             elif count == 3:   #found 'mmm'
-                return gen.datehandler.displayer.short_months[int(month)]
+                return displayer.short_months[int(month)]
             else: #found 'mmmm'
-                return gen.datehandler.displayer.long_months[int(month)]
+                return displayer.long_months[int(month)]
         
         def month_up():
             return month("M").upper()

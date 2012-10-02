@@ -33,7 +33,7 @@ from gen.ggettext import sgettext as _
 from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 from gen.utils.db import get_participant_from_event
 from gen.merge import MergeEventQuery
 
@@ -81,8 +81,8 @@ class MergeEvent(ManagedWindow):
 
         entry1 = self.get_widget("date1")
         entry2 = self.get_widget("date2")
-        entry1.set_text(gen.datehandler.get_date(self.ev1))
-        entry2.set_text(gen.datehandler.get_date(self.ev2))
+        entry1.set_text(get_date(self.ev1))
+        entry2.set_text(get_date(self.ev2))
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('date1', 'date2', 'date_btn1', 'date_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)

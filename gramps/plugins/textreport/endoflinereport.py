@@ -45,7 +45,7 @@ from gen.plug.menu import (PersonOption, EnumeratedListOption)
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-import gen.datehandler
+from gramps.gen.datehandler import get_date
 
 #------------------------------------------------------------------------
 #
@@ -190,13 +190,13 @@ class EndOfLineReport(Report):
         birth_ref = person.get_birth_ref()
         if birth_ref:
             event = self.database.get_event_from_handle(birth_ref.ref)
-            birth_date = gen.datehandler.get_date( event )
+            birth_date = get_date( event )
         
         death_date = ""
         death_ref = person.get_death_ref()
         if death_ref:
             event = self.database.get_event_from_handle(death_ref.ref)
-            death_date = gen.datehandler.get_date( event )
+            death_date = get_date( event )
         dates = _(" (%(birth_date)s - %(death_date)s)") % { 
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }

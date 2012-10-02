@@ -53,7 +53,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gui.autocomp import StandardCustomSelector, fill_entry
-import gen.datehandler
+from gramps.gen.datehandler import displayer, parser
 from gen.lib.date import Date, NextYear
 from gen.errors import ValidationError
 
@@ -621,7 +621,7 @@ class MonitoredDate(object):
         self.text_obj.connect('content-changed', self.set_date)
         self.button_obj.connect('clicked', self.invoke_date_editor)
         
-        self.text_obj.set_text(gen.datehandler.displayer.display(self.date_obj))
+        self.text_obj.set_text(displayer.display(self.date_obj))
         self.text_obj.validate()
 
         self.text_obj.set_editable(not readonly)
@@ -631,7 +631,7 @@ class MonitoredDate(object):
         """
         Parse date from text entry to date object
         """
-        date = gen.datehandler.parser.parse(unicode(self.text_obj.get_text()))
+        date = parser.parse(unicode(self.text_obj.get_text()))
         self.date_obj.copy(date)
         
     def validate(self, widget, data):
@@ -663,7 +663,7 @@ class MonitoredDate(object):
         if date_obj:
             # first we set the text entry, that emits 'content-changed'
             # signal thus the date object gets updated too
-            self.text_obj.set_text(gen.datehandler.displayer.display(date_obj))
+            self.text_obj.set_text(displayer.display(date_obj))
             self.text_obj.validate()
 
 #-------------------------------------------------------------------------
