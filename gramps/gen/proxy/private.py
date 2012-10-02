@@ -31,7 +31,7 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -40,9 +40,9 @@ LOG = logging.getLogger(".citation")
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import (MediaRef, Attribute, Address, EventRef, 
-                     Person, Name, Source, RepoRef, MediaObject, Place, Event, 
-                     Family, ChildRef, Repository, LdsOrd, Surname, Citation)
+from ..lib import (MediaRef, Attribute, Address, EventRef, 
+                   Person, Name, Source, RepoRef, MediaObject, Place, Event, 
+                   Family, ChildRef, Repository, LdsOrd, Surname, Citation)
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):

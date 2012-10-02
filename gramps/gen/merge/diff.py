@@ -25,11 +25,11 @@ This package implements an object difference engine.
 """
 import os
 
-import cli.user
-from gen.dbstate import DbState
-from cli.grampscli import CLIManager
-from gen.plug import BasePluginManager
-from gen.db.dictionary import DictionaryDb
+import gramps.cli.user
+from ..dbstate import DbState
+from gramps.cli.grampscli import CLIManager
+from ..plug import BasePluginManager
+from ..db.dictionary import DictionaryDb
 
 def import_as_dict(filename):
     """

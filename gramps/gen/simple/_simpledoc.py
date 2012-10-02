@@ -23,7 +23,7 @@
 """
 Provide a simplified database access interface to the GRAMPS database.
 """
-from gen.plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
+from ..plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
                             TableCellStyle,  FONT_SANS_SERIF, PARA_ALIGN_LEFT
 
 class SimpleDoc(object):

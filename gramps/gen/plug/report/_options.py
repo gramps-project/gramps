@@ -57,11 +57,11 @@ except:
 # (do not import anything from 'gui' as this is in 'gen')
 #
 #-------------------------------------------------------------------------
-from gen.const import HOME_DIR, REPORT_OPTIONS
-from gen.config import config
-from gen.plug.docgen import PAPER_PORTRAIT
-from gen.plug import _options
-from gen.plug import MenuOptions
+from ...const import HOME_DIR, REPORT_OPTIONS
+from ...config import config
+from ..docgen import PAPER_PORTRAIT
+from .. import _options
+from .. import MenuOptions
 
 #-------------------------------------------------------------------------
 #

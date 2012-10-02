@@ -22,7 +22,7 @@
 #
 
 import mimetypes
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 _type_map = {
     'application/x-gramps' : 'Gramps database',

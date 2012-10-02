@@ -29,7 +29,7 @@ except:
     from gnome.vfs import mime_get_short_list_applications, \
          mime_get_description, get_mime_type, mime_get_default_application
     
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 def get_description(type):
     """Return the description of the specified mime type."""

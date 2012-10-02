@@ -26,7 +26,7 @@
 import unittest as U
 
 from test.test_util import msg
-from gen.lib.grampstype import GrampsType, _init_map
+from ..grampstype import GrampsType, _init_map
 
 # some simple map items to test with
 vals = "zz ab cd ef".split()

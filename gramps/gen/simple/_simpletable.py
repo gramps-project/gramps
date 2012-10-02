@@ -27,7 +27,7 @@ Provide a simplified table creation interface
 """
 
 import cgi
-from gen.ggettext import sgettext as _
+from ..ggettext import sgettext as _
 from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Repository, MediaObject, Note, Date, Span)
 from ..config import config

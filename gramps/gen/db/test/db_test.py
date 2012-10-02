@@ -21,10 +21,10 @@
 # gen/db/test/db_test.py
 # $Id$
 
-from gen.db import (DbReadBase, DbWriteBase, 
+from ..db import (DbReadBase, DbWriteBase, 
                     DbBsddbRead, DbBsddb)
-from gen.proxy.proxybase import ProxyDbBase
-from gen.proxy import LivingProxyDb
+from ...proxy.proxybase import ProxyDbBase
+from ...proxy import LivingProxyDb
 
 class DbTest(object):
     READ_METHODS = [
@@ -263,20 +263,20 @@ db1._verify_readonly()
 db2 = DbTest(DbWriteBase())
 db2._verify_readwrite()
 
-from gen.db import DbBsddbRead
+from .. import DbBsddbRead
 db3 = DbTest(DbBsddbRead())
 db3._verify_readonly()
 
-from gen.db import DbBsddb
+from .. import DbBsddb
 db4 = DbTest(DbBsddb())
 db4._verify_readwrite()
 
-from gen.proxy.proxybase import ProxyDbBase
+from ...proxy.proxybase import ProxyDbBase
 gdb = DbBsddb()
 db5 = DbTest(ProxyDbBase(gdb))
 db5._verify_readonly()
 
-from gen.proxy import LivingProxyDb
+from ...proxy import LivingProxyDb
 gdb = DbBsddb()
 db6 = DbTest(LivingProxyDb(gdb, LivingProxyDb.MODE_EXCLUDE_ALL))
 db6._verify_readonly()

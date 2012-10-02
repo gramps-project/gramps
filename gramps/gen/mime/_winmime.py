@@ -38,7 +38,7 @@ from _winreg import *
 #
 #-------------------------------------------------------------------------
 import _pythonmime
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 def get_description(mime_type):
     """Return the description of the specfied mime type"""

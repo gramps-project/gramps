@@ -31,11 +31,11 @@ Provide merge capabilities for sources.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, Source, Repository,
-                     MediaObject, Citation)
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import (Person, Family, Event, Place, Source, Repository,
+                   MediaObject, Citation)
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

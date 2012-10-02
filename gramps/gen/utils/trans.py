@@ -265,7 +265,7 @@ def get_addon_translator(filename=None, domain="addon", languages=None):
     # Check if path is of type str. Do import and conversion if so.
     # The import cannot be done at the top as that will conflict with the translation system.
     if type(path) == str:
-        from gen.utils.file import get_unicode_path_from_env_var
+        from file import get_unicode_path_from_env_var
         path = get_unicode_path_from_env_var(path)
     if languages:
         addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
@@ -305,7 +305,7 @@ def trans_objclass(objclass_str):
     Translates objclass_str into "... %s", where objclass_str
     is 'Person', 'person', 'Family', 'family', etc.
     """
-    from gen.ggettext import gettext as _
+    from ..ggettext import gettext as _
     objclass = objclass_str.lower() 
     if objclass == "person":
         return _("the person")

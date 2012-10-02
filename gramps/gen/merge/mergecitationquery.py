@@ -30,10 +30,10 @@ Provide merge capabilities for citations.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, MediaObject, Repository)
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import (Person, Family, Event, Place, MediaObject, Repository)
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

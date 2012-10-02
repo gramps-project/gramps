@@ -39,7 +39,6 @@ from itertools import imap
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-#from gen.lib import *
 from proxybase import ProxyDbBase
 
 class FilterProxyDb(ProxyDbBase):

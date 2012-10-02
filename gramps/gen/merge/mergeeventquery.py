@@ -29,10 +29,10 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Person, Family
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import Person, Family
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

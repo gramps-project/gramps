@@ -31,9 +31,9 @@ Provide merge capabilities for persons.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

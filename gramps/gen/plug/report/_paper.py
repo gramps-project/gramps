@@ -26,16 +26,16 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from ...ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.utils import gfloat
-from gen.plug.docgen import PaperSize
-from gen.const import PAPERSIZE
+from ..utils import gfloat
+from ..docgen import PaperSize
+from ...const import PAPERSIZE
 
 #-------------------------------------------------------------------------
 #

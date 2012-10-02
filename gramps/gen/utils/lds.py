@@ -24,12 +24,12 @@
 Parses the lds.xml file to build the temple/code maps
 """
 
-from gen.const import DATA_DIR
+from ..const import DATA_DIR
 import os
 import logging
 
 from  xml.parsers.expat import ParserCreate
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 LOG = logging.getLogger(".")
 

@@ -28,7 +28,7 @@
 import os
 import tempfile
 import zipfile
-from gen.ggettext import gettext as _
+from ...ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -36,10 +36,8 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from TabbedDoc import *
-
-from gen.const import PROGRAM_NAME, VERSION
-
-from gen.errors import ReportError
+from ...const import PROGRAM_NAME, VERSION
+from ...errors import ReportError
 
 #-------------------------------------------------------------------------
 #

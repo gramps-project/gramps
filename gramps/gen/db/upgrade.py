@@ -29,7 +29,7 @@ import time
 import logging
 LOG = logging.getLogger(".citation")
 
-from gen.ggettext import gettext as _
+from ..ggettext import gettext as _
 
 """
 methods to upgrade a database from version 13 to current version

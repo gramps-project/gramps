@@ -34,7 +34,7 @@ A collection of utilities to aid in the generation of reports.
 #
 #-------------------------------------------------------------------------
 import os
-from gen.ggettext import gettext as _
+from ...ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

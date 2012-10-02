@@ -37,7 +37,7 @@ try:
 except:
     use_lock = False
 
-from gen.const import HOME_DIR
+from const import HOME_DIR
 
 #-------------------------------------------------------------------------
 #

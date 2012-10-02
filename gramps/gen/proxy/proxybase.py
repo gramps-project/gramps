@@ -38,7 +38,7 @@ import types
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.db.base import DbReadBase, DbWriteBase
+from ..db.base import DbReadBase, DbWriteBase
 
 class ProxyCursor(object):
     """

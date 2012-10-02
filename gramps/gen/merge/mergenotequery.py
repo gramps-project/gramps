@@ -29,11 +29,11 @@ Provide merge capabilities for notes.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, Source, Citation, Repository,
-                     MediaObject)
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import (Person, Family, Event, Place, Source, Citation, Repository,
+                   MediaObject)
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

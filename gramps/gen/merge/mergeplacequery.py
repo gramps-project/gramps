@@ -30,10 +30,10 @@ Provide merge capabilities for places.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Person, Family, Event
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import Person, Family, Event
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

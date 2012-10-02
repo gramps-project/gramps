@@ -29,7 +29,7 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from ...ggettext import gettext as _
 import os
 
 #-------------------------------------------------------------------------
@@ -39,8 +39,8 @@ import os
 #-------------------------------------------------------------------------
 
 # Report categories
-from gen.plug import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,\
-                     CATEGORY_BOOK, CATEGORY_GRAPHVIZ
+from .. import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,
+                CATEGORY_BOOK, CATEGORY_GRAPHVIZ)
 
 standalone_categories = {
     CATEGORY_TEXT     : _("Text Reports"),
@@ -55,4 +55,3 @@ book_categories = {
     CATEGORY_TEXT : _("Text"),
     CATEGORY_DRAW : _("Graphics"),
 }
-

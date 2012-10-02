@@ -62,7 +62,7 @@ except:
 
 # Initialize global displayer
 try:
-    from gen.config import config
+    from ..config import config
     val = config.get('preferences.date-format')
 except:
     val = 0

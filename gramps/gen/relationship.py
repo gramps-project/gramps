@@ -401,7 +401,7 @@ class RelationshipCalculator(object):
         self.__db_connected = False
         self.depth = 15
         try:
-            from gen.config import config
+            from config import config
             self.set_depth(config.get('behavior.generation-depth'))
         except ImportError:
             pass

@@ -29,10 +29,10 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Source
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gen.errors import MergeError
+from ..lib import Source
+from ..db import DbTxn
+from ..ggettext import sgettext as _
+from ..errors import MergeError
 
 #-------------------------------------------------------------------------
 #

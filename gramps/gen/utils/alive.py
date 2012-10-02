@@ -52,7 +52,7 @@ from ..ggettext import sgettext as _
 #-------------------------------------------------------------------------
 # cache values; use refresh_constants() if they change
 try:
-    from gen.config import config
+    from ..config import config
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
     _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
@@ -499,7 +499,7 @@ def probably_alive_range(person, db,
     """
     # First, find the real database to use all people
     # for determining alive status:
-    from gen.proxy.proxybase import ProxyDbBase
+    from ..proxy.proxybase import ProxyDbBase
     basedb = db
     while isinstance(basedb, ProxyDbBase):
         basedb = basedb.db
@@ -512,7 +512,7 @@ def update_constants():
     """
     Used to update the constants that are cached in this module.
     """
-    from gen.config import config
+    from ..config import config
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _AVG_GENERATION_GAP
     _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
     _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
