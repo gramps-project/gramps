@@ -50,7 +50,6 @@ except ImportError:
 #-------------------------------------------------------------------------
 from gen.ggettext import gettext as _
 from gen.plug import Gramplet
-import gen.lib
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
 from gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,

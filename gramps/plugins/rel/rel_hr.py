@@ -32,7 +32,6 @@ Croatian-specific classes for calculating relationships and kinship names.
 #
 #-------------------------------------------------------------------------
 
-#import gen.lib
 import gramps.gen.relationship
 
 _PARENTS = ['', 'otac i majka', 'djedovi i bake', 'pradjedovi i prabake',

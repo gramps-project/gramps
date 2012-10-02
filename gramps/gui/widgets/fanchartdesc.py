@@ -56,7 +56,6 @@ from cgi import escape
 from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
-import gen.lib
 from gramps.gui.utils import hex_to_rgb
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive

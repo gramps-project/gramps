@@ -42,7 +42,6 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
 import gramps.gui.widgets.fanchart as fanchart
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks

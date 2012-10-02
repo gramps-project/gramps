@@ -34,7 +34,6 @@ Person list View
 from gui.views.listview import LISTTREE
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonListModel
-import gen.lib
 
 #-------------------------------------------------------------------------
 #

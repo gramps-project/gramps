@@ -57,9 +57,6 @@ from gen.plug.report import (Report, Bibliography)
 from gen.plug.report import endnotes
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
-                        
-import gen.datehandler
-
 from gramps.plugins.lib.libnarrate import Narrator
 from gen.utils.trans import get_available_translations
 from gramps.plugins.lib.libtranslate import Translator, get_language_string

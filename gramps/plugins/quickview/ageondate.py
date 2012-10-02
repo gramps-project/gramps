@@ -32,7 +32,6 @@ from gui.plug.quick import QuickTable
 from gen.utils.alive import probably_alive
 from gen.ggettext import gettext as _
 from gramps.gen.datehandler import displayer
-import gen.lib
 from gen.config import config
 
 def run(database, document, date):
