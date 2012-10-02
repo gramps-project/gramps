@@ -52,7 +52,7 @@ LOG = logging.getLogger(".clidbman")
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.db
+from gramps.gen.db import DbBsddb
 from gen.plug import BasePluginManager
 from gen.config import config
 from gen.constfunc import win
@@ -266,7 +266,7 @@ class CLIDbManager(object):
         name_file.close()
 
         # write the version number into metadata
-        newdb = gen.db.DbBsddb()
+        newdb = DbBsddb()
         newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -325,7 +325,7 @@ class CLIDbManager(object):
     
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
-                dbclass = gen.db.DbBsddb
+                dbclass = DbBsddb
                 dbase = dbclass()
                 dbase.load(new_path, user.callback)
     

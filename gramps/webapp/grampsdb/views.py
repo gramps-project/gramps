@@ -59,8 +59,7 @@ from webapp.utils import _, build_args
 from webapp.grampsdb.models import *
 from webapp.grampsdb.view import *
 from webapp.dbdjango import DbDjango
-import cli.user
-import gen.proxy
+from gramps.cli.user import User
 from gen.const import VERSION_TUPLE
 from gen.utils.svn import get_svn_revision
 
@@ -216,7 +215,7 @@ def process_report_run(request, handle):
             mimetype = 'application/%s' % args["off"]
         elif report.report_type == "export":
             filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
-            export_file(db, filename, cli.user.User()) # callback
+            export_file(db, filename, User()) # callback
             mimetype = 'text/plain'
         elif report.report_type == "import":
             filename = download(args["i"], "/tmp/%s-%s.%s" % (str(profile.user.username), 
@@ -227,14 +226,14 @@ def process_report_run(request, handle):
                     import threading
                     def background():
                         try:
-                            import_file(db, filename, cli.user.User()) # callback
+                            import_file(db, filename, User()) # callback
                         except:
                             make_message(request, "import_file failed: " + traceback.format_exc())
                     threading.Thread(target=background).start()
                     make_message(request, "Your data is now being imported...")
                     return redirect("/report/")
                 else:
-                    success = import_file(db, filename, cli.user.User()) # callback
+                    success = import_file(db, filename, User()) # callback
                     if not success:
                         make_message(request, "Failed to load imported.")
                     return redirect("/report/")

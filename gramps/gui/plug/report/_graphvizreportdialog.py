@@ -50,8 +50,8 @@ from gen.config import config
 from gen.plug.report import CATEGORY_GRAPHVIZ
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
-import gen.plug.docgen.graphdoc as graphdoc
-import gen.plug
+import gramps.gen.plug.docgen.graphdoc as graphdoc
+from gramps.gen.plug.menu import Menu
 
 #-------------------------------------------------------------------------------
 #
@@ -128,7 +128,7 @@ class GraphvizReportDialog(ReportDialog):
         except TypeError:
             self.options = option_class 
             
-        menu = gen.plug.menu.Menu()
+        menu = Menu()
         self.__gvoptions.add_menu_options(menu)
         
         for category in menu.get_categories():

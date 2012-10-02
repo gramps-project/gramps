@@ -21,10 +21,10 @@
 # $Id$
 
 import time
-import gen.filters 
 from gui.editors import EditFilter
 from gen.const import CUSTOM_FILTERS
-from gen.filters import reload_custom_filters
+from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
+                                reload_custom_filters)
 from gen.ggettext import sgettext as _
 
 def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
@@ -34,8 +34,8 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
 
     >>> make_filter(dbstate, uistate, 'Person', ['I0003', ...])
     """
-    FilterClass = gen.filters.GenericFilterFactory(objclass)
-    rule = getattr(getattr(gen.filters.rules, objclass),'RegExpIdOf')
+    FilterClass = GenericFilterFactory(objclass)
+    rule = getattr(getattr(rules, objclass),'RegExpIdOf')
     filter = FilterClass()
     if title is None:
         title = _("Filter %s from Clipboard") % objclass
@@ -49,7 +49,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         'day': struct_time.tm_mday})
     re = "|".join(["^%s$" % gid for gid in sorted(gramps_ids)])
     filter.add_rule(rule([re]))
-    filterdb = gen.filters.FilterList(CUSTOM_FILTERS)
+    filterdb = FilterList(CUSTOM_FILTERS)
     filterdb.load()
     EditFilter(objclass, dbstate, uistate, [],
                filter, filterdb,

@@ -51,7 +51,8 @@ from gen.const import PLUGINS_DIR, USER_PLUGINS
 from gen.errors import DbError
 from gen.dbstate import DbState
 from gen.db import DbBsddb
-import gen.db.exceptions
+from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
+                                      DbVersionError)
 from gen.plug import BasePluginManager
 from gen.utils.config import get_researcher
 from gen.recentfiles import recent_files
@@ -153,10 +154,10 @@ class CLIDbLoader(object):
             dbclass.load(filename, self._pulse_progress, mode)
             dbclass.set_save_path(filename)
             self.dbstate.change_database(dbclass())
-        except gen.db.exceptions.DbUpgradeRequiredError, msg:
+        except DbUpgradeRequiredError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbVersionError, msg:
+        except DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

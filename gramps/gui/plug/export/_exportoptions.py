@@ -41,6 +41,10 @@ from gen.config import config
 from gen.display.name import displayer as name_displayer
 from gen.filters import GenericFilter, rules
 from gui.utils import ProgressMeter
+from gramps.gen.proxy import (PrivateProxyDb, 
+							  LivingProxyDb, 
+                              FilterProxyDb, 
+                              ReferencedBySelectionProxyDb)
         
 class Progress(object):
     """
@@ -553,14 +557,13 @@ class WriterOptionBox(object):
            ["person", "note", "privacy", "living", "reference"]
         """
         # If the private flag is set, apply the PrivateProxyDb
-        import gen.proxy
         if proxy_name == "privacy":
             if self.private:
                 if progress:
                     progress.reset(_("Filtering private data"))
                     progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
-                dbase = gen.proxy.PrivateProxyDb(dbase)
+                dbase = PrivateProxyDb(dbase)
 
         # If the restrict flag is set, apply the LivingProxyDb
         elif proxy_name == "living":
@@ -570,10 +573,10 @@ class WriterOptionBox(object):
                     progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
                 mode = [None, # include living
-                        gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                        gen.proxy.LivingProxyDb.MODE_EXCLUDE_ALL,
+                        LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+                        LivingProxyDb.MODE_EXCLUDE_ALL,
                         ][self.restrict_num]
-                dbase = gen.proxy.LivingProxyDb(
+                dbase = LivingProxyDb(
                             dbase, 
                             mode) # 
 
@@ -585,7 +588,7 @@ class WriterOptionBox(object):
                     progress.reset(_("Applying selected person filter"))
                     progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
-                dbase = gen.proxy.FilterProxyDb(
+                dbase = FilterProxyDb(
                     dbase, self.cfilter)
 
         # Apply the Note Filter
@@ -595,7 +598,7 @@ class WriterOptionBox(object):
                     progress.reset(_("Applying selected note filter"))
                     progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
-                dbase = gen.proxy.FilterProxyDb(
+                dbase = FilterProxyDb(
                     dbase, note_filter=self.nfilter)
 
         # Apply the ReferencedBySelection
@@ -607,8 +610,8 @@ class WriterOptionBox(object):
             if self.reference_num == 0:
                 pass
             elif self.reference_num == 1:
-                dbase = gen.proxy.ReferencedBySelectionProxyDb(dbase, 
-                                                               all_people=True)
+                dbase = ReferencedBySelectionProxyDb(dbase,
+                                                     all_people=True)
         else:
             raise AttributeError("no such proxy '%s'" % proxy_name)
 

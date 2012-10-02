@@ -56,7 +56,11 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from cli.grampscli import CLIDbLoader
 from gen.config import config
-import gen.db
+from gramps.gen.db import DbBsddb
+from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
+                                      BsddbDowngradeError, 
+                                      DbVersionError, 
+                                      DbEnvironmentError)
 from gen.utils.file import get_unicode_path_from_file_chooser
 from gui.pluginmanager import GuiPluginManager
 from gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
@@ -291,7 +295,7 @@ class DbLoader(CLIDbLoader):
         else:
             mode = 'w'
 
-        db = gen.db.DbBsddb()
+        db = DbBsddb()
         db.disable_signals()
         self.dbstate.no_database()
 
@@ -302,7 +306,7 @@ class DbLoader(CLIDbLoader):
                 db.load(filename, self._pulse_progress, 
                                      mode, upgrade=False)
                 self.dbstate.change_database(db)
-            except gen.db.exceptions.DbUpgradeRequiredError, msg:
+            except DbUpgradeRequiredError, msg:
                 if QuestionDialog2(_("Need to upgrade database!"), 
                                    str(msg), 
                                    _("Upgrade now"), 
@@ -315,13 +319,13 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.change_database(db)
                 else:
                     self.dbstate.no_database()
-        except gen.db.exceptions.BsddbDowngradeError, msg:
+        except BsddbDowngradeError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbVersionError, msg:
+        except DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbEnvironmentError, msg:
+        except DbEnvironmentError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:

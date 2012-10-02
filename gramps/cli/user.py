@@ -36,7 +36,7 @@ import sys
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import gen.user
+import gramps.gen.user
 
 #------------------------------------------------------------------------
 #
@@ -50,10 +50,10 @@ _SPINNER = ['|', '/', '-', '\\']
 # User class
 #
 #-------------------------------------------------------------------------
-class User(gen.user.User):
+class User(gramps.gen.user.User):
     """
     This class provides a means to interact with the user via CLI.
-    It implements the interface in gen.user.User()
+    It implements the interface in gramps.gen.user.User()
     """
     def __init__(self, callback=None, error=None):
         self.steps = 0;

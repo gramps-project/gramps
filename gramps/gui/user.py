@@ -36,7 +36,7 @@ import sys
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.user
+import gramps.gen.user
 from gui.utils import ProgressMeter
 from gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
                             InfoDialog)
@@ -45,10 +45,10 @@ from gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
 # User class
 #
 #-------------------------------------------------------------------------
-class User(gen.user.User):
+class User(gramps.gen.user.User):
     """
     This class provides a means to interact with the user via GTK.
-    It implements the interface in gen.user.User()
+    It implements the interface in gramps.gen.user.User()
     """
     def __init__(self, callback=None, error=None):
         self.progress = None
