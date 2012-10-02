@@ -47,7 +47,6 @@ from gen.plug import Gramplet
 import gen.lib
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
-import gui.utils
 from gui.widgets.fanchartdesc import (FanChartDescWidget, FanChartDescGrampsGUI,
                                       ANGLE_WEIGHT)
 from gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1

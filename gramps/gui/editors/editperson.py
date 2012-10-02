@@ -52,7 +52,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
-import gui.utils
+from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gen.utils.db import get_birth_or_fallback
 import gen.lib
 from gen.db import DbTxn
@@ -605,7 +605,7 @@ class EditPerson(EditPrimary):
                 except WindowActiveError:
                     pass
 
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             media_list = self.obj.get_media_list()
             if media_list:
                 photo = media_list[0]
@@ -639,7 +639,7 @@ class EditPerson(EditPrimary):
             object_handle = photo.get_reference_handle()
             ref_obj = self.db.get_object_from_handle(object_handle)
             photo_path = media_path_full(self.db, ref_obj.get_path())
-            gui.utils.open_file_with_default_application(photo_path)
+            open_file_with_default_application(photo_path)
 
     def _popup_change_description(self, obj):
         """

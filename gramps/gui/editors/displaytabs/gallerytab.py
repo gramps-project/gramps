@@ -49,7 +49,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gui.utils
+from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 import gen.lib
@@ -69,7 +69,7 @@ from gen.const import THUMBSCALE
 #
 #-------------------------------------------------------------------------
 def make_launcher(path):
-    return lambda x: gui.utils.open_file_with_default_application(path)
+    return lambda x: open_file_with_default_application(path)
 
 #-------------------------------------------------------------------------
 #
@@ -115,7 +115,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
             return True
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             reflist = self.iconlist.get_selected_items()
             if len(reflist) == 1:
                 path = reflist[0].get_indices()

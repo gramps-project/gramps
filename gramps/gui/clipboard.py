@@ -58,7 +58,7 @@ from gen.constfunc import mac
 from gui.glade import Glade
 from gui.ddtargets import DdTargets
 from gui.makefilter import make_filter
-import gui.utils
+from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------
 #
@@ -1438,7 +1438,7 @@ class MultiTreeView(Gtk.TreeView):
         # Here we intercept mouse clicks on selected items so that we can
         # drag multiple items without the click selecting only one
         target = self.get_path_at_pos(int(event.x), int(event.y))
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             selection = widget.get_selection()
             store, paths = selection.get_selected_rows()
             tpath = paths[0] if len(paths) > 0 else None

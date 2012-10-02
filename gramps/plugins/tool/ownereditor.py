@@ -46,7 +46,7 @@ from gui.managedwindow import ManagedWindow
 from gui.plug import tool
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
-import gui.utils
+from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------
 #
@@ -155,7 +155,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
 
     def on_button_press_event(self, obj, event):
         """Shows popup-menu for db <-> preferences copying"""
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             self.menu.popup(None, None, None, None, 0, 0)
 
     def build_menu_names(self, obj):

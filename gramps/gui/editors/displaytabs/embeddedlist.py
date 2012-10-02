@@ -44,7 +44,7 @@ from gi.repository import Pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gui.utils
+from gramps.gui.utils import is_right_click
 from buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
@@ -99,7 +99,7 @@ class EmbeddedList(ButtonTab):
         """
         Handle button press, not double-click, that is done in init_interface
         """
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             ref = self.get_selected()
             if ref:
                 self.right_click(obj, event)

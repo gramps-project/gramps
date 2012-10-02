@@ -53,7 +53,6 @@ from gen.plug import Gramplet
 import gen.lib
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
-import gui.utils
 from gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
                     FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
 

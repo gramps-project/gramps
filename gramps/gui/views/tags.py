@@ -50,7 +50,7 @@ from gui.listmodel import ListModel, NOSORT, COLOR, INTEGER
 from gen.const import URL_MANUAL_PAGE
 from gui.display import display_help
 from gui.dialog import ErrorDialog, QuestionDialog2
-import gui.widgets.progressdialog as progressdlg
+import gramps.gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------
 #

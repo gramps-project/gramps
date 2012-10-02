@@ -57,7 +57,7 @@ from gui.plug import tool
 from gui.managedwindow import ManagedWindow
 from gui.dialog import InfoDialog
 from gui.glade import Glade
-import gui.utils
+from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------
 #
@@ -118,7 +118,7 @@ class Leak(tool.Tool, ManagedWindow):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.referenced_in()
             return True
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             self.refers_to()
             return True
 

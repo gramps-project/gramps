@@ -56,7 +56,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
-import gui.widgets.progressdialog as progressdlg
+import gramps.gui.widgets.progressdialog as progressdlg
 from lru import LRU
 from bisect import bisect_right
 from gen.filters import SearchFilter, ExactSearchFilter

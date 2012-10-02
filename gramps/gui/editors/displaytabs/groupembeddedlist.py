@@ -42,7 +42,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gui.utils
+from gramps.gui.utils import is_right_click
 from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
@@ -104,7 +104,7 @@ class GroupEmbeddedList(EmbeddedList):
         """
         Handle button press, not double-click, that is done in init_interface
         """
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             obj = self.get_selected()
             if obj and obj[1]:
                 self._tmpgroup = obj[0]

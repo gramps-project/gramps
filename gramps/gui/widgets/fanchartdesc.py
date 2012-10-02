@@ -57,7 +57,7 @@ from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
 import gen.lib
-import gui.utils
+from gramps.gui.utils import hex_to_rgb
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
 from gen.utils.libformatting import FormattingHelper
@@ -129,7 +129,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.alpha_filter = alpha_filter
         self.form = form
         self.anglealgo = angle_algo
-        self.dupcolor = gui.utils.hex_to_rgb(dupcolor)
+        self.dupcolor = hex_to_rgb(dupcolor)
 
     def gen_pixels(self):
         """

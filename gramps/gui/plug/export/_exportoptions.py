@@ -245,7 +245,7 @@ class WriterOptionBox(object):
         """
         # Make a box and put the option in it:
         from gi.repository import Gtk
-        import gui.widgets
+        from gramps.gui.widgets import SimpleButton
         button = Gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -262,7 +262,7 @@ class WriterOptionBox(object):
             box.pack_start(label, False, True, 0)
             box.pack_start(self.filter_obj, True, True, 0)
             box.pack_start(
-                gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
+                SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Person', self.filter_obj)),
                 False, True, 0)
             button.set_tooltip_text(_("Click to see preview after person filter"))
@@ -279,7 +279,7 @@ class WriterOptionBox(object):
             box.pack_start(label_note, False, True, 0)
             box.pack_start(self.filter_note, True, True, 0)
             box.pack_start(
-                gui.widgets.SimpleButton(Gtk.STOCK_EDIT, 
+                SimpleButton(Gtk.STOCK_EDIT, 
                    lambda obj: self.edit_filter('Note', self.filter_note)),
                 False, True, 0)
             button.set_tooltip_text(_("Click to see preview after note filter"))

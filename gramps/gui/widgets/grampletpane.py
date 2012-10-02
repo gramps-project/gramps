@@ -48,7 +48,7 @@ from gen.errors import WindowActiveError
 from gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gui.editors import EditPerson, EditFamily
 from gui.managedwindow import ManagedWindow
-import gui.utils
+from gramps.gui.utils import is_right_click, rgb_to_hex
 from gui.widgets.menuitem import add_menuitem
 from gui.plug.quick import run_quick_report_by_name
 from gui.display import display_help, display_url
@@ -190,7 +190,7 @@ class LinkTag(Gtk.TextTag):
     linkcolor = Gtk.Label(label='test') #needed to avoid label destroyed to early
     linkcolor = linkcolor.get_style_context().lookup_color('link_color')
     if linkcolor[0]:
-        linkcolor = gui.utils.rgb_to_hex((linkcolor[1].red, linkcolor[1].green,
+        linkcolor = rgb_to_hex((linkcolor[1].red, linkcolor[1].green,
                                 linkcolor[1].blue))
     else:
         linkcolor = 'blue'
@@ -615,7 +615,7 @@ class GuiGramplet(object):
                             elif event.type == Gdk.EventType.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Person')
                                 return True # handled event
-                        elif gui.utils.is_right_click(event):
+                        elif is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
                                 EditPerson(self.dbstate, 
@@ -676,7 +676,7 @@ class GuiGramplet(object):
                             elif event.type == Gdk.EventType.BUTTON_PRESS: # single
                                 self.uistate.set_active(handle, 'Family')
                                 return True # handle event
-                        elif gui.utils.is_right_click(event):
+                        elif is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
                                 EditFamily(self.dbstate, 
@@ -1405,7 +1405,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             print "Can't make gramplet of type '%s'." % name
 
     def _button_press(self, obj, event):
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             self._popup_xy = (event.x, event.y)
             uiman = self.uistate.uimanager
             ag_menu = uiman.get_widget('/GrampletPopup/AddGramplet')

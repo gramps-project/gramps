@@ -44,7 +44,7 @@ from gui.managedwindow import ManagedWindow
 import gen.datehandler
 from gen.display.name import displayer as name_displayer
 from gen.config import config
-import gui.utils
+from gramps.gui.utils import is_right_click
 from gui.display import display_help
 from gui.dialog import SaveDialog
 import gen.lib
@@ -284,7 +284,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         pressed while on contexteventbox
         It opens a context menu with possible actions
         """
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             if self.obj.get_handle() == 0 :
                 return False
             

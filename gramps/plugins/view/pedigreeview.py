@@ -71,7 +71,7 @@ from gui.views.bookmarks import PersonBookmarks
 from gen.const import CUSTOM_FILTERS
 from gen.constfunc import is_quartz, win
 from gui.dialog import RunDatabaseRepair, ErrorDialog
-import gui.utils
+from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
 
 #-------------------------------------------------------------------------
 #
@@ -195,9 +195,9 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             gender = self.person.get_gender()
         else:
             gender = None
-        self.bgcolor, self.bordercolor = gui.utils.color_graph_box(alive, gender)
-        self.bgcolor = gui.utils.hex_to_rgb_float(self.bgcolor)
-        self.bordercolor = gui.utils.hex_to_rgb_float(self.bordercolor)
+        self.bgcolor, self.bordercolor = color_graph_box(alive, gender)
+        self.bgcolor = hex_to_rgb_float(self.bgcolor)
+        self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
         self.img_surf = None    
         if image:
@@ -1326,7 +1326,7 @@ class PedigreeView(NavigationView):
             self._last_y = event.y
             self._in_move = True
             return True
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             self.cb_on_show_option_menu(widget, event)
             return True
         return False
@@ -1380,7 +1380,7 @@ class PedigreeView(NavigationView):
         or submenu for person for mouse right click.
         And setup plug for button press on person widget.
         """
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             self.cb_build_full_nav_menu(obj, event,
                                         person_handle, family_handle)
             return True
@@ -1395,7 +1395,7 @@ class PedigreeView(NavigationView):
         on family line or call full submenu for mouse right click.
         And setup plug for button press on family line.
         """
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             self.cb_build_relation_nav_menu(obj, event, family_handle)
             return True
         elif event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
@@ -1412,7 +1412,7 @@ class PedigreeView(NavigationView):
         if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             self.cb_add_parents(obj, person_handle, family_handle)
             return True
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             self.cb_build_missing_parent_nav_menu(obj, event, person_handle,
                                                   family_handle)
             return True

@@ -59,7 +59,7 @@ from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
 from gui.widgets.reorderfam import Reorder
 import gen.lib
-import gui.utils
+from gramps.gui.utils import color_graph_box, hex_to_rgb, is_right_click
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
 from gen.utils.libformatting import FormattingHelper
@@ -331,8 +331,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         needed for the background of the boxes
         """
         maxgen = self.generations
-        cstart = gui.utils.hex_to_rgb(self.grad_start)
-        cend = gui.utils.hex_to_rgb(self.grad_end)
+        cstart = hex_to_rgb(self.grad_start)
+        cend = hex_to_rgb(self.grad_end)
         self.cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255, 
                                          cstart[2]/255)
         self.cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255, 
@@ -424,8 +424,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 alive = probably_alive(person, self.dbstate.db)
             except RuntimeError:
                 alive = False
-            backgr, border = gui.utils.color_graph_box(alive, person.gender)
-            color = gui.utils.hex_to_rgb(backgr)
+            backgr, border = color_graph_box(alive, person.gender)
+            color = hex_to_rgb(backgr)
         elif self.background == BACKGROUND_SINGLE_COLOR:
             color = self.maincolor
         elif self.background == BACKGROUND_GRAD_AGE:
@@ -840,7 +840,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     
         #right click on person, context menu
         # Do things based on state, event.get_state(), or button, event.button
-        if gui.utils.is_right_click(event):
+        if is_right_click(event):
             person = self.person_at(generation, selected, btype)
             family = self.family_at(generation, selected, btype)
             fhandle = None

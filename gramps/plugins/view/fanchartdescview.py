@@ -43,8 +43,8 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import gui.widgets.fanchart as fanchart
-import gui.widgets.fanchartdesc as fanchartdesc
+import gramps.gui.widgets.fanchart as fanchart
+import gramps.gui.widgets.fanchartdesc as fanchartdesc
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
 from gui.utils import SystemFonts

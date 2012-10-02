@@ -78,8 +78,8 @@ from gui.dialog import WarningDialog, ErrorDialog
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 from gui.managedwindow import ManagedWindow, set_titles
 from gui.glade import Glade
-import gui.utils
-import gui.user
+from gramps.gui.utils import is_right_click, open_file_with_default_application
+from gramps.gui.user import User
 from gui.plug import make_gui_option
 from types import ClassType
 
@@ -972,7 +972,7 @@ class BookReportSelector(ManagedWindow):
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             self.build_book_context_menu(event)
 
     def avail_button_press(self, obj, event):
@@ -982,7 +982,7 @@ class BookReportSelector(ManagedWindow):
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             self.build_avail_context_menu(event)
 
     def build_book_context_menu(self, event):
@@ -1310,7 +1310,7 @@ class BookReportDialog(DocReportDialog):
         """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
         self.doc = self.format(self.selected_style, pstyle)
-        user = gui.user.User()
+        user = User()
         self.rptlist = []
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
@@ -1336,7 +1336,7 @@ class BookReportDialog(DocReportDialog):
         self.doc.close()
         
         if self.open_with_app.get_active():
-            gui.utils.open_file_with_default_application(self.target_path)
+            open_file_with_default_application(self.target_path)
 
     def init_options(self, option_class):
         try:

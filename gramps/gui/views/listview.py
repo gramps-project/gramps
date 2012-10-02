@@ -67,7 +67,7 @@ from gui.editors import FilterEditor
 from gen.ggettext import sgettext as _
 from gui.ddtargets import DdTargets
 from gui.plug.quick import create_quickreport_menu, create_web_connect_menu
-import gui.utils
+from gramps.gui.utils import is_right_click
 
 #----------------------------------------------------------------
 #
@@ -804,7 +804,7 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
-        elif gui.utils.is_right_click(event):
+        elif is_right_click(event):
             menu = self.uistate.uimanager.get_widget('/Popup')
             if menu:
                 # Quick Reports
