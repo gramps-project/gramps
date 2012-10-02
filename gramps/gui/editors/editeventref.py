@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType, NoteType
 from gen.db import DbTxn
 from gui.glade import Glade
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
@@ -197,7 +197,7 @@ class EditEventRef(EditReference):
                                 self.uistate,
                                 self.track,
                                 self.source.get_note_list(),
-                                notetype=gen.lib.NoteType.EVENT)
+                                notetype=NoteType.EVENT)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
         
@@ -205,7 +205,7 @@ class EditEventRef(EditReference):
                                     self.uistate,
                                     self.track,
                                     self.source_ref.get_note_list(),
-                                    notetype=gen.lib.NoteType.EVENTREF)
+                                    notetype=NoteType.EVENTREF)
         self._add_tab(notebook_ref, self.note_ref_tab)
         self.track_ref_for_deletion("note_ref_tab")
         
@@ -270,5 +270,5 @@ class EditFamilyEventRef(EditEventRef):
             self.add_event = self.db.add_family_event
 
     def get_custom_events(self):
-        return [gen.lib.EventType((gen.lib.EventType.CUSTOM,val))
+        return [EventType((EventType.CUSTOM,val))
                  for val in self.dbstate.db.get_family_event_types()]

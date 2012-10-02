@@ -50,7 +50,7 @@ log = logging.getLogger(".FamilyLines")
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventRoleType, EventType, Person
 from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_path
 from gen.datehandler import displayer as _dd
@@ -721,9 +721,9 @@ class FamilyLinesReport(Report):
             # figure out what colour to use
             gender = person.get_gender()
             colour = self._colorunknown
-            if gender == gen.lib.Person.MALE:
+            if gender == Person.MALE:
                 colour = self._colormales
-            elif gender == gen.lib.Person.FEMALE:
+            elif gender == Person.FEMALE:
                 colour = self._colorfemales
 
             # see if we have surname colours that match this person
@@ -887,9 +887,9 @@ class FamilyLinesReport(Report):
             if self._incdates or self._incplaces:
                 for event_ref in family.get_event_ref_list():
                     event = self._db.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == gen.lib.EventType.MARRIAGE and \
-                    (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                    event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+                    if event.get_type() == EventType.MARRIAGE and \
+                    (event_ref.get_role() == EventRoleType.FAMILY or 
+                    event_ref.get_role() == EventRoleType.PRIMARY ):
                         # get the wedding date
                         if (event.private and self._incprivate) or not event.private:
                             if self._incdates:

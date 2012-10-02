@@ -62,7 +62,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gen.config import config
 from gen.display.name import displayer as name_displayer
-import gen.lib
+from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
 from gen.db import DbTxn
 from gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
@@ -163,7 +163,7 @@ class ChildEmbedList(EmbeddedList):
                 (0, 8), (0, 9)]
 
     def add_button_clicked(self, obj=None):
-        person = gen.lib.Person()
+        person = Person()
         autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
@@ -189,7 +189,7 @@ class ChildEmbedList(EmbeddedList):
         self.new_child_added(person)
 
     def new_child_added(self, person):
-        ref = gen.lib.ChildRef()
+        ref = ChildRef()
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
@@ -211,7 +211,7 @@ class ChildEmbedList(EmbeddedList):
         person = sel.run()
         
         if person:
-            ref = gen.lib.ChildRef()
+            ref = ChildRef()
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
@@ -258,9 +258,9 @@ class ChildEmbedList(EmbeddedList):
         """
         Child inherits name from father
         """
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         father_handle = self.family.get_father_handle()
         if father_handle:
@@ -269,9 +269,9 @@ class ChildEmbedList(EmbeddedList):
         return name
 
     def no_name(self):
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         return name
 
@@ -279,9 +279,9 @@ class ChildEmbedList(EmbeddedList):
         """
         Child inherits name from father and mother
         """
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         if self.family:
             father_handle = self.family.get_father_handle()
@@ -295,7 +295,7 @@ class ChildEmbedList(EmbeddedList):
             if not mother:
                 preset_name(father, name)
             #we take first surname, and keep that
-            mothername = gen.lib.Name()
+            mothername = Name()
             preset_name(mother, mothername)
             preset_name(father, name)
             mothersurname = mothername.get_surname_list()[0]
@@ -312,7 +312,7 @@ class FastMaleFilter(object):
 
     def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == gen.lib.Person.MALE
+        return value[2] == Person.MALE
 
 class FastFemaleFilter(object):
 
@@ -321,7 +321,7 @@ class FastFemaleFilter(object):
 
     def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == gen.lib.Person.FEMALE
+        return value[2] == Person.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -373,7 +373,7 @@ class EditFamily(EditPrimary):
         EditPrimary._cleanup_on_exit(self)
 
     def empty_object(self):
-        return gen.lib.Family()
+        return Family()
 
     def _local_init(self):
         self.build_interface()
@@ -678,7 +678,7 @@ class EditFamily(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                notetype=gen.lib.NoteType.FAMILY)
+                                notetype=NoteType.FAMILY)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
             
@@ -715,8 +715,8 @@ class EditFamily(EditPrimary):
                          self.mbutton_del, self.mbutton_edit)
 
     def add_mother_clicked(self, obj):
-        person = gen.lib.Person()
-        person.set_gender(gen.lib.Person.FEMALE)
+        person = Person()
+        person.set_gender(Person.FEMALE)
         autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
@@ -731,8 +731,8 @@ class EditFamily(EditPrimary):
                    self.new_mother_added)
 
     def add_father_clicked(self, obj):
-        person = gen.lib.Person()
-        person.set_gender(gen.lib.Person.MALE)
+        person = Person()
+        person.set_gender(Person.MALE)
         autoname = config.get('behavior.surname-guessing')
         #_("Father's surname"), 
         #_("None"), 
@@ -786,7 +786,7 @@ class EditFamily(EditPrimary):
             self.update_mother(person.handle)
 
     def on_change_father(self, selector_window, obj):
-        if  obj.__class__ == gen.lib.Person:
+        if  obj.__class__ == Person:
             try:
                 person = obj
                 self.obj.set_father_handle(person.get_handle()) 
@@ -801,7 +801,7 @@ class EditFamily(EditPrimary):
             log.warn(
                 "Object selector returned obj.__class__ = %s, it should "
                 "have been of type %s." % (obj.__class__.__name__,
-                                           gen.lib.Person.__name__))
+                                           Person.__name__))
             
         selector_window.close()
 
@@ -1103,9 +1103,9 @@ class EditFamily(EditPrimary):
         """
         Default surname guess.
         """
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         return name
 
@@ -1115,9 +1115,9 @@ class EditFamily(EditPrimary):
         and return their name for the father.
         """
         # for each child, find one with a last name
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         for ref in self.obj.get_child_ref_list():
             child = self.db.get_person_from_handle(ref.ref)
@@ -1133,9 +1133,9 @@ class EditFamily(EditPrimary):
 
         parent = "mother" | "father"
         """
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         # for each child, find one with a last name
         for ref in self.obj.get_child_ref_list():

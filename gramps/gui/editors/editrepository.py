@@ -40,7 +40,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import NoteType, Repository
 from gen.db import DbTxn
 
 from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
@@ -58,7 +58,7 @@ class EditRepository(EditPrimary):
                              dbstate.db.get_repository_from_gramps_id)
 
     def empty_object(self):
-        return gen.lib.Repository()
+        return Repository()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -126,7 +126,7 @@ class EditRepository(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                notetype=gen.lib.NoteType.REPO)
+                                notetype=NoteType.REPO)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 

@@ -32,7 +32,7 @@ Display a person's father or mother lineage
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import ChildRefType, Person
 from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
@@ -60,17 +60,17 @@ def run_father(database, document, person):
     sd.paragraph("")
     stab = QuickTable(sa)
     stab.columns(_("Name Father"), _("Birth Date"), _("Death Date"), _("Remark"))
-    make_details(gen.lib.Person.MALE, person, sa, sd, database, stab)
+    make_details(Person.MALE, person, sa, sd, database, stab)
     stab.write(sd)
     sd.paragraph("")
     
-    if person.gender == gen.lib.Person.FEMALE :
+    if person.gender == Person.FEMALE :
         return
     
     sd.header2((_("Direct line male descendants")))
     sd.paragraph("")
     
-    make_details_child(gen.lib.Person.MALE, person, sa, sd, database)
+    make_details_child(Person.MALE, person, sa, sd, database)
     
 def run_mother(database, document, person):
     """ Function writing the mother lineage quick report
@@ -92,17 +92,17 @@ def run_mother(database, document, person):
     
     stab = QuickTable(sa)
     stab.columns(_("Name Mother"), _("Birth"), _("Death Date"), _("Remark"))
-    make_details(gen.lib.Person.FEMALE, person, sa, sd, database, stab)
+    make_details(Person.FEMALE, person, sa, sd, database, stab)
     stab.write(sd)
     sd.paragraph("")
     
-    if person.gender == gen.lib.Person.MALE :
+    if person.gender == Person.MALE :
         return
     
     sd.header2((_("Direct line female descendants")))
     sd.paragraph("")
     
-    make_details_child(gen.lib.Person.FEMALE, person, sa, sd, database)
+    make_details_child(Person.FEMALE, person, sa, sd, database)
     
 def make_details(gender, person, sa, sd, database, stab) :
     """ Function writing one line of ancestry on the document in 
@@ -138,7 +138,7 @@ def make_details(gender, person, sa, sd, database, stab) :
                             ref.get_father_relation()) for ref in 
                             family.get_child_ref_list() 
                             if ref.ref == person_handle]
-            if gender == gen.lib.Person.MALE :
+            if gender == Person.MALE :
                 person = database.get_person_from_handle(
                             family.get_father_handle())
                 refnr  = 1
@@ -151,11 +151,11 @@ def make_details(gender, person, sa, sd, database, stab) :
             # that would complicate the code
             #Also, we assume the birth relation is in the FIRST
             # family of the person, so we go up on non-birth
-            if not childrel[0][refnr] == gen.lib.ChildRefType.BIRTH :
+            if not childrel[0][refnr] == ChildRefType.BIRTH :
                 rem_str = add_rem(rem_str, _("No birth relation with child"))
             if person and person.gender == gender :
                 break
-            elif person and person.gender == gen.lib.Person.UNKNOWN :
+            elif person and person.gender == Person.UNKNOWN :
                 rem_str = add_rem(rem_str, _("Unknown gender"))
                 break
             else :
@@ -175,7 +175,7 @@ def make_details_child(gender, person, sa, sd, database) :
             raise RuntimeError
         #we use some global var from make_details_child !
         rem_str = ""
-        if child.gender == gen.lib.Person.UNKNOWN :
+        if child.gender == Person.UNKNOWN :
             rem_str = add_rem(rem_str, _("Unknown gender"))
             
         if rem_str : 
@@ -204,7 +204,7 @@ def make_details_child(gender, person, sa, sd, database) :
                             fam.get_child_ref_list()]
             for childdet in childrel: 
                 #relation with parent must be by birth
-                if not childdet[childrelnr] == gen.lib.ChildRefType.BIRTH :
+                if not childdet[childrelnr] == ChildRefType.BIRTH :
                     continue
                             
                 newchild = database.get_person_from_handle(childdet[0])

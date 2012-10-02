@@ -49,7 +49,7 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 # GRAMPS module
 #------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Date, Name, NameType, Person
 from gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
 from gen.constfunc import win
 from gen.plug.report import Report
@@ -274,11 +274,11 @@ class WebCalReport(Report):
 
         if month > 0:
             try:
-                event_date = gen.lib.Date(year, month, day)
+                event_date = Date(year, month, day)
             except ValueError:
-                event_date = gen.lib.Date.EMPTY
+                event_date = Date.EMPTY
         else:
-            event_date = gen.lib.Date.EMPTY            # Incomplete date....
+            event_date = Date.EMPTY            # Incomplete date....
 
         day_list.append((text, event, event_date))
         month_dict[day] = day_list
@@ -717,7 +717,7 @@ class WebCalReport(Report):
                             bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
 
                             # date is an instance because of subtracting abilities in date.py
-                            event_date = gen.lib.Date(thisday.year, thisday.month, thisday.day)
+                            event_date = Date(thisday.year, thisday.month, thisday.day)
 
                             # get events for this day
                             day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
@@ -1039,20 +1039,20 @@ class WebCalReport(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == gen.lib.NameType.MARRIED:
+            if int(name.get_type()) == NameType.MARRIED:
                 married_name = name
                 break
 
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = gen.lib.Name(married_name)
+                name = Name(married_name)
             else:
-                name = gen.lib.Name(primary_name)
+                name = Name(primary_name)
                 surname_obj = name.get_primary_surname()
                 surname_obj.set_surname(maiden_name)
         else:
-            name = gen.lib.Name(primary_name)
+            name = Name(primary_name)
         name.set_display_as(self.name_format)
         return _nd.display_name(name)
 
@@ -1077,13 +1077,13 @@ class WebCalReport(Report):
 
             family_list = person.get_family_handle_list()
             birth_ref = person.get_birth_ref()
-            birth_date = gen.lib.Date.EMPTY
+            birth_date = Date.EMPTY
             if birth_ref:
                 birth_event = db.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
 
             # determine birthday information???
-            if (self.birthday and birth_date is not gen.lib.Date.EMPTY and birth_date.is_valid()):
+            if (self.birthday and birth_date is not Date.EMPTY and birth_date.is_valid()):
 
                 year = birth_date.get_year() or this_year
                 month = birth_date.get_month()
@@ -1091,11 +1091,11 @@ class WebCalReport(Report):
 
                 # date to figure if someone is still alive
                 # current year of calendar, month nd day is their birth month and birth day 
-                prob_alive_date = gen.lib.Date(this_year, month, day)
+                prob_alive_date = Date(this_year, month, day)
 
                 # add some things to handle maiden name:
                 father_surname = None # husband, actually
-                if person.gender == gen.lib.Person.FEMALE:
+                if person.gender == Person.FEMALE:
 
                     # get husband's last name:
                     if self.maiden_name in ['spouse_first', 'spouse_last']: 
@@ -1146,13 +1146,13 @@ class WebCalReport(Report):
                         marriage_event = get_marriage_event(db, fam)
                         if marriage_event:
                             event_date = marriage_event.get_date_object()
-                            if event_date is not gen.lib.Date.EMPTY and event_date.is_valid():
+                            if event_date is not Date.EMPTY and event_date.is_valid():
                                 year = event_date.get_year()
                                 month = event_date.get_month()
                                 day = event_date.get_day()
 
                                 # date to figure if someone is still alive
-                                prob_alive_date = gen.lib.Date(this_year, month, day)
+                                prob_alive_date = Date(this_year, month, day)
 
                                 if self.link_to_narweb:
                                     spouse_name = str(Html("a", spouse_name,
@@ -1652,7 +1652,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     # birthday/ anniversary on this day
     # Date.EMPTY signifies an incomplete date for an event. See add_day_item()
     bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
-                       if d != gen.lib.Date.EMPTY]
+                       if d != Date.EMPTY]
 
     # number of years have to be at least zero
     bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list

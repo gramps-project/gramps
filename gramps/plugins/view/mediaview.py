@@ -59,7 +59,7 @@ from gen.utils.file import (media_path, relative_path, media_path_full,
 from gen.utils.db import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
 import gen.mime
-import gen.lib
+from gramps.gen.lib import MediaObject
 from gen.db import DbTxn
 from gui.editors import EditMedia, DeleteMediaQuery
 from gen.errors import WindowActiveError
@@ -189,7 +189,7 @@ class MediaView(ListView):
                 mime = gen.mime.get_type(name)
                 if not gen.mime.is_valid_type(mime):
                     return
-                photo = gen.lib.MediaObject()
+                photo = MediaObject()
                 base_dir = unicode(media_path(self.dbstate.db))
                 if os.path.exists(base_dir):
                     name = relative_path(name, base_dir)
@@ -335,7 +335,7 @@ class MediaView(ListView):
     def add(self, obj):
         """Add a new media object to the media list"""
         try:
-            EditMedia(self.dbstate, self.uistate, [], gen.lib.MediaObject())
+            EditMedia(self.dbstate, self.uistate, [], MediaObject())
         except WindowActiveError:
             pass
 

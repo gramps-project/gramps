@@ -40,7 +40,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui import widgets
-import gen.lib
+from gramps.gen.lib import Event, EventType
 from gui.filters import build_filter_model
 from gui.filters.sidebar import SidebarFilter
 from gen.filters import GenericFilterFactory, rules
@@ -60,8 +60,8 @@ class EventSidebarFilter(SidebarFilter):
         self.clicked_func = clicked
         self.filter_id = widgets.BasicEntry()
         self.filter_desc = widgets.BasicEntry()
-        self.filter_event = gen.lib.Event()
-        self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
+        self.filter_event = Event()
+        self.filter_event.set_type((EventType.CUSTOM, u''))
         self.etype = Gtk.ComboBox(has_entry=True)
        
         self.event_menu = widgets.MonitoredDataType(

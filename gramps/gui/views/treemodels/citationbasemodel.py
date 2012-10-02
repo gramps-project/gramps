@@ -40,7 +40,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-import gen.lib
+from gramps.gen.lib import Citation
 from gen.utils.string import confidence
 from gen.config import config
 
@@ -81,7 +81,7 @@ class CitationBaseModel(object):
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
-            citation = gen.lib.Citation()
+            citation = Citation()
             citation.unserialize(data)
             date_str =  get_date(citation)
             if date_str != "":
@@ -94,7 +94,7 @@ class CitationBaseModel(object):
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
-            citation = gen.lib.Citation()
+            citation = Citation()
             citation.unserialize(data)
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):

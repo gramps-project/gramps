@@ -31,7 +31,7 @@ from gen.simple import SimpleAccess, SimpleDoc
 from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
 from gen.ggettext import ngettext
-import gen.lib
+from gramps.gen.lib import Person
 from gen.filters.rules import Rule
 from gen.filters import GenericFilterFactory
 
@@ -97,7 +97,7 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    if isinstance(person, gen.lib.Person):
+    if isinstance(person, Person):
         surname = sdb.surname(person)
         rsurname = person.get_primary_name().get_group_name()
     else:
@@ -139,7 +139,7 @@ def run_given(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    if isinstance(person, gen.lib.Person):
+    if isinstance(person, Person):
         rgivenname = person.get_primary_name().get_first_name()
     else:
         rgivenname = person

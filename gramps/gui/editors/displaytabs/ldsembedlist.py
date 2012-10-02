@@ -33,7 +33,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import LdsOrd
 from gen.errors import WindowActiveError
 from ldsmodel import LdsModel
 from embeddedlist import EmbeddedList
@@ -76,7 +76,7 @@ class LdsEmbedList(EmbeddedList):
         return EditLdsOrd
 
     def new_data(self):
-        return gen.lib.LdsOrd()
+        return LdsOrd()
     
     def get_data(self):
         return self.data

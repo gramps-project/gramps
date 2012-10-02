@@ -64,7 +64,7 @@ from gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from gui.display import display_help
 from gen.errors import WindowActiveError
 from gen.ggettext import sgettext as _
-import gen.lib
+from gramps.gen.lib import AttributeType, EventType, FamilyRelType, NameOriginType, NameType, NoteType
 from gen.filters import rules
 from gui.autocomp import StandardCustomSelector, fill_entry
 from gui.selectors import SelectorFactory
@@ -93,17 +93,17 @@ _TITLES = {
 }
 
 _name2typeclass = {
-    _('Personal event:')     : gen.lib.EventType,
-    _('Family event:')       : gen.lib.EventType,
-    _('Event type:')         : gen.lib.EventType,
-    _('Personal attribute:') : gen.lib.AttributeType,
-    _('Family attribute:')   : gen.lib.AttributeType,
-    _('Event attribute:')    : gen.lib.AttributeType,
-    _('Media attribute:')    : gen.lib.AttributeType,
-    _('Relationship type:')  : gen.lib.FamilyRelType,
-    _('Note type:')          : gen.lib.NoteType,
-    _('Name type:')          : gen.lib.NameType,
-    _('Surname origin type:'): gen.lib.NameOriginType,
+    _('Personal event:')     : EventType,
+    _('Family event:')       : EventType,
+    _('Event type:')         : EventType,
+    _('Personal attribute:') : AttributeType,
+    _('Family attribute:')   : AttributeType,
+    _('Event attribute:')    : AttributeType,
+    _('Media attribute:')    : AttributeType,
+    _('Relationship type:')  : FamilyRelType,
+    _('Note type:')          : NoteType,
+    _('Name type:')          : NameType,
+    _('Surname origin type:'): NameOriginType,
 }
 
 #-------------------------------------------------------------------------

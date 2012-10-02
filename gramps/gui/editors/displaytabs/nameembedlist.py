@@ -41,7 +41,7 @@ from gen.ggettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Name, Surname
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from namemodel import NameModel
@@ -139,7 +139,7 @@ class NameEmbedList(GroupEmbeddedList):
         remove = [altname for altname in self.data if altname.is_equal(name)]
         map(self.data.remove, remove)
         #only non empty name should move to alternative names
-        if not name.is_equal(gen.lib.Name()):
+        if not name.is_equal(Name()):
             self.data.append(pname)
         self.rebuild()
         self.callback()
@@ -152,9 +152,9 @@ class NameEmbedList(GroupEmbeddedList):
         self.tree.expand_all()
 
     def add_button_clicked(self, obj):
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         try:
             from gui.editors import EditName

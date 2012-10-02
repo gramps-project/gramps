@@ -32,10 +32,10 @@ Spanish-specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
-MALE = gen.lib.Person.MALE
-FEMALE = gen.lib.Person.FEMALE
-UNKNOWN = gen.lib.Person.UNKNOWN
+from gramps.gen.lib import Person
+MALE = Person.MALE
+FEMALE = Person.FEMALE
+UNKNOWN = Person.UNKNOWN
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -705,17 +705,17 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 rel_str = "%s o %s" % (self._get_male_cousin(Ga-1, 0, step=step, inlaw=inlaw),
                                        self._get_female_cousin(Ga-1, 0, step=step, inlaw=inlaw))
         elif Ga == Gb+1:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_distant_uncle(Gb, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = self._get_distant_aunt(Gb, step, inlaw)
             else:
                 rel_str = "%s o %s" % (self._get_distant_uncle(Gb, 0, step=step, inlaw=inlaw),
                                        self._get_distant_aunt(Gb, 0, step=step, inlaw=inlaw))
         elif Ga+1 == Gb:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_distant_nephew(Gb-1, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = self._get_distant_niece(Gb-1, step, inlaw)
             else:
                 rel_str = "%s o %s" % (self._get_distant_nephew(Gb-1, 0, step=step, inlaw=inlaw),

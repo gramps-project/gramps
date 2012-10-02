@@ -34,7 +34,7 @@ Norwegian-Specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('sønn')
         else:
             result.append('datter')
@@ -133,7 +133,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('mor')
         if level > 1:
             result.append(self.get_cousin(level))
-        elif person == gen.lib.Person.MALE:
+        elif person == Person.MALE:
             result.append('fetter')
         else:
             result.append('kusine')
@@ -162,7 +162,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('sønn')
             else:
                 result.append('datter')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('sønn')
         else:
             result.append('datter')
@@ -208,12 +208,12 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person == gen.lib.Person.MALE:
+            if person == Person.MALE:
                 result.append('sønn')
             else:
                 result.append('datter')
         else:
-            if person == gen.lib.Person.MALE:
+            if person == Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')
@@ -231,7 +231,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person, firstRel), common)
         elif len(firstRel) == 1:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 return (self.get_ancestors_brother(secondRel), common)
             else:
                 return (self.get_ancestors_sister(secondRel), common)

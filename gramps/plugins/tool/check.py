@@ -61,7 +61,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Citation, Event, EventType, Family, MediaObject, Name, Note, Person, Place, Repository, Source, StyledText, Tag
 from gen.db import DbTxn
 from gen.config import config
 from gen.utils.id import create_id
@@ -229,7 +229,7 @@ class CheckIntegrity(object):
         self.empty_objects = defaultdict(list)
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'),'')
-        self.explanation = gen.lib.Note(_('Objects referenced by this note '
+        self.explanation = Note(_('Objects referenced by this note '
             'were referenced but missing so that is why they have been created '
             'when you ran Check and Repair on %s.') %
             time.strftime('%x %X', time.localtime()))
@@ -265,10 +265,10 @@ class CheckIntegrity(object):
             p_changed = False
             name = person.get_primary_name()
             if name.get_sort_as() in deleted_name_formats:
-                name.set_sort_as(gen.lib.Name.DEF)
+                name.set_sort_as(Name.DEF)
                 p_changed = True
             if name.get_display_as() in deleted_name_formats:
-                name.set_display_as(gen.lib.Name.DEF)
+                name.set_display_as(Name.DEF)
                 p_changed = True
             if p_changed:
                 person.set_primary_name(name)
@@ -277,10 +277,10 @@ class CheckIntegrity(object):
             name_list = []
             for name in person.get_alternate_names():
                 if name.get_sort_as() in deleted_name_formats:
-                    name.set_sort_as(gen.lib.Name.DEF)
+                    name.set_sort_as(Name.DEF)
                     a_changed = True
                 if name.get_display_as() in deleted_name_formats:
-                    name.set_display_as(gen.lib.Name.DEF)
+                    name.set_display_as(Name.DEF)
                     a_changed = True
                 name_list.append(name)
             if a_changed:
@@ -310,7 +310,7 @@ class CheckIntegrity(object):
 
         for handle in self.db.person_map.keys():
             value = self.db.person_map[handle]
-            p = gen.lib.Person(value)
+            p = Person(value)
             splist = p.get_family_handle_list()
             if len(splist) != len(set(splist)):
                 new_list = []
@@ -380,7 +380,7 @@ class CheckIntegrity(object):
                     self.db.note_map[handle][1])
                 error_count += 1
                 # Commit only if ctrl char found.
-                note.set_styledtext(gen.lib.StyledText(text=new_text, 
+                note.set_styledtext(StyledText(text=new_text, 
                                                        tags=stext.get_tags()))
                 self.db.commit_note(note, self.trans)
             self.progress.step()
@@ -742,15 +742,15 @@ class CheckIntegrity(object):
         CHANGE_REPOS  = 7
         CHANGE_NOTE   = 5
         
-        empty_person_data = gen.lib.Person().serialize()
-        empty_family_data = gen.lib.Family().serialize()
-        empty_event_data = gen.lib.Event().serialize()
-        empty_source_data = gen.lib.Source().serialize()
-        empty_citation_data = gen.lib.Citation().serialize()
-        empty_place_data = gen.lib.Place().serialize()
-        empty_media_data = gen.lib.MediaObject().serialize()
-        empty_repos_data = gen.lib.Repository().serialize()
-        empty_note_data = gen.lib.Note().serialize()
+        empty_person_data = Person().serialize()
+        empty_family_data = Family().serialize()
+        empty_event_data = Event().serialize()
+        empty_source_data = Source().serialize()
+        empty_citation_data = Citation().serialize()
+        empty_place_data = Place().serialize()
+        empty_media_data = MediaObject().serialize()
+        empty_repos_data = Repository().serialize()
+        empty_note_data = Note().serialize()
 
         _db = self.db
         def _empty(empty, flag):
@@ -943,8 +943,8 @@ class CheckIntegrity(object):
             else:
                 mgender = None
 
-            if (fgender == gen.lib.Person.FEMALE 
-                    or mgender == gen.lib.Person.MALE) and fgender != mgender:
+            if (fgender == Person.FEMALE 
+                    or mgender == Person.MALE) and fgender != mgender:
                 # swap. note: (at most) one handle may be None
                 logging.warning('    FAIL: the family "%s" has a father=female or '
                     ' mother=male in a different sex family' % family.gramps_id)
@@ -981,7 +981,7 @@ class CheckIntegrity(object):
                     # This is tested by TestcaseGenerator person "Broken11"
                     make_unknown(birth_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
-                            type=gen.lib.EventType.BIRTH)
+                            type=EventType.BIRTH)
                     logging.warning('    FAIL: the person "%(gid)s" refers to '
                                     'a birth event "%(hand)s" which does not '
                                     'exist in the database' % 
@@ -989,7 +989,7 @@ class CheckIntegrity(object):
                                      'hand' : birth_handle})
                     self.invalid_events.add(key)
                 else:
-                    if int(birth.get_type()) != gen.lib.EventType.BIRTH:
+                    if int(birth.get_type()) != EventType.BIRTH:
                         # Birth event was not of the type "Birth"
                         # This is tested by TestcaseGenerator person "Broken14"
                         logging.warning('    FAIL: the person "%(gid)s" refers '
@@ -997,7 +997,7 @@ class CheckIntegrity(object):
                                         '"%(type)s" instead of Birth' % 
                                         {'gid' : person.gramps_id,
                                          'type' : int(birth.get_type())})
-                        birth.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
+                        birth.set_type(EventType(EventType.BIRTH))
                         self.db.commit_event(birth, self.trans)
                         self.invalid_birth_events.add(key)
             if none_handle:
@@ -1024,10 +1024,10 @@ class CheckIntegrity(object):
                                      'hand' : death_handle})
                     make_unknown(death_handle, self.explanation.handle,
                             self.class_event, self.commit_event, self.trans,
-                            type=gen.lib.EventType.DEATH)
+                            type=EventType.DEATH)
                     self.invalid_events.add(key)
                 else:
-                    if int(death.get_type()) != gen.lib.EventType.DEATH:
+                    if int(death.get_type()) != EventType.DEATH:
                         # Death event was not of the type "Death"
                         # This is tested by TestcaseGenerator person "Broken15"
                         logging.warning('    FAIL: the person "%(gid)s" refers '
@@ -1035,7 +1035,7 @@ class CheckIntegrity(object):
                                         '"%(type)s" instead of Death' % 
                                         {'gid' : person.gramps_id,
                                          'type' : int(death.get_type())})
-                        death.set_type(gen.lib.EventType(gen.lib.EventType.DEATH))
+                        death.set_type(EventType(EventType.DEATH))
                         self.db.commit_event(death, self.trans)
                         self.invalid_death_events.add(key)
             if none_handle:
@@ -1293,7 +1293,7 @@ class CheckIntegrity(object):
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = gen.lib.Person()
+            person = Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1309,7 +1309,7 @@ class CheckIntegrity(object):
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = gen.lib.Family()
+            family = Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1325,7 +1325,7 @@ class CheckIntegrity(object):
         for handle in self.db.place_map.keys():
             self.progress.step()
             info = self.db.place_map[handle]
-            place = gen.lib.Place()
+            place = Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1341,7 +1341,7 @@ class CheckIntegrity(object):
         for handle in self.db.citation_map.keys():
             self.progress.step()
             info = self.db.citation_map[handle]
-            citation = gen.lib.Citation()
+            citation = Citation()
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1357,7 +1357,7 @@ class CheckIntegrity(object):
         for handle in self.db.repository_map.keys():
             self.progress.step()
             info = self.db.repository_map[handle]
-            repository = gen.lib.Repository()
+            repository = Repository()
             repository.unserialize(info)
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1373,7 +1373,7 @@ class CheckIntegrity(object):
         for handle in self.db.media_map.keys():
             self.progress.step()
             info = self.db.media_map[handle]
-            obj = gen.lib.MediaObject()
+            obj = MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1389,7 +1389,7 @@ class CheckIntegrity(object):
         for handle in self.db.event_map.keys():
             self.progress.step()
             info = self.db.event_map[handle]
-            event = gen.lib.Event()
+            event = Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1461,7 +1461,7 @@ class CheckIntegrity(object):
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = gen.lib.Person()
+            person = Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1477,7 +1477,7 @@ class CheckIntegrity(object):
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = gen.lib.Family()
+            family = Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1493,7 +1493,7 @@ class CheckIntegrity(object):
         for handle in self.db.place_map.keys():
             self.progress.step()
             info = self.db.place_map[handle]
-            place = gen.lib.Place()
+            place = Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1509,7 +1509,7 @@ class CheckIntegrity(object):
         for handle in self.db.event_map.keys():
             self.progress.step()
             info = self.db.event_map[handle]
-            event = gen.lib.Event()
+            event = Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1525,7 +1525,7 @@ class CheckIntegrity(object):
         for handle in self.db.citation_map.keys():
             self.progress.step()
             info = self.db.citation_map[handle]
-            citation = gen.lib.Citation()
+            citation = Citation()
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1541,7 +1541,7 @@ class CheckIntegrity(object):
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
-            source = gen.lib.Source()
+            source = Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1597,7 +1597,7 @@ class CheckIntegrity(object):
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = gen.lib.Person()
+            person = Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1613,7 +1613,7 @@ class CheckIntegrity(object):
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = gen.lib.Family()
+            family = Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1629,7 +1629,7 @@ class CheckIntegrity(object):
         for handle in self.db.place_map.keys():
             self.progress.step()
             info = self.db.place_map[handle]
-            place = gen.lib.Place()
+            place = Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1645,7 +1645,7 @@ class CheckIntegrity(object):
         for handle in self.db.citation_map.keys():
             self.progress.step()
             info = self.db.citation_map[handle]
-            citation = gen.lib.Citation()
+            citation = Citation()
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1661,7 +1661,7 @@ class CheckIntegrity(object):
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
-            source = gen.lib.Source()
+            source = Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1677,7 +1677,7 @@ class CheckIntegrity(object):
         for handle in self.db.media_map.keys():
             self.progress.step()
             info = self.db.media_map[handle]
-            obj = gen.lib.MediaObject()
+            obj = MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1693,7 +1693,7 @@ class CheckIntegrity(object):
         for handle in self.db.event_map.keys():
             self.progress.step()
             info = self.db.event_map[handle]
-            event = gen.lib.Event()
+            event = Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1709,7 +1709,7 @@ class CheckIntegrity(object):
         for handle in self.db.repository_map.keys():
             self.progress.step()
             info = self.db.repository_map[handle]
-            repo = gen.lib.Repository()
+            repo = Repository()
             repo.unserialize(info)
             handle_list = repo.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1749,7 +1749,7 @@ class CheckIntegrity(object):
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = gen.lib.Person()
+            person = Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1765,7 +1765,7 @@ class CheckIntegrity(object):
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = gen.lib.Family()
+            family = Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1781,7 +1781,7 @@ class CheckIntegrity(object):
         for handle in self.db.media_map.keys():
             self.progress.step()
             info = self.db.media_map[handle]
-            obj = gen.lib.MediaObject()
+            obj = MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1797,7 +1797,7 @@ class CheckIntegrity(object):
         for handle in self.db.note_map.keys():
             self.progress.step()
             info = self.db.note_map[handle]
-            note = gen.lib.Note()
+            note = Note()
             note.unserialize(info)
             handle_list = note.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1818,7 +1818,7 @@ class CheckIntegrity(object):
             logging.info('   OK: no tag reference problems found')
 
     def class_person(self, handle):
-        person = gen.lib.Person()
+        person = Person()
         person.set_handle(handle)
         return person
 
@@ -1826,7 +1826,7 @@ class CheckIntegrity(object):
         self.db.add_person(person, trans, set_gid=True)
 
     def class_family(self, handle):
-        family = gen.lib.Family()
+        family = Family()
         family.set_handle(handle)
         return family
 
@@ -1834,7 +1834,7 @@ class CheckIntegrity(object):
         self.db.add_family(family, trans, set_gid=True)
 
     def class_event(self, handle):
-        event = gen.lib.Event()
+        event = Event()
         event.set_handle(handle)
         return event
 
@@ -1842,7 +1842,7 @@ class CheckIntegrity(object):
         self.db.add_event(event, trans, set_gid=True)
 
     def class_place(self, handle):
-        place = gen.lib.Place()
+        place = Place()
         place.set_handle(handle)
         return place
 
@@ -1850,7 +1850,7 @@ class CheckIntegrity(object):
         self.db.add_place(place, trans, set_gid=True)
 
     def class_source(self, handle):
-        source = gen.lib.Source()
+        source = Source()
         source.set_handle(handle)
         return source
 
@@ -1858,7 +1858,7 @@ class CheckIntegrity(object):
         self.db.add_source(source, trans, set_gid=True)
 
     def class_citation(self, handle):
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_handle(handle)
         return citation
 
@@ -1866,7 +1866,7 @@ class CheckIntegrity(object):
         self.db.add_citation(citation, trans, set_gid=True)
 
     def class_repo(self, handle):
-        repo = gen.lib.Repository()
+        repo = Repository()
         repo.set_handle(handle)
         return repo
 
@@ -1874,7 +1874,7 @@ class CheckIntegrity(object):
         self.db.add_repository(repo, trans, set_gid=True)
 
     def class_object(self, handle):
-        object = gen.lib.MediaObject()
+        object = MediaObject()
         object.set_handle(handle)
         return object
 
@@ -1882,7 +1882,7 @@ class CheckIntegrity(object):
         self.db.add_object(object, trans, set_gid=True)
 
     def class_note(self, handle):
-        note = gen.lib.Note()
+        note = Note()
         note.set_handle(handle)
         return note
 
@@ -1890,7 +1890,7 @@ class CheckIntegrity(object):
         self.db.add_note(note, trans, set_gid=True)
 
     def class_tag(self, handle):
-        tag = gen.lib.Tag()
+        tag = Tag()
         tag.set_handle(handle)
         return tag
 

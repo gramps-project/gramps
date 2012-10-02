@@ -40,7 +40,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gen.errors import WindowActiveError
-import gen.lib
+from gramps.gen.lib import Note
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 from notemodel import NoteModel
@@ -127,7 +127,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         If the window already exists (WindowActiveError), we ignore it. 
         This prevents the dialog from coming up twice on the same object.
         """
-        note = gen.lib.Note()
+        note = Note()
         if self.notetype :
             note.set_type(self.notetype)
         try:

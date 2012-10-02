@@ -56,7 +56,7 @@ from gen.utils.file import get_unicode_path_from_file_chooser
 from gen.utils.alive import update_constants
 from gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
                                get_translations, get_keyword_from_translation)
-import gen.lib
+from gramps.gen.lib import Date, FamilyRelType
 from gen.lib import Name, Surname, NameOriginType
 from gui.managedwindow import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
@@ -982,7 +982,7 @@ class GrampsPreferences(ConfigureDialog):
         
         # Calendar format on report:
         obox = Gtk.ComboBoxText()
-        map(obox.append_text, gen.lib.Date.ui_calendar_names)
+        map(obox.append_text, Date.ui_calendar_names)
         active = config.get('preferences.calendar-format-report')
         if active >= len(formats):
             active = 0
@@ -1008,7 +1008,7 @@ class GrampsPreferences(ConfigureDialog):
         
         # Default Family Relationship
         obox = Gtk.ComboBoxText()
-        formats = gen.lib.FamilyRelType().get_standard_names()
+        formats = FamilyRelType().get_standard_names()
         map(obox.append_text, formats)
         obox.set_active(config.get('preferences.family-relation-type'))
         obox.connect('changed', 

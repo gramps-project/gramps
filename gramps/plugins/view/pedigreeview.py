@@ -53,7 +53,7 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import ChildRef, ChildRefType, Family
 from gui.views.navigationview import NavigationView
 from gui.editors import FilterEditor
 from gen.display.name import displayer as name_displayer
@@ -1272,8 +1272,8 @@ class PedigreeView(NavigationView):
         if family_handle:   # one parent already exists -> Edit current family
             family = self.dbstate.db.get_family_from_handle(family_handle)
         else:   # no parents -> create new family
-            family = gen.lib.Family()
-            childref = gen.lib.ChildRef()
+            family = Family()
+            childref = ChildRef()
             childref.set_reference_handle(person_handle)
             family.add_child_ref(childref)
         try:
@@ -1505,8 +1505,8 @@ class PedigreeView(NavigationView):
         if family:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
-                    mrel = child_ref.mrel == gen.lib.ChildRefType.BIRTH
-                    frel = child_ref.frel == gen.lib.ChildRefType.BIRTH
+                    mrel = child_ref.mrel == ChildRefType.BIRTH
+                    frel = child_ref.frel == ChildRefType.BIRTH
                     lst[index] = [person, val, family, alive, None]
                     father_handle = family.get_father_handle()
                     if father_handle:

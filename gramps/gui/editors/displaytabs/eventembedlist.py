@@ -35,7 +35,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from groupembeddedlist import GroupEmbeddedList
@@ -198,8 +198,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def default_types(self):
         return [
-            gen.lib.EventType(gen.lib.EventType.MARRIAGE),
-            gen.lib.EventType(gen.lib.EventType.DIVORCE),
+            EventType(EventType.MARRIAGE),
+            EventType(EventType.DIVORCE),
             ]
 
     def default_type(self):
@@ -215,16 +215,16 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         _std_types = self.default_types()
         for etype in _std_types:
             if etype not in type_list:
-                return gen.lib.EventType(etype)
+                return EventType(etype)
         return _std_types[0]
 
     def default_role(self):
-        return gen.lib.EventRoleType(gen.lib.EventRoleType.FAMILY)
+        return EventRoleType(EventRoleType.FAMILY)
 
     def add_button_clicked(self, obj):
         try:
-            ref = gen.lib.EventRef()
-            event = gen.lib.Event()
+            ref = EventRef()
+            event = Event()
             ref.set_role(self.default_role())
             event.set_type(self.default_type())
             self.get_ref_editor()(
@@ -250,7 +250,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         event = sel.run()
         if event:
             try:
-                ref = gen.lib.EventRef()
+                ref = EventRef()
                 ref.set_role(self.default_role())
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
@@ -347,7 +347,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         try:
-            ref = gen.lib.EventRef()
+            ref = EventRef()
             event = self.dbstate.db.get_event_from_handle(obj)
             ref.set_role(self.default_role())
             self.get_ref_editor()(

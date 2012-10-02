@@ -46,7 +46,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Place
 from gui.views.listview import ListView
 from gui.widgets.menuitem import add_menuitem
 from gen.errors import WindowActiveError
@@ -361,7 +361,7 @@ class PlaceBaseView(ListView):
 
     def add(self, obj):
         try:
-            EditPlace(self.dbstate, self.uistate, [], gen.lib.Place())
+            EditPlace(self.dbstate, self.uistate, [], Place())
         except WindowActiveError:
             pass
 

@@ -54,7 +54,7 @@ _LOG = logging.getLogger("GeoGraphy.geofamily")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventRoleType, EventType
 from gen.config import config
 from gramps.gen.datehandler import displayer
 from gen.display.name import displayer as _nd
@@ -208,7 +208,7 @@ class GeoFamily(GeoGraphyView):
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
                         descr = place.get_title()
-                        evt = gen.lib.EventType(event.get_type())
+                        evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
                                         'eventtype': evt,
                                         'name': _nd.display(person)}
@@ -249,7 +249,7 @@ class GeoFamily(GeoGraphyView):
                                         latitude, longitude = conv_lat_lon(latitude,
                                                                            longitude, "D.D8")
                                         descr = place.get_title()
-                                        evt = gen.lib.EventType(event.get_type())
+                                        evt = EventType(event.get_type())
                                         (father_name, mother_name) = self._get_father_and_mother_name(event)
                                         descr1 = "%s : %s - " % ( evt, father_name )
                                         descr1 = "%s%s" % ( descr1, mother_name )
@@ -428,9 +428,9 @@ class GeoFamily(GeoGraphyView):
             date = displayer.display(evt.get_date_object())
             if date == "":
                 date = _("Unknown")
-            if ( mark[5] == gen.lib.EventRoleType.PRIMARY ):
+            if ( mark[5] == EventRoleType.PRIMARY ):
                 message = "(%s) %s : %s" % ( date, mark[7], mark[1] )
-            elif ( mark[5] == gen.lib.EventRoleType.FAMILY ):
+            elif ( mark[5] == EventRoleType.FAMILY ):
                 evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
                 (father_name, mother_name) = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % ( date, mark[7], father_name, mother_name )

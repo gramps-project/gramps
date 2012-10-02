@@ -29,7 +29,7 @@ from collections import defaultdict
 
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
-import gen.lib
+from gramps.gen.lib import ChildRefType
 
 class AgeStatsGramplet(Gramplet):
 
@@ -125,11 +125,11 @@ class AgeStatsGramplet(Gramplet):
                                  ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
                                 if ref.ref == p.handle] # get first, if more than one
-                    if childrel[0][0] == gen.lib.ChildRefType.BIRTH:
+                    if childrel[0][0] == ChildRefType.BIRTH:
                         m_handle = family.get_mother_handle()
                     else:
                         m_handle = None
-                    if childrel[0][1] == gen.lib.ChildRefType.BIRTH:
+                    if childrel[0][1] == ChildRefType.BIRTH:
                         f_handle = family.get_father_handle()
                     else:
                         f_handle = None

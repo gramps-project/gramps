@@ -55,7 +55,7 @@ _LOG = logging.getLogger("GeoGraphy.geoperson")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventRoleType, EventType
 from gen.config import config
 from gramps.gen.datehandler import displayer
 from gen.display.name import displayer as _nd
@@ -324,7 +324,7 @@ class GeoPerson(GeoGraphyView):
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
                         descr = place.get_title()
-                        evt = gen.lib.EventType(event.get_type())
+                        evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
                                         'eventtype': evt,
                                         'name': _nd.display(person)}
@@ -374,7 +374,7 @@ class GeoPerson(GeoGraphyView):
                                         latitude, longitude = conv_lat_lon(latitude,
                                                                            longitude, "D.D8")
                                         descr = place.get_title()
-                                        evt = gen.lib.EventType(event.get_type())
+                                        evt = EventType(event.get_type())
                                         eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
                                                   str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
                                                   str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
@@ -453,9 +453,9 @@ class GeoPerson(GeoGraphyView):
             date = displayer.display(evt.get_date_object())
             if date == "":
                 date = _("Unknown")
-            if ( mark[11] == gen.lib.EventRoleType.PRIMARY ):
+            if ( mark[11] == EventRoleType.PRIMARY ):
                 message = "(%s) %s : %s" % ( date, mark[2], mark[1] )
-            elif ( mark[11] == gen.lib.EventRoleType.FAMILY ):
+            elif ( mark[11] == EventRoleType.FAMILY ):
                 (father_name, mother_name) = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % ( date, mark[7], father_name, mother_name )
             else:

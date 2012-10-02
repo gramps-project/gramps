@@ -53,7 +53,7 @@ from gen.plug.report import utils
 from gen.plug.report import MenuReportOptions
 from gen.config import config
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-import gen.lib
+from gramps.gen.lib import EventType
 
 #------------------------------------------------------------------------
 #
@@ -307,7 +307,7 @@ class FanChart(Report):
             b = str(birth.get_date_object().to_calendar(self.calendar).get_year())
             if b == 0:
                 b = ""
-            elif birth.get_type() != gen.lib.EventType.BIRTH:
+            elif birth.get_type() != EventType.BIRTH:
                 b += '*'
 
         death = get_death_or_fallback(self.database, person)
@@ -316,7 +316,7 @@ class FanChart(Report):
             d = str(death.get_date_object().to_calendar(self.calendar).get_year())
             if d == 0:
                 d = ""
-            elif death.get_type() != gen.lib.EventType.DEATH:
+            elif death.get_type() != EventType.DEATH:
                 d += '*'
         if b and d:
             val = "%s - %s" % (str(b),str(d))

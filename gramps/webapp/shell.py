@@ -19,7 +19,7 @@ from webapp.reports import import_file
 from webapp.libdjango import DjangoInterface, totime, todate
 from gen.datehandler import displayer, parser
 from webapp.utils import StyledNoteFormatter, parse_styled_text
-import gen.lib
+from gramps.gen.lib import StyledText
 import cli.user
 
 db = DbDjango()
@@ -43,4 +43,4 @@ dp = parser.parse
 #print html_text
 #print parse_styled_text(html_text)
 
-##st = gen.lib.StyledText(note.text, dji.get_note_markup(note))
+##st = StyledText(note.text, dji.get_note_markup(note))

@@ -34,7 +34,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Url
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from webmodel import WebModel
@@ -83,7 +83,7 @@ class WebEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         from gui.editors import EditUrl
-        url = gen.lib.Url()
+        url = Url()
         try:
             EditUrl(self.dbstate, self.uistate, self.track, 
                     '', url, self.add_callback)

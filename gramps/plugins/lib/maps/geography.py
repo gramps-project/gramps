@@ -49,7 +49,7 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType, Place
 from gen.display.name import displayer as _nd
 from gui.views.navigationview import NavigationView
 from gen.utils.libformatting import FormattingHelper
@@ -164,9 +164,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         else:
             default_image = self.geo_altmap
         self.geo_othermap = {}
-        for ident in ( gen.lib.EventType.BIRTH,
-                    gen.lib.EventType.DEATH,
-                    gen.lib.EventType.MARRIAGE ):
+        for ident in ( EventType.BIRTH,
+                    EventType.DEATH,
+                    EventType.MARRIAGE ):
             path = os.path.join(ROOT_DIR, "images", "48x48",
                                 (constants.ICONS.get(int(ident), default_image) + '.png' ))
             pathu = path.encode(sys.getfilesystemencoding())
@@ -864,7 +864,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         on the map
         """
         self.select_fct.close()
-        new_place = gen.lib.Place()
+        new_place = Place()
         new_place.set_latitude(str(plat))
         new_place.set_longitude(str(plon))
         loc = new_place.get_main_location()

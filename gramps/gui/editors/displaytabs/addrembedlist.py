@@ -37,7 +37,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Address
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from addressmodel import AddressModel
@@ -107,7 +107,7 @@ class AddrEmbedList(EmbeddedList):
         already exists (WindowActiveError), we ignore it. This prevents 
         the dialog from coming up twice on the same object.
         """
-        addr = gen.lib.Address()
+        addr = Address()
         try:
             from gui.editors import EditAddress
             EditAddress(self.dbstate, self.uistate, self.track, 

@@ -43,7 +43,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gen.errors import WindowActiveError
-import gen.lib
+from gramps.gen.lib import Citation, Source
 from gen.lib import Source, Citation
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
@@ -136,7 +136,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         try:
             from gui.editors import EditCitation
             EditCitation(self.dbstate, self.uistate, self.track,
-                         gen.lib.Citation(), gen.lib.Source(),
+                         Citation(), Source(),
                          self.add_callback, self.callertitle)
         except WindowActiveError:
             pass
@@ -164,7 +164,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                 try:
                     from gui.editors import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
-                                 gen.lib.Citation(), object, 
+                                 Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:
@@ -267,7 +267,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                 try:
                     from gui.editors import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
-                                 gen.lib.Citation(), object, 
+                                 Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:

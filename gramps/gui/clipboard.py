@@ -48,7 +48,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gen.config import config
-import gen.lib
+from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -491,7 +491,7 @@ class ClipCitation(ClipHandleWrapper):
                 notelist = map(self._db.get_note_from_handle, 
                                citation.get_note_list())
                 srctxtlist = [note for note in notelist 
-                        if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
+                        if note.get_type() == NoteType.SOURCE_TEXT]
                 page = citation.get_page()
                 if not page:
                     page = _('not available|NA')

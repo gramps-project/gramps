@@ -46,7 +46,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Event
 from gui.views.listview import ListView
 from gui.views.treemodels import EventModel
 from gen.errors import WindowActiveError
@@ -228,7 +228,7 @@ class EventView(ListView):
 
     def add(self, obj):
         try:
-            EditEvent(self.dbstate, self.uistate, [], gen.lib.Event())
+            EditEvent(self.dbstate, self.uistate, [], Event())
         except WindowActiveError:
             pass
 

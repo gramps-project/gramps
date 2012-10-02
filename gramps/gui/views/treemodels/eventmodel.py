@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-import gen.lib
+from gramps.gen.lib import Event, EventType
 from gen.utils.db import get_participant_from_event
 from gen.config import config
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
@@ -125,14 +125,14 @@ class EventModel(FlatBaseModel):
             return u''
 
     def column_type(self,data):
-        return unicode(gen.lib.EventType(data[COLUMN_TYPE]))
+        return unicode(EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
         return unicode(data[COLUMN_ID])
 
     def column_date(self,data):
         if data[COLUMN_DATE]:
-            event = gen.lib.Event()
+            event = Event()
             event.unserialize(data)
             date_str =  get_date(event)
             if date_str != "":
@@ -145,7 +145,7 @@ class EventModel(FlatBaseModel):
 
     def sort_date(self,data):
         if data[COLUMN_DATE]:
-            event = gen.lib.Event()
+            event = Event()
             event.unserialize(data)
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):

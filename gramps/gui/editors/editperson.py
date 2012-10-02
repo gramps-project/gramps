@@ -54,7 +54,7 @@ from gen.utils.file import media_path_full
 from gui.thumbnails import get_thumbnail_image
 from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gen.utils.db import get_birth_or_fallback
-import gen.lib
+from gramps.gen.lib import NoteType, Person, Surname
 from gen.db import DbTxn
 from gui import widgets
 from gen.display.name import displayer as name_displayer
@@ -140,9 +140,9 @@ class EditPerson(EditPrimary):
         This is used by the base class (EditPrimary).
 
         """
-        person = gen.lib.Person()
+        person = Person()
         #the editor requires a surname
-        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
         return person
 
@@ -176,7 +176,7 @@ class EditPerson(EditPrimary):
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
                                     self.obj.get_gender () ==
-                                    gen.lib.Person.UNKNOWN)
+                                    Person.UNKNOWN)
 
         self.top = Glade()
 
@@ -324,9 +324,9 @@ class EditPerson(EditPrimary):
             self.obj.set_gender,
             self.obj.get_gender,
             (
-            (_('female'), gen.lib.Person.FEMALE),
-            (_('male'), gen.lib.Person.MALE),
-            (_('unknown'), gen.lib.Person.UNKNOWN)
+            (_('female'), Person.FEMALE),
+            (_('male'), Person.MALE),
+            (_('unknown'), Person.UNKNOWN)
             ),
             self.db.readonly)
 
@@ -484,7 +484,7 @@ class EditPerson(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                notetype=gen.lib.NoteType.PERSON)
+                                notetype=NoteType.PERSON)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 
@@ -717,7 +717,7 @@ class EditPerson(EditPrimary):
         return False
 
     def _check_for_unknown_gender(self):
-        if self.obj.get_gender() == gen.lib.Person.UNKNOWN:
+        if self.obj.get_gender() == Person.UNKNOWN:
             d = GenderDialog(self.window)
             gender = d.run()
             d.destroy()
@@ -744,7 +744,7 @@ class EditPerson(EditPrimary):
 
         if original:
             (female, male, unknown) = _select_gender[self.obj.get_gender()]
-            if male and original.get_gender() != gen.lib.Person.MALE:
+            if male and original.get_gender() != Person.MALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_mother_handle():
@@ -753,7 +753,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_mother_handle(None)
                             temp_family.set_father_handle(self.obj)
-            elif female and original != gen.lib.Person.FEMALE:
+            elif female and original != Person.FEMALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
@@ -762,7 +762,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_father_handle(None)
                             temp_family.set_mother_handle(self.obj)
-            elif unknown and original.get_gender() != gen.lib.Person.UNKNOWN:
+            elif unknown and original.get_gender() != Person.UNKNOWN:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
@@ -803,7 +803,7 @@ class EditPerson(EditPrimary):
                 if len(newlist) != len(name.get_surname_list()):
                     name.set_surname_list(newlist)
             if len(name.get_surname_list()) == 0:
-                name.set_surname_list([gen.lib.Surname()])
+                name.set_surname_list([Surname()])
             try:
                 primind = [surn.get_primary() for surn in name.get_surname_list()].index(True)
             except ValueError:
@@ -1071,6 +1071,6 @@ class GenderDialog(Gtk.MessageDialog):
             _("The gender of the person is currently unknown. "
               "Usually, this is a mistake. Please specify the gender."))
 
-        self.add_button(_('_Male'), gen.lib.Person.MALE)
-        self.add_button(_('_Female'), gen.lib.Person.FEMALE)
-        self.add_button(_('_Unknown'), gen.lib.Person.UNKNOWN)
+        self.add_button(_('_Male'), Person.MALE)
+        self.add_button(_('_Female'), Person.FEMALE)
+        self.add_button(_('_Unknown'), Person.UNKNOWN)

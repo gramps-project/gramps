@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui.widgets import MonitoredMenu
-import gen.lib
+from gramps.gen.lib import Citation
 from gui.filters import build_filter_model
 from gui.filters.sidebar import SidebarFilter
 from gen.filters import GenericFilterFactory, rules
@@ -68,7 +68,7 @@ class CitationSidebarFilter(SidebarFilter):
         for conf_value in sorted(confidence.keys()):
             model.append((confidence[conf_value],))
         self.filter_conf.set_model(model)
-        self.filter_conf.set_active(2)  # gen.lib.Citation.CONF_NORMAL
+        self.filter_conf.set_active(2)  # Citation.CONF_NORMAL
         
         self.filter_note = Gtk.Entry()
 

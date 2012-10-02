@@ -40,7 +40,7 @@ LOG = logging.getLogger(".citation")
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Citation, NoteType, Source
 from gen.db import DbTxn
 from editprimary import EditPrimary
 
@@ -127,7 +127,7 @@ class EditCitation(EditPrimary):
         
         It is used by the base class L{EditPrimary}.
         """
-        return gen.lib.Citation()
+        return Citation()
 
     def get_menu_title(self):
         """
@@ -269,11 +269,11 @@ class EditCitation(EditPrimary):
             self.glade.get_object('confidence'),
             self.obj.set_confidence_level,
             self.obj.get_confidence_level, [
-            (_('Very Low'), gen.lib.Citation.CONF_VERY_LOW),
-            (_('Low'), gen.lib.Citation.CONF_LOW),
-            (_('Normal'), gen.lib.Citation.CONF_NORMAL),
-            (_('High'), gen.lib.Citation.CONF_HIGH),
-            (_('Very High'), gen.lib.Citation.CONF_VERY_HIGH)],
+            (_('Very Low'), Citation.CONF_VERY_LOW),
+            (_('Low'), Citation.CONF_LOW),
+            (_('Normal'), Citation.CONF_NORMAL),
+            (_('High'), Citation.CONF_HIGH),
+            (_('Very High'), Citation.CONF_VERY_HIGH)],
             self.db.readonly)
 
         self.ref_privacy = PrivacyButton(
@@ -319,7 +319,7 @@ class EditCitation(EditPrimary):
 
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.CITATION)
+                    notetype=NoteType.CITATION)
         self._add_tab(notebook_ref, self.comment_tab)
         self.track_ref_for_deletion("comment_tab")
 
@@ -349,7 +349,7 @@ class EditCitation(EditPrimary):
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                                 self.source.get_note_list(), 
                                 self.get_menu_title(),
-                                notetype=gen.lib.NoteType.SOURCE)
+                                notetype=NoteType.SOURCE)
         self._add_tab(notebook_src, self.note_tab)
         self.track_ref_for_deletion("note_tab")
             
@@ -454,7 +454,7 @@ class EditCitation(EditPrimary):
         self.close()
 
     def source_is_empty(self, obj):
-        empty_object = gen.lib.Source()
+        empty_object = Source()
         return cmp(obj.serialize()[1:],
                    empty_object.serialize()[1:]) == 0
     
@@ -513,11 +513,11 @@ class EditCitation(EditPrimary):
             if orig:
                 cmp_obj = orig
             else:
-                cmp_obj = gen.lib.Source()
+                cmp_obj = Source()
             return cmp(cmp_obj.serialize()[1:],
                        self.source.serialize()[1:]) != 0
         else:
-            cmp_obj = gen.lib.Source()
+            cmp_obj = Source()
             return cmp(cmp_obj.serialize()[1:],
                        self.source.serialize()[1:]) != 0
 

@@ -58,7 +58,7 @@ from gen.display.name import displayer as name_displayer
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson, EditFamily
 from gui.widgets.reorderfam import Reorder
-import gen.lib
+from gramps.gen.lib import ChildRef, Family, Name, Person, Surname
 from gramps.gui.utils import color_graph_box, hex_to_rgb, is_right_click
 from gui.ddtargets import DdTargets
 from gen.utils.alive import probably_alive
@@ -76,9 +76,9 @@ def gender_code(is_male):
     Given boolean is_male (means position in FanChart) return code.
     """
     if is_male: 
-        return gen.lib.Person.MALE
+        return Person.MALE
     else:
-        return gen.lib.Person.FEMALE
+        return Person.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -447,7 +447,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             if self.background == BACKGROUND_GRAD_GEN and generation < 0:
                 generation = 0
             color = self.colors[generation % len(self.colors)]
-            if person.gender == gen.lib.Person.MALE:
+            if person.gender == Person.MALE:
                 color = [x*.9 for x in color]
         # now we set transparency data
         if self.filter and not self.filter.match(person.handle, self.dbstate.db):
@@ -1132,9 +1132,9 @@ class FanChartWidget(FanChartBaseWidget):
                 family = self.dbstate.db.get_family_from_handle(family_id)
                 if family:
                     if father:
-                        person_handle = gen.lib.Family.get_father_handle(family)
+                        person_handle = Family.get_father_handle(family)
                     else:
-                        person_handle = gen.lib.Family.get_mother_handle(family)
+                        person_handle = Family.get_mother_handle(family)
                     if person_handle:
                         return self.dbstate.db.get_person_from_handle(person_handle)
         return None
@@ -1858,9 +1858,9 @@ class FanChartGrampsGUI(object):
         """
         Add a person
         """
-        person = gen.lib.Person()
+        person = Person()
         #the editor requires a surname
-        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
@@ -1869,10 +1869,10 @@ class FanChartGrampsGUI(object):
 
     def add_child_to_fam_cb(self, obj, family_handle):
         callback = lambda x: self.callback_add_child(x, family_handle)
-        person = gen.lib.Person()
-        name = gen.lib.Name()
+        person = Person()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         family = self.dbstate.db.get_family_from_handle(family_handle)
         father = self.dbstate.db.get_person_from_handle(
@@ -1887,7 +1887,7 @@ class FanChartGrampsGUI(object):
             pass
    
     def callback_add_child(self, person, family_handle):
-        ref = gen.lib.ChildRef()
+        ref = ChildRef()
         ref.ref = person.get_handle()
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_child_ref(ref)
@@ -1904,13 +1904,13 @@ class FanChartGrampsGUI(object):
         """
         Add a family with the person preset
         """
-        family = gen.lib.Family()
+        family = Family()
         person = self.dbstate.db.get_person_from_handle(person_handle)
 
         if not person:
             return
             
-        if person.gender == gen.lib.Person.MALE:
+        if person.gender == Person.MALE:
             family.set_father_handle(person.handle)
         else:
             family.set_mother_handle(person.handle)
@@ -1921,8 +1921,8 @@ class FanChartGrampsGUI(object):
             pass
 
     def on_add_parents(self, obj, person_handle):
-        family = gen.lib.Family()
-        childref = gen.lib.ChildRef()
+        family = Family()
+        childref = ChildRef()
         childref.set_reference_handle(person_handle)
         family.add_child_ref(childref)
         try:

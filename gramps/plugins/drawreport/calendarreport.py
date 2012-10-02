@@ -52,7 +52,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd, long_days
-import gen.lib
+from gramps.gen.lib import Date, EventRoleType, EventType, Name, NameType, Person, Surname
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libholiday import g2iso
@@ -107,20 +107,20 @@ class Calendar(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == gen.lib.NameType.MARRIED:
+            if int(name.get_type()) == NameType.MARRIED:
                 married_name = name
                 break # use first
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = gen.lib.Name(married_name)
+                name = Name(married_name)
             else:
-                name = gen.lib.Name(primary_name)
-                surname = gen.lib.Surname()
+                name = Name(primary_name)
+                surname = Surname()
                 surname.set_surname(maiden_name)
                 name.set_surname_list([surname])
         else:
-            name = gen.lib.Name(primary_name)
+            name = Name(primary_name)
         name.set_display_as(self.name_format)
         return _nd.display_name(name)
         
@@ -293,13 +293,13 @@ class Calendar(Report):
                 month = birth_date.get_month()
                 day = birth_date.get_day()
 
-                prob_alive_date = gen.lib.Date(self.year, month, day)
+                prob_alive_date = Date(self.year, month, day)
 
                 nyears = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
                 if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
-                    if person.get_gender() == gen.lib.Person.FEMALE:
+                    if person.get_gender() == Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if family_list:
                             if self.maiden_name == 'spouse_first':
@@ -351,8 +351,8 @@ class Calendar(Report):
                             are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = db.get_event_from_handle(event_ref.ref)
-                                et = gen.lib.EventType
-                                rt = gen.lib.EventRoleType
+                                et = EventType
+                                rt = EventRoleType
                                 if event.type in [et.MARRIAGE, 
                                                   et.MARR_ALT] and \
                                 (event_ref.get_role() == rt.FAMILY or 
@@ -374,7 +374,7 @@ class Calendar(Report):
                                         month = event_obj.get_month()
                                         day = event_obj.get_day()
 
-                                        prob_alive_date = gen.lib.Date(self.year, month, day)
+                                        prob_alive_date = Date(self.year, month, day)
     
                                         nyears = self.year - year
                                         if nyears == 0:

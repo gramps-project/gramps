@@ -46,7 +46,7 @@ from gui.utils import ProgressMeter
 from gui.plug import tool
 from gui.dialog import OkDialog
 from gui.managedwindow import ManagedWindow
-import gen.lib
+from gramps.gen.lib import Citation, Source
 from gen.db import DbTxn
 
 class PopulateSources(tool.Tool, ManagedWindow):
@@ -136,8 +136,8 @@ class PopulateSources(tool.Tool, ManagedWindow):
         LOG.debug("sources %04d citations %04d" % (num_sources, 
                                                      num_citations))
         
-        source = gen.lib.Source()
-        citation = gen.lib.Citation()
+        source = Source()
+        citation = Citation()
         
         self.db.disable_signals()
         with DbTxn('Populate sources and citations', self.db) as trans:

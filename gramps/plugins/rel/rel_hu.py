@@ -34,7 +34,7 @@ Specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -214,25 +214,25 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
 
         if in_law_a or in_law_a:
             if firstRel == 0 and secondRel == 0:
-                if other_person == gen.lib.Person.MALE:
+                if other_person == Person.MALE:
                     return ("apósa","")
-                elif other_person == gen.lib.Person.FEMALE:
+                elif other_person == Person.FEMALE:
                     return ("anyósa","")
                 else:
                     return ("apósa vagy anyósa","")
 
             elif secondRel == 0:
-                if orig_person == gen.lib.Person.MALE:
+                if orig_person == Person.MALE:
                     return ("veje","")
-                elif orig_person == gen.lib.Person.FEMALE:
+                elif orig_person == Person.FEMALE:
                     return ("menye","")
                 else:
                     return ("veje vagy menye","")
 
             elif firstRel == 1:
-                if other_person == gen.lib.Person.MALE:
+                if other_person == Person.MALE:
                     return ("sógora","")
-                elif other_person == gen.lib.Person.FEMALE:
+                elif other_person == Person.FEMALE:
                     return ("sógornője","")
                 else:
                     return ("sógora vagy sógornője","")
@@ -240,19 +240,19 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('', common)
-            elif other_person == gen.lib.Person.MALE:
+            elif other_person == Person.MALE:
                 return (self.get_father(secondRel), common)
             else:
                 return (self.get_mother(secondRel), common)
 
         elif secondRel == 0:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 return (self.get_son(firstRel), common)
             else:
                 return (self.get_daughter(firstRel), common)
 
         elif firstRel == 1:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 if secondRel == 1:
                     return (self.get_age_brother(self.get_age_comp(orig_person, other_person)), common)
                 else :return (self.get_uncle(secondRel), common)
@@ -262,13 +262,13 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 else :return (self.get_aunt(secondRel), common)
 
         elif secondRel == 1:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 return (self.get_nephew(firstRel-1), common)
             else:
                 return (self.get_niece(firstRel-1), common)
 
         else:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 return (self.get_male_cousin(firstRel-1), common)
             else:
                 return (self.get_female_cousin(firstRel-1), common)

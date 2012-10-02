@@ -50,7 +50,7 @@ from gui.plug import tool
 from gui.dialog import OkDialog
 from gui.managedwindow import ManagedWindow
 from gui.display import display_help
-import gen.lib
+from gramps.gen.lib import NameOriginType, Surname
 from gen.db import DbTxn
 from gen.ggettext import sgettext as _
 from gui.glade import Glade
@@ -244,7 +244,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                     primaries[0] = True
                     origs = []
                     for ind in range(len(prefixes)):
-                        origs.append(gen.lib.NameOriginType())
+                        origs.append(NameOriginType())
                     origs[0] = old_orig[0]
                     compoundval = (surnames, prefixes, ['']*len(prefixes),
                                     primaries, origs)
@@ -340,7 +340,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         pref=''
                         con = ''
                         prim = False
-                        orig = gen.lib.NameOriginType()
+                        orig = NameOriginType()
                 ind += 1
             if found:
                 compoundval = (new_surname_list, new_prefix_list, 
@@ -524,7 +524,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         new_surn_list = []
                         for surn, pref, con, prim, orig in zip(surns, prefs, cons,
                                                                 prims, origs):
-                            new_surn_list.append(gen.lib.Surname())
+                            new_surn_list.append(Surname())
                             new_surn_list[-1].set_surname(surn.strip())
                             new_surn_list[-1].set_prefix(pref.strip())
                             new_surn_list[-1].set_connector(con.strip())

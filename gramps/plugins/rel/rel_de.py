@@ -46,7 +46,7 @@ import re
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -170,9 +170,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             return u' %d. Grades' % degree
 
     def _gender_convert(self, gender):
-        if gender == gen.lib.Person.MALE:
+        if gender == Person.MALE:
             return 'male'
-        elif gender == gen.lib.Person.FEMALE:
+        elif gender == Person.FEMALE:
             return 'female'
         else:
             return 'unknown'

@@ -47,7 +47,7 @@ _LOG = logging.getLogger(".gui.personview")
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Person, Surname
 from gen.db import DbTxn
 from gui.views.listview import ListView
 from gen.utils.string import data_recover_msg
@@ -260,9 +260,9 @@ class BasePersonView(ListView):
         """
         Add a new person to the database.
         """
-        person = gen.lib.Person()
+        person = Person()
         #the editor requires a surname
-        person.primary_name.add_surname(gen.lib.Surname())
+        person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
         
         try:

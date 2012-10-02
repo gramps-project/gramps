@@ -49,7 +49,7 @@ LOG = logging.getLogger(".ExportCSV")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType, Person
 from gen.lib.eventroletype import EventRoleType
 from gui.plug.export import WriterOptionBox
 from gen.utils.string import gender as gender_map
@@ -364,12 +364,12 @@ class CSVWriter(object):
                     note = '' # don't export notes
                     callname = primary_name.get_call_name()
                     gender = person.get_gender()
-                    if gender == gen.lib.Person.MALE:
-                        gender = gender_map[gen.lib.Person.MALE]
-                    elif gender == gen.lib.Person.FEMALE:
-                        gender = gender_map[gen.lib.Person.FEMALE]
+                    if gender == Person.MALE:
+                        gender = gender_map[Person.MALE]
+                    elif gender == Person.FEMALE:
+                        gender = gender_map[Person.FEMALE]
                     else:
-                        gender = gender_map[gen.lib.Person.UNKNOWN]
+                        gender = gender_map[Person.UNKNOWN]
                     # Birth:
                     birthdate = ""
                     birthplace = ""
@@ -482,7 +482,7 @@ class CSVWriter(object):
                     event_ref_list = family.get_event_ref_list()
                     for event_ref in event_ref_list:
                         event = self.db.get_event_from_handle(event_ref.ref)
-                        if event.get_type() == gen.lib.EventType.MARRIAGE:
+                        if event.get_type() == EventType.MARRIAGE:
                             mdate = self.format_date( event)
                             place_handle = event.get_place_handle()
                             if place_handle:

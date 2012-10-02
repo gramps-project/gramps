@@ -33,7 +33,7 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from ldsembedlist import LdsEmbedList
-import gen.lib
+from gramps.gen.lib import LdsOrd
 
 #-------------------------------------------------------------------------
 #
@@ -63,6 +63,6 @@ class FamilyLdsEmbedList(LdsEmbedList):
         return EditFamilyLdsOrd
     
     def new_data(self):
-        lds = gen.lib.LdsOrd()
-        lds.set_type(gen.lib.LdsOrd.SEAL_TO_SPOUSE)
+        lds = LdsOrd()
+        lds.set_type(LdsOrd.SEAL_TO_SPOUSE)
         return lds

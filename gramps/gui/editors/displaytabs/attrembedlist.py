@@ -33,7 +33,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Attribute
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from attrmodel import AttrModel
@@ -87,7 +87,7 @@ class AttrEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         pname = ''
-        attr = gen.lib.Attribute()
+        attr = Attribute()
         try:
             self.get_editor()(
                 self.dbstate, self.uistate, self.track, attr, 

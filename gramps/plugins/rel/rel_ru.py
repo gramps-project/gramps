@@ -33,7 +33,7 @@ Russian-specific definitions of relationships
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -403,32 +403,32 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         if Gb == 0:
             if Ga == 0:
                 return ('один человек')
-            elif gender_b == gen.lib.Person.MALE:
+            elif gender_b == Person.MALE:
                 return (self.get_father(Ga))
             else:
                 return (self.get_mother(Ga))
         elif Ga == 0:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 return (self.get_son(Gb))
             else:
                 return (self.get_daughter(Gb))
         elif Gb == 1:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 return (self._get_uncle(Ga))
             else:
                 return (self._get_aunt(Ga))
         elif Ga == 1:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 return (self.get_nephew(Gb-1))
             else:
                 return (self.get_niece(Gb-1))
         elif Ga > Gb:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 return (self.get_senior_male_cousin(Gb-1, Ga-Gb))
             else:
                 return (self.get_senior_female_cousin(Gb-1, Ga-Gb))
         else:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 return (self.get_junior_male_cousin(Ga-1, Gb-Ga))
             else:
                 return (self.get_junior_female_cousin(Ga-1, Gb-Ga))

@@ -31,7 +31,7 @@ Place Tree View
 from gui.views.listview import LISTTREE
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
-import gen.lib
+from gramps.gen.lib import Place
 from gen.errors import WindowActiveError
 from gui.editors import EditPlace
 
@@ -195,7 +195,7 @@ class PlaceTreeView(PlaceBaseView):
         Add a new place.  Attempt to get the top three levels of hierarchy from
         the currently selected row.
         """
-        place = gen.lib.Place()
+        place = Place()
         
         model, pathlist = self.selection.get_selected_rows()
         level = [u"", u"", u""]

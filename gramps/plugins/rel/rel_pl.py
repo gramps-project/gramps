@@ -37,7 +37,7 @@ Polish-specific definitions of relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -542,13 +542,13 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif Ga == 0:
             # b is son/descendant of a
             
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "zięć"
                 else:
                     rel_str = self.get_son(Gb, inlaw)
                     
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "synowa"
                 else:
@@ -561,14 +561,14 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif Gb == 0:
             # b is parent/grand parent of a
             
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 if inlaw and Gb == 1 and not step:
                     # TODO: znaleźć odpowiedniki w zależności czy to syn/córka
                     rel_str = "teść"
                 else:
                     rel_str = self.get_father(Ga, reltocommon_a, inlaw)
                     
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 if inlaw and Gb == 1 and not step:
                     # TODO: znaleźć odpowiedniki w zależności czy to syn/córka
                     rel_str = "teściowa"
@@ -581,13 +581,13 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
 
         elif Ga == Gb == 1:
             # rodzeństwo
-            if gender_b == gen.lib.Person.MALE:                
+            if gender_b == Person.MALE:                
                 if inlaw and not step:
                     rel_str = "brat przyrodni"
                 else:
                     rel_str = "brat rodzony"
 
-            elif gender_b == gen.lib.Person.FEMALE:                
+            elif gender_b == Person.FEMALE:                
                 if inlaw and not step:
                     rel_str = "siostra przyrodnia"
                 else:
@@ -603,22 +603,22 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 # rodzeństwo rodziców
                 
                 # brat ojca, czyli stryj
-                if (gender_b == gen.lib.Person.MALE) \
+                if (gender_b == Person.MALE) \
                     & (reltocommon_a[0] == self.REL_FATHER):
                     rel_str = "stryj"
 
                 # siostra ojca, czyli ciotka ??? 
-                elif (gender_b == gen.lib.Person.FEMALE) \
+                elif (gender_b == Person.FEMALE) \
                     & (reltocommon_a[0] == self.REL_FATHER):
                     rel_str = "ciotka (tzw. stryjna)"
                    
                 # brat matki, czyli wuj/wujek 
-                elif (gender_b == gen.lib.Person.MALE) \
+                elif (gender_b == Person.MALE) \
                     & (reltocommon_a[0] == self.REL_MOTHER):
                     rel_str = "wuj (wujek)"
 
                 # siostra matki, czyli ciotka
-                elif (gender_b == gen.lib.Person.FEMALE) \
+                elif (gender_b == Person.FEMALE) \
                     & (reltocommon_a[0] == self.REL_MOTHER):
                     rel_str = "ciotka"
                     
@@ -632,9 +632,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 if (reltocommon_a[0] == self.REL_FATHER) \
                     & (reltocommon_a[1] == self.REL_FATHER):
 
-                    if  (gender_b == gen.lib.Person.MALE):
+                    if  (gender_b == Person.MALE):
                         rel_str = "dziadek stryjeczny (tzw przestryj, stary stryj)"
-                    elif (gender_b == gen.lib.Person.FEMALE):
+                    elif (gender_b == Person.FEMALE):
                         rel_str = "babcia stryjeczna"
                     else:
                         rel_str = "rodzeństwo przodka w 2 pokoleniu"
@@ -647,9 +647,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     #            dokładniejszych określeń dla tego typu relacji
                     # TODO: EN: Try to check, whether in old polish language 
                     #      are more specific word for this kind of relation
-                    if  (gender_b == gen.lib.Person.MALE):
+                    if  (gender_b == Person.MALE):
                         rel_str = "dziadek stryjeczny (tzw przestryj, stary stryj)"
-                    elif (gender_b == gen.lib.Person.FEMALE):
+                    elif (gender_b == Person.FEMALE):
                         rel_str = "babcia stryjeczna"
                     else:
                         rel_str = "rodzeństwo przodka w 2 pokoleniu"
@@ -662,9 +662,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     #            dokładniejszych określeń dla tego typu relacji
                     # TODO: EN: Try to check, whether in old polish language 
                     #      are more specific word for this kind of relation
-                    if  (gender_b == gen.lib.Person.MALE):
+                    if  (gender_b == Person.MALE):
                         rel_str = "dziadek cioteczny (starop. prapociot)"
-                    elif (gender_b == gen.lib.Person.FEMALE):
+                    elif (gender_b == Person.FEMALE):
                         rel_str = "babcia cioteczna (starop. praciota)"
                     else:
                         rel_str = "rodzeństwo przodka w 2 pokoleniu"
@@ -678,17 +678,17 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     #           dokładniejszych określeń dla tego typu relacji
                     # TODO: EN: Try to check, whether in old polish language 
                     #      are more specific word for this kind of relation
-                    if  (gender_b == gen.lib.Person.MALE):
+                    if  (gender_b == Person.MALE):
                         rel_str = "dziadek cioteczny (starop. prapociot)"
-                    elif (gender_b == gen.lib.Person.FEMALE):
+                    elif (gender_b == Person.FEMALE):
                         rel_str = "babcia cioteczna  (starop. praciota)"
                     else:
                         rel_str = "rodzeństwo przodka w 2 pokoleniu"
                                 
                 else:
-                    if  (gender_b == gen.lib.Person.MALE):
+                    if  (gender_b == Person.MALE):
                         rel_str = "rodzeństwo dziadka"
-                    elif (gender_b == gen.lib.Person.FEMALE):
+                    elif (gender_b == Person.FEMALE):
                         rel_str = "rodzeństwo babci"
                     else:
                         rel_str = "rodzeństwo przodka w 2 pokoleniu"
@@ -696,7 +696,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             elif Ga > 3:
                 # pradziadkowie...  (grandparents)
                 
-                if (gender_b == gen.lib.Person.MALE) \
+                if (gender_b == Person.MALE) \
                     & (reltocommon_a[0] == self.REL_FATHER):
                 
                     if Ga >= 0 and Ga < len(_brother_level_of_male):
@@ -704,14 +704,14 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     else:
                         rel_str = "rodzeństwo przodka męskiego %d pokolenia" % Ga
 
-                elif (gender_b == gen.lib.Person.FEMALE) \
+                elif (gender_b == Person.FEMALE) \
                     & (reltocommon_a[0] == self.REL_FATHER):
                     if Ga >= 0 and Ga < len(_sister_level_of_male):
                         rel_str = _sister_level_of_male[Ga]
                     else:
                         rel_str = "rodzeństwo przodka żeńskiego %d pokolenia" % Ga
                     
-                elif (gender_b == gen.lib.Person.MALE) \
+                elif (gender_b == Person.MALE) \
                     & (reltocommon_a[0] == self.REL_MOTHER):
                 
                     if Ga >= 0 and Ga < len(_brother_level_of_female):
@@ -719,7 +719,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     else:
                         rel_str = "rodzeństwo przodka męskiego %d pokolenia" % Ga
 
-                elif (gender_b == gen.lib.Person.FEMALE) \
+                elif (gender_b == Person.FEMALE) \
                     & (reltocommon_a[0] == self.REL_MOTHER):
                     if Ga >= 0 and Ga < len(_sister_level_of_female):
                         rel_str = _sister_level_of_male[Ga]
@@ -735,7 +735,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif Ga  ==1 and Gb > 1:
             
             # syn brata
-            if (gender_b == gen.lib.Person.MALE) \
+            if (gender_b == Person.MALE) \
                 & (reltocommon_b[0] == self.REL_FATHER):
                     if Gb < len(_nephew_level_of_brothers_son):
                         rel_str = _nephew_level_of_brothers_son[Gb]
@@ -743,7 +743,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                         rel_str = "męski potomek w %d pokoleniu brata" % Gb
                         
             # córka brata
-            elif (gender_b == gen.lib.Person.FEMALE) \
+            elif (gender_b == Person.FEMALE) \
                 & (reltocommon_b[0] == self.REL_FATHER):
                     if Gb < len(_nephew_level_of_brothers_daughter):
                         rel_str = _nephew_level_of_brothers_daughter[Gb]
@@ -751,7 +751,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                         rel_str = "żeński potomek w %d pokoleniu brata" % Gb
                         
             # syn siostry
-            if (gender_b == gen.lib.Person.MALE) \
+            if (gender_b == Person.MALE) \
                 & (reltocommon_b[0] == self.REL_MOTHER):
                     if Gb < len(_nephew_level_of_sisters_son):
                         rel_str = _nephew_level_of_sisters_son[Gb]
@@ -759,7 +759,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                         rel_str = "męski potomek w %d pokoleniu brata" % Gb
                         
             # córka siostry
-            elif (gender_b == gen.lib.Person.FEMALE) \
+            elif (gender_b == Person.FEMALE) \
                 & (reltocommon_b[0] == self.REL_MOTHER):
                     if Gb < len(_nephew_level_of_sisters_daughter):
                         rel_str = _nephew_level_of_sisters_daughter[Gb]
@@ -778,13 +778,13 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 rel_str = "potomek w %d pokoleniu rodzeństwa" % Gb
                 
         elif Ga > 1 and Gb > 1:
-            if (gender_b == gen.lib.Person.MALE):
+            if (gender_b == Person.MALE):
                 if Ga == 2 and Gb == 2:
                     rel_str = "kuzyn"
                 else:
                     rel_str = "daleki kuzyn (%d. stopień pokrewieństwa)" % (Ga+Gb) 
                 
-            elif (gender_b == gen.lib.Person.FEMALE):
+            elif (gender_b == Person.FEMALE):
                 if Ga == 2 and Gb == 2:
                     rel_str = "kuzynka"
                 else:                
@@ -853,17 +853,17 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             
         if sib_type == self.NORM_SIB:
             if not inlaw:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'brat (rodzony)'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'siostra (rodzona)'
                 else:
                     rel_str = 'brat lub siostra (rodzeni)'
             else:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     # TODO: znaleźć odpowiednik
                     rel_str = "brat (pasierb)"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     # TODO: znaleźć odpowiednik
                     rel_str = "siostra (pasierbica)"
                 else:
@@ -871,40 +871,40 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     rel_str = "brat lub siostra (pasierb/pasierbica)"
         elif sib_type == self.UNKNOWN_SIB:
             if not inlaw:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'brat'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'siostra'
                 else:
                     rel_str = 'brat lub siostra'
             else:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     # TODO: znaleźć odpowiednik
                     rel_str = "brat (brat/szwagier)"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     # TODO: znaleźć odpowiednik
                     rel_str = "siostra (bratowa/szwagierka)"
                 else:
                     # TODO: znaleźć odpowiednik
                     rel_str = "brat lub siostra (szwagier/szagierka)"
         elif sib_type == self.HALF_SIB_FATHER:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "brat przyrodni"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "siostra przyrodnia"
                 else:
                     rel_str = "brat/siostra przyrodni"
         elif sib_type == self.HALF_SIB_MOTHER:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "brat przyrodni"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "siostra przyrodnia"
                 else:
                     rel_str = "brat/siostra przyrodni"
         elif sib_type == self.STEP_SIB:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "brat przyrodni"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "siostra przyrodnia"
                 else:
                     rel_str = "brat lub siostra przyrodnia"

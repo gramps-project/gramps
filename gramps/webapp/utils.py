@@ -61,7 +61,7 @@ from gen.utils.alive import probably_alive as alive
 from gen.dbstate import DbState
 from gen.datehandler import displayer, parser
 from gen.lib.date import Date as GDate, Today
-import gen.lib
+from gramps.gen.lib import Person
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gen.plug import BasePluginManager
 from cli.grampscli import CLIManager
@@ -1261,7 +1261,7 @@ def render_name(name, user, act=None):
             surname = "[No primary surname]"
         return "%s, %s" % (surname, 
                            name.model.first_name)
-    elif isinstance(name, gen.lib.Person): # name is a gen.lib.Person
+    elif isinstance(name, Person): # name is a Person
         person = name
         try:
             name = person.get_primary_name()

@@ -55,7 +55,7 @@ from gi.repository import Pango
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import ChildRef, EventRoleType, EventType, Family, FamilyRelType, Name, Person, Surname
 from gen.db import DbTxn
 from gui.views.navigationview import NavigationView
 from gui.editors import EditPerson, EditFamily
@@ -77,9 +77,9 @@ from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           preset_name)
 
 _GenderCode = {
-    gen.lib.Person.MALE    : u'\u2642', 
-    gen.lib.Person.FEMALE  : u'\u2640', 
-    gen.lib.Person.UNKNOWN : u'\u2650', 
+    Person.MALE    : u'\u2642', 
+    Person.FEMALE  : u'\u2640', 
+    Person.UNKNOWN : u'\u2650', 
     }
 
 _NAME_START   = 0
@@ -881,9 +881,9 @@ class RelationshipView(NavigationView):
             elif count == 1 :
                 gender = self.dbstate.db.get_person_from_handle(
                                         child_list[0]).gender
-                if gender == gen.lib.Person.MALE :
+                if gender == Person.MALE :
                     childmsg = _(" (1 brother)")
-                elif gender == gen.lib.Person.FEMALE :
+                elif gender == Person.FEMALE :
                     childmsg = _(" (1 sister)")
                 else :
                     childmsg = _(" (1 sibling)")
@@ -937,9 +937,9 @@ class RelationshipView(NavigationView):
                     elif count == 1 :
                         gender = self.dbstate.db.get_person_from_handle(
                                                 child_list[0]).gender
-                        if gender == gen.lib.Person.MALE :
+                        if gender == Person.MALE :
                             childmsg = _(" (1 brother)")
-                        elif gender == gen.lib.Person.FEMALE :
+                        elif gender == Person.FEMALE :
                             childmsg = _(" (1 sister)")
                         else :
                             childmsg = _(" (1 sibling)")
@@ -1168,7 +1168,7 @@ class RelationshipView(NavigationView):
             return None
 
         birth = get_birth_or_fallback(self.dbstate.db, person)
-        if birth and birth.get_type() != gen.lib.EventType.BIRTH:
+        if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
                 bdate  = "<i>%s</i>" % cgi.escape(sdate)
@@ -1180,7 +1180,7 @@ class RelationshipView(NavigationView):
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
-        if death and death.get_type() != gen.lib.EventType.DEATH:
+        if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
                 ddate  = "<i>%s</i>" % cgi.escape(sdate)
@@ -1275,8 +1275,8 @@ class RelationshipView(NavigationView):
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
             if (event and event.get_type().is_relationship_event() and
-                (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-                 event_ref.get_role() == gen.lib.EventRoleType.PRIMARY)):
+                (event_ref.get_role() == EventRoleType.FAMILY or 
+                 event_ref.get_role() == EventRoleType.PRIMARY)):
                 self.write_event_ref(vbox, event.get_type().string, event)
                 value = True
         return value
@@ -1361,7 +1361,7 @@ class RelationshipView(NavigationView):
             # show "V Family: ..." and the rest
             self.write_label("%s:" % _('Family'), family, False, person)
             if (handle or
-                    family.get_relationship() != gen.lib.FamilyRelType.UNKNOWN):
+                    family.get_relationship() != FamilyRelType.UNKNOWN):
                 box = self.write_person(_('Spouse'), handle)
 
                 if not self.write_relationship_events(box, family):
@@ -1459,12 +1459,12 @@ class RelationshipView(NavigationView):
 
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            family = gen.lib.Family()
+            family = Family()
             person = self.dbstate.db.get_person_from_handle(self.get_active())
             if not person:
                 return
             
-            if person.gender == gen.lib.Person.MALE:
+            if person.gender == Person.MALE:
                 family.set_father_handle(person.handle)
             else:
                 family.set_mother_handle(person.handle)
@@ -1475,13 +1475,13 @@ class RelationshipView(NavigationView):
                 pass
 
     def add_spouse(self, obj):
-        family = gen.lib.Family()
+        family = Family()
         person = self.dbstate.db.get_person_from_handle(self.get_active())
 
         if not person:
             return
             
-        if person.gender == gen.lib.Person.MALE:
+        if person.gender == Person.MALE:
             family.set_father_handle(person.handle)
         else:
             family.set_mother_handle(person.handle)
@@ -1498,10 +1498,10 @@ class RelationshipView(NavigationView):
     def add_child_to_fam(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             callback = lambda x: self.callback_add_child(x, handle)
-            person = gen.lib.Person()
-            name = gen.lib.Name()
+            person = Person()
+            name = Name()
             #the editor requires a surname
-            name.add_surname(gen.lib.Surname())
+            name.add_surname(Surname())
             name.set_primary_surname(0)
             family = self.dbstate.db.get_family_from_handle(handle)
             father = self.dbstate.db.get_person_from_handle(
@@ -1516,7 +1516,7 @@ class RelationshipView(NavigationView):
                 pass
 
     def callback_add_child(self, person, family_handle):
-        ref = gen.lib.ChildRef()
+        ref = ChildRef()
         ref.ref = person.get_handle()
         family = self.dbstate.db.get_family_from_handle(family_handle)
         family.add_child_ref(ref)
@@ -1578,13 +1578,13 @@ class RelationshipView(NavigationView):
             self.dbstate.db.add_child_to_family(family, child)
 
     def add_parents(self, obj):
-        family = gen.lib.Family()
+        family = Family()
         person = self.dbstate.db.get_person_from_handle(self.get_active())
 
         if not person:
             return
 
-        ref = gen.lib.ChildRef()
+        ref = ChildRef()
         ref.ref = person.handle
         family.add_child_ref(ref)
         
@@ -1595,10 +1595,10 @@ class RelationshipView(NavigationView):
             
     def add_parent_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
-            family = gen.lib.Family()
+            family = Family()
             person = self.dbstate.db.get_person_from_handle(self.get_active())
 
-            ref = gen.lib.ChildRef()
+            ref = ChildRef()
             ref.ref = person.handle
             family.add_child_ref(ref)
                 

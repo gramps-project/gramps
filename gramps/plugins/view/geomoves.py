@@ -52,7 +52,7 @@ _LOG = logging.getLogger("GeoGraphy.geomoves")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventRoleType, EventType
 from gen.config import config
 from gramps.gen.datehandler import displayer
 from gen.display.name import displayer as _nd
@@ -292,7 +292,7 @@ class GeoMoves(GeoGraphyView):
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
                         descr = place.get_title()
-                        evt = gen.lib.EventType(event.get_type())
+                        evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
                                         'eventtype': evt,
                                         'name': _nd.display(person)}
@@ -344,7 +344,7 @@ class GeoMoves(GeoGraphyView):
                                         latitude, longitude = conv_lat_lon(
                                                   latitude, longitude, "D.D8")
                                         descr = place.get_title()
-                                        evt = gen.lib.EventType(
+                                        evt = EventType(
                                                   event.get_type())
                                         eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
                                                   str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
@@ -504,9 +504,9 @@ class GeoMoves(GeoGraphyView):
                     try:
                         date = event.get_date_object().to_calendar(self.cal)
                         fyear = str("%04d" % date.get_year())
-                        if event.get_type() == gen.lib.EventType.BIRTH:
+                        if event.get_type() == EventType.BIRTH:
                            birth = fyear
-                        if event.get_type() == gen.lib.EventType.DEATH:
+                        if event.get_type() == EventType.DEATH:
                            death = fyear
                         if fyear < low_date:
                             low_date = fyear
@@ -573,10 +573,10 @@ class GeoMoves(GeoGraphyView):
             date = displayer.display(evt.get_date_object())
             if date == "":
                 date = _("Unknown")
-            if ( mark[11] == gen.lib.EventRoleType.PRIMARY ):
+            if ( mark[11] == EventRoleType.PRIMARY ):
                 person = self.dbstate.db.get_person_from_gramps_id(mark[1])
                 message = "(%s) %s : %s" % ( date, mark[2], _nd.display(person) )
-            elif ( mark[11] == gen.lib.EventRoleType.FAMILY ):
+            elif ( mark[11] == EventRoleType.FAMILY ):
                 (father_name, mother_name) = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % (date, mark[2],
                                                  father_name,

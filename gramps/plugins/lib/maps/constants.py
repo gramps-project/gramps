@@ -27,7 +27,7 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType
 import os
 from gen.const import HOME_DIR
 from gi.repository import OsmGpsMap as osmgpsmap
@@ -40,9 +40,9 @@ from gi.repository import OsmGpsMap as osmgpsmap
 GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
 
 ICONS = {
-    gen.lib.EventType.BIRTH                : 'gramps-geo-birth',
-    gen.lib.EventType.DEATH                : 'gramps-geo-death',
-    gen.lib.EventType.MARRIAGE             : 'gramps-geo-marriage',
+    EventType.BIRTH                : 'gramps-geo-birth',
+    EventType.DEATH                : 'gramps-geo-death',
+    EventType.MARRIAGE             : 'gramps-geo-marriage',
 }
 
 # map providers

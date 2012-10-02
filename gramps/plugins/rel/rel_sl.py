@@ -33,7 +33,7 @@ Slovenian-specific definitions of relationships
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -187,33 +187,33 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     """        
     if Gb == 0:
       if Ga == 0: rel_str = "ista oseba"
-      elif gender_b == gen.lib.Person.MALE:
+      elif gender_b == Person.MALE:
         rel_str = (self.getFather(Ga))
-      elif gender_b == gen.lib.Person.FEMALE: 
+      elif gender_b == Person.FEMALE: 
         rel_str = (self.getMother(Ga))
       else:
         rel_str = (self.getAncestor(Ga))
     elif Ga == 0:
-      if gender_b == gen.lib.Person.MALE:
+      if gender_b == Person.MALE:
         rel_str = (self.getSon(Gb))
-      elif gender_b == gen.lib.Person.FEMALE: 
+      elif gender_b == Person.FEMALE: 
         rel_str = (self.getDaughter(Gb))
       else:
         rel_str = (self.getDescendant(Gb))
     elif Ga == Gb:
-      if gender_b == gen.lib.Person.MALE:
+      if gender_b == Person.MALE:
         rel_str = (self.getMaleCousin(Gb))
-      elif gender_b == gen.lib.Person.FEMALE:
+      elif gender_b == Person.FEMALE:
         rel_str = (self.getFemaleCousin(Gb))
       else:
         rel_str = (self.getSomeCousin(Gb))
     elif Ga > Gb:
-      if gender_b == gen.lib.Person.FEMALE:
+      if gender_b == Person.FEMALE:
         rel_str = (self.getAunt(Ga+Gb, Ga-Gb))
       else:
         rel_str = (self.getUncle(Ga+Gb, Ga-Gb)) # we'll use male for unknown sex
     else: #Ga < Gb
-      if gender_b == gen.lib.Person.FEMALE:
+      if gender_b == Person.FEMALE:
         rel_str = (self.getNiece(Ga+Gb, Gb-Ga))
       else:
         rel_str = (self.getNephew(Ga+Gb, Gb-Ga)) # we'll use male for unknown sex
@@ -241,16 +241,16 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
     if sib_type < self.STEP_SIB:
     # ie. NORM_SIB or one of HALF_SIBs
       if not inlaw:
-        if gender == gen.lib.Person.MALE:
+        if gender == Person.MALE:
           rel_str = u"%sbrat" % (prefix)
-        elif gender == gen.lib.Person.FEMALE:
+        elif gender == Person.FEMALE:
           rel_str = u"%ssestra" % (prefix)
         else:
           rel_str = u"%sbrat ali %ssestra" % (prefix, prefix)
       else:
-        if gender == gen.lib.Person.MALE:
+        if gender == Person.MALE:
           rel_str = u"%ssvak" % (prefix)
-        elif gender == gen.lib.Person.FEMALE:
+        elif gender == Person.FEMALE:
           rel_str = u"%ssvakinja" % (prefix)
         else:
           rel_str = u"%ssvak ali %ssvakinja" % (prefix, prefix)

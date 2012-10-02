@@ -44,7 +44,7 @@ from gen.ggettext import ngettext
 #
 #-------------------------------------------------------------------------
 from gui.managedwindow import ManagedWindow
-import gen.lib
+from gramps.gen.lib import EventRoleType
 from gen.db import DbTxn
 from gen.utils.db import family_name
 
@@ -86,7 +86,7 @@ class EventNames(tool.BatchTool, ManagedWindow):
         
             for person in self.db.iter_people():
                 for event_ref in person.get_event_ref_list():
-                    if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+                    if event_ref.get_role() == EventRoleType.PRIMARY:
                         event_handle = event_ref.ref
                         event = self.db.get_event_from_handle(event_handle)
                         if event.get_description() == "":
@@ -97,7 +97,7 @@ class EventNames(tool.BatchTool, ManagedWindow):
 
             for family in self.db.iter_families():
                 for event_ref in family.get_event_ref_list():
-                    if event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
+                    if event_ref.get_role() == EventRoleType.FAMILY:
                         event_handle = event_ref.ref
                         event = self.db.get_event_from_handle(event_handle)
                         if event.get_description() == "":

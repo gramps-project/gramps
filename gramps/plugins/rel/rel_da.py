@@ -34,7 +34,7 @@ Specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -129,7 +129,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('søn')
         else:
             result.append('datter')
@@ -152,12 +152,12 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person == gen.lib.Person.MALE:
+            if person == Person.MALE:
                 result.append('søn')
             else:
                 result.append('datter')
         else:
-            if person == gen.lib.Person.MALE:
+            if person == Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')

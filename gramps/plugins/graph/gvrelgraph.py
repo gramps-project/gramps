@@ -54,7 +54,7 @@ from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
-import gen.lib
+from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gen.utils.file import media_path_full, find_file
 from gui.thumbnails import get_thumbnail_path
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -201,12 +201,12 @@ class RelGraphReport(Report):
     def add_family_link(self, p_id, family, frel, mrel):
         "Links the child to a family"
         style = 'solid'
-        adopted = ((int(frel) != gen.lib.ChildRefType.BIRTH) or
-                   (int(mrel) != gen.lib.ChildRefType.BIRTH))
+        adopted = ((int(frel) != ChildRefType.BIRTH) or
+                   (int(mrel) != ChildRefType.BIRTH))
         # If birth relation to father is NONE, meaning there is no father and
         # if birth relation to mother is BIRTH then solid line
-        if ((int(frel) == gen.lib.ChildRefType.NONE) and
-           (int(mrel) == gen.lib.ChildRefType.BIRTH)):
+        if ((int(frel) == ChildRefType.NONE) and
+           (int(mrel) == ChildRefType.BIRTH)):
             adopted = False
         if adopted and self.adoptionsdashed:
             style = 'dotted'
@@ -216,7 +216,7 @@ class RelGraphReport(Report):
     def add_parent_link(self, p_id, parent_handle, rel):
         "Links the child to a parent"
         style = 'solid'
-        if (int(rel) != gen.lib.ChildRefType.BIRTH) and self.adoptionsdashed:
+        if (int(rel) != ChildRefType.BIRTH) and self.adoptionsdashed:
             style = 'dotted'
         parent = self.database.get_person_from_handle(parent_handle)
         self.doc.add_link( parent.get_gramps_id(), p_id, style,
@@ -273,9 +273,9 @@ class RelGraphReport(Report):
         label = ""
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
-            if event.type == gen.lib.EventType.MARRIAGE and \
-              (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-               event_ref.get_role() == gen.lib.EventRoleType.PRIMARY):
+            if event.type == EventType.MARRIAGE and \
+              (event_ref.get_role() == EventRoleType.FAMILY or 
+               event_ref.get_role() == EventRoleType.PRIMARY):
                 label = self.get_event_string(event)
                 break
         if self.includeid:

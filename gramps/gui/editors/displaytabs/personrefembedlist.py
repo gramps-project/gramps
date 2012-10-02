@@ -33,7 +33,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import PersonRef
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from personrefmodel import PersonRefModel
@@ -84,7 +84,7 @@ class PersonRefEmbedList(EmbeddedList):
     def add_button_clicked(self, obj):
         from gui.editors import EditPersonRef
         try:
-            ref = gen.lib.PersonRef()
+            ref = PersonRef()
             ref.rel = _('Godfather')
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
@@ -119,7 +119,7 @@ class PersonRefEmbedList(EmbeddedList):
         """
         from gui.editors import EditPersonRef
         try:
-            ref = gen.lib.PersonRef(obj)
+            ref = PersonRef(obj)
             ref.rel = _('Unknown')
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,

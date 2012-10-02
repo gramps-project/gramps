@@ -77,7 +77,7 @@ log = logging.getLogger(".NarrativeWeb")
 # GRAMPS module
 #------------------------------------------------
 from gen.ggettext import sgettext as _
-import gen.lib
+from gramps.gen.lib import ChildRefType, Date, EventType, FamilyRelType, Name, NameType, Person
 from gen.lib import UrlType, date, NoteType, EventRoleType
 from gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
 from gen.sort import Sort
@@ -352,11 +352,11 @@ _UNKNOWN = _("Unknown")
 
 # Events that are usually a family event
 _EVENTMAP = set(
-                [gen.lib.EventType.MARRIAGE, gen.lib.EventType.MARR_ALT, 
-                 gen.lib.EventType.MARR_SETTL, gen.lib.EventType.MARR_LIC,
-                 gen.lib.EventType.MARR_CONTR, gen.lib.EventType.MARR_BANNS,
-                 gen.lib.EventType.ENGAGEMENT, gen.lib.EventType.DIVORCE,
-                 gen.lib.EventType.DIV_FILING
+                [EventType.MARRIAGE, EventType.MARR_ALT, 
+                 EventType.MARR_SETTL, EventType.MARR_LIC,
+                 EventType.MARR_CONTR, EventType.MARR_BANNS,
+                 EventType.ENGAGEMENT, EventType.DIVORCE,
+                 EventType.DIV_FILING
                 ]
               )
   
@@ -470,15 +470,15 @@ def get_gendex_data(database, event_ref):
 
 def format_date(date):
     start = date.get_start_date()
-    if start != gen.lib.Date.EMPTY:
+    if start != Date.EMPTY:
         cal = date.get_calendar()
         mod = date.get_modifier()
         quality = date.get_quality()
-        if mod == gen.lib.Date.MOD_SPAN:
+        if mod == Date.MOD_SPAN:
             val = "FROM %s TO %s" % (
                 make_gedcom_date(start, cal, mod, quality), 
                 make_gedcom_date(date.get_stop_date(), cal, mod, quality))
-        elif mod == gen.lib.Date.MOD_RANGE:
+        elif mod == Date.MOD_RANGE:
             val = "BET %s AND %s" % (
                 make_gedcom_date(start, cal, mod, quality), 
                 make_gedcom_date(date.get_stop_date(), cal, mod, quality))
@@ -989,8 +989,8 @@ class BasePage(object):
                     etype = event.get_type()
 
                     # only allow Birth, Death, Census, Marriage, and Divorce events...
-                    if etype in [gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH, gen.lib.EventType.CENSUS,
-                                 gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
+                    if etype in [EventType.BIRTH, EventType.DEATH, EventType.CENSUS,
+                                 EventType.MARRIAGE, EventType.DIVORCE]:
                         place_lat_long.append([latitude, longitude, placetitle, place_handle, event_date, etype])
 
     def _get_event_place(self, person, ppl_handle_list, place_lat_long):
@@ -1416,20 +1416,20 @@ class BasePage(object):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == gen.lib.NameType.MARRIED:
+            if int(name.get_type()) == NameType.MARRIED:
                 married_name = name
                 break # use first
 
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = gen.lib.Name(married_name)
+                name = Name(married_name)
             else:
-                name = gen.lib.Name(primary_name)
+                name = Name(primary_name)
                 surname_obj = name.get_primary_surname()
                 surname_obj.set_surname(maiden_name)
         else:
-            name = gen.lib.Name(primary_name)
+            name = Name(primary_name)
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
@@ -2355,10 +2355,10 @@ class BasePage(object):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
-        if reltype == gen.lib.FamilyRelType.MARRIED:
-            if gender == gen.lib.Person.FEMALE:
+        if reltype == FamilyRelType.MARRIED:
+            if gender == Person.FEMALE:
                 relstr = _("Husband")
-            elif gender == gen.lib.Person.MALE:
+            elif gender == Person.MALE:
                 relstr = _("Wife")
             else:
                 relstr = _("Partner")
@@ -3210,15 +3210,15 @@ class FamilyListPage(BasePage):
                                                 event = self.dbase_.get_event_from_handle(evt_ref.ref)
                                                 if event:
                                                     evt_type = event.get_type()
-                                                    if evt_type in [gen.lib.EventType.MARRIAGE,
-                                                                    gen.lib.EventType.DIVORCE]:
+                                                    if evt_type in [EventType.MARRIAGE,
+                                                                    EventType.DIVORCE]:
 
-                                                        if evt_type == gen.lib.EventType.MARRIAGE:
+                                                        if evt_type == EventType.MARRIAGE:
                                                             tcell1 += _dd.display(event.get_date_object())
                                                         else:
                                                             tcell1 += '&nbsp;'
 
-                                                        if evt_type == gen.lib.EventType.DIVORCE:
+                                                        if evt_type == EventType.DIVORCE:
                                                             tcell2 += _dd.display(event.get_date_object())
                                                         else:
                                                             tcell2 += '&nbsp;'
@@ -3693,10 +3693,10 @@ class EventListPage(BasePage):
                                 # event date
                                 tcell = Html("td", class_ = "ColumnDate", inline = True)
                                 trow += tcell
-                                date = gen.lib.Date.EMPTY
+                                date = Date.EMPTY
                                 if event:
                                     date = event.get_date_object()
-                                    if date and date is not gen.lib.Date.EMPTY:
+                                    if date and date is not Date.EMPTY:
                                         tcell += _dd.display(date)
                                 else:
                                     tcell += "&nbsp;"   
@@ -3730,14 +3730,14 @@ class EventListPage(BasePage):
         self.XHTMLWriter(eventslistpage, of, sio)
 
     def _getEventDate(self, event_handle):
-        event_date = gen.lib.Date.EMPTY
+        event_date = Date.EMPTY
         event = self.report.database.get_event_from_handle(event_handle)
         if event:
             date = event.get_date_object()
             if date:
 
                 # returns the date in YYYY-MM-DD format
-                return gen.lib.Date(date.get_year_calendar("Gregorian"), date.get_month(), date.get_day())
+                return Date(date.get_year_calendar("Gregorian"), date.get_month(), date.get_day())
 
         # return empty date string
         return event_date
@@ -4071,7 +4071,7 @@ class MediaPage(BasePage):
 
                     # media date
                     date = media.get_date_object()
-                    if date and date is not gen.lib.Date.EMPTY:
+                    if date and date is not Date.EMPTY:
                         trow = Html("tr") + (
                             Html("td", DHEAD, class_ = "ColumnAttribute", inline = True),
                             Html("td", _dd.display(date), class_ = "ColumnValue", inline = True)
@@ -5312,9 +5312,9 @@ class ContactPage(BasePage):
 """
 class IndividualPage(BasePage):
     gender_map = {
-        gen.lib.Person.MALE    : _('male'),
-        gen.lib.Person.FEMALE  : _('female'),
-        gen.lib.Person.UNKNOWN : _('unknown'),
+        Person.MALE    : _('male'),
+        Person.FEMALE  : _('female'),
+        Person.UNKNOWN : _('unknown'),
         }
 
     def __init__(self, report, title, person, ind_list, place_list, src_list, place_lat_long, rel_class):
@@ -5743,9 +5743,9 @@ class IndividualPage(BasePage):
         top = center - _HEIGHT/2
         xoff = _XOFFSET+col*(_WIDTH+_HGAP)
         sex = person.gender
-        if sex == gen.lib.Person.MALE:
+        if sex == Person.MALE:
             divclass = "male"
-        elif sex == gen.lib.Person.FEMALE:
+        elif sex == Person.FEMALE:
             divclass = "female"
         else:
             divclass = "unknown"
@@ -6115,14 +6115,14 @@ class IndividualPage(BasePage):
                 table += trow
 
                 # Age At Death???
-                birth_date = gen.lib.Date.EMPTY
+                birth_date = Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
                 if birth_ref:
                     birth = self.dbase_.get_event_from_handle(birth_ref.ref)
                     if birth: 
                         birth_date = birth.get_date_object()
 
-                if birth_date and birth_date is not gen.lib.Date.EMPTY:
+                if birth_date and birth_date is not Date.EMPTY:
                     alive = probably_alive(self.person, self.dbase_, date.Today() )
 
                     death_date = _find_death_date(self.dbase_, self.person)
@@ -6191,7 +6191,7 @@ class IndividualPage(BasePage):
         else:
             tcell2 += self.get_name(person)
 
-        if rel and rel != gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH):
+        if rel and rel != ChildRefType(ChildRefType.BIRTH):
             tcell2 +=  ''.join(['&nbsp;'] *3 + ['(%s)']) % str(rel)
 
         # return table columns to its caller
@@ -7414,7 +7414,7 @@ class NavWebReport(Report):
 
             for event_ref in evt_ref_list:
                 event = self.database.get_event_from_handle(event_ref.ref)
-                if event.get_type() == gen.lib.EventType.RESIDENCE:
+                if event.get_type() == EventType.RESIDENCE:
                     res.append(event)
 
             if add or res or url:
@@ -8439,7 +8439,7 @@ def add_birthdate(dbase, ppl_handle_list):
 
             # get birth date: if birth_date equals nothing, then generate a fake one?
             birth_ref = person.get_birth_ref()
-            birth_date = gen.lib.Date.EMPTY
+            birth_date = Date.EMPTY
             if birth_ref:
                 birth = dbase.get_event_from_handle(birth_ref.ref)
                 if birth:

@@ -39,7 +39,7 @@ LOG = logging.getLogger(".citation")
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Source
 from gen.config import config
 from gui.views.listview import ListView
 from gui.views.treemodels import SourceModel
@@ -198,7 +198,7 @@ class SourceView(ListView):
         </ui>'''
 
     def add(self, obj):
-        EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
+        EditSource(self.dbstate, self.uistate, [], Source())
 
     def remove(self, obj):
         self.remove_selected_objects()

@@ -33,7 +33,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Location
 from gen.errors import WindowActiveError
 from gui.ddtargets import DdTargets
 from locationmodel import LocationModel
@@ -73,7 +73,7 @@ class LocationEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
     def add_button_clicked(self, obj):
-        loc = gen.lib.Location()
+        loc = Location()
         try:
             from gui.editors import EditLocation
             EditLocation(self.dbstate, self.uistate, self.track, 

@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Family
 from gui.views.listview import ListView
 from gui.views.treemodels import FamilyModel
 from gui.editors import EditFamily
@@ -242,7 +242,7 @@ class FamilyView(ListView):
                   "no one was selected."))
         
     def add(self, obj):
-        family = gen.lib.Family()
+        family = Family()
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
         except WindowActiveError:

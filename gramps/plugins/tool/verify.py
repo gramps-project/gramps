@@ -56,7 +56,7 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gen.const import URL_MANUAL_PAGE, VERSION_DIR
-import gen.lib
+from gramps.gen.lib import ChildRefType, EventRoleType, EventType, FamilyRelType, NameType, Person
 from gui.editors import EditPerson, EditFamily
 from gen.utils.db import family_name
 from gui.display import display_help
@@ -137,8 +137,8 @@ def get_date_from_event_type(db,person,event_type,estimate=False):
     for event_ref in person.get_event_ref_list():
         event = find_event(db,event_ref.ref)
         if event:
-            if event_ref.get_role() != gen.lib.EventRoleType.PRIMARY and \
-                event.get_type() == gen.lib.EventType.BURIAL:
+            if event_ref.get_role() != EventRoleType.PRIMARY and \
+                event.get_type() == EventType.BURIAL:
                 continue
             if event.get_type() == event_type:
                 date_obj = event.get_date_object()
@@ -150,16 +150,16 @@ def get_date_from_event_type(db,person,event_type,estimate=False):
 
 def get_bapt_date(db,person,estimate=False):
     return get_date_from_event_type(db, person, 
-                                    gen.lib.EventType.BAPTISM, estimate)
+                                    EventType.BAPTISM, estimate)
 
 def get_bury_date(db,person,estimate=False):
     # check role on burial event
     for event_ref in person.get_event_ref_list():
         event = find_event(db, event_ref.ref)
-        if event and event.get_type() == gen.lib.EventType.BURIAL and \
-        event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+        if event and event.get_type() == EventType.BURIAL and \
+        event_ref.get_role() == EventRoleType.PRIMARY:
             return get_date_from_event_type(db, person, 
-                                            gen.lib.EventType.BURIAL, estimate)
+                                            EventType.BURIAL, estimate)
 
 def get_birth_date(db,person,estimate=False):
     if not person:
@@ -230,9 +230,9 @@ def get_marriage_date(db,family):
         return 0
     for event_ref in family.get_event_ref_list():
         event = find_event(db,event_ref.ref)
-        if event.get_type() == gen.lib.EventType.MARRIAGE and \
-        (event_ref.get_role() == gen.lib.EventRoleType.FAMILY or 
-        event_ref.get_role() == gen.lib.EventRoleType.PRIMARY ):
+        if event.get_type() == EventType.MARRIAGE and \
+        (event_ref.get_role() == EventRoleType.FAMILY or 
+        event_ref.get_role() == EventRoleType.PRIMARY ):
             date_obj = event.get_date_object()
             return date_obj.get_sort_value()
     return 0
@@ -944,8 +944,8 @@ class UnknownGender(PersonRule):
     ID = 8
     SEVERITY = Rule.WARNING
     def broken(self):
-        female = self.obj.get_gender() == gen.lib.Person.FEMALE
-        male = self.obj.get_gender() == gen.lib.Person.MALE
+        female = self.obj.get_gender() == Person.FEMALE
+        male = self.obj.get_gender() == Person.MALE
         return not (male or female)
 
     def get_message(self):
@@ -1011,11 +1011,11 @@ class TooManyChildren(PersonRule):
     def broken(self):
         n_child = get_n_children(self.db,self.obj)
 
-        if (self.obj.get_gender == gen.lib.Person.MALE
+        if (self.obj.get_gender == Person.MALE
                and n_child > self.mx_child_dad):
             return True
 
-        if (self.obj.get_gender == gen.lib.Person.FEMALE
+        if (self.obj.get_gender == Person.FEMALE
                and n_child > self.mx_child_mom):
             return True
 
@@ -1033,7 +1033,7 @@ class SameSexFamily(FamilyRule):
         same_sex = (mother and father and
                     (mother.get_gender() == father.get_gender()))
         unknown_sex = (mother and
-                       (mother.get_gender() == gen.lib.Person.UNKNOWN))
+                       (mother.get_gender() == Person.UNKNOWN))
         return (same_sex and not unknown_sex)
 
     def get_message(self):
@@ -1044,7 +1044,7 @@ class FemaleHusband(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         father = get_father(self.db,self.obj)
-        return (father and (father.get_gender() == gen.lib.Person.FEMALE))
+        return (father and (father.get_gender() == Person.FEMALE))
 
     def get_message(self):
         return _("Female husband")
@@ -1054,7 +1054,7 @@ class MaleWife(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         mother = get_mother(self.db,self.obj)
-        return (mother and (mother.get_gender() == gen.lib.Person.MALE))
+        return (mother and (mother.get_gender() == Person.MALE))
 
     def get_message(self):
         return _("Male wife")
@@ -1072,8 +1072,8 @@ class SameSurnameFamily(FamilyRule):
             mname = mother.get_primary_name()
             fname = father.get_primary_name()
             # Only compare birth names (not married names).
-            if mname.get_type() == gen.lib.NameType.BIRTH and \
-               fname.get_type() == gen.lib.NameType.BIRTH:
+            if mname.get_type() == NameType.BIRTH and \
+               fname.get_type() == NameType.BIRTH:
                 # Empty names don't count.
                 if len(mname.get_surname()) != 0 and \
                    len(fname.get_surname()) != 0:
@@ -1415,8 +1415,8 @@ class DeadParent(FamilyRule):
             if not child_birth_date_ok:
                 continue
 
-            hasBirthRelToMother = child_ref.mrel == gen.lib.ChildRefType.BIRTH    
-            hasBirthRelToFather = child_ref.frel == gen.lib.ChildRefType.BIRTH
+            hasBirthRelToMother = child_ref.mrel == ChildRefType.BIRTH    
+            hasBirthRelToFather = child_ref.frel == ChildRefType.BIRTH
             
             father_broken = (hasBirthRelToFather
                              and father_death_date_ok
@@ -1545,7 +1545,7 @@ class MarriedRelation(FamilyRule):
     def broken(self):          
         marr_date = get_marriage_date(self.db,self.obj)
         marr_date_ok = marr_date > 0
-        married = self.obj.get_relationship() == gen.lib.FamilyRelType.MARRIED
+        married = self.obj.get_relationship() == FamilyRelType.MARRIED
         if not married and marr_date_ok:
             return self.get_message
 

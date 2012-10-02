@@ -47,7 +47,7 @@ from gen.config import config
 from gramps.gui.utils import is_right_click
 from gui.display import display_help
 from gui.dialog import SaveDialog
-import gen.lib
+from gramps.gen.lib import PrimaryObject
 from gui.dbguielement import DbGUIElement
 
 class EditPrimary(ManagedWindow, DbGUIElement):
@@ -247,7 +247,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         #exception if it is not because self.empty_object().serialize() is 
         #called and PrimaryObject does not implement serialize(). See
         #BaseObject.serialize()
-        return gen.lib.PrimaryObject
+        return PrimaryObject
 
     def data_has_changed(self):
         if self.db.readonly:

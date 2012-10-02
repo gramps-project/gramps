@@ -41,7 +41,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gui.utils import ProgressMeter
-import gen.lib
+from gramps.gen.lib import Event, Family, MediaObject, Note, Person, Place, Repository, Source
 from gen.db import DbTxn
 from gui.plug import tool
 
@@ -74,7 +74,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering People IDs'),
                                        db.get_number_of_people())
-            self.reorder(gen.lib.Person,
+            self.reorder(Person,
                          db.get_person_from_gramps_id,
                          db.get_person_from_handle,
                          db.find_next_person_gramps_id,
@@ -85,7 +85,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Family IDs'),
                                        db.get_number_of_families())
-            self.reorder(gen.lib.Family,
+            self.reorder(Family,
                          db.get_family_from_gramps_id,
                          db.get_family_from_handle,
                          db.find_next_family_gramps_id,
@@ -95,7 +95,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Event IDs'),
                                        db.get_number_of_events())
-            self.reorder(gen.lib.Event,
+            self.reorder(Event,
                          db.get_event_from_gramps_id,
                          db.get_event_from_handle,
                          db.find_next_event_gramps_id,
@@ -105,7 +105,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Media Object IDs'),
                                        db.get_number_of_media_objects())
-            self.reorder(gen.lib.MediaObject,
+            self.reorder(MediaObject,
                          db.get_object_from_gramps_id,
                          db.get_object_from_handle,
                          db.find_next_object_gramps_id,
@@ -115,7 +115,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Source IDs'),
                                        db.get_number_of_sources())
-            self.reorder(gen.lib.Source,
+            self.reorder(Source,
                          db.get_source_from_gramps_id,
                          db.get_source_from_handle,
                          db.find_next_source_gramps_id,
@@ -125,7 +125,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Place IDs'),
                                        db.get_number_of_places())
-            self.reorder(gen.lib.Place,
+            self.reorder(Place,
                          db.get_place_from_gramps_id,
                          db.get_place_from_handle,
                          db.find_next_place_gramps_id,
@@ -135,7 +135,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Repository IDs'),
                                        db.get_number_of_repositories())
-            self.reorder(gen.lib.Repository,
+            self.reorder(Repository,
                          db.get_repository_from_gramps_id,
                          db.get_repository_from_handle,
                          db.find_next_repository_gramps_id,
@@ -146,7 +146,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Note IDs'),
                                        db.get_number_of_notes())
-            self.reorder(gen.lib.Note,
+            self.reorder(Note,
                          db.get_note_from_gramps_id,
                          db.get_note_from_handle,
                          db.find_next_note_gramps_id,

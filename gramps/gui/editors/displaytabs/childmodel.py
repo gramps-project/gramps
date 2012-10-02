@@ -36,7 +36,7 @@ import cgi
 from gramps.gen.datehandler import get_date
 from gen.display.name import displayer as name_displayer
 from gen.utils.string import gender as gender_map
-import gen.lib
+from gramps.gen.lib import EventType
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------
@@ -73,7 +73,7 @@ class ChildModel(Gtk.ListStore):
     def column_birth_day(self, data):
         birth = get_birth_or_fallback(self.db, data)
         if birth:
-            if birth.get_type() == gen.lib.EventType.BIRTH:
+            if birth.get_type() == EventType.BIRTH:
                 return get_date(birth)
             else:
                 return '<i>%s</i>' % cgi.escape(get_date(birth))
@@ -96,7 +96,7 @@ class ChildModel(Gtk.ListStore):
     def column_death_day(self, data):
         death = get_death_or_fallback(self.db, data)
         if death:
-            if death.get_type() == gen.lib.EventType.DEATH:
+            if death.get_type() == EventType.DEATH:
                 return get_date(death)
             else:
                 return '<i>%s</i>' % cgi.escape(get_date(death))

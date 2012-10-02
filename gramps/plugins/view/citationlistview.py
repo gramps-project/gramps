@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gui.views.treemodels.citationlistmodel import CitationListModel
 from gen.plug import CATEGORY_QR_CITATION
-import gen.lib
+from gramps.gen.lib import Citation, Source
 from gui.views.listview import ListView
 from gen.utils.db import get_citation_referents
 from gui.views.bookmarks import CitationBookmarks
@@ -265,8 +265,8 @@ class CitationListView(ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
-                         gen.lib.Source())
+            EditCitation(self.dbstate, self.uistate, [], Citation(),
+                         Source())
         except WindowActiveError:
             pass
 

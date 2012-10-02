@@ -47,7 +47,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Source, SourceMediaType, Surname, Tag, Url, UrlType
 from gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gen.db import DbTxn
 import gen.mime
@@ -93,17 +93,17 @@ class TestcaseGenerator(tool.BatchTool):
 #    ]
 
     FAMILY_EVENTS = set([
-            gen.lib.EventType.ANNULMENT,
-            gen.lib.EventType.CENSUS,
-            gen.lib.EventType.DIVORCE,
-            gen.lib.EventType.DIV_FILING,
-            gen.lib.EventType.ENGAGEMENT,
-            gen.lib.EventType.MARRIAGE,
-            gen.lib.EventType.MARR_BANNS,
-            gen.lib.EventType.MARR_CONTR,
-            gen.lib.EventType.MARR_LIC,
-            gen.lib.EventType.MARR_SETTL,
-            gen.lib.EventType.CUSTOM            ])
+            EventType.ANNULMENT,
+            EventType.CENSUS,
+            EventType.DIVORCE,
+            EventType.DIV_FILING,
+            EventType.ENGAGEMENT,
+            EventType.MARRIAGE,
+            EventType.MARR_BANNS,
+            EventType.MARR_CONTR,
+            EventType.MARR_LIC,
+            EventType.MARR_SETTL,
+            EventType.CUSTOM            ])
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.person = None
@@ -332,17 +332,17 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            o = gen.lib.Note()
+            o = Note()
             o.set("dup 1" + self.rand_text(self.NOTE))
-            o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
-            o.set_type( self.rand_type(gen.lib.NoteType()))
+            o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
+            o.set_type( self.rand_type(NoteType()))
             h = self.db.add_note(o, self.trans)
             print "object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
                                                           o.gramps_id)
             
             handle = o.get_handle()
     
-            o = gen.lib.Source()
+            o = Source()
             o.set_title("dup 2" + self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_author( self.rand_text(self.SHORT))
@@ -364,14 +364,14 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            m = gen.lib.MediaObject()
+            m = MediaObject()
             self.fill_object(m)
             m.set_description("leave this media object invalid description\x9f")
             m.set_path("/tmp/click_on_keep_reference.png\x9f")
             m.set_mime_type("image/png\x9f")
             self.db.add_object(m, self.trans)
 
-            m = gen.lib.MediaObject()
+            m = MediaObject()
             self.fill_object(m)
             m.set_description("reselect this media object invalid description\x9f")
             m.set_path("/tmp/click_on_select_file.png\x9f")
@@ -380,25 +380,25 @@ class TestcaseGenerator(tool.BatchTool):
             
             # setup media attached to Source and Citation to be removed
             
-            m = gen.lib.MediaObject()
+            m = MediaObject()
             self.fill_object(m)
             m.set_description(u'remove this media object')
             m.set_path(u"/tmp/click_on_remove_object.png")
             m.set_mime_type("image/png")
             self.db.add_object(m, self.trans)
             
-            s = gen.lib.Source()
+            s = Source()
             s.set_title(u'media should be removed from this source')
-            r = gen.lib.MediaRef()
+            r = MediaRef()
             r.set_reference_handle(m.handle)
             s.add_media_reference(r)
             self.db.add_source( s, self.trans)
 
-            c = gen.lib.Citation()
+            c = Citation()
             self.fill_object(c)
             c.set_reference_handle(s.handle)
             c.set_page(u'media should be removed from this citation')
-            r = gen.lib.MediaRef()
+            r = MediaRef()
             r.set_reference_handle(m.handle)
             c.add_media_reference(r)
             self.db.add_citation(c, self.trans)
@@ -410,10 +410,10 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            o = gen.lib.Note()
+            o = Note()
             o.set("This is a text note with a \x03 control character")
-            o.set_format(choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
-            o.set_type(self.rand_type(gen.lib.NoteType()))
+            o.set_format(choice( (Note.FLOWED,Note.FORMATTED)))
+            o.set_type(self.rand_type(NoteType()))
             self.db.add_note(o, self.trans)
 
     def test_cleanup_missing_photos(self):
@@ -428,31 +428,31 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            p = gen.lib.Person()
+            p = Person()
             self.db.add_person( p, self.trans)
     
-            f = gen.lib.Family()
+            f = Family()
             self.db.add_family( f, self.trans)
     
-            e = gen.lib.Event()
+            e = Event()
             self.db.add_event( e, self.trans)
     
-            p = gen.lib.Place()
+            p = Place()
             self.db.add_place( p, self.trans)
     
-            s = gen.lib.Source()
+            s = Source()
             self.db.add_source( s, self.trans)
     
-            c = gen.lib.Citation()
+            c = Citation()
             self.db.add_citation( c, self.trans)
     
-            m = gen.lib.MediaObject()
+            m = MediaObject()
             self.db.add_object( m, self.trans)
     
-            r = gen.lib.Repository()
+            r = Repository()
             self.db.add_repository( r, self.trans)
     
-            n = gen.lib.Note()
+            n = Note()
             self.db.add_note( n, self.trans)
     
     def test_check_for_broken_family_links(self):
@@ -461,12 +461,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken1",None)
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken1","Family links to this person, but person does not link back")
+            person2_h = self.generate_person(Person.FEMALE,"Broken1",None)
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             #person1 = self.db.get_person_from_handle(person1_h)
             #person1.add_family_handle(fam_h)
@@ -479,12 +479,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken2",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken2",None)
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken2",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken2",None)
+            fam = Family()
             #fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -497,12 +497,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken3",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken3",None)
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken3",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken3",None)
+            fam = Family()
             fam.set_father_handle(person1_h)
             #fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -516,12 +516,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken4",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken4",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -535,12 +535,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
-            person2_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken5",None)
+            person2_h = self.generate_person(Person.MALE,"Broken5",None)
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -553,12 +553,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            #person1_h = self.generate_person(gen.lib.Person.MALE,"Broken6",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken6",None)
-            fam = gen.lib.Family()
+            #person1_h = self.generate_person(Person.MALE,"Broken6",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken6",None)
+            fam = Family()
             fam.set_father_handle("InvalidHandle1")
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             #person1 = self.db.get_person_from_handle(person1_h)
             #person1.add_family_handle(fam_h)
@@ -571,12 +571,12 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken7",None)
-            #person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken7",None)
-            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken7",None)
+            #person2_h = self.generate_person(Person.FEMALE,"Broken7",None)
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle("InvalidHandle2")
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED,''))
             fam_h = self.db.add_family(fam,self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
@@ -589,14 +589,14 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken8",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken8",None)
+            person1_h = self.generate_person(Person.MALE,"Broken8",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken8",None)
             child_h = self.generate_person(None,"Broken8",None)
-            fam = gen.lib.Family()
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-            child_ref = gen.lib.ChildRef()
+            fam.set_relationship((FamilyRelType.MARRIED,''))
+            child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
@@ -615,14 +615,14 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken9",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken9",None)
+            person1_h = self.generate_person(Person.MALE,"Broken9",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken9",None)
             child_h = self.generate_person(None,"Broken9",None)
-            fam = gen.lib.Family()
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-            # child_ref = gen.lib.ChildRef()
+            fam.set_relationship((FamilyRelType.MARRIED,''))
+            # child_ref = ChildRef()
             # child_ref.set_reference_handle(child_h)
             # self.fill_object(child_ref)
             # fam.add_child_ref(child_ref)
@@ -641,14 +641,14 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken19",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken19",None)
+            person1_h = self.generate_person(Person.MALE,"Broken19",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken19",None)
             child_h = person2_h
-            fam = gen.lib.Family()
+            fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-            child_ref = gen.lib.ChildRef()
+            fam.set_relationship((FamilyRelType.MARRIED,''))
+            child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
@@ -668,13 +668,13 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(gen.lib.Person.MALE,"Broken20",None)
-            person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken20",None)
-#            fam = gen.lib.Family()
+            person1_h = self.generate_person(Person.MALE,"Broken20",None)
+            person2_h = self.generate_person(Person.FEMALE,"Broken20",None)
+#            fam = Family()
 #            fam.set_father_handle(person1_h)
 #            fam.set_mother_handle(person2_h)
-#            fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
-#            child_ref = gen.lib.ChildRef()
+#            fam.set_relationship((FamilyRelType.MARRIED,''))
+#            child_ref = ChildRef()
 #            # child_ref.set_reference_handle(child_h)
 #            # self.fill_object(child_ref)
 #            # fam.add_child_ref(child_ref)
@@ -705,7 +705,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken11",None)
             person = self.db.get_person_from_handle(person_h)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle4")
             person.set_birth_ref(event_ref)
             self.db.commit_person(person,self.trans)
@@ -716,7 +716,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken12",None)
             person = self.db.get_person_from_handle(person_h)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle5")
             person.set_death_ref(event_ref)
             self.db.commit_person(person,self.trans)
@@ -727,7 +727,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken13",None)
             person = self.db.get_person_from_handle(person_h)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle6")
             person.add_event_ref(event_ref)
             self.db.commit_person(person,self.trans)
@@ -737,12 +737,12 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken14",None)
-            event = gen.lib.Event()
+            event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken14")
             event_h = self.db.add_event(event,self.trans)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(event_ref)
@@ -753,12 +753,12 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken15",None)
-            event = gen.lib.Event()
+            event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken15")
             event_h = self.db.add_event(event,self.trans)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_death_ref(event_ref)
@@ -770,12 +770,12 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken16",None)
-            event = gen.lib.Event()
+            event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken16")
             event_h = self.db.add_event(event,self.trans)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.add_event_ref(event_ref)
@@ -793,12 +793,12 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken17",None)
-            event = gen.lib.Event()
-            event.set_type(gen.lib.EventType.BIRTH)
+            event = Event()
+            event.set_type(EventType.BIRTH)
             event.set_place_handle("InvalidHandle7")
             event.set_description("Test for Broken17")
             event_h = self.db.add_event(event,self.trans)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(event_ref)
@@ -809,12 +809,12 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             person_h = self.generate_person(None,"Broken18",None)
-            event = gen.lib.Event()
-            event.set_type(gen.lib.EventType.BIRTH)
+            event = Event()
+            event.set_type(EventType.BIRTH)
             event.set_place_handle("InvalidHandle8")
             event.set_description("Test for Broken18")
             event_h = self.db.add_event(event,self.trans)
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.add_event_ref(event_ref)
@@ -826,25 +826,25 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            c = gen.lib.Citation()
+            c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
             c.set_page(u'unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
-            c = gen.lib.Citation()
+            c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
             c.set_page(u'unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
-            c = gen.lib.Citation()
+            c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
             c.set_page(u'citation and references to it should be removed')
             c_h1 = self.db.add_citation(c, self.trans)
             
-            c = gen.lib.Citation()
+            c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
             c.set_page(u'citation and references to it should be removed')
@@ -895,75 +895,75 @@ class TestcaseGenerator(tool.BatchTool):
         #        
         #        Repository (Repositories themselves do not have SourceRefs)
         #         Address
-        m = gen.lib.MediaObject()
+        m = MediaObject()
         m.set_description(message)
         m.set_path(unicode(ICON))
         m.set_mime_type(gen.mime.get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
         # MediaObject : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         m.add_attribute(a)
         self.db.add_object(m, self.trans)
         
-        person1_h = self.generate_person(gen.lib.Person.MALE,name,None)
-        person2_h = self.generate_person(gen.lib.Person.FEMALE,name,None)
+        person1_h = self.generate_person(Person.MALE,name,None)
+        person2_h = self.generate_person(Person.FEMALE,name,None)
         child_h = self.generate_person(None,name,None)
-        fam = gen.lib.Family()
+        fam = Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((FamilyRelType.MARRIED,''))
         # Family
         fam.add_citation(choice(c_h_list))
         # Family : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         fam.add_attribute(a)
         # Family : ChildRef
-        child_ref = gen.lib.ChildRef()
+        child_ref = ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
         child_ref.add_citation(choice(c_h_list))
         fam.add_child_ref(child_ref)
         # Family : MediaRef
-        mr = gen.lib.MediaRef()
+        mr = MediaRef()
         mr.set_reference_handle(m.handle)
         mr.add_citation(choice(c_h_list))
         # Family : MediaRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         mr.add_attribute(a)
         fam.add_media_reference(mr)
         # Family : LDSORD
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         self.fill_object( ldsord)
         # TODO: adapt type and status to family/person
-        #if isinstance(o,gen.lib.Person):
-        #if isinstance(o,gen.lib.Family):
+        #if isinstance(o,Person):
+        #if isinstance(o,Family):
         ldsord.set_type( choice(
-            [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
-        ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
+            [item[0] for item in LdsOrd._TYPE_MAP] ))
+        ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
         ldsord.add_citation(choice(c_h_list))
         fam.add_lds_ord(ldsord)
         # Family : EventRef
-        e = gen.lib.Event()
-        e.set_type(gen.lib.EventType.MARRIAGE)
+        e = Event()
+        e.set_type(EventType.MARRIAGE)
         (year, d) = self.rand_date()
         e.set_date_object(d)
         e.set_description(message)
         event_h = self.db.add_event(e, self.trans)
-        er = gen.lib.EventRef()
+        er = EventRef()
         er.set_reference_handle(event_h)
-        er.set_role(self.rand_type(gen.lib.EventRoleType()))
+        er.set_role(self.rand_type(EventRoleType()))
         # Family : EventRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         er.add_attribute(a)
@@ -974,64 +974,64 @@ class TestcaseGenerator(tool.BatchTool):
         # Person
         person1.add_citation(choice(c_h_list))
         # Person : Name
-        alt_name = gen.lib.Name(person1.get_primary_name())
+        alt_name = Name(person1.get_primary_name())
         alt_name.set_first_name(message)
         alt_name.add_citation(choice(c_h_list))
         person1.add_alternate_name(alt_name)
         # Person : Address
-        a = gen.lib.Address()
+        a = Address()
         a.set_street(message)
         a.add_citation(choice(c_h_list))
         person1.add_address(a)
         # Person : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         person1.add_attribute(a)
         # Person : PersonRef
         asso_h = self.generate_person()
-        asso = gen.lib.PersonRef()
+        asso = PersonRef()
         asso.set_reference_handle(asso_h)
         asso.set_relation(self.rand_text(self.SHORT))
         self.fill_object(asso)
         asso.add_citation(choice(c_h_list))
         person1.add_person_ref(asso)
         # Person : MediaRef
-        mr = gen.lib.MediaRef()
+        mr = MediaRef()
         mr.set_reference_handle(m.handle)
         mr.add_citation(choice(c_h_list))
         # Person : MediaRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
         a.add_citation(choice(c_h_list))
         mr.add_attribute(a)
         person1.add_media_reference(mr)
         # Person : LDSORD
-        ldsord = gen.lib.LdsOrd()
+        ldsord = LdsOrd()
         self.fill_object( ldsord)
         # TODO: adapt type and status to family/person
-        #if isinstance(o,gen.lib.Person):
-        #if isinstance(o,gen.lib.Family):
+        #if isinstance(o,Person):
+        #if isinstance(o,Family):
         ldsord.set_type( choice(
-            [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
-        ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
+            [item[0] for item in LdsOrd._TYPE_MAP] ))
+        ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
         ldsord.add_citation(choice(c_h_list))
         person1.add_lds_ord(ldsord)
         # Person : EventRef
-        e = gen.lib.Event()
-        e.set_type(gen.lib.EventType.ELECTED)
+        e = Event()
+        e.set_type(EventType.ELECTED)
         (year, d) = self.rand_date()
         e.set_date_object(d)
         e.set_description(message)
         event_h = self.db.add_event(e, self.trans)
-        er = gen.lib.EventRef()
+        er = EventRef()
         er.set_reference_handle(event_h)
-        er.set_role(self.rand_type(gen.lib.EventRoleType()))
+        er.set_role(self.rand_type(EventRoleType()))
         # Person : EventRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         er.add_attribute(a)
@@ -1041,51 +1041,51 @@ class TestcaseGenerator(tool.BatchTool):
         person2.add_family_handle(fam_h)
         self.db.commit_person(person2,self.trans)
 
-        e = gen.lib.Event()
+        e = Event()
         e.set_description(message)
-        e.set_type(gen.lib.EventType.MARRIAGE)
+        e.set_type(EventType.MARRIAGE)
         # Event
         e.add_citation(choice(c_h_list))
         # Event : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         e.add_attribute(a)
         # Event : MediaRef
-        mr = gen.lib.MediaRef()
+        mr = MediaRef()
         mr.set_reference_handle(m.handle)
         mr.add_citation(choice(c_h_list))
         # Event : MediaRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
         a.add_citation(choice(c_h_list))
         mr.add_attribute(a)
         e.add_media_reference(mr)
         self.db.add_event(e, self.trans)
 
-        p = gen.lib.Place()
+        p = Place()
         p.set_title(message)
         p.add_citation(choice(c_h_list))
         # Place : MediaRef
-        mr = gen.lib.MediaRef()
+        mr = MediaRef()
         mr.set_reference_handle(m.handle)
         mr.add_citation(choice(c_h_list))
         # Place : MediaRef : Attribute
-        a = gen.lib.Attribute()
-        a.set_type(self.rand_type(gen.lib.AttributeType()))
+        a = Attribute()
+        a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
         a.add_citation(choice(c_h_list))
         mr.add_attribute(a)
         p.add_media_reference(mr)
         self.db.add_place(p, self.trans)
 
-        r = gen.lib.Repository()
+        r = Repository()
         r.set_name(message)
-        r.set_type(gen.lib.RepositoryType.LIBRARY)
+        r.set_type(RepositoryType.LIBRARY)
         # Repository : Address
-        a = gen.lib.Address()
+        a = Address()
         a.set_street(message)
         a.add_citation(choice(c_h_list))
         r.add_address(a)
@@ -1107,22 +1107,22 @@ class TestcaseGenerator(tool.BatchTool):
                 while Gtk.events_pending():
                     Gtk.main_iteration()
 
-        np = gen.lib.Person()
+        np = Person()
         self.fill_object(np)
         
         # Gender
         if gender is None:
             gender = randint(0,1)
         if randint(0,10) == 1:  # Set some persons to unknown gender
-            np.set_gender(gen.lib.Person.UNKNOWN)
+            np.set_gender(Person.UNKNOWN)
         else:
             np.set_gender(gender)
         
         # Name
-        name = gen.lib.Name()
+        name = Name()
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
-        surname = gen.lib.Surname()
+        surname = Surname()
         surname.set_surname(lastname)
         name.add_surname(surname)
         self.fill_object( name)
@@ -1131,14 +1131,14 @@ class TestcaseGenerator(tool.BatchTool):
         # generate some slightly different alternate name
         firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
-            alt_name = gen.lib.Name(name)
+            alt_name = Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
-                surname = gen.lib.Surname()
+                surname = Surname()
                 surname.set_surname(self.rand_text(self.LASTNAME))
                 alt_name.add_surname(surname)
             elif randint(0,2) == 1:
-                surname = gen.lib.Surname()
+                surname = Surname()
                 surname.set_surname(lastname)
                 alt_name.add_surname(surname)
             if randint(0,1) == 1:
@@ -1146,9 +1146,9 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                patronymic = gen.lib.Surname()
+                patronymic = Surname()
                 patronymic.set_surname( self.rand_text(self.FIRSTNAME_MALE))
-                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
             if randint(0,1) == 1:
                 alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
@@ -1159,14 +1159,14 @@ class TestcaseGenerator(tool.BatchTool):
             np.add_alternate_name( alt_name)
         firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
-            alt_name = gen.lib.Name(name)
+            alt_name = Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
-                surname = gen.lib.Surname()
+                surname = Surname()
                 surname.set_surname(self.rand_text(self.LASTNAME))
                 alt_name.add_surname(surname)
             elif randint(0,2) == 1:
-                surname = gen.lib.Surname()
+                surname = Surname()
                 surname.set_surname(lastname)
                 alt_name.add_surname(surname)
             if randint(0,1) == 1:
@@ -1174,9 +1174,9 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                patronymic = gen.lib.Surname()
+                patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
-                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
             if randint(0,1) == 1:
                 alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
@@ -1194,25 +1194,25 @@ class TestcaseGenerator(tool.BatchTool):
         
         # birth
         if randint(0,1) == 1:
-            (birth_year, eref) = self.rand_personal_event( gen.lib.EventType.BIRTH, by,by)
+            (birth_year, eref) = self.rand_personal_event( EventType.BIRTH, by,by)
             np.set_birth_ref(eref)
 
         # baptism
         if randint(0,1) == 1:
             (bapt_year, eref) = self.rand_personal_event(
-                choice( (gen.lib.EventType.BAPTISM, gen.lib.EventType.CHRISTEN)), by, by+2)
+                choice( (EventType.BAPTISM, EventType.CHRISTEN)), by, by+2)
             np.add_event_ref(eref)
 
         # death
         death_year = None
         if randint(0,1) == 1:
-            (death_year, eref) = self.rand_personal_event( gen.lib.EventType.DEATH, dy,dy)
+            (death_year, eref) = self.rand_personal_event( EventType.DEATH, dy,dy)
             np.set_death_ref(eref)
 
         # burial
         if randint(0,1) == 1:
             (bur_year, eref) = self.rand_personal_event(
-                choice( (gen.lib.EventType.BURIAL, gen.lib.EventType.CREMATION)), dy, dy+2)
+                choice( (EventType.BURIAL, EventType.CREMATION)), dy, dy+2)
             np.add_event_ref(eref)
         
         # some other events
@@ -1224,7 +1224,7 @@ class TestcaseGenerator(tool.BatchTool):
         if self.generated_events:
             while randint(0,5) == 1:
                 e_h = choice(self.generated_events)
-                eref = gen.lib.EventRef()
+                eref = EventRef()
                 self.fill_object( eref)
                 eref.set_reference_handle(e_h)
                 np.add_event_ref(eref)
@@ -1238,7 +1238,7 @@ class TestcaseGenerator(tool.BatchTool):
                     asso_h = self.generate_person(None, None, alive_in_year = alive_in_year)
                 else:
                     asso_h = self.generate_person()
-                asso = gen.lib.PersonRef()
+                asso = PersonRef()
                 asso.set_reference_handle(asso_h)
                 asso.set_relation(self.rand_text(self.SHORT))
                 self.fill_object(asso)
@@ -1291,7 +1291,7 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            fam = gen.lib.Family()
+            fam = Family()
             self.add_defaults(fam)
             if person1_h:
                 fam.set_father_handle(person1_h)
@@ -1318,13 +1318,13 @@ class TestcaseGenerator(tool.BatchTool):
             # some shared events
             if self.generated_events:
                 while randint(0, 5) == 1:
-                    typeval = gen.lib.EventType.UNKNOWN
+                    typeval = EventType.UNKNOWN
                     while int(typeval) not in self.FAMILY_EVENTS:
                         e_h = choice(self.generated_events)
                         typeval = self.db.get_event_from_handle(e_h).get_type()
                     if e_h in event_set:
                         break
-                    eref = gen.lib.EventRef()
+                    eref = EventRef()
                     self.fill_object( eref)
                     eref.set_reference_handle(e_h)
                     fam.add_event_ref(eref)
@@ -1354,7 +1354,7 @@ class TestcaseGenerator(tool.BatchTool):
                     (born,died) = self.person_dates[child_h]
                     alive_in_year = born
                 fam = self.db.get_family_from_handle(fam_h)
-                child_ref = gen.lib.ChildRef()
+                child_ref = ChildRef()
                 child_ref.set_reference_handle(child_h)
                 self.fill_object(child_ref)
                 fam.add_child_ref(child_ref)
@@ -1392,11 +1392,11 @@ class TestcaseGenerator(tool.BatchTool):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            fam = gen.lib.Family()
+            fam = Family()
             self.add_defaults(fam)
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            child_ref = gen.lib.ChildRef()
+            child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
@@ -1417,7 +1417,7 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
             for counter in range(10):
-                tag = gen.lib.Tag()
+                tag = Tag()
                 tag.set_name(self.rand_text(self.TAG))
                 tag.set_color(self.rand_color())
                 tag.set_priority(self.db.get_number_of_tags())
@@ -1428,9 +1428,9 @@ class TestcaseGenerator(tool.BatchTool):
         self.fill_object( object)
     
     def rand_name( self, lastname=None, gender=None):
-        if gender == gen.lib.Person.MALE:
+        if gender == Person.MALE:
             firstname = self.rand_text( self.FIRSTNAME_MALE)
-        elif gender == gen.lib.Person.FEMALE:
+        elif gender == Person.FEMALE:
             firstname = self.rand_text( self.FIRSTNAME_FEMALE)
         else:
             firstname = self.rand_text( self.FIRSTNAME)
@@ -1450,7 +1450,7 @@ class TestcaseGenerator(tool.BatchTool):
             start = end - randint(0,100)
         year = randint(start,end)
         
-        ndate = gen.lib.Date()
+        ndate = Date()
         if randint(0,10) == 1:
             # Some get a textual date
             ndate.set_as_text( choice((self.rand_text(self.SHORT),"Unknown","??","Don't know","TODO!")))
@@ -1460,23 +1460,23 @@ class TestcaseGenerator(tool.BatchTool):
                 pass
             else:
                 # regular dates
-                calendar = gen.lib.Date.CAL_GREGORIAN
-                quality = choice( (gen.lib.Date.QUAL_NONE,
-                                   gen.lib.Date.QUAL_ESTIMATED,
-                                   gen.lib.Date.QUAL_CALCULATED))
-                modifier = choice( (gen.lib.Date.MOD_NONE,
-                                    gen.lib.Date.MOD_BEFORE,
-                                    gen.lib.Date.MOD_AFTER,\
-                                    gen.lib.Date.MOD_ABOUT,
-                                    gen.lib.Date.MOD_RANGE,
-                                    gen.lib.Date.MOD_SPAN))
+                calendar = Date.CAL_GREGORIAN
+                quality = choice( (Date.QUAL_NONE,
+                                   Date.QUAL_ESTIMATED,
+                                   Date.QUAL_CALCULATED))
+                modifier = choice( (Date.MOD_NONE,
+                                    Date.MOD_BEFORE,
+                                    Date.MOD_AFTER,\
+                                    Date.MOD_ABOUT,
+                                    Date.MOD_RANGE,
+                                    Date.MOD_SPAN))
                 day = randint(0,28)
                 if day > 0: # avoid days without month
                     month = randint(1,12)
                 else:
                     month = randint(0,12)
                 
-                if modifier in (gen.lib.Date.MOD_RANGE, gen.lib.Date.MOD_SPAN):
+                if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
                     day2 = randint(0,28)
                     if day2 > 0:
                         month2 = randint(1,12)
@@ -1494,63 +1494,63 @@ class TestcaseGenerator(tool.BatchTool):
         
         if issubclass(o.__class__,gen.lib.addressbase.AddressBase):
             while randint(0,1) == 1:
-                a = gen.lib.Address()
+                a = Address()
                 self.fill_object(a)
                 o.add_address( a)
 
-        if isinstance(o,gen.lib.Attribute):
-            o.set_type( self.rand_type(gen.lib.AttributeType()))
+        if isinstance(o,Attribute):
+            o.set_type( self.rand_type(AttributeType()))
             o.set_value( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__,gen.lib.attrbase.AttributeBase):
             while randint(0,1) == 1:
-                a = gen.lib.Attribute()
+                a = Attribute()
                 self.fill_object(a)
                 o.add_attribute( a)
 
-        if isinstance(o,gen.lib.ChildRef):
+        if isinstance(o,ChildRef):
             if randint(0,3) == 1:
-                o.set_mother_relation( self.rand_type( gen.lib.ChildRefType()))
+                o.set_mother_relation( self.rand_type( ChildRefType()))
             if randint(0,3) == 1:
-                o.set_father_relation( self.rand_type( gen.lib.ChildRefType()))
+                o.set_father_relation( self.rand_type( ChildRefType()))
 
         if issubclass(o.__class__,gen.lib.datebase.DateBase):
             if randint(0,1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
 
-        if isinstance(o,gen.lib.Event):
+        if isinstance(o,Event):
             if randint(0,1) == 1:
                 o.set_description( self.rand_text(self.LONG))
 
         if issubclass(o.__class__,gen.lib.eventref.EventRef):
-            o.set_role( self.rand_type(gen.lib.EventRoleType()))
+            o.set_role( self.rand_type(EventRoleType()))
 
-        if isinstance(o,gen.lib.Family):
+        if isinstance(o,Family):
             if randint(0,2) == 1:
-                o.set_relationship( self.rand_type(gen.lib.FamilyRelType()))
+                o.set_relationship( self.rand_type(FamilyRelType()))
             else:
-                o.set_relationship(gen.lib.FamilyRelType(gen.lib.FamilyRelType.MARRIED))
+                o.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
 
-        if isinstance(o,gen.lib.LdsOrd):
+        if isinstance(o,LdsOrd):
             if randint(0,1) == 1:
                 o.set_temple( choice(TEMPLES.name_code_data())[1])
 
         if issubclass(o.__class__,gen.lib.ldsordbase.LdsOrdBase):
             while randint(0,1) == 1:
-                ldsord = gen.lib.LdsOrd()
+                ldsord = LdsOrd()
                 self.fill_object( ldsord)
                 # TODO: adapt type and status to family/person
-                #if isinstance(o,gen.lib.Person):
-                #if isinstance(o,gen.lib.Family):
+                #if isinstance(o,Person):
+                #if isinstance(o,Family):
                 ldsord.set_type( choice(
-                    [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
-                ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
+                    [item[0] for item in LdsOrd._TYPE_MAP] ))
+                ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
                 if self.generated_families:
                     ldsord.set_family_handle( choice(self.generated_families))
                 o.add_lds_ord( ldsord)
 
-        if isinstance(o,gen.lib.Location):
+        if isinstance(o,Location):
             if randint(0,1) == 1:
                 o.set_parish( self.rand_text(self.SHORT))
 
@@ -1573,9 +1573,9 @@ class TestcaseGenerator(tool.BatchTool):
         if issubclass(o.__class__,gen.lib.mediabase.MediaBase):
             # FIXME: frequency changed to prevent recursion
             while randint(0,10) == 1:
-                o.add_media_reference( self.fill_object( gen.lib.MediaRef()))
+                o.add_media_reference( self.fill_object( MediaRef()))
 
-        if isinstance(o,gen.lib.MediaObject):
+        if isinstance(o,MediaObject):
             if randint(0,3) == 1:
                 o.set_description(unicode(self.rand_text(self.LONG)))
                 path = choice((ICON, LOGO, SPLASH))
@@ -1587,9 +1587,9 @@ class TestcaseGenerator(tool.BatchTool):
                 o.set_path(unicode(ICON))
                 o.set_mime_type("image/png")
 
-        if isinstance(o,gen.lib.MediaRef):
+        if isinstance(o,MediaRef):
             if not self.generated_media or randint(0,10) == 1:
-                m = gen.lib.MediaObject()
+                m = MediaObject()
                 self.fill_object(m)
                 self.db.add_object( m, self.trans)
                 self.generated_media.append( m.get_handle())
@@ -1597,14 +1597,14 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_rectangle( (randint(0,200),randint(0,200),randint(0,200),randint(0,200)))
         
-        if isinstance(o,gen.lib.Name):
-            o.set_type( self.rand_type( gen.lib.NameType()))
+        if isinstance(o,Name):
+            o.set_type( self.rand_type( NameType()))
             if randint(0,1) == 1:
                 o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                patronymic = gen.lib.Surname()
+                patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
-                patronymic.set_origintype(gen.lib.NameOriginType.PATRONYMIC)
+                patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 o.add_surname(patronymic)
             if randint(0,1) == 1:
                 o.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
@@ -1617,26 +1617,26 @@ class TestcaseGenerator(tool.BatchTool):
             # o.set_display_as()
             # o.set_sort_as()
 
-        if isinstance(o,gen.lib.Note):
-            type = self.rand_type(gen.lib.NoteType())
-            if type == gen.lib.NoteType.HTML_CODE:
+        if isinstance(o,Note):
+            type = self.rand_type(NoteType())
+            if type == NoteType.HTML_CODE:
                 o.set( self.rand_text(self.NOTE))
             else:
                 o.set_styledtext(self.rand_text(self.STYLED_TEXT))
-            o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
+            o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
             o.set_type(type)
 
         if issubclass(o.__class__,gen.lib.notebase.NoteBase):
             while randint(0,1) == 1:
                 if not self.generated_notes or randint(0,10) == 1:
-                    n = gen.lib.Note()
+                    n = Note()
                     self.fill_object(n)
                     self.db.add_note( n, self.trans)
                     self.generated_notes.append( n.get_handle())
                 n_h = choice(self.generated_notes)
                 o.add_note(n_h)
         
-        if isinstance(o,gen.lib.Place):
+        if isinstance(o,Place):
             o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 if randint(0,4) == 1:
@@ -1648,9 +1648,9 @@ class TestcaseGenerator(tool.BatchTool):
                     o.set_latitude( self.rand_text(self.SHORT))
                 else:
                     o.set_latitude( str(random()*180.0-90.0))
-            o.set_main_location( self.fill_object( gen.lib.Location()))
+            o.set_main_location( self.fill_object( Location()))
             while randint(0,1) == 1:
-                o.add_alternate_locations( self.fill_object( gen.lib.Location()))
+                o.add_alternate_locations( self.fill_object( Location()))
 
         if issubclass(o.__class__,gen.lib.placebase.PlaceBase):
             if randint(0,1) == 1:
@@ -1663,22 +1663,22 @@ class TestcaseGenerator(tool.BatchTool):
         if issubclass(o.__class__,gen.lib.privacybase.PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
             
-        if isinstance(o,gen.lib.RepoRef):
+        if isinstance(o,RepoRef):
             if not self.generated_repos or randint(0,10) == 1:
-                r = gen.lib.Repository()
+                r = Repository()
                 self.fill_object(r)
                 self.db.add_repository( r, self.trans)
                 self.generated_repos.append(r.get_handle())
             o.set_reference_handle( choice( self.generated_repos))
             if randint(0,1) == 1:
                 o.set_call_number( self.rand_text(self.SHORT))
-            o.set_media_type( self.rand_type(gen.lib.SourceMediaType()))
+            o.set_media_type( self.rand_type(SourceMediaType()))
 
-        if isinstance(o,gen.lib.Repository):
-            o.set_type( self.rand_type(gen.lib.RepositoryType()))
+        if isinstance(o,Repository):
+            o.set_type( self.rand_type(RepositoryType()))
             o.set_name( self.rand_text(self.SHORT))
 
-        if isinstance(o,gen.lib.Source):
+        if isinstance(o,Source):
             o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_author( self.rand_text(self.SHORT))
@@ -1689,23 +1689,23 @@ class TestcaseGenerator(tool.BatchTool):
             while randint(0,1) == 1:
                 o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
             while randint(0,1) == 1:
-                r = gen.lib.RepoRef()
+                r = RepoRef()
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
         if issubclass(o.__class__,gen.lib.citationbase.CitationBase):
             while randint(0,1) == 1:
                 if not self.generated_citations or randint(1,10) == 1:
-                    s = gen.lib.Citation()
+                    s = Citation()
                     self.fill_object(s)
                     self.db.add_citation( s, self.trans)
                     self.generated_citations.append(s.get_handle())
                 s_h = choice(self.generated_citations)
                 o.add_citation(s_h)
 
-        if isinstance(o,gen.lib.Citation):
+        if isinstance(o,Citation):
             if not self.generated_sources or randint(0,10) == 1:
-                s = gen.lib.Source()
+                s = Source()
                 self.fill_object(s)
                 self.db.add_source( s, self.trans)
                 self.generated_sources.append( s.get_handle())
@@ -1725,48 +1725,48 @@ class TestcaseGenerator(tool.BatchTool):
 
         if issubclass(o.__class__,gen.lib.urlbase.UrlBase):
             while randint(0,1) == 1:
-                u = gen.lib.Url()
+                u = Url()
                 self.fill_object(u)
                 o.add_url(u)
         
-        if isinstance(o,gen.lib.Url):
+        if isinstance(o,Url):
             o.set_path("http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT))
             o.set_description( self.rand_text(self.SHORT))
-            o.set_type( self.rand_type(gen.lib.UrlType()))
+            o.set_type( self.rand_type(UrlType()))
 
         return o
 
     def rand_personal_event( self, type=None, start=None, end=None):
         if type:
-            typeval = gen.lib.EventType(type)
+            typeval = EventType(type)
         else:
-            typeval = self.rand_type(gen.lib.EventType())
+            typeval = self.rand_type(EventType())
         return self._rand_event( typeval, start, end)
         
     def rand_family_event( self, type=None, start=None, end=None):
         if type:
-            typeval = gen.lib.EventType(type)
+            typeval = EventType(type)
         else:
-            typeval = gen.lib.EventType.UNKNOWN
+            typeval = EventType.UNKNOWN
             while int(typeval) not in self.FAMILY_EVENTS:
-                typeval = self.rand_type(gen.lib.EventType())
+                typeval = self.rand_type(EventType())
         return self._rand_event( typeval, start, end)
     
     def _rand_event( self, type, start, end):
-        e = gen.lib.Event()
+        e = Event()
         self.fill_object(e)
         e.set_type( type)
         (year, d) = self.rand_date( start, end)
         e.set_date_object( d)
         event_h = self.db.add_event(e, self.trans)
         self.generated_events.append(event_h)
-        event_ref = gen.lib.EventRef()
+        event_ref = EventRef()
         self.fill_object(event_ref)
         event_ref.set_reference_handle(event_h)
         return (year, event_ref)
     
     def rand_type( self, list):
-        if issubclass( list.__class__, gen.lib.GrampsType):
+        if issubclass( list.__class__, GrampsType):
             map = list.get_map()
             key = choice( map.keys())
             if key == list.get_custom():
@@ -1778,7 +1778,7 @@ class TestcaseGenerator(tool.BatchTool):
         
     def rand_place( self):
         if not self.generated_places or randint(0,10) == 1:
-            place = gen.lib.Place()
+            place = Place()
             self.fill_object( place)
             self.db.add_place( place, self.trans)
             self.generated_places.append( place.get_handle())

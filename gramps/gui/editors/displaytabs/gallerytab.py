@@ -52,7 +52,7 @@ from gi.repository import GObject
 from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
-import gen.lib
+from gramps.gen.lib import MediaObject, MediaRef
 from gen.db import DbTxn
 from gen.utils.file import (media_path_full, media_path, relative_path,
                             fix_encoding)
@@ -277,7 +277,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         try:
             from gui.editors import EditMediaRef
             EditMediaRef(self.dbstate, self.uistate, self.track, 
-                         gen.lib.MediaObject(), gen.lib.MediaRef(),
+                         MediaObject(), MediaRef(),
                          self.add_callback)
         except WindowActiveError:
             pass
@@ -319,7 +319,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         sel = SelectObject(self.dbstate, self.uistate, self.track)
         src = sel.run()
         if src:
-            sref = gen.lib.MediaRef()
+            sref = MediaRef()
             try:
                 from gui.editors import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
@@ -492,7 +492,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         self._handle_drag(row, obj)
                     self.rebuild()
                 elif mytype == DdTargets.MEDIAOBJ.drag_type:
-                    oref = gen.lib.MediaRef()
+                    oref = MediaRef()
                     oref.set_reference_handle(obj)
                     self.get_data().append(oref)
                     self.changed = True
@@ -515,7 +515,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         mime = gen.mime.get_type(name)
                         if not gen.mime.is_valid_type(mime):
                             return
-                        photo = gen.lib.MediaObject()
+                        photo = MediaObject()
                         base_dir = unicode(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
                             name = relative_path(name, base_dir)
@@ -527,7 +527,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         with DbTxn(_("Drag Media Object"),
                                    self.dbstate.db) as trans:
                             self.dbstate.db.add_object(photo, trans)
-                            oref = gen.lib.MediaRef()
+                            oref = MediaRef()
                             oref.set_reference_handle(photo.get_handle())
                             self.get_data().append(oref)
                             self.changed = True

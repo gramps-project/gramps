@@ -34,7 +34,7 @@ Specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -92,7 +92,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('isän')
             else:
                 result.append('äidin')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('isä')
         else:
             result.append('äiti')
@@ -107,9 +107,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('tyttären')
             else:
                 result.append('lapsen')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('poika')
-        elif person == gen.lib.Person.FEMALE:
+        elif person == Person.FEMALE:
             result.append('tytär')
         else:
             result.append('lapsi')
@@ -144,9 +144,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('tyttären')
             else:
                 result.append('lapsen')
-        if person == gen.lib.Person.MALE:
+        if person == Person.MALE:
             result.append('poika')
-        elif person == gen.lib.Person.FEMALE:
+        elif person == Person.FEMALE:
             result.append('tytär')
         else:
             result.append('lapsi')
@@ -185,7 +185,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person, firstRel), common)
         elif len(firstRel) == 1:
-            if other_person == gen.lib.Person.MALE:
+            if other_person == Person.MALE:
                 return (self.get_ancestors_brother(secondRel), common)
             else:
                 return (self.get_ancestors_sister(secondRel), common)
@@ -202,7 +202,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
  
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-        if gender_b == gen.lib.Person.MALE:
+        if gender_b == Person.MALE:
             return self.get_ancestors_brother("")
         else:
             return self.get_ancestors_sister("")

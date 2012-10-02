@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Person
 from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
@@ -139,9 +139,9 @@ class SummaryReport(Report):
                 missing_bday += 1
                 
             # Count genders.
-            if person.get_gender() == gen.lib.Person.FEMALE:
+            if person.get_gender() == Person.FEMALE:
                 females += 1
-            elif person.get_gender() == gen.lib.Person.MALE:
+            elif person.get_gender() == Person.MALE:
                 males += 1
             else:
                 unknowns += 1

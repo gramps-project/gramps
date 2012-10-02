@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui import widgets
-import gen.lib
+from gramps.gen.lib import Event, EventType, Family, FamilyRelType
 from gui.filters import build_filter_model
 from gui.filters.sidebar import SidebarFilter
 from gen.filters import GenericFilterFactory, rules
@@ -67,12 +67,12 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_mother = widgets.BasicEntry()
         self.filter_child = widgets.BasicEntry()
         
-        self.filter_event = gen.lib.Event()
-        self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
+        self.filter_event = Event()
+        self.filter_event.set_type((EventType.CUSTOM, u''))
         self.etype = Gtk.ComboBox(has_entry=True)
 
-        self.family_stub = gen.lib.Family()
-        self.family_stub.set_relationship((gen.lib.FamilyRelType.CUSTOM, u''))
+        self.family_stub = Family()
+        self.family_stub.set_relationship((FamilyRelType.CUSTOM, u''))
         self.rtype = Gtk.ComboBox(has_entry=True)
         
         self.event_menu = widgets.MonitoredDataType(

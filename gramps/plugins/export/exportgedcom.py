@@ -42,7 +42,7 @@ import time
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import AttributeType, ChildRefType, Citation, Date, EventRoleType, EventType, LdsOrd, NameType, NoteType, Person, UrlType
 from gen.const import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
 from gen.errors import DatabaseError
@@ -62,27 +62,27 @@ NEEDS_PARAMETER = set(
      "NMR",  "OCCU", "PROP", "RELI", "SSN",  "TITL"])
 
 LDS_ORD_NAME = {
-    gen.lib.LdsOrd.BAPTISM         : 'BAPL', 
-    gen.lib.LdsOrd.ENDOWMENT       : 'ENDL', 
-    gen.lib.LdsOrd.SEAL_TO_PARENTS : 'SLGC', 
-    gen.lib.LdsOrd.SEAL_TO_SPOUSE  : 'SLGS', 
-    gen.lib.LdsOrd.CONFIRMATION    : 'CONL', 
+    LdsOrd.BAPTISM         : 'BAPL', 
+    LdsOrd.ENDOWMENT       : 'ENDL', 
+    LdsOrd.SEAL_TO_PARENTS : 'SLGC', 
+    LdsOrd.SEAL_TO_SPOUSE  : 'SLGS', 
+    LdsOrd.CONFIRMATION    : 'CONL', 
     }
 
 LDS_STATUS = {
-    gen.lib.LdsOrd.STATUS_BIC        : "BIC", 
-    gen.lib.LdsOrd.STATUS_CANCELED   : "CANCELED", 
-    gen.lib.LdsOrd.STATUS_CHILD      : "CHILD", 
-    gen.lib.LdsOrd.STATUS_CLEARED    : "CLEARED", 
-    gen.lib.LdsOrd.STATUS_COMPLETED  : "COMPLETED", 
-    gen.lib.LdsOrd.STATUS_DNS        : "DNS", 
-    gen.lib.LdsOrd.STATUS_INFANT     : "INFANT", 
-    gen.lib.LdsOrd.STATUS_PRE_1970   : "PRE-1970", 
-    gen.lib.LdsOrd.STATUS_QUALIFIED  : "QUALIFIED", 
-    gen.lib.LdsOrd.STATUS_DNS_CAN    : "DNS/CAN", 
-    gen.lib.LdsOrd.STATUS_STILLBORN  : "STILLBORN", 
-    gen.lib.LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" , 
-    gen.lib.LdsOrd.STATUS_UNCLEARED  : "UNCLEARED", 
+    LdsOrd.STATUS_BIC        : "BIC", 
+    LdsOrd.STATUS_CANCELED   : "CANCELED", 
+    LdsOrd.STATUS_CHILD      : "CHILD", 
+    LdsOrd.STATUS_CLEARED    : "CLEARED", 
+    LdsOrd.STATUS_COMPLETED  : "COMPLETED", 
+    LdsOrd.STATUS_DNS        : "DNS", 
+    LdsOrd.STATUS_INFANT     : "INFANT", 
+    LdsOrd.STATUS_PRE_1970   : "PRE-1970", 
+    LdsOrd.STATUS_QUALIFIED  : "QUALIFIED", 
+    LdsOrd.STATUS_DNS_CAN    : "DNS/CAN", 
+    LdsOrd.STATUS_STILLBORN  : "STILLBORN", 
+    LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" , 
+    LdsOrd.STATUS_UNCLEARED  : "UNCLEARED", 
     }
 
 LANGUAGES = {
@@ -111,10 +111,10 @@ MIME2GED = {
     }
 
 QUALITY_MAP = {
-    gen.lib.Citation.CONF_VERY_HIGH : "3", 
-    gen.lib.Citation.CONF_HIGH      : "2", 
-    gen.lib.Citation.CONF_LOW       : "1", 
-    gen.lib.Citation.CONF_VERY_LOW  : "0", 
+    Citation.CONF_VERY_HIGH : "3", 
+    Citation.CONF_HIGH      : "2", 
+    Citation.CONF_LOW       : "1", 
+    Citation.CONF_VERY_LOW  : "0", 
     }
 
 #-------------------------------------------------------------------------
@@ -514,7 +514,7 @@ class GedcomWriter(UpdateCallback):
 
         """
         nicknames = [ attr.get_value() for attr in person.get_attribute_list()
-                      if int(attr.get_type()) == gen.lib.AttributeType.NICKNAME ]
+                      if int(attr.get_type()) == AttributeType.NICKNAME ]
         if len(nicknames) > 0:
             nickname = nicknames[0]
         else:
@@ -533,9 +533,9 @@ class GedcomWriter(UpdateCallback):
         unknown, we output nothing.
         
         """
-        if person.get_gender() == gen.lib.Person.MALE:
+        if person.get_gender() == Person.MALE:
             self._writeln(1, "SEX", "M")
-        elif person.get_gender() == gen.lib.Person.FEMALE:
+        elif person.get_gender() == Person.FEMALE:
             self._writeln(1, "SEX", "F")
 
     def _lds_ords(self, obj, level):
@@ -568,13 +568,13 @@ class GedcomWriter(UpdateCallback):
         """
         etype = int(event.get_type())
         # if the event is a birth or death, skip it.
-        if etype in (gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH):
+        if etype in (EventType.BIRTH, EventType.DEATH):
             return
 
         role = int(event_ref.get_role())
 
         # if the event role is not primary, skip the event.
-        if role != gen.lib.EventRoleType.PRIMARY:
+        if role != EventRoleType.PRIMARY:
             return
 
         val = libgedcom.PERSONALCONSTANTEVENTS.get(etype, "").strip()
@@ -621,8 +621,8 @@ class GedcomWriter(UpdateCallback):
                 continue
             for child_ref in [ ref for ref in family.get_child_ref_list()
                                if ref.ref == person.handle ]:
-                if child_ref.mrel == gen.lib.ChildRefType.ADOPTED \
-                        or child_ref.frel == gen.lib.ChildRefType.ADOPTED:
+                if child_ref.mrel == ChildRefType.ADOPTED \
+                        or child_ref.frel == ChildRefType.ADOPTED:
                     adoptions.append((family, child_ref.frel, child_ref.mrel))
 
         for (fam, frel, mrel) in adoptions:
@@ -630,7 +630,7 @@ class GedcomWriter(UpdateCallback):
             self._writeln(2, 'FAMC', '@%s@' % fam.get_gramps_id())
             if mrel == frel:
                 self._writeln(3, 'ADOP', 'BOTH')
-            elif mrel == gen.lib.ChildRefType.ADOPTED:
+            elif mrel == ChildRefType.ADOPTED:
                 self._writeln(3, 'ADOP', 'WIFE')
             else:
                 self._writeln(3, 'ADOP', 'HUSB')
@@ -649,7 +649,7 @@ class GedcomWriter(UpdateCallback):
         
         # filter out the nicknames
         attr_list = [ attr for attr in person.get_attribute_list()
-                      if attr.get_type() != gen.lib.AttributeType.NICKNAME ]
+                      if attr.get_type() != AttributeType.NICKNAME ]
 
         for attr in attr_list:
 
@@ -871,7 +871,7 @@ class GedcomWriter(UpdateCallback):
             else:
                 self._writeln(1, val, 'Y')
 
-            if event.get_type() == gen.lib.EventType.MARRIAGE:
+            if event.get_type() == EventType.MARRIAGE:
                 self._family_event_attrs(event.get_attribute_list(), 2) 
 
             if event.get_description().strip() != "":
@@ -894,10 +894,10 @@ class GedcomWriter(UpdateCallback):
         
         """
         for attr in attr_list:
-            if attr.get_type() == gen.lib.AttributeType.FATHER_AGE:
+            if attr.get_type() == AttributeType.FATHER_AGE:
                 self._writeln(level, 'HUSB')
                 self._writeln(level+1, 'AGE', attr.get_value())
-            elif attr.get_type() == gen.lib.AttributeType.MOTHER_AGE:
+            elif attr.get_type() == AttributeType.MOTHER_AGE:
                 self._writeln(level, 'WIFE')
                 self._writeln(level+1, 'AGE', attr.get_value())
 
@@ -1042,9 +1042,9 @@ class GedcomWriter(UpdateCallback):
                 if addr.get_phone():
                     self._writeln(1, 'PHON', addr.get_phone())
             for url in repo.get_url_list():
-                if int(url.get_type()) == gen.lib.UrlType.EMAIL:
+                if int(url.get_type()) == UrlType.EMAIL:
                     self._writeln(1, 'EMAIL', url.get_path())
-                elif int(url.get_type()) == gen.lib.UrlType.WEB_HOME:
+                elif int(url.get_type()) == UrlType.WEB_HOME:
                     self._writeln(1, 'WWW', url.get_path())
             self._note_references(repo.get_note_list(), 1)
 
@@ -1116,7 +1116,7 @@ class GedcomWriter(UpdateCallback):
         if self._datewritten:
             # write out TIME if present
             times = [ attr.get_value() for attr in event.get_attribute_list()
-                      if int(attr.get_type()) == gen.lib.AttributeType.TIME ]
+                      if int(attr.get_type()) == AttributeType.TIME ]
             # Not legal, but inserted by PhpGedView
             if len(times) > 0:
                 time = times[0]
@@ -1130,19 +1130,19 @@ class GedcomWriter(UpdateCallback):
 
         for attr in event.get_attribute_list():
             attr_type = attr.get_type()
-            if attr_type == gen.lib.AttributeType.CAUSE:
+            if attr_type == AttributeType.CAUSE:
                 self._writeln(2, 'CAUS', attr.get_value())
-            elif attr_type == gen.lib.AttributeType.AGENCY:
+            elif attr_type == AttributeType.AGENCY:
                 self._writeln(2, 'AGNC', attr.get_value())
 
         for attr in event_ref.get_attribute_list():
             attr_type = attr.get_type()
-            if attr_type == gen.lib.AttributeType.AGE:
+            if attr_type == AttributeType.AGE:
                 self._writeln(2, 'AGE', attr.get_value())
-            elif attr_type == gen.lib.AttributeType.FATHER_AGE:
+            elif attr_type == AttributeType.FATHER_AGE:
                 self._writeln(2, 'HUSB')
                 self._writeln(3, 'AGE', attr.get_value())
-            elif attr_type == gen.lib.AttributeType.MOTHER_AGE:
+            elif attr_type == AttributeType.MOTHER_AGE:
                 self._writeln(2, 'WIFE')
                 self._writeln(3, 'AGE', attr.get_value())
 
@@ -1199,7 +1199,7 @@ class GedcomWriter(UpdateCallback):
         if lds_ord.get_place_handle():
             self._place(
                 self.dbase.get_place_from_handle(lds_ord.get_place_handle()), 2)
-        if lds_ord.get_status() != gen.lib.LdsOrd.STATUS_NONE:
+        if lds_ord.get_status() != LdsOrd.STATUS_NONE:
             self._writeln(2, 'STAT', LDS_STATUS[lds_ord.get_status()])
         
         self._note_references(lds_ord.get_note_list(), index+1)
@@ -1212,16 +1212,16 @@ class GedcomWriter(UpdateCallback):
         """
         self._datewritten = True
         start = date.get_start_date()
-        if start != gen.lib.Date.EMPTY:
+        if start != Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
             quality = date.get_quality()
-            if mod == gen.lib.Date.MOD_SPAN:
+            if mod == Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, quality), 
                     libgedcom.make_gedcom_date(date.get_stop_date(), 
                                                cal, mod, quality))
-            elif mod == gen.lib.Date.MOD_RANGE:
+            elif mod == Date.MOD_RANGE:
                 val = "BET %s AND %s" % (
                     libgedcom.make_gedcom_date(start, cal, mod, quality), 
                     libgedcom.make_gedcom_date(date.get_stop_date(), 
@@ -1266,11 +1266,11 @@ class GedcomWriter(UpdateCallback):
             nick = attr_nick
 
         self._writeln(1, 'NAME', gedcom_name)
-        if int(name.get_type()) == gen.lib.NameType.BIRTH:
+        if int(name.get_type()) == NameType.BIRTH:
             pass
-        elif int(name.get_type()) == gen.lib.NameType.MARRIED:
+        elif int(name.get_type()) == NameType.MARRIED:
             self._writeln(2, 'TYPE', 'married')
-        elif int(name.get_type()) == gen.lib.NameType.AKA:
+        elif int(name.get_type()) == NameType.AKA:
             self._writeln(2, 'TYPE', 'aka')
         else:
             self._writeln(2, 'TYPE', name.get_type().xml_str())
@@ -1327,8 +1327,8 @@ class GedcomWriter(UpdateCallback):
 
 
         conf = min(citation.get_confidence_level(), 
-                   gen.lib.Citation.CONF_VERY_HIGH)
-        if conf != gen.lib.Citation.CONF_NORMAL and conf != -1:
+                   Citation.CONF_VERY_HIGH)
+        if conf != Citation.CONF_NORMAL and conf != -1:
             self._writeln(level+1, "QUAY", QUALITY_MAP[conf])
 
         if not citation.get_date_object().is_empty():
@@ -1340,7 +1340,7 @@ class GedcomWriter(UpdateCallback):
             note_list = [ self.dbase.get_note_from_handle(h) 
                           for h in citation.get_note_list() ]
             note_list = [ n for n in note_list 
-                          if n.get_type() == gen.lib.NoteType.SOURCE_TEXT]
+                          if n.get_type() == NoteType.SOURCE_TEXT]
 
             if note_list:
                 ref_text = note_list[0].get()
@@ -1355,7 +1355,7 @@ class GedcomWriter(UpdateCallback):
             note_list = [ self.dbase.get_note_from_handle(h) 
                           for h in citation.get_note_list() ]
             note_list = [ n.handle for n in note_list 
-                          if n and n.get_type() != gen.lib.NoteType.SOURCE_TEXT]
+                          if n and n.get_type() != NoteType.SOURCE_TEXT]
             self._note_references(note_list, level+1)
             self._photos(citation.get_media_list(), level+1)
             

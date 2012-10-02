@@ -48,7 +48,7 @@ from gi.repository import Gtk
 from gui.views.listview import LISTTREE
 from gui.views.treemodels.citationtreemodel import CitationTreeModel
 from gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
-import gen.lib
+from gramps.gen.lib import Citation, Source
 from gui.views.listview import ListView
 from gen.utils.db import (get_source_and_citation_referents, 
                                 get_citation_referents)
@@ -387,7 +387,7 @@ class CitationTreeView(ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
+            EditSource(self.dbstate, self.uistate, [], Source())
         except WindowActiveError:
             pass
 
@@ -409,8 +409,8 @@ class CitationTreeView(ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditCitation(self.dbstate, self.uistate, [], gen.lib.Citation(),
-                         gen.lib.Source())
+            EditCitation(self.dbstate, self.uistate, [], Citation(),
+                         Source())
         except WindowActiveError:
             pass
 
@@ -428,7 +428,7 @@ class CitationTreeView(ListView):
             if source:
                 try:
                     EditCitation(self.dbstate, self.uistate, [], 
-                                 gen.lib.Citation(), source)
+                                 Citation(), source)
                 except WindowActiveError:
                     from gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),

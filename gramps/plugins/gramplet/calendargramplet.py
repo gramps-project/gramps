@@ -26,7 +26,7 @@
 from gen.plug import Gramplet
 from gen.ggettext import sgettext as _
 from gui.plug.quick import run_quick_report_by_name
-import gen.lib
+from gramps.gen.lib import Date
 
 #------------------------------------------------------------------------
 #
@@ -51,7 +51,7 @@ class CalendarGramplet(Gramplet):
     def double_click(self, obj):
         # bring up events on this day
         year, month, day = self.gui.calendar.get_date()
-        date = gen.lib.Date()
+        date = Date()
         date.set_yr_mon_day(year, month + 1, day)
         run_quick_report_by_name(self.gui.dbstate, 
                                  self.gui.uistate, 

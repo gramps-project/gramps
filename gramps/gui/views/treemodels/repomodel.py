@@ -39,7 +39,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Address, RepositoryType, Url, UrlType
 from gramps.gen.datehandler import format_time
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
@@ -115,7 +115,7 @@ class RepositoryModel(FlatBaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        return unicode(gen.lib.RepositoryType(data[2]))
+        return unicode(RepositoryType(data[2]))
 
     def column_name(self,data):
         return unicode(data[3])
@@ -123,7 +123,7 @@ class RepositoryModel(FlatBaseModel):
     def column_city(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_city()
             else:
@@ -134,7 +134,7 @@ class RepositoryModel(FlatBaseModel):
     def column_street(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_street()
             else:
@@ -145,7 +145,7 @@ class RepositoryModel(FlatBaseModel):
     def column_locality(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_locality()
             else:
@@ -156,7 +156,7 @@ class RepositoryModel(FlatBaseModel):
     def column_state(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_state()
             else:
@@ -167,7 +167,7 @@ class RepositoryModel(FlatBaseModel):
     def column_country(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_country()
             else:
@@ -178,7 +178,7 @@ class RepositoryModel(FlatBaseModel):
     def column_postal_code(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_postal_code()
             else:
@@ -189,7 +189,7 @@ class RepositoryModel(FlatBaseModel):
     def column_phone(self,data):
         try:
             if data[5]:
-                addr = gen.lib.Address()
+                addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_phone()
             else:
@@ -200,27 +200,27 @@ class RepositoryModel(FlatBaseModel):
     def column_email(self,data):
         if data[6]:
             for i in data[6]:
-                url = gen.lib.Url()
+                url = Url()
                 url.unserialize(i)
-                if url.get_type() == gen.lib.UrlType.EMAIL:
+                if url.get_type() == UrlType.EMAIL:
                     return unicode(url.path)
         return u''
 
     def column_search_url(self,data):
         if data[6]:
             for i in data[6]:
-                url = gen.lib.Url()
+                url = Url()
                 url.unserialize(i)
-                if url.get_type() == gen.lib.UrlType.WEB_SEARCH:
+                if url.get_type() == UrlType.WEB_SEARCH:
                     return unicode(url.path)
         return u''
     
     def column_home_url(self,data):
         if data[6]:
             for i in data[6]:
-                url = gen.lib.Url()
+                url = Url()
                 url.unserialize(i)
-                if url.get_type() == gen.lib.UrlType.WEB_HOME:
+                if url.get_type() == UrlType.WEB_HOME:
                     return unicode(url.path)
         return u""
 

@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gen.const import URL_MANUAL_PAGE
-import gen.lib
+from gramps.gen.lib import Event, NoteType
 from gen.db import DbTxn
 from gui.display import display_help
 from editprimary import EditPrimary
@@ -83,7 +83,7 @@ class EditEvent(EditPrimary):
             self.commit_event = self.db.commit_event
 
     def empty_object(self):
-        return gen.lib.Event()
+        return Event()
 
     def get_menu_title(self):
         handle = self.obj.get_handle()
@@ -184,7 +184,7 @@ class EditEvent(EditPrimary):
                                  self.uistate,
                                  self.track,
                                  self.obj.get_note_list(),
-                                 notetype=gen.lib.NoteType.EVENT)
+                                 notetype=NoteType.EVENT)
         self._add_tab(notebook, self.note_list)
         
 

@@ -55,7 +55,7 @@ _LOG = logging.getLogger("GeoGraphy.geoplaces")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType
 from gen.config import config
 from gen.display.name import displayer as _nd
 from gen.utils.place import conv_lat_lon
@@ -212,7 +212,7 @@ class GeoPlaces(GeoGraphyView):
             self._append_to_places_list(descr, None, "",
                                         latitude, longitude,
                                         None, None,
-                                        gen.lib.EventType.UNKNOWN,
+                                        EventType.UNKNOWN,
                                         None, # person.gramps_id
                                         place.gramps_id,
                                         None, # event.gramps_id

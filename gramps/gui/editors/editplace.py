@@ -44,7 +44,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import NoteType, Place
 from gen.db import DbTxn
 from editprimary import EditPrimary
 from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
@@ -111,7 +111,7 @@ class EditPlace(EditPrimary):
                              dbstate.db.get_place_from_gramps_id, callback)
 
     def empty_object(self):
-        return gen.lib.Place()
+        return Place()
 
     def _local_init(self):
         self.width_key = 'interface.place-width'
@@ -258,7 +258,7 @@ class EditPlace(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                notetype=gen.lib.NoteType.PLACE)
+                                notetype=NoteType.PLACE)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
         

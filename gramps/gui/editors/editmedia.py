@@ -44,7 +44,7 @@ from gi.repository import Gdk
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
-import gen.lib
+from gramps.gen.lib import MediaObject, NoteType
 from gen.db import DbTxn
 import gen.mime
 from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
@@ -77,7 +77,7 @@ class EditMedia(EditPrimary):
                            self._update_addmedia)
 
     def empty_object(self):
-        return gen.lib.MediaObject()
+        return MediaObject()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -213,7 +213,7 @@ class EditMedia(EditPrimary):
                                 self.uistate,
                                 self.track,
                                 self.obj.get_note_list(), 
-                                notetype=gen.lib.NoteType.MEDIA)
+                                notetype=NoteType.MEDIA)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
 

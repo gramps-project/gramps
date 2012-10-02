@@ -44,7 +44,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import NoteType, Source
 from gen.db import DbTxn
 from editprimary import EditPrimary
 
@@ -69,7 +69,7 @@ class EditSource(EditPrimary):
                              dbstate.db.get_source_from_gramps_id)
 
     def empty_object(self):
-        return gen.lib.Source()
+        return Source()
 
     def get_menu_title(self):
         title = self.obj.get_title()
@@ -135,7 +135,7 @@ class EditSource(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                gen.lib.NoteType.SOURCE)
+                                NoteType.SOURCE)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
         

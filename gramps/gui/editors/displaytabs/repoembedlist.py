@@ -33,7 +33,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import RepoRef, Repository
 from gui.dbguielement import DbGUIElement
 from gui.selectors import SelectorFactory
 from gen.errors import WindowActiveError
@@ -102,7 +102,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
     def handle_extra_type(self, objtype, obj):
         from gui.editors import EditRepoRef
         try:
-            ref = gen.lib.RepoRef()
+            ref = RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
@@ -112,8 +112,8 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
 
     def add_button_clicked(self, obj):
         from gui.editors import EditRepoRef
-        ref = gen.lib.RepoRef()
-        repo = gen.lib.Repository()
+        ref = RepoRef()
+        repo = Repository()
         try:
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
@@ -133,7 +133,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         if repo:
             try:
                 from gui.editors import EditRepoRef
-                ref = gen.lib.RepoRef()
+                ref = RepoRef()
                 EditRepoRef(self.dbstate,
                               self.uistate,
                               self.track, 

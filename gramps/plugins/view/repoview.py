@@ -36,7 +36,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import Repository
 from gui.views.listview import ListView
 from gui.views.treemodels import RepositoryModel
 from gui.views.bookmarks import RepoBookmarks
@@ -212,7 +212,7 @@ class RepositoryView(ListView):
         </ui>'''
 
     def add(self, obj):
-        EditRepository(self.dbstate, self.uistate, [], gen.lib.Repository())
+        EditRepository(self.dbstate, self.uistate, [], Repository())
 
     def remove(self, obj):
         self.remove_selected_objects()

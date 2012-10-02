@@ -29,7 +29,7 @@ Display all events on a particular day.
 from gen.simple import SimpleAccess, SimpleDoc, SimpleTable
 from gui.plug.quick import QuickTable
 from gen.ggettext import gettext as _
-import gen.lib
+from gramps.gen.lib import Date
 
 def get_ref(db, objclass, handle):
     """
@@ -57,7 +57,7 @@ def run(database, document, main_event):
     
     Takes an Event or Date object
     """
-    if isinstance(main_event, gen.lib.Date):
+    if isinstance(main_event, Date):
         main_date = main_event
     else:
         main_date = main_event.get_date_object()

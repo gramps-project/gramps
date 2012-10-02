@@ -41,7 +41,7 @@ from gi.repository import Gtk
 from gui.views.listview import LISTTREE
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonTreeModel
-import gen.lib
+from gramps.gen.lib import Name, Person, Surname
 from gen.errors import WindowActiveError
 from gui.editors import EditPerson
 from gen.utils.db import preset_name
@@ -161,13 +161,13 @@ class PersonTreeView(BasePersonView):
         </ui>'''
 
     def add(self, obj):
-        person = gen.lib.Person()
+        person = Person()
         
         # attempt to get the current surname
         (model, pathlist) = self.selection.get_selected_rows()
-        name = gen.lib.Name()
+        name = Name()
         #the editor requires a surname
-        name.add_surname(gen.lib.Surname())
+        name.add_surname(Surname())
         name.set_primary_surname(0)
         basepers = None
         if len(pathlist) == 1:

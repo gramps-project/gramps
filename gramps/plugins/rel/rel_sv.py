@@ -36,7 +36,7 @@ Swedish-specific definitions of relationships
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -130,11 +130,11 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('far')
             else:
                 result.append('mor')
-        if person_gender == gen.lib.Person.MALE:
+        if person_gender == Person.MALE:
             result[-1] = 'far'
-        if person_gender == gen.lib.Person.FEMALE:
+        if person_gender == Person.FEMALE:
             result[-1] = 'mor'
-        if person_gender == gen.lib.Person.UNKNOWN:
+        if person_gender == Person.UNKNOWN:
             result[-1] = u'förälder'
         if step != '' and len(result)==1:
             #Preceed with step prefix of father/mother
@@ -143,7 +143,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and \
-            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            (person_gender == Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get
             # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
@@ -156,14 +156,14 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person_gender == gen.lib.Person.MALE:
+        if person_gender == Person.MALE:
             result.append('son')
-        elif person_gender == gen.lib.Person.FEMALE:
+        elif person_gender == Person.FEMALE:
             result.append('dotter')
         else:
-            if person_gender == gen.lib.Person.UNKNOWN and inlaw == '':
+            if person_gender == Person.UNKNOWN and inlaw == '':
                 result.append('barn')
-            if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
+            if person_gender == Person.UNKNOWN and inlaw != '':
                 result.append('-son/dotter')
         if step != '' and len(result)==1:
             result[0] = self.STEP + result[0]
@@ -171,7 +171,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and \
-            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            (person_gender == Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get
             # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
@@ -208,14 +208,14 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person_gender == gen.lib.Person.MALE:
+        if person_gender == Person.MALE:
             result.append('son')
-        elif person_gender == gen.lib.Person.FEMALE:
+        elif person_gender == Person.FEMALE:
             result.append('dotter')
         else:
-            if person_gender == gen.lib.Person.UNKNOWN and inlaw == '':
+            if person_gender == Person.UNKNOWN and inlaw == '':
                 result.append('barn')
-            if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
+            if person_gender == Person.UNKNOWN and inlaw != '':
                 result.append('-son/dotter')
         if step != '' and len(result) == 1:
             result[0] = self.STEP + result[0]
@@ -223,7 +223,7 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and \
-            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            (person_gender == Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get
             # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
@@ -237,17 +237,17 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             else:
                 result.append('mor')
         result.append('bror')
-        if person_gender == gen.lib.Person.UNKNOWN: result[-1] = 'syskon'
+        if person_gender == Person.UNKNOWN: result[-1] = 'syskon'
         if step != '' and len(result)==1:
             result[0] = self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
             result[-1] = u'svåger'
-        if inlaw != '' and person_gender == gen.lib.Person.UNKNOWN:
+        if inlaw != '' and person_gender == Person.UNKNOWN:
             #Preceed with inlaw prefix
             result[-1] = u'svåger/svägerska'
         if len(result)>1 and len(result) % 2 == 0 and \
-            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            (person_gender == Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get
             # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
@@ -292,9 +292,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
         elif sib_type == self.STEP_SIB:
             typestr = self.STEP
 
-        if gender_b == gen.lib.Person.MALE:
+        if gender_b == Person.MALE:
             rel_str = "bror"
-        elif gender_b == gen.lib.Person.FEMALE:
+        elif gender_b == Person.FEMALE:
             rel_str = "syster"
         else:
             rel_str = "syskon"
@@ -509,9 +509,9 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             # b is sibling/aunt/uncle of a
             # handles brother and unknown gender as second person,
             # shows up in "testing unknown cousins same generation"                
-            if gender_b == gen.lib.Person.MALE or gender_b == gen.lib.Person.UNKNOWN:
+            if gender_b == Person.MALE or gender_b == Person.UNKNOWN:
                 rel_str = self._get_ancestors_brother(reltocommon_a, gender_b, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = self._get_ancestors_sister(reltocommon_a, step, inlaw)
         elif Ga == Gb:
             # a and b cousins in the same generation

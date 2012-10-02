@@ -49,7 +49,7 @@ LOG = logging.getLogger(".ImportVCard")
 #
 #-------------------------------------------------------------------------
 from gen.errors import GrampsImportError
-import gen.lib
+from gramps.gen.lib import Address, Date, Event, EventRef, EventType, Name, NameType, Person, Surname, Url, UrlType
 from gen.db import DbTxn
 from gen.plug.utils import OpenFileOrStdin
 
@@ -298,7 +298,7 @@ class VCardParser(object):
             self.finish_person()
             LOG.warn("BEGIN property not properly closed by END property, "
                      "Gramps can't cope with nested VCards.")
-        self.person = gen.lib.Person()
+        self.person = Person()
         self.formatted_name = ''
         self.name_parts = ''
 
@@ -336,13 +336,13 @@ class VCardParser(object):
         if len(data_fields) != 5:
             LOG.warn("VCard is malformed wrong number of name components.")
 
-        name = gen.lib.Name()
-        name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
+        name = Name()
+        name.set_type(NameType(NameType.BIRTH))
 
         if data_fields[0].strip():
             # assume first surname is primary
             for surname_str in self.split_unescaped(data_fields[0], ','):
-                surname = gen.lib.Surname()
+                surname = Surname()
                 prefix, sname = splitof_nameprefix(self.unesc(surname_str))
                 surname.set_surname(sname.strip())
                 surname.set_prefix(prefix.strip())
@@ -417,7 +417,7 @@ class VCardParser(object):
         for nick in self.split_unescaped(data, ','):
             nickname = nick.strip()
             if nickname:
-                name = gen.lib.Name()
+                name = Name()
                 name.set_nick_name(self.unesc(nickname))
                 self.person.add_alternate_name(name)
 
@@ -431,7 +431,7 @@ class VCardParser(object):
         data_fields = self.split_unescaped(data, ';')
         data_fields = [x.strip() for x in self.unesc(data_fields)]
         if ''.join(data_fields):
-            addr = gen.lib.Address()
+            addr = Address()
             def add_street(strng):
                 if strng:
                     already = addr.get_street()
@@ -452,7 +452,7 @@ class VCardParser(object):
         """Read the TEL property of a VCard."""
         tel = data.strip()
         if tel:
-            addr = gen.lib.Address()
+            addr = Address()
             addr.set_phone(self.unesc(tel))
             self.person.add_address(addr)
 
@@ -466,14 +466,14 @@ class VCardParser(object):
                                        date_match.group(3), date_match.group(4))
             else:
                 date_str = date_match.group(1)
-            event = gen.lib.Event()
-            event.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
-            date = gen.lib.Date()
+            event = Event()
+            event.set_type(EventType(EventType.BIRTH))
+            date = Date()
             date.set_yr_mon_day(*[int(x, 10) for x in date_str.split('-')])
             event.set_date_object(date)
             self.database.add_event(event, self.trans)
 
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event.get_handle())
             self.person.set_birth_ref(event_ref)
         else:
@@ -484,12 +484,12 @@ class VCardParser(object):
         """Read the ROLE property of a VCard."""
         occupation = data.strip()
         if occupation:
-            event = gen.lib.Event()
-            event.set_type(gen.lib.EventType(gen.lib.EventType.OCCUPATION))
+            event = Event()
+            event.set_type(EventType(EventType.OCCUPATION))
             event.set_description(self.unesc(occupation))
             self.database.add_event(event, self.trans)
 
-            event_ref = gen.lib.EventRef()
+            event_ref = EventRef()
             event_ref.set_reference_handle(event.get_handle())
             self.person.add_event_ref(event_ref)
 
@@ -497,7 +497,7 @@ class VCardParser(object):
         """Read the URL property of a VCard."""
         href = data.strip()
         if href:
-            url = gen.lib.Url()
+            url = Url()
             url.set_path(self.unesc(href))
             self.person.add_url(url)
 
@@ -505,7 +505,7 @@ class VCardParser(object):
         """Read the EMAIL property of a VCard."""
         email = data.strip()
         if email:
-            url = gen.lib.Url()
-            url.set_type(gen.lib.UrlType(gen.lib.UrlType.EMAIL))
+            url = Url()
+            url.set_type(UrlType(UrlType.EMAIL))
             url.set_path(self.unesc(email))
             self.person.add_url(url)

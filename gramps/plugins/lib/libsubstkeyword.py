@@ -39,7 +39,7 @@ Mary Smith was born on 3/28/1923.
 #------------------------------------------------------------------------
 from gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import displayer
-import gen.lib
+from gramps.gen.lib import EventType
 from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -868,14 +868,14 @@ class VariableParse(object):
                 return
             return self.__parse_date(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.MARRIAGE))
+                                       EventType.MARRIAGE))
         elif next_char == "v":
             #Divorce date
             if self.empty_item(self.friend.family):
                 return
             return self.__parse_date(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.DIVORCE))
+                                       EventType.DIVORCE))
         elif next_char == "T":
             #Todays date
             date_f = DateFormat(self._in)
@@ -903,14 +903,14 @@ class VariableParse(object):
                 return
             return self.__parse_place(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.MARRIAGE))
+                                       EventType.MARRIAGE))
         elif next_char == "V":
             #Divorce place
             if self.empty_item(self.friend.family):
                 return
             return self.__parse_place(
                 self.get_event_by_type(self.friend.family,
-                                       gen.lib.EventType.DIVORCE))
+                                       EventType.DIVORCE))
 
         elif next_char == "a":
             #Person's Atribute

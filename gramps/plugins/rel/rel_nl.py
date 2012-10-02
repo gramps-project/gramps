@@ -30,7 +30,7 @@ Specific classes for relationships.
 #
 #-------------------------------------------------------------------------
 
-import gen.lib
+from gramps.gen.lib import Person
 import gen.relationship
 
 #-------------------------------------------------------------------------
@@ -447,58 +447,58 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             if Ga == 0:
                 rel_str = 'zelfde persoon'
             elif Ga == 1 and inlaw and not step:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'schoonvader'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'schoonmoeder'
                 else:
                     rel_str = 'schoonouder'
-            elif gender_b == gen.lib.Person.MALE:
+            elif gender_b == Person.MALE:
                 rel_str = self._get_father(Ga, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = self._get_mother(Ga, step, inlaw)
             else:
                 rel_str = self._get_parent_unknown(Ga, step, inlaw)
         elif Ga == 0:
             #a is descendant
             if Gb == 1 and inlaw and not step:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'schoonzoon'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'schoondochter'
                 else:
                     rel_str = 'schoonzoon of -dochter'
             elif Gb == 1 and inlaw and step:
                 #inlaw stepchild
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'aangetrouwde stiefzoon'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'aangetrouwde stiefdochter'
                 else:
                     rel_str = 'aangetrouwde stiefzoon of dochter'
-            elif gender_b == gen.lib.Person.MALE:
+            elif gender_b == Person.MALE:
                 rel_str = self._get_son(Gb, step, inlaw)
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = self._get_daughter(Gb, step, inlaw)
             else:
                 rel_str = self._get_child_unknown(Gb, step, inlaw)
         elif Ga > Gb:
             #b is higher in the branch, in english uncle/aunt or 
             #cousin up, in dutch always 'oom/tante'
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_uncle(Ga - Gb, Gb, step, inlaw)
             else:
                 rel_str = self._get_aunt(Ga - Gb, Gb, step, inlaw)
         elif Ga < Gb:
             #b is lower in the branch, in english niece/nephew or 
             #cousin down, in dutch always 'neef/nicht'
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_nephew(Gb - Ga, Ga, step, inlaw)
             else:
                 rel_str = self._get_niece(Gb - Ga, Ga, step, inlaw)
         else:
             # people on the same level Ga == Gb
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_male_cousin(Ga, step, inlaw)
             else:
                 rel_str = self._get_female_cousin(Ga, step, inlaw)
@@ -529,14 +529,14 @@ class RelationshipCalculator(gen.relationship.RelationshipCalculator):
             inlaw = ''
 
         if inlaw and not typestr:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = 'schoonbroer'
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 rel_str = 'schoonzus'
             else:
                 rel_str = 'schoonzus/broer'
         else:
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 rel_str = self._get_male_cousin(1, typestr, inlaw)
             else:
                 rel_str = self._get_female_cousin(1, typestr, inlaw)

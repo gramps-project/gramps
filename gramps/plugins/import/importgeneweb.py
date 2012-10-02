@@ -47,7 +47,7 @@ LOG = logging.getLogger(".ImportGeneWeb")
 #
 #-------------------------------------------------------------------------
 from gen.errors import GedcomError
-import gen.lib
+from gramps.gen.lib import Attribute, AttributeType, ChildRef, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, Place, Source
 from gen.db import DbTxn
 from htmlentitydefs import name2codepoint
 
@@ -55,15 +55,15 @@ _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|
 _text_parse = re.compile('0\((.*)\)')
 
 _mod_map = {
-    '>' : gen.lib.Date.MOD_AFTER,
-    '<' : gen.lib.Date.MOD_BEFORE,
-    '~' : gen.lib.Date.MOD_ABOUT,
+    '>' : Date.MOD_AFTER,
+    '<' : Date.MOD_BEFORE,
+    '~' : Date.MOD_ABOUT,
     }
 
 _cal_map = {
-    'J' : gen.lib.Date.CAL_JULIAN,
-    'H' : gen.lib.Date.CAL_HEBREW,
-    'F' : gen.lib.Date.CAL_FRENCH,
+    'J' : Date.CAL_JULIAN,
+    'H' : Date.CAL_HEBREW,
+    'F' : Date.CAL_FRENCH,
     }
 
 #-------------------------------------------------------------------------
@@ -190,14 +190,14 @@ class GeneWebParser(object):
         self.current_husband_handle = None
         self.current_child_birthplace_handle = None
         self.current_child_source_handle = None
-        self.current_family = gen.lib.Family()
+        self.current_family = Family()
         self.db.add_family(self.current_family,self.trans)
         #self.db.commit_family(self.current_family,self.trans)
         self.fkeys.append(self.current_family.get_handle())
         idx = 1;
         
         LOG.debug("\nHusband:")
-        (idx, husband) = self.parse_person(fields,idx,gen.lib.Person.MALE,None)
+        (idx, husband) = self.parse_person(fields,idx,Person.MALE,None)
         if husband:
             self.current_husband_handle = husband.get_handle()
             self.current_family.set_father_handle(husband.get_handle())
@@ -207,7 +207,7 @@ class GeneWebParser(object):
         LOG.debug("Marriage:")
         idx = self.parse_marriage(fields,idx)
         LOG.debug("Wife:")
-        (idx,wife) = self.parse_person(fields,idx,gen.lib.Person.FEMALE,None)
+        (idx,wife) = self.parse_person(fields,idx,Person.FEMALE,None)
         if wife:
             self.current_family.set_mother_handle(wife.get_handle())
             self.db.commit_family(self.current_family,self.trans)
@@ -217,7 +217,7 @@ class GeneWebParser(object):
 
     def read_relationship_person(self,line,fields):
         LOG.debug("\Relationships:")
-        (idx,person) = self.parse_person(fields,1,gen.lib.Person.UNKNOWN,None)
+        (idx,person) = self.parse_person(fields,1,Person.UNKNOWN,None)
         if person:
             self.current_relationship_person_handle = person.get_handle()
 
@@ -240,8 +240,8 @@ class GeneWebParser(object):
                 #split related person into fields
                 fields = matches.groups()[1].split(" ")
                 if fields:
-                    (idx,asso_p) = self.parse_person(fields,0,gen.lib.Person.UNKNOWN,None)
-                    pref = gen.lib.PersonRef()
+                    (idx,asso_p) = self.parse_person(fields,0,Person.UNKNOWN,None)
+                    pref = PersonRef()
                     pref.set_relation(matches.groups()[0])
                     LOG.warn("TODO: Handle association types properly")
                     pref.set_reference_handle(asso_p.get_handle())
@@ -267,9 +267,9 @@ class GeneWebParser(object):
     def read_witness_line(self,line,fields):
         LOG.debug("Witness:")
         if fields[1] == "m:":
-            (idx,wit_p) = self.parse_person(fields,2,gen.lib.Person.MALE,None)
+            (idx,wit_p) = self.parse_person(fields,2,Person.MALE,None)
         elif fields[1] == "f:":
-            (idx,wit_p) = self.parse_person(fields,2,gen.lib.Person.FEMALE,None)
+            (idx,wit_p) = self.parse_person(fields,2,Person.FEMALE,None)
         else:
             (idx,wit_p) = self.parse_person(fields,1,None,None)
         if wit_p:
@@ -277,15 +277,15 @@ class GeneWebParser(object):
             # search marriage event
             for evr in self.current_family.get_event_ref_list():
                 ev = self.db.get_event_from_handle(evr.get_reference_handle())
-                if ev.get_type() == gen.lib.EventType.MARRIAGE:
+                if ev.get_type() == EventType.MARRIAGE:
                     mev = ev # found.
             if not mev: # No marriage event found create a new one
-                mev = self.create_event(gen.lib.EventType.MARRIAGE, None, None, None, None)
-                mar_ref = gen.lib.EventRef()
+                mev = self.create_event(EventType.MARRIAGE, None, None, None, None)
+                mar_ref = EventRef()
                 mar_ref.set_reference_handle(mev.get_handle())
                 self.current_family.add_event_ref(mar_ref)
-            wit_ref = gen.lib.EventRef()
-            wit_ref.set_role(gen.lib.EventRoleType(gen.lib.EventRoleType.WITNESS))
+            wit_ref = EventRef()
+            wit_ref.set_role(EventRoleType(EventRoleType.WITNESS))
             wit_ref.set_reference_handle(mev.get_handle())
             wit_p.add_event_ref(wit_ref)
             self.db.commit_person(wit_p,self.trans)
@@ -313,14 +313,14 @@ class GeneWebParser(object):
                 LOG.debug("Child:")
                 child = None
                 if fields[1] == "h":
-                    (idx,child) = self.parse_person(fields,2,gen.lib.Person.MALE,father_surname)
+                    (idx,child) = self.parse_person(fields,2,Person.MALE,father_surname)
                 elif fields[1] == "f":
-                    (idx,child) = self.parse_person(fields,2,gen.lib.Person.FEMALE,father_surname)
+                    (idx,child) = self.parse_person(fields,2,Person.FEMALE,father_surname)
                 else:
-                    (idx,child) = self.parse_person(fields,1,gen.lib.Person.UNKNOWN,father_surname)
+                    (idx,child) = self.parse_person(fields,1,Person.UNKNOWN,father_surname)
 
                 if child:
-                    childref = gen.lib.ChildRef()
+                    childref = ChildRef()
                     childref.set_reference_handle(child.get_handle())
                     self.current_family.add_child_ref( childref)
                     self.db.commit_family(self.current_family,self.trans)
@@ -331,8 +331,8 @@ class GeneWebParser(object):
                         if birth_ref:
                             birth = self.db.get_event_from_handle(birth_ref.ref)
                         if not birth:
-                            birth = self.create_event(gen.lib.EventType.BIRTH)
-                            birth_ref = gen.lib.EventRef()
+                            birth = self.create_event(EventType.BIRTH)
+                            birth_ref = EventRef()
                             birth_ref.set_reference_handle(birth.get_handle())
                             child.set_birth_ref(birth_ref)
                         birth.set_place_handle(self.current_child_birthplace_handle)
@@ -361,7 +361,7 @@ class GeneWebParser(object):
         if not self.current_family:
             LOG.warn("Unknown family of child in line %d!" % self.lineno)
             return None
-        n = gen.lib.Note()
+        n = Note()
         n.set(line)
         self.db.add_note(n,self.trans)
         self.current_family.add_note(n.handle)
@@ -386,7 +386,7 @@ class GeneWebParser(object):
                 else:
                     note_txt = note_txt + line
         if note_txt:
-            n = gen.lib.Note()
+            n = Note()
             n.set(note_txt)
             self.db.add_note(n,self.trans)
             return n.handle
@@ -461,33 +461,33 @@ class GeneWebParser(object):
 
         if mar_date or mar_place or mar_source:
             mar = self.create_event(
-                gen.lib.EventType.MARRIAGE, None, mar_date, mar_place, mar_source)
-            mar_ref = gen.lib.EventRef()
+                EventType.MARRIAGE, None, mar_date, mar_place, mar_source)
+            mar_ref = EventRef()
             mar_ref.set_reference_handle(mar.get_handle())
-            mar_ref.set_role(gen.lib.EventRoleType.FAMILY)
+            mar_ref.set_role(EventRoleType.FAMILY)
             self.current_family.add_event_ref(mar_ref)
             self.current_family.set_relationship(
-                gen.lib.FamilyRelType(gen.lib.FamilyRelType.MARRIED))
+                FamilyRelType(FamilyRelType.MARRIED))
 
         if div_date:
             div = self.create_event(
-                gen.lib.EventType.DIVORCE, None, div_date, None, None)
-            div_ref = gen.lib.EventRef()
+                EventType.DIVORCE, None, div_date, None, None)
+            div_ref = EventRef()
             div_ref.set_reference_handle(div.get_handle())
-            div_ref.set_role(gen.lib.EventRoleType.FAMILY)
+            div_ref.set_role(EventRoleType.FAMILY)
             self.current_family.add_event_ref(div_ref)
 
         if sep_date or engaged:
             sep = self.create_event(
-                gen.lib.EventType.ENGAGEMENT, None, sep_date, None, None)
-            sep_ref = gen.lib.EventRef()
+                EventType.ENGAGEMENT, None, sep_date, None, None)
+            sep_ref = EventRef()
             sep_ref.set_reference_handle(sep.get_handle())
-            sep_ref.set_role(gen.lib.EventRoleType.FAMILY)
+            sep_ref.set_role(EventRoleType.FAMILY)
             self.current_family.add_event_ref(sep_ref)
 
         if not married:
             self.current_family.set_relationship(
-                gen.lib.FamilyRelType(gen.lib.FamilyRelType.UNMARRIED))
+                FamilyRelType(FamilyRelType.UNMARRIED))
             
         self.db.commit_family(self.current_family,self.trans)
         return idx
@@ -518,13 +518,13 @@ class GeneWebParser(object):
 
         LOG.debug("Person: %s %s" % (firstname, surname))
         person = self.get_or_create_person(firstname,surname)
-        name = gen.lib.Name()
-        name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
+        name = Name()
+        name.set_type( NameType(NameType.BIRTH))
         name.set_first_name(firstname)
         surname_obj = name.get_primary_surname()
         surname_obj.set_surname(surname)
         person.set_primary_name(name)
-        if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
+        if person.get_gender() == Person.UNKNOWN and gender is not None:
             person.set_gender(gender)
         self.db.commit_person(person,self.trans)
         personDataRe = re.compile("^[kmes0-9<>~#\[({!].*$")
@@ -582,16 +582,16 @@ class GeneWebParser(object):
                 if tnth:    # Append title numer to title
                     ttitle += ", " + tnth
                 title = self.create_event(
-                           gen.lib.EventType.NOB_TITLE, ttitle, tstart, tplace)
+                           EventType.NOB_TITLE, ttitle, tstart, tplace)
                 # TODO: Geneweb has a start date and an end date, and therefore
                 # supports stuff like: FROM about 1955 TO between 1998 and 1999
                 # gramps only supports one single date or range.
                 if tname and tname != "*":
-                    n = gen.lib.Note()
+                    n = Note()
                     n.set(tname)
                     self.db.add_note(n,self.trans)
                     title.add_note( n.handle)
-                title_ref = gen.lib.EventRef()
+                title_ref = EventRef()
                 title_ref.set_reference_handle(title.get_handle())
                 person.add_event_ref(title_ref)
             elif field == '#nick' and idx < len(fields):
@@ -601,8 +601,8 @@ class GeneWebParser(object):
             elif field == '#occu' and idx < len(fields):
                 LOG.debug("Occupation: %s" % fields[idx])
                 occu = self.create_event(
-                        gen.lib.EventType.OCCUPATION, self.decode(fields[idx]))
-                occu_ref = gen.lib.EventRef()
+                        EventType.OCCUPATION, self.decode(fields[idx]))
+                occu_ref = EventRef()
                 occu_ref.set_reference_handle(occu.get_handle())
                 person.add_event_ref(occu_ref)
                 idx += 1
@@ -699,40 +699,40 @@ class GeneWebParser(object):
         
         if public_name:
             name = person.get_primary_name()
-            name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
+            name.set_type(NameType(NameType.BIRTH))
             person.add_alternate_name(name)
-            name = gen.lib.Name()
-            name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
+            name = Name()
+            name.set_type(NameType(NameType.AKA))
             name.set_first_name(public_name)
             surname_obj = name.get_primary_surname()
             surname_obj.set_surname(surname)
             person.set_primary_name(name)
         
         for aka in nick_names:
-            name = gen.lib.Attribute()
-            name.set_type(gen.lib.AttributeType(gen.lib.AttributeType.NICKNAME))
+            name = Attribute()
+            name.set_type(AttributeType(AttributeType.NICKNAME))
             name.set_value(aka)
             person.add_attribute(name)
 
         for aka in firstname_aliases:
-            name = gen.lib.Name()
-            name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
+            name = Name()
+            name.set_type(NameType(NameType.AKA))
             name.set_first_name(aka)
             surname_obj = name.get_primary_surname()
             surname_obj.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in name_aliases:
-            name = gen.lib.Name()
-            name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
+            name = Name()
+            name.set_type(NameType(NameType.AKA))
             name.set_first_name(aka)
             surname_obj = name.get_primary_surname()
             surname_obj.set_surname(surname)
             person.add_alternate_name(name)
 
         for aka in surname_aliases:
-            name = gen.lib.Name()
-            name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
+            name = Name()
+            name.set_type(NameType(NameType.AKA))
             if public_name:
                 name.set_first_name(public_name)
             else:
@@ -745,35 +745,35 @@ class GeneWebParser(object):
             person.add_citation(source.get_handle())
 
         if birth_date or birth_place or birth_source:
-            birth = self.create_event(gen.lib.EventType.BIRTH, None, birth_date, birth_place, birth_source)
-            birth_ref = gen.lib.EventRef()
+            birth = self.create_event(EventType.BIRTH, None, birth_date, birth_place, birth_source)
+            birth_ref = EventRef()
             birth_ref.set_reference_handle( birth.get_handle())
             person.set_birth_ref( birth_ref)
 
         if bapt_date or bapt_place or bapt_source:
-            babt = self.create_event(gen.lib.EventType.BAPTISM, None, bapt_date, bapt_place, bapt_source)
-            babt_ref = gen.lib.EventRef()
+            babt = self.create_event(EventType.BAPTISM, None, bapt_date, bapt_place, bapt_source)
+            babt_ref = EventRef()
             babt_ref.set_reference_handle( babt.get_handle())
             person.add_event_ref( babt_ref)
 
         if death_date or death_place or death_source or death_cause:
-            death = self.create_event(gen.lib.EventType.DEATH, None, death_date, death_place, death_source)
+            death = self.create_event(EventType.DEATH, None, death_date, death_place, death_source)
             if death_cause:
                 death.set_description(death_cause)
                 self.db.commit_event(death,self.trans)
-            death_ref = gen.lib.EventRef()
+            death_ref = EventRef()
             death_ref.set_reference_handle( death.get_handle())
             person.set_death_ref( death_ref)
 
         if bur_date:
-            bur = self.create_event(gen.lib.EventType.BURIAL, None, bur_date, bur_place, bur_source)
-            bur_ref = gen.lib.EventRef()
+            bur = self.create_event(EventType.BURIAL, None, bur_date, bur_place, bur_source)
+            bur_ref = EventRef()
             bur_ref.set_reference_handle( bur.get_handle())
             person.add_event_ref( bur_ref)
 
         if crem_date:
-            crem = self.create_event(gen.lib.EventType.CREMATION, None, crem_date, bur_place, bur_source)
-            crem_ref = gen.lib.EventRef()
+            crem = self.create_event(EventType.CREMATION, None, crem_date, bur_place, bur_source)
+            crem_ref = EventRef()
             crem_ref.set_reference_handle( crem.get_handle())
             person.add_event_ref(crem_ref)
 
@@ -784,27 +784,27 @@ class GeneWebParser(object):
     def parse_date(self,field):
         if field == "0":
             return None
-        date = gen.lib.Date()
+        date = Date()
         matches = _text_parse.match(field)
         if matches:
             groups = matches.groups()
             date.set_as_text(groups[0])
-            date.set_modifier(gen.lib.Date.MOD_TEXTONLY)
+            date.set_modifier(Date.MOD_TEXTONLY)
             return date
 
         matches = _date_parse.match(field)
         if matches:
             groups = matches.groups()
-            mod = _mod_map.get(groups[0],gen.lib.Date.MOD_NONE)
+            mod = _mod_map.get(groups[0],Date.MOD_NONE)
             if groups[3] == "..":
-                mod = gen.lib.Date.MOD_SPAN
-                cal2 = _cal_map.get(groups[5],gen.lib.Date.CAL_GREGORIAN)
+                mod = Date.MOD_SPAN
+                cal2 = _cal_map.get(groups[5],Date.CAL_GREGORIAN)
                 sub2 = self.sub_date(groups[4])
             else:
                 sub2 = (0,0,0)
-            cal1 = _cal_map.get(groups[2],gen.lib.Date.CAL_GREGORIAN)
+            cal1 = _cal_map.get(groups[2],Date.CAL_GREGORIAN)
             sub1 = self.sub_date(groups[1])
-            date.set(gen.lib.Date.QUAL_NONE,mod, cal1,
+            date.set(Date.QUAL_NONE,mod, cal1,
                      (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
             return date
         else:
@@ -820,9 +820,9 @@ class GeneWebParser(object):
             return (int(vals[0]),int(vals[1]),int(vals[2]))
         
     def create_event(self,type,desc=None,date=None,place=None,source=None):
-        event = gen.lib.Event()
+        event = Event()
         if type:
-            event.set_type(gen.lib.EventType(type))
+            event.set_type(EventType(type))
         if desc:
             event.set_description(desc)
         if date:
@@ -841,7 +841,7 @@ class GeneWebParser(object):
         if mykey in self.ikeys and firstname != "?" and lastname != "?":
             person = self.db.get_person_from_handle(self.ikeys[mykey])
         else:
-            person = gen.lib.Person()
+            person = Person()
             self.db.add_person(person,self.trans)
             self.db.commit_person(person,self.trans)
             self.ikeys[mykey] = person.get_handle()
@@ -852,7 +852,7 @@ class GeneWebParser(object):
         if place_name in self.pkeys:
             place = self.db.get_place_from_handle(self.pkeys[place_name])
         else:
-            place = gen.lib.Place()
+            place = Place()
             place.set_title(place_name)
             self.db.add_place(place,self.trans)
             self.db.commit_place(place,self.trans)
@@ -864,12 +864,12 @@ class GeneWebParser(object):
         if source_name in self.skeys:
             source = self.db.get_source_from_handle(self.skeys[source_name])
         else:
-            source = gen.lib.Source()
+            source = Source()
             source.set_title(source_name)
             self.db.add_source(source,self.trans)
             self.db.commit_source(source,self.trans)
             self.skeys[source_name] = source.get_handle()
-        citation = gen.lib.Citation()
+        citation = Citation()
         citation.set_reference_handle(source.get_handle())
         self.db.add_citation(citation, self.trans)
         self.db.commit_citation(citation, self.trans)

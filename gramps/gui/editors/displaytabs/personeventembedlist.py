@@ -34,7 +34,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventRoleType, EventType
 from gen.display.name import displayer as name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
@@ -96,13 +96,13 @@ class PersonEventEmbedList(EventEmbedList):
         return self._data
 
     def default_role(self):
-        return gen.lib.EventRoleType(gen.lib.EventRoleType.PRIMARY)
+        return EventRoleType(EventRoleType.PRIMARY)
 
     def default_types(self):
         return [
-            gen.lib.EventType(gen.lib.EventType.BIRTH),
-            gen.lib.EventType(gen.lib.EventType.DEATH),
-            gen.lib.EventType(gen.lib.EventType.BURIAL),
+            EventType(EventType.BIRTH),
+            EventType(EventType.DEATH),
+            EventType(EventType.BURIAL),
             ]
 
     def get_ref_editor(self):

@@ -54,7 +54,7 @@ _LOG = logging.getLogger("GeoGraphy.geoevents")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
+from gramps.gen.lib import EventType
 from gen.config import config
 from gramps.gen.datehandler import displayer
 from gen.display.name import displayer as _nd
@@ -335,7 +335,7 @@ class GeoEvents(GeoGraphyView):
             evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
             # format the date as described in preferences.
             date = displayer.display(evt.get_date_object())
-            message = "(%s) %s : %s" % (date, gen.lib.EventType( mark[7] ), mark[5] )
+            message = "(%s) %s : %s" % (date, EventType( mark[7] ), mark[5] )
             prevmark = mark
         add_item = Gtk.MenuItem(label=message)
         add_item.show()
