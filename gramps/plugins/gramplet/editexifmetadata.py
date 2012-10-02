@@ -63,7 +63,7 @@ from gui.dialog import QuestionDialog, OptionDialog
 
 from gen.lib import Date
 
-import gen.mime
+from gramps.gen.mime import get_description
 from gen.utils.file import search_for, media_path_full
 from gen.utils.place import conv_lat_lon
 
@@ -425,7 +425,7 @@ class EditExifMetadata(Gramplet):
 
         # Mime type information
         mime_type = self.orig_image.get_mime_type()
-        self.exif_widgets["MimeType"].set_text(gen.mime.get_description(mime_type))
+        self.exif_widgets["MimeType"].set_text(get_description(mime_type))
 
         # check image write privileges
         _writable = os.access(self.image_path, os.W_OK)

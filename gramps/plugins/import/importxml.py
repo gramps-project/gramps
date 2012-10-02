@@ -43,7 +43,7 @@ LOG = logging.getLogger(".ImportXML")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import gen.mime
+from gramps.gen.mime import get_type
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, Researcher, Source, StyledText, StyledTextTag, StyledTextTagType, Surname, Tag, Url
 from gen.db import DbTxn
 from gen.db.write import CLASS_TO_KEY_MAP
@@ -2144,7 +2144,7 @@ class GrampsParser(UpdateCallback):
                 attr.set_type(key)
                 attr.set_value(attrs[key])
                 self.photo.add_attribute(attr)
-        self.photo.set_mime_type(gen.mime.get_type(self.photo.get_path()))
+        self.photo.set_mime_type(get_type(self.photo.get_path()))
         self.db.add_object(self.photo, self.trans)
         #set correct change time
         self.db.commit_media_object(self.photo, self.trans, self.change)

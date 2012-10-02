@@ -58,7 +58,7 @@ from gen.utils.file import (media_path, relative_path, media_path_full,
                             fix_encoding)
 from gen.utils.db import get_media_referents
 from gui.views.bookmarks import MediaBookmarks
-import gen.mime
+from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import MediaObject
 from gen.db import DbTxn
 from gui.editors import EditMedia, DeleteMediaQuery
@@ -186,8 +186,8 @@ class MediaView(ListView):
             if protocol == "file":
                 name = unicode(urllib.url2pathname(
                                 mfile.encode(sys.getfilesystemencoding())))
-                mime = gen.mime.get_type(name)
-                if not gen.mime.is_valid_type(mime):
+                mime = get_type(name)
+                if not is_valid_type(mime):
                     return
                 photo = MediaObject()
                 base_dir = unicode(media_path(self.dbstate.db))

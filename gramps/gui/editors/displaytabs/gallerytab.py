@@ -58,7 +58,7 @@ from gen.utils.file import (media_path_full, media_path, relative_path,
                             fix_encoding)
 from gui.thumbnails import get_thumbnail_image
 from gen.errors import WindowActiveError
-import gen.mime
+from gramps.gen.mime import get_type, is_valid_type
 from gui.ddtargets import DdTargets
 from buttontab import ButtonTab
 from gen.constfunc import win
@@ -512,8 +512,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         name = fix_encoding(mfile)
                         name = unicode(urllib.url2pathname(
                                     name.encode(sys.getfilesystemencoding())))
-                        mime = gen.mime.get_type(name)
-                        if not gen.mime.is_valid_type(mime):
+                        mime = get_type(name)
+                        if not is_valid_type(mime):
                             return
                         photo = MediaObject()
                         base_dir = unicode(media_path(self.dbstate.db))

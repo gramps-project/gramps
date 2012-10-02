@@ -54,7 +54,7 @@ from gen.const import ICON, THUMBSCALE, USER_HOME
 from gen.config import config
 from gen.utils.file import (media_path_full, media_path, relative_path, 
                             find_file, get_unicode_path_from_file_chooser)
-import gen.mime
+from gramps.gen.mime import get_type
 from gui.thumbnails import find_mime_type_pixbuf
 from gui.display import display_help
 from gui.managedwindow import ManagedWindow
@@ -163,7 +163,7 @@ class AddMediaObject(ManagedWindow):
             filename = relative_path(filename, pname)
 
 
-        mtype = gen.mime.get_type(full_file)
+        mtype = get_type(full_file)
         description = description or os.path.basename(filename)
 
         self.obj.set_description(description)
@@ -198,7 +198,7 @@ class AddMediaObject(ManagedWindow):
         
         filename = find_file( filename)
         if filename:
-            mtype = gen.mime.get_type(filename)
+            mtype = get_type(filename)
             if mtype and mtype.startswith("image"):
                 image = scale_image(filename, THUMBSCALE)
             else:

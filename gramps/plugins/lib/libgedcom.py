@@ -117,7 +117,7 @@ from gen.const import DATA_DIR
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject, MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Researcher, Source, SourceMediaType, Surname, Url, UrlType
 from gen.db import DbTxn
 from gen.updatecallback import UpdateCallback
-import gen.mime
+from gramps.gen.mime import get_type
 from gen.utils.id import create_id
 from gen.utils.lds import TEMPLES
 from gen.utils.unknown import make_unknown, create_explanation_note
@@ -6117,7 +6117,7 @@ class GedcomParser(UpdateCallback):
             path = line.data
             
         state.media.set_path(path)
-        state.media.set_mime_type(gen.mime.get_type(path))
+        state.media.set_mime_type(get_type(path))
         if not state.media.get_description():
             state.media.set_description(path)
 
@@ -7115,7 +7115,7 @@ class GedcomParser(UpdateCallback):
                 photo.set_description(title)
                 full_path = os.path.abspath(path)
                 if os.path.isfile(full_path):
-                    photo.set_mime_type(gen.mime.get_type(full_path))
+                    photo.set_mime_type(get_type(full_path))
                 else:
                     photo.set_mime_type(MIME_MAP.get(form.lower(), 'unknown'))
                 self.dbase.add_object(photo, self.trans)

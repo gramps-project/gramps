@@ -31,7 +31,7 @@ from django.forms.widgets import TextInput, HiddenInput
 
 # Gramps Modules:
 from webapp.grampsdb.models import *
-import gen.mime
+from gramps.gen.mime import get_type
 
 # Python Modules:
 import datetime
@@ -195,7 +195,7 @@ class MediaForm(forms.ModelForm):
         from webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(MediaForm, self).save(commit=False)
-        model.mime = gen.mime.get_type(model.path)
+        model.mime = get_type(model.path)
         dobj = dp(self.cleaned_data['text'])
         dji.add_date(model, dobj.serialize())
         if commit:

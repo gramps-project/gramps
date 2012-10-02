@@ -46,7 +46,7 @@ from gi.repository import Gdk
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
 from gen.const import THUMBSCALE
-import gen.mime
+from gramps.gen.mime import get_description, get_type
 from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gen.utils.file import (media_path_full, find_file, 
                             get_unicode_path_from_file_chooser)
@@ -115,7 +115,7 @@ class EditMediaRef(EditReference):
         self.select.connect('clicked', self.select_file)
 
     def determine_mime(self):
-        descr = gen.mime.get_description(self.source.get_mime_type())
+        descr = get_description(self.source.get_mime_type())
         if descr:
             self.mimetext.set_text(descr)
 
@@ -123,9 +123,9 @@ class EditMediaRef(EditReference):
         path_full = media_path_full(self.db, path)
         if path != self.source.get_path() and path_full != self.source.get_path():
             #redetermine mime
-            mime = gen.mime.get_type(find_file(path_full))
+            mime = get_type(find_file(path_full))
             self.source.set_mime_type(mime)
-            descr = gen.mime.get_description(mime)
+            descr = get_description(mime)
             if descr:
                 self.mimetext.set_text(descr)
             else:

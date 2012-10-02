@@ -95,7 +95,7 @@ from gen.utils.db import get_source_and_citation_referents
 from gen.constfunc import win
 from gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gen.utils.image import image_size, resize_to_jpeg_buffer
-import gen.mime
+from gramps.gen.mime import get_description
 from gen.display.name import displayer as _nd
 from gen.datehandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
@@ -3887,7 +3887,7 @@ class MediaPage(BasePage):
 
         # get media type to be used primarily with "img" tags
         mime_type = media.get_mime_type()
-        mtype = gen.mime.get_description(mime_type)
+        mtype = get_description(mime_type)
 
         if mime_type:
             note_only = False

@@ -58,7 +58,7 @@ from gen.updatecallback import UpdateCallback
 from gui.plug import tool
 from gen.utils.file import media_path_full, relative_path, media_path
 from gen.ggettext import sgettext as _
-import gen.mime
+from gramps.gen.mime import get_type, is_image_type
 
 #-------------------------------------------------------------------------
 #
@@ -674,8 +674,8 @@ class ImagesNotIncluded(BatchOp):
                     media_full_path = os.path.join(dirpath, filename)
                     if media_full_path not in self.path_list:
                         self.path_list.append(media_full_path)
-                        mime_type = gen.mime.get_type(media_full_path)
-                        if gen.mime.is_image_type(mime_type):
+                        mime_type = get_type(media_full_path)
+                        if is_image_type(mime_type):
                             obj = MediaObject()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)

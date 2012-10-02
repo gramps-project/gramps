@@ -50,7 +50,7 @@ from gi.repository import Gtk
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Source, SourceMediaType, Surname, Tag, Url, UrlType
 from gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gen.db import DbTxn
-import gen.mime
+from gramps.gen.mime import get_type
 from gui.plug import tool
 from gen.utils.string import confidence
 from gui.utils import ProgressMeter
@@ -898,7 +898,7 @@ class TestcaseGenerator(tool.BatchTool):
         m = MediaObject()
         m.set_description(message)
         m.set_path(unicode(ICON))
-        m.set_mime_type(gen.mime.get_type(m.get_path()))
+        m.set_mime_type(get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
         # MediaObject : Attribute
         a = Attribute()
@@ -1580,7 +1580,7 @@ class TestcaseGenerator(tool.BatchTool):
                 o.set_description(unicode(self.rand_text(self.LONG)))
                 path = choice((ICON, LOGO, SPLASH))
                 o.set_path(unicode(path))
-                mime = gen.mime.get_type(path)
+                mime = get_type(path)
                 o.set_mime_type(mime)
             else:
                 o.set_description(unicode(self.rand_text(self.SHORT)))
