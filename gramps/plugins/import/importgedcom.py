@@ -47,7 +47,7 @@ from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
 from gramps.plugins.lib import libgedcom
-module = __import__("libgedcom")
+module = __import__("gramps.plugins.lib.libgedcom")
 reload (module)
 
 from gramps.gen.config import config
