@@ -47,16 +47,16 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
-from gen.utils.place import conv_lat_lon
-from gui.views.treemodels.flatbasemodel import FlatBaseModel
-from gui.views.treemodels.treebasemodel import TreeBaseModel
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
+from gramps.gui.views.treemodels.treebasemodel import TreeBaseModel
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

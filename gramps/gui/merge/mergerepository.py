@@ -29,11 +29,11 @@ Provide merge capabilities for repositories.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.const import URL_MANUAL_PAGE
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gen.merge import MergeRepositoryQuery
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.merge import MergeRepositoryQuery
 
 #-------------------------------------------------------------------------
 #

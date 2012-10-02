@@ -29,23 +29,23 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gui.utils import ProgressMeter
+from gramps.gui.utils import ProgressMeter
 import locale
-from gui.managedwindow import ManagedWindow
-from gui.autocomp import fill_combo
-from gen.lib import EventType
-from gen.db import DbTxn
-from gui.dialog import OkDialog
-from gui.plug import tool
-from gui.glade import Glade
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.autocomp import fill_combo
+from gramps.gen.lib import EventType
+from gramps.gen.db import DbTxn
+from gramps.gui.dialog import OkDialog
+from gramps.gui.plug import tool
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

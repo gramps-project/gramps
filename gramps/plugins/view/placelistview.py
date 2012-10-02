@@ -29,14 +29,14 @@ Place List View
 #
 #-------------------------------------------------------------------------
 from gramps.plugins.lib.libplaceview import PlaceBaseView
-from gui.views.treemodels.placemodel import PlaceListModel
+from gramps.gui.views.treemodels.placemodel import PlaceListModel
 
 #-------------------------------------------------------------------------
 #
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

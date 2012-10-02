@@ -29,7 +29,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -50,10 +50,10 @@ log = logging.getLogger(".RebuildGenderStat")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.plug import tool
-from gui.dialog import OkDialog
-from gen.updatecallback import UpdateCallback
-from gen.lib import Name
+from gramps.gui.plug import tool
+from gramps.gui.dialog import OkDialog
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.lib import Name
 
 #-------------------------------------------------------------------------
 #

@@ -31,7 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 import csv
 import cStringIO
 import codecs
@@ -50,11 +50,11 @@ LOG = logging.getLogger(".ExportCSV")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, Person
-from gen.lib.eventroletype import EventRoleType
-from gui.plug.export import WriterOptionBox
-from gen.utils.string import gender as gender_map
+from gramps.gen.lib.eventroletype import EventRoleType
+from gramps.gui.plug.export import WriterOptionBox
+from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.datehandler import get_date
-from gui.glade import Glade
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

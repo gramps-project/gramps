@@ -27,9 +27,9 @@
 Display references for any object
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.ggettext import gettext as _
 
 def get_ref(db, objclass, handle):
     """

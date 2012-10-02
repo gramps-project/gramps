@@ -47,27 +47,27 @@ from gi.repository import Gtk
 # -----------------------------------------------------------------------------
 # GRAMPS modules
 # -----------------------------------------------------------------------------
-from gui.display import display_help
+from gramps.gui.display import display_help
 
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
-from gen.datehandler import displayer as _dd
-from gen.datehandler import parser as _dp
+from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.datehandler import parser as _dp
 
-from gen.plug import Gramplet
+from gramps.gen.plug import Gramplet
 
 from gramps.plugins.lib.libmetadata import MetadataView, format_datetime
-from gui.widgets import ValidatableMaskedEntry
-from gen.errors import ValidationError
-from gui.dialog import QuestionDialog, OptionDialog
+from gramps.gui.widgets import ValidatableMaskedEntry
+from gramps.gen.errors import ValidationError
+from gramps.gui.dialog import QuestionDialog, OptionDialog
 
-from gen.lib import Date
+from gramps.gen.lib import Date
 
 from gramps.gen.mime import get_description
-from gen.utils.file import search_for, media_path_full
-from gen.utils.place import conv_lat_lon
+from gramps.gen.utils.file import search_for, media_path_full
+from gramps.gen.utils.place import conv_lat_lon
 
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 
 # validate that pyexiv2 is installed and its version...
 import pyexiv2

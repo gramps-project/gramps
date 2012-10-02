@@ -43,8 +43,8 @@ LOG = logging.getLogger(".grampsqml")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.constfunc import has_display
-from gen.config import config
+from gramps.gen.constfunc import has_display
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -60,9 +60,9 @@ class GrampsQML(object):
     """
 
     def __init__(self, argparser):
-        from gen.dbstate import DbState
+        from gramps.gen.dbstate import DbState
         from guiQML.viewmanager import ViewManager
-        from cli.arghandler import ArgHandler
+        from gramps.cli.arghandler import ArgHandler
 
         from PySide import QtGui
         self.app = QtGui.QApplication(sys.argv)

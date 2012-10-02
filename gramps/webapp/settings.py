@@ -23,7 +23,7 @@
 
 # Need to be able to import Gramps files from here.
 
-from gen.const import DATA_DIR, WEB_DIR
+from gramps.gen.const import DATA_DIR, WEB_DIR
 import os
 
 DEBUG = True

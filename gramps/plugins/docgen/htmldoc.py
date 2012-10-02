@@ -39,16 +39,16 @@ Report output generator for html documents, based on Html and HtmlBackend
 import os
 import shutil
 import time
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-from gen.utils.image import resize_to_jpeg
-from gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
-from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
+from gramps.gen.utils.image import resize_to_jpeg
+from gramps.gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
+from gramps.gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.plugins.lib.libhtml import Html
 
@@ -269,7 +269,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         if from_fname != dest:
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
-            from gui.dialog import WarningDialog
+            from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _("Possible destination error") + "\n" +
                 _("You appear to have set your target directory "

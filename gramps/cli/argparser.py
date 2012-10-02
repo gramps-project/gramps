@@ -38,7 +38,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import sys
 import getopt
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------
@@ -46,10 +46,10 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import LONGOPTS, SHORTOPTS
-from gen.config import config
-from gen.utils.configmanager import safe_eval
-from gen.utils.file import get_unicode_path_from_env_var
+from gramps.gen.const import LONGOPTS, SHORTOPTS
+from gramps.gen.config import config
+from gramps.gen.utils.configmanager import safe_eval
+from gramps.gen.utils.file import get_unicode_path_from_env_var
 
 # Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""

@@ -31,7 +31,7 @@ Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -39,7 +39,7 @@ from gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
-from gui.dialog import WarningDialog
+from gramps.gui.dialog import WarningDialog
 
 # Make upper case of translaed country so string search works later
 MAP_NAMES_SWEDEN = [_("Sweden").upper(), 

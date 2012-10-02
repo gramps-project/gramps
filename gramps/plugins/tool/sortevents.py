@@ -28,18 +28,18 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.sort import Sort
-from gen.db import DbTxn
-from gui.plug import MenuToolOptions, PluginWindows
-from gen.plug.report import utils as ReportUtils
-from gen.plug.menu import FilterOption, PersonOption, \
+from gramps.gen.sort import Sort
+from gramps.gen.db import DbTxn
+from gramps.gui.plug import MenuToolOptions, PluginWindows
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.menu import FilterOption, PersonOption, \
                           EnumeratedListOption, BooleanOption
 
 #------------------------------------------------------------------------

@@ -76,29 +76,29 @@ log = logging.getLogger(".NarrativeWeb")
 #------------------------------------------------
 # GRAMPS module
 #------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 from gramps.gen.lib import ChildRefType, Date, EventType, FamilyRelType, Name, NameType, Person
-from gen.lib import UrlType, date, NoteType, EventRoleType
-from gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
-from gen.sort import Sort
-from gen.plug.menu import PersonOption, NumberOption, StringOption, \
+from gramps.gen.lib import UrlType, date, NoteType, EventRoleType
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
+from gramps.gen.sort import Sort
+from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
-from gen.plug.report import ( Report, Bibliography)
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import ( Report, Bibliography)
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
                         
-from gen.utils.config import get_researcher
-from gen.utils.string import confidence
-from gen.utils.file import media_path_full
-from gen.utils.db import get_source_and_citation_referents
-from gen.constfunc import win
-from gui.thumbnails import get_thumbnail_path, run_thumbnailer
-from gen.utils.image import image_size, resize_to_jpeg_buffer
+from gramps.gen.utils.config import get_researcher
+from gramps.gen.utils.string import confidence
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.db import get_source_and_citation_referents
+from gramps.gen.constfunc import win
+from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
+from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
-from gen.display.name import displayer as _nd
-from gen.datehandler import displayer as _dd
-from gen.proxy import PrivateProxyDb, LivingProxyDb
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from src/plugins/lib/libhtml.py
@@ -109,10 +109,10 @@ from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 
 from gramps.plugins.lib.libgedcom import make_gedcom_date
 from gramps.gen.utils.alive import probably_alive
-from gen.utils.place import conv_lat_lon
-from gui.pluginmanager import GuiPluginManager
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.pluginmanager import GuiPluginManager
 
-from gen.relationship import get_relationship_calculator
+from gramps.gen.relationship import get_relationship_calculator
 #------------------------------------------------
 # constants
 #------------------------------------------------

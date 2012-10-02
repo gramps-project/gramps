@@ -20,9 +20,9 @@
 
 # $Id$
 
-from gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
-from gen.constfunc import is_quartz
-from gen.config import config
+from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
+from gramps.gen.constfunc import is_quartz
+from gramps.gen.config import config
 import locale
 import os
 

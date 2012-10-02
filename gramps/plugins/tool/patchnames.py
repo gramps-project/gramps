@@ -44,16 +44,16 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
-from gui.utils import ProgressMeter
-from gui.plug import tool
-from gui.dialog import OkDialog
-from gui.managedwindow import ManagedWindow
-from gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.plug import tool
+from gramps.gui.dialog import OkDialog
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.display import display_help
 from gramps.gen.lib import NameOriginType, Surname
-from gen.db import DbTxn
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
+from gramps.gen.db import DbTxn
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

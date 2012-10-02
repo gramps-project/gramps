@@ -35,7 +35,7 @@
 from gi.repository import Gdk
 from gi.repository import Gtk
 import cairo
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -43,9 +43,9 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gramps.gui.widgets.fanchart as fanchart
-from gui.views.navigationview import NavigationView
-from gui.views.bookmarks import PersonBookmarks
-from gui.utils import SystemFonts
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.views.bookmarks import PersonBookmarks
+from gramps.gui.utils import SystemFonts
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None

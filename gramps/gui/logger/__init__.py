@@ -40,7 +40,7 @@ Usage:
 
    Simple example:
 
-        from gui.logger import GtkHandler, RotateHandler
+        from gramps.gui.logger import GtkHandler, RotateHandler
 
         rh = RotateHandler(capacity=20)
         rh.setLevel(logging.DEBUG)

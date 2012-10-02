@@ -38,7 +38,7 @@ class FamilyAttrEmbedList(AttrEmbedList):
         AttrEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
-        from gui.editors import EditFamilyAttribute
+        from gramps.gui.editors import EditFamilyAttribute
         return EditFamilyAttribute
 
     def get_user_values(self):

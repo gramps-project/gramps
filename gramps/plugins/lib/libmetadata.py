@@ -35,9 +35,9 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 
-from gui.listmodel import ListModel
-from gen.ggettext import gettext as _
-from gen.utils.place import conv_lat_lon
+from gramps.gui.listmodel import ListModel
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.utils.place import conv_lat_lon
 from fractions import Fraction
 from gramps.gen.lib import Date
 from gramps.gen.datehandler import displayer

@@ -36,21 +36,21 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import Event, Person
-from gui.utils import ProgressMeter
-from gui.plug import tool
-from gen.soundex import soundex, compare
-from gen.display.name import displayer as name_displayer
-from gui.dialog import OkDialog
-from gui.listmodel import ListModel
-from gen.errors import WindowActiveError
-from gui.merge import MergePerson
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gui.dialog import RunDatabaseRepair
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.plug import tool
+from gramps.gen.soundex import soundex, compare
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.dialog import OkDialog
+from gramps.gui.listmodel import ListModel
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.merge import MergePerson
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import RunDatabaseRepair
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

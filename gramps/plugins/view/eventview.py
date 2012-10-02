@@ -30,7 +30,7 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
@@ -47,17 +47,17 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Event
-from gui.views.listview import ListView
-from gui.views.treemodels import EventModel
-from gen.errors import WindowActiveError
-from gui.views.bookmarks import EventBookmarks
-from gen.config import config
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.editors import EditEvent, DeleteEventQuery
-from gui.filters.sidebar import EventSidebarFilter
-from gui.merge import MergeEvent
-from gen.plug import CATEGORY_QR_EVENT
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import EventModel
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.views.bookmarks import EventBookmarks
+from gramps.gen.config import config
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.editors import EditEvent, DeleteEventQuery
+from gramps.gui.filters.sidebar import EventSidebarFilter
+from gramps.gui.merge import MergeEvent
+from gramps.gen.plug import CATEGORY_QR_EVENT
 
 #-------------------------------------------------------------------------
 #

@@ -31,7 +31,7 @@ SVG document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import StringIO
 
 #-------------------------------------------------------------------------
@@ -39,8 +39,8 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
-from gen.errors import ReportError
+from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
+from gramps.gen.errors import ReportError
 
 #-------------------------------------------------------------------------
 #

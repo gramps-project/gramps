@@ -33,9 +33,9 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
-from gui.utils import open_file_with_default_application
-from gen.ggettext import gettext as _
+from gramps.gui.thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
+from gramps.gui.utils import open_file_with_default_application
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

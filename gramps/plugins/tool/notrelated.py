@@ -45,18 +45,18 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
-from gen.ggettext import ngettext
-from gui.plug import tool
-from gen.plug.report import utils as ReportUtils
-from gui.editors import EditPerson, EditFamily
-from gui.managedwindow import ManagedWindow
-from gui.utils import ProgressMeter
-from gui.display import display_help
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
-from gen.lib import Tag
-from gen.db import DbTxn
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.ggettext import ngettext
+from gramps.gui.plug import tool
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.display import display_help
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
+from gramps.gen.lib import Tag
+from gramps.gen.db import DbTxn
 
 #-------------------------------------------------------------------------
 #

@@ -30,9 +30,9 @@ __all__ = ["UndoableStyledBuffer"]
 
 from gi.repository import Gtk
 
-from gen.lib.styledtext import StyledText
-from gui.widgets.undoablebuffer import UndoableInsert, UndoableDelete
-from gui.widgets.styledtextbuffer import StyledTextBuffer
+from gramps.gen.lib.styledtext import StyledText
+from gramps.gui.widgets.undoablebuffer import UndoableInsert, UndoableDelete
+from gramps.gui.widgets.styledtextbuffer import StyledTextBuffer
 
 class UndoableInsertStyled(UndoableInsert):
     """something that has been inserted into our styledtextbuffer"""

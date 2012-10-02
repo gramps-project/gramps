@@ -36,7 +36,7 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -50,16 +50,16 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import ICON, THUMBSCALE, USER_HOME
-from gen.config import config
-from gen.utils.file import (media_path_full, media_path, relative_path, 
+from gramps.gen.const import ICON, THUMBSCALE, USER_HOME
+from gramps.gen.config import config
+from gramps.gen.utils.file import (media_path_full, media_path, relative_path, 
                             find_file, get_unicode_path_from_file_chooser)
 from gramps.gen.mime import get_type
-from gui.thumbnails import find_mime_type_pixbuf
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gui.dialog import ErrorDialog, WarningDialog
-from gui.glade import Glade
+from gramps.gui.thumbnails import find_mime_type_pixbuf
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import ErrorDialog, WarningDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

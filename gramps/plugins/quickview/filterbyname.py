@@ -27,17 +27,17 @@
 Display filtered data
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.utils.file import media_path_full
-from gui.plug.quick import run_quick_report_by_name_direct
-from gen.lib import Person
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.utils.file import media_path_full
+from gramps.gui.plug.quick import run_quick_report_by_name_direct
+from gramps.gen.lib import Person
 from gramps.gen.datehandler import get_date
 
 import posixpath
 from collections import defaultdict
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 
 fname_map = {'all': _('Filtering_on|all'),
              'Inverse Person': _('Filtering_on|Inverse Person'),

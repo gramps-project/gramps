@@ -48,8 +48,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.const import GLADE_DIR
-from gen.utils.trans import LOCALEDOMAIN
+from gramps.gen.const import GLADE_DIR
+from gramps.gen.utils.trans import LOCALEDOMAIN
 
 #------------------------------------------------------------------------
 #

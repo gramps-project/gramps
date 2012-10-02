@@ -39,7 +39,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
-from gen.utils.lds import TEMPLES
+from gramps.gen.utils.lds import TEMPLES
 
 #-------------------------------------------------------------------------
 #

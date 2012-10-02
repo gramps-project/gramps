@@ -39,7 +39,7 @@ try:
     from hashlib import md5
 except ImportError:
     from md5 import md5
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 
 #------------------------------------------------------------------------
 #
@@ -55,16 +55,16 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType, FamilyRelType, NameType, Person
-from gui.editors import EditPerson, EditFamily
-from gen.utils.db import family_name
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gen.updatecallback import UpdateCallback
-from gui.plug import tool
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gen.utils.db import family_name
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gui.plug import tool
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

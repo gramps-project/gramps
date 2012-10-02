@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,11 +41,11 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui import widgets
-from gen.lib import Note, NoteType
-from gui.filters import build_filter_model
-from gui.filters.sidebar import SidebarFilter
-from gen.filters import GenericFilterFactory, rules
-from gen.filters.rules.note import (RegExpIdOf, HasIdOf, HasNote, 
+from gramps.gen.lib import Note, NoteType
+from gramps.gui.filters import build_filter_model
+from gramps.gui.filters.sidebar import SidebarFilter
+from gramps.gen.filters import GenericFilterFactory, rules
+from gramps.gen.filters.rules.note import (RegExpIdOf, HasIdOf, HasNote, 
                                     MatchesFilter, HasTag)
 
 GenericNoteFilter = GenericFilterFactory('Note')

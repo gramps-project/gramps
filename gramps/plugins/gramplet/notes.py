@@ -20,11 +20,11 @@
 # $Id$
 #
 
-from gen.plug import Gramplet
-from gui.widgets.styledtexteditor import StyledTextEditor
-from gui.widgets import SimpleButton
-from gen.lib import StyledText
-from gen.ggettext import gettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gui.widgets.styledtexteditor import StyledTextEditor
+from gramps.gui.widgets import SimpleButton
+from gramps.gen.lib import StyledText
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 
 class Notes(Gramplet):

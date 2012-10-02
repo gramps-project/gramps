@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -40,15 +40,15 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.managedwindow import ManagedWindow
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.datehandler import displayer, parser
-from gen.display.name import displayer as name_displayer
-from gen.config import config
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.config import config
 from gramps.gui.utils import is_right_click
-from gui.display import display_help
-from gui.dialog import SaveDialog
+from gramps.gui.display import display_help
+from gramps.gui.dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
-from gui.dbguielement import DbGUIElement
+from gramps.gui.dbguielement import DbGUIElement
 
 class EditPrimary(ManagedWindow, DbGUIElement):
 
@@ -303,7 +303,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         """
         Create actions and ui of context menu
         """
-        from gui.plug.quick import create_quickreport_menu        
+        from gramps.gui.plug.quick import create_quickreport_menu        
         
         self.popupmanager = Gtk.UIManager()
         #add custom actions

@@ -29,7 +29,7 @@ __all__ = ["UndoableEntry"]
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 import logging
 _LOG = logging.getLogger(".widgets.undoableentry")

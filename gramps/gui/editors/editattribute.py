@@ -32,7 +32,7 @@ mechanism for the user to edit attribute information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -47,10 +47,10 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
-from gen.lib import NoteType
-from gui.glade import Glade
+from gramps.gen.lib import NoteType
+from gramps.gui.glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
-from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from gramps.gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 
 #-------------------------------------------------------------------------
 #
@@ -143,7 +143,7 @@ class EditAttribute(EditSecondary):
         t = self.obj.get_type()
         
         if t.is_custom() and str(t) == '':
-            from gui.dialog import ErrorDialog
+            from gramps.gui.dialog import ErrorDialog
             ErrorDialog(
                 _("Cannot save attribute"),
                 _("The attribute type cannot be empty"))

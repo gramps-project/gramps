@@ -29,7 +29,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".gui.editors.EditNote")
 
@@ -47,15 +47,15 @@ from gi.repository import Pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
+from gramps.gen.config import config
 from editprimary import EditPrimary
 from displaytabs import GrampsTab, NoteBackRefList
-from gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
+from gramps.gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
-from gen.lib import Note
-from gen.db import DbTxn
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gen.lib import Note
+from gramps.gen.db import DbTxn
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

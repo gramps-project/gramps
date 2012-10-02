@@ -26,7 +26,7 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import cPickle as pickle
 
 #-------------------------------------------------------------------------
@@ -496,7 +496,7 @@ class EmbeddedList(ButtonTab):
         try:
             self.model = self.construct_model()
         except AttributeError, msg:
-            from gui.dialog import RunDatabaseRepair
+            from gramps.gui.dialog import RunDatabaseRepair
             import traceback
             traceback.print_exc()
             RunDatabaseRepair(str(msg))

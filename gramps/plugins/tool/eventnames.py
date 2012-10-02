@@ -29,8 +29,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 
 #-------------------------------------------------------------------------
 #
@@ -43,14 +43,14 @@ from gen.ggettext import ngettext
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.managedwindow import ManagedWindow
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import EventRoleType
-from gen.db import DbTxn
-from gen.utils.db import family_name
+from gramps.gen.db import DbTxn
+from gramps.gen.utils.db import family_name
 
-from gui.plug import tool
-from gen.display.name import displayer as name_displayer
-from gui.dialog import OkDialog
+from gramps.gui.plug import tool
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.dialog import OkDialog
 
 #-------------------------------------------------------------------------
 #

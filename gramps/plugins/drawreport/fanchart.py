@@ -28,7 +28,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from math import pi, cos, sin, log10, acos
 
 def log2(val):
@@ -42,17 +42,17 @@ def log2(val):
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.errors import ReportError
-from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+from gramps.gen.errors import ReportError
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                              IndexMark, INDEX_TYPE_TOC)
-from gen.plug.menu import (EnumeratedListOption, NumberOption, PersonOption,
+from gramps.gen.plug.menu import (EnumeratedListOption, NumberOption, PersonOption,
                            BooleanOption)
-from gen.plug.report import Report
-from gen.plug.report import utils
-from gen.plug.report import MenuReportOptions
-from gen.config import config
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.config import config
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType
 
 #------------------------------------------------------------------------

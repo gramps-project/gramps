@@ -32,15 +32,15 @@ PostScript document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
         
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
-from gen.plug.report import utils as ReportUtils
-from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
-from gen.plug.utils import gformat
-from gen.errors import ReportError
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
+from gramps.gen.plug.utils import gformat
+from gramps.gen.errors import ReportError
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)

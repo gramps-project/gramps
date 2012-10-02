@@ -38,20 +38,20 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.listview import LISTTREE
+from gramps.gui.views.listview import LISTTREE
 from gramps.plugins.lib.libpersonview import BasePersonView
-from gui.views.treemodels.peoplemodel import PersonTreeModel
+from gramps.gui.views.treemodels.peoplemodel import PersonTreeModel
 from gramps.gen.lib import Name, Person, Surname
-from gen.errors import WindowActiveError
-from gui.editors import EditPerson
-from gen.utils.db import preset_name
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson
+from gramps.gen.utils.db import preset_name
 
 #-------------------------------------------------------------------------
 #
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

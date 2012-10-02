@@ -31,7 +31,7 @@ This module provides the functions to build the quick report context menu's
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from cStringIO import StringIO
 
 #------------------------------------------------------------------------
@@ -54,14 +54,14 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.pluginmanager import GuiPluginManager
-from gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
                       CATEGORY_QR_NOTE,  CATEGORY_QR_CITATION, 
                       CATEGORY_QR_SOURCE_OR_CITATION)
 from _textbufdoc import TextBufDoc
-from gen.simple import make_basic_stylesheet
+from gramps.gen.simple import make_basic_stylesheet
 
 def flatten(L):
     """

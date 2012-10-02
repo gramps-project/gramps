@@ -53,17 +53,17 @@ from cgi import escape
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.db import DbTxn
-from gen.display.name import displayer as name_displayer
-from gen.errors import WindowActiveError
-from gui.editors import EditPerson, EditFamily
-from gui.widgets.reorderfam import Reorder
+from gramps.gen.db import DbTxn
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.widgets.reorderfam import Reorder
 from gramps.gen.lib import ChildRef, Family, Name, Person, Surname
 from gramps.gui.utils import color_graph_box, hex_to_rgb, is_right_click
-from gui.ddtargets import DdTargets
-from gen.utils.alive import probably_alive
-from gen.utils.libformatting import FormattingHelper
-from gen.utils.db import (find_children, find_parents, find_witnessed_people,
+from gramps.gui.ddtargets import DdTargets
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.utils.libformatting import FormattingHelper
+from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                           get_age, get_timeperiod, preset_name)
 
 #-------------------------------------------------------------------------

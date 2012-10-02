@@ -25,7 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,11 +46,11 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gen.db import DbTxn
-from gui.listmodel import ListModel
-from gui.managedwindow import ManagedWindow
-from gui.glade import Glade
-from gen.display.name import displayer as name_displayer
+from gramps.gen.db import DbTxn
+from gramps.gui.listmodel import ListModel
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.glade import Glade
+from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

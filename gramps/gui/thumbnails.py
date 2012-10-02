@@ -50,7 +50,7 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, THUMBSCALE, 
+from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, THUMBSCALE, 
                        THUMBSCALE_LARGE, USE_THUMBNAILER)
 
 #-------------------------------------------------------------------------

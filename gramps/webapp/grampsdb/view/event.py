@@ -27,7 +27,7 @@ from webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Pe
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface, lookup_role_index
 from webapp.dbdjango import DbDjango
-from gen.datehandler import displayer, parser
+from gramps.gen.datehandler import displayer, parser
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect

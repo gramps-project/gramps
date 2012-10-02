@@ -31,8 +31,8 @@ Show uncollected objects in a window.
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.config import config
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3.db import DBError
 else:
@@ -53,10 +53,10 @@ import gc
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gui.plug import tool
-from gui.managedwindow import ManagedWindow
-from gui.dialog import InfoDialog
-from gui.glade import Glade
+from gramps.gui.plug import tool
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import InfoDialog
+from gramps.gui.glade import Glade
 from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------

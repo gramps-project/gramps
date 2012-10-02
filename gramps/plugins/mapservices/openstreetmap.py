@@ -28,7 +28,7 @@ OpenStreetMap map service plugin. Open place in openstreetmap.org
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -28,7 +28,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -43,21 +43,21 @@ from gi.repository import Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
+from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.lib import MediaObject, NoteType
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
-from gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-from gen.utils.file import (media_path_full, find_file, 
+from gramps.gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
+from gramps.gen.utils.file import (media_path_full, find_file, 
                             get_unicode_path_from_file_chooser)
 from editprimary import EditPrimary
-from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
+from gramps.gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
 from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from addmedia import AddMediaObject
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

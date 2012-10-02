@@ -33,7 +33,7 @@ from gi.repository import Gtk
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from collections import defaultdict
 
 #-------------------------------------------------------------------------
@@ -41,13 +41,13 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import PLUGINS_GLADE
-from gen.plug.report._constants import standalone_categories
-from gui.plug import tool
-from gen.plug import REPORT
-from gui.plug.report import report
-from gui.pluginmanager import GuiPluginManager
-from gui.managedwindow import ManagedWindow
+from gramps.gen.const import PLUGINS_GLADE
+from gramps.gen.plug.report._constants import standalone_categories
+from gramps.gui.plug import tool
+from gramps.gen.plug import REPORT
+from gramps.gui.plug.report import report
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #

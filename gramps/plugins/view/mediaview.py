@@ -31,7 +31,7 @@ Media View.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import urlparse
 import os
 import sys
@@ -49,25 +49,25 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_application
-from gui.views.listview import ListView
-from gui.views.treemodels import MediaModel
-from gen.constfunc import win
-from gen.config import config
-from gen.utils.file import (media_path, relative_path, media_path_full, 
+from gramps.gui.utils import open_file_with_default_application
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import MediaModel
+from gramps.gen.constfunc import win
+from gramps.gen.config import config
+from gramps.gen.utils.file import (media_path, relative_path, media_path_full, 
                             fix_encoding)
-from gen.utils.db import get_media_referents
-from gui.views.bookmarks import MediaBookmarks
+from gramps.gen.utils.db import get_media_referents
+from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import MediaObject
-from gen.db import DbTxn
-from gui.editors import EditMedia, DeleteMediaQuery
-from gen.errors import WindowActiveError
-from gui.filters.sidebar import MediaSidebarFilter
-from gui.merge import MergeMedia
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gen.plug import CATEGORY_QR_MEDIA
+from gramps.gen.db import DbTxn
+from gramps.gui.editors import EditMedia, DeleteMediaQuery
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.filters.sidebar import MediaSidebarFilter
+from gramps.gui.merge import MergeMedia
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gen.plug import CATEGORY_QR_MEDIA
 
 #-------------------------------------------------------------------------
 #

@@ -33,7 +33,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -58,14 +58,14 @@ from gi.repository import GdkPixbuf
 #
 #-------------------------------------------------------------------------
 
-from gen.const import USER_HOME, ICON, SPLASH
-from gen.config import config
-from gui.pluginmanager import GuiPluginManager
-from gen.utils.file import (find_folder, get_new_filename, 
+from gramps.gen.const import USER_HOME, ICON, SPLASH
+from gramps.gen.config import config
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gen.utils.file import (find_folder, get_new_filename, 
                             get_unicode_path_from_file_chooser)
-from gui.managedwindow import ManagedWindow
-from gui.dialog import ErrorDialog
-from gui.user import User
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.user import User
 
 #-------------------------------------------------------------------------
 #

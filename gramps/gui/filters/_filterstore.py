@@ -30,14 +30,14 @@ Package providing filtering framework for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters import CustomFilters
+from gramps.gen.filters import CustomFilters
 
 #-------------------------------------------------------------------------
 #

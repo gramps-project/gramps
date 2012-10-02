@@ -80,24 +80,24 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
-from gen.plug.docgen.fontscale import string_width
+from gramps.gen.plug.docgen.fontscale import string_width
 from gramps.plugins.lib.libodfbackend import OdfBackend
-from gen.const import PROGRAM_NAME, VERSION
-from gen.plug.report import utils as ReportUtils
-from gen.utils.image import image_size, image_dpi, image_actual_size
-from gen.errors import ReportError
+from gramps.gen.const import PROGRAM_NAME, VERSION
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.utils.image import image_size, image_dpi, image_actual_size
+from gramps.gen.errors import ReportError
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 _apptype = 'application/vnd.oasis.opendocument.text'
 

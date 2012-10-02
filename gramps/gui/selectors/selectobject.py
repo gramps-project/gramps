@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 import gc
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -44,10 +44,10 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import THUMBSCALE
-from gen.utils.file import media_path_full
-from gui.thumbnails import get_thumbnail_image
-from gui.views.treemodels import MediaModel
+from gramps.gen.const import THUMBSCALE
+from gramps.gen.utils.file import media_path_full
+from gramps.gui.thumbnails import get_thumbnail_image
+from gramps.gui.views.treemodels import MediaModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

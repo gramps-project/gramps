@@ -47,7 +47,7 @@ from django.db import transaction
 import webapp.grampsdb.models as models
 import webapp
 import gen
-from gen.utils.id import create_id
+from gramps.gen.utils.id import create_id
 
 # To get a django person from a django database:
 #    djperson = dji.Person.get(handle='djhgsdh324hjg234hj24')

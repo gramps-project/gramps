@@ -35,12 +35,12 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
-from gen.config import config
-from gen.display.name import displayer as name_displayer
-from gen.filters import GenericFilter, rules
-from gui.utils import ProgressMeter
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
+from gramps.gen.config import config
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.filters import GenericFilter, rules
+from gramps.gui.utils import ProgressMeter
 from gramps.gen.proxy import (PrivateProxyDb, 
 							  LivingProxyDb, 
                               FilterProxyDb, 
@@ -220,8 +220,8 @@ class WriterOptionBox(object):
         return widget
 
     def show_preview_data(self, widget):
-        from gen.dbstate import DbState
-        from gui.plug.quick import run_quick_report_by_name
+        from gramps.gen.dbstate import DbState
+        from gramps.gui.plug.quick import run_quick_report_by_name
         if widget.proxy_name == "unfiltered":
             dbstate = self.dbstate
         else:
@@ -622,9 +622,9 @@ class WriterOptionBox(object):
         Callback which invokes the EditFilter dialog. Will create new
         filter if called if none is selected.
         """
-        from gui.editors import EditFilter
-        from gen.filters import FilterList, GenericFilterFactory
-        from gen.const import CUSTOM_FILTERS
+        from gramps.gui.editors import EditFilter
+        from gramps.gen.filters import FilterList, GenericFilterFactory
+        from gramps.gen.const import CUSTOM_FILTERS
         the_filter = None
         filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
@@ -644,7 +644,7 @@ class WriterOptionBox(object):
                        the_filter, filterdb,
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
-            from gui.dialog import ErrorDialog
+            from gramps.gui.dialog import ErrorDialog
             ErrorDialog(_("Cannot edit a system filter"), 
                         _("Please select a different filter to edit"))
 
@@ -652,8 +652,8 @@ class WriterOptionBox(object):
         """
         If a filter changed, save them all. Reloads, and also calls callback.
         """
-        from gen.filters import CustomFilters
-        from gen.filters import reload_custom_filters
+        from gramps.gen.filters import CustomFilters
+        from gramps.gen.filters import reload_custom_filters
         filterdb.save()
         reload_custom_filters()
         if namespace == "Person":
@@ -671,7 +671,7 @@ class WriterOptionBox(object):
         """
         from gi.repository import Gtk
         from gi.repository import GObject
-        from gen.filters import CustomFilters
+        from gramps.gen.filters import CustomFilters
         if namespace == "person":
             # Populate the Person Filter
             entire_db = GenericFilter()

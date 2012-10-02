@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,19 +41,19 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import Event, NoteType
-from gen.db import DbTxn
-from gui.display import display_help
+from gramps.gen.db import DbTxn
+from gramps.gui.display import display_help
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
-from gui.glade import Glade
-from gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from gui.widgets import (MonitoredEntry, PrivacyButton, 
+from gramps.gui.widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
-from gen.utils.db import get_participant_from_event
+from gramps.gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #

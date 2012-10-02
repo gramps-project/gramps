@@ -36,9 +36,9 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.views.pageview import PageView
-from gen.ggettext import gettext as _
-from gui.widgets.grampletpane import GrampletPane
+from gramps.gui.views.pageview import PageView
+from gramps.gen.ggettext import gettext as _
+from gramps.gui.widgets.grampletpane import GrampletPane
 
 class GrampletView(PageView): 
     """

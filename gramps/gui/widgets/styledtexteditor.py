@@ -30,7 +30,7 @@ __all__ = ["StyledTextEditor"]
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 import logging
 _LOG = logging.getLogger(".widgets.styledtexteditor")
@@ -50,20 +50,20 @@ from gi.repository import Pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import StyledTextTagType
-from gui.widgets.styledtextbuffer import (ALLOWED_STYLES,
+from gramps.gen.lib import StyledTextTagType
+from gramps.gui.widgets.styledtextbuffer import (ALLOWED_STYLES,
                                           MATCH_START, MATCH_END,
                                           MATCH_FLAVOR, MATCH_STRING,
                                           LinkTag)
-from gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
-from gui.widgets.valueaction import ValueAction
-from gui.widgets.toolcomboentry import ToolComboEntry
-from gui.widgets.springseparator import SpringSeparatorAction
-from gui.spell import Spell
-from gui.display import display_url
-from gui.utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
-from gen.config import config
-from gen.constfunc import has_display
+from gramps.gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
+from gramps.gui.widgets.valueaction import ValueAction
+from gramps.gui.widgets.toolcomboentry import ToolComboEntry
+from gramps.gui.widgets.springseparator import SpringSeparatorAction
+from gramps.gui.spell import Spell
+from gramps.gui.display import display_url
+from gramps.gui.utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
+from gramps.gen.config import config
+from gramps.gen.constfunc import has_display
 
 #-------------------------------------------------------------------------
 #
@@ -322,7 +322,7 @@ class StyledTextEditor(Gtk.TextView):
         """
         Return a string useful for a tooltip given a LinkTag object.
         """
-        from gen.simple import SimpleAccess
+        from gramps.gen.simple import SimpleAccess
         win_obj = find_parent_with_attr(self, attr="dbstate")
         display = link_tag.data
         if win_obj:
@@ -752,7 +752,7 @@ class StyledTextEditor(Gtk.TextView):
                 if win_obj:
                     # Edit the object:
                     obj_class, prop, value = url[9:].split("/")
-                    from gui.editors import EditObject
+                    from gramps.gui.editors import EditObject
                     EditObject(win_obj.dbstate, 
                                win_obj.uistate, 
                                win_obj.track, 
@@ -833,7 +833,7 @@ def uri_dialog(self, uri, callback):
     """
     Function to spawn the link editor.
     """
-    from gui.editors.editlink import EditLink
+    from gramps.gui.editors.editlink import EditLink
     obj = find_parent_with_attr(self, attr="dbstate")
     if obj:
         if uri is None:

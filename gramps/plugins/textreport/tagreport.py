@@ -30,24 +30,24 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import EnumeratedListOption
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+from gramps.gen.plug.menu import EnumeratedListOption
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                         TableStyle, TableCellStyle, FONT_SANS_SERIF, 
                         INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.lib import NoteType
-from gen.filters import GenericFilterFactory, rules
-from gen.display.name import displayer as name_displayer
-from gen.errors import ReportError
+from gramps.gen.lib import NoteType
+from gramps.gen.filters import GenericFilterFactory, rules
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
 
 #------------------------------------------------------------------------

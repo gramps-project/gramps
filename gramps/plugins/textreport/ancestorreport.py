@@ -32,25 +32,25 @@
 #------------------------------------------------------------------------
 import math
 import copy
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as global_name_display
-from gen.errors import ReportError
-from gen.lib import ChildRefType
-from gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
+from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.errors import ReportError
+from gramps.gen.lib import ChildRefType
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
                           EnumeratedListOption)
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                              PARA_ALIGN_CENTER)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.utils.trans import get_available_translations
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.utils.trans import get_available_translations
 from gramps.plugins.lib.libnarrate import Narrator
 from gramps.plugins.lib.libtranslate import Translator, get_language_string
 

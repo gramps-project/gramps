@@ -35,7 +35,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from math import radians
 import re
 
@@ -44,14 +44,14 @@ import re
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
-from gen.plug.report import utils as ReportUtils
-from gen.errors import PluginError
-from gen.plug.docbackend import CairoBackend
-from gen.utils.image import resize_to_buffer
-from gui.utils import SystemFonts
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.errors import PluginError
+from gramps.gen.plug.docbackend import CairoBackend
+from gramps.gen.utils.image import resize_to_buffer
+from gramps.gui.utils import SystemFonts
 
 #------------------------------------------------------------------------
 #

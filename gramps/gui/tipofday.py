@@ -31,7 +31,7 @@ Handles the Tip of the Day dialog
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate,ExpatError
 from random import Random
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 
 #-------------------------------------------------------------------------
@@ -45,11 +45,11 @@ import os
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import IMAGE_DIR, TIP_DATA
-from gen.config import config
-from gui.managedwindow import ManagedWindow
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gen.const import IMAGE_DIR, TIP_DATA
+from gramps.gen.config import config
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

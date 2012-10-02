@@ -34,9 +34,9 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.managedwindow import ManagedWindow
-from gui.filters import SearchBar
-from gui.glade import Glade
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.filters import SearchBar
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

@@ -34,7 +34,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 def build_filter_model(space, local = []):
-    from gen.filters import CustomFilters
+    from gramps.gen.filters import CustomFilters
 
     model = Gtk.ListStore(GObject.TYPE_STRING, object)
 

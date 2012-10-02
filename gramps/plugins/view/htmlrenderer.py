@@ -32,7 +32,7 @@ Can use the Webkit or Gecko ( Mozilla ) library
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import locale
 import urlparse
@@ -57,12 +57,12 @@ from gi.repository import Gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gui.views.navigationview import NavigationView
-from gui.views.bookmarks import PersonBookmarks
-from gen.utils.file import get_empty_tempdir
-from gen.constfunc import lin, mac, win
-from gen.config import config
-from gen.const import TEMP_DIR
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.views.bookmarks import PersonBookmarks
+from gramps.gen.utils.file import get_empty_tempdir
+from gramps.gen.constfunc import lin, mac, win
+from gramps.gen.config import config
+from gramps.gen.const import TEMP_DIR
 
 #-------------------------------------------------------------------------
 #

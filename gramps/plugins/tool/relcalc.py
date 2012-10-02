@@ -30,7 +30,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -45,15 +45,15 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
-from gui.managedwindow import ManagedWindow
-from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from gramps.plugins.lib.libpersonview import BasePersonView
-from gen.relationship import get_relationship_calculator
+from gramps.gen.relationship import get_relationship_calculator
 
-from gui.dialog import ErrorDialog
-from gui.plug import tool
-from gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.plug import tool
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

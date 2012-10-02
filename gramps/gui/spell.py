@@ -32,7 +32,7 @@ present, we default to no spell checking.
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import locale
 
 #-------------------------------------------------------------------------
@@ -71,7 +71,7 @@ if not HAVE_GTKSPELL:
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gen.config import config
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #

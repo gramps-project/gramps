@@ -42,12 +42,12 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import ProgressMeter
-from gui.plug import tool
-from gui.dialog import OkDialog
-from gui.managedwindow import ManagedWindow
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.plug import tool
+from gramps.gui.dialog import OkDialog
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import Citation, Source
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 
 class PopulateSources(tool.Tool, ManagedWindow):
     """

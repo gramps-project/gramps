@@ -20,10 +20,10 @@
 # $Id$
 #
 
-from gui.listmodel import ListModel, NOSORT
-from gen.utils.db import navigation_label
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
+from gramps.gui.listmodel import ListModel, NOSORT
+from gramps.gen.utils.db import navigation_label
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 
 class Backlinks(Gramplet):

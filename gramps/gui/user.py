@@ -37,8 +37,8 @@ import sys
 #
 #-------------------------------------------------------------------------
 import gramps.gen.user
-from gui.utils import ProgressMeter
-from gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
                             InfoDialog)
 #-------------------------------------------------------------------------
 #

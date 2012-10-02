@@ -29,7 +29,7 @@ Note View.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".plugins.noteview")
 
@@ -45,19 +45,19 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.listview import ListView
-from gui.views.treemodels import NoteModel
-from gen.utils.db import get_note_referents
-from gen.errors import WindowActiveError
-from gui.views.bookmarks import NoteBookmarks
-from gen.config import config
-from gen.lib import Note
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.filters.sidebar import NoteSidebarFilter
-from gui.editors import EditNote, DeleteNoteQuery
-from gui.merge import MergeNote
-from gen.plug import CATEGORY_QR_NOTE
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import NoteModel
+from gramps.gen.utils.db import get_note_referents
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.views.bookmarks import NoteBookmarks
+from gramps.gen.config import config
+from gramps.gen.lib import Note
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.filters.sidebar import NoteSidebarFilter
+from gramps.gui.editors import EditNote, DeleteNoteQuery
+from gramps.gui.merge import MergeNote
+from gramps.gen.plug import CATEGORY_QR_NOTE
 
 #-------------------------------------------------------------------------
 #

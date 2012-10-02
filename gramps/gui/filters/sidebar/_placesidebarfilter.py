@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -42,10 +42,10 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui import widgets
-from gui.filters import build_filter_model
-from gui.filters.sidebar import SidebarFilter
-from gen.filters import GenericFilterFactory, rules
-from gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasPlace, 
+from gramps.gui.filters import build_filter_model
+from gramps.gui.filters.sidebar import SidebarFilter
+from gramps.gen.filters import GenericFilterFactory, rules
+from gramps.gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasPlace, 
                                      HasNoteRegexp, HasNoteMatchingSubstringOf, 
                                      MatchesFilter)
 

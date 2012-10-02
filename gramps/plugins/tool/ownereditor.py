@@ -37,15 +37,15 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
-from gen.config import config
-from gen.utils.config import get_researcher
-from gui.display import display_help
-from gui.widgets import MonitoredEntry
-from gui.managedwindow import ManagedWindow
-from gui.plug import tool
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.config import config
+from gramps.gen.utils.config import get_researcher
+from gramps.gui.display import display_help
+from gramps.gui.widgets import MonitoredEntry
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.plug import tool
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
 from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------

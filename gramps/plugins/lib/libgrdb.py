@@ -36,12 +36,12 @@ import random
 import locale
 import os
 from sys import maxint
-from gen.config import config
+from gramps.gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 import logging
 LOG = logging.getLogger(".Db")
@@ -51,16 +51,16 @@ LOG = logging.getLogger(".Db")
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
+from gramps.gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
                      Repository, Note, GenderStats, Researcher)
-from gen.utils.callback import Callback
+from gramps.gen.utils.callback import Callback
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
-from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
+from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, 
                             REFERENCE_KEY)
 

@@ -38,7 +38,7 @@ def log2(val):
 
 X_INDEX = log2
     
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -46,20 +46,20 @@ from gen.ggettext import sgettext as _
 #
 #------------------------------------------------------------------------
 
-#from gen.errors import ReportError
+#from gramps.gen.errors import ReportError
 
-from gen.plug.menu import BooleanOption
-from gen.plug.menu import NumberOption
-from gen.plug.menu import StringOption
-from gen.plug.menu import EnumeratedListOption
-from gen.plug.menu import TextOption
-from gen.plug.menu import PersonOption
+from gramps.gen.plug.menu import BooleanOption
+from gramps.gen.plug.menu import NumberOption
+from gramps.gen.plug.menu import StringOption
+from gramps.gen.plug.menu import EnumeratedListOption
+from gramps.gen.plug.menu import TextOption
+from gramps.gen.plug.menu import PersonOption
 
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 
 PT2CM = ReportUtils.pt2cm
 #cm2pt = ReportUtils.cm2pt
@@ -820,7 +820,7 @@ class AncestorTree(Report):
         """
         style_sheet = self.doc.get_style_sheet()
         
-        from gen.plug.docgen import GraphicsStyle
+        from gramps.gen.plug.docgen import GraphicsStyle
 
         graph_style = style_sheet.get_draw_style("AC2-box")
         graph_style.set_shadow(graph_style.get_shadow(),
@@ -1089,7 +1089,7 @@ class AncestorTreeOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
         
-        from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+        from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
         ## Paragraph Styles:

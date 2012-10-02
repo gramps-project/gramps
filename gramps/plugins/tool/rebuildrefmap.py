@@ -31,7 +31,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -52,9 +52,9 @@ log = logging.getLogger(".RebuildRefMap")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.plug import tool
-from gui.dialog import OkDialog
-from gen.updatecallback import UpdateCallback
+from gramps.gui.plug import tool
+from gramps.gui.dialog import OkDialog
+from gramps.gen.updatecallback import UpdateCallback
 
 #-------------------------------------------------------------------------
 #

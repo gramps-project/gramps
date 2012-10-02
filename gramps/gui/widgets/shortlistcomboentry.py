@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.widgets.validatedcomboentry import ValidatedComboEntry
+from gramps.gui.widgets.validatedcomboentry import ValidatedComboEntry
 
 #-------------------------------------------------------------------------
 #

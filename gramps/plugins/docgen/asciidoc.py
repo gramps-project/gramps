@@ -29,16 +29,16 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import (BaseDoc, TextDoc,
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
-from gen.errors import ReportError
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #

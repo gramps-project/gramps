@@ -29,7 +29,7 @@ Module that implements the sidebar and bottombar fuctionality.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import time
 import os
 import ConfigParser
@@ -47,19 +47,19 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from gui.managedwindow import ManagedWindow
-from gui.display import display_help, display_url
-from gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
+from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.display import display_help, display_url
+from gramps.gui.widgets.grampletpane import (AVAILABLE_GRAMPLETS,
                                       GET_AVAILABLE_GRAMPLETS,
                                       GET_GRAMPLET_LIST,
                                       get_gramplet_opts,
                                       get_gramplet_options_by_name,
                                       make_requested_gramplet,
                                       GuiGramplet)
-from gui.widgets.undoablebuffer import UndoableBuffer
+from gramps.gui.widgets.undoablebuffer import UndoableBuffer
 from gramps.gui.utils import is_right_click
-from gui.dialog import QuestionDialog
+from gramps.gui.dialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #

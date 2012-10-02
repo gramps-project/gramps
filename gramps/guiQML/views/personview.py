@@ -54,11 +54,11 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import ROOT_DIR
+from gramps.gen.const import ROOT_DIR
 from gui.views.treemodels import conv_unicode_tosrtkey
-from gen.ggettext import gettext as _
-from gen.display.name import displayer as name_displayer
-from gen.lib import Name
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.lib import Name
 ##TODO: follow must be refractored so as not to require GTK
 from gui.views.treemodels.flatbasemodel import FlatNodeMap
 

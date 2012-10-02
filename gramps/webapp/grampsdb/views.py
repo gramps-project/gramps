@@ -60,8 +60,8 @@ from webapp.grampsdb.models import *
 from webapp.grampsdb.view import *
 from webapp.dbdjango import DbDjango
 from gramps.cli.user import User
-from gen.const import VERSION_TUPLE
-from gen.utils.svn import get_svn_revision
+from gramps.gen.const import VERSION_TUPLE
+from gramps.gen.utils.svn import get_svn_revision
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
 MENU = [
@@ -185,7 +185,7 @@ def process_report_run(request, handle):
     Run a report or export.
     """
     from webapp.reports import import_file, export_file, download
-    from cli.plug import run_report
+    from gramps.cli.plug import run_report
     import traceback
     db = DbDjango()
     if request.user.is_authenticated():

@@ -30,7 +30,7 @@ long running operations.
 #
 #-------------------------------------------------------------------------
 import time
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger("gen.progressdialog")
 
@@ -47,7 +47,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.callback import Callback
+from gramps.gen.utils.callback import Callback
 
 #-------------------------------------------------------------------------
 #

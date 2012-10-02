@@ -34,10 +34,10 @@ on a particular date.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
 from gramps.gen.datehandler import parser
-from gui.plug.quick import run_quick_report_by_name
+from gramps.gui.plug.quick import run_quick_report_by_name
 
 #------------------------------------------------------------------------
 #

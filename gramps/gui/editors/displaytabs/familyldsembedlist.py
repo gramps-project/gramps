@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +59,7 @@ class FamilyLdsEmbedList(LdsEmbedList):
         LdsEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
-        from gui.editors import EditFamilyLdsOrd
+        from gramps.gui.editors import EditFamilyLdsOrd
         return EditFamilyLdsOrd
     
     def new_data(self):

@@ -42,9 +42,9 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
-from gen.utils.db import get_participant_from_event
-from gen.config import config
-from gui.views.treemodels.flatbasemodel import FlatBaseModel
+from gramps.gen.utils.db import get_participant_from_event
+from gramps.gen.config import config
+from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #

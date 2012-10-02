@@ -26,7 +26,7 @@ from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Media
 from webapp.grampsdb.forms import *
 from webapp.libdjango import DjangoInterface
-from gen.config import config 
+from gramps.gen.config import config 
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect

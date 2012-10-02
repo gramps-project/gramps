@@ -31,7 +31,7 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------
@@ -54,19 +54,19 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from cli.grampscli import CLIDbLoader
-from gen.config import config
+from gramps.cli.grampscli import CLIDbLoader
+from gramps.gen.config import config
 from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
                                       DbEnvironmentError)
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gui.pluginmanager import GuiPluginManager
-from gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
-from gui.user import User
-from gen.errors import DbError
+from gramps.gui.user import User
+from gramps.gen.errors import DbError
 
 #-------------------------------------------------------------------------
 #

@@ -19,9 +19,9 @@
 # $Id$
 #
 
-from gen.plug import Gramplet
-from gui.widgets import Photo
-from gen.utils.file import media_path_full
+from gramps.gen.plug import Gramplet
+from gramps.gui.widgets import Photo
+from gramps.gen.utils.file import media_path_full
 from gi.repository import Gtk
 
 class MediaPreview(Gramplet):

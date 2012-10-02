@@ -36,7 +36,7 @@ from gi.repository import Gtk
 from gi.repository import Pango
 import time
 import os
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import ConfigParser
 
 #-------------------------------------------------------------------------
@@ -44,17 +44,17 @@ import ConfigParser
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import WindowActiveError
-from gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from gui.editors import EditPerson, EditFamily
-from gui.managedwindow import ManagedWindow
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import is_right_click, rgb_to_hex
-from gui.widgets.menuitem import add_menuitem
-from gui.plug.quick import run_quick_report_by_name
-from gui.display import display_help, display_url
-from gui.glade import Glade
-from gui.pluginmanager import GuiPluginManager
-from gui.widgets.undoablebuffer import UndoableBuffer
+from gramps.gui.widgets.menuitem import add_menuitem
+from gramps.gui.plug.quick import run_quick_report_by_name
+from gramps.gui.display import display_help, display_url
+from gramps.gui.glade import Glade
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gui.widgets.undoablebuffer import UndoableBuffer
 
 #-------------------------------------------------------------------------
 #

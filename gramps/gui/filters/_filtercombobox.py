@@ -37,7 +37,7 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters import CustomFilters
+from gramps.gen.filters import CustomFilters
 
 #-------------------------------------------------------------------------
 #

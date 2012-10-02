@@ -26,10 +26,10 @@
 Display a person's siblings in a report window
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.relationship import get_relationship_calculator
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.ggettext import gettext as _
 
 def run(database, document, person):
     """

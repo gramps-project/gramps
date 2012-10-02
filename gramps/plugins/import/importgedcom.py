@@ -28,7 +28,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -43,14 +43,14 @@ LOG = logging.getLogger(".GedcomImport")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.errors import DbError, GedcomError
-from gui.glade import Glade
+from gramps.gen.errors import DbError, GedcomError
+from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
 import gramps.plugins.lib.libgedcom as libgedcom
 module = __import__("libgedcom")
 reload (module)
 
-from gen.config import config
+from gramps.gen.config import config
     
 #-------------------------------------------------------------------------
 #

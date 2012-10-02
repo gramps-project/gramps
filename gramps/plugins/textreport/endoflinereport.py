@@ -29,22 +29,22 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as global_name_display
-from gen.errors import ReportError
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.errors import ReportError
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                             PARA_ALIGN_CENTER)
-from gen.plug.menu import (PersonOption, EnumeratedListOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.menu import (PersonOption, EnumeratedListOption)
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.datehandler import get_date
 
 #------------------------------------------------------------------------

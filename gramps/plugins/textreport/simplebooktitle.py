@@ -28,7 +28,7 @@
 #
 #------------------------------------------------------------------------
 import time
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 import os
 
 #------------------------------------------------------------------------
@@ -36,11 +36,11 @@ import os
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import StringOption, MediaOption, NumberOption
-from gen.utils.file import media_path_full
-from gen.plug.report import Report
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (FontStyle, ParagraphStyle,
+from gramps.gen.plug.menu import StringOption, MediaOption, NumberOption
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
 #------------------------------------------------------------------------

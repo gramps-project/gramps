@@ -29,7 +29,7 @@
 #
 #-------------------------------------------------------------------------
 from cStringIO import StringIO
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 
 #-------------------------------------------------------------------------
@@ -54,15 +54,15 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.callback import Callback
-from gui.utils import process_pending_events
-from gui.views.navigationview import NavigationView
-from gen.config import config
-from gen.display.name import displayer as name_displayer
-from gui.managedwindow import GrampsWindowManager
-from gen.relationship import get_relationship_calculator
-from gui.glade import Glade
-from gen.utils.db import navigation_label
+from gramps.gen.utils.callback import Callback
+from gramps.gui.utils import process_pending_events
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gen.config import config
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.managedwindow import GrampsWindowManager
+from gramps.gen.relationship import get_relationship_calculator
+from gramps.gui.glade import Glade
+from gramps.gen.utils.db import navigation_label
 
 DISABLED = -1
 
@@ -237,7 +237,7 @@ class History(Callback):
 _RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
 _RCT_BTM = '</menu></menu></menubar></ui>'
 
-from gen.recentfiles import RecentFiles
+from gramps.gen.recentfiles import RecentFiles
 import os
 
 class RecentDocsMenu(object):
@@ -306,7 +306,7 @@ def by_time(first, second):
     return cmp(second.get_time(), first.get_time())
 
 
-from gui.logger import RotateHandler
+from gramps.gui.logger import RotateHandler
 
 class WarnHandler(RotateHandler):
 

@@ -34,9 +34,9 @@
 Display RepoRef for sources related to active repository
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.ggettext import gettext as _
 
 def run(database, document, repo):
     """

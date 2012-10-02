@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -34,8 +34,8 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Attribute
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from attrmodel import AttrModel
 from embeddedlist import EmbeddedList
 
@@ -70,7 +70,7 @@ class AttrEmbedList(EmbeddedList):
                               AttrModel, move_buttons=True)
 
     def get_editor(self):
-        from gui.editors import EditAttribute
+        from gramps.gui.editors import EditAttribute
         return EditAttribute
 
     def get_user_values(self):

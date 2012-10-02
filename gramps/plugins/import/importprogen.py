@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 import re
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import struct
 
@@ -47,10 +47,10 @@ log = logging.getLogger('.ImportProGen')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.id import create_id
-from gui.utils import ProgressMeter
+from gramps.gen.utils.id import create_id
+from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import Attribute, AttributeType, ChildRef, Date, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, SourceRef, Surname
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 
 class ProgenError(Exception):
     """Error used to report Progen errors."""

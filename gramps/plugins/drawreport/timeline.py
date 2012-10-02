@@ -32,25 +32,25 @@ Timeline Chart
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 pt2cm = ReportUtils.pt2cm
-from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER,
                              IndexMark, INDEX_TYPE_TOC)
-from gen.sort import Sort
-from gen.display.name import displayer as name_displayer
-from gen.config import config
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.sort import Sort
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.config import config
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #

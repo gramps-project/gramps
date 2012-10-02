@@ -46,7 +46,7 @@ import urlparse
 import logging
 LOG = logging.getLogger(".DbManager")
 
-from gen.constfunc import win
+from gramps.gen.constfunc import win
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -69,18 +69,18 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gui.user import User
-from gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
-from gen.db import DbBsddb
-from gui.pluginmanager import GuiPluginManager
-from cli.clidbman import CLIDbManager, NAME_FILE, time_val
-from gui.ddtargets import DdTargets
-from gen.recentfiles import rename_filename, remove_filename
-from gui.glade import Glade
-from gen.db.backup import restore
-from gen.db.exceptions import DbException
-from gen.utils.file import get_unicode_path_from_env_var
+from gramps.gen.ggettext import gettext as _
+from gramps.gui.user import User
+from gramps.gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
+from gramps.gen.db import DbBsddb
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
+from gramps.gui.ddtargets import DdTargets
+from gramps.gen.recentfiles import rename_filename, remove_filename
+from gramps.gui.glade import Glade
+from gramps.gen.db.backup import restore
+from gramps.gen.db.exceptions import DbException
+from gramps.gen.utils.file import get_unicode_path_from_env_var
 
 
 _RETURN = Gdk.keyval_from_name("Return")

@@ -48,23 +48,23 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.config import config
-from gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
-from gui.utils import open_file_with_default_application
-from gui.plug import add_gui_options
-from gui.user import User
-from gui.dialog import ErrorDialog, OptionDialog
-from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.config import config
+from gramps.gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
+from gramps.gui.utils import open_file_with_default_application
+from gramps.gui.plug import add_gui_options
+from gramps.gui.user import User
+from gramps.gui.dialog import ErrorDialog, OptionDialog
+from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
                              standalone_categories)
-from gen.plug.docgen import StyleSheet, StyleSheetList
-from gui.managedwindow import ManagedWindow
+from gramps.gen.plug.docgen import StyleSheet, StyleSheetList
+from gramps.gui.managedwindow import ManagedWindow
 from _stylecombobox import StyleComboBox
 from _styleeditor import StyleListDisplay
 from _fileentry import FileEntry
-from gen.const import URL_MANUAL_PAGE
-from gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 #-------------------------------------------------------------------------
 #
 # Private Constants
@@ -562,7 +562,7 @@ class ReportDialog(ManagedWindow):
         pass
 
     def on_help_clicked(self, *obj):
-        from gui.display import display_help
+        from gramps.gui.display import display_help
         display_help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
         
     def on_style_edit_clicked(self, *obj):

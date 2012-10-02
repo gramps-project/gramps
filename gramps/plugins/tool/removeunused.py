@@ -31,7 +31,7 @@
 #
 #-------------------------------------------------------------------------
 from __future__ import with_statement
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -55,13 +55,13 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.db import DbTxn
-from gen.errors import WindowActiveError
-from gui.managedwindow import ManagedWindow
-from gen.datehandler import displayer as _dd
-from gen.updatecallback import UpdateCallback
-from gui.plug import tool
-from gui.glade import Glade
+from gramps.gen.db import DbTxn
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gui.plug import tool
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -340,7 +340,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     def call_editor(self, the_type, handle):
         try:
             obj = self.tables[the_type]['get_func'](handle)
-            editor_str = 'from gui.editors import %s as editor' % (
+            editor_str = 'from gramps.gui.editors import %s as editor' % (
                             self.tables[the_type]['editor']
                             )
             exec(editor_str)            

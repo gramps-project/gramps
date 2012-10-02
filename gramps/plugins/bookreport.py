@@ -31,7 +31,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -68,30 +68,30 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import HOME_DIR
-from gen.utils.cast import get_type_converter_by_name, type_name
-from gui.listmodel import ListModel
-from gen.errors import FilterError, ReportError
-from gui.pluginmanager import GuiPluginManager
-from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
-from gui.dialog import WarningDialog, ErrorDialog
-from gen.plug.menu import PersonOption, FilterOption, FamilyOption
-from gui.managedwindow import ManagedWindow, set_titles
-from gui.glade import Glade
+from gramps.gen.const import HOME_DIR
+from gramps.gen.utils.cast import get_type_converter_by_name, type_name
+from gramps.gui.listmodel import ListModel
+from gramps.gen.errors import FilterError, ReportError
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
+from gramps.gui.dialog import WarningDialog, ErrorDialog
+from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
+from gramps.gui.managedwindow import ManagedWindow, set_titles
+from gramps.gui.glade import Glade
 from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gramps.gui.user import User
-from gui.plug import make_gui_option
+from gramps.gui.plug import make_gui_option
 from types import ClassType
 
 # Import from specific modules in ReportBase
-from gen.plug.report import CATEGORY_BOOK, book_categories
-from gui.plug.report._reportdialog import ReportDialog
-from gui.plug.report._docreportdialog import DocReportDialog
-from gen.plug.report._options import ReportOptions
-from cli.plug import CommandLineReport
+from gramps.gen.plug.report import CATEGORY_BOOK, book_categories
+from gramps.gui.plug.report._reportdialog import ReportDialog
+from gramps.gui.plug.report._docreportdialog import DocReportDialog
+from gramps.gen.plug.report._options import ReportOptions
+from gramps.cli.plug import CommandLineReport
 import cli.user
 
-from gen.display.name import displayer as _nd
+from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -666,7 +666,7 @@ class BookListDisplay(object):
 
     def on_booklist_cancel_clicked(self, obj):
         if self.unsaved_changes:
-            from gui.dialog import QuestionDialog2
+            from gramps.gui.dialog import QuestionDialog2
             q = QuestionDialog2(
                 _('Discard Unsaved Changes'),
                 _('You have made changes which have not been saved.'),
@@ -1064,7 +1064,7 @@ class BookReportSelector(ManagedWindow):
                 )
             return
         if name in self.book_list.get_book_names():
-            from gui.dialog import QuestionDialog2
+            from gramps.gui.dialog import QuestionDialog2
             q = QuestionDialog2(
                 _('Book name already exists'),
                 _('You are about to save away a '

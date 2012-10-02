@@ -31,7 +31,7 @@ mechanism for the user to edit personal LDS information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,15 +46,15 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import LdsOrd, NoteType
-from gen.display.name import displayer as name_displayer
-from gen.utils.lds import TEMPLES
-from gui.glade import Glade
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.lds import TEMPLES
+from gramps.gui.glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
 from displaytabs import CitationEmbedList,NoteTab
-from gui.widgets import (PrivacyButton, MonitoredDate, 
+from gramps.gui.widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
-from gui.selectors import SelectorFactory
+from gramps.gui.selectors import SelectorFactory
 
 _DATA_MAP = {
     LdsOrd.BAPTISM : [

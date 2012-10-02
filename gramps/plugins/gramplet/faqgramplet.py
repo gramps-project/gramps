@@ -23,9 +23,9 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.const import URL_MANUAL_PAGE
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE
 
 #------------------------------------------------------------------------
 #

@@ -32,7 +32,7 @@
 import os
 import sys
 from time import localtime
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -47,10 +47,10 @@ log = logging.getLogger(".ExportVCal")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.plug.export import WriterOptionBox
-from gen.utils.db import family_name
-from gen.lib import Date, EventType
-from gui.glade import Glade
+from gramps.gui.plug.export import WriterOptionBox
+from gramps.gen.utils.db import family_name
+from gramps.gen.lib import Date, EventType
+from gramps.gui.glade import Glade
 
 class CalendarWriter(object):
     def __init__(self, database, filename, user, option_box=None):

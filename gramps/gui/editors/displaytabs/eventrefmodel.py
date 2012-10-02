@@ -26,7 +26,7 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,9 +46,9 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gui.widgets.undoablebuffer import UndoableBuffer
+from gramps.gui.widgets.undoablebuffer import UndoableBuffer
 from gramps.gen.datehandler import get_date, get_date_valid
-from gen.config import config
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #

@@ -47,16 +47,16 @@ LOG = logging.getLogger(".ImportCSV")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname
-from gen.db import DbTxn
-from gen.plug.utils import OpenFileOrStdin
-from gen.datehandler import parser as _dp
-from gen.utils.string import gender as gender_map
-from gen.utils.id import create_id
-from gui.utils import ProgressMeter
-from gen.lib.eventroletype import EventRoleType
+from gramps.gen.db import DbTxn
+from gramps.gen.plug.utils import OpenFileOrStdin
+from gramps.gen.datehandler import parser as _dp
+from gramps.gen.utils.string import gender as gender_map
+from gramps.gen.utils.id import create_id
+from gramps.gui.utils import ProgressMeter
+from gramps.gen.lib.eventroletype import EventRoleType
 
 #-------------------------------------------------------------------------
 #

@@ -42,9 +42,9 @@ import os.path
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docbackend import DocBackend
+from gramps.gen.plug.docbackend import DocBackend
 from gramps.plugins.lib.libhtml import Html, xml_lang
-from gen.errors import ReportError
+from gramps.gen.errors import ReportError
 
 
 #------------------------------------------------------------------------

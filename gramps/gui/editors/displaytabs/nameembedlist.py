@@ -34,7 +34,7 @@ from gi.repository import GObject
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -42,8 +42,8 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Name, Surname
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from namemodel import NameModel
 from groupembeddedlist import GroupEmbeddedList
 
@@ -157,7 +157,7 @@ class NameEmbedList(GroupEmbeddedList):
         name.add_surname(Surname())
         name.set_primary_surname(0)
         try:
-            from gui.editors import EditName
+            from gramps.gui.editors import EditName
             EditName(self.dbstate, self.uistate, self.track, 
                      name, self.add_callback)
         except WindowActiveError:
@@ -174,7 +174,7 @@ class NameEmbedList(GroupEmbeddedList):
         name = self.get_selected()
         if name and name[1] is not None:
             try:
-                from gui.editors import EditName
+                from gramps.gui.editors import EditName
                 if name[0] == NameModel.ALTINDEX:
                     EditName(self.dbstate, self.uistate, self.track, 
                              name[1], self.edit_callback)

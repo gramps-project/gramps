@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -39,13 +39,13 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Note
-from gui.dbguielement import DbGUIElement
-from gui.selectors import SelectorFactory
+from gramps.gui.dbguielement import DbGUIElement
+from gramps.gui.selectors import SelectorFactory
 from notemodel import NoteModel
 from embeddedlist import EmbeddedList
-from gui.ddtargets import DdTargets
+from gramps.gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -131,7 +131,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         if self.notetype :
             note.set_type(self.notetype)
         try:
-            from gui.editors import EditNote
+            from gramps.gui.editors import EditNote
             EditNote(self.dbstate, self.uistate, self.track, 
                             note, self.add_callback,
                             self.callertitle, extratype = [self.notetype])
@@ -162,7 +162,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         if handle:
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
-                from gui.editors import EditNote
+                from gramps.gui.editors import EditNote
                 EditNote(self.dbstate, self.uistate, self.track, note,
                         callertitle = self.callertitle,
                         extratype = [self.notetype] )

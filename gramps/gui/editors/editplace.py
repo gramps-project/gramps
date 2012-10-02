@@ -28,7 +28,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
 
@@ -45,15 +45,15 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from editprimary import EditPrimary
 from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from gui.widgets import MonitoredEntry, PrivacyButton
-from gen.errors import ValidationError
-from gen.utils.place import conv_lat_lon
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gui.widgets import MonitoredEntry, PrivacyButton
+from gramps.gen.errors import ValidationError
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

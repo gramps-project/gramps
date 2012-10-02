@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import cPickle as pickle
 
 import logging
@@ -45,13 +45,13 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (Place, MediaObject, Note)
+from gramps.gen.lib import (Place, MediaObject, Note)
 from editplace import EditPlace
 from editmedia import EditMedia
 from editnote import EditNote
-from gui.selectors import SelectorFactory
-from gui.ddtargets import DdTargets
-from gen.errors import WindowActiveError
+from gramps.gui.selectors import SelectorFactory
+from gramps.gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #

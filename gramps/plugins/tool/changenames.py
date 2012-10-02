@@ -37,16 +37,16 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db import find_surname_name, DbTxn
-from gen.const import URL_MANUAL_PAGE
-from gui.utils import ProgressMeter
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
+from gramps.gen.db import find_surname_name, DbTxn
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
 
-from gui.dialog import OkDialog
-from gui.plug import tool
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
+from gramps.gui.dialog import OkDialog
+from gramps.gui.plug import tool
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

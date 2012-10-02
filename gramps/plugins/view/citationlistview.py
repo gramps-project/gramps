@@ -45,25 +45,25 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels.citationlistmodel import CitationListModel
-from gen.plug import CATEGORY_QR_CITATION
+from gramps.gui.views.treemodels.citationlistmodel import CitationListModel
+from gramps.gen.plug import CATEGORY_QR_CITATION
 from gramps.gen.lib import Citation, Source
-from gui.views.listview import ListView
-from gen.utils.db import get_citation_referents
-from gui.views.bookmarks import CitationBookmarks
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.editors import EditCitation, DeleteCitationQuery
-from gui.filters.sidebar import CitationSidebarFilter
-from gui.merge import MergeCitation
+from gramps.gui.views.listview import ListView
+from gramps.gen.utils.db import get_citation_referents
+from gramps.gui.views.bookmarks import CitationBookmarks
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.editors import EditCitation, DeleteCitationQuery
+from gramps.gui.filters.sidebar import CitationSidebarFilter
+from gramps.gui.merge import MergeCitation
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 
 #-------------------------------------------------------------------------

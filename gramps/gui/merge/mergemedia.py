@@ -29,12 +29,12 @@ Provide merge capabilities for media objects.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.const import URL_MANUAL_PAGE
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.datehandler import get_date
-from gen.merge import MergeMediaQuery
+from gramps.gen.merge import MergeMediaQuery
 
 #-------------------------------------------------------------------------
 #

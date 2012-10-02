@@ -44,23 +44,23 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.filters import GenericFilter, rules
-from gui.filters import build_filter_model
-from gen.sort import Sort
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gui.utils import ProgressMeter
-from gen.utils.docgen import ODSTab
-from gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE
-from gen.errors import WindowActiveError
+from gramps.gen.filters import GenericFilter, rules
+from gramps.gui.filters import build_filter_model
+from gramps.gen.sort import Sort
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gui.utils import ProgressMeter
+from gramps.gen.utils.docgen import ODSTab
+from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import get_date
-from gui.dialog import WarningDialog
-from gui.plug import tool
-from gen.plug.report import utils as ReportUtils
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gen.ggettext import sgettext as _
-from gui.glade import Glade
-from gui.editors import FilterEditor
+from gramps.gui.dialog import WarningDialog
+from gramps.gui.plug import tool
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.glade import Glade
+from gramps.gui.editors import FilterEditor
 
 #-------------------------------------------------------------------------
 #

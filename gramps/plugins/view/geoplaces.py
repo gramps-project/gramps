@@ -30,7 +30,7 @@ Geography for places
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import sys
 import time
@@ -56,15 +56,15 @@ _LOG = logging.getLogger("GeoGraphy.geoplaces")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType
-from gen.config import config
-from gen.display.name import displayer as _nd
-from gen.utils.place import conv_lat_lon
-from gui.views.pageview import PageView
-from gui.editors import EditPlace
-from gui.selectors.selectplace import SelectPlace
-from gui.filters.sidebar import PlaceSidebarFilter
-from gui.views.navigationview import NavigationView
-from gui.views.bookmarks import PlaceBookmarks
+from gramps.gen.config import config
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.views.pageview import PageView
+from gramps.gui.editors import EditPlace
+from gramps.gui.selectors.selectplace import SelectPlace
+from gramps.gui.filters.sidebar import PlaceSidebarFilter
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.views.bookmarks import PlaceBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------

@@ -29,7 +29,7 @@ Address List display tab.
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -38,8 +38,8 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from addressmodel import AddressModel
 from embeddedlist import EmbeddedList
 
@@ -109,7 +109,7 @@ class AddrEmbedList(EmbeddedList):
         """
         addr = Address()
         try:
-            from gui.editors import EditAddress
+            from gramps.gui.editors import EditAddress
             EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
         except WindowActiveError:
@@ -134,7 +134,7 @@ class AddrEmbedList(EmbeddedList):
         addr = self.get_selected()
         if addr:
             try:
-                from gui.editors import EditAddress
+                from gramps.gui.editors import EditAddress
                 EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
             except WindowActiveError:

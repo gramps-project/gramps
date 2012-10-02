@@ -30,7 +30,7 @@ __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import re
 
 import logging
@@ -44,7 +44,7 @@ _LOG = logging.getLogger(".widgets.styledtextbuffer")
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
-from gui.widgets.undoablebuffer import UndoableBuffer
+from gramps.gui.widgets.undoablebuffer import UndoableBuffer
 WEIGHT_BOLD = Pango.Weight.BOLD
 STYLE_ITALIC = Pango.Style.ITALIC
 UNDERLINE_SINGLE = Pango.Underline.SINGLE
@@ -54,7 +54,7 @@ UNDERLINE_SINGLE = Pango.Underline.SINGLE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
+from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 
 #-------------------------------------------------------------------------
 #

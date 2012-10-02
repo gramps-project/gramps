@@ -32,7 +32,7 @@
 #
 #-------------------------------------------------------------------------
 from random import randint,choice,random
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import time
 
 #-------------------------------------------------------------------------
@@ -48,15 +48,15 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Source, SourceMediaType, Surname, Tag, Url, UrlType
-from gen.lib import StyledText, StyledTextTag, StyledTextTagType
-from gen.db import DbTxn
+from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
+from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_type
-from gui.plug import tool
-from gen.utils.string import confidence
-from gui.utils import ProgressMeter
-from gen.utils.lds import TEMPLES
-from gen.db.dbconst import *
-from gen.const import ICON, LOGO, SPLASH
+from gramps.gui.plug import tool
+from gramps.gen.utils.string import confidence
+from gramps.gui.utils import ProgressMeter
+from gramps.gen.utils.lds import TEMPLES
+from gramps.gen.db.dbconst import *
+from gramps.gen.const import ICON, LOGO, SPLASH
 
 #-------------------------------------------------------------------------
 #

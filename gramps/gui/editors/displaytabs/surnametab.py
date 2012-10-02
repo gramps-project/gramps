@@ -26,7 +26,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 import locale
 
 #-------------------------------------------------------------------------
@@ -48,8 +48,8 @@ _ENTER = Gdk.keyval_from_name("Enter")
 #-------------------------------------------------------------------------
 from surnamemodel import SurnameModel
 from embeddedlist import EmbeddedList
-from gui.ddtargets import DdTargets
-from gen.lib import Surname, NameOriginType
+from gramps.gui.ddtargets import DdTargets
+from gramps.gen.lib import Surname, NameOriginType
 
 #-------------------------------------------------------------------------
 #

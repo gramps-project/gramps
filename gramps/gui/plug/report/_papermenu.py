@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,9 +41,9 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
-from gen.plug.report._paper import paper_sizes
-from gui.glade import Glade
+from gramps.gen.plug.docgen import PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
+from gramps.gen.plug.report._paper import paper_sizes
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

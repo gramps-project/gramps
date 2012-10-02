@@ -31,10 +31,10 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gui.plug.quick import run_quick_report_by_name, get_quick_report_list
-from gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.plug.quick import run_quick_report_by_name, get_quick_report_list
+from gramps.gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, CATEGORY_QR_MEDIA,
                          CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION, 
@@ -101,7 +101,7 @@ class QuickViewGramplet(Gramplet):
         self.main()
 
     def build_options(self):
-        from gen.plug.menu import EnumeratedListOption
+        from gramps.gen.plug.menu import EnumeratedListOption
         # Add types:
         type_list = EnumeratedListOption(_("View Type"), self.gui.data[0])
         for item in [("Person", _("Person")), 

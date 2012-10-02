@@ -39,7 +39,7 @@ Create a relationship graph using Graphviz
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -47,17 +47,17 @@ from functools import partial
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
+from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
                           PersonOption, ColorOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.display.name import displayer as name_displayer
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
-from gen.utils.file import media_path_full, find_file
-from gui.thumbnails import get_thumbnail_path
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.file import media_path_full, find_file
+from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #

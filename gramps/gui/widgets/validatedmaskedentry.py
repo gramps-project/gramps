@@ -27,7 +27,7 @@ __all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import string
 
 import logging
@@ -49,8 +49,8 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import MaskError, ValidationError, WindowActiveError
-from gui.widgets.undoableentry import UndoableEntry
+from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
+from gramps.gui.widgets.undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
 #
@@ -1781,7 +1781,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
 
 def main(args):
-    from gen.datehandler import parser
+    from gramps.gen.datehandler import parser
     
     def on_validate(widget, text):
         myDate = parser.parse(text)

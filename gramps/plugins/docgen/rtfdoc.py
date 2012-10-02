@@ -29,7 +29,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".rtfdoc")
 
@@ -38,11 +38,11 @@ LOG = logging.getLogger(".rtfdoc")
 # Load the base BaseDoc class
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY,
                              URL_PATTERN)
-from gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
-from gen.errors import ReportError
+from gramps.gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #

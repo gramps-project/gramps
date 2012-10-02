@@ -32,7 +32,7 @@ Package providing filtering framework for GRAMPS.
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
 from gi.repository import Gtk
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")

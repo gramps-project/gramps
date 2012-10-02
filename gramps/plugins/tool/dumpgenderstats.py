@@ -26,12 +26,12 @@
     
     Tools/Debug/Dump Gender Statistics
 """
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
-from gui.listmodel import ListModel, INTEGER
-from gui.managedwindow import ManagedWindow
+from gramps.gui.listmodel import ListModel, INTEGER
+from gramps.gui.managedwindow import ManagedWindow
 
-from gui.plug import tool
+from gramps.gui.plug import tool
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 

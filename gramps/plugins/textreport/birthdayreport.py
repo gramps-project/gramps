@@ -29,8 +29,8 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 import datetime, time
 
 #------------------------------------------------------------------------
@@ -38,20 +38,20 @@ import datetime, time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as global_name_display
-from gen.errors import ReportError
-from gen.lib import NameType, EventType, Name, Date, Person, Surname
-from gen.relationship import get_relationship_calculator
-from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.errors import ReportError
+from gramps.gen.lib import NameType, EventType, Name, Date, Person, Surname
+from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
-from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
+from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.utils.alive import probably_alive
-from gen.datehandler import displayer as _dd, long_days
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.datehandler import displayer as _dd, long_days
 
 import gramps.plugins.lib.libholiday as libholiday
 

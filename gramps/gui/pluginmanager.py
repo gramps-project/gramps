@@ -43,11 +43,11 @@ from gi.repository import GdkPixbuf
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.callback import Callback
-from gen.plug import BasePluginManager, PluginRegister
-from gen.constfunc import win
-from gen.config import config
-from gen.const import ICON
+from gramps.gen.utils.callback import Callback
+from gramps.gen.plug import BasePluginManager, PluginRegister
+from gramps.gen.constfunc import win
+from gramps.gen.config import config
+from gramps.gen.const import ICON
 
 #-------------------------------------------------------------------------
 #

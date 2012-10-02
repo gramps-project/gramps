@@ -51,11 +51,11 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.display import display_help
-from gui.listmodel import ListModel
-from gen.utils.db import navigation_label
-from gen.const import URL_MANUAL_PAGE
-from gen.ggettext import sgettext as _
+from gramps.gui.display import display_help
+from gramps.gui.listmodel import ListModel
+from gramps.gen.utils.db import navigation_label
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

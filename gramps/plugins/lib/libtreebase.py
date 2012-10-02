@@ -27,11 +27,11 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
-from gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils as ReportUtils
 
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 
@@ -636,7 +636,7 @@ class TitleNoDisplay(BoxBase):
         """ display the title box.  """
         #Set up the Table of Contents here
         
-        from gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
+        from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
         mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
                               
         self.doc.center_text(self.boxstr, '', 0, -100, mark)
@@ -676,7 +676,7 @@ class TitleBox(BoxBase):
             return
 
         #Set up the Table of Contents here
-        from gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
+        from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
         mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
                               
         if self.text:

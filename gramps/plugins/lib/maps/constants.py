@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType
 import os
-from gen.const import HOME_DIR
+from gramps.gen.const import HOME_DIR
 from gi.repository import OsmGpsMap as osmgpsmap
 
 #-------------------------------------------------------------------------

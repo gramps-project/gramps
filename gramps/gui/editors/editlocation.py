@@ -28,9 +28,9 @@
 #
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
-from gui.glade import Glade
-from gui.widgets import MonitoredEntry
-from gen.ggettext import gettext as _
+from gramps.gui.glade import Glade
+from gramps.gui.widgets import MonitoredEntry
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

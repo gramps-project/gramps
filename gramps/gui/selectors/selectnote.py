@@ -29,14 +29,14 @@
 # Python Modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import NoteModel
+from gramps.gui.views.treemodels import NoteModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

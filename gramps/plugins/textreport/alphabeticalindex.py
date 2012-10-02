@@ -24,16 +24,16 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.report import Report
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
                              TableCellStyle, FONT_SANS_SERIF,
                              IndexMark, INDEX_TYPE_TOC)
 

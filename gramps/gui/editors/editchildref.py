@@ -32,7 +32,7 @@ mechanism for the user to edit address information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -48,12 +48,12 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
-from gen.lib import NoteType
-from gen.errors import WindowActiveError
-from gui.glade import Glade
+from gramps.gen.lib import NoteType
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
-from gui.widgets import MonitoredDataType, PrivacyButton
-from gen.display.name import displayer as name_displayer
+from gramps.gui.widgets import MonitoredDataType, PrivacyButton
+from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

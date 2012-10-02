@@ -41,7 +41,7 @@ import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 
 #------------------------------------------------------------------------
@@ -58,11 +58,11 @@ LOG = logging.getLogger(".WriteXML")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Date, Person
-from gen.updatecallback import UpdateCallback
-from gen.db.exceptions import DbWriteFailure
-from gen.const import VERSION
-from gen.constfunc import win
-from gui.plug.export import WriterOptionBox
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.db.exceptions import DbWriteFailure
+from gramps.gen.const import VERSION
+from gramps.gen.constfunc import win
+from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
 #-------------------------------------------------------------------------

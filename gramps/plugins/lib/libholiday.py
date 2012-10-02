@@ -25,12 +25,12 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from xml.parsers import expat
-from gen.lib.calendar import (gregorian_ymd, hebrew_sdn)
+from gramps.gen.lib.calendar import (gregorian_ymd, hebrew_sdn)
 import datetime
 import math
-from gen.const import PLUGINS_DIR, USER_PLUGINS
+from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 import os
 
 #------------------------------------------------------------------------

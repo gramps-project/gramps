@@ -40,19 +40,19 @@ _LOG = logging.getLogger('.pageview')
 #----------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #----------------------------------------------------------------
 #
 # GRAMPS 
 #
 #----------------------------------------------------------------
-from gen.errors import WindowActiveError
-from gui.dbguielement import DbGUIElement
-from gui.widgets.menutoolbuttonaction import MenuToolButtonAction
-from gui.grampsbar import GrampsBar
-from gui.configure import ConfigureDialog
-from gen.config import config
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.dbguielement import DbGUIElement
+from gramps.gui.widgets.menutoolbuttonaction import MenuToolButtonAction
+from gramps.gui.grampsbar import GrampsBar
+from gramps.gui.configure import ConfigureDialog
+from gramps.gen.config import config
 
 #------------------------------------------------------------------------------
 #
@@ -232,7 +232,7 @@ class PageView(DbGUIElement):
         system.
         """
         import cPickle as pickle
-        from gui.clipboard import ClipboardWindow, obj2target
+        from gramps.gui.clipboard import ClipboardWindow, obj2target
         handled = False
         for handle in handles:
             if handle is None:
@@ -277,7 +277,7 @@ class PageView(DbGUIElement):
 
         The code creates the Clipboard if it does not already exist.
         """
-        from gui.clipboard import ClipboardWindow
+        from gramps.gui.clipboard import ClipboardWindow
         clipboard = None
         for widget in self.uistate.gwm.window_tree:
             if isinstance(widget, ClipboardWindow):

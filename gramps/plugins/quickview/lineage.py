@@ -33,9 +33,9 @@ Display a person's father or mother lineage
 #-------------------------------------------------------------------------
 
 from gramps.gen.lib import ChildRefType, Person
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.ggettext import gettext as _
 
 __FMT     = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"

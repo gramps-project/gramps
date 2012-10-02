@@ -42,14 +42,14 @@ from gi.repository import Gdk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.lib import Tag
-from gen.db import DbTxn
-from gui.dbguielement import DbGUIElement
-from gui.listmodel import ListModel, NOSORT, COLOR, INTEGER
-from gen.const import URL_MANUAL_PAGE
-from gui.display import display_help
-from gui.dialog import ErrorDialog, QuestionDialog2
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.lib import Tag
+from gramps.gen.db import DbTxn
+from gramps.gui.dbguielement import DbGUIElement
+from gramps.gui.listmodel import ListModel, NOSORT, COLOR, INTEGER
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
+from gramps.gui.dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
 
 #-------------------------------------------------------------------------

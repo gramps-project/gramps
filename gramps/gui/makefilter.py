@@ -21,11 +21,11 @@
 # $Id$
 
 import time
-from gui.editors import EditFilter
-from gen.const import CUSTOM_FILTERS
+from gramps.gui.editors import EditFilter
+from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
                                 reload_custom_filters)
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
     """

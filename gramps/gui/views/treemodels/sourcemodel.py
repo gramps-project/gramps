@@ -40,7 +40,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
-from gui.views.treemodels.flatbasemodel import FlatBaseModel
+from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #

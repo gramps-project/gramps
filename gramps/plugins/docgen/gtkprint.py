@@ -29,7 +29,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from math import radians
 
 ##try:
@@ -42,9 +42,9 @@ from math import radians
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import PAPER_PORTRAIT
+from gramps.gen.plug.docgen import PAPER_PORTRAIT
 import gramps.plugins.lib.libcairodoc as libcairodoc
-from gen.errors import UnavailableError
+from gramps.gen.errors import UnavailableError
 #import constfunc
 
 #------------------------------------------------------------------------
@@ -201,7 +201,7 @@ class PrintPreview(object):
     def __build_window(self):
         """Build the window from Glade.
         """
-        from gui.glade import Glade
+        from gramps.gui.glade import Glade
         glade_xml = Glade()
         self._window = glade_xml.toplevel
         #self._window.set_transient_for(parent)

@@ -33,7 +33,7 @@ Provides also two small base classes: CLIDbLoader, CLIManager
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import sys
 
@@ -45,17 +45,17 @@ LOG = logging.getLogger(".grampscli")
 # GRAMPS  modules
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
-from gen.config import config
-from gen.const import PLUGINS_DIR, USER_PLUGINS
-from gen.errors import DbError
-from gen.dbstate import DbState
-from gen.db import DbBsddb
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.config import config
+from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
+from gramps.gen.errors import DbError
+from gramps.gen.dbstate import DbState
+from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       DbVersionError)
-from gen.plug import BasePluginManager
-from gen.utils.config import get_researcher
-from gen.recentfiles import recent_files
+from gramps.gen.plug import BasePluginManager
+from gramps.gen.utils.config import get_researcher
+from gramps.gen.recentfiles import recent_files
 
 #-------------------------------------------------------------------------
 #

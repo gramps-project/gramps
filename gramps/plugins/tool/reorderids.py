@@ -33,17 +33,17 @@ scheme specified in the database's prefix ids
 #
 #------------------------------------------------------------------------
 import re
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gui.utils import ProgressMeter
+from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import Event, Family, MediaObject, Note, Person, Place, Repository, Source
-from gen.db import DbTxn
-from gui.plug import tool
+from gramps.gen.db import DbTxn
+from gramps.gui.plug import tool
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 

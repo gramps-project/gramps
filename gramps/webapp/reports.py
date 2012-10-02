@@ -23,14 +23,14 @@
 
 # imports for import/export:
 
-from gen.dbstate import DbState
-from cli.grampscli import CLIManager
-from gen.plug import BasePluginManager
+from gramps.gen.dbstate import DbState
+from gramps.cli.grampscli import CLIManager
+from gramps.gen.plug import BasePluginManager
 import os
 
 # Example for running a report:
 # ------------------------------
-# from cli.plug import run_report
+# from gramps.cli.plug import run_report
 # from django.conf import settings
 # import webapp.settings as default_settings
 # try:

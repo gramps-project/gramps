@@ -28,19 +28,19 @@ Place Tree View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.listview import LISTTREE
+from gramps.gui.views.listview import LISTTREE
 from gramps.plugins.lib.libplaceview import PlaceBaseView
-from gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
+from gramps.gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 from gramps.gen.lib import Place
-from gen.errors import WindowActiveError
-from gui.editors import EditPlace
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPlace
 
 #-------------------------------------------------------------------------
 #
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -47,25 +47,25 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place
-from gui.views.listview import ListView
-from gui.widgets.menuitem import add_menuitem
-from gen.errors import WindowActiveError
-from gui.views.bookmarks import PlaceBookmarks
-from gen.config import config
-from gui.dialog import ErrorDialog
-from gui.pluginmanager import GuiPluginManager
-from gui.ddtargets import DdTargets
-from gui.editors import EditPlace, DeletePlaceQuery
-from gui.filters.sidebar import PlaceSidebarFilter
-from gui.merge import MergePlace
-from gen.plug import CATEGORY_QR_PLACE
+from gramps.gui.views.listview import ListView
+from gramps.gui.widgets.menuitem import add_menuitem
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.views.bookmarks import PlaceBookmarks
+from gramps.gen.config import config
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.editors import EditPlace, DeletePlaceQuery
+from gramps.gui.filters.sidebar import PlaceSidebarFilter
+from gramps.gui.merge import MergePlace
+from gramps.gen.plug import CATEGORY_QR_PLACE
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 
 #-------------------------------------------------------------------------

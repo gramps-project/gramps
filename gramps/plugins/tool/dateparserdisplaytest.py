@@ -36,7 +36,7 @@ Tools/Debug/Check Localized Date Parser and Displayer
 #-------------------------------------------------------------------------
 import traceback
 import sys
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -44,12 +44,12 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Date, Event, EventRef, EventType, Name, Person, Surname, Tag
-from gen.db import DbTxn
-from gui.plug import tool
-from gui.utils import ProgressMeter
-from gui.dialog import QuestionDialog
-from gen.datehandler import parser as _dp
-from gen.datehandler import displayer as _dd
+from gramps.gen.db import DbTxn
+from gramps.gui.plug import tool
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.dialog import QuestionDialog
+from gramps.gen.datehandler import parser as _dp
+from gramps.gen.datehandler import displayer as _dd
 
 #-------------------------------------------------------------------------
 #

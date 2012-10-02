@@ -25,12 +25,12 @@
 #------------------------------------------------------------------------
 import time
 
-from gen.lib import Person, Family
-from gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.display.name import displayer as name_displayer
-from gen.utils.db import family_name
+from gramps.gen.lib import Person, Family
+from gramps.gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.db import family_name
 
 #------------------------------------------------------------------------
 #

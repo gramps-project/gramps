@@ -23,9 +23,9 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.display.name import displayer as name_displayer
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------
 #

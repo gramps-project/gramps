@@ -31,7 +31,7 @@
 #------------------------------------------------------------------------
 import os
 from types import ClassType
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------------
 #
@@ -46,8 +46,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-from gen.config import config
-from gen.plug.report import CATEGORY_GRAPHVIZ
+from gramps.gen.config import config
+from gramps.gen.plug.report import CATEGORY_GRAPHVIZ
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
 import gramps.gen.plug.docgen.graphdoc as graphdoc

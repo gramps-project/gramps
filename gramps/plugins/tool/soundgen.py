@@ -29,14 +29,14 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
-from gen.soundex import soundex
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gui.autocomp import fill_combo
-from gen.ggettext import sgettext as _
-from gui.plug import tool
-from gui.glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.soundex import soundex
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.autocomp import fill_combo
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.plug import tool
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

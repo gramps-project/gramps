@@ -27,11 +27,11 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import EventType, FamilyRelType
-from gen.plug import Gramplet
-from gen.display.name import displayer as name_displayer
-from gen.plug.report import utils as ReportUtils
-from gen.ggettext import sgettext as _
+from gramps.gen.lib import EventType, FamilyRelType
+from gramps.gen.plug import Gramplet
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -49,7 +49,7 @@ class WhatNextGramplet(Gramplet):
         """
         Build the configuration options.
         """
-        from gen.plug.menu import NumberOption, EnumeratedListOption
+        from gramps.gen.plug.menu import NumberOption, EnumeratedListOption
 
         self.opts = []
 

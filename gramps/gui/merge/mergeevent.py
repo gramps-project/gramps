@@ -29,13 +29,13 @@ Provide merge capabilities for events.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.const import URL_MANUAL_PAGE
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.datehandler import get_date
-from gen.utils.db import get_participant_from_event
-from gen.merge import MergeEventQuery
+from gramps.gen.utils.db import get_participant_from_event
+from gramps.gen.merge import MergeEventQuery
 
 #-------------------------------------------------------------------------
 #

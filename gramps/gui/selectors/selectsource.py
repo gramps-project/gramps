@@ -26,14 +26,14 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import SourceModel
+from gramps.gui.views.treemodels import SourceModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

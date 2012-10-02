@@ -32,7 +32,7 @@ Provide a python evaluation window
 #------------------------------------------------------------------------
 import cStringIO
 import sys
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import traceback
 
 #------------------------------------------------------------------------
@@ -40,9 +40,9 @@ import traceback
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gui.plug import tool
-from gui.managedwindow import ManagedWindow
-from gui.glade import Glade
+from gramps.gui.plug import tool
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

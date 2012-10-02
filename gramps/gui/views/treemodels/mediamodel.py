@@ -25,7 +25,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
 import locale
@@ -44,7 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gui.views.treemodels.flatbasemodel import FlatBaseModel
+from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #

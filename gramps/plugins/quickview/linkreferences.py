@@ -25,10 +25,10 @@
 Display link references for a note
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.lib import StyledTextTagType
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.lib import StyledTextTagType
+from gramps.gen.ggettext import gettext as _
 
 def run(database, document, obj):
     """

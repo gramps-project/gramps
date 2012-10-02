@@ -28,8 +28,8 @@ import urllib2
 from gi.repository import Gtk
 import os
 from tempfile import mkstemp
-from gen.ggettext import gettext as _
-from gui.glade import Glade
+from gramps.gen.ggettext import gettext as _
+from gramps.gui.glade import Glade
 import gramps.plugins.lib.libgedcom as libgedcom
 
 #

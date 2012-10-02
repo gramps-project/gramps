@@ -28,7 +28,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -36,11 +36,11 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, NoteType
-from gen.db import DbTxn
-from gui.glade import Glade
+from gramps.gen.db import DbTxn
+from gramps.gui.glade import Glade
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from gui.widgets import (PrivacyButton, MonitoredEntry,
+from gramps.gui.widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)
 from editreference import RefTab, EditReference
 

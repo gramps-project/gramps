@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -42,10 +42,10 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
+from gramps.gen.config import config
 from _reportdialog import ReportDialog
 from _papermenu import PaperFrame
-from gui.pluginmanager import GuiPluginManager
+from gramps.gui.pluginmanager import GuiPluginManager
 PLUGMAN = GuiPluginManager.get_instance()
 
 #-------------------------------------------------------------------------

@@ -30,7 +30,7 @@ Geography for one person and all his descendant
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import operator
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -53,15 +53,15 @@ _LOG = logging.getLogger("GeoGraphy.geomoves")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType
-from gen.config import config
+from gramps.gen.config import config
 from gramps.gen.datehandler import displayer
-from gen.display.name import displayer as _nd
-from gen.utils.place import conv_lat_lon
-from gui.views.navigationview import NavigationView
-from gui.views.bookmarks import PersonBookmarks
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.place import conv_lat_lon
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.plugins.lib.maps import constants
 from gramps.plugins.lib.maps.geography import GeoGraphyView
-from gui.selectors import SelectorFactory
+from gramps.gui.selectors import SelectorFactory
 
 #-------------------------------------------------------------------------
 #

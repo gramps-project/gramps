@@ -32,8 +32,8 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 import locale
 import math
 
@@ -42,15 +42,15 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as global_name_display
-from gen.errors import ReportError
-from gen.plug.menu import PersonOption, EnumeratedListOption
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.errors import ReportError
+from gramps.gen.plug.menu import PersonOption, EnumeratedListOption
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                             INDEX_TYPE_TOC)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 
 #------------------------------------------------------------------------
 #

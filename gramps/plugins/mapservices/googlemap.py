@@ -28,7 +28,7 @@ Google Maps map service plugin. Open place in maps.google.com
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #

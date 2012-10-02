@@ -43,10 +43,10 @@ from gi.repository import GdkPixbuf
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import ICON
-from gen.config import config
-from gui.glade import Glade
-from gen.ggettext import gettext as _
+from gramps.gen.const import ICON
+from gramps.gen.config import config
+from gramps.gui.glade import Glade
+from gramps.gen.ggettext import gettext as _
 
 try:
     ICON = GdkPixbuf.Pixbuf.new_from_file(ICON)

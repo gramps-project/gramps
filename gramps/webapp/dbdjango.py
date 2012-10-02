@@ -31,8 +31,8 @@ import base64
 import time
 import gen
 import re
-from gen.db import DbReadBase, DbWriteBase, DbTxn
-from gen.db import (PERSON_KEY,
+from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.db import (PERSON_KEY,
                     FAMILY_KEY,
                     CITATION_KEY,
                     SOURCE_KEY,
@@ -41,7 +41,7 @@ from gen.db import (PERSON_KEY,
                     PLACE_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
-from gen.utils.id import create_id
+from gramps.gen.utils.id import create_id
 from webapp.libdjango import DjangoInterface
 from django.db import transaction
 

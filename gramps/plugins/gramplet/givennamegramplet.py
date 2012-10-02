@@ -21,10 +21,10 @@
 #
 #
 from collections import defaultdict
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
-from gen.plug import Gramplet
-from gen.config import config
+from gramps.gen.plug import Gramplet
+from gramps.gen.config import config
 
 _YIELD_INTERVAL = 350
 

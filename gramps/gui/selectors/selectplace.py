@@ -27,14 +27,14 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels.placemodel import PlaceListModel
+from gramps.gui.views.treemodels.placemodel import PlaceListModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

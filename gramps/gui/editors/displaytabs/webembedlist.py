@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 from gi.repository import GObject
 
@@ -35,8 +35,8 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Url
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from webmodel import WebModel
 from embeddedlist import EmbeddedList
 
@@ -82,7 +82,7 @@ class WebEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
-        from gui.editors import EditUrl
+        from gramps.gui.editors import EditUrl
         url = Url()
         try:
             EditUrl(self.dbstate, self.uistate, self.track, 
@@ -97,7 +97,7 @@ class WebEmbedList(EmbeddedList):
         GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
-        from gui.editors import EditUrl
+        from gramps.gui.editors import EditUrl
         url = self.get_selected()
         if url:
             try:
@@ -118,7 +118,7 @@ class WebEmbedList(EmbeddedList):
             ]
 
     def jump_button_clicked(self, obj):
-        from gui.display import display_url
+        from gramps.gui.display import display_url
 
         url = self.get_selected()
         if url.get_path():

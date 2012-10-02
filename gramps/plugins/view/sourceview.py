@@ -40,25 +40,25 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Source
-from gen.config import config
-from gui.views.listview import ListView
-from gui.views.treemodels import SourceModel
-from gen.utils.db import get_source_and_citation_referents
-from gui.views.bookmarks import SourceBookmarks
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.editors import EditSource, DeleteSrcQuery
-from gui.filters.sidebar import SourceSidebarFilter
-from gui.merge import MergeSource
-from gen.plug import CATEGORY_QR_SOURCE
+from gramps.gen.config import config
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import SourceModel
+from gramps.gen.utils.db import get_source_and_citation_referents
+from gramps.gui.views.bookmarks import SourceBookmarks
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.editors import EditSource, DeleteSrcQuery
+from gramps.gui.filters.sidebar import SourceSidebarFilter
+from gramps.gui.merge import MergeSource
+from gramps.gen.plug import CATEGORY_QR_SOURCE
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 
 #-------------------------------------------------------------------------

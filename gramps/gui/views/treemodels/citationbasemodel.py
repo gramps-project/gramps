@@ -41,8 +41,8 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
-from gen.utils.string import confidence
-from gen.config import config
+from gramps.gen.utils.string import confidence
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #

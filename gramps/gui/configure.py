@@ -29,7 +29,7 @@
 #
 #-------------------------------------------------------------------------
 import random
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 from xml.sax.saxutils import escape
 
@@ -47,21 +47,21 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
-from gen.const import HOME_DIR
+from gramps.gen.config import config
+from gramps.gen.const import HOME_DIR
 from gramps.gen.datehandler import get_date_formats
-from gen.display.name import displayer as _nd
-from gen.display.name import NameDisplayError
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gen.utils.alive import update_constants
-from gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.name import NameDisplayError
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gen.utils.alive import update_constants
+from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
-from gen.lib import Name, Surname, NameOriginType
-from gui.managedwindow import ManagedWindow
-from gui.widgets import MarkupLabel, BasicLabel
-from gui.dialog import ErrorDialog, QuestionDialog2, OkDialog
-from gui.glade import Glade
+from gramps.gen.lib import Name, Surname, NameOriginType
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.widgets import MarkupLabel, BasicLabel
+from gramps.gui.dialog import ErrorDialog, QuestionDialog2, OkDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

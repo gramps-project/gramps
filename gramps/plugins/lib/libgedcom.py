@@ -93,7 +93,7 @@ import os
 import re
 import time
 import codecs
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 import cStringIO
@@ -112,20 +112,20 @@ LOG = logging.getLogger(".libgedcom")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import GedcomError
-from gen.const import DATA_DIR
+from gramps.gen.errors import GedcomError
+from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject, MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Researcher, Source, SourceMediaType, Surname, Url, UrlType
-from gen.db import DbTxn
-from gen.updatecallback import UpdateCallback
+from gramps.gen.db import DbTxn
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.mime import get_type
-from gen.utils.id import create_id
-from gen.utils.lds import TEMPLES
-from gen.utils.unknown import make_unknown, create_explanation_note
-from gen.datehandler._dateparser import DateParser
-from gen.db.dbconst import EVENT_KEY
-from gui.dialog import WarningDialog
-from gen.lib.const import IDENTICAL, DIFFERENT
-from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
+from gramps.gen.utils.id import create_id
+from gramps.gen.utils.lds import TEMPLES
+from gramps.gen.utils.unknown import make_unknown, create_explanation_note
+from gramps.gen.datehandler._dateparser import DateParser
+from gramps.gen.db.dbconst import EVENT_KEY
+from gramps.gui.dialog import WarningDialog
+from gramps.gen.lib.const import IDENTICAL, DIFFERENT
+from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 
 #-------------------------------------------------------------------------
 #

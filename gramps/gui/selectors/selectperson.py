@@ -26,7 +26,7 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -35,7 +35,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
+from gramps.gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

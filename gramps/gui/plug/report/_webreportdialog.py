@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from _reportdialog import ReportDialog
-from gen.plug.report import CATEGORY_WEB
+from gramps.gen.plug.report import CATEGORY_WEB
 
 #-------------------------------------------------------------------------
 #

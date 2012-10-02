@@ -26,7 +26,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 from gi.repository import Pango, PangoCairo
 
@@ -35,10 +35,10 @@ from gi.repository import Pango, PangoCairo
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                         FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
                         PARA_ALIGN_LEFT)
-from gui.managedwindow import ManagedWindow
+from gramps.gui.managedwindow import ManagedWindow
 
 RESOLUTION = PangoCairo.font_map_get_default().get_resolution()
 

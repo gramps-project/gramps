@@ -30,7 +30,7 @@ __all__ = ["LinkLabel", "EditLabel", "BasicLabel", "GenderLabel",
 #-------------------------------------------------------------------------
 import os
 import cgi
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".widgets.labels")
 
@@ -49,8 +49,8 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.constfunc import has_display, win
-from gui.utils import rgb_to_hex
+from gramps.gen.constfunc import has_display, win
+from gramps.gui.utils import rgb_to_hex
 
 #-------------------------------------------------------------------------
 #

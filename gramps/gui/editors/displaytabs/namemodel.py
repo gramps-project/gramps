@@ -27,7 +27,7 @@
 # python libraries
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -45,8 +45,8 @@ WEIGHT_BOLD = Pango.Weight.BOLD
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gui.widgets.undoablebuffer import UndoableBuffer
-from gen.display.name import displayer as name_displayer
+from gramps.gui.widgets.undoablebuffer import UndoableBuffer
+from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

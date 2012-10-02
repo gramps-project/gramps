@@ -26,7 +26,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,9 +41,9 @@ from gi.repository import Gdk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gui.widgets import SimpleButton
+from gramps.gui.widgets import SimpleButton
 from grampstab import GrampsTab
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _RETURN = Gdk.keyval_from_name("Return")

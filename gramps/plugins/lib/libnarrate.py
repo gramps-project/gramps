@@ -34,14 +34,14 @@ Narrator class for use by plugins.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib.date import Date
-from gen.lib.person import Person
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.eventtype import EventType
-from gen.lib.familyreltype import FamilyRelType
-from gen.display.name import displayer as _nd
-from gen.utils.alive import probably_alive
-from gen.plug.report import utils as ReportUtils
+from gramps.gen.lib.date import Date
+from gramps.gen.lib.person import Person
+from gramps.gen.lib.eventroletype import EventRoleType
+from gramps.gen.lib.eventtype import EventType
+from gramps.gen.lib.familyreltype import FamilyRelType
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.plug.report import utils as ReportUtils
 from gramps.plugins.lib.libtranslate import Translator
 
 #-------------------------------------------------------------------------

@@ -37,7 +37,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from bisect import bisect
 import re, os, sys
 
@@ -46,8 +46,8 @@ import re, os, sys
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
-from gen.plug.docbackend import DocBackend
+from gramps.gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
+from gramps.gen.plug.docbackend import DocBackend
 import Image
 
 _CLICKABLE = r'''\url{\1}'''

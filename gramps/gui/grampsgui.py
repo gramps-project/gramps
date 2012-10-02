@@ -28,7 +28,7 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".grampsgui")
 
@@ -73,9 +73,9 @@ if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
-from gen.const import DATA_DIR, IMAGE_DIR
-from gen.constfunc import has_display, win
+from gramps.gen.config import config
+from gramps.gen.const import DATA_DIR, IMAGE_DIR
+from gramps.gen.constfunc import has_display, win
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +88,7 @@ def register_stock_icons ():
     Add the gramps names for its icons (eg gramps-person) to the GTK icon
     factory. This allows all gramps modules to call up the icons by their name
     """
-    from gui.pluginmanager import base_reg_stock_icons
+    from gramps.gui.pluginmanager import base_reg_stock_icons
 
     #iconpath to the base image. The front of the list has highest priority
     if win():
@@ -186,7 +186,7 @@ def _display_welcome_message():
     Display a welcome message to the user.
     """
     if not config.get('behavior.betawarn'):
-        from gui.dialog import WarningDialog
+        from gramps.gui.dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
             _("This Gramps 3.x-trunk is a development release. "
@@ -222,11 +222,11 @@ class Gramps(object):
     """
 
     def __init__(self, argparser):
-        from gen.dbstate import DbState
+        from gramps.gen.dbstate import DbState
         import viewmanager
         from viewmanager import ViewManager
-        from cli.arghandler import ArgHandler
-        from gui.tipofday import TipOfDay
+        from gramps.cli.arghandler import ArgHandler
+        from gramps.gui.tipofday import TipOfDay
 
         register_stock_icons()
 
@@ -259,7 +259,7 @@ class Gramps(object):
             TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
-        from gui.dialog import ErrorDialog
+        from gramps.gui.dialog import ErrorDialog
         """ Show basic errors in argument handling in GUI fashion"""
         ErrorDialog(_("Error parsing arguments"), string)
 
@@ -274,7 +274,7 @@ def __startgramps(errors, argparser):
     Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
-    from gui.dialog import ErrorDialog
+    from gramps.gui.dialog import ErrorDialog
     #handle first existing errors in GUI fashion
     if errors:
         ErrorDialog(errors[0], errors[1])
@@ -287,7 +287,7 @@ def __startgramps(errors, argparser):
         sys.exit(1)
 
     # add gui logger
-    from gui.logger import RotateHandler, GtkHandler
+    from gramps.gui.logger import RotateHandler, GtkHandler
     form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: "
                                 "%(filename)s: line %(lineno)d: %(message)s")
     # Create the log handlers

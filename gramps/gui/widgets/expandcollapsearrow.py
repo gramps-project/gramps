@@ -27,7 +27,7 @@ __all__ = ["ExpandCollapseArrow"]
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 import logging
 _LOG = logging.getLogger(".widgets.expandcollapsearrow")
@@ -40,7 +40,7 @@ _LOG = logging.getLogger(".widgets.expandcollapsearrow")
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gen.constfunc import has_display
+from gramps.gen.constfunc import has_display
 
 #-------------------------------------------------------------------------
 #

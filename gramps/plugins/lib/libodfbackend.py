@@ -43,7 +43,7 @@ import os.path
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docbackend import DocBackend
+from gramps.gen.plug.docbackend import DocBackend
 
 #------------------------------------------------------------------------
 #

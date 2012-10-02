@@ -29,15 +29,15 @@
 from gi.repository import GObject
 from gi.repository import Gtk
 
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
-from gen.utils.db import family_name, get_participant_from_event
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.db import family_name, get_participant_from_event
 
 #-------------------------------------------------------------------------
 #

@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import locale
 
 #-------------------------------------------------------------------------
@@ -44,10 +44,10 @@ from gi.repository import Gtk
 from gui import widgets
 from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer
-from gui.filters import build_filter_model
-from gui.filters.sidebar import SidebarFilter
-from gen.filters import GenericFilter, rules
-from gen.filters.rules.person import (RegExpName, SearchName, RegExpIdOf, 
+from gramps.gui.filters import build_filter_model
+from gramps.gui.filters.sidebar import SidebarFilter
+from gramps.gen.filters import GenericFilter, rules
+from gramps.gen.filters.rules.person import (RegExpName, SearchName, RegExpIdOf, 
                                       MatchIdOf, IsMale, IsFemale, 
                                       HasUnknownGender, HasEvent, HasTag, 
                                       HasBirth, HasDeath, HasNoteRegexp, 

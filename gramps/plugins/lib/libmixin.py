@@ -29,7 +29,7 @@ Mixin for DbDir to enable find_from_handle and check_from_handle methods.
 # Gramps Modules
 #
 #------------------------------------------------------------------------------
-from gen.lib import (Person, Family, Event, Place, Source, 
+from gramps.gen.lib import (Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note, Tag)
 
 #------------------------------------------------------------------------------

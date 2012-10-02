@@ -26,20 +26,20 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import NoteType
-from gen.db import DbTxn
+from gramps.gen.lib import NoteType
+from gramps.gen.db import DbTxn
 
 from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
-from gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from gramps.gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from editreference import RefTab, EditReference
-from gui.glade import Glade
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

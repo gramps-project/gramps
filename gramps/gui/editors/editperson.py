@@ -34,7 +34,7 @@ to edit information about a particular Person.
 #
 #-------------------------------------------------------------------------
 from copy import copy
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -50,30 +50,30 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.file import media_path_full
-from gui.thumbnails import get_thumbnail_image
+from gramps.gen.utils.file import media_path_full
+from gramps.gui.thumbnails import get_thumbnail_image
 from gramps.gui.utils import is_right_click, open_file_with_default_application
-from gen.utils.db import get_birth_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from gui import widgets
-from gen.display.name import displayer as name_displayer
-from gen.errors import WindowActiveError
-from gui.glade import Glade
-from gui.widgets.menuitem import add_menuitem
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.glade import Glade
+from gramps.gui.widgets.menuitem import add_menuitem
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
 from editname import EditName
-from gen.config import config
-from gui.dialog import ErrorDialog, ICON
-from gen.errors import ValidationError
+from gramps.gen.config import config
+from gramps.gui.dialog import ErrorDialog, ICON
+from gramps.gen.errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab,
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
-from gen.plug import CATEGORY_QR_PERSON
+from gramps.gen.plug import CATEGORY_QR_PERSON
 
 #-------------------------------------------------------------------------
 #
@@ -928,7 +928,7 @@ class EditPerson(EditPrimary):
             obj = self.dbstate.db.get_object_from_handle(handle)
             if obj is None :
                 #notify user of error
-                from gui.dialog import RunDatabaseRepair
+                from gramps.gui.dialog import RunDatabaseRepair
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :

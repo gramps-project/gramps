@@ -46,14 +46,14 @@ log = logging.getLogger(".ExportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gui.plug.export import WriterOptionBox
-from gen.const import PROGRAM_NAME, VERSION
-from gen.lib import Date
-from gen.lib.urltype import UrlType
-from gen.lib.eventtype import EventType
-from gen.display.name import displayer as _nd
-from gen.plug.utils import OpenFileOrStdout
+from gramps.gen.ggettext import gettext as _
+from gramps.gui.plug.export import WriterOptionBox
+from gramps.gen.const import PROGRAM_NAME, VERSION
+from gramps.gen.lib import Date
+from gramps.gen.lib.urltype import UrlType
+from gramps.gen.lib.eventtype import EventType
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.plug.utils import OpenFileOrStdout
 
 
 #-------------------------------------------------------------------------

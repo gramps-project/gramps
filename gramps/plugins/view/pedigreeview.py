@@ -29,8 +29,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 from cgi import escape
 import math
 import sys
@@ -54,23 +54,23 @@ import cairo
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import ChildRef, ChildRefType, Family
-from gui.views.navigationview import NavigationView
-from gui.editors import FilterEditor
-from gen.display.name import displayer as name_displayer
-from gen.utils.alive import probably_alive
-from gen.utils.file import media_path_full
-from gen.utils.db import find_children, find_parents, find_witnessed_people
-from gen.utils.libformatting import FormattingHelper
-from gui.thumbnails import get_thumbnail_path
-from gen.errors import WindowActiveError
-from gui.editors import EditPerson, EditFamily
-from gui.ddtargets import DdTargets
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.editors import FilterEditor
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.db import find_children, find_parents, find_witnessed_people
+from gramps.gen.utils.libformatting import FormattingHelper
+from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.ddtargets import DdTargets
 import cPickle as pickle
-from gen.config import config
-from gui.views.bookmarks import PersonBookmarks
-from gen.const import CUSTOM_FILTERS
-from gen.constfunc import is_quartz, win
-from gui.dialog import RunDatabaseRepair, ErrorDialog
+from gramps.gen.config import config
+from gramps.gui.views.bookmarks import PersonBookmarks
+from gramps.gen.const import CUSTOM_FILTERS
+from gramps.gen.constfunc import is_quartz, win
+from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
 
 #-------------------------------------------------------------------------

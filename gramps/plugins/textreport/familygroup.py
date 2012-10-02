@@ -38,16 +38,16 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
-from gen.plug.menu import (BooleanOption, FamilyOption, EnumeratedListOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+from gramps.gen.plug.menu import (BooleanOption, FamilyOption, EnumeratedListOption)
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
-from gen.ggettext import sgettext as _
-from gen.display.name import displayer as global_name_display
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------
 #

@@ -38,16 +38,16 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.plug.report import utils as ReportUtils
-from gen.display.name import displayer as name_displayer
-from gen.const import URL_MANUAL_PAGE
-from gui.display import display_help
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
 from gramps.gen.datehandler import get_date
-from gen.errors import MergeError
-from gui.dialog import ErrorDialog
-from gui.managedwindow import ManagedWindow
-from gen.merge import MergePersonQuery
+from gramps.gen.errors import MergeError
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.merge import MergePersonQuery
 
 #-------------------------------------------------------------------------
 #

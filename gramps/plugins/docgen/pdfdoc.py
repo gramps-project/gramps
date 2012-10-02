@@ -29,7 +29,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import sys
 
 #------------------------------------------------------------------------
@@ -38,8 +38,8 @@ import sys
 #
 #------------------------------------------------------------------------
 import gramps.plugins.lib.libcairodoc as libcairodoc
-from gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
-from gen.errors import ReportError
+from gramps.gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #

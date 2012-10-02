@@ -39,8 +39,8 @@ from collections import defaultdict
 import os
 import time
 import datetime
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 from cStringIO import StringIO
 import sys
 import posixpath
@@ -65,40 +65,40 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from cli.grampscli import CLIManager
-from gui.user import User
-from gui.plug import tool
-from gen.plug import (START, END)
-from gen.plug import REPORT
-from gen.plug.report._constants import standalone_categories
-from gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
-from gui.plug.report import report
-from gen.plug.utils import version_str_to_tup, load_addon_file
-from gui.pluginmanager import GuiPluginManager
-from gen.relationship import get_relationship_calculator
-from gui.displaystate import DisplayState, RecentDocsMenu
-from gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
+from gramps.cli.grampscli import CLIManager
+from gramps.gui.user import User
+from gramps.gui.plug import tool
+from gramps.gen.plug import (START, END)
+from gramps.gen.plug import REPORT
+from gramps.gen.plug.report._constants import standalone_categories
+from gramps.gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
+from gramps.gui.plug.report import report
+from gramps.gen.plug.utils import version_str_to_tup, load_addon_file
+from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gen.relationship import get_relationship_calculator
+from gramps.gui.displaystate import DisplayState, RecentDocsMenu
+from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
                        URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
                        WIKI_EXTRAPLUGINS)
-from gen.constfunc import is_quartz
-from gen.config import config
-from gen.errors import WindowActiveError
-from gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
+from gramps.gen.constfunc import is_quartz
+from gramps.gen.config import config
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
 from gui import widgets
-from gui.undohistory import UndoHistory
-from gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
+from gramps.gui.undohistory import UndoHistory
+from gramps.gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
                             get_unicode_path_from_file_chooser)
-from gui.dbloader import DbLoader
-from gui.display import display_help, display_url
-from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
-from gui.configure import GrampsPreferences
-from gen.db.backup import backup
-from gen.db.exceptions import DbException
-from gui.aboutdialog import GrampsAboutDialog
-from gui.navigator import Navigator
-from gui.views.tags import Tags
-from gen.utils.configmanager import safe_eval
+from gramps.gui.dbloader import DbLoader
+from gramps.gui.display import display_help, display_url
+from gramps.gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
+from gramps.gui.configure import GrampsPreferences
+from gramps.gen.db.backup import backup
+from gramps.gen.db.exceptions import DbException
+from gramps.gui.aboutdialog import GrampsAboutDialog
+from gramps.gui.navigator import Navigator
+from gramps.gui.views.tags import Tags
+from gramps.gen.utils.configmanager import safe_eval
 
 #-------------------------------------------------------------------------
 #
@@ -435,16 +435,16 @@ class ViewManager(CLIManager):
             if addon_update_list:
                 self.update_addons(addon_update_list)
             elif force:
-                from gui.dialog import OkDialog
+                from gramps.gui.dialog import OkDialog
                 OkDialog(_("There are no available addons of this type"),
                          _("Checked for '%s'") %
                          _("' and '").join([_(t) for t in config.get('behavior.check-for-update-types')]),
                          self.window)
 
     def update_addons(self, addon_update_list):
-        from gui.glade import Glade
-        from gui.managedwindow import set_titles
-        from gui.listmodel import ListModel, NOSORT, TOGGLE
+        from gramps.gui.glade import Glade
+        from gramps.gui.managedwindow import set_titles
+        from gramps.gui.listmodel import ListModel, NOSORT, TOGGLE
         glade = Glade("updateaddons.glade")
         self.update_dialog = glade.toplevel
         set_titles(self.update_dialog, glade.get_object('title'),
@@ -521,8 +521,8 @@ class ViewManager(CLIManager):
         """
         Process all of the selected addons.
         """
-        from gui.dialog import OkDialog
-        from gui.widgets.progressdialog import LongOpStatus
+        from gramps.gui.dialog import OkDialog
+        from gramps.gui.widgets.progressdialog import LongOpStatus
         self.update_dialog.hide()
         model = self.list.model
 
@@ -1112,7 +1112,7 @@ class ViewManager(CLIManager):
         """
         Display Tip of the day
         """
-        from gui.tipofday import TipOfDay
+        from gramps.gui.tipofday import TipOfDay
         TipOfDay(self.uistate)
 
     def __plugin_status(self, obj=None, data=None):
@@ -1200,7 +1200,7 @@ class ViewManager(CLIManager):
         return None
 
     def __create_dummy_page(self, pdata, error):
-        from gui.views.pageview import DummyPage
+        from gramps.gui.views.pageview import DummyPage
         return DummyPage(pdata.name, pdata, self.dbstate, self.uistate,
                     _("View failed to load. Check error output."), error)
     
@@ -1472,7 +1472,7 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        from gui.dialog import QuestionDialog2
+        from gramps.gui.dialog import QuestionDialog2
         window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
@@ -1663,7 +1663,7 @@ class ViewManager(CLIManager):
         """
         Displays the Clipboard
         """
-        from gui.clipboard import ClipboardWindow
+        from gramps.gui.clipboard import ClipboardWindow
         try:
             ClipboardWindow(self.dbstate, self.uistate)
         except WindowActiveError:
@@ -1705,7 +1705,7 @@ class ViewManager(CLIManager):
         Calls the ExportAssistant to export data
         """
         if self.dbstate.db.db_is_open:
-            from gui.plug.export import ExportAssistant
+            from gramps.gui.plug.export import ExportAssistant
             try:
                 ExportAssistant(self.dbstate, self.uistate)
             except WindowActiveError:

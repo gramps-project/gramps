@@ -31,16 +31,16 @@ Person list View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.listview import LISTTREE
+from gramps.gui.views.listview import LISTTREE
 from gramps.plugins.lib.libpersonview import BasePersonView
-from gui.views.treemodels.peoplemodel import PersonListModel
+from gramps.gui.views.treemodels.peoplemodel import PersonListModel
 
 #-------------------------------------------------------------------------
 #
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

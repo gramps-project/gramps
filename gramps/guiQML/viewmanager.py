@@ -61,9 +61,9 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import ROOT_DIR
-from cli.grampscli import CLIManager, CLIDbLoader
-from gen.ggettext import gettext as _
+from gramps.gen.const import ROOT_DIR
+from gramps.cli.grampscli import CLIManager, CLIDbLoader
+from gramps.gen.ggettext import gettext as _
 from guiQML.views.dbman import DbManager
 from guiQML.questiondialog import ErrorDialog
 

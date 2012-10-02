@@ -48,26 +48,26 @@ _LOG = logging.getLogger(".gui.personview")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Person, Surname
-from gen.db import DbTxn
-from gui.views.listview import ListView
-from gen.utils.string import data_recover_msg
-from gen.display.name import displayer as name_displayer
-from gui.dialog import ErrorDialog, QuestionDialog
-from gen.errors import WindowActiveError
-from gui.views.bookmarks import PersonBookmarks
-from gen.config import config
-from gui.ddtargets import DdTargets
-from gui.editors import EditPerson
-from gui.filters.sidebar import PersonSidebarFilter
-from gui.merge import MergePerson
-from gen.plug import CATEGORY_QR_PERSON
+from gramps.gen.db import DbTxn
+from gramps.gui.views.listview import ListView
+from gramps.gen.utils.string import data_recover_msg
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gui.dialog import ErrorDialog, QuestionDialog
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.views.bookmarks import PersonBookmarks
+from gramps.gen.config import config
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.editors import EditPerson
+from gramps.gui.filters.sidebar import PersonSidebarFilter
+from gramps.gui.merge import MergePerson
+from gramps.gen.plug import CATEGORY_QR_PERSON
 
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #

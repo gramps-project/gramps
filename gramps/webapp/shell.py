@@ -17,7 +17,7 @@ from webapp.grampsdb.forms import *
 from webapp.dbdjango import DbDjango
 from webapp.reports import import_file
 from webapp.libdjango import DjangoInterface, totime, todate
-from gen.datehandler import displayer, parser
+from gramps.gen.datehandler import displayer, parser
 from webapp.utils import StyledNoteFormatter, parse_styled_text
 from gramps.gen.lib import StyledText
 import cli.user

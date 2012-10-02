@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -34,8 +34,8 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import PersonRef
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from personrefmodel import PersonRefModel
 from embeddedlist import EmbeddedList
 
@@ -72,7 +72,7 @@ class PersonRefEmbedList(EmbeddedList):
                               move_buttons=True)
 
     def get_ref_editor(self):
-        from gui.editors import EditPersonRef
+        from gramps.gui.editors import EditPersonRef
         return EditPersonRef
 
     def get_data(self):
@@ -82,7 +82,7 @@ class PersonRefEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
-        from gui.editors import EditPersonRef
+        from gramps.gui.editors import EditPersonRef
         try:
             ref = PersonRef()
             ref.rel = _('Godfather')
@@ -99,7 +99,7 @@ class PersonRefEmbedList(EmbeddedList):
         GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
-        from gui.editors import EditPersonRef
+        from gramps.gui.editors import EditPersonRef
         ref = self.get_selected()
         if ref:
             try:
@@ -117,7 +117,7 @@ class PersonRefEmbedList(EmbeddedList):
         And event reference that is from a drag and drop has
         an unknown event reference type
         """
-        from gui.editors import EditPersonRef
+        from gramps.gui.editors import EditPersonRef
         try:
             ref = PersonRef(obj)
             ref.rel = _('Unknown')

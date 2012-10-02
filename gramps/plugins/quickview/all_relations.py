@@ -31,9 +31,9 @@ Display a person's relations to the home person
 #
 #-------------------------------------------------------------------------
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gen.ggettext import gettext as _
-from gen.relationship import get_relationship_calculator
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.relationship import get_relationship_calculator
 
 # define the formatting string once as a constant. Since this is reused
 

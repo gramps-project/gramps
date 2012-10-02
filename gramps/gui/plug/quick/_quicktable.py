@@ -46,14 +46,14 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.simple import SimpleTable
-from gen.utils.trans import trans_objclass
-from gen.errors import WindowActiveError
-from gui.widgets.multitreeview import MultiTreeView
-from gui.ddtargets import DdTargets
-from gui.plug.quick import run_quick_report_by_name
-from gui.editors import (EditPerson, EditEvent, EditFamily, EditCitation, 
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.simple import SimpleTable
+from gramps.gen.utils.trans import trans_objclass
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.widgets.multitreeview import MultiTreeView
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.plug.quick import run_quick_report_by_name
+from gramps.gui.editors import (EditPerson, EditEvent, EditFamily, EditCitation, 
                          EditSource, EditPlace, EditRepository, EditNote, 
                          EditMedia)
 

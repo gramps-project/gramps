@@ -27,13 +27,13 @@
 Display a people who have a person's same surname or given name.
 """
 
-from gen.simple import SimpleAccess, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 from gramps.gen.lib import Person
-from gen.filters.rules import Rule
-from gen.filters import GenericFilterFactory
+from gramps.gen.filters.rules import Rule
+from gramps.gen.filters import GenericFilterFactory
 
 class IncompleteSurname(Rule):
     """People with incomplete surnames"""

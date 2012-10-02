@@ -19,13 +19,13 @@
 # $Id$
 #
 
-from gen.lib import EventType, EventRoleType
-from gui.editors import EditEvent
-from gui.listmodel import ListModel, NOSORT
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
+from gramps.gen.lib import EventType, EventRoleType
+from gramps.gui.editors import EditEvent
+from gramps.gui.listmodel import ListModel, NOSORT
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
 from gramps.gen.datehandler import get_date
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 
 class PersonResidence(Gramplet):

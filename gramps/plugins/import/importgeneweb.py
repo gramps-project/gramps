@@ -30,8 +30,8 @@
 #-------------------------------------------------------------------------
 import re
 import time
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -46,9 +46,9 @@ LOG = logging.getLogger(".ImportGeneWeb")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import GedcomError
+from gramps.gen.errors import GedcomError
 from gramps.gen.lib import Attribute, AttributeType, ChildRef, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, Place, Source
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')

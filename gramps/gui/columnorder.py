@@ -32,7 +32,7 @@ Handle the column ordering
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------
@@ -48,8 +48,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.managedwindow import ManagedWindow
-from gui.glade import Glade
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.glade import Glade
 
 
 #-------------------------------------------------------------------------

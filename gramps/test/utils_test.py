@@ -25,7 +25,7 @@
 import unittest
 from test import test_util
 test_util.path_append_parent() 
-from gen.utils.keyword import (KEYWORDS, get_translation_from_keyword, 
+from gramps.gen.utils.keyword import (KEYWORDS, get_translation_from_keyword, 
                                get_keyword_from_translation)
 
 class TestCase(unittest.TestCase):

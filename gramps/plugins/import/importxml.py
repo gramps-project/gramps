@@ -33,7 +33,7 @@ import os
 import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import re
 import logging
 LOG = logging.getLogger(".ImportXML")
@@ -45,19 +45,19 @@ LOG = logging.getLogger(".ImportXML")
 #-------------------------------------------------------------------------
 from gramps.gen.mime import get_type
 from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, Researcher, Source, StyledText, StyledTextTag, StyledTextTagType, Surname, Tag, Url
-from gen.db import DbTxn
-from gen.db.write import CLASS_TO_KEY_MAP
-from gen.errors import GrampsImportError
-from gen.utils.id import create_id
-from gen.utils.db import family_name
-from gen.utils.unknown import make_unknown, create_explanation_note
+from gramps.gen.db import DbTxn
+from gramps.gen.db.write import CLASS_TO_KEY_MAP
+from gramps.gen.errors import GrampsImportError
+from gramps.gen.utils.id import create_id
+from gramps.gen.utils.db import family_name
+from gramps.gen.utils.unknown import make_unknown, create_explanation_note
 from gramps.gen.datehandler import parser, set_date
-from gen.display.name import displayer as name_displayer
-from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
                             TAG_KEY, CITATION_KEY)
-from gen.updatecallback import UpdateCallback
-from gen.const import VERSION
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.const import VERSION
 import gramps.plugins.lib.libgrampsxml
 
 #-------------------------------------------------------------------------

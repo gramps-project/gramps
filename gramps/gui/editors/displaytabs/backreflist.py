@@ -27,7 +27,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,8 +41,8 @@ from gi.repository import Gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gen.errors import WindowActiveError
-from gui.widgets import SimpleButton
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.widgets import SimpleButton
 from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
@@ -135,7 +135,7 @@ class BackRefList(EmbeddedList):
     
     def edit_button_clicked(self, obj):
         
-        from gui.editors import EditEvent, EditPerson, EditFamily, EditSource, \
+        from gramps.gui.editors import EditEvent, EditPerson, EditFamily, EditSource, \
                                 EditPlace, EditMedia, EditRepository, \
                                 EditCitation
 

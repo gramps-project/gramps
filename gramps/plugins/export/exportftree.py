@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -45,9 +45,9 @@ log = logging.getLogger(".WriteFtree")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.alive import probably_alive
-from gui.plug.export import WriterOptionBox
-from gui.glade import Glade
+from gramps.gen.utils.alive import probably_alive
+from gramps.gui.plug.export import WriterOptionBox
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

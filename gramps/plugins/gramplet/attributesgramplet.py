@@ -19,9 +19,9 @@
 # $Id$
 #
 
-from gen.plug import Gramplet
-from gen.display.name import displayer as name_displayer
-from gen.ggettext import gettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.ggettext import gettext as _
 
 class AttributesGramplet(Gramplet):
     """

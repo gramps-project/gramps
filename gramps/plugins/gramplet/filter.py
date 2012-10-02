@@ -26,8 +26,8 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gui.filters.sidebar import (PersonSidebarFilter, FamilySidebarFilter,
+from gramps.gen.plug import Gramplet
+from gramps.gui.filters.sidebar import (PersonSidebarFilter, FamilySidebarFilter,
                                  EventSidebarFilter, SourceSidebarFilter,
                                  CitationSidebarFilter,
                                  PlaceSidebarFilter, MediaSidebarFilter,

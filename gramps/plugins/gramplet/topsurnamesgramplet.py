@@ -25,9 +25,9 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.config import config
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.config import config
 
 #------------------------------------------------------------------------
 #

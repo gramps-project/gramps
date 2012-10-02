@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import sys
 
@@ -53,11 +53,11 @@ from gi.repository import GdkPixbuf
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG, 
+from gramps.gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG, 
                        DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH, 
                        TRANSLATORS, URL_HOMEPAGE, VERSION)
-from gui.display import display_url
-from gen.config import config
+from gramps.gui.display import display_url
+from gramps.gen.config import config
 
 if config.get('preferences.use-bsddb3'):
     import bsddb3 as bsddb

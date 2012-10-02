@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -52,9 +52,9 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.db import get_source_referents
-from gui.views.treemodels.treebasemodel import TreeBaseModel
-from gui.views.treemodels.citationbasemodel import CitationBaseModel
+from gramps.gen.utils.db import get_source_referents
+from gramps.gui.views.treemodels.treebasemodel import TreeBaseModel
+from gramps.gui.views.treemodels.citationbasemodel import CitationBaseModel
 
 #-------------------------------------------------------------------------
 #

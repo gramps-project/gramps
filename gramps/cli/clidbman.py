@@ -38,7 +38,7 @@ import time
 import urllib2
 import urlparse
 import tempfile
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -53,9 +53,9 @@ LOG = logging.getLogger(".clidbman")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.db import DbBsddb
-from gen.plug import BasePluginManager
-from gen.config import config
-from gen.constfunc import win
+from gramps.gen.plug import BasePluginManager
+from gramps.gen.config import config
+from gramps.gen.constfunc import win
 #-------------------------------------------------------------------------
 #
 # constants
@@ -138,7 +138,7 @@ class CLIDbManager(object):
             from bsddb3 import dbshelve, db
         else:
             from bsddb import dbshelve, db
-        from gen.db import META, PERSON_TBL
+        from gramps.gen.db import META, PERSON_TBL
         env = db.DBEnv()
         flags = db.DB_CREATE | db.DB_PRIVATE |\
             db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\

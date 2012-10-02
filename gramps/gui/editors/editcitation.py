@@ -31,7 +31,7 @@ EditCitation class for GRAMPS.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -41,16 +41,16 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Citation, NoteType, Source
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList, CitationBackRefList)
-from gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
+from gramps.gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
-from gui.dialog import ErrorDialog
+from gramps.gui.dialog import ErrorDialog
 from editreference import RefTab
-from gui.glade import Glade
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,7 @@ class EditCitation(EditPrimary):
     
     This class is called both to edit the Citation Primary object
     and to edit references from other objects to citations.
-    It is called from gui.editors.__init__ for editing the primary object
+    It is called from gramps.gui.editors.__init__ for editing the primary object
     and is called from CitationEmbedList for editing references
     
     @param callertitle: Text passed by calling object to add to title 

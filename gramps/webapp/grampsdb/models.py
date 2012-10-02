@@ -31,8 +31,8 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from gen.lib.date import Date as GDate, Today
-from gen.utils.id import create_id, create_uid
+from gramps.gen.lib.date import Date as GDate, Today
+from gramps.gen.utils.id import create_id, create_uid
 
 from webapp.grampsdb.profile import Profile
 
@@ -125,35 +125,35 @@ class mGrampsType(models.Model):
             raise IndexError("type index is out of range (use 0 or 1)")
 
 class NameType(mGrampsType):
-    from gen.lib.nametype import NameType
+    from gramps.gen.lib.nametype import NameType
     _DATAMAP = get_datamap(NameType)
     _CUSTOM = NameType._CUSTOM
     _DEFAULT = get_default_type_value(NameType)
     val = models.IntegerField('name type', choices=_DATAMAP, blank=False)
 
 class NameOriginType(mGrampsType):
-    from gen.lib.nameorigintype import NameOriginType
+    from gramps.gen.lib.nameorigintype import NameOriginType
     _DATAMAP = get_datamap(NameOriginType)
     _CUSTOM = NameOriginType._CUSTOM
     _DEFAULT = get_default_type_value(NameOriginType)
     val = models.IntegerField('name origin type', choices=_DATAMAP, blank=False)
 
 class AttributeType(mGrampsType):
-    from gen.lib.attrtype import AttributeType
+    from gramps.gen.lib.attrtype import AttributeType
     _DATAMAP = get_datamap(AttributeType)
     _CUSTOM = AttributeType._CUSTOM
     _DEFAULT = get_default_type_value(AttributeType)
     val = models.IntegerField('attribute type', choices=_DATAMAP, blank=False)
 
 class UrlType(mGrampsType):
-    from gen.lib.urltype import UrlType
+    from gramps.gen.lib.urltype import UrlType
     _DATAMAP = get_datamap(UrlType)
     _CUSTOM = UrlType._CUSTOM
     _DEFAULT = get_default_type_value(UrlType)
     val = models.IntegerField('url type', choices=_DATAMAP, blank=False)
 
 class ChildRefType(mGrampsType):
-    from gen.lib.childreftype import ChildRefType
+    from gramps.gen.lib.childreftype import ChildRefType
     _DATAMAP = get_datamap(ChildRefType)
     _CUSTOM = ChildRefType._CUSTOM
     _DEFAULT = get_default_type_value(ChildRefType)
@@ -161,14 +161,14 @@ class ChildRefType(mGrampsType):
                               blank=False)
 
 class RepositoryType(mGrampsType):
-    from gen.lib.repotype import RepositoryType
+    from gramps.gen.lib.repotype import RepositoryType
     _DATAMAP = get_datamap(RepositoryType)
     _CUSTOM = RepositoryType._CUSTOM
     _DEFAULT = get_default_type_value(RepositoryType)
     val = models.IntegerField('repository type', choices=_DATAMAP, blank=False)
 
 class EventType(mGrampsType):
-    from gen.lib.eventtype import EventType
+    from gramps.gen.lib.eventtype import EventType
     _DATAMAP = get_datamap(EventType)
     _CUSTOM = EventType._CUSTOM
     _DEFAULT = get_default_type_value(EventType)
@@ -184,7 +184,7 @@ class EventType(mGrampsType):
 
 
 class FamilyRelType(mGrampsType):
-    from gen.lib.familyreltype import FamilyRelType
+    from gramps.gen.lib.familyreltype import FamilyRelType
     _DATAMAP = get_datamap(FamilyRelType)
     _CUSTOM = FamilyRelType._CUSTOM
     _DEFAULT = get_default_type_value(FamilyRelType)
@@ -192,7 +192,7 @@ class FamilyRelType(mGrampsType):
                               blank=False)
 
 class SourceMediaType(mGrampsType):
-    from gen.lib.srcmediatype import SourceMediaType
+    from gramps.gen.lib.srcmediatype import SourceMediaType
     _DATAMAP = get_datamap(SourceMediaType)
     _CUSTOM = SourceMediaType._CUSTOM
     _DEFAULT = get_default_type_value(SourceMediaType)
@@ -200,21 +200,21 @@ class SourceMediaType(mGrampsType):
                               blank=False)
 
 class EventRoleType(mGrampsType):
-    from gen.lib.eventroletype import EventRoleType
+    from gramps.gen.lib.eventroletype import EventRoleType
     _DATAMAP = get_datamap(EventRoleType)
     _CUSTOM = EventRoleType._CUSTOM
     _DEFAULT = get_default_type_value(EventRoleType)
     val = models.IntegerField('event role type', choices=_DATAMAP, blank=False)
 
 class NoteType(mGrampsType):
-    from gen.lib.notetype import NoteType
+    from gramps.gen.lib.notetype import NoteType
     _DATAMAP = get_datamap(NoteType)
     _CUSTOM = NoteType._CUSTOM
     _DEFAULT = get_default_type_value(NoteType)
     val = models.IntegerField('note type', choices=_DATAMAP, blank=False)
 
 class StyledTextTagType(mGrampsType):
-    from gen.lib.styledtexttagtype import StyledTextTagType
+    from gramps.gen.lib.styledtexttagtype import StyledTextTagType
     _DATAMAP = get_datamap(StyledTextTagType)
     _CUSTOM = None
     _DEFAULT = None

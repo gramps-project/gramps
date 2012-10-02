@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 import re
 from gi.repository import GObject
 import math
@@ -52,8 +52,8 @@ from gi.repository import Gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import WindowActiveError
-from gui.managedwindow import ManagedWindow
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.managedwindow import ManagedWindow
 from osmGps import OsmGps
 
 #-------------------------------------------------------------------------

@@ -34,7 +34,7 @@ Family Lines, a GraphViz-based plugin for Gramps.
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -51,17 +51,17 @@ log = logging.getLogger(".FamilyLines")
 #
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType, Person
-from gen.utils.file import media_path_full
-from gui.thumbnails import get_thumbnail_path
-from gen.datehandler import displayer as _dd
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
+from gramps.gen.utils.file import media_path_full
+from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                           EnumeratedListOption, PersonListOption,
                           SurnameColorOption)
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gen.display.name import displayer as name_displayer
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------
 #

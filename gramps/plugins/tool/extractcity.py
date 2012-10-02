@@ -31,7 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import re
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,13 +46,13 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.db import DbTxn
-from gui.managedwindow import ManagedWindow
-from gui.display import display_help
+from gramps.gen.db import DbTxn
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.display import display_help
 
-from gui.plug import tool
-from gui.utils import ProgressMeter
-from gui.glade import Glade
+from gramps.gui.plug import tool
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.glade import Glade
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
 CITY_STATE = re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*),((?:\w|\s)+)", re.UNICODE)
@@ -506,7 +506,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             self.display()
         else:
             self.close()
-            from gui.dialog import OkDialog
+            from gramps.gui.dialog import OkDialog
             OkDialog(_('No modifications made'), 
                      _("No place information could be extracted."))
 

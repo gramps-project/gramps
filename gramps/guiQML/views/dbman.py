@@ -61,9 +61,9 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import IMAGE_DIR, ROOT_DIR
-from cli.clidbman import CLIDbManager, NAME_FILE, time_val
-from gen.ggettext import gettext as _
+from gramps.gen.const import IMAGE_DIR, ROOT_DIR
+from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

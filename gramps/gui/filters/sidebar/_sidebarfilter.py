@@ -21,15 +21,15 @@
 
 # $Id$
 
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from bisect import insort_left
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
 from gui import widgets
-from gui.dbguielement import DbGUIElement
-from gen.config import config
+from gramps.gui.dbguielement import DbGUIElement
+from gramps.gen.config import config
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -228,9 +228,9 @@ class SidebarFilter(DbGUIElement):
         Callback which invokes the EditFilter dialog. Will create new
         filter if called if none is selected.
         """
-        from gui.editors import EditFilter
-        from gen.filters import FilterList, GenericFilterFactory
-        from gen.const import CUSTOM_FILTERS
+        from gramps.gui.editors import EditFilter
+        from gramps.gen.filters import FilterList, GenericFilterFactory
+        from gramps.gen.const import CUSTOM_FILTERS
         the_filter = None
         filterdb = FilterList(CUSTOM_FILTERS)
         filterdb.load()
@@ -255,7 +255,7 @@ class SidebarFilter(DbGUIElement):
         If a filter changed, save them all. Reloads, and sets name.
         Takes the filter database, and the filter name edited.
         """
-        from gen.filters import reload_custom_filters
+        from gramps.gen.filters import reload_custom_filters
         filterdb.save()
         reload_custom_filters()
         self.on_filters_changed(self.namespace)

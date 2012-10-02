@@ -33,7 +33,7 @@ Specific option handling for a GUI.
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import sys
 
@@ -51,15 +51,15 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gui.utils import ProgressMeter
-from gui.pluginmanager import GuiPluginManager
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.pluginmanager import GuiPluginManager
 from gui import widgets
-from gui.managedwindow import ManagedWindow
-from gui.dialog import OptionDialog
-from gui.selectors import SelectorFactory
-from gen.display.name import displayer as _nd
-from gen.filters import GenericFilterFactory, GenericFilter, rules
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import OptionDialog
+from gramps.gui.selectors import SelectorFactory
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
 import gen
 
 #------------------------------------------------------------------------
@@ -1760,8 +1760,8 @@ class GuiStyleOption(GuiEnumeratedListOption):
         """The user has clicked on the 'Edit Styles' button.  Create a
         style sheet editor object and let them play.  When they are
         done, update the displayed styles."""
-        from gen.plug.docgen import StyleSheetList
-        from gui.plug.report._styleeditor import StyleListDisplay
+        from gramps.gen.plug.docgen import StyleSheetList
+        from gramps.gui.plug.report._styleeditor import StyleListDisplay
         style_list = StyleSheetList(self.__option.get_style_file(), 
                                             self.__option.get_default_style())
         StyleListDisplay(style_list, None, None)
@@ -1866,7 +1866,7 @@ class GuiBooleanListOption(Gtk.HBox):
 #                                                                             #
 #-----------------------------------------------------------------------------#
 
-from gen.plug import menu as menu
+from gramps.gen.plug import menu as menu
 _OPTIONS = (
 
     (menu.BooleanListOption,     True, GuiBooleanListOption),

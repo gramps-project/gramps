@@ -32,7 +32,7 @@ from gi.repository import Gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------
 #

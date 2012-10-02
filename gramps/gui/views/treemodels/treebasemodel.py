@@ -37,7 +37,7 @@ This module provides the model that is used for all hierarchical treeviews.
 from __future__ import with_statement, print_function
 import time
 import locale
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -55,11 +55,11 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
+from gramps.gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
 import gramps.gui.widgets.progressdialog as progressdlg
 from lru import LRU
 from bisect import bisect_right
-from gen.filters import SearchFilter, ExactSearchFilter
+from gramps.gen.filters import SearchFilter, ExactSearchFilter
 
 #-------------------------------------------------------------------------
 #

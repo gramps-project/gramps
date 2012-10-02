@@ -26,9 +26,9 @@
 Display a person's events, both personal and family
 """
 
-from gen.simple import SimpleAccess, by_date, SimpleDoc
-from gui.plug.quick import QuickTable
-from gen.ggettext import gettext as _
+from gramps.gen.simple import SimpleAccess, by_date, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
+from gramps.gen.ggettext import gettext as _
 
 def run(database, document, person):
     """

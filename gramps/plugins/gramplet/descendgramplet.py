@@ -30,18 +30,18 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.plug.report import utils as ReportUtils
-from gen.display.name import displayer as name_displayer
+from gramps.gen.plug import Gramplet
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 class DescendantGramplet(Gramplet):
     def init(self):

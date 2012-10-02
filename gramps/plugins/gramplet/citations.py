@@ -20,11 +20,11 @@
 # $Id$
 #
 
-from gui.editors import EditSource, EditCitation
-from gui.listmodel import ListModel, NOSORT
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
-from gen.errors import WindowActiveError
+from gramps.gui.editors import EditSource, EditCitation
+from gramps.gui.listmodel import ListModel, NOSORT
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 
 class Citations(Gramplet):

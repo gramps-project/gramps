@@ -37,7 +37,7 @@ import os
 import sys
 import tarfile
 from cStringIO import StringIO
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -59,10 +59,10 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.plug.export import WriterOptionBox
+from gramps.gui.plug.export import WriterOptionBox
 from exportxml import XmlWriter
-from gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
-from gen.constfunc import win
+from gramps.gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
+from gramps.gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #

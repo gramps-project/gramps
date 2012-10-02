@@ -73,8 +73,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.filters import SearchFilter, ExactSearchFilter
-from gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
+from gramps.gen.filters import SearchFilter, ExactSearchFilter
+from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 
 #-------------------------------------------------------------------------
 #

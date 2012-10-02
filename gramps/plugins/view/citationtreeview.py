@@ -45,28 +45,28 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.views.listview import LISTTREE
-from gui.views.treemodels.citationtreemodel import CitationTreeModel
-from gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
+from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.treemodels.citationtreemodel import CitationTreeModel
+from gramps.gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
 from gramps.gen.lib import Citation, Source
-from gui.views.listview import ListView
-from gen.utils.db import (get_source_and_citation_referents, 
+from gramps.gui.views.listview import ListView
+from gramps.gen.utils.db import (get_source_and_citation_referents, 
                                 get_citation_referents)
-from gui.views.bookmarks import CitationBookmarks
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
+from gramps.gui.views.bookmarks import CitationBookmarks
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
     DeleteSrcQuery
-from gui.filters.sidebar import SourceSidebarFilter
-from gui.merge import MergeCitation, MergeSource
+from gramps.gui.filters.sidebar import SourceSidebarFilter
+from gramps.gui.merge import MergeCitation, MergeSource
 
 #-------------------------------------------------------------------------
 #
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -430,7 +430,7 @@ class CitationTreeView(ListView):
                     EditCitation(self.dbstate, self.uistate, [], 
                                  Citation(), source)
                 except WindowActiveError:
-                    from gui.dialog import WarningDialog
+                    from gramps.gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -485,7 +485,7 @@ class CitationTreeView(ListView):
                 try:
                     EditSource(self.dbstate, self.uistate, [], source)
                 except WindowActiveError:
-                    from gui.dialog import WarningDialog
+                    from gramps.gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text2())
 

@@ -38,8 +38,8 @@ import sys
 import cStringIO
 import time
 
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -62,20 +62,20 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Citation, Event, EventType, Family, MediaObject, Name, Note, Person, Place, Repository, Source, StyledText, Tag
-from gen.db import DbTxn
-from gen.config import config
-from gen.utils.id import create_id
-from gen.utils.db import family_name
-from gen.utils.unknown import make_unknown
-from gen.utils.file import (media_path_full, find_file, fix_encoding, 
+from gramps.gen.db import DbTxn
+from gramps.gen.config import config
+from gramps.gen.utils.id import create_id
+from gramps.gen.utils.db import family_name
+from gramps.gen.utils.unknown import make_unknown
+from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding, 
                             get_unicode_path_from_file_chooser)
-from gui.utils import ProgressMeter
-from gui.managedwindow import ManagedWindow
+from gramps.gui.utils import ProgressMeter
+from gramps.gui.managedwindow import ManagedWindow
 
-from gui.plug import tool
-from gui.dialog import OkDialog, MissingMediaDialog
-from gen.display.name import displayer as _nd
-from gui.glade import Glade
+from gramps.gui.plug import tool
+from gramps.gui.dialog import OkDialog, MissingMediaDialog
+from gramps.gen.display.name import displayer as _nd
+from gramps.gui.glade import Glade
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.

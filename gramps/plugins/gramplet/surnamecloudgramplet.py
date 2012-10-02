@@ -25,9 +25,9 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.config import config
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.config import config
 
 #------------------------------------------------------------------------
 #
@@ -168,7 +168,7 @@ class SurnameCloudGramplet(Gramplet):
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
 
     def build_options(self):
-        from gen.plug.menu import NumberOption
+        from gramps.gen.plug.menu import NumberOption
         self.top_size_option = NumberOption(_("Number of surnames"), self.top_size, 1, 150)
         self.add_option(self.top_size_option)
         self.min_option = NumberOption(_("Min font size"), self.min_font, 1, 50)

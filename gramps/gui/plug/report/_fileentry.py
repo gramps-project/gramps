@@ -25,7 +25,7 @@
 import os
 from gi.repository import Gtk
 from gi.repository import GObject
-from gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 
 class FileEntry(Gtk.HBox):
     """ A widget that allows the user to select a file from the file system """

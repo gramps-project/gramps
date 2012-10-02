@@ -61,8 +61,8 @@ from PySide import QtOpenGL
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import ROOT_DIR
-from gen.ggettext import gettext as _
+from gramps.gen.const import ROOT_DIR
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

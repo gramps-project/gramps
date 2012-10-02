@@ -32,7 +32,7 @@
 #------------------------------------------------------------------------
 import os
 import copy
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -40,20 +40,20 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import EventRoleType, EventType, Person, NoteType
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+from gramps.gen.lib import EventRoleType, EventType, Person, NoteType
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                              TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                              PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
-from gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
+from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                            BooleanListOption, EnumeratedListOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.plug.report import Bibliography
-from gen.plug.report import endnotes as Endnotes
-from gen.display.name import displayer as global_name_display
-from gen.utils.file import media_path_full
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Bibliography
+from gramps.gen.plug.report import endnotes as Endnotes
+from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.utils.file import media_path_full
 
 #------------------------------------------------------------------------
 #

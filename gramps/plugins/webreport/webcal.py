@@ -36,8 +36,8 @@ Web Calendar generator.
 from functools import partial
 import os, codecs, shutil, re
 import datetime, calendar
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 from itertools import imap
 
 #------------------------------------------------------------------------
@@ -50,24 +50,24 @@ log = logging.getLogger(".WebPage")
 # GRAMPS module
 #------------------------------------------------------------------------
 from gramps.gen.lib import Date, Name, NameType, Person
-from gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
-from gen.constfunc import win
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
+from gramps.gen.constfunc import win
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption, NoteOption
-from gen.utils.config import get_researcher
-from gen.utils.alive import probably_alive
-from gen.datehandler import displayer as _dd, long_days
+from gramps.gen.utils.config import get_researcher
+from gramps.gen.utils.alive import probably_alive
+from gramps.gen.datehandler import displayer as _dd, long_days
 
-from gen.display.name import displayer as _nd
+from gramps.gen.display.name import displayer as _nd
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
-from gui.pluginmanager import GuiPluginManager
+from gramps.gui.pluginmanager import GuiPluginManager
 
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py

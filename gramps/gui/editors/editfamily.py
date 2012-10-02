@@ -28,7 +28,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
+from gramps.gen.config import config
 if config.get('preferences.use-bsddb3'):
     from bsddb3 import db as bsddb_db
 else:
@@ -48,8 +48,8 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gui.ddtargets import DdTargets
+from gramps.gen.ggettext import gettext as _
+from gramps.gui.ddtargets import DdTargets
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
@@ -60,13 +60,13 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.config import config
-from gen.display.name import displayer as name_displayer
+from gramps.gen.config import config
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
-from gen.db import DbTxn
-from gen.errors import WindowActiveError
+from gramps.gen.db import DbTxn
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
-from gui.glade import Glade
+from gramps.gui.glade import Glade
 
 from editprimary import EditPrimary
 from editchildref import EditChildRef
@@ -74,15 +74,15 @@ from editperson import EditPerson
 from displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
-from gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
+from gramps.gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
                          MonitoredTagList)
-from gen.plug import CATEGORY_QR_FAMILY
-from gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
+from gramps.gen.plug import CATEGORY_QR_FAMILY
+from gramps.gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
-from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
+from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
-from gui.selectors import SelectorFactory
-from gen.utils.id import create_id
+from gramps.gui.selectors import SelectorFactory
+from gramps.gen.utils.id import create_id
 
 SelectPerson = SelectorFactory('Person')
 

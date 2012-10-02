@@ -30,9 +30,9 @@ import posixpath
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.utils.file import media_path_full
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 import gen
 

@@ -32,7 +32,7 @@ mechanism for the user to edit address information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,13 +46,13 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
-from gen.lib import NoteType
-from gui.widgets import MonitoredEntry, PrivacyButton
-from gui.selectors import SelectorFactory
+from gramps.gen.lib import NoteType
+from gramps.gui.widgets import MonitoredEntry, PrivacyButton
+from gramps.gui.selectors import SelectorFactory
 from displaytabs import CitationEmbedList, NoteTab
-from gui.glade import Glade
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -173,7 +173,7 @@ class EditPersonRef(EditSecondary):
             self.callback = None
             self.close()
         else:
-            from gui.dialog import ErrorDialog
+            from gramps.gui.dialog import ErrorDialog
 
             ErrorDialog(
                 _('No person selected'),

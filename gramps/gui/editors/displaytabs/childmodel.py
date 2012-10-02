@@ -34,10 +34,10 @@ import cgi
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
-from gen.display.name import displayer as name_displayer
-from gen.utils.string import gender as gender_map
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.lib import EventType
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #-------------------------------------------------------------------------
 #

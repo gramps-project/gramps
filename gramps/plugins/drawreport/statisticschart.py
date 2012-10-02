@@ -33,7 +33,7 @@
 #
 #------------------------------------------------------------------------
 import time
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -43,18 +43,18 @@ from functools import partial
 #------------------------------------------------------------------------
 
 # Person and relation types
-from gen.lib import Person, FamilyRelType, EventType, EventRoleType
-from gen.lib.date import Date
+from gramps.gen.lib import Person, FamilyRelType, EventType, EventRoleType
+from gramps.gen.lib.date import Date
 # gender and report type names
-from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, FONT_SERIF,
                              PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
                              IndexMark, INDEX_TYPE_TOC)
-from gen.plug.menu import (BooleanOption, NumberOption, EnumeratedListOption,
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, EnumeratedListOption,
                            FilterOption, PersonOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.datehandler import displayer, parser
 
 #------------------------------------------------------------------------

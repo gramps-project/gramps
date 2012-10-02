@@ -46,18 +46,18 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import IMAGE_DIR, URL_MANUAL_PAGE
-from gen.config import config
+from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE
+from gramps.gen.config import config
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
-from gui.display import display_help
-from gui.managedwindow import ManagedWindow
-from gen.ggettext import sgettext as _
-from gen.utils.trans import trans_objclass
-from gen.constfunc import mac
-from gui.glade import Glade
-from gui.ddtargets import DdTargets
-from gui.makefilter import make_filter
+from gramps.gui.display import display_help
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.utils.trans import trans_objclass
+from gramps.gen.constfunc import mac
+from gramps.gui.glade import Glade
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.makefilter import make_filter
 from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------
@@ -725,7 +725,7 @@ class ClipFamilyLink(ClipHandleWrapper):
         self.refresh()
 
     def refresh(self):
-        from gen.simple import SimpleAccess
+        from gramps.gen.simple import SimpleAccess
         if self._handle:
             family = self._db.get_family_from_handle(self._handle)
             if family:
@@ -1517,7 +1517,7 @@ class MultiTreeView(Gtk.TreeView):
         self.defer_select=False
 
     def edit_obj(self, objclass, handle):
-        from gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
+        from gramps.gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
                                  EditPlace, EditRepository, EditNote, EditMedia)
         if objclass == 'Person':
             person = self.dbstate.db.get_person_from_handle(handle)

@@ -33,21 +33,21 @@ Reports/Graphical Reports/Personal Tree
 # GRAMPS modules
 #
 #------------------------------------------------------------------------ 
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
-from gen.errors import ReportError
+from gramps.gen.errors import ReportError
 
-from gen.plug.menu import TextOption
-from gen.plug.menu import NumberOption
-from gen.plug.menu import EnumeratedListOption
-from gen.plug.menu import StringOption
-from gen.plug.menu import BooleanOption
-from gen.plug.menu import PersonOption
-from gen.plug.menu import FamilyOption
+from gramps.gen.plug.menu import TextOption
+from gramps.gen.plug.menu import NumberOption
+from gramps.gen.plug.menu import EnumeratedListOption
+from gramps.gen.plug.menu import StringOption
+from gramps.gen.plug.menu import BooleanOption
+from gramps.gen.plug.menu import PersonOption
+from gramps.gen.plug.menu import FamilyOption
 
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 
 PT2CM = ReportUtils.pt2cm
 
@@ -1676,7 +1676,7 @@ class DescendTreeOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Tree."""
 
-        from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+        from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
         ## Paragraph Styles:

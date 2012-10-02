@@ -46,10 +46,10 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import GLADE_FILE, ICON
-from gen.errors import WindowActiveError
-from gen.config import config
-from gui.glade import Glade
+from gramps.gen.const import GLADE_FILE, ICON
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.config import config
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -321,7 +321,7 @@ class ManagedWindow(object):
         The usage from derived classes is envisioned as follows:
         
         
-        from gui.managedwindow import ManagedWindow
+        from gramps.gui.managedwindow import ManagedWindow
         class SomeWindowClass(ManagedWindow):
             def __init__(self,uistate,dbstate,track):
                 window_id = self        # Or e.g. window_id = person.handle

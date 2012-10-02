@@ -31,7 +31,7 @@
 #-------------------------------------------------------------------------
 import os
 import tarfile
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -46,9 +46,9 @@ log = logging.getLogger(".ReadPkg")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import XMLFILE
+from gramps.gen.const import XMLFILE
 import importxml
-from gen.utils.file import media_path
+from gramps.gen.utils.file import media_path
 
 #-------------------------------------------------------------------------
 #

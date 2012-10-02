@@ -19,14 +19,14 @@
 # $Id$
 #
 
-from gui.editors import EditPerson
-from gui.listmodel import ListModel, NOSORT
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
-from gen.display.name import displayer as name_displayer
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gui.editors import EditPerson
+from gramps.gui.listmodel import ListModel, NOSORT
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.datehandler import get_date
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 
 class Children(Gramplet):

@@ -31,19 +31,19 @@ import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
 import settings
 
-from gen.config import config
-from gen.lib.nametype import NameType
-from gen.lib.nameorigintype import NameOriginType
-from gen.lib.attrtype import AttributeType
-from gen.lib.urltype import UrlType
-from gen.lib.childreftype import ChildRefType
-from gen.lib.repotype import RepositoryType
-from gen.lib.eventtype import EventType
-from gen.lib.familyreltype import FamilyRelType
-from gen.lib.srcmediatype import SourceMediaType
-from gen.lib.eventroletype import EventRoleType
-from gen.lib.notetype import NoteType
-from gen.lib.styledtexttagtype import StyledTextTagType
+from gramps.gen.config import config
+from gramps.gen.lib.nametype import NameType
+from gramps.gen.lib.nameorigintype import NameOriginType
+from gramps.gen.lib.attrtype import AttributeType
+from gramps.gen.lib.urltype import UrlType
+from gramps.gen.lib.childreftype import ChildRefType
+from gramps.gen.lib.repotype import RepositoryType
+from gramps.gen.lib.eventtype import EventType
+from gramps.gen.lib.familyreltype import FamilyRelType
+from gramps.gen.lib.srcmediatype import SourceMediaType
+from gramps.gen.lib.eventroletype import EventRoleType
+from gramps.gen.lib.notetype import NoteType
+from gramps.gen.lib.styledtexttagtype import StyledTextTagType
 
 from grampsdb.models import (GenderType, LdsType, LdsStatus, 
                              NameFormatType, NameOriginType, ThemeType)

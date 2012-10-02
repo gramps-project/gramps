@@ -26,7 +26,7 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -35,10 +35,10 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 from eventembedlist import EventEmbedList
 from eventrefmodel import EventRefModel
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #
@@ -106,7 +106,7 @@ class PersonEventEmbedList(EventEmbedList):
             ]
 
     def get_ref_editor(self):
-        from gui.editors import EditEventRef
+        from gramps.gui.editors import EditEventRef
         return EditEventRef
 
     def editnotworkgroup(self, key):
@@ -115,7 +115,7 @@ class PersonEventEmbedList(EventEmbedList):
         """
         family = self.dbstate.db.get_family_from_handle(key)
         try:
-            from gui.editors import EditFamily
+            from gramps.gui.editors import EditFamily
             EditFamily(self.dbstate, self.uistate, [], family)
         except WindowActiveError:
             pass
@@ -124,7 +124,7 @@ class PersonEventEmbedList(EventEmbedList):
         """
         handle change request of non native data
         """
-        from gui.dialog import WarningDialog
+        from gramps.gui.dialog import WarningDialog
         WarningDialog(
                     _("Cannot change Family"),
                     _("You cannot change Family events in the Person Editor")

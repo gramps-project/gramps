@@ -19,9 +19,9 @@
 # $Id$
 #
 
-from gen.lib import UrlType
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
+from gramps.gen.lib import UrlType
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 from gi.repository import Pango
 

@@ -42,13 +42,13 @@ except ImportError:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.plug import Gramplet
-from gen.errors import WindowActiveError
-from gui.editors import EditPerson
-from gui.widgets.fanchartdesc import (FanChartDescWidget, FanChartDescGrampsGUI,
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson
+from gramps.gui.widgets.fanchartdesc import (FanChartDescWidget, FanChartDescGrampsGUI,
                                       ANGLE_WEIGHT)
-from gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
+from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 
 class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
     """

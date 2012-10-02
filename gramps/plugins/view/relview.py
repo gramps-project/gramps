@@ -29,8 +29,8 @@ Relationship View
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
 import cgi
 
 #-------------------------------------------------------------------------
@@ -56,24 +56,24 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import ChildRef, EventRoleType, EventType, Family, FamilyRelType, Name, Person, Surname
-from gen.db import DbTxn
-from gui.views.navigationview import NavigationView
-from gui.editors import EditPerson, EditFamily
-from gui.editors import FilterEditor
-from gen.display.name import displayer as name_displayer
-from gen.utils.file import media_path_full
-from gen.utils.alive import probably_alive
-from gui.utils import open_file_with_default_application
+from gramps.gen.db import DbTxn
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.editors import FilterEditor
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.alive import probably_alive
+from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.datehandler import displayer, get_date
-from gui.thumbnails import get_thumbnail_image
-from gen.config import config
+from gramps.gui.thumbnails import get_thumbnail_image
+from gramps.gen.config import config
 from gui import widgets
-from gui.widgets.reorderfam import Reorder
-from gui.selectors import SelectorFactory
-from gen.errors import WindowActiveError
-from gui.views.bookmarks import PersonBookmarks
-from gen.const import CUSTOM_FILTERS
-from gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
+from gramps.gui.widgets.reorderfam import Reorder
+from gramps.gui.selectors import SelectorFactory
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.views.bookmarks import PersonBookmarks
+from gramps.gen.const import CUSTOM_FILTERS
+from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
                           preset_name)
 
 _GenderCode = {
@@ -483,7 +483,7 @@ class RelationshipView(NavigationView):
             import traceback
             exc = traceback.format_exc()
             _LOG.error(str(msg) +"\n" + exc)
-            from gui.dialog import RunDatabaseRepair
+            from gramps.gui.dialog import RunDatabaseRepair
             RunDatabaseRepair(str(msg))
             self.redrawing = False
             return True
@@ -1321,7 +1321,7 @@ class RelationshipView(NavigationView):
     def write_family(self, family_handle, person = None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family is None:
-            from gui.dialog import WarningDialog
+            from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _('Broken family detected'),
                 _('Please run the Check and Repair Database tool'))

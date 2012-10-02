@@ -56,15 +56,15 @@ from webapp.dbdjango import DbDjango
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gen.simple import SimpleTable, SimpleAccess, make_basic_stylesheet
-from gen.utils.alive import probably_alive as alive
-from gen.dbstate import DbState
-from gen.datehandler import displayer, parser
-from gen.lib.date import Date as GDate, Today
+from gramps.gen.simple import SimpleTable, SimpleAccess, make_basic_stylesheet
+from gramps.gen.utils.alive import probably_alive as alive
+from gramps.gen.dbstate import DbState
+from gramps.gen.datehandler import displayer, parser
+from gramps.gen.lib.date import Date as GDate, Today
 from gramps.gen.lib import Person
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gen.plug import BasePluginManager
-from cli.grampscli import CLIManager
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.plug import BasePluginManager
+from gramps.cli.grampscli import CLIManager
 
 _ = lambda msg: msg
 

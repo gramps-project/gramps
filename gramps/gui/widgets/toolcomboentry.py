@@ -45,8 +45,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.widgets.valuetoolitem import ValueToolItem
-from gui.widgets.shortlistcomboentry import ShortlistComboEntry
+from gramps.gui.widgets.valuetoolitem import ValueToolItem
+from gramps.gui.widgets.shortlistcomboentry import ShortlistComboEntry
 
 #-------------------------------------------------------------------------
 #

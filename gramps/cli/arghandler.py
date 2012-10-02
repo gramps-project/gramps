@@ -38,23 +38,23 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import sys
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.recentfiles import recent_files
-from gen.utils.file import (rm_tempdir, get_empty_tempdir, 
+from gramps.gen.recentfiles import recent_files
+from gramps.gen.utils.file import (rm_tempdir, get_empty_tempdir, 
                             get_unicode_path_from_env_var)
 import gen
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
-from gen.plug import BasePluginManager
-from gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
-from cli.plug import cl_report
-from cli.user import User
+from gramps.gen.plug import BasePluginManager
+from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
+from gramps.cli.plug import cl_report
+from gramps.cli.user import User
 
 #-------------------------------------------------------------------------
 #
@@ -625,7 +625,7 @@ class ArgHandler(object):
                                  pdata.name.encode(sys.getfilesystemencoding()))
 
         elif action == "tool":
-            from gui.plug import tool
+            from gramps.gui.plug import tool
             try:
                 options_str_dict = dict( [ tuple(chunk.split('=')) for
                                            chunk in options_str.split(',') ] )

@@ -27,8 +27,8 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 import locale
 from collections import defaultdict
 
-from gen.plug import Gramplet
-from gen.ggettext import gettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import gettext as _
 from gramps.gen.lib import ChildRefType
 
 class AgeStatsGramplet(Gramplet):
@@ -43,7 +43,7 @@ class AgeStatsGramplet(Gramplet):
         self.disconnect("active-changed")
 
     def build_options(self):
-        from gen.plug.menu import NumberOption
+        from gramps.gen.plug.menu import NumberOption
         self.add_option(NumberOption(_("Max age"), 
                                      self.max_age, 1, 150))
         self.add_option(NumberOption(_("Max age of Mother at birth"), 

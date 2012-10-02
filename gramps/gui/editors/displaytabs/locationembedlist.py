@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -34,8 +34,8 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Location
-from gen.errors import WindowActiveError
-from gui.ddtargets import DdTargets
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.ddtargets import DdTargets
 from locationmodel import LocationModel
 from embeddedlist import EmbeddedList
 
@@ -75,7 +75,7 @@ class LocationEmbedList(EmbeddedList):
     def add_button_clicked(self, obj):
         loc = Location()
         try:
-            from gui.editors import EditLocation
+            from gramps.gui.editors import EditLocation
             EditLocation(self.dbstate, self.uistate, self.track, 
                          loc, self.add_callback)
         except WindowActiveError:
@@ -91,7 +91,7 @@ class LocationEmbedList(EmbeddedList):
         loc = self.get_selected()
         if loc:
             try:
-                from gui.editors import EditLocation
+                from gramps.gui.editors import EditLocation
                 EditLocation(self.dbstate, self.uistate, self.track, 
                              loc, self.edit_callback)
             except WindowActiveError:

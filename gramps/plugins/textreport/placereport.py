@@ -29,24 +29,24 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
+from gramps.gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
                           BooleanOption
-from gen.plug.report import Report
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gen.proxy import PrivateProxyDb
+from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.datehandler import get_date
-from gen.sort import Sort
-from gen.display.name import displayer as _nd
+from gramps.gen.sort import Sort
+from gramps.gen.display.name import displayer as _nd
 
 class PlaceReport(Report):
     """
@@ -367,7 +367,7 @@ class PlaceOptions(MenuReportOptions):
 
         # Reload filters to pick any new ones
         CustomFilters = None
-        from gen.filters import CustomFilters, GenericFilter
+        from gramps.gen.filters import CustomFilters, GenericFilter
 
         opt = FilterOption(_("Select using filter"), 0)
         opt.set_help(_("Select places using a filter"))

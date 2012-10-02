@@ -33,7 +33,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import traceback
 import os
 import sys
@@ -46,21 +46,21 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import BasePluginManager
-from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
+from gramps.gen.plug import BasePluginManager
+from gramps.gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
-from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
+from gramps.gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
                            MediaOption, PersonListOption, NumberOption, 
                            BooleanOption, DestinationOption, StringOption, 
                            TextOption, EnumeratedListOption, Option)
-from gen.display.name import displayer as name_displayer
-from gen.errors import ReportError
-from gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import ReportError
+from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              CATEGORY_GRAPHVIZ, CATEGORY_CODE)
-from gen.plug.report._paper import paper_sizes
-from gen.const import USER_HOME
-from gen.dbstate import DbState
-from cli.grampscli import CLIManager
+from gramps.gen.plug.report._paper import paper_sizes
+from gramps.gen.const import USER_HOME
+from gramps.gen.dbstate import DbState
+from gramps.cli.grampscli import CLIManager
 import cli.user
 
 #------------------------------------------------------------------------

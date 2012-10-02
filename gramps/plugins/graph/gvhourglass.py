@@ -31,22 +31,22 @@ Generate an hourglass graph using the GraphViz generator.
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
-from gen.errors import ReportError
-from gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import ReportError
+from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
                           EnumeratedListOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.datehandler import get_date
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #

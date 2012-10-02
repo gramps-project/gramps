@@ -37,10 +37,10 @@ Mary Smith was born on 3/28/1923.
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import displayer
 from gramps.gen.lib import EventType
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -879,7 +879,7 @@ class VariableParse(object):
         elif next_char == "T":
             #Todays date
             date_f = DateFormat(self._in)
-            from gen.lib.date import Today
+            from gramps.gen.lib.date import Today
             date = Today()
             if self.empty_item(date):
                 return
@@ -1178,7 +1178,7 @@ if __name__ == '__main__':
             return line
 
 
-    from gen.lib.date import Date
+    from gramps.gen.lib.date import Date
     y_or_n = ()
     date_to_test = Date()
     def date_set():
@@ -1253,7 +1253,7 @@ if __name__ == '__main__':
     print "============="
     print "============="
 
-    from gen.lib.name import Name
+    from gramps.gen.lib.name import Name
     y_or_n = ()
     name_to_test = Name()
     def name_set():
@@ -1324,7 +1324,7 @@ if __name__ == '__main__':
     print "============="
     print "============="
 
-    from gen.lib.place import Place
+    from gramps.gen.lib.place import Place
     y_or_n = ()
     place_to_test = Place()
     def place_set():

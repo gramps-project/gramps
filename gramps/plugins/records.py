@@ -28,25 +28,25 @@
 #
 #------------------------------------------------------------------------
 import datetime
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import (ChildRefType, Date, Span, EventType, Name,
+from gramps.gen.lib import (ChildRefType, Date, Span, EventType, Name,
         StyledText, StyledTextTag, StyledTextTagType)
-from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
         PARA_ALIGN_CENTER)
-from gen.display.name import displayer as name_displayer
-from gen.plug import Gramplet
-from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.plug import Gramplet
+from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, 
         FilterOption, NumberOption, PersonOption, StringOption)
-from gen.plug.report import Report
-from gen.plug.report import utils as ReportUtils
-from gen.plug.report import MenuReportOptions
-from gen.utils.alive import probably_alive
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.utils.alive import probably_alive
 
 #------------------------------------------------------------------------
 #

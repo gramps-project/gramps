@@ -30,7 +30,7 @@ Family View.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 #-------------------------------------------------------------------------
@@ -46,17 +46,17 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Family
-from gui.views.listview import ListView
-from gui.views.treemodels import FamilyModel
-from gui.editors import EditFamily
-from gui.views.bookmarks import FamilyBookmarks
-from gen.errors import WindowActiveError
-from gen.config import config
-from gui.dialog import ErrorDialog
-from gui.filters.sidebar import FamilySidebarFilter
-from gui.merge import MergeFamily
-from gen.plug import CATEGORY_QR_FAMILY
-from gui.ddtargets import DdTargets
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import FamilyModel
+from gramps.gui.editors import EditFamily
+from gramps.gui.views.bookmarks import FamilyBookmarks
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.config import config
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.filters.sidebar import FamilySidebarFilter
+from gramps.gui.merge import MergeFamily
+from gramps.gen.plug import CATEGORY_QR_FAMILY
+from gramps.gui.ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -235,7 +235,7 @@ class FamilyView(ListView):
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
-            from gui.dialog import WarningDialog
+            from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
@@ -249,8 +249,8 @@ class FamilyView(ListView):
             pass
 
     def remove(self, obj):
-        from gui.dialog import QuestionDialog2
-        from gen.utils.string import data_recover_msg
+        from gramps.gui.dialog import QuestionDialog2
+        from gramps.gen.utils.string import data_recover_msg
         msg = _('Deleting item will remove it from the database.')
         msg = msg + '\n' + data_recover_msg
         q = QuestionDialog2(_('Delete %s?') % _('family'), msg,

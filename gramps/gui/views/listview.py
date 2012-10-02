@@ -51,22 +51,22 @@ from gi.repository import Pango
 # GRAMPS 
 #
 #----------------------------------------------------------------
-from gui.views.pageview import PageView
-from gui.views.navigationview import NavigationView
-from gui.columnorder import ColumnOrder
-from gen.config import config
-from gen.errors import WindowActiveError
-from gui.filters import SearchBar
-from gui.widgets.menuitem import add_menuitem
-from gen.const import CUSTOM_FILTERS, USE_TIPS
-from gen.utils.debug import profile
-from gen.utils.string import data_recover_msg
-from gen.utils.file import get_unicode_path_from_file_chooser
-from gui.dialog import QuestionDialog, QuestionDialog2
-from gui.editors import FilterEditor
-from gen.ggettext import sgettext as _
-from gui.ddtargets import DdTargets
-from gui.plug.quick import create_quickreport_menu, create_web_connect_menu
+from gramps.gui.views.pageview import PageView
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.columnorder import ColumnOrder
+from gramps.gen.config import config
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.filters import SearchBar
+from gramps.gui.widgets.menuitem import add_menuitem
+from gramps.gen.const import CUSTOM_FILTERS, USE_TIPS
+from gramps.gen.utils.debug import profile
+from gramps.gen.utils.string import data_recover_msg
+from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gui.dialog import QuestionDialog, QuestionDialog2
+from gramps.gui.editors import FilterEditor
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.plug.quick import create_quickreport_menu, create_web_connect_menu
 from gramps.gui.utils import is_right_click
 
 #----------------------------------------------------------------
@@ -430,7 +430,7 @@ class ListView(NavigationView):
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
-            from gui.dialog import WarningDialog
+            from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
@@ -1006,7 +1006,7 @@ class ListView(NavigationView):
         
         The output file type is determined by the type variable.
         """
-        from gen.utils.docgen import CSVTab, ODSTab
+        from gramps.gen.utils.docgen import CSVTab, ODSTab
         ofile = None
         data_cols = [pair[1] for pair in self.column_order() if pair[0]]
 

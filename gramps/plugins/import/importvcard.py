@@ -32,8 +32,8 @@
 import sys
 import re
 import time
-from gen.ggettext import gettext as _
-from gen.ggettext import ngettext
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.ggettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -48,10 +48,10 @@ LOG = logging.getLogger(".ImportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.errors import GrampsImportError
+from gramps.gen.errors import GrampsImportError
 from gramps.gen.lib import Address, Date, Event, EventRef, EventType, Name, NameType, Person, Surname, Url, UrlType
-from gen.db import DbTxn
-from gen.plug.utils import OpenFileOrStdin
+from gramps.gen.db import DbTxn
+from gramps.gen.plug.utils import OpenFileOrStdin
 
 #-------------------------------------------------------------------------
 #

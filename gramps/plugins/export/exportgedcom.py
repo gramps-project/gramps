@@ -33,7 +33,7 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import os
 import time
 
@@ -43,13 +43,13 @@ import time
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import AttributeType, ChildRefType, Citation, Date, EventRoleType, EventType, LdsOrd, NameType, NoteType, Person, UrlType
-from gen.const import VERSION
+from gramps.gen.const import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
-from gen.errors import DatabaseError
-from gui.plug.export import WriterOptionBox
-from gen.updatecallback import UpdateCallback
-from gen.utils.file import media_path_full
-from gen.utils.place import conv_lat_lon
+from gramps.gen.errors import DatabaseError
+from gramps.gui.plug.export import WriterOptionBox
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.place import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #

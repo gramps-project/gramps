@@ -48,11 +48,11 @@ except ImportError:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
-from gen.plug import Gramplet
-from gen.errors import WindowActiveError
-from gui.editors import EditPerson
-from gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
+from gramps.gen.ggettext import gettext as _
+from gramps.gen.plug import Gramplet
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson
+from gramps.gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
                     FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
 
 class FanChartGramplet(FanChartGrampsGUI, Gramplet):

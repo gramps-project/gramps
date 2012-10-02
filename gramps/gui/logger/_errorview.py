@@ -32,10 +32,10 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE
-from gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.ggettext import sgettext as _
 from _errorreportassistant import ErrorReportAssistant
-from gui.display import display_help
+from gramps.gui.display import display_help
 
 #-------------------------------------------------------------------------
 #

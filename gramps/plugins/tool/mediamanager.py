@@ -50,14 +50,14 @@ from gi.repository import GdkPixbuf
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.const import URL_MANUAL_PAGE, ICON, SPLASH
-from gui.display import display_help
-from gen.lib import MediaObject
-from gen.db import DbTxn
-from gen.updatecallback import UpdateCallback
-from gui.plug import tool
-from gen.utils.file import media_path_full, relative_path, media_path
-from gen.ggettext import sgettext as _
+from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
+from gramps.gui.display import display_help
+from gramps.gen.lib import MediaObject
+from gramps.gen.db import DbTxn
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gui.plug import tool
+from gramps.gen.utils.file import media_path_full, relative_path, media_path
+from gramps.gen.ggettext import sgettext as _
 from gramps.gen.mime import get_type, is_image_type
 
 #-------------------------------------------------------------------------

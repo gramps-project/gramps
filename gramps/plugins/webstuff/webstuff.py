@@ -25,8 +25,8 @@
 #    python modules
 #------------------------------------------------
 import os
-from gen.const import VERSION_DIR
-from gen.ggettext import sgettext as _
+from gramps.gen.const import VERSION_DIR
+from gramps.gen.ggettext import sgettext as _
 
 def make_css_dict(tup):
     """

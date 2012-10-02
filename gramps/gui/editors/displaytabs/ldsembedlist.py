@@ -25,7 +25,7 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -34,7 +34,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import LdsOrd
-from gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError
 from ldsmodel import LdsModel
 from embeddedlist import EmbeddedList
 
@@ -72,7 +72,7 @@ class LdsEmbedList(EmbeddedList):
                               LdsModel, move_buttons=True)
 
     def get_editor(self):
-        from gui.editors import EditLdsOrd
+        from gramps.gui.editors import EditLdsOrd
         return EditLdsOrd
 
     def new_data(self):

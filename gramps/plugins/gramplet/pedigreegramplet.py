@@ -32,13 +32,13 @@ import locale
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
-from gen.display.name import displayer as name_displayer
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.ggettext import ngettext
+from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 import gen
-from gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
 #
@@ -55,7 +55,7 @@ class PedigreeGramplet(Gramplet):
         self.box_mode = "UTF"
 
     def build_options(self):
-        from gen.plug.menu import NumberOption, BooleanOption, EnumeratedListOption
+        from gramps.gen.plug.menu import NumberOption, BooleanOption, EnumeratedListOption
         self.add_option(NumberOption(_("Max generations"), 
                                      self.max_generations, 1, 100))
         self.add_option(BooleanOption(_("Show dates"), bool(self.show_dates)))

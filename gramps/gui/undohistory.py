@@ -28,7 +28,7 @@
 #
 #------------------------------------------------------------------------
 import time
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 from itertools import chain
 
 #-------------------------------------------------------------------------
@@ -44,8 +44,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.dialog import QuestionDialog
-from gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import QuestionDialog
+from gramps.gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #

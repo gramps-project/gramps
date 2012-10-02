@@ -23,9 +23,9 @@
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import Gramplet
-from gen.ggettext import sgettext as _
-from gui.plug.quick import run_quick_report_by_name
+from gramps.gen.plug import Gramplet
+from gramps.gen.ggettext import sgettext as _
+from gramps.gui.plug.quick import run_quick_report_by_name
 from gramps.gen.lib import Date
 
 #------------------------------------------------------------------------

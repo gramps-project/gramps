@@ -23,8 +23,8 @@
 #
 
 from gramps.plugins.lib.libmetadata import MetadataView
-from gen.plug import Gramplet
-from gen.utils.file import media_path_full
+from gramps.gen.plug import Gramplet
+from gramps.gen.utils.file import media_path_full
 
 class MetadataViewer(Gramplet):
     """

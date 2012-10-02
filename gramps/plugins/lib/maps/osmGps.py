@@ -60,9 +60,9 @@ from lifewaylayer import LifeWayLayer
 from markerlayer import MarkerLayer
 from datelayer import DateLayer
 from messagelayer import MessageLayer
-from gen.ggettext import sgettext as _
-from gen.config import config
-from gui.dialog import ErrorDialog
+from gramps.gen.ggettext import sgettext as _
+from gramps.gen.config import config
+from gramps.gui.dialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #

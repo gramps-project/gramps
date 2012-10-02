@@ -29,7 +29,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
 
@@ -38,12 +38,12 @@ log = logging.getLogger(".")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import TOOL_OPTIONS
-from gen.display.name import displayer as name_displayer
-from gen.errors import WindowActiveError
-from gen.plug._options import (Options, OptionHandler, OptionList,
+from gramps.gen.const import TOOL_OPTIONS
+from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.plug._options import (Options, OptionHandler, OptionList,
                          OptionListCollection)
-from gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, 
+from gramps.gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, 
                         TOOL_REVCTL, TOOL_UTILS)
 
 #-------------------------------------------------------------------------
@@ -74,7 +74,7 @@ class Tool(object):
     """
 
     def __init__(self, dbstate, options_class, name):
-        from gui.plug import MenuToolOptions
+        from gramps.gui.plug import MenuToolOptions
         self.db = dbstate.db
         try:
             if issubclass(options_class, MenuToolOptions):
@@ -105,7 +105,7 @@ class BatchTool(Tool):
 
     def __init__(self, dbstate, options_class, name):
         # TODO: should we replace this with a callback?
-        from gui.dialog import QuestionDialog2
+        from gramps.gui.dialog import QuestionDialog2
         warn_dialog = QuestionDialog2(
             _('Undo history warning'),
             _('Proceeding with this tool will erase the undo history '
@@ -134,7 +134,7 @@ class ActivePersonTool(Tool):
         
         if not uistate.get_active('Person'):
             # TODO: should we replace this with a callback?
-            from gui.dialog import ErrorDialog
+            from gramps.gui.dialog import ErrorDialog
             
             ErrorDialog(_('Active person has not been set'),
                         _('You must select an active person for this '
@@ -186,7 +186,7 @@ class CommandLineTool(object):
                 self.options_help[key] = self.option_class.options_help[key]
 
     def parse_option_str(self):
-        from cli.plug import _convert_str_to_match_type
+        from gramps.cli.plug import _convert_str_to_match_type
         for opt in self.options_str_dict:
             if opt in self.options_dict:
                 self.options_dict[opt] = \

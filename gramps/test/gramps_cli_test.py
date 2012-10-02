@@ -78,7 +78,7 @@ class Test(unittest.TestCase):
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(self):
-        from gen.const import TEMP_DIR
+        from gramps.gen.const import TEMP_DIR
         ddir = os.path.join(TEMP_DIR,"import_dbdir")
         os.makedirs(ddir)
         bogofiles = [os.path.join(ddir,fn) 

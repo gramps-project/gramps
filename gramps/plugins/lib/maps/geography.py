@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import sgettext as _
+from gramps.gen.ggettext import sgettext as _
 import os
 import sys
 import re
@@ -50,15 +50,15 @@ import cairo
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, Place
-from gen.display.name import displayer as _nd
-from gui.views.navigationview import NavigationView
-from gen.utils.libformatting import FormattingHelper
-from gen.errors import WindowActiveError
-from gen.const import HOME_DIR, ROOT_DIR
-from gui.managedwindow import ManagedWindow
-from gen.config import config
-from gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
-from gui.selectors.selectplace import SelectPlace
+from gramps.gen.display.name import displayer as _nd
+from gramps.gui.views.navigationview import NavigationView
+from gramps.gen.utils.libformatting import FormattingHelper
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.const import HOME_DIR, ROOT_DIR
+from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.config import config
+from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
+from gramps.gui.selectors.selectplace import SelectPlace
 
 from gi.repository import OsmGpsMap as osmgpsmap
 import constants

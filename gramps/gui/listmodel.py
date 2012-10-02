@@ -32,7 +32,7 @@ Provide the basic functionality for a list view
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
-from gen.const import THUMBSCALE
+from gramps.gen.const import THUMBSCALE
 
 #-------------------------------------------------------------------------
 #

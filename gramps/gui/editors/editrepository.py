@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,13 +41,13 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Repository
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 
-from gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from gramps.gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from editprimary import EditPrimary
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 class EditRepository(EditPrimary):
 

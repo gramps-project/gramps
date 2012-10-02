@@ -30,7 +30,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -43,10 +43,10 @@ from gen.ggettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.menu import TextOption
-from gen.plug.report import Report
-from gen.plug.report import MenuReportOptions
-from gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
+from gramps.gen.plug.menu import TextOption
+from gramps.gen.plug.report import Report
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
                              PARA_ALIGN_CENTER, IndexMark, INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------

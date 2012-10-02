@@ -21,7 +21,7 @@
 
 # $Id$
 
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 from gi.repository import Gtk
 from gi.repository import GObject

@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
@@ -45,14 +45,14 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Source
-from gen.db import DbTxn
+from gramps.gen.db import DbTxn
 from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          CitationBackRefList, RepoEmbedList)
-from gui.widgets import MonitoredEntry, PrivacyButton
-from gui.dialog import ErrorDialog
-from gui.glade import Glade
+from gramps.gui.widgets import MonitoredEntry, PrivacyButton
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
 #

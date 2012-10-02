@@ -37,24 +37,24 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Repository
-from gui.views.listview import ListView
-from gui.views.treemodels import RepositoryModel
-from gui.views.bookmarks import RepoBookmarks
-from gen.errors import WindowActiveError
-from gen.config import config
-from gui.editors import EditRepository, DeleteRepositoryQuery
-from gui.ddtargets import DdTargets
-from gui.dialog import ErrorDialog
-from gui.filters.sidebar import RepoSidebarFilter
-from gui.merge import MergeRepository
-from gen.plug import CATEGORY_QR_REPOSITORY
+from gramps.gui.views.listview import ListView
+from gramps.gui.views.treemodels import RepositoryModel
+from gramps.gui.views.bookmarks import RepoBookmarks
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.config import config
+from gramps.gui.editors import EditRepository, DeleteRepositoryQuery
+from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog
+from gramps.gui.filters.sidebar import RepoSidebarFilter
+from gramps.gui.merge import MergeRepository
+from gramps.gen.plug import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------
 #
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gramps.gen.ggettext import gettext as _
 
 
 #-------------------------------------------------------------------------
