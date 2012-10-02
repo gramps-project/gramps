@@ -20,7 +20,7 @@ from webapp.libdjango import DjangoInterface, totime, todate
 from gramps.gen.datehandler import displayer, parser
 from webapp.utils import StyledNoteFormatter, parse_styled_text
 from gramps.gen.lib import StyledText
-import cli.user
+from gramps.cli.user import User
 
 db = DbDjango()
 dji = DjangoInterface()
@@ -29,7 +29,7 @@ dp = parser.parse
 
 #import_file(db, 
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
-#            cli.user.User())
+#            User())
 
 #snf = StyledNoteFormatter(db)
 #for n in Note.objects.all():

@@ -34,7 +34,7 @@ from gramps.gen.plug import Gramplet
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
-import gen
+from gramps.gen.lib import Person
 
 #------------------------------------------------------------------------
 #
@@ -126,9 +126,9 @@ class StatsGramplet(Gramplet):
             else:
                 missing_bday += 1
                 
-            if person.get_gender() == gen.lib.Person.FEMALE:
+            if person.get_gender() == Person.FEMALE:
                 females += 1
-            elif person.get_gender() == gen.lib.Person.MALE:
+            elif person.get_gender() == Person.MALE:
                 males += 1
             else:
                 unknowns += 1

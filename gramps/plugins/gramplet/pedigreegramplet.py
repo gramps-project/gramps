@@ -37,7 +37,7 @@ from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
-import gen
+from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -195,7 +195,7 @@ class PedigreeGramplet(Gramplet):
 
     def info_string(self, person):
         birth = get_birth_or_fallback(self.dbstate.db, person)
-        if birth and birth.get_type() != gen.lib.EventType.BIRTH:
+        if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
                 bdate  = "<i>%s</i>" % cgi.escape(sdate)
@@ -207,7 +207,7 @@ class PedigreeGramplet(Gramplet):
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
-        if death and death.get_type() != gen.lib.EventType.DEATH:
+        if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
                 ddate  = "<i>%s</i>" % cgi.escape(sdate)

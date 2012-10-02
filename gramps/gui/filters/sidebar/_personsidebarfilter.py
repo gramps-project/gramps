@@ -41,7 +41,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui import widgets
+from gramps.gui import widgets
 from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer
 from gramps.gui.filters import build_filter_model

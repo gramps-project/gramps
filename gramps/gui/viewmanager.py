@@ -85,7 +85,7 @@ from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
-from gui import widgets
+from gramps.gui import widgets
 from gramps.gui.undohistory import UndoHistory
 from gramps.gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
                             get_unicode_path_from_file_chooser)

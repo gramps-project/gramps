@@ -56,7 +56,7 @@ from gramps.gui.utils import is_right_click, open_file_with_default_application
 from gramps.gen.utils.db import get_birth_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname
 from gramps.gen.db import DbTxn
-from gui import widgets
+from gramps.gui import widgets
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.glade import Glade

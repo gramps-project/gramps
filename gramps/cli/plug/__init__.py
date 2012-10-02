@@ -61,7 +61,7 @@ from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
 from gramps.cli.grampscli import CLIManager
-import cli.user
+from gramps.cli.user import User
 
 #------------------------------------------------------------------------
 #
@@ -581,7 +581,7 @@ def cl_report(database, name, category, report_class, options_class,
         if clr.css_filename is not None and \
            hasattr(clr.option_class.handler.doc, 'set_css_filename'):
             clr.option_class.handler.doc.set_css_filename(clr.css_filename)
-        MyReport = report_class(database, clr.option_class, cli.user.User())
+        MyReport = report_class(database, clr.option_class, User())
         MyReport.doc.init()
         MyReport.begin_report()
         MyReport.write_report()

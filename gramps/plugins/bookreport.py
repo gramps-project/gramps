@@ -89,7 +89,7 @@ from gramps.gui.plug.report._reportdialog import ReportDialog
 from gramps.gui.plug.report._docreportdialog import DocReportDialog
 from gramps.gen.plug.report._options import ReportOptions
 from gramps.cli.plug import CommandLineReport
-import cli.user
+from gramps.cli.user import User
 
 from gramps.gen.display.name import displayer as _nd
 
@@ -1428,7 +1428,7 @@ def cl_report(database, name, category, options_str_dict):
     doc = clr.format(selected_style,
                      PaperStyle(clr.paper, clr.orien, clr.marginl,
                                 clr.marginr, clr.margint, clr.marginb))
-    user = cli.user.User()
+    user = User()
     rptlist = []
     for item in book.get_item_list():
         item.option_class.set_document(doc)

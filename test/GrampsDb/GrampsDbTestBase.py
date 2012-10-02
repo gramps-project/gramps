@@ -14,7 +14,7 @@ try:
 except NameError:
     from sets import Set as set
     
-from gen.db import DbBsddb
+from gramps.gen.db import DbBsddb
 from cli.clidbman import CLIDbManager
 import const
 import gen.lib

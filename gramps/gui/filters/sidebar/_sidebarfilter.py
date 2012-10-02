@@ -27,7 +27,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-from gui import widgets
+from gramps.gui import widgets
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.config import config
 

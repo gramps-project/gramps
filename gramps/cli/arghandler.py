@@ -48,7 +48,7 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import (rm_tempdir, get_empty_tempdir, 
                             get_unicode_path_from_env_var)
-import gen
+from gramps.gen.db import DbBsddb
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
@@ -476,7 +476,7 @@ class ArgHandler(object):
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir") \
 					                      .encode(sys.getfilesystemencoding())
-                    newdb = gen.db.DbBsddb()
+                    newdb = DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
                 try:

@@ -55,7 +55,9 @@ from gi.repository import Pango
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import ChildRef, EventRoleType, EventType, Family, FamilyRelType, Name, Person, Surname
+from gramps.gen.lib import (ChildRef, EventRoleType, EventType, Family, 
+                            FamilyRelType, Name, Person, Surname)
+from gramps.gen.lib.date import Today
 from gramps.gen.db import DbTxn
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.editors import EditPerson, EditFamily
@@ -67,7 +69,7 @@ from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.datehandler import displayer, get_date
 from gramps.gui.thumbnails import get_thumbnail_image
 from gramps.gen.config import config
-from gui import widgets
+from gramps.gui import widgets
 from gramps.gui.widgets.reorderfam import Reorder
 from gramps.gui.selectors import SelectorFactory
 from gramps.gen.errors import WindowActiveError
@@ -662,7 +664,7 @@ class RelationshipView(NavigationView):
                                       2, 3, 2, 3, yoptions=0)
                         showed_death = True
                 if not showed_death:
-                    age = gen.lib.date.Today() - birth_date
+                    age = Today() - birth_date
                     if probably_alive(person, self.dbstate.db):
                         subtbl.attach(widgets.BasicLabel("%s:" % _("Alive")),
                                       1, 2, 2, 3, xoptions=Gtk.AttachOptions.FILL, yoptions=0)

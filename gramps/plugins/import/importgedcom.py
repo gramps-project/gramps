@@ -46,7 +46,7 @@ LOG = logging.getLogger(".GedcomImport")
 from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
-import gramps.plugins.lib.libgedcom as libgedcom
+from gramps.plugins.lib import libgedcom
 module = __import__("libgedcom")
 reload (module)
 

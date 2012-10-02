@@ -49,7 +49,10 @@ log = logging.getLogger('.ImportProGen')
 #-------------------------------------------------------------------------
 from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
-from gramps.gen.lib import Attribute, AttributeType, ChildRef, Date, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, SourceRef, Surname
+from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event, 
+                            EventRef, EventType, Family, FamilyRelType, Name, 
+                            NameType, Note, NoteType, Person, Place, Source, 
+                            SourceRef, Surname)
 from gramps.gen.db import DbTxn
 
 class ProgenError(Exception):

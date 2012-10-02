@@ -29,8 +29,10 @@
 import cPickle
 import base64
 import time
-import gen
 import re
+from gramps.gen.lib import (Person, Family, Event, Place, Repository, 
+                            Citation, Source, Note, MediaObject, Tag, 
+                            Researcher)
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
 from gramps.gen.db import (PERSON_KEY,
                     FAMILY_KEY,

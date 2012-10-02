@@ -46,7 +46,7 @@ from django.db import transaction
 #------------------------------------------------------------------------
 import webapp.grampsdb.models as models
 import webapp
-import gen
+from gramps.gen.lib import Name
 from gramps.gen.utils.id import create_id
 
 # To get a django person from a django database:
@@ -192,13 +192,13 @@ class DjangoInterface(object):
     def get_primary_name(self, person):
         names = person.name_set.filter(preferred=True).order_by("order")
         if len(names) > 0:
-            return gen.lib.Name.create(self.pack_name(names[0]))
+            return Name.create(self.pack_name(names[0]))
         else:
-            return gen.lib.Name()
+            return Name()
       
     def get_alternate_names(self, person):
         names = person.name_set.filter(preferred=False).order_by("order")
-        return [gen.lib.Name.create(self.pack_name(n)) for n in names]
+        return [Name.create(self.pack_name(n)) for n in names]
 
     def get_names(self, person, preferred):
         names = person.name_set.filter(preferred=preferred).order_by("order")
@@ -206,7 +206,7 @@ class DjangoInterface(object):
             if len(names) > 0:
                 return self.pack_name(names[0])
             else:
-                return gen.lib.Name().serialize()
+                return Name().serialize()
         else:
             return map(self.pack_name, names)
      

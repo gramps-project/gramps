@@ -26,14 +26,5 @@ able to run gramps from the source directory without setting PYTHONPATH
 
 From this position, import gramps works great
 """
-
-# here import gramps works. As __temporary__ workaround, we also put the gramps
-# folder itself on the systempath
-import sys, os
-pathgramps = os.path.dirname(os.path.abspath(__file__))
-pathgramps += os.sep + 'gramps'
-sys.path.append(pathgramps)
-
-#now start gramps
 import gramps.grampsapp as app
 app.main()
