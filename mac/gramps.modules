@@ -23,12 +23,16 @@
 	      href="http://pypi.python.org/packages/source/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
+  <repository type="git" name="snoiraud"
+	      href="git://github.com/SNoiraud"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="launchpad"
 	      href="http://launchpad.net/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://exiv2.org/"/>
+  <repository type="tarball" name="pythonware"
+	      href="http://effbot.org/downloads/"/>
 
 <!--
 Special instructions:
@@ -44,36 +48,37 @@ Open a jhbuild shell.
 
 For reasons known only to themselves, the Python project have set up their makefiles to create libpython without write privs, so you need to
 
-chmod +w $PREFIX/lib/libpython2.6.dylib
+chmod +w $PREFIX/lib/libpython2.7.dylib
 
 before running
 
-ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
+gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 -->
 
 
 
-  <!--include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/-->
-  <include href="/Volumes/Data/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
+  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-unstable/gtk-osx.modules"/>
+  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-unstable/gtk-osx.modules"/-->
 
 
 
   <distutils id="gramps-svn" >
-    <branch module="gramps" revision="geps/gep-029-gtk3" repo="gramps"/>
+    <branch module="gramps" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
       <dep package="librsvg"/>
-<!--      <dep package="pygoocanvas"/> -->
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
- <!--     <dep package="osmgpsmap-py"/> -->
-<!--      <dep package="graphviz"/> -->
-   </dependencies>
-   <after>
-<!--      <dep package="pyexiv2"/> -->
-   </after>
+      <dep package="gtkspell3"/>
+      <dep package="osmgpsmap"/>
+      <dep package="graphviz"/>
+      <dep package="pil"/>
+    </dependencies>
+    <after>
+      <dep package="pyexiv2"/>
+    </after>
   </distutils>
 
   <distutils id="gramps-addons">
@@ -120,24 +125,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools -->
 
-  <autotools id="goocanvas">
-    <branch module="goocanvas/0.15/goocanvas-0.15.tar.bz2" version="0.15"
-	    repo="ftp.gnome.org"/>
-    <dependencies>
-      <dep package="gtk+"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="pygoocanvas" version="0.14.1">
-    <branch module="pygoocanvas/0.14/pygoocanvas-0.14.1.tar.gz" version="0.14.1"
-	    repo="ftp.gnome.org">
-    </branch>
-    <dependencies>
-      <dep package="goocanvas"/>
-      <dep package="pygtk"/>
-    </dependencies>
-  </autotools>
-
   <distutils id="pyenchant">
     <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
 	    version="1.6.1"/>
@@ -154,10 +141,9 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  </autotools>
 
   <autotools id="osmgpsmap">
-    <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
-	    version="0.7.3"/>
+    <branch module="osm-gps-map" revision="gtk3" repo="snoiraud"/>
     <dependencies>
-      <dep package="gtk+"/>
+      <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
     </dependencies>
   </autotools>
@@ -173,7 +159,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </dependencies>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl">
+  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=yes --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
       <dep package="pango"/>
@@ -205,5 +191,9 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="boost"/>
     </after>
   </autotools>
+
+  <distutils id="pil">
+    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+  </distutils>
 
 </moduleset>
