@@ -53,8 +53,8 @@ from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
-from gramps.cli.plug import cl_report
-from gramps.cli.user import User
+from plug import cl_report
+from user import User
 
 #-------------------------------------------------------------------------
 #

@@ -60,8 +60,8 @@ from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
-from gramps.cli.grampscli import CLIManager
-from gramps.cli.user import User
+from ..grampscli import CLIManager
+from ..user import User
 
 #------------------------------------------------------------------------
 #
