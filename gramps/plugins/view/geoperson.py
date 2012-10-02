@@ -66,8 +66,8 @@ from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import PersonSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
-import constants
-from maps.geography import GeoGraphyView
+from gramps.plugins.lib.maps import constants
+from gramps.plugins.lib.maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------
 #

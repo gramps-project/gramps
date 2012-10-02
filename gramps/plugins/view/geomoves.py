@@ -59,8 +59,8 @@ from gen.display.name import displayer as _nd
 from gen.utils.place import conv_lat_lon
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import PersonBookmarks
-from maps import constants
-from maps.geography import GeoGraphyView
+from gramps.plugins.lib.maps import constants
+from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gui.selectors import SelectorFactory
 
 #-------------------------------------------------------------------------

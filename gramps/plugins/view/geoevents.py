@@ -65,7 +65,7 @@ from gui.selectors.selectplace import SelectPlace
 from gui.filters.sidebar import EventSidebarFilter
 from gui.views.navigationview import NavigationView
 from gui.views.bookmarks import EventBookmarks
-from maps.geography import GeoGraphyView
+from gramps.plugins.lib.maps.geography import GeoGraphyView
 
 #-------------------------------------------------------------------------
 #
