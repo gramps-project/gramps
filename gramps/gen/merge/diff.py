@@ -25,7 +25,7 @@ This package implements an object difference engine.
 """
 import os
 
-import gramps.cli.user
+from gramps.cli.user import User
 from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
@@ -35,7 +35,7 @@ def import_as_dict(filename):
     """
     Import the filename into a DictionaryDb and return it.
     """
-    user = cli.user.User()
+    user = User()
     db = DictionaryDb()
     dbstate = DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
