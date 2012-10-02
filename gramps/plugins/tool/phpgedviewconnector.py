@@ -30,7 +30,7 @@ import os
 from tempfile import mkstemp
 from gen.ggettext import gettext as _
 from gui.glade import Glade
-import libgedcom
+import gramps.plugins.lib.libgedcom as libgedcom
 
 #
 # Interface to phpGedView

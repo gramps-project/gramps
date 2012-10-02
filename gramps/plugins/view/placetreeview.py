@@ -29,7 +29,7 @@ Place Tree View
 #
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
-from libplaceview import PlaceBaseView
+from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 import gen.lib
 from gen.errors import WindowActiveError

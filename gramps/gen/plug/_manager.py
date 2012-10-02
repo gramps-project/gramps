@@ -96,7 +96,7 @@ class BasePluginManager(object):
         self.__loaded_plugins = {}
 
     def reg_plugins(self, direct, dbstate=None, uistate=None, 
-                    append=True, load_on_reg=False):
+                    load_on_reg=False):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files. 
@@ -117,9 +117,6 @@ class BasePluginManager(object):
                 # Skip hidden and system directories:
                 if dirname.startswith(".") or dirname in ["po", "locale"]:
                     dirnames.remove(dirname)
-            # add the directory to the python search path
-            if append:
-                sys.path.append(dirpath)
             # if the path has not already been loaded, save it in the 
             # registereddir_list list for use on reloading.
             self.__registereddir_set.add(dirpath)

@@ -56,9 +56,9 @@ from gen.plug.report import MenuReportOptions
                         
 import gen.datehandler
 
-from libnarrate import Narrator
+from gramps.plugins.lib.libnarrate import Narrator
 from gen.utils.trans import get_available_translations
-from libtranslate import Translator, get_language_string
+from gramps.plugins.lib.libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------
 #

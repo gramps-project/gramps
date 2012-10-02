@@ -33,7 +33,7 @@ from gen.plug.report import utils as ReportUtils
 
 from gen.display.name import displayer as name_displayer
 
-from libsubstkeyword import SubstKeywords
+from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 
 PT2CM = ReportUtils.pt2cm
 

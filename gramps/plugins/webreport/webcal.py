@@ -64,14 +64,14 @@ from gen.datehandler import displayer as _dd, long_days
 
 from gen.display.name import displayer as _nd
 
-import libholiday
-from libhtml import Html, xml_lang
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
+import gramps.plugins.lib.libholiday as libholiday
+from gramps.plugins.lib.libhtml import Html, xml_lang
+from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gui.pluginmanager import GuiPluginManager
 
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
-from libhtmlbackend import HtmlBackend
+from gramps.plugins.lib.libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
 # constants
 #------------------------------------------------------------------------

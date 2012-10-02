@@ -62,7 +62,7 @@ _MARR = _('short for married|m.')
 
 _RPT_NAME = 'descend_chart'
 
-from libtreebase import *
+from gramps.plugins.lib.libtreebase import *
 
 #------------------------------------------------------------------------
 #

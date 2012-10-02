@@ -39,7 +39,7 @@ import subprocess
 import libxml2
 import libxslt
 
-from libgrampsxml import GRAMPS_XML_VERSION
+from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 
 from gen.const import ROOT_DIR, VERSION
 import importvcard

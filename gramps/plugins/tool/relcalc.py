@@ -48,7 +48,7 @@ from gi.repository import Gtk
 from gen.display.name import displayer as name_displayer
 from gui.managedwindow import ManagedWindow
 from gui.views.treemodels import PeopleBaseModel, PersonTreeModel
-from libpersonview import BasePersonView
+from gramps.plugins.lib.libpersonview import BasePersonView
 from gen.relationship import get_relationship_calculator
 
 from gui.dialog import ErrorDialog

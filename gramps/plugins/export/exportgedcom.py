@@ -44,7 +44,7 @@ import time
 #-------------------------------------------------------------------------
 import gen.lib
 from gen.const import VERSION
-import libgedcom
+import gramps.plugins.lib.libgedcom as libgedcom
 from gen.errors import DatabaseError
 from gui.plug.export import WriterOptionBox
 from gen.updatecallback import UpdateCallback

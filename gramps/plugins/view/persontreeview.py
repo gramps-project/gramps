@@ -39,7 +39,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
-from libpersonview import BasePersonView
+from gramps.plugins.lib.libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonTreeModel
 import gen.lib
 from gen.errors import WindowActiveError

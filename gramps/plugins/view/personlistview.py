@@ -32,7 +32,7 @@ Person list View
 #
 #-------------------------------------------------------------------------
 from gui.views.listview import LISTTREE
-from libpersonview import BasePersonView
+from gramps.plugins.lib.libpersonview import BasePersonView
 from gui.views.treemodels.peoplemodel import PersonListModel
 import gen.lib
 

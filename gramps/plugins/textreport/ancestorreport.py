@@ -51,8 +51,8 @@ from gen.plug.report import Report
 from gen.plug.report import utils as ReportUtils
 from gen.plug.report import MenuReportOptions
 from gen.utils.trans import get_available_translations
-from libnarrate import Narrator
-from libtranslate import Translator, get_language_string
+from gramps.plugins.lib.libnarrate import Narrator
+from gramps.plugins.lib.libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------
 #

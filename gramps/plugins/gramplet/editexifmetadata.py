@@ -56,7 +56,7 @@ from gen.datehandler import parser as _dp
 
 from gen.plug import Gramplet
 
-from libmetadata import MetadataView, format_datetime
+from gramps.plugins.lib.libmetadata import MetadataView, format_datetime
 from gui.widgets import ValidatableMaskedEntry
 from gen.errors import ValidationError
 from gui.dialog import QuestionDialog, OptionDialog

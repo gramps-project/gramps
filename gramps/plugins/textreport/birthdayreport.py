@@ -53,7 +53,7 @@ from gen.plug.report import MenuReportOptions
 from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd, long_days
 
-import libholiday
+import gramps.plugins.lib.libholiday as libholiday
 
 #------------------------------------------------------------------------
 #

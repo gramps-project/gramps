@@ -43,7 +43,7 @@ from math import radians
 #
 #------------------------------------------------------------------------
 from gen.plug.docgen import PAPER_PORTRAIT
-import libcairodoc
+import gramps.plugins.lib.libcairodoc as libcairodoc
 from gen.errors import UnavailableError
 #import constfunc
 

@@ -35,7 +35,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from libmapservice import MapService
+from gramps.plugins.lib.libmapservice import MapService
 
 
 class OpensStreetMapService(MapService):

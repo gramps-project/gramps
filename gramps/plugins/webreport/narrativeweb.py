@@ -99,16 +99,16 @@ import gen.mime
 from gen.display.name import displayer as _nd
 from gen.datehandler import displayer as _dd
 from gen.proxy import PrivateProxyDb, LivingProxyDb
-from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
+from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from src/plugins/lib/libhtml.py
-from libhtml import Html, xml_lang
+from gramps.plugins.lib.libhtml import Html, xml_lang
 
 # import styled notes from src/plugins/lib/libhtmlbackend.py
-from libhtmlbackend import HtmlBackend, process_spaces
+from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 
-from libgedcom import make_gedcom_date
-from gen.utils.alive import probably_alive
+from gramps.plugins.lib.libgedcom import make_gedcom_date
+from gramps.gen.utils.alive import probably_alive
 from gen.utils.place import conv_lat_lon
 from gui.pluginmanager import GuiPluginManager
 

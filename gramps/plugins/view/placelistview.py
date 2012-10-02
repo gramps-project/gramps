@@ -28,7 +28,7 @@ Place List View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from libplaceview import PlaceBaseView
+from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gui.views.treemodels.placemodel import PlaceListModel
 
 #-------------------------------------------------------------------------

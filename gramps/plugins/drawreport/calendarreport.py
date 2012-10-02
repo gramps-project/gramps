@@ -54,8 +54,8 @@ from gen.utils.alive import probably_alive
 from gen.datehandler import displayer as _dd, long_days
 import gen.lib
 
-import libholiday
-from libholiday import g2iso
+import gramps.plugins.lib.libholiday as libholiday
+from gramps.plugins.lib.libholiday import g2iso
 
 #------------------------------------------------------------------------
 #

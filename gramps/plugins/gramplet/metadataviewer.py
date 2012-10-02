@@ -22,7 +22,7 @@
 # $Id$
 #
 
-from libmetadata import MetadataView
+from gramps.plugins.lib.libmetadata import MetadataView
 from gen.plug import Gramplet
 from gen.utils.file import media_path_full
 

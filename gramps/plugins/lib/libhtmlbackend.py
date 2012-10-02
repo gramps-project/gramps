@@ -43,7 +43,7 @@ import os.path
 #
 #------------------------------------------------------------------------
 from gen.plug.docbackend import DocBackend
-from libhtml import Html, xml_lang
+from gramps.plugins.lib.libhtml import Html, xml_lang
 from gen.errors import ReportError
 
 

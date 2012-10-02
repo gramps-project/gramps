@@ -37,7 +37,7 @@ import sys
 # Gramps modules
 #
 #------------------------------------------------------------------------
-import libcairodoc
+import gramps.plugins.lib.libcairodoc as libcairodoc
 from gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
 from gen.errors import ReportError
 

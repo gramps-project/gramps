@@ -86,7 +86,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
 from gen.plug.docgen.fontscale import string_width
-from libodfbackend import OdfBackend
+from gramps.plugins.lib.libodfbackend import OdfBackend
 from gen.const import PROGRAM_NAME, VERSION
 from gen.plug.report import utils as ReportUtils
 from gen.utils.image import image_size, image_dpi, image_actual_size

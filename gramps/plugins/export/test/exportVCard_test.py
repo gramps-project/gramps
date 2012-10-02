@@ -36,8 +36,8 @@ sys.path.append(os.path.join(os.curdir, 'plugins', 'lib'))
 import subprocess
 import libxml2
 
-from libgrampsxml import GRAMPS_XML_VERSION
-from gen.const import VERSION
+from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
+from gramps.gen.const import VERSION
 import exportvcard
 
 class VCardCheck(unittest.TestCase):

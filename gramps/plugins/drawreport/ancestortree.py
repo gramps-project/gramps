@@ -73,7 +73,7 @@ _BORN = _('short for born|b.')
 _DIED = _('short for died|d.')
 _MARR = _('short for married|m.')
 
-from libtreebase import *
+from gramps.plugins.lib.libtreebase import *
 
 #------------------------------------------------------------------------
 #

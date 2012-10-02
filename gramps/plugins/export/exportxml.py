@@ -63,7 +63,7 @@ from gen.db.exceptions import DbWriteFailure
 from gen.const import VERSION
 from gen.constfunc import win
 from gui.plug.export import WriterOptionBox
-import libgrampsxml
+import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
 #-------------------------------------------------------------------------
 #

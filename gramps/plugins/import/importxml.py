@@ -58,7 +58,7 @@ from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY,
                             TAG_KEY, CITATION_KEY)
 from gen.updatecallback import UpdateCallback
 from gen.const import VERSION
-import libgrampsxml
+import gramps.plugins.lib.libgrampsxml
 
 #-------------------------------------------------------------------------
 #

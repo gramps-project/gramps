@@ -49,8 +49,8 @@ from gen.ggettext import gettext as _
 from gen.utils.image import resize_to_jpeg
 from gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
-from libhtmlbackend import HtmlBackend, process_spaces
-from libhtml import Html
+from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
+from gramps.plugins.lib.libhtml import Html
 
 #------------------------------------------------------------------------
 #

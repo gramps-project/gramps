@@ -42,7 +42,7 @@ from gen.lib.familyreltype import FamilyRelType
 from gen.display.name import displayer as _nd
 from gen.utils.alive import probably_alive
 from gen.plug.report import utils as ReportUtils
-from libtranslate import Translator
+from gramps.plugins.lib.libtranslate import Translator
 
 #-------------------------------------------------------------------------
 #
