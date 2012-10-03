@@ -38,7 +38,7 @@ from gramps.gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.treemodels import CitationTreeModel
+from ..views.treemodels import CitationTreeModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

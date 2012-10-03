@@ -35,7 +35,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.treemodels import PeopleBaseModel, PersonTreeModel
+from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

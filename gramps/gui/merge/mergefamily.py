@@ -32,10 +32,10 @@ Provide merge capabilities for families.
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gui.display import display_help
+from ..display import display_help
 from gramps.gen.errors import MergeError
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.managedwindow import ManagedWindow
+from ..dialog import ErrorDialog
+from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePersonQuery, MergeFamilyQuery
 
 #-------------------------------------------------------------------------

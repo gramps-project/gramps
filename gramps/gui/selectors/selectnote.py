@@ -36,7 +36,7 @@ from gramps.gen.ggettext import gettext as _
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.treemodels import NoteModel
+from ..views.treemodels import NoteModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

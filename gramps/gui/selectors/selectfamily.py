@@ -33,7 +33,7 @@ from gramps.gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.treemodels import FamilyModel
+from ..views.treemodels import FamilyModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------

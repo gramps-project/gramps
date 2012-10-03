@@ -33,8 +33,8 @@ Provide merge capabilities for sources.
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gui.display import display_help
-from gramps.gui.managedwindow import ManagedWindow
+from ..display import display_help
+from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergeSourceQuery
 
 #-------------------------------------------------------------------------

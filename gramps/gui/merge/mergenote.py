@@ -31,9 +31,9 @@ Provide merge capabilities for notes.
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gui.display import display_help
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.widgets.styledtextbuffer import StyledTextBuffer
+from ..display import display_help
+from ..managedwindow import ManagedWindow
+from ..widgets.styledtextbuffer import StyledTextBuffer
 from gramps.gen.merge import MergeNoteQuery
 
 #-------------------------------------------------------------------------
