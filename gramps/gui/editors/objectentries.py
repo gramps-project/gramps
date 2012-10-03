@@ -49,8 +49,8 @@ from gramps.gen.lib import (Place, MediaObject, Note)
 from editplace import EditPlace
 from editmedia import EditMedia
 from editnote import EditNote
-from gramps.gui.selectors import SelectorFactory
-from gramps.gui.ddtargets import DdTargets
+from ..selectors import SelectorFactory
+from ..ddtargets import DdTargets
 from gramps.gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------

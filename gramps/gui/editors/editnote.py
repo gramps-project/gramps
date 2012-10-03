@@ -50,12 +50,12 @@ from gi.repository import Pango
 from gramps.gen.config import config
 from editprimary import EditPrimary
 from displaytabs import GrampsTab, NoteBackRefList
-from gramps.gui.widgets import (MonitoredDataType, MonitoredCheckbox, 
+from ..widgets import (MonitoredDataType, MonitoredCheckbox, 
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gramps.gen.lib import Note
 from gramps.gen.db import DbTxn
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.glade import Glade
+from ..dialog import ErrorDialog
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #

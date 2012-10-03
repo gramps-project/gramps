@@ -39,7 +39,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 from addressmodel import AddressModel
 from embeddedlist import EmbeddedList
 
@@ -109,7 +109,7 @@ class AddrEmbedList(EmbeddedList):
         """
         addr = Address()
         try:
-            from gramps.gui.editors import EditAddress
+            from .. import EditAddress
             EditAddress(self.dbstate, self.uistate, self.track, 
                         addr, self.add_callback)
         except WindowActiveError:
@@ -134,7 +134,7 @@ class AddrEmbedList(EmbeddedList):
         addr = self.get_selected()
         if addr:
             try:
-                from gramps.gui.editors import EditAddress
+                from .. import EditAddress
                 EditAddress(self.dbstate, self.uistate, self.track, 
                             addr, self.edit_callback)
             except WindowActiveError:

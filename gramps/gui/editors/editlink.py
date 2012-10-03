@@ -34,9 +34,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.display import display_help
-from gramps.gui.glade import Glade
+from ..managedwindow import ManagedWindow
+from ..display import display_help
+from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = range(9)
@@ -146,7 +146,7 @@ class EditLink(ManagedWindow):
                                (object_class, "handle", obj.handle))
 
     def _on_new(self, widget):
-        from gramps.gui.editors import EditObject
+        from ..editors import EditObject
         object_class = OBJECT_MAP[self.uri_list.get_active()]
         EditObject(self.dbstate, 
                    self.uistate, 
@@ -155,7 +155,7 @@ class EditLink(ManagedWindow):
                    callback=self._on_new_callback)
         
     def _on_edit_one(self, widget):
-        from gramps.gui.editors import EditObject
+        from ..editors import EditObject
         uri = self.url_link.get_text()
         if uri.startswith("gramps://"):
             obj_class, prop, value = uri[9:].split("/", 2)
@@ -165,7 +165,7 @@ class EditLink(ManagedWindow):
                        obj_class, prop, value)
         
     def _on_pick_one(self, widget):
-        from gramps.gui.selectors import SelectorFactory
+        from ..selectors import SelectorFactory
         object_class = OBJECT_MAP[self.uri_list.get_active()]
         Select = SelectorFactory(object_class)
         uri = self.url_link.get_text()

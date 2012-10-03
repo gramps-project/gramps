@@ -59,7 +59,7 @@ class FamilyLdsEmbedList(LdsEmbedList):
         LdsEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
-        from gramps.gui.editors import EditFamilyLdsOrd
+        from .. import EditFamilyLdsOrd
         return EditFamilyLdsOrd
     
     def new_data(self):

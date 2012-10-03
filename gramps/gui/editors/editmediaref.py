@@ -44,18 +44,18 @@ from gi.repository import Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.utils import open_file_with_default_application
+from ..utils import open_file_with_default_application
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.mime import get_description, get_type
-from gramps.gui.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
+from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import (media_path_full, find_file, 
                             get_unicode_path_from_file_chooser)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
-from gramps.gui.glade import Glade
+from ..glade import Glade
 from displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from gramps.gui.widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
+from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                          MonitoredDate, MonitoredTagList)
 from editreference import RefTab, EditReference
 from addmedia import AddMediaObject

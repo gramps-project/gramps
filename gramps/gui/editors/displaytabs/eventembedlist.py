@@ -37,11 +37,11 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 from groupembeddedlist import GroupEmbeddedList
 from eventrefmodel import EventRefModel
-from gramps.gui.dbguielement import DbGUIElement
-from gramps.gui.selectors import SelectorFactory
+from ...dbguielement import DbGUIElement
+from ...selectors import SelectorFactory
 
 #-------------------------------------------------------------------------
 #
@@ -141,7 +141,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.rebuild_callback()
 
     def get_ref_editor(self):
-        from gramps.gui.editors import EditFamilyEventRef
+        from .. import EditFamilyEventRef
         return EditFamilyEventRef
 
     def get_icon_name(self):
@@ -256,7 +256,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
 
@@ -269,7 +269,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     self.dbstate, self.uistate, self.track,
                     event, ref[1], self.object_edited)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text())
         elif ref and ref[0] != self._WORKGROUP:
@@ -310,7 +310,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         handle change request of non native data
         """
-        from gramps.gui.dialog import WarningDialog
+        from ...dialog import WarningDialog
         WarningDialog(
                     _("Cannot change Person"),
                     _("You cannot change Person events in the Family Editor")
@@ -333,7 +333,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 self.get_ref_editor()(self.dbstate, self.uistate, self.track,
                                       event, obj, self.object_edited)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(
                     _("Cannot edit this reference"),
                     _("This event reference cannot be edited at this time. "
@@ -362,7 +362,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """ 
         person = self.dbstate.db.get_person_from_handle(key)
         try:
-            from gramps.gui.editors import EditPerson
+            from .. import EditPerson
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass

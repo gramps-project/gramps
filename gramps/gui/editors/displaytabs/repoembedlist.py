@@ -34,10 +34,10 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import RepoRef, Repository
-from gramps.gui.dbguielement import DbGUIElement
-from gramps.gui.selectors import SelectorFactory
+from ...dbguielement import DbGUIElement
+from ...selectors import SelectorFactory
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 from reporefmodel import RepoRefModel
 from embeddedlist import EmbeddedList
 
@@ -100,7 +100,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         return ((1, 0), (1, 1), (1, 2), (1, 3))
 
     def handle_extra_type(self, objtype, obj):
-        from gramps.gui.editors import EditRepoRef
+        from .. import EditRepoRef
         try:
             ref = RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
@@ -111,7 +111,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             pass
 
     def add_button_clicked(self, obj):
-        from gramps.gui.editors import EditRepoRef
+        from .. import EditRepoRef
         ref = RepoRef()
         repo = Repository()
         try:
@@ -132,7 +132,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         repo = sel.run()
         if repo:
             try:
-                from gramps.gui.editors import EditRepoRef
+                from .. import EditRepoRef
                 ref = RepoRef()
                 EditRepoRef(self.dbstate,
                               self.uistate,
@@ -158,12 +158,12 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         if ref:
             repo = self.dbstate.db.get_repository_from_handle(ref.ref)
             try:
-                from gramps.gui.editors import EditRepoRef
+                from .. import EditRepoRef
                 EditRepoRef(
                     self.dbstate, self.uistate, self.track, repo, 
                     ref, self.edit_callback)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(
                     _("Cannot edit this reference"),
                     _("This repository reference cannot be edited at this "

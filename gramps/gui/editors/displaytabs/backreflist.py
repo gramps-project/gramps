@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.widgets import SimpleButton
+from ...widgets import SimpleButton
 from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
@@ -135,7 +135,7 @@ class BackRefList(EmbeddedList):
     
     def edit_button_clicked(self, obj):
         
-        from gramps.gui.editors import EditEvent, EditPerson, EditFamily, EditSource, \
+        from .. import EditEvent, EditPerson, EditFamily, EditSource, \
                                 EditPlace, EditMedia, EditRepository, \
                                 EditCitation
 

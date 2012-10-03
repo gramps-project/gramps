@@ -21,10 +21,10 @@
 
 # $Id$
 
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.display import display_help
+from ..managedwindow import ManagedWindow
+from ..display import display_help
 from gramps.gen.config import config
-from gramps.gui.dbguielement import DbGUIElement
+from ..dbguielement import DbGUIElement
 
 class EditSecondary(ManagedWindow, DbGUIElement):
 

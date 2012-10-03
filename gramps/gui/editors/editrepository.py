@@ -43,11 +43,11 @@ from gi.repository import Gtk
 from gramps.gen.lib import NoteType, Repository
 from gramps.gen.db import DbTxn
 
-from gramps.gui.widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from ..widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from editprimary import EditPrimary
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.glade import Glade
+from ..dialog import ErrorDialog
+from ..glade import Glade
 
 class EditRepository(EditPrimary):
 

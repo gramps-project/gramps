@@ -50,9 +50,9 @@ from gi.repository import Gtk
 from editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.glade import Glade
+from ..glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
-from gramps.gui.widgets import MonitoredDataType, PrivacyButton
+from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------

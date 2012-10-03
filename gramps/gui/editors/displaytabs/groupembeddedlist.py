@@ -42,7 +42,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.utils import is_right_click
+from ...utils import is_right_click
 from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------

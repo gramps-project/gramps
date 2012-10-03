@@ -48,7 +48,7 @@ _ENTER = Gdk.keyval_from_name("Enter")
 #-------------------------------------------------------------------------
 from surnamemodel import SurnameModel
 from embeddedlist import EmbeddedList
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
 
 #-------------------------------------------------------------------------

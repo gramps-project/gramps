@@ -49,7 +49,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-from gramps.gui.ddtargets import DdTargets
+from ..ddtargets import DdTargets
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
@@ -66,7 +66,7 @@ from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
-from gramps.gui.glade import Glade
+from ..glade import Glade
 
 from editprimary import EditPrimary
 from editchildref import EditChildRef
@@ -74,14 +74,14 @@ from editperson import EditPerson
 from displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
-from gramps.gui.widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
+from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
                          MonitoredTagList)
 from gramps.gen.plug import CATEGORY_QR_FAMILY
-from gramps.gui.dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
+from ..dialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
-from gramps.gui.selectors import SelectorFactory
+from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
 
 SelectPerson = SelectorFactory('Person')

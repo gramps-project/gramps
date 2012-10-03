@@ -45,11 +45,11 @@ from gi.repository import GObject
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
 from gramps.gen.lib import Source, Citation
-from gramps.gui.dbguielement import DbGUIElement
-from gramps.gui.selectors import SelectorFactory
+from ...dbguielement import DbGUIElement
+from ...selectors import SelectorFactory
 from citationrefmodel import CitationRefModel
 from embeddedlist import EmbeddedList
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -134,7 +134,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         This prevents the dialog from coming up twice on the same object.
         """
         try:
-            from gramps.gui.editors import EditCitation
+            from .. import EditCitation
             EditCitation(self.dbstate, self.uistate, self.track,
                          Citation(), Source(),
                          self.add_callback, self.callertitle)
@@ -162,23 +162,23 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         if object:
             if isinstance(object, Source):
                 try:
-                    from gramps.gui.editors import EditCitation
+                    from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:
-                    from gramps.gui.dialog import WarningDialog
+                    from ...dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             elif isinstance(object, Citation):
                 try:
-                    from gramps.gui.editors import EditCitation
+                    from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:
-                    from gramps.gui.dialog import WarningDialog
+                    from ...dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -207,7 +207,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         if handle:
             citation = self.dbstate.db.get_citation_from_handle(handle)
             try:
-                from gramps.gui.editors import EditCitation
+                from .. import EditCitation
                 EditCitation(self.dbstate, self.uistate, self.track, citation,
                              callertitle = self.callertitle)
             except WindowActiveError:
@@ -246,12 +246,12 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             object = self.dbstate.db.get_citation_from_handle(handle)
             if isinstance(object, Citation):
                 try:
-                    from gramps.gui.editors import EditCitation
+                    from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  object, callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:
-                    from gramps.gui.dialog import WarningDialog
+                    from ...dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:
@@ -265,13 +265,13 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             object = self.dbstate.db.get_source_from_handle(handle)
             if isinstance(object, Source):
                 try:
-                    from gramps.gui.editors import EditCitation
+                    from .. import EditCitation
                     EditCitation(self.dbstate, self.uistate, self.track, 
                                  Citation(), object, 
                                  callback=self.add_callback, 
                                  callertitle=self.callertitle)
                 except WindowActiveError:
-                    from gramps.gui.dialog import WarningDialog
+                    from ...dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text())
             else:

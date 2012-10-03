@@ -49,10 +49,10 @@ from gi.repository import Gtk
 from gramps.gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton
-from gramps.gui.selectors import SelectorFactory
+from ..widgets import MonitoredEntry, PrivacyButton
+from ..selectors import SelectorFactory
 from displaytabs import CitationEmbedList, NoteTab
-from gramps.gui.glade import Glade
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -173,7 +173,7 @@ class EditPersonRef(EditSecondary):
             self.callback = None
             self.close()
         else:
-            from gramps.gui.dialog import ErrorDialog
+            from ..dialog import ErrorDialog
 
             ErrorDialog(
                 _('No person selected'),

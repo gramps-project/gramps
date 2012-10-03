@@ -41,7 +41,7 @@ from gi.repository import Gdk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.widgets import SimpleButton
+from ...widgets import SimpleButton
 from grampstab import GrampsTab
 from gramps.gen.errors import WindowActiveError
 

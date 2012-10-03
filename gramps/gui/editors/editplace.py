@@ -49,11 +49,11 @@ from gramps.gen.db import DbTxn
 from editprimary import EditPrimary
 from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton
+from ..widgets import MonitoredEntry, PrivacyButton
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.glade import Glade
+from ..dialog import ErrorDialog
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #

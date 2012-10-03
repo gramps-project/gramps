@@ -44,7 +44,7 @@ from gi.repository import Pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.utils import is_right_click
+from ...utils import is_right_click
 from buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
@@ -496,7 +496,7 @@ class EmbeddedList(ButtonTab):
         try:
             self.model = self.construct_model()
         except AttributeError, msg:
-            from gramps.gui.dialog import RunDatabaseRepair
+            from ...dialog import RunDatabaseRepair
             import traceback
             traceback.print_exc()
             RunDatabaseRepair(str(msg))

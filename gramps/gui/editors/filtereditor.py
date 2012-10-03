@@ -57,17 +57,17 @@ from gi.repository import GObject
 from gramps.gen.filters import (GenericFilterFactory, FilterList, 
                          reload_custom_filters)
 from gramps.gen.filters.rules._matchesfilterbase import MatchesFilterBase
-from gramps.gui.listmodel import ListModel
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.dialog import QuestionDialog
+from ..listmodel import ListModel
+from ..managedwindow import ManagedWindow
+from ..dialog import QuestionDialog
 from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
-from gramps.gui.display import display_help
+from ..display import display_help
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.lib import AttributeType, EventType, FamilyRelType, NameOriginType, NameType, NoteType
 from gramps.gen.filters import rules
-from gramps.gui.autocomp import StandardCustomSelector, fill_entry
-from gramps.gui.selectors import SelectorFactory
+from ..autocomp import StandardCustomSelector, fill_entry
+from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import confidence

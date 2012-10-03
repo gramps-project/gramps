@@ -106,7 +106,7 @@ class PersonEventEmbedList(EventEmbedList):
             ]
 
     def get_ref_editor(self):
-        from gramps.gui.editors import EditEventRef
+        from .. import EditEventRef
         return EditEventRef
 
     def editnotworkgroup(self, key):
@@ -115,7 +115,7 @@ class PersonEventEmbedList(EventEmbedList):
         """
         family = self.dbstate.db.get_family_from_handle(key)
         try:
-            from gramps.gui.editors import EditFamily
+            from .. import EditFamily
             EditFamily(self.dbstate, self.uistate, [], family)
         except WindowActiveError:
             pass
@@ -124,7 +124,7 @@ class PersonEventEmbedList(EventEmbedList):
         """
         handle change request of non native data
         """
-        from gramps.gui.dialog import WarningDialog
+        from ...dialog import WarningDialog
         WarningDialog(
                     _("Cannot change Family"),
                     _("You cannot change Family events in the Person Editor")

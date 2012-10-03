@@ -55,11 +55,11 @@ from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path, 
                             find_file, get_unicode_path_from_file_chooser)
 from gramps.gen.mime import get_type
-from gramps.gui.thumbnails import find_mime_type_pixbuf
-from gramps.gui.display import display_help
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.dialog import ErrorDialog, WarningDialog
-from gramps.gui.glade import Glade
+from ..thumbnails import find_mime_type_pixbuf
+from ..display import display_help
+from ..managedwindow import ManagedWindow
+from ..dialog import ErrorDialog, WarningDialog
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #

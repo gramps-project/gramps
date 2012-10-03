@@ -33,10 +33,10 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.managedwindow import ManagedWindow
+from ..managedwindow import ManagedWindow
 from displaytabs import GrampsTab
 from gramps.gen.config import config
-from gramps.gui.dbguielement import DbGUIElement
+from ..dbguielement import DbGUIElement
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +198,7 @@ class EditReference(ManagedWindow, DbGUIElement):
             self.close()
 
     def define_help_button(self, button, webpage='', section=''):
-        from gramps.gui.display import display_help
+        from ..display import display_help
         button.connect('clicked', lambda x: display_help(webpage,
                                                                section))
         button.set_sensitive(True)

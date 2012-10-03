@@ -34,8 +34,8 @@ from gramps.gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-from gramps.gui.glade import Glade
+from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +68,7 @@ class EditUrl(EditSecondary):
         
     def jump_to(self, obj):
         if self.obj.get_path():
-            from gramps.gui.display import display_url
+            from ..display import display_url
             display_url(self.obj.get_path())
 
     def _setup_fields(self):

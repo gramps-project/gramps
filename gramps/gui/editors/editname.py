@@ -50,9 +50,9 @@ from gramps.gen.display.name import displayer as name_displayer
 from editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
-from gramps.gui.widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
+from ..widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
-from gramps.gui.glade import Glade                     
+from ..glade import Glade                     
 from gramps.gen.errors import ValidationError
 
 #-------------------------------------------------------------------------
@@ -370,7 +370,7 @@ class EditName(EditSecondary):
             #user wants to group with surname
             if self.global_group_set and not self.original_group_set :
                 #warn that group will revert to surname
-                from gramps.gui.dialog import QuestionDialog2
+                from ..dialog import QuestionDialog2
                 q = QuestionDialog2(
                     _("Break global name grouping?"),
                     _("All people with the name of %(surname)s will no longer "
@@ -400,7 +400,7 @@ class EditName(EditSecondary):
                 #if changed, ask if this has to happen for the entire group,
                 #this might be creation of group link, or change of group link
                 if self.global_group_as != group_as:
-                    from gramps.gui.dialog import QuestionDialog2
+                    from ..dialog import QuestionDialog2
                         
                     q = QuestionDialog2(
                     _("Group all people with the same name?"),

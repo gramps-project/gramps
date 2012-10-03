@@ -49,17 +49,17 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.utils import is_right_click, open_file_with_default_application
-from gramps.gui.dbguielement import DbGUIElement
-from gramps.gui.selectors import SelectorFactory
+from ...utils import is_right_click, open_file_with_default_application
+from ...dbguielement import DbGUIElement
+from ...selectors import SelectorFactory
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
                             fix_encoding)
-from gramps.gui.thumbnails import get_thumbnail_image
+from ...thumbnails import get_thumbnail_image
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.mime import get_type, is_valid_type
-from gramps.gui.ddtargets import DdTargets
+from ...ddtargets import DdTargets
 from buttontab import ButtonTab
 from gramps.gen.constfunc import win
 from gramps.gen.const import THUMBSCALE
@@ -250,7 +250,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             obj = self.dbstate.db.get_object_from_handle(handle)
             if obj is None :
                 #notify user of error
-                from gramps.gui.dialog import RunDatabaseRepair
+                from ...dialog import RunDatabaseRepair
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :
@@ -275,7 +275,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def add_button_clicked(self, obj):
         try:
-            from gramps.gui.editors import EditMediaRef
+            from .. import EditMediaRef
             EditMediaRef(self.dbstate, self.uistate, self.track, 
                          MediaObject(), MediaRef(),
                          self.add_callback)
@@ -321,11 +321,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
         if src:
             sref = MediaRef()
             try:
-                from gramps.gui.editors import EditMediaRef
+                from .. import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text())
 
@@ -341,11 +341,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
             obj = self.dbstate.db.get_object_from_handle(
                                                 ref.get_reference_handle())
             try:
-                from gramps.gui.editors import EditMediaRef
+                from .. import EditMediaRef
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, self.edit_callback)
             except WindowActiveError:
-                from gramps.gui.dialog import WarningDialog
+                from ...dialog import WarningDialog
                 WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text())
 

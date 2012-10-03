@@ -34,10 +34,10 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import sgettext as _
-from gramps.gui.managedwindow import ManagedWindow
+from ..managedwindow import ManagedWindow
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gui.display import display_help
-from gramps.gui.listmodel import ListModel, TOGGLE
+from ..display import display_help
+from ..listmodel import ListModel, TOGGLE
 
 #-------------------------------------------------------------------------
 #

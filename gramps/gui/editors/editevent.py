@@ -44,14 +44,14 @@ from gi.repository import Gtk
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import Event, NoteType
 from gramps.gen.db import DbTxn
-from gramps.gui.display import display_help
+from ..display import display_help
 from editprimary import EditPrimary
 from objectentries import PlaceEntry
-from gramps.gui.glade import Glade
-from gramps.gui.dialog import ErrorDialog
+from ..glade import Glade
+from ..dialog import ErrorDialog
 from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from gramps.gui.widgets import (MonitoredEntry, PrivacyButton, 
+from ..widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
 from gramps.gen.utils.db import get_participant_from_event
 

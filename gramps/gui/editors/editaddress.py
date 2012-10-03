@@ -49,9 +49,9 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
-from gramps.gui.glade import Glade
+from ..glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
-from gramps.gui.widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from ..widgets import MonitoredDate, MonitoredEntry, PrivacyButton
 
 #-------------------------------------------------------------------------
 #

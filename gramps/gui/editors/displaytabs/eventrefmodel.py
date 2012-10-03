@@ -46,7 +46,7 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.widgets.undoablebuffer import UndoableBuffer
+from ...widgets.undoablebuffer import UndoableBuffer
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 

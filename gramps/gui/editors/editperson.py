@@ -51,22 +51,22 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.file import media_path_full
-from gramps.gui.thumbnails import get_thumbnail_image
-from gramps.gui.utils import is_right_click, open_file_with_default_application
+from ..thumbnails import get_thumbnail_image
+from ..utils import is_right_click, open_file_with_default_application
 from gramps.gen.utils.db import get_birth_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname
 from gramps.gen.db import DbTxn
-from gramps.gui import widgets
+from .. import widgets
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.glade import Glade
-from gramps.gui.widgets.menuitem import add_menuitem
+from ..glade import Glade
+from ..widgets.menuitem import add_menuitem
 
 from editprimary import EditPrimary
 from editmediaref import EditMediaRef
 from editname import EditName
 from gramps.gen.config import config
-from gramps.gui.dialog import ErrorDialog, ICON
+from ..dialog import ErrorDialog, ICON
 from gramps.gen.errors import ValidationError
 
 from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
@@ -928,7 +928,7 @@ class EditPerson(EditPrimary):
             obj = self.dbstate.db.get_object_from_handle(handle)
             if obj is None :
                 #notify user of error
-                from gramps.gui.dialog import RunDatabaseRepair
+                from ..dialog import RunDatabaseRepair
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :

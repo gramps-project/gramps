@@ -50,9 +50,9 @@ from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          CitationBackRefList, RepoEmbedList)
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.glade import Glade
+from ..widgets import MonitoredEntry, PrivacyButton
+from ..dialog import ErrorDialog
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #

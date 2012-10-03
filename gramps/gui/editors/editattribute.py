@@ -48,9 +48,9 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
-from gramps.gui.glade import Glade
+from ..glade import Glade
 from displaytabs import CitationEmbedList, NoteTab
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 
 #-------------------------------------------------------------------------
 #
@@ -143,7 +143,7 @@ class EditAttribute(EditSecondary):
         t = self.obj.get_type()
         
         if t.is_custom() and str(t) == '':
-            from gramps.gui.dialog import ErrorDialog
+            from ..dialog import ErrorDialog
             ErrorDialog(
                 _("Cannot save attribute"),
                 _("The attribute type cannot be empty"))

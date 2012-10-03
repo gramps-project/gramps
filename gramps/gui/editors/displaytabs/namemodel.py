@@ -45,7 +45,7 @@ WEIGHT_BOLD = Pango.Weight.BOLD
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gui.widgets.undoablebuffer import UndoableBuffer
+from ...widgets.undoablebuffer import UndoableBuffer
 from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------

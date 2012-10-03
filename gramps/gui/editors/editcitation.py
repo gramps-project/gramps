@@ -46,11 +46,11 @@ from editprimary import EditPrimary
 
 from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList, CitationBackRefList)
-from gramps.gui.widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
+from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
-from gramps.gui.dialog import ErrorDialog
+from ..dialog import ErrorDialog
 from editreference import RefTab
-from gramps.gui.glade import Glade
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,7 @@ class EditCitation(EditPrimary):
     
     This class is called both to edit the Citation Primary object
     and to edit references from other objects to citations.
-    It is called from gramps.gui.editors.__init__ for editing the primary object
+    It is called from ..editors.__init__ for editing the primary object
     and is called from CitationEmbedList for editing references
     
     @param callertitle: Text passed by calling object to add to title 

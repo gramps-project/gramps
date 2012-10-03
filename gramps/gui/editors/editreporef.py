@@ -37,9 +37,9 @@ from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 
 from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
-from gramps.gui.widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from editreference import RefTab, EditReference
-from gramps.gui.glade import Glade
+from ..glade import Glade
 
 #-------------------------------------------------------------------------
 #

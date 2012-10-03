@@ -48,13 +48,13 @@ from gi.repository import Gtk
 from gramps.gen.lib import LdsOrd, NoteType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.lds import TEMPLES
-from gramps.gui.glade import Glade
+from ..glade import Glade
 from editsecondary import EditSecondary
 from objectentries import PlaceEntry
 from displaytabs import CitationEmbedList,NoteTab
-from gramps.gui.widgets import (PrivacyButton, MonitoredDate, 
+from ..widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
-from gramps.gui.selectors import SelectorFactory
+from ..selectors import SelectorFactory
 
 _DATA_MAP = {
     LdsOrd.BAPTISM : [
