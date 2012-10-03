@@ -185,48 +185,48 @@ class DbDjango(DbWriteBase, DbReadBase):
         # First we add the primary objects:
         for key in self.import_cache.keys():
             obj = self.import_cache[key]
-            if isinstance(obj, gen.lib.Person):
+            if isinstance(obj, Person):
                 self.dji.add_person(obj.serialize())
-            elif isinstance(obj, gen.lib.Family):
+            elif isinstance(obj, Family):
                 self.dji.add_family(obj.serialize())
-            elif isinstance(obj, gen.lib.Event):
+            elif isinstance(obj, Event):
                 self.dji.add_event(obj.serialize())
-            elif isinstance(obj, gen.lib.Place):
+            elif isinstance(obj, Place):
                 self.dji.add_place(obj.serialize())
-            elif isinstance(obj, gen.lib.Repository):
+            elif isinstance(obj, Repository):
                 self.dji.add_repository(obj.serialize())
-            elif isinstance(obj, gen.lib.Citation):
+            elif isinstance(obj, Citation):
                 self.dji.add_citation(obj.serialize())
-            elif isinstance(obj, gen.lib.Source):
+            elif isinstance(obj, Source):
                 self.dji.add_source(obj.serialize())
-            elif isinstance(obj, gen.lib.Note):
+            elif isinstance(obj, Note):
                 self.dji.add_note(obj.serialize())
-            elif isinstance(obj, gen.lib.MediaObject):
+            elif isinstance(obj, MediaObject):
                 self.dji.add_media(obj.serialize())
-            elif isinstance(obj, gen.lib.Tag):
+            elif isinstance(obj, Tag):
                 self.dji.add_tag(obj.serialize())
         # Next we add the links:
         for key in self.import_cache.keys():
             obj = self.import_cache[key]
-            if isinstance(obj, gen.lib.Person):
+            if isinstance(obj, Person):
                 self.dji.add_person_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Family):
+            elif isinstance(obj, Family):
                 self.dji.add_family_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Event):
+            elif isinstance(obj, Event):
                 self.dji.add_event_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Place):
+            elif isinstance(obj, Place):
                 self.dji.add_place_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Repository):
+            elif isinstance(obj, Repository):
                 self.dji.add_repository_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Citation):
+            elif isinstance(obj, Citation):
                 self.dji.add_citation_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Source):
+            elif isinstance(obj, Source):
                 self.dji.add_source_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Note):
+            elif isinstance(obj, Note):
                 self.dji.add_note_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.MediaObject):
+            elif isinstance(obj, MediaObject):
                 self.dji.add_media_detail(obj.serialize())
-            elif isinstance(obj, gen.lib.Tag):
+            elif isinstance(obj, Tag):
                 self.dji.add_tag_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
@@ -495,7 +495,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return None
 
     def get_researcher(self):
-        obj = gen.lib.Researcher()
+        obj = Researcher()
         return obj
 
     def get_tag_handles(self, sort_handles=False):
@@ -619,67 +619,67 @@ class DbDjango(DbWriteBase, DbReadBase):
             data = cPickle.loads(base64.decodestring(repository.cache))
         else:
             data = self.dji.get_repository(repository)
-        return gen.lib.Repository.create(data)
+        return Repository.create(data)
 
     def make_citation(self, citation):
         if self.use_db_cache and citation.cache:
             data = cPickle.loads(base64.decodestring(citation.cache))
         else:
             data = self.dji.get_citation(citation)
-        return gen.lib.Citation.create(data)
+        return Citation.create(data)
 
     def make_source(self, source):
         if self.use_db_cache and source.cache:
             data = cPickle.loads(base64.decodestring(source.cache))
         else:
             data = self.dji.get_source(source)
-        return gen.lib.Source.create(data)
+        return Source.create(data)
 
     def make_family(self, family):
         if self.use_db_cache and family.cache:
             data = cPickle.loads(base64.decodestring(family.cache))
         else:
             data = self.dji.get_family(family)
-        return gen.lib.Family.create(data)
+        return Family.create(data)
 
     def make_person(self, person):
         if self.use_db_cache and person.cache:
             data = cPickle.loads(base64.decodestring(person.cache))
         else:
             data = self.dji.get_person(person)
-        return gen.lib.Person.create(data)
+        return Person.create(data)
 
     def make_event(self, event):
         if self.use_db_cache and event.cache:
             data = cPickle.loads(base64.decodestring(event.cache))
         else:
             data = self.dji.get_event(event)
-        return gen.lib.Event.create(data)
+        return Event.create(data)
 
     def make_note(self, note):
         if self.use_db_cache and note.cache:
             data = cPickle.loads(base64.decodestring(note.cache))
         else:
             data = self.dji.get_note(note)
-        return gen.lib.Note.create(data)
+        return Note.create(data)
 
     def make_tag(self, tag):
         data = self.dji.get_tag(tag)
-        return gen.lib.Tag.create(data)
+        return Tag.create(data)
 
     def make_place(self, place):
         if self.use_db_cache and place.cache:
             data = cPickle.loads(base64.decodestring(place.cache))
         else:
             data = self.dji.get_place(place)
-        return gen.lib.Place.create(data)
+        return Place.create(data)
 
     def make_media(self, media):
         if self.use_db_cache and media.cache:
             data = cPickle.loads(base64.decodestring(media.cache))
         else:
             data = self.dji.get_media(media)
-        return gen.lib.MediaObject.create(data)
+        return MediaObject.create(data)
 
     def get_place_from_handle(self, handle):
         if handle in self.import_cache:

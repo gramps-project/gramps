@@ -88,7 +88,7 @@ QUAL_TEXT = (
     (Date.QUAL_ESTIMATED,  _('Estimated')), 
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
-CAL_TO_MONTHS_NAMES = { 
+CAL_TO_MONTHS_NAMES = {
     Date.CAL_GREGORIAN  : displayer.short_months,
     Date.CAL_JULIAN     : displayer.short_months,
     Date.CAL_HEBREW     : displayer.hebrew,

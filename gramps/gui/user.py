@@ -45,7 +45,7 @@ from gramps.gui.dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
 # User class
 #
 #-------------------------------------------------------------------------
-class User(gramps.gen.user.User):
+class User(User):
     """
     This class provides a means to interact with the user via GTK.
     It implements the interface in gramps.gen.user.User()

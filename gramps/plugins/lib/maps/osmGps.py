@@ -52,7 +52,7 @@ from gi.repository import Gdk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import constants
+from gramps.plugins.lib.maps import constants
 from dummylayer import DummyLayer
 from dummynogps import DummyMapNoGpsPoint
 from selectionlayer import SelectionLayer

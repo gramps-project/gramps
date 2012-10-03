@@ -56,7 +56,9 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from gramps.gen.lib import ChildRefType, EventRoleType, EventType, FamilyRelType, NameType, Person
+from gramps.gen.lib import (ChildRefType, EventRoleType, EventType,
+                            FamilyRelType, NameType, Person)
+from gramps.gen.lib.date import Today
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gen.utils.db import family_name
 from gramps.gui.display import display_help
@@ -82,7 +84,7 @@ WIKI_HELP_SEC = _('manual|Verify_the_Data...')
 _person_cache = {}
 _family_cache = {}
 _event_cache = {}
-_today = gen.lib.date.Today().get_sort_value()
+_today = Today().get_sort_value()
 
 def find_event(db, handle):
     if handle in _event_cache:

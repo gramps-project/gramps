@@ -56,15 +56,16 @@ from cgi import escape
 from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.editors import EditPerson, EditFamily
-from gramps.gui.widgets.reorderfam import Reorder
 from gramps.gen.lib import ChildRef, Family, Name, Person, Surname
-from gramps.gui.utils import color_graph_box, hex_to_rgb, is_right_click
-from gramps.gui.ddtargets import DdTargets
+from gramps.gen.lib.date import Today
+from ..editors import EditPerson, EditFamily
+from .reorderfam import Reorder
+from ..utils import color_graph_box, hex_to_rgb, is_right_click
+from ..ddtargets import DdTargets
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
-                          get_age, get_timeperiod, preset_name)
+                                 get_age, get_timeperiod, preset_name)
 
 #-------------------------------------------------------------------------
 #
@@ -364,7 +365,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 self.set_userdata_timeperiod(child, userdata)
             #now create gradient data, 5 values from min to max rounded to nearest 50
             if self.maxperiod < self.minperiod:
-                self.maxperiod = self.minperiod = gen.lib.date.Today().get_year()
+                self.maxperiod = self.minperiod = Today().get_year()
             rper = self.maxperiod // 50
             if rper * 50 != self.maxperiod:
                 self.maxperiod = rper * 50 + 50

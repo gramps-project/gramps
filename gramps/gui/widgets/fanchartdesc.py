@@ -55,15 +55,15 @@ from cgi import escape
 #-------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.editors import EditPerson, EditFamily
-from gramps.gui.utils import hex_to_rgb
-from gramps.gui.ddtargets import DdTargets
+from ..editors import EditPerson, EditFamily
+from ..utils import hex_to_rgb
+from ..ddtargets import DdTargets
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                           get_age, get_timeperiod)
 from gramps.gen.plug.report.utils import find_spouse
-from gramps.gui.widgets.fanchart import *
+from fanchart import *
 
 #-------------------------------------------------------------------------
 #
