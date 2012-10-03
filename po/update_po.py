@@ -427,14 +427,15 @@ def check(args):
     """
     if not args:
         print ('Please, add at least one argument (sv.po, de.po).')
-    
+    print (args)
     for arg in args:
         if arg[-3:] == '.po':
             print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
-                        % {'lang.po': arg, 'txt': arg[:2]})
+                        % {'lang.po': arg, 'txt': arg[:-3]})
             os.system('''%(python)s ./check_po --skip-fuzzy ./%(lang.po)s > %(lang)s.txt''' \
-                        % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:2]})
-            os.system('''%(msgfmt)s -c -v %(lang.po)s''' % {'msgfmt': msgfmtCmd, 'lang.po': arg})
+                        % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
+            os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
+                                % {'msgfmt': msgfmtCmd, 'lang.po': arg})
         else:
             print ("Please, try to set an argument with .po extension like "
                     "'%(arg)s.po'." % {'arg': arg})
