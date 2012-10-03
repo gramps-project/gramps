@@ -455,9 +455,10 @@ def clean():
         os.unlink('glade.txt')
         print ("Remove 'glade.txt'")
 
-##    if os.path.isfile('tmpfiles'):
-##        os.unlink('tmpfiles')
-##        print ("Remove 'tmpfiles'")
+    if os.path.isfile('tmpfiles'):
+        os.unlink('tmpfiles')
+        print ("Remove 'tmpfiles'")
+
 def merge(args):
     """
     Merge messages with 'gramps.pot'
