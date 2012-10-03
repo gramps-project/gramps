@@ -47,16 +47,16 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.managedwindow import ManagedWindow
+from ..managedwindow import ManagedWindow
 from gramps.gen.errors import UnavailableError, WindowActiveError
 from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gramps.gen.ggettext import gettext as _
-from gramps.gui.utils import open_file_with_default_application
-from gramps.gui.pluginmanager import GuiPluginManager
+from ..utils import open_file_with_default_application
+from ..pluginmanager import GuiPluginManager
 import tool
 from _guioptions import add_gui_options
-from gramps.gui.dialog import InfoDialog
-from gramps.gui.editors import EditPerson
+from ..dialog import InfoDialog
+from ..editors import EditPerson
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA
 from gramps.gen.config import config

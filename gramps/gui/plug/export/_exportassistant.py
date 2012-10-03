@@ -60,12 +60,12 @@ from gi.repository import GdkPixbuf
 
 from gramps.gen.const import USER_HOME, ICON, SPLASH
 from gramps.gen.config import config
-from gramps.gui.pluginmanager import GuiPluginManager
+from ...pluginmanager import GuiPluginManager
 from gramps.gen.utils.file import (find_folder, get_new_filename, 
                             get_unicode_path_from_file_chooser)
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.user import User
+from ...managedwindow import ManagedWindow
+from ...dialog import ErrorDialog
+from ...user import User
 
 #-------------------------------------------------------------------------
 #

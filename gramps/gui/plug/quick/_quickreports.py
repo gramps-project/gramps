@@ -54,7 +54,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.pluginmanager import GuiPluginManager
+from ...pluginmanager import GuiPluginManager
 from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 

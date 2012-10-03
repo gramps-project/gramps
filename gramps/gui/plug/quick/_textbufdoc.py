@@ -38,7 +38,7 @@ from gi.repository import Pango, PangoCairo
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                         FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
                         PARA_ALIGN_LEFT)
-from gramps.gui.managedwindow import ManagedWindow
+from ...managedwindow import ManagedWindow
 
 RESOLUTION = PangoCairo.font_map_get_default().get_resolution()
 

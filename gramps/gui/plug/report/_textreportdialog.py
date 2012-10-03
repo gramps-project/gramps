@@ -35,7 +35,7 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.pluginmanager import GuiPluginManager
+from ...pluginmanager import GuiPluginManager
 from gramps.gen.plug.report._constants import CATEGORY_TEXT
 from _docreportdialog import DocReportDialog
 

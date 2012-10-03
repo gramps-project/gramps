@@ -43,7 +43,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.plug.docgen import PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
 from gramps.gen.plug.report._paper import paper_sizes
-from gramps.gui.glade import Glade
+from ...glade import Glade
 
 #-------------------------------------------------------------------------
 #

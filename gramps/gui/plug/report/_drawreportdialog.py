@@ -36,7 +36,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.plug.report._constants import CATEGORY_DRAW
 from _docreportdialog import DocReportDialog
-from gramps.gui.pluginmanager import GuiPluginManager
+from ...pluginmanager import GuiPluginManager
 
 #-------------------------------------------------------------------------
 #

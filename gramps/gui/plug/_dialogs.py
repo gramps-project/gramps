@@ -43,11 +43,11 @@ from collections import defaultdict
 #-------------------------------------------------------------------------
 from gramps.gen.const import PLUGINS_GLADE
 from gramps.gen.plug.report._constants import standalone_categories
-from gramps.gui.plug import tool
+from . import tool
 from gramps.gen.plug import REPORT
-from gramps.gui.plug.report import report
-from gramps.gui.pluginmanager import GuiPluginManager
-from gramps.gui.managedwindow import ManagedWindow
+from .report import report
+from ..pluginmanager import GuiPluginManager
+from ..managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #

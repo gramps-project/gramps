@@ -53,9 +53,9 @@ from gi.repository import Gdk
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 
-from gramps.gui.listmodel import ListModel
-from gramps.gui.managedwindow import set_titles
-from gramps.gui.glade import Glade
+from ...listmodel import ListModel
+from ...managedwindow import set_titles
+from ...glade import Glade
 
 #------------------------------------------------------------------------
 #
@@ -134,7 +134,7 @@ class StyleListDisplay(object):
         try:
             self.sheetlist.save()
         except IOError, msg:
-            from gramps.gui.dialog import ErrorDialog
+            from ...dialog import ErrorDialog
             ErrorDialog(_("Error saving stylesheet"), str(msg))
         except:
             log.error("Failed to save stylesheet", exc_info=True)

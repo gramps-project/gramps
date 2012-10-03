@@ -52,12 +52,12 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
-from gramps.gui.utils import ProgressMeter
-from gramps.gui.pluginmanager import GuiPluginManager
-from gramps.gui import widgets
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.dialog import OptionDialog
-from gramps.gui.selectors import SelectorFactory
+from ..utils import ProgressMeter
+from ..pluginmanager import GuiPluginManager
+from .. import widgets
+from ..managedwindow import ManagedWindow
+from ..dialog import OptionDialog
+from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
 

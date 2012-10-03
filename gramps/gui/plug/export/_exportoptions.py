@@ -40,7 +40,7 @@ from gramps.gen.ggettext import ngettext
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
-from gramps.gui.utils import ProgressMeter
+from ...utils import ProgressMeter
 from gramps.gen.proxy import (PrivateProxyDb, 
 							  LivingProxyDb, 
                               FilterProxyDb, 
@@ -221,7 +221,7 @@ class WriterOptionBox(object):
 
     def show_preview_data(self, widget):
         from gramps.gen.dbstate import DbState
-        from gramps.gui.plug.quick import run_quick_report_by_name
+        from ..quick import run_quick_report_by_name
         if widget.proxy_name == "unfiltered":
             dbstate = self.dbstate
         else:
@@ -249,7 +249,7 @@ class WriterOptionBox(object):
         """
         # Make a box and put the option in it:
         from gi.repository import Gtk
-        from gramps.gui.widgets import SimpleButton
+        from ...widgets import SimpleButton
         button = Gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -622,7 +622,7 @@ class WriterOptionBox(object):
         Callback which invokes the EditFilter dialog. Will create new
         filter if called if none is selected.
         """
-        from gramps.gui.editors import EditFilter
+        from ...editors import EditFilter
         from gramps.gen.filters import FilterList, GenericFilterFactory
         from gramps.gen.const import CUSTOM_FILTERS
         the_filter = None
@@ -644,7 +644,7 @@ class WriterOptionBox(object):
                        the_filter, filterdb,
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
-            from gramps.gui.dialog import ErrorDialog
+            from ...dialog import ErrorDialog
             ErrorDialog(_("Cannot edit a system filter"), 
                         _("Please select a different filter to edit"))
 
