@@ -21,7 +21,7 @@
 # $Id$
 
 import time
-from gramps.gui.editors import EditFilter
+from .editors import EditFilter
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
                                 reload_custom_filters)

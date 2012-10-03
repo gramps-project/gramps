@@ -70,14 +70,14 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-from gramps.gui.user import User
-from gramps.gui.dialog import ErrorDialog, QuestionDialog, QuestionDialog2
+from .user import User
+from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gramps.gen.db import DbBsddb
-from gramps.gui.pluginmanager import GuiPluginManager
+from .pluginmanager import GuiPluginManager
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
-from gramps.gui.ddtargets import DdTargets
+from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
-from gramps.gui.glade import Glade
+from .glade import Glade
 from gramps.gen.db.backup import restore
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.utils.file import get_unicode_path_from_env_var

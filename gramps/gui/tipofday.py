@@ -47,9 +47,9 @@ import os
 #-------------------------------------------------------------------------
 from gramps.gen.const import IMAGE_DIR, TIP_DATA
 from gramps.gen.config import config
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.dialog import ErrorDialog
-from gramps.gui.glade import Glade
+from .managedwindow import ManagedWindow
+from .dialog import ErrorDialog
+from .glade import Glade
 
 #-------------------------------------------------------------------------
 #

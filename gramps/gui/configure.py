@@ -58,10 +58,10 @@ from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.widgets import MarkupLabel, BasicLabel
-from gramps.gui.dialog import ErrorDialog, QuestionDialog2, OkDialog
-from gramps.gui.glade import Glade
+from .managedwindow import ManagedWindow
+from .widgets import MarkupLabel, BasicLabel
+from .dialog import ErrorDialog, QuestionDialog2, OkDialog
+from .glade import Glade
 
 #-------------------------------------------------------------------------
 #

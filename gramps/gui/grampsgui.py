@@ -88,7 +88,7 @@ def register_stock_icons ():
     Add the gramps names for its icons (eg gramps-person) to the GTK icon
     factory. This allows all gramps modules to call up the icons by their name
     """
-    from gramps.gui.pluginmanager import base_reg_stock_icons
+    from .pluginmanager import base_reg_stock_icons
 
     #iconpath to the base image. The front of the list has highest priority
     if win():
@@ -186,7 +186,7 @@ def _display_welcome_message():
     Display a welcome message to the user.
     """
     if not config.get('behavior.betawarn'):
-        from gramps.gui.dialog import WarningDialog
+        from .dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
             _("This Gramps 3.x-trunk is a development release. "
@@ -226,7 +226,7 @@ class Gramps(object):
         import viewmanager
         from viewmanager import ViewManager
         from gramps.cli.arghandler import ArgHandler
-        from gramps.gui.tipofday import TipOfDay
+        from .tipofday import TipOfDay
 
         register_stock_icons()
 
@@ -259,7 +259,7 @@ class Gramps(object):
             TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
-        from gramps.gui.dialog import ErrorDialog
+        from .dialog import ErrorDialog
         """ Show basic errors in argument handling in GUI fashion"""
         ErrorDialog(_("Error parsing arguments"), string)
 
@@ -274,7 +274,7 @@ def __startgramps(errors, argparser):
     Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
-    from gramps.gui.dialog import ErrorDialog
+    from .dialog import ErrorDialog
     #handle first existing errors in GUI fashion
     if errors:
         ErrorDialog(errors[0], errors[1])
@@ -287,7 +287,7 @@ def __startgramps(errors, argparser):
         sys.exit(1)
 
     # add gui logger
-    from gramps.gui.logger import RotateHandler, GtkHandler
+    from .logger import RotateHandler, GtkHandler
     form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: "
                                 "%(filename)s: line %(lineno)d: %(message)s")
     # Create the log handlers

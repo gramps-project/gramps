@@ -285,7 +285,7 @@ class ProgressMeter(object):
         """
         Don't let the user close the progress dialog.
         """
-        from gramps.gui.dialog import WarningDialog
+        from .dialog import WarningDialog
         WarningDialog(
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog."),
@@ -355,7 +355,7 @@ def open_file_with_default_application( file_path ):
     @type file_path: string
     @return: nothing
     """
-    from gramps.gui.dialog import ErrorDialog
+    from .dialog import ErrorDialog
     norm_path = os.path.normpath( file_path )
 
     if not os.path.exists(norm_path):

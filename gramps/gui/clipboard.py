@@ -50,15 +50,15 @@ from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gramps.gen.config import config
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
-from gramps.gui.display import display_help
-from gramps.gui.managedwindow import ManagedWindow
+from .display import display_help
+from .managedwindow import ManagedWindow
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.utils.trans import trans_objclass
 from gramps.gen.constfunc import mac
-from gramps.gui.glade import Glade
-from gramps.gui.ddtargets import DdTargets
-from gramps.gui.makefilter import make_filter
-from gramps.gui.utils import is_right_click
+from .glade import Glade
+from .ddtargets import DdTargets
+from .makefilter import make_filter
+from .utils import is_right_click
 
 #-------------------------------------------------------------------------
 #
@@ -1517,7 +1517,7 @@ class MultiTreeView(Gtk.TreeView):
         self.defer_select=False
 
     def edit_obj(self, objclass, handle):
-        from gramps.gui.editors import (EditPerson, EditEvent, EditFamily, EditSource,
+        from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
                                  EditPlace, EditRepository, EditNote, EditMedia)
         if objclass == 'Person':
             person = self.dbstate.db.get_person_from_handle(handle)

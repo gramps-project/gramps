@@ -55,13 +55,13 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.callback import Callback
-from gramps.gui.utils import process_pending_events
-from gramps.gui.views.navigationview import NavigationView
+from .utils import process_pending_events
+from .views.navigationview import NavigationView
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.managedwindow import GrampsWindowManager
+from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gui.glade import Glade
+from .glade import Glade
 from gramps.gen.utils.db import navigation_label
 
 DISABLED = -1
@@ -306,7 +306,7 @@ def by_time(first, second):
     return cmp(second.get_time(), first.get_time())
 
 
-from gramps.gui.logger import RotateHandler
+from .logger import RotateHandler
 
 class WarnHandler(RotateHandler):
 

@@ -44,8 +44,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.dialog import QuestionDialog
-from gramps.gui.managedwindow import ManagedWindow
+from .dialog import QuestionDialog
+from .managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #

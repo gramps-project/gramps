@@ -62,10 +62,10 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       DbVersionError, 
                                       DbEnvironmentError)
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
-from gramps.gui.pluginmanager import GuiPluginManager
-from gramps.gui.dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
+from .pluginmanager import GuiPluginManager
+from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
-from gramps.gui.user import User
+from .user import User
 from gramps.gen.errors import DbError
 
 #-------------------------------------------------------------------------

@@ -39,7 +39,7 @@
 
    The module defines a singleton instance of _DdTargets called DdTargets.
 
-   from gramps.gui.ddtargets import DdTargets
+   from .ddtargets import DdTargets
 
    drag_dest_set(Gtk.DestDefaults.ALL,
                  DdTargets.all_targets(),

@@ -48,8 +48,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.glade import Glade
+from .managedwindow import ManagedWindow
+from .glade import Glade
 
 
 #-------------------------------------------------------------------------
