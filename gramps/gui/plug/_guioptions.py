@@ -1760,7 +1760,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
         style sheet editor object and let them play.  When they are
         done, update the displayed styles."""
         from gramps.gen.plug.docgen import StyleSheetList
-        from gramps.gui.plug.report._styleeditor import StyleListDisplay
+        from report._styleeditor import StyleListDisplay
         style_list = StyleSheetList(self.__option.get_style_file(), 
                                             self.__option.get_default_style())
         StyleListDisplay(style_list, None, None)

@@ -291,7 +291,7 @@ class PluginStatus(ManagedWindow):
         Reloads the addons from the wiki into the list.
         """
         import urllib
-        from gramps.gui.utils import ProgressMeter
+        from ..utils import ProgressMeter
         URL = "%s%s" % (URL_WIKISTRING, WIKI_EXTRAPLUGINS_RAWDATA)
         try:
             fp = urllib.urlopen(URL)
@@ -376,7 +376,7 @@ class PluginStatus(ManagedWindow):
         Get all addons from the wiki and install them.
         """
         import urllib
-        from gramps.gui.utils import ProgressMeter
+        from ..utils import ProgressMeter
         pm = ProgressMeter(_("Install all Addons"), _("Installing..."), message_area=True)
         pm.set_pass(total=len(self.addon_model))
         for row in self.addon_model:
@@ -393,7 +393,7 @@ class PluginStatus(ManagedWindow):
         """
         Toplevel method to get an addon.
         """
-        from gramps.gui.utils import ProgressMeter
+        from ..utils import ProgressMeter
         pm = ProgressMeter(_("Installing Addon"), message_area=True)
         pm.set_pass(total=2, header=_("Reading gramps-project.org..."))
         pm.step()
@@ -869,7 +869,7 @@ class ToolManagedWindowBase(ManagedWindow):
         buffer.set_text("")
         
     def pre_run(self):
-        from gramps.gui.utils import ProgressMeter
+        from ..utils import ProgressMeter
         self.progress = ProgressMeter(self.get_title())
         
     def run(self):
