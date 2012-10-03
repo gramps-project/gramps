@@ -46,15 +46,15 @@ import ConfigParser
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from gramps.gui.editors import EditPerson, EditFamily
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.utils import is_right_click, rgb_to_hex
-from gramps.gui.widgets.menuitem import add_menuitem
-from gramps.gui.plug.quick import run_quick_report_by_name
-from gramps.gui.display import display_help, display_url
-from gramps.gui.glade import Glade
-from gramps.gui.pluginmanager import GuiPluginManager
-from gramps.gui.widgets.undoablebuffer import UndoableBuffer
+from ..editors import EditPerson, EditFamily
+from ..managedwindow import ManagedWindow
+from ..utils import is_right_click, rgb_to_hex
+from .menuitem import add_menuitem
+from ..plug.quick import run_quick_report_by_name
+from ..display import display_help, display_url
+from ..glade import Glade
+from ..pluginmanager import GuiPluginManager
+from .undoablebuffer import UndoableBuffer
 
 #-------------------------------------------------------------------------
 #

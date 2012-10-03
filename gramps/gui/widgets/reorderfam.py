@@ -47,9 +47,9 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
-from gramps.gui.listmodel import ListModel
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.glade import Glade
+from ..listmodel import ListModel
+from ..managedwindow import ManagedWindow
+from ..glade import Glade
 from gramps.gen.display.name import displayer as name_displayer
 
 #-------------------------------------------------------------------------

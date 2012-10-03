@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.widgets.valuetoolitem import ValueToolItem
+from .valuetoolitem import ValueToolItem
 
 #-------------------------------------------------------------------------
 #

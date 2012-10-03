@@ -51,17 +51,17 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import StyledTextTagType
-from gramps.gui.widgets.styledtextbuffer import (ALLOWED_STYLES,
+from .styledtextbuffer import (ALLOWED_STYLES,
                                           MATCH_START, MATCH_END,
                                           MATCH_FLAVOR, MATCH_STRING,
                                           LinkTag)
-from gramps.gui.widgets.undoablestyledbuffer import UndoableStyledBuffer
-from gramps.gui.widgets.valueaction import ValueAction
-from gramps.gui.widgets.toolcomboentry import ToolComboEntry
-from gramps.gui.widgets.springseparator import SpringSeparatorAction
-from gramps.gui.spell import Spell
-from gramps.gui.display import display_url
-from gramps.gui.utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
+from .undoablestyledbuffer import UndoableStyledBuffer
+from .valueaction import ValueAction
+from .toolcomboentry import ToolComboEntry
+from .springseparator import SpringSeparatorAction
+from ..spell import Spell
+from ..display import display_url
+from ..utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display
 
@@ -752,7 +752,7 @@ class StyledTextEditor(Gtk.TextView):
                 if win_obj:
                     # Edit the object:
                     obj_class, prop, value = url[9:].split("/")
-                    from gramps.gui.editors import EditObject
+                    from ..editors import EditObject
                     EditObject(win_obj.dbstate, 
                                win_obj.uistate, 
                                win_obj.track, 
@@ -833,7 +833,7 @@ def uri_dialog(self, uri, callback):
     """
     Function to spawn the link editor.
     """
-    from gramps.gui.editors.editlink import EditLink
+    from ..editors.editlink import EditLink
     obj = find_parent_with_attr(self, attr="dbstate")
     if obj:
         if uri is None:

@@ -52,7 +52,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-from gramps.gui.autocomp import StandardCustomSelector, fill_entry
+from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear
 from gramps.gen.errors import ValidationError
@@ -651,7 +651,7 @@ class MonitoredDate(object):
         If date was in fact built, sets the date_obj to the newly built
         date.
         """
-        from gramps.gui.editors import EditDate
+        from ..editors import EditDate
         date_dialog = EditDate(self.date_obj, self.uistate, self.track)
         the_date = date_dialog.return_date
         self.update_after_editor(the_date)
@@ -860,7 +860,7 @@ class MonitoredTagList(object):
         if (event.type == Gdk.EventType.BUTTON_PRESS or
            (event.type == Gdk.EventType.KEY_PRESS and
             event.keyval in (_RETURN, _KP_ENTER))):
-            from gramps.gui.editors import EditTagList
+            from ..editors import EditTagList
             editor = EditTagList(self.tag_list, self.all_tags,
                                  self.uistate, self.track)
             if editor.return_list is not None:

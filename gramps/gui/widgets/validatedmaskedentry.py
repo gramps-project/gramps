@@ -50,7 +50,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
-from gramps.gui.widgets.undoableentry import UndoableEntry
+from .undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
 #

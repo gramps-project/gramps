@@ -50,7 +50,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.constfunc import has_display, win
-from gramps.gui.utils import rgb_to_hex
+from ..utils import rgb_to_hex
 
 #-------------------------------------------------------------------------
 #

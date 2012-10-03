@@ -44,7 +44,7 @@ _LOG = logging.getLogger(".widgets.styledtextbuffer")
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Pango
-from gramps.gui.widgets.undoablebuffer import UndoableBuffer
+from .undoablebuffer import UndoableBuffer
 WEIGHT_BOLD = Pango.Weight.BOLD
 STYLE_ITALIC = Pango.Style.ITALIC
 UNDERLINE_SINGLE = Pango.Underline.SINGLE
