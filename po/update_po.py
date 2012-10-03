@@ -275,7 +275,56 @@ def main():
         
     if options.fuzzy:
         fuzzy(args)
-                
+
+def create_filesfile():
+    """
+    Create a file with all files that we should translate.
+    These are all python files not in POTFILES.skip added with those in 
+    POTFILES.in
+    """
+    dir = os.getcwd()
+    topdir = os.path.normpath(os.path.join(dir, '..', 'gramps'))
+    lentopdir = len(topdir)
+    f = open('POTFILES.in')
+    infiles = dict(['../' + file.strip(), None] for file in f if file.strip() 
+                                                        and not file[0]=='#')
+    f.close()
+    f = open('POTFILES.skip')
+    notinfiles = dict(['../' + file.strip(), None] for file in f if file 
+                                                        and not file[0]=='#')
+    f.close()
+    
+    for (dirpath, dirnames, filenames) in os.walk(topdir):
+            root, subdir = os.path.split(dirpath)
+            if subdir.startswith("."):
+                #don't continue in this dir
+                dirnames[:] = []
+                continue
+            for dirname in dirnames:
+                # Skip hidden and system directories:
+                if dirname.startswith(".") or dirname in ["po", "locale"]:
+                    dirnames.remove(dirname)
+            #add the files which are python or glade files
+            # if the directory does not exist or is a link, do nothing
+            if not os.path.isdir(dirpath) or os.path.islink(dirpath):
+                continue
+            
+            for filename in os.listdir(dirpath):
+                name = os.path.split(filename)[1]
+                if name.endswith('.py') or name.endswith('.glade'):
+                    full_filename = os.path.join(dirpath, filename)
+                    #Skip the file if in POTFILES.skip
+                    if full_filename[lentopdir:] in notinfiles:
+                        continue
+                    #Add the file
+                    infiles['../gramps' + full_filename[lentopdir:]] = None
+    #now we write out all the files in form ../gramps/filename
+    f = open('tmpfiles', 'w')
+    for file in sorted(infiles.keys()):
+        f.write(file)
+        f.write('\n')
+    f.close()
+
 def listing(name, extensionlist):
     """
     List files according to extensions.
@@ -283,7 +332,7 @@ def listing(name, extensionlist):
     Like POTFILES.in and POTFILES.skip
     """
     
-    f = open('gramps')
+    f = open('tmpfiles')
     files = [file.strip() for file in f if file and not file[0]=='#']
     f.close()
     
@@ -364,6 +413,7 @@ def retrieve():
     """
     Extract messages from all files used by Gramps (python, glade, xml)
     """
+    create_filesfile()
     extract_xml()
     
     if not os.path.isfile('gramps.pot'):
@@ -405,6 +455,9 @@ def clean():
         os.unlink('glade.txt')
         print ("Remove 'glade.txt'")
 
+##    if os.path.isfile('tmpfiles'):
+##        os.unlink('tmpfiles')
+##        print ("Remove 'tmpfiles'")
 def merge(args):
     """
     Merge messages with 'gramps.pot'
