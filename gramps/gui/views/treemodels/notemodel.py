@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
-from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
+from .flatbasemodel import FlatBaseModel
 from gramps.gen.lib import (Note, NoteType, StyledText)
 
 #-------------------------------------------------------------------------

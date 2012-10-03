@@ -41,7 +41,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
 from gramps.gen.datehandler import format_time
-from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
+from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #

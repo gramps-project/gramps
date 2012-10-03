@@ -44,7 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
+from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #

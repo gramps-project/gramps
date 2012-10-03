@@ -51,23 +51,23 @@ from gi.repository import Pango
 # GRAMPS 
 #
 #----------------------------------------------------------------
-from gramps.gui.views.pageview import PageView
-from gramps.gui.views.navigationview import NavigationView
-from gramps.gui.columnorder import ColumnOrder
+from .pageview import PageView
+from .navigationview import NavigationView
+from ..columnorder import ColumnOrder
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.filters import SearchBar
-from gramps.gui.widgets.menuitem import add_menuitem
+from ..filters import SearchBar
+from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS, USE_TIPS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
-from gramps.gui.dialog import QuestionDialog, QuestionDialog2
-from gramps.gui.editors import FilterEditor
+from ..dialog import QuestionDialog, QuestionDialog2
+from ..editors import FilterEditor
 from gramps.gen.ggettext import sgettext as _
-from gramps.gui.ddtargets import DdTargets
-from gramps.gui.plug.quick import create_quickreport_menu, create_web_connect_menu
-from gramps.gui.utils import is_right_click
+from ..ddtargets import DdTargets
+from ..plug.quick import create_quickreport_menu, create_web_connect_menu
+from ..utils import is_right_click
 
 #----------------------------------------------------------------
 #
@@ -430,7 +430,7 @@ class ListView(NavigationView):
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
-            from gramps.gui.dialog import WarningDialog
+            from ..dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "

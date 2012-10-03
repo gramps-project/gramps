@@ -48,10 +48,10 @@ from gramps.gen.ggettext import gettext as _
 #
 #----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.dbguielement import DbGUIElement
-from gramps.gui.widgets.menutoolbuttonaction import MenuToolButtonAction
-from gramps.gui.grampsbar import GrampsBar
-from gramps.gui.configure import ConfigureDialog
+from ..dbguielement import DbGUIElement
+from ..widgets.menutoolbuttonaction import MenuToolButtonAction
+from ..grampsbar import GrampsBar
+from ..configure import ConfigureDialog
 from gramps.gen.config import config
 
 #------------------------------------------------------------------------------
@@ -232,7 +232,7 @@ class PageView(DbGUIElement):
         system.
         """
         import cPickle as pickle
-        from gramps.gui.clipboard import ClipboardWindow, obj2target
+        from ..clipboard import ClipboardWindow, obj2target
         handled = False
         for handle in handles:
             if handle is None:
@@ -277,7 +277,7 @@ class PageView(DbGUIElement):
 
         The code creates the Clipboard if it does not already exist.
         """
-        from gramps.gui.clipboard import ClipboardWindow
+        from ..clipboard import ClipboardWindow
         clipboard = None
         for widget in self.uistate.gwm.window_tree:
             if isinstance(widget, ClipboardWindow):

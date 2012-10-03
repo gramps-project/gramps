@@ -47,7 +47,7 @@ from gi.repository import Gtk
 # GRAMPS 
 #
 #----------------------------------------------------------------
-from gramps.gui.views.pageview import PageView
+from .pageview import PageView
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
@@ -251,7 +251,7 @@ class NavigationView(PageView):
             self.uistate.push_message(self.dbstate, 
                                       _("%s has been bookmarked") % name)
         else:
-            from gramps.gui.dialog import WarningDialog
+            from ..dialog import WarningDialog
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
@@ -332,7 +332,7 @@ class NavigationView(PageView):
         if defperson:
             self.change_active(defperson.get_handle())
         else:
-            from gramps.gui.dialog import WarningDialog
+            from ..dialog import WarningDialog
             WarningDialog(_("No Home Person"), 
                           _("You need to set a 'default person' to go to."))
 

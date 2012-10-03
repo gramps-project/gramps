@@ -45,8 +45,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
-from gramps.gui.views.treemodels.citationbasemodel import CitationBaseModel
+from .flatbasemodel import FlatBaseModel
+from .citationbasemodel import CitationBaseModel
 
 #-------------------------------------------------------------------------
 #

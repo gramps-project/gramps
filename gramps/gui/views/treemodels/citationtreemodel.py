@@ -53,8 +53,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.db import get_source_referents
-from gramps.gui.views.treemodels.treebasemodel import TreeBaseModel
-from gramps.gui.views.treemodels.citationbasemodel import CitationBaseModel
+from .treebasemodel import TreeBaseModel
+from .citationbasemodel import CitationBaseModel
 
 #-------------------------------------------------------------------------
 #

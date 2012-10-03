@@ -44,7 +44,7 @@ from gi.repository import Gtk
 from gramps.gen.datehandler import displayer, format_time, get_date_valid
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import EventRoleType, FamilyRelType
-from gramps.gui.views.treemodels.flatbasemodel import FlatBaseModel
+from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 

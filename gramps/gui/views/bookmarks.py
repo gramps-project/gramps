@@ -51,8 +51,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.display import display_help
-from gramps.gui.listmodel import ListModel
+from ..display import display_help
+from ..listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.ggettext import sgettext as _
