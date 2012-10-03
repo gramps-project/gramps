@@ -284,7 +284,7 @@ def listing(name, extensionlist):
     """
     
     f = open('gramps')
-    files = [file.strip() for file in f]
+    files = [file.strip() for file in f if file and not file[0]=='#']
     f.close()
     
     temp = open(name, 'w')

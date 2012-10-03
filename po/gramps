@@ -1,3 +1,4 @@
+#list of all files with to translate strings
 ../gramps/grampsapp.py
 ../gramps/cli/arghandler.py
 ../gramps/cli/argparser.py
@@ -659,6 +660,7 @@
 ../gramps/plugins/tool/leak.glade
 ../gramps/plugins/tool/finddupes.glade
 ../gramps/plugins/tool/mergecitations.glade
+#  TEST
 ../gramps/plugins/tool/ownereditor.glade
 ../gramps/plugins/tool/patchnames.glade
 ../gramps/plugins/tool/phpgedview.glade
