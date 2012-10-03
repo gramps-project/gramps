@@ -41,9 +41,9 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui import widgets
-from gramps.gui.filters import build_filter_model
-from gramps.gui.filters.sidebar import SidebarFilter
+from ... import widgets
+from .. import build_filter_model
+from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasPlace, 
                                      HasNoteRegexp, HasNoteMatchingSubstringOf, 

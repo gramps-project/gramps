@@ -41,11 +41,11 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui import widgets
+from ... import widgets
 from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer
-from gramps.gui.filters import build_filter_model
-from gramps.gui.filters.sidebar import SidebarFilter
+from .. import build_filter_model
+from . import SidebarFilter
 from gramps.gen.filters import GenericFilter, rules
 from gramps.gen.filters.rules.person import (RegExpName, SearchName, RegExpIdOf, 
                                       MatchIdOf, IsMale, IsFemale, 

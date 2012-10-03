@@ -27,8 +27,8 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 
-from gramps.gui import widgets
-from gramps.gui.dbguielement import DbGUIElement
+from ... import widgets
+from ...dbguielement import DbGUIElement
 from gramps.gen.config import config
 
 _RETURN = Gdk.keyval_from_name("Return")
@@ -228,7 +228,7 @@ class SidebarFilter(DbGUIElement):
         Callback which invokes the EditFilter dialog. Will create new
         filter if called if none is selected.
         """
-        from gramps.gui.editors import EditFilter
+        from ...editors import EditFilter
         from gramps.gen.filters import FilterList, GenericFilterFactory
         from gramps.gen.const import CUSTOM_FILTERS
         the_filter = None

@@ -39,10 +39,10 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui import widgets
+from ... import widgets
 from gramps.gen.lib import Event, EventType
-from gramps.gui.filters import build_filter_model
-from gramps.gui.filters.sidebar import SidebarFilter
+from .. import build_filter_model
+from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.event import (RegExpIdOf, HasIdOf, HasNoteRegexp, 
                                      HasNoteMatchingSubstringOf, MatchesFilter, 

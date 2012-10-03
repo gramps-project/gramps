@@ -40,10 +40,10 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.widgets import MonitoredMenu
+from ...widgets import MonitoredMenu
 from gramps.gen.lib import Citation
-from gramps.gui.filters import build_filter_model
-from gramps.gui.filters.sidebar import SidebarFilter
+from .. import build_filter_model
+from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.citation import (RegExpIdOf, HasIdOf, HasCitation, 
                                         HasNoteMatchingSubstringOf, 
