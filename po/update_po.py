@@ -256,7 +256,10 @@ def main():
         extract_xml()
         
     if options.glade:
+        create_filesfile()
         extract_glade()
+        if os.path.isfile('tmpfiles'):
+            os.unlink('tmpfiles')
         
     if options.catalog:
         retrieve()
@@ -413,12 +416,12 @@ def retrieve():
     """
     Extract messages from all files used by Gramps (python, glade, xml)
     """
-    create_filesfile()
     extract_xml()
     
     if not os.path.isfile('gramps.pot'):
         create_template()
         
+    create_filesfile()
     listing('python.txt', ['.py', '.py.in'])
     
     os.system('''%(xgettext)s --add-comments -j --directory=./ -d gramps '''
