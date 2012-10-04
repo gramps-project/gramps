@@ -6027,7 +6027,10 @@ class IndividualPage(BasePage):
         """
         self.page_title = self.sort_name
         thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list(), self.person)
-        section_title = Html("h3", self.page_title, inline =True)
+        section_title = Html("h3", self.page_title, inline =True) + \
+                (Html('sup') +\
+                 (Html('small') + 
+                  self.get_citation_links(self.person.get_citation_list())))
 
         # begin summaryarea division
         with Html("div", id = 'summaryarea') as summaryarea:
@@ -6038,12 +6041,15 @@ class IndividualPage(BasePage):
 
                 primary_name = self.person.get_primary_name()
                 all_names = [primary_name] + self.person.get_alternate_names()
+                # if the callname or the nickname is the same as the 'first
+                # name' (given name), then they are not displayed.
+                first_name = primary_name.get_first_name()
 
                 # Names [and their sources]
                 for name in all_names:
                     pname =  _nd.display_name(name)
-                    if name == primary_name:
-                        pname += self.get_citation_links(self.person.get_citation_list() ) 
+#                    if name == primary_name:
+#                        pname += self.get_citation_links(self.person.get_citation_list() ) 
                     pname += self.get_citation_links( name.get_citation_list() )
 
                     # if we have just a firstname, then the name is preceeded by ", "
@@ -6057,17 +6063,15 @@ class IndividualPage(BasePage):
 
                     type_ = str( name.get_type() )
                     trow = Html("tr") + (
-                        Html("td", type_, class_ = "ColumnAttribute", inline = True)
-                        )
-                    table += trow
-                    tcell = Html("td", pname, class_ = "ColumnValue")
-                    trow += tcell
+                           Html("td", type_, class_ = "ColumnAttribute",
+                                inline = True)
+                                         )
 
+                    tcell = Html("td", pname, class_ = "ColumnValue")
                     # display any notes associated with this name
                     notelist = name.get_note_list()
                     if len(notelist):
                         unordered = Html("ul")
-                        tcell += unordered
 
                         for notehandle in notelist:
                             note = self.dbase_.get_note_from_handle(notehandle)
@@ -6076,29 +6080,35 @@ class IndividualPage(BasePage):
  
                                 # attach note
                                 unordered += note_text
+                        tcell += unordered
+                    trow +=  tcell
+                    table += trow                   
 
-                # display call name
-                first_name = primary_name.get_first_name()
-                for name in all_names:
+                    # display the callname associated with this name.
                     call_name = name.get_call_name()
                     if call_name and call_name != first_name:
-                        call_name += self.get_citation_links(name.get_citation_list() )
                         trow = Html("tr") + (
                             Html("td", _("Call Name"), class_ = "ColumnAttribute", inline = True),
                             Html("td", call_name, class_ = "ColumnValue", inline = True)
                             )
                         table += trow
-  
-                # display the nickname attribute
-                nick_name = self.person.get_nick_name()
-                if nick_name and nick_name != first_name:
-                    nick_name += self.get_citation_links(self.person.get_citation_list() )
-                    trow = Html("tr") + (
-                        Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
-                        Html("td", nick_name, class_ = "ColumnValue", inline = True)
-                        )
-                    table += trow 
 
+                    # display the nickname associated with this name. Note that
+                    # this no longer displays the Nickname attribute (if
+                    # present), because the nickname attribute is deprecated in
+                    # favour of the nick_name property of the name structure
+                    # (see http://gramps.1791082.n4.nabble.com/Where-is-
+                    # nickname-stored-tp4469779p4484272.html), and also because
+                    # the attribute is (normally) displayed lower down the
+                    # wNarrative Web report.
+                    nick_name = name.get_nick_name()
+                    if nick_name and nick_name != first_name:
+                        trow = Html("tr") + (
+                            Html("td", _("Nick Name"), class_ = "ColumnAttribute", inline = True),
+                            Html("td", nick_name, class_ = "ColumnValue", inline = True)
+                            )
+                        table += trow 
+                    
                 # GRAMPS ID
                 person_gid = self.person.get_gramps_id()
                 if not self.noid and person_gid:
