@@ -117,30 +117,30 @@ class FamilyModel(FlatBaseModel):
     def column_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return unicode(name_displayer.sorted_name(person.primary_name))
+            return name_displayer.display_name(person.primary_name)
         else:
-            return u""
+            return ""
 
     def sort_father(self, data):
         if data[2]:
             person = self.db.get_person_from_handle(data[2])
-            return name_displayer.sort_string(person.primary_name)
+            return name_displayer.sorted_name(person.primary_name)
         else:
-            return u""
+            return ""
 
     def column_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return unicode(name_displayer.sorted_name(person.primary_name))
+            return name_displayer.display_name(person.primary_name)
         else:
-            return u""
+            return ""
 
     def sort_mother(self, data):
         if data[3]:
             person = self.db.get_person_from_handle(data[3])
-            return name_displayer.sort_string(person.primary_name)
+            return name_displayer.sorted_name(person.primary_name)
         else:
-            return u""
+            return ""
 
     def column_type(self, data):
         return unicode(gen.lib.FamilyRelType(data[5]))
