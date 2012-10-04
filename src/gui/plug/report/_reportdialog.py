@@ -109,13 +109,14 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         Close itself.
         cleanup things that can prevent garbage collection
         """
-        totwidg = range(len(self.widgets))
-        totwidg.reverse()
-        for ind in totwidg:
-            if hasattr(self.widgets[ind][1], 'clean_up'):
-                self.widgets[ind][1].clean_up()
-            del self.widgets[ind]
-        delattr(self, 'widgets')
+        if hasattr(self, 'widgets'): # handle pathlogical bug 4145
+            totwidg = range(len(self.widgets))
+            totwidg.reverse()
+            for ind in totwidg:
+                if hasattr(self.widgets[ind][1], 'clean_up'):
+                    self.widgets[ind][1].clean_up()
+                del self.widgets[ind]
+            delattr(self, 'widgets')
         for name, fram in self.frames.iteritems():
             totwidg = range(len(fram))
             totwidg.reverse()
