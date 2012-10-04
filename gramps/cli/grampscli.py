@@ -146,25 +146,26 @@ class CLIDbLoader(object):
             mode = 'w'
 
         dbclass = DbBsddb
-        dbclass.disable_signals()
+        
+        self.dbstate.change_database(dbclass())
+        self.dbstate.db.disable_signals()
 
         self._begin_progress()
         
         try:
-            dbclass.load(filename, self._pulse_progress, mode)
-            dbclass.set_save_path(filename)
-            self.dbstate.change_database(dbclass())
-        except DbUpgradeRequiredError, msg:
+            self.dbstate.db.load(filename, self._pulse_progress, mode)
+            self.dbstate.db.set_save_path(filename)
+        except gen.db.exceptions.DbUpgradeRequiredError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbVersionError, msg:
+        except gen.db.exceptions.DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError, msg:
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except DbError, msg:
+        except Errors.DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception:
