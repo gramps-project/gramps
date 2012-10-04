@@ -91,7 +91,7 @@ def TipsParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'tips.xml'.
     """
-    # in progress ...
+
     from xml.etree import ElementTree
     
     tree = ElementTree.parse(filename)
@@ -145,7 +145,7 @@ def HolidaysParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'holidays.xml'.
     """
-    # in progress ...
+
     from xml.etree import ElementTree
     
     tree = ElementTree.parse(filename)
@@ -180,6 +180,134 @@ def HolidaysParse(filename, mark):
     holidays.close()
     print ('Wrote ../gramps/plugins/lib/holidays.xml.in.h')
     root.clear()
+
+
+def XmlParse(filename, mark):
+    """
+    Experimental alternative to 'intltool-extract' for 'gramps.xml'.
+    """
+    
+    from xml.etree import ElementTree
+    
+    tree = ElementTree.parse(filename)
+    root = tree.getroot()
+    
+    '''
+    <?xml version="1.0" encoding="UTF-8"?>
+
+    <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+      <mime-type type="application/x-gramps">
+        <_comment>Gramps database</_comment>
+          <glob pattern="*.grdb"/>
+      </mime-type>
+      <mime-type type="application/x-gedcom">
+        <_comment>GEDCOM</_comment>
+          <glob pattern="*.ged"/>
+          <glob pattern="*.gedcom"/>
+          <glob pattern="*.GED"/>
+          <glob pattern="*.GEDCOM"/>
+    
+    msgid "Gramps database"
+    msgid "GEDCOM"
+    '''
+    
+    mime = open('../data/gramps.xml.in.h', 'w')
+    
+    for key in root.iter():
+        if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
+            comment = 'char *s = N_("%s");\n' % key.text
+            mime.write(comment)
+    
+    mime.close()
+    print ('Wrote ../data/gramps.xml.in.h')
+    root.clear()
+
+        
+def DesktopParse(filename):
+    """
+    Experimental alternative to 'intltool-extract' for 'gramps.desktop'.
+    """
+    
+    '''
+    [Desktop Entry]
+    _Name=Gramps
+    _GenericName=Genealogy System
+    _X-GNOME-FullName=Gramps Genealogy System
+    _Comment=Manage genealogical information, 
+             perform genealogical research and analysis
+             
+    msgid "Gramps"
+    msgid "Genealogy System"
+    msgid "Gramps Genealogy System"
+    msgid ""
+          "Manage genealogical information, 
+           perform genealogical research and analysis"
+    '''
+    
+    desktop = open('../data/gramps.desktop.in.h', 'w')
+    
+    f = open(filename)
+    lines = [file.strip() for file in f]
+    f.close()
+    
+    for line in lines:
+        if line[0] == '_':
+            for i in range(len(line)):
+                if line[i] == '=':
+                    val = 'char *s = N_("%s");\n' % line[i+1:len(line)]
+                    desktop.write(val)
+                    
+    desktop.close()
+    print ('Wrote ../data/gramps.desktop.in.h')
+                    
+
+def KeyParse(filename, mark):
+    """
+    Experimental alternative to 'intltool-extract' for 'gramps.keys'.
+    """
+    
+    '''
+    application/x-gramps-xml:
+		_description=Gramps XML database
+		default_action_type=application
+		short_list_application_ids=gramps
+		short_list_application_ids_for_novice_user_level=gramps
+		short_list_application_ids_for_intermediate_user_level=gramps
+		short_list_application_ids_for_advanced_user_level=gramps
+		category=Documents/Genealogy
+		icon-filename=/usr/share/gramps/gramps.png
+		open=gramps %f
+
+    application/x-gedcom:
+		_description=GEDCOM
+		default_action_type=application
+    
+    msgid "Gramps XML database"
+    msgid "GEDCOM"
+    '''
+    
+    key = open('../data/gramps.keys.in.h', 'w')
+    
+    f = open(filename)
+    lines = [file for file in f]
+    f.close()
+    
+    temp = []
+       
+    for line in lines:
+        for i in range(len(line)):
+            if line[i:i+12] == mark:
+                temp.append(line.strip())
+                
+    for t in temp:
+        for i in range(len(t)):
+            if t[i] == '=':
+                val = 'char *s = N_("%s");\n' % t[i+1:len(t)]
+                key.write(val)
+    
+    key.close()
+    print ('Wrote ../data/gramps.keys.in.h')
+    
 
 def main():
     """
@@ -363,8 +491,6 @@ def headers():
         headers.append('''../gramps/data/tips.xml.in.h''')
     if os.path.isfile('''../gramps/plugins/lib/holidays.xml.in.h'''):
         headers.append('''../gramps/plugins/lib/holidays.xml.in.h''')
-        
-    # cosmetic
     if os.path.isfile('''../data/gramps.xml.in.h'''):
         headers.append('''../data/gramps.xml.in.h''')
     if os.path.isfile('''../data/gramps.desktop.in.h'''):
@@ -377,20 +503,14 @@ def headers():
 def extract_xml():
     """
     Extract translation strings from XML based, keys, mime and desktop
-    files. Still performed by 'intltool-update'.
-    Need to look at own XML files parsing and custom translation marks.
+    files. Own XML files parsing and custom translation marks.
     """
-    #os.system('''intltool-extract --type=gettext/xml ../gramps/data/tips.xml.in''')
-    #os.system('''intltool-extract --type=gettext/xml ../gramps/plugins/lib/holidays.xml.in''')
-    
+  
     TipsParse('../gramps/data/tips.xml.in', '_tip')
     HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
-        
-    # cosmetic
-    # could be simple copies without .in extension
-    os.system('''intltool-extract --type=gettext/xml ../data/gramps.xml.in''')
-    os.system('''intltool-extract --type=gettext/ini ../data/gramps.desktop.in''')
-    os.system('''intltool-extract --type=gettext/keys ../data/gramps.keys.in''')
+    XmlParse('../data/gramps.xml.in', '_comment')
+    DesktopParse('../data/gramps.desktop.in')
+    KeyParse('../data/gramps.keys.in', '_description')
     
 def create_template():
     """
