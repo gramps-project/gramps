@@ -54,9 +54,10 @@ from gramps.gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
                            BooleanOption, DestinationOption, StringOption, 
                            TextOption, EnumeratedListOption, Option)
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.errors import ReportError
+from gramps.gen.errors import ReportError, FilterError
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
-                             CATEGORY_GRAPHVIZ, CATEGORY_CODE)
+                                    CATEGORY_GRAPHVIZ, CATEGORY_CODE, 
+                                    ReportOptions)
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
@@ -650,3 +651,109 @@ def run_report(db, name, **options_str_dict):
                                 options_str_dict)
                 return clr
     return clr
+
+#------------------------------------------------------------------------
+#
+# Function to write books from command line
+#
+#------------------------------------------------------------------------
+def cl_book(database, name, book, options_str_dict):
+
+    clr = CommandLineReport(database, name, CATEGORY_BOOK,
+                            ReportOptions, options_str_dict)
+
+    # Exit here if show option was given
+    if clr.show:
+        return
+    
+    selected_style = StyleSheet()
+
+    for item in book.get_item_list():
+        handler = item.option_class.handler
+
+        # Set up default style
+        handler.set_default_stylesheet_name(item.get_style_name())
+        default_style = StyleSheet()
+        make_default_style = item.option_class.make_default_style
+        make_default_style(default_style)
+
+        # Read all style sheets available for this item
+        style_file = handler.get_stylesheet_savefile()
+        style_list = StyleSheetList(style_file, default_style)
+
+        # Get the selected stylesheet
+        style_name = handler.get_default_stylesheet_name()
+        style_sheet = style_list.get_style_sheet(style_name)
+
+        for this_style_name in style_sheet.get_paragraph_style_names():
+            selected_style.add_paragraph_style(
+                    this_style_name, 
+                    style_sheet.get_paragraph_style(this_style_name))
+
+        for this_style_name in style_sheet.get_draw_style_names():
+            selected_style.add_draw_style(
+                    this_style_name,
+                    style_sheet.get_draw_style(this_style_name))
+
+        for this_style_name in style_sheet.get_table_style_names():
+            selected_style.add_table_style(
+                    this_style_name,
+                    style_sheet.get_table_style(this_style_name))
+
+        for this_style_name in style_sheet.get_cell_style_names():
+            selected_style.add_cell_style(
+                    this_style_name,
+                    style_sheet.get_cell_style(this_style_name))
+
+        # The option values were loaded magically by the book parser.
+        # But they still need to be applied to the menu options.
+        opt_dict = item.option_class.options_dict
+        menu = item.option_class.menu
+        for optname in opt_dict:
+            menu_option = menu.get_option_by_name(optname)
+            if menu_option:
+                menu_option.set_value(opt_dict[optname])
+
+    # write report
+    doc = clr.format(selected_style,
+                     PaperStyle(clr.paper, clr.orien, clr.marginl,
+                                clr.marginr, clr.margint, clr.marginb))
+    user = User()
+    rptlist = []
+    for item in book.get_item_list():
+        item.option_class.set_document(doc)
+        report_class = item.get_write_item()
+        obj = write_book_item(database,
+                              report_class, item.option_class, user)
+        rptlist.append(obj)
+
+    doc.open(clr.option_class.get_output())
+    doc.init()
+    newpage = 0
+    for item in rptlist:
+        if newpage:
+            doc.page_break()
+        newpage = 1
+        item.begin_report()
+        item.write_report()
+    doc.close()
+
+#------------------------------------------------------------------------
+#
+# Generic task function for book
+#
+#------------------------------------------------------------------------
+def write_book_item(database, report_class, options, user):
+    """Write the report using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        return report_class(database, options, user)
+    except ReportError, msg:
+        (m1, m2) = msg.messages()
+        print "ReportError", m1, m2
+    except FilterError, msg:
+        (m1, m2) = msg.messages()
+        print "FilterError", m1, m2
+    except:
+        log.error("Failed to write book item.", exc_info=True)
+    return None

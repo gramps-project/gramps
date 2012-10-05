@@ -272,7 +272,7 @@ class ArgParser(object):
                 self.exports.append((value, family_tree_format))
             elif option in ( '-a', '--action' ):
                 action = value
-                if action not in ( 'report', 'tool' ):
+                if action not in ('report', 'tool', 'book'):
                     print >> sys.stderr, "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""

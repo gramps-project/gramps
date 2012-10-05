@@ -72,7 +72,7 @@ from gramps.gen.plug import (START, END)
 from gramps.gen.plug import REPORT
 from gramps.gen.plug.report._constants import standalone_categories
 from .plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
-from .plug.report import report
+from .plug.report import report, BookSelector
 from gramps.gen.plug.utils import version_str_to_tup, load_addon_file
 from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
@@ -165,8 +165,12 @@ UIDEFAULT = '''<ui>
     <placeholder name="GoToBook"/>
   </menu>
   <menu action="ReportsMenu">
+    <menuitem action="Books"/>
+    <separator/>
+    <placeholder name="P_ReportsMenu"/>
   </menu>
   <menu action="ToolsMenu">
+    <placeholder name="P_ToolsMenu"/>
   </menu>
   <menu action="WindowsMenu">
     <placeholder name="WinMenu"/>
@@ -781,6 +785,7 @@ class ViewManager(CLIManager):
              _("Open the reports dialog"), self.reports_clicked),
             ('GoMenu', None, _('_Go')),
             ('ReportsMenu', None, _('_Reports')),
+            ('Books', None, _('Books...'), None, None, self.run_book),
             ('WindowsMenu', None, _('_Windows')),
             ('F2', None, 'F2', "F2", None, self.__keypress),
             ('F3', None, 'F3', "F3", None, self.__keypress),
@@ -854,6 +859,12 @@ class ViewManager(CLIManager):
             ('UndoHistory', 'gramps-undo-history',
              _('Undo History...'), "<PRIMARY>H", None, self.undo_history),
             ]
+
+    def run_book(self, action):
+        """
+        Run a book.
+        """
+        BookSelector(self.dbstate, self.uistate)
 
     def __keypress(self, action):
         """
@@ -1757,7 +1768,8 @@ class ViewManager(CLIManager):
         """
         actions = []
         ofile = StringIO()
-        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
+        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">'
+                    '<placeholder name="%s">' % (text, 'P_'+ text))
 
         menu = Gtk.Menu()
         menu.show()
@@ -1804,7 +1816,7 @@ class ViewManager(CLIManager):
                                 func(pdata, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
-        ofile.write('</menu></menubar></ui>')
+        ofile.write('</placeholder></menu></menubar></ui>')
         return (ofile.getvalue(), actions)
 
     def display_about_box(self, obj):

@@ -30,3 +30,4 @@
 from _reportdialog import report
 from _drawreportdialog import DrawReportDialog
 from _textreportdialog import TextReportDialog
+from _bookdialog import BookSelector

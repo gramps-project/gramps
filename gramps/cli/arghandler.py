@@ -47,13 +47,13 @@ from gramps.gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import (rm_tempdir, get_empty_tempdir, 
-                            get_unicode_path_from_env_var)
+                                   get_unicode_path_from_env_var)
 from gramps.gen.db import DbBsddb
 from clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
-from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE
-from plug import cl_report
+from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
+from plug import cl_report, cl_book
 from user import User
 
 #-------------------------------------------------------------------------
@@ -665,6 +665,31 @@ class ArgHandler(object):
                 else:
                     print >> sys.stderr, "   %s\t- %s" % (pdata.id,
                                  pdata.name.encode(sys.getfilesystemencoding()))
+
+        elif action == "book":
+            try:
+                options_str_dict = _split_options(options_str)
+            except:
+                options_str_dict = {}
+                print >> sys.stderr, _("Ignoring invalid options string.")
+
+            name = options_str_dict.pop('name', None)
+            book_list = BookList('books.xml', self.dbstate.db)
+            if name:
+                if name in book_list.get_book_names():
+                    cl_book(self.dbstate.db, name, book_list.get_book(name), 
+                            options_str_dict)
+                    return
+                msg = _("Unknown book name.")
+            else:
+                msg = _("Book name not given. "
+                        "Please use one of %(donottranslate)s=bookname.") % \
+                        {'donottranslate' : '[-p|--options] name'}
+
+            print >> sys.stderr, _("%s\n Available names are:") % msg
+            for name in sorted(book_list.get_book_names()):
+                print >> sys.stderr, "   %s" % name
+
         else:
             print >> sys.stderr, _("Unknown action: %s.") % action
             sys.exit(0)
