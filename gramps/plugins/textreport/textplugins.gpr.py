@@ -1,3 +1,4 @@
+# encoding:utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -398,3 +399,24 @@ plg.reportclass = 'AlphabeticalIndex'
 plg.optionclass = 'AlphabeticalIndexOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
+#------------------------------------------------------------------------
+#
+# Records Report
+#
+#------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id = 'records'
+plg.name = _("Records Report")
+plg.description = _("Shows some interesting records about people and families")
+plg.version = '1.1'
+plg.gramps_target_version = '4.0'
+plg.status = STABLE
+plg.fname = 'recordsreport.py'
+plg.ptype = REPORT
+plg.authors = [u"Reinhard Müller"]
+plg.authors_email = ["reinhard.mueller@bytewise.at"]
+plg.category = CATEGORY_TEXT
+plg.reportclass = 'RecordsReport'
+plg.optionclass = 'RecordsReportOptions'
+plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]

@@ -1,3 +1,4 @@
+# encoding:utf-8
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -1058,4 +1059,20 @@ register(GRAMPLET,
          gramplet = 'NoteFilter',
          gramplet_title=_("Filter"),
          navtypes=["Note"],
+         )
+
+register(GRAMPLET, 
+         id='Records Gramplet',
+         name=_("Records Gramplet"),
+         description=_("Shows some interesting records about people and families"),
+         version='1.0',
+         gramps_target_version='4.0',
+         status=STABLE,
+         fname='recordsgramplet.py',
+         authors=[u"Reinhard Müller"],
+         authors_email=["reinhard.mueller@bytewise.at"],
+         gramplet='RecordsGramplet',
+         height=230,
+         expand=True,
+         gramplet_title=_("Records")
          )

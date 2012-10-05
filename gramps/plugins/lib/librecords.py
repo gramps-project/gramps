@@ -35,17 +35,9 @@ from gramps.gen.ggettext import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.lib import (ChildRefType, Date, Span, EventType, Name,
-        StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
-        PARA_ALIGN_CENTER)
+from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText, 
+                            StyledTextTag, StyledTextTagType)
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.plug import Gramplet
-from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, 
-        FilterOption, NumberOption, PersonOption, StringOption)
-from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.utils.alive import probably_alive
 
 #------------------------------------------------------------------------
@@ -53,10 +45,8 @@ from gramps.gen.utils.alive import probably_alive
 # Global functions
 #
 #------------------------------------------------------------------------
-
 def _good_date(date):
     return (date is not None and date.is_valid())
-
 
 def _find_death_date(db, person):
     death_ref = person.get_death_ref()
@@ -71,8 +61,7 @@ def _find_death_date(db, person):
                 return event.get_date_object()
     return None
 
-
-def _find_records(db, filter, top_size, callname):
+def find_records(db, filter, top_size, callname):
 
     today = datetime.date.today()
     today_date = Date(today.year, today.month, today.day)
@@ -114,7 +103,7 @@ def _find_records(db, filter, top_size, callname):
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
-        name = _Person_get_styled_primary_name(person, callname)
+        name = _get_styled_primary_name(person, callname)
 
         if death_date is None:
             if probably_alive(person, db):
@@ -212,8 +201,8 @@ def _find_records(db, filter, top_size, callname):
         mother = db.get_person_from_handle(mother_handle)
 
         name = StyledText(_("%(father)s and %(mother)s")) % {
-                'father': _Person_get_styled_primary_name(father, callname),
-                'mother': _Person_get_styled_primary_name(mother, callname)}
+                'father': _get_styled_primary_name(father, callname),
+                'mother': _get_styled_primary_name(mother, callname)}
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
@@ -253,7 +242,9 @@ def _find_records(db, filter, top_size, callname):
             # Mother died but death date unknown or inexact
             continue
 
-        if divorce_date is None and father_death_date is None and mother_death_date is None:
+        if (divorce_date is None 
+            and father_death_date is None 
+            and mother_death_date is None):
             # Still married and alive
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
@@ -279,8 +270,8 @@ def _find_records(db, filter, top_size, callname):
             _record(family_shortest, family_longest,
                     duration, name, 'Family', family.handle, top_size)
 
-    return [(text, varname, locals()[varname]) for (text, varname, default) in RECORDS]
-
+    return [(text, varname, locals()[varname]) 
+                for (text, varname, default) in RECORDS]
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
@@ -293,7 +284,7 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
     if lowest is not None:
         lowest.append((high_value, value, text, handle_type, handle))
-        lowest.sort(lambda a,b: cmp(a[0], b[0]))        # FIXME: Ist das lambda notwendig?
+        lowest.sort(lambda a, b: cmp(a[0], b[0]))   # FIXME: Ist das lambda notwendig?
         for i in range(top_size, len(lowest)):
             if lowest[i-1][0] < lowest[i][0]:
                 del lowest[i:]
@@ -307,23 +298,17 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
                 del highest[i:]
                 break
 
-
-def _output(value):
-    return str(value)
-
-
 #------------------------------------------------------------------------
 #
 # Reusable functions (could be methods of gen.lib.*)
 #
 #------------------------------------------------------------------------
 
-_Name_CALLNAME_DONTUSE = 0
-_Name_CALLNAME_REPLACE = 1
-_Name_CALLNAME_UNDERLINE_ADD = 2
+CALLNAME_DONTUSE = 0
+CALLNAME_REPLACE = 1
+CALLNAME_UNDERLINE_ADD = 2
 
-
-def _Name_get_styled(name, callname, placeholder=False):
+def _get_styled(name, callname, placeholder=False):
     """
     Return a StyledText object with the name formatted according to the
     parameters:
@@ -347,10 +332,10 @@ def _Name_get_styled(name, callname, placeholder=False):
             n.surname = "____________"
 
     if n.call:
-        if callname == _Name_CALLNAME_REPLACE:
+        if callname == CALLNAME_REPLACE:
             # Replace first name with call name.
             n.first_name = n.call
-        elif callname == _Name_CALLNAME_UNDERLINE_ADD:
+        elif callname == CALLNAME_UNDERLINE_ADD:
             if n.call not in n.first_name:
                 # Add call name to first name.
                 n.first_name = "\"%(call)s\" (%(first)s)" % {
@@ -361,7 +346,7 @@ def _Name_get_styled(name, callname, placeholder=False):
     tags = []
 
     if n.call:
-        if callname == _Name_CALLNAME_UNDERLINE_ADD:
+        if callname == CALLNAME_UNDERLINE_ADD:
             # "name" in next line is on purpose: only underline the call name
             # if it was a part of the *original* first name
             if n.call in name.first_name:
@@ -372,8 +357,7 @@ def _Name_get_styled(name, callname, placeholder=False):
 
     return StyledText(text, tags)
 
-
-def _Person_get_styled_primary_name(person, callname, placeholder=False):
+def _get_styled_primary_name(person, callname, placeholder=False):
     """
     Return a StyledText object with the person's name formatted according to
     the parameters:
@@ -385,246 +369,7 @@ def _Person_get_styled_primary_name(person, callname, placeholder=False):
         placeholder if first name or surname are missing.
     """
 
-    return _Name_get_styled(person.get_primary_name(), callname, placeholder)
-
-
-#------------------------------------------------------------------------
-#
-# The Gramplet
-#
-#------------------------------------------------------------------------
-class RecordsGramplet(Gramplet):
-
-    def init(self):
-        self.set_use_markup(True)
-        self.set_tooltip(_("Double-click name for details"))
-        self.set_text(_("No Family Tree loaded."))
-
-
-    def db_changed(self):
-        self.dbstate.db.connect('person-rebuild', self.update)
-        self.dbstate.db.connect('family-rebuild', self.update)
-
-    def main(self):
-        self.set_text(_("Processing...") + "\n")
-        yield True
-        records = _find_records(self.dbstate.db, None, 3, _Name_CALLNAME_DONTUSE)
-        self.set_text("")
-        for (text, varname, top) in records:
-            yield True
-            self.render_text("<b>%s</b>" % text)
-            last_value = None
-            rank = 0
-            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
-                if value != last_value:
-                    last_value = value
-                    rank = number
-                self.append_text("\n  %s. " % (rank+1))
-                self.link(unicode(name), handletype, handle)
-                self.append_text(" (%s)" % _output(value))
-            self.append_text("\n")
-        self.append_text("", scroll_to='begin')
-        yield False
-
-
-#------------------------------------------------------------------------
-#
-# The Report
-#
-#------------------------------------------------------------------------
-class RecordsReport(Report):
-
-    def __init__(self, database, options, user):
-
-        Report.__init__(self, database, options, user)
-        menu = options.menu
-
-        self.filter_option =  menu.get_option_by_name('filter')
-        self.filter = self.filter_option.get_filter()
-
-        self.top_size = menu.get_option_by_name('top_size').get_value()
-        self.callname = menu.get_option_by_name('callname').get_value()
-
-        self.footer = menu.get_option_by_name('footer').get_value()
-
-        self.include = {}
-        for (text, varname, default) in RECORDS:
-            self.include[varname] = menu.get_option_by_name(varname).get_value()
-
-
-    def write_report(self):
-        """
-        Build the actual report.
-        """
-
-        records = _find_records(self.database, self.filter, self.top_size, self.callname)
-
-        self.doc.start_paragraph('REC-Title')
-        self.doc.write_text(_("Records"))
-        self.doc.end_paragraph()
-
-        self.doc.start_paragraph('REC-Subtitle')
-        self.doc.write_text(self.filter.get_name())
-        self.doc.end_paragraph()
-
-        for (text, varname, top) in records:
-            if not self.include[varname]:
-                continue
-
-            self.doc.start_paragraph('REC-Heading')
-            self.doc.write_text(text)
-            self.doc.end_paragraph()
-
-            last_value = None
-            rank = 0
-            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
-                if value != last_value:
-                    last_value = value
-                    rank = number
-                self.doc.start_paragraph('REC-Normal')
-                self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
-                self.doc.write_markup(unicode(name), name.get_tags())
-                self.doc.write_text(_(" (%(value)s)") % {'value': _output(value)})
-                self.doc.end_paragraph()
-
-        self.doc.start_paragraph('REC-Footer')
-        self.doc.write_text(self.footer)
-        self.doc.end_paragraph()
-
-
-#------------------------------------------------------------------------
-#
-# MenuReportOptions
-#
-#------------------------------------------------------------------------
-class RecordsReportOptions(MenuReportOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self, name, dbase):
-
-        self.__pid = None
-        self.__filter = None
-        self.__db = dbase
-        MenuReportOptions.__init__(self, name, dbase)
-
-
-    def add_menu_options(self, menu):
-
-        category_name = _("Report Options")
-
-        self.__filter = FilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                         _("Determines what people are included in the report."))
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
-        
-        self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
-        menu.add_option(category_name, "pid", self.__pid)
-        self.__pid.connect('value-changed', self.__update_filters)
-        
-        self.__update_filters()
-
-        top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
-        menu.add_option(category_name, "top_size", top_size)
-
-        callname = EnumeratedListOption(_("Use call name"), _Name_CALLNAME_DONTUSE)
-        callname.set_items([
-            (_Name_CALLNAME_DONTUSE, _("Don't use call name")),
-            (_Name_CALLNAME_REPLACE, _("Replace first names with call name")),
-            (_Name_CALLNAME_UNDERLINE_ADD, _("Underline call name in first names / add call name to first name"))])
-        menu.add_option(category_name, "callname", callname)
-
-        footer = StringOption(_("Footer text"), "")
-        menu.add_option(category_name, "footer", footer)
-
-        for (text, varname, default) in RECORDS:
-            option = BooleanOption(text, default)
-            if varname.startswith('person'):
-                category_name = _("Person Records")
-            elif varname.startswith('family'):
-                category_name = _("Family Records")
-            menu.add_option(category_name, varname, option)
-
-
-    def __update_filters(self):
-        """
-        Update the filter list based on the selected person
-        """
-        gid = self.__pid.get_value()
-        person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
-        self.__filter.set_filters(filter_list)
-
-
-    def __filter_changed(self):
-        """
-        Handle filter change. If the filter is not specific to a person,
-        disable the person option
-        """
-        filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
-            # Filters 1, 2, 3 and 4 rely on the center person
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
-            self.__pid.set_available(False)
-
-
-    def make_default_style(self, default_style):
-
-        #Paragraph Styles
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(16)
-        font.set_bold(True)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_("The style used for the report title."))
-        default_style.add_paragraph_style('REC-Title', para)
-
-        font = FontStyle()
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(12)
-        font.set_bold(True)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_bottom_border(True)
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
-        para.set_description(_("The style used for the report subtitle."))
-        default_style.add_paragraph_style('REC-Subtitle', para)
-
-        font = FontStyle()
-        font.set_size(12)
-        font.set_bold(True)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(6))
-        para.set_description(_('The style used for headings.'))
-        default_style.add_paragraph_style('REC-Heading', para)
-
-        font = FontStyle()
-        font.set_size(10)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_left_margin(0.5)
-        para.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style('REC-Normal', para)
-
-        font = FontStyle()
-        font.set_size(8)
-        para = ParagraphStyle()
-        para.set_font(font)
-        para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_top_border(True)
-        para.set_top_margin(ReportUtils.pt2cm(8))
-        para.set_description(_('The style used for the footer.'))
-        default_style.add_paragraph_style('REC-Footer', para)
-
+    return _get_styled(person.get_primary_name(), callname, placeholder)
 
 #------------------------------------------------------------------------
 #
@@ -632,20 +377,20 @@ class RecordsReportOptions(MenuReportOptions):
 #
 #------------------------------------------------------------------------
 RECORDS = [
-        (_("Youngest living person"),          'person_youngestliving',   True),
-        (_("Oldest living person"),            'person_oldestliving',     True),
-        (_("Person died at youngest age"),     'person_youngestdied',     False),
-        (_("Person died at oldest age"),       'person_oldestdied',       True),
-        (_("Person married at youngest age"),  'person_youngestmarried',  True),
-        (_("Person married at oldest age"),    'person_oldestmarried',    True),
-        (_("Person divorced at youngest age"), 'person_youngestdivorced', False),
-        (_("Person divorced at oldest age"),   'person_oldestdivorced',   False),
-        (_("Youngest father"),                 'person_youngestfather',   True),
-        (_("Youngest mother"),                 'person_youngestmother',   True),
-        (_("Oldest father"),                   'person_oldestfather',     True),
-        (_("Oldest mother"),                   'person_oldestmother',     True),
-        (_("Couple with most children"),       'family_mostchildren',     True),
-        (_("Living couple married most recently"),    'family_youngestmarried',  True),
-        (_("Living couple married most long ago"),    'family_oldestmarried',    True),
-        (_("Shortest past marriage"),          'family_shortest',         False),
-        (_("Longest past marriage"),           'family_longest',          True)]
+    (_("Youngest living person"),          'person_youngestliving',   True),
+    (_("Oldest living person"),            'person_oldestliving',     True),
+    (_("Person died at youngest age"),     'person_youngestdied',     False),
+    (_("Person died at oldest age"),       'person_oldestdied',       True),
+    (_("Person married at youngest age"),  'person_youngestmarried',  True),
+    (_("Person married at oldest age"),    'person_oldestmarried',    True),
+    (_("Person divorced at youngest age"), 'person_youngestdivorced', False),
+    (_("Person divorced at oldest age"),   'person_oldestdivorced',   False),
+    (_("Youngest father"),                 'person_youngestfather',   True),
+    (_("Youngest mother"),                 'person_youngestmother',   True),
+    (_("Oldest father"),                   'person_oldestfather',     True),
+    (_("Oldest mother"),                   'person_oldestmother',     True),
+    (_("Couple with most children"),       'family_mostchildren',     True),
+    (_("Living couple married most recently"), 'family_youngestmarried', True),
+    (_("Living couple married most long ago"), 'family_oldestmarried',   True),
+    (_("Shortest past marriage"),          'family_shortest',         False),
+    (_("Longest past marriage"),           'family_longest',          True)]
