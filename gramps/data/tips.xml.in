@@ -11,8 +11,7 @@
 
 <_tip number="5"><b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!</_tip>
 
-<_tip number="7"><b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter.
-</_tip>
+<_tip number="7"><b>Filtering People</b><br/>In the People View, you can 'filter' individuals based on many criteria. To define a new filter go to &quot;Edit &gt; Person Filter Editor&quot;. There you can name your filter and add and combine rules using the many preset rules. For example, you can define a filter to find all adopted people in the family tree. People without a birth date mentioned can also be filtered. To get the results save your filter and select it at the bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not visible, select View &gt; Filter.</_tip>
 
 <_tip number="8"><b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children.</_tip>
 
@@ -34,8 +33,7 @@
 
 <_tip number="17"><b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well.</_tip>
 
-<_tip number="18">
-<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people.</_tip>
+<_tip number="18"><b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people.</_tip>
 
 <_tip number="19"><b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear.</_tip>
 
