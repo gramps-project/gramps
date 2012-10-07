@@ -58,7 +58,6 @@ from gi.repository import GObject
 from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
 from ...pluginmanager import GuiPluginManager
-from gramps.gen.plug.docgen import StyleSheet, StyleSheetList
 from ...dialog import WarningDialog, ErrorDialog
 from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
 from ...managedwindow import ManagedWindow, set_titles
@@ -69,7 +68,7 @@ from .. import make_gui_option
 from types import ClassType
 
 # Import from specific modules in ReportBase
-from gramps.gen.plug.report import BookList, Book, BookItem
+from gramps.gen.plug.report import BookList, Book, BookItem, create_style_sheet
 from gramps.gen.plug.report import CATEGORY_BOOK, book_categories
 from gramps.gen.plug.report._options import ReportOptions
 from _reportdialog import ReportDialog
@@ -861,40 +860,6 @@ class BookDialog(DocReportDialog):
                                   'book', _("Book"))
         self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
-        self.selected_style = StyleSheet()
-
-        for item in self.book.get_item_list():
-            handler = item.option_class.handler
-
-            # Set up default style
-            handler.set_default_stylesheet_name(item.get_style_name())
-            default_style = StyleSheet()
-            make_default_style = item.option_class.make_default_style
-            make_default_style(default_style)
-
-            # Read all style sheets available for this item
-            style_file = handler.get_stylesheet_savefile()
-            style_list = StyleSheetList(style_file, default_style)
-
-            # Get the selected stylesheet
-            style_name = handler.get_default_stylesheet_name()
-            style_sheet = style_list.get_style_sheet(style_name)
-
-            for this_style_name in style_sheet.get_paragraph_style_names():
-                self.selected_style.add_paragraph_style(
-                    this_style_name,style_sheet.get_paragraph_style(this_style_name))
-
-            for this_style_name in style_sheet.get_draw_style_names():
-                self.selected_style.add_draw_style(
-                    this_style_name,style_sheet.get_draw_style(this_style_name))
-
-            for this_style_name in style_sheet.get_table_style_names():
-                self.selected_style.add_table_style(
-                    this_style_name,style_sheet.get_table_style(this_style_name))
-
-            for this_style_name in style_sheet.get_cell_style_names():
-                self.selected_style.add_cell_style(
-                    this_style_name,style_sheet.get_cell_style(this_style_name))
 
         response = self.window.run()
         if response == Gtk.ResponseType.OK:
@@ -923,7 +888,7 @@ class BookDialog(DocReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(self.selected_style, pstyle)
+        self.doc = self.format(None, pstyle)
         user = User()
         self.rptlist = []
         for item in self.book.get_item_list():
@@ -931,7 +896,8 @@ class BookDialog(DocReportDialog):
             report_class = item.get_write_item()
             obj = write_book_item(self.database, report_class, 
                                   item.option_class, user)
-            self.rptlist.append(obj)
+            style_sheet = create_style_sheet(item)
+            self.rptlist.append((obj, style_sheet))
         self.doc.open(self.target_path)
 
     def make_book(self):
@@ -940,13 +906,14 @@ class BookDialog(DocReportDialog):
 
         self.doc.init()
         newpage = 0
-        for item in self.rptlist:
+        for rpt, style_sheet in self.rptlist:
+            self.doc.set_style_sheet(style_sheet)
             if newpage:
                 self.doc.page_break()
             newpage = 1
-            if item:
-                item.begin_report()
-                item.write_report()
+            if rpt:
+                rpt.begin_report()
+                rpt.write_report()
         self.doc.close()
         
         if self.open_with_app.get_active():

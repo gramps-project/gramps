@@ -57,7 +57,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import ReportError, FilterError
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                                     CATEGORY_GRAPHVIZ, CATEGORY_CODE, 
-                                    ReportOptions)
+                                    ReportOptions, create_style_sheet)
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
@@ -666,44 +666,13 @@ def cl_book(database, name, book, options_str_dict):
     if clr.show:
         return
     
-    selected_style = StyleSheet()
-
+    # write report
+    doc = clr.format(None,
+                     PaperStyle(clr.paper, clr.orien, clr.marginl,
+                                clr.marginr, clr.margint, clr.marginb))
+    user = User()
+    rptlist = []
     for item in book.get_item_list():
-        handler = item.option_class.handler
-
-        # Set up default style
-        handler.set_default_stylesheet_name(item.get_style_name())
-        default_style = StyleSheet()
-        make_default_style = item.option_class.make_default_style
-        make_default_style(default_style)
-
-        # Read all style sheets available for this item
-        style_file = handler.get_stylesheet_savefile()
-        style_list = StyleSheetList(style_file, default_style)
-
-        # Get the selected stylesheet
-        style_name = handler.get_default_stylesheet_name()
-        style_sheet = style_list.get_style_sheet(style_name)
-
-        for this_style_name in style_sheet.get_paragraph_style_names():
-            selected_style.add_paragraph_style(
-                    this_style_name, 
-                    style_sheet.get_paragraph_style(this_style_name))
-
-        for this_style_name in style_sheet.get_draw_style_names():
-            selected_style.add_draw_style(
-                    this_style_name,
-                    style_sheet.get_draw_style(this_style_name))
-
-        for this_style_name in style_sheet.get_table_style_names():
-            selected_style.add_table_style(
-                    this_style_name,
-                    style_sheet.get_table_style(this_style_name))
-
-        for this_style_name in style_sheet.get_cell_style_names():
-            selected_style.add_cell_style(
-                    this_style_name,
-                    style_sheet.get_cell_style(this_style_name))
 
         # The option values were loaded magically by the book parser.
         # But they still need to be applied to the menu options.
@@ -714,28 +683,23 @@ def cl_book(database, name, book, options_str_dict):
             if menu_option:
                 menu_option.set_value(opt_dict[optname])
 
-    # write report
-    doc = clr.format(selected_style,
-                     PaperStyle(clr.paper, clr.orien, clr.marginl,
-                                clr.marginr, clr.margint, clr.marginb))
-    user = User()
-    rptlist = []
-    for item in book.get_item_list():
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
         obj = write_book_item(database,
                               report_class, item.option_class, user)
-        rptlist.append(obj)
+        style_sheet = create_style_sheet(item)
+        rptlist.append((obj, style_sheet))
 
     doc.open(clr.option_class.get_output())
     doc.init()
     newpage = 0
-    for item in rptlist:
+    for rpt, style_sheet in rptlist:
+        doc.set_style_sheet(style_sheet)
         if newpage:
             doc.page_break()
         newpage = 1
-        item.begin_report()
-        item.write_report()
+        rpt.begin_report()
+        rpt.write_report()
     doc.close()
 
 #------------------------------------------------------------------------

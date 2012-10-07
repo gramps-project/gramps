@@ -34,4 +34,4 @@ from _bibliography import Bibliography, Citation
 
 from _options import MenuReportOptions, ReportOptions
 
-from _book import BookList, Book, BookItem
+from _book import BookList, Book, BookItem, create_style_sheet

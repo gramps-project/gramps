@@ -61,6 +61,7 @@ except:
 #-------------------------------------------------------------------------
 from ...const import HOME_DIR
 from ...utils.cast import get_type_converter_by_name, type_name
+from ..docgen import StyleSheet, StyleSheetList
 from .. import BasePluginManager
 from . import book_categories
 
@@ -440,3 +441,52 @@ class BookParser(handler.ContentHandler):
             self.b.append_item(self.i)
         elif tag == "book":
             self.booklist.set_book(self.bname, self.b)
+
+#-------------------------------------------------------------------------
+#
+# Functions
+#
+#-------------------------------------------------------------------------
+def create_style_sheet(item):
+    """
+    Create a style sheet for a book item.
+    """
+    selected_style = StyleSheet()
+
+    handler = item.option_class.handler
+
+    # Set up default style
+    handler.set_default_stylesheet_name(item.get_style_name())
+    default_style = StyleSheet()
+    make_default_style = item.option_class.make_default_style
+    make_default_style(default_style)
+
+    # Read all style sheets available for this item
+    style_file = handler.get_stylesheet_savefile()
+    style_list = StyleSheetList(style_file, default_style)
+
+    # Get the selected stylesheet
+    style_name = handler.get_default_stylesheet_name()
+    style_sheet = style_list.get_style_sheet(style_name)
+
+    for this_style_name in style_sheet.get_paragraph_style_names():
+        selected_style.add_paragraph_style(
+                this_style_name, 
+                style_sheet.get_paragraph_style(this_style_name))
+
+    for this_style_name in style_sheet.get_draw_style_names():
+        selected_style.add_draw_style(
+                this_style_name,
+                style_sheet.get_draw_style(this_style_name))
+
+    for this_style_name in style_sheet.get_table_style_names():
+        selected_style.add_table_style(
+                this_style_name,
+                style_sheet.get_table_style(this_style_name))
+
+    for this_style_name in style_sheet.get_cell_style_names():
+        selected_style.add_cell_style(
+                this_style_name,
+                style_sheet.get_cell_style(this_style_name))
+
+    return selected_style
