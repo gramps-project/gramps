@@ -132,8 +132,8 @@ def TipsParse(filename, mark):
         tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
         tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
         tip = tip.replace("<br />", "<br/>")
-        tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
-        tip = tip.replace("\n<b>", "<b>") # special case tip 18
+        #tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
+        #tip = tip.replace("\n<b>", "<b>") # special case tip 18
         tip = tip.replace("</_tip>\n\n", "")
         tip = tip.replace('"', '&quot;')
         tips.write('char *s = N_("%s");\n' % tip)
