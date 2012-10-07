@@ -3,6 +3,8 @@
 #   Python files
 #
 
+Gramps.py
+
 # cli
 gramps/cli/__init__.py
 
@@ -431,15 +433,6 @@ gramps/plugins/quickview/__init__.py
 gramps/plugins/import/__init__.py
 gramps/plugins/import/test/importVCard_test.py
 
-# plugins/tool directory
-gramps/plugins/tool/dateparserdisplaytest.py
-gramps/plugins/tool/dumpgenderstats.py
-gramps/plugins/tool/__init__.py
-gramps/plugins/tool/phpgedviewconnector.py
-gramps/plugins/tool/populatesources.py
-gramps/plugins/tool/testcasegenerator.py
-gramps/plugins/tool/phpgedview.glade
-
 # plugins/gramplet directory
 gramps/plugins/gramplet/filter.py
 gramps/plugins/gramplet/gallery.py
@@ -479,11 +472,46 @@ gramps/plugins/rel/rel_sv.py
 gramps/plugins/sidebar/categorysidebar.py
 gramps/plugins/sidebar/__init__.py
 
+# plugins/tool directory
+gramps/plugins/tool/dateparserdisplaytest.py
+gramps/plugins/tool/dumpgenderstats.py
+gramps/plugins/tool/__init__.py
+gramps/plugins/tool/phpgedviewconnector.py
+gramps/plugins/tool/populatesources.py
+gramps/plugins/tool/testcasegenerator.py
+
+# plugins/view directory
+gramps/plugins/view/__init__.py
+
+# plugins/web directory
+gramps/plugins/webreport/__init__.py
+gramps/plugins/webstuff/__init__.py
+
+# test
+gramps/test/config_test.py
+gramps/test/gramps_cli_test.py
+gramps/test/__init__.py
+gramps/test/regrtest.py
+gramps/test/test/gedread_util_test.py
+gramps/test/test/test_util_test.py
+gramps/test/test_util.py
+gramps/test/utils_test.py
+
 #
 #   web
 #
-gramps/webapp/grampsdb/views.py
-gramps/webapp/utils.py
+gramps/webapp/connection.py
+gramps/webapp/context.py
+gramps/webapp/dbdjango.py
+gramps/webapp/grampsdb/admin.py
+gramps/webapp/grampsdb/forms.py
+gramps/webapp/grampsdb/__init__.py
+gramps/webapp/grampsdb/models.py
+gramps/webapp/grampsdb/profile.py
+gramps/webapp/grampsdb/templatetags/__init__.py
+gramps/webapp/grampsdb/templatetags/my_tags.py
+gramps/webapp/grampsdb/view/__init__.py
+gramps/webapp/grampsdb/view/png.py
 
 #
 #   Glade files
@@ -495,3 +523,4 @@ gramps/plugins/export/exportgeneweb.glade
 gramps/plugins/export/exportvcalendar.glade
 gramps/plugins/export/exportvcard.glade
 gramps/plugins/tool/check.glade
+gramps/plugins/tool/phpgedview.glade
