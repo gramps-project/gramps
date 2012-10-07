@@ -36,7 +36,7 @@ class IsPublic(Rule):
 
     name        = 'Objects not marked private'
     description = "Matches objects that are not indicated as private"
-    category    = 'General filters'
+    category    = _('General filters')
 
     def apply(self, db, obj):
         return not obj.get_privacy()

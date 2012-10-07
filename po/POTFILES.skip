@@ -5,7 +5,6 @@
 
 # cli
 gramps/cli/__init__.py
-gramps/cli/user.py
 
 # gen
 gramps/gen/errors.py
@@ -15,6 +14,7 @@ gramps/gen/sort.py
 gramps/gen/soundex.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
+gramps/gen/ggettext.py
 
 # gen.datehandler package
 gramps/gen/datehandler/_date_bg.py
@@ -45,7 +45,6 @@ gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py
 gramps/gen/db/read.py
 gramps/gen/db/write.py
-gramps/gen/ggettext.py
 
 # gen.filters package
 gramps/gen/filters/_filterlist.py
@@ -55,27 +54,8 @@ gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
 
 # gen.filters.rules package
-gramps/gen/filters/rules/_changedsincebase.py
-gramps/gen/filters/rules/_hasattributebase.py
-gramps/gen/filters/rules/_hascitationbase.py
-gramps/gen/filters/rules/_haseventbase.py
-gramps/gen/filters/rules/_hasgallerybase.py
-gramps/gen/filters/rules/_hasldsbase.py
-gramps/gen/filters/rules/_hasnotebase.py
-gramps/gen/filters/rules/_hasnoteregexbase.py
-gramps/gen/filters/rules/_hasnotesubstrbase.py
-gramps/gen/filters/rules/_hasreferencecountbase.py
-gramps/gen/filters/rules/_hassourcebase.py
-gramps/gen/filters/rules/_hassourcecountbase.py
-gramps/gen/filters/rules/_hastagbase.py
 gramps/gen/filters/rules/_hastextmatchingregexpof.py
 gramps/gen/filters/rules/__init__.py
-gramps/gen/filters/rules/_ispublic.py
-gramps/gen/filters/rules/_matcheseventfilterbase.py
-gramps/gen/filters/rules/_matchesfilterbase.py
-gramps/gen/filters/rules/_matchessourceconfidencebase.py
-gramps/gen/filters/rules/_matchessourcefilterbase.py
-gramps/gen/filters/rules/_regexpidbase.py
 
 # gen.filters.rules.person package
 gramps/gen/filters/rules/person/__init__.py
