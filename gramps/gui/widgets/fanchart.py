@@ -66,6 +66,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                                  get_age, get_timeperiod, preset_name)
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

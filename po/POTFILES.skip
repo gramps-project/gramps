@@ -347,7 +347,6 @@ gramps/gui/views/treemodels/sourcemodel.py
 gramps/gui/widgets/__init__.py
 gramps/gui/widgets/basicentry.py
 gramps/gui/widgets/fanchartdesc.py
-gramps/gui/widgets/fanchart.py
 gramps/gui/widgets/linkbox.py
 gramps/gui/widgets/menuitem.py
 gramps/gui/widgets/menutoolbuttonaction.py
