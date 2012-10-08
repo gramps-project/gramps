@@ -8183,11 +8183,15 @@ def sort_people(dbase, handle_list):
         sname_sub[surname].append(person_handle)
 
     sorted_lists = []
-    temp_list = sorted(sname_sub, key=locale.strxfrm)
+    # According to the comment in flatbasemodel:         This list is sorted
+    # ascending, via localized string sort. conv_unicode_tosrtkey_ongtk which
+    # uses strxfrm, which is apparently broken in Win ?? --> they should fix
+    # base lib, we need strxfrm, fix it in the Utils module.
+    temp_list = sorted(sname_sub, key=Utils.conv_unicode_tosrtkey_ongtk)
     
     for name in temp_list:
         slist = sorted(((sortnames[x], x) for x in sname_sub[name]), 
-                    key=lambda x:locale.strxfrm(x[0]))
+                    key=lambda x:Utils.conv_unicode_tosrtkey_ongtk(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
