@@ -62,6 +62,12 @@ if repository.enumerate_versions("Gtkspell"):
         HAVE_GTKSPELL = True
     except:
         pass
+elif repository.enumerate_versions("GtkSpell"):
+    try:
+        from gi.repository import GtkSpell as Gtkspell
+        HAVE_GTKSPELL = True
+    except:
+        pass
 
 if not HAVE_GTKSPELL:
     LOG.warn(_("Spelling checker is not installed"))
@@ -108,7 +114,10 @@ class Spell(object):
             else:
                 try:
                     #transfer full GTK object, so assign to an attribute!
-                    self.gtkspell_spell = Gtkspell.Spell.new()
+                    if Gtkspell._namespace == "Gtkspell":
+                        self.gtkspell_spell = Gtkspell.Spell.new()
+                    elif Gtkspell._namespace == "GtkSpell":
+                        self.gtkspell_spell = Gtkspell.Checker.new()
                     success = self.gtkspell_spell.attach(self.textview)
                     self._active_spellcheck = spellcheck_code
                 except:
@@ -120,9 +129,12 @@ class Spell(object):
             if spellcheck_code == 'on':
                 return
             else:
-                self.gtkspell_spell = Gtkspell.Spell.get_from_text_view(self.textview)
-                self.gtkspell_spell.detach()
-                self._active_spellcheck = spellcheck_code
+                    if Gtkspell._namespace == "Gtkspell":
+                        self.gtkspell_spell = Gtkspell.Spell.get_from_text_view(self.textview)
+                    elif Gtkspell._namespace == "GtkSpell":
+                        self.gtkspell_spell = Gtkspell.Checker.get_from_text_view(self.textview)
+                    self.gtkspell_spell.detach()
+                    self._active_spellcheck = spellcheck_code
 
     # Public API
     
