@@ -3,6 +3,7 @@
 #
 #   Files to extract from and then merge into
 #
+gramps/gen/const.py.in
 data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in

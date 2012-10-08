@@ -544,7 +544,7 @@ def retrieve():
     create_filesfile()
     listing('python.txt', ['.py', '.py.in'])
     
-    os.system('''%(xgettext)s --add-comments -j --directory=./ -d gramps '''
+    os.system('''%(xgettext)s -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
