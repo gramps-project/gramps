@@ -33,7 +33,7 @@ AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
 dnl Add the languages which your application supports here.
-ALL_LINGUAS="hu zh_CN cs da de es fr it nb nl nn pl pt_BR pt_PT ru sv fi lt sk bg hr sl ca sq he uk ja vi"
+ALL_LINGUAS="hu zh_CN cs da de es fr it nb nl nn pl pt_BR pt_PT ru sv fi lt sk bg hr sl ca sq he uk ja vi el"
 GETTEXT_PACKAGE=gramps
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext package name.])
