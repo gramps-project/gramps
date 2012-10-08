@@ -7,7 +7,6 @@ Gramps.py
 
 # cli
 gramps/cli/__init__.py
-#gramps/cli/plug/__init__.py
 
 # gen
 gramps/gen/constfunc.py
@@ -60,7 +59,6 @@ gramps/gen/db/dictionary.py
 #gramps/gen/db/read.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
-#gramps/gen/db/write.py
 
 # gen.display package
 gramps/gen/display/__init__.py
@@ -148,7 +146,6 @@ gramps/gen/lib/srcnote.py
 gramps/gen/lib/srcref.py
 gramps/gen/lib/styledtext.py
 gramps/gen/lib/styledtexttag.py
-#gramps/gen/lib/styledtexttagtype.py
 gramps/gen/lib/surname.py
 gramps/gen/lib/tableobj.py
 gramps/gen/lib/tagbase.py
@@ -167,7 +164,6 @@ gramps/gen/merge/test/merge_ref_test.py
 
 # gen mime API
 gramps/gen/mime/__init__.py
-#gramps/gen/mime/_winmime.py
 
 # gen plugin API
 gramps/gen/plug/__init__.py
@@ -233,13 +229,12 @@ gramps/gen/utils/callback.py
 gramps/gen/utils/callman.py
 gramps/gen/utils/cast.py
 gramps/gen/utils/config.py
-#gramps/gen/utils/db.py
 gramps/gen/utils/debug.py
 gramps/gen/utils/file.py
 gramps/gen/utils/id.py
 gramps/gen/utils/image.py
 gramps/gen/utils/libformatting.py
-#gramps/gen/utils/mactrans.py
+gramps/gen/utils/mactrans.py
 gramps/gen/utils/svn.py
 gramps/gen/utils/test/callback_test.py
 
@@ -311,7 +306,6 @@ gramps/gui/merge/__init__.py
 
 # gui.plug package
 gramps/gui/plug/export/__init__.py
-#gramps/gui/plug/_guioptions.py
 gramps/gui/plug/__init__.py
 gramps/gui/plug/quick/__init__.py
 gramps/gui/plug/report/_drawreportdialog.py
@@ -319,7 +313,6 @@ gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/__init__.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
-#gramps/gui/plug/_windows.py
 
 # gui/selectors - the GUI selectors package
 gramps/gui/selectors/__init__.py
@@ -353,7 +346,6 @@ gramps/gui/widgets/multitreeview.py
 gramps/gui/widgets/shortlistcomboentry.py
 gramps/gui/widgets/springseparator.py
 gramps/gui/widgets/statusbar.py
-#gramps/gui/widgets/styledtextbuffer.py
 gramps/gui/widgets/toolcomboentry.py
 gramps/gui/widgets/undoablebuffer.py
 gramps/gui/widgets/undoableentry.py
@@ -369,13 +361,13 @@ gramps/guiQML/qmlwidgets/TextButton.qml
 gramps/guiQML/qmlwidgets/TopBar.qml
 gramps/guiQML/questiondialog.py
 gramps/guiQML/viewmanager.py
-#gramps/guiQML/views/centralview.py
+gramps/guiQML/views/centralview.py
 gramps/guiQML/views/centralview.qml
-#gramps/guiQML/views/dbman.py
+gramps/guiQML/views/dbman.py
 gramps/guiQML/views/dbman.qml
 gramps/guiQML/views/__init__.py
 gramps/guiQML/views/peopleview.qml
-#gramps/guiQML/views/personview.py
+gramps/guiQML/views/personview.py
 
 # plugins .gpr.py
 gramps/plugins/sidebar/sidebar.gpr.py
@@ -385,29 +377,27 @@ gramps/plugins/tool/toolsdebug.gpr.py
 
 # plugins/docgen directory
 gramps/plugins/docgen/__init__.py
-#gramps/plugins/docgen/latexdoc.py
-#gramps/plugins/docgen/pdfdoc.py
+gramps/plugins/docgen/latexdoc.py
 
 # plugins/draw directory
 gramps/plugins/drawreport/__init__.py
 
 # plugins/export directory
-#gramps/plugins/export/exportftree.py
+gramps/plugins/export/exportftree.py
 gramps/plugins/export/__init__.py
 gramps/plugins/export/test/exportVCard_test.py
 
 # plugins/lib directory
 gramps/plugins/lib/__init__.py
-#gramps/plugins/lib/libcairodoc.py
+gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgrampsxml.py
-#gramps/plugins/lib/libholiday.py
+gramps/plugins/lib/libholiday.py
 gramps/plugins/lib/libhtml.py
 gramps/plugins/lib/libhtmlbackend.py
 gramps/plugins/lib/libmapservice.py
 gramps/plugins/lib/libmixin.py
 gramps/plugins/lib/libodfbackend.py
 gramps/plugins/lib/libsubstkeyword.py
-#gramps/plugins/lib/libtreebase.py
 
 # plugins/map directory
 gramps/plugins/lib/maps/constants.py
@@ -421,9 +411,9 @@ gramps/plugins/lib/maps/messagelayer.py
 gramps/plugins/lib/maps/selectionlayer.py
 
 # plugins/mapservices directory
-#gramps/plugins/mapservices/googlemap.py
+gramps/plugins/mapservices/googlemap.py
 gramps/plugins/mapservices/__init__.py
-#gramps/plugins/mapservices/openstreetmap.py
+gramps/plugins/mapservices/openstreetmap.py
 
 # plugins/quickview directory
 gramps/plugins/quickview/__init__.py
