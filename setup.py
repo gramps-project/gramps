@@ -46,7 +46,7 @@ import commands
 from stat import ST_MODE
 
 VERSION = '4.0.0'
-ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'en_GB', 'es', 'fi', 'fr', 'he',
+ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
 INTLTOOL_FILES = ('gramps/data/tips.xml', 'gramps/plugins/lib/holidays.xml')

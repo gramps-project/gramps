@@ -53,6 +53,7 @@ _LANG_MAP = {
     "cs" : _("Czech"),
     "da" : _("Danish"),
     "de" : _("German"),
+    "el" : _("Greek"),
     "en" : _("English"),
     "eo" : _("Esperanto"),
     "es" : _("Spanish"),
