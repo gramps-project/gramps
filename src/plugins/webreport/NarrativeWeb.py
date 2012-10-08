@@ -883,6 +883,7 @@ class BasePage(object):
                 (_("Event"),       "ColumnEvent"),
                 (_("Date"),        "ColumnDate"),
                 (_("Place"),       "ColumnPlace"),
+                (_("Description"), "ColumnDescription"),
                 (_("Notes"),       "ColumnNotes"),
                 (_("Sources"),     "ColumnSources") ]
         )
@@ -1113,12 +1114,15 @@ class BasePage(object):
             place_name = ReportUtils.place_name(self.dbase_, place_handle)
             place_hyper = self.place_link(place_handle, place_name, uplink = up)
 
+        evt_desc = evt.get_description()
+
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
         return [
                (_("Date"),  "ColumnDate",  _dd.display(evt.get_date_object()) ),
-               (_("Place"), "ColumnPlace", place_hyper) ]
+               (_("Place"), "ColumnPlace", place_hyper),
+               (_("Description"), "ColumnDescription", evt_desc)]
 
     def dump_ordinance(self, ldsobj, LDSSealedType):
         """
