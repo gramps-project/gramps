@@ -1201,9 +1201,9 @@ class RelationshipView(NavigationView):
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("%s %s") % (birth.type.get_abbreviation(), bdate)
+            value = _("%(event)s %(date)s") % {'event': birth.type.get_abbreviation(), 'date': bdate}
         elif ddate:
-            value = _("%s %s") % (death.type.get_abbreviation(), ddate)
+            value = _("%(event)s %(date)s") % {'event': death.type.get_abbreviation(), 'date': ddate}
         else:
             value = ""
         return value

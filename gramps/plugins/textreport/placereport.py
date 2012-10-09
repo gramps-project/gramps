@@ -218,13 +218,13 @@ class PlaceReport(Report):
                     person = self.database.get_person_from_handle(p_handle)
                     if person:
                         if people == "":
-                            people = "%s (%s)" \
-                                     % (_nd.display(person),
-                                        person.get_gramps_id())
+                            people = "%(name)s (%(id)s)" \
+                                     % {'name': _nd.display(person),
+                                        'id': person.get_gramps_id()}
                         else:
-                            people = _("%s and %s (%s)") \
-                                     % (people, _nd.display(person),
-                                        person.get_gramps_id())
+                            people = _("%(persons)s and %(name)s (%(id)s)") \
+                                     % {'persons': people, 'name': _nd.display(person),
+                                        'id': person.get_gramps_id()}
 
                 event_details = [date, event_type, people, descr]
                 self.doc.start_row()

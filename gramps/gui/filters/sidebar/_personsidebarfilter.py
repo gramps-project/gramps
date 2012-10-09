@@ -129,9 +129,9 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_entry(_('Gender'), self.filter_gender)
         self.add_text_entry(_('Birth date'), self.filter_birth, 
-                            _('example: "%s" or "%s"') % (msg1, msg2))
+                            _('example: "%(msg1)s" or "%(msg2)s"') % {'msg1':msg1, 'msg2':msg2})
         self.add_text_entry(_('Death date'), self.filter_death, 
-                            _('example: "%s" or "%s"') % (msg1, msg2))
+                            _('example: "%(msg1)s" or "%(msg2)s"') % {'msg1':msg1, 'msg2':msg2})
         self.add_entry(_('Event'), self.etype)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)

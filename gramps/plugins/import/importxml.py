@@ -316,12 +316,12 @@ class ImportInfo(object):
                 txt += key2string[key] % self.data_newobject[self.key2data[key]]
         if any(self.data_unknownobject):
             txt += _("\n The imported file was not self-contained.\n"
-                     "To correct for that, %d objects were created and\n"
+                     "To correct for that, %(new)d objects were created and\n"
                      "their typifying attribute was set to 'Unknown'.\n"
                      "The breakdown per category is depicted by the\n"
                      "number in parentheses. Where possible these\n"
-                     "'Unkown' objects are referenced by note %s.\n"
-                     ) % (sum(self.data_unknownobject), self.expl_note)
+                     "'Unkown' objects are referenced by note %(unknown)s.\n"
+                     ) % {'new': sum(self.data_unknownobject), 'unknown': self.expl_note}
         if self.data_relpath:
             txt += _("\nMedia objects with relative paths have been\n"
                      "imported. These paths are considered relative to\n"

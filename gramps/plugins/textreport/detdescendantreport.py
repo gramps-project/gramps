@@ -570,8 +570,8 @@ class DetDescendantReport(Report):
                 if mate_handle in self.dnumber:
                     self.doc.start_paragraph('DDR-MoreDetails')
                     self.doc.write_text_citation(
-                        self._("Ref: %s. %s") %
-                        (self.dnumber[mate_handle], name))
+                        self._("Ref: %(number)s. %(name)s") %
+                        {'number': self.dnumber[mate_handle], 'name': name})
                     self.doc.end_paragraph()
                 else:
                     self.dmates[mate_handle] = person.get_handle()

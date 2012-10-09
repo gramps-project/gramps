@@ -1517,8 +1517,8 @@ class BasePage(object):
                         center_person.handle, "ppl", self.up)
 
                     person_name = self.get_name(center_person)
-                    msg += _('<br />Created for <a href = "%s">%s</a>') % (
-                                center_person_url, person_name)
+                    msg += _('<br />Created for <a href = "%(url)s">%(name)s</a>') % {
+                                'url': center_person_url, 'name': person_name}
 
             # creation author
             footer += Html("p", msg, id = 'createdate')
@@ -6983,8 +6983,8 @@ class NavWebReport(Report):
             elif not os.path.isdir(dir_name):
                 parent_dir = os.path.dirname(dir_name)
                 if not os.path.isdir(parent_dir):
-                    msg = _("Neither %s nor %s are directories") % \
-                          (dir_name, parent_dir)
+                    msg = _("Neither %(current)s nor %(parent)s are directories") % \
+                          {'current': dir_name, 'parent': parent_dir}
                     self.user.notify_error(msg)
                     return
                 else:

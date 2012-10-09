@@ -3056,11 +3056,11 @@ class GedcomParser(UpdateCallback):
         if self.missing_references:
             self.dbase.commit_note(self.explanation, self.trans, time.time())
             txt = _("\nThe imported file was not self-contained.\n"
-                     "To correct for that, %d objects were created and\n"
+                     "To correct for that, %(new)d objects were created and\n"
                      "their typifying attribute was set to 'Unknown'.\n"
                      "Where possible these 'Unknown' objects are \n"
-                     "referenced by note %s.\n"
-                     ) % (self.missing_references, self.explanation.gramps_id)
+                     "referenced by note %(unknown)s.\n"
+                     ) % {'new': self.missing_references, 'unknown': self.explanation.gramps_id}
             self.__add_msg(txt)
             self.number_of_errors -= 1
             
@@ -6743,9 +6743,9 @@ class GedcomParser(UpdateCallback):
         if self.genby.upper() == "LEGACY":
             fname = os.path.basename(self.filename)
             WarningDialog(
-               _("Import of GEDCOM file %s with DEST=%s, "
+               _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
                  "could cause errors in the resulting database!")
-                   % (fname, self.genby),
+                   % {'filename': fname, 'by': self.genby),
                _("Look for nameless events.")
                )
  

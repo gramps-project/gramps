@@ -466,7 +466,7 @@ class EditExifMetadata(Gramplet):
                     self.exif_widgets["ImageSize"].show()
                     width, height = self.plugin_image.dimensions
                     self.exif_widgets["ImageSize"].set_text(_("Image "
-                        "Size : %04d x %04d pixels") % (width, height) )
+                        "Size : %04(width)d x %04(height)d pixels") % {'width':width, 'height':height})
 
                 # check for thumbnails
                 has_thumb = self.__check4thumbnails()

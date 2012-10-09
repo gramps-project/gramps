@@ -60,12 +60,13 @@ from gi.repository import GObject
 MIN_PYGOBJECT_VERSION = (3, 3, 2)
 if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
     print (_("Your pygobject version does not meet the "
-             "requirements. At least pygobject %d.%d.%d is needed to"
+             "requirements. At least pygobject "
+             "%(major)d.%(bug)d.%(minor)d is needed to"
              " start Gramps with a GUI.\n\n"
-             "Gramps will terminate now.") % (
-            MIN_PYGOBJECT_VERSION[0], 
-            MIN_PYGOBJECT_VERSION[1],
-            MIN_PYGOBJECT_VERSION[2]))
+             "Gramps will terminate now.") % 
+            {'major':MIN_PYGOBJECT_VERSION[0], 
+            'bug':MIN_PYGOBJECT_VERSION[1],
+            'minor':MIN_PYGOBJECT_VERSION[2]})
     sys.exit(0)
 
 #-------------------------------------------------------------------------

@@ -97,8 +97,8 @@ class Notes(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
-        self.page.set_text(_('%d of %d') % (self.current + 1,
-                                            len(self.note_list)))
+        self.page.set_text(_('%(current)d of %(total)d') % {'current': self.current + 1,
+                                            'total': len(self.note_list)})
 
     def left_clicked(self, button):
         """

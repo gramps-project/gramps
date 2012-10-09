@@ -323,15 +323,15 @@ class GeoFamily(GeoGraphyView):
                 handle = fam.get_father_handle()
                 father = dbstate.db.get_person_from_handle(handle)
                 if father:
-                    comment = _("Father : %s : %s") % ( father.gramps_id,
-                                                        _nd.display(father) )
+                    comment = _("Father : %(id)s : %(name)s") % {'id': father.gramps_id,
+                                                        'name': _nd.display(father) }
                     self._createpersonmarkers(dbstate, father,
                                               comment, family_id)
                 handle = fam.get_mother_handle()
                 mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
-                    comment = _("Mother : %s : %s") % ( mother.gramps_id,
-                                                        _nd.display(mother) )
+                    comment = _("Mother : %(id)s : %(name)s") % {'id': mother.gramps_id,
+                                                        'name': _nd.display(mother) }
                     self._createpersonmarkers(dbstate, mother,
                                               comment, family_id)
                 index = 0
