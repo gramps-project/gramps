@@ -51,9 +51,11 @@ The following packages are optional
                     src/plugins/view/geoview.gpr.py, so as to remove:
                        from gi.repository import WebKit as webkit
 
-   python-pygoocanvas:
-                    Required for the experimental Graphview plugin
+   goocanvas2:
+                    Required for the Graphview plugin
 
+No longer needed in 4.0:
+   pygoocanvas
 No longer needed in 3.3:
    python-enchant Enchant
 No longer needed in 3.2:
