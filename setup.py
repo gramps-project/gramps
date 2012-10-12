@@ -215,9 +215,9 @@ def write_gramps_script(install_cmd, build_scripts):
     '''
     filename = os.path.join(build_scripts, 'gramps')
     f_out = open(filename, 'w')
-    f_out.write('#! /bin/sh\n')
-    f_out.write('export GRAMPSDIR=%sgramps\n' % install_cmd.install_lib)
-    f_out.write('exec %s -O $GRAMPSDIR/gramps.py "$@"\n' % sys.executable)
+    f_out.write('#!/usr/bin/env python\n')
+    f_out.write('import gramps.grampsapp as app\n')
+    f_out.write('app.main()\n')
     f_out.close()
 
     if os.name == 'posix':
