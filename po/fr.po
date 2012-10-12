@@ -15624,7 +15624,7 @@ msgstr "Gramplet affichant les citations du lieu."
 # trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:756
 msgid "Media Citations"
-msgstr "Citation du medium"
+msgstr "Citations du medium"
 
 # trunk
 #: ../src/plugins/gramplet/gramplet.gpr.py:757
