@@ -12358,7 +12358,7 @@ msgstr "Gramplet affichant les citations du lieu."
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Media Citations"
-msgstr "Citation du medium"
+msgstr "Citations du medium"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
 msgid "Gramplet showing the citations for a media object"
