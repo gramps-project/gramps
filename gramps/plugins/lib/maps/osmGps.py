@@ -320,7 +320,7 @@ class OsmGps():
             self.end_selection = current
             self.zone_selection = False
         elif event.button == 3 and event.type == Gdk.EventType.BUTTON_PRESS:
-            self.build_nav_menu(osm, event, lat, lon )
+            self.build_nav_menu(osm, event, lat, lon)
         else:
             self.save_center(lat, lon)
 

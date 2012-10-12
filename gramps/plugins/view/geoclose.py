@@ -34,6 +34,7 @@ from gramps.gen.ggettext import gettext as _
 import operator
 from gi.repository import Gtk
 from math import *
+import cgi
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +51,7 @@ _LOG = logging.getLogger("GeoGraphy.geoclose")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
-from gramps.gen.datehandler import displayer
+from gramps.gen.datehandler import displayer, get_date
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.navigationview import NavigationView
@@ -58,6 +59,7 @@ from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.plugins.lib.maps import constants
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.gui.selectors import SelectorFactory
+from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback)
 
 #-------------------------------------------------------------------------
 #
@@ -214,8 +216,12 @@ class GeoClose(GeoGraphyView):
             self._createmap(p1, color, self.place_list_active, False)
         if self.refperson:
             color = self._config.get('geography.color1')
-            self.message_layer.add_message(_("Reference : %s" % _nd.display(self.refperson)))
-            self.message_layer.add_message(_("The other : %s" % _nd.display(p1)))
+            self.message_layer.add_message(_("Reference : %s ( %s - %s )" % ( _nd.display(self.refperson),
+                                                                              self.birth(self.refperson),
+                                                                              self.death(self.refperson))))
+            self.message_layer.add_message(_("The other : %s ( %s - %s )" % ( _nd.display(p1),
+                                                                              self.birth(p1),
+                                                                              self.death(p1))))
             self._createmap(self.refperson, color, self.place_list_ref, True)
         else:
             self.message_layer.add_message(_("You must choose one reference person."))
@@ -224,6 +230,40 @@ class GeoClose(GeoGraphyView):
                                              "Return to this view and use the history."))
         self.possible_meeting(self.place_list_ref, self.place_list_active)
         self.uistate.modify_statusbar(self.dbstate)
+
+    def birth(self, person):
+        """
+        return "" or the birth date of the person
+        """
+        birth = get_birth_or_fallback(self.dbstate.db, person)
+        if birth and birth.get_type() != EventType.BIRTH:
+            sdate = get_date(birth)
+            if sdate:
+                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                bdate = ""
+        elif birth:
+            bdate = cgi.escape(get_date(birth))
+        else:
+            bdate = ""
+        return bdate
+
+    def death(self, person):
+        """
+        return "" or the death date of the person
+        """
+        death = get_death_or_fallback(self.dbstate.db, person)
+        if death and death.get_type() != EventType.DEATH:
+            sdate = get_date(death)
+            if sdate:
+                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                ddate = ""
+        elif death:
+            ddate  = cgi.escape(get_date(death))
+        else:
+            ddate = ""
+        return ddate
 
     def define_actions(self):
         """

@@ -263,17 +263,18 @@ class GeoPlaces(GeoGraphyView):
                 place = dbstate.db.get_place_from_handle(place_handle)
                 self._create_one_place(place)
         else:
-            if place_x is None:
-                try:
-                    places_handle = dbstate.db.get_place_handles()
-                except:
-                    return
-                for place_hdl in places_handle:
-                    place = dbstate.db.get_place_from_handle(place_hdl)
-                    self._create_one_place(place)
-            else:
-                place = dbstate.db.get_place_from_handle(place_x)
+            try:
+                places_handle = dbstate.db.get_place_handles()
+            except:
+                return
+            for place_hdl in places_handle:
+                place = dbstate.db.get_place_from_handle(place_hdl)
                 self._create_one_place(place)
+            if place_x:
+                place = dbstate.db.get_place_from_handle(place_x)
+                self.osm.set_center_and_zoom(float(place.get_latitude()),
+                                             float(place.get_longitude()),
+                                             int(config.get("geography.zoom")))
         _LOG.debug(" stop createmap.")
         _LOG.debug("%s" % time.strftime("begin sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
