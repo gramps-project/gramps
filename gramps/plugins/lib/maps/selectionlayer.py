@@ -86,17 +86,20 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
                                                    circle[2] - circle[0])
             bottom_right = osmgpsmap.MapPoint.new_degrees(circle[1] - circle[0],
                                                        circle[2] + circle[0])
+            center = osmgpsmap.MapPoint.new_degrees(circle[1], circle[2])
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
+            crd_xc, crd_yc = gpsmap.convert_geographic_to_screen(center)
             width = float(crd_x2 - crd_x)
             height = float(crd_y2 - crd_y)
+            ctx.save()
+            ctx.translate(crd_xc, crd_yc)
             ctx.set_line_width(3.0)
             ctx.set_source_rgba(0.0, 0.0, 0.0, 0.8)
             ctx.scale(1.0, (height/width))
-            #ctx.arc(float(crd_x + crd_x2)/2, float(crd_y + crd_y2)/2, width, 0.0, 2*pi)
-            # TODO : placement bug : waiting bug correction on osm-gps-map
-            ctx.arc(float(crd_x + crd_x2)/2, float(crd_y+height*(height/width)/2), width, 0.0, 2*pi)
+            ctx.arc(float(0.0), float(0.0), width, 0.0, 2*pi)
             ctx.stroke()
+            ctx.restore()
 
         for rectangle in self.rectangles:
             top_left, bottom_right = rectangle
