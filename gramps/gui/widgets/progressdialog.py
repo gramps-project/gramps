@@ -432,7 +432,7 @@ class _GtkProgressBar(Gtk.VBox):
             self._cancel.connect("clicked", 
                                  lambda x: long_op_status.cancel())
             self._cancel.show()
-            self._hbox.pack_end(self._cancel)
+            self._hbox.pack_end(self._cancel, expand=False, fill=True, padding=0)
         
         self._hbox.pack_start(self._pbar, True, True, 0)
         
