@@ -135,7 +135,9 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
             while ( width > d_width ):
                 line_length = len(line_to_print)
                 character_length = int(width/line_length) + 1
-                max_length = int(d_width / character_length) - 5
+                max_length = int(d_width / character_length) - 1
+                while line_to_print[max_length] != ' ':
+                    max_length -= 1 # cut the line at a new word
                 ctx.move_to(coord_x, coord_y)
                 ctx.show_text(line_to_print[:max_length])
                 line_to_print = line_to_print[max_length:]
