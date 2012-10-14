@@ -548,8 +548,8 @@ class GeoFamClose(GeoGraphyView):
                 handle = fam.get_mother_handle()
                 mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
-                    comment = _("Mother : %(id)s : %(name)s") % ( mother.gramps_id,
-                                                        _nd.display(mother) )
+                    comment = _("Mother : %(id)s : %(name)s") % {'id': mother.gramps_id,
+                                                        'name': _nd.display(mother)}
                     self._createmap_for_one_person(mother, color, place_list, reference)
                 index = 0
                 child_ref_list = fam.get_child_ref_list()
