@@ -693,7 +693,6 @@ gramps/webapp/grampsdb/view/repository.py
 gramps/webapp/grampsdb/view/source.py
 gramps/webapp/grampsdb/view/tag.py
 gramps/webapp/grampsdb/views.py
-osm-gps-map/examples/mapviewer.ui
 #
 #   Files to extract from and then merge into
 #
