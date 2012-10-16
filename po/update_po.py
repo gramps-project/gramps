@@ -20,6 +20,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+"""
+update_po.py for Gramps translations.
+
+Examples: 
+   python update_po.py -t
+
+      Tests if 'gettext' and 'python' are well configured.
+
+   python update_po.py -h
+
+      Calls help and command line interface.
+
+   python update_po.py -p
+
+      Generates a new template/catalog (gramps.pot).
+      
+   python update_po.py -m de.po
+
+      Merges 'de.po' file with 'gramps.pot'.
+      
+   python update_po.py -k de.po
+
+      Checks 'de.po' file, tests to compile and generates a textual resume.
+"""
+
 from __future__ import print_function
 
 import os
