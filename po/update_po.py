@@ -472,9 +472,7 @@ def create_filesfile():
                     full_filename = os.path.join(dirpath, filename)
                     #Skip the file if in POTFILES.skip
                     if full_filename[lentopdir:] in notinfiles:
-                        continue
-                    #Add the file
-                    infiles['../gramps' + full_filename[lentopdir:]] = None
+                        infiles['../gramps' + full_filename[lentopdir:]] = None
     #now we write out all the files in form ../gramps/filename
     f = open('tmpfiles', 'w')
     for file in sorted(infiles.keys()):
