@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-16 11:08+0200\n"
+"POT-Creation-Date: 2012-10-16 12:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22116,7 +22116,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:208
 #, python-format
-msgid "%(date)s in %(place)s. "
+msgid "%s in %s. "
 msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:297

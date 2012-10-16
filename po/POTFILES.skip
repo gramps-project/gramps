@@ -2,12 +2,10 @@
 #
 #   Python files
 #
-
 Gramps.py
-
+gramps/__init__.py
 # cli
 gramps/cli/__init__.py
-
 # gen
 gramps/gen/constfunc.py
 gramps/gen/dbstate.py
@@ -19,7 +17,6 @@ gramps/gen/soundex.py
 gramps/gen/updatecallback.py
 gramps/gen/user.py
 gramps/gen/ggettext.py
-
 # gen.datehandler package
 gramps/gen/datehandler/_date_bg.py
 gramps/gen/datehandler/_date_ca.py
@@ -48,7 +45,6 @@ gramps/gen/datehandler/_dateutils.py
 gramps/gen/datehandler/_date_zh.py
 gramps/gen/datehandler/_grampslocale.py
 gramps/gen/datehandler/__init__.py
-
 # gen db API
 gramps/gen/db/__init__.py
 gramps/gen/db/backup.py
@@ -59,50 +55,37 @@ gramps/gen/db/dictionary.py
 #gramps/gen/db/read.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
-
 # gen.display package
 gramps/gen/display/__init__.py
-
 # gen.filters package
 gramps/gen/filters/_filterlist.py
 gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/__init__.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
-
 # gen.filters.rules package
 gramps/gen/filters/rules/_hastextmatchingregexpof.py
 gramps/gen/filters/rules/__init__.py
-
 # gen.filters.rules.person package
 gramps/gen/filters/rules/person/__init__.py
 gramps/gen/filters/rules/person/_hastextmatchingregexpof.py
-
 # gen.filters.rules.family package
 gramps/gen/filters/rules/family/__init__.py
 gramps/gen/filters/rules/family/_memberbase.py
-
 # gen.filters.rules.event package
 gramps/gen/filters/rules/event/__init__.py
-
 # gen.filters.rules.place package
 gramps/gen/filters/rules/place/__init__.py
-
 # gen.filters.rules.source package
 gramps/gen/filters/rules/source/__init__.py
-
 # gen.filters.rules.citation package
 gramps/gen/filters/rules/citation/__init__.py
-
 # gen.filters.rules.media package
 gramps/gen/filters/rules/media/__init__.py
-
 # gen.filters.rules.repository package
 gramps/gen/filters/rules/repository/__init__.py
-
 # gen.filters.rules.note package
 gramps/gen/filters/rules/note/__init__.py
-
 # gen lib API
 gramps/gen/lib/__init__.py
 gramps/gen/lib/address.py
@@ -156,15 +139,12 @@ gramps/gen/lib/test/merge_test.py
 gramps/gen/lib/url.py
 gramps/gen/lib/urlbase.py
 gramps/gen/lib/witness.py
-
 # gen.merge package
 gramps/gen/merge/__init__.py
 gramps/gen/merge/diff.py
 gramps/gen/merge/test/merge_ref_test.py
-
 # gen mime API
 gramps/gen/mime/__init__.py
-
 # gen plugin API
 gramps/gen/plug/__init__.py
 gramps/gen/plug/_docgenplugin.py
@@ -210,19 +190,16 @@ gramps/gen/plug/report/_bibliography.py
 gramps/gen/plug/report/__init__.py
 gramps/gen/plug/report/_options.py
 gramps/gen/plug/report/_reportbase.py
-
 # gen proxy API
 gramps/gen/proxy/__init__.py
 gramps/gen/proxy/filter.py
 gramps/gen/proxy/living.py
 gramps/gen/proxy/proxybase.py
 gramps/gen/proxy/referencedbyselection.py
-
 # gen.simple
 gramps/gen/simple/__init__.py
 gramps/gen/simple/_simpledoc.py
 #gramps/gen/simple/_simpletable.py
-
 # gen utils API
 gramps/gen/utils/__init__.py
 gramps/gen/utils/callback.py
@@ -237,13 +214,11 @@ gramps/gen/utils/libformatting.py
 gramps/gen/utils/mactrans.py
 gramps/gen/utils/svn.py
 gramps/gen/utils/test/callback_test.py
-
 # gen.utils.docgen
 gramps/gen/utils/docgen/__init__.py
 gramps/gen/utils/docgen/CSVTab.py
 gramps/gen/utils/docgen/ODSTab.py
 gramps/gen/utils/docgen/TabbedDoc.py
-
 # gui - GUI code
 gramps/gui/__init__.py
 gramps/gui/autocomp.py
@@ -259,12 +234,10 @@ gramps/gui/pluginmanager.py
 gramps/gui/thumbnails.py
 gramps/gui/user.py
 gramps/gui/glade/catalog/grampswidgets.py
-
 # gui/editors - the GUI editors package
 gramps/gui/editors/__init__.py
 gramps/gui/editors/editreference.py
 gramps/gui/editors/editsecondary.py
-
 # gui/editors/displaytabs - the GUI display tabs package
 gramps/gui/editors/displaytabs/__init__.py
 gramps/gui/editors/displaytabs/addressmodel.py
@@ -288,22 +261,18 @@ gramps/gui/editors/displaytabs/reporefmodel.py
 gramps/gui/editors/displaytabs/sourcebackreflist.py
 gramps/gui/editors/displaytabs/surnamemodel.py
 gramps/gui/editors/displaytabs/webmodel.py
-
 # gui.filters package
 gramps/gui/filters/_filtercombobox.py
 gramps/gui/filters/_filtermenu.py
 #gramps/gui/filters/_filterstore.py
 gramps/gui/filters/__init__.py
 gramps/gui/filters/sidebar/__init__.py
-
 # gui.logger package
 gramps/gui/logger/__init__.py
 gramps/gui/logger/_gtkhandler.py
 gramps/gui/logger/_rotatehandler.py
-
 # gui.merge package
 gramps/gui/merge/__init__.py
-
 # gui.plug package
 gramps/gui/plug/export/__init__.py
 gramps/gui/plug/__init__.py
@@ -313,16 +282,13 @@ gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/__init__.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
-
 # gui/selectors - the GUI selectors package
 gramps/gui/selectors/__init__.py
 gramps/gui/selectors/baseselector.py
 gramps/gui/selectors/selectorexceptions.py
 gramps/gui/selectors/selectorfactory.py
-
 # gui/views - the GUI views package
 gramps/gui/views/__init__.py
-
 # gui/views/treemodels - the GUI views package
 gramps/gui/views/treemodels/__init__.py
 gramps/gui/views/treemodels/citationbasemodel.py
@@ -334,7 +300,6 @@ gramps/gui/views/treemodels/lru.py
 gramps/gui/views/treemodels/notemodel.py
 gramps/gui/views/treemodels/repomodel.py
 gramps/gui/views/treemodels/sourcemodel.py
-
 # gui/widgets - the GUI widgets package
 gramps/gui/widgets/__init__.py
 gramps/gui/widgets/basicentry.py
@@ -353,7 +318,6 @@ gramps/gui/widgets/undoablestyledbuffer.py
 gramps/gui/widgets/validatedcomboentry.py
 gramps/gui/widgets/valueaction.py
 gramps/gui/widgets/valuetoolitem.py
-
 # gui qt
 gramps/guiQML/grampsqml.py
 gramps/guiQML/__init__.py
@@ -368,25 +332,20 @@ gramps/guiQML/views/dbman.qml
 gramps/guiQML/views/__init__.py
 gramps/guiQML/views/peopleview.qml
 gramps/guiQML/views/personview.py
-
 # plugins .gpr.py
 gramps/plugins/sidebar/sidebar.gpr.py
 gramps/plugins/export/export.gpr.py
 gramps/plugins/__init__.py
 gramps/plugins/tool/toolsdebug.gpr.py
-
 # plugins/docgen directory
 gramps/plugins/docgen/__init__.py
 gramps/plugins/docgen/latexdoc.py
-
 # plugins/draw directory
 gramps/plugins/drawreport/__init__.py
-
 # plugins/export directory
 gramps/plugins/export/exportftree.py
 gramps/plugins/export/__init__.py
 gramps/plugins/export/test/exportVCard_test.py
-
 # plugins/lib directory
 gramps/plugins/lib/__init__.py
 gramps/plugins/lib/libcairodoc.py
@@ -398,7 +357,6 @@ gramps/plugins/lib/libmapservice.py
 gramps/plugins/lib/libmixin.py
 gramps/plugins/lib/libodfbackend.py
 gramps/plugins/lib/libsubstkeyword.py
-
 # plugins/map directory
 gramps/plugins/lib/maps/constants.py
 gramps/plugins/lib/maps/datelayer.py
@@ -409,19 +367,15 @@ gramps/plugins/lib/maps/lifewaylayer.py
 gramps/plugins/lib/maps/markerlayer.py
 gramps/plugins/lib/maps/messagelayer.py
 gramps/plugins/lib/maps/selectionlayer.py
-
 # plugins/mapservices directory
 gramps/plugins/mapservices/googlemap.py
 gramps/plugins/mapservices/__init__.py
 gramps/plugins/mapservices/openstreetmap.py
-
 # plugins/quickview directory
 gramps/plugins/quickview/__init__.py
-
 # plugins/import directory
 gramps/plugins/import/__init__.py
 gramps/plugins/import/test/importVCard_test.py
-
 # plugins/gramplet directory
 gramps/plugins/gramplet/filter.py
 gramps/plugins/gramplet/gallery.py
@@ -432,10 +386,8 @@ gramps/plugins/gramplet/notegramplet.py
 gramps/plugins/gramplet/populategramplet.py
 gramps/plugins/gramplet/populategramplet.gpr.py
 gramps/plugins/gramplet/pythongramplet.py
-
 # plugins/graph directory
 gramps/plugins/graph/__init__.py
-
 # plugins/rel directory
 gramps/plugins/rel/__init__.py
 gramps/plugins/rel/rel_ca.py
@@ -456,11 +408,9 @@ gramps/plugins/rel/rel_ru.py
 gramps/plugins/rel/rel_sk.py
 gramps/plugins/rel/rel_sl.py
 gramps/plugins/rel/rel_sv.py
-
 # plugins/sidebar directory
 gramps/plugins/sidebar/categorysidebar.py
 gramps/plugins/sidebar/__init__.py
-
 # plugins/tool directory
 gramps/plugins/tool/dateparserdisplaytest.py
 gramps/plugins/tool/dumpgenderstats.py
@@ -468,14 +418,11 @@ gramps/plugins/tool/__init__.py
 gramps/plugins/tool/phpgedviewconnector.py
 gramps/plugins/tool/populatesources.py
 gramps/plugins/tool/testcasegenerator.py
-
 # plugins/view directory
 gramps/plugins/view/__init__.py
-
 # plugins/web directory
 gramps/plugins/webreport/__init__.py
 gramps/plugins/webstuff/__init__.py
-
 # test
 gramps/test/config_test.py
 gramps/test/gramps_cli_test.py
@@ -485,7 +432,6 @@ gramps/test/test/gedread_util_test.py
 gramps/test/test/test_util_test.py
 gramps/test/test_util.py
 gramps/test/utils_test.py
-
 #
 #   web
 #
@@ -501,7 +447,6 @@ gramps/webapp/grampsdb/templatetags/__init__.py
 gramps/webapp/grampsdb/templatetags/my_tags.py
 gramps/webapp/grampsdb/view/__init__.py
 gramps/webapp/grampsdb/view/png.py
-
 #
 #   Glade files
 #
