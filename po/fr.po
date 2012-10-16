@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-16 11:08+0200\n"
-"PO-Revision-Date: 2012-10-16 11:24+0100\n"
+"PO-Revision-Date: 2012-10-16 11:46+0100\n"
 "Last-Translator: Mathieu MD <mathieu.md@gmail.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -418,13 +418,13 @@ msgstr "Arbre familial"
 
 # trunk
 #: ../gramps/cli/clidbman.py:78
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
-"ERREUR : %s \n"
-"         %s"
+"ERREUR: %(title)s \n"
+"       %(message)s"
 
 # Substantif (GNOME fr)
 #: ../gramps/cli/clidbman.py:243
@@ -4922,19 +4922,16 @@ msgstr "Souligné"
 
 # trunk
 #: ../gramps/gen/lib/styledtexttagtype.py:68
-#, fuzzy
 msgid "Fontface"
 msgstr "Police"
 
 # trunk
 #: ../gramps/gen/lib/styledtexttagtype.py:69
-#, fuzzy
 msgid "Fontsize"
 msgstr "Taille de la police"
 
 # trunk
 #: ../gramps/gen/lib/styledtexttagtype.py:70
-#, fuzzy
 msgid "Fontcolor"
 msgstr "Couleur de la police"
 
@@ -5365,7 +5362,6 @@ msgstr "Ratio d'aspect"
 
 # trunk
 #: ../gramps/gen/plug/docgen/graphdoc.py:196
-#, fuzzy
 msgid "Affects greatly how the graph is laid out on the page."
 msgstr "Affecte grandement l'affichage du graphique sur la page."
 
@@ -5958,9 +5954,8 @@ msgstr "%(father)s et %(mother)s"
 
 # trunk
 #: ../gramps/gen/utils/image.py:109
-#, fuzzy
 msgid "WARNING: PIL module not loaded.  Image cropping in report files will not be available."
-msgstr "MISE EN GARDE : le module pyexiv2 n'est pas chargé. Les métadonnées image ne sont pas disponibles."
+msgstr "MISE EN GARDE : le module PIL n'est pas chargé. Le zoom sur les images dans les rapports ne sera pas disponible."
 
 #: ../gramps/gen/utils/keyword.py:56
 #: ../gramps/plugins/export/exportcsv.py:334
@@ -7123,7 +7118,6 @@ msgstr "Supprimer l'avertissement quand on ajoute des parents à un enfant."
 
 # trunk
 #: ../gramps/gui/configure.py:564
-#, fuzzy
 msgid "Suppress warning when canceling with changed data."
 msgstr "Supprimer l'avertissement quand on annule une donnée modifiée."
 
@@ -7442,9 +7436,8 @@ msgstr "Sélectionner un répertoire media"
 
 # trunk
 #: ../gramps/gui/configure.py:1271
-#, fuzzy
 msgid "Select database directory"
-msgstr "Sélectionner un répertoire media"
+msgstr "Sélectionner le répertoire de base de données"
 
 #: ../gramps/gui/dbloader.py:122
 #: ../gramps/gui/plug/tool.py:110
@@ -10070,9 +10063,9 @@ msgstr "Date de naissance"
 # trunk
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:132
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "exemple : « %s » ou « %s »"
+msgstr "exemple: \"%(msg1)s\" or \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/plugins/export/exportcsv.py:337
@@ -10665,9 +10658,9 @@ msgstr "Filtre %s depuis le presse-papiers"
 
 # trunk
 #: ../gramps/gui/makefilter.py:46
-#, fuzzy, python-format
+#, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "Créé le %4d/%02d/%02d"
+msgstr "Créé le %(year)4d/%(month)02d/%(day)02d"
 
 # manuel wiki
 # trunk
@@ -10874,9 +10867,9 @@ msgstr "mère inconnue"
 
 # trunk
 #: ../gramps/gui/plug/_guioptions.py:849
-#, fuzzy, python-format
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s et %(mother)s (%(id)s)"
+msgstr "%(father_name)s et %(mother_name)s (%(family_id)s)"
 
 #: ../gramps/gui/plug/_guioptions.py:1195
 #, python-format
@@ -10895,9 +10888,9 @@ msgstr "Couleur"
 
 # trunk
 #: ../gramps/gui/plug/_guioptions.py:1513
-#, fuzzy, python-format
+#, python-format
 msgid "Select color for %s"
-msgstr "Sélectionner la couleur de la police"
+msgstr "Sélectionner la couleur pour %s"
 
 #: ../gramps/gui/plug/_guioptions.py:1673
 #: ../gramps/gui/plug/report/_reportdialog.py:443
@@ -11077,9 +11070,8 @@ msgstr "Choisissez le format de sortie"
 
 # trunk
 #: ../gramps/gui/plug/export/_exportassistant.py:237
-#, fuzzy
 msgid "Export options"
-msgstr "Options de l'exportation GEDCOM"
+msgstr "Options d'exportation"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:306
 msgid "Select save file"
@@ -11115,7 +11107,7 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/plug/export/_exportassistant.py:452
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -11127,9 +11119,9 @@ msgid ""
 msgstr ""
 "Les données seront enregistrées de la façon suivante :\n"
 "\n"
-"Format :\t%s\n"
-"Nom :\t%s\n"
-"Répertoire :\t%s\n"
+"Format :\t%(format)s\n"
+"Nom :\t%(name)s\n"
+"Répertoire :\t%(folder)s\n"
 "\n"
 "Cliquez sur Appliquer pour poursuivre, Précédent pour revoir vos options, ou Annuler pour abandonner."
 
@@ -12032,9 +12024,8 @@ msgstr "A_ller à"
 
 # trunk
 #: ../gramps/gui/viewmanager.py:788
-#, fuzzy
 msgid "Books..."
-msgstr "Livres"
+msgstr "Livres..."
 
 #: ../gramps/gui/viewmanager.py:789
 msgid "_Windows"
@@ -12067,9 +12058,8 @@ msgstr "_Signets"
 
 # trunk
 #: ../gramps/gui/viewmanager.py:834
-#, fuzzy
 msgid "_Configure..."
-msgstr "_Configurer la vue active..."
+msgstr "_Configuration..."
 
 #: ../gramps/gui/viewmanager.py:835
 msgid "Configure the active view"
@@ -12668,15 +12658,13 @@ msgstr "en relation avec"
 
 # trunk
 #: ../gramps/gui/widgets/fanchart.py:1814
-#, fuzzy
 msgid "Add partner to person"
-msgstr "Ajout des parents à l'individu"
+msgstr "Ajout d'un partenaire à l'individu"
 
 # trunk
 #: ../gramps/gui/widgets/fanchart.py:1822
-#, fuzzy
 msgid "Add a person"
-msgstr "Ajouter un nouvel individu"
+msgstr "Ajouter un individu"
 
 #: ../gramps/gui/widgets/fanchart.py:1897
 #: ../gramps/plugins/view/relview.py:1526
@@ -12829,9 +12817,8 @@ msgstr "« %s » n'est pas une date valide"
 
 # trunk
 #: ../gramps/guiQML/views/dbman.py:160
-#, fuzzy
 msgid "Add a Family Tree"
-msgstr "Arbre familial"
+msgstr "Ajouter un arbre familial"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
@@ -15334,9 +15321,8 @@ msgstr "Gramplet affichant dans une roue les ascendants directs de l'individu ac
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:156
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Descendants"
+msgstr "Roue des descendants"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:149
@@ -16566,9 +16552,8 @@ msgstr "Couleurs des familles"
 
 # trunk
 #: ../gramps/plugins/graph/gvfamilylines.py:144
-#, fuzzy
 msgid "Colors to use for various family lines."
-msgstr "Couleurs utilisées pour différentes lignées familiales."
+msgstr "Couleurs à utiliser pour différentes lignées familiales."
 
 # trunk
 #: ../gramps/plugins/graph/gvfamilylines.py:152
@@ -17371,7 +17356,7 @@ msgstr "Nombre de nouveaux objets importés :\n"
 
 # trunk
 #: ../gramps/plugins/import/importxml.py:318
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 " The imported file was not self-contained.\n"
@@ -17383,11 +17368,11 @@ msgid ""
 msgstr ""
 "\n"
 " Le fichier importé n'est pas auto-suffisant.\n"
-"Pour corriger cela, %d objets ont été créés et\n"
+"Pour corriger cela, %(new)d objets ont été créés et\n"
 "le type d'attribute a été défini comme 'Inconnu'.\n"
 "Cette catégorie n'est pas uniforme à cause\n"
 "du nombre de parenthèses. Où ces objets\n"
-"'Inconnu' ont été référencés par la note %s.\n"
+"'Inconnu' ont été référencés par la note %(unknown)s.\n"
 
 #: ../gramps/plugins/import/importxml.py:326
 msgid ""
@@ -17629,7 +17614,7 @@ msgstr "Erreur: famille '%(family)s' (saisie comme @%(orig_family)s@) individu %
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3058
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "The imported file was not self-contained.\n"
@@ -17640,11 +17625,11 @@ msgid ""
 msgstr ""
 "\n"
 " Le fichier importé n'est pas auto-suffisant.\n"
-"Pour corriger cela, %d objets ont été créés et\n"
+"Pour corriger cela, %(new)d objets ont été créés et\n"
 "le type d'attribute a été défini comme 'Inconnu'.\n"
 "Cette catégorie n'est pas uniforme à cause\n"
 "du nombre de parenthèses. Où ces objets\n"
-"'Inconnu' ont été référencés par la note %s.\n"
+"'Inconnu' ont été référencés par la note %(unknown)s.\n"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:3076
@@ -17835,9 +17820,9 @@ msgstr "Language du texte GEDCOM"
 
 # trunk
 #: ../gramps/plugins/lib/libgedcom.py:6746
-#, fuzzy, python-format
+#, python-format
 msgid "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in the resulting database!"
-msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
+msgstr "Importation du fichier GEDCOM %(filename)s avec DEST=%(by)s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/lib/libgedcom.py:6749
@@ -21547,15 +21532,13 @@ msgstr " région/province"
 
 # trunk
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:139
-#, fuzzy
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr "Latitude non-comprise entre %s et %s\n"
+msgstr "Latitude non-comprise entre '54.55' et '69.05'\n"
 
 # trunk
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:140
-#, fuzzy
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "Longitude non-comprise entre %s et %s"
+msgstr "Longitude non-comprise entre '8.05' et '24.15'"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:141
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:168
@@ -23004,9 +22987,9 @@ msgstr "Liste détaillée des descendants de %(person_name)s"
 
 # trunk
 #: ../gramps/plugins/textreport/detdescendantreport.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr "%(name1)s et %(name2)s"
+msgstr "Réf : %(number)s. %(name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:666
 #, python-format
@@ -23241,9 +23224,9 @@ msgstr "Faits individuels"
 
 # trunk
 #: ../gramps/plugins/textreport/indivcomplete.py:208
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s in %(place)s. "
-msgstr "%(date)s à %(place)s"
+msgstr "%(date)s à %(place)s. "
 
 #: ../gramps/plugins/textreport/indivcomplete.py:297
 msgid "Alternate Parents"
@@ -23423,9 +23406,9 @@ msgstr "Type d'événement"
 
 # trunk
 #: ../gramps/plugins/textreport/placereport.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
-msgstr "%(father)s et %(mother)s (%(id)s)"
+msgstr "%(persons)s et %(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:251
 msgid "People associated with this place"
@@ -25948,9 +25931,8 @@ msgstr "Exactement deux familles doivent être sélectionnées pour accomplir un
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:167
 #: ../gramps/plugins/view/fanchartview.py:165
-#, fuzzy
 msgid "_Print..."
-msgstr "Imprimer..."
+msgstr "_Impression..."
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:169
@@ -26106,15 +26088,15 @@ msgstr "Fermer"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:219
-#, fuzzy, python-format
+#, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "Référence : %(name)s ( %(birth)s - %(death)s )"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:222
-#, fuzzy, python-format
+#, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "Autre : %(name)s ( %(birth)s - %(death)s )"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:227
@@ -26248,16 +26230,16 @@ msgstr ""
 # trunk
 #: ../gramps/plugins/view/geofamclose.py:545
 #: ../gramps/plugins/view/geofamily.py:326
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %(id)s : %(name)s"
-msgstr "Père : %s : %s"
+msgstr "Père : %(id)s : %(name)s"
 
 # trunk
 #: ../gramps/plugins/view/geofamclose.py:551
 #: ../gramps/plugins/view/geofamily.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %(id)s : %(name)s"
-msgstr "Mère : %s : %s"
+msgstr "Mère : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:561
 #: ../gramps/plugins/view/geofamily.py:344
@@ -26832,9 +26814,9 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 # trunk
 #: ../gramps/plugins/view/relview.py:1204
 #: ../gramps/plugins/view/relview.py:1206
-#, fuzzy, python-format
+#, python-format
 msgid "%(event)s %(date)s"
-msgstr "%(event_type)s : %(date)s"
+msgstr "%(event)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1267
 #, python-format
@@ -26995,9 +26977,8 @@ msgstr "Cette vue affiche un arbre des ascendants de la personne sélectionnée"
 #: ../gramps/plugins/view/view.gpr.py:133
 #: ../gramps/plugins/view/view.gpr.py:142
 #: ../gramps/plugins/view/view.gpr.py:157
-#, fuzzy
 msgid "Charts"
-msgstr "Graphiques 1"
+msgstr "Graphiques"
 
 # trunk
 #: ../gramps/plugins/view/view.gpr.py:143
@@ -27095,9 +27076,9 @@ msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> %(version)s le %(dat
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%(url)s\">%(name)s</a>"
-msgstr "<br />Créé pour <a href = \"%s\">%s</a>"
+msgstr "<br />Créé pour <a href = \"%(url)s\">%(name)s</a>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1625
 #: ../gramps/plugins/webreport/narrativeweb.py:7166
@@ -28411,15 +28392,13 @@ msgstr "Aucune feuille de style"
 
 # trunk
 #: ../gramps/webapp/grampsdb/view/family.py:43
-#, fuzzy
 msgid "Familes"
 msgstr "Familles"
 
 # trunk
 #: ../gramps/webapp/grampsdb/view/person.py:328
-#, fuzzy
 msgid "Names"
-msgstr "_Noms"
+msgstr "Noms"
 
 # trunk
 #: ../gramps/webapp/grampsdb/view/person.py:462
@@ -28451,9 +28430,8 @@ msgstr ""
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:70
 #: ../gramps/webapp/grampsdb/views.py:164
-#, fuzzy
 msgid "User"
-msgstr "Nom d'utilisateur :"
+msgstr "Utilisateur"
 
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:160
@@ -28477,27 +28455,23 @@ msgstr ""
 
 # trunk
 #: ../gramps/webapp/utils.py:342
-#, fuzzy
 msgid "Add New Event"
-msgstr "Nouvel événement"
+msgstr "Ajouter un nouvel événement"
 
 # trunk
 #: ../gramps/webapp/utils.py:343
-#, fuzzy
 msgid "Add Existing Event"
-msgstr "Ajouter des parents existants..."
+msgstr "Ajouter un événement existant"
 
 # trunk
 #: ../gramps/webapp/utils.py:389
-#, fuzzy
 msgid "Note Preview"
-msgstr "Aperçu des notes"
+msgstr "Aperçu de la note"
 
 # trunk
 #: ../gramps/webapp/utils.py:416
-#, fuzzy
 msgid "Add Name"
-msgstr "Nom du greffon ajouté"
+msgstr "Ajouter un nom"
 
 # trunk
 #: ../gramps/webapp/utils.py:430
@@ -28507,21 +28481,18 @@ msgstr "Les bords"
 
 # trunk
 #: ../gramps/webapp/utils.py:444
-#, fuzzy
 msgid "Add Surname"
-msgstr "Nom"
+msgstr "Ajouter un nom de famille"
 
 # trunk
 #: ../gramps/webapp/utils.py:491
-#, fuzzy
 msgid "Add New Citation"
-msgstr "Ajouter une citation"
+msgstr "Ajouter une nouvelle citation"
 
 # trunk
 #: ../gramps/webapp/utils.py:492
-#, fuzzy
 msgid "Add Existing Citation"
-msgstr "Éditer une citation"
+msgstr "Ajouter une citation existante"
 
 # trunk
 #: ../gramps/webapp/utils.py:537
@@ -31301,9 +31272,8 @@ msgstr "<b>Le 'Comment et Pourquoi' de votre généalogie</b><br/>La généalogi
 
 # trunk
 #: ../gramps/data/tips.xml.in.h:56
-#, fuzzy
 msgid "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "<b>No Speaka de English ?</b><br/>Gramps a été traduit dans plus de 20 langues. Si Gramps existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez Gramps."
+msgstr "<b>Don't speak English ?</b><br/>Gramps a été traduit dans plus de 20 langues. Si Gramps existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez Gramps."
 
 #: ../gramps/data/tips.xml.in.h:57
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
