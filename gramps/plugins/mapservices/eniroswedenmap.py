@@ -136,9 +136,8 @@ class EniroSVMapService(MapService):
             if (54.55 < latitude < 69.05) and (8.05 < longitude < 24.15):
                 coord_ok = True
             else:
-                msg2 = _("Latitude not within %s to %s\n") + \
-                       _("Longitude not within %s to %s")
-                msg2 = msg2 % (54.55, 69.05, 8.05, 24.15)
+                msg2 = _("Latitude not within '54.55' to '69.05'\n") + \
+                       _("Longitude not within '8.05' to '24.15'")
                 WarningDialog(_("Eniro map not available"), msg2 )
                 return
 
