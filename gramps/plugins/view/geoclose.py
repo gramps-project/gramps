@@ -216,12 +216,12 @@ class GeoClose(GeoGraphyView):
             self._createmap(p1, color, self.place_list_active, False)
         if self.refperson:
             color = self._config.get('geography.color1')
-            self.message_layer.add_message(_("Reference : %s ( %s - %s )" % ( _nd.display(self.refperson),
-                                                                              self.birth(self.refperson),
-                                                                              self.death(self.refperson))))
-            self.message_layer.add_message(_("The other : %s ( %s - %s )" % ( _nd.display(p1),
-                                                                              self.birth(p1),
-                                                                              self.death(p1))))
+            self.message_layer.add_message(_("Reference : %(name)s ( %(birth)s - %(death)s )") % {'name': _nd.display(self.refperson),
+                                                                              'birth': self.birth(self.refperson),
+                                                                              'death': self.death(self.refperson)})
+            self.message_layer.add_message(_("The other : %(name)s ( %(birth)s - %(death)s )") % {'name': _nd.display(p1),
+                                                                              'birth': self.birth(p1),
+                                                                              'death': self.death(p1)})
             self._createmap(self.refperson, color, self.place_list_ref, True)
         else:
             self.message_layer.add_message(_("You must choose one reference person."))
