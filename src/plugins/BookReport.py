@@ -940,9 +940,8 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         row = self.book_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
-        item_dialog = BookItemDialog(self.dbstate, self.uistate, option_class,
-                                     item.get_name(),
-                                     item.get_translated_name(),
+        item_dialog = BookItemDialog(self.dbstate, self.uistate,
+                                     item,
                                      self.track)
 
         while True:
@@ -1110,13 +1109,15 @@ class BookItemDialog(ReportDialog):
     in a way specific for this report. This is a book item dialog.
     """
 
-    def __init__(self, dbstate, uistate, option_class, name, translated_name,
-                 track=[]):
+    def __init__(self, dbstate, uistate, item, track=[]):
         self.category = CATEGORY_BOOK
         self.database = dbstate.db
-        self.option_class = option_class
+        self.item = item
+        name = item.get_name()
+        translated_name = item.get_translated_name()
+        self.option_class = item.option_class
         ReportDialog.__init__(self, dbstate, uistate,
-                                  option_class, name, translated_name, track)
+                              self.option_class, name, translated_name, track)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -1125,7 +1126,7 @@ class BookItemDialog(ReportDialog):
         # Preparation
         self.parse_style_frame()
         self.parse_user_options()
-
+        self.item.set_style_name(self.style_menu.get_value()[0])
         self.options.handler.save_options()
         
     def setup_target_frame(self):
@@ -1196,37 +1197,6 @@ class BookReportDialog(DocReportDialog):
         self.book = book
         self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
-        self.selected_style = StyleSheet()
-
-        for item in self.book.get_item_list():
-            # Set up default style
-            default_style = StyleSheet()
-            make_default_style = item.option_class.make_default_style
-            make_default_style(default_style)
-
-            # Read all style sheets available for this item
-            style_file = item.option_class.handler.get_stylesheet_savefile()
-            style_list = StyleSheetList(style_file, default_style)
-
-            # Get the selected stylesheet
-            style_name = item.option_class.handler.get_default_stylesheet_name()
-            style_sheet = style_list.get_style_sheet(style_name)
-
-            for this_style_name in style_sheet.get_paragraph_style_names():
-                self.selected_style.add_paragraph_style(
-                    this_style_name,style_sheet.get_paragraph_style(this_style_name))
-
-            for this_style_name in style_sheet.get_draw_style_names():
-                self.selected_style.add_draw_style(
-                    this_style_name,style_sheet.get_draw_style(this_style_name))
-
-            for this_style_name in style_sheet.get_table_style_names():
-                self.selected_style.add_table_style(
-                    this_style_name,style_sheet.get_table_style(this_style_name))
-
-            for this_style_name in style_sheet.get_cell_style_names():
-                self.selected_style.add_cell_style(
-                    this_style_name,style_sheet.get_cell_style(this_style_name))
 
         response = self.window.run()
         if response == gtk.RESPONSE_OK:
@@ -1255,15 +1225,16 @@ class BookReportDialog(DocReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(self.selected_style, pstyle)
+        self.doc = self.format(None, pstyle)
         user = gui.user.User()
         self.rptlist = []
         for item in self.book.get_item_list():
+            style_sheet = create_style_sheet(item)
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
             obj = write_book_item(self.database, report_class, 
                                   item.option_class, user)
-            self.rptlist.append(obj)
+            self.rptlist.append((obj, style_sheet))
         self.doc.open(self.target_path)
 
     def make_report(self):
@@ -1272,7 +1243,8 @@ class BookReportDialog(DocReportDialog):
 
         self.doc.init()
         newpage = 0
-        for item in self.rptlist:
+        for item, style_sheet in self.rptlist:
+            self.doc.set_style_sheet(style_sheet)
             if newpage:
                 self.doc.page_break()
             newpage = 1
@@ -1312,42 +1284,16 @@ def cl_report(database, name, category, options_str_dict):
     else:
         print _("Please specify a book name")
         return
-    selected_style = StyleSheet()
 
+    # write report
+    doc = clr.format(None,
+                     PaperStyle(clr.paper, clr.orien, clr.marginl,
+                                clr.marginr, clr.margint, clr.marginb))
+    user = cli.user.User()
+    rptlist = []
     for item in book.get_item_list():
-        # Set up default style
-        default_style = StyleSheet()
-        make_default_style = item.option_class.make_default_style
-        make_default_style(default_style)
-
-        # Read all style sheets available for this item
-        style_file = item.option_class.handler.get_stylesheet_savefile()
-        style_list = StyleSheetList(style_file, default_style)
-
-        # Get the selected stylesheet
-        style_name = item.option_class.handler.get_default_stylesheet_name()
-        style_sheet = style_list.get_style_sheet(style_name)
-
-        for this_style_name in style_sheet.get_paragraph_style_names():
-            selected_style.add_paragraph_style(
-                    this_style_name, 
-                    style_sheet.get_paragraph_style(this_style_name))
-
-        for this_style_name in style_sheet.get_draw_style_names():
-            selected_style.add_draw_style(
-                    this_style_name,
-                    style_sheet.get_draw_style(this_style_name))
-
-        for this_style_name in style_sheet.get_table_style_names():
-            selected_style.add_table_style(
-                    this_style_name,
-                    style_sheet.get_table_style(this_style_name))
-
-        for this_style_name in style_sheet.get_cell_style_names():
-            selected_style.add_cell_style(
-                    this_style_name,
-                    style_sheet.get_cell_style(this_style_name))
-
+        style_sheet = create_style_sheet(item)
+        
         # The option values were loaded magically by the book parser.
         # But they still need to be applied to the menu options.
         opt_dict = item.option_class.options_dict
@@ -1355,31 +1301,62 @@ def cl_report(database, name, category, options_str_dict):
         for optname in opt_dict:
             menu_option = menu.get_option_by_name(optname)
             if menu_option:
-                menu_option.set_value(opt_dict[optname])
-
-    # write report
-    doc = clr.format(selected_style,
-                     PaperStyle(clr.paper, clr.orien, clr.marginl,
-                                clr.marginr, clr.margint, clr.marginb))
-    user = cli.user.User()
-    rptlist = []
-    for item in book.get_item_list():
+                menu_option.set_value(opt_dict[optname])        
+        
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
         obj = write_book_item(database,
                               report_class, item.option_class, user)
-        rptlist.append(obj)
+        rptlist.append((obj, style_sheet))
 
     doc.open(clr.option_class.get_output())
     doc.init()
     newpage = 0
-    for item in rptlist:
+    for item, style_sheet in rptlist:
+        doc.set_style_sheet(style_sheet)
         if newpage:
             doc.page_break()
         newpage = 1
         item.begin_report()
         item.write_report()
     doc.close()
+
+def create_style_sheet(item):
+    """
+    Create a style sheet for a book item.
+    """
+    selected_style = StyleSheet()
+
+    # Set up default style
+    default_style = StyleSheet()
+    make_default_style = item.option_class.make_default_style
+    make_default_style(default_style)
+
+    # Read all style sheets available for this item
+    style_file = item.option_class.handler.get_stylesheet_savefile()
+    style_list = StyleSheetList(style_file, default_style)
+
+    # Get the selected stylesheet
+    style_name = item.get_style_name()
+    style_sheet = style_list.get_style_sheet(style_name)
+
+    for this_style_name in style_sheet.get_paragraph_style_names():
+        selected_style.add_paragraph_style(
+            this_style_name,style_sheet.get_paragraph_style(this_style_name))
+
+    for this_style_name in style_sheet.get_draw_style_names():
+        selected_style.add_draw_style(
+            this_style_name,style_sheet.get_draw_style(this_style_name))
+
+    for this_style_name in style_sheet.get_table_style_names():
+        selected_style.add_table_style(
+            this_style_name,style_sheet.get_table_style(this_style_name))
+
+    for this_style_name in style_sheet.get_cell_style_names():
+        selected_style.add_cell_style(
+            this_style_name,style_sheet.get_cell_style(this_style_name))
+
+    return selected_style
 
 #------------------------------------------------------------------------
 #
