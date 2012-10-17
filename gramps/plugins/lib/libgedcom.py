@@ -6745,7 +6745,7 @@ class GedcomParser(UpdateCallback):
             WarningDialog(
                _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
                  "could cause errors in the resulting database!")
-                   % {'filename': fname, 'by': self.genby),
+                   % {'filename': fname, 'by': self.genby},
                _("Look for nameless events.")
                )
  
