@@ -814,7 +814,7 @@ class ProgenParser(object):
                 if patronym:
                     #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
                     #name.set_patronymic(patronym)
-                    if sname:
+                    if surname:
                         # current name is not empty, add one!
                         sname = Surname()
                         name.add_surname(sname)
