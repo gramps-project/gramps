@@ -814,6 +814,13 @@ class ProgenParser(object):
                 if patronym:
                     #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
                     #name.set_patronymic(patronym)
+                    if sname:
+                        # current name is not empty, add one!
+                        sname = Surname()
+                        name.add_surname(sname)
+                    sname.set_surname(patronym)
+                    sname.set_origintype(NameOriginType(
+                                       NameOriginType.PATRONYMIC))
                     log.warning(_("Patronymic name skipped: '%(patronym)s' (%(msg)s)") % {
                         'patronym' : patronym.encode('utf-8'), 'msg' : diag_msg or '' } )
                 person.set_primary_name(name)
