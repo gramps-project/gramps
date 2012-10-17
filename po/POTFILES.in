@@ -449,6 +449,7 @@ src/Filters/_FilterStore.py
 src/Filters/_SearchBar.py
 
 # Filters.Rules package
+src/Filters/Rules/_ChangedSinceBase.py
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasGrampsId.py
 src/Filters/Rules/_HasTextMatchingSubstringOf.py

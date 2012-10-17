@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-09 08:52+0200\n"
+"POT-Creation-Date: 2012-10-17 16:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4382,7 +4382,7 @@ msgstr ""
 
 #: ../src/gui/configure.py:850 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137 ../src/gui/plug/_windows.py:193
-#: ../src/plugins/BookReport.py:1003 ../src/glade/editperson.glade.h:15
+#: ../src/plugins/BookReport.py:1002 ../src/glade/editperson.glade.h:15
 #: ../src/glade/styleeditor.glade.h:19 ../src/glade/editfamily.glade.h:10
 #: ../src/glade/rule.glade.h:17
 msgid "Edit"
@@ -4653,7 +4653,7 @@ msgid "Upgrade now"
 msgstr ""
 
 #: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1041
-#: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1069
+#: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1068
 #: ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr ""
@@ -9051,7 +9051,7 @@ msgstr ""
 msgid "You have made changes which have not been saved."
 msgstr ""
 
-#: ../src/plugins/BookReport.py:676 ../src/plugins/BookReport.py:1068
+#: ../src/plugins/BookReport.py:676 ../src/plugins/BookReport.py:1067
 msgid "Proceed"
 msgstr ""
 
@@ -9059,8 +9059,8 @@ msgstr ""
 msgid "Name of the book. MANDATORY"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1195
-#: ../src/plugins/BookReport.py:1244 ../src/plugins/bookreport.gpr.py:31
+#: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1196
+#: ../src/plugins/BookReport.py:1214 ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr ""
 
@@ -9104,46 +9104,46 @@ msgid ""
 "person of the currently opened database."
 msgstr ""
 
-#: ../src/plugins/BookReport.py:997
+#: ../src/plugins/BookReport.py:996
 msgid "Setup"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1007
+#: ../src/plugins/BookReport.py:1006
 msgid "Book Menu"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1030
+#: ../src/plugins/BookReport.py:1029
 msgid "Available Items Menu"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1056
+#: ../src/plugins/BookReport.py:1055
 msgid "No book name"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1057
+#: ../src/plugins/BookReport.py:1056
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1064
+#: ../src/plugins/BookReport.py:1063
 msgid "Book name already exists"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1065
+#: ../src/plugins/BookReport.py:1064
 msgid "You are about to save away a book with a name which already exists."
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1247
+#: ../src/plugins/BookReport.py:1217
 msgid "Gramps Book"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1302 ../src/plugins/BookReport.py:1313
+#: ../src/plugins/BookReport.py:1274 ../src/plugins/BookReport.py:1285
 msgid "Please specify a book name"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:1309
+#: ../src/plugins/BookReport.py:1281
 #, python-format
 msgid "No such book '%s'"
 msgstr ""
@@ -18770,6 +18770,7 @@ msgstr ""
 #: ../src/plugins/quickview/SameSurnames.py:53
 #: ../src/plugins/quickview/SameSurnames.py:66
 #: ../src/plugins/quickview/SameSurnames.py:83
+#: ../src/Filters/Rules/_ChangedSinceBase.py:55
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasGrampsId.py:49
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:49
@@ -24084,6 +24085,53 @@ msgstr ""
 msgid "%s does not contain"
 msgstr ""
 
+#: ../src/Filters/Rules/_ChangedSinceBase.py:50
+#: ../src/Filters/Rules/Person/_ChangedSince.py:46
+#: ../src/Filters/Rules/Family/_ChangedSince.py:46
+#: ../src/Filters/Rules/Event/_ChangedSince.py:46
+#: ../src/Filters/Rules/Place/_ChangedSince.py:46
+#: ../src/Filters/Rules/Source/_ChangedSince.py:46
+#: ../src/Filters/Rules/Citation/_ChangedSince.py:46
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:46
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:46
+#: ../src/Filters/Rules/Note/_ChangedSince.py:46
+msgid "Changed after:"
+msgstr ""
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:50
+#: ../src/Filters/Rules/Person/_ChangedSince.py:46
+#: ../src/Filters/Rules/Family/_ChangedSince.py:46
+#: ../src/Filters/Rules/Event/_ChangedSince.py:46
+#: ../src/Filters/Rules/Place/_ChangedSince.py:46
+#: ../src/Filters/Rules/Source/_ChangedSince.py:46
+#: ../src/Filters/Rules/Citation/_ChangedSince.py:46
+#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:46
+#: ../src/Filters/Rules/Repository/_ChangedSince.py:46
+#: ../src/Filters/Rules/Note/_ChangedSince.py:46
+msgid "but before:"
+msgstr ""
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:51
+msgid "Objects changed after <date time>"
+msgstr ""
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:52
+msgid ""
+"Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
+"ss) or in range, if a second date/time is given."
+msgstr ""
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:81
+msgid "Wrong format of date-time"
+msgstr ""
+
+#: ../src/Filters/Rules/_ChangedSinceBase.py:82
+#, python-format
+msgid ""
+"Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
+"part is optional, are accepted. %s does not satisfy."
+msgstr ""
+
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
 msgstr ""
@@ -24135,30 +24183,6 @@ msgstr ""
 
 #: ../src/Filters/Rules/_HasSourceOfBase.py:49
 msgid "Matches objects who have a particular source"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_ChangedSince.py:46
-#: ../src/Filters/Rules/Family/_ChangedSince.py:46
-#: ../src/Filters/Rules/Event/_ChangedSince.py:46
-#: ../src/Filters/Rules/Place/_ChangedSince.py:46
-#: ../src/Filters/Rules/Source/_ChangedSince.py:46
-#: ../src/Filters/Rules/Citation/_ChangedSince.py:46
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:46
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:46
-#: ../src/Filters/Rules/Note/_ChangedSince.py:46
-msgid "Changed after:"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_ChangedSince.py:46
-#: ../src/Filters/Rules/Family/_ChangedSince.py:46
-#: ../src/Filters/Rules/Event/_ChangedSince.py:46
-#: ../src/Filters/Rules/Place/_ChangedSince.py:46
-#: ../src/Filters/Rules/Source/_ChangedSince.py:46
-#: ../src/Filters/Rules/Citation/_ChangedSince.py:46
-#: ../src/Filters/Rules/MediaObject/_ChangedSince.py:46
-#: ../src/Filters/Rules/Repository/_ChangedSince.py:46
-#: ../src/Filters/Rules/Note/_ChangedSince.py:46
-msgid "but before:"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:47

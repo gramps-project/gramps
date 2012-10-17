@@ -64,7 +64,6 @@ src/Filters/Rules/Repository/__init__.py
 src/Filters/Rules/Note/__init__.py
 
 # Filters.Rules package
-src/Filters/Rules/_ChangedSinceBase.py
 src/Filters/Rules/_HasAttributeBase.py
 src/Filters/Rules/_HasCitationBase.py
 src/Filters/Rules/_HasEventBase.py
