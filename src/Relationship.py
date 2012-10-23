@@ -552,8 +552,8 @@ class RelationshipCalculator(object):
             get_sibling_relationship_string.
             Only call this method if known that orig and other are siblings
         """
-        fatherorig, motherorig = self._get_birth_parents(db, orig)
-        fatherother, motherother = self._get_birth_parents(db, other)
+        fatherorig, motherorig = self.get_birth_parents(db, orig)
+        fatherother, motherother = self.get_birth_parents(db, other)
         if fatherorig and motherorig and fatherother and motherother:
             if fatherother == fatherorig and motherother == motherorig:
                 return self.NORM_SIB
@@ -597,7 +597,7 @@ class RelationshipCalculator(object):
             # birth parent of the other person
             return self.UNKNOWN_SIB
 
-    def _get_birth_parents(self, db, person):
+    def get_birth_parents(self, db, person):
         """ method that returns the birthparents of a person as tuple
             (mother handle, father handle), if no known birthparent, the 
             handle is replaced by None
