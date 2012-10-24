@@ -7261,7 +7261,7 @@ class NavWebReport(Report):
         for index, key in enumerate(keys):
             (repo, handle) = repos_dict[key]
 
-            RepositoryPage(self, self.title, repository, handle, source_list)
+            RepositoryPage(self, self.title, repo, handle, source_list)
             self.user.step_progress()
         self.user.end_progress()
 
