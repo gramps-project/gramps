@@ -6220,13 +6220,13 @@ class IndividualPage(BasePage):
                 # The parent may not be birth father in ths family, because it
                 # may be a step family. However, it will be odd to display the
                 # parent as anything other than "Father"
-                reln = "Father"
+                reln = _("Father")
             else:
                 # Stepfather may not always be quite right (for example, it may
                 # actually be StepFather-in-law), but it is too expensive to
                 # calculate out the correct relationship using the Relationship
                 # Calculator
-                reln = "Stepfather"
+                reln = _("Stepfather")
             trow = Html("tr") + (self.display_parent(father_handle, reln, None))
             table += trow
                 
@@ -6234,9 +6234,9 @@ class IndividualPage(BasePage):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             if mother_handle == birthmother:
-                reln = "Mother"
+                reln = _("Mother")
             else:
-                reln = "Stepmother"
+                reln = _("Stepmother")
             trow = Html("tr") + (self.display_parent(mother_handle, reln, None))
             table += trow
 
@@ -6260,7 +6260,7 @@ class IndividualPage(BasePage):
                                 child.gender)
                         reln = reln[0].upper() + reln[1:]
                     except:
-                        reln = "Not siblings"
+                        reln = _("Not siblings")
 
                 reln = "&nbsp;&nbsp;&nbsp;&nbsp;" + reln
                 # Now output reln, child_link, (frel, mrel)
