@@ -1665,7 +1665,7 @@ class BasePage(object):
             ('sources',                 _("Sources"),       True),
             ('repositories',            _("Repositories"),  inc_repos),
             ('media',                   _("Media"),         _create_media_link),
-            ('thumbnails',              _("Thumbnails"),    True),
+            ('thumbnails',              _("Thumbnails"),    self.create_media),
             ('download',                _("Download"),      self.report.inc_download),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
             ('contact',                 _("Contact"),       self.report.use_contact)
