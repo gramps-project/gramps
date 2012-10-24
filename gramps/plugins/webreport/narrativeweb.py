@@ -2408,6 +2408,20 @@ class BasePage(object):
                 Html("td", self.format_family_events(family_events, place_lat_long), class_ = "ColumnValue")
             )
             table += trow
+        
+        # If the families pages are not output, display family notes
+        if not self.inc_families:
+            notelist = family.get_note_list()
+            for notehandle in notelist:
+                note = self.dbase_.get_note_from_handle(notehandle)
+                if note:
+                    trow = Html("tr") + (
+                    Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
+                    Html("td", "Narrative", class_ = "ColumnAttribute", inline = True),
+                    Html("td", self.get_note_format(note, True), class_ = "ColumnValue")
+                    )
+                    table += trow
+
 
     def display_child_link(self, chandle, ppl_handle_list):
         """
