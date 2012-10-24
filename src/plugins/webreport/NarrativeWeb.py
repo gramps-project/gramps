@@ -3244,6 +3244,8 @@ class FamilyPage(BasePage):
         self.bibli = Bibliography()
         self.place_list = place_list
         self.up = True
+        # determine if husband and wife, husband only, or spouse only....
+        self.page_title = _("Family of ") + self.get_family_string(family)
 
         birthorder = report.options["birthorder"]
         self.familymappages = report.options["familymappages"]
@@ -3259,6 +3261,12 @@ class FamilyPage(BasePage):
             # delete thumbnail so that it won't display again in the Gallery List later on...
             if self.create_media:
                 media_list = family.get_media_list()
+                # If Event pages are not being created, then we need to display
+                # the family event media here
+                if not self.inc_events:
+                    for evt_ref in family.get_event_ref_list():
+                        event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                        media_list += event.get_media_list()
                 thumbnail = self.display_first_image_as_thumbnail(media_list, family)
                 if thumbnail:
                     relationshipdetail += thumbnail
@@ -3281,8 +3289,6 @@ class FamilyPage(BasePage):
             elif spouse_handle:
                 self.person = spouse
 
-            # determine if husband and wife, husband only, or spouse only....
-            self.page_title = _("Family of ") + self.get_family_string(family)
             relationshipdetail += Html("h2", self.page_title, inline = True)
 
             # display relationships
@@ -3771,6 +3777,8 @@ class EventPage(BasePage):
 
         self.up = True
         subdirs = True
+        evt_type = str(event.get_type())
+        self.page_title = "%(eventtype)s" % {'eventtype' : evt_type}
         self.bibli = Bibliography()
 
         of, sio = self.report.create_file(event_handle, "evt")
@@ -3785,9 +3793,7 @@ class EventPage(BasePage):
                 eventdetail += thumbnail
 
             # display page title
-            evt_type = str(event.get_type())
-            title = "%(eventtype)s" % {'eventtype' : evt_type}
-            eventdetail += Html("h3", title, inline = True)
+            eventdetail += Html("h3", self.page_title, inline = True)
 
             # begin eventdetail table
             with Html("table", class_ = "infolist eventlist") as table:
