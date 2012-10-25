@@ -272,7 +272,7 @@ openstreetmap_jsc = """
       {'layers':'basic'});
     map.addLayer(wms);
 
-    map.setCenter(new OpenLayers.LonLat(0, 0), 0);
+    map.setCenter(new OpenLayers.LonLat(0, 0), 1);
 
     var markers = new OpenLayers.Layer.Markers("Markers");
     map.addLayer(markers);
