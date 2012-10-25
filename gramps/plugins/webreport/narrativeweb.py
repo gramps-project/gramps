@@ -277,7 +277,7 @@ openstreetmap_jsc = """
     var markers = new OpenLayers.Layer.Markers("Markers");
     map.addLayer(markers);
 
-      marker = new OpenLayers.Marker(new OpenLayers.LonLat(%s, %s);
+      marker = new OpenLayers.Marker(new OpenLayers.LonLat(%s, %s));
       markers.addMarker(marker); 
       map.addControl(new OpenLayers.Control.LayerSwitcher());
   }"""
