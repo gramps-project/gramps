@@ -262,8 +262,8 @@ openstreetmap_jsc = """
 
     var wms = new OpenLayers.Layer.WMS(
       "OpenLayers WMS",
-      "http://maps.opengeo.org/geowebcache/service/wms",
-      {'layers':"openstreetmap", 'format': "image/png"});
+      "http://vmap0.tiles.osgeo.org/wms/vmap0",
+      {'layers':'basic'});
     map.addLayer(wms);
 
     map.setCenter(new OpenLayers.LonLat(0, 0), 1);
