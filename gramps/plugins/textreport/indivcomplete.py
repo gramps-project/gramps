@@ -177,6 +177,7 @@ class IndivCompleteReport(Report):
         self.sort = menu.get_option_by_name('sort').get_value()
 
         self.use_images = menu.get_option_by_name('images').get_value()
+        self.use_gramps_id = menu.get_option_by_name('grampsid').get_value()
 
         filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -339,6 +340,14 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
+    def get_name(self, person):
+        name = self._name_display.display(person)
+        if self.use_gramps_id:
+            return _('%(name)s [%(gid)s]') % {'name': name, 
+                                              'gid': person.get_gramps_id()}
+        else:
+            return name
+
     def write_alt_names(self):
 
         if len(self.person.get_alternate_names()) < 1:
@@ -422,7 +431,7 @@ class IndivCompleteReport(Report):
             self.doc.start_paragraph("IDS-Spouse")
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
-                text = self._name_display.display(spouse)
+                text = self.get_name(spouse)
                 mark = ReportUtils.get_person_mark(self.database, spouse)
             else:
                 text = _("unknown")
@@ -446,7 +455,7 @@ class IndivCompleteReport(Report):
                 for child_ref in child_ref_list:
                     self.doc.start_paragraph("IDS-Normal")
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    name = self._name_display.display(child)
+                    name = self.get_name(child)
                     mark = ReportUtils.get_person_mark(self.database, child)
                     self.doc.write_text(name, mark)
                     self.doc.end_paragraph()
@@ -548,9 +557,9 @@ class IndivCompleteReport(Report):
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
         
         media_list = self.person.get_media_list()
-        name = self._name_display.display(self.person)
+        text = self.get_name(self.person)
         # feature request 2356: avoid genitive form
-        title = _("Summary of %s") % name
+        title = _("Summary of %s") % text
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")
         self.doc.write_text(title, mark)
@@ -560,7 +569,6 @@ class IndivCompleteReport(Report):
         self.doc.end_paragraph()
 
         name = self.person.get_primary_name()
-        text = self._name_display.display_name(name)
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
@@ -573,7 +581,7 @@ class IndivCompleteReport(Report):
             if father_inst_id:
                 father_inst = self.database.get_person_from_handle(
                     father_inst_id)
-                father = self._name_display.display(father_inst)
+                father = self.get_name(father_inst)
                 fmark = ReportUtils.get_person_mark(self.database, father_inst)
             else:
                 father = ""
@@ -582,7 +590,7 @@ class IndivCompleteReport(Report):
             if mother_inst_id:
                 mother_inst = self.database.get_person_from_handle(
                     mother_inst_id) 
-                mother = self._name_display.display(mother_inst)
+                mother = self.get_name(mother_inst)
                 mmark = ReportUtils.get_person_mark(self.database, mother_inst)
             else:
                 mother = ""
@@ -714,6 +722,10 @@ class IndivCompleteOptions(MenuReportOptions):
         images = BooleanOption(_("Include Photo/Images from Gallery"), True)
         images.set_help(_("Whether to include images."))
         menu.add_option(category_name, "images", images)
+
+        grampsid = BooleanOption(_("Include Gramps ID"), False)
+        grampsid.set_help(_("Whether to include Gramps ID next to names."))
+        menu.add_option(category_name, "grampsid", grampsid)
 
         ################################
         category_name = SECTION_CATEGORY
