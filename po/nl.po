@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-10-04 09:33+0100\n"
+"PO-Revision-Date: 2012-10-26 17:08+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -22151,7 +22151,7 @@ msgstr "Kan samenvoegen niet uitvoeren."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr ""
+msgstr "Beide objecten moeten van hetzelfde type zijn. Ofwel twee bronnen ofwel twee citaten. "
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
