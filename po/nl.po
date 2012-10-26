@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-23 17:10+0200\n"
-"PO-Revision-Date: 2012-10-26 17:08+0100\n"
+"PO-Revision-Date: 2012-10-26 17:13+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2025,7 +2025,7 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr "Onbekend, aangemaakt om een ontbrekend opmerkingsobject te vervangen "
+msgstr "Onbekend, aangemaakt om een ontbrekend opmerkingsobject te vervangen."
 
 #. primitive static variable
 #: ../src/Utils.py:1684
@@ -14539,7 +14539,7 @@ msgstr "Subordinatenlijn overgeslagen"
 
 #: ../src/plugins/lib/libgedcom.py:2894
 msgid "Records not imported into "
-msgstr "Gegevens werden niet geïmporteerd in"
+msgstr "Gegevens werden niet geïmporteerd in "
 
 #: ../src/plugins/lib/libgedcom.py:2929
 #, python-format
@@ -14778,7 +14778,7 @@ msgstr "Lege opmerking genegeerd"
 #: ../src/plugins/lib/libgedcom.py:6882
 #, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "NOTE Gramps-id: %s "
+msgstr "NOTE Gramps-id: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6932
 msgid "Submission: Submitter"
@@ -22151,7 +22151,7 @@ msgstr "Kan samenvoegen niet uitvoeren."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr "Beide objecten moeten van hetzelfde type zijn. Ofwel twee bronnen ofwel twee citaten. "
+msgstr "Beide objecten moeten van hetzelfde type zijn. Ofwel twee bronnen ofwel twee citaten."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
@@ -23142,7 +23142,7 @@ msgstr "Famile/ Verwantschap"
 #. determine if husband and wife, husband only, or spouse only....
 #: ../src/plugins/webreport/NarrativeWeb.py:3281
 msgid "Family of "
-msgstr "Familie van"
+msgstr "Familie van "
 
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3340
@@ -23800,7 +23800,7 @@ msgstr "Al of niet een ouderkolom toevoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7952
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Al of niet half- en stief- broers en zussen op de individuele pagina's insluiten."
+msgstr "Al of niet half- en stief- broers en zussen op de individuele pagina's insluiten"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7954
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
