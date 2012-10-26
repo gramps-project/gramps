@@ -259,21 +259,28 @@ openstreetmap_jsc = """
 
   function initialize(){
     var map = new OpenLayers.Map('place_canvas');
-
-    var wms = new OpenLayers.Layer.WMS(
-      "OpenLayers WMS",
-      "http://vmap0.tiles.osgeo.org/wms/vmap0",
-      {'layers':'basic'});
-    map.addLayer(wms);
-
-    map.setCenter(new OpenLayers.LonLat(0, 0), 1);
+  
+    var osm = new OpenLayers.Layer.OSM()
+    map.addLayer(osm);
+    
+    var lonLat = new OpenLayers.LonLat(%s, %s)
+        .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+        );
+    var zoom =16;
+    
+    map.setCenter(lonLat, zoom);
 
     var markers = new OpenLayers.Layer.Markers("Markers");
+    markers.addMarker(new OpenLayers.Marker(lonLat));
     map.addLayer(markers);
 
-      marker = new OpenLayers.Marker(new OpenLayers.LonLat(%s, %s));
-      markers.addMarker(marker); 
-      map.addControl(new OpenLayers.Control.LayerSwitcher());
+    // add overview control
+    map.addControl(new OpenLayers.Control.OverviewMap());
+
+    // add a layer switcher
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
   }"""
 
 # javascript for OpenStreetMap's markers...
