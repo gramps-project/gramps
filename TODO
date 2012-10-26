@@ -1,40 +1,5 @@
-* Remove GCONF, provide up grade path - IN PROGRESS
 
-* Replace the LPRDoc interface (based on gnome-print) with a GTK based
-  print routine. This would remove one of the last gnome-specific 
-  libraries, and make portability better. Even more important, the 
-  gnome-print interface has been deprecated by the GNOME project, so it
-  will not be around forever. We need to adapt to the new GTK method. 
-  - IN PROGRESS
-
-* Add support for formatted notes. We have a start by ripping off code
-  from GPL code from grecipe-manager. - DONE
-
-* Allow for multiple notes. A tabbed interface would be really useful,
-  since there are no titles for notes. Not all objects would
-  necessarily need multiple notes. Determine which ones should and
-  shouldn't. - DONE
-
-* before release: fix command line options
-
-* remove critical bugs: 
-   - #1053 - DONE (testing of LDS privacy needed!!)
-   - #1318, wrong note backreferences - DONE
-   - #1208, relative path, see bug note for agreed solution
-
-* before release on multiple notes: 
-    --> in note: also public/private on GUI - DONE
-    --> on upgrade, the notetype should correspond to the object the note is made
-            from, so notetype SOURCE, SOURCEREF, ..., this gives information on 
-	    orphaned notes.(DONE for GRDB)
-	TODO: change notetype into note tags, so people can give notes multiple tags,
-	      Like this all source notes can have tag source, but also tag 'family history' (Discussion Alex/Benny)
-    --> in sourceref: 
-         * remove text tab. (DONE)
-         * On import of GEDCOM text tag, or upgrade of < 2.2 database, 
-           create a note with type TRANSCRIPT (DONE, type SOURCE_TEXT)
-         * On export, do not write the text tag in sourceref, write a
-           note instead (DONE)
+* On multiple notes: 
     --> A GrampsWidget for use in report dialogs to select which notetypes to include 
         in a report (a filter?).
     --> Support for multiple notes in all reports.
@@ -43,16 +8,7 @@
         the Clear icon is unclear: tooltip? Other icon?
 
 * Remove import of global var in __init__.py, use functions or don't export. Eg.
-  PluginUtils/__init__.py export of plugin lists (tool_list, ...). E
-
-* Add forward/backward buttons (and active object) on all object views, not only person views.
-
-* Split views
-
-* Export to spreadsheet, print, CSV of views - DONE
-
-* Date calculator.  See
-  http://sourceforge.net/mailarchive/forum.php?thread_id=3252078&forum_id=1993
+  PluginUtils/__init__.py export of plugin lists (tool_list, ...).
 
 * Add string substitutions for web page generation (name, report name,
   date, etc).
@@ -66,11 +22,20 @@
   http://sourceforge.net/mailarchive/forum.php?thread_id=3134931&forum_id=1993
   for the details.
 
-* Move LDS temple info out of const.py and into an XML file: DONE
+* And a whole lot more...
 
-* Make the descendant graph adapt to the page size, not stuck with the
-  current 3 entries per page.
+* GEPS 005: Enhanced Plugin Interface - IN PROGRESS
 
-* Add slideshow generation ability to web page generator
+* GEPS 006: Better Place handling - IN PROGRESS
 
-* And a whole lot more....
+* GEPS 011: Tagging - FINISHED - extension on next releases
+
+* GEPS 013: GRAMPS Webapp - IN PROGRESS
+
+* GEPS 022: Narrative Website Refactor - IN PROGRESS
+
+* GEPS 026: Replace 'make' for Gramps build - IN PROGRESS
+
+* GEPS 029: GTK3-GObject introspection Conversion - IN PROGRESS
+
+* GEPS 030: New Visualization Techniques - IN PROGRESS
