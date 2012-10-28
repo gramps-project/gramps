@@ -14937,7 +14937,7 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Fehler: Familie '(family)s' Kind '%(child)s' verweist nicht zurück auf die "
+"Fehler: Familie '%(family)s' Kind '%(child)s' verweist nicht zurück auf die "
 "Familie.Referenz hinzugefügt."
 
 #: ../src/plugins/lib/libgedcom.py:1721
