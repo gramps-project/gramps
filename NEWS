@@ -1,3 +1,20 @@
+2012-10-28
+Version 3.4.2 -- the "We're all individuals!" bug fix release.
+* Some fixes on NarrativeWeb report
+* Some fixes on book report
+* Improvement on database path interface and user's preferences
+* Consistency on Name display and regex support
+* Some platform-specific fixes for Windows system environment
+* Better support for media links on Gedcom file format
+* Fix possible incorrect family relations on Gedcom file format
+* Various fixes on citation records
+* Fix and improve places handling on Geography views
+* Fix on command line arguments
+* Consistency on PDF file format
+* New language: Greek
+* Various updated translations
+* Changelog: http://www.gramps-project.org/bugs/changelog_page.php?version_id=32
+
 2012-08-23
 Version 3.4.1 -- The "A tiger? In Africa?!" bug fix release.
 Mention in the release that upgrading is advised for two critical issues:
