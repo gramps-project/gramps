@@ -805,14 +805,16 @@ class BasePage(object):
         """
         self.report.link_prefix_up = link_prefix_up
 
-        # retrieve the body of the note
-        note_text = note.get()
+        text = ""
+        if note is not None:
+            # retrieve the body of the note
+            note_text = note.get()
  
-        # styled notes
-        htmlnotetext = self.styled_note(note.get_styledtext(),
-                                        note.get_format(), contains_html = 
-                                        note.get_type() == NoteType.HTML_CODE)
-        text = htmlnotetext or Html("p", note_text)
+            # styled notes
+            htmlnotetext = self.styled_note(note.get_styledtext(),
+                                            note.get_format(), contains_html = 
+                                            note.get_type() == NoteType.HTML_CODE)
+            text = htmlnotetext or Html("p", note_text)
 
         # return text of the note to its callers
         return text
