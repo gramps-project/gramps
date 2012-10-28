@@ -6,7 +6,8 @@
 # Copyright (C) 2009      Nick Hall
 # Copyright (C) 2009      Benny Malengier
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011      Tim G L Lyons
+# Copyright (C) 2012      Mathieu MD
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -557,7 +558,7 @@ class IndivCompleteReport(Report):
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
         
         media_list = self.person.get_media_list()
-        text = self.get_name(self.person)
+        text = self._name_display.display(self.person)
         # feature request 2356: avoid genitive form
         title = _("Summary of %s") % text
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
@@ -569,6 +570,7 @@ class IndivCompleteReport(Report):
         self.doc.end_paragraph()
 
         name = self.person.get_primary_name()
+        text = self.get_name(self.person)
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
