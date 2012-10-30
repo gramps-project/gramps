@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-10-26 17:19+0100\n"
+"PO-Revision-Date: 2012-10-28 11:02+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2455,6 +2455,13 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"FOUT: Verkeer gegevensbestandspad in Bewerken Menu->Voorkeuren.\n"
+"Voorkeuren openen en juiste pad instellen.\n"
+"\n"
+"Details: gegevensbestandsmap kon niet worden aangemaakt:\n"
+"    %s\n"
+"\n"
 
 #: ../src/cli/clidbman.py:450
 #: ../src/gui/configure.py:1070
@@ -2633,7 +2640,7 @@ msgstr ""
 #: ../src/gen/db/exceptions.py:93
 #, python-format
 msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
-msgstr ""
+msgstr "Gramps slaat de gegevens op in een 'Berkeley Database'. De familiestamboom die u trachtte te laden werd echter met versie %(env_version)s van deze 'Berkeley DB' aangemaakt. Maar momenteel gebruikt Gramps versie %(bdb_version)s van de 'Berkeley DB'. U probeert dus gegevens te laden die in een nieuwer formaat zijn opgesteld dan he programma aan kan. Dit gaat niet lukken. De beste manier is om XML export en import te gebruiken. Probeert u dus de familiestamboom te openen op de computer met het programma dat die familiestamboom aanmaakte. Exporteer vervolgens naar XML en laad deze XML in the Gramps-versie die u wenst te gebruiken."
 
 #: ../src/gen/db/exceptions.py:116
 msgid ""
@@ -6582,6 +6589,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this plugin again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"De uitbreiding %(name)s werd niet geladen en gaf een fout.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Indien u niet in staat bent om zelf deze fout op te lossen, kunt u een bug op http://bugs.gramps-project.org plaatsen of de auteur (%(firstauthoremail)s) contacteren.\n"
+"\n"
+"Indien u niet wenst dat Gramps deze uitbreiding opnieuw probeert te laden, kunt u dit aangeven in de uitbreidingenbeheerder in het 'hulp' menu."
 
 #: ../src/gui/viewmanager.py:1927
 msgid "Failed Loading View"
@@ -6598,6 +6612,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this view again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Het scherm %(name)s werd niet geladen en gaf een fout.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Indien u niet in staat bent om zelf deze fout op te lossen, plaats dan een bug op http://bugs.gramps-project.org of contacteer de auteur (%(firstauthoremail)s).\n"
+"\n"
+"Indien u niet wenst dat Gramps opnieuw probeert dit scherm te laden, kunt u dit instellen in de uitbreidingenbeheerder in het 'Hulp' menu."
 
 # dit is een soort titel in een file-selector
 #: ../src/gui/editors/addmedia.py:95
@@ -7153,7 +7174,7 @@ msgstr "Familie toevoegen"
 #: ../src/gui/editors/editldsord.py:341
 #: ../src/gui/editors/editldsord.py:426
 msgid "LDS Ordinance Editor"
-msgstr "LDS Ordinance bewerken"
+msgstr "LDS Wijding bewerken"
 
 #: ../src/gui/editors/editldsord.py:277
 #, python-format
@@ -7670,9 +7691,8 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/backreflist.py:182
-#, fuzzy
 msgid "Cannot open new citation editor"
-msgstr "Kan citaten niet samenvoegen."
+msgstr "Kan het scherm om de citaten aan te passen, niet openen."
 
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
@@ -7926,23 +7946,23 @@ msgstr "Media-object slepen"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:52
 msgid "Create and add a new LDS ordinance"
-msgstr "Maakt een nieuwe LDS ordinance aan en voegt die toe"
+msgstr "Maakt een nieuwe LDS Wijding aan en voegt die toe"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:53
 msgid "Remove the existing LDS ordinance"
-msgstr "De bestaande LDS ordinance verwijderen"
+msgstr "De bestaande LDS Wijding verwijderen"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:54
 msgid "Edit the selected LDS ordinance"
-msgstr "De geselecteerde LDS ordinance bewerken"
+msgstr "De geselecteerde LDS Wijding bewerken"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:55
 msgid "Move the selected LDS ordinance upwards"
-msgstr "De geselecteerde LDS ordinance naar boven verschuiven"
+msgstr "De geselecteerde LDS Wijding naar boven verschuiven"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:56
 msgid "Move the selected LDS ordinance downwards"
-msgstr "De geselecteerde LDS ordinance naar beneden verschuiven"
+msgstr "De geselecteerde LDS Wijding naar beneden verschuiven"
 
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:71
 msgid "_LDS"
@@ -12341,12 +12361,16 @@ msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
+"De oorspronkelijke datum/tijd waarop het beeld werd aangemaakt.\n"
+"Voorbeeld: 1/10/1895 09:30:59"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:183
 msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
 msgstr ""
+"Dit is de datum/tijd waarop het beeld veranderd werd.\n"
+"Voorbeeld 24/5/2012 14:30:00"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:186
 msgid ""
@@ -12377,18 +12401,20 @@ msgid ""
 "This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
 msgstr ""
+"Er wordt een nieuw scherm geopend waar u de 'Exif'-metagegevens kunt aanpassen/veranderen.\n"
+"  Tevens kunt u de veranderde metagegevens opslaan."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Er wordt een scherm met een voorvertoning van de miniaturen"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
 msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
-msgstr ""
+msgstr "Selecteer een bestandstype waarin u uw niet- Exiv2 compatibel media-object wenst om te zetten."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:213
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
-msgstr ""
+msgstr "Indien het beeldtype geen 'Exif'-metagegevens kan bevatten, wenst u het beeld dan om te zetten naar een type dat dat wel kan?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
@@ -12499,7 +12525,7 @@ msgstr "Een kopie van de gegevensvelden worden in de Exif-beeldmetadata opgeslag
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
-msgstr ""
+msgstr "De gegevensvelden die werden gewist opnieuw tonen."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
@@ -12512,6 +12538,8 @@ msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
+"Dit aanpasscherm sluiten.\n"
+"WAARSCHUWING: Deze actie zal de veranderingen van de 'Exif'-metagegevens NIET opslaan."
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
@@ -12737,7 +12765,7 @@ msgstr " 15. <a wiki='Category:Nl:Hoe...'>Hoe ...</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr ""
+msgstr " 16. <a wiki='How_you_can_help/nl'>Hoe kunt u helpen</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -14575,17 +14603,17 @@ msgstr "Getuige commentaar: %s"
 #: ../src/plugins/import/ImportXml.py:2996
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Fout: familie '%(family)s' vader '%(father)s' verwijst niet naar de familie. Verwijzing toegevoegd."
 
 #: ../src/plugins/import/ImportXml.py:3012
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Fout: familie '%(family)s' moeder '%(mother)s' verwijst niet naar de familie. Verwijzing toegevoegd."
 
 #: ../src/plugins/import/ImportXml.py:3034
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Fout: familie '%(family)s' kind '%(child)s' verwijst niet naar de familie. Verwijzing toegevoegd."
 
 #: ../src/plugins/lib/libgedcom.py:1721
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -14630,17 +14658,17 @@ msgstr "Gegevens werden niet geïmporteerd in "
 #: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
-msgstr ""
+msgstr "Foutr: %(msg)s  '%(gramps_id)s' (input als @%(xref)s@) niet in input GEDCOM. Gegeven samengevoegd"
 
 #: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
-msgstr ""
+msgstr "Fout: %(msg)s '%(gramps_id)s' (input als @%(xref)s@) niet in input GEDCOM. Gegeven met kenmerk 'Onbekend' aangemaakt"
 
 #: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
-msgstr ""
+msgstr "Fout: familie '%(family)s' (input als @%(orig_family)s@) persoon %(person)s (input als %(orig_person)s) is geen lid van de familie waarnaar wordt verwezen. Familieverwijzing werd bij de persoon verwijderd"
 
 #: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
@@ -14652,6 +14680,12 @@ msgid ""
 "Where possible these 'Unkown' objects are \n"
 "referenced by note %s.\n"
 msgstr ""
+"\n"
+"Het geïmporteerde bestand was niet afgesloten.\n"
+"Om dit te corrigeren werden %d objecten aangemaakt en\n"
+"het kenmerk van deze objecten werd op 'Onbekend' gezet.\n"
+"Waar mogelijk wordt naar deze onbekende objecten \n"
+"verwezen naar opmerking %s.\n"
 
 #: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
@@ -14675,9 +14709,8 @@ msgstr "Onbekende tag"
 #: ../src/plugins/lib/libgedcom.py:3189
 #: ../src/plugins/lib/libgedcom.py:3193
 #: ../src/plugins/lib/libgedcom.py:3214
-#, fuzzy
 msgid "Top Level"
-msgstr "Linksboven"
+msgstr "Hoogste niveau"
 
 #: ../src/plugins/lib/libgedcom.py:3283
 #, python-format
@@ -14808,7 +14841,7 @@ msgstr "Geïmporteerd uit %s"
 
 #: ../src/plugins/lib/libgedcom.py:6709
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Identificatie submissie gegeven"
 
 #: ../src/plugins/lib/libgedcom.py:6720
 msgid "Language of GEDCOM text"
@@ -14868,7 +14901,7 @@ msgstr "NOTE Gramps-id: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6985
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Submissie: Indiener"
 
 #: ../src/plugins/lib/libgedcom.py:6987
 msgid "Submission: Family file"
@@ -14876,7 +14909,7 @@ msgstr "Submissie: familiebestand"
 
 #: ../src/plugins/lib/libgedcom.py:6989
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Submissie: Tempelcode"
 
 #: ../src/plugins/lib/libgedcom.py:6991
 msgid "Submission: Generations of ancestors"
@@ -14889,7 +14922,7 @@ msgstr "Het aantal ouders beperken"
 
 #: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Submissie: vlag behandeling wijding"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
@@ -23194,7 +23227,7 @@ msgstr " [Klik om de gaan naar]"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2232
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr "LDS / LDS Ordinance"
+msgstr "LDS / LDS Wijding"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2259
 msgid "Source References"
@@ -23437,7 +23470,7 @@ msgstr "Relatie met de beginpersoon"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6326
 msgid "Relation within this family (if not by birth)"
-msgstr ""
+msgstr "Relatie in deze familie (indien niet door geboorte) "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6434
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
