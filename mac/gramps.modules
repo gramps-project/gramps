@@ -14,7 +14,7 @@
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
   <repository type="svn" name="gramps"
-	      href="https://gramps.svn.sourceforge.net/svnroot/"/>
+	      href="http://svn.code.sf.net/p/gramps/code/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
   <repository type="tarball" name="oracle"
@@ -57,17 +57,17 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 
-  <include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.4.1.tar.gz" version="3.4.1"
+    <branch module="gramps/gramps-3.4.2.tar.gz" version="3.4.2"
 	    repo="sourceforge">
     </branch>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
-      <dep package="pyWebKitGtk"/>
+      <!--dep package="pyWebKitGtk"/-->
       <dep package="librsvg2"/>
       <dep package="pygoocanvas"/>
       <dep package="shared-mime-info"/>
@@ -117,26 +117,16 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-<!-- Later versions of librsvg2 require libxml2-2.7, available only in
-     Snow Leopard -->
-  <autotools id="librsvg2" >
-    <branch module="librsvg/2.22/librsvg-2.22.3.tar.bz2" version="2.22.3"
-	    repo="ftp.gnome.org"/>
-    <dependencies>
-      <dep package="libgsf"/>
-      <dep package="libart_lgpl"/><!-- goffice.modules -->
-    </dependencies>
-  </autotools>
-
-  <autotools id="goocanvas">
-    <branch module="goocanvas/0.15/goocanvas-0.15.tar.bz2" version="0.15"
-	    repo="ftp.gnome.org"/>
+<!-- goocanvas 2.0 is for Gtk+-3.0. Go figure. -->
+  <autotools id="goocanvas" autogen-sh="configure">
+    <branch module="goocanvas/1.0/goocanvas-1.0.0.tar.bz2" version="1.0.0"
+	    repo="ftp.gnome.org" hash="sha256:1c072ef88567cad241fb4addee26e9bd96741b1503ff736d1c152fa6d865711e"/>
     <dependencies>
       <dep package="gtk+"/>
     </dependencies>
   </autotools>
 
-  <autotools id="pygoocanvas" version="0.14.1">
+  <autotools id="pygoocanvas" version="0.14.1" autogen-sh="configure">
     <branch module="pygoocanvas/0.14/pygoocanvas-0.14.1.tar.gz" version="0.14.1"
 	    repo="ftp.gnome.org">
     </branch>
@@ -148,15 +138,15 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
   <distutils id="pyxdg">
     <branch repo="pyxdg" module="pyxdg-0.17.tar.gz" version="0.17"
-            hash="sha256:fbc87711922b2dd6ceb23ee041f1f96da9b7dbb6971df03a3081b439def069ce"
-            md5sum="a086de99cc536095684d87f15594e4db" size="37372"/>
+            hash="sha256:fbc87711922b2dd6ceb23ee041f1f96da9b7dbb6971df03a3081b439def069ce" size="37372"/>
   </distutils>
 
  <autotools id="xdg-utils">
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="osmgpsmap">
+  <autotools id="osmgpsmap" autogenargs="--disable-introspection"
+	     autogen-sh="configure">
     <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
 	    version="0.7.3"/>
     <dependencies>
@@ -176,7 +166,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </dependencies>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl">
+  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --without-x --without-freetype2 --without-fontconfig --without-pangocairo --with-included-ltdl" autogen-sh="configure">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
       <dep package="pango"/>

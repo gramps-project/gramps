@@ -38,7 +38,11 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/pango/${pkg:pango:pango_module_version}/modules/pango-basic-fc.so
+    ${prefix}/lib/pango/${pkg:pango:pango_module_version}/modules/
+  </binary>
+
+  <binary>
+    ${prefix}/lib/libpython2.7.dylib
   </binary>
 
   <!-- Copy in libpyglib, which will pull in other dependencies we need -->
@@ -63,7 +67,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libgtkmacintegration.0.dylib
+    ${prefix}/lib/libgtkmacintegration.2.dylib
   </binary>
 
   <binary>
@@ -134,6 +138,10 @@
   </data>
 
   <data>
+    ${prefix}/etc/pango/
+  </data>
+
+  <data>
     ${prefix}/share/gramps/
   </data>
 
@@ -151,10 +159,6 @@
 
   <data>
     ${prefix}/share/mime-info/
-  </data>
-
-  <data>
-    ${prefix}/lib/graphviz/config6
   </data>
 
   <!-- Copy in the themes data. You may want to trim this to save space
