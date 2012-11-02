@@ -104,7 +104,7 @@ from gen.utils.configmanager import safe_eval
 #-------------------------------------------------------------------------
 if constfunc.is_quartz():
     try:
-        import gtk_osxapplication as QuartzApp
+        import gtkosx_application as QuartzApp
         _GTKOSXAPPLICATION = True
     except:
         _GTKOSXAPPLICATION = False
@@ -301,7 +301,7 @@ class ViewManager(CLIManager):
         """
         CLIManager.__init__(self, dbstate, False)
         if _GTKOSXAPPLICATION:
-            self.macapp = QuartzApp.OSXApplication()
+            self.macapp = QuartzApp.Application()
 
         self.view_category_order = view_category_order
 
