@@ -82,8 +82,8 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    </after>
   </autotools>
 
-  <autotools id="gramps-svn" >
-    <branch module="gramps" revision="maintenance/gramps34" repo="gramps"/>
+  <autotools id="gramps-34" >
+    <branch module="code" revision="maintenance/gramps34" repo="gramps" />
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
       <dep package="librsvg2"/>

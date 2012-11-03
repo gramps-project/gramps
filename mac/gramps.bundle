@@ -71,10 +71,6 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libart_lgpl_2.2.dylib
-  </binary>
-
-  <binary>
     ${prefix}/lib/libdb-4.dylib
   </binary>
 
