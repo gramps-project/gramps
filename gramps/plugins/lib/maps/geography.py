@@ -849,7 +849,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                         "The following places are similar : %(gid)s\n"
                         "Eiher you rename the places either you merge them."
                         "\n\n<b>I can't proceed your request</b>.\n") % {
-                                              'title': plce.get_title(),
+                                              'title': place.get_title(),
                                               'gid': gids}
                       )
             else:
