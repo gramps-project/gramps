@@ -51,7 +51,7 @@ class GoogleMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude, 
+            self.url = "http://maps.google.com/maps/mm?sll=%s,%s&z=15" % (latitude, 
                                                                longitude)
             return
         
