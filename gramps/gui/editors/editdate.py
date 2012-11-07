@@ -242,13 +242,12 @@ class EditDate(ManagedWindow):
         # We need to be able to use this function from that callback,
         # so here we just report on the state of all widgets, without
         # actually modifying the date yet.
-        
         modifier = MOD_TEXT[self.type_box.get_active()][0]
         text = self.text_entry.get_text()
 
         if modifier == Date.MOD_TEXTONLY:
             return (Date.QUAL_NONE, Date.MOD_TEXTONLY, Date.CAL_GREGORIAN,
-                    Date.EMPTY,text, Date.NEWYEAR_JAN1)
+                    Date.EMPTY, text, Date.NEWYEAR_JAN1)
 
         quality = QUAL_TEXT[self.quality_box.get_active()][0]
 
