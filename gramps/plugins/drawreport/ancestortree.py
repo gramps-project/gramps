@@ -24,6 +24,7 @@
 
 """Reports/Graphical Reports/Ancestor Tree"""
 
+from __future__ import division
 #------------------------------------------------------------------------
 #
 # python modules

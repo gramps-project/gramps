@@ -27,6 +27,7 @@
 Timeline Chart
 """
 
+from __future__ import division
 #------------------------------------------------------------------------
 #
 # python modules

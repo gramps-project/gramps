@@ -27,6 +27,7 @@
 
 """Reports/Graphical Reports/Statistics Report"""
 
+from __future__ import division
 #------------------------------------------------------------------------
 #
 # python modules

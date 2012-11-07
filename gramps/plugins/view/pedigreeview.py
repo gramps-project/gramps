@@ -29,7 +29,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
+from __future__ import unicode_literals, division
 
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
@@ -903,15 +903,15 @@ class PedigreeView(NavigationView):
                 offset = i + 1 - (2**level)
 
                 if self.tree_style == 0:
-                    _delta = (2**size) / (2**level)
+                    _delta = (2**size) // (2**level)
                 else:
-                    _delta = (2**size) / (2**level) * 2
+                    _delta = (2**size) // (2**level) * 2
 
                 x_pos = (1 + _width) * level + 1
-                y_pos = _delta / 2 + offset * _delta - 1
+                y_pos = _delta // 2 + offset * _delta - 1
 
                 if self.tree_style == 0 and level == size - 1:
-                    y_pos = _delta / 2 + offset * _delta
+                    y_pos = _delta // 2 + offset * _delta
                     height = _height = 1
             else:
                 try:
@@ -926,22 +926,22 @@ class PedigreeView(NavigationView):
             pbw = None
             if not lst[i] and (
                (self.tree_style in [0, 2] and self.show_unknown_people and
-               lst[((i+1)/2)-1]) or self.tree_style == 1):
+               lst[((i+1) // 2) - 1]) or self.tree_style == 1):
                 #
                 # No person -> show empty box
                 #
                 pbw = PersonBoxWidgetCairo(self, self.format_helper,
                         self.dbstate, None, False, 0, None)
 
-                if i > 0 and lst[((i+1)/2)-1]:
+                if i > 0 and lst[((i+1) // 2) - 1]:
                     fam_h = None
-                    fam = lst[((i+1)/2)-1][2]
+                    fam = lst[((i+1) // 2) - 1][2]
                     if fam:
                         fam_h = fam.get_handle()
                     if not self.dbstate.db.readonly:
                         pbw.connect("button-press-event",
                                     self.cb_missing_parent_button_press,
-                                    lst[((i+1)/2)-1][0].get_handle(), fam_h)
+                                    lst[((i+1) // 2) - 1][0].get_handle(), fam_h)
                         pbw.force_mouse_over = True
 
             elif lst[i]:
@@ -950,7 +950,7 @@ class PedigreeView(NavigationView):
                 #
                 image = False
                 if self.show_images and height > 1 and (
-                   i < ((2**size-1)/2) or self.tree_style == 2):
+                   i < ((2**size-1) // 2) or self.tree_style == 2):
                     image = True
 
                 pbw = PersonBoxWidgetCairo(self, self.format_helper,
@@ -1015,10 +1015,10 @@ class PedigreeView(NavigationView):
                 self.attach_widget(table_widget, line, xmax,
                                     x_pos, x_pos+width, y_pos, y_pos+height)
 
-            elif self.tree_style in [0, 2] and lst[((i+1)/2)-1]:
+            elif self.tree_style in [0, 2] and lst[((i+1) // 2) - 1]:
                 # combined for father and mother
-                x_pos = (1 + _width)*level
-                y_pos = offset * _delta - (_delta / 2) - 1
+                x_pos = (1 + _width) * level
+                y_pos = offset * _delta - (_delta // 2) - 1
                 width = 1
                 height = _delta + 3
 
@@ -1033,7 +1033,7 @@ class PedigreeView(NavigationView):
                     if lst[i - 1]:
                         mrela = lst[i-1][1]
 
-                    line = LineWidget(lst[((i+1)/2)-1][4],
+                    line = LineWidget(lst[((i+1) // 2) - 1][4],
                                       last_pbw, frela,
                                       pbw, mrela,
                                       self.tree_direction)
@@ -1043,14 +1043,14 @@ class PedigreeView(NavigationView):
                         line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
                         line.connect("button-press-event",
                                      self.cb_relation_button_press,
-                                     lst[((i+1)/2)-1][2].get_handle())
+                                     lst[((i+1) // 2) - 1][2].get_handle())
                         # Required for tooltip and mouse-over
                         line.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK)
                         # Required for tooltip and mouse-over
                         line.add_events(Gdk.EventMask.LEAVE_NOTIFY_MASK)
                         line.set_tooltip_text(
                             self.format_helper.format_relation(
-                                                    lst[((i+1)/2)-1][2], 11))
+                                                lst[((i+1) // 2) - 1][2], 11))
                     
                     self.attach_widget(table_widget, line, xmax,
                                         x_pos, x_pos+width, y_pos, y_pos+height)
@@ -1072,7 +1072,7 @@ class PedigreeView(NavigationView):
                 label.set_alignment(0.1, 0.5)
                 if self.tree_style in [0, 2]:
                     x_pos = (1 + _width) * (level + 1) + 1
-                    y_pos = _delta / 2 + offset * _delta -1 + _height / 2
+                    y_pos = _delta // 2 + offset * _delta -1 + _height // 2
                     width = 1
                     height = 1
                     if self.tree_style == 0 and level < 2 and size > 4:
@@ -1114,7 +1114,7 @@ class PedigreeView(NavigationView):
             else:
                 button.set_sensitive(False)
 
-            ymid = int(math.floor(ymax/2))
+            ymid = ymax // 2
             self.attach_widget(table_widget, button, xmax,
                                 0, 1, ymid, ymid +1)
             
@@ -1127,7 +1127,7 @@ class PedigreeView(NavigationView):
             else:
                 button.set_sensitive(False)
                 
-            ymid = int(math.floor(ymax/4))
+            ymid = ymax // 4
             self.attach_widget(table_widget, button, xmax,
                                 xmax, xmax+1, ymid-1, ymid+2)
 
@@ -1140,7 +1140,7 @@ class PedigreeView(NavigationView):
             else:
                 button.set_sensitive(False)
                 
-            ymid = int(math.floor(ymax/4*3))
+            ymid = ymax // 4 * 3
             self.attach_widget(table_widget, button, xmax,
                                 xmax, xmax+1, ymid-1, ymid+2)
 

@@ -28,6 +28,7 @@ A plugin to verify the data against user-adjusted tests.
 This is the research tool, not the low-level data ingerity check.
 """
 
+from __future__ import division
 #------------------------------------------------------------------------
 #
 # standard python modules
@@ -942,7 +943,7 @@ class OldAge(PersonRule):
         return (self.old_age,self.est)
 
     def broken(self):
-        age_at_death = get_age_at_death(self.db,self.obj,self.est)
+        age_at_death = get_age_at_death(self.db, self.obj, self.est)
         return (age_at_death/365 > self.old_age)
 
     def get_message(self):
@@ -1000,7 +1001,7 @@ class OldUnmarried(PersonRule):
     def broken(self):
         age_at_death = get_age_at_death(self.db,self.obj,self.est)
         n_spouses = len(self.obj.get_family_handle_list())
-        return (age_at_death/365>self.old_unm and n_spouses==0)
+        return (age_at_death/365 > self.old_unm and n_spouses==0)
 
     def get_message(self):
         return _("Old and unmarried")

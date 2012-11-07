@@ -27,6 +27,7 @@
 Reports/Graphical Reports/Familial Tree
 Reports/Graphical Reports/Personal Tree
 """
+from __future__ import division
 
 #------------------------------------------------------------------------
 #
