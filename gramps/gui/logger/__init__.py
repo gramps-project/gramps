@@ -64,5 +64,5 @@ Usage:
 
 """
 
-from _gtkhandler import GtkHandler
-from _rotatehandler import RotateHandler
+from ._gtkhandler import GtkHandler
+from ._rotatehandler import RotateHandler

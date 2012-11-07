@@ -29,10 +29,16 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys
 ## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
-reload(sys)
-sys.setdefaultencoding('utf8')
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+except:
+    #python3 has no reload
+    pass
 ##
 import os
 import signal
@@ -50,8 +56,8 @@ from subprocess import Popen, PIPE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
-from gen.constfunc import win
+from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
+from .gen.constfunc import win
 #-------------------------------------------------------------------------
 #
 # Setup logging
@@ -109,8 +115,8 @@ def exc_hook(type, value, tb):
 
 sys.excepthook = exc_hook
 
-from gen.mime import mime_type_is_defined
-from gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
+from .gen.mime import mime_type_is_defined
+from .gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
@@ -141,7 +147,10 @@ except:
         # raise
 
 gettext.textdomain(LOCALEDOMAIN)
-gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
+if sys.version_info[0] < 3:
+    gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
+else:
+    gettext.install(LOCALEDOMAIN, localedir=None) #None is sys default locale
 
 if hasattr(os, "uname"):
     operating_system = os.uname()[0]
@@ -265,8 +274,8 @@ def show_settings():
     except ImportError:
         pyexiv2_str = 'not found'
 
-    from gen.config import config
-    usebsddb3 = config.get('preferences.use-bsddb3')
+    from .gen.config import config
+    usebsddb3 = config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3
     try:
         if usebsddb3:
             import bsddb3 as bsddb
@@ -279,7 +288,7 @@ def show_settings():
         bsddb_db_str = 'not found'
 
     try: 
-        from gen.const import VERSION
+        from .gen.const import VERSION
         gramps_str = VERSION
     except:
         gramps_str = 'not found'
@@ -315,53 +324,53 @@ def show_settings():
     os_path = os.environ.get('PATH','not set')
     os_path = os_path.split(os.pathsep)
     
-    print "Gramps Settings:"
-    print "----------------"
-    print ' python    : %s' % py_str
-    print ' gramps    : %s' % gramps_str
-    print ' gtk++     : %s' % gtkver_str
-    print ' gobject   : %s' % gobjectver_str
+    print ("Gramps Settings:")
+    print ("----------------")
+    print (' python    : %s' % py_str)
+    print (' gramps    : %s' % gramps_str)
+    print (' gtk++     : %s' % gtkver_str)
+    print (' gobject   : %s' % gobjectver_str)
     if usebsddb3:
-        print ' Using bsddb3'
+        print (' Using bsddb3')
     else:
-        print ' Not using bsddb3'
-    print ' bsddb     : %s' % bsddb_str
-    print ' bsddb.db  : %s' % bsddb_db_str
-    print ' cairo     : %s' % cairover_str
-    print ' osmgpsmap : %s' % osmgpsmap_str
-    print ' pyexiv2   : %s' % pyexiv2_str
-    print ' o.s.      : %s' % operating_system
+        print (' Not using bsddb3')
+    print (' bsddb     : %s' % bsddb_str)
+    print (' bsddb.db  : %s' % bsddb_db_str)
+    print (' cairo     : %s' % cairover_str)
+    print (' osmgpsmap : %s' % osmgpsmap_str)
+    print (' pyexiv2   : %s' % pyexiv2_str)
+    print (' o.s.      : %s' % operating_system)
     if kernel:
-        print ' kernel    : %s' % kernel
-    print
-    print "Environment settings:"
-    print "---------------------"
-    print ' LANG      : %s' % lang_str
-    print ' LANGUAGE  : %s' % language_str
-    print ' GRAMPSI18N: %s' % grampsi18n_str
-    print ' GRAMPSHOME: %s' % grampshome_str
-    print ' GRAMPSDIR : %s' % grampsdir_str
-    print ' PYTHONPATH:'
+        print (' kernel    : %s' % kernel)
+    print ('')
+    print ("Environment settings:")
+    print ("---------------------")
+    print (' LANG      : %s' % lang_str)
+    print (' LANGUAGE  : %s' % language_str)
+    print (' GRAMPSI18N: %s' % grampsi18n_str)
+    print (' GRAMPSHOME: %s' % grampshome_str)
+    print (' GRAMPSDIR : %s' % grampsdir_str)
+    print (' PYTHONPATH:')
     for folder in sys.path:
-        print "   ", folder
-    print
-    print "Non-python dependencies:"
-    print "------------------------"
-    print ' Graphviz  : %s' % dotversion_str
-    print ' Ghostscr. : %s' % gsversion_str
-    print
-    print "System PATH env variable:"
-    print "-------------------------"
+        print ("   ", folder)
+    print ('')
+    print ("Non-python dependencies:")
+    print ("------------------------")
+    print (' Graphviz  : %s' % dotversion_str)
+    print (' Ghostscr. : %s' % gsversion_str)
+    print ('')
+    print ("System PATH env variable:")
+    print ("-------------------------")
     for folder in os_path:
-        print "    ", folder
-    print
+        print ("    ", folder)
+    print ('')
 
 def run():
     error = []
     
     try:
         build_user_paths()   
-    except OSError, msg:
+    except OSError as msg:
         error += [(_("Configuration error:"), str(msg))]
         return error
     except msg:
@@ -383,7 +392,7 @@ def run():
         show_settings()
         return error
 
-    from cli.argparser import ArgParser
+    from .cli.argparser import ArgParser
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
 
@@ -433,13 +442,13 @@ def run():
     if argpars.need_gui():
         #A GUI is needed, set it up
         if "--qml" in sys.argv:
-            from guiQML.grampsqml import startqml
+            from .guiQML.grampsqml import startqml
             startqml(error, argpars)
         else:
             try:
-                from gui.grampsgui import startgtkloop
+                from .gui.grampsgui import startgtkloop
             # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
-            except RuntimeError, msg:
+            except RuntimeError as msg:
                 error += [(_("Configuration error:"), str(msg))]
                 return error
             startgtkloop(error, argpars)
@@ -447,7 +456,7 @@ def run():
         #CLI use of GRAMPS
         argpars.print_help()
         argpars.print_usage()
-        from cli.grampscli import startcli
+        from .cli.grampscli import startcli
         startcli(error, argpars)
 
 def main():

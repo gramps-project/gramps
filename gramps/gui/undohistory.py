@@ -240,7 +240,7 @@ def gdk_color_to_str(color):
     """
     Convert a Gdk.Color into a #rrggbb string.
     """
-    color_str = u"#%02x%02x%02x" % (color.red * 255,
+    color_str = "#%02x%02x%02x" % (color.red * 255,
                                     color.green * 255,
                                     color.blue * 255)
     return color_str

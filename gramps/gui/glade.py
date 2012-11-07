@@ -50,6 +50,7 @@ from gi.repository import Gtk
 #------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR
 from gramps.gen.utils.trans import LOCALEDOMAIN
+from gramps.gen.constfunc import STRTYPE
 
 #------------------------------------------------------------------------
 #
@@ -203,9 +204,9 @@ class Glade(Gtk.Builder):
         if not toplevel:
             toplevel = self.__toplevel
             if not toplevel:
-                raise ValueError, "Top level object required"
+                raise ValueError("Top level object required")
                 
-        if isinstance(toplevel, basestring):
+        if isinstance(toplevel, STRTYPE):
             toplevel = self.get_object(toplevel)
             
         # Simple Breadth-First Search

@@ -22,5 +22,5 @@
 
 "Export Plugin Framework"
 
-from _exportassistant import ExportAssistant
-from _exportoptions import WriterOptionBox
+from ._exportassistant import ExportAssistant
+from ._exportoptions import WriterOptionBox

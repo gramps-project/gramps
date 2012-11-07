@@ -31,7 +31,11 @@ Each object can be operated on with the following actions:
 """
 
 import os
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import base64
 
 #------------------------------------------------------------------------
@@ -200,7 +204,7 @@ def process_report_run(request, handle):
                     if key and value:
                         args[key] = value
         # override from options on webpage:
-        if request.GET.has_key("options"):
+        if "options" in request.GET:
             options = str(request.GET.get("options"))
             if options:
                 for pair in options.split("\n"): # from webpage
@@ -262,7 +266,7 @@ def view_list(request, view):
     search = ""
     if view == "event":
         context["tviews"] = _("Events")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_event_query(request, search)
         object_list = Event.objects \
             .filter(query) \
@@ -272,7 +276,7 @@ def view_list(request, view):
         total = Event.objects.all().count()
     elif view == "media":
         context["tviews"] = _("Media")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_media_query(request, search)
         object_list = Media.objects \
             .filter(query) \
@@ -282,7 +286,7 @@ def view_list(request, view):
         total = Media.objects.all().count()
     elif view == "note":
         context["tviews"] = _("Notes")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_note_query(request, search)
         object_list = Note.objects \
             .filter(query) \
@@ -292,7 +296,7 @@ def view_list(request, view):
         total = Note.objects.all().count()
     elif view == "person":
         context["tviews"] = _("People")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_person_query(request, search)
         object_list = Name.objects \
             .filter(query) \
@@ -302,7 +306,7 @@ def view_list(request, view):
         total = Name.objects.all().count()
     elif view == "family":
         context["tviews"] = _("Families")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_family_query(request, search)
         object_list = Family.objects \
             .filter(query) \
@@ -312,7 +316,7 @@ def view_list(request, view):
         total = Family.objects.all().count()
     elif view == "place":
         context["tviews"] = _("Places")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_place_query(request, search)
         object_list = Place.objects \
             .filter(query) \
@@ -322,7 +326,7 @@ def view_list(request, view):
         total = Place.objects.all().count()
     elif view == "repository":
         context["tviews"] = _("Repositories")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_repository_query(request, search)
         object_list = Repository.objects \
             .filter(query) \
@@ -332,7 +336,7 @@ def view_list(request, view):
         total = Repository.objects.all().count()
     elif view == "citation":
         context["tviews"] = _("Citations")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_citation_query(request, search)
         object_list = Citation.objects \
             .filter(query) \
@@ -342,7 +346,7 @@ def view_list(request, view):
         total = Citation.objects.all().count()
     elif view == "source":
         context["tviews"] = _("Sources")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_source_query(request, search)
         object_list = Source.objects \
             .filter(query) \
@@ -352,7 +356,7 @@ def view_list(request, view):
         total = Source.objects.all().count()
     elif view == "tag":
         context["tviews"] = _("Tags")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_tag_query(request, search)
         object_list = Tag.objects \
             .filter(query) \
@@ -362,7 +366,7 @@ def view_list(request, view):
         total = Tag.objects.all().count()
     elif view == "report":
         context["tviews"] = _("Reports")
-        search = request.GET.get("search") if request.GET.has_key("search") else ""
+        search = request.GET.get("search") if "search" in request.GET else ""
         query, order, terms = build_report_query(request, search)
         object_list = Report.objects \
             .filter(query) \
@@ -423,7 +427,7 @@ def add_share(request, view, item, handle):
     # Use an existing person with this family
     # r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
     act = "share"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action") # can be "save-share"
     return action(request, view, None, act, (item, handle))
 
@@ -445,7 +449,7 @@ def action(request, view, handle, act, add_to=None):
     rd = None
     obj = None
     context = RequestContext(request)
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
     context["action"] = act
     context["view"] = view

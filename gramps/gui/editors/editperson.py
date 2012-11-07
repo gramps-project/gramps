@@ -62,18 +62,19 @@ from gramps.gen.errors import WindowActiveError
 from ..glade import Glade
 from ..widgets.menuitem import add_menuitem
 
-from editprimary import EditPrimary
-from editmediaref import EditMediaRef
-from editname import EditName
+from .editprimary import EditPrimary
+from .editmediaref import EditMediaRef
+from .editname import EditName
 from gramps.gen.config import config
 from ..dialog import ErrorDialog, ICON
 from gramps.gen.errors import ValidationError
 
-from displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
+from .displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList,
                          AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab,
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
 from gramps.gen.plug import CATEGORY_QR_PERSON
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -710,7 +711,7 @@ class EditPerson(EditPrimary):
             return False
         try:
             gender_type = self.db.genderStats.guess_gender(
-                unicode(entry.get_text()))
+                                                    cuni(entry.get_text()))
             self.gender.force(gender_type)
         except:
             return False

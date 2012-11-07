@@ -41,6 +41,8 @@ import re
 import logging
 LOG = logging.getLogger(".")
 
+from ...constfunc import conv_to_unicode_direct
+
 #-------------------------------------------------------------------------
 #
 # Rule
@@ -79,11 +81,12 @@ class Rule(object):
         if self.nrprepare == 0:
             if self.use_regex:
                 self.regex = [None]*len(self.labels)
-                for i in xrange(len(self.labels)):
+                for i in range(len(self.labels)):
                     if self.list[i]:
                         try:
-                            self.regex[i] = re.compile(unicode(self.list[i]),
-                                                       re.I|re.U|re.L)
+                            self.regex[i] = re.compile(
+                                conv_to_unicode_direct(self.list[i]),
+                                re.I|re.U|re.L)
                         except re.error:
                             self.regex[i] = re.compile('')
                 self.match_substring = self.match_regex
@@ -137,7 +140,7 @@ class Rule(object):
     def display_values(self):
         """Return the labels and values of this rule."""
         l_v = ( '%s="%s"' % (_(self.labels[ix]), self.list[ix])
-                for ix in xrange(len(self.list)) if self.list[ix] )
+                for ix in range(len(self.list)) if self.list[ix] )
 
         return ';'.join(l_v)
 
@@ -149,7 +152,7 @@ class Rule(object):
         """
         # make str_var unicode so that search for ü works
         # see issue 3188
-        str_var = unicode(str_var)
+        str_var = conv_to_unicode_direct(str_var)
         if self.list[param_index] and \
                (str_var.upper().find(self.list[param_index].upper()) == -1):
             return False
@@ -162,7 +165,7 @@ class Rule(object):
         matches filter element indicated by param_index using a regular
         expression search.
         """
-        str_var = unicode(str_var)
+        str_var = conv_to_unicode_direct(str_var)
         if (self.list[param_index] and  self.regex[param_index].search(str_var)
                 is None):
             return False

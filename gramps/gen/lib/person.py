@@ -26,29 +26,31 @@
 """
 Person object for GRAMPS.
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from attrbase import AttributeBase
-from addressbase import AddressBase
-from ldsordbase import LdsOrdBase
-from urlbase import UrlBase
-from tagbase import TagBase
-from name import Name
-from eventref import EventRef
-from personref import PersonRef
-from attrtype import AttributeType
-from eventroletype import EventRoleType
-from attribute import Attribute
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .primaryobj import PrimaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .mediabase import MediaBase
+from .attrbase import AttributeBase
+from .addressbase import AddressBase
+from .ldsordbase import LdsOrdBase
+from .urlbase import UrlBase
+from .tagbase import TagBase
+from .name import Name
+from .eventref import EventRef
+from .personref import PersonRef
+from .attrtype import AttributeType
+from .eventroletype import EventRoleType
+from .attribute import Attribute
+from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..ggettext import gettext as _
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -333,7 +335,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in xrange(n_replace):
+            for ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -363,7 +365,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             if new_handle in refs_list:
                 new_ref = self.person_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in xrange(n_replace):
+            for ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.person_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -411,7 +413,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :rtype: list
         """
         check_list = self.lds_ord_list
-        add_list = filter(None, check_list)
+        add_list = [_f for _f in check_list if _f]
         return ([self.primary_name] +
                  self.media_list +
                  self.alternate_names +
@@ -519,9 +521,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
 
-        map(self.add_parent_family_handle,
-            acquisition.get_parent_family_handle_list())
-        map(self.add_family_handle, acquisition.get_family_handle_list())
+        list(map(self.add_parent_family_handle,
+            acquisition.get_parent_family_handle_list()))
+        list(map(self.add_family_handle, acquisition.get_family_handle_list()))
 
     def set_primary_name(self, name):
         """
@@ -599,7 +601,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             if int(attr.type) == AttributeType.NICKNAME:
                 return attr.get_value()
         else:
-            return u''
+            return ''
 
     def set_gender(self, gender) :
         """
@@ -915,7 +917,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             Person's :class:`~gen.lib.family.Family` list.
         :type family_handle: str
         """
-        if not isinstance(family_handle, basestring):
+        if not isinstance(family_handle, STRTYPE):
             raise ValueError("expecting handle")
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)

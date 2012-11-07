@@ -28,21 +28,21 @@ Package providing filter rules for GRAMPS.
 
 from .._hassourcebase import HasSourceBase as HasSource
 
-from _allsources import AllSources
-from _hasgallery import HasGallery
-from _hasidof import HasIdOf
-from _regexpidof import RegExpIdOf
-from _hasnote import HasNote
-from _hasnoteregexp import HasNoteRegexp
-from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
-from _hasreferencecountof import HasReferenceCountOf
-from _sourceprivate import SourcePrivate
-from _matchesfilter import MatchesFilter
-from _changedsince import ChangedSince
-from _hasrepository import HasRepository
-from _matchestitlesubstringof import MatchesTitleSubstringOf
-from _hasrepositorycallnumberref import HasRepositoryCallNumberRef
-from _matchesrepositoryfilter import MatchesRepositoryFilter
+from ._allsources import AllSources
+from ._hasgallery import HasGallery
+from ._hasidof import HasIdOf
+from ._regexpidof import RegExpIdOf
+from ._hasnote import HasNote
+from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasreferencecountof import HasReferenceCountOf
+from ._sourceprivate import SourcePrivate
+from ._matchesfilter import MatchesFilter
+from ._changedsince import ChangedSince
+from ._hasrepository import HasRepository
+from ._matchestitlesubstringof import MatchesTitleSubstringOf
+from ._hasrepositorycallnumberref import HasRepositoryCallNumberRef
+from ._matchesrepositoryfilter import MatchesRepositoryFilter
 
 editor_rule_list = [
     AllSources,

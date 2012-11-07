@@ -64,6 +64,7 @@ from ...utils.cast import get_type_converter_by_name, type_name
 from ..docgen import StyleSheet, StyleSheetList
 from .. import BasePluginManager
 from . import book_categories
+from ...constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -327,7 +328,7 @@ class BookList(object):
                 f.write('  <item name="%s" trans_name="%s">\n' % 
                             (item.get_name(),item.get_translated_name() ) )
                 options = item.option_class.handler.options_dict
-                for option_name, option_value in options.iteritems():
+                for option_name, option_value in options.items():
                     if isinstance(option_value, (list, tuple)):
                         f.write('  <option name="%s" value="" '
                                 'length="%d">\n' % (
@@ -335,7 +336,7 @@ class BookList(object):
                                     len(options[option_name]) ) )
                         for list_index in range(len(option_value)):
                             option_type = type_name(option_value[list_index])
-                            value = escape(unicode(option_value[list_index]))
+                            value = escape(cuni(option_value[list_index]))
                             value = value.replace('"', '&quot;')
                             f.write('    <listitem number="%d" type="%s" '
                                     'value="%s"/>\n' % (
@@ -345,7 +346,7 @@ class BookList(object):
                         f.write('  </option>\n')
                     else:
                         option_type = type_name(option_value)
-                        value = escape(unicode(option_value))
+                        value = escape(cuni(option_value))
                         value = value.replace('"', '&quot;')
                         f.write('  <option name="%s" type="%s" '
                                 'value="%s"/>\n' % (
@@ -418,7 +419,7 @@ class BookParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
-            if attrs.has_key('length'):
+            if 'length' in attrs:
                 self.an_o_value = []
             else:
                 converter = get_type_converter_by_name(attrs['type'])

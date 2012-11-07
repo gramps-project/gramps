@@ -140,13 +140,13 @@ class PatchNames(tool.BatchTool, ManagedWindow):
 
         response = winprefix.run()
         self.prefix_list = self.prefixbox.get_text().split(',')
-        self.prefix_list = map(strip, self.prefix_list)
+        self.prefix_list = list(map(strip, self.prefix_list))
         self.prefixbox = None
         self.connector_list = self.conbox.get_text().split(',')
-        self.connector_list = map(strip, self.connector_list)
+        self.connector_list = list(map(strip, self.connector_list))
         self.conbox = None
         self.connector_list_nonsplit = self.connsbox.get_text().split(',')
-        self.connector_list_nonsplit = map(strip, self.connector_list_nonsplit)
+        self.connector_list_nonsplit = list(map(strip, self.connector_list_nonsplit))
         self.connsbox = None
         
         # Find a prefix in the first_name
@@ -238,8 +238,8 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 surnames = old_surn[0].split(',')
                 if len(prefixes) > 1 and len(prefixes) == len(surnames):
                     #assume a list of prefix and a list of surnames
-                    prefixes = map(strip, prefixes)
-                    surnames = map(strip, surnames)
+                    prefixes = list(map(strip, prefixes))
+                    surnames = list(map(strip, surnames))
                     primaries = [False] * len(prefixes)
                     primaries[0] = True
                     origs = []
@@ -412,7 +412,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         self.compound_hash = {}
 
         self.progress.set_pass(_('Building display'),
-                               len(self.handle_to_action.keys()))
+                               len(list(self.handle_to_action.keys())))
 
         for key, data in self.handle_to_action.items():
             p = self.db.get_person_from_handle(key)

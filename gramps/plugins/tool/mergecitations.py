@@ -30,6 +30,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -190,15 +192,15 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                 dict = {}
                 citation_handle_list = list(db.find_backlink_handles(handle))
                 for (class_name, citation_handle) in citation_handle_list:
-                    if class_name <> Citation.__name__:
+                    if class_name != Citation.__name__:
                         raise MergeError("Encountered an object of type %s "
                         "that has a citation reference." % class_name)
 
                     citation = db.get_citation_from_handle(citation_handle)
                     key = citation.get_page()
-                    if fields <> IGNORE_DATE and fields <> IGNORE_BOTH:
+                    if fields != IGNORE_DATE and fields != IGNORE_BOTH:
                         key += "\n" + get_date(citation)
-                    if fields <> IGNORE_CONFIDENCE and fields <> IGNORE_BOTH:
+                    if fields != IGNORE_CONFIDENCE and fields != IGNORE_BOTH:
                         key += "\n" + \
                             confidence[citation.get_confidence_level()]
                     if key in dict and \
@@ -209,11 +211,11 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                         try:
                             self.Merge(db, citation_match, citation, trans)
                         except AssertionError:
-                            print "Tool/Family Tree processing/MergeCitations", \
+                            print("Tool/Family Tree processing/MergeCitations", \
                             "citation1 gramps_id", citation_match.get_gramps_id(), \
                             "citation2 gramps_id", citation.get_gramps_id() , \
                             "citation backlink handles", \
-                            list(db.find_backlink_handles(citation.get_handle()))
+                            list(db.find_backlink_handles(citation.get_handle())))
                         num_merges += 1
                     elif (not dont_merge_notes or len(citation.note_list) == 0):
                         dict[key] = citation_handle

@@ -33,6 +33,13 @@ import re
 
 #-------------------------------------------------------------------------
 #
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from ..constfunc import cuni
+
+#-------------------------------------------------------------------------
+#
 # Base Object
 #
 #-------------------------------------------------------------------------
@@ -96,7 +103,7 @@ class BaseObject(object):
         for item in self.get_text_data_list():
         # Some items are strings, which will fail in item.upper(), and some items are unicode.
         # Convert all items to unicode and the item.upper().find(patern_upper) will work OK.
-            item = unicode(item)
+            item = cuni(item)
             if not item:
                 continue
             if case_sensitive:

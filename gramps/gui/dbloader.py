@@ -206,7 +206,7 @@ class DbLoader(CLIDbLoader):
         
         """
 
-        if not isinstance(filename, basestring):
+        if not isinstance(filename, str):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))
@@ -249,7 +249,7 @@ class DbLoader(CLIDbLoader):
                             User(callback=self._pulse_progress))
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
-        except UnicodeError, msg:
+        except UnicodeError as msg:
             ErrorDialog(
                 _("Could not import file: %s") % filename, 
                 _("This file incorrectly identifies its character "
@@ -266,7 +266,7 @@ class DbLoader(CLIDbLoader):
         is returned
         """
         if self.import_info is None:
-            return u""
+            return ""
         return self.import_info.info_text()
     
     def read_file(self, filename):
@@ -306,7 +306,7 @@ class DbLoader(CLIDbLoader):
                 db.load(filename, self._pulse_progress, 
                                      mode, upgrade=False)
                 self.dbstate.change_database(db)
-            except DbUpgradeRequiredError, msg:
+            except DbUpgradeRequiredError as msg:
                 if QuestionDialog2(_("Need to upgrade database!"), 
                                    str(msg), 
                                    _("Upgrade now"), 
@@ -319,20 +319,20 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.change_database(db)
                 else:
                     self.dbstate.no_database()
-        except BsddbDowngradeError, msg:
+        except BsddbDowngradeError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbVersionError, msg:
+        except DbVersionError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbEnvironmentError, msg:
+        except DbEnvironmentError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except OSError, msg:
+        except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except DbError, msg:
+        except DbError as msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception as newerror:

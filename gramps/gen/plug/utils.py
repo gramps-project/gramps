@@ -32,13 +32,17 @@ General utility functions useful for the generic plugin system
 import locale
 import sys
 import os
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from _pluginreg import make_environment
+from ._pluginreg import make_environment
 from ..const import USER_PLUGINS, VERSION_TUPLE
 from ..utils.file import get_unicode_path_from_file_chooser
 from ..ggettext import gettext as _
@@ -192,14 +196,17 @@ def load_addon_file(path, callback=None):
     """
     Load an addon from a particular path (from URL or file system).
     """
-    import urllib
+    if sys.version_info[0] < 3:
+        from urllib2 import urlopen
+    else:
+        from urllib.request import urlopen
     import tarfile
-    import cStringIO
+    import io
     if (path.startswith("http://") or
         path.startswith("https://") or
         path.startswith("ftp://")):
         try:
-            fp = urllib.urlopen(path)
+            fp = urlopen(path)
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)
@@ -212,7 +219,7 @@ def load_addon_file(path, callback=None):
                 callback(_("Unable to open '%s'") % path)
             return
     try:
-        buffer = cStringIO.StringIO(fp.read())
+        buffer = StringIO(fp.read())
     except:
         if callback:
             callback(_("Error in reading '%s'") % path)

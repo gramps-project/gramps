@@ -64,6 +64,7 @@ from gramps.gen.const import VERSION
 from gramps.gen.constfunc import win
 from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
+from gramps.gen.constfunc import cuni, conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +79,7 @@ except:
     _gzip_ok = 0
 
 # table for skipping control chars from XML except 09, 0A, 0D
-strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
+strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)))
 
 def escxml(d):
     return escape(d, 
@@ -159,7 +160,7 @@ class GrampsXmlWriter(UpdateCallback):
                         g = open(filename,"w")
                 else:
                     g = open(filename,"w")
-            except IOError,msg:
+            except IOError as msg:
                 LOG.warn(str(msg))
                 raise DbWriteFailure(_('Failure writing %s') % filename,
                                         str(msg))
@@ -434,9 +435,9 @@ class GrampsXmlWriter(UpdateCallback):
         
     def fix(self,line):
         try:
-            l = unicode(line)
+            l = cuni(line)
         except:
-            l = unicode(str(line),errors='replace')
+            l = conv_to_unicode(str(line), errors='replace')
         l = l.strip().translate(strip_dict)
         return escxml(l)
 
@@ -1096,7 +1097,7 @@ class GrampsXmlWriter(UpdateCallback):
             return
         
         sp = '  '*indent
-        for key in datamap.keys():
+        for key in list(datamap.keys()):
             self.g.write('%s<data_item key="%s" value="%s"/>\n' %
                          (sp,self.fix(key), self.fix(datamap[key])))
 
@@ -1179,7 +1180,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
                          % ("  "*(index+1), longitude, lat))
         self.dump_location(main_loc)
-        map(self.dump_location, place.get_alternate_locations())
+        list(map(self.dump_location, place.get_alternate_locations()))
         self.write_media_list(place.get_media_list(), index+1)
         self.write_url_list(place.get_url_list())
         self.write_note_list(place.get_note_list(), index+1)
@@ -1294,7 +1295,7 @@ class XmlWriter(GrampsXmlWriter):
         ret = 0 #False
         try:
             ret = GrampsXmlWriter.write(self, filename)
-        except DbWriteFailure, msg:
+        except DbWriteFailure as msg:
             (m1,m2) = msg.messages()
             self.user.notify_db_error(m1, m2)
         return ret

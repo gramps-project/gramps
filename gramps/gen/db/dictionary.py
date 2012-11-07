@@ -26,7 +26,11 @@
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import base64
 import time
 import re
@@ -52,6 +56,7 @@ from ..lib.place import Place
 from ..lib.repo import Repository
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..constfunc import STRTYPE
 
 class Cursor(object):
     """
@@ -264,7 +269,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, basestring) and val:
+        if isinstance(val, STRTYPE) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier

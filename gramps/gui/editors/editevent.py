@@ -45,11 +45,11 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import Event, NoteType
 from gramps.gen.db import DbTxn
 from ..display import display_help
-from editprimary import EditPrimary
-from objectentries import PlaceEntry
+from .editprimary import EditPrimary
+from .objectentries import PlaceEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
-from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
+from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from ..widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)

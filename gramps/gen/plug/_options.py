@@ -32,6 +32,8 @@ General option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
 
 #-------------------------------------------------------------------------
@@ -52,7 +54,7 @@ except:
 #
 #-------------------------------------------------------------------------
 from ..utils.cast import get_type_converter
-from menu import Menu
+from .menu import Menu
 
 #-------------------------------------------------------------------------
 #
@@ -163,7 +165,7 @@ class OptionListCollection(object):
         @returns: returns the list of module names
         @rtype: list
         """
-        return self.option_list_map.keys()
+        return list(self.option_list_map.keys())
 
     def set_option_list(self, name, option_list):
         """
@@ -201,7 +203,7 @@ class OptionListCollection(object):
             option_list = self.get_option_list(module_name)
             f.write('<module name=%s>\n' % quoteattr(module_name))
             options = option_list.get_options()
-            for option_name, option_data in options.iteritems():
+            for option_name, option_data in options.items():
                 if isinstance(option_data, (list, tuple)):
                     f.write('  <option name=%s value="" length="%d">\n' % (
                                 quoteattr(option_name),
@@ -209,12 +211,12 @@ class OptionListCollection(object):
                     for list_index, list_data in enumerate(option_data):
                         f.write('    <listitem number="%d" value=%s/>\n' % (
                                 list_index,
-                                quoteattr(unicode(list_data))) )
+                                quoteattr(str(list_data))) )
                     f.write('  </option>\n')
                 else:
                     f.write('  <option name=%s value=%s/>\n' % (
                             quoteattr(option_name),
-                            quoteattr(unicode(option_data))) )
+                            quoteattr(str(option_data))) )
 
             self.write_module_common(f, option_list)
 
@@ -271,7 +273,7 @@ class OptionParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.oname = attrs['name']
-            if attrs.has_key('length'):
+            if 'length' in attrs:
                 self.an_o = []
             else:
                 self.an_o = attrs['value']
@@ -337,12 +339,12 @@ class OptionHandler(object):
         # First we set options_dict values based on the saved options
         options = self.saved_option_list.get_options()
         bad_opts = []
-        for option_name, option_data in options.iteritems():
+        for option_name, option_data in options.items():
             if option_name not in self.options_dict:
-                print "Option '%s' is present in %s but is not known "\
+                print("Option '%s' is present in %s but is not known "\
                       "to the module." % (option_name,
-                                          self.option_list_collection.filename)
-                print "Ignoring..."
+                                          self.option_list_collection.filename))
+                print("Ignoring...")
                 bad_opts.append(option_name)
                 continue
             try:
@@ -371,7 +373,7 @@ class OptionHandler(object):
         """
 
         # First we save options from options_dict
-        for option_name, option_data in self.options_dict.iteritems():
+        for option_name, option_data in self.options_dict.items():
             if option_data == self.default_options_dict[option_name]:
                 self.saved_option_list.remove_option(option_name)
             else:

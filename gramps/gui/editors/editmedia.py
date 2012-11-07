@@ -50,12 +50,12 @@ from gramps.gen.mime import get_description, get_type
 from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import (media_path_full, find_file, 
                             get_unicode_path_from_file_chooser)
-from editprimary import EditPrimary
+from .editprimary import EditPrimary
 from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
+from .displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
-from addmedia import AddMediaObject
+from .addmedia import AddMediaObject
 from ..dialog import ErrorDialog
 from ..glade import Glade
 

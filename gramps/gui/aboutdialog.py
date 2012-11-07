@@ -59,7 +59,7 @@ from gramps.gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG,
 from .display import display_url
 from gramps.gen.config import config
 
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     import bsddb3 as bsddb
 else:
     import bsddb

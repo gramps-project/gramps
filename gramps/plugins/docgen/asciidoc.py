@@ -147,7 +147,7 @@ class AsciiDoc(BaseDoc,TextDoc):
 
         try:
             self.f = open(self.filename,"w")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
         except:

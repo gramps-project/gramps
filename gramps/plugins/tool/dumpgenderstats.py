@@ -26,6 +26,8 @@
     
     Tools/Debug/Dump Gender Statistics
 """
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 from gramps.gui.listmodel import ListModel, INTEGER
@@ -33,7 +35,7 @@ from gramps.gui.managedwindow import ManagedWindow
 
 from gramps.gui.plug import tool
 
-_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+_GENDER = [ _('female'), _('male'), _('unknown') ]
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +52,7 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
                                                  self.__class__)
 
         stats_list = []
-        for name, value in dbstate.db.genderStats.stats.iteritems():
+        for name, value in dbstate.db.genderStats.stats.items():
             stats_list.append(
                 (name,)
                 + value
@@ -81,10 +83,10 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
             self.show()
             
         else:
-            print '\t%s'*5 % ('Name','Male','Female','Unknown','Guess')
-            print
+            print('\t%s'*5 % ('Name','Male','Female','Unknown','Guess'))
+            print()
             for entry in stats_list:
-                print '\t%s'*5 % entry
+                print('\t%s'*5 % entry)
 
     def build_menu_names(self, obj):
         return (self.label,None)

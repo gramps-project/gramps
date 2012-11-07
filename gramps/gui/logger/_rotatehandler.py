@@ -50,8 +50,7 @@ class RotateHandler(logging.Handler):
         Return the buffer with the records in the correct order.
         """
 
-        return filter(None,
-                self._buffer[self._index:] + self._buffer[:self._index])
+        return [_f for _f in self._buffer[self._index:] + self._buffer[:self._index] if _f]
 
     def get_formatted_log(self, remove_tail_duplicate=None):
         """

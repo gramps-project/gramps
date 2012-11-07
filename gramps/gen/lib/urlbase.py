@@ -29,8 +29,8 @@ UrlBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from url import Url
-from const import IDENTICAL, EQUAL
+from .url import Url
+from .const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ class UrlBase(object):
         :param source: Object used to initialize the new object
         :type source: UrlBase
         """
-        self.urls = map(Url, source.urls) if source else []
+        self.urls = list(map(Url, source.urls)) if source else []
 
     def serialize(self):
         """

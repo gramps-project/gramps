@@ -27,8 +27,18 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-import cPickle as pickle
-import urlparse
+import os
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+    from urllib import url2pathname
+else:
+    from urllib.parse import urlparse
+    from urllib.request import url2pathname
 
 #-------------------------------------------------------------------------
 #
@@ -39,9 +49,6 @@ from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import Gtk
 from gi.repository import Pango
-import os
-import sys
-import urllib
 from gi.repository import GObject
 
 #-------------------------------------------------------------------------
@@ -52,6 +59,7 @@ from gi.repository import GObject
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
+from gramps.gen.constfunc import cuni
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
@@ -60,7 +68,7 @@ from ...thumbnails import get_thumbnail_image
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.mime import get_type, is_valid_type
 from ...ddtargets import DdTargets
-from buttontab import ButtonTab
+from .buttontab import ButtonTab
 from gramps.gen.constfunc import win
 from gramps.gen.const import THUMBSCALE
 #-------------------------------------------------------------------------
@@ -230,7 +238,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         while node is not None:
             newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
-        for i in xrange(len(self.media_list)):
+        for i in range(len(self.media_list)):
             self.media_list.pop()
         for i in newlist:
             if i:
@@ -507,16 +515,16 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     files =  sel_data.get_uris()
                 for file in files:
                     d = fix_encoding(file.replace('\0',' ').strip())
-                    protocol, site, mfile, j, k, l = urlparse.urlparse(d)
+                    protocol, site, mfile, j, k, l = urlparse(d)
                     if protocol == "file":
                         name = fix_encoding(mfile)
-                        name = unicode(urllib.url2pathname(
+                        name = cuni(url2pathname(
                                     name.encode(sys.getfilesystemencoding())))
                         mime = get_type(name)
                         if not is_valid_type(mime):
                             return
                         photo = MediaObject()
-                        base_dir = unicode(media_path(self.dbstate.db))
+                        base_dir = cuni(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
                             name = relative_path(name, base_dir)
                         photo.set_path(name)

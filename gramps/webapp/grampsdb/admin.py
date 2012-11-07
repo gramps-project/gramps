@@ -21,14 +21,16 @@
 # webapp/grampsdb/admin.py
 # $Id$
 
+from __future__ import print_function
+
 from webapp.grampsdb.models import *
 from django.contrib import admin
 
 class MyAdmin(admin.ModelAdmin): 
     def change_view(self, request, object_id, extra_context=None): 
-        print "object_id:", object_id
+        print("object_id:", object_id)
         result = super(MyAdmin, self).change_view(request, object_id, extra_context) 
-        if not request.POST.has_key('_addanother') and not request.POST.has_key('_continue'): 
+        if '_addanother' not in request.POST and '_continue' not in request.POST: 
             result['Location'] = "/"
         return result
 

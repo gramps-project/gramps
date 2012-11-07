@@ -20,5 +20,5 @@
 
 # $Id$
 
-from selectorfactory import SelectorFactory
+from .selectorfactory import SelectorFactory
 

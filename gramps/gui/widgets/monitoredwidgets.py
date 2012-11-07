@@ -56,6 +56,7 @@ from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear
 from gramps.gen.errors import ValidationError
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -139,7 +140,7 @@ class MonitoredEntry(object):
         self.obj.connect(signal, callback, *data)
 
     def _on_change(self, obj):
-        self.set_val(unicode(obj.get_text(), 'utf-8'))
+        self.set_val(cuni(obj.get_text(), 'utf-8'))
         if self.changed:
             self.changed(obj)
 
@@ -147,7 +148,7 @@ class MonitoredEntry(object):
         self.obj.set_text(value)
 
     def get_value(self, value):
-        return unicode(self.obj.get_text())
+        return cuni(self.obj.get_text())
 
     def enable(self, value):
         self.obj.set_sensitive(value)
@@ -188,7 +189,7 @@ class MonitoredEntryIndicator(MonitoredEntry):
     
     def _on_change(self, obj):
         if not self.indicatorshown:
-            self.set_val(unicode(obj.get_text()))
+            self.set_val(cuni(obj.get_text()))
             if self.changed:
                 self.changed(obj)
 
@@ -359,7 +360,7 @@ class MonitoredText(object):
 
     def on_change(self, obj):
         s, e = self.buf.get_bounds()
-        self.set_val(unicode(self.buf.get_text(s, e, False)))
+        self.set_val(cuni(self.buf.get_text(s, e, False)))
 
 #-------------------------------------------------------------------------
 #
@@ -631,7 +632,7 @@ class MonitoredDate(object):
         """
         Parse date from text entry to date object
         """
-        date = parser.parse(unicode(self.text_obj.get_text()))
+        date = parser.parse(cuni(self.text_obj.get_text()))
         self.date_obj.copy(date)
         
     def validate(self, widget, data):
@@ -693,7 +694,7 @@ class MonitoredComboSelectedEntry(object):
         self.get_val_list = get_val_list
         
         #fill the combobox, set on a specific entry
-        self.mapping = dict([[i,x] for (i,x) in zip(range(len(textlist)),
+        self.mapping = dict([[i,x] for (i,x) in zip(list(range(len(textlist))),
                                                     textlist)])
 
         self.active_key = default
@@ -729,7 +730,7 @@ class MonitoredComboSelectedEntry(object):
         Fill combo with data
         """
         self.store = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
-        keys = sorted(self.mapping.keys(), key=self.__by_value_key)
+        keys = sorted(list(self.mapping.keys()), key=self.__by_value_key)
 
         for index, key in enumerate(keys):
             self.store.append(row=[key, self.mapping[key]])
@@ -783,7 +784,7 @@ class MonitoredComboSelectedEntry(object):
         self.set_val_list[self.active_key](self.get_value_entry())
 
     def get_value_entry(self):
-        return unicode(self.objentry.get_text())
+        return cuni(self.objentry.get_text())
 
     def enable(self, value):
         self.objentry.set_sensitive(value)

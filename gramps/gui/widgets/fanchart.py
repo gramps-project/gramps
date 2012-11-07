@@ -45,7 +45,11 @@ from gi.repository import PangoCairo
 import cairo
 import math
 import colorsys
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 from cgi import escape
 
 #-------------------------------------------------------------------------
@@ -187,7 +191,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                    DdTargets.PERSON_LINK.target_flags,
                    DdTargets.PERSON_LINK.app_id)
         #allow drag to a text document, info on drag_get will be 0L !
-        tglist.add_text_targets(0L)
+        tglist.add_text_targets(0)
         self.drag_source_set_target_list(tglist)
         self.connect("drag_data_get", self.on_drag_data_get)
         self.connect("drag_begin", self.on_drag_begin)
@@ -945,7 +949,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), person.get_handle(), 0)
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
-        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
+        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0:
             sel_data.set_text(self.format_helper.format_person(person, 11), -1)
 
     def on_drag_data_received(self, widget, context, x, y, sel_data, info, time):

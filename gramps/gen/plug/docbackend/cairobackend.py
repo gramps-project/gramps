@@ -41,7 +41,7 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from docbackend import DocBackend
+from .docbackend import DocBackend
 
 #------------------------------------------------------------------------
 #

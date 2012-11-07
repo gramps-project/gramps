@@ -29,6 +29,8 @@ The User class provides basic interaction with the user.
 # Python Modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys
 
 #------------------------------------------------------------------------
@@ -75,7 +77,7 @@ class User(User):
         @type steps: int
         @returns: none
         """
-        print message
+        print(message)
         self.steps = steps
         self.current_step = 0;
         if self.steps == 0:
@@ -140,7 +142,7 @@ class User(User):
         @type warning: str
         @returns: none
         """
-        print "%s %s" % (title, warning)
+        print("%s %s" % (title, warning))
     
     def notify_error(self, title, error=""):
         """
@@ -155,7 +157,7 @@ class User(User):
         if self.error_function:
             self.error_function(title, error)
         else:
-            print "%s %s" % (title, error)
+            print("%s %s" % (title, error))
 
     def notify_db_error(self, error):
         """
@@ -176,5 +178,5 @@ class User(User):
         """
         Displays information to the CLI
         """
-        print msg1
-        print infotext
+        print(msg1)
+        print(infotext)

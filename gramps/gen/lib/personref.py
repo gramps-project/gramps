@@ -31,12 +31,12 @@ Person Reference class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from citationbase import CitationBase
-from notebase import NoteBase
-from refbase import RefBase
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .privacybase import PrivacyBase
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .refbase import RefBase
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

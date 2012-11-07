@@ -43,7 +43,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ...widgets import SimpleButton
-from embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

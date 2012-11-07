@@ -36,8 +36,8 @@ from gi.repository import GObject
 from gramps.gen.lib import Location
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from locationmodel import LocationModel
-from embeddedlist import EmbeddedList
+from .locationmodel import LocationModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

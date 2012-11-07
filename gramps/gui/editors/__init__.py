@@ -22,30 +22,30 @@
 # $Id$
 #
 
-from editaddress import EditAddress
-from editattribute import EditAttribute, EditFamilyAttribute
-from editchildref import EditChildRef
-from editcitation import EditCitation, DeleteCitationQuery
-from editdate import EditDate
-from editevent import EditEvent, DeleteEventQuery
-from editeventref import EditEventRef, EditFamilyEventRef
-from editfamily import EditFamily
-from editldsord import EditLdsOrd, EditFamilyLdsOrd
-from editlocation import EditLocation
-from editmedia import EditMedia, DeleteMediaQuery
-from editmediaref import EditMediaRef
-from editname import EditName
-from editnote import EditNote, DeleteNoteQuery
-from editperson import EditPerson
-from editpersonref import EditPersonRef
-from editplace import EditPlace, DeletePlaceQuery
-from editrepository import EditRepository, DeleteRepositoryQuery
-from editreporef import EditRepoRef
-from editsource import EditSource, DeleteSrcQuery
-from edittaglist import EditTagList
-from editurl import EditUrl
-from editlink import EditLink
-from filtereditor import FilterEditor, EditFilter
+from .editaddress import EditAddress
+from .editattribute import EditAttribute, EditFamilyAttribute
+from .editchildref import EditChildRef
+from .editcitation import EditCitation, DeleteCitationQuery
+from .editdate import EditDate
+from .editevent import EditEvent, DeleteEventQuery
+from .editeventref import EditEventRef, EditFamilyEventRef
+from .editfamily import EditFamily
+from .editldsord import EditLdsOrd, EditFamilyLdsOrd
+from .editlocation import EditLocation
+from .editmedia import EditMedia, DeleteMediaQuery
+from .editmediaref import EditMediaRef
+from .editname import EditName
+from .editnote import EditNote, DeleteNoteQuery
+from .editperson import EditPerson
+from .editpersonref import EditPersonRef
+from .editplace import EditPlace, DeletePlaceQuery
+from .editrepository import EditRepository, DeleteRepositoryQuery
+from .editreporef import EditRepoRef
+from .editsource import EditSource, DeleteSrcQuery
+from .edittaglist import EditTagList
+from .editurl import EditUrl
+from .editlink import EditLink
+from .filtereditor import FilterEditor, EditFilter
 
 # Map from gramps.gen.lib name to Editor:
 EDITORS = {
@@ -91,5 +91,5 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
                      "should be 'gramps_id' or 'handle'" % prop)
     else:
         LOG.warn("unknown object to edit '%s'; "
-                 "should be one of %s" % (obj_class, EDITORS.keys()))
+                 "should be one of %s" % (obj_class, list(EDITORS.keys())))
 

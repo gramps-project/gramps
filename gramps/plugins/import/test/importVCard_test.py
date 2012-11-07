@@ -27,11 +27,16 @@ To be called from src directory.
 
 # in case of a failing test, add True as last parameter to do_test to see the output.
 
-from cStringIO import StringIO
-import time
-import unittest
+from __future__ import print_function
+
 import sys
 import os
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
+import time
+import unittest
 sys.path.append(os.curdir)
 sys.path.append(os.path.join(os.curdir, 'plugins','import'))
 sys.path.append(os.path.join(os.curdir, 'plugins', 'lib'))
@@ -100,14 +105,14 @@ class VCardCheck(unittest.TestCase):
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(input_str)
         if err_str:
-            print err_str
+            print(err_str)
         result_canonical_strfile = StringIO()
         buf2 = libxml2.createOutputBuffer(result_canonical_strfile, 'UTF-8')
         self.string2canonicalxml(result_str, buf2)
 
         if debug:
-            print result_canonical_strfile.getvalue()
-            print expect_canonical_strfile.getvalue()
+            print(result_canonical_strfile.getvalue())
+            print(expect_canonical_strfile.getvalue())
         self.assertEqual(result_canonical_strfile.getvalue(),
                          expect_canonical_strfile.getvalue())
         expect_canonical_strfile.close()

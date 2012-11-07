@@ -33,6 +33,8 @@ Provides also two small base classes: CLIDbLoader, CLIManager
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 import os
 import sys
@@ -74,14 +76,14 @@ class CLIDbLoader(object):
         """
         Issue a warning message. Inherit for GUI action
         """
-        print _('WARNING: %s') % warnmessage
+        print(_('WARNING: %s') % warnmessage)
     
     def _errordialog(self, title, errormessage):
         """
         Show the error. A title for the error and an errormessage
         Inherit for GUI action
         """
-        print _('ERROR: %s') % errormessage
+        print(_('ERROR: %s') % errormessage)
         sys.exit(1)
     
     def _dberrordialog(self, msg):
@@ -155,17 +157,17 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
-        except gen.db.exceptions.DbUpgradeRequiredError, msg:
+        except gen.db.exceptions.DbUpgradeRequiredError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbVersionError, msg:
+        except gen.db.exceptions.DbVersionError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except OSError, msg:
+        except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except Errors.DbError, msg:
+        except Errors.DbError as msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception:
@@ -205,7 +207,7 @@ class CLIManager(object):
         """
         Show the error. A title for the error and an errormessage
         """
-        print _('ERROR: %s') % errormessage
+        print(_('ERROR: %s') % errormessage)
         sys.exit(1)
         
     def _read_recent_file(self, filename):
@@ -295,10 +297,10 @@ def startcli(errors, argparser):
         # Convert error message to file system encoding before print
         errmsg = _('Error encountered: %s') % errors[0][0]
         errmsg = errmsg.encode(sys.getfilesystemencoding())
-        print errmsg
+        print(errmsg)
         errmsg = _('  Details: %s') % errors[0][1]
         errmsg = errmsg.encode(sys.getfilesystemencoding())
-        print errmsg
+        print(errmsg)
         sys.exit(1)
     
     if argparser.errors: 
@@ -306,10 +308,10 @@ def startcli(errors, argparser):
         errmsg = _('Error encountered in argument parsing: %s') \
                                                     % argparser.errors[0][0]
         errmsg = errmsg.encode(sys.getfilesystemencoding())
-        print errmsg
+        print(errmsg)
         errmsg = _('  Details: %s') % argparser.errors[0][1]
         errmsg = errmsg.encode(sys.getfilesystemencoding())
-        print errmsg
+        print(errmsg)
         sys.exit(1)
     
     #we need to keep track of the db state
@@ -319,7 +321,7 @@ def startcli(errors, argparser):
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
     # handle the arguments
-    from arghandler import ArgHandler
+    from .arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)
     # create a manager to manage the database
     

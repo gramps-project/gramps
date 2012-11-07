@@ -36,6 +36,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
 import os
 import sys
 from gramps.gen.ggettext import gettext as _
@@ -49,12 +50,12 @@ from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import (rm_tempdir, get_empty_tempdir, 
                                    get_unicode_path_from_env_var)
 from gramps.gen.db import DbBsddb
-from clidbman import CLIDbManager, NAME_FILE, find_locker_name
+from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
-from plug import cl_report, cl_book
-from user import User
+from .plug import cl_report, cl_book
+from .user import User
 
 #-------------------------------------------------------------------------
 #
@@ -184,9 +185,9 @@ class ArgHandler(object):
         else:
             # Need to convert to system file encoding before printing
             # For non latin characters in path/file/user names
-            print >> sys.stderr, msg1.encode(sys.getfilesystemencoding())
+            print(msg1.encode(sys.getfilesystemencoding()), file=sys.stderr)
             if msg2 is not None:
-                print >> sys.stderr, msg2.encode(sys.getfilesystemencoding())
+                print(msg2.encode(sys.getfilesystemencoding()), file=sys.stderr)
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -288,10 +289,14 @@ class ArgHandler(object):
                 answer = None
                 while not answer:
                     try:
-                        ans = raw_input(_('OK to overwrite? (yes/no) ') \
+                        if sys.version_info[0] < 3:
+                            ask = raw_input
+                        else:
+                            ask = input
+                        ans = ask(_('OK to overwrite? (yes/no) ') \
                                          .encode(sys.getfilesystemencoding()))
                     except EOFError:
-                        print
+                        print()
                         sys.exit(0)
                     if ans.upper() in ('Y', 'YES', _('YES').upper()):
                         self.__error( _("Will overwrite the existing file: %s") 
@@ -402,36 +407,36 @@ class ArgHandler(object):
         """
 
         if self.list:
-            print _('List of known family trees in your database path\n').\
-                    encode(sys.getfilesystemencoding())
+            print(_('List of known family trees in your database path\n').\
+                    encode(sys.getfilesystemencoding()))
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
                 
-                print (_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
+                print((_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
                         {'full_DB_path' : dirname,
-                         'f_t_name' : name}).encode(sys.getfilesystemencoding())
+                         'f_t_name' : name}).encode(sys.getfilesystemencoding()))
             sys.exit(0)
             
         if self.list_more:
-            print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
+            print(_('Gramps Family Trees:').encode(sys.getfilesystemencoding()))
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
                                   key=lambda sum: sum["Family tree"].lower()):
-                print _("Family Tree \"%s\":").\
-                        encode(sys.getfilesystemencoding()) % summary["Family tree"]
+                print(_("Family Tree \"%s\":").\
+                        encode(sys.getfilesystemencoding()) % summary["Family tree"])
                 for item in sorted(summary):
                     if item != "Family tree":
-                        print ("   %s: %s" % (item, summary[item])).\
-                               encode(sys.getfilesystemencoding())
+                        print(("   %s: %s" % (item, summary[item])).\
+                               encode(sys.getfilesystemencoding()))
             sys.exit(0)
            
         self.__open_action()
         self.__import_action()
             
         for (action, op_string) in self.actions:
-            print >> sys.stderr, _("Performing action: %s.") % action
+            print(_("Performing action: %s.") % action, file=sys.stderr)
             if op_string:
-                print >> sys.stderr, _("Using options string: %s") % op_string
+                print(_("Using options string: %s") % op_string, file=sys.stderr)
             self.cl_action(action, op_string)
 
         for expt in self.exports:
@@ -439,19 +444,19 @@ class ArgHandler(object):
             # For non latin characters in Windows path/file/user names
             fn = expt[0].encode(sys.getfilesystemencoding())
             fmt = str(expt[1])
-            print >> sys.stderr, _("Exporting: file %(filename)s, "
+            print(_("Exporting: file %(filename)s, "
                                    "format %(format)s.") % \
                                    {'filename' : fn,
-                                    'format' : fmt}
+                                    'format' : fmt}, file=sys.stderr)
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
             self.cleanup()
-            print >> sys.stderr, _("Exiting.")
+            print(_("Exiting."), file=sys.stderr)
             sys.exit(0)
 
     def cleanup(self):
-        print >> sys.stderr, _("Cleaning up.")
+        print(_("Cleaning up."), file=sys.stderr)
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
@@ -482,10 +487,10 @@ class ArgHandler(object):
                 try:
                     self.sm.open_activate(self.imp_db_path)
                     msg = _("Created empty family tree successfully")
-                    print >> sys.stderr, msg
+                    print(msg, file=sys.stderr)
                 except:
-                    print >> sys.stderr, _("Error opening the file.")
-                    print >> sys.stderr, _("Exiting...")
+                    print(_("Error opening the file."), file=sys.stderr)
+                    print(_("Exiting..."), file=sys.stderr)
                     sys.exit(0)
 
             for imp in self.imports:
@@ -493,7 +498,7 @@ class ArgHandler(object):
                 fmt = str(imp[1])
                 msg = _("Importing: file %(filename)s, format %(format)s.") % \
                         {'filename' : fn, 'format' : fmt}
-                print >> sys.stderr, msg
+                print(msg, file=sys.stderr)
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
@@ -509,10 +514,10 @@ class ArgHandler(object):
             # we load this file for use
             try:
                 self.sm.open_activate(self.open)
-                print >> sys.stderr, _("Opened successfully!")
+                print(_("Opened successfully!"), file=sys.stderr)
             except:
-                print >> sys.stderr, _("Error opening the file.")
-                print >> sys.stderr, _("Exiting...")
+                print(_("Error opening the file."), file=sys.stderr)
+                print(_("Exiting..."), file=sys.stderr)
                 sys.exit(0)
 
     def check_db(self, dbpath, force_unlock = False):
@@ -584,7 +589,7 @@ class ArgHandler(object):
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print >> sys.stderr, _("Ignoring invalid options string.")
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -613,16 +618,15 @@ class ArgHandler(object):
                         "Please use one of %(donottranslate)s=reportname") % \
                         {'donottranslate' : '[-p|--options] name'}
             
-            print >> sys.stderr, _("%s\n Available names are:") % msg
+            print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print >> sys.stderr, \
-                        "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.getfilesystemencoding()))
+                    print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
+                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
                 else:
-                    print >> sys.stderr, "   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.getfilesystemencoding()))
+                    print("   %s\t- %s" % (pdata.id,
+                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
 
         elif action == "tool":
             from gramps.gui.plug import tool
@@ -631,7 +635,7 @@ class ArgHandler(object):
                                            chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print >> sys.stderr, _("Ignoring invalid options string.")
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
@@ -654,24 +658,23 @@ class ArgHandler(object):
                         "Please use one of %(donottranslate)s=toolname.") % \
                         {'donottranslate' : '[-p|--options] name'}
             
-            print >> sys.stderr, _("%s\n Available names are:") % msg
+            print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cli_tool_list,
                                 key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print >> sys.stderr, \
-                        "   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.getfilesystemencoding()))
+                    print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
+                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
                 else:
-                    print >> sys.stderr, "   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.getfilesystemencoding()))
+                    print("   %s\t- %s" % (pdata.id,
+                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
 
         elif action == "book":
             try:
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print >> sys.stderr, _("Ignoring invalid options string.")
+                print(_("Ignoring invalid options string."), file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             book_list = BookList('books.xml', self.dbstate.db)
@@ -686,10 +689,10 @@ class ArgHandler(object):
                         "Please use one of %(donottranslate)s=bookname.") % \
                         {'donottranslate' : '[-p|--options] name'}
 
-            print >> sys.stderr, _("%s\n Available names are:") % msg
+            print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for name in sorted(book_list.get_book_names()):
-                print >> sys.stderr, "   %s" % name
+                print("   %s" % name, file=sys.stderr)
 
         else:
-            print >> sys.stderr, _("Unknown action: %s.") % action
+            print(_("Unknown action: %s.") % action, file=sys.stderr)
             sys.exit(0)

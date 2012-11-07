@@ -34,7 +34,7 @@ from ..ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from grampstype import GrampsType
+from .grampstype import GrampsType
 from ..config import config
 
 class FamilyRelType(GrampsType):

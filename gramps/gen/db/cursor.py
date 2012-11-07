@@ -26,10 +26,14 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from cPickle import dumps, loads
+import sys
+if sys.version_info[0] < 3:
+    from cPickle import dumps, loads
+else:
+    from pickle import dumps, loads
 
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db

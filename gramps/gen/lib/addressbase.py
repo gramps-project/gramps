@@ -30,8 +30,8 @@ AddressBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from address import Address
-from const import IDENTICAL, EQUAL
+from .address import Address
+from .const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +53,7 @@ class AddressBase(object):
         :param source: Object used to initialize the new object
         :type source: AddressBase
         """
-        self.address_list = map(Address, source.address_list) if source else []
+        self.address_list = list(map(Address, source.address_list)) if source else []
 
     def serialize(self):
         """

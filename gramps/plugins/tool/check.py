@@ -31,11 +31,14 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-from __future__ import with_statement
+from __future__ import print_function, with_statement
+
 import os
 import sys
-import cStringIO
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 import time
 
 from gramps.gen.ggettext import gettext as _
@@ -76,10 +79,11 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
+from gramps.gen.constfunc import UNITYPE, cuni
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
-strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32),  u" ")
+strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)),  " ")
 
 #-------------------------------------------------------------------------
 #
@@ -106,7 +110,7 @@ def cross_table_duplicates(db):
     for the_map in [db.person_map, db.family_map, db.event_map, db.place_map,
             db.source_map, db.citation_map, db.media_map, db.repository_map, 
             db.note_map]:
-        handle_list = the_map.keys()
+        handle_list = list(the_map.keys())
         total_nr_handles += len(handle_list)
         all_handles.update(handle_list)
         progress.step()
@@ -332,16 +336,16 @@ class CheckIntegrity(object):
         error_count = 0
         for handle in self.db.media_map.keys():
             data = self.db.media_map[handle]
-            if not isinstance(data[2], unicode) or not isinstance(data[4], unicode):
+            if not isinstance(data[2], UNITYPE) or not isinstance(data[4], UNITYPE):
                 obj = self.db.get_object_from_handle(handle)
                 obj.path = fix_encoding( obj.path, errors='ignore')
                 obj.desc = fix_encoding( obj.desc, errors='ignore')
                 self.db.commit_media_object(obj, self.trans)
-                if not isinstance(data[2], unicode):
+                if not isinstance(data[2], UNITYPE):
                     logging.warning('    FAIL: encoding error on media object '
                                     '"%(gid)s" path "%(path)s"' %
                                     {'gid' : obj.gramps_id, 'path' : obj.path})
-                if not isinstance(data[2], unicode):
+                if not isinstance(data[2], UNITYPE):
                     logging.warning('    FAIL: encoding error on media object ' 
                                     '"%(gid)s" description "%(desc)s"' %
                                     {'gid' : obj.gramps_id, 'desc' : obj.desc})
@@ -373,7 +377,7 @@ class CheckIntegrity(object):
         for handle in self.db.note_map.keys():
             note = self.db.get_note_from_handle(handle)
             stext = note.get_styledtext()
-            old_text = unicode(stext)
+            old_text = cuni(stext)
             new_text = old_text.translate(strip_dict)
             if old_text != new_text:
                 logging.warning('    FAIL: control characters found in note "%s"' %
@@ -1923,7 +1927,7 @@ class CheckIntegrity(object):
         note_references = len(self.invalid_note_references)
         tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
-        empty_objs = sum(len(obj) for obj in self.empty_objects.itervalues())
+        empty_objs = sum(len(obj) for obj in self.empty_objects.values())
 
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +
@@ -1942,7 +1946,7 @@ class CheckIntegrity(object):
                 print("No errors were found: the database has passed internal checks.")
             return 0
 
-        self.text = cStringIO.StringIO()
+        self.text = StringIO()
         if blink > 0:
             self.text.write(
                 ngettext("%(quantity)d broken child/family link was fixed\n",

@@ -116,7 +116,7 @@ class NumberOfAncestorsReport(Report):
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
                 percent = '(%s%%)' % locale.format('%3.2f', 
-                    ((sum(thisgen.itervalues()) / theoretical ) * 100))
+                    ((sum(thisgen.values()) / theoretical ) * 100))
                 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
@@ -131,7 +131,7 @@ class NumberOfAncestorsReport(Report):
                 
             temp = thisgen
             thisgen = {}
-            for person_handle, person_data in temp.iteritems():
+            for person_handle, person_data in temp.items():
                 person = self.__db.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
                 if family_handle:
@@ -154,7 +154,7 @@ class NumberOfAncestorsReport(Report):
                             )
 
         if( total_theoretical != 1 ):
-            percent = '(%3.2f%%)' % (( sum(all_people.itervalues()) 
+            percent = '(%3.2f%%)' % (( sum(all_people.values()) 
                                         / (total_theoretical-1) ) * 100)
         else:
             percent = 0

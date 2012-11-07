@@ -43,8 +43,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from _reportdialog import ReportDialog
-from _papermenu import PaperFrame
+from ._reportdialog import ReportDialog
+from ._papermenu import PaperFrame
 from ...pluginmanager import GuiPluginManager
 PLUGMAN = GuiPluginManager.get_instance()
 

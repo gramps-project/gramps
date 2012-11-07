@@ -47,6 +47,8 @@
    
 """
 
+from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -61,10 +63,10 @@ from gi.repository import Gtk
 class _DdType:
     """Represents the fields needed by a drag and drop target."""
     
-    _APP_ID_OFFSET = 40L  # Starting value of app_ids
+    _APP_ID_OFFSET = 40  # Starting value of app_ids
     
     def __init__(self, container, drag_type, 
-                 target_flags=0L, app_id=None):
+                 target_flags=0, app_id=None):
         """Create a new DdType:
 
         drag_type: string holding the name of the type.
@@ -186,13 +188,13 @@ class _DdTargets(object):
         
         self.CHILD         = _DdType(self, 'child')
         self.SPOUSE        = _DdType(self, 'spouse')
-        self.TEXT_MIME     = _DdType(self, 'text/plain', 0L, 0L)
-        self.TEXT          = _DdType(self, 'TEXT', 0L, 1L)
-        self.STRING        = _DdType(self, 'STRING', 0L, 2L)
-        self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0L, 3L)
-        self.UTF8_STRING   = _DdType(self, 'UTF8_STRING', 0L, 4L)
-        self.URI_LIST      = _DdType(self, 'text/uri-list', 0L, 5L)
-        self.APP_ROOT      = _DdType(self, 'application/x-rootwin-drop', 0L, 6L)
+        self.TEXT_MIME     = _DdType(self, 'text/plain', 0, 0)
+        self.TEXT          = _DdType(self, 'TEXT', 0, 1)
+        self.STRING        = _DdType(self, 'STRING', 0, 2)
+        self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0, 3)
+        self.UTF8_STRING   = _DdType(self, 'UTF8_STRING', 0, 4)
+        self.URI_LIST      = _DdType(self, 'text/uri-list', 0, 5)
+        self.APP_ROOT      = _DdType(self, 'application/x-rootwin-drop', 0, 6)
 
         # List of all the text types. These are types
         # that can be interpreted as text.
@@ -268,6 +270,6 @@ DdTargets = _DdTargets()
 #
 if __name__ == "__main__":
 
-    print repr(DdTargets.all_text_types())
-    print repr(DdTargets.URL)
-    print DdTargets.is_gramps_type('pevent')
+    print(repr(DdTargets.all_text_types()))
+    print(repr(DdTargets.URL))
+    print(DdTargets.is_gramps_type('pevent'))

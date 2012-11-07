@@ -43,8 +43,8 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Note
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from notemodel import NoteModel
-from embeddedlist import EmbeddedList
+from .notemodel import NoteModel
+from .embeddedlist import EmbeddedList
 from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------

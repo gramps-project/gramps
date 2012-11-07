@@ -34,8 +34,12 @@ Can use the Webkit or Gecko ( Mozilla ) library
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
 import os
+import sys
 import locale
-import urlparse
+if sys.version_info[0] < 3:
+    from urlparse import urlunsplit
+else:
+    from urllib.parse import urlunsplit
 
 #-------------------------------------------------------------------------
 #
@@ -128,7 +132,7 @@ except:
 
 #no interfaces present, raise Error so that options for GeoView do not show
 if TOOLKIT == NOWEB :
-    raise ImportError, 'No GTK html plugin found'
+    raise ImportError('No GTK html plugin found')
 else:
     _LOG.debug("webkit or/and mozilla (gecko) is/are loaded : %d" % TOOLKIT)
 
@@ -567,9 +571,8 @@ class HtmlView(NavigationView):
             ufd = file(filename, "w+")
             ufd.write(data)
             ufd.close()
-        return urlparse.urlunsplit(('file', '',
-                                    URL_SEP.join(filename.split(os.sep)),
-                                    '', ''))
+        return urlunsplit(('file', '',
+                            URL_SEP.join(filename.split(os.sep)), '', ''))
 
     def navigation_group(self):
         """

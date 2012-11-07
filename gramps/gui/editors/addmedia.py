@@ -37,6 +37,7 @@ import os
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -142,7 +143,7 @@ class AddMediaObject(ManagedWindow):
         Callback function called when the save button is pressed.
         The media object is updated, and callback called.
         """
-        description = unicode(self.description.get_text())
+        description = cuni(self.description.get_text())
 
         if self.file_text.get_filename() is None:
             msgstr = _("Import failed")
@@ -154,7 +155,7 @@ class AddMediaObject(ManagedWindow):
         full_file = filename
 
         if self.relpath.get_active():
-            pname = unicode(media_path(self.dbase))
+            pname = cuni(media_path(self.dbase))
             if not os.path.exists(pname):
                 msgstr = _("Cannot import %s")
                 msgstr2 = _("Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing")
@@ -190,7 +191,7 @@ class AddMediaObject(ManagedWindow):
         filename = get_unicode_path_from_file_chooser(fname)
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
-        old_title  = unicode(self.description.get_text())
+        old_title  = cuni(self.description.get_text())
 
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)

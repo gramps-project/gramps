@@ -272,7 +272,7 @@ class PlaceReport(Report):
                     person = self.database.get_person_from_handle(ref_handle)
                     nameEntry = "%s (%s)" % (_nd.display(person),
                                              person.get_gramps_id())
-                    if person_dict.has_key(nameEntry):
+                    if nameEntry in person_dict:
                         person_dict[nameEntry].append(evt_handle)
                     else:
                         person_dict[nameEntry] = []
@@ -300,13 +300,13 @@ class PlaceReport(Report):
                                      (_nd.display(person),
                                       person.get_gramps_id())
 
-                    if person_dict.has_key(nameEntry):
+                    if nameEntry in person_dict:
                         person_dict[nameEntry].append(evt_handle)
                     else:
                         person_dict[nameEntry] = []
                         person_dict[nameEntry].append(evt_handle)
 
-        keys = person_dict.keys()
+        keys = list(person_dict.keys())
         keys.sort()
 
         for entry in keys:

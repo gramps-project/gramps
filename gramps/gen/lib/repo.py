@@ -31,11 +31,12 @@ Repository object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from notebase import NoteBase
-from addressbase import AddressBase
-from urlbase import UrlBase
-from repotype import RepositoryType
+from .primaryobj import PrimaryObject
+from .notebase import NoteBase
+from .addressbase import AddressBase
+from .urlbase import UrlBase
+from .repotype import RepositoryType
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +62,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Convert the object to a serialized tuple of data.
         """
         return (self.handle, self.gramps_id, self.type.serialize(),
-                unicode(self.name),
+                cuni(self.name),
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
@@ -90,7 +91,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         return {"handle": self.handle, 
                 "gramps_id": self.gramps_id, 
                 "type": self.type.to_struct(),
-                "name": unicode(self.name),
+                "name": cuni(self.name),
                 "note_list": NoteBase.to_struct(self),
                 "address_list": AddressBase.to_struct(self),
                 "urls": UrlBase.to_struct(self),

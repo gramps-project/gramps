@@ -24,7 +24,7 @@
 
 __all__ = [ "filter", "living", "private", "proxybase", "referenced" ]
 
-from filter import FilterProxyDb
-from living import LivingProxyDb
-from private import PrivateProxyDb
-from referencedbyselection import ReferencedBySelectionProxyDb
+from .filter import FilterProxyDb
+from .living import LivingProxyDb
+from .private import PrivateProxyDb
+from .referencedbyselection import ReferencedBySelectionProxyDb

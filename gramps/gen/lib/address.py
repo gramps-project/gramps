@@ -31,13 +31,13 @@ Address class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from citationbase import CitationBase
-from notebase import NoteBase
-from datebase import DateBase
-from locationbase import LocationBase
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .privacybase import PrivacyBase
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .datebase import DateBase
+from .locationbase import LocationBase
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

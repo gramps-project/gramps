@@ -47,7 +47,7 @@ log = logging.getLogger(".ReadPkg")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import XMLFILE
-import importxml
+from . import importxml
 from gramps.gen.utils.file import media_path
 
 #-------------------------------------------------------------------------
@@ -66,7 +66,7 @@ def impData(database, name, user):
     tmpdir_path = os.path.join(my_media_path, media_dir)
     if not os.path.isdir(tmpdir_path):
         try:
-            os.mkdir(tmpdir_path, 0700)
+            os.mkdir(tmpdir_path, 0o700)
         except:
             user.notify_error( _("Could not create media directory %s") % 
                          tmpdir_path )

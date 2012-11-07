@@ -29,12 +29,18 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import unicode_literals
+
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
 from cgi import escape
 import math
 import sys
 import os
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -65,13 +71,13 @@ from gramps.gui.thumbnails import get_thumbnail_path
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.ddtargets import DdTargets
-import cPickle as pickle
 from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.constfunc import is_quartz, win
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
+from gramps.gen.constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -116,7 +122,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
                        DdTargets.PERSON_LINK.target_flags,
                        DdTargets.PERSON_LINK.app_id)
             #allow drag to a text document, info on drag_get will be 0L !
-            tglist.add_text_targets(0L)
+            tglist.add_text_targets(0)
             self.drag_source_set_target_list(tglist)
 
     def cb_drag_begin(self, widget, data):
@@ -138,7 +144,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
             data = (DdTargets.PERSON_LINK.drag_type,
                     id(self), self.person.get_handle(), 0)
             sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
-        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0L:
+        elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0:
             sel_data.set_text(self.format_helper.format_person(self.person, 11), -1)
 
     def cb_on_button_release(self, widget, event):
@@ -202,7 +208,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.img_surf = None    
         if image:
             image_path = self.get_image(dbstate, person)
-            if isinstance(image_path, unicode):
+            if isinstance(image_path, STRTYPE):
                 image_path = image_path.encode(sys.getfilesystemencoding())
             if image_path and os.path.exists(image_path):
                 self.img_surf = cairo.ImageSurface.create_from_png(image_path)
@@ -684,7 +690,7 @@ class PedigreeView(NavigationView):
                 self.rebuild_trees(active)
             else:
                 self.rebuild_trees(None)
-        except AttributeError, msg:
+        except AttributeError as msg:
             RunDatabaseRepair(str(msg))
 
     def _connect_db_signals(self):
@@ -2007,10 +2013,10 @@ class PedigreeView(NavigationView):
         configdialog.add_combo(table, 
                 _('Tree direction'), 
                 5, 'interface.pedview-tree-direction',
-                ((0, _(u'Vertical (↓)')),
-                (1, _(u'Vertical (↑)')),
-                (2, _(u'Horizontal (→)')),
-                (3, _(u'Horizontal (←)'))))
+                ((0, _('Vertical (↓)')),
+                (1, _('Vertical (↑)')),
+                (2, _('Horizontal (→)')),
+                (3, _('Horizontal (←)'))))
         self.config_size_slider = configdialog.add_slider(table, 
                 _('Tree size'), 
                 6, 'interface.pedview-tree-size',

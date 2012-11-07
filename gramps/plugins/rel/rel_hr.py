@@ -25,7 +25,7 @@
 """
 Croatian-specific classes for calculating relationships and kinship names.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -119,7 +119,7 @@ def _get_parents(level):
     if level < 4:
         return _PARENTS[level]
     else:
-        return u'%s' % _PARENTS[4] % (HRDN(level-2, 1, 1, 1), 
+        return '%s' % _PARENTS[4] % (HRDN(level-2, 1, 1, 1), 
                     HRDN(level-2, 0, 2, 1))
                     
 def _get_uncles(gen, inlaw):
@@ -160,27 +160,27 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """returns kinship terms for groups of persons
         """
         if not in_law_b:
-            rel_str = u'potomci %s generacije predaka u %s koljenu: '\
+            rel_str = 'potomci %s generacije predaka u %s koljenu: '\
                             % (HRDN(gena, 0, 1, 2), HRDN(genb, 2, 1, 6))
         elif in_law_b:
-            rel_str = u'supružnici potomaka %s generacije predaka u %s '\
+            rel_str = 'supružnici potomaka %s generacije predaka u %s '\
             'koljenu: ' % (HRDN(gena, 0, 1, 2), HRDN(genb, 2, 1, 6))
         if genb == 0:
             #These are ancestors
-            rel_str = u'%s generacija predaka: %s' % (HRDN(gena,
+            rel_str = '%s generacija predaka: %s' % (HRDN(gena,
                             0, 1, 1),_get_parents(gena))
         elif gena == 0:
             # These are descendants
             if not in_law_b:
-                rel_str = u'%s generacija potomaka: %s' % (HRDN(genb,
+                rel_str = '%s generacija potomaka: %s' % (HRDN(genb,
                                 0, 1, 1), _get_childs(genb, in_law_b))
-            else:  rel_str = u'supružnici %s generacije potomaka: %s' \
+            else:  rel_str = 'supružnici %s generacije potomaka: %s' \
                         % (HRDN(genb, 0, 2, 1), _get_childs(genb, in_law_b))
         elif gena == 1 == genb:
             # These are siblings
             if not in_law_b:
-                rel_str += u'braća i sestre'
-            else: rel_str = u'supružnici braće i sestara'
+                rel_str += 'braća i sestre'
+            else: rel_str = 'supružnici braće i sestara'
         elif genb == 1:
             # These are aunts/uncles
             rel_str += _get_uncles(gena, in_law_b)

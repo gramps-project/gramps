@@ -72,13 +72,13 @@
     More details can be found in the manual's U{Using database API<http://www.gramps-project.org/wiki/index.php?title=Using_database_API>}.
 """
 
-from base import *
-from dbconst import *
-from cursor import *
-from read import *
-from bsddbtxn import *
-from txn import *
-from undoredo import *
-from exceptions import *
-from write import *
-from backup import backup, restore
+from .base import *
+from .dbconst import *
+from .cursor import *
+from .read import *
+from .bsddbtxn import *
+from .txn import *
+from .undoredo import *
+from .exceptions import *
+from .write import *
+from .backup import backup, restore

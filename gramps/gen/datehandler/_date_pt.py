@@ -26,7 +26,7 @@
 """
 Portuguese-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -40,9 +40,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -52,60 +52,60 @@ from _datehandler import register_datehandler
 class DateParserPT(DateParser):
 
     modifier_to_int = {
-        u'antes de'     : Date.MOD_BEFORE, 
-        u'antes'        : Date.MOD_BEFORE, 
-        u'ant.'         : Date.MOD_BEFORE, 
-        u'ant'          : Date.MOD_BEFORE, 
-        u'até'          : Date.MOD_BEFORE,
-        u'depois de'    : Date.MOD_AFTER,
-        u'depois'       : Date.MOD_AFTER,
-        u'dep.'         : Date.MOD_AFTER,
-        u'dep'          : Date.MOD_AFTER,
-        u'aprox.'       : Date.MOD_ABOUT,
-        u'aprox'        : Date.MOD_ABOUT,
-        u'apr.'         : Date.MOD_ABOUT,
-        u'apr'          : Date.MOD_ABOUT,
-        u'cerca de'     : Date.MOD_ABOUT,
-        u'ca.'          : Date.MOD_ABOUT,
-        u'ca'           : Date.MOD_ABOUT,
-        u'c.'           : Date.MOD_ABOUT,
-        u'por volta de' : Date.MOD_ABOUT,
-        u'por volta'    : Date.MOD_ABOUT,
-        u'pvd.'         : Date.MOD_ABOUT,
+        'antes de'     : Date.MOD_BEFORE, 
+        'antes'        : Date.MOD_BEFORE, 
+        'ant.'         : Date.MOD_BEFORE, 
+        'ant'          : Date.MOD_BEFORE, 
+        'até'          : Date.MOD_BEFORE,
+        'depois de'    : Date.MOD_AFTER,
+        'depois'       : Date.MOD_AFTER,
+        'dep.'         : Date.MOD_AFTER,
+        'dep'          : Date.MOD_AFTER,
+        'aprox.'       : Date.MOD_ABOUT,
+        'aprox'        : Date.MOD_ABOUT,
+        'apr.'         : Date.MOD_ABOUT,
+        'apr'          : Date.MOD_ABOUT,
+        'cerca de'     : Date.MOD_ABOUT,
+        'ca.'          : Date.MOD_ABOUT,
+        'ca'           : Date.MOD_ABOUT,
+        'c.'           : Date.MOD_ABOUT,
+        'por volta de' : Date.MOD_ABOUT,
+        'por volta'    : Date.MOD_ABOUT,
+        'pvd.'         : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'gregoriano'            : Date.CAL_GREGORIAN,
-        u'g'                     : Date.CAL_GREGORIAN,
-        u'juliano'               : Date.CAL_JULIAN,
-        u'j'                     : Date.CAL_JULIAN,
-        u'hebreu'                : Date.CAL_HEBREW,
-        u'h'                     : Date.CAL_HEBREW,
-        u'islâmico'              : Date.CAL_ISLAMIC,
-        u'i'                     : Date.CAL_ISLAMIC,
-        u'revolucionário'        : Date.CAL_FRENCH,
-        u'r'                     : Date.CAL_FRENCH,
-        u'persa'                 : Date.CAL_PERSIAN,
-        u'p'                     : Date.CAL_PERSIAN,
-        u'swedish'               : Date.CAL_SWEDISH, 
-        u's'                     : Date.CAL_SWEDISH, 
+        'gregoriano'            : Date.CAL_GREGORIAN,
+        'g'                     : Date.CAL_GREGORIAN,
+        'juliano'               : Date.CAL_JULIAN,
+        'j'                     : Date.CAL_JULIAN,
+        'hebreu'                : Date.CAL_HEBREW,
+        'h'                     : Date.CAL_HEBREW,
+        'islâmico'              : Date.CAL_ISLAMIC,
+        'i'                     : Date.CAL_ISLAMIC,
+        'revolucionário'        : Date.CAL_FRENCH,
+        'r'                     : Date.CAL_FRENCH,
+        'persa'                 : Date.CAL_PERSIAN,
+        'p'                     : Date.CAL_PERSIAN,
+        'swedish'               : Date.CAL_SWEDISH, 
+        's'                     : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'estimado'   : Date.QUAL_ESTIMATED,
-        u'est.'       : Date.QUAL_ESTIMATED,
-        u'est'        : Date.QUAL_ESTIMATED,
-        u'calc.'      : Date.QUAL_CALCULATED,
-        u'calc'       : Date.QUAL_CALCULATED,
-        u'calculado'  : Date.QUAL_CALCULATED,
+        'estimado'   : Date.QUAL_ESTIMATED,
+        'est.'       : Date.QUAL_ESTIMATED,
+        'est'        : Date.QUAL_ESTIMATED,
+        'calc.'      : Date.QUAL_CALCULATED,
+        'calc'       : Date.QUAL_CALCULATED,
+        'calculado'  : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'de']
-        _span_2 = [u'a']
-        _range_1 = [u'entre',u'ent\.',u'ent']
-        _range_2 = [u'e']
+        _span_1 = ['de']
+        _span_2 = ['a']
+        _range_1 = ['entre','ent\.','ent']
+        _range_2 = ['e']
         self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                    ('|'.join(_span_1),'|'.join(_span_2)),
                            re.IGNORECASE)
@@ -122,20 +122,20 @@ class DateDisplayPT(DateDisplay):
     """
     Portuguese language date display class. 
     """
-    long_months = ( u"", u"Janeiro", u"Fevereiro", u"Março", u"Abril", u"Maio", 
-                    u"Junho", u"Julho", u"Agosto", u"Setembro", u"Outubro", 
-                    u"Novembro", u"Dezembro" )
+    long_months = ( "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", 
+                    "Junho", "Julho", "Agosto", "Setembro", "Outubro", 
+                    "Novembro", "Dezembro" )
     
-    short_months = ( u"", u"Jan", u"Fev", u"Mar", u"Abr", u"Mai", u"Jun", 
-                     u"Jul", u"Ago", u"Set", u"Out", u"Nov", u"Dez" )
+    short_months = ( "", "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", 
+                     "Jul", "Ago", "Set", "Out", "Nov", "Dez" )
     
     calendar = (
-        "", u"Juliano", u"Hebreu", 
-        u"Revolucionário", u"Persa", u"Islâmico", 
-        u"Sueco" 
+        "", "Juliano", "Hebreu", 
+        "Revolucionário", "Persa", "Islâmico", 
+        "Sueco" 
         )
 
-    _mod_str = ("",u"antes de ",u"depois de ",u"por volta de ","","","")
+    _mod_str = ("","antes de ","depois de ","por volta de ","","","")
 
     _qual_str = ("","estimado ","calculado ")
 
@@ -164,12 +164,12 @@ class DateDisplayPT(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'de', d1, u'a', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'de', d1, 'a', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'entre', d1, u'e', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'entre', d1, 'e', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)

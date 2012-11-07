@@ -61,6 +61,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ..constfunc import cuni, conv_to_unicode
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
 
@@ -744,7 +745,7 @@ class NameDisplay(object):
             s = func(first, [surn.serialize() for surn in surname_list],
                      suffix, title, call, nick, famnick)
         except (ValueError, TypeError,):
-            raise NameDisplayError, "Incomplete format string"
+            raise NameDisplayError("Incomplete format string")
 
         return s
     
@@ -761,7 +762,7 @@ class NameDisplay(object):
         return sur.get_surname()
 
     def sort_string(self, name):
-        return u"%-25s%-30s%s" % (self.primary_surname(name),
+        return cuni("%-25s%-30s%s") % (self.primary_surname(name),
                                   name.first_name, name.suffix)
 
     def sorted(self, person):
@@ -940,7 +941,7 @@ class NameDisplay(object):
             format_str[0] == format_str[-1] == '"'):
             pass
         else:
-            d_keys = [(code, _tuple[2]) for code, _tuple in d.iteritems()]
+            d_keys = [(code, _tuple[2]) for code, _tuple in d.items()]
             d_keys.sort(_make_cmp) # reverse on length and by ikeyword
             for (code, ikeyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
@@ -956,17 +957,17 @@ class NameDisplay(object):
             format_str[0] == format_str[-1] == '"'):
             pass
         else:
-            d_keys = [(code, _tuple[1]) for code, _tuple in d.iteritems()]
+            d_keys = [(code, _tuple[1]) for code, _tuple in d.items()]
             d_keys.sort(_make_cmp) # reverse sort on length and by keyword
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
-                keyword = unicode(keyword, "utf8")
+                keyword = conv_to_unicode(keyword, "utf8")
                 format_str = format_str.replace(keyword, "%"+ code)
                 format_str = format_str.replace(keyword.title(), "%"+ code)
                 format_str = format_str.replace(keyword.upper(), "%"+ code.upper())
         # Get lower and upper versions of codes:
-        codes = d.keys() + [c.upper() for c in d]
+        codes = list(d.keys()) + [c.upper() for c in d]
         # Next, list out the matching patterns:
         # If it starts with "!" however, treat the punctuation verbatim:
         if len(format_str) > 0 and format_str[0] == "!":

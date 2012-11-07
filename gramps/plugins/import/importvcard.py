@@ -64,10 +64,10 @@ def importData(database, filename, user):
     try:
         with OpenFileOrStdin(filename) as filehandle:
             parser.parse(filehandle)
-    except EnvironmentError, msg:
+    except EnvironmentError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    except GrampsImportError, msg:
+    except GrampsImportError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     return None # This module doesn't provide info about what got imported.
@@ -177,7 +177,7 @@ class VCardParser(object):
     def split_unescaped(strng, sep):
         """Split on sep if sep is unescaped."""
         strng_parts = strng.split(sep)
-        for i in reversed(xrange(len(strng_parts[:]))):
+        for i in reversed(range(len(strng_parts[:]))):
             if VCardParser.count_escapes(strng_parts[i]) % 2 == 1:
                 # the sep was escaped so undo split
                 appendix = strng_parts.pop(i+1)

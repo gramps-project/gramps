@@ -41,6 +41,8 @@ IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
 TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ', 
                           '012301202245501262301202')
 
+from ..constfunc import conv_to_unicode_direct
+
 #-------------------------------------------------------------------------
 #
 # soundex - returns the soundex value for the specified string
@@ -50,7 +52,7 @@ def soundex(strval):
     "Return the soundex value to a string argument."
 
     strval = unicodedata.normalize('NFKD', 
-                    unicode(strval.upper().strip())).encode('ASCII', 'ignore')
+        conv_to_unicode_direct(strval.upper().strip())).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"
     strval = strval.encode('iso-8859-1')

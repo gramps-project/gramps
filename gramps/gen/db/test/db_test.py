@@ -21,6 +21,8 @@
 # gen/db/test/db_test.py
 # $Id$
 
+from __future__ import print_function
+
 from ..db import (DbReadBase, DbWriteBase, 
                     DbBsddbRead, DbBsddb)
 from ...proxy.proxybase import ProxyDbBase
@@ -238,24 +240,24 @@ class DbTest(object):
         self.db = db
 
     def _verify_readonly(self):
-        print "Verifying readonly", self.db.__class__.__name__
+        print("Verifying readonly", self.db.__class__.__name__)
         for method in self.READ_METHODS:
             assert hasattr(self.db, method), \
                 ("readonly should have a '%s' method" % method)
         for method in self.WRITE_METHODS:
             assert not hasattr(self.db, method), \
                 ("readonly should NOT have a '%s' method" % method)
-        print "passed!"
+        print("passed!")
 
     def _verify_readwrite(self):
-        print "Verifying readwrite", self.db.__class__.__name__
+        print("Verifying readwrite", self.db.__class__.__name__)
         for method in self.READ_METHODS:
             assert hasattr(self.db, method), \
                 ("readwrite should have a '%s' method" % method)
         for method in self.WRITE_METHODS:
             assert hasattr(self.db, method), \
                 ("readwrite should have a '%s' method" % method)
-        print "passed!"
+        print("passed!")
 
 db1 = DbTest(DbReadBase())
 db1._verify_readonly()

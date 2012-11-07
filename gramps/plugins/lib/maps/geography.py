@@ -61,10 +61,10 @@ from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
 
 from gi.repository import OsmGpsMap as osmgpsmap
-import constants
-from osmGps import OsmGps
-from selectionlayer import SelectionLayer
-from placeselection import PlaceSelection
+from . import constants
+from .osmGps import OsmGps
+from .selectionlayer import SelectionLayer
+from .placeselection import PlaceSelection
 
 #------------------------------------------------------------------------
 #

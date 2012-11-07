@@ -31,7 +31,11 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import time
 import logging
 
@@ -234,7 +238,7 @@ class ListView(NavigationView):
                          callback=self.edit)
         
     def build_columns(self):
-        map(self.list.remove_column, self.columns)
+        list(map(self.list.remove_column, self.columns))
             
         self.columns = []
 
@@ -392,11 +396,7 @@ class ListView(NavigationView):
 
         if self.type_list() == LISTFLAT:
             # Flat
-            iter = self.model.node_map.new_iter(handle)
-            try:
-                path = self.model.do_get_path(iter)
-            except:
-                path = None
+            path = self.model.node_map.get_path_from_handle(handle)
         else:
             # Tree
             path = None
@@ -717,7 +717,7 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
-            map(self.model.add_row_by_handle, handle_list)
+            list(map(self.model.add_row_by_handle, handle_list))
             _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
@@ -736,7 +736,7 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
-            map(self.model.update_row_by_handle, handle_list)
+            list(map(self.model.update_row_by_handle, handle_list))
             _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
                     str(time.clock() - cput) + ' sec')
             # Ensure row is still selected after a change of postion in tree.
@@ -752,7 +752,7 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
-            map(self.model.delete_row_by_handle, handle_list)
+            list(map(self.model.delete_row_by_handle, handle_list))
             _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
@@ -1028,7 +1028,7 @@ class ListView(NavigationView):
             headings = levels + column_names[1:]
             data_cols = data_cols[1:]
 
-        map(ofile.write_cell, headings)
+        list(map(ofile.write_cell, headings))
         ofile.end_row()
 
         if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
@@ -1054,7 +1054,7 @@ class ListView(NavigationView):
             if self.model.get_handle(node):
                 ofile.start_row()
                 padded_level = new_level + [''] * (depth - len(new_level))
-                map(ofile.write_cell, padded_level)
+                list(map(ofile.write_cell, padded_level))
                 for index in data_cols:
                     ofile.write_cell(self.model.do_get_value(node, index))
                 ofile.end_row()

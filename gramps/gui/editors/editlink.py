@@ -39,7 +39,7 @@ from ..display import display_help
 from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
 
-WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = range(9)
+WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = list(range(9))
 OBJECT_MAP = {
     EVENT: "Event",
     FAMILY: "Family",

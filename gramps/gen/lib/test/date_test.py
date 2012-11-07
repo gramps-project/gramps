@@ -52,7 +52,7 @@ from ...datehandler import displayer as _dd
 from ...lib.date import Date, Span
 
 gettext.textdomain("gramps")
-gettext.install("gramps",loc,unicode=1)
+gettext.install("gramps", loc, unicode=1)
 
 date_tests = {}
 

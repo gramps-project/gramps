@@ -21,6 +21,8 @@
 
 """ Views for Person, Name, and Surname """
 
+from __future__ import print_function
+
 ## Gramps Modules
 from webapp.utils import _, boolean, update_last_changed, build_search
 from webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person
@@ -52,7 +54,7 @@ def delete_event(event):
         try:
             person = Person.objects.get(id=event_ref.object_id)
         except:
-            print "Warning: Corrupt reference in delete_event: %s" % event_ref
+            print("Warning: Corrupt reference in delete_event: %s" % event_ref)
             continue
         people.append(person)
     # Remove links to birth/death:
@@ -84,7 +86,7 @@ def check_event(event):
         try:
             person = Person.objects.get(id=event_ref.object_id)
         except:
-            print "Warning: Corrupt reference in delete_event: %s" % event_ref
+            print("Warning: Corrupt reference in delete_event: %s" % event_ref)
             continue
         recheck_birth_death_refs(person)
         person.save()
@@ -138,7 +140,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
 
     if handle == "add":
         act = "add"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete, share, save-share

@@ -39,13 +39,13 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from datebase import DateBase
-from placebase import PlaceBase
-from privacybase import PrivacyBase
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .datebase import DateBase
+from .placebase import PlaceBase
+from .privacybase import PrivacyBase
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

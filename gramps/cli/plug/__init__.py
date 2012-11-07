@@ -33,6 +33,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 import traceback
 import os
@@ -61,6 +63,7 @@ from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
+from gramps.gen.constfunc import STRTYPE, conv_to_unicode_direct
 from ..grampscli import CLIManager
 from ..user import User
 
@@ -76,26 +79,26 @@ def _convert_str_to_match_type(str_val, type_val):
     str_val = str_val.strip()
     ret_type = type(type_val)
     
-    if ret_type in (str, unicode):
+    if isinstance(type_val, STRTYPE):
         if ( str_val.startswith("'") and str_val.endswith("'") ) or \
            ( str_val.startswith('"') and str_val.endswith('"') ):
             # Remove enclosing quotes
-            return unicode(str_val[1:-1])
+            return conv_to_unicode_direct(str_val[1:-1])
         else:
-            return unicode(str_val)
+            return conv_to_unicode_direct(str_val)
         
     elif ret_type == int:
         if str_val.isdigit():
             return int(str_val)
         else:
-            print "'%s' is not an integer number" % str_val
+            print("'%s' is not an integer number" % str_val)
             return 0
         
     elif ret_type == float:
         try:
             return float(str_val)
         except ValueError:
-            print "'%s' is not a decimal number" % str_val
+            print("'%s' is not a decimal number" % str_val)
             return 0.0
         
     elif ret_type == bool:
@@ -104,13 +107,13 @@ def _convert_str_to_match_type(str_val, type_val):
         elif str_val == str(False):
             return False
         else:
-            print "'%s' is not a boolean-- try 'True' or 'False'" % str_val
+            print("'%s' is not a boolean-- try 'True' or 'False'" % str_val)
             return False
     
     elif ret_type == list:
         ret_val = []
         if not ( str_val.startswith("[") and str_val.endswith("]") ):
-            print "'%s' is not a list-- try: [%s]" % (str_val, str_val)
+            print("'%s' is not a list-- try: [%s]" % (str_val, str_val))
             return ret_val
         
         entry = ""
@@ -160,12 +163,12 @@ def _validate_options(options, dbase):
                 person = dbase.get_default_person()
                 if not person:
                     try:
-                        phandle = dbase.iter_person_handles().next()
+                        phandle = next(dbase.iter_person_handles())
                     except StopIteration:
                         phandle = None
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
-                        print _("ERROR: Please specify a person")
+                        print(_("ERROR: Please specify a person"))
             if person:
                 option.set_value(person.get_gramps_id())
             
@@ -182,14 +185,14 @@ def _validate_options(options, dbase):
                     family_handle = family_list[0]
                 else:
                     try:
-                        family_handle = dbase.iter_family_handles().next()
+                        family_handle = next(dbase.iter_family_handles())
                     except StopIteration:
                         family_handle = None
                 if family_handle:
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
                 else:
-                    print _("ERROR: Please specify a family")
+                    print(_("ERROR: Please specify a family"))
 
 #------------------------------------------------------------------------
 #
@@ -400,12 +403,12 @@ class CommandLineReport(object):
             elif isinstance(option, Option):
                 self.options_help[name].append(option.get_help())
             else:
-                print _("Unknown option: %s") % option
-                print _("   Valid options are:"), ", ".join(
-                                                     self.options_dict.keys())
-                print (_("   Use '%(donottranslate)s' to see description "
+                print(_("Unknown option: %s") % option)
+                print(_("   Valid options are:"), ", ".join(
+                                                     list(self.options_dict.keys())))
+                print((_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
-                       {'donottranslate' : "show=option"})
+                       {'donottranslate' : "show=option"}))
                 
     def parse_options(self):
         """
@@ -430,12 +433,12 @@ class CommandLineReport(object):
                     option.set_value(self.options_dict[opt])
                 
             else:
-                print _("Ignoring unknown option: %s") % opt
-                print _("   Valid options are:"), ", ".join(
-                                                     self.options_dict.keys())
-                print (_("   Use '%(donottranslate)s' to see description "
+                print(_("Ignoring unknown option: %s") % opt)
+                print(_("   Valid options are:"), ", ".join(
+                                                     list(self.options_dict.keys())))
+                print((_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
-                       {'donottranslate' : "show=option"})
+                       {'donottranslate' : "show=option"}))
         
         self.option_class.handler.output = self.options_dict['of']
 
@@ -477,14 +480,14 @@ class CommandLineReport(object):
                 _chosen_format = graphdoc.FORMATS[0]["ext"]
         else:
             self.format = None
-        if _chosen_format and self.options_str_dict.has_key('off'):
-            print (_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
+        if _chosen_format and 'off' in self.options_str_dict:
+            print((_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
                      "and using '%(notranslate1)s=%(notranslate3)s'.") %
                    {'notranslate1' : "off",
                     'notranslate2' : self.options_dict['off'],
-                    'notranslate3' : _chosen_format})
-            print (_("Use '%(notranslate)s' to see valid values.") %
-                   {'notranslate' : "show=off"})
+                    'notranslate3' : _chosen_format}))
+            print((_("Use '%(notranslate)s' to see valid values.") %
+                   {'notranslate' : "show=off"}))
 
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
@@ -517,39 +520,39 @@ class CommandLineReport(object):
         if not self.show:
             return
         elif self.show == 'all':
-            print _("   Available options:")
+            print(_("   Available options:"))
             for key in sorted(self.options_dict.keys()):
                 if key in self.options_help:
                     opt = self.options_help[key]
                     # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
-                    print optmsg.encode(sys.getfilesystemencoding())
+                    print(optmsg.encode(sys.getfilesystemencoding()))
                 else:
                     optmsg = " %s" % key
-                    print optmsg.encode(sys.getfilesystemencoding())
-            print (_("   Use '%(donottranslate)s' to see description "
+                    print(optmsg.encode(sys.getfilesystemencoding()))
+            print((_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
-                   {'donottranslate' : "show=option"})
+                   {'donottranslate' : "show=option"}))
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
-            print '   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0])
-            print _("   Available values are:")
+            print('   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0]))
+            print(_("   Available values are:"))
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
                     optmsg = "      %s" % val
-                    print optmsg.encode(sys.getfilesystemencoding())
+                    print(optmsg.encode(sys.getfilesystemencoding()))
             else:
                 optmsg = "      %s" % opt[2]
-                print optmsg.encode(sys.getfilesystemencoding())
+                print(optmsg.encode(sys.getfilesystemencoding()))
 
         else:
             #there was a show option given, but the option is invalid
-            print (_("option '%(optionname)s' not valid. "
+            print((_("option '%(optionname)s' not valid. "
                      "Use '%(donottranslate)s' to see all valid options.") %
-                   {'optionname' : self.show, 'donottranslate' : "show=all"})
+                   {'optionname' : self.show, 'donottranslate' : "show=all"}))
 
 #------------------------------------------------------------------------
 #
@@ -588,17 +591,17 @@ def cl_report(database, name, category, report_class, options_class,
         MyReport.write_report()
         MyReport.end_report()
         return clr
-    except ReportError, msg:
+    except ReportError as msg:
         (m1, m2) = msg.messages()
-        print err_msg
-        print m1
+        print(err_msg)
+        print(m1)
         if m2:
-            print m2
+            print(m2)
     except:
         if len(log.handlers) > 0:
             log.error(err_msg, exc_info=True)
         else:
-            print >> sys.stderr, err_msg
+            print(err_msg, file=sys.stderr)
             ## Something seems to eat the exception above.
             ## Hack to re-get the exception:
             try:
@@ -712,12 +715,12 @@ def write_book_item(database, report_class, options, user):
     All user dialog has already been handled and the output file opened."""
     try:
         return report_class(database, options, user)
-    except ReportError, msg:
+    except ReportError as msg:
         (m1, m2) = msg.messages()
-        print "ReportError", m1, m2
-    except FilterError, msg:
+        print("ReportError", m1, m2)
+    except FilterError as msg:
         (m1, m2) = msg.messages()
-        print "FilterError", m1, m2
+        print("FilterError", m1, m2)
     except:
         log.error("Failed to write book item.", exc_info=True)
     return None

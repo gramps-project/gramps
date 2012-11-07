@@ -36,8 +36,8 @@ from gi.repository import GObject
 from gramps.gen.lib import PersonRef
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from personrefmodel import PersonRefModel
-from embeddedlist import EmbeddedList
+from .personrefmodel import PersonRefModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

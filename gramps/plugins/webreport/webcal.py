@@ -38,7 +38,7 @@ import os, codecs, shutil, re
 import datetime, calendar
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
-from itertools import imap
+
 
 #------------------------------------------------------------------------
 # Set up logging
@@ -473,7 +473,7 @@ class WebCalReport(Report):
         with Html("div", id = "subnavigation", role = "subnavigation") as submenu:
             unordered = Html("ul")
 
-            for cal_year in xrange(self.start_year, (self.start_year + num_years)):
+            for cal_year in range(self.start_year, (self.start_year + num_years)):
                 url = ''
 
                 # begin subdir level
@@ -519,7 +519,7 @@ class WebCalReport(Report):
         if self.home_link:
             navs.append((self.home_link,  _('Home'),  add_home))
         navs.extend(
-            (_dd.long_months[month], _dd.short_months[month], True) for month in xrange(1, 13) )
+            (_dd.long_months[month], _dd.short_months[month], True) for month in range(1, 13) )
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
@@ -795,7 +795,7 @@ class WebCalReport(Report):
                     current_ord += 1
 
             if cal == "yg":
-                for weeks in xrange(nweeks, 6):
+                for weeks in range(nweeks, 6):
 
                     # each calendar must have six weeks for proper styling and alignment
                     with Html("tr", class_ = "week%02d" % (weeks + 1)) as six_weeks:
@@ -1073,7 +1073,7 @@ class WebCalReport(Report):
 
         self._user.begin_progress(_("Web Calendar Report"),
                                   _("Reading database..."), len(people))
-        for person in imap(db.get_person_from_handle, people):
+        for person in map(db.get_person_from_handle, people):
             self._user.step_progress()
 
             family_list = person.get_family_handle_list()
@@ -1236,7 +1236,7 @@ class WebCalReport(Report):
             nyears = ((self.end_year - self.start_year) + 1)
             num_years = nyears if 0 < nyears < 19 else 18
 
-            for cal_year in xrange(self.start_year, (self.start_year + num_years)):
+            for cal_year in range(self.start_year, (self.start_year + num_years)):
 
                 # initialize the holidays dict to fill:
                 self.holidays = {}
@@ -1354,7 +1354,7 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "cright", cright)
 
         css_list = sorted([(CSS[key]["translation"], CSS[key]["id"]) 
-                            for key in CSS.keys()
+                            for key in list(CSS.keys())
                             if CSS[key]["user"]])
         css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
         for css_item in css_list:                              

@@ -23,7 +23,7 @@
 
 import logging
 
-from _errorview import ErrorView
+from ._errorview import ErrorView
 
 
 class GtkHandler(logging.Handler):

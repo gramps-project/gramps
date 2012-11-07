@@ -53,12 +53,12 @@ from gramps.gen.utils.file import (media_path_full, find_file,
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
-from displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
+from .displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                          MonitoredDate, MonitoredTagList)
-from editreference import RefTab, EditReference
-from addmedia import AddMediaObject
+from .editreference import RefTab, EditReference
+from .addmedia import AddMediaObject
 
 #-------------------------------------------------------------------------
 #

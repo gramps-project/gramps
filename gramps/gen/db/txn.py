@@ -30,8 +30,13 @@ database.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
-import cPickle as pickle
+from __future__ import print_function, with_statement
+
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import logging
 
 from collections import defaultdict
@@ -41,7 +46,7 @@ from collections import defaultdict
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from dbconst import (DBLOGNAME, TXNADD, TXNUPD, TXNDEL)
+from .dbconst import (DBLOGNAME, TXNADD, TXNUPD, TXNDEL)
 
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -115,7 +120,7 @@ class DbTxn(defaultdict):
         self.commitdb = grampsdb.get_undodb()
         self.db = grampsdb
         self.batch = batch
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             setattr(self, key, value)
         self.first = None
         self.last = None
@@ -164,9 +169,9 @@ class DbTxn(defaultdict):
         if self.first is None or self.last is None:
             return []
         if not reverse:
-            return xrange(self.first, self.last+1)
+            return range(self.first, self.last+1)
         else:
-            return xrange(self.last, self.first-1, -1)
+            return range(self.last, self.first-1, -1)
 
     def get_record(self, recno):
         """
@@ -238,15 +243,15 @@ def testtxn():
     grampsdb.person_map.delete('1')
     trans.add(0, TXNDEL, '1', None, None)
 
-    print trans
-    print trans.get_description()
-    print trans.set_description("new text")
-    print trans.get_description()
+    print(trans)
+    print(trans.get_description())
+    print(trans.set_description("new text"))
+    print(trans.get_description())
     for i in trans.get_recnos():
-        print trans.get_record(i)
-    print list(trans.get_recnos())
-    print list(trans.get_recnos(reverse=True))
-    print grampsdb.person_map
+        print(trans.get_record(i))
+    print(list(trans.get_recnos()))
+    print(list(trans.get_recnos(reverse=True)))
+    print(grampsdb.person_map)
 
 if __name__ == '__main__':
     testtxn()

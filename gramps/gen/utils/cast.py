@@ -39,6 +39,7 @@ import locale
 #
 #-------------------------------------------------------------------------
 from ..datehandler import codeset
+from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYPE
 
 """
 strxfrm needs it's unicode argument correctly cast before used.
@@ -49,16 +50,16 @@ conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
 if codeset == 'UTF-8':
     conv_str_tosrtkey = lambda x: locale.strxfrm(x)
 else:
-    conv_str_tosrtkey = lambda x: locale.strxfrm(unicode(x,'UTF-8').encode(
-                                                           codeset, 'replace'))
+    conv_str_tosrtkey = lambda x: locale.strxfrm(
+                        conv_to_unicode(x,'UTF-8').encode(codeset, 'replace'))
 
 def conv_tosrtkey(value):
-    if isinstance(value, unicode):
+    if isinstance(value, UNITYPE):
         return conv_unicode_tosrtkey(value)
     return conv_str_tosrtkey(value)
 
 #strings in database are utf-8
-conv_dbstr_to_unicode = lambda x: unicode(x, 'UTF-8')
+conv_dbstr_to_unicode = lambda x: conv_to_unicode(x, 'UTF-8')
 
 def cast_to_bool(val):
     if val == str(True):
@@ -70,8 +71,8 @@ def get_type_converter(val):
     Return function that converts strings into the type of val.
     """
     val_type = type(val)
-    if val_type in (str, unicode):
-        return unicode
+    if isinstance(val, STRTYPE):
+        return str
     elif val_type == int:
         return int
     elif val_type == float:
@@ -95,7 +96,7 @@ def type_name(val):
         return 'float'
     elif val_type == bool:
         return 'bool'
-    elif val_type in (str, unicode):
+    elif isinstance(val, STRTYPE):
         return 'unicode'
     return 'unicode'
 
@@ -113,5 +114,5 @@ def get_type_converter_by_name(val_str):
     elif val_str == 'bool':
         return cast_to_bool
     elif val_str in ('str', 'unicode'):
-        return unicode
-    return unicode
+        return str
+    return str

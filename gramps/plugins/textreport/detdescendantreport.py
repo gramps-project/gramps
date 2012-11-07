@@ -259,7 +259,7 @@ class DetDescendantReport(Report):
     def apply_mod_reg_filter(self, person_handle):
         self.apply_mod_reg_filter_aux(person_handle, 1, 1)
         mod_reg_number = 1
-        for generation in xrange(len(self.gen_keys)):
+        for generation in range(len(self.gen_keys)):
             for key in self.gen_keys[generation]:
                 person_handle = self.map[key]
                 if person_handle not in self.dnumber:
@@ -293,7 +293,7 @@ class DetDescendantReport(Report):
         generation = 0
 
         self.numbers_printed = list()
-        for generation in xrange(len(self.gen_keys)):
+        for generation in range(len(self.gen_keys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
@@ -430,7 +430,7 @@ class DetDescendantReport(Report):
         if ph:
             place = self.database.get_place_from_handle(ph).get_title()
         else:
-            place = u''
+            place = ''
 
         self.doc.start_paragraph('DDR-MoreDetails')
         event_name = self.__get_type(event.get_type())

@@ -25,8 +25,8 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from backrefmodel import BackRefModel
-from backreflist import BackRefList
+from .backrefmodel import BackRefModel
+from .backreflist import BackRefList
 
 class PlaceBackRefList(BackRefList):
 

@@ -40,6 +40,7 @@ from ..lib.nameorigintype import NameOriginType
 from ..lib.surname import Surname
 from ..display.name import displayer as name_displayer
 from ..ggettext import sgettext as _
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -368,7 +369,7 @@ def navigation_label(db, nav_type, handle):
             label = obj.get()
             # When strings are cut, make sure they are unicode
             #otherwise you may end of with cutting within an utf-8 sequence
-            label = unicode(label)
+            label = cuni(label)
             label = " ".join(label.split())
             if len(label) > 40:
                 label = label[:40] + "..."

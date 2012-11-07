@@ -33,7 +33,7 @@ from gramps.gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from ..glade import Glade
 

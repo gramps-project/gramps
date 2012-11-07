@@ -27,7 +27,7 @@
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from ..glade import Glade
 from ..widgets import MonitoredEntry
 from gramps.gen.ggettext import gettext as _

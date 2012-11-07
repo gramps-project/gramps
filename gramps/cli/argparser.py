@@ -36,6 +36,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
 import sys
 import getopt
 from gramps.gen.ggettext import gettext as _
@@ -219,7 +220,7 @@ class ArgParser(object):
                 self.args[arg+1] = get_unicode_path_from_env_var(self.args[arg + 1])
             options, leftargs = getopt.getopt(self.args[1:],
                                              SHORTOPTS, LONGOPTS)
-        except getopt.GetoptError, msg:
+        except getopt.GetoptError as msg:
             # Extract the arguments in the list.
             # The % operator replaces the list elements with repr() of the list elemements
             # which is OK for latin characters, but not for non latin characters in list elements
@@ -228,7 +229,7 @@ class ArgParser(object):
                 cliargs += self.args[arg + 1] + " "
             cliargs += "]"
             # Must first do str() of the msg object.
-            msg = unicode(str(msg))
+            msg = str(msg)
             self.errors += [(_('Error parsing the arguments'), 
                         msg + '\n' +
                         _("Error parsing the arguments: %s \n" 
@@ -240,7 +241,7 @@ class ArgParser(object):
             # if there were an argument without option,
             # use it as a file to open and return
             self.open_gui = leftargs[0]
-            print >> sys.stderr, "Trying to open: %s ..." % leftargs[0]
+            print ("Trying to open: %s ..." % leftargs[0], file=sys.stderr)
             #see if force open is on
             for opt_ix in range(len(options)):
                 option, value = options[opt_ix]
@@ -273,7 +274,7 @@ class ArgParser(object):
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ('report', 'tool', 'book'):
-                    print >> sys.stderr, "Unknown action: %s. Ignoring." % action
+                    print ("Unknown action: %s. Ignoring." % action, file=sys.stderr)
                     continue
                 options_str = ""
                 if opt_ix < len(options)-1 \
@@ -281,7 +282,7 @@ class ArgParser(object):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ('-d', '--debug'):
-                print >> sys.stderr, 'setup debugging', value
+                print ('setup debugging', value, file=sys.stderr)
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
                 cleandbg += [opt_ix]
@@ -290,14 +291,14 @@ class ArgParser(object):
             elif option in ('-L'):
                 self.list_more = True
             elif option in ('-s','--show'):
-                print "Gramps config settings from %s:" % \
-                       config.filename.encode(sys.getfilesystemencoding())
+                print ("Gramps config settings from %s:" % \
+                       config.filename.encode(sys.getfilesystemencoding()))
                 for section in config.data:
                     for setting in config.data[section]:
-                        print "%s.%s=%s" % (
+                        print ("%s.%s=%s" % (
                             section, setting, 
-                            repr(config.data[section][setting]))
-                    print
+                            repr(config.data[section][setting])))
+                    print ('')
                 sys.exit(0)
             elif option in ('-c', '--config'):
                 setting_name = value
@@ -308,24 +309,24 @@ class ArgParser(object):
                         set_value = True
                     if config.has_default(setting_name):
                         setting_value = config.get(setting_name)
-                        print >> sys.stderr, "Current Gramps config setting: " \
-                                   "%s:%s" % (setting_name, repr(setting_value))
+                        print ("Current Gramps config setting: " \
+                            "%s:%s" % (setting_name, repr(setting_value)), file=sys.stderr)
                         if set_value:
                             if new_value == "DEFAULT":
                                 new_value = config.get_default(setting_name)
                             else:
                                 new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
-                            print >> sys.stderr, "    New Gramps config " \
-                                            "setting: %s:%s" % (
+                            print ("    New Gramps config " \
+                                    "setting: %s:%s" % (
                                                 setting_name,
                                                 repr(config.get(setting_name))
-                                                )
+                                                ), file=sys.stderr)
                         else:
                             need_to_quit = True
                     else:
-                        print >> sys.stderr, "Gramps: no such config setting:" \
-                                             " '%s'" % setting_name
+                        print ("Gramps: no such config setting:" \
+                                    " '%s'" % setting_name, file=sys.stderr)
                         need_to_quit = True
                 cleandbg += [opt_ix]
             elif option in ('-h', '-?', '--help'):
@@ -401,7 +402,7 @@ class ArgParser(object):
         """
         if self.help:
             # Convert Help messages to file system encoding before printing
-            print _HELP.encode(sys.getfilesystemencoding())
+            print (_HELP.encode(sys.getfilesystemencoding()))
             sys.exit(0)
             
     def print_usage(self):
@@ -410,5 +411,5 @@ class ArgParser(object):
         """
         if self.usage:
             # Convert Help messages to file system encoding before printing
-            print _USAGE.encode(sys.getfilesystemencoding())
+            print (_USAGE.encode(sys.getfilesystemencoding()))
             sys.exit(0)

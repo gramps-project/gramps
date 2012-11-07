@@ -30,12 +30,12 @@ Repository Reference class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from notebase import NoteBase
-from refbase import RefBase
-from srcmediatype import SourceMediaType
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .privacybase import PrivacyBase
+from .notebase import NoteBase
+from .refbase import RefBase
+from .srcmediatype import SourceMediaType
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

@@ -30,7 +30,7 @@
 """
 Chinese-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 import re
 
 #-------------------------------------------------------------------------
@@ -40,9 +40,9 @@ import re
 #-------------------------------------------------------------------------
 
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -58,43 +58,43 @@ class DateParserZH(DateParser):
     # translate english strings into chinese
     
     modifier_to_int = {
-        u'before' : Date.MOD_BEFORE, u'bef'    : Date.MOD_BEFORE,
-        u'bef.'   : Date.MOD_BEFORE, u'after'  : Date.MOD_AFTER,
-        u'aft'    : Date.MOD_AFTER,  u'aft.'   : Date.MOD_AFTER,
-        u'about'  : Date.MOD_ABOUT,  u'abt.'   : Date.MOD_ABOUT,
-        u'abt'    : Date.MOD_ABOUT,  u'circa'  : Date.MOD_ABOUT,
-        u'c.'     : Date.MOD_ABOUT,  u'around' : Date.MOD_ABOUT,
+        'before' : Date.MOD_BEFORE, 'bef'    : Date.MOD_BEFORE,
+        'bef.'   : Date.MOD_BEFORE, 'after'  : Date.MOD_AFTER,
+        'aft'    : Date.MOD_AFTER,  'aft.'   : Date.MOD_AFTER,
+        'about'  : Date.MOD_ABOUT,  'abt.'   : Date.MOD_ABOUT,
+        'abt'    : Date.MOD_ABOUT,  'circa'  : Date.MOD_ABOUT,
+        'c.'     : Date.MOD_ABOUT,  'around' : Date.MOD_ABOUT,
         }
 
     month_to_int = DateParser.month_to_int
 
-    month_to_int[u"正"] = 1
-    month_to_int[u"一"] = 1
-    month_to_int[u"zhēngyuè"] = 1
-    month_to_int[u"二"] = 2
-    month_to_int[u"èryuè"] = 2
-    month_to_int[u"三"] = 3
-    month_to_int[u"sānyuè"] = 3
-    month_to_int[u"四"] = 4
-    month_to_int[u"sìyuè"] = 4
-    month_to_int[u"五"] = 5
-    month_to_int[u"wǔyuè"] = 5
-    month_to_int[u"六"] = 6
-    month_to_int[u"liùyuè"] = 6
-    month_to_int[u"七"] = 7
-    month_to_int[u"qīyuè"] = 7
-    month_to_int[u"八"] = 8
-    month_to_int[u"bāyuè"] = 8
-    month_to_int[u"九"] = 9
-    month_to_int[u"jiǔyuè"] = 9
-    month_to_int[u"十"] = 10
-    month_to_int[u"shíyuè"] = 10
-    month_to_int[u"十一"] = 11
-    month_to_int[u"shíyīyuè"] = 11
-    month_to_int[u"十二"] = 12
-    month_to_int[u"shí'èryuè"] = 12
-    month_to_int[u"假閏"] = 13
-    month_to_int[u"jiǎ rùn yùe"] = 13
+    month_to_int["正"] = 1
+    month_to_int["一"] = 1
+    month_to_int["zhēngyuè"] = 1
+    month_to_int["二"] = 2
+    month_to_int["èryuè"] = 2
+    month_to_int["三"] = 3
+    month_to_int["sānyuè"] = 3
+    month_to_int["四"] = 4
+    month_to_int["sìyuè"] = 4
+    month_to_int["五"] = 5
+    month_to_int["wǔyuè"] = 5
+    month_to_int["六"] = 6
+    month_to_int["liùyuè"] = 6
+    month_to_int["七"] = 7
+    month_to_int["qīyuè"] = 7
+    month_to_int["八"] = 8
+    month_to_int["bāyuè"] = 8
+    month_to_int["九"] = 9
+    month_to_int["jiǔyuè"] = 9
+    month_to_int["十"] = 10
+    month_to_int["shíyuè"] = 10
+    month_to_int["十一"] = 11
+    month_to_int["shíyīyuè"] = 11
+    month_to_int["十二"] = 12
+    month_to_int["shí'èryuè"] = 12
+    month_to_int["假閏"] = 13
+    month_to_int["jiǎ rùn yùe"] = 13
     
     # translate english strings into chinese
     
@@ -119,17 +119,17 @@ class DateParserZH(DateParser):
     # translate english strings into chinese
 
     quality_to_int = {
-        u'estimated'  : Date.QUAL_ESTIMATED,
-        u'est.'       : Date.QUAL_ESTIMATED,
-        u'est'        : Date.QUAL_ESTIMATED,
-        u'calc.'      : Date.QUAL_CALCULATED,
-        u'calc'       : Date.QUAL_CALCULATED,
-        u'calculated' : Date.QUAL_CALCULATED,
+        'estimated'  : Date.QUAL_ESTIMATED,
+        'est.'       : Date.QUAL_ESTIMATED,
+        'est'        : Date.QUAL_ESTIMATED,
+        'calc.'      : Date.QUAL_CALCULATED,
+        'calc'       : Date.QUAL_CALCULATED,
+        'calculated' : Date.QUAL_CALCULATED,
         }
         
     # translate english strings into chinese
 
-    bce = [u"before calendar", u"negative year"] + DateParser.bce
+    bce = ["before calendar", "negative year"] + DateParser.bce
 
     def init_strings(self):
         """
@@ -149,9 +149,9 @@ class DateParserZH(DateParser):
         # See DateParser class; translate english strings (from/to, between/and) into chinese
         # do not translate <start> and <stop>
 
-        self._span     = re.compile(u"(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)",
+        self._span     = re.compile("(from)\s+(?P<start>.+)\s+to\s+(?P<stop>.+)",
                                     re.IGNORECASE)
-        self._range    = re.compile(u"(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
+        self._range    = re.compile("(bet|bet.|between)\s+(?P<start>.+)\s+and\s+(?P<stop>.+)",
                                     re.IGNORECASE)
                                     
     #def _parse_lunisolar(self, date_val=text):
@@ -171,21 +171,21 @@ class DateDisplayZH(DateDisplay):
 
     # translate english strings into chinese
  
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( "", "January", "February", "March", "April", "May", 
+                    "June", "July", "August", "September", "October", 
+                    "November", "December" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( "", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" )
 
     calendar = (
-        "", u"Julian", u"Hebrew", u"French Republican", 
-        u"Persian", u"Islamic", u"Swedish" 
+        "", "Julian", "Hebrew", "French Republican", 
+        "Persian", "Islamic", "Swedish" 
         )
 
-    _mod_str = ("", u"before ", u"after ", u"around ", "", "", "")
+    _mod_str = ("", "before ", "after ", "around ", "", "", "")
 
-    _qual_str = ("", u"estimated ", u"calculated ", "")
+    _qual_str = ("", "estimated ", "calculated ", "")
 
     _bce_str = "%s B.C.E."
 
@@ -212,14 +212,14 @@ class DateDisplayZH(DateDisplay):
             date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
             # translate english strings into chinese
-            return "%s%s %s %s %s%s" % (qual_str, u'from', date1, u'to', 
+            return "%s%s %s %s %s%s" % (qual_str, 'from', date1, 'to', 
             date2, scal)
         elif mod == Date.MOD_RANGE:
             date1 = self.display_cal[cal](start)
             date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
             # translate english strings into chinese
-            return "%s%s %s %s %s%s" % (qual_str, u'between', date1, u'and',
+            return "%s%s %s %s %s%s" % (qual_str, 'between', date1, 'and',
                     date2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

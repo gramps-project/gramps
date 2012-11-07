@@ -52,7 +52,7 @@ rand = random.Random(time.time())
 
 def create_id():
     return "%08x%08x" % (int(time.time()*10000), 
-                         rand.randint(0, sys.maxint))
+                         rand.randint(0, sys.maxsize))
 
 def create_uid(self, handle=None):
     if handle:

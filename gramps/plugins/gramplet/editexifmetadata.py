@@ -66,6 +66,7 @@ from gramps.gen.lib import Date
 from gramps.gen.mime import get_description
 from gramps.gen.utils.file import search_for, media_path_full
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.constfunc import cuni
 
 from gramps.gen.db import DbTxn
 
@@ -100,19 +101,19 @@ def _parse_datetime(value):
     if not value:
         return None
 
-    if value.find(u':') >= 0:
+    if value.find(':') >= 0:
         # Time part present
-        if value.find(u' ') >= 0:
+        if value.find(' ') >= 0:
             # Both date and time part
-            date_text, time_text = value.rsplit(u' ', 1)
+            date_text, time_text = value.rsplit(' ', 1)
         else:
             # Time only
-            date_text = u''
+            date_text = ''
             time_text = value
     else:
         # Date only
         date_text = value
-        time_text = u'00:00:00'
+        time_text = '00:00:00'
 
     date_part = _dp.parse(date_text)
     try:
@@ -161,8 +162,8 @@ _DATAMAP = {
     "Exif.GPSInfo.GPSAltitudeRef"  : "AltitudeRef",
     "Exif.GPSInfo.GPSAltitude"     : "Altitude",
     "Exif.Photo.DateTimeDigitized" : "Digitized"}
-_DATAMAP  = dict( (key, val) for key, val in _DATAMAP.items())
-_DATAMAP.update(  (val, key) for key, val in _DATAMAP.items())
+_DATAMAP  = dict( (key, val) for key, val in list(_DATAMAP.items()))
+_DATAMAP.update(  (val, key) for key, val in list(_DATAMAP.items()))
 
 # define tooltips for all data entry fields
 _TOOLTIPS = {
@@ -192,7 +193,7 @@ _TOOLTIPS = {
         "Example: 200.558, -200.558")
 }
 _TOOLTIPS  = dict(
-    (key, tooltip) for key, tooltip in _TOOLTIPS.items())
+    (key, tooltip) for key, tooltip in list(_TOOLTIPS.items()))
 
 # define tooltips for all buttons
 # common buttons for all images
@@ -439,7 +440,7 @@ class EditExifMetadata(Gramplet):
 
         if (mime_type and mime_type.startswith("image/")):
 
-            if self.extension not in _VALIDIMAGEMAP.values():
+            if self.extension not in list(_VALIDIMAGEMAP.values()):
 
                 # Convert message
                 self.exif_widgets["MessageArea"].set_text(_("Please convert this "
@@ -448,7 +449,7 @@ class EditExifMetadata(Gramplet):
                 imgtype_format = _validconvert
                 self._VCONVERTMAP = dict((index, imgtype) for index, imgtype in enumerate(imgtype_format))
 
-                for index in xrange(1, len(imgtype_format) ):
+                for index in range(1, len(imgtype_format) ):
                     self.exif_widgets["ImageTypes"].append_text(imgtype_format[index])
                 self.exif_widgets["ImageTypes"].set_active(0)
 
@@ -534,12 +535,12 @@ class EditExifMetadata(Gramplet):
         """
         # if True, setup tooltips for all Data Entry Fields
         if fields:
-            for widget, tooltip in _TOOLTIPS.items():
+            for widget, tooltip in list(_TOOLTIPS.items()):
                 self.exif_widgets[widget].set_tooltip_text(tooltip)
 
         # if True, setup tooltips for all Buttons
         if buttons:
-            for widget, tooltip in _BUTTONTIPS.items():
+            for widget, tooltip in list(_BUTTONTIPS.items()):
                 self.exif_widgets[widget].set_tooltip_text(tooltip)
 
     def setup_image(self, full_path):
@@ -901,7 +902,7 @@ class EditExifMetadata(Gramplet):
         *** if All, then disable ALL buttons in the current display
         """
         if buttonlist == ["All"]:
-            buttonlist = [(buttonname) for buttonname in _BUTTONTIPS.keys()
+            buttonlist = [(buttonname) for buttonname in list(_BUTTONTIPS.keys())
                     if buttonname is not "Help"]
 
         for widget in buttonlist:
@@ -946,7 +947,7 @@ class EditExifMetadata(Gramplet):
         # display all fields and button tooltips...
         # need to add Save, Clear, and Close over here...
         _BUTTONTIPS.update(
-            (key, tip) for key, tip in {
+            (key, tip) for key, tip in list({
 
                 # Add the Save button...
                 "Save" : _("Saves a copy of the data fields into the image's Exif metadata."),
@@ -960,7 +961,7 @@ class EditExifMetadata(Gramplet):
                 # Add the Close button...
                 "Close" : _("Closes this popup Edit window.\n"
                     "WARNING: This action will NOT Save any changes/ modification made to this "
-                    "image's Exif metadata.") }.items() )
+                    "image's Exif metadata.") }.items()) )
 
         # True, True -- all data fields and button tooltips will be displayed...
         self._setup_widget_tips(fields =True, buttons = True)
@@ -1121,7 +1122,7 @@ class EditExifMetadata(Gramplet):
         """
         Parse date and time from text entry
         """
-        value = _parse_datetime(unicode(widget.get_text()))
+        value = _parse_datetime(cuni(widget.get_text()))
         if value is not None:
             self.dates[field] = "%04d:%02d:%02d %02d:%02d:%02d" % (
                                     value.year, value.month, value.day,
@@ -1142,12 +1143,12 @@ class EditExifMetadata(Gramplet):
         """
         # validate the Latitude field...
         if field == "Latitude" and not conv_lat_lon(data, "0", "ISO-D"):
-            return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'") +
+            return ValidationError(_("Invalid latitude (syntax: 18\u00b09'") +
                                    _('48.21"S, -18.2412 or -18:9:48.21)'))
 
         # validate the Longitude field...
         if field == "Longitude" and not conv_lat_lon("0", data, "ISO-D"):
-            return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'") +
+            return ValidationError(_("Invalid longitude (syntax: 18\u00b09'") +
                                    _('48.21"E, -18.2412 or -18:9:48.21)'))
 
     def _wipe_dialog(self, object):
@@ -1162,7 +1163,7 @@ class EditExifMetadata(Gramplet):
         """
         clears all data fields to nothing
         """
-        for widget in _TOOLTIPS.keys():
+        for widget in list(_TOOLTIPS.keys()):
             self.exif_widgets[widget].set_text("")
 
     def edit_area(self, mediadatatags):
@@ -1260,8 +1261,8 @@ class EditExifMetadata(Gramplet):
         if (not latitude and not longitude):
             return [False]*2
 
-        latitude, longitude = conv_lat_lon(  unicode(latitude),
-                                            unicode(longitude),
+        latitude, longitude = conv_lat_lon( cuni(latitude),
+                                            cuni(longitude),
                                             format)
         return latitude, longitude
 
@@ -1410,7 +1411,7 @@ class EditExifMetadata(Gramplet):
 
         # if valid is in [1, 2, 3], then we write to image?
         # see _set_value() for further information...
-        if valid in xrange(1, 4):
+        if valid in range(1, 4):
 
             # Update dynamically created Modified date...
             modified = datetime.datetime.now()

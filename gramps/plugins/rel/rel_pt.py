@@ -28,6 +28,7 @@
 """
 Specific classes for relationships.
 """
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -115,28 +116,28 @@ _niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha 
 
 # Relatório de Parentesco
 
-_PARENTS_LEVEL = [u"", u"pais", u"avós", u"bisavós", u"tetravós",
-		  u"pentavós", u"hexavós", u"heptavós", u"octavós"]
+_PARENTS_LEVEL = ["", "pais", "avós", "bisavós", "tetravós",
+		  "pentavós", "hexavós", "heptavós", "octavós"]
 
-_CHILDREN_LEVEL = [u"", u"filhos", u"netos", u"bisnetos", u"trinetos",
-		   u"tetranetos", u"pentanetos", u"hexanetos", u"heptanetos"
-		  u"octanetos"]
+_CHILDREN_LEVEL = ["", "filhos", "netos", "bisnetos", "trinetos",
+		   "tetranetos", "pentanetos", "hexanetos", "heptanetos"
+		  "octanetos"]
 
-_SIBLINGS_LEVEL = [u"", u"irmãos e irmãs", u"tios e tias",u"tios avôs e tias avós",
-                   u"tios bisavôs e tias bisavós", u"tios trisavôs e tias trisavós",
-		   u"tios tetravôs e tias tetravós", u"tios pentavôs e tias pentavós",
-		   u"tios hexavôs e tias hexavós", u"tios heptavôs e tias heptavós"
-		   u"tios octavôs e tias octavós"]
+_SIBLINGS_LEVEL = ["", "irmãos e irmãs", "tios e tias","tios avôs e tias avós",
+                   "tios bisavôs e tias bisavós", "tios trisavôs e tias trisavós",
+		   "tios tetravôs e tias tetravós", "tios pentavôs e tias pentavós",
+		   "tios hexavôs e tias hexavós", "tios heptavôs e tias heptavós"
+		   "tios octavôs e tias octavós"]
 
-_NEPHEWS_NIECES_LEVEL = [u"", u"sobrinhos e sobrinhas",
-                         u"sobrinhos netos e sobrinhas netas",
-                         u"sobrinhos bisnetos e sobrinhas bisnetas",
-			 u"sobrinhos trinetos e sobrinhas trinetas"
-			 u"sobrinhos tetranetos e sobrinhas tetranetas"
-			 u"sobrinhos pentanetos e sobrinhas pentanetas"
-			 u"sobrinhos hexanetos e sobrinhas hexanetas"
-			 u"sobrinhos heptanetos e sobrinhas heptanetas"
-			 u"sobrinhos octanetos e sobrinhas octanetas"
+_NEPHEWS_NIECES_LEVEL = ["", "sobrinhos e sobrinhas",
+                         "sobrinhos netos e sobrinhas netas",
+                         "sobrinhos bisnetos e sobrinhas bisnetas",
+			 "sobrinhos trinetos e sobrinhas trinetas"
+			 "sobrinhos tetranetos e sobrinhas tetranetas"
+			 "sobrinhos pentanetos e sobrinhas pentanetas"
+			 "sobrinhos hexanetos e sobrinhas hexanetas"
+			 "sobrinhos heptanetos e sobrinhas heptanetas"
+			 "sobrinhos octanetos e sobrinhas octanetas"
 ]
 
 #-------------------------------------------------------------------------
@@ -400,7 +401,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Gb < len(_CHILDREN_LEVEL):
                 rel_str = _CHILDREN_LEVEL[Gb]
             else:
-                rel_str = u"descendentes"
+                rel_str = "descendentes"
         elif Gb == 0:
 
             # These are parents/grand parents
@@ -408,7 +409,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Ga < len(_PARENTS_LEVEL):
                 rel_str = _PARENTS_LEVEL[Ga]
             else:
-                rel_str = u"ancestrais"
+                rel_str = "ancestrais"
         elif Gb == 1:
 
             # These are siblings/aunts/uncles
@@ -416,7 +417,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Ga < len(_SIBLINGS_LEVEL):
                 rel_str = _SIBLINGS_LEVEL[Ga]
             else:
-                rel_str = u"filhos dos ancestrais"
+                rel_str = "filhos dos ancestrais"
         elif Ga == 1:
 
             # These are nieces/nephews
@@ -424,24 +425,24 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Gb < len(_NEPHEWS_NIECES_LEVEL):
                 rel_str = _NEPHEWS_NIECES_LEVEL[Gb - 1]
             else:
-                rel_str = u"sobrinhos sobrinhas"
+                rel_str = "sobrinhos sobrinhas"
         elif Ga > 1 and Ga == Gb:
 
             # These are cousins in the same generation
 
             if Ga == 2:
-                rel_str = u"primos e primas"
+                rel_str = "primos e primas"
             elif Ga <= len(_level_name_plural):
-                rel_str = u"%s primos e primas" % _level_name_plural[Ga -
+                rel_str = "%s primos e primas" % _level_name_plural[Ga -
                         2]
             else:
 
             # security
 
-                rel_str = u"primos e primas"
+                rel_str = "primos e primas"
 
         if in_law_b == True:
-            rel_str = u"cônjuges dos %s" % rel_str
+            rel_str = "cônjuges dos %s" % rel_str
 
         return rel_str
 

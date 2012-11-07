@@ -31,8 +31,13 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import unicode_literals
 import os
-from cStringIO import StringIO
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 import tempfile
 from subprocess import Popen, PIPE
 import sys
@@ -66,10 +71,10 @@ _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
            { 'name' : _("PostScript / Helvetica"),    'value' : "Helvetica" },
            { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  }  ]
 
-_RANKDIR = [ { 'name' : _(u"Vertical (↓)"),      'value' : "TB" },
-             { 'name' : _(u"Vertical (↑)"),      'value' : "BT" },
-             { 'name' : _(u"Horizontal (→)"),    'value' : "LR" },
-             { 'name' : _(u"Horizontal (←)"),    'value' : "RL" } ]
+_RANKDIR = [ { 'name' : _("Vertical (↓)"),      'value' : "TB" },
+             { 'name' : _("Vertical (↑)"),      'value' : "BT" },
+             { 'name' : _("Horizontal (→)"),    'value' : "LR" },
+             { 'name' : _("Horizontal (←)"),    'value' : "RL" } ]
 
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
@@ -455,7 +460,7 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         if self.note:
             # build up the label
-            label = u''
+            label = ''
             for line in self.note:  # for every line in the note...
                 line = line.strip() # ...strip whitespace from this line...
                 if line != '':      # ...and if we still have a line...

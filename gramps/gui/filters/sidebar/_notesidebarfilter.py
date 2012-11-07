@@ -44,6 +44,7 @@ from ... import widgets
 from gramps.gen.lib import Note, NoteType
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.note import (RegExpIdOf, HasIdOf, HasNote, 
                                     MatchesFilter, HasTag)
@@ -107,8 +108,8 @@ class NoteSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        text = unicode(self.filter_text.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        text = cuni(self.filter_text.get_text()).strip()
         ntype = self.note.get_type().xml_str()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
@@ -140,7 +141,7 @@ class NoteSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = unicode(model.get_value(node, 0))
+                obj = cuni(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

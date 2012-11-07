@@ -43,6 +43,7 @@ from ... import widgets
 from gramps.gen.lib import Event, EventType
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.event import (RegExpIdOf, HasIdOf, HasNoteRegexp, 
                                      HasNoteMatchingSubstringOf, MatchesFilter, 
@@ -61,7 +62,7 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_id = widgets.BasicEntry()
         self.filter_desc = widgets.BasicEntry()
         self.filter_event = Event()
-        self.filter_event.set_type((EventType.CUSTOM, u''))
+        self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
        
         self.event_menu = widgets.MonitoredDataType(
@@ -101,22 +102,22 @@ class EventSidebarFilter(SidebarFilter):
         self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
-        self.filter_id.set_text(u'')
-        self.filter_desc.set_text(u'')
-        self.filter_mainparts.set_text(u'')
-        self.filter_date.set_text(u'')
-        self.filter_place.set_text(u'')
-        self.filter_note.set_text(u'')
-        self.etype.get_child().set_text(u'')
+        self.filter_id.set_text('')
+        self.filter_desc.set_text('')
+        self.filter_mainparts.set_text('')
+        self.filter_date.set_text('')
+        self.filter_place.set_text('')
+        self.filter_note.set_text('')
+        self.etype.get_child().set_text('')
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        desc = unicode(self.filter_desc.get_text()).strip()
-        mainparts = unicode(self.filter_mainparts.get_text()).strip()
-        date = unicode(self.filter_date.get_text()).strip()
-        place = unicode(self.filter_place.get_text()).strip()
-        note = unicode(self.filter_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        desc = cuni(self.filter_desc.get_text()).strip()
+        mainparts = cuni(self.filter_mainparts.get_text()).strip()
+        date = cuni(self.filter_date.get_text()).strip()
+        place = cuni(self.filter_place.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         generic = self.generic.get_active() > 0
         etype = self.filter_event.get_type().xml_str()
@@ -148,7 +149,7 @@ class EventSidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = unicode(model.get_value(node, 0))
+            obj = cuni(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

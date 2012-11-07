@@ -31,17 +31,21 @@ Url class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from warnings import warn
-from urlparse import urlparse
+import sys
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+else:
+    from urllib.parse import urlparse
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from urltype import UrlType
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .privacybase import PrivacyBase
+from .urltype import UrlType
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

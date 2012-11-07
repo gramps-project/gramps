@@ -266,7 +266,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         (config_title, config_box_class) = self.map_exporters[option].get_config()
         #self.set_page_title(vbox, config_title)
         # remove present content of the vbox
-        map(vbox.remove, vbox.get_children())
+        list(map(vbox.remove, vbox.get_children()))
         # add new content
         if config_box_class:
             self.option_box_instance = config_box_class(self.person, self.dbstate, self.uistate)

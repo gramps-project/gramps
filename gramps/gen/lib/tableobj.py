@@ -29,6 +29,7 @@ Table Object class for Gramps.
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import unicode_literals
 import time
 import locale
 
@@ -37,7 +38,8 @@ import locale
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from baseobj import BaseObject
+from .baseobj import BaseObject
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -115,10 +117,10 @@ class TableObject(BaseObject):
         
         """
         if self.change:
-            return unicode(time.strftime('%x %X', time.localtime(self.change)),
+            return cuni(time.strftime('%x %X', time.localtime(self.change)),
                            CODESET)
         else:
-            return u''
+            return ''
 
     def set_handle(self, handle):
         """

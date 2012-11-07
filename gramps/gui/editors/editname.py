@@ -47,9 +47,9 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
-from displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
+from .displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
 from ..widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 from ..glade import Glade                     

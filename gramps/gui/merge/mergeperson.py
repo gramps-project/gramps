@@ -268,12 +268,12 @@ class MergePerson(ManagedWindow):
             father = self.database.get_person_from_handle(father_id)
             fname = name_of(father)
         else:
-            fname = u""
+            fname = ""
         if mother_id:
             mother = self.database.get_person_from_handle(mother_id)
             mname = name_of(mother)
         else:
-            mname = u""
+            mname = ""
         return (fname, mname, family.get_gramps_id())
 
     def get_event_info(self, handle):
@@ -335,7 +335,7 @@ class MergePerson(ManagedWindow):
         try:
             query = MergePersonQuery(self.database, phoenix, titanic)
             query.execute()
-        except MergeError, err:
+        except MergeError as err:
             ErrorDialog( _("Cannot merge people"), str(err))
         self.uistate.set_busy_cursor(False)
         self.close()

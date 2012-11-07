@@ -26,7 +26,11 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import os
 from xml.sax.saxutils import escape
 from time import strftime as strftime
@@ -59,6 +63,7 @@ from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click
+from gramps.gen.constfunc import cuni, STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -394,7 +399,7 @@ class ClipNote(ClipHandleWrapper):
             note = value.get().replace('\n', ' ')
             #String must be unicode for truncation to work for non
             #ascii characters
-            note = unicode(note)
+            note = cuni(note)
             if len(note) > 80:
                 self._value = note[:80]+"..."
             else:
@@ -488,8 +493,8 @@ class ClipCitation(ClipHandleWrapper):
             citation = self._db.get_citation_from_handle(self._handle)
             if citation:
                 self._title = citation.get_gramps_id()
-                notelist = map(self._db.get_note_from_handle, 
-                               citation.get_note_list())
+                notelist = list(map(self._db.get_note_from_handle, 
+                               citation.get_note_list()))
                 srctxtlist = [note for note in notelist 
                         if note.get_type() == NoteType.SOURCE_TEXT]
                 page = citation.get_page()
@@ -500,7 +505,7 @@ class ClipCitation(ClipHandleWrapper):
                     text = " ".join(srctxtlist[0].get().split())
                 #String must be unicode for truncation to work for non
                 #ascii characters
-                    text = unicode(text)
+                    text = cuni(text)
                     if len(text) > 60:
                         text =  text[:60]+"..."
                 self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
@@ -1096,7 +1101,7 @@ class ClipboardListView(object):
     def object_pixbuf(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
         if o._dbid != self.dbstate.db.get_dbid():
-            if isinstance(o.__class__.UNAVAILABLE_ICON, basestring):
+            if isinstance(o.__class__.UNAVAILABLE_ICON, STRTYPE):
                 cell.set_property('stock-id', 
                                   o.__class__.UNAVAILABLE_ICON)
             else:
@@ -1200,9 +1205,9 @@ class ClipboardListView(object):
             dragtype = None
             try:
                 dragtype = pickle.loads(sel_data)[0]
-            except pickle.UnpicklingError, msg :
+            except pickle.UnpicklingError as msg :
                 # not a pickled object, probably text
-                if isinstance(sel_data, basestring):
+                if isinstance(sel_data, STRTYPE):
                     dragtype = DdTargets.TEXT.drag_type
             if dragtype in self._target_type_to_wrapper_class_map:
                 possible_wrappers = [dragtype]
@@ -1595,7 +1600,7 @@ def place_title(db,event):
     if pid:
         return db.get_place_from_handle(pid).get_title()
     else:
-        return u''
+        return ''
 
 def gen_del_obj(func, t):
     return lambda l : func(l, t)

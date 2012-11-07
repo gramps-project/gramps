@@ -30,7 +30,7 @@ from ..grampstype import GrampsType, _init_map
 
 # some simple map items to test with
 vals = "zz ab cd ef".split()
-keys = range(len(vals))
+keys = list(range(len(vals)))
 MAP  = [ (k,v*2,v) for (k,v) in zip(keys, vals) ]
 BLIST= [1,3]
 
@@ -66,24 +66,24 @@ class Test1(U.TestCase):
     # NB: tuple tests w/ lengths < 2 fail before release 10403
     def test1b_init_value(s):
         for i,v,u in ( 
-                (None, 1,u''),      # all DEFAULT
-                (0, 0,u''), 
-                (1, 1,u''), 
+                (None, 1,''),      # all DEFAULT
+                (0, 0,''), 
+                (1, 1,''), 
                 ('efef', 3,'efef'), # matches CUSTOM
-                ('zzzz', 0,u''),
-                (u'x',   3,u'x'),   # nomatch gives CUSTOM   
+                ('zzzz', 0,''),
+                ('x',   3,'x'),   # nomatch gives CUSTOM   
                 ('',     3,''),     # nomatch gives CUSTOM   
                 ((0,'zero'), 0,'zero'), # normal behavior
-                ((2,),       2,u''),    # DEFAULT-string, just like int 
-                ((),         1,u''),    # DEFAULT-pair      
+                ((2,),       2,''),    # DEFAULT-string, just like int 
+                ((),         1,''),    # DEFAULT-pair      
                 ):
             s.gt = GT0(i)
             g= s.gt.val
             s.assertEquals(g,v, 
-                msg(g,v, "initialization val from '%s'" % `i`))
+                msg(g,v, "initialization val from '%s'" % repr(i)))
             g= s.gt.string
             s.assertEquals(g,u, 
-                msg(g,u, "initialization string from '%s'" % `i`))
+                msg(g,u, "initialization string from '%s'" % repr(i)))
 
 # test blacklist functionality added to enable fix of bug #1680
 class Test2(U.TestCase):

@@ -32,19 +32,23 @@ This is used since GRAMPS version 3.0
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
-import cPickle as pickle
+from __future__ import print_function, with_statement
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import os
 import time
 import locale
 import bisect
 from functools import wraps
 import logging
-from sys import maxint
+from sys import maxsize
 
 from ..ggettext import gettext as _
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import dbshelve, db
 else:
     from bsddb import dbshelve, db
@@ -71,12 +75,12 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
                     find_surname_name, DbUndoBSDDB as DbUndo)
-from dbconst import *
+from .dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import win
+from ..constfunc import win, conv_to_unicode
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -230,8 +234,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     # 3. Special signal for change in home person
     __signals__['home-person-changed'] = None
     
-    # 4. Signal for change in person group name, parameters are 
-    __signals__['person-groupname-rebuild'] = (unicode, unicode)
+    # 4. Signal for change in person group name, parameters are
+    if sys.version_info[0] < 3:
+        __signals__['person-groupname-rebuild'] = (unicode, unicode)
+    else:
+        __signals__['person-groupname-rebuild'] = (str, str)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -255,7 +262,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         def try_(self, *args, **kwargs):
             try:
                 return func(self, *args, **kwargs)
-            except DBERRS, msg:
+            except DBERRS as msg:
                 self.__log_error()
                 raise DbError(msg)
         return try_
@@ -475,7 +482,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         try:
             self.env.open(env_name, env_flags)
-        except Exception, msg:
+        except Exception as msg:
             _LOG.warning("Error opening db environment: " + str(msg))
             try:
                 self.__close_early()
@@ -1434,7 +1441,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 if group is not None:
                     txn.put(sname, group)
             if group == None:
-                grouppar = u''
+                grouppar = ''
             else:
                 grouppar = group
             self.emit('person-groupname-rebuild', (name, grouppar))
@@ -1460,7 +1467,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if batch_transaction:
             return
-        name = unicode(find_surname_name(person.handle, 
+        name = conv_to_unicode(find_surname_name(person.handle, 
                             person.get_primary_name().serialize()), 'utf-8')
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
@@ -1480,11 +1487,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         name = find_surname_name(person.handle, 
                                      person.get_primary_name().serialize())
-        if isinstance(name, unicode):
-            uname = name
-            name = str(name)
+        if sys.version_info[0] < 3:
+            if isinstance(name, unicode):
+                uname = name
+                name = str(name)
+            else:
+                uname = unicode(name, 'utf-8')
         else:
-            uname = unicode(name, 'utf-8')
+            if isinstance(name, str):
+                uname = name
+                name = str(name)
+            else:
+                uname = str(name)
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
@@ -1493,7 +1507,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 i = bisect.bisect(self.surname_list, uname)
                 if 0 <= i-1 < len(self.surname_list):
                     del self.surname_list[i-1]
-        except db.DBError, err:
+        except db.DBError as err:
             if str(err) == "(0, 'DB object has been closed')":
                 pass # A batch transaction closes the surnames db table.
             else:
@@ -1820,7 +1834,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.log_flush()
         if not transaction.batch:
             emit = self.__emit
-            for obj_type, obj_name in KEY_TO_NAME_MAP.iteritems():
+            for obj_type, obj_name in KEY_TO_NAME_MAP.items():
                 emit(transaction, obj_type, TXNADD, obj_name, '-add')
                 emit(transaction, obj_type, TXNUPD, obj_name, '-update')
                 emit(transaction, obj_type, TXNDEL, obj_name, '-delete')
@@ -1867,7 +1881,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             # "while Gtk.events_pending(): Gtk.main_iteration() loop"
             # (typically used in a progress bar), so emit rebuild signals
             # to correct that.
-            object_types = set([x[0] for x in transaction.keys()])
+            object_types = set([x[0] for x in list(transaction.keys())])
             for object_type in object_types:
                 if object_type == REFERENCE_KEY:
                     continue
@@ -1928,7 +1942,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         t = time.time()
 
-        import upgrade
+        from . import upgrade
         if version < 14:
             upgrade.gramps_upgrade_14(self)
         if version < 15:
@@ -2074,13 +2088,14 @@ if __name__ == "__main__":
                 db_name = f.read()
                 if db_name == 'Small Example':
                     break
-    print "loading", db_path
+    print("loading", db_path)
     d.load(db_path, lambda x: x)
 
-    print d.get_default_person()
+    print(d.get_default_person())
+    out = ''
     with d.get_person_cursor() as c:
         for key, data in c:
             person = Person(data)
-            print key, person.get_primary_name().get_name(),
+            out += key + person.get_primary_name().get_name()
 
-    print d.surnames.keys()
+    print(out, list(d.surnames.keys()))

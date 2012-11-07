@@ -33,8 +33,14 @@ This is the research tool, not the low-level data ingerity check.
 # standard python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 try:
     from hashlib import md5
 except ImportError:
@@ -265,11 +271,11 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         # print data for the user, no GUI
         (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
         if severity == Rule.WARNING:
-            print "W: %s, %s: %s, %s" % (msg,the_type, gramps_id, name)
+            print("W: %s, %s: %s, %s" % (msg,the_type, gramps_id, name))
         elif severity == Rule.ERROR:
-            print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
+            print("E: %s, %s: %s, %s" % (msg,the_type,gramps_id, name))
         else:
-            print "S: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
+            print("S: %s, %s: %s, %s" % (msg,the_type,gramps_id, name))
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -352,8 +358,8 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         person_handles = self.db.iter_person_handles()
         
         for option, value in \
-          self.options.handler.options_dict.iteritems():
-            exec '%s = %s' % (option, value)
+          self.options.handler.options_dict.items():
+            exec('%s = %s' % (option, value))
 
         if self.vr:
             self.vr.real_model.clear()
@@ -542,7 +548,7 @@ class VerifyResults(ManagedWindow):
     def _load_ignored(self,filename):
         try:
             f = open(filename)
-            self.ignores = cPickle.load(f)
+            self.ignores = pickle.load(f)
             f.close()
             return True
         except IOError:
@@ -555,7 +561,7 @@ class VerifyResults(ManagedWindow):
     def _save_ignored(self,filename):
         try:
             f = open(filename,'w')
-            cPickle.dump(self.ignores,f,1)
+            pickle.dump(self.ignores,f,1)
             f.close()
             return True
         except IOError:

@@ -308,7 +308,7 @@ class BaseSelector(ManagedWindow):
 
         #sorting arrow in column header (not on start, only on click)
         if not self.setupcols :
-            for i in xrange(len(self.columns)):
+            for i in range(len(self.columns)):
                 enable_sort_flag = (i==self.sort_col)
                 self.columns[i].set_sort_indicator(enable_sort_flag)
             self.columns[self.sort_col].set_sort_order(self.sortorder)

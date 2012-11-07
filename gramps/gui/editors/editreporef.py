@@ -36,9 +36,9 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 
-from displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
+from .displaytabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-from editreference import RefTab, EditReference
+from .editreference import RefTab, EditReference
 from ..glade import Glade
 
 #-------------------------------------------------------------------------

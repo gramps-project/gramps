@@ -31,8 +31,14 @@ This module provides the functions to build the quick report context menu's
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
-from cStringIO import StringIO
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 #------------------------------------------------------------------------
 #
@@ -40,6 +46,7 @@ from cStringIO import StringIO
 #
 #------------------------------------------------------------------------
 import logging
+import collections
 log = logging.getLogger(".quickreports")
 
 #-------------------------------------------------------------------------
@@ -60,7 +67,8 @@ from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
                       CATEGORY_QR_NOTE,  CATEGORY_QR_CITATION, 
                       CATEGORY_QR_SOURCE_OR_CITATION)
-from _textbufdoc import TextBufDoc
+from gramps.gen.constfunc import STRTYPE
+from ._textbufdoc import TextBufDoc
 from gramps.gen.simple import make_basic_stylesheet
 
 def flatten(L):
@@ -99,7 +107,7 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     pmgr = GuiPluginManager.get_instance()
     plugins = pmgr.process_plugin_data('WebConnect')
     try:
-        connections = [plug(nav_group) if callable(plug) else plug
+        connections = [plug(nav_group) if isinstance(plug, collections.Callable) else plug
                        for plug in plugins]
     except:
         import traceback
@@ -198,7 +206,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle,
         return run_report(dbstate, uistate, report.category, 
                           handle, report, container=container, **kwargs)
     else:
-        raise AttributeError, ("No such quick report '%s'" % report_name)
+        raise AttributeError("No such quick report '%s'" % report_name)
 
 def run_quick_report_by_name_direct(report_name, database, document, handle):
     """
@@ -223,10 +231,10 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
             d.close()
             return retval
         else:
-            raise ImportError, ("Quick report id = '%s' could not be loaded" 
+            raise ImportError("Quick report id = '%s' could not be loaded" 
                                 % report_name)
     else:
-        raise AttributeError, ("No such quick report id = '%s'" % report_name)
+        raise AttributeError("No such quick report id = '%s'" % report_name)
                             
 def run_report(dbstate, uistate, category, handle, pdata, container=None, 
                **kwargs):
@@ -240,14 +248,14 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
         pmgr = GuiPluginManager.get_instance()
         mod = pmgr.load_plugin(pdata)
         if not mod:
-            print "QuickView Error: plugin does not load"
+            print("QuickView Error: plugin does not load")
             return
         func =  eval('mod.' +  pdata.runfunc)
         if handle:
             d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if isinstance(handle, basestring): # a handle
+            if isinstance(handle, STRTYPE): # a handle
                 if category == CATEGORY_QR_PERSON :
                     obj = dbstate.db.get_person_from_handle(handle)
                 elif category == CATEGORY_QR_FAMILY :
@@ -292,6 +300,6 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
                     d.close()
                     return retval
             else:
-                print "QuickView Error: failed to run report: no obj"
+                print("QuickView Error: failed to run report: no obj")
         else:
-            print "QuickView Error: handle is not set"
+            print("QuickView Error: handle is not set")

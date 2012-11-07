@@ -38,8 +38,8 @@ from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from reporefmodel import RepoRefModel
-from embeddedlist import EmbeddedList
+from .reporefmodel import RepoRefModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

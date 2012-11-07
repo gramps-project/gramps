@@ -244,7 +244,7 @@ class HtmlBackend(DocBackend):
         """
         try:
             DocBackend.open(self)
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") %
                                  self._filename, msg)
             raise ReportError(errmsg)
@@ -254,7 +254,7 @@ class HtmlBackend(DocBackend):
         if not os.path.isdir(self.datadirfull()): 
             try:
                 os.mkdir(self.datadirfull())
-            except IOError,msg:
+            except IOError as msg:
                 errmsg = "%s\n%s" % (_("Could not create %s") %
                                      self.datadirfull(), msg)
                 raise ReportError(errmsg)

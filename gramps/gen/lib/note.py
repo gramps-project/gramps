@@ -31,10 +31,11 @@ Note class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import BasicPrimaryObject
-from tagbase import TagBase
-from notetype import NoteType
-from styledtext import StyledText
+from .primaryobj import BasicPrimaryObject
+from .tagbase import TagBase
+from .notetype import NoteType
+from .styledtext import StyledText
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +68,7 @@ class Note(BasicPrimaryObject, TagBase):
         :meth:`~gen.lib.note.Note.serialize` method changes!
     
     """
-    (FLOWED, FORMATTED) = range(2)
+    (FLOWED, FORMATTED) = list(range(2))
     
     (POS_HANDLE,
      POS_ID,
@@ -76,7 +77,7 @@ class Note(BasicPrimaryObject, TagBase):
      POS_TYPE,
      POS_CHANGE,
      POS_TAGS,
-     POS_PRIVATE,) = range(8)
+     POS_PRIVATE,) = list(range(8))
 
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
@@ -190,7 +191,7 @@ class Note(BasicPrimaryObject, TagBase):
         :rtype: unicode
         
         """
-        return unicode(self.text)
+        return cuni(self.text)
 
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.

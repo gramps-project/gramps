@@ -41,6 +41,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gramps.gen.plug.utils import gformat
 from gramps.gen.errors import ReportError
+from gramps.gen.constfunc import cuni
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)
@@ -103,7 +104,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
 
         try:
             self.file = open(self.filename,"w")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
         except:
@@ -169,7 +170,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
 
     def encode(self, text):
         try:
-            orig = unicode(text)
+            orig = cuni(text)
             new_text = orig.encode('iso-8859-1')
         except:
             new_text = "?" * len(text)

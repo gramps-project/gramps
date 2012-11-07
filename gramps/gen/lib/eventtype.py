@@ -36,7 +36,8 @@ from ..ggettext import sgettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from grampstype import GrampsType
+from .grampstype import GrampsType
+from ..constfunc import cuni
 
 class EventType(GrampsType):
     """
@@ -337,7 +338,7 @@ class EventType(GrampsType):
         if self.value in self._ABBREVIATIONS:
             return self._ABBREVIATIONS[self.value]
         else:
-            abbrev = unicode(self)
+            abbrev = cuni(self)
             if " " in abbrev:
                 return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
             else:

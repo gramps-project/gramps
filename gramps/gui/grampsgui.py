@@ -26,6 +26,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys
 import os
 from gramps.gen.ggettext import gettext as _
@@ -44,10 +46,10 @@ try:
     #wrong in GTK3 !
     from gi.repository import Pango
     from gi.repository import Gtk, Gdk
-except ImportError, ValueError:
-    print (_("Gtk typelib not installed. Install Gnome Introspection, and "
+except (ImportError, ValueError):
+    print((_("Gtk typelib not installed. Install Gnome Introspection, and "
              "pygobject version 3.3.2 or later.\n\n"
-             "Gramps will terminate now."))
+             "Gramps will terminate now.")))
     sys.exit(0)
     
 #-------------------------------------------------------------------------
@@ -59,14 +61,14 @@ from gi.repository import GObject
 
 MIN_PYGOBJECT_VERSION = (3, 3, 2)
 if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
-    print (_("Your pygobject version does not meet the "
+    print((_("Your pygobject version does not meet the "
              "requirements. At least pygobject "
              "%(major)d.%(bug)d.%(minor)d is needed to"
              " start Gramps with a GUI.\n\n"
              "Gramps will terminate now.") % 
             {'major':MIN_PYGOBJECT_VERSION[0], 
             'bug':MIN_PYGOBJECT_VERSION[1],
-            'minor':MIN_PYGOBJECT_VERSION[2]})
+            'minor':MIN_PYGOBJECT_VERSION[2]}))
     sys.exit(0)
 
 #-------------------------------------------------------------------------
@@ -224,8 +226,8 @@ class Gramps(object):
 
     def __init__(self, argparser):
         from gramps.gen.dbstate import DbState
-        import viewmanager
-        from viewmanager import ViewManager
+        from . import viewmanager
+        from .viewmanager import ViewManager
         from gramps.cli.arghandler import ArgHandler
         from .tipofday import TipOfDay
 
@@ -313,13 +315,13 @@ def __startgramps(errors, argparser):
             print("Gramps terminated because of no DISPLAY")
             sys.exit(exit_code)
 
-    except SystemExit, e:
+    except SystemExit as e:
         quit_now = True
         if e.code:
             exit_code = e.code
             LOG.error("Gramps terminated with exit code: %d." \
                       % e.code, exc_info=True)
-    except OSError, e:
+    except OSError as e:
         quit_now = True
         exit_code = e[0] or 1
         try:

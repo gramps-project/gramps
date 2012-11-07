@@ -268,7 +268,7 @@ class Callback(object):
 
         self._log("registered signals: \n   %s\n" %
                   "\n   ".join([ "%s: %s" % (k, v) for (k, v)
-                                 in self.__signal_map.items() ]))
+                                 in list(self.__signal_map.items()) ]))
         
 
     def connect(self, signal_name, callback):

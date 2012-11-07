@@ -25,11 +25,12 @@ architecture. We could have done this in Python, or SQL,
 but this makes it useful for all Django-based backends
 but still puts it into their syncdb API.
 """
+from __future__ import print_function
 
 import time
 import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
-import settings
+from . import settings
 
 from gramps.gen.config import config
 from gramps.gen.lib.nametype import NameType
@@ -45,7 +46,7 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.lib.notetype import NoteType
 from gramps.gen.lib.styledtexttagtype import StyledTextTagType
 
-from grampsdb.models import (GenderType, LdsType, LdsStatus, 
+from .grampsdb.models import (GenderType, LdsType, LdsStatus, 
                              NameFormatType, NameOriginType, ThemeType)
 
 def get_datamap(x):
@@ -54,7 +55,7 @@ def get_datamap(x):
     """
     return (x[0],x[2])
 
-print "["
+print("[")
 for table, entries in [("grampsdb.config", 
                         [(("setting", "\"sitename\""), 
                           ("description", "\"site name of family tree\""),
@@ -153,22 +154,22 @@ for table, entries in [("grampsdb.config",
                          ])]:
     entry_count = 0
     for entry in entries:
-        print "   {"
-        print "      \"model\": \"%s\"," % table
-        print "      \"pk\": %d," % (entry_count + 1)
-        print "      \"fields\":"
-        print "         {"
+        print("   {")
+        print("      \"model\": \"%s\"," % table)
+        print("      \"pk\": %d," % (entry_count + 1))
+        print("      \"fields\":")
+        print("         {")
         key_count = 0
         for items in entry:
             key, value = items
-            print ("            \"%s\"   : %s" % (key, value)),
+            print(("            \"%s\"   : %s" % (key, value)), end=' ')
             key_count += 1
             if key_count < len(entry):
-                print ","
+                print(",")
             else:
-                print
-        print "         }"
-        print "   },"
+                print()
+        print("         }")
+        print("   },")
         entry_count += 1
 
 pk = 4
@@ -176,16 +177,16 @@ for section in config.get_sections():
     for setting in config.get_section_settings(section):
         key = "%s.%s" % (section, setting)
         value = config.get_default(key)
-        print "   {"
-        print "      \"model\": \"grampsdb.config\"," 
-        print "      \"pk\": %d," % pk
-        print "      \"fields\":"
-        print "         {"
-        print "            \"setting\"   : \"%s\"," % key
-        print "            \"value_type\"   : \"%s\"," % type(value).__name__
-        print "            \"value\": \"%s\"" % value
-        print "         }"
-        print "   },",
+        print("   {")
+        print("      \"model\": \"grampsdb.config\",") 
+        print("      \"pk\": %d," % pk)
+        print("      \"fields\":")
+        print("         {")
+        print("            \"setting\"   : \"%s\"," % key)
+        print("            \"value_type\"   : \"%s\"," % type(value).__name__)
+        print("            \"value\": \"%s\"" % value)
+        print("         }")
+        print("   },", end=' ')
         pk += 1
         
 ## Add the data for the type models:
@@ -202,19 +203,19 @@ for type in type_models:
             val, name = get_datamap(tuple)
         else: # NEW SQL based
             val, name = tuple
-        print "   {"
-        print "      \"model\": \"grampsdb.%s\"," % type.__name__.lower()
-        print "      \"pk\": %d," % count
-        print "      \"fields\":"
-        print "         {"
-        print "            \"val\"   : %d," % val
-        print "            \"name\": \"%s\"" % name
-        print "         }"
-        print "   }",
+        print("   {")
+        print("      \"model\": \"grampsdb.%s\"," % type.__name__.lower())
+        print("      \"pk\": %d," % count)
+        print("      \"fields\":")
+        print("         {")
+        print("            \"val\"   : %d," % val)
+        print("            \"name\": \"%s\"" % name)
+        print("         }")
+        print("   }", end=' ')
         # if it is the last one of the last one, no comma
         if type == type_models[-1] and count == len(type._DATAMAP):
-            print
+            print()
         else:
-            print ","
+            print(",")
         count += 1
-print "]"
+print("]")

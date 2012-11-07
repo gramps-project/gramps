@@ -163,7 +163,7 @@ class Merge(tool.Tool,ManagedWindow):
         self.use_soundex = int(self.soundex_obj.get_active())
         try:
             self.find_potentials(threshold)
-        except AttributeError, msg:
+        except AttributeError as msg:
             RunDatabaseRepair(str(msg))
             return
 
@@ -587,7 +587,7 @@ class ShowMatches(ManagedWindow):
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
     def redraw(self):
         list = []
-        for p1key, p1data in self.map.iteritems():
+        for p1key, p1data in self.map.items():
             if p1key in self.dellist:
                 continue
             (p2key,c) = p1data
@@ -625,7 +625,7 @@ class ShowMatches(ManagedWindow):
             titanic = self.p1
 
         self.dellist[titanic] = phoenix
-        for key, data in self.dellist.iteritems():
+        for key, data in self.dellist.items():
             if data == titanic:
                 self.dellist[key] = phoenix
         self.update()

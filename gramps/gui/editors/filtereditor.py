@@ -71,6 +71,7 @@ from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import confidence
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -337,7 +338,7 @@ class MyID(Gtk.Box):
             self.set_text(val.get_gramps_id())
         
     def get_text(self):
-        return unicode(self.entry.get_text())
+        return cuni(self.entry.get_text())
 
     def name_from_gramps_id(self, gramps_id):
         if self.namespace == 'Person':
@@ -557,7 +558,7 @@ class EditRule(ManagedWindow):
                     taglist = taglist + [tag.get_name() for tag in dbstate.db.iter_tags()]
                     t = MyList(taglist, taglist)
                 elif v == _('Confidence level:'):
-                    t = MyList(map(str, range(5)), 
+                    t = MyList(list(map(str, list(range(5)))), 
                                [confidence[i] for i in range(5)])
                 else:                    
                     t = MyEntry()
@@ -621,7 +622,7 @@ class EditRule(ManagedWindow):
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
             (class_obj, vallist, tlist) = self.page[page]
-            r = self.active_rule.values()
+            r = list(self.active_rule.values())
             for i in range(0, min(len(tlist), len(r))):
                 tlist[i].set_text(r[i])
             
@@ -708,7 +709,7 @@ class EditRule(ManagedWindow):
         try:
             page = self.notebook.get_current_page()
             (class_obj, vallist, tlist) = self.page[page]
-            value_list = [unicode(sclass.get_text()) for sclass in tlist]
+            value_list = [cuni(sclass.get_text()) for sclass in tlist]
             new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
@@ -790,7 +791,7 @@ class EditFilter(ManagedWindow):
         self.close()
 
     def filter_name_changed(self, obj):
-        name = unicode(self.fname.get_text())
+        name = cuni(self.fname.get_text())
         # Make sure that the name is not empty
         # and not in the list of existing filters (excluding this one)
         names = [filt.get_name()
@@ -813,14 +814,14 @@ class EditFilter(ManagedWindow):
             self.rlist.add([r.name,r.display_values()],r)
             
     def on_ok_clicked(self, obj):
-        n = unicode(self.fname.get_text()).strip()
+        n = cuni(self.fname.get_text()).strip()
         if n == '':
             return
         if n != self.filter.get_name():
             self.uistate.emit('filter-name-changed',
-                              (self.namespace,unicode(self.filter.get_name()), n))
+                        (self.namespace, cuni(self.filter.get_name()), n))
         self.filter.set_name(n)
-        self.filter.set_comment(unicode(self.comment.get_text()).strip())
+        self.filter.set_comment(cuni(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters(self.namespace)[:]:
             if n == f.get_name():
                 self.filterdb.get_filters(self.namespace).remove(f)
@@ -953,7 +954,7 @@ class ShowResults(ManagedWindow):
             gid = repo.get_gramps_id()
         elif self.namespace == 'Note':
             note = self.db.get_note_from_handle(handle)
-            name = note.get().replace(u'\n', u' ')
+            name = note.get().replace('\n', ' ')
             if len(name) > 80:
                 name = name[:80]+"..."
             gid = note.get_gramps_id()
@@ -1128,7 +1129,7 @@ class FilterEditor(ManagedWindow):
 
         # Remove what we found
         filters = self.filterdb.get_filters(space)
-        map(filters.remove, filter_set)
+        list(map(filters.remove, filter_set))
 
     def _find_dependent_filters(self, space, gfilter, filter_set):
         """
@@ -1144,7 +1145,7 @@ class FilterEditor(ManagedWindow):
             if the_filter.get_name() == name:
                 continue
             for rule in the_filter.get_rules():
-                values = rule.values()
+                values = list(rule.values())
                 if issubclass(rule.__class__, MatchesFilterBase) \
                        and (name in values):
                     self._find_dependent_filters(space, the_filter, filter_set)
@@ -1182,7 +1183,7 @@ class FilterEditor(ManagedWindow):
 
         for the_filter in self.filterdb.get_filters(space):
             for rule in the_filter.get_rules():
-                values = rule.values()
+                values = list(rule.values())
                 if issubclass(rule.__class__, MatchesFilterBase) \
                        and (old_name in values):
                     ind = values.index(old_name)
@@ -1191,7 +1192,7 @@ class FilterEditor(ManagedWindow):
     def check_recursive_filters(self, space, name):
         for the_filter in self.filterdb.get_filters(space):
             for rule in the_filter.get_rules():
-                values = rule.values()
+                values = list(rule.values())
                 if issubclass(rule.__class__, MatchesFilterBase) \
                        and (name in values):
                     return True

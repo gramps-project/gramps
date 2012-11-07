@@ -29,6 +29,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -82,7 +84,7 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
             uistate.push_message(dbstate, _("Rebuilding gender statistics for name gender guessing..."))
         else:
             self.callback = None
-            print "Rebuilding gender statistics for name gender guessing..."
+            print("Rebuilding gender statistics for name gender guessing...")
             
         UpdateCallback.__init__(self, self.callback)
         self.set_total(self.db.get_number_of_people())
@@ -96,7 +98,7 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
                      _('Gender statistics for name gender guessing have been rebuilt.'),
                      parent=uistate.window)
         else:
-            print "Gender statistics for name gender guessing have been rebuilt."
+            print("Gender statistics for name gender guessing have been rebuilt.")
         self.db.enable_signals()
 
     def rebuild_genderstats(self):

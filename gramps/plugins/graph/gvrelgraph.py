@@ -362,7 +362,7 @@ class RelGraphReport(Report):
                     # (import of data means media files might not be present
                     imagePath = find_file(imagePath)
 
-        label = u""
+        label = ""
         lineDelimiter = '\\n'
 
         # If we have an image, then start an HTML table; remember to close

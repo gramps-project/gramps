@@ -29,6 +29,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function, unicode_literals
+
 from ..ggettext import gettext as _
 import math
 
@@ -151,16 +153,16 @@ def __convert_using_classic_repr(stringValue, typedeg):
         return None    # not a valid lat or lon
 
     #exchange some characters
-    stringValue = stringValue.replace(u'°',r'_')
+    stringValue = stringValue.replace('°',r'_')
     #allow to input ° as #, UTF-8 code c2b00a
-    stringValue = stringValue.replace(u'º',r'_')
+    stringValue = stringValue.replace('º',r'_')
     #allow to input º as #, UTF-8 code c2ba0a
     stringValue = stringValue.replace(r'#',r'_')
     #allow to input " as ''
     stringValue = stringValue.replace(r"''",r'"')
     #allow some special unicode symbols
-    stringValue = stringValue.replace(u'\u2033',r'"')
-    stringValue = stringValue.replace(u'\u2032',r"'")
+    stringValue = stringValue.replace('\u2033',r'"')
+    stringValue = stringValue.replace('\u2032',r"'")
     #ignore spaces, a regex with \s* would be better here...
     stringValue = stringValue.replace(r' ', r'')
     stringValue = stringValue.replace(r'\t', r'')
@@ -286,7 +288,7 @@ def __convert_float_val(val, typedeg = "lat"):
     #lat/lon
     #change XX,YY into XX.YY 
     if val.find(r'.') == -1 :
-        val = val.replace(u',', u'.')
+        val = val.replace(',', '.')
     
     # format: XX.YYYY
     v = __convert_using_float_repr(val) 
@@ -680,30 +682,30 @@ if __name__ == '__main__':
         format6 = "ISO-DMS"
         format7 = "RT90"
         format8 = "GEDCOM"
-        print "Testing conv_lat_lon function, "+text+':'
+        print("Testing conv_lat_lon function, "+text+':')
         res1, res2 = conv_lat_lon(lat1,lon1,format0)
-        print lat1,lon1,"in format",format0, "is   ",res1,res2
+        print(lat1,lon1,"in format",format0, "is   ",res1,res2)
         res1, res2 = conv_lat_lon(lat1,lon1,format1)
-        print lat1,lon1,"in format",format1, "is   ",res1,res2
+        print(lat1,lon1,"in format",format1, "is   ",res1,res2)
         res1, res2 = conv_lat_lon(lat1,lon1,format2)
-        print lat1,lon1,"in format",format2, "is    ",res1,res2
+        print(lat1,lon1,"in format",format2, "is    ",res1,res2)
         res1, res2 = conv_lat_lon(lat1,lon1,format3)
-        print lat1,lon1,"in format",format3, "is  ",res1,res2
+        print(lat1,lon1,"in format",format3, "is  ",res1,res2)
         res = conv_lat_lon(lat1,lon1,format4)
-        print lat1,lon1,"in format",format4, "is ",res
+        print(lat1,lon1,"in format",format4, "is ",res)
         res = conv_lat_lon(lat1,lon1,format5)
-        print lat1,lon1,"in format",format5, "is",res
+        print(lat1,lon1,"in format",format5, "is",res)
         res = conv_lat_lon(lat1,lon1,format6)
-        print lat1,lon1,"in format",format6, "is",res
+        print(lat1,lon1,"in format",format6, "is",res)
         res1, res2 = conv_lat_lon(lat1,lon1,format7)
-        print lat1,lon1,"in format",format7, "is",res1,res2,"\n"
+        print(lat1,lon1,"in format",format7, "is",res1,res2,"\n")
         res1, res2 = conv_lat_lon(lat1,lon1,format8)
-        print lat1,lon1,"in format",format8, "is",res1,res2,"\n"
+        print(lat1,lon1,"in format",format8, "is",res1,res2,"\n")
     
     def test_formats_fail(lat1,lon1,text=''):
-        print "This test should make conv_lat_lon function fail, "+text+":"
+        print("This test should make conv_lat_lon function fail, "+text+":")
         res1, res2 = conv_lat_lon(lat1,lon1)
-        print lat1,lon1," fails to convert, result=", res1,res2,"\n"
+        print(lat1,lon1," fails to convert, result=", res1,res2,"\n")
     
     def test_RT90_conversion():
         """
@@ -718,7 +720,7 @@ if __name__ == '__main__':
  
     lat, lon = '50.849888888888', '2.885897222222'
     test_formats_success(lat,lon)
-    lat, lon = u' 50°50\'59.60"N', u'  2°53\'9.23"E'
+    lat, lon = ' 50°50\'59.60"N', '  2°53\'9.23"E'
     test_formats_success(lat,lon)
     lat, lon = ' 50 : 50 : 59.60 ', ' -2:53 : 9.23   '
     test_formats_success(lat,lon)
@@ -726,24 +728,24 @@ if __name__ == '__main__':
     test_formats_fail(lat,lon)
     lat, lon = ' 50:50: 59.60', '  d u m my'
     test_formats_fail(lat,lon)
-    lat, lon =  u' 50°59.60"N', u'  2°53\'E'
+    lat, lon =  ' 50°59.60"N', '  2°53\'E'
     test_formats_success(lat,lon)
-    lat, lon =  u' 11° 11\' 11" N, 11° 11\' 11" O', ' '
+    lat, lon =  ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
     test_formats_fail(lat,lon)
     # very small negative
     lat, lon =  '-0.00006', '-0.00006'
     test_formats_success(lat,lon)
     # missing direction N/S
-    lat, lon =  u' 50°59.60"', u'  2°53\'E'
+    lat, lon =  ' 50°59.60"', '  2°53\'E'
     test_formats_fail(lat,lon)
     # wrong direction on latitude
-    lat, lon =  u' 50°59.60"E', u'  2°53\'N'
+    lat, lon =  ' 50°59.60"E', '  2°53\'N'
     test_formats_fail(lat,lon)
     # same as above
-    lat, lon =  u' 50°59.99"E', u'  2°59\'59.99"N'
+    lat, lon =  ' 50°59.99"E', '  2°59\'59.99"N'
     test_formats_fail(lat,lon)
     # test precision
-    lat, lon =  u' 50°59.99"S', u'  2°59\'59.99"E'
+    lat, lon =  ' 50°59.99"S', '  2°59\'59.99"E'
     test_formats_success(lat,lon)
     lat, lon = 'N50.849888888888', 'E2.885897222222'
     test_formats_success(lat,lon)
@@ -754,55 +756,55 @@ if __name__ == '__main__':
     lat, lon =  '90', '-180'
     test_formats_success(lat,lon)
     # extreme values allowed
-    lat, lon =  u'90° 00\' 00.00" S ', u'179° 59\'59.99"W'
+    lat, lon =  '90° 00\' 00.00" S ', '179° 59\'59.99"W'
     test_formats_success(lat,lon)
     # extreme value not allowed
-    lat, lon =  u'90° 00\' 00.00" N', u'180° 00\'00.00" E'
+    lat, lon =  '90° 00\' 00.00" N', '180° 00\'00.00" E'
     test_formats_fail(lat,lon)
     # extreme values allowed
     lat, lon =  '90: 00: 00.00 ', '-179: 59:59.99'
     test_formats_success(lat,lon)
     # extreme value not allowed
-    lat, lon =  u'90° 00\' 00.00" N', '180:00:00.00'
+    lat, lon =  '90° 00\' 00.00" N', '180:00:00.00'
     test_formats_fail(lat,lon)
     # extreme values not allowed
     lat, lon =  '90', '180'
     test_formats_fail(lat,lon)
-    lat, lon =  u' 89°59\'60"N', u'  2°53\'W'
+    lat, lon =  ' 89°59\'60"N', '  2°53\'W'
     test_formats_fail(lat,lon)
-    lat, lon =  u' 89°60\'00"N', u'  2°53\'W'
+    lat, lon =  ' 89°60\'00"N', '  2°53\'W'
     test_formats_fail(lat,lon)
-    lat, lon =  u' 89.1°40\'00"N', u'  2°53\'W'
+    lat, lon =  ' 89.1°40\'00"N', '  2°53\'W'
     test_formats_fail(lat,lon)
-    lat, lon =  u' 89°40\'00"N', u'  2°53.1\'W'
+    lat, lon =  ' 89°40\'00"N', '  2°53.1\'W'
     test_formats_fail(lat,lon)
     lat, lon =  '0', '0'
     test_formats_success(lat,lon,
             "Special 0 value, crossing 0-meridian and equator")
     # small values close to equator
-    lat, lon =  u' 1°1"N', u'  1°1\'E'
+    lat, lon =  ' 1°1"N', '  1°1\'E'
     test_formats_success(lat,lon)
     # roundoff
-    lat, lon =  u' 1°59.999"N', u'  1°59.999"E'
+    lat, lon =  ' 1°59.999"N', '  1°59.999"E'
     test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  u' 1°59\'59.9999"N', u'  1°59\'59.9999"E'
+    lat, lon =  ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
     test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  u'89°59\'59.9999"S', u'179°59\'59.9999"W'
+    lat, lon =  '89°59\'59.9999"S', '179°59\'59.9999"W'
     test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  u'89°59\'59.9999"N', u'179°59\'59.9999"E'
+    lat, lon =  '89°59\'59.9999"N', '179°59\'59.9999"E'
     test_formats_success(lat,lon,'Examples of round off and how it behaves')
     #insane number of decimals:
-    lat, lon =  u'89°59\'59.99999999"N', u'179°59\'59.99999999"E'
+    lat, lon =  '89°59\'59.99999999"N', '179°59\'59.99999999"E'
     test_formats_success(lat,lon,'Examples of round off and how it begaves')
     #recognise '' as seconds "
-    lat, lon =  u'89°59\'59.99\'\' N', u'179°59\'59.99\'\'E'
+    lat, lon =  '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
     test_formats_success(lat,lon, "input \" as ''")
     #test localisation of , and . as delimiter
     lat, lon = '50.849888888888', '2,885897222222'
     test_formats_success(lat,lon, 'localisation of . and , ')
-    lat, lon =  u'89°59\'59.9999"S', u'179°59\'59,9999"W'
+    lat, lon =  '89°59\'59.9999"S', '179°59\'59,9999"W'
     test_formats_success(lat,lon, 'localisation of . and , ')
-    lat, lon =  u'89°59\'1.599,999"S', u'179°59\'59,9999"W'
+    lat, lon =  '89°59\'1.599,999"S', '179°59\'59,9999"W'
     test_formats_fail(lat,lon, 'localisation of . and , ')
     #rest
     lat, lon =  '81.2', '-182.3'
@@ -825,15 +827,15 @@ if __name__ == '__main__':
     test_formats_success(lat,lon)
     lat, lon =  '+50: 0 : 1 : 1', '-2:1:2'
     test_formats_fail(lat,lon)
-    lat, lon = u'+61° 43\' 60.00"', u'+17° 7\' 60.00"'
+    lat, lon = '+61° 43\' 60.00"', '+17° 7\' 60.00"'
     test_formats_fail(lat,lon)
-    lat, lon = u'+61° 44\' 00.00"N', u'+17° 8\' 00.00"E'
+    lat, lon = '+61° 44\' 00.00"N', '+17° 8\' 00.00"E'
     test_formats_success(lat,lon)
     lat, lon =  ': 0 : 1 : 1', ':1:2'
     test_formats_fail(lat,lon)
-    lat, lon = u'N 50º52\'21.92"', u'E 124º52\'21.92"'
+    lat, lon = 'N 50º52\'21.92"', 'E 124º52\'21.92"'
     test_formats_success(lat,lon, 'New format with N/E first and another º - character')
-    lat, lon = u'S 50º52\'21.92"', u'W 124º52\'21.92"'
+    lat, lon = 'S 50º52\'21.92"', 'W 124º52\'21.92"'
     test_formats_success(lat,lon, 'New format with S/W first and another º - character')
 
     test_RT90_conversion()

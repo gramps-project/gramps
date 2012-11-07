@@ -426,8 +426,8 @@ TBLFMT_PAT = re.compile(r'({\|?)l(\|?})')
 
 # constants for routing in table construction:
 (CELL_BEG, CELL_TEXT, CELL_END,
-    ROW_BEG, ROW_END, TAB_BEG, TAB_END) = range(7)
-FIRST_ROW, SUBSEQ_ROW = range(2)
+    ROW_BEG, ROW_END, TAB_BEG, TAB_END) = list(range(7))
+FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
 
 def get_charform(col_num):
@@ -438,9 +438,9 @@ def get_charform(col_num):
     early test of column count in start_table()
     """
     if col_num > ord('z') - ord('a'):
-        raise ValueError, ''.join((
+        raise ValueError(''.join((
             '\n number of table columns is ', repr(col_num),
-            '\n                     should be <= ', repr(ord('z') - ord('a'))))
+            '\n                     should be <= ', repr(ord('z') - ord('a')))))
     return chr(ord('a') + col_num)
 
 def get_numform(col_char):
@@ -463,9 +463,9 @@ def str_incr(str_counter):
     while 1:
         yield ''.join(lili)
         if ''.join(lili) == len(lili)*'z':
-            raise ValueError, ''.join((
+            raise ValueError(''.join((
                 '\n can\'t increment string ', ''.join(lili),
-                ' of length ', str(len(lili))))
+                ' of length ', str(len(lili)))))
         for i in range(len(lili)-1, -1, -1):
             if lili[i] < 'z':
                 lili[i] = chr(ord(lili[i])+1)
@@ -740,7 +740,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             for i in range(num_new_rows - len(mrc)):
                 mrc.append('')
             cols_equ_len.append(mrc)
-        transp_cont = zip(*cols_equ_len)
+        transp_cont = list(zip(*cols_equ_len))
 
         # picts? extract
         first_cell, last_cell = (0, self.numcols)
@@ -830,7 +830,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         for row in self.tabmem.rows:
             for cell in row.cells:
                 if cell.span > 1:
-                    multcol_alph_id = self.multcol_alph_counter.next()
+                    multcol_alph_id = next(self.multcol_alph_counter)
                     self._backend.write(''.join(('\\grgetspanwidth{',
                         '\\grspanwidth', multcol_alph_id,
                         '}{\\grcolbeg', get_charform(get_numform(cell.colchar)-
@@ -904,7 +904,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 cell_width = ''.join(('\\grtempwidth', cell.colchar))
             else:
                 cell_width = ''.join(('\\grspanwidth',
-                    self.multcol_alph_counter.next()))
+                    next(self.multcol_alph_counter)))
             splitting.append(''.join(('\\grtabpgbreak{', cell.head, '}{',
                 cell_width, '}{', add_vdots, '}{+2ex}%\n')))
         return ''.join((' & '.join(splitting), '%\n', row.tail))
@@ -918,7 +918,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 cell_width = ''.join(('\\grtempwidth', cell.colchar))
             else:
                 cell_width = ''.join(('\\grspanwidth',
-                    self.multcol_alph_counter.next()))
+                    next(self.multcol_alph_counter)))
             complete.append(''.join(('\\grcolpart{%\n  ', cell.head,
                 '}{%\n', cell_width, '}{%\n  ', cell.content, '%\n}%\n')))
         return ''.join((' & '.join(complete), '%\n', row.tail, row.addit))

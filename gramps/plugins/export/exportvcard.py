@@ -39,6 +39,7 @@ from textwrap import TextWrapper
 #
 #------------------------------------------------------------------------
 import logging
+import collections
 log = logging.getLogger(".ExportVCard")
 
 #-------------------------------------------------------------------------
@@ -54,7 +55,7 @@ from gramps.gen.lib.urltype import UrlType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.utils import OpenFileOrStdout
-
+from gramps.gen.constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +67,7 @@ def exportData(database, filename, user, option_box=None):
     cardw = VCardWriter(database, filename, option_box, user)
     try:
         cardw.export_data()
-    except EnvironmentError, msg:
+    except EnvironmentError as msg:
         user.notify_error(_("Could not create %s") % filename, str(msg))
         return False
     except:
@@ -90,7 +91,7 @@ class VCardWriter(object):
     @staticmethod
     def esc(data):
         """Escape the special chars of the VCard protocol."""
-        if type(data) == type('string') or type(data) == type(u'string'):
+        if isinstance(data, STRTYPE):
             for char in VCardWriter.TOBE_ESCAPED:
                 data = data.replace(char, VCardWriter.ESCAPE_CHAR + char)
             return data
@@ -108,7 +109,7 @@ class VCardWriter(object):
         self.user = user
         self.filehandle = None
         self.option_box = option_box
-        if callable(self.user.callback): # callback is really callable
+        if isinstance(self.user.callback, collections.Callable): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty

@@ -222,7 +222,7 @@ class DetAncestorReport(Report):
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
                         if (mother_handle is None                      or
-                            mother_handle not in self.map.itervalues()  or
+                            mother_handle not in iter(self.map.values())  or
                             person.get_gender() == Person.FEMALE):
                             # The second test above also covers the 1. person's
                             # mate, which is not an ancestor and as such is not
@@ -416,7 +416,7 @@ class DetAncestorReport(Report):
         if ph:
             place = self.database.get_place_from_handle(ph).get_title()
         else:
-            place = u''
+            place = ''
 
         self.doc.start_paragraph('DAR-MoreDetails')
         evtName = self.__get_type(event.get_type())

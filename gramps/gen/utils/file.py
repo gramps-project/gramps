@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import win, mac
+from ..constfunc import win, mac, cuni, conv_to_unicode, conv_to_unicode_3
 from ..const import TEMP_DIR, USER_HOME
 
 #-------------------------------------------------------------------------
@@ -135,16 +135,17 @@ def get_unicode_path_from_file_chooser(path):
     if win():
         # in windows filechooser returns officially utf-8, not filesystemencoding
         try:
-            return unicode(path)
+            return cuni(path)
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return unicode(path, sys.getfilesystemencoding(), errors='replace')
+            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
+                                    errors='replace')
     else:
         try:
-            return unicode(path, sys.getfilesystemencoding())
+            return cuni(path, sys.getfilesystemencoding())
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+            return conv_to_unicode_3(path, sys.getfilesystemencoding(), errors='replace')    
 
 def get_unicode_path_from_env_var(path):
     """
@@ -162,17 +163,19 @@ def get_unicode_path_from_env_var(path):
     if win():
         # In Windows path/filename returned from a environment variable is in filesystemencoding
         try:
-            new_path = unicode(path, sys.getfilesystemencoding())
+            new_path = conv_to_unicode(path, sys.getfilesystemencoding())
             return new_path
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return unicode(path, sys.getfilesystemencoding(), errors='replace')
+            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
+                                     errors='replace')
     else:
         try:
-            return unicode(path)
+            return str(path)
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return unicode(path, sys.getfilesystemencoding(), errors='replace')    
+            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
+                                     errors='replace')    
 
 def get_new_filename(ext, folder='~/'):
     ix = 1
@@ -230,11 +233,11 @@ def relative_path(original, base):
     target_list = (orig_name).split(os.sep)
     # make sure '/home/person' and 'c:/home/person' both give 
     #   list ['home', 'person']
-    base_list = filter(None, base_list)
-    target_list = filter(None, target_list)
+    base_list = [_f for _f in base_list if _f]
+    target_list = [_f for _f in target_list if _f]
     i = -1
     for i in range(min(len(base_list), len(target_list))):
-        if base_list[i] <> target_list[i]: break
+        if base_list[i] != target_list[i]: break
     else:
         #if break did not happen we are here at end, and add 1.
         i += 1
@@ -286,9 +289,9 @@ def fix_encoding(value, errors='strict'):
     # argument are 'strict' (raise a UnicodeDecodeError exception), 'replace'
     # (add U+FFFD, 'REPLACEMENT CHARACTER'), or 'ignore' (just leave the
     # character out of the Unicode result).
-    if not isinstance(value, unicode):
+    if not isinstance(value, UNITYPE):
         try:
-            return unicode(value)
+            return cuni(value)
         except:
             try:
                 if mac():
@@ -297,6 +300,6 @@ def fix_encoding(value, errors='strict'):
                     codeset = locale.getpreferredencoding()
             except:
                 codeset = "UTF-8"
-            return unicode(value, codeset, errors)
+            return conv_to_unicode_3(value, codeset, errors)
     else:
         return value

@@ -31,12 +31,12 @@ Attribute class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from citationbase import CitationBase
-from notebase import NoteBase
-from attrtype import AttributeType
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .privacybase import PrivacyBase
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .attrtype import AttributeType
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

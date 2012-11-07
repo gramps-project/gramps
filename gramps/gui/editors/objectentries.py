@@ -26,7 +26,11 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 import logging
 _LOG = logging.getLogger(".objectentries")
@@ -46,9 +50,9 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import (Place, MediaObject, Note)
-from editplace import EditPlace
-from editmedia import EditMedia
-from editnote import EditNote
+from .editplace import EditPlace
+from .editmedia import EditMedia
+from .editnote import EditNote
 from ..selectors import SelectorFactory
 from ..ddtargets import DdTargets
 from gramps.gen.errors import WindowActiveError
@@ -110,7 +114,7 @@ class ObjEntry(object):
             obj = self.get_from_handle(self.get_val())
             name = self.get_label(obj)
         else:
-            name = u""
+            name = ""
             self.set_button(False)
 
         if self.db.readonly:
@@ -213,7 +217,7 @@ class ObjEntry(object):
             If True:  remove icon and edit icon
         """
         if self.add_edt is not None:
-            map(self.add_edt.remove, self.add_edt.get_children())
+            list(map(self.add_edt.remove, self.add_edt.get_children()))
         for i in self.share.get_children():
             self.share.remove(i)
 
@@ -395,7 +399,7 @@ class NoteEntry(ObjEntry):
         return self.db.get_note_from_handle(handle)
 
     def get_label(self, note):
-        txt = u" ".join(note.get().split())
+        txt = " ".join(note.get().split())
         if len(txt) > 35:
             txt = txt[:35] + "..."
         return "%s [%s]" % (txt, note.gramps_id)

@@ -30,8 +30,9 @@ AttributeBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from attribute import Attribute
-from const import IDENTICAL, EQUAL
+from .attribute import Attribute
+from .const import IDENTICAL, EQUAL
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -100,7 +101,7 @@ class AttributeBase(object):
         :param attribute: :class:`~gen.lib.attribute.Attribute` instance to add.
         :type attribute: :class:`~gen.lib.attribute.Attribute`
         """
-        assert not isinstance(attribute, unicode)
+        assert not isinstance(attribute, STRTYPE)
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):

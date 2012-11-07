@@ -41,6 +41,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
 from gramps.gen.datehandler import format_time
+from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -109,16 +110,16 @@ class RepositoryModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_handle(self,data):
-        return unicode(data[0])
+        return cuni(data[0])
 
     def column_id(self,data):
-        return unicode(data[1])
+        return cuni(data[1])
 
     def column_type(self,data):
-        return unicode(RepositoryType(data[2]))
+        return cuni(RepositoryType(data[2]))
 
     def column_name(self,data):
-        return unicode(data[3])
+        return cuni(data[3])
 
     def column_city(self,data):
         try:
@@ -126,10 +127,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_city()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
 
     def column_street(self,data):
         try:
@@ -137,10 +137,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_street()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
         
     def column_locality(self,data):
         try:
@@ -148,10 +147,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_locality()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
     
     def column_state(self,data):
         try:
@@ -159,10 +157,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_state()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
 
     def column_country(self,data):
         try:
@@ -170,10 +167,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_country()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
 
     def column_postal_code(self,data):
         try:
@@ -181,10 +177,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_postal_code()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
 
     def column_phone(self,data):
         try:
@@ -192,10 +187,9 @@ class RepositoryModel(FlatBaseModel):
                 addr = Address()
                 addr.unserialize(data[5][0])
                 return addr.get_phone()
-            else:
-                return u''
         except:
-            return u''
+            pass
+        return cuni('')
 
     def column_email(self,data):
         if data[6]:
@@ -203,8 +197,8 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
-                    return unicode(url.path)
-        return u''
+                    return cuni(url.path)
+        return cuni('')
 
     def column_search_url(self,data):
         if data[6]:
@@ -212,8 +206,8 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
-                    return unicode(url.path)
-        return u''
+                    return cuni(url.path)
+        return ''
     
     def column_home_url(self,data):
         if data[6]:
@@ -221,11 +215,11 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_HOME:
-                    return unicode(url.path)
-        return u""
+                    return cuni(url.path)
+        return ""
 
     def column_tooltip(self,data):
-        return u'Repository tooltip'
+        return cuni('Repository tooltip')
 
     def sort_change(self,data):
         return "%012x" % data[7]

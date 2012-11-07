@@ -46,9 +46,9 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Source
 from gramps.gen.db import DbTxn
-from editprimary import EditPrimary
+from .editprimary import EditPrimary
 
-from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
+from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          CitationBackRefList, RepoEmbedList)
 from ..widgets import MonitoredEntry, PrivacyButton
 from ..dialog import ErrorDialog

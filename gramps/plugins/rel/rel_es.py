@@ -26,6 +26,7 @@
 """
 Spanish-specific classes for relationships.
 """
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

@@ -336,6 +336,6 @@ class AllRelReport():
             sdoc.paragraph("")
             sdoc.paragraph(_("The following problems were encountered:"))
             
-            map(sdoc.paragraph, msg_list)
+            list(map(sdoc.paragraph, msg_list))
             sdoc.paragraph("")
             sdoc.paragraph("")

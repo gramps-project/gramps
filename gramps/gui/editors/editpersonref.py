@@ -47,11 +47,11 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from ..widgets import MonitoredEntry, PrivacyButton
 from ..selectors import SelectorFactory
-from displaytabs import CitationEmbedList, NoteTab
+from .displaytabs import CitationEmbedList, NoteTab
 from ..glade import Glade
 
 #-------------------------------------------------------------------------

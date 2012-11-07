@@ -29,7 +29,7 @@ Package providing filtering framework for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _genericfilter import GenericFilter
+from ._genericfilter import GenericFilter
 from ..errors import FilterError
 
 #-------------------------------------------------------------------------
@@ -60,8 +60,8 @@ class ParamFilter(GenericFilter):
             rule.set_list(new_list)
         for rule in self.flist:
             if rule.nrprepare > 0:
-                raise FilterError, 'Custom filters can not twice be used' \
-                                   ' in a parameter filter'
+                raise FilterError('Custom filters can not twice be used' \
+                                   ' in a parameter filter')
             rule.requestprepare(db)
         result = GenericFilter.apply(self, db, id_list)
         for rule in self.flist:

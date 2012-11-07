@@ -78,7 +78,7 @@ class ChildModel(Gtk.ListStore):
             else:
                 return '<i>%s</i>' % cgi.escape(get_date(birth))
         else:
-            return u""
+            return ""
 
     def column_birth_sort(self, data):
         """ 
@@ -101,7 +101,7 @@ class ChildModel(Gtk.ListStore):
             else:
                 return '<i>%s</i>' % cgi.escape(get_date(death))
         else:
-            return u""
+            return ""
 
     def column_death_sort(self, data):
         """ 
@@ -124,7 +124,7 @@ class ChildModel(Gtk.ListStore):
                 place_handle = event.get_place_handle()
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
-        return u""
+        return ""
 
     def column_death_place(self, data):
         event_ref = data.get_death_ref()
@@ -134,4 +134,4 @@ class ChildModel(Gtk.ListStore):
                 place_handle = event.get_place_handle()
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
-        return u""
+        return ""

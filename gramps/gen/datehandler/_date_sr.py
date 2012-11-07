@@ -27,7 +27,7 @@
 """
 Serbian-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -41,9 +41,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -56,153 +56,153 @@ class DateParserSR(DateParser):
     """
     month_to_int = DateParser.month_to_int
     
-    month_to_int[u"januar"]  = 1
-    month_to_int[u"januara"] = 1
-    month_to_int[u"jan"]     = 1
-    month_to_int[u"јан"]     = 1
-    month_to_int[u"јануара"] = 1
-    month_to_int[u"јануар"]  = 1
-    month_to_int[u"i"]       = 1
+    month_to_int["januar"]  = 1
+    month_to_int["januara"] = 1
+    month_to_int["jan"]     = 1
+    month_to_int["јан"]     = 1
+    month_to_int["јануара"] = 1
+    month_to_int["јануар"]  = 1
+    month_to_int["i"]       = 1
     
-    month_to_int[u"februar"]  = 2
-    month_to_int[u"februara"] = 2
-    month_to_int[u"feb"]      = 2
-    month_to_int[u"феб"]      = 2
-    month_to_int[u"фебруар"]  = 2
-    month_to_int[u"фебруара"] = 2
-    month_to_int[u"ii"]       = 2
+    month_to_int["februar"]  = 2
+    month_to_int["februara"] = 2
+    month_to_int["feb"]      = 2
+    month_to_int["феб"]      = 2
+    month_to_int["фебруар"]  = 2
+    month_to_int["фебруара"] = 2
+    month_to_int["ii"]       = 2
     
-    month_to_int[u"mart"]  = 3
-    month_to_int[u"marta"] = 3
-    month_to_int[u"mar"]   = 3
-    month_to_int[u"мар"]   = 3
-    month_to_int[u"март"]  = 3
-    month_to_int[u"марта"] = 3
-    month_to_int[u"iii"]   = 3
+    month_to_int["mart"]  = 3
+    month_to_int["marta"] = 3
+    month_to_int["mar"]   = 3
+    month_to_int["мар"]   = 3
+    month_to_int["март"]  = 3
+    month_to_int["марта"] = 3
+    month_to_int["iii"]   = 3
     
-    month_to_int[u"april"]  = 4
-    month_to_int[u"aprila"] = 4
-    month_to_int[u"apr"]    = 4
-    month_to_int[u"апр"]    = 4
-    month_to_int[u"април"]  = 4
-    month_to_int[u"априла"] = 4
-    month_to_int[u"iv"]     = 4
+    month_to_int["april"]  = 4
+    month_to_int["aprila"] = 4
+    month_to_int["apr"]    = 4
+    month_to_int["апр"]    = 4
+    month_to_int["април"]  = 4
+    month_to_int["априла"] = 4
+    month_to_int["iv"]     = 4
 
-    month_to_int[u"maj"]  = 5
-    month_to_int[u"maja"] = 5
-    month_to_int[u"мај"]  = 5
-    month_to_int[u"маја"] = 5
-    month_to_int[u"v"]    = 5
+    month_to_int["maj"]  = 5
+    month_to_int["maja"] = 5
+    month_to_int["мај"]  = 5
+    month_to_int["маја"] = 5
+    month_to_int["v"]    = 5
     
-    month_to_int[u"jun"]  = 6
-    month_to_int[u"juna"] = 6
-    month_to_int[u"јун"]  = 6
-    month_to_int[u"јуна"] = 6
-    month_to_int[u"vi"]   = 6
+    month_to_int["jun"]  = 6
+    month_to_int["juna"] = 6
+    month_to_int["јун"]  = 6
+    month_to_int["јуна"] = 6
+    month_to_int["vi"]   = 6
 
-    month_to_int[u"jul"]  = 7
-    month_to_int[u"jula"] = 7
-    month_to_int[u"јул"]  = 7
-    month_to_int[u"јула"] = 7
-    month_to_int[u"vii"]  = 7
+    month_to_int["jul"]  = 7
+    month_to_int["jula"] = 7
+    month_to_int["јул"]  = 7
+    month_to_int["јула"] = 7
+    month_to_int["vii"]  = 7
     
-    month_to_int[u"avgust"]  = 8
-    month_to_int[u"avgusta"] = 8
-    month_to_int[u"avg"]     = 8
-    month_to_int[u"авг"]     = 8
-    month_to_int[u"август"]  = 8
-    month_to_int[u"августа"] = 8
-    month_to_int[u"viii"]    = 8
+    month_to_int["avgust"]  = 8
+    month_to_int["avgusta"] = 8
+    month_to_int["avg"]     = 8
+    month_to_int["авг"]     = 8
+    month_to_int["август"]  = 8
+    month_to_int["августа"] = 8
+    month_to_int["viii"]    = 8
     
-    month_to_int[u"septembar"] = 9
-    month_to_int[u"septembra"] = 9
-    month_to_int[u"sep"]       = 9
-    month_to_int[u"сеп"]       = 9
-    month_to_int[u"септембар"] = 9
-    month_to_int[u"септембра"] = 9
-    month_to_int[u"ix"]        = 9
+    month_to_int["septembar"] = 9
+    month_to_int["septembra"] = 9
+    month_to_int["sep"]       = 9
+    month_to_int["сеп"]       = 9
+    month_to_int["септембар"] = 9
+    month_to_int["септембра"] = 9
+    month_to_int["ix"]        = 9
     
-    month_to_int[u"oktobar"]  = 10
-    month_to_int[u"oktobra"]  = 10
-    month_to_int[u"okt"]      = 10
-    month_to_int[u"окт"]      = 10
-    month_to_int[u"октобар"]  = 10
-    month_to_int[u"октобра"]  = 10
-    month_to_int[u"x"]        = 10
+    month_to_int["oktobar"]  = 10
+    month_to_int["oktobra"]  = 10
+    month_to_int["okt"]      = 10
+    month_to_int["окт"]      = 10
+    month_to_int["октобар"]  = 10
+    month_to_int["октобра"]  = 10
+    month_to_int["x"]        = 10
     
-    month_to_int[u"novembar"]  = 11
-    month_to_int[u"novembra"]  = 11
-    month_to_int[u"nov"]       = 11
-    month_to_int[u"нов"]       = 11
-    month_to_int[u"новембар"]  = 11
-    month_to_int[u"новембра"]  = 11
-    month_to_int[u"xi"]        = 11
+    month_to_int["novembar"]  = 11
+    month_to_int["novembra"]  = 11
+    month_to_int["nov"]       = 11
+    month_to_int["нов"]       = 11
+    month_to_int["новембар"]  = 11
+    month_to_int["новембра"]  = 11
+    month_to_int["xi"]        = 11
     
-    month_to_int[u"decembar"]  = 12
-    month_to_int[u"decembra"]  = 12
-    month_to_int[u"dec"]       = 12
-    month_to_int[u"дец"]       = 12
-    month_to_int[u"децембар"]  = 12
-    month_to_int[u"децембра"]  = 12
-    month_to_int[u"xii"]       = 12
+    month_to_int["decembar"]  = 12
+    month_to_int["decembra"]  = 12
+    month_to_int["dec"]       = 12
+    month_to_int["дец"]       = 12
+    month_to_int["децембар"]  = 12
+    month_to_int["децембра"]  = 12
+    month_to_int["xii"]       = 12
     
     modifier_to_int = {
-        u'pre'    : Date.MOD_BEFORE, 
-        u'posle'  : Date.MOD_AFTER,
-        u'oko'    : Date.MOD_ABOUT,
-        u'cca'    : Date.MOD_ABOUT,
+        'pre'    : Date.MOD_BEFORE, 
+        'posle'  : Date.MOD_AFTER,
+        'oko'    : Date.MOD_ABOUT,
+        'cca'    : Date.MOD_ABOUT,
 
-        u'пре'    : Date.MOD_BEFORE, 
-        u'после'  : Date.MOD_AFTER,
-        u'око'    : Date.MOD_ABOUT,
+        'пре'    : Date.MOD_BEFORE, 
+        'после'  : Date.MOD_AFTER,
+        'око'    : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'gregorijanski'  : Date.CAL_GREGORIAN,
-        u'greg.'          : Date.CAL_GREGORIAN,
-        u'julijanski'     : Date.CAL_JULIAN,
-        u'jul.'           : Date.CAL_JULIAN,
-        u'hebrejski'      : Date.CAL_HEBREW,
-        u'hebr.'          : Date.CAL_HEBREW,
-        u'islamski'       : Date.CAL_ISLAMIC,
-        u'isl.'           : Date.CAL_ISLAMIC,
-        u'francuski republikanski': Date.CAL_FRENCH,
-        u'franc.'         : Date.CAL_FRENCH,
-        u'persijski'      : Date.CAL_PERSIAN,
-        u'pers. '         : Date.CAL_PERSIAN,
-        u'švedski'        : Date.CAL_SWEDISH, 
-        u'šv.'            : Date.CAL_SWEDISH, 
+        'gregorijanski'  : Date.CAL_GREGORIAN,
+        'greg.'          : Date.CAL_GREGORIAN,
+        'julijanski'     : Date.CAL_JULIAN,
+        'jul.'           : Date.CAL_JULIAN,
+        'hebrejski'      : Date.CAL_HEBREW,
+        'hebr.'          : Date.CAL_HEBREW,
+        'islamski'       : Date.CAL_ISLAMIC,
+        'isl.'           : Date.CAL_ISLAMIC,
+        'francuski republikanski': Date.CAL_FRENCH,
+        'franc.'         : Date.CAL_FRENCH,
+        'persijski'      : Date.CAL_PERSIAN,
+        'pers. '         : Date.CAL_PERSIAN,
+        'švedski'        : Date.CAL_SWEDISH, 
+        'šv.'            : Date.CAL_SWEDISH, 
 
-        u'грегоријански'  : Date.CAL_GREGORIAN,
-        u'грег.'          : Date.CAL_GREGORIAN,
-        u'јулијански'     : Date.CAL_JULIAN,
-        u'јул.'           : Date.CAL_JULIAN,
-        u'хебрејски'      : Date.CAL_HEBREW,
-        u'хебр.'          : Date.CAL_HEBREW,
-        u'исламски'       : Date.CAL_ISLAMIC,
-        u'исл.'           : Date.CAL_ISLAMIC,
-        u'француски републикански': Date.CAL_FRENCH,
-        u'франц.'         : Date.CAL_FRENCH,
-        u'персијски'      : Date.CAL_PERSIAN,
-        u'перс. '         : Date.CAL_PERSIAN,
-        u'шведски'        : Date.CAL_SWEDISH, 
-        u'шв'             : Date.CAL_SWEDISH, 
+        'грегоријански'  : Date.CAL_GREGORIAN,
+        'грег.'          : Date.CAL_GREGORIAN,
+        'јулијански'     : Date.CAL_JULIAN,
+        'јул.'           : Date.CAL_JULIAN,
+        'хебрејски'      : Date.CAL_HEBREW,
+        'хебр.'          : Date.CAL_HEBREW,
+        'исламски'       : Date.CAL_ISLAMIC,
+        'исл.'           : Date.CAL_ISLAMIC,
+        'француски републикански': Date.CAL_FRENCH,
+        'франц.'         : Date.CAL_FRENCH,
+        'персијски'      : Date.CAL_PERSIAN,
+        'перс. '         : Date.CAL_PERSIAN,
+        'шведски'        : Date.CAL_SWEDISH, 
+        'шв'             : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'procenjeno' : Date.QUAL_ESTIMATED,
-        u'pro.'       : Date.QUAL_ESTIMATED,
-        u'izračunato' : Date.QUAL_CALCULATED,
-        u'izr.'       : Date.QUAL_CALCULATED,
+        'procenjeno' : Date.QUAL_ESTIMATED,
+        'pro.'       : Date.QUAL_ESTIMATED,
+        'izračunato' : Date.QUAL_CALCULATED,
+        'izr.'       : Date.QUAL_CALCULATED,
 
-        u'процењено'  : Date.QUAL_ESTIMATED,
-        u'про.'       : Date.QUAL_ESTIMATED,
-        u'израчунато' : Date.QUAL_CALCULATED,
-        u'изр.'       : Date.QUAL_CALCULATED,
+        'процењено'  : Date.QUAL_ESTIMATED,
+        'про.'       : Date.QUAL_ESTIMATED,
+        'израчунато' : Date.QUAL_CALCULATED,
+        'изр.'       : Date.QUAL_CALCULATED,
         }
 
-    bce = [u"пре нове ере", u"пре Христа", u"п.н.е."
-           u"pre nove ere", u"pre Hrista", u"p.n.e."] + DateParser.bce
+    bce = ["пре нове ере", "пре Христа", "п.н.е."
+           "pre nove ere", "pre Hrista", "p.n.e."] + DateParser.bce
 
     def init_strings(self):
         """
@@ -216,10 +216,10 @@ class DateParserSR(DateParser):
         # match Day.Month.Year.
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
 
-        _span1 = [u'od', u'од']
-        _span2 = [u'do', u'до']
-        _range1 = [u'između', u'између']
-        _range2 = [u'i', u'и']
+        _span1 = ['od', 'од']
+        _span2 = ['do', 'до']
+        _range1 = ['između', 'између']
+        _range2 = ['i', 'и']
         self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                    ('|'.join(_span1),'|'.join(_span2)),
                                    re.IGNORECASE)
@@ -237,14 +237,14 @@ class DateDisplaySR_latin(DateDisplay):
     Serbian (latin) date display class
     """
     long_months = ("",
-        u"januara", u"februara", u"marta", u"aprila",
-        u"maja", u"juna", u"jula", u"avgusta",
-        u"septembra", u"oktobra", u"novembra", u"decembra"
+        "januara", "februara", "marta", "aprila",
+        "maja", "juna", "jula", "avgusta",
+        "septembra", "oktobra", "novembra", "decembra"
         )
 
     short_months = ("",
-        u"jan", u"feb", u"mar", u"apr", u"maj", u"jun",
-        u"jul", u"avg", u"sep", u"okt", u"nov", u"dec"
+        "jan", "feb", "mar", "apr", "maj", "jun",
+        "jul", "avg", "sep", "okt", "nov", "dec"
         ) 
 
     roman_months = (
@@ -253,9 +253,9 @@ class DateDisplaySR_latin(DateDisplay):
         )
     
     calendar = (
-        "", u"julijanski", u"hebrejski", 
-        u"francuski republikanski", u"persijski", u"islamski",
-        u"švedski" 
+        "", "julijanski", "hebrejski", 
+        "francuski republikanski", "persijski", "islamski",
+        "švedski" 
         )
 
     _mod_str = ("", "pre ", "posle ", "oko ", "", "", "")
@@ -297,27 +297,27 @@ class DateDisplaySR_latin(DateDisplay):
             # Day. MON Year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    value = u"%s." % year
+                    value = "%s." % year
                 else:
-                    value = u"%s %s." % (self.short_months[date_val[1]], year)
+                    value = "%s %s." % (self.short_months[date_val[1]], year)
             else:
-                value = u"%d. %s %s." % (date_val[0], 
+                value = "%d. %s %s." % (date_val[0], 
                                 self.short_months[date_val[1]], year)
         elif self.format == 3:
             # Day. MONTH Year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    value = u"%s." % year
+                    value = "%s." % year
                 else:
-                    value = u"%s %s." % (self.long_months[date_val[1]], year)
+                    value = "%s %s." % (self.long_months[date_val[1]], year)
             else:
-                value = u"%d. %s %s." % (date_val[0], 
+                value = "%d. %s %s." % (date_val[0], 
                                 self.long_months[date_val[1]], year)
         else:
             # Day RomanMon Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
-                    value = u"%s." % year
+                    value = "%s." % year
                 else:
                     value = "%s %s." % (self.roman_months[date_val[1]], year)
             else:
@@ -348,13 +348,13 @@ class DateDisplaySR_latin(DateDisplay):
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'od', d_1, u'do', d_2,
+            return "%s%s %s %s %s%s" % (qual_str, 'od', d_1, 'do', d_2,
                                                             scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'između', d_1, u'i', d_2, 
+            return "%s%s %s %s %s%s" % (qual_str, 'između', d_1, 'i', d_2, 
                                                             scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

@@ -32,7 +32,11 @@ SVG document generator.
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-import StringIO
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -75,12 +79,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
         try:
             self.f = open(name,"w")
-        except IOError,msg:
+        except IOError as msg:
             raise ReportError(_("Could not create %s") % name, msg)
         except:
             raise ReportError(_("Could not create %s") % name)
         
-        self.t = StringIO.StringIO()
+        self.t = StringIO()
             
         self.f.write(
             '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' +

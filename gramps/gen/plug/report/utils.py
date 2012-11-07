@@ -44,7 +44,8 @@ from ...ggettext import gettext as _
 from ...datehandler import get_date
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
-   
+from ...constfunc import cuni
+
 #-------------------------------------------------------------------------
 #
 #  Convert points to cm and back
@@ -118,7 +119,7 @@ def place_name(db, place_handle):
         place = db.get_place_from_handle(place_handle).get_title()
     else:
         place = ""
-    return unicode(place)
+    return cuni(place)
     
 #-------------------------------------------------------------------------
 #

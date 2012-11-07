@@ -177,7 +177,7 @@ class Reorder(ManagedWindow):
         if not row or row == -1:
             return
         store, the_iter = self.pmodel.get_selected()
-        data = self.pmodel.get_data(the_iter, xrange(3))
+        data = self.pmodel.get_data(the_iter, range(3))
         self.pmodel.remove(the_iter)
         self.pmodel.insert(row-1, data, None, 1)
         handle = self.parent_list.pop(row)
@@ -188,7 +188,7 @@ class Reorder(ManagedWindow):
         if row + 1 >= self.pmodel.count or row == -1:
             return
         store, the_iter = self.pmodel.get_selected()
-        data = self.pmodel.get_data(the_iter, xrange(3))
+        data = self.pmodel.get_data(the_iter, range(3))
         self.pmodel.remove(the_iter)
         self.pmodel.insert(row+1, data, None, 1)
         handle = self.parent_list.pop(row)
@@ -199,7 +199,7 @@ class Reorder(ManagedWindow):
         if not row or row == -1:
             return
         store, the_iter = self.fmodel.get_selected()
-        data = self.fmodel.get_data(the_iter, xrange(3))
+        data = self.fmodel.get_data(the_iter, range(3))
         self.fmodel.remove(the_iter)
         self.fmodel.insert(row-1, data, None, 1)
         handle = self.family_list.pop(row)
@@ -211,7 +211,7 @@ class Reorder(ManagedWindow):
         if row + 1 >= self.fmodel.count or row == -1:
             return
         store, the_iter = self.fmodel.get_selected()
-        data = self.fmodel.get_data(the_iter, xrange(3))
+        data = self.fmodel.get_data(the_iter, range(3))
         self.fmodel.remove(the_iter)
         self.fmodel.insert(row+1, data, None, 1)
         handle = self.family_list.pop(row)

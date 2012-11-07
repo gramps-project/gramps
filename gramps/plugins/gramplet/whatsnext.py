@@ -101,7 +101,7 @@ class WhatNextGramplet(Gramplet):
             self.opts[4].add_item(tag_name, tag_name)
             self.opts[5].add_item(tag_name, tag_name)
 
-        map(self.add_option, self.opts)
+        list(map(self.add_option, self.opts))
 
     def save_options(self):
         """

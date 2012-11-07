@@ -35,8 +35,8 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.lib import LdsOrd
 from gramps.gen.errors import WindowActiveError
-from ldsmodel import LdsModel
-from embeddedlist import EmbeddedList
+from .ldsmodel import LdsModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

@@ -79,7 +79,7 @@ class PersonDetails(Gramplet):
         """
         Remove all the rows from the table.
         """
-        map(self.table.remove, self.table.get_children())
+        list(map(self.table.remove, self.table.get_children()))
         self.table.resize(1, 2)
         
     def db_changed(self):

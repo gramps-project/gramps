@@ -36,8 +36,8 @@ from gi.repository import GObject
 from gramps.gen.lib import Attribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from attrmodel import AttrModel
-from embeddedlist import EmbeddedList
+from .attrmodel import AttrModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

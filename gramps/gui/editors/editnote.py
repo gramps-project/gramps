@@ -48,8 +48,8 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from editprimary import EditPrimary
-from displaytabs import GrampsTab, NoteBackRefList
+from .editprimary import EditPrimary
+from .displaytabs import GrampsTab, NoteBackRefList
 from ..widgets import (MonitoredDataType, MonitoredCheckbox, 
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gramps.gen.lib import Note

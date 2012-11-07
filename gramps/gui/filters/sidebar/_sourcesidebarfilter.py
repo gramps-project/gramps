@@ -42,6 +42,7 @@ from gi.repository import Gtk
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.source import (RegExpIdOf, HasIdOf, HasSource, 
                                       HasNoteMatchingSubstringOf, 
@@ -97,12 +98,12 @@ class SourceSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        title = unicode(self.filter_title.get_text()).strip()
-        author = unicode(self.filter_author.get_text()).strip()
-        abbr = unicode(self.filter_abbr.get_text()).strip()
-        pub = unicode(self.filter_pub.get_text()).strip()
-        note = unicode(self.filter_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        title = cuni(self.filter_title.get_text()).strip()
+        author = cuni(self.filter_author.get_text()).strip()
+        abbr = cuni(self.filter_abbr.get_text()).strip()
+        pub = cuni(self.filter_pub.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
@@ -132,7 +133,7 @@ class SourceSidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = unicode(model.get_value(node, 0))
+            obj = cuni(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

@@ -28,6 +28,8 @@
 """
 Specific option handling for a GUI.
 """
+from __future__ import unicode_literals
+
 #------------------------------------------------------------------------
 #
 # python modules
@@ -60,6 +62,7 @@ from ..dialog import OptionDialog
 from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
+from gramps.gen.constfunc import cuni, STRTYPE
 
 #------------------------------------------------------------------------
 #
@@ -381,7 +384,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
         """
         Handle the change of the value made by the user.
         """
-        text_val = unicode( self.__buff.get_text( self.__buff.get_start_iter(),
+        text_val = cuni( self.__buff.get_text( self.__buff.get_start_iter(),
                                                   self.__buff.get_end_iter(),
                                                   False)             )
 
@@ -401,7 +404,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
         # we'll use that.  If not, we'll assume a list and convert
         # it into a single string by assuming each list element
         # is separated by a newline.
-        if isinstance(value, basestring):
+        if isinstance(value, STRTYPE):
             self.__buff.set_text(value)
 
             # Need to manually call the other handler so that the option
@@ -946,7 +949,7 @@ class GuiNoteOption(Gtk.HBox):
         """
         if note:
             note_id = note.get_gramps_id()
-            txt = u" ".join(note.get().split())
+            txt = " ".join(note.get().split())
             if len(txt) > 35:
                 txt = txt[:35] + "..."
             txt = "%s [%s]" % (txt, note_id)
@@ -1237,7 +1240,7 @@ class GuiPersonListOption(Gtk.HBox):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, basestring):
+        if not isinstance(value, STRTYPE):
             # Convert array into a string
             # (convienence so that programmers can
             # set value using a list)
@@ -1380,7 +1383,7 @@ class GuiPlaceListOption(Gtk.HBox):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, basestring):
+        if not isinstance(value, STRTYPE):
             # Convert array into a string
             # (convienence so that programmers can
             # set value using a list)
@@ -1546,7 +1549,7 @@ class GuiSurnameColorOption(Gtk.HBox):
             # with surnames like "Del Monte".  So now we insert a non-
             # whitespace character which is unlikely to appear in
             # a surname.  (See bug report #2162.)
-            surname_colours += surname + u'\xb0' + colour + u'\xb0'
+            surname_colours += surname + '\xb0' + colour + '\xb0'
             i = self.__model.iter_next(i)
         self.__option.set_value( surname_colours )
 
@@ -1556,14 +1559,14 @@ class GuiSurnameColorOption(Gtk.HBox):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, basestring):
+        if not isinstance(value, STRTYPE):
             # Convert dictionary into a string
             # (convienence so that programmers can
             # set value using a dictionary)
             value_str = ""
 
             for name in value:
-                value_str += u"%s\xb0%s\xb0" % (name, value[name])
+                value_str += "%s\xb0%s\xb0" % (name, value[name])
 
             value = value_str
 
@@ -1585,8 +1588,8 @@ class GuiSurnameColorOption(Gtk.HBox):
         # support both the new and old format -- look for the \xb0
         # delimiter, and if it isn't there, assume this is the old-
         # style space-delimited format.  (Bug #2162.)
-        if (value.find(u'\xb0') >= 0):
-            tmp = value.split(u'\xb0')
+        if (value.find('\xb0') >= 0):
+            tmp = value.split('\xb0')
         else:
             tmp = value.split(' ')
         while len(tmp) > 1:
@@ -1760,7 +1763,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
         style sheet editor object and let them play.  When they are
         done, update the displayed styles."""
         from gramps.gen.plug.docgen import StyleSheetList
-        from report._styleeditor import StyleListDisplay
+        from .report._styleeditor import StyleListDisplay
         style_list = StyleSheetList(self.__option.get_style_file(), 
                                             self.__option.get_default_style())
         StyleListDisplay(style_list, None, None)

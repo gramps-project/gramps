@@ -32,6 +32,8 @@ scheme specified in the database's prefix ids
 # standard python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 import re
 from gramps.gen.ggettext import gettext as _
 
@@ -66,7 +68,7 @@ class ReorderIds(tool.BatchTool):
         if uistate:
             self.progress = ProgressMeter(_('Reordering Gramps IDs'),'')
         else:
-            print "Reordering Gramps IDs..."
+            print("Reordering Gramps IDs...")
 
         with DbTxn(_("Reorder Gramps IDs"), db, batch=True) as self.trans:
             db.disable_signals()
@@ -156,7 +158,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.close()
             else:
-                print "Done."
+                print("Done.")
     
         db.enable_signals()
         db.request_rebuild()
@@ -168,7 +170,7 @@ class ReorderIds(tool.BatchTool):
 
         formatmatch = _parseformat.match(prefix)
 
-        for handle in table.keys():
+        for handle in list(table.keys()):
             if self.uistate:
                 self.progress.step()
 

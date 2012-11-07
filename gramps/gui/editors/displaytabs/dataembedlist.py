@@ -32,8 +32,9 @@ from gramps.gen.ggettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from datamodel import DataModel
-from embeddedlist import EmbeddedList
+from .datamodel import DataModel
+from .embeddedlist import EmbeddedList
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -86,8 +87,8 @@ class DataEmbedList(EmbeddedList):
         new_map = {}
         for idx in range(len(self.model)):
             node = self.model.get_iter(idx)
-            key = unicode(self.model.get_value(node,0))
-            value = unicode(self.model.get_value(node,1))
+            key = cuni(self.model.get_value(node, 0))
+            value = cuni(self.model.get_value(node, 1))
             if key.strip():
                 new_map[key] = value
         return new_map

@@ -34,7 +34,7 @@ This module provides the model that is used for all hierarchical treeviews.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement, print_function
+
 import time
 import locale
 from gramps.gen.ggettext import gettext as _
@@ -57,7 +57,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
 import gramps.gui.widgets.progressdialog as progressdlg
-from lru import LRU
+from gramps.gen.constfunc import cuni, UNITYPE
+from .lru import LRU
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 
@@ -88,7 +89,7 @@ class Node(object):
 
     def __init__(self, ref, parent, sortkey, handle, secondary):
         if sortkey:
-            if isinstance(sortkey, unicode):
+            if isinstance(sortkey, UNITYPE):
                 self.name = sortkey.encode('utf-8')
                 #sortkey must be localized sort, so 
                 self.sortkey = conv_unicode_tosrtkey(sortkey)
@@ -160,9 +161,9 @@ class Node(object):
         nodeid = id(node)
         index = bisect_right(self.children, (node.sortkey, nodeid)) - 1
         if not (self.children[index] == (node.sortkey, nodeid)):
-            raise ValueError, str(node.name) + \
+            raise ValueError(str(node.name) + \
                         ' not present in self.children: ' + str(self.children)\
-                        + ' at index ' + str(index)
+                        + ' at index ' + str(index))
         if index == 0:
             if len(self.children) > 1:
                 nodemap.node(self.children[index+1][1]).prev = None
@@ -711,7 +712,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         does not update for every change signal.
         """
         if node.children:
-            rows = range(len(node.children)-1,-1,-1)
+            rows = list(range(len(node.children)-1,-1,-1))
             if node.parent is None:
                 path = iter = None
             else:
@@ -891,7 +892,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             val = self._get_value(node.handle, col, node.secondary)
             #GTK 3 should convert unicode objects automatically, but this
             # gives wrong column values, so we convert
-            if isinstance(val, unicode):
+            if isinstance(val, UNITYPE):
                 return val.encode('utf-8')
             else:
                 return val

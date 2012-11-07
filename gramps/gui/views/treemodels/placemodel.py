@@ -48,6 +48,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -130,14 +131,14 @@ class PlaceBaseModel(object):
         return len(self.fmap)+1
 
     def column_handle(self, data):
-        return unicode(data[0])
+        return cuni(data[0])
 
     def column_place_name(self, data):
-        return unicode(data[2])
+        return cuni(data[2])
 
     def column_longitude(self, data):
         if not data[3]:
-            return u' '
+            return ''
         value = conv_lat_lon('0', data[3], format='DEG')[1]
         if not value:
             return _("Error in format")
@@ -145,7 +146,7 @@ class PlaceBaseModel(object):
 
     def column_latitude(self, data):
         if not data[4]:
-            return u' '
+            return ''
         value = conv_lat_lon(data[4], '0', format='DEG')[0]
         if not value:
             return _("Error in format")
@@ -153,70 +154,70 @@ class PlaceBaseModel(object):
 
     def sort_longitude(self, data):
         if not data[3]:
-            return u' '
-        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else u''
+            return ''
+        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else ''
         if not value:
              return _("Error in format")
         return value
 
     def sort_latitude(self, data):
         if not data[4]:
-            return u' '
-        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else u''
+            return ''
+        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else ''
         if not value:
             return _("Error in format")
         return value 
 
     def column_id(self, data):
-        return unicode(data[1])
+        return cuni(data[1])
 
     def column_parish(self, data):
         try:
             return data[5][1]
         except:
-            return u''
+            return ''
 
     def column_street(self, data):
         try:
             return data[5][0][0]
         except:
-            return u''
+            return ''
 
     def column_locality(self, data):
         try:
             return data[5][0][1]
         except:
-            return u''
+            return ''
 
     def column_city(self, data):
         try:
             return data[5][0][2]
         except:
-            return u''
+            return ''
         
     def column_county(self, data):
         try:
             return data[5][0][3]
         except:
-            return u''
+            return ''
     
     def column_state(self, data):
         try:
             return data[5][0][4]
         except:
-            return u''
+            return ''
 
     def column_country(self, data):
         try:
             return data[5][0][5]
         except:
-            return u''
+            return ''
 
     def column_postal_code(self, data):
         try:
             return data[5][0][6]
         except:
-            return u''
+            return ''
 
     def sort_change(self, data):
         return "%012x" % data[11]
@@ -225,7 +226,7 @@ class PlaceBaseModel(object):
         return format_time(data[11])
 
     def column_tooltip(self, data):
-        return u'Place tooltip'
+        return cuni('Place tooltip')
 
 #-------------------------------------------------------------------------
 #
@@ -251,7 +252,7 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         FlatBaseModel.destroy(self)
 
     def column_name(self, data):
-        return unicode(data[2])
+        return cuni(data[2])
 
 #-------------------------------------------------------------------------
 #
@@ -341,16 +342,16 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         if data[5] is not None:
             level = [data[5][0][i] for i in range(5,-1,-1)]
             if not (level[3] or level[4] or level[5]):
-                name = unicode(level[2] or level[1] or level[0])
+                name = cuni(level[2] or level[1] or level[0])
             else:
                 name = ', '.join([item for item in level[3:] if item])
         if not name:
-            name = unicode(data[2])
+            name = cuni(data[2])
 
         if name:
             return cgi.escape(name)
         else:
-            return u"<i>%s<i>" % cgi.escape(_("<no name>"))
+            return "<i>%s<i>" % cgi.escape(_("<no name>"))
         
     def column_header(self, node):
         """

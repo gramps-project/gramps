@@ -155,7 +155,7 @@ class EventRefModel(Gtk.TreeStore):
                 place_handle = event.get_place_handle()
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
-        return u""
+        return ""
 
     def column_age(self, event):
         """

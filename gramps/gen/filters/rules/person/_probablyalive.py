@@ -35,6 +35,7 @@ from ....ggettext import gettext as _
 from ....utils.alive import probably_alive
 from .. import Rule
 from ....datehandler import parser
+from ....constfunc import conv_to_unicode_direct
 
 #-------------------------------------------------------------------------
 # "People probably alive"
@@ -49,7 +50,7 @@ class ProbablyAlive(Rule):
 
     def prepare(self,db):
         try:
-            self.current_date = parser.parse(unicode(self.list[0]))
+            self.current_date = parser.parse(conv_to_unicode_direct(self.list[0]))
         except:
             self.current_date = None
 

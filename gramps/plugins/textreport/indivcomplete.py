@@ -133,7 +133,7 @@ GROUP_DICT = {FACTS: [EventType.ADOPT,
 
 #Construct type to group map
 TYPE2GROUP = {}
-for event_group, type_list in GROUP_DICT.iteritems():
+for event_group, type_list in GROUP_DICT.items():
     for event_type in type_list:
         TYPE2GROUP[event_type] = event_group
 

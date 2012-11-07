@@ -59,10 +59,11 @@ _LOG = logging.getLogger(".")
 from gramps.gen.lib import Name, EventRef, EventType, EventRoleType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-from lru import LRU
+from .lru import LRU
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from gramps.gen.config import config
+from gramps.gen.constfunc import cuni, UNITYPE
 
 #-------------------------------------------------------------------------
 #
@@ -193,7 +194,7 @@ class PeopleBaseModel(object):
     def sort_name(self, data):
         name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
         # internally we work with utf-8
-        if isinstance(name, unicode):
+        if isinstance(name, UNITYPE):
             name = name.encode('utf-8')
         return name
 
@@ -204,7 +205,7 @@ class PeopleBaseModel(object):
         else:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
             # internally we work with utf-8
-            if isinstance(name, unicode):
+            if isinstance(name, UNITYPE):
                 name = name.encode('utf-8')
             if not self._in_build:
                 self.lru_name[handle] = name
@@ -459,7 +460,7 @@ class PeopleBaseModel(object):
         """
         Return the sorted list of tags.
         """
-        tag_list = map(self.get_tag_name, data[COLUMN_TAGS])
+        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
         return ', '.join(sorted(tag_list, key=locale.strxfrm))
 
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
@@ -535,7 +536,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
-        if isinstance(group_name, unicode):
+        if isinstance(group_name, UNITYPE):
             group_name = group_name.encode('utf-8')
         sort_key = self.sort_func(data)
 

@@ -38,8 +38,8 @@ Narrative Web Page generator.
 #------------------------------------------------
 # python modules
 #------------------------------------------------
-
 from __future__ import print_function
+
 from functools import partial
 import gc
 import os
@@ -56,7 +56,10 @@ import shutil
 import codecs
 import tarfile
 import tempfile
-from cStringIO import StringIO
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
 from collections import defaultdict
@@ -80,7 +83,7 @@ from gramps.gen.ggettext import sgettext as _
 from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             NameType, Person, UrlType, NoteType,
                             EventRoleType)
-from gramps.gen.lib.date import Today, get_start_day
+from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
 from gramps.gen.sort import Sort
 from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -94,7 +97,8 @@ from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.string import confidence
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.db import get_source_and_citation_referents
-from gramps.gen.constfunc import win
+from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
+from gramps.gen.constfunc import win, cuni, conv_to_unicode
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
@@ -439,7 +443,7 @@ def html_escape(text):
     return text
 
 # table for skipping control chars from XML except 09, 0A, 0D
-strip_dict = dict.fromkeys(range(9)+range(11,13)+range(14, 32))
+strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)))
 
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
@@ -558,9 +562,9 @@ class BasePage(object):
     # for use in write_data_map()
     def fix(self, line):
         try:
-            l = unicode(line)
+            l = cuni(line)
         except:
-            l = unicode(str(line),errors = 'replace')
+            l = conv_to_unicode(str(line),errors = 'replace')
         l = l.strip().translate(strip_dict)
         return html_escape(l)
 
@@ -1229,7 +1233,7 @@ class BasePage(object):
                 tbody = Html("tbody")
                 table += tbody
 
-                for key in data_map.keys():
+                for key in list(data_map.keys()):
                     trow = Html("tr") + (
                         Html("td", self.fix(key), class_ = "ColumnAttribute", inline = True),
                         Html("td", self.fix(data_map[key]), class_ = "ColumnValue", inline = True)
@@ -1871,7 +1875,7 @@ class BasePage(object):
                     # return an image
                     return image   
 
-                except (IOError, OSError), msg:
+                except (IOError, OSError) as msg:
                     self.report.user.warn(_("Could not add photo to page"), 
                                           str(msg))
 
@@ -2052,7 +2056,7 @@ class BasePage(object):
                             snapshot += self.media_link(photo_handle, newpath,
                                                  descr, uplink = self.up, usedescr = False)
 
-                        except (IOError, OSError), msg:
+                        except (IOError, OSError) as msg:
                             self.report.user.warn(_("Could not add photo to page"), str(msg))
             else:
                 # begin hyperlink
@@ -2122,7 +2126,7 @@ class BasePage(object):
                         # begin hyperlink
                         section += self.media_link(photo_handle, url, descr, uplink = self.up, usedescr = True)
 
-                    except (IOError, OSError), msg:
+                    except (IOError, OSError) as msg:
                         self.report.user.warn(_("Could not add photo to page"), str(msg))
                 else:
                     try:
@@ -2138,7 +2142,7 @@ class BasePage(object):
                                 photo_list[photo_handle].append(lnk)
                         else:
                             photo_list[photo_handle] = [lnk]
-                    except (IOError, OSError), msg:
+                    except (IOError, OSError) as msg:
                         self.report.user.warn(_("Could not add photo to page"), str(msg))
                 displayed.append(photo_handle)
 
@@ -2261,9 +2265,9 @@ class BasePage(object):
         will create the "Source References" section for an object
         """
 
-        map(lambda i: self.bibli.add_reference(
+        list(map(lambda i: self.bibli.add_reference(
                             self.report.database.get_citation_from_handle(i)), 
-            srcobj.get_citation_list())
+            srcobj.get_citation_list()))
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return to its callers
@@ -3702,7 +3706,7 @@ class EventListPage(BasePage):
                                 trow += tcell
 
                                 if evt_type:
-                                    ltr = unicode(evt_type)[0].capitalize()
+                                    ltr = cuni(evt_type)[0].capitalize()
                                 else:
                                     ltr = "&nbsp;"
 
@@ -4154,9 +4158,9 @@ class MediaPage(BasePage):
 
     def display_media_sources(self, photo):
 
-        map(lambda i: self.bibli.add_reference(
+        list(map(lambda i: self.bibli.add_reference(
                             self.report.database.get_citation_from_handle(i)), 
-            photo.get_citation_list())
+            photo.get_citation_list()))
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return source references to its caller
@@ -4181,7 +4185,7 @@ class MediaPage(BasePage):
                 shutil.copyfile(fullpath,
                                 os.path.join(self.html_dir, newpath))
             return newpath
-        except (IOError, OSError), msg:
+        except (IOError, OSError) as msg:
             error = _("Missing media object:") +                               \
                      "%s (%s)" % (photo.get_description(), photo.get_gramps_id())
             self.report.user.warn(error, str(msg))
@@ -5594,7 +5598,7 @@ class IndividualPage(BasePage):
             tracelife = "["
             seq_ = 1
 
-            for index in xrange(0, (number_markers - 1)):
+            for index in range(0, (number_markers - 1)):
                 latitude, longitude, placetitle, handle, date, etype = place_lat_long[index]
 
                 # are we using Google?
@@ -6311,8 +6315,8 @@ class IndividualPage(BasePage):
                 # Now output reln, child_link, (frel, mrel)
                 frel = child_ref.get_father_relation()
                 mrel = child_ref.get_mother_relation()
-                if frel != gen.lib.ChildRefType.BIRTH or \
-                   mrel != gen.lib.ChildRefType.BIRTH:
+                if frel != ChildRefType.BIRTH or \
+                   mrel != ChildRefType.BIRTH:
                     frelmrel = "(%s, %s)" % (str(frel), str(mrel))
                 else:
                     frelmrel = ""
@@ -6916,7 +6920,7 @@ class NavWebReport(Report):
                 else:
                     try:
                         os.mkdir(dir_name)
-                    except IOError, value:
+                    except IOError as value:
                         msg = _("Could not create the directory: %s") % \
                               dir_name + "\n" + value[1]
                         self.user.notify_error(msg)
@@ -6934,7 +6938,7 @@ class NavWebReport(Report):
                 image_dir_name = os.path.join(dir_name, 'thumb')
                 if not os.path.isdir(image_dir_name):
                     os.mkdir(image_dir_name)
-            except IOError, value:
+            except IOError as value:
                 msg = _("Could not create the directory: %s") % \
                       image_dir_name + "\n" + value[1]
                 self.user.notify_error(msg)
@@ -6951,7 +6955,7 @@ class NavWebReport(Report):
                 return
             try:
                 self.archive = tarfile.open(self.target_path, "w:gz")
-            except (OSError, IOError), value:
+            except (OSError, IOError) as value:
                 self.user.notify_error(_("Could not create %s") % self.target_path,
                             str(value))
                 return
@@ -7386,7 +7390,7 @@ class NavWebReport(Report):
         self.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
                                  len(source_list))
-        SourceListPage(self, self.title, source_list.keys())
+        SourceListPage(self, self.title, list(source_list.keys()))
 
         for source_handle in source_list:
             SourcePage(self, self.title, source_handle, source_list, ind_list, database_handles_list)
@@ -7740,7 +7744,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
         for (fname, id) in sorted([(CSS[key]["translation"], CSS[key]["id"]) 
-                                  for key in CSS.keys()]):
+                                  for key in list(CSS.keys())]):
             if CSS[id]["user"]:
                 self.__css.add_item(CSS[id]["id"], CSS[id]["translation"])
         self.__css.set_help( _('The stylesheet to be used for the web pages'))
@@ -8186,14 +8190,14 @@ def sort_people(dbase, handle_list):
 
     sorted_lists = []
     # According to the comment in flatbasemodel:         This list is sorted
-    # ascending, via localized string sort. conv_unicode_tosrtkey_ongtk which
+    # ascending, via localized string sort. conv_unicode_tosrtkey which
     # uses strxfrm, which is apparently broken in Win ?? --> they should fix
     # base lib, we need strxfrm, fix it in the Utils module.
-    temp_list = sorted(sname_sub, key=Utils.conv_unicode_tosrtkey_ongtk)
+    temp_list = sorted(sname_sub, key=conv_unicode_tosrtkey)
     
     for name in temp_list:
         slist = sorted(((sortnames[x], x) for x in sname_sub[name]), 
-                    key=lambda x:Utils.conv_unicode_tosrtkey_ongtk(x[0]))
+                    key=lambda x:conv_unicode_tosrtkey(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
@@ -8220,11 +8224,11 @@ def sort_event_types(dbase, event_types, event_handle_list):
             sort_value = event.get_date_object().get_sort_value()
             event_dict[event_type].append((sort_value, event_handle))
 
-    for tup_list in event_dict.values():
+    for tup_list in list(event_dict.values()):
         tup_list.sort()
 
     # return a list of sorted tuples, one per event
-    retval = [(event_type, event_list) for (event_type, event_list) in event_dict.iteritems()]
+    retval = [(event_type, event_list) for (event_type, event_list) in event_dict.items()]
     retval.sort(key=lambda item: str(item[0]))
 
     return retval
@@ -8253,24 +8257,24 @@ def first_letter(string):
     recieves a string and returns the first letter
     """
     if string:
-        letter = normalize('NFKC', unicode(string))[0].upper()
+        letter = normalize('NFKC', cuni(string))[0].upper()
     else:
-        letter = u' '
+        letter = cuni(' ')
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     (lang_country, modifier ) = locale.getlocale()
-    if lang_country == "sv_SE" and (letter == u'W' or letter == u'V'):
-        letter = u'V,W'
+    if lang_country == "sv_SE" and (letter == cuni('W') or letter == cuni('V')):
+        letter = 'V,W'
     # See : http://www.gramps-project.org/bugs/view.php?id = 4423
-    elif (lang_country == "cs_CZ" or lang_country == "sk_SK") and letter == u'C' and len(string) > 1:
-        second_letter = normalize('NFKC', unicode(string))[1].upper()
-        if second_letter == u'H':
-            letter += u'h'
-    elif lang_country == "sk_SK" and letter == u'D' and len(string) > 1:
-        second_letter = normalize('NFKC', unicode(string))[1].upper()
-        if second_letter == u'Z':
-            letter += u'z'
-        elif second_letter == u'Ž':
-            letter += u'ž'
+    elif (lang_country == "cs_CZ" or lang_country == "sk_SK") and letter == cuni('C') and len(string) > 1:
+        second_letter = normalize('NFKC', str(string))[1].upper()
+        if second_letter == cuni('H'):
+            letter += cuni('h')
+    elif lang_country == "sk_SK" and letter == cuni('D') and len(string) > 1:
+        second_letter = normalize('NFKC', cuni(string))[1].upper()
+        if second_letter == cuni('Z'):
+            letter += cuni('z')
+        elif second_letter == cuni('Ž'):
+            letter += cuni('ž')
     return letter
 
 def get_first_letters(dbase, menu_set, key):
@@ -8340,14 +8344,14 @@ def alphabet_navigation(menu_set):
     with Html("div", id = "alphanav") as alphabetnavigation:
 
         index = 0
-        for row in xrange(num_of_rows):
+        for row in range(num_of_rows):
             unordered = Html("ul") 
 
             cols = 0
             while (cols <= num_of_cols and index < num_ltrs):
                 menu_item = sorted_alpha_index[index]
 
-                if lang_country == "sv_SE" and menu_item == u'V':
+                if lang_country == "sv_SE" and menu_item == cuni('V'):
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
                     # adding title to hyperlink menu for screen readers and braille writers

@@ -246,7 +246,7 @@ class CitationBase(object):
         if new_handle in self.citation_list:
             new_ref = new_handle
         n_replace = refs_list.count(old_handle)
-        for ix_replace in xrange(n_replace):
+        for ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             if new_ref:
                 self.citation_list.pop(idx)

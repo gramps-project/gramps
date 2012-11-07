@@ -74,11 +74,11 @@ def _build_title(self):
     if descr:
         title_descr += descr.strip()
     if parish:
-        title_descr += u', ' + parish.strip() + _(" parish")
+        title_descr += ', ' + parish.strip() + _(" parish")
     if city:
-        title_descr += u', ' + city.strip()
+        title_descr += ', ' + city.strip()
     if state:
-        title_descr += u', ' + state.strip() + _(" state")
+        title_descr += ', ' + state.strip() + _(" state")
     return _strip_leading_comma(title_descr)
  
 def _build_city(self):
@@ -87,7 +87,7 @@ def _build_city(self):
     # Build a title description string that will work for Eniro
     city_descr = _build_area(self)
     if county:
-        city_descr += u', ' + county
+        city_descr += ', ' + county
     return _strip_leading_comma(city_descr)
 
 def _build_area(self):
@@ -99,7 +99,7 @@ def _build_area(self):
     if street:
         area_descr += street.strip() 
     if city:
-        area_descr += u', ' + city 
+        area_descr += ', ' + city 
     return _strip_leading_comma(area_descr)
 
 

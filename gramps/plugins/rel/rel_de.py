@@ -32,6 +32,7 @@
 """
 German-specific classes for relationships.
 """
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -55,70 +56,70 @@ import gramps.gen.relationship
 #
 #-------------------------------------------------------------------------
 
-_ordinal = [ u'nullte',
-    u'erste', u'zweite', u'dritte', u'vierte', u'fünfte', u'sechste',
-    u'siebte', u'achte', u'neunte', u'zehnte', u'elfte', u'zwölfte',
+_ordinal = [ 'nullte',
+    'erste', 'zweite', 'dritte', 'vierte', 'fünfte', 'sechste',
+    'siebte', 'achte', 'neunte', 'zehnte', 'elfte', 'zwölfte',
 ]
 
-_removed = [ u'',
-    u'', u'Groß', u'Urgroß',
-    u'Alt', u'Altgroß', u'Alturgroß',
-    u'Ober', u'Obergroß', u'Oberurgroß',
-    u'Stamm', u'Stammgroß', u'Stammurgroß',
-    u'Ahnen', u'Ahnengroß', u'Ahnenurgroß',
-    u'Urahnen', u'Urahnengroß', u'Urahnenurgroß',
-    u'Erz', u'Erzgroß', u'Erzurgroß',
-    u'Erzahnen', u'Erzahnengroß', u'Erzahnenurgroß',
+_removed = [ '',
+    '', 'Groß', 'Urgroß',
+    'Alt', 'Altgroß', 'Alturgroß',
+    'Ober', 'Obergroß', 'Oberurgroß',
+    'Stamm', 'Stammgroß', 'Stammurgroß',
+    'Ahnen', 'Ahnengroß', 'Ahnenurgroß',
+    'Urahnen', 'Urahnengroß', 'Urahnenurgroß',
+    'Erz', 'Erzgroß', 'Erzurgroß',
+    'Erzahnen', 'Erzahnengroß', 'Erzahnenurgroß',
 ]
 
 _lineal_up = {
-    'many':    u'%(p)sEltern%(s)s',
-    'unknown': u'%(p)sElter%(s)s', # "Elter" sounds strange but is correct
-    'male':    u'%(p)sVater%(s)s',
-    'female':  u'%(p)sMutter%(s)s',
+    'many':    '%(p)sEltern%(s)s',
+    'unknown': '%(p)sElter%(s)s', # "Elter" sounds strange but is correct
+    'male':    '%(p)sVater%(s)s',
+    'female':  '%(p)sMutter%(s)s',
 }
 _lineal_down = {
-    'many':    u'%(p)sKinder%(s)s',
-    'unknown': u'%(p)sKind%(s)s',
-    'male':    u'%(p)sSohn%(s)s',
-    'female':  u'%(p)sTochter%(s)s',
+    'many':    '%(p)sKinder%(s)s',
+    'unknown': '%(p)sKind%(s)s',
+    'male':    '%(p)sSohn%(s)s',
+    'female':  '%(p)sTochter%(s)s',
 }
 _collateral_up = {
-    'many':    u'%(p)sOnkel und %(p)sTanten%(s)s',
-    'unknown': u'%(p)sOnkel oder %(p)sTante%(s)s',
-    'male':    u'%(p)sOnkel%(s)s',
-    'female':  u'%(p)sTante%(s)s',
+    'many':    '%(p)sOnkel und %(p)sTanten%(s)s',
+    'unknown': '%(p)sOnkel oder %(p)sTante%(s)s',
+    'male':    '%(p)sOnkel%(s)s',
+    'female':  '%(p)sTante%(s)s',
 }
 _collateral_down = {
-    'many':    u'%(p)sNeffen und %(p)sNichten%(s)s',
-    'unknown': u'%(p)sNeffe oder %(p)sNichte%(s)s',
-    'male':    u'%(p)sNeffe%(s)s',
-    'female':  u'%(p)sNichte%(s)s',
+    'many':    '%(p)sNeffen und %(p)sNichten%(s)s',
+    'unknown': '%(p)sNeffe oder %(p)sNichte%(s)s',
+    'male':    '%(p)sNeffe%(s)s',
+    'female':  '%(p)sNichte%(s)s',
 }
 _collateral_same = {
-    'many':    u'%(p)sCousins und %(p)sCousinen%(s)s',
-    'unknown': u'%(p)sCousin oder %(p)sCousine%(s)s',
-    'male':    u'%(p)sCousin%(s)s',
-    'female':  u'%(p)sCousine%(s)s',
+    'many':    '%(p)sCousins und %(p)sCousinen%(s)s',
+    'unknown': '%(p)sCousin oder %(p)sCousine%(s)s',
+    'male':    '%(p)sCousin%(s)s',
+    'female':  '%(p)sCousine%(s)s',
 }
 _collateral_sib = {
-    'many':    u'%(p)sGeschwister%(s)s',
-    'unknown': u'%(p)sGeschwisterkind%(s)s',
-    'male':    u'%(p)sBruder%(s)s',
-    'female':  u'%(p)sSchwester%(s)s',
+    'many':    '%(p)sGeschwister%(s)s',
+    'unknown': '%(p)sGeschwisterkind%(s)s',
+    'male':    '%(p)sBruder%(s)s',
+    'female':  '%(p)sSchwester%(s)s',
 }
 
 _schwager = {
-    'many':    u'%(p)sSchwager%(s)s',
-    'unknown': u'%(p)sSchwager%(s)s',
-    'male':    u'%(p)sSchwager%(s)s',
-    'female':  u'%(p)sSchwägerin%(s)s',
+    'many':    '%(p)sSchwager%(s)s',
+    'unknown': '%(p)sSchwager%(s)s',
+    'male':    '%(p)sSchwager%(s)s',
+    'female':  '%(p)sSchwägerin%(s)s',
 }
 _schwippschwager = {
-    'many':    u'%(p)sSchwippschwager%(s)s',
-    'unknown': u'%(p)sSchwippschwager%(s)s',
-    'male':    u'%(p)sSchwippschwager%(s)s',
-    'female':  u'%(p)sSchwippschwägerin%(s)s',
+    'many':    '%(p)sSchwippschwager%(s)s',
+    'unknown': '%(p)sSchwippschwager%(s)s',
+    'male':    '%(p)sSchwippschwager%(s)s',
+    'female':  '%(p)sSchwippschwägerin%(s)s',
 }
 
 #-------------------------------------------------------------------------
@@ -136,10 +137,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def _make_roman(self, num):
         roman = ''
-        for v, r in [(1000, u'M'), (900, u'CM'), (500, u'D'), (400, u'CD'),
-                     ( 100, u'C'), ( 90, u'XC'), ( 50, u'L'), ( 40, u'XL'),
-                     (  10, u'X'), (  9, u'IX'), (  5, u'V'), (  4, u'IV'),
-                     (   1, u'I')]:
+        for v, r in [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+                     ( 100, 'C'), ( 90, 'XC'), ( 50, 'L'), ( 40, 'XL'),
+                     (  10, 'X'), (  9, 'IX'), (  5, 'V'), (  4, 'IV'),
+                     (   1, 'I')]:
             while num > v:
                 num -= v
                 roman += r
@@ -150,24 +151,24 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def _removed_text(self, degree, removed):
         if (degree, removed) == (0, -2):
-            return u'Enkel'
+            return 'Enkel'
         elif (degree, removed) == (0, -3):
-            return u'Urenkel'
+            return 'Urenkel'
         removed = abs(removed)
         if removed < len(_removed):
             return _removed[removed]
         else:
-            return u'(%s)' % self._make_roman(removed-2)
+            return '(%s)' % self._make_roman(removed-2)
 
     def _degree_text(self, degree, removed):
         if removed == 0:
             degree -= 1  # a cousin has same degree as his parent (uncle/aunt)
         if degree <= 1:
-            return u''
+            return ''
         if degree < len(_ordinal):
-            return u' %sn Grades' % _ordinal[degree]
+            return ' %sn Grades' % _ordinal[degree]
         else:
-            return u' %d. Grades' % degree
+            return ' %d. Grades' % degree
 
     def _gender_convert(self, gender):
         if gender == Person.MALE:
@@ -204,24 +205,24 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # for descendants the "in-law" logic is reversed
             (in_law_a, in_law_b) = (in_law_b, in_law_a) 
 
-        rel_str = u''
-        pre = u''
-        post = u''
+        rel_str = ''
+        pre = ''
+        post = ''
 
         if in_law_b and degree == 0:
-            pre += u'Stief'
+            pre += 'Stief'
         elif (not only_birth) or common_ancestor_count == 0:
-            pre += u'Stief-/Adoptiv'
+            pre += 'Stief-/Adoptiv'
         if in_law_a and (degree, removed) != (1, 0):
             # A "Schwiegerbruder" really is a "Schwager" (handled later)
-            pre += u'Schwieger'
+            pre += 'Schwieger'
         if degree != 0 and common_ancestor_count == 1:
-            pre += u'Halb'
+            pre += 'Halb'
         pre += self._removed_text(degree, removed)
         post += self._degree_text(degree, removed)
         if in_law_b and degree != 0 and (degree, removed) != (1, 0):
             # A "Bruder (angeheiratet)" also is a "Schwager" (handled later)
-            post += u' (angeheiratet)'
+            post += ' (angeheiratet)'
 
         if degree == 0:
             # lineal relationship
@@ -230,9 +231,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif removed < 0:
                 rel_str = _lineal_down[gender]
             elif in_law_a or in_law_b:
-                rel_str = u'Partner'
+                rel_str = 'Partner'
             else:
-                rel_str = u'Proband'
+                rel_str = 'Proband'
         else:
             # collateral relationship
             if removed > 0:

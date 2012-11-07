@@ -29,6 +29,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".rtfdoc")
@@ -43,6 +45,7 @@ from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIG
                              URL_PATTERN)
 from gramps.gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
 from gramps.gen.errors import ReportError
+from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -88,7 +91,7 @@ class RTFDoc(BaseDoc,TextDoc):
 
         try:
             self.f = open(self.filename,"w")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
         except:
@@ -286,7 +289,7 @@ class RTFDoc(BaseDoc,TextDoc):
                   (self.opened, 
                    self.text + '}'))
         if not self.opened == 1:
-            print self.opened
+            print(self.opened)
             raise RuntimeError
         self.opened = 0
         self.text += '}'
@@ -470,9 +473,9 @@ class RTFDoc(BaseDoc,TextDoc):
     # the form of \`XX. Make sure to escape braces.
     #
     #--------------------------------------------------------------------
-    def write_text(self,text,mark=None,links=False):
+    def write_text(self, text, mark=None, links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
-        text = unicode(text)
+        text = cuni(text)
         text = text.replace('\n','\n\\par ')
         LOG.debug("write_text: opened: %d input text: %s" % 
                   (self.opened, 

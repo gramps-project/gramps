@@ -25,8 +25,8 @@
 The "plug" package for handling plugins in Gramps.
 """
 
-from _plugin import Plugin
-from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL, 
+from ._plugin import Plugin
+from ._pluginreg import (PluginData, PluginRegister, REPORT, TOOL, 
             CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
             CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
             TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
@@ -37,13 +37,13 @@ from _pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
             CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION,
             START, END, make_environment,
             )
-from _import import ImportPlugin
-from _export import ExportPlugin
-from _docgenplugin import DocGenPlugin
-from _manager import BasePluginManager
-from _gramplet import Gramplet
-from utils import *
-from _options import (Options, OptionListCollection, OptionList,
+from ._import import ImportPlugin
+from ._export import ExportPlugin
+from ._docgenplugin import DocGenPlugin
+from ._manager import BasePluginManager
+from ._gramplet import Gramplet
+from .utils import *
+from ._options import (Options, OptionListCollection, OptionList,
                       OptionHandler, MenuOptions)
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,

@@ -24,12 +24,12 @@
 """
 """
 
-from mergeperson import *
-from mergefamily import *
-from mergeevent import *
-from mergeplace import *
-from mergesource import *
-from mergecitation import *
-from mergerepository import *
-from mergemedia import *
-from mergenote import *
+from .mergeperson import *
+from .mergefamily import *
+from .mergeevent import *
+from .mergeplace import *
+from .mergesource import *
+from .mergecitation import *
+from .mergerepository import *
+from .mergemedia import *
+from .mergenote import *

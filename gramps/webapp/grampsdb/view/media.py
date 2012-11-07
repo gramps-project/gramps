@@ -37,7 +37,7 @@ from django.http import HttpResponse
 from PIL import Image
 NEW_PIL = [int(i) for i in Image.VERSION.split(".")] >= [1, 1, 7]
 if not NEW_PIL:
-    import png
+    from . import png
 import os
 
 ## Globals
@@ -58,7 +58,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
     
     if handle == "add":
         act = "add"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete, share, save-share

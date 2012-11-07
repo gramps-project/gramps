@@ -21,8 +21,11 @@
 
 # $Id$
 
+from __future__ import print_function
+
+import sys
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     import bsddb3 as bsddb
 else:
     import bsddb
@@ -307,7 +310,7 @@ class Gramplet(object):
             LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
         try:
-            retval = self._generator.next()
+            retval = next(self._generator)
             if not retval:
                 self._idle_id = 0
             if self._pause:
@@ -325,11 +328,11 @@ class Gramplet(object):
             self._generator.close()
             LOG.debug("gramplet updater: %s: Done!"  % self.gui.title)
             return False
-        except Exception, e:
+        except Exception as e:
             import traceback
             LOG.error("Gramplet gave an error: %s" % self.gui.title)
             traceback.print_exc()
-            print "Continuing after gramplet error..."
+            print("Continuing after gramplet error...")
             self._idle_id = 0
             self.uistate.push_message(self.dbstate,
                 _("Gramplet %s caused an error") % self.gui.title)

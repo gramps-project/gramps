@@ -33,7 +33,11 @@ Media object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
-from urlparse import urlparse
+import sys
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+else:
+    from urllib.parse import urlparse
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -42,12 +46,12 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from datebase import DateBase
-from attrbase import AttributeBase
-from tagbase import TagBase
+from .primaryobj import PrimaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .datebase import DateBase
+from .attrbase import AttributeBase
+from .tagbase import TagBase
 
 #-------------------------------------------------------------------------
 #

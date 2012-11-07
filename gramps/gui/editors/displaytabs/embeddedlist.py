@@ -27,7 +27,11 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +49,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click
-from buttontab import ButtonTab
+from .buttontab import ButtonTab
 
 #-------------------------------------------------------------------------
 #
@@ -434,7 +438,7 @@ class EmbeddedList(ButtonTab):
         # remove any existing columns, which would be stored in
         # self.columns
         
-        map(self.tree.remove_column, self.columns)
+        list(map(self.tree.remove_column, self.columns))
         self.columns = []
 
         # loop through the values returned by column_order
@@ -495,7 +499,7 @@ class EmbeddedList(ButtonTab):
             self.model.destroy()
         try:
             self.model = self.construct_model()
-        except AttributeError, msg:
+        except AttributeError as msg:
             from ...dialog import RunDatabaseRepair
             import traceback
             traceback.print_exc()

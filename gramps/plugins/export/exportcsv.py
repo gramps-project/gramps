@@ -31,9 +31,13 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from gramps.gen.ggettext import sgettext as _
 import csv
-import cStringIO
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 import codecs
 
 #------------------------------------------------------------------------
@@ -42,6 +46,7 @@ import codecs
 #
 #------------------------------------------------------------------------
 import logging
+import collections
 LOG = logging.getLogger(".ExportCSV")
 
 #-------------------------------------------------------------------------
@@ -112,7 +117,7 @@ class UTF8Recoder(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         return self.reader.next().encode("utf-8")
 
 class UnicodeReader(object):
@@ -126,9 +131,9 @@ class UnicodeReader(object):
         f = UTF8Recoder(f, encoding)
         self.reader = csv.reader(f, **kwds)
 
-    def next(self):
-        row = self.reader.next()
-        return [unicode(s, "utf-8") for s in row]
+    def __next__(self):
+        row = next(self.reader)
+        return [str(s, "utf-8") for s in row]
 
     def __iter__(self):
         return self
@@ -142,7 +147,7 @@ class UnicodeWriter(object):
 
     def __init__(self, f, encoding="utf-8", **kwds):
         # Redirect output to a queue
-        self.queue = cStringIO.StringIO()
+        self.queue = StringIO()
         self.writer = csv.writer(self.queue, **kwds)
         self.stream = f
         self.encoder = codecs.getencoder(encoding)
@@ -160,7 +165,7 @@ class UnicodeWriter(object):
         self.queue.truncate(0)
 
     def writerows(self, rows):
-        map(self.writerow, rows)
+        list(map(self.writerow, rows))
 
     def close(self):
         self.stream.close()
@@ -227,7 +232,7 @@ class CSVWriter(object):
         self.option_box = option_box
         self.filename = filename
         self.user = user
-        if callable(self.user.callback): # callback is really callable
+        if isinstance(self.user.callback, collections.Callable): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -293,7 +298,7 @@ class CSVWriter(object):
             self.g = open(self.filename,"w")
             self.fp = open(self.filename, "wb")
             self.g = UnicodeWriter(self.fp)
-        except IOError,msg:
+        except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2,str(msg))
             return False

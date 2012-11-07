@@ -24,7 +24,7 @@
 """
 Swedish-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -38,9 +38,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -56,50 +56,50 @@ class DateParserSv(DateParser):
 
     # modifiers before the date
     modifier_to_int = {
-        u'före'    : Date.MOD_BEFORE, 
-        u'innan'   : Date.MOD_BEFORE, 
-        u'efter'   : Date.MOD_AFTER, 
-        u'omkring' : Date.MOD_ABOUT, 
-        u'ca'      : Date.MOD_ABOUT, 
-        u'c:a'     : Date.MOD_ABOUT
+        'före'    : Date.MOD_BEFORE, 
+        'innan'   : Date.MOD_BEFORE, 
+        'efter'   : Date.MOD_AFTER, 
+        'omkring' : Date.MOD_ABOUT, 
+        'ca'      : Date.MOD_ABOUT, 
+        'c:a'     : Date.MOD_ABOUT
         }
 
-    bce = [u"f Kr"]
+    bce = ["f Kr"]
 
     calendar_to_int = {
-        u'gregoriansk   '      : Date.CAL_GREGORIAN, 
-        u'g'                   : Date.CAL_GREGORIAN, 
-        u'juliansk'            : Date.CAL_JULIAN, 
-        u'j'                   : Date.CAL_JULIAN, 
-        u'hebreisk'            : Date.CAL_HEBREW, 
-        u'h'                   : Date.CAL_HEBREW, 
-        u'islamisk'            : Date.CAL_ISLAMIC, 
-        u'muslimsk'            : Date.CAL_ISLAMIC, 
-        u'i'                   : Date.CAL_ISLAMIC, 
-        u'fransk'              : Date.CAL_FRENCH, 
-        u'fransk republikansk' : Date.CAL_FRENCH, 
-        u'f'                   : Date.CAL_FRENCH, 
-        u'persisk'             : Date.CAL_PERSIAN, 
-        u'p'                   : Date.CAL_PERSIAN, 
-        u'svensk'              : Date.CAL_SWEDISH, 
-        u's'                   : Date.CAL_SWEDISH, 
+        'gregoriansk   '      : Date.CAL_GREGORIAN, 
+        'g'                   : Date.CAL_GREGORIAN, 
+        'juliansk'            : Date.CAL_JULIAN, 
+        'j'                   : Date.CAL_JULIAN, 
+        'hebreisk'            : Date.CAL_HEBREW, 
+        'h'                   : Date.CAL_HEBREW, 
+        'islamisk'            : Date.CAL_ISLAMIC, 
+        'muslimsk'            : Date.CAL_ISLAMIC, 
+        'i'                   : Date.CAL_ISLAMIC, 
+        'fransk'              : Date.CAL_FRENCH, 
+        'fransk republikansk' : Date.CAL_FRENCH, 
+        'f'                   : Date.CAL_FRENCH, 
+        'persisk'             : Date.CAL_PERSIAN, 
+        'p'                   : Date.CAL_PERSIAN, 
+        'svensk'              : Date.CAL_SWEDISH, 
+        's'                   : Date.CAL_SWEDISH, 
         }
     
     quality_to_int = {
-        u'uppskattat' : Date.QUAL_ESTIMATED, 
-        u'uppskattad' : Date.QUAL_ESTIMATED, 
-        u'bedömt'     : Date.QUAL_ESTIMATED, 
-        u'bedömd'     : Date.QUAL_ESTIMATED, 
-        u'beräknat'   : Date.QUAL_CALCULATED, 
-        u'beräknad'   : Date.QUAL_CALCULATED, 
+        'uppskattat' : Date.QUAL_ESTIMATED, 
+        'uppskattad' : Date.QUAL_ESTIMATED, 
+        'bedömt'     : Date.QUAL_ESTIMATED, 
+        'bedömd'     : Date.QUAL_ESTIMATED, 
+        'beräknat'   : Date.QUAL_CALCULATED, 
+        'beräknad'   : Date.QUAL_CALCULATED, 
         }
     
     def init_strings(self):
         """ Define, in Swedish, span and range regular expressions"""
         DateParser.init_strings(self)
-        self._span     = re.compile(u"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)", 
+        self._span     = re.compile("(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)", 
                                     re.IGNORECASE)
-        self._range    = re.compile(u"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)", 
+        self._range    = re.compile("(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)", 
                                     re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -111,37 +111,37 @@ class DateDisplaySv(DateDisplay):
     """
     Swedish language date display class. 
     """
-    long_months = ( u"", u"januari", u"februari", u"mars", u"april", u"maj", 
-                    u"juni", u"juli", u"augusti", u"september", u"oktober", 
-                    u"november", u"december" )
+    long_months = ( "", "januari", "februari", "mars", "april", "maj", 
+                    "juni", "juli", "augusti", "september", "oktober", 
+                    "november", "december" )
     
-    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"maj", u"jun",
-                      u"jul", u"aug", u"sep", u"okt", u"nov", u"dec" )
+    short_months = ( "", "jan", "feb", "mar", "apr", "maj", "jun",
+                      "jul", "aug", "sep", "okt", "nov", "dec" )
     
     formats = (
-        u"ÅÅÅÅ-MM-DD (ISO)", 
-        u"År/mån/dag", 
-        u"Månad dag, år", 
-        u"MÅN DAG ÅR", 
-        u"Dag månad år", 
-        u"DAG MÅN ÅR", 
+        "ÅÅÅÅ-MM-DD (ISO)", 
+        "År/mån/dag", 
+        "Månad dag, år", 
+        "MÅN DAG ÅR", 
+        "Dag månad år", 
+        "DAG MÅN ÅR", 
         )
 
     calendar = (
-        u"", 
-        u"juliansk", 
-        u"hebreisk", 
-        u"fransk republikansk", 
-        u"persisk", 
-        u"islamisk", 
-        u"svensk"
+        "", 
+        "juliansk", 
+        "hebreisk", 
+        "fransk republikansk", 
+        "persisk", 
+        "islamisk", 
+        "svensk"
         )
     
-    _mod_str = (u"", u"före ", u"efter ", u"c:a ", u"", u"", u"")
+    _mod_str = ("", "före ", "efter ", "c:a ", "", "", "")
 
-    _qual_str = (u"", u"uppskattat ", u"beräknat ")
+    _qual_str = ("", "uppskattat ", "beräknat ")
     
-    _bce_str = u"%s f Kr"
+    _bce_str = "%s f Kr"
 
     def display(self, date):
         """
@@ -158,22 +158,22 @@ class DateDisplaySv(DateDisplay):
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
-            return u""
+            return ""
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return u"%sfrån %s till %s%s" % (qual_str, d1, d2, scal)
+            return "%sfrån %s till %s%s" % (qual_str, d1, d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return u"%smellan %s och %s%s" % (qual_str, d1, d2, 
+            return "%smellan %s och %s%s" % (qual_str, d1, d2, 
                                               scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return u"%s%s%s%s" % (qual_str, self._mod_str[mod], 
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], 
                                  text, scal)
 
 #-------------------------------------------------------------------------

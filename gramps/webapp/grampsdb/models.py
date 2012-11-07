@@ -26,6 +26,7 @@ This requires initial data for all of the Types, which
 is loaded by the fixtures/initial_data.json, which is
 created by init.py.
 """
+from __future__ import print_function
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
@@ -1100,8 +1101,8 @@ def table_stats(*categories):
     tables = get_tables(*categories)
     tables.sort()
     for pair in tables:
-        print ("%-25s" % pair[1].__name__), ":", \
-            pair[1].objects.all().count()
+        print(("%-25s" % pair[1].__name__), ":", \
+            pair[1].objects.all().count())
 
 def get_tables(*categories):
     return [pair for pair in TABLES if (pair[0] in categories) or 

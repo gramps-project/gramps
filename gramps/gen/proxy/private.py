@@ -43,7 +43,7 @@ LOG = logging.getLogger(".citation")
 from ..lib import (MediaRef, Attribute, Address, EventRef, 
                    Person, Name, Source, RepoRef, MediaObject, Place, Event, 
                    Family, ChildRef, Repository, LdsOrd, Surname, Citation)
-from proxybase import ProxyDbBase
+from .proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
     """

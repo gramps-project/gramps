@@ -35,14 +35,18 @@ Manages the main window and the pluggable views
 #
 #-------------------------------------------------------------------------
 from __future__ import print_function
+
 from collections import defaultdict
 import os
+import sys
 import time
 import datetime
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
-from cStringIO import StringIO
-import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 import posixpath
 
 #-------------------------------------------------------------------------
@@ -350,8 +354,8 @@ class ViewManager(CLIManager):
         if force:
             update = True
         elif howoften != 0: # update never if zero
-            y,m,d = map(int,
-                  config.get("behavior.last-check-for-updates").split("/"))
+            y,m,d = list(map(int,
+                  config.get("behavior.last-check-for-updates").split("/")))
             days = (datetime.date.today() - datetime.date(y, m, d)).days
             if howoften == 1 and days >= 30: # once a month
                 update = True
@@ -362,7 +366,11 @@ class ViewManager(CLIManager):
             elif howoften == 4: # always
                 update = True
         if update:
-            import urllib, locale
+            if sys.version_info[0] < 3:
+                from urllib2 import urlopen
+            else:
+                from urllib.request import urlopen
+            import locale
             LOG.debug("Checking for updated addons...")
             langs = []
             lang = locale.getlocale()[0] # not None
@@ -378,7 +386,7 @@ class ViewManager(CLIManager):
                 URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
                 LOG.debug("   trying: %s" % URL)
                 try:
-                    fp = urllib.urlopen(URL)
+                    fp = urlopen(URL)
                 except: # some error
                     LOG.debug("   IOError!")
                     fp = None
@@ -1033,7 +1041,7 @@ class ViewManager(CLIManager):
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
                 backup(self.dbstate.db)
-            except DbException, msg:
+            except DbException as msg:
                 ErrorDialog(_("Error saving backup data"), msg)
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
@@ -1314,7 +1322,7 @@ class ViewManager(CLIManager):
         Disconnects the previous page, removing the old action groups
         and removes the old UI components.
         """
-        map(self.uimanager.remove_ui, self.merge_ids)
+        list(map(self.uimanager.remove_ui, self.merge_ids))
 
         if self.active_page:
             self.active_page.set_inactive()
@@ -1359,7 +1367,7 @@ class ViewManager(CLIManager):
         """
         Called when the Open button is clicked, opens the DbManager
         """
-        from dbman import DbManager
+        from .dbman import DbManager
         dialog = DbManager(self.dbstate, self.window)
         value = dialog.run()
         if value:
@@ -1791,7 +1799,7 @@ class ViewManager(CLIManager):
             ofile.write('<menu action="%s">' % new_key)
             actions.append((new_key, None, key))
             pdatas = hash_data[key]
-            pdatas.sort(by_menu_name)
+            pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
                 menu_name = ("%s...") % pdata.name
@@ -1807,7 +1815,7 @@ class ViewManager(CLIManager):
             ofile.write('<menu action="%s">' % _UNSUPPORTED)
             actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
             pdatas = hash_data[_UNSUPPORTED]
-            pdatas.sort(by_menu_name)
+            pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
                 menu_name = ("%s...") % pdata.name
@@ -1866,12 +1874,6 @@ def faq_activate(obj):
     Display FAQ
     """
     display_help(webpage=WIKI_HELP_PAGE_FAQ)
-
-def by_menu_name(first, second):
-    """
-    Sorts menu item lists
-    """
-    return cmp(first.name, second.name)
 
 def run_plugin(pdata, dbstate, uistate):
     """

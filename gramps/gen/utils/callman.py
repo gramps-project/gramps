@@ -145,9 +145,9 @@ class CallbackManager(object):
         This method should always be called before a the callback methods
         become invalid.
         """
-        map(self.database.disconnect, self.custom_signal_keys)
+        list(map(self.database.disconnect, self.custom_signal_keys))
         self.custom_signal_keys = []
-        for key, value in self.__callbacks.iteritems():
+        for key, value in self.__callbacks.items():
             if not value[1] is None:
                 self.database.disconnect(value[1])
         self.__init_callbacks()
@@ -190,7 +190,7 @@ class CallbackManager(object):
         for key in KEYS:
             handles = ahandledict.get(key)
             if handles:
-                map(self.__handles[key].remove, handles)
+                list(map(self.__handles[key].remove, handles))
     
     def unregister_all(self):
         """
@@ -327,7 +327,7 @@ class CallbackManager(object):
             else:
                 return gen(self, signal)
         else:
-            raise AttributeError, 'Signal ' + signal + 'not supported.'
+            raise AttributeError('Signal ' + signal + 'not supported.')
     
 def directhandledict(baseobj):
     """

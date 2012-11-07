@@ -23,6 +23,7 @@
 """
 Relationship View
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
@@ -79,9 +80,9 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           preset_name)
 
 _GenderCode = {
-    Person.MALE    : u'\u2642', 
-    Person.FEMALE  : u'\u2640', 
-    Person.UNKNOWN : u'\u2650', 
+    Person.MALE    : '\u2642', 
+    Person.FEMALE  : '\u2640', 
+    Person.UNKNOWN : '\u2650', 
     }
 
 _NAME_START   = 0
@@ -450,8 +451,8 @@ class RelationshipView(NavigationView):
         #reset the connects
         self._change_db(db)
         if self.child:
-            map(self.vbox.remove, self.vbox.get_children())
-            map(self.header.remove, self.header.get_children())
+            list(map(self.vbox.remove, self.vbox.get_children()))
+            list(map(self.header.remove, self.header.get_children()))
             self.child = None
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
@@ -468,7 +469,7 @@ class RelationshipView(NavigationView):
                 gender = ""
             return (name, gender)
         else:
-            return (_(u"Unknown"), "")
+            return (_("Unknown"), "")
 
     def redraw(self, *obj):
         active_person = self.get_active()
@@ -481,7 +482,7 @@ class RelationshipView(NavigationView):
         self.change_active(obj)
         try:
             return self._change_person(obj)
-        except AttributeError, msg:
+        except AttributeError as msg:
             import traceback
             exc = traceback.format_exc()
             _LOG.error(str(msg) +"\n" + exc)
@@ -593,7 +594,7 @@ class RelationshipView(NavigationView):
 
     def write_title(self, person):
 
-        map(self.header.remove, self.header.get_children())
+        list(map(self.header.remove, self.header.get_children()))
         table = Gtk.Table(2, 3)
         table.set_col_spacings(12)
         table.set_row_spacings(0)

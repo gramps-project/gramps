@@ -234,9 +234,9 @@ def mac_setup_localization(dir, domain):
     collation = mac_get_collation()
     translations = mac_language_list()
 
-    if not os.environ.has_key("LANGUAGE"):
+    if "LANGUAGE" not in os.environ:
         if len(translations) > 0:
-            if os.environ.has_key("MULTI_TRANSLATION"):
+            if "MULTI_TRANSLATION" in os.environ:
                 os.environ["LANGUAGE"] = ":".join(translations)
             else:
                 os.environ["LANGUAGE"] = translations[0]
@@ -247,13 +247,13 @@ def mac_setup_localization(dir, domain):
               and not collation.starts_with("en")):
             os.environ["LANGUAGE"] = collation
 
-    if not os.environ.has_key("LANG"):
+    if "LANG" not in os.environ:
         lang = "en_US"
         loc = mac_resolve_locale(loc)
         if loc != None:
             lang = loc
             collation = mac_resolve_locale(collation)
-            if not os.environ.has_key("LC_COLLATE") and collation != None:
+            if "LC_COLLATE" not in os.environ and collation != None:
                 os.environ["LC_COLLATE"] = collation
 
         elif len(collation) > 0:

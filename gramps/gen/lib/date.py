@@ -28,6 +28,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from __future__ import unicode_literals
 from ..ggettext import sgettext as _
 from ..ggettext import ngettext
 
@@ -51,7 +52,7 @@ log = logging.getLogger(".Date")
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
+from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                       french_sdn, persian_sdn, islamic_sdn, swedish_sdn,
                       gregorian_ymd, julian_ymd, hebrew_ymd, 
                       french_ymd, persian_ymd, islamic_ymd,
@@ -595,7 +596,7 @@ class Date(object):
         elif len(source) == 3:
             pass # source is ok
         else:
-            raise AttributeError, "invalid args to Date: %s" % source
+            raise AttributeError("invalid args to Date: %s" % source)
         self.format = None
         #### ok, process either date or tuple
         if isinstance(source, tuple):
@@ -603,7 +604,7 @@ class Date(object):
             self.modifier = Date.MOD_NONE
             self.quality  = Date.QUAL_NONE
             self.dateval  = Date.EMPTY
-            self.text     = u""
+            self.text     = ""
             self.sortval  = 0
             self.newyear = 0
             self.set_yr_mon_day(*source)
@@ -620,7 +621,7 @@ class Date(object):
             self.modifier = Date.MOD_NONE
             self.quality  = Date.QUAL_NONE
             self.dateval  = Date.EMPTY
-            self.text     = u""
+            self.text     = ""
             self.sortval  = 0
             self.newyear  = Date.NEWYEAR_JAN1
 
@@ -629,7 +630,7 @@ class Date(object):
         Convert to a series of tuples for data storage.
         """
         if no_text_date:
-            text = u''
+            text = ''
         else:
             text = self.text
         
@@ -719,7 +720,7 @@ class Date(object):
         elif isinstance(other, (tuple, list)):
             return self.copy_offset_ymd(*other)
         else:
-            raise AttributeError, "unknown date add type: %s " % type(other)
+            raise AttributeError("unknown date add type: %s " % type(other))
 
     def __radd__(self, other):
         """
@@ -738,7 +739,7 @@ class Date(object):
         elif isinstance(other, type(self)):       # Date1 - Date2 -> tuple
             return Span(self, other)
         else:
-            raise AttributeError, "unknown date sub type: %s " % type(other)
+            raise AttributeError("unknown date sub type: %s " % type(other))
 
     # Can't use this (as is) as this breaks comparing dates to None
     #def __eq__(self, other):
@@ -926,7 +927,7 @@ class Date(object):
             # If all > all
             return self_start > other_stop
         else:
-            raise AttributeError, ("invalid match comparison operator: '%s'" % 
+            raise AttributeError("invalid match comparison operator: '%s'" % 
                                    comparison)
             
     def __str__(self):

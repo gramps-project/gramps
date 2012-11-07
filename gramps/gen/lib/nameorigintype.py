@@ -36,7 +36,7 @@ from ..ggettext import sgettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from grampstype import GrampsType
+from .grampstype import GrampsType
 
 class NameOriginType(GrampsType):
     """

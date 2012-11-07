@@ -38,6 +38,7 @@ from gramps.gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 import logging
+import collections
 log = logging.getLogger(".WriteFtree")
 
 #-------------------------------------------------------------------------
@@ -70,7 +71,7 @@ class FtreeWriter(object):
         self.filename = filename
         self.user = user
         self.option_box = option_box
-        if callable(self.user.callback): # callback is really callable
+        if isinstance(self.user.callback, collections.Callable): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty

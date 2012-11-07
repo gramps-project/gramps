@@ -130,26 +130,26 @@ class LRU(object):
         """
         Return items and keys in the LRU using a generator
         """
-        for data in self.iteritems():
+        for data in self.items():
             yield data[1]
 
     def keys(self):
         """
         Return all keys
         """
-        return [data[0] for data in self.iteritems()]
+        return [data[0] for data in self.items()]
 
     def values(self):
         """
         Return all values
         """
-        return [data[1] for data in self.iteritems()]
+        return [data[1] for data in self.items()]
 
     def items(self):
         """
         Return all items
         """
-        return [data[0] for data in self.iteritems()]
+        return [data[0] for data in self.items()]
 
     def clear(self):
         """

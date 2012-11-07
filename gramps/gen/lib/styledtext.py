@@ -22,12 +22,15 @@
 
 "Handling formatted ('rich text') strings"
 
+from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from styledtexttag import StyledTextTag
+from .styledtexttag import StyledTextTag
+from ..constfunc import cuni, STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +81,7 @@ class StyledText(object):
         StyledTextBuffer will merge them automatically if the text is displayed.
 
     """
-    (POS_TEXT, POS_TAGS) = range(2)
+    (POS_TEXT, POS_TAGS) = list(range(2))
     
     def __init__(self, text="", tags=None):
         """Setup initial instance variable values."""
@@ -113,7 +116,7 @@ class StyledText(object):
             
             return self.__class__("".join([self._string, other._string]),
                                   self._tags + other._tags)
-        elif isinstance(other, basestring):
+        elif isinstance(other, STRTYPE):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
         else:
@@ -336,7 +339,7 @@ class StyledText(object):
     string = property(get_string)
 
 if __name__ == '__main__':
-    from styledtexttagtype import StyledTextTagType
+    from .styledtexttagtype import StyledTextTagType
     T1 = StyledTextTag(StyledTextTagType(1), 'v1', [(0, 2), (2, 4), (4, 6)])
     T2 = StyledTextTag(StyledTextTagType(2), 'v2', [(1, 3), (3, 5), (0, 7)])
     
@@ -352,4 +355,4 @@ if __name__ == '__main__':
     C = C.replace('X', StyledText('_'))
     A = A + B
 
-    print A
+    print(A)

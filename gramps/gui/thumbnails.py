@@ -50,8 +50,9 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, THUMBSCALE, 
-                       THUMBSCALE_LARGE, USE_THUMBNAILER)
+from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, 
+                              THUMBSCALE, THUMBSCALE_LARGE, USE_THUMBNAILER)
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +69,7 @@ try:
     from gi.repository import GConf
     GCONF = True
     CLIENT = GConf.Client.get_default()
-except (ImportError, KeyError), msg:
+except (ImportError, KeyError) as msg:
     GCONF = False
 
 #-------------------------------------------------------------------------
@@ -99,7 +100,7 @@ def __get_gconf_string(key):
         val =  CLIENT.get_string(key)
     except GObject.GError:
         val = None
-    return unicode(val)
+    return cuni(val)
 
 #-------------------------------------------------------------------------
 #
@@ -213,7 +214,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                                          GdkPixbuf.InterpType.BILINEAR)
             pixbuf.savev(filename, "png", "", "")
             return True
-        except Exception, err:
+        except Exception as err:
             LOG.warn("Error scaling image down: %s", str(err))
             return False
 

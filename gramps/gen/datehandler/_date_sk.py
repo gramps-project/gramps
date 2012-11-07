@@ -24,7 +24,7 @@
 """
 Slovak-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -38,9 +38,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -50,44 +50,44 @@ from _datehandler import register_datehandler
 class DateParserSK(DateParser):
 
     modifier_to_int = {
-        u'pred'   : Date.MOD_BEFORE, 
-        u'do'     : Date.MOD_BEFORE, 
-        u'po'     : Date.MOD_AFTER, 
-        u'asi'    : Date.MOD_ABOUT, 
-        u'okolo'  : Date.MOD_ABOUT, 
-        u'pribl.' : Date.MOD_ABOUT, 
+        'pred'   : Date.MOD_BEFORE, 
+        'do'     : Date.MOD_BEFORE, 
+        'po'     : Date.MOD_AFTER, 
+        'asi'    : Date.MOD_ABOUT, 
+        'okolo'  : Date.MOD_ABOUT, 
+        'pribl.' : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregoriánsky'  : Date.CAL_GREGORIAN, 
-        u'g'             : Date.CAL_GREGORIAN, 
-        u'juliánský'     : Date.CAL_JULIAN, 
-        u'j'             : Date.CAL_JULIAN, 
-        u'hebrejský'     : Date.CAL_HEBREW, 
-        u'h'             : Date.CAL_HEBREW, 
-        u'islamský'      : Date.CAL_ISLAMIC, 
-        u'i'             : Date.CAL_ISLAMIC, 
-        u'republikánsky' : Date.CAL_FRENCH, 
-        u'r'             : Date.CAL_FRENCH, 
-        u'perzský'       : Date.CAL_PERSIAN, 
-        u'p'             : Date.CAL_PERSIAN, 
-        u'swedish'      : Date.CAL_SWEDISH, 
-        u's'            : Date.CAL_SWEDISH, 
+        'gregoriánsky'  : Date.CAL_GREGORIAN, 
+        'g'             : Date.CAL_GREGORIAN, 
+        'juliánský'     : Date.CAL_JULIAN, 
+        'j'             : Date.CAL_JULIAN, 
+        'hebrejský'     : Date.CAL_HEBREW, 
+        'h'             : Date.CAL_HEBREW, 
+        'islamský'      : Date.CAL_ISLAMIC, 
+        'i'             : Date.CAL_ISLAMIC, 
+        'republikánsky' : Date.CAL_FRENCH, 
+        'r'             : Date.CAL_FRENCH, 
+        'perzský'       : Date.CAL_PERSIAN, 
+        'p'             : Date.CAL_PERSIAN, 
+        'swedish'      : Date.CAL_SWEDISH, 
+        's'            : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'odhadovaný' : Date.QUAL_ESTIMATED, 
-        u'odh.'       : Date.QUAL_ESTIMATED, 
-        u'vypočítaný' : Date.QUAL_CALCULATED, 
-        u'vyp.'       : Date.QUAL_CALCULATED, 
+        'odhadovaný' : Date.QUAL_ESTIMATED, 
+        'odh.'       : Date.QUAL_ESTIMATED, 
+        'vypočítaný' : Date.QUAL_CALCULATED, 
+        'vyp.'       : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'od']
-        _span_2 = [u'do']
-        _range_1 = [u'medzi']
-        _range_2 = [u'a']
+        _span_1 = ['od']
+        _span_2 = ['do']
+        _range_1 = ['medzi']
+        _range_2 = ['a']
         self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
@@ -104,20 +104,20 @@ class DateDisplaySK(DateDisplay):
     """
     Slovak language date display class. 
     """
-    long_months = ( u"", u"január", u"február", u"marec", u"apríl", u"máj", 
-                    u"jún", u"júl", u"august", u"september", u"október", 
-                    u"november", u"december" )
+    long_months = ( "", "január", "február", "marec", "apríl", "máj", 
+                    "jún", "júl", "august", "september", "október", 
+                    "november", "december" )
     
-    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"máj", u"jún", 
-                     u"júl", u"aug", u"sep", u"okt", u"nov", u"dec" )
+    short_months = ( "", "jan", "feb", "mar", "apr", "máj", "jún", 
+                     "júl", "aug", "sep", "okt", "nov", "dec" )
     
     calendar = (
-        "", u"juliánský", u"hebrejský", 
-        u"republikánsky", u"perzský", u"islamský", 
-        u"swedish" 
+        "", "juliánský", "hebrejský", 
+        "republikánsky", "perzský", "islamský", 
+        "swedish" 
         )
 
-    _mod_str = ("", u"pred ", u"po ", u"okolo ", "", "", "")
+    _mod_str = ("", "pred ", "po ", "okolo ", "", "", "")
     
     _qual_str = ("", "odh. ", "vyp. ")
 
@@ -146,14 +146,14 @@ class DateDisplaySK(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'od', d1, 
-                                        u'do', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'od', d1, 
+                                        'do', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'medzi', 
-                                        d1, u'a', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'medzi', 
+                                        d1, 'a', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)

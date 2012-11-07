@@ -89,7 +89,7 @@ class PdfDoc(libcairodoc.CairoDoc):
         filename = self._backend.filename.encode(sys.getfilesystemencoding())
         try:
             surface = cairo.PDFSurface(filename, paper_width, paper_height)
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
             raise ReportError(errmsg)
         except:
@@ -187,7 +187,7 @@ class PdfDoc(libcairodoc.CairoDoc):
         for n, value in enumerate(toc):
             page_nr = toc[n][1]
             toc[n][1] = page_nr + (offset if page_nr > start_page else 0)
-        for key, value in index.iteritems():
+        for key, value in index.items():
             index[key] = [page_nr + (offset if page_nr > start_page else 0)
                           for page_nr in value]
 
@@ -258,7 +258,7 @@ def write_index(index, doc):
     doc.end_paragraph()
     
     doc.start_table('index', 'IDX-Table')
-    for key in sorted(index.iterkeys()):
+    for key in sorted(index.keys()):
         doc.start_row()
         doc.start_cell('IDX-Cell')
         doc.start_paragraph('IDX-Entry')

@@ -45,5 +45,5 @@ class DataModel(Gtk.ListStore):
         Gtk.ListStore.__init__(self, str, str)
         self.db = db
 
-        for key,value in attr_list.items():
+        for key,value in list(attr_list.items()):
             self.append(row=[key,value])

@@ -30,9 +30,9 @@ Location class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from locationbase import LocationBase
-from const import IDENTICAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .locationbase import LocationBase
+from .const import IDENTICAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

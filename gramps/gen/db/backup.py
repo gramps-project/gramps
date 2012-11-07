@@ -55,15 +55,19 @@ db.
 #
 #-------------------------------------------------------------------------
 import os
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #------------------------------------------------------------------------
 #
 # Gramps libs
 #
 #------------------------------------------------------------------------
-from exceptions import DbException
-from write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
+from .exceptions import DbException
+from .write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, TAG_TBL, META, CITATIONS_TBL
 
 #------------------------------------------------------------------------
@@ -87,7 +91,7 @@ def backup(database):
     """
     try:
         __do_export(database)
-    except (OSError, IOError), msg:
+    except (OSError, IOError) as msg:
         raise DbException(str(msg))
 
 def __mk_backup_name(database, base):
@@ -129,7 +133,7 @@ def __do_export(database):
             data = cursor.first()
             while data:
                 pickle.dump(data, backup_table, 2)
-                data = cursor.next()
+                data = next(cursor)
             cursor.close()
             backup_table.close()
     except (IOError,OSError):
@@ -155,7 +159,7 @@ def restore(database):
     """
     try:
         __do_restore(database)
-    except (OSError, IOError), msg:
+    except (OSError, IOError) as msg:
         raise DbException(str(msg))
 
 def __do_restore(database):

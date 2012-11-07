@@ -23,6 +23,8 @@
 Place Tree View
 """
 
+from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -198,8 +200,8 @@ class PlaceTreeView(PlaceBaseView):
         place = Place()
         
         model, pathlist = self.selection.get_selected_rows()
-        level = [u"", u"", u""]
-        level1 = level2 = level3 = u""
+        level = ["", "", ""]
+        level1 = level2 = level3 = ""
         if len(pathlist) == 1:
             path = pathlist[0]
             node = model.on_get_iter(path)
@@ -227,7 +229,7 @@ class PlaceTreeView(PlaceBaseView):
 
         for ind in [0, 1, 2]: 
             if level[ind] and level[ind] == COUNTRYLEVELS['default'][ind+1]:
-                level[ind] = u""
+                level[ind] = ""
         place.get_main_location().set_country(level[0])
         place.get_main_location().set_state(level[1])
         place.get_main_location().set_county(level[2])

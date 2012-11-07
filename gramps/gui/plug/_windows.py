@@ -28,6 +28,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import traceback
 import os
 import sys
@@ -53,8 +55,8 @@ from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gramps.gen.ggettext import gettext as _
 from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
-import tool
-from _guioptions import add_gui_options
+from . import tool
+from ._guioptions import add_gui_options
 from ..dialog import InfoDialog
 from ..editors import EditPerson
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
@@ -65,7 +67,7 @@ def display_message(message):
     """
     A default callback for displaying messages.
     """
-    print message
+    print(message)
 
 #-------------------------------------------------------------------------
 #
@@ -290,13 +292,16 @@ class PluginStatus(ManagedWindow):
         """
         Reloads the addons from the wiki into the list.
         """
-        import urllib
+        if sys.version_info[0] < 3:
+            from urllib2 import urlopen
+        else:
+            from urllib.request import urlopen
         from ..utils import ProgressMeter
         URL = "%s%s" % (URL_WIKISTRING, WIKI_EXTRAPLUGINS_RAWDATA)
         try:
-            fp = urllib.urlopen(URL)
+            fp = urlopen(URL)
         except:
-            print "Error: cannot open %s" % URL
+            print("Error: cannot open %s" % URL)
             return
         pm = ProgressMeter(_("Refreshing Addon List"))
         pm.set_pass(header=_("Reading gramps-project.org..."))
@@ -348,8 +353,8 @@ class PluginStatus(ManagedWindow):
                 if "|" in url:
                     url, text = url.split("|", 1)
                 # need to get a page that says where it is:
-                fp = urllib.urlopen("%s%s%s" % (URL_WIKISTRING, url, 
-                                                "&action=edit&externaledit=true&mode=file"))
+                fp = urlopen("%s%s%s" % (URL_WIKISTRING, url, 
+                                "&action=edit&externaledit=true&mode=file"))
                 for line in fp:
                     if line.startswith("URL="):
                         junk, url = line.split("=", 1)
@@ -375,7 +380,6 @@ class PluginStatus(ManagedWindow):
         """
         Get all addons from the wiki and install them.
         """
-        import urllib
         from ..utils import ProgressMeter
         pm = ProgressMeter(_("Install all Addons"), _("Installing..."), message_area=True)
         pm.set_pass(total=len(self.addon_model))
@@ -495,7 +499,7 @@ class PluginStatus(ManagedWindow):
         
     def __populate_reg_list(self):
         """ Build list of registered plugins"""
-        for (type, typestr) in PTYPE_STR.iteritems():
+        for (type, typestr) in PTYPE_STR.items():
             registered_plugins = []
             for pdata in self.__preg.type_plugins(type):
                 #  model: plugintype, hidden, pluginname, plugindescr, pluginid
@@ -544,7 +548,6 @@ class PluginStatus(ManagedWindow):
     def button_press_addon(self, obj):
         """ Callback function from the user clicking on a line in reg plugin
         """
-        import urllib
         selection = self.addon_list.get_selection()
         if selection:
             model, node = selection.get_selected()
@@ -873,7 +876,7 @@ class ToolManagedWindowBase(ManagedWindow):
         self.progress = ProgressMeter(self.get_title())
         
     def run(self):
-        raise NotImplementedError, "tool needs to define a run() method"
+        raise NotImplementedError("tool needs to define a run() method")
 
     def post_run(self):
         self.progress.close()

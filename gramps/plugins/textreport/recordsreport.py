@@ -43,6 +43,7 @@ from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -100,7 +101,7 @@ class RecordsReport(Report):
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
                 self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
-                self.doc.write_markup(unicode(name), name.get_tags())
+                self.doc.write_markup(cuni(name), name.get_tags())
                 self.doc.write_text(_(" (%(value)s)") % {'value': str(value)})
                 self.doc.end_paragraph()
 

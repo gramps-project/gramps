@@ -25,10 +25,10 @@
 Provide the database state class
 """
 
-from db import DbBsddbRead
-from proxy.proxybase import ProxyDbBase
-from utils.callback import Callback
-from config import config
+from .db import DbBsddbRead
+from .proxy.proxybase import ProxyDbBase
+from .utils.callback import Callback
+from .config import config
 
 class DbState(Callback):
     """

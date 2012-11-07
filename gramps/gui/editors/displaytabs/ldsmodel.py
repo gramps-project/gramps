@@ -69,4 +69,4 @@ class LdsModel(Gtk.ListStore):
             place_handle = lds_ord.get_place_handle()
             if place_handle:
                 return self.db.get_place_from_handle(place_handle).get_title()
-        return u""
+        return ""

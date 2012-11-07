@@ -53,6 +53,7 @@ from gi.repository import Gdk
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY) 
+from gramps.gen.constfunc import cuni
 from ...listmodel import ListModel
 from ...managedwindow import set_titles
 from ...glade import Glade
@@ -133,7 +134,7 @@ class StyleListDisplay(object):
             self.callback()
         try:
             self.sheetlist.save()
-        except IOError, msg:
+        except IOError as msg:
             from ...dialog import ErrorDialog
             ErrorDialog(_("Error saving stylesheet"), str(msg))
         except:
@@ -152,7 +153,7 @@ class StyleListDisplay(object):
         if not node:
             return
         
-        name = unicode(self.list.model.get_value(node, 0))
+        name = cuni(self.list.model.get_value(node, 0))
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name, style, self)
 
@@ -161,7 +162,7 @@ class StyleListDisplay(object):
         store, node = self.list.selection.get_selected()
         if not node:
             return
-        name = unicode(self.list.model.get_value(node, 0))
+        name = cuni(self.list.model.get_value(node, 0))
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
@@ -347,7 +348,7 @@ class StyleEditor(object):
         Saves the current style sheet and causes the parent to be updated with
         the changes.
         """
-        name = unicode(self.top.get_object("style_name").get_text())
+        name = cuni(self.top.get_object("style_name").get_text())
 
         self.save_paragraph()
         self.style.set_name(name)

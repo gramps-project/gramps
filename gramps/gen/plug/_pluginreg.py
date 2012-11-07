@@ -30,6 +30,8 @@ and a register for the data of all plugins .
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
 import sys
 import re
@@ -44,6 +46,7 @@ from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..utils.trans import get_addon_translator
 from ..ggettext import gettext as _
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -161,7 +164,7 @@ def valid_plugin_version(plugin_version_string):
     Checks to see if string is a valid version string for this version
     of Gramps.
     """
-    if not isinstance(plugin_version_string, basestring): return False
+    if not isinstance(plugin_version_string, STRTYPE): return False
     dots = plugin_version_string.count(".")
     if dots == 1:
         plugin_version  = tuple(map(int, plugin_version_string.split(".", 1)))
@@ -450,7 +453,7 @@ class PluginData(object):
 
     def _set_status(self, status):
         if status not in STATUS:
-            raise ValueError, 'plugin status cannot be %s' % str(status)
+            raise ValueError('plugin status cannot be %s' % str(status))
         self._status = status
 
     def _get_status(self):
@@ -470,9 +473,9 @@ class PluginData(object):
     
     def _set_ptype(self, ptype):
         if ptype not in PTYPE:
-            raise ValueError, 'Plugin type cannot be %s' % str(ptype)
+            raise ValueError('Plugin type cannot be %s' % str(ptype))
         elif self._ptype is not None:
-            raise ValueError, 'Plugin type may not be changed'
+            raise ValueError('Plugin type may not be changed')
         self._ptype = ptype
         if self._ptype == REPORT:
             self._category = CATEGORY_TEXT
@@ -506,7 +509,7 @@ class PluginData(object):
     
     def _set_supported(self, supported):
         if not isinstance(supported, bool):
-            raise ValueError, 'Plugin must have supported=True or False'
+            raise ValueError('Plugin must have supported=True or False')
         self._supported = supported
     
     def _get_supported(self):
@@ -514,7 +517,7 @@ class PluginData(object):
 
     def _set_load_on_reg(self, load_on_reg):
         if not isinstance(load_on_reg, bool):
-            raise ValueError, 'Plugin must have load_on_reg=True or False'
+            raise ValueError('Plugin must have load_on_reg=True or False')
         self._load_on_reg = load_on_reg
 
     def _get_load_on_reg(self):
@@ -525,7 +528,7 @@ class PluginData(object):
 
     def _set_icons(self, icons):
         if not isinstance(icons, list):
-            raise ValueError, 'Plugin must have icons as a list'
+            raise ValueError('Plugin must have icons as a list')
         self._icons = icons
 
     def _get_icondir(self):
@@ -539,7 +542,7 @@ class PluginData(object):
 
     def _set_depends_on(self, depends):
         if not isinstance(depends, list):
-            raise ValueError, 'Plugin must have depends_on as a list'
+            raise ValueError('Plugin must have depends_on as a list')
         self._depends_on = depends
 
     def _get_include_in_listing(self):
@@ -547,7 +550,7 @@ class PluginData(object):
 
     def _set_include_in_listing(self, include):
         if not isinstance(include, bool):
-            raise ValueError, 'Plugin must have include_in_listing as a bool'
+            raise ValueError('Plugin must have include_in_listing as a bool')
         self._include_in_listing = include
 
     id = property(_get_id, _set_id)
@@ -578,7 +581,7 @@ class PluginData(object):
     #RELCALC attributes
     def _set_relcalcclass(self, relcalcclass):
         if not self._ptype == RELCALC:
-            raise ValueError, 'relcalcclass may only be set for RELCALC plugins'
+            raise ValueError('relcalcclass may only be set for RELCALC plugins')
         self._relcalcclass = relcalcclass
 
     def _get_relcalcclass(self):
@@ -586,7 +589,7 @@ class PluginData(object):
     
     def _set_lang_list(self, lang_list):
         if not self._ptype == RELCALC:
-            raise ValueError, 'relcalcclass may only be set for RELCALC plugins'
+            raise ValueError('relcalcclass may only be set for RELCALC plugins')
         self._lang_list = lang_list
 
     def _get_lang_list(self):
@@ -598,9 +601,9 @@ class PluginData(object):
     #REPORT attributes
     def _set_require_active(self, require_active):
         if not self._ptype == REPORT:
-            raise ValueError, 'require_active may only be set for REPORT plugins'
+            raise ValueError('require_active may only be set for REPORT plugins')
         if not isinstance(require_active, bool):
-            raise ValueError, 'Report must have require_active=True or False'
+            raise ValueError('Report must have require_active=True or False')
         self._require_active = require_active
 
     def _get_require_active(self):
@@ -608,7 +611,7 @@ class PluginData(object):
 
     def _set_reportclass(self, reportclass):
         if not self._ptype == REPORT:
-            raise ValueError, 'reportclass may only be set for REPORT plugins'
+            raise ValueError('reportclass may only be set for REPORT plugins')
         self._reportclass = reportclass
 
     def _get_reportclass(self):
@@ -616,12 +619,12 @@ class PluginData(object):
 
     def _set_report_modes(self, report_modes):
         if not self._ptype == REPORT:
-            raise ValueError, 'report_modes may only be set for REPORT plugins'
+            raise ValueError('report_modes may only be set for REPORT plugins')
         if not isinstance(report_modes, list):
-            raise ValueError, 'report_modes must be a list'
+            raise ValueError('report_modes must be a list')
         self._report_modes = [x for x in report_modes if x in REPORT_MODES]
         if not self._report_modes:
-            raise ValueError, 'report_modes not a valid list of modes'
+            raise ValueError('report_modes not a valid list of modes')
 
     def _get_report_modes(self):
         return self._report_modes
@@ -629,8 +632,8 @@ class PluginData(object):
     #REPORT or TOOL or QUICKREPORT or GENERAL attributes
     def _set_category(self, category):
         if self._ptype not in [REPORT, TOOL, QUICKREPORT, VIEW, GENERAL]:
-            raise ValueError, 'category may only be set for ' \
-                              'REPORT/TOOL/QUICKREPORT/VIEW/GENERAL plugins'
+            raise ValueError('category may only be set for ' \
+                              'REPORT/TOOL/QUICKREPORT/VIEW/GENERAL plugins')
         self._category = category
 
     def _get_category(self):
@@ -639,7 +642,7 @@ class PluginData(object):
     #REPORT OR TOOL attributes
     def _set_optionclass(self, optionclass):
         if not (self._ptype == REPORT or self.ptype == TOOL):
-            raise ValueError, 'optionclass may only be set for REPORT/TOOL plugins'
+            raise ValueError('optionclass may only be set for REPORT/TOOL plugins')
         self._optionclass = optionclass
 
     def _get_optionclass(self):
@@ -648,7 +651,7 @@ class PluginData(object):
     #TOOL attributes
     def _set_toolclass(self, toolclass):
         if not self._ptype == TOOL:
-            raise ValueError, 'toolclass may only be set for TOOL plugins'
+            raise ValueError('toolclass may only be set for TOOL plugins')
         self._toolclass = toolclass
     
     def _get_toolclass(self):
@@ -656,12 +659,12 @@ class PluginData(object):
 
     def _set_tool_modes(self, tool_modes):
         if not self._ptype == TOOL:
-            raise ValueError, 'tool_modes may only be set for TOOL plugins'
+            raise ValueError('tool_modes may only be set for TOOL plugins')
         if not isinstance(tool_modes, list):
-            raise ValueError, 'tool_modes must be a list'
+            raise ValueError('tool_modes must be a list')
         self._tool_modes = [x for x in tool_modes if x in TOOL_MODES]
         if not self._tool_modes:
-            raise ValueError, 'tool_modes not a valid list of modes'
+            raise ValueError('tool_modes not a valid list of modes')
 
     def _get_tool_modes(self):
         return self._tool_modes
@@ -677,7 +680,7 @@ class PluginData(object):
     #DOCGEN attributes
     def _set_basedocclass(self, basedocclass):
         if not self._ptype == DOCGEN:
-            raise ValueError, 'basedocclass may only be set for DOCGEN plugins'
+            raise ValueError('basedocclass may only be set for DOCGEN plugins')
         self._basedocclass = basedocclass
     
     def _get_basedocclass(self):
@@ -685,9 +688,9 @@ class PluginData(object):
     
     def _set_paper(self, paper):
         if not self._ptype == DOCGEN:
-            raise ValueError, 'paper may only be set for DOCGEN plugins'
+            raise ValueError('paper may only be set for DOCGEN plugins')
         if not isinstance(paper, bool):
-            raise ValueError, 'Plugin must have paper=True or False'
+            raise ValueError('Plugin must have paper=True or False')
         self._paper = paper
     
     def _get_paper(self):
@@ -695,9 +698,9 @@ class PluginData(object):
     
     def _set_style(self, style):
         if not self._ptype == DOCGEN:
-            raise ValueError, 'style may only be set for DOCGEN plugins'
+            raise ValueError('style may only be set for DOCGEN plugins')
         if not isinstance(style, bool):
-            raise ValueError, 'Plugin must have style=True or False'
+            raise ValueError('Plugin must have style=True or False')
         self._style = style
     
     def _get_style(self):
@@ -706,8 +709,8 @@ class PluginData(object):
     def _set_extension(self, extension):
         if not (self._ptype == DOCGEN or self._ptype == EXPORT 
                 or self._ptype == IMPORT):
-            raise ValueError, 'extension may only be set for DOCGEN/EXPORT/'\
-                              'IMPORT plugins'
+            raise ValueError('extension may only be set for DOCGEN/EXPORT/'\
+                              'IMPORT plugins')
         self._extension = extension
     
     def _get_extension(self):
@@ -721,7 +724,7 @@ class PluginData(object):
     #QUICKREPORT attributes
     def _set_runfunc(self, runfunc):
         if not self._ptype == QUICKREPORT:
-            raise ValueError, 'runfunc may only be set for QUICKREPORT plugins'
+            raise ValueError('runfunc may only be set for QUICKREPORT plugins')
         self._runfunc = runfunc
     
     def _get_runfunc(self):
@@ -732,7 +735,7 @@ class PluginData(object):
     #MAPSERVICE attributes
     def _set_mapservice(self, mapservice):
         if not self._ptype == MAPSERVICE:
-            raise ValueError, 'mapservice may only be set for MAPSERVICE plugins'
+            raise ValueError('mapservice may only be set for MAPSERVICE plugins')
         self._mapservice = mapservice
     
     def _get_mapservice(self):
@@ -743,7 +746,7 @@ class PluginData(object):
     #EXPORT attributes
     def _set_export_function(self, export_function):
         if not self._ptype == EXPORT:
-            raise ValueError, 'export_function may only be set for EXPORT plugins'
+            raise ValueError('export_function may only be set for EXPORT plugins')
         self._export_function = export_function
     
     def _get_export_function(self):
@@ -751,7 +754,7 @@ class PluginData(object):
     
     def _set_export_options(self, export_options):
         if not self._ptype == EXPORT:
-            raise ValueError, 'export_options may only be set for EXPORT plugins'
+            raise ValueError('export_options may only be set for EXPORT plugins')
         self._export_options = export_options
     
     def _get_export_options(self):
@@ -759,7 +762,7 @@ class PluginData(object):
     
     def _set_export_options_title(self, export_options_title):
         if not self._ptype == EXPORT:
-            raise ValueError, 'export_options_title may only be set for EXPORT plugins'
+            raise ValueError('export_options_title may only be set for EXPORT plugins')
         self._export_options_title = export_options_title
     
     def _get_export_options_title(self):
@@ -773,7 +776,7 @@ class PluginData(object):
     #IMPORT attributes
     def _set_import_function(self, import_function):
         if not self._ptype == IMPORT:
-            raise ValueError, 'import_function may only be set for IMPORT plugins'
+            raise ValueError('import_function may only be set for IMPORT plugins')
         self._import_function = import_function
     
     def _get_import_function(self):
@@ -784,7 +787,7 @@ class PluginData(object):
     #GRAMPLET attributes
     def _set_gramplet(self, gramplet):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'gramplet may only be set for GRAMPLET plugins'
+            raise ValueError('gramplet may only be set for GRAMPLET plugins')
         self._gramplet = gramplet
     
     def _get_gramplet(self):
@@ -792,9 +795,9 @@ class PluginData(object):
     
     def _set_height(self, height):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'height may only be set for GRAMPLET plugins'
+            raise ValueError('height may only be set for GRAMPLET plugins')
         if not isinstance(height, int):
-            raise ValueError, 'Plugin must have height an integer'
+            raise ValueError('Plugin must have height an integer')
         self._height = height
     
     def _get_height(self):
@@ -802,9 +805,9 @@ class PluginData(object):
     
     def _set_detached_height(self, detached_height):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'detached_height may only be set for GRAMPLET plugins'
+            raise ValueError('detached_height may only be set for GRAMPLET plugins')
         if not isinstance(detached_height, int):
-            raise ValueError, 'Plugin must have detached_height an integer'
+            raise ValueError('Plugin must have detached_height an integer')
         self._detached_height = detached_height
     
     def _get_detached_height(self):
@@ -812,9 +815,9 @@ class PluginData(object):
     
     def _set_detached_width(self, detached_width):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'detached_width may only be set for GRAMPLET plugins'
+            raise ValueError('detached_width may only be set for GRAMPLET plugins')
         if not isinstance(detached_width, int):
-            raise ValueError, 'Plugin must have detached_width an integer'
+            raise ValueError('Plugin must have detached_width an integer')
         self._detached_width = detached_width
     
     def _get_detached_width(self):
@@ -822,9 +825,9 @@ class PluginData(object):
 
     def _set_expand(self, expand):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'expand may only be set for GRAMPLET plugins'
+            raise ValueError('expand may only be set for GRAMPLET plugins')
         if not isinstance(expand, bool):
-            raise ValueError, 'Plugin must have expand as a bool'
+            raise ValueError('Plugin must have expand as a bool')
         self._expand = expand
     
     def _get_expand(self):
@@ -832,9 +835,9 @@ class PluginData(object):
     
     def _set_gramplet_title(self, gramplet_title):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'gramplet_title may only be set for GRAMPLET plugins'
+            raise ValueError('gramplet_title may only be set for GRAMPLET plugins')
         if not isinstance(gramplet_title, str):
-            raise ValueError, 'Plugin must have a string as gramplet_title'
+            raise ValueError('Plugin must have a string as gramplet_title')
         self._gramplet_title = gramplet_title
     
     def _get_gramplet_title(self):
@@ -842,7 +845,7 @@ class PluginData(object):
 
     def _set_help_url(self, help_url):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'help_url may only be set for GRAMPLET plugins'
+            raise ValueError('help_url may only be set for GRAMPLET plugins')
         self._help_url = help_url
 
     def _get_help_url(self):
@@ -850,7 +853,7 @@ class PluginData(object):
 
     def _set_navtypes(self, navtypes):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'navtypes may only be set for GRAMPLET plugins'
+            raise ValueError('navtypes may only be set for GRAMPLET plugins')
         self._navtypes = navtypes
 
     def _get_navtypes(self):
@@ -858,7 +861,7 @@ class PluginData(object):
     
     def _set_orientation(self, orientation):
         if not self._ptype == GRAMPLET:
-            raise ValueError, 'orientation may only be set for GRAMPLET plugins'
+            raise ValueError('orientation may only be set for GRAMPLET plugins')
         self._orientation = orientation
 
     def _get_orientation(self):
@@ -876,7 +879,7 @@ class PluginData(object):
 
     def _set_viewclass(self, viewclass):
         if not self._ptype == VIEW:
-            raise ValueError, 'viewclass may only be set for VIEW plugins'
+            raise ValueError('viewclass may only be set for VIEW plugins')
         self._viewclass = viewclass
 
     def _get_viewclass(self):
@@ -884,7 +887,7 @@ class PluginData(object):
   
     def _set_stock_icon(self, stock_icon):
         if not self._ptype == VIEW:
-            raise ValueError, 'stock_icon may only be set for VIEW plugins'
+            raise ValueError('stock_icon may only be set for VIEW plugins')
         self._stock_icon = stock_icon
 
     def _get_stock_icon(self):
@@ -896,7 +899,7 @@ class PluginData(object):
     #SIDEBAR attributes
     def _set_sidebarclass(self, sidebarclass):
         if not self._ptype == SIDEBAR:
-            raise ValueError, 'sidebarclass may only be set for SIDEBAR plugins'
+            raise ValueError('sidebarclass may only be set for SIDEBAR plugins')
         self._sidebarclass = sidebarclass
 
     def _get_sidebarclass(self):
@@ -904,7 +907,7 @@ class PluginData(object):
         
     def _set_menu_label(self, menu_label):
         if not self._ptype == SIDEBAR:
-            raise ValueError, 'menu_label may only be set for SIDEBAR plugins'
+            raise ValueError('menu_label may only be set for SIDEBAR plugins')
         self._menu_label = menu_label
 
     def _get_menu_label(self):
@@ -916,7 +919,7 @@ class PluginData(object):
     #VIEW and SIDEBAR attributes
     def _set_order(self, order):
         if not self._ptype in (VIEW, SIDEBAR):
-            raise ValueError, 'order may only be set for VIEW and SIDEBAR plugins'
+            raise ValueError('order may only be set for VIEW and SIDEBAR plugins')
         self._order = order
 
     def _get_order(self):
@@ -927,7 +930,7 @@ class PluginData(object):
     #GENERAL attr
     def _set_data(self, data):
         if not self._ptype in (GENERAL,):
-            raise ValueError, 'data may only be set for GENERAL plugins'
+            raise ValueError('data may only be set for GENERAL plugins')
         self._data = data
 
     def _get_data(self):
@@ -935,7 +938,7 @@ class PluginData(object):
 
     def _set_process(self, process):
         if not self._ptype in (GENERAL,):
-            raise ValueError, 'process may only be set for GENERAL plugins'
+            raise ValueError('process may only be set for GENERAL plugins')
         self._process = process
 
     def _get_process(self):
@@ -1089,18 +1092,18 @@ class PluginRegister(object):
             local_gettext = get_addon_translator(full_filename).gettext
             try:
                 #execfile(full_filename,
-                execfile(full_filename.encode(sys.getfilesystemencoding()),
+                exec(compile(open(full_filename.encode(sys.getfilesystemencoding())).read(), full_filename.encode(sys.getfilesystemencoding()), 'exec'),
                          make_environment(_=local_gettext),
                          {})
-            except ValueError, msg:
-                print _('ERROR: Failed reading plugin registration %(filename)s') % \
-                            {'filename' : filename}
-                print msg
+            except ValueError as msg:
+                print(_('ERROR: Failed reading plugin registration %(filename)s') % \
+                            {'filename' : filename})
+                print(msg)
                 self.__plugindata = self.__plugindata[:lenpd]
             except:
-                print _('ERROR: Failed reading plugin registration %(filename)s') % \
-                            {'filename' : filename}
-                print "".join(traceback.format_exception(*sys.exc_info()))
+                print(_('ERROR: Failed reading plugin registration %(filename)s') % \
+                            {'filename' : filename})
+                print("".join(traceback.format_exception(*sys.exc_info())))
                 self.__plugindata = self.__plugindata[:lenpd]
             #check if: 
             #  1. plugin exists, if not remove, otherwise set module name
@@ -1112,13 +1115,13 @@ class PluginRegister(object):
                 ind += 1
                 plugin.directory = dir
                 if not valid_plugin_version(plugin.gramps_target_version):
-                    print _('ERROR: Plugin file %(filename)s has a version of '
+                    print(_('ERROR: Plugin file %(filename)s has a version of '
                             '"%(gramps_target_version)s" which is invalid for Gramps '
                             '"%(gramps_version)s".' % 
                             {'filename': os.path.join(dir, plugin.fname),
                              'gramps_version': GRAMPSVERSION,
                              'gramps_target_version': plugin.gramps_target_version,}
-                            )
+                            ))
                     rmlist.append(ind)
                     continue
                 if not plugin.status == STABLE and self.stable_only:
@@ -1133,19 +1136,19 @@ class PluginRegister(object):
                 match = pymod.match(plugin.fname)
                 if not match:
                     rmlist.append(ind)
-                    print _('ERROR: Wrong python file %(filename)s in register file '
+                    print(_('ERROR: Wrong python file %(filename)s in register file '
                             '%(regfile)s')  % {
                                'filename': os.path.join(dir, plugin.fname),
                                'regfile': os.path.join(dir, filename)
-                            }
+                            })
                     continue
                 if not os.path.isfile(os.path.join(dir, plugin.fname)):
                     rmlist.append(ind)
-                    print _('ERROR: Python file %(filename)s in register file '
+                    print(_('ERROR: Python file %(filename)s in register file '
                             '%(regfile)s does not exist')  % {
                                'filename': os.path.join(dir, plugin.fname),
                                'regfile': os.path.join(dir, filename)
-                            }
+                            })
                     continue
                 module = match.groups()[0]
                 plugin.mod_name = module

@@ -26,7 +26,7 @@
 """
 Catalan-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -40,9 +40,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -52,56 +52,56 @@ from _datehandler import register_datehandler
 class DateParserCA(DateParser):
 
     modifier_to_int = {
-        u'abans de'     : Date.MOD_BEFORE, 
-        u'abans'        : Date.MOD_BEFORE, 
-        u'ab.'          : Date.MOD_BEFORE, 
-        u'després de'   : Date.MOD_AFTER, 
-        u'després'      : Date.MOD_AFTER, 
-        u'desp.'        : Date.MOD_AFTER, 
-        u'desp'         : Date.MOD_AFTER, 
-        u'aprox.'       : Date.MOD_ABOUT, 
-        u'aprox'        : Date.MOD_ABOUT, 
-        u'circa'        : Date.MOD_ABOUT, 
-        u'ca.'          : Date.MOD_ABOUT, 
-        u'ca'           : Date.MOD_ABOUT, 
-        u'c.'           : Date.MOD_ABOUT, 
-        u'cap a'        : Date.MOD_ABOUT, 
-        u'al voltant'   : Date.MOD_ABOUT, 
-        u'al voltant de': Date.MOD_ABOUT, 
+        'abans de'     : Date.MOD_BEFORE, 
+        'abans'        : Date.MOD_BEFORE, 
+        'ab.'          : Date.MOD_BEFORE, 
+        'després de'   : Date.MOD_AFTER, 
+        'després'      : Date.MOD_AFTER, 
+        'desp.'        : Date.MOD_AFTER, 
+        'desp'         : Date.MOD_AFTER, 
+        'aprox.'       : Date.MOD_ABOUT, 
+        'aprox'        : Date.MOD_ABOUT, 
+        'circa'        : Date.MOD_ABOUT, 
+        'ca.'          : Date.MOD_ABOUT, 
+        'ca'           : Date.MOD_ABOUT, 
+        'c.'           : Date.MOD_ABOUT, 
+        'cap a'        : Date.MOD_ABOUT, 
+        'al voltant'   : Date.MOD_ABOUT, 
+        'al voltant de': Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregorià'     : Date.CAL_GREGORIAN, 
-        u'g'            : Date.CAL_GREGORIAN, 
-        u'julià'        : Date.CAL_JULIAN, 
-        u'j'            : Date.CAL_JULIAN, 
-        u'hebreu'       : Date.CAL_HEBREW, 
-        u'h'            : Date.CAL_HEBREW, 
-        u'islàmic'      : Date.CAL_ISLAMIC, 
-        u'i'            : Date.CAL_ISLAMIC, 
-        u'revolucionari': Date.CAL_FRENCH, 
-        u'r'            : Date.CAL_FRENCH, 
-        u'persa'        : Date.CAL_PERSIAN, 
-        u'p'            : Date.CAL_PERSIAN, 
-        u'swedish'      : Date.CAL_SWEDISH, 
-        u's'            : Date.CAL_SWEDISH, 
+        'gregorià'     : Date.CAL_GREGORIAN, 
+        'g'            : Date.CAL_GREGORIAN, 
+        'julià'        : Date.CAL_JULIAN, 
+        'j'            : Date.CAL_JULIAN, 
+        'hebreu'       : Date.CAL_HEBREW, 
+        'h'            : Date.CAL_HEBREW, 
+        'islàmic'      : Date.CAL_ISLAMIC, 
+        'i'            : Date.CAL_ISLAMIC, 
+        'revolucionari': Date.CAL_FRENCH, 
+        'r'            : Date.CAL_FRENCH, 
+        'persa'        : Date.CAL_PERSIAN, 
+        'p'            : Date.CAL_PERSIAN, 
+        'swedish'      : Date.CAL_SWEDISH, 
+        's'            : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'estimat'   : Date.QUAL_ESTIMATED, 
-        u'est.'      : Date.QUAL_ESTIMATED, 
-        u'est'       : Date.QUAL_ESTIMATED, 
-        u'calc.'     : Date.QUAL_CALCULATED, 
-        u'calc'      : Date.QUAL_CALCULATED, 
-        u'calculat'  : Date.QUAL_CALCULATED, 
+        'estimat'   : Date.QUAL_ESTIMATED, 
+        'est.'      : Date.QUAL_ESTIMATED, 
+        'est'       : Date.QUAL_ESTIMATED, 
+        'calc.'     : Date.QUAL_CALCULATED, 
+        'calc'      : Date.QUAL_CALCULATED, 
+        'calculat'  : Date.QUAL_CALCULATED, 
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'des de']
-        _span_2 = [u'fins a']
-        _range_1 = [u'entre', u'ent\.', u'ent']
-        _range_2 = [u'i']
+        _span_1 = ['des de']
+        _span_2 = ['fins a']
+        _range_1 = ['entre', 'ent\.', 'ent']
+        _range_2 = ['i']
         self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
@@ -118,38 +118,38 @@ class DateDisplayCA(DateDisplay):
     """
     Catalan language date display class. 
     """
-    long_months = ( u"", u"Gener", u"Febrer", u"Març", u"Abril", u"Maig", 
-                    u"Juny", u"Juliol", u"Agost", u"Setembre", u"Octubre", 
-                    u"Novembre", u"Desembre" )
+    long_months = ( "", "Gener", "Febrer", "Març", "Abril", "Maig", 
+                    "Juny", "Juliol", "Agost", "Setembre", "Octubre", 
+                    "Novembre", "Desembre" )
     
-    short_months = ( u"", u"Gen", u"Feb", u"Mar", u"Abr", u"Mai", u"Jun",  
-                     u"Jul", u"Ago", u"Set", u"Oct", u"Nov", u"Des" )
+    short_months = ( "", "Gen", "Feb", "Mar", "Abr", "Mai", "Jun",  
+                     "Jul", "Ago", "Set", "Oct", "Nov", "Des" )
 
     calendar = (
-        "", u"Julià", u"Hebreu", 
-        u"Revolucionari", u"Persa", u"Islàmic", 
-        u"Suec" 
+        "", "Julià", "Hebreu", 
+        "Revolucionari", "Persa", "Islàmic", 
+        "Suec" 
         )
 
-    _mod_str = ("", u"abans de ", u"després de ", u"cap a ", "", "", "")
+    _mod_str = ("", "abans de ", "després de ", "cap a ", "", "", "")
 
     _qual_str = ("", "estimat ", "calculat ")
 
     french = (
-        u'', 
-        u"Vendemiari", 
-        u'Brumari', 
-        u'Frimari', 
-        u"Nivós", 
-        u"Pluviós", 
-        u"Ventós", 
-        u'Germinal', 
-        u"Floreal", 
-        u'Pradial', 
-        u'Messidor', 
-        u'Termidor', 
-        u'Fructidor', 
-        u'Extra', 
+        '', 
+        "Vendemiari", 
+        'Brumari', 
+        'Frimari', 
+        "Nivós", 
+        "Pluviós", 
+        "Ventós", 
+        'Germinal', 
+        "Floreal", 
+        'Pradial', 
+        'Messidor', 
+        'Termidor', 
+        'Fructidor', 
+        'Extra', 
         )
     
     formats = (
@@ -177,12 +177,12 @@ class DateDisplayCA(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'des de', d1, u'fins a', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'des de', d1, 'fins a', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'entre', d1, u'i', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'entre', d1, 'i', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)

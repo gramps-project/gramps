@@ -51,6 +51,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -334,7 +335,7 @@ class OrganizeTagsDialog(object):
         Return True if the tag priorities have changed else return False.
         """
         priorities = [row[0] for row in self.namemodel.model]
-        return priorities != range(len(self.namemodel.model))
+        return priorities != list(range(len(self.namemodel.model)))
 
     def __change_tag_priority(self, trans):
         """
@@ -550,7 +551,7 @@ class EditTag(object):
         """
         Save the changes made to the tag.
         """
-        self.tag.set_name(unicode(self.entry.get_text()))
+        self.tag.set_name(cuni(self.entry.get_text()))
         self.tag.set_color(self.color.get_color().to_string())
 
         if not self.tag.get_name():

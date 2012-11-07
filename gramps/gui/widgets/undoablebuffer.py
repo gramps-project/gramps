@@ -25,6 +25,7 @@
 """ 
 gtk textbuffer with undo functionality 
 """
+from __future__ import print_function
 
 __all__ = ["UndoableBuffer"]
 
@@ -34,6 +35,9 @@ __all__ = ["UndoableBuffer"]
 
 from gi.repository import GObject
 from gi.repository import Gtk
+
+
+from gramps.gen.constfunc import cuni
 
 class Stack(list):
     """
@@ -56,7 +60,7 @@ class UndoableInsert(object):
         self.offset = text_iter.get_offset()
         self.text = str(text)
         #unicode char can have length > 1 as it points in the buffer
-        charlength = len(unicode(text))
+        charlength = len(cuni(text))
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False
@@ -314,12 +318,12 @@ class UndoableBuffer(Gtk.TextBuffer):
 if __name__ == '__main__':
     test = Stack(5)
     if test:
-        print 'WRONG: test is empty'
+        print('WRONG: test is empty')
     else:
-        print 'CORRECT: test is empty'
+        print('CORRECT: test is empty')
     
     test.append(0);test.append(1);test.append(2);test.append(3);test.append(4);
-    print '5 inserts', test
+    print('5 inserts', test)
     test.append(5);test.append(6);test.append(7);test.append(8);test.append(9);
-    print '5 more inserts', test
-    print 'last element', test[-1]
+    print('5 more inserts', test)
+    print('last element', test[-1])

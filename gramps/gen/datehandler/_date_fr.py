@@ -32,7 +32,7 @@
 """
 French-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 import re
 
 #-------------------------------------------------------------------------
@@ -42,10 +42,10 @@ import re
 #-------------------------------------------------------------------------
 
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
-import _grampslocale
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
+from . import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -62,132 +62,132 @@ class DateParserFR(DateParser):
 
     # Custom short months not the same as long months
 
-    month_to_int[u"janv"] = 1
-    month_to_int[u"févr"] = 2
-    month_to_int[u"juil"] = 7
-    month_to_int[u"sept"] = 9
-    month_to_int[u"oct"] = 10
-    month_to_int[u"déc"] = 12
+    month_to_int["janv"] = 1
+    month_to_int["févr"] = 2
+    month_to_int["juil"] = 7
+    month_to_int["sept"] = 9
+    month_to_int["oct"] = 10
+    month_to_int["déc"] = 12
 
     # Add common value
 
-    month_to_int[u"bluviose"] = 5
-    month_to_int[u"vendose"] = 6
-    month_to_int[u"7bre"] = 9
-    month_to_int[u"8bre"] = 10
-    month_to_int[u"9bre"] = 11
-    month_to_int[u"10bre"] = 12
-    month_to_int[u"xbre"] = 12
+    month_to_int["bluviose"] = 5
+    month_to_int["vendose"] = 6
+    month_to_int["7bre"] = 9
+    month_to_int["8bre"] = 10
+    month_to_int["9bre"] = 11
+    month_to_int["10bre"] = 12
+    month_to_int["xbre"] = 12
 
     # Add common latin
 
-    month_to_int[u"januaris"] = 1
-    month_to_int[u"januarii"] = 1
-    month_to_int[u"januarius"] = 1
-    month_to_int[u"februaris"] = 2
-    month_to_int[u"februarii"] = 2
-    month_to_int[u"februarius"] = 2
-    month_to_int[u"martii"] = 3
-    month_to_int[u"martius"] = 3
-    month_to_int[u"aprilis"] = 4
-    month_to_int[u"maius"] = 5
-    month_to_int[u"maii"] = 5
-    month_to_int[u"junius"] = 6
-    month_to_int[u"junii"] = 6
-    month_to_int[u"julius"] = 7
-    month_to_int[u"julii"] = 7
-    month_to_int[u"augustus"] = 8
-    month_to_int[u"augusti"] = 8
-    month_to_int[u"septembris"] = 9
-    month_to_int[u"7bris"] = 9
-    month_to_int[u"september"] = 9
-    month_to_int[u"october"] = 10
-    month_to_int[u"octobris"] = 10
-    month_to_int[u"8bris"] = 10
-    month_to_int[u"novembris"] = 11
-    month_to_int[u"9bris"] = 11
-    month_to_int[u"november"] = 11
-    month_to_int[u"decembris"] = 12
-    month_to_int[u"10bris"] = 12
-    month_to_int[u"xbris"] = 12
-    month_to_int[u"december"] = 12
+    month_to_int["januaris"] = 1
+    month_to_int["januarii"] = 1
+    month_to_int["januarius"] = 1
+    month_to_int["februaris"] = 2
+    month_to_int["februarii"] = 2
+    month_to_int["februarius"] = 2
+    month_to_int["martii"] = 3
+    month_to_int["martius"] = 3
+    month_to_int["aprilis"] = 4
+    month_to_int["maius"] = 5
+    month_to_int["maii"] = 5
+    month_to_int["junius"] = 6
+    month_to_int["junii"] = 6
+    month_to_int["julius"] = 7
+    month_to_int["julii"] = 7
+    month_to_int["augustus"] = 8
+    month_to_int["augusti"] = 8
+    month_to_int["septembris"] = 9
+    month_to_int["7bris"] = 9
+    month_to_int["september"] = 9
+    month_to_int["october"] = 10
+    month_to_int["octobris"] = 10
+    month_to_int["8bris"] = 10
+    month_to_int["novembris"] = 11
+    month_to_int["9bris"] = 11
+    month_to_int["november"] = 11
+    month_to_int["decembris"] = 12
+    month_to_int["10bris"] = 12
+    month_to_int["xbris"] = 12
+    month_to_int["december"] = 12
 
     #local and historical variants
     # Add common on east france
 
-    month_to_int[u"janer"] = 1
-    month_to_int[u"jenner"] = 1
-    month_to_int[u"hartmonat"] = 1
-    month_to_int[u"hartung"] = 1
-    month_to_int[u"eismond"] = 1
-    month_to_int[u"hornung"] = 2
-    month_to_int[u"wintermonat"] = 2
-    month_to_int[u"taumond"] = 2
-    month_to_int[u"narrenmond"] = 2
-    month_to_int[u"lenzing"] = 3
-    month_to_int[u"ostermond"] = 4
-    month_to_int[u"wonnemond"] = 5
-    month_to_int[u"wiesenmonat"] = 5
-    month_to_int[u"brachet"] = 6
-    month_to_int[u"heuet"] = 7
-    month_to_int[u"ernting"] = 8
-    month_to_int[u"scheiding"] = 9
-    month_to_int[u"gilbhard"] = 10
-    month_to_int[u"nebelmonat"] = 11
-    month_to_int[u"nebelung"] = 11
-    month_to_int[u"julmond"] = 12
+    month_to_int["janer"] = 1
+    month_to_int["jenner"] = 1
+    month_to_int["hartmonat"] = 1
+    month_to_int["hartung"] = 1
+    month_to_int["eismond"] = 1
+    month_to_int["hornung"] = 2
+    month_to_int["wintermonat"] = 2
+    month_to_int["taumond"] = 2
+    month_to_int["narrenmond"] = 2
+    month_to_int["lenzing"] = 3
+    month_to_int["ostermond"] = 4
+    month_to_int["wonnemond"] = 5
+    month_to_int["wiesenmonat"] = 5
+    month_to_int["brachet"] = 6
+    month_to_int["heuet"] = 7
+    month_to_int["ernting"] = 8
+    month_to_int["scheiding"] = 9
+    month_to_int["gilbhard"] = 10
+    month_to_int["nebelmonat"] = 11
+    month_to_int["nebelung"] = 11
+    month_to_int["julmond"] = 12
 
     modifier_to_int = {
-        u'avant': Date.MOD_BEFORE,
-        u'av.'  : Date.MOD_BEFORE,
+        'avant': Date.MOD_BEFORE,
+        'av.'  : Date.MOD_BEFORE,
         #u'av'  : Date.MOD_BEFORE, # Broke Hebrew "Av" month name
         #u'<'    : Date.MOD_BEFORE, # Worrying about XML/HTML parsing
-        u'après': Date.MOD_AFTER,
-        u'ap.'  : Date.MOD_AFTER,
-        u'ap'   : Date.MOD_AFTER,
+        'après': Date.MOD_AFTER,
+        'ap.'  : Date.MOD_AFTER,
+        'ap'   : Date.MOD_AFTER,
         #u'>'    : Date.MOD_AFTER, # Worrying about XML/HTML parsing
-        u'environ'  : Date.MOD_ABOUT,
-        u'env.'     : Date.MOD_ABOUT,
-        u'env'      : Date.MOD_ABOUT,
-        u'circa'    : Date.MOD_ABOUT,
-        u'ca.'      : Date.MOD_ABOUT,
-        u'ca'       : Date.MOD_ABOUT,
-        u'c.'       : Date.MOD_ABOUT,
-        u'vers'     : Date.MOD_ABOUT,
-        u'~'        : Date.MOD_ABOUT,
+        'environ'  : Date.MOD_ABOUT,
+        'env.'     : Date.MOD_ABOUT,
+        'env'      : Date.MOD_ABOUT,
+        'circa'    : Date.MOD_ABOUT,
+        'ca.'      : Date.MOD_ABOUT,
+        'ca'       : Date.MOD_ABOUT,
+        'c.'       : Date.MOD_ABOUT,
+        'vers'     : Date.MOD_ABOUT,
+        '~'        : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'grégorien': Date.CAL_GREGORIAN,
-        u'g'        : Date.CAL_GREGORIAN,
-        u'julien': Date.CAL_JULIAN,
-        u'j'     : Date.CAL_JULIAN,
-        u'hébreu': Date.CAL_HEBREW,
-        u'h'     : Date.CAL_HEBREW,
-        u'islamique': Date.CAL_ISLAMIC,
-        u'i'        : Date.CAL_ISLAMIC,
-        u'révolutionnaire': Date.CAL_FRENCH,
-        u'r'              : Date.CAL_FRENCH,
-        u'perse': Date.CAL_PERSIAN,
-        u'p'    : Date.CAL_PERSIAN,
-        u'suédois': Date.CAL_SWEDISH,
-        u's'      : Date.CAL_SWEDISH,
+        'grégorien': Date.CAL_GREGORIAN,
+        'g'        : Date.CAL_GREGORIAN,
+        'julien': Date.CAL_JULIAN,
+        'j'     : Date.CAL_JULIAN,
+        'hébreu': Date.CAL_HEBREW,
+        'h'     : Date.CAL_HEBREW,
+        'islamique': Date.CAL_ISLAMIC,
+        'i'        : Date.CAL_ISLAMIC,
+        'révolutionnaire': Date.CAL_FRENCH,
+        'r'              : Date.CAL_FRENCH,
+        'perse': Date.CAL_PERSIAN,
+        'p'    : Date.CAL_PERSIAN,
+        'suédois': Date.CAL_SWEDISH,
+        's'      : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
-        u'estimée': Date.QUAL_ESTIMATED,
-        u'est.'   : Date.QUAL_ESTIMATED,
-        u'est'    : Date.QUAL_ESTIMATED,
-        u'calculée': Date.QUAL_CALCULATED,
-        u'calc.'   : Date.QUAL_CALCULATED,
-        u'calc'    : Date.QUAL_CALCULATED,
-        u'comptée' : Date.QUAL_CALCULATED,
-        u'compt.'  : Date.QUAL_CALCULATED,
-        u'compt'   : Date.QUAL_CALCULATED,
+        'estimée': Date.QUAL_ESTIMATED,
+        'est.'   : Date.QUAL_ESTIMATED,
+        'est'    : Date.QUAL_ESTIMATED,
+        'calculée': Date.QUAL_CALCULATED,
+        'calc.'   : Date.QUAL_CALCULATED,
+        'calc'    : Date.QUAL_CALCULATED,
+        'comptée' : Date.QUAL_CALCULATED,
+        'compt.'  : Date.QUAL_CALCULATED,
+        'compt'   : Date.QUAL_CALCULATED,
         }
 
-    bce = [u"avant le calendrier", u"avant notre ère", u"avant JC",
-           u"avant J.C"] + DateParser.bce
+    bce = ["avant le calendrier", "avant notre ère", "avant JC",
+           "avant J.C"] + DateParser.bce
 
     def init_strings(self):
         """
@@ -206,9 +206,9 @@ class DateParserFR(DateParser):
         # avoid bug gregorian / french calendar conversion (+/-10 days)
 
         self._numeric = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
-        self._span = re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",
+        self._span = re.compile("(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)",
                                 re.IGNORECASE)
-        self._range = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",
+        self._range = re.compile("(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)",
                                  re.IGNORECASE)
 
     # This self._text are different from the base
@@ -253,21 +253,21 @@ class DateDisplayFR(DateDisplay):
     """
     French language date display class. 
     """
-    long_months = ( u"", u"janvier", u"février", u"mars", u"avril", u"mai", 
-                    u"juin", u"juillet", u"août", u"septembre", u"octobre", 
-                    u"novembre", u"décembre" )
+    long_months = ( "", "janvier", "février", "mars", "avril", "mai", 
+                    "juin", "juillet", "août", "septembre", "octobre", 
+                    "novembre", "décembre" )
     
-    short_months = ( u"", u"janv", u"févr", u"mars", u"avril", u"mai", u"juin", 
-                     u"juil", u"août", u"sept", u"oct", u"nov", u"déc" )
+    short_months = ( "", "janv", "févr", "mars", "avril", "mai", "juin", 
+                     "juil", "août", "sept", "oct", "nov", "déc" )
 
-    calendar = ("", u"Julien", u"Hébreu", u"Révolutionnaire",
-                u"Perse", u"Islamique", u"Suédois")
+    calendar = ("", "Julien", "Hébreu", "Révolutionnaire",
+                "Perse", "Islamique", "Suédois")
 
-    _mod_str = ("", u"avant ", u"après ", u"vers ", "", "", "")
+    _mod_str = ("", "avant ", "après ", "vers ", "", "", "")
 
-    _qual_str = ("", u"estimée ", u"calculée ", "")
+    _qual_str = ("", "estimée ", "calculée ", "")
 
-    _bce_str = u"%s avant le calendrier"
+    _bce_str = "%s avant le calendrier"
 
     # Replace the previous "Numérique" by a string which
     # do have an explicit meaning: "System default (format)"
@@ -428,13 +428,13 @@ class DateDisplayFR(DateDisplay):
             date1 = self.display_cal[cal](start)
             date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'de', date1, u'à', 
+            return "%s%s %s %s %s%s" % (qual_str, 'de', date1, 'à', 
             date2, scal)
         elif mod == Date.MOD_RANGE:
             date1 = self.display_cal[cal](start)
             date2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'entre', date1, u'et',
+            return "%s%s %s %s %s%s" % (qual_str, 'entre', date1, 'et',
                     date2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

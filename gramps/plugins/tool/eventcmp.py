@@ -107,7 +107,7 @@ class TableReport(object):
 
     def write_table_head(self, data):
         self.doc.start_row()
-        map(self.doc.write_cell, data)
+        list(map(self.doc.write_cell, data))
         self.doc.end_row()
 
 #------------------------------------------------------------------------
@@ -371,7 +371,7 @@ class DisplayChart(ManagedWindow):
                     break
                 the_map[name] += 1
 
-        unsort_list = sorted([(d, k) for k,d in the_map.iteritems()],by_value)
+        unsort_list = sorted([(d, k) for k,d in the_map.items()],by_value)
 
         sort_list = [ item[1] for item in unsort_list ]
 ## Presently there's no Birth and Death. Instead there's Birth Date and

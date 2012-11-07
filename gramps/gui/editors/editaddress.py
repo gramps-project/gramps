@@ -47,10 +47,10 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from ..glade import Glade
-from displaytabs import CitationEmbedList, NoteTab
+from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDate, MonitoredEntry, PrivacyButton
 
 #-------------------------------------------------------------------------

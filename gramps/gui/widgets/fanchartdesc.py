@@ -45,7 +45,11 @@ from gi.repository import PangoCairo
 import cairo
 import math
 import colorsys
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 from cgi import escape
 
 #-------------------------------------------------------------------------
@@ -63,7 +67,7 @@ from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                           get_age, get_timeperiod)
 from gramps.gen.plug.report.utils import find_spouse
-from fanchart import *
+from .fanchart import *
 
 #-------------------------------------------------------------------------
 #
@@ -355,7 +359,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 elif self.anglealgo == ANGLE_WEIGHT:
                     slice = famslice/(nrdescfam) * (nrdesc + 1)
                 else:
-                    raise NotImplementedError, 'Unknown angle algorithm %d' % self.anglealgo
+                    raise NotImplementedError('Unknown angle algorithm %d' % self.anglealgo)
                 if prevfamdatahandle != parentfamdata[0].handle:
                     #reset the offset
                     offset = 0

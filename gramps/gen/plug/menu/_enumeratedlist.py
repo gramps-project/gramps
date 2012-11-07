@@ -29,6 +29,8 @@ Option class representing an enumerated list of possible values.
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from . import Option
 
 #-------------------------------------------------------------------------
@@ -113,5 +115,5 @@ class EnumeratedListOption(Option):
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)
         else:
-            print "Value '%s' not found for option '%s'" % (str(value),
-                                                            self.get_label())
+            print("Value '%s' not found for option '%s'" % (str(value),
+                                                            self.get_label()))

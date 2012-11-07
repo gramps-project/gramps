@@ -33,10 +33,14 @@ creating, and deleting of databases.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import time
 import copy
 import subprocess
-import urlparse
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+else:
+    from urllib.parse import urlparse
 
 #-------------------------------------------------------------------------
 #
@@ -577,7 +581,7 @@ class DbManager(CLIDbManager):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))
             os.rmdir(self.data_to_delete[1])
-        except (IOError, OSError), msg:
+        except (IOError, OSError) as msg:
             DbManager.ERROR(_("Could not delete family tree"),
                                        str(msg))
         # rebuild the display
@@ -680,7 +684,7 @@ class DbManager(CLIDbManager):
         
         try:
             restore(dbase)
-        except DbException, msg:
+        except DbException as msg:
             DbManager.ERROR(_("Error restoring backup data"), msg)
 
         self.__end_cursor()
@@ -715,7 +719,7 @@ class DbManager(CLIDbManager):
         self.new.set_sensitive(False)
         try:
             self._create_new_db()
-        except (OSError, IOError), msg:
+        except (OSError, IOError) as msg:
             DbManager.ERROR(_("Could not create family tree"),
                                        str(msg))
         self.new.set_sensitive(True)
@@ -745,7 +749,7 @@ class DbManager(CLIDbManager):
         type = None
         title = None
         # Allow any type of URL ("file://", "http://", etc):
-        if drag_value and urlparse.urlparse(drag_value).scheme != "":
+        if drag_value and urlparse(drag_value).scheme != "":
             fname, title = [], []
             for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
                 f, t = self.import_new_db(treename, User())

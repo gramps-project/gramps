@@ -44,8 +44,8 @@ from gramps.gen.lib import NoteType, Repository
 from gramps.gen.db import DbTxn
 
 from ..widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
-from displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
-from editprimary import EditPrimary
+from .displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
+from .editprimary import EditPrimary
 from ..dialog import ErrorDialog
 from ..glade import Glade
 

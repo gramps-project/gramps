@@ -47,11 +47,11 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from gramps.gen.errors import WindowActiveError
 from ..glade import Glade
-from displaytabs import CitationEmbedList, NoteTab
+from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer
 
@@ -171,7 +171,7 @@ class EditChildRef(EditSecondary):
 
     def edit_child(self, obj,event):
         if button_activated(event, _LEFT_BUTTON):
-            from editperson import EditPerson
+            from .editperson import EditPerson
             handle = self.obj.ref
             try:
                 person = self.db.get_person_from_handle(handle)

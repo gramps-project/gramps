@@ -69,26 +69,26 @@ _Everything                  Match every object in the database
 
 # Need to expose this to be available for filter plugins:
 # the plugins should say: from .. import Rule
-from _rule import Rule
+from ._rule import Rule
 
-from _everything import Everything
-from _hasgrampsid import HasGrampsId
-from _isprivate import IsPrivate
-from _ispublic import IsPublic
-from _hastextmatchingsubstringof import HasTextMatchingSubstringOf
-from _hastextmatchingregexpof import HasTextMatchingRegexpOf
-from _matchesfilterbase import MatchesFilterBase
-from _matcheseventfilterbase import MatchesEventFilterBase
-from _matchessourceconfidencebase import MatchesSourceConfidenceBase
-from _matchessourcefilterbase import MatchesSourceFilterBase
-from _changedsincebase import ChangedSinceBase
+from ._everything import Everything
+from ._hasgrampsid import HasGrampsId
+from ._isprivate import IsPrivate
+from ._ispublic import IsPublic
+from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf
+from ._hastextmatchingregexpof import HasTextMatchingRegexpOf
+from ._matchesfilterbase import MatchesFilterBase
+from ._matcheseventfilterbase import MatchesEventFilterBase
+from ._matchessourceconfidencebase import MatchesSourceConfidenceBase
+from ._matchessourcefilterbase import MatchesSourceFilterBase
+from ._changedsincebase import ChangedSinceBase
 #object filters
-import person
-import family
-import event
-import source
-import citation
-import place
-import media
-import repository
-import note
+from . import person
+from . import family
+from . import event
+from . import source
+from . import citation
+from . import place
+from . import media
+from . import repository
+from . import note

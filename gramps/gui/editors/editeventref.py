@@ -38,13 +38,13 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.lib import EventType, NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
-from displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
+from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from ..widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)
-from editreference import RefTab, EditReference
+from .editreference import RefTab, EditReference
 
-from objectentries import PlaceEntry
+from .objectentries import PlaceEntry
 
 #-------------------------------------------------------------------------
 #

@@ -36,6 +36,7 @@ from gramps.gen.ggettext import sgettext as _
 #------------------------------------------------------------------------
 from gramps.plugins.lib.librecords import find_records, CALLNAME_DONTUSE
 from gramps.gen.plug import Gramplet
+from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -68,7 +69,7 @@ class RecordsGramplet(Gramplet):
                     last_value = value
                     rank = number
                 self.append_text("\n  %s. " % (rank+1))
-                self.link(unicode(name), handletype, handle)
+                self.link(cuni(name), handletype, handle)
                 self.append_text(" (%s)" % str(value))
             self.append_text("\n")
         self.append_text("", scroll_to='begin')

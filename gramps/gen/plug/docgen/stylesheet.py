@@ -44,10 +44,10 @@ def escxml(string):
 #
 #-------------------------------------------------------------------------
 from ..utils import gformat, gfloat
-from paragraphstyle import ParagraphStyle
-from fontstyle import FontStyle
-from tablestyle import TableStyle, TableCellStyle
-from graphicstyle import GraphicsStyle
+from .paragraphstyle import ParagraphStyle
+from .fontstyle import FontStyle
+from .tablestyle import TableStyle, TableCellStyle
+from .graphicstyle import GraphicsStyle
 
 #-------------------------------------------------------------------------
 #
@@ -130,7 +130,7 @@ class StyleSheetList(object):
 
     def get_style_names(self):
         "Return a list of all the style names in the StyleSheetList"
-        return self.map.keys()
+        return list(self.map.keys())
 
     def set_style_sheet(self, name, style):
         """
@@ -240,13 +240,13 @@ class StyleSheet(object):
         self.cell_styles = {}
         self.name = ""
         if obj is not None:
-            for style_name, style in obj.para_styles.iteritems():
+            for style_name, style in obj.para_styles.items():
                 self.para_styles[style_name] = ParagraphStyle(style)
-            for style_name, style in obj.draw_styles.iteritems():
+            for style_name, style in obj.draw_styles.items():
                 self.draw_styles[style_name] = GraphicsStyle(style)
-            for style_name, style in obj.table_styles.iteritems():
+            for style_name, style in obj.table_styles.items():
                 self.table_styles[style_name] = TableStyle(style)
-            for style_name, style in obj.cell_styles.iteritems():
+            for style_name, style in obj.cell_styles.items():
                 self.cell_styles[style_name] = TableCellStyle(style)
 
     def set_name(self, name):
@@ -300,7 +300,7 @@ class StyleSheet(object):
 
     def get_paragraph_style_names(self):
         "Return the the list of paragraph names in the StyleSheet"
-        return self.para_styles.keys()
+        return list(self.para_styles.keys())
 
     def add_draw_style(self, name, style):
         """
@@ -321,7 +321,7 @@ class StyleSheet(object):
 
     def get_draw_style_names(self):
         "Return the the list of draw style names in the StyleSheet"
-        return self.draw_styles.keys()
+        return list(self.draw_styles.keys())
     
     def add_table_style(self, name, style):
         """
@@ -342,7 +342,7 @@ class StyleSheet(object):
 
     def get_table_style_names(self):
         "Return the the list of table style names in the StyleSheet"
-        return self.table_styles.keys()
+        return list(self.table_styles.keys())
     
     def add_cell_style(self, name, style):
         """
@@ -363,7 +363,7 @@ class StyleSheet(object):
 
     def get_cell_style_names(self):
         "Return the the list of cell style names in the StyleSheet"
-        return self.cell_styles.keys()
+        return list(self.cell_styles.keys())
 
 #-------------------------------------------------------------------------
 #
@@ -406,7 +406,7 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
-            if attrs.has_key('description'):
+            if 'description' in attrs:
                 self.p.set_description(attrs['description'])
             self.p.set_right_margin(gfloat(attrs['rmargin']))
             self.p.set_right_margin(gfloat(attrs['rmargin']))

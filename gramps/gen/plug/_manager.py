@@ -35,6 +35,8 @@ importers, exporters, quick reports, and document generators.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
 import sys
 import re
@@ -47,6 +49,7 @@ from ..ggettext import gettext as _
 #-------------------------------------------------------------------------
 from ..config import config
 from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -152,10 +155,10 @@ class BasePluginManager(object):
                             plugins_to_load.remove(plugin)
                 count += 1
                 if count > max_count:
-                    print "Cannot resolve the following plugin dependencies:"
+                    print("Cannot resolve the following plugin dependencies:")
                     for plugin in plugins_to_load:
-                        print "   Plugin '%s' requires: %s" % (
-                            plugin.id, plugin.depends_on)
+                        print("   Plugin '%s' requires: %s" % (
+                            plugin.id, plugin.depends_on))
                     break
             # now load them:
             for plugin in plugins_sorted:
@@ -166,7 +169,7 @@ class BasePluginManager(object):
                     except:
                         import traceback
                         traceback.print_exc()
-                        print "Plugin '%s' did not run; continuing..." % plugin.name
+                        print("Plugin '%s' did not run; continuing..." % plugin.name)
                         continue
                     try:
                         iter(results)
@@ -226,7 +229,7 @@ class BasePluginManager(object):
             return _module
         except:
             import traceback
-            print traceback.print_exc()
+            print(traceback.print_exc())
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
@@ -237,7 +240,7 @@ class BasePluginManager(object):
         to sys.path first (if needed), import, and then reset path.
         """
         module = None
-        if isinstance(pdata, basestring):
+        if isinstance(pdata, STRTYPE):
             pdata = self.get_plugin(pdata)
         if not pdata:
             return None
@@ -247,7 +250,7 @@ class BasePluginManager(object):
                 module = __import__(pdata.mod_name)
                 sys.path.pop(0)
             else:
-                print "WARNING: module cannot be loaded"
+                print("WARNING: module cannot be loaded")
         else:
             module = __import__(pdata.mod_name)
         return module

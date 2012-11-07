@@ -24,6 +24,7 @@
 U.S English date display class. Should serve as the base class for all
 localized tasks.
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +40,7 @@ log = logging.getLogger(".DateDisplay")
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-import _grampslocale
+from . import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -50,12 +51,12 @@ class DateDisplay(object):
     """
     Base date display class. 
     """
-    long_months = ( u"", u"January", u"February", u"March", u"April", u"May", 
-                    u"June", u"July", u"August", u"September", u"October", 
-                    u"November", u"December" )
+    long_months = ( "", "January", "February", "March", "April", "May", 
+                    "June", "July", "August", "September", "October", 
+                    "November", "December" )
     
-    short_months = ( u"", u"Jan", u"Feb", u"Mar", u"Apr", u"May", u"Jun",
-                     u"Jul", u"Aug", u"Sep", u"Oct", u"Nov", u"Dec" )
+    short_months = ( "", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" )
 
     _tformat = _grampslocale.tformat
 
@@ -66,20 +67,20 @@ class DateDisplay(object):
         )
     
     french = (
-        u'', 
-        u"Vendémiaire", 
-        u'Brumaire', 
-        u'Frimaire', 
-        u"Nivôse", 
-        u"Pluviôse", 
-        u"Ventôse", 
-        u'Germinal', 
-        u"Floréal", 
-        u'Prairial', 
-        u'Messidor', 
-        u'Thermidor', 
-        u'Fructidor', 
-        u'Extra', 
+        '', 
+        "Vendémiaire", 
+        'Brumaire', 
+        'Frimaire', 
+        "Nivôse", 
+        "Pluviôse", 
+        "Ventôse", 
+        'Germinal', 
+        "Floréal", 
+        'Prairial', 
+        'Messidor', 
+        'Thermidor', 
+        'Fructidor', 
+        'Extra', 
         )
     
     persian = (
@@ -284,9 +285,9 @@ class DateDisplay(object):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = u"%s %d" % (month_list[date_val[1]], year)
+                    value = "%s %d" % (month_list[date_val[1]], year)
             else:
-                value = u"%s %d, %s" % (month_list[date_val[1]], date_val[0], 
+                value = "%s %d, %s" % (month_list[date_val[1]], date_val[0], 
                                         year)
         if date_val[2] < 0:
             return self._bce_str % value
@@ -302,9 +303,9 @@ class DateDisplay(object):
                 if date_val[1] == 0:
                     value = year
                 else:
-                    value = u"%s %d" % (self.french[date_val[1]], year)
+                    value = "%s %d" % (self.french[date_val[1]], year)
             else:
-                value = u"%d %s %s" % (date_val[0], self.french[date_val[1]], 
+                value = "%d %s %s" % (date_val[0], self.french[date_val[1]], 
                                        year)
         if date_val[2] < 0:
             return self._bce_str % value

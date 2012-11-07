@@ -24,6 +24,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from __future__ import unicode_literals
+
 import cgi
 import locale
 
@@ -98,32 +100,32 @@ class PedigreeGramplet(Gramplet):
         self.update()
 
     def get_boxes(self, generation, what):
-        retval = u""
+        retval = ""
         if self.box_mode == "UTF":
-            space = u"  "
+            space = "  "
         elif self.box_mode == "ASCII":
-            space = u"    "
+            space = "    "
         space_len = len(space) + 2
         for i in range(generation+1):
             if self._boxes[i]:
-                retval += space + u"|"
+                retval += space + "|"
             else:
-                retval += space + u" "
-        if retval[-1] == u' ':
+                retval += space + " "
+        if retval[-1] == ' ':
             if what == 'sf':
-                retval = retval[:-space_len] + u"/"
+                retval = retval[:-space_len] + "/"
             elif what == 'sm':
-                retval = retval[:-space_len] + u"\\"
-        elif retval.endswith(u"|" + space + u"|"):
-            retval = retval[:-space_len] + u"+"
+                retval = retval[:-space_len] + "\\"
+        elif retval.endswith("|" + space + "|"):
+            retval = retval[:-space_len] + "+"
         if self.box_mode == "UTF":
-            retval += u"-"
-            retval = retval.replace(u"\\", u"\u2514")
-            retval = retval.replace(u"-",  u"\u2500")
-            retval = retval.replace(u"|",  u"\u2502")
-            retval = retval.replace(u"/",  u"\u250c")
+            retval += "-"
+            retval = retval.replace("\\", "\u2514")
+            retval = retval.replace("-",  "\u2500")
+            retval = retval.replace("|",  "\u2502")
+            retval = retval.replace("/",  "\u250c")
         elif self.box_mode == "ASCII":
-            retval += u"--"
+            retval += "--"
         return retval
 
     def set_box(self, pos, value):
@@ -150,14 +152,14 @@ class PedigreeGramplet(Gramplet):
             boxes = self.get_boxes(generation, what)
             if what[-1] == 'f':
                 if self.box_mode == "UTF":
-                    boxes = boxes.replace("+", u"\u250c")
+                    boxes = boxes.replace("+", "\u250c")
                 else:
-                    boxes = boxes.replace("+", u"/")
+                    boxes = boxes.replace("+", "/")
             else:
                 if self.box_mode == "UTF":
-                    boxes = boxes.replace("+", u"\u2514")
+                    boxes = boxes.replace("+", "\u2514")
                 else:
-                    boxes = boxes.replace("+", u"\\")
+                    boxes = boxes.replace("+", "\\")
             self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle, 
@@ -172,9 +174,9 @@ class PedigreeGramplet(Gramplet):
             self._generations[generation].append(handle)
         elif what == "a":
             if self.box_mode == "UTF":
-                self.append_text(u"o" + (u"\u2500" * 3))
+                self.append_text("o" + ("\u2500" * 3))
             elif self.box_mode == "ASCII":
-                self.append_text(u"o---")
+                self.append_text("o---")
             self.append_text("%s  " % name_displayer.display_name(person.get_primary_name()))
             if self.show_dates:
                 self.render_text(self.info_string(person))

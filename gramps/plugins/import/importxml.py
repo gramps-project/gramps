@@ -36,6 +36,7 @@ from xml.parsers.expat import ExpatError, ParserCreate
 from gramps.gen.ggettext import gettext as _
 import re
 import logging
+import collections
 LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
@@ -134,15 +135,15 @@ def importData(database, filename, user):
         
         try:
             info = parser.parse(xml_file, line_cnt, person_cnt)
-        except GrampsImportError, err: # version error
+        except GrampsImportError as err: # version error
             user.notify_error(*err.messages())
             return
-        except IOError, msg:
+        except IOError as msg:
             user.notify_error(_("Error reading %s") % filename, str(msg))
             import traceback
             traceback.print_exc()
             return
-        except ExpatError, msg:
+        except ExpatError as msg:
             user.notify_error(_("Error reading %s") % filename, 
                         str(msg) + "\n" +
                         _("The file is probably either corrupt or not a "
@@ -337,7 +338,7 @@ class ImportInfo(object):
             txt += _("\n\nObjects that are candidates to be merged:\n")
             for key in self.keyorder:
                 datakey = self.key2data[key]
-                for handle in self.data_mergecandidate[datakey].keys():
+                for handle in list(self.data_mergecandidate[datakey].keys()):
                     txt += self.data_mergecandidate[datakey][handle]
         
         if self.data_families:
@@ -358,9 +359,9 @@ class LineParser(object):
                 f = gzip.open(filename, "r")
                 f.read(1)
                 f.close()
-            except IOError, msg:
+            except IOError as msg:
                 use_gzip = 0
-            except ValueError, msg:
+            except ValueError as msg:
                 use_gzip = 1
         else:
             use_gzip = 0
@@ -425,9 +426,9 @@ class ImportOpenFileContextManager:
                 ofile = gzip.open(filename, "r")
                 ofile.read(1)
                 ofile.close()
-            except IOError, msg:
+            except IOError as msg:
                 use_gzip = False
-            except ValueError, msg:
+            except ValueError as msg:
                 use_gzip = True
         else:
             use_gzip = False
@@ -437,7 +438,7 @@ class ImportOpenFileContextManager:
                 xml_file = gzip.open(filename, "rb")
             else:
                 xml_file = open(filename, "r")
-        except IOError, msg:
+        except IOError as msg:
             self.user.notify_error(_("%s could not be opened") % filename, str(msg))
             xml_file = None
         except:
@@ -712,7 +713,7 @@ class GrampsParser(UpdateCallback):
         if (orig_handle in self.import_handles and
                 target in self.import_handles[orig_handle]):
             handle = self.import_handles[handle][target][HANDLE]
-            if not callable(prim_obj): 
+            if not isinstance(prim_obj, collections.Callable): 
                 # This method is called by a start_<primary_object> method.
                 get_raw_obj_data = {"person": self.db.get_raw_person_data,
                                     "family": self.db.get_raw_family_data,
@@ -755,7 +756,7 @@ class GrampsParser(UpdateCallback):
                 while has_handle_func(handle):
                     handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
-        if callable(prim_obj): # method is called by a reference
+        if isinstance(prim_obj, collections.Callable): # method is called by a reference
             prim_obj = prim_obj()
         else:
             self.import_handles[orig_handle][target][INSTANTIATED] = True
@@ -840,7 +841,7 @@ class GrampsParser(UpdateCallback):
             handle = create_id()
             while has_handle_func(handle):
                 handle = create_id()
-            if callable(prim_obj):
+            if isinstance(prim_obj, collections.Callable):
                 prim_obj = prim_obj()
             prim_obj.set_handle(handle)
             prim_obj.set_gramps_id(gramps_id)
@@ -925,7 +926,7 @@ class GrampsParser(UpdateCallback):
     
             self.fix_not_instantiated()
             self.fix_families()
-            for key in self.func_map.keys():
+            for key in list(self.func_map.keys()):
                 del self.func_map[key]
             del self.func_map
             del self.func_list
@@ -2139,7 +2140,7 @@ class GrampsParser(UpdateCallback):
         self.pref = MediaRef()
         self.pref.set_reference_handle(self.photo.get_handle())
         
-        for key in attrs.keys():
+        for key in list(attrs.keys()):
             if key == "descrip" or key == "description":
                 self.photo.set_description(attrs[key])
             elif key == "priv":
@@ -2472,7 +2473,7 @@ class GrampsParser(UpdateCallback):
                     'person' : name_displayer.display(self.person), 
                     }
             else:
-                text = u''
+                text = ''
             self.event.set_description(text)
 
         self.db.commit_event(self.event, self.trans,
@@ -2948,8 +2949,8 @@ class GrampsParser(UpdateCallback):
 
     def fix_not_instantiated(self):
         uninstantiated = [(orig_handle, target) for orig_handle in
-                self.import_handles.keys() if
-                [target for target in self.import_handles[orig_handle].keys() if
+                list(self.import_handles.keys()) if
+                [target for target in list(self.import_handles[orig_handle].keys()) if
                     not self.import_handles[orig_handle][target][INSTANTIATED]]]
         if uninstantiated:
             expl_note = create_explanation_note(self.db)
@@ -2988,8 +2989,8 @@ class GrampsParser(UpdateCallback):
         # Fix any imported families where there is a link from the family to an
         # individual, but no corresponding link from the individual to the
         # family.
-        for orig_handle in self.import_handles.keys():
-            for target in self.import_handles[orig_handle].keys():
+        for orig_handle in list(self.import_handles.keys()):
+            for target in list(self.import_handles[orig_handle].keys()):
                 if target == 'family':
                     family_handle = self.import_handles[orig_handle][target][HANDLE]
                     family = self.db.get_family_from_handle(family_handle)

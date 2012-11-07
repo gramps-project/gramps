@@ -29,6 +29,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -194,7 +196,7 @@ class CommandLineTool(object):
                                                self.options_dict[opt])
                 self.option_class.handler.options_dict[opt] = self.options_dict[opt]
             else:
-                print "Ignoring unknown option: %s" % opt
+                print("Ignoring unknown option: %s" % opt)
 
         person_id = self.options_dict['id']
         self.person = self.database.get_person_from_gramps_id(person_id)
@@ -211,25 +213,25 @@ class CommandLineTool(object):
         if not self.show:
             return
         elif self.show == 'all':
-            print "   Available options:"
+            print("   Available options:")
             for key in self.options_dict:
-                print "      %s" % key
-            print "   Use 'show=option' to see description and acceptable values"
+                print("      %s" % key)
+            print("   Use 'show=option' to see description and acceptable values")
         elif self.show in self.options_dict:
-            print '   %s%s\t%s' % (self.show,
+            print('   %s%s\t%s' % (self.show,
                                     self.options_help[self.show][0],
-                                    self.options_help[self.show][1])
-            print "   Available values are:"
+                                    self.options_help[self.show][1]))
+            print("   Available values are:")
             vals = self.options_help[self.show][2]
             if isinstance(vals, (list, tuple)):
                 if self.options_help[self.show][3]:
                     for num in range(len(vals)):
-                        print "      %d\t%s" % (num, vals[num])
+                        print("      %d\t%s" % (num, vals[num]))
                 else:
                     for val in vals:
-                        print "      %s" % val
+                        print("      %s" % val)
             else:
-                print "      %s" % self.options_help[self.show][2]
+                print("      %s" % self.options_help[self.show][2])
 
         else:
             self.show = None

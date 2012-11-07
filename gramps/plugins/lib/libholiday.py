@@ -25,6 +25,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 from xml.parsers import expat
 from gramps.gen.lib.calendar import (gregorian_ymd, hebrew_sdn)
@@ -38,6 +40,7 @@ import os
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.constfunc import STRTYPE
 
 #------------------------------------------------------------------------
 #
@@ -312,7 +315,7 @@ class _Holidays:
     MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
               'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
     DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-    WORKDAY = range(5) # indexes into above
+    WORKDAY = list(range(5)) # indexes into above
     WEEKEND = (5, 6) # indexes into above
     def __init__(self, elements, country="US"):
         self.debug = 0
@@ -347,7 +350,7 @@ class _Holidays:
     def get_daynames(self, year, month, dayname):
         """ Get the items for a particular year/month and day of week """
         if self.debug: 
-            print "%s's in %d %d..." % (dayname, month, year)
+            print("%s's in %d %d..." % (dayname, month, year))
              
         retval = [0]
         day_of_week = self.DAYS.index(dayname)
@@ -360,7 +363,7 @@ class _Holidays:
                 retval.append(day)
                 
         if self.debug: 
-            print "day_of_week=", day_of_week, "days=", retval
+            print("day_of_week=", day_of_week, "days=", retval)
             
         return retval
     
@@ -370,7 +373,7 @@ class _Holidays:
         for rule in self.dates:
             
             if self.debug: 
-                print "Checking ", rule["name"], "..."
+                print("Checking ", rule["name"], "...")
                 
             offset = 0
             if rule["offset"] != "":
@@ -389,7 +392,7 @@ class _Holidays:
                 rule["value"] = eval(rule["value"][1:])
 
             if self.debug: 
-                print "rule['value']:", rule["value"]
+                print("rule['value']:", rule["value"])
             if rule["value"].count("/") == 3: # year/num/day/month, "3rd wednesday in april"
                 y, num, dayname, mon = rule["value"].split("/")
                 if y == "*":
@@ -405,7 +408,7 @@ class _Holidays:
                 dates_of_dayname = self.get_daynames(y, m, dayname)
                 
                 if self.debug: 
-                    print "num =", num
+                    print("num =", num)
                     
                 d = dates_of_dayname[int(num)]
                 
@@ -428,12 +431,12 @@ class _Holidays:
             ndate = datetime.date(y, m, d)
             
             if self.debug: 
-                print ndate, offset, type(offset)
+                print(ndate, offset, type(offset))
                 
             if isinstance(offset, int):
                 if offset != 0:
                     ndate = ndate.fromordinal(ndate.toordinal() + offset)
-            elif isinstance(offset, basestring):
+            elif isinstance(offset, STRTYPE):
                 direction = 1
                 if offset[0] == "-":
                     direction = -1
@@ -465,7 +468,7 @@ class _Holidays:
                     ndate = ndate.fromordinal(ordinal)
 
             if self.debug: 
-                print "ndate:", ndate, "date:", date
+                print("ndate:", ndate, "date:", date)
                 
             if ndate == date:
                 if rule["if"] != "":

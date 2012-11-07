@@ -42,6 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
+from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.lib import (Note, NoteType, StyledText)
 
@@ -106,19 +107,19 @@ class NoteModel(FlatBaseModel):
 
     def column_id(self, data):
         """Return the id of the Note."""
-        return unicode(data[Note.POS_ID])
+        return cuni(data[Note.POS_ID])
 
     def column_type(self, data):
         """Return the type of the Note in readable format."""
         temp = NoteType()
         temp.set(data[Note.POS_TYPE])
-        return unicode(str(temp))
+        return cuni(str(temp))
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
         #data is the encoding in the database, make it a unicode object
         #for universal work
-        note = unicode(data[Note.POS_TEXT][StyledText.POS_TEXT])
+        note = cuni(data[Note.POS_TEXT][StyledText.POS_TEXT])
         note = " ".join(note.split())
         if len(note) > 80:
             return note[:80] + "..."
@@ -155,5 +156,5 @@ class NoteModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = map(self.get_tag_name, data[Note.POS_TAGS])
+        tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
         return ', '.join(sorted(tag_list, key=locale.strxfrm))

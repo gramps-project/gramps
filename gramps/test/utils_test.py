@@ -23,7 +23,7 @@
 """ Unittest for testing ... """
 
 import unittest
-from test import test_util
+from .test import test_util
 test_util.path_append_parent() 
 from gramps.gen.utils.keyword import (KEYWORDS, get_translation_from_keyword, 
                                get_keyword_from_translation)
@@ -47,7 +47,7 @@ class TestCase(unittest.TestCase):
             self.assertTrue(result == item2,
                             "get_keyword_from_translation('%s') returned '%s' rather than '%s'" % (item1, result, item2))
         else:
-            raise AttributeError, "test called incorrectly"
+            raise AttributeError("test called incorrectly")
 
 def suite1():
     """

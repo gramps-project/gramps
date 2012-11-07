@@ -33,7 +33,8 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from __future__ import with_statement
+from __future__ import print_function
+
 import os
 
 #------------------------------------------------------------------------
@@ -59,6 +60,7 @@ from gramps.gui.plug import tool
 from gramps.gen.utils.file import media_path_full, relative_path, media_path
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.mime import get_type, is_image_type
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -292,7 +294,7 @@ class SettingsPage(Gtk.VBox):
         if config:
             title, contents = config
             self.assistant.set_page_title(self, title)
-            map(self.remove, self.get_children())
+            list(map(self.remove, self.get_children()))
             self.pack_start(contents, True, True, 0)
             self.show_all()
             return True
@@ -443,8 +445,8 @@ class BatchOp(UpdateCallback):
         This method is the beef of the tool.
         Needs to be overridden in the subclass.
         """
-        print "This method needs to be written."
-        print "Running BatchOp tool... done."
+        print("This method needs to be written.")
+        print("Running BatchOp tool... done.")
         return True
 
     def prepare(self):
@@ -462,8 +464,8 @@ class BatchOp(UpdateCallback):
         self.prepared = True
 
     def _prepare(self):
-        print "This method needs to be written."
-        print "Preparing BatchOp tool... done."
+        print("This method needs to be written.")
+        print("Preparing BatchOp tool... done.")
 
 #------------------------------------------------------------------------
 # Simple op to replace substrings in the paths
@@ -508,8 +510,8 @@ class PathChange(BatchOp):
         return (title, box)
 
     def build_confirm_text(self):
-        from_text = unicode(self.from_entry.get_text())
-        to_text = unicode(self.to_entry.get_text())
+        from_text = cuni(self.from_entry.get_text())
+        to_text = cuni(self.to_entry.get_text())
         text = _(
             'The following action is to be performed:\n\n'
             'Operation:\t%(title)s\n'
@@ -521,7 +523,7 @@ class PathChange(BatchOp):
         return text
         
     def _prepare(self):
-        from_text = unicode(self.from_entry.get_text())
+        from_text = cuni(self.from_entry.get_text())
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
@@ -538,8 +540,8 @@ class PathChange(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.handle_list))
-        from_text = unicode(self.from_entry.get_text())
-        to_text = unicode(self.to_entry.get_text())
+        from_text = cuni(self.from_entry.get_text())
+        to_text = cuni(self.to_entry.get_text())
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
             new_path = obj.get_path().replace(from_text, to_text)

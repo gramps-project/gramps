@@ -71,7 +71,11 @@ except ImportError:
 import zipfile
 import time
 import locale
-from cStringIO import StringIO
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 from math import pi, cos, sin, degrees, radians
 from xml.sax.saxutils import escape
 
@@ -1179,7 +1183,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         zipinfo = zipfile.ZipInfo(name.encode('utf-8'))
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED
-        zipinfo.external_attr = 0644 << 16L
+        zipinfo.external_attr = 0o644 << 16
         zfile.writestr(zipinfo, data)
 
     def _write_zip(self):
@@ -1188,7 +1192,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         try:
             zfile = zipfile.ZipFile(self.filename, "w", zipfile.ZIP_DEFLATED)
-        except IOError, msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
         except:

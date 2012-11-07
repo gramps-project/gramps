@@ -25,6 +25,7 @@
 
 "Import from CSV Spreadsheet"
 
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules
@@ -57,6 +58,7 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib.eventroletype import EventRoleType
+from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +91,7 @@ class UTF8Recoder(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         "Encode the next line of the file."
         return self.reader.next().encode("utf-8")
 
@@ -104,13 +106,13 @@ class UnicodeReader(object):
         csvfile = UTF8Recoder(csvfile, encoding)
         self.reader = csv.reader(csvfile, **kwds)
 
-    def next(self):
+    def __next__(self):
         "Read the next line of the file."
-        row = self.reader.next()
-        rowlist = [unicode(s, "utf-8") for s in row]
+        row = next(self.reader)
+        rowlist = [conv_to_unicode(s, "utf-8") for s in row]
         # Add check for Byte Order Mark (Windows, Notepad probably):
         if self.first_row:
-            if len(rowlist) > 0 and rowlist[0].startswith(u"\ufeff"):
+            if len(rowlist) > 0 and rowlist[0].startswith("\ufeff"):
                 rowlist[0] = rowlist[0][1:]
             self.first_row = False
         return rowlist
@@ -143,7 +145,7 @@ def importData(dbase, filename, user):
     try:
         with OpenFileOrStdin(filename, 'b') as filehandle:
             parser.parse(filehandle)
-    except EnvironmentError, err:
+    except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))
         return
     return None # This module doesn't provide info about what got imported.
@@ -229,7 +231,7 @@ class CSVParser(object):
             "place": ("Place", _("Place"), "place", _("place")),
             }
         lab2col_dict = []
-        for key in column2label.keys():
+        for key in list(column2label.keys()):
             for val in column2label[key]:
                 lab2col_dict.append((val, key))
         self.label2column = dict(lab2col_dict)
@@ -243,7 +245,7 @@ class CSVParser(object):
         reader = UnicodeReader(filehandle)
         try:
             data = [[r.strip() for r in row] for row in reader]
-        except csv.Error, err:
+        except csv.Error as err:
             self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
                         'line' : reader.reader.line_num, 'zero' : err } )
             return None

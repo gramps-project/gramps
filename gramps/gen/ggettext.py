@@ -32,6 +32,11 @@ This module ("Gramps Gettext") is an extension to the Python gettext module.
 #------------------------------------------------------------------------
 import gettext as pgettext
 
+import sys
+if sys.version_info[0] < 3:
+    cuni = unicode
+else:
+    cuni = str
 
 def gettext(msgid):
     """
@@ -45,7 +50,7 @@ def gettext(msgid):
     # and that's not what we want.
     if len(msgid.strip()) == 0:
         return msgid
-    return unicode(pgettext.gettext(msgid))
+    return cuni(pgettext.gettext(msgid))
 
 def ngettext(singular, plural, n):
     """
@@ -63,7 +68,7 @@ def ngettext(singular, plural, n):
     :returns: Translation or the original.
     :rtype: unicode
     """
-    return unicode(pgettext.ngettext(singular, plural, n))
+    return cuni(pgettext.ngettext(singular, plural, n))
     
 def sgettext(msgid, sep='|'):
     """
@@ -86,4 +91,4 @@ def sgettext(msgid, sep='|'):
     if msgval == msgid:
         sep_idx = msgid.rfind(sep)
         msgval = msgid[sep_idx+1:]
-    return unicode(msgval)
+    return cuni(msgval)

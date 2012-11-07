@@ -39,9 +39,9 @@ import locale
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from lib import Date
-from utils.db import get_birth_or_fallback
-from display.name import displayer as _nd
+from .lib import Date
+from .utils.db import get_birth_or_fallback
+from .display.name import displayer as _nd
 
 #-------------------------------------------------------------------------
 #

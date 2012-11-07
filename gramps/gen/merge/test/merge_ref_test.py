@@ -24,6 +24,7 @@
 Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
+from __future__ import print_function
 
 import unittest
 import time
@@ -135,9 +136,9 @@ class BaseMergeCheck(unittest.TestCase):
                 self.assert_(test_error_str in err_str)
                 return
         if debug:
-            print 'input :', self.canonicalize(input_doc)
-            print 'result:', self.canonicalize(result_str)
-            print 'expect:', self.canonicalize(expect_doc)
+            print('input :', self.canonicalize(input_doc))
+            print('result:', self.canonicalize(result_str))
+            print('expect:', self.canonicalize(expect_doc))
         self.assertEqual(self.canonicalize(result_str),
                          self.canonicalize(expect_doc))
 
@@ -157,9 +158,9 @@ class BaseMergeCheck(unittest.TestCase):
                 self.assert_(test_error_str in err_str)
                 return
         if debug:
-            print 'input :', self.canonicalize(input_doc)
-            print 'result:', self.canonicalize(result_str)
-            print 'expect:', self.canonicalize(expect_doc)
+            print('input :', self.canonicalize(input_doc))
+            print('result:', self.canonicalize(result_str))
+            print('expect:', self.canonicalize(expect_doc))
         self.assertEqual(self.canonicalize(result_str),
                          self.canonicalize(expect_doc))
 
@@ -179,9 +180,9 @@ class BaseMergeCheck(unittest.TestCase):
                 self.assert_(test_error_str in err_str)
                 return
         if debug:
-            print 'input :', self.canonicalize(input_doc)
-            print 'result:', result_str
-            print 'expect:', expect_str
+            print('input :', self.canonicalize(input_doc))
+            print('result:', result_str)
+            print('expect:', expect_str)
         # should I order/canonicalise things?
         self.assert_(expect_str in result_str)
 #-------------------------------------------------------------------------
@@ -1030,7 +1031,7 @@ class BirthCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
         surname = Surname()
-        surname.set_surname(u"Person 0")
+        surname.set_surname("Person 0")
         name = Name()
         name.add_surname(surname)
         self.expect_str = "person: i0000 ('i0000', 'I0000', 1, %s, [], " % str(
@@ -2118,9 +2119,9 @@ class FamilyMergeCheck(BaseMergeCheck):
 
 if __name__ == "__main__":
     if not os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge')):
-        print >> sys.stderr, 'This program needs the third party "CliMerge" plugin.'
+        print('This program needs the third party "CliMerge" plugin.', file=sys.stderr)
         sys.exit(1)
     if not os.path.isdir(os.path.join(USER_PLUGINS, 'ExportRaw')):
-        print >> sys.stderr, 'This program needs the third party "ExportRaw" plugin.'
+        print('This program needs the third party "ExportRaw" plugin.', file=sys.stderr)
         sys.exit(1)
     unittest.main()

@@ -31,7 +31,7 @@ Base view for Place Views
 # Global modules
 #
 #-------------------------------------------------------------------------
-
+from __future__ import print_function
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +198,7 @@ class PlaceBaseView(ListView):
         self.mapslistlabel = []
         if not self.mapservice in self.mapservicedata: 
             #stored val no longer exists, use the first key instead
-            self.set_mapservice(self.mapservicedata.keys()[0])
+            self.set_mapservice(list(self.mapservicedata.keys())[0])
 
         #store all gtk labels to be able to update label on selection change
         for widget in widgets :
@@ -218,7 +218,7 @@ class PlaceBaseView(ListView):
             tglist.add(self.drag_info().atom_drag_type, 
                        self.drag_info().target_flags,
                        self.drag_info().app_id)
-            tglist.add_text_targets (0L)
+            tglist.add_text_targets (0)
             self.list.drag_source_set_target_list(tglist)
 
     def __create_maps_menu_actions(self):
@@ -291,7 +291,7 @@ class PlaceBaseView(ListView):
             servfunc = eval('mod.' +  serv.mapservice)
             servfunc()(self.dbstate.db, places)
         else:
-            print 'Failed to load map plugin, see Plugin Manager'
+            print('Failed to load map plugin, see Plugin Manager')
 
     def drag_info(self):
         return DdTargets.PLACE_LINK

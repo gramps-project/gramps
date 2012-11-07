@@ -212,7 +212,7 @@ class AgeStatsGramplet(Gramplet):
         """ Returns the statistics of a dictionary of data """
         #print "compute_stats", hash
         hashkeys = sorted(hash)
-        count = sum(hash.itervalues())
+        count = sum(hash.values())
         sumval = sum(k * hash[k] for k in hash)
         minval = min(hashkeys)
         maxval = max(hashkeys)
@@ -252,7 +252,7 @@ class AgeStatsGramplet(Gramplet):
         # first, binify:
         #print "create_bargraph", hash
         bin = [0] * (max_val/bin_size)
-        for value, hash_value in hash.iteritems():
+        for value, hash_value in hash.items():
             bin[value/bin_size] += hash_value
         text = ""
         max_bin = float(max(bin))
@@ -277,7 +277,7 @@ class AgeStatsGramplet(Gramplet):
                           tooltip=_("Double-click to see %d people") % 
                             len(selected))
                 procent = (float(len(selected)) / 
-                                (float(sum(hash.itervalues())))*100)
+                                (float(sum(hash.values())))*100)
                 self.append_text(locale.format("%#5.2f", procent))
                 self.append_text("\n")
                 i += 1
@@ -286,6 +286,6 @@ class AgeStatsGramplet(Gramplet):
                 "-----\n")
             self.append_text("    %   " + 
                 self.ticks(graph_width-4, start = 0, 
-                    stop = int(max_bin/(float(sum(hash.itervalues())))*100)) +
+                    stop = int(max_bin/(float(sum(hash.values())))*100)) +
                 "\n\n")
             self.append_text(self.compute_stats(hash))

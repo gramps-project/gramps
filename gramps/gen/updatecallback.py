@@ -34,6 +34,7 @@ other GRAMPS baggage.
 #
 #-------------------------------------------------------------------------
 import time
+import collections
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +54,7 @@ class UpdateCallback(object):
         @param interval: number of seconds at most between the updates
         @type interval: int
         """
-        if callable(callback): # callback is really callable
+        if isinstance(callback, collections.Callable): # callback is really callable
             self.update = self.update_real
             self.callback = callback
             self.interval = interval

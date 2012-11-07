@@ -29,6 +29,8 @@
 Family Lines, a GraphViz-based plugin for Gramps.
 """
 
+from __future__ import unicode_literals
+
 #------------------------------------------------------------------------
 #
 # python modules
@@ -349,8 +351,8 @@ class FamilyLinesReport(Report):
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
         tmp = get_value('surnamecolors')
-        if (tmp.find(u'\xb0') >= 0):
-            tmp = tmp.split(u'\xb0')    # new style delimiter (see bug report #2162)
+        if (tmp.find('\xb0') >= 0):
+            tmp = tmp.split('\xb0')    # new style delimiter (see bug report #2162)
         else:
             tmp = tmp.split(' ')        # old style delimiter
 
@@ -802,19 +804,19 @@ class FamilyLinesReport(Report):
                                         rectangle=mediaList[0].get_rectangle())
 
             # put the label together and output this person
-            label = u""
+            label = ""
             lineDelimiter = '\\n'
             if bUseHtmlOutput:
                 lineDelimiter = '<BR/>'
 
             # if we have an image, then start an HTML table; remember to close the table afterwards!
             if imagePath:
-                label = (u'<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
-                         u'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'
+                label = ('<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
+                         'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'
                             % imagePath
                         )
                 if self._imageonside == 0:
-                    label += u'</TR><TR>'
+                    label += '</TR><TR>'
                 label += '<TD>'
 
             # at the very least, the label must have the person's name

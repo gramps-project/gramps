@@ -32,6 +32,8 @@ English.
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function, unicode_literals
+
 import re
 import calendar
 
@@ -49,7 +51,7 @@ log = logging.getLogger(".DateParser")
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date, DateError
-import _grampslocale
+from . import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -156,35 +158,35 @@ class DateParser(object):
     modifier_after_to_int = {}
 
     hebrew_to_int = {
-        u"tishri"  : 1,   u"heshvan" : 2,   u"kislev"  : 3,
-        u"tevet"   : 4,   u"shevat"  : 5,   u"adari"   : 6,
-        u"adarii"  : 7,   u"nisan"   : 8,   u"iyyar"   : 9,
-        u"sivan"   : 10,  u"tammuz"  : 11,  u"av"      : 12,
-        u"elul"    : 13,
+        "tishri"  : 1,   "heshvan" : 2,   "kislev"  : 3,
+        "tevet"   : 4,   "shevat"  : 5,   "adari"   : 6,
+        "adarii"  : 7,   "nisan"   : 8,   "iyyar"   : 9,
+        "sivan"   : 10,  "tammuz"  : 11,  "av"      : 12,
+        "elul"    : 13,
         #alternative spelling
-        u"cheshvan": 2,   u"adar sheni":  7, u"iyar"    : 9,
+        "cheshvan": 2,   "adar sheni":  7, "iyar"    : 9,
         #GEDCOM months
-        u"tsh" : 1, u"csh": 5, u"ksl": 3, u"tvt": 4, u"shv": 5, u"adr": 6, 
-        u"ads" : 7, u"nsn": 8, u"iyr": 9, u"svn":10, u"tmz":11, u"aav":12,
-        u"ell":13,
+        "tsh" : 1, "csh": 5, "ksl": 3, "tvt": 4, "shv": 5, "adr": 6, 
+        "ads" : 7, "nsn": 8, "iyr": 9, "svn":10, "tmz":11, "aav":12,
+        "ell":13,
         }
 
     french_to_int = {
-        u'vendémiaire'  : 1,    u'brumaire'   : 2,
-        u'frimaire'     : 3,    u'nivôse': 4,
-        u'pluviôse'     : 5,    u'ventôse' : 6,
-        u'germinal'     : 7,    u'floréal' : 8,
-        u'prairial'     : 9,    u'messidor'   : 10,
-        u'thermidor'    : 11,   u'fructidor'  : 12,
-        u'extra'        : 13,
+        'vendémiaire'  : 1,    'brumaire'   : 2,
+        'frimaire'     : 3,    'nivôse': 4,
+        'pluviôse'     : 5,    'ventôse' : 6,
+        'germinal'     : 7,    'floréal' : 8,
+        'prairial'     : 9,    'messidor'   : 10,
+        'thermidor'    : 11,   'fructidor'  : 12,
+        'extra'        : 13,
         #GEDCOM months
-        u'vend'    : 1,    u'brum' : 2,
-        u'frim'    : 3,    u'nivo' : 4,
-        u'pluv'    : 5,    u'vent' : 6,
-        u'germ'    : 7,    u'flor' : 8,
-        u'prai'    : 9,    u'mess' : 10,
-        u'ther'    : 11,   u'fruc' : 12,
-        u'comp'    : 13,
+        'vend'    : 1,    'brum' : 2,
+        'frim'    : 3,    'nivo' : 4,
+        'pluv'    : 5,    'vent' : 6,
+        'germ'    : 7,    'flor' : 8,
+        'prai'    : 9,    'mess' : 10,
+        'ther'    : 11,   'fruc' : 12,
+        'comp'    : 13,
         }
 
     islamic_to_int = {
@@ -289,7 +291,7 @@ class DateParser(object):
         sorted so that longest keys match first.  Any '.' characters
         are quoted.
         """
-        keys.sort(lambda x, y: cmp(len(y), len(x)))
+        keys.sort(key=lambda x: len(x), reverse=True)
         return '(' + '|'.join([key.replace('.', '\.') for key in keys]) + ')'
 
     def init_strings(self):
@@ -303,23 +305,23 @@ class DateParser(object):
         can be coded after DateParser.init_strings(self) call, that way they
         override stuff from this method. See DateParserRU() as an example.
         """
-        self._rfc_mon_str  = '(' + '|'.join(self._rfc_mons_to_int.keys()) + ')'
+        self._rfc_mon_str  = '(' + '|'.join(list(self._rfc_mons_to_int.keys())) + ')'
         self._rfc_day_str  = '(' + '|'.join(self._rfc_days) + ')'
 
         self._bce_str = self.re_longest_first(self.bce)
-        self._qual_str = self.re_longest_first(self.quality_to_int.keys())
-        self._mod_str = self.re_longest_first(self.modifier_to_int.keys())
+        self._qual_str = self.re_longest_first(list(self.quality_to_int.keys()))
+        self._mod_str = self.re_longest_first(list(self.modifier_to_int.keys()))
         self._mod_after_str = self.re_longest_first(
-            self.modifier_after_to_int.keys())
+            list(self.modifier_after_to_int.keys()))
 
-        self._mon_str  = self.re_longest_first(self.month_to_int.keys())
-        self._jmon_str = self.re_longest_first(self.hebrew_to_int.keys())
-        self._fmon_str = self.re_longest_first(self.french_to_int.keys())
-        self._pmon_str = self.re_longest_first(self.persian_to_int.keys())
-        self._imon_str = self.re_longest_first(self.islamic_to_int.keys())
-        self._smon_str = self.re_longest_first(self.swedish_to_int.keys())
-        self._cal_str  = self.re_longest_first(self.calendar_to_int.keys())
-        self._ny_str   = self.re_longest_first(self.newyear_to_int.keys())
+        self._mon_str  = self.re_longest_first(list(self.month_to_int.keys()))
+        self._jmon_str = self.re_longest_first(list(self.hebrew_to_int.keys()))
+        self._fmon_str = self.re_longest_first(list(self.french_to_int.keys()))
+        self._pmon_str = self.re_longest_first(list(self.persian_to_int.keys()))
+        self._imon_str = self.re_longest_first(list(self.islamic_to_int.keys()))
+        self._smon_str = self.re_longest_first(list(self.swedish_to_int.keys()))
+        self._cal_str  = self.re_longest_first(list(self.calendar_to_int.keys()))
+        self._ny_str   = self.re_longest_first(list(self.newyear_to_int.keys()))
 
         # bce, calendar type and quality may be either at the end or at
         # the beginning of the given date string, therefore they will
@@ -687,7 +689,7 @@ class DateParser(object):
             try:
                 text = match.group(1) + match.group(3)
             except:
-                print "ERROR MATCH:", match.groups()
+                print("ERROR MATCH:", match.groups())
             bc = True
         return (text, bc)
 

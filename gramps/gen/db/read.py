@@ -25,21 +25,27 @@
 """
 Read classes for the GRAMPS databases.
 """
-from __future__ import with_statement
+
 #-------------------------------------------------------------------------
 #
 # libraries
 #
 #-------------------------------------------------------------------------
-import cPickle
+from __future__ import print_function, with_statement
+
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import time
 import random
 import locale
 import os
-from sys import maxint
+from sys import maxsize
 
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
@@ -67,12 +73,13 @@ from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher 
 from ..lib.nameorigintype import NameOriginType
 
-from dbconst import *
+from .dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
+from ..constfunc import UNITYPE, STRTYPE, cuni
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -81,7 +88,7 @@ LOG = logging.getLogger(".citation")
 # constants
 #
 #-------------------------------------------------------------------------
-from dbconst import *
+from .dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'citation', 
             'event',  'media', 'place', 'repository',
@@ -113,10 +120,10 @@ def __index_surname(surn_list):
     pa/matronymic not as they change for every generation!
     """
     if surn_list:
-        surn = u" ".join([x[0] for x in surn_list if not (x[3][0] in [
+        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
-        surn = u""
+        surn = ""
     return surn.encode('utf-8')
     
 
@@ -426,7 +433,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return self._tables.keys()
+        return list(self._tables.keys())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
@@ -437,7 +444,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_cursor(self, table, *args, **kwargs):
         try:
             return DbReadCursor(table, self.txn)
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
 
@@ -741,12 +748,12 @@ class DbBsddbRead(DbReadBase, Callback):
                 if self.readonly:
                     tuple_data = prim_tbl.get(data, txn=self.txn)
                 else:
-                    tuple_data = cPickle.loads(data)
+                    tuple_data = pickle.loads(data)
                 obj.unserialize(tuple_data)
                 return obj
             else:
                 return None
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
 
@@ -845,7 +852,8 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        if isinstance(surname, unicode):
+        
+        if isinstance(surname, UNITYPE):
             ssurname = surname.encode('utf-8')
             return conv_dbstr_to_unicode(self.name_group.get(ssurname, ssurname))
         else:
@@ -855,7 +863,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return map(conv_dbstr_to_unicode, self.name_group.keys())
+        return list(map(conv_dbstr_to_unicode, list(self.name_group.keys())))
 
     def has_name_group_key(self, name):
         """
@@ -863,10 +871,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
-        if isinstance(name, unicode):
-            return self.name_group.has_key(name.encode('utf-8'))
+        if isinstance(name, UNITYPE):
+            return name.encode('utf-8') in self.name_group
         else:
-            return self.name_group.has_key(name)
+            return name in self.name_group
 
     def get_number_of_records(self, table):
         if not self.db_is_open:
@@ -1124,7 +1132,7 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        return table.keys()
+        return list(table.keys())
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -1153,7 +1161,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, basestring) and val:
+        if isinstance(val, STRTYPE) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
@@ -1499,7 +1507,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         try:
             return table.get(str(handle), txn=self.txn)
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
     
@@ -1539,7 +1547,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         try:
             return table.get(str(handle), txn=self.txn) is not None
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
         
@@ -1615,21 +1623,21 @@ class DbBsddbRead(DbReadBase, Callback):
         return locale.strxfrm(self.place_map.get(str(place))[2])
 
     def __sortbysource(self, first, second):
-        source1 = unicode(self.source_map[str(first)][2])
-        source2 = unicode(self.source_map[str(second)][2])
+        source1 = cuni(self.source_map[str(first)][2])
+        source2 = cuni(self.source_map[str(second)][2])
         return locale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
-        source = unicode(self.source_map[str(key)][2])
+        source = cuni(self.source_map[str(key)][2])
         return locale.strxfrm(source)
 
     def __sortbycitation(self, first, second):
-        citation1 = unicode(self.citation_map[str(first)][3])
-        citation2 = unicode(self.citation_map[str(second)][3])
+        citation1 = cuni(self.citation_map[str(first)][3])
+        citation2 = cuni(self.citation_map[str(second)][3])
         return locale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
-        citation = unicode(self.citation_map[str(key)][3])
+        citation = cuni(self.citation_map[str(key)][3])
         return locale.strxfrm(citation)
 
     def __sortbymedia(self, first, second):
@@ -1731,13 +1739,13 @@ class DbBsddbRead(DbReadBase, Callback):
 
         # Find which tables to iterate over
         if (include_classes is None):
-            the_tables = primary_tables.keys()
+            the_tables = list(primary_tables.keys())
         else:
             the_tables = include_classes
         
         # Now we use the functions and classes defined above to loop through
         # each of the existing primary object tables
-        for primary_table_name, funcs in the_tables.iteritems():
+        for primary_table_name, funcs in the_tables.items():
             with funcs['cursor_func']() as cursor:
 
             # Grab the real object class here so that the lookup does
@@ -1782,7 +1790,7 @@ class DbBsddbRead(DbReadBase, Callback):
             name_file = open(filepath, "r")
             name = name_file.read()
             name_file.close()
-        except (OSError, IOError), msg:
+        except (OSError, IOError) as msg:
             self.__log_error()
             name = None
         return name

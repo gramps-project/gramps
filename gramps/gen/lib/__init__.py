@@ -24,59 +24,59 @@
 """The core library of GRAMPS objects
 """
 # Dates
-from date import Date, DateError, Span
+from .date import Date, DateError, Span
 
 # Secondary objects
-from secondaryobj import SecondaryObject
-from address import Address
-from location import Location
-from attribute import Attribute
-from eventref import EventRef
-from ldsord import LdsOrd
-from mediaref import MediaRef 
-from name import Name
-from reporef import RepoRef
-from surname import Surname
-from url import Url
-from witness import Witness
-from childref import ChildRef
+from .secondaryobj import SecondaryObject
+from .address import Address
+from .location import Location
+from .attribute import Attribute
+from .eventref import EventRef
+from .ldsord import LdsOrd
+from .mediaref import MediaRef 
+from .name import Name
+from .reporef import RepoRef
+from .surname import Surname
+from .url import Url
+from .witness import Witness
+from .childref import ChildRef
 
 # Primary objects
-from primaryobj import PrimaryObject
-from person import Person
-from personref import PersonRef
-from family import Family
-from event import Event
-from place import Place
-from src import Source
-from mediaobj import MediaObject
-from repo import Repository
-from note import Note
-from citation import Citation
+from .primaryobj import PrimaryObject
+from .person import Person
+from .personref import PersonRef
+from .family import Family
+from .event import Event
+from .place import Place
+from .src import Source
+from .mediaobj import MediaObject
+from .repo import Repository
+from .note import Note
+from .citation import Citation
 
 # Table objects
-from tag import Tag
+from .tag import Tag
 
 # These are actually metadata
-from genderstats import GenderStats
-from researcher import Researcher
+from .genderstats import GenderStats
+from .researcher import Researcher
 
 # Type classes
-from grampstype import GrampsType
-from nametype import NameType
-from attrtype import AttributeType
-from urltype import UrlType
-from childreftype import ChildRefType
-from repotype import RepositoryType
-from eventtype import EventType
-from familyreltype import FamilyRelType
-from srcmediatype import SourceMediaType
-from eventroletype import EventRoleType
-from markertype import MarkerType
-from nameorigintype import NameOriginType
-from notetype import NoteType
-from styledtexttagtype import StyledTextTagType
+from .grampstype import GrampsType
+from .nametype import NameType
+from .attrtype import AttributeType
+from .urltype import UrlType
+from .childreftype import ChildRefType
+from .repotype import RepositoryType
+from .eventtype import EventType
+from .familyreltype import FamilyRelType
+from .srcmediatype import SourceMediaType
+from .eventroletype import EventRoleType
+from .markertype import MarkerType
+from .nameorigintype import NameOriginType
+from .notetype import NoteType
+from .styledtexttagtype import StyledTextTagType
 
 # Text
-from styledtexttag import StyledTextTag
-from styledtext import StyledText
+from .styledtexttag import StyledTextTag
+from .styledtext import StyledText

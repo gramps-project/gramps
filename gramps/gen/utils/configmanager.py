@@ -31,13 +31,19 @@ This package implements access to GRAMPS configuration.
 # System imports
 #
 #---------------------------------------------------------------
+from __future__ import print_function, unicode_literals
 import os
 import sys
 import time
-import ConfigParser
+if sys.version_info[0] < 3:
+    import ConfigParser as configparser
+else:
+    import configparser
 import errno
 import copy
 import logging
+
+from ..constfunc import STRTYPE
 
 def safe_eval(exp):
     # restrict eval to empty environment
@@ -146,7 +152,7 @@ class ConfigManager(object):
                                     use_plugins_path=False)
         # will use /tmp/Other.ini
         """
-        if isinstance(override, str): # directory or filename
+        if isinstance(override, STRTYPE): # directory or filename
             if override:
                 path, ininame = os.path.split(os.path.abspath(override))
             else:
@@ -232,13 +238,13 @@ class ConfigManager(object):
         """
         Return all section names.
         """
-        return self.data.keys()
+        return list(self.data.keys())
 
     def get_section_settings(self, section):
         """
         Return all section setting names.
         """
-        return self.data[section].keys()
+        return list(self.data[section].keys())
 
     def load(self, filename=None, oldstyle=False):
         """ 
@@ -247,12 +253,12 @@ class ConfigManager(object):
         if filename is None:
             filename = self.filename
         if filename and os.path.exists(filename):
-            parser = ConfigParser.RawConfigParser()
+            parser = configparser.RawConfigParser()
             try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
                 parser.read(filename)
             except:
                 msg1 = _("WARNING: could not parse file, recreating it:\n%s")
-                print >> sys.stderr, msg1 % filename
+                print(msg1 % filename, file=sys.stderr)
                 return
             for sec in parser.sections():
                 name = sec.lower()
@@ -262,6 +268,9 @@ class ConfigManager(object):
                     self.data[name] = {}
                 for opt in parser.options(sec):
                     raw_value = parser.get(sec, opt).strip()
+                    if sys.version_info[0] >= 3:
+                        if raw_value[:2] == "u'":
+                            raw_value = raw_value[1:]
                     setting = opt.lower()
                     if oldstyle:
                     ####################### Upgrade from oldstyle < 3.2
@@ -310,7 +319,7 @@ class ConfigManager(object):
             try:
                 head = os.path.split( filename )[0]
                 os.makedirs( head )
-            except OSError, exp:
+            except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
             key_file = open(filename, "w")
@@ -329,7 +338,7 @@ class ConfigManager(object):
                             default = ";;"
                         else:
                             default = ""
-                        if isinstance(value, long):
+                        if isinstance(value, int):
                             value = int(value)
                         key_file.write(("%s%s=%s\n")% (default, 
                                                        key, 
@@ -517,11 +526,11 @@ class ConfigManager(object):
         type2 = type(value2)
         if type1 == type2:
             return True
-        elif (isinstance(value1, basestring) and
-              isinstance(value2, basestring)):
+        elif (isinstance(value1, STRTYPE) and
+              isinstance(value2, STRTYPE)):
             return True
-        elif (type1 in [int, float, long] and 
-              type2 in [int, float, long]):
+        elif (type1 in [int, float] and 
+              type2 in [int, float]):
             return True
         else:
             return False

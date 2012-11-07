@@ -32,11 +32,17 @@ creating, and deleting of databases.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
 import sys
 import time
-import urllib2
-import urlparse
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+    from urllib2 import urlopen, url2pathname
+else:
+    from urllib.parse import urlparse
+    from urllib.request import urlopen, url2pathname
 import tempfile
 from gramps.gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
@@ -55,7 +61,7 @@ LOG = logging.getLogger(".clidbman")
 from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
-from gramps.gen.constfunc import win
+from gramps.gen.constfunc import win, conv_to_unicode
 #-------------------------------------------------------------------------
 #
 # constants
@@ -75,9 +81,9 @@ def _errordialog(title, errormessage):
     """
     Show the error. A title for the error and an errormessage
     """
-    print _('ERROR: %(title)s \n       %(message)s') % {
+    print(_('ERROR: %(title)s \n       %(message)s') % {
                 'title': title,
-                'message': errormessage}
+                'message': errormessage})
     sys.exit()
 
 #-------------------------------------------------------------------------
@@ -134,7 +140,7 @@ class CLIDbManager(object):
         Returns (people_count, version_number) of current DB.
         Returns ("Unknown", "Unknown") if invalid DB or other error.
         """
-        if config.get('preferences.use-bsddb3'):
+        if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
             from bsddb3 import dbshelve, db
         else:
             from bsddb import dbshelve, db
@@ -240,13 +246,13 @@ class CLIDbManager(object):
         """
         Do needed things to start import visually, eg busy cursor
         """
-        print _('Starting Import, %s') % msg
+        print(_('Starting Import, %s') % msg)
 
     def __end_cursor(self):
         """
         Set end of a busy cursor
         """
-        print _('Import finished...')
+        print(_('Import finished...'))
 
     def create_new_db_cli(self, title=None):
         """
@@ -298,12 +304,12 @@ class CLIDbManager(object):
         """
         pmgr = BasePluginManager.get_instance()
         # Allow URL names here; make temp file if necessary
-        url = urlparse.urlparse(filename)
+        url = urlparse(filename)
         if url.scheme != "":
             if url.scheme == "file":
-                filename = urllib2.url2pathname(filename[7:])
+                filename = url2pathname(filename[7:])
             else:
-                url_fp = urllib2.urlopen(filename) # open URL
+                url_fp = urlopen(filename) # open URL
                 # make a temp local file:
                 ext = os.path.splitext(url.path)[1]
                 fd, filename = tempfile.mkstemp(suffix=ext)
@@ -367,7 +373,7 @@ class CLIDbManager(object):
             name_file = open(filepath, "w")
             name_file.write(new_text)
             name_file.close()
-        except (OSError, IOError), msg:
+        except (OSError, IOError) as msg:
             CLIDbManager.ERROR(_("Could not rename family tree"),
                   str(msg))
             return None, None
@@ -401,8 +407,8 @@ def make_dbdir(dbdir):
     try:
         if not os.path.isdir(dbdir):
             os.makedirs(dbdir)
-    except (IOError, OSError), msg:
-        msg = unicode(str(msg), sys.getfilesystemencoding())
+    except (IOError, OSError) as msg:
+        msg = conv_to_unicode(str(msg), sys.getfilesystemencoding())
         LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
                     "Open preferences and set correct database path.\n\n"
                     "Details: Could not make database directory:\n    %s\n\n") % msg)
@@ -473,7 +479,7 @@ def find_locker_name(dirpath):
         # Convert username to unicode according to system encoding
         # Otherwise problems with non ASCII characters in
         # username in Windows
-        username = unicode(username, sys.getfilesystemencoding())
+        username = conv_to_unicode(username, sys.getfilesystemencoding())
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()

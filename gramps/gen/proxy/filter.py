@@ -32,14 +32,18 @@ Proxy class for the GRAMPS databases. Apply filter
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from itertools import imap
+import sys
+if sys.version_info[0] < 3:
+    from itertools import imap as map
+else:
+    pass #python 3 has map behaving as imap
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from proxybase import ProxyDbBase
+from .proxybase import ProxyDbBase
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -337,7 +341,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Persons in the database
         """
-        return imap(self.get_person_from_handle, self.plist)
+        return map(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
         """
@@ -357,7 +361,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Events in the database
         """
-        return imap(self.get_event_from_handle, self.elist)
+        return map(self.get_event_from_handle, self.elist)
 
     def get_family_handles(self):
         """
@@ -377,7 +381,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Families in the database
         """
-        return imap(self.get_family_from_handle, self.flist)        
+        return map(self.get_family_from_handle, self.flist)        
 
     def get_note_handles(self):
         """
@@ -397,7 +401,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Notes in the database
         """
-        return imap(self.get_note_from_handle, self.nlist)        
+        return map(self.get_note_from_handle, self.nlist)        
 
     def get_default_person(self):
         """returns the default Person of the database"""

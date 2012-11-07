@@ -32,6 +32,8 @@ http://www.scgenealogia.org/pdf/Denominacions%20dels%20Parentius.pdf
 The only invented name is "cosinastre". Also, "besnetastre" and the like are
 not explicitly in the dictionary, but "netastre" is.
 """
+from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -47,216 +49,216 @@ import gramps.gen.relationship
 # at %th generation
 
 _LEVEL_NAME = [
-    u"",
-    u"primer",
-    u"segon",
-    u"tercer",
-    u"quart",
-    u"cinquè",
-    u"sisè",
-    U"setè",
-    u"vuitè",
-    u"novè",
-    u"desè",
-    u"onzè",
-    u"dotzè",
-    u"tretzè",
-    u"catorzè",
-    u"quinzè",
-    u"setzè",
-    u"dissetè",
-    u"divuitè",
-    u"dinovè",
-    u"vintè",
-    u"vint-i-unè",
-    u"vint-i-dosè",
-    u"vint-i-tresè",
-    u"vint-i-quatrè",
-    u"vint-i-cinquè",
-    u"vint-i-sisè",
-    u"vint-i-setè",
-    u"vint-i-vuitè",
-    u"vint-i-novè",
-    u"trentè",
+    "",
+    "primer",
+    "segon",
+    "tercer",
+    "quart",
+    "cinquè",
+    "sisè",
+    "setè",
+    "vuitè",
+    "novè",
+    "desè",
+    "onzè",
+    "dotzè",
+    "tretzè",
+    "catorzè",
+    "quinzè",
+    "setzè",
+    "dissetè",
+    "divuitè",
+    "dinovè",
+    "vintè",
+    "vint-i-unè",
+    "vint-i-dosè",
+    "vint-i-tresè",
+    "vint-i-quatrè",
+    "vint-i-cinquè",
+    "vint-i-sisè",
+    "vint-i-setè",
+    "vint-i-vuitè",
+    "vint-i-novè",
+    "trentè",
     ]
 
 _LEVEL_NAME_F = [
-    u"",
-    u"primera",
-    u"segona",
-    u"tercera",
-    u"quarta",
-    u"cinquena",
-    u"sisena",
-    u"setena",
-    u"vuitena",
-    u"novena",
-    u"desena",
-    u"onzena",
-    u"dotzena",
-    u"tretzena",
-    u"catorzena",
-    u"quinzena",
-    u"setzena",
-    u"dissetena",
-    u"divuitena",
-    u"dinovena",
-    u"vintena",
-    u"vint-i-unena",
-    u"vint-i-dosena",
-    u"vint-i-tresena",
-    u"vint-i-quatrena",
-    u"vint-i-cinquena",
-    u"vint-i-sisena",
-    u"vint-i-setena",
-    u"vint-i-vuitena",
-    u"vint-i-novena",
-    u"trentena",
+    "",
+    "primera",
+    "segona",
+    "tercera",
+    "quarta",
+    "cinquena",
+    "sisena",
+    "setena",
+    "vuitena",
+    "novena",
+    "desena",
+    "onzena",
+    "dotzena",
+    "tretzena",
+    "catorzena",
+    "quinzena",
+    "setzena",
+    "dissetena",
+    "divuitena",
+    "dinovena",
+    "vintena",
+    "vint-i-unena",
+    "vint-i-dosena",
+    "vint-i-tresena",
+    "vint-i-quatrena",
+    "vint-i-cinquena",
+    "vint-i-sisena",
+    "vint-i-setena",
+    "vint-i-vuitena",
+    "vint-i-novena",
+    "trentena",
     ]
 
 _LEVEL_NAME_P = [
-    u"",
-    u"",        # si són els primers no es posa mai
-    u"segons",
-    u"tercers",
-    u"quarts",
-    u"cinquens",
-    u"sisens",
-    u"setens",
-    u"vuitens",
-    u"novens",
-    u"desens",
-    u"onzens",
-    u"dotzens",
-    u"tretzens",
-    u"catorzens",
-    u"quinzens",
-    u"setzens",
-    u"dissetens",
-    u"divuitens",
-    u"dinovens",
-    u"vintens",
-    u"vint-i-unens",
-    u"vint-i-dosens",
-    u"vint-i-tresens",
-    u"vint-i-quatrens",
-    u"vint-i-cinquens",
-    u"vint-i-sisens",
-    u"vint-i-setens",
-    u"vint-i-vuitens",
-    u"vint-i-novens",
-    u"trentens",
+    "",
+    "",        # si són els primers no es posa mai
+    "segons",
+    "tercers",
+    "quarts",
+    "cinquens",
+    "sisens",
+    "setens",
+    "vuitens",
+    "novens",
+    "desens",
+    "onzens",
+    "dotzens",
+    "tretzens",
+    "catorzens",
+    "quinzens",
+    "setzens",
+    "dissetens",
+    "divuitens",
+    "dinovens",
+    "vintens",
+    "vint-i-unens",
+    "vint-i-dosens",
+    "vint-i-tresens",
+    "vint-i-quatrens",
+    "vint-i-cinquens",
+    "vint-i-sisens",
+    "vint-i-setens",
+    "vint-i-vuitens",
+    "vint-i-novens",
+    "trentens",
     ]
 
 # small lists, use generation level if > [5]
 # the %s is for the inlaw string
 
-_FATHER_LEVEL = [u"", u"el pare%s", u"l'avi%s",
-                 u"el besavi%s", u"el rebesavi%s", u"el quadravi%s"]
+_FATHER_LEVEL = ["", "el pare%s", "l'avi%s",
+                 "el besavi%s", "el rebesavi%s", "el quadravi%s"]
 
-_MOTHER_LEVEL = [u"", u"la mare%s", u"l'àvia%s",
-                 u"la besàvia%s", u"la rebesàvia%s", u"la quadràvia%s"]
+_MOTHER_LEVEL = ["", "la mare%s", "l'àvia%s",
+                 "la besàvia%s", "la rebesàvia%s", "la quadràvia%s"]
 
-_MOTHER_LEVEL_STP = [u"", u"la madrastra%s", u"l'aviastra%s",
-                 u"la besaviastra%s", u"la rebesaviastra%s",
-                 u"la quadraviastra%s"]
+_MOTHER_LEVEL_STP = ["", "la madrastra%s", "l'aviastra%s",
+                 "la besaviastra%s", "la rebesaviastra%s",
+                 "la quadraviastra%s"]
 
-_FATHER_LEVEL_UNK = [u"", u"un dels pares%s", u"un dels avis%s",
-                     u"un dels besavis%s", u"un dels rebesavis%s",
-                     u"un dels quadravis%s"]
+_FATHER_LEVEL_UNK = ["", "un dels pares%s", "un dels avis%s",
+                     "un dels besavis%s", "un dels rebesavis%s",
+                     "un dels quadravis%s"]
 
-_FATHER_LEVEL_STP = [u"", u"el padrastre%s", u"l'aviastre%s",
-                     u"el besaviastre%s", u"el rebesaviastre%s",
-                     u"el quadraviastre%s"]
+_FATHER_LEVEL_STP = ["", "el padrastre%s", "l'aviastre%s",
+                     "el besaviastre%s", "el rebesaviastre%s",
+                     "el quadraviastre%s"]
 
-_FATHER_LEVEL_STPUNK = [u"", u"un dels padrastres%s", u"un dels aviastres%s",
-                        u"un dels besaviastres%s", u"un dels rebesaviastres%s",
-                        u"un dels quadraviastres%s"]
+_FATHER_LEVEL_STPUNK = ["", "un dels padrastres%s", "un dels aviastres%s",
+                        "un dels besaviastres%s", "un dels rebesaviastres%s",
+                        "un dels quadraviastres%s"]
 
-_SON_LEVEL = [u"", u"el fill%s", u"el nét%s",
-              u"el besnét%s", u"el rebesnét%s", u"el quadrinét%s"]
+_SON_LEVEL = ["", "el fill%s", "el nét%s",
+              "el besnét%s", "el rebesnét%s", "el quadrinét%s"]
 
-_DAUGHTER_LEVEL = [u"", u"la filla%s", u"la néta%s",
-                   u"la besnéta%s", u"la rebesnéta%s", u"la quadrinéta%s"]
+_DAUGHTER_LEVEL = ["", "la filla%s", "la néta%s",
+                   "la besnéta%s", "la rebesnéta%s", "la quadrinéta%s"]
 
-_SON_LEVEL_UNK = [u"", u"un dels fills%s", u"un dels néts%s",
-                  u"un dels besnéts%s", u"un dels rebesnéts%s",
-                  u"un dels quadrinéts%s"]
+_SON_LEVEL_UNK = ["", "un dels fills%s", "un dels néts%s",
+                  "un dels besnéts%s", "un dels rebesnéts%s",
+                  "un dels quadrinéts%s"]
 
-_SON_LEVEL_STP = [u"", u"el fillastre%s", u"el netastre%s",
-                  u"el besnetastre%s", u"el rebesnetastre%s",
-                  u"el quadrinetastre%s"]
+_SON_LEVEL_STP = ["", "el fillastre%s", "el netastre%s",
+                  "el besnetastre%s", "el rebesnetastre%s",
+                  "el quadrinetastre%s"]
 
-_SON_LEVEL_STPUNK = [u"", u"un dels fillastres%s", u"un dels netastres%s",
-                     u"un dels besnetastres%s", u"un dels rebesnetastres%s",
-                     u"un dels quadrinetastres%s"]
+_SON_LEVEL_STPUNK = ["", "un dels fillastres%s", "un dels netastres%s",
+                     "un dels besnetastres%s", "un dels rebesnetastres%s",
+                     "un dels quadrinetastres%s"]
 
-_DAUGHTER_LEVEL_STP = [u"", u"la fillastra%s", u"la netastra%s",
-                       u"la besnetastra%s", u"la rebesnetastra%s",
-                       u"la quadrinetastra%s"]
+_DAUGHTER_LEVEL_STP = ["", "la fillastra%s", "la netastra%s",
+                       "la besnetastra%s", "la rebesnetastra%s",
+                       "la quadrinetastra%s"]
 
-_BROTHER_LEVEL = [u"", u"el germà%s", u"l'oncle%s", u"el besoncle%s",
-                  u"el rebesoncle%s", u"el quadrioncle%s"]
+_BROTHER_LEVEL = ["", "el germà%s", "l'oncle%s", "el besoncle%s",
+                  "el rebesoncle%s", "el quadrioncle%s"]
 
-_SISTER_LEVEL = [u"", u"la germana%s", u"la tia%s", u"la bestia%s",
-                 u"la rebestia%s", u"la quadritia%s"]
+_SISTER_LEVEL = ["", "la germana%s", "la tia%s", "la bestia%s",
+                 "la rebestia%s", "la quadritia%s"]
 
-_BROTHER_LEVEL_UNK = [u"", u"un dels germans%s", u"un dels oncles%s",
-                      u"un dels besoncles%s", u"un dels rebesoncles%s",
-                      u"un dels quadrioncles%s"]
+_BROTHER_LEVEL_UNK = ["", "un dels germans%s", "un dels oncles%s",
+                      "un dels besoncles%s", "un dels rebesoncles%s",
+                      "un dels quadrioncles%s"]
 
-_BROTHER_LEVEL_STP = [u"", u"el germanastre%s", u"l'onclastre%s",
-                      u"el besonclastre%s", u"el rebesonclastre%s",
-                      u"el quadrionclastre%s"]
+_BROTHER_LEVEL_STP = ["", "el germanastre%s", "l'onclastre%s",
+                      "el besonclastre%s", "el rebesonclastre%s",
+                      "el quadrionclastre%s"]
 
-_BROTHER_LEVEL_STPUNK = [u"", u"un dels germanastres%s",
-                         u"un dels onclastres%s", u"un dels besonclastres%s",
-                         u"un dels rebesonclastres%s",
-                         u"un dels quadrionclastres%s"]
+_BROTHER_LEVEL_STPUNK = ["", "un dels germanastres%s",
+                         "un dels onclastres%s", "un dels besonclastres%s",
+                         "un dels rebesonclastres%s",
+                         "un dels quadrionclastres%s"]
 
-_SISTER_LEVEL_STP = [u"", u"la germanastra%s", u"la tiastra%s",
-                     u"la bestiastra%s", u"la rebestiastra%s",
-                     u"la quadritiastra%s"]
+_SISTER_LEVEL_STP = ["", "la germanastra%s", "la tiastra%s",
+                     "la bestiastra%s", "la rebestiastra%s",
+                     "la quadritiastra%s"]
 
-_NEPHEW_LEVEL = [u"", u"el nebot%s", u"el besnebot%s",
-                 u"el rebesnebot%s", u"el quadrinebot%s"]
+_NEPHEW_LEVEL = ["", "el nebot%s", "el besnebot%s",
+                 "el rebesnebot%s", "el quadrinebot%s"]
 
-_NIECE_LEVEL = [u"", u"la neboda%s", u"la besneboda%s",
-                u"la rebesneboda%s", u"la quadrineboda%s"]
+_NIECE_LEVEL = ["", "la neboda%s", "la besneboda%s",
+                "la rebesneboda%s", "la quadrineboda%s"]
 
-_NEPHEW_LEVEL_UNK = [u"", u"un dels nebots%s", u"un dels besnebots%s",
-                     u"un dels rebesnebots%s", u"un dels quadrinebots%s"]
+_NEPHEW_LEVEL_UNK = ["", "un dels nebots%s", "un dels besnebots%s",
+                     "un dels rebesnebots%s", "un dels quadrinebots%s"]
 
-_NEPHEW_LEVEL_STP = [u"", u"el nebodastre%s", u"el besnebodastre%s",
-                     u"el rebesnebodastre%s", u"el quadrinebodastre%s"]
+_NEPHEW_LEVEL_STP = ["", "el nebodastre%s", "el besnebodastre%s",
+                     "el rebesnebodastre%s", "el quadrinebodastre%s"]
 
-_NEPHEW_LEVEL_STPUNK = [u"", u"un dels nebodastres%s",
-                        u"un dels besnebodastres%s",
-                        u"un dels rebesnebodastres%s",
-                        u"un dels quadrinebodastres%s"]
+_NEPHEW_LEVEL_STPUNK = ["", "un dels nebodastres%s",
+                        "un dels besnebodastres%s",
+                        "un dels rebesnebodastres%s",
+                        "un dels quadrinebodastres%s"]
 
-_NIECE_LEVEL_STP = [u"", u"la nebodastra%s", u"la besnebodastra%s",
-                    u"la rebesnebodastra%s", u"la quadrinebodastra%s"]
+_NIECE_LEVEL_STP = ["", "la nebodastra%s", "la besnebodastra%s",
+                    "la rebesnebodastra%s", "la quadrinebodastra%s"]
 
 # kinship report
 
-_PARENTS_LEVEL = [u"", u"Els pares", u"Els avis",
-                  u"Els besavis", u"Els rebesavis", u"Els quadravis"]
+_PARENTS_LEVEL = ["", "Els pares", "Els avis",
+                  "Els besavis", "Els rebesavis", "Els quadravis"]
 
-_CHILDREN_LEVEL = [u"", u"Els fills", u"Els néts",
-                   u"Els besnéts",
-                   u"Els rebesnéts", u"Els quadrinéts"]
+_CHILDREN_LEVEL = ["", "Els fills", "Els néts",
+                   "Els besnéts",
+                   "Els rebesnéts", "Els quadrinéts"]
 
-_SIBLINGS_LEVEL = [u"", u"Els germans i les germanes",
-                   u"Els oncles i les ties",
-                   u"Els besoncles i les besties",
-                   u"Els rebesoncles i les rebesties",
-		   u"Els quadrioncles i les quadrities"]
+_SIBLINGS_LEVEL = ["", "Els germans i les germanes",
+                   "Els oncles i les ties",
+                   "Els besoncles i les besties",
+                   "Els rebesoncles i les rebesties",
+		   "Els quadrioncles i les quadrities"]
 
-_NEPHEWS_NIECES_LEVEL = [u"", u"Els nebots i les nebodes",
-                         u"Els besnebots i les besnebodes",
-                         u"Els rebesnebots i les rebesnebodes",
-                         u"Els quadrinebots i les quadrinebodes"]
+_NEPHEWS_NIECES_LEVEL = ["", "Els nebots i les nebodes",
+                         "Els besnebots i les besnebodes",
+                         "Els rebesnebots i les rebesnebodes",
+                         "Els quadrinebots i les quadrinebodes"]
 
 #-------------------------------------------------------------------------
 #
@@ -271,16 +273,16 @@ def _get_cosi(level, inlaw="", step=""):
     cousins = same level, gender = male
     """
     if step == "":
-        nom = u"cosí"
+        nom = "cosí"
     else:
-        nom = u"cosinastre"
+        nom = "cosinastre"
 
     if level == 1:
-        return u"el %s germà%s" % (nom, inlaw)
+        return "el %s germà%s" % (nom, inlaw)
     elif level < len(_LEVEL_NAME):
-        return u"el %s %s%s" % (nom, _LEVEL_NAME[level], inlaw)
+        return "el %s %s%s" % (nom, _LEVEL_NAME[level], inlaw)
     else:
-        return u"el %s %dè%s" % (nom, level, inlaw)
+        return "el %s %dè%s" % (nom, level, inlaw)
 
 def _get_cosina(level, inlaw="", step=""):
     """
@@ -289,16 +291,16 @@ def _get_cosina(level, inlaw="", step=""):
     if (inlaw != ""):		# polític -> política
         inlaw += "a"
     if step == "":
-        nom = u"cosina"
+        nom = "cosina"
     else:
-        nom = u"cosinastra"
+        nom = "cosinastra"
 
     if level == 1:
-        return u"la %s germana%s" % (nom, inlaw)
+        return "la %s germana%s" % (nom, inlaw)
     elif level < len(_LEVEL_NAME):
-        return u"la %s %s%s" % (nom, _LEVEL_NAME_F[level], inlaw)
+        return "la %s %s%s" % (nom, _LEVEL_NAME_F[level], inlaw)
     else:
-        return u"la %s %dena%s" % (nom, level, inlaw)
+        return "la %s %dena%s" % (nom, level, inlaw)
 
 def _get_cosi_unknown(level, inlaw="", step=""):
     """
@@ -307,16 +309,16 @@ def _get_cosi_unknown(level, inlaw="", step=""):
     if (inlaw != ""):		# polític -> polítics
         inlaw += "s"
     if step == "":
-        nom = u"cosins"
+        nom = "cosins"
     else:
-        nom = u"cosinastres"
+        nom = "cosinastres"
 
     if level == 1:
-        return u"un dels %s germans%s" % (nom, inlaw)
+        return "un dels %s germans%s" % (nom, inlaw)
     elif level < len(_LEVEL_NAME):
-        return u"un dels %s %s%s" % (nom, _LEVEL_NAME_P[level], inlaw)
+        return "un dels %s %s%s" % (nom, _LEVEL_NAME_P[level], inlaw)
     else:
-        return u"un dels %s %dens%s" % (nom, level, inlaw)
+        return "un dels %s %dens%s" % (nom, level, inlaw)
 
 def _get_father(level, inlaw="", step=""):
     """
@@ -334,13 +336,13 @@ def _get_father(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME):
 
-        return u"l'%s %s%s" % \
+        return "l'%s %s%s" % \
             (nom, _LEVEL_NAME[level-1], inlaw)
     else:
 
         # use numerical generation
 
-        return u"l'%s %dè%s" % (nom, (level -1), inlaw)
+        return "l'%s %dè%s" % (nom, (level -1), inlaw)
 
 def _get_mother(level, inlaw="", step=""):
     """
@@ -350,10 +352,10 @@ def _get_mother(level, inlaw="", step=""):
         inlaw += "a"
     if step == "":
         taula = _MOTHER_LEVEL
-        nom = u"àvia"
+        nom = "àvia"
     else:
         taula = _MOTHER_LEVEL_STP
-        nom = u"aviastra"
+        nom = "aviastra"
 
     if level < len(taula) :
         return taula[level] % inlaw
@@ -362,13 +364,13 @@ def _get_mother(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME_F):
 
-        return u"l'%s %s%s" % \
+        return "l'%s %s%s" % \
             (nom, _LEVEL_NAME_F[level-1], inlaw)
     else:
 
         # use numerical generation
 
-        return u"l'àvia %dena%s" % ((level -1), inlaw)
+        return "l'àvia %dena%s" % ((level -1), inlaw)
 
 def _get_parent_unknown(level, inlaw="", step=""):
     """
@@ -389,12 +391,12 @@ def _get_parent_unknown(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME_P):
 
-        return u"un dels %s %s%s" % \
+        return "un dels %s %s%s" % \
             (nom, _LEVEL_NAME_P[level-1], inlaw)
     else:
 
         # use numerical generation
-        return u"un dels %s %dens%s" % (nom, (level -1), inlaw)
+        return "un dels %s %dens%s" % (nom, (level -1), inlaw)
 
 def _get_son(level, inlaw="", step=""):
     """
@@ -402,7 +404,7 @@ def _get_son(level, inlaw="", step=""):
     """
     if step == "":
         taula = _SON_LEVEL
-        nom = u"nét"
+        nom = "nét"
     else:
         taula = _SON_LEVEL_STP
         nom = "netastre"
@@ -412,13 +414,13 @@ def _get_son(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME):
 
-        return u"el %s %s%s" % \
+        return "el %s %s%s" % \
             (nom, _LEVEL_NAME[level-1], inlaw)
     else:
 
         # use numerical generation
 
-        return u"el %s %dè%s" % (nom, (level -1), inlaw)
+        return "el %s %dè%s" % (nom, (level -1), inlaw)
 
 def _get_sons(level, inlaw=""):
     """
@@ -428,13 +430,13 @@ def _get_sons(level, inlaw=""):
         inlaw += "s"
 
     if inlaw != "" and level == 1 :
-        return u"els gendres i les joves"
+        return "els gendres i les joves"
     elif level < len(_CHILDREN_LEVEL):
         return _CHILDREN_LEVEL[level] + inlaw
     elif level < len(_LEVEL_NAME_P) - 1:
-        return u"els néts" + _LEVEL_NAME_P[level - 1] + inlaw
+        return "els néts" + _LEVEL_NAME_P[level - 1] + inlaw
     else:
-        return u"els néts %dens" % (level - 1) + inlaw
+        return "els néts %dens" % (level - 1) + inlaw
 
 def _get_daughter(level, inlaw="", step=""):
     """
@@ -442,7 +444,7 @@ def _get_daughter(level, inlaw="", step=""):
     """
     if step == "":
         taula = _DAUGHTER_LEVEL
-        nom = u"néta"
+        nom = "néta"
     else:
         taula = _DAUGHTER_LEVEL_STP
         nom = "netastra"
@@ -454,13 +456,13 @@ def _get_daughter(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME_F):
 
-        return u"la %s %s%s" % \
+        return "la %s %s%s" % \
             (nom, _LEVEL_NAME_F[level-1], inlaw)
     else:
 
         # use numerical generation
 
-        return u"la %s %dena%s" % (nom, (level -1), inlaw)
+        return "la %s %dena%s" % (nom, (level -1), inlaw)
 
 def _get_child_unknown(level, inlaw="", step=""):
     """
@@ -470,7 +472,7 @@ def _get_child_unknown(level, inlaw="", step=""):
         inlaw += "s"
     if step == "":
         taula = _SON_LEVEL_UNK
-        nom = u"néts"
+        nom = "néts"
     else:
         taula = _SON_LEVEL_STPUNK
         nom = "netastres"
@@ -480,13 +482,13 @@ def _get_child_unknown(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME_P):
 
-        return u"un dels %s %s%s" % \
+        return "un dels %s %s%s" % \
             (nom, _LEVEL_NAME_P[level-1], inlaw)
     else:
 
         # use numerical generation
 
-        return u"un dels %s %dens%s" % (nom, (level -1), inlaw)
+        return "un dels %s %dens%s" % (nom, (level -1), inlaw)
 
 def _get_sibling_unknown(level, inlaw="", step=""):
     """
@@ -508,13 +510,13 @@ def _get_sibling_unknown(level, inlaw="", step=""):
 
         # limitation gen = 30
 
-        return u"un dels %s %s%s" % \
+        return "un dels %s %s%s" % \
             (nom, _LEVEL_NAME_P[level-1], inlaw)
     else :
 
         # use numerical generation
 
-        return u"un dels %s %dens%s" % \
+        return "un dels %s %dens%s" % \
             (nom, (level - 1), inlaw)
 
 def _get_uncle(level, inlaw="", step=""):
@@ -535,13 +537,13 @@ def _get_uncle(level, inlaw="", step=""):
 
         # limitation gen = 30
 
-        return u"l'%s %s%s" % \
+        return "l'%s %s%s" % \
             (nom, _LEVEL_NAME[level-1], inlaw)
     else :
 
         # use numerical generation
 
-        return u"l'%s %dè%s" % \
+        return "l'%s %dè%s" % \
             (nom, (level - 1), inlaw)
 
 def _get_aunt(level, inlaw="", step=""):
@@ -562,13 +564,13 @@ def _get_aunt(level, inlaw="", step=""):
 
     elif level <= len(_LEVEL_NAME_F):
 
-        return u"la %s %s%s" % \
+        return "la %s %s%s" % \
             (nom, _LEVEL_NAME_F[level-1], inlaw)
     else :
 
         # use numerical generation
 
-        return u"la %s %dena%s" % \
+        return "la %s %dena%s" % \
             (nom, (level - 1), inlaw)
 
 def _get_uncles(level, inlaw=""):
@@ -579,16 +581,16 @@ def _get_uncles(level, inlaw=""):
         inlaw += "s"
 
     if inlaw != "" and level == 1 :
-        return u"els cunyats i les cunyades"
+        return "els cunyats i les cunyades"
     elif level < len(_SIBLINGS_LEVEL) :
-        return u"%s%s" % \
+        return "%s%s" % \
             (_SIBLINGS_LEVEL[level], inlaw)
     elif level <= len(_LEVEL_NAME_P) :
-        return u"els oncles i les ties %s%s" % \
+        return "els oncles i les ties %s%s" % \
             (_LEVEL_NAME_P[level-1], inlaw)
     else:
         # use numerical generation
-        return u"els oncles i les ties %dens%s" % \
+        return "els oncles i les ties %dens%s" % \
             ((level-1), inlaw)
 
 def _get_cosins(level, inlaw=""):
@@ -599,13 +601,13 @@ def _get_cosins(level, inlaw=""):
         inlaw += "s"
 
     if level == 2:
-        rel_str = u"els cosins germans"+inlaw
+        rel_str = "els cosins germans"+inlaw
     elif level <= len(_LEVEL_NAME_P):
 
-        rel_str = u"els cosins %s%s" % (_LEVEL_NAME_P[level - 1], inlaw)
+        rel_str = "els cosins %s%s" % (_LEVEL_NAME_P[level - 1], inlaw)
     else:
         # security
-        rel_str = u"els cosins %dens%s" % ((level - 1), inlaw)
+        rel_str = "els cosins %dens%s" % ((level - 1), inlaw)
 
     return rel_str
 
@@ -625,13 +627,13 @@ def _get_nephew(level, inlaw="", step=""):
 
     elif level < len(_LEVEL_NAME):
 
-        return u"el %s %s%s" % \
+        return "el %s %s%s" % \
             (nom, _LEVEL_NAME[level], inlaw)
     else :
 
         # use numerical generation
 
-        return u"el %s %dè%s" % (nom, level, inlaw)
+        return "el %s %dè%s" % (nom, level, inlaw)
 
 def _get_nephew_unk(level, inlaw="", step=""):
     """
@@ -651,13 +653,13 @@ def _get_nephew_unk(level, inlaw="", step=""):
 
     elif level < len(_LEVEL_NAME):
 
-        return u"un dels %s %s%s" % \
+        return "un dels %s %s%s" % \
             (nom, _LEVEL_NAME_P[level], inlaw)
     else :
 
         # use numerical generation
 
-        return u"un dels %s %dens%s" % (nom, level, inlaw)
+        return "un dels %s %dens%s" % (nom, level, inlaw)
 
 def _get_niece(level, inlaw="", step=""):
     """
@@ -677,13 +679,13 @@ def _get_niece(level, inlaw="", step=""):
 
     elif level < len(_LEVEL_NAME_F):
 
-        return u"la %s %s%s" % \
+        return "la %s %s%s" % \
             (nom, _LEVEL_NAME_F[level], inlaw)
     else :
 
         # use numerical generation
 
-        return u"la %s %dena%s" % (nom, level, inlaw)
+        return "la %s %dena%s" % (nom, level, inlaw)
 
 def _get_nephews(level, inlaw=""):
     """
@@ -695,15 +697,15 @@ def _get_nephews(level, inlaw=""):
 
         # limitation gen = 30
 
-        return u"%s%s" % (_NEPHEWS_NIECES_LEVEL[level-1], inlaw)
+        return "%s%s" % (_NEPHEWS_NIECES_LEVEL[level-1], inlaw)
     elif level <= len(_LEVEL_NAME_P) :
 
-        return u"els nebots i les nebodes %s%s" % \
+        return "els nebots i les nebodes %s%s" % \
              (_LEVEL_NAME_P[level-1], inlaw)
     else:
         # use numerical generation
 
-        return u"els nebots i les nebodes %dens%s" % \
+        return "els nebots i les nebodes %dens%s" % \
              ((level-1), inlaw)
 
 def _get_oncle_valencia(levela, levelb, inlaw="", step=""):
@@ -711,7 +713,7 @@ def _get_oncle_valencia(levela, levelb, inlaw="", step=""):
     removed cousins, older generations
     """
     if levela <= levelb:
-        return u"error a _get_oncle_valencia"
+        return "error a _get_oncle_valencia"
     val_level  = levela-levelb
     amplada    = levelb-1
     retorn     = _get_uncle(val_level+1, "", step)
@@ -719,7 +721,7 @@ def _get_oncle_valencia(levela, levelb, inlaw="", step=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME[amplada]
-    return retorn+u" valencià "+ stramplada+inlaw
+    return retorn+" valencià "+ stramplada+inlaw
 
 def _get_oncles_valencians(levela, levelb, inlaw=""):
     """
@@ -728,7 +730,7 @@ def _get_oncles_valencians(levela, levelb, inlaw=""):
     if (inlaw != ""):
         inlaw += "s"
     if levela <= levelb:
-        return u"error a _get_oncles_valencians"
+        return "error a _get_oncles_valencians"
     val_level  = levela-levelb
     amplada    = levelb-1
     retorn     = _get_uncles(val_level+1, "")
@@ -736,14 +738,14 @@ def _get_oncles_valencians(levela, levelb, inlaw=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME_P[amplada]
-    return retorn+u" valencians "+ stramplada+inlaw
+    return retorn+" valencians "+ stramplada+inlaw
 
 def _get_nebot_valencia(levela, levelb, inlaw="", step=""):
     """
     removed cousins, younger generations
     """
     if levelb <= levela:
-        return u"error a _get_nebot_valencia"
+        return "error a _get_nebot_valencia"
     val_level  = levelb-levela
     amplada    = levela - 1
     retorn     = _get_nephew(val_level, "", step)
@@ -751,7 +753,7 @@ def _get_nebot_valencia(levela, levelb, inlaw="", step=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME[amplada]
-    return retorn+u" valencià "+ stramplada+inlaw
+    return retorn+" valencià "+ stramplada+inlaw
 
 def _get_nebots_valencians(levela, levelb, inlaw=""):
     """
@@ -761,7 +763,7 @@ def _get_nebots_valencians(levela, levelb, inlaw=""):
     if (inlaw != ""):
         inlaw += "s"
     if levelb <= levela:
-        return u"error a _get_nebots_valencians"
+        return "error a _get_nebots_valencians"
     val_level  = levelb-levela
     amplada    = levela - 1
     retorn     = _get_nephews(val_level+1, "")
@@ -769,7 +771,7 @@ def _get_nebots_valencians(levela, levelb, inlaw=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME_P[amplada]
-    return retorn+u" valencians "+ stramplada+inlaw
+    return retorn+" valencians "+ stramplada+inlaw
 
 def _get_tia_valenciana(levela, levelb, inlaw="", step=""):
     """
@@ -779,7 +781,7 @@ def _get_tia_valenciana(levela, levelb, inlaw="", step=""):
     if (inlaw != ""):
         inlaw += "a"
     if levela <= levelb:
-        return u"error a _get_tia_valenciana"
+        return "error a _get_tia_valenciana"
     val_level  = levela-levelb
     amplada    = levelb-1
     retorn     = _get_aunt(val_level+1, "", step)
@@ -787,7 +789,7 @@ def _get_tia_valenciana(levela, levelb, inlaw="", step=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME_F[amplada]
-    return retorn+u" valenciana "+ stramplada+inlaw
+    return retorn+" valenciana "+ stramplada+inlaw
 
 def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
     """
@@ -797,7 +799,7 @@ def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
     if (inlaw != ""):
         inlaw += "a"
     if levelb <= levela:
-        return u"error a _get_neboda_valenciana"
+        return "error a _get_neboda_valenciana"
     val_level  = levelb-levela
     amplada    = levela - 1
     retorn     = _get_niece(val_level, "", step)
@@ -805,14 +807,14 @@ def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
         stramplada = ""
     else:
         stramplada = _LEVEL_NAME_F[amplada]
-    return retorn+u" valenciana "+ stramplada+inlaw
+    return retorn+" valenciana "+ stramplada+inlaw
 
 class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
 
-    INLAW = u' polític'
+    INLAW = ' polític'
 
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
@@ -827,7 +829,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         see relationship.py
         """
 
-        rel_str = u"parents llunyans"
+        rel_str = "parents llunyans"
         #atgen = u" de la %sena generació"
         #bygen = u" per la %sena generació"
         #cmt = u" (germans o germanes d'un avantpassat" + atgen % Ga + ")"
@@ -835,7 +837,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = u""
+            inlaw = ""
 
         if Ga == 0:
 
@@ -850,9 +852,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Ga < len(_PARENTS_LEVEL):
                 rel_str = _PARENTS_LEVEL[Ga]
             elif Ga < len(_LEVEL_NAME_P) -1:
-                rel_str = u"els avis " + _LEVEL_NAME_P[Ga - 1]
+                rel_str = "els avis " + _LEVEL_NAME_P[Ga - 1]
             else:
-                rel_str = u"els avis %dens" % (Ga - 1)
+                rel_str = "els avis %dens" % (Ga - 1)
 
         elif Gb == 1:
 
@@ -917,22 +919,22 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = u""
+            inlaw = ""
 
-        rel_str = u"un parent llunyà%s" % inlaw
+        rel_str = "un parent llunyà%s" % inlaw
         #bygen = u" per la %sena generació"
         if Ga == 0:
 
             # b is descendant of a
 
             if Gb == 0:
-                rel_str = u"la mateixa persona"
+                rel_str = "la mateixa persona"
             elif gender_b == Person.MALE:
 
                 # spouse of daughter
 
                 if inlaw and Gb == 1 and not step:
-                    rel_str = u"el gendre"
+                    rel_str = "el gendre"
                 else:
                     rel_str = _get_son(Gb, inlaw, step)
             elif gender_b == Person.FEMALE:
@@ -940,7 +942,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 # spouse of son
 
                 if inlaw and Gb == 1 and not step:
-                    rel_str = u"la jove"
+                    rel_str = "la jove"
                 else:
                     rel_str = _get_daughter(Gb, inlaw, step)
             else:
@@ -953,7 +955,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
                 # father of spouse (family of spouse)
                 if Ga == 1 and inlaw and not step:
-                    rel_str = u"el sogre"
+                    rel_str = "el sogre"
 
                 else:
                     rel_str = _get_father(Ga, inlaw, step)
@@ -961,7 +963,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
                 # mother of spouse (family of spouse)
                 if Ga == 1 and inlaw and not step:
-                    rel_str = u"la sogra"
+                    rel_str = "la sogra"
 
                 else:
                     rel_str = _get_mother(Ga, inlaw, step)
@@ -998,7 +1000,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = _get_nephew_unk(Gb - 1, inlaw, step)
             else:
 		# This should never get executed
-                rel_str = u"un nebot%s llunyà (%dena generació)" % (inlaw, Gb)
+                rel_str = "un nebot%s llunyà (%dena generació)" % (inlaw, Gb)
         elif Ga == Gb:
 
             # a and b cousins in the same generation
@@ -1048,38 +1050,38 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
-            inlaw = u""
+            inlaw = ""
 
         if sib_type == self.NORM_SIB:
             if not inlaw:
                 if gender_b == Person.MALE:
-                    rel_str = u"el germà"
+                    rel_str = "el germà"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la germana"
+                    rel_str = "la germana"
                 else:
-                    rel_str = u"el germà o germana"
+                    rel_str = "el germà o germana"
             else:
                 if gender_b == Person.MALE:
-                    rel_str = u"el cunyat"
+                    rel_str = "el cunyat"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la cunyada"
+                    rel_str = "la cunyada"
                 else:
-                    rel_str = u"el cunyat o la cunyada"
+                    rel_str = "el cunyat o la cunyada"
         elif sib_type == self.UNKNOWN_SIB:
             if not inlaw:
                 if gender_b == Person.MALE:
-                    rel_str = u"el germà"
+                    rel_str = "el germà"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la germana"
+                    rel_str = "la germana"
                 else:
-                    rel_str = u"el germà o germana"
+                    rel_str = "el germà o germana"
             else:
                 if gender_b == Person.MALE:
-                    rel_str = u"el cunyat"
+                    rel_str = "el cunyat"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la cunyada"
+                    rel_str = "la cunyada"
                 else:
-                    rel_str = u"el cunyat o la cunyada"
+                    rel_str = "el cunyat o la cunyada"
         elif sib_type == self.HALF_SIB_MOTHER \
           or sib_type == self.HALF_SIB_FATHER \
 	  or sib_type == self.STEP_SIB:
@@ -1087,18 +1089,18 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if not inlaw:
 
                 if gender_b == Person.MALE:
-                    rel_str = u"el germanastre"
+                    rel_str = "el germanastre"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la germanastra"
+                    rel_str = "la germanastra"
                 else:
-                    rel_str = u"el germanastre o la germanastra"
+                    rel_str = "el germanastre o la germanastra"
             else:
                 if gender_b == Person.MALE:
-                    rel_str = u"el cunyat"
+                    rel_str = "el cunyat"
                 elif gender_b == Person.FEMALE:
-                    rel_str = u"la cunyada"
+                    rel_str = "la cunyada"
                 else:
-                    rel_str = u"el cunyat o la cunyada"
+                    rel_str = "el cunyat o la cunyada"
         return rel_str
 
 if __name__ == "__main__":

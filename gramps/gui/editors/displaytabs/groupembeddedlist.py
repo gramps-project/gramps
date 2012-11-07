@@ -26,7 +26,11 @@
 # python
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +47,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click
-from embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

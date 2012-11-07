@@ -29,10 +29,16 @@ Module that implements the sidebar and bottombar fuctionality.
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 import time
 import os
-import ConfigParser
+import sys
+if sys.version_info[0] < 3:
+    import ConfigParser as configparser
+else:
+    import configparser
 
 #-------------------------------------------------------------------------
 #
@@ -126,7 +132,7 @@ class GrampsBar(Gtk.Notebook):
         default_page = 0
         filename = self.configfile
         if filename and os.path.exists(filename):
-            cp = ConfigParser.ConfigParser()
+            cp = configparser.ConfigParser()
             cp.read(filename)
             for sec in cp.sections():
                 if sec == "Bar Options":
@@ -167,7 +173,7 @@ class GrampsBar(Gtk.Notebook):
         try:
             fp = open(filename, "w")
         except IOError:
-            print "Failed writing '%s'; gramplets not saved" % filename
+            print("Failed writing '%s'; gramplets not saved" % filename)
             return
         fp.write(";; Gramps bar configuration file" + NL)
         fp.write((";; Automatically created at %s" %
@@ -234,7 +240,7 @@ class GrampsBar(Gtk.Notebook):
         """
         Called when the view is closed.
         """
-        map(self.__dock_gramplet, self.detached_gramplets)
+        list(map(self.__dock_gramplet, self.detached_gramplets))
         if not self.empty:
             for page_num in range(self.get_n_pages()):
                 gramplet = self.get_nth_page(page_num)
@@ -253,7 +259,7 @@ class GrampsBar(Gtk.Notebook):
         gramplet = make_requested_gramplet(TabGramplet, self, all_opts,
                                            self.dbstate, self.uistate)
         if not gramplet:
-            print "Problem creating ", gname
+            print("Problem creating ", gname)
             return
 
         page_num = self.__add_tab(gramplet)
@@ -295,8 +301,8 @@ class GrampsBar(Gtk.Notebook):
         """
         Restore the GrampsBar to its default gramplets.
         """
-        map(self.remove_gramplet, self.all_gramplets())
-        map(self.add_gramplet, self.defaults)
+        list(map(self.remove_gramplet, self.all_gramplets()))
+        list(map(self.add_gramplet, self.defaults))
         self.set_current_page(0)
 
     def __create_empty_tab(self):

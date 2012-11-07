@@ -28,6 +28,8 @@ main file to start the QML application
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys, os
 
 #-------------------------------------------------------------------------
@@ -142,13 +144,13 @@ def startqml(errors, argparser):
             print("Gramps terminated because of no DISPLAY")
             sys.exit(exit_code)
 
-    except SystemExit, e:
+    except SystemExit as e:
         quit_now = True
         if e.code:
             exit_code = e.code
             LOG.error("Gramps terminated with exit code: %d." \
                       % e.code, exc_info=True)
-    except OSError, e:
+    except OSError as e:
         quit_now = True
         exit_code = e[0] or 1
         try:

@@ -131,7 +131,7 @@ class KinshipReport(Report):
         self.traverse_up(self.person.get_handle(), 1, 0)
                 
         # Write Kin
-        for Ga, Gbs in self.kinship_map.iteritems():
+        for Ga, Gbs in self.kinship_map.items():
             for Gb in Gbs:
                 # To understand these calculations, see: 
                 # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
@@ -289,7 +289,7 @@ class KinshipReport(Report):
         mark = IndexMark(cap_title, INDEX_TYPE_TOC, 2)
         self.doc.write_text(subtitle, mark)
         self.doc.end_paragraph()
-        map(self.write_person, people_handles)
+        list(map(self.write_person, people_handles))
 
     def write_person(self, person_handle):
         """

@@ -220,7 +220,7 @@ class MergeFamily(ManagedWindow):
             query = MergeFamilyQuery(self.database, phoenix, titanic,
                                      phoenix_fh, phoenix_mh)
             query.execute()
-        except MergeError, err:
+        except MergeError as err:
             ErrorDialog( _("Cannot merge people"), str(err))
         self.uistate.set_busy_cursor(False)
         self.close()

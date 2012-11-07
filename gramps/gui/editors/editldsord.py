@@ -49,9 +49,9 @@ from gramps.gen.lib import LdsOrd, NoteType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.lds import TEMPLES
 from ..glade import Glade
-from editsecondary import EditSecondary
-from objectentries import PlaceEntry
-from displaytabs import CitationEmbedList,NoteTab
+from .editsecondary import EditSecondary
+from .objectentries import PlaceEntry
+from .displaytabs import CitationEmbedList,NoteTab
 from ..widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 from ..selectors import SelectorFactory

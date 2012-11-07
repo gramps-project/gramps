@@ -31,6 +31,8 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -57,6 +59,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
+from gramps.gen.constfunc import cuni
 from ...pluginmanager import GuiPluginManager
 from ...dialog import WarningDialog, ErrorDialog
 from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
@@ -65,14 +68,13 @@ from ...glade import Glade
 from ...utils import is_right_click, open_file_with_default_application
 from ...user import User
 from .. import make_gui_option
-from types import ClassType
 
 # Import from specific modules in ReportBase
 from gramps.gen.plug.report import BookList, Book, BookItem, create_style_sheet
 from gramps.gen.plug.report import CATEGORY_BOOK, book_categories
 from gramps.gen.plug.report._options import ReportOptions
-from _reportdialog import ReportDialog
-from _docreportdialog import DocReportDialog
+from ._reportdialog import ReportDialog
+from ._docreportdialog import DocReportDialog
 
 from gramps.gen.display.name import displayer as _nd
 
@@ -120,14 +122,14 @@ def _initialize_options(options, dbstate, uistate):
                     family_handle = family_list[0]
                 else:
                     try:
-                        family_handle = dbase.iter_family_handles().next()
+                        family_handle = next(dbase.iter_family_handles())
                     except StopIteration:
                         family_handle = None
                 if family_handle:
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
                 else:
-                    print "No family specified for ", name
+                    print("No family specified for ", name)
 
 def _get_subject(options, dbase):
     """
@@ -258,7 +260,7 @@ class BookListDisplay(object):
         store, the_iter = self.blist.get_selected()
         if the_iter:
             data = self.blist.get_data(the_iter, [0])
-            self.selection = self.booklist.get_book(unicode(data[0]))
+            self.selection = self.booklist.get_book(cuni(data[0]))
         if self.dosave:
             self.booklist.save()
 
@@ -272,7 +274,7 @@ class BookListDisplay(object):
         if not the_iter:
             return
         data = self.blist.get_data(the_iter, [0])
-        self.booklist.delete_book(unicode(data[0]))
+        self.booklist.delete_book(cuni(data[0]))
         self.blist.remove(the_iter)
         self.unsaved_changes = True
         self.top.run()
@@ -486,7 +488,7 @@ class BookSelector(ManagedWindow):
         store, the_iter = self.avail_model.get_selected()
         if not the_iter:
             return
-        data = self.avail_model.get_data(the_iter, range(self.avail_nr_cols))
+        data = self.avail_model.get_data(the_iter, list(range(self.avail_nr_cols)))
         item = BookItem(self.db, data[2])
         _initialize_options(item.option_class, self.dbstate, self.uistate)
         data[2] = _get_subject(item.option_class, self.db)
@@ -519,7 +521,7 @@ class BookSelector(ManagedWindow):
         if not row or row == -1:
             return
         store, the_iter = self.book_model.get_selected()
-        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        data = self.book_model.get_data(the_iter, list(range(self.book_nr_cols)))
         self.book_model.remove(the_iter)
         self.book_model.insert(row-1, data, None, 1)
         item = self.book.pop_item(row)
@@ -533,7 +535,7 @@ class BookSelector(ManagedWindow):
         if row + 1 >= self.book_model.count or row == -1:
             return
         store, the_iter = self.book_model.get_selected()
-        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        data = self.book_model.get_data(the_iter, list(range(self.book_nr_cols)))
         self.book_model.remove(the_iter)
         self.book_model.insert(row+1, data, None, 1)
         item = self.book.pop_item(row)
@@ -549,7 +551,7 @@ class BookSelector(ManagedWindow):
                           _('Please select a book item to configure.')
                          )
             return
-        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        data = self.book_model.get_data(the_iter, list(range(self.book_nr_cols)))
         row = self.book_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
@@ -669,7 +671,7 @@ class BookSelector(ManagedWindow):
         Save the current book in the xml booklist file. 
         """
         self.book_list = BookList(self.file, self.db)
-        name = unicode(self.name_entry.get_text())
+        name = cuni(self.name_entry.get_text())
         if not name:
             WarningDialog(_('No book name'), _(
                 'You are about to save away a book with no name.\n\n'
@@ -764,8 +766,7 @@ class BookItemDialog(ReportDialog):
 
     def init_options(self, option_class):
         try:
-            if (issubclass(option_class, object) or     # New-style class
-                isinstance(option_class, ClassType)):   # Old-style class
+            if issubclass(option_class, object):   
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
@@ -865,7 +866,7 @@ class BookDialog(DocReportDialog):
         if response == Gtk.ResponseType.OK:
             try:
                 self.make_book()
-            except (IOError, OSError),msg:
+            except (IOError, OSError) as msg:
                 ErrorDialog(str(msg))
         self.close()
 
@@ -939,10 +940,10 @@ def write_book_item(database, report_class, options, user):
     All user dialog has already been handled and the output file opened."""
     try:
         return report_class(database, options, user)
-    except ReportError, msg:
+    except ReportError as msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)
-    except FilterError, msg:
+    except FilterError as msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)
     except:

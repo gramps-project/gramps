@@ -22,6 +22,7 @@
 # $Id$
 
 """unittest (test_util_test.py) for test_util.py"""
+from __future__ import print_function
 
 import sys
 import os
@@ -56,7 +57,7 @@ try:
     from test import test_util as tu
     ##here = tu.absdir()
 except ImportError:
-    print "Cannot import 'test_util'from package 'test'" + usage_note
+    print("Cannot import 'test_util'from package 'test'" + usage_note)
     exit(1) 
 
 
@@ -77,7 +78,7 @@ class Test1(U.TestCase):
         try:
             err = None
             raise tu.TestError(tmsg)
-        except tu.TestError,e:
+        except tu.TestError as e:
             emsg = e.value
         self.assertEqual(emsg, tmsg,
             "raising TestError: g=%r e=%r" % (emsg, tmsg))
@@ -177,7 +178,7 @@ class Test3(U.TestCase):
             err = None
             try:
                 tu.delete_tree(self.home_junk)
-            except tu.TestError, e:
+            except tu.TestError as e:
                 err = e.value
             self.assertFalse(err is None, 
                 "deltree on %r raises TestError" % (self.home_junk))

@@ -29,7 +29,7 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 # BSDDBTxn
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
+from __future__ import print_function, with_statement
 
 class BSDDBTxn(object):
     """
@@ -187,25 +187,26 @@ class BSDDBTxn(object):
 
 # test code
 if __name__ == "__main__": 
-    print "1"
+    print("1")
     from ..config import config
-    if config.get('preferences.use-bsddb3'):
+    import sys
+    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
         from bsddb3 import db, dbshelve
     else:
         from bsddb import db, dbshelve
-    print "2"
+    print("2")
     x = db.DBEnv()
-    print "3"
+    print("3")
     x.open('/tmp', db.DB_CREATE | db.DB_PRIVATE |\
                          db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
                          db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD)
-    print "4"
+    print("4")
     d = dbshelve.DBShelf(x)
-    print "5"
+    print("5")
     #from tran import BSDDBTxn as T
-    print "6"
+    print("6")
     T = BSDDBTxn
     with T(x) as tx:
-        print "stat", tx.stat()
-        print "id", tx.id()
+        print("stat", tx.stat())
+        print("id", tx.id())
         tx.checkpoint()

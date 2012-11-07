@@ -25,18 +25,19 @@
 """
 Place object for GRAMPS.
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from urlbase import UrlBase
-from location import Location
+from .primaryobj import PrimaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .mediabase import MediaBase
+from .urlbase import UrlBase
+from .location import Location
 
 _EMPTY_LOC = Location().serialize()
 
@@ -69,7 +70,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.lat = source.lat
             self.title = source.title
             self.main_loc = Location(source.main_loc)
-            self.alt_loc = map(Location, source.alt_loc)
+            self.alt_loc = list(map(Location, source.alt_loc))
         else:
             self.long = ""
             self.lat = ""
@@ -404,5 +405,5 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                     self.main_loc.city.upper(), self.main_loc.county.upper(),
                     self.main_loc.state.upper(), self.main_loc.country.upper()]
         else:
-            return [self.title, self.gramps_id, u'', u'', u'', u'', u'',
-                    self.title.upper(), u'', u'', u'', u'', u'']
+            return [self.title, self.gramps_id, '', '', '', '', '',
+                    self.title.upper(), '', '', '', '', '']

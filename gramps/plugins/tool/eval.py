@@ -30,8 +30,11 @@ Provide a python evaluation window
 # standard python modules
 #
 #------------------------------------------------------------------------
-import cStringIO
 import sys
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 from gramps.gen.ggettext import gettext as _
 import traceback
 
@@ -43,6 +46,7 @@ import traceback
 from gramps.gui.plug import tool
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.glade import Glade
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -71,18 +75,18 @@ class Eval(tool.Tool,ManagedWindow):
             "on_delete_event"  : self.close,
             })
 
-        self.set_window(window,self.glade.get_object('title'),self.title)
+        self.set_window(window, self.glade.get_object('title'), self.title)
         self.show()
 
     def build_menu_names(self, obj):
         return (self.title,None)
 
     def apply_clicked(self, obj):
-        text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
+        text = cuni(self.ebuf.get_text(self.ebuf.get_start_iter(),
                                           self.ebuf.get_end_iter(),False))
 
-        outtext = cStringIO.StringIO()
-        errtext = cStringIO.StringIO()
+        outtext = StringIO()
+        errtext = StringIO()
         sys.stdout = outtext
         sys.stderr = errtext
         try:

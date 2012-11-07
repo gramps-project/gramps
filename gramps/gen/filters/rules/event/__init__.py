@@ -28,25 +28,25 @@ Package providing filter rules for GRAMPS.
 
 from .._haseventbase import HasEventBase as HasEvent
 
-from _hastype import HasType
-from _allevents import AllEvents
-from _hasgallery import HasGallery
-from _hasidof import HasIdOf
-from _regexpidof import RegExpIdOf
-from _hascitation import HasCitation
-from _hasnote import HasNote
-from _hasnoteregexp import HasNoteRegexp
-from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
-from _hasreferencecountof import HasReferenceCountOf
-from _hassourcecount import HasSourceCount
-from _eventprivate import EventPrivate
-from _matchesfilter import MatchesFilter
-from _matchespersonfilter import MatchesPersonFilter
-from _matchessourceconfidence import MatchesSourceConfidence
-from _matchessourcefilter import MatchesSourceFilter
-from _hasattribute import HasAttribute
-from _hasdata import HasData
-from _changedsince import ChangedSince
+from ._hastype import HasType
+from ._allevents import AllEvents
+from ._hasgallery import HasGallery
+from ._hasidof import HasIdOf
+from ._regexpidof import RegExpIdOf
+from ._hascitation import HasCitation
+from ._hasnote import HasNote
+from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hasreferencecountof import HasReferenceCountOf
+from ._hassourcecount import HasSourceCount
+from ._eventprivate import EventPrivate
+from ._matchesfilter import MatchesFilter
+from ._matchespersonfilter import MatchesPersonFilter
+from ._matchessourceconfidence import MatchesSourceConfidence
+from ._matchessourcefilter import MatchesSourceFilter
+from ._hasattribute import HasAttribute
+from ._hasdata import HasData
+from ._changedsince import ChangedSince
 
 editor_rule_list = [
     AllEvents,

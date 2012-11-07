@@ -121,7 +121,7 @@ def process_surname(request, handle, order, sorder, act="view"):
 
     if sorder == "add":
         act = "add"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
 
     person = Person.objects.get(handle=handle)
@@ -211,7 +211,7 @@ def process_surname(request, handle, order, sorder, act="view"):
 def process_name(request, handle, order, act="view"):
     if order == "add":
         act = "add"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
     ### Process act:
     if act in "view":

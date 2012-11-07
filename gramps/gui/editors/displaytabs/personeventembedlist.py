@@ -36,8 +36,8 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.display.name import displayer as name_displayer
-from eventembedlist import EventEmbedList
-from eventrefmodel import EventRefModel
+from .eventembedlist import EventEmbedList
+from .eventrefmodel import EventRefModel
 from gramps.gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------

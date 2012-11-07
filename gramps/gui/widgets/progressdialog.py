@@ -23,7 +23,7 @@
 This module provides a progress dialog for displaying the status of 
 long running operations.
 """
-
+from __future__ import print_function
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -566,7 +566,7 @@ if __name__ == '__main__':
     
         d.add_op(s)
         
-        for i in xrange(0, 99):
+        for i in range(0, 99):
             if s.should_cancel():
                 break
             time.sleep(0.1)
@@ -574,7 +574,7 @@ if __name__ == '__main__':
                 t = LongOpStatus("doing a shorter one", 100, 10, 
                                  can_cancel=True)
                 d.add_op(t)
-                for j in xrange(0, 99):
+                for j in range(0, 99):
                     if s.should_cancel(): 
                         t.cancel()
                         break
@@ -587,7 +587,7 @@ if __name__ == '__main__':
             if i == 60:
                 t = LongOpStatus("doing another shorter one", 100, 10)
                 d.add_op(t)
-                for j in xrange(0, 99):
+                for j in range(0, 99):
                     if s.should_cancel():
                         t.cancel()
                         break
@@ -606,4 +606,4 @@ if __name__ == '__main__':
     button.show()
     w.show()
     Gtk.main()
-    print 'done'
+    print('done')

@@ -31,6 +31,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -78,7 +80,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
             uistate.push_message(dbstate, _("Rebuilding reference maps..."))
         else:
             self.callback = None
-            print "Rebuilding reference maps..."
+            print("Rebuilding reference maps...")
             
         UpdateCallback.__init__(self, self.callback)
         self.set_total(6)
@@ -92,7 +94,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
                      _('All reference maps have been rebuilt.'),
                      parent=uistate.window)
         else:
-            print "All reference maps have been rebuilt."
+            print("All reference maps have been rebuilt.")
         self.db.enable_signals()
 
 #------------------------------------------------------------------------

@@ -27,6 +27,8 @@ Classes for relationships.
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import os
 
 #-------------------------------------------------------------------------
@@ -35,12 +37,12 @@ import os
 #
 #-------------------------------------------------------------------------
 
-from lib import Person, ChildRefType, EventType, FamilyRelType
+from .lib import Person, ChildRefType, EventType, FamilyRelType
 MALE = Person.MALE
 FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
-from ggettext import sgettext as _
-from plug import PluginRegister, BasePluginManager
+from .ggettext import sgettext as _
+from .plug import PluginRegister, BasePluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -401,7 +403,7 @@ class RelationshipCalculator(object):
         self.__db_connected = False
         self.depth = 15
         try:
-            from config import config
+            from .config import config
             self.set_depth(config.get('behavior.generation-depth'))
         except ImportError:
             pass
@@ -1007,13 +1009,13 @@ class RelationshipCalculator(object):
                             pmap[chandle] = [[rel_str+addstr], [rel_fam_new]]
                 fam += 1
 
-            for handle, data in parentstodo.iteritems():
+            for handle, data in parentstodo.items():
                 self.__apply_filter(db, data[0],
                                 data[1], data[2],
                                 pmap, depth, stoprecursemap)
         except:
             import traceback
-            print traceback.print_exc()
+            print(traceback.print_exc())
             return
 
     def collapse_relations(self, relations):
@@ -1754,7 +1756,7 @@ class RelationshipCalculator(object):
             subscribed
         """
         dbstate.disconnect(self.state_signal_key)
-        map(dbstate.db.disconnect, self.signal_keys)
+        list(map(dbstate.db.disconnect, self.signal_keys))
         self.storemap = False
         self.stored_map = None
 
@@ -1843,8 +1845,8 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            print (("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % enlang)
+            print((("No translation available for language '%s'. " +
+                    "Using 'english' instead.") % enlang))
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
@@ -1880,7 +1882,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     
     #rc = RelationshipCalculator()
     
-    print '\ntesting sons (Enter to start)\n'
+    print('\ntesting sons (Enter to start)\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
@@ -1892,10 +1894,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             in_law_a=inlawa, 
                                             in_law_b=inlawb)
         if printrelstr :
-            print rel + ' |info:', relstr
+            print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting daughters\n'
+            print(rel)
+    print('\n\ntesting daughters\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'m')
@@ -1906,10 +1908,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-            print rel + ' |info:', relstr
+            print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting unknown children\n'
+            print(rel)
+    print('\n\ntesting unknown children\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
@@ -1920,10 +1922,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-            print rel + ' |info:', relstr
+            print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting grandfathers\n'
+            print(rel)
+    print('\n\ntesting grandfathers\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
@@ -1934,10 +1936,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting grandmothers\n'
+            print(rel)
+    print('\n\ntesting grandmothers\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'m')
@@ -1948,10 +1950,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting unknown parents\n'
+            print(rel)
+    print('\n\ntesting unknown parents\n')
     sys.stdin.readline()
     for i in range(MAX) :
         relstr = _rand_relstr(i,'f')
@@ -1962,10 +1964,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting nieces\n'
+            print(rel)
+    print('\n\ntesting nieces\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
@@ -1976,10 +1978,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting nephews\n'
+            print(rel)
+    print('\n\ntesting nephews\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
@@ -1990,10 +1992,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting unknown nephews/nieces\n'
+            print(rel)
+    print('\n\ntesting unknown nephews/nieces\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
@@ -2004,10 +2006,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting uncles\n'
+            print(rel)
+    print('\n\ntesting uncles\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
@@ -2018,10 +2020,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting aunts\n'
+            print(rel)
+    print('\n\ntesting aunts\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'f')
@@ -2032,10 +2034,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting unknown uncles/aunts\n'
+            print(rel)
+    print('\n\ntesting unknown uncles/aunts\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstr = _rand_relstr(i,'m')
@@ -2046,10 +2048,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstr
+                print(rel + ' |info:', relstr)
         else:
-            print rel
-    print '\n\ntesting male cousins same generation\n'
+            print(rel)
+    print('\n\ntesting male cousins same generation\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstra = _rand_relstr(i,'f')
@@ -2062,10 +2064,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstra, relstrb
+                print(rel + ' |info:', relstra, relstrb)
         else:
-            print rel
-    print '\n\ntesting female cousins same generation\n'
+            print(rel)
+    print('\n\ntesting female cousins same generation\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstra = _rand_relstr(i,'m')
@@ -2078,10 +2080,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstra, relstrb
+                print(rel + ' |info:', relstra, relstrb)
         else:
-            print rel
-    print '\n\ntesting unknown cousins same generation\n'
+            print(rel)
+    print('\n\ntesting unknown cousins same generation\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         relstra = _rand_relstr(i,'m')
@@ -2094,10 +2096,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                             only_birth=onlybirth, 
                                             in_law_a=inlawa, in_law_b=inlawb)
         if printrelstr :
-                print rel + ' |info:', relstra, relstrb
+                print(rel + ' |info:', relstra, relstrb)
         else:
-            print rel
-    print '\n\ntesting some cousins up\n'
+            print(rel)
+    print('\n\ntesting some cousins up\n')
     sys.stdin.readline()
     import random
     random.seed()
@@ -2116,9 +2118,9 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), j, i )
                     if printrelstr :
-                        print rel + ' |info:', relstra, relstrb
+                        print(rel + ' |info:', relstra, relstrb)
                     else:
-                        print rel
+                        print(rel)
                 else:
                     rel =  (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(j, i,
@@ -2128,10 +2130,10 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), j, i )
                     if printrelstr :
-                        print rel + ' |info:', relstra, relstrb
+                        print(rel + ' |info:', relstra, relstrb)
                     else:
-                        print rel
-    print '\n\ntesting some cousins down\n'
+                        print(rel)
+    print('\n\ntesting some cousins down\n')
     sys.stdin.readline()
     for i in range(1, MAX) :
         for j in range (i, MAX) :
@@ -2148,9 +2150,9 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), i, j)
                     if printrelstr :
-                        print rel + ' |info:', relstra, relstrb
+                        print(rel + ' |info:', relstra, relstrb)
                     else:
-                        print rel
+                        print(rel)
                 else:
                     rel = (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(i, j,
@@ -2160,9 +2162,9 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), i, j)
                     if printrelstr :
-                        print rel + ' |info:', relstr
+                        print(rel + ' |info:', relstr)
                     else:
-                        print rel
+                        print(rel)
 
 def _testsibling(rc):
     vals = [(rc.NORM_SIB, 'sibling'),
@@ -2175,9 +2177,9 @@ def _testsibling(rc):
                            (UNKNOWN, 'unknown')]:
         for inlaw in [False, True]:
             for sibt, str in vals:
-                print FMT % rc.get_sibling_relationship_string(
+                print(FMT % rc.get_sibling_relationship_string(
                                 sibt, MALE, gendr, 
-                                in_law_a = inlaw) + ' |info:', str, strgen
+                                in_law_a = inlaw) + ' |info:', str, strgen)
 
 def _test_spouse(rc):
     FMT = '%+50s'
@@ -2193,9 +2195,9 @@ def _test_spouse(rc):
                            (FEMALE, 'female'), 
                            (UNKNOWN, 'unknown')] :
         for spouse_type, str in vals:
-            print FMT % rc.get_partner_relationship_string(
+            print(FMT % rc.get_partner_relationship_string(
                             spouse_type, MALE, gender) + \
-                            ' |info: gender='+strgen+', rel='+str
+                            ' |info: gender='+strgen+', rel='+str)
 
 def test(rc, printrelstr):
     """ this is a generic test suite for the singular relationship
@@ -2204,28 +2206,28 @@ def test(rc, printrelstr):
     """
     import sys
     
-    print '\nType  y   to do a test\n\n'
-    print 'Test normal relations?'
+    print('\nType  y   to do a test\n\n')
+    print('Test normal relations?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _test(rc, True, False, False, printrelstr)
-    print '\n\nTest step relations?'
+    print('\n\nTest step relations?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _test(rc, False, False, False, printrelstr)
-    print '\n\nTest in-law relations (first pers)?'
+    print('\n\nTest in-law relations (first pers)?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _test(rc, True, True, False, printrelstr)
-    print '\n\nTest step and in-law relations?'
+    print('\n\nTest step and in-law relations?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _test(rc, False, True, False, printrelstr)
-    print '\n\nTest sibling types?'
+    print('\n\nTest sibling types?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _testsibling(rc)
-    print '\n\nTest partner types?'
+    print('\n\nTest partner types?')
     data = sys.stdin.readline()
     if data == 'y\n':
         _test_spouse(rc)

@@ -28,6 +28,8 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import re
 import time
 from gramps.gen.ggettext import gettext as _
@@ -49,7 +51,15 @@ LOG = logging.getLogger(".ImportGeneWeb")
 from gramps.gen.errors import GedcomError
 from gramps.gen.lib import Attribute, AttributeType, ChildRef, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, Place, Source
 from gramps.gen.db import DbTxn
-from htmlentitydefs import name2codepoint
+from gramps.gen.constfunc import STRTYPE, cuni, conv_to_unicode
+if sys.version_info[0] < 3:
+    from htmlentitydefs import name2codepoint
+else:
+    from html.entities import name2codepoint
+if sys.version_info[0] < 3:
+    unich = lambda x: unichr(x)
+else:
+    unich = lambda x: chr(x)
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
 _text_parse = re.compile('0\((.*)\)')
@@ -77,13 +87,13 @@ def importData(database, filename, user):
 
     try:
         g = GeneWebParser(database,filename)
-    except IOError,msg:
+    except IOError as msg:
         user.notify_error(_("%s could not be opened\n") % filename,str(msg))
         return
 
     try:
         status = g.parse_geneweb_file()
-    except IOError,msg:
+    except IOError as msg:
         errmsg = _("%s could not be opened\n") % filename
         user.notify_error(errmsg,str(msg))
         return
@@ -95,7 +105,7 @@ def importData(database, filename, user):
 class GeneWebParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
-        self.f = open(file,"rU")
+        self.f = open(file, "rU")
         self.filename = file
         self.encoding = 'iso-8859-1'
 
@@ -104,9 +114,9 @@ class GeneWebParser(object):
         line = self.f.readline()
         if line:
             try:
-                line = unicode(line.strip())
+                line = cuni(line.strip())
             except UnicodeDecodeError:
-                line = unicode(line.strip(),self.encoding)
+                line = conv_to_unicode(line.strip(), self.encoding)
         else:
             line = None
         return line
@@ -172,7 +182,7 @@ class GeneWebParser(object):
                     else:
                         LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
                                  (fields[0],self.lineno,line))
-            except GedcomError, err:
+            except GedcomError as err:
                 self.errmsg(str(err))
                 
             t = time.time() - t
@@ -881,9 +891,9 @@ class GeneWebParser(object):
         for match in charref_re.finditer(s):
             try:
                 if match.group(2):  # HEX
-                    nchar = unichr(int(match.group(3),16))
+                    nchar = unich(int(match.group(3),16))
                 else:   # Decimal
-                    nchar = unichr(int(match.group(3)))
+                    nchar = unich(int(match.group(3)))
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
@@ -893,7 +903,7 @@ class GeneWebParser(object):
         for match in entref_re.finditer(s):
             try:
                 if match.group(2) in name2codepoint:
-                    nchar = unichr(name2codepoint[match.group(2)])
+                    nchar = unich(name2codepoint[match.group(2)])
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
@@ -902,4 +912,4 @@ class GeneWebParser(object):
 
     def debug( self, txt):
         if enable_debug:
-            print txt
+            print(txt)

@@ -140,11 +140,11 @@ class Spell(object):
     
     def get_all_spellchecks(self):
         """Get the list of installed spellcheck names."""
-        return self._spellcheck_options.values()
+        return list(self._spellcheck_options.values())
 
     def set_active_spellcheck(self, spellcheck):
         """Set active spellcheck by it's name."""
-        for code, name in self._spellcheck_options.items():
+        for code, name in list(self._spellcheck_options.items()):
             if name == spellcheck:
                 self.__real_set_active_spellcheck(code)
                 return

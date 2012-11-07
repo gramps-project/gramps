@@ -36,6 +36,8 @@ OPENGL = True
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys, os
 
 #-------------------------------------------------------------------------
@@ -64,6 +66,7 @@ from PySide import QtOpenGL
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gramps.gen.ggettext import gettext as _
+from gramps.gen.constfunc import cuni, UNITYPE
 
 #-------------------------------------------------------------------------
 #
@@ -102,11 +105,11 @@ class FamTreeWrapper(QtCore.QObject):
         self.__dbman.rename_database(self.__path_namefile, name)
         self.changed_name.emit()
 
-    name = QtCore.Property(unicode, _name, _set_name, notify=changed_name)
-    path = QtCore.Property(unicode, _path, notify=changed)
-    last_access = QtCore.Property(unicode, _last_access, notify=changed)
+    name = QtCore.Property(UNITYPE, _name, _set_name, notify=changed_name)
+    path = QtCore.Property(UNITYPE, _path, notify=changed)
+    last_access = QtCore.Property(UNITYPE, _last_access, notify=changed)
     use_icon = QtCore.Property(bool, _use_icon, notify=changed)
-    icon = QtCore.Property(unicode, _icon, notify=changed)
+    icon = QtCore.Property(UNITYPE, _icon, notify=changed)
 
 class FamTreeListModel(QtCore.QAbstractListModel):
     """
@@ -215,7 +218,7 @@ class DbManager(CLIDbManager, QtCore.QObject):
         if self.__busy:
             return
         self.__busy = True
-        print 'User clicked on:', 'add fam tree'
+        print('User clicked on:', 'add fam tree')
         new_path, title = self.create_new_db_cli(None)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)

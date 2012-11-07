@@ -292,7 +292,7 @@ class Html(list):
 #       Keywords we don't recognize are saved for later 
 #       addition to the opening tag as attributes.
 #
-        for keyw, arg in keywargs.iteritems():
+        for keyw, arg in keywargs.items():
             if (keyw in ['indent', 'close', 'inline'] and
                arg in [True, False, None]):
                 setattr(self, keyw, arg)
@@ -553,7 +553,7 @@ class Html(list):
         :param name: new HTML contents
         """
         if len(self) < 2:
-            raise AttributeError, 'No closing tag. Cannot set inside value' 
+            raise AttributeError('No closing tag. Cannot set inside value') 
         if isinstance(value, Html) or not hasattr(value, '__iter__'):
             value = [value]
         self[1:-1] = value

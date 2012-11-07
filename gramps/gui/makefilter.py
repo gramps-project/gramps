@@ -26,6 +26,7 @@ from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
                                 reload_custom_filters)
 from gramps.gen.ggettext import sgettext as _
+import collections
 
 def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
     """
@@ -39,7 +40,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
     filter = FilterClass()
     if title is None:
         title = _("Filter %s from Clipboard") % objclass
-    if callable(title):
+    if isinstance(title, collections.Callable):
         title = title()
     filter.set_name(title)
     struct_time = time.localtime()

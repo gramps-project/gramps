@@ -30,6 +30,7 @@ Declare constants used by database modules
 # standard python modules
 #
 #-------------------------------------------------------------------------
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -60,14 +61,14 @@ DBLOGNAME = ".Db"           # Name of logger
 DBMODE_R  = "r"             # Read-only access
 DBMODE_W  = "w"             # Full Read/Write access
 DBPAGE    = 16384           # Size of the pages used to hold items in the database
-DBMODE    = 0666            # Unix mode for database creation
+DBMODE    = 0o666            # Unix mode for database creation
 DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
 DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
 else:
     from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY

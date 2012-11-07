@@ -24,11 +24,14 @@ Unittest for export to VCard
 
 To be called from src directory.
 """
-
+from __future__ import print_function
 import unittest
-from cStringIO import StringIO
 import sys
 import os
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 import time
 sys.path.append(os.curdir)
 sys.path.append(os.path.join(os.curdir, 'plugins', 'export'))
@@ -75,16 +78,16 @@ class VCardCheck(unittest.TestCase):
         buf = libxml2.createOutputBuffer(input_strfile, 'UTF-8')
         input_doc.saveFormatFileTo(buf, 'UTF-8', 1)
         if debug:
-            print input_strfile.getvalue()
+            print(input_strfile.getvalue())
 
         process = subprocess.Popen('python gramps.py -i - -f gramps -e - -f vcf',
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(input_strfile.getvalue())
         if err_str:
-            print err_str
+            print(err_str)
         if debug:
-            print result_str
-            print expect_str
+            print(result_str)
+            print(expect_str)
         self.assertEqual(result_str, expect_str)
 
     def test_base(self):

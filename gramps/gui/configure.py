@@ -28,10 +28,13 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import random
 from gramps.gen.ggettext import gettext as _
 import os
 from xml.sax.saxutils import escape
+import collections
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +61,7 @@ from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
+from gramps.gen.constfunc import cuni
 from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -189,7 +193,7 @@ class ConfigureDialog(ManagedWindow):
         """
         This method builds the notebookpages in the panel
         """
-        if callable(configure_page_funcs):
+        if isinstance(configure_page_funcs, collections.Callable):
             pages = configure_page_funcs()
         else:
             pages = configure_page_funcs
@@ -212,7 +216,7 @@ class ConfigureDialog(ManagedWindow):
         try:
             self.__config.set(constant, int(obj.get_text()))
         except:
-            print "WARNING: ignoring invalid value for '%s'" % constant
+            print("WARNING: ignoring invalid value for '%s'" % constant)
 
     def update_entry(self, obj, constant):
         """
@@ -220,7 +224,7 @@ class ConfigureDialog(ManagedWindow):
         :param constant: the config setting to which the text value must be 
             saved
         """
-        self.__config.set(constant, unicode(obj.get_text()))
+        self.__config.set(constant, cuni(obj.get_text()))
 
     def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()
@@ -947,7 +951,7 @@ class GrampsPreferences(ConfigureDialog):
         # Date format:
         obox = Gtk.ComboBoxText()
         formats = get_date_formats()
-        map(obox.append_text, formats)
+        list(map(obox.append_text, formats))
         active = config.get('preferences.date-format')
         if active >= len(formats):
             active = 0
@@ -964,7 +968,7 @@ class GrampsPreferences(ConfigureDialog):
         age_precision = [_("Years"),
                          _("Years, Months"),
                          _("Years, Months, Days")]
-        map(obox.append_text, age_precision)
+        list(map(obox.append_text, age_precision))
         # Combo_box active index is from 0 to 2, we need values from 1 to 3
         active = config.get('preferences.age-display-precision') - 1
         if active >= 0 and active <= 2:
@@ -982,7 +986,7 @@ class GrampsPreferences(ConfigureDialog):
         
         # Calendar format on report:
         obox = Gtk.ComboBoxText()
-        map(obox.append_text, Date.ui_calendar_names)
+        list(map(obox.append_text, Date.ui_calendar_names))
         active = config.get('preferences.calendar-format-report')
         if active >= len(formats):
             active = 0
@@ -996,7 +1000,7 @@ class GrampsPreferences(ConfigureDialog):
         # Surname guessing:
         obox = Gtk.ComboBoxText()
         formats = _surname_styles
-        map(obox.append_text, formats)
+        list(map(obox.append_text, formats))
         obox.set_active(config.get('behavior.surname-guessing'))
         obox.connect('changed', 
                      lambda obj: config.set('behavior.surname-guessing', 
@@ -1009,7 +1013,7 @@ class GrampsPreferences(ConfigureDialog):
         # Default Family Relationship
         obox = Gtk.ComboBoxText()
         formats = FamilyRelType().get_standard_names()
-        map(obox.append_text, formats)
+        list(map(obox.append_text, formats))
         obox.set_active(config.get('preferences.family-relation-type'))
         obox.connect('changed', 
                      lambda obj: config.set('preferences.family-relation-type',
@@ -1030,7 +1034,7 @@ class GrampsPreferences(ConfigureDialog):
         obox = Gtk.ComboBoxText()
         formats = [_("Active person's name and ID"), 
                    _("Relationship to home person")]
-        map(obox.append_text, formats)
+        list(map(obox.append_text, formats))
         active = config.get('interface.statusbar')
         if active < 2:
             obox.set_active(0)
@@ -1176,7 +1180,7 @@ class GrampsPreferences(ConfigureDialog):
                    _("Once a week"), 
                    _("Once a day"), 
                    _("Always"), ]
-        map(obox.append_text, formats)
+        list(map(obox.append_text, formats))
         active = config.get('behavior.check-for-updates')
         obox.set_active(active)
         obox.connect('changed', self.check_for_updates_changed)
@@ -1188,7 +1192,7 @@ class GrampsPreferences(ConfigureDialog):
         formats = [_("Updated addons only"), 
                    _("New addons only"), 
                    _("New and updated addons"),]
-        map(self.whattype_box.append_text, formats)
+        list(map(self.whattype_box.append_text, formats))
         whattype = config.get('behavior.check-for-update-types')
         if "new" in whattype and "update" in whattype:
             self.whattype_box.set_active(2)
@@ -1287,7 +1291,7 @@ class GrampsPreferences(ConfigureDialog):
         f.destroy()
 
     def update_idformat_entry(self, obj, constant):
-        config.set(constant, unicode(obj.get_text()))
+        config.set(constant, cuni(obj.get_text()))
         self.dbstate.db.set_prefixes(
             config.get('preferences.iprefix'),
             config.get('preferences.oprefix'),

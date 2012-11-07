@@ -81,7 +81,7 @@ class TipOfDay(ManagedWindow):
         
         try:
             tparser = TipParser()
-        except (IOError,ExpatError), e:
+        except (IOError,ExpatError) as e:
             self.close()
             ErrorDialog(
                 _("Failed to display tip of the day"),
@@ -89,7 +89,7 @@ class TipOfDay(ManagedWindow):
             return
         self.tip_list = tparser.get()
 
-        self.new_index = range(len(self.tip_list))
+        self.new_index = list(range(len(self.tip_list)))
         Random().shuffle(self.new_index)
 
         self.index = 0

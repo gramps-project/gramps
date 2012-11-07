@@ -30,7 +30,6 @@
 #
 #------------------------------------------------------------------------
 import os
-from types import ClassType
 from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------------
@@ -48,8 +47,8 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.plug.report import CATEGORY_GRAPHVIZ
-from _reportdialog import ReportDialog
-from _papermenu import PaperFrame
+from ._reportdialog import ReportDialog
+from ._papermenu import PaperFrame
 import gramps.gen.plug.docgen.graphdoc as graphdoc
 from gramps.gen.plug.menu import Menu
 
@@ -121,8 +120,7 @@ class GraphvizReportDialog(ReportDialog):
         
     def init_options(self, option_class):
         try:
-            if (issubclass(option_class, object) or     # New-style class
-              isinstance(option_class, ClassType)):     # Old-style class
+            if issubclass(option_class, object):     # Old-style class
                 self.options = option_class(self.raw_name,
                                         self.dbstate.get_database())
         except TypeError:

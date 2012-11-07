@@ -37,7 +37,8 @@ plg.status = STABLE
 plg.fname = 'rel_ca.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ['ca_ES', 'ca', u'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT']
+## TODO PYTHON 3: does this third entry work?
+plg.lang_list = ['ca_ES', 'ca', 'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT']
 
 # cs
 plg = newplugin()

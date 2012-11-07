@@ -26,6 +26,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -42,7 +44,7 @@ from gi.repository import Gdk
 #
 #-------------------------------------------------------------------------
 from ...widgets import SimpleButton
-from grampstab import GrampsTab
+from .grampstab import GrampsTab
 from gramps.gen.errors import WindowActiveError
 
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -238,28 +240,28 @@ class ButtonTab(GrampsTab):
         Function called with the Add button is clicked. This function
         should be overridden by the derived class.
         """
-        print "Uncaught Add clicked"
+        print("Uncaught Add clicked")
 
     def share_button_clicked(self, obj):
         """
         Function called with the Share button is clicked. This function
         should be overridden by the derived class.
         """
-        print "Uncaught Share clicked"
+        print("Uncaught Share clicked")
 
     def jump_button_clicked(self, obj):
         """
         Function called with the Jump button is clicked. This function
         should be overridden by the derived class.
         """
-        print "Uncaught Jump clicked"
+        print("Uncaught Jump clicked")
 
     def del_button_clicked(self, obj):
         """
         Function called with the Delete button is clicked. This function
         should be overridden by the derived class.
         """
-        print "Uncaught Delete clicked"
+        print("Uncaught Delete clicked")
 
     def edit_button_clicked(self, obj):
         """
@@ -267,21 +269,21 @@ class ButtonTab(GrampsTab):
         click is caught. This function should be overridden by the derived
         class.
         """
-        print "Uncaught Edit clicked"
+        print("Uncaught Edit clicked")
         
     def up_button_clicked(self, obj):
         """
         Function called with the Up button is clicked. 
         This function should be overridden by the derived class.
         """
-        print "Uncaught Up clicked"
+        print("Uncaught Up clicked")
         
     def down_button_clicked(self, obj):
         """
         Function called with the Down button is clicked. 
         This function should be overridden by the derived class.
         """
-        print "Uncaught Down clicked"
+        print("Uncaught Down clicked")
 
     def _selection_changed(self, obj=None):
         """

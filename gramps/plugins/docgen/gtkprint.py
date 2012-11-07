@@ -32,11 +32,6 @@
 from gramps.gen.ggettext import gettext as _
 from math import radians
 
-##try:
-    ##from cStringIO import StringIO
-##except:
-    ##from StringIO import StringIO
-
 #------------------------------------------------------------------------
 #
 # Gramps modules
@@ -86,7 +81,7 @@ MARGIN = 6
 # zoom modes in print preview
 (ZOOM_BEST_FIT,
  ZOOM_FIT_WIDTH,
- ZOOM_FREE,) = range(3)
+ ZOOM_FREE,) = list(range(3))
  
 #------------------------------------------------------------------------
 #

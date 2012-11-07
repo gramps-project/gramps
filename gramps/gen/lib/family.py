@@ -41,17 +41,17 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from attrbase import AttributeBase
-from eventref import EventRef
-from ldsordbase import LdsOrdBase
-from tagbase import TagBase
-from childref import ChildRef
-from familyreltype import FamilyRelType
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .primaryobj import PrimaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .mediabase import MediaBase
+from .attrbase import AttributeBase
+from .eventref import EventRef
+from .ldsordbase import LdsOrdBase
+from .tagbase import TagBase
+from .childref import ChildRef
+from .familyreltype import FamilyRelType
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -253,7 +253,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in xrange(n_replace):
+            for ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.event_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -271,7 +271,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             if new_handle in refs_list:
                 new_ref = self.child_ref_list[refs_list.index(new_handle)]
             n_replace = refs_list.count(old_handle)
-            for ix_replace in xrange(n_replace):
+            for ix_replace in range(n_replace):
                 idx = refs_list.index(old_handle)
                 self.child_ref_list[idx].ref = new_handle
                 refs_list[idx] = new_handle
@@ -308,7 +308,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        add_list = filter(None, self.lds_ord_list)
+        add_list = [_f for _f in self.lds_ord_list if _f]
         return self.media_list + self.attribute_list + add_list
 
     def get_citation_child_list(self):

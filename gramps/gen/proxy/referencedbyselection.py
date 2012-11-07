@@ -32,7 +32,7 @@ a person.
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from proxybase import ProxyDbBase
+from .proxybase import ProxyDbBase
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
     """

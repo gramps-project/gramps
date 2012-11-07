@@ -57,6 +57,7 @@ from gramps.gen.ggettext import sgettext as _
 from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -241,7 +242,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
     def applyTagClicked(self, button) :
         progress    = None
         rows        = self.treeSelection.count_selected_rows()
-        tag_name    = unicode(self.tagcombo.get_active_text())
+        tag_name    = cuni(self.tagcombo.get_active_text())
 
         # start the db transaction
         with DbTxn("Tag not related", self.db) as transaction:

@@ -32,11 +32,18 @@ Media View.
 #
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
-import urlparse
 import os
 import sys
-import cPickle as pickle
-import urllib
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+    from urllib2 import url2pathname
+else:
+    from urllib.parse import urlparse
+    from urllib.request import url2pathname
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -52,7 +59,7 @@ from gi.repository import Gtk
 from gramps.gui.utils import open_file_with_default_application
 from gramps.gui.views.listview import ListView
 from gramps.gui.views.treemodels import MediaModel
-from gramps.gen.constfunc import win
+from gramps.gen.constfunc import win, cuni
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path, relative_path, media_path_full, 
                             fix_encoding)
@@ -182,15 +189,15 @@ class MediaView(ListView):
         for file in files:
             clean_string = fix_encoding(
                             file.replace('\0',' ').replace("\r", " ").strip())
-            protocol, site, mfile, j, k, l = urlparse.urlparse(clean_string)
+            protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
-                name = unicode(urllib.url2pathname(
+                name = cuni(url2pathname(
                                 mfile.encode(sys.getfilesystemencoding())))
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
                 photo = MediaObject()
-                base_dir = unicode(media_path(self.dbstate.db))
+                base_dir = cuni(media_path(self.dbstate.db))
                 if os.path.exists(base_dir):
                     name = relative_path(name, base_dir)
                 photo.set_path(name)

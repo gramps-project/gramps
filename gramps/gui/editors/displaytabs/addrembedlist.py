@@ -40,8 +40,8 @@ from gi.repository import GObject
 from gramps.gen.lib import Address
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from addressmodel import AddressModel
-from embeddedlist import EmbeddedList
+from .addressmodel import AddressModel
+from .embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #

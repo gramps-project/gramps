@@ -163,7 +163,7 @@ class CategorySidebar(BaseSidebar):
             if self.cat_view_group in uimanager.get_action_groups(): 
                 uimanager.remove_action_group(self.cat_view_group)
                 
-            map(uimanager.remove_ui, self.merge_ids)
+            list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
             self.cat_view_group = Gtk.ActionGroup('categoryviews')

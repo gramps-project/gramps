@@ -30,8 +30,8 @@ MediaBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from mediaref import MediaRef
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .mediaref import MediaRef
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,7 @@ class MediaBase(object):
         :param source: Object used to initialize the new object
         :type source: MediaBase
         """
-        self.media_list = map(MediaRef, source.media_list) if source else []
+        self.media_list = list(map(MediaRef, source.media_list)) if source else []
 
     def serialize(self):
         """
@@ -176,7 +176,7 @@ class MediaBase(object):
         if new_handle in refs_list:
             new_ref = self.media_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for ix_replace in xrange(n_replace):
+        for ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             self.media_list[idx].ref = new_handle
             refs_list[idx] = new_handle

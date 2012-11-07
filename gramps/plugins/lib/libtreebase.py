@@ -191,7 +191,7 @@ class Canvas(Page):
     def __get_font(self, box):
         """ returns the font used by a box.  makes a list of all seen fonts
         to be faster.  If a new is found, run through the process to get it """
-        if not self.__fonts.has_key(box.boxstr):
+        if box.boxstr not in self.__fonts:
             style_sheet = self.doc.get_style_sheet()
             style_name = style_sheet.get_draw_style(box.boxstr)
             style_name = style_name.get_paragraph_style()
@@ -256,7 +256,7 @@ class Canvas(Page):
 
         for y_p in range(self.y_pages):
             for x_p in range(self.x_pages):
-                if self.__pages.has_key((x_p, y_p)):
+                if (x_p, y_p) in self.__pages:
                     count += 1
         return count
     
@@ -266,7 +266,7 @@ class Canvas(Page):
         blank = Page(self)
         for y_p in range(self.y_pages):
             for x_p in range(self.x_pages):
-                if self.__pages.has_key((x_p, y_p)):
+                if (x_p, y_p) in self.__pages:
                     yield self.__pages[(x_p, y_p)]
                 else:
                     if incblank:
@@ -276,7 +276,7 @@ class Canvas(Page):
     
     def __add_box_to_page(self, x_page, y_page, x_offset, y_offset, box):
         """ adds a box to a page.  If the page is not there, make it first """
-        if not self.__pages.has_key((x_page, y_page)):
+        if (x_page, y_page) not in self.__pages:
             #Add the new page into the dictionary
             self.__new_page(x_page, y_page, x_offset, y_offset)
         
@@ -422,7 +422,7 @@ class Canvas(Page):
         """ Put the note on first.  it can be overwritten by other
         boxes but it CAN NOT overwrite a box. """
         x_page, y_page = self.note.set_on_page(self)
-        if not self.__pages.has_key((x_page, y_page)):
+        if (x_page, y_page) not in self.__pages:
             #Add the new page into the dictionary
             self.__new_page(x_page, y_page,
                             x_page_offsets[x_page], page_y_top[y_page])
@@ -450,7 +450,7 @@ class Canvas(Page):
             for box in end:
                 y_page = box.page.y_page_num
                 if y_page not in pages:
-                    if not self.__pages.has_key((x_page, y_page)):
+                    if (x_page, y_page) not in self.__pages:
                         #Add the new page into the dictionary
                         self.__new_page(x_page, y_page,
                                         x_page_offsets[x_page],
@@ -468,7 +468,7 @@ class Canvas(Page):
             #x_page = start_x_page
             for y_page in range(start_y_page, end_y_page+1):
                 if y_page not in pages:
-                    if not self.__pages.has_key((x_page, y_page)):
+                    if (x_page, y_page) not in self.__pages:
                         #Add the new page into the dictionary
                         self.__new_page(x_page, y_page,
                                         x_page_offsets[x_page],
@@ -507,7 +507,7 @@ class Canvas(Page):
                 if title == "":
                     x_page += 1
                     continue
-                if not self.__pages.has_key((x_page, 0)):
+                if (x_page, 0) not in self.__pages:
                     #Add the new page into the dictionary
                     self.__new_page(x_page, 0, x_page_offsets[1], 0)
                 

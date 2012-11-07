@@ -71,7 +71,7 @@ if not (TOOLKIT == NOWEB):
     gramps_target_version = '4.0',
     status = STABLE,
     fname = 'htmlrenderer.py',
-    authors = [u"The Gramps project"],
+    authors = ["The Gramps project"],
     authors_email = ["http://gramps-project.org"],
     category = ("Web", _("Web")),
     viewclass = 'HtmlView',

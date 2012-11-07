@@ -391,7 +391,7 @@ def run(database, document, filter_name, *args, **kwargs):
             matches += 1
 
     else:
-        raise AttributeError, ("invalid filter name: '%s'" % filter_name)
+        raise AttributeError("invalid filter name: '%s'" % filter_name)
     sdoc.paragraph(ngettext("Filter matched %d record."
                    ,
                    "Filter matched %d records.", matches) % matches)

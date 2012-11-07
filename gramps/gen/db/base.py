@@ -41,8 +41,8 @@ from ..ggettext import gettext as _
 #-------------------------------------------------------------------------
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
-from txn import DbTxn
-from exceptions import DbTransactionCancel
+from .txn import DbTxn
+from .exceptions import DbTransactionCancel
 
 class DbReadBase(object):
     """

@@ -33,7 +33,7 @@ from ....ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from ..person import SearchName
-from _memberbase import child_base
+from ._memberbase import child_base
 
 #-------------------------------------------------------------------------
 #

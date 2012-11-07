@@ -32,8 +32,8 @@ from ....ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _isancestorof import IsAncestorOf
-from _matchesfilter import MatchesFilter
+from ._isancestorof import IsAncestorOf
+from ._matchesfilter import MatchesFilter
 
 #-------------------------------------------------------------------------
 #

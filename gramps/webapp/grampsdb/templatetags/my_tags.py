@@ -46,7 +46,7 @@ def eval_template_exp(item, context):
 
 class TemplateNode(template.Node):
     def __init__(self, args, var_name, func):
-        self.args = map(template.Variable, args)
+        self.args = list(map(template.Variable, args))
         self.var_name = var_name
         self.func = func
 

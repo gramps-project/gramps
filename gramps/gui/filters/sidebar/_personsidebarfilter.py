@@ -46,6 +46,7 @@ from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilter, rules
 from gramps.gen.filters.rules.person import (RegExpName, SearchName, RegExpIdOf, 
                                       MatchIdOf, IsMale, IsFemale, 
@@ -62,7 +63,7 @@ def extract_text(entry_widget):
     of type unicode.
     
     """
-    return unicode(entry_widget.get_text().strip())
+    return cuni(entry_widget.get_text().strip())
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +79,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_birth = widgets.BasicEntry()
         self.filter_death = widgets.BasicEntry()
         self.filter_event = Event()
-        self.filter_event.set_type((EventType.CUSTOM, u''))
+        self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
         self.event_menu = widgets.MonitoredDataType(
             self.etype, 
@@ -87,8 +88,8 @@ class PersonSidebarFilter(SidebarFilter):
 
         self.filter_note = widgets.BasicEntry()
         self.filter_gender = Gtk.ComboBoxText()
-        map(self.filter_gender.append_text, 
-            [ _('any'), _('male'), _('female'), _('unknown') ])
+        list(map(self.filter_gender.append_text, 
+            [ _('any'), _('male'), _('female'), _('unknown') ]))
         self.filter_gender.set_active(0)
             
         self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
@@ -139,13 +140,13 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
-        self.filter_name.set_text(u'')
-        self.filter_id.set_text(u'')
-        self.filter_birth.set_text(u'')
-        self.filter_death.set_text(u'')
-        self.filter_note.set_text(u'')
+        self.filter_name.set_text('')
+        self.filter_id.set_text('')
+        self.filter_birth.set_text('')
+        self.filter_death.set_text('')
+        self.filter_note.set_text('')
         self.filter_gender.set_active(0)
-        self.etype.get_child().set_text(u'')
+        self.etype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
@@ -209,7 +210,7 @@ class PersonSidebarFilter(SidebarFilter):
 
             # Build an event filter if needed
             if etype:
-                rule = HasEvent([etype, u'', u'', u'', u''], use_regex=regex)
+                rule = HasEvent([etype, '', '', '', ''], use_regex=regex)
                 generic_filter.add_rule(rule)
                 
             # Build birth event filter if needed
@@ -217,12 +218,12 @@ class PersonSidebarFilter(SidebarFilter):
             # Since the value we extracted to the "birth" variable is the 
             # request date, we pass it as the first argument
             if birth:
-                rule = HasBirth([birth, u'', u''])
+                rule = HasBirth([birth, '', ''])
                 generic_filter.add_rule(rule)
 
             # Build death event filter if needed
             if death:
-                rule = HasDeath([death, u'', u''])
+                rule = HasDeath([death, '', ''])
                 generic_filter.add_rule(rule)
 
             # Build note filter if needed
@@ -244,7 +245,7 @@ class PersonSidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = unicode(model.get_value(node, 0))
+            obj = cuni(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

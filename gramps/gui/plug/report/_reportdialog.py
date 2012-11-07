@@ -29,7 +29,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from types import ClassType
 import threading
 import time
 
@@ -60,9 +59,9 @@ from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                              standalone_categories)
 from gramps.gen.plug.docgen import StyleSheet, StyleSheetList
 from ...managedwindow import ManagedWindow
-from _stylecombobox import StyleComboBox
-from _styleeditor import StyleListDisplay
-from _fileentry import FileEntry
+from ._stylecombobox import StyleComboBox
+from ._styleeditor import StyleListDisplay
+from ._fileentry import FileEntry
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 #-------------------------------------------------------------------------
@@ -110,15 +109,15 @@ class ReportDialog(ManagedWindow):
         cleanup things that can prevent garbage collection
         """
         if hasattr(self, 'widgets'): # handle pathlogical bug 4145
-            totwidg = range(len(self.widgets))
+            totwidg = list(range(len(self.widgets)))
             totwidg.reverse()
             for ind in totwidg:
                 if hasattr(self.widgets[ind][1], 'clean_up'):
                     self.widgets[ind][1].clean_up()
                 del self.widgets[ind]
             delattr(self, 'widgets')
-        for name, fram in self.frames.iteritems():
-            totwidg = range(len(fram))
+        for name, fram in self.frames.items():
+            totwidg = list(range(len(fram)))
             totwidg.reverse()
             for ind in totwidg:
                 if hasattr(fram[ind][1], 'clean_up'):
@@ -130,8 +129,7 @@ class ReportDialog(ManagedWindow):
 
     def init_options(self, option_class):
         try:
-            if (issubclass(option_class, object) or     # New-style class
-                isinstance(option_class, ClassType)):   # Old-style class
+            if issubclass(option_class, object):
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
@@ -595,16 +593,16 @@ def report(dbstate, uistate, person, report_class, options_class,
         return
 
     if category == CATEGORY_TEXT:
-        from _textreportdialog import TextReportDialog
+        from ._textreportdialog import TextReportDialog
         dialog_class = TextReportDialog
     elif category == CATEGORY_DRAW:
-        from _drawreportdialog import DrawReportDialog
+        from ._drawreportdialog import DrawReportDialog
         dialog_class = DrawReportDialog
     elif category == CATEGORY_GRAPHVIZ:
-        from _graphvizreportdialog import GraphvizReportDialog
+        from ._graphvizreportdialog import GraphvizReportDialog
         dialog_class = GraphvizReportDialog
     elif category == CATEGORY_WEB:
-        from _webreportdialog import WebReportDialog
+        from ._webreportdialog import WebReportDialog
         dialog_class = WebReportDialog
     elif category in (CATEGORY_BOOK, CATEGORY_CODE):
         try:
@@ -637,15 +635,15 @@ def report(dbstate, uistate, person, report_class, options_class,
                     out_file = dialog.options.get_output()
                     open_file_with_default_application(out_file)
                 
-            except FilterError, msg:
+            except FilterError as msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
-            except IOError, msg:
+            except IOError as msg:
                 ErrorDialog(_("Report could not be created"), str(msg))
-            except ReportError, msg:
+            except ReportError as msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
-            except DatabaseError,msg:                
+            except DatabaseError as msg:                
                 ErrorDialog(_("Report could not be created"), str(msg))
 #           The following except statement will catch all "NoneType" exceptions.
 #           This is useful for released code where the exception is most likely

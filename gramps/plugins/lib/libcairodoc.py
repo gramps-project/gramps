@@ -35,6 +35,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 from math import radians
 import re
@@ -112,19 +114,19 @@ def set_font_families():
     fonts = SystemFonts()        
     family_names = fonts.get_system_fonts()
     
-    fam = [f for f in _TTF_FREEFONT.itervalues() if f in family_names]
+    fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
     if len(fam) == len(_TTF_FREEFONT):
         font_families = _TTF_FREEFONT
         log.debug('Using FreeFonts: %s' % font_families)
         return
     
-    fam = [f for f in _MS_TTFONT.itervalues() if f in family_names]
+    fam = [f for f in _MS_TTFONT.values() if f in family_names]
     if len(fam) == len(_MS_TTFONT):
         font_families = _MS_TTFONT
         log.debug('Using MS TrueType fonts: %s' % font_families)
         return
     
-    fam = [f for f in _GNOME_FONT.itervalues() if f in family_names]
+    fam = [f for f in _GNOME_FONT.values() if f in family_names]
     if len(fam) == len(_GNOME_FONT):
         font_families = _GNOME_FONT
         log.debug('Using Gnome fonts: %s' % font_families)
@@ -608,7 +610,7 @@ class GtkDocParagraph(GtkDocBaseElement):
                 break
             endheight = linerange[1]
         if splitline == -1:
-            print 'CairoDoc STRANGE '
+            print('CairoDoc STRANGE ')
             return (None, self), 0
         #we split at splitline
         # get index of first character which doesn't fit on available height
@@ -627,7 +629,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         newattrlist = layout.get_attributes().copy()
         newattrlist.filter(self.filterattr, index)
         oldattrlist = newattrlist.get_iterator()
-        while oldattrlist.next() :
+        while next(oldattrlist) :
             vals = oldattrlist.get_attrs()
             #print vals
             for attr in vals:
@@ -779,7 +781,7 @@ class GtkDocTable(GtkDocBaseElement):
             new_table = GtkDocTable(self._style)
             #add the split row
             new_table.add_child(r2)
-            map(new_table.add_child, self._children[row_index+1:])
+            list(map(new_table.add_child, self._children[row_index+1:]))
             del self._children[row_index+1:]
             
         return (self, new_table), table_height
@@ -821,7 +823,7 @@ class GtkDocTableRow(GtkDocBaseElement):
         for cell in self._children:
             cell_width = 0
             for i in range(cell.get_span()):
-                cell_width += cell_width_iter.next()
+                cell_width += next(cell_width_iter)
             cell_width = cell_width * width / 100
             (c1, c2), cell_height = cell.divide(layout, cell_width, height,
                                                 dpi_x, dpi_y)
@@ -859,7 +861,7 @@ class GtkDocTableRow(GtkDocBaseElement):
         for cell in self._children:
             cell_width = 0
             for i in range(cell.get_span()):
-                cell_width += cell_width_iter.next()
+                cell_width += next(cell_width_iter)
             cell_width = cell_width * width / 100
             cell.draw(cr, layout, cell_width, row_height, dpi_x, dpi_y)
             cr.translate(cell_width, 0)
@@ -923,7 +925,7 @@ class GtkDocTableCell(GtkDocBaseElement):
         
         self._children = self._children[:childnr]
         # calculate real height
-        if cell_height <> 0:
+        if cell_height != 0:
             cell_height += 2 * v_padding
         
         # a cell can't be divided, return the height
@@ -1376,8 +1378,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         
         # we need to remember the column width list from the table style.
         # this is an ugly hack, but got no better idea.
-        self._active_row_style = map(style.get_column_width,
-                                        range(style.get_columns()))
+        self._active_row_style = list(map(style.get_column_width,
+                                        list(range(style.get_columns()))))
     
     def end_table(self):
         self._active_element = self._active_element.get_parent()
@@ -1465,7 +1467,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
             if cairo.cairo_version() < 11210 and self._links_error == False:
                 # Cairo v1.12 is suppose to be the first version
                 # that supports clickable links
-                print """
+                print("""
 WARNING: This version of cairo (%s) does NOT support clickable links.
 The first version that is suppose to is v1.12.  See the roadmap:
 
@@ -1473,7 +1475,7 @@ The first version that is suppose to is v1.12.  See the roadmap:
 
 The work around is to save to another format that supports clickable
 links (like ODF) and write PDF from that format.
-                """ % cairo.version
+                """ % cairo.version)
                 self._links_error = True
 
         text = self.__markup(text, markup)

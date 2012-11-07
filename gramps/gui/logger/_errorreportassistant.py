@@ -35,7 +35,7 @@ import cairo
 import sys, os
 
 from gramps.gen.config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     import bsddb3 as bsddb
 else:
     import bsddb

@@ -44,8 +44,8 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.lib import Name, Surname
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from namemodel import NameModel
-from groupembeddedlist import GroupEmbeddedList
+from .namemodel import NameModel
+from .groupembeddedlist import GroupEmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -137,7 +137,7 @@ class NameEmbedList(GroupEmbeddedList):
         pname = self.person.get_primary_name()
         self.person.set_primary_name(name)
         remove = [altname for altname in self.data if altname.is_equal(name)]
-        map(self.data.remove, remove)
+        list(map(self.data.remove, remove))
         #only non empty name should move to alternative names
         if not name.is_equal(Name()):
             self.data.append(pname)

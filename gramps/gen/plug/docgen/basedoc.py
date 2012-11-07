@@ -40,7 +40,7 @@ interfaces should be derived from the core classes.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from stylesheet import StyleSheet
+from .stylesheet import StyleSheet
 
 #-------------------------------------------------------------------------
 #

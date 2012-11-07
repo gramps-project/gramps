@@ -43,7 +43,7 @@ from ..lib import (Person, Surname, Name, NameType, Family, FamilyRelType,
                    Repository, RepositoryType, MediaObject, Note, NoteType,
                    StyledText, StyledTextTag, StyledTextTagType, Tag,
                    ChildRef, ChildRefType)
-from id import create_id
+from .id import create_id
 from ..const import IMAGE_DIR
 from ..ggettext import sgettext as _
 

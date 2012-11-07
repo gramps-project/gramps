@@ -32,6 +32,7 @@ from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Repository, MediaObject, Note, Date, Span)
 from ..config import config
 from ..datehandler import displayer
+from ..constfunc import STRTYPE, conv_to_unicode_direct
 
 class SimpleTable(object):
     """
@@ -70,7 +71,7 @@ class SimpleTable(object):
         """
         Set the columns
         """
-        self._columns = [unicode(col) for col in cols]
+        self._columns = [conv_to_unicode_direct(col) for col in cols]
         self._sort_vals = [[] for i in range(len(self._columns))]
 
     def row_sort_val(self, col, val):
@@ -100,13 +101,13 @@ class SimpleTable(object):
             # FIXME: add better text representations of these objects
             if item is None:
                 retval.append("")
-            elif isinstance(item, basestring):
+            elif isinstance(item, STRTYPE):
                 if item == "checkbox": 
                     retval.append("")
                     self.set_cell_type(col, "checkbox")
                 else:
                     retval.append(item)
-            elif isinstance(item, (int, float, long)):
+            elif isinstance(item, (int, float)):
                 retval.append(item)
                 self.row_sort_val(col, item)
             elif isinstance(item, Person):

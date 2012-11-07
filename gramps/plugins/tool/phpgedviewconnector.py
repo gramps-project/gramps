@@ -22,9 +22,18 @@
 
 "Download a GEDCOM file from a phpGedView server"
 
+from __future__ import print_function
 
-import httplib
-import urllib2
+import sys
+if sys.version_info[0] < 3:
+    import httplib as hcl
+else:
+    import http.client as hcl
+if sys.version_info[0] < 3:
+    from urllib2 import URLError, urlopen, Request
+else:
+    from urllib.request import Request, urlopen
+    from urllib.error import URLError
 from gi.repository import Gtk
 import os
 from tempfile import mkstemp
@@ -179,7 +188,7 @@ class PHPGedViewConnector(object):
         return result
 
     def fetch_full_gedcom( self, outfile=None):
-        print outfile
+        print(outfile)
         if outfile is None:
             gedname = self.gedname
             if not gedname:
@@ -189,7 +198,7 @@ class PHPGedViewConnector(object):
             outfile = os.fdopen(outfiled,"w")
         else:
             outfilename = outfile.name
-        print outfile
+        print(outfile)
         
         outfile.write("0 HEAD\n")
         outfile.write("1 SOUR phpGedView\n")
@@ -255,10 +264,10 @@ class PHPGedViewConnector(object):
             request_url += "%s=%s&" % (param)
         if self.sessionname and self.sessionid:
             request_url += "%s=%s&" % (self.sessionname,self.sessionid)
-        print "fetching %s" % request_url
-        request = urllib2.Request(request_url)
+        print("fetching %s" % request_url)
+        request = Request(request_url)
         request.add_header("User-Agent", "Mozilla 1.2 (Win 98 jp)")
-        f = urllib2.urlopen(request)
+        f = urlopen(request)
         result = []
         line = f.readline()
         while line:
@@ -303,7 +312,7 @@ class phpGedViewImporter(object):
             url = "http://"+url
         if url[-1:] != "/":
             url = url + "/"
-        print url
+        print(url)
         return url
 
     def update_progressbar(self,text,step=0,max=0):
@@ -317,7 +326,7 @@ class phpGedViewImporter(object):
         
     def on_next_pressed_cb(self, widget, event=None, data=None):
         if event:
-            print event.type
+            print(event.type)
         
         if not self.url or self.url != self.url_entry.get_text():
             # url entered the first time or url changed
@@ -362,8 +371,8 @@ class phpGedViewImporter(object):
                 self.password_entry.show()
                 return True
             
-        except (ValueError, urllib2.URLError, httplib.InvalidURL), e:
-            print e
+        except (ValueError, URLError, hcl.InvalidURL) as e:
+            print(e)
             self.version_label.set_text(_("Error: Invalid URL"))
         self.update_progressbar(_("done."))
         return False

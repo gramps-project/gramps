@@ -27,13 +27,13 @@
 __author__="jfriant"
 __date__ ="$Apr 20, 2010 3:13:24 PM$"
 
-import tool
+from . import tool
 
-from _guioptions import make_gui_option, add_gui_options
+from ._guioptions import make_gui_option, add_gui_options
 from gramps.gen.plug import MenuOptions
 
-from _dialogs import ReportPluginDialog, ToolPluginDialog
-import _windows as PluginWindows
+from ._dialogs import ReportPluginDialog, ToolPluginDialog
+from . import _windows as PluginWindows
 
 # This needs to go above Tool and MenuOption as it needs both
 class MenuToolOptions(MenuOptions, tool.ToolOptions):

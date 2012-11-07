@@ -30,6 +30,8 @@ GrampletView interface.
 # Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
@@ -37,7 +39,11 @@ from gi.repository import Pango
 import time
 import os
 from gramps.gen.ggettext import gettext as _
-import ConfigParser
+import sys
+if sys.version_info[0] < 3:
+    import ConfigParser as configparser
+else:
+    import configparser
 
 #-------------------------------------------------------------------------
 #
@@ -132,7 +138,7 @@ def get_gramplet_opts(name, opts):
         my_data.update(opts)
         return my_data
     else:
-        print ("Unknown gramplet name: '%s'" % name)
+        print(("Unknown gramplet name: '%s'" % name))
         return {}
 
 def get_gramplet_options_by_name(name):
@@ -142,7 +148,7 @@ def get_gramplet_options_by_name(name):
     if name in AVAILABLE_GRAMPLETS():
         return GET_AVAILABLE_GRAMPLETS(name).copy()
     else:
-        print ("Unknown gramplet name: '%s'" % name)
+        print(("Unknown gramplet name: '%s'" % name))
         return None
 
 def get_gramplet_options_by_tname(name):
@@ -152,7 +158,7 @@ def get_gramplet_options_by_tname(name):
     for key in AVAILABLE_GRAMPLETS():
         if GET_AVAILABLE_GRAMPLETS(key)["tname"] == name:
             return GET_AVAILABLE_GRAMPLETS(key).copy()
-    print ("Unknown gramplet name: '%s'" % name)
+    print(("Unknown gramplet name: '%s'" % name))
     return None
 
 def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
@@ -169,10 +175,10 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
                 if module:
                     getattr(module, opts["content"])(gui)
                 else:
-                    print "Error loading gramplet '%s': skipping content" % name
+                    print("Error loading gramplet '%s': skipping content" % name)
             return gui
     else:
-        print "Error loading gramplet: unknown name"
+        print("Error loading gramplet: unknown name")
     return None
 
 def logical_true(value):
@@ -408,7 +414,7 @@ class GuiGramplet(object):
             begin = self.buffer.create_mark(None, begin_iter, True)
             self.textview.scroll_to_mark(begin, 0.0, True, 0, 0)
         else:
-            raise AttributeError, ("no such cursor position: '%s'" % scroll_to)
+            raise AttributeError("no such cursor position: '%s'" % scroll_to)
 
     def clear_text(self):
         self.buffer.set_text('')
@@ -498,7 +504,7 @@ class GuiGramplet(object):
                     url = attributes["wiki"]
                     self.link_region(start, stop, "WIKI", url) # tooltip?
                 else:
-                    print "warning: no url on link: '%s'" % text[start, stop]
+                    print("warning: no url on link: '%s'" % text[start, stop])
 
     def link_region(self, start, stop, link_type, url):
         link_data = (LinkTag(self.buffer), link_type, url, url)
@@ -720,7 +726,7 @@ class GridGramplet(GuiGramplet):
     """
     Class that handles the plugin interfaces for the GrampletView.
     """
-    TARGET_TYPE_FRAME = 80L
+    TARGET_TYPE_FRAME = 80
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
     LOCAL_DRAG_TARGET = (Gdk.atom_intern(LOCAL_DRAG_TYPE, False), 0, TARGET_TYPE_FRAME)
 
@@ -1038,7 +1044,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 self.gramplet_map[unique] = g
                 self.frame_map[str(g.mainframe)] = g
             else:
-                print "Can't make gramplet of type '%s'." % name
+                print("Can't make gramplet of type '%s'." % name)
         self.place_gramplets()
 
     def show_all(self):
@@ -1047,7 +1053,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         parts of a collapsed gramplet on main view.
         """
         super(GrampletPane, self).show_all()
-        for gramplet in self.gramplet_map.values():
+        for gramplet in list(self.gramplet_map.values()):
             if gramplet.gstate == "minimized":
                 gramplet.set_state("minimized")
 
@@ -1056,7 +1062,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         This seems to be necessary to hide the hidden
         parts of a collapsed gramplet on sidebars.
         """
-        for gramplet in self.gramplet_map.values():
+        for gramplet in list(self.gramplet_map.values()):
             if gramplet.gstate in ["minimized", "maximized"]:
                 gramplet.set_state(gramplet.gstate)
 
@@ -1070,7 +1076,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Detach all of the mainframe gramplets from the columns.
         """
-        gramplets = (g for g in self.gramplet_map.itervalues() 
+        gramplets = (g for g in self.gramplet_map.values() 
                         if g is not None)
         for gramplet in gramplets:
             if (gramplet.gstate == "detached" or gramplet.gstate == "closed"):
@@ -1083,7 +1089,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Place the gramplet mainframes in the columns.
         """
-        gramplets = [g for g in self.gramplet_map.itervalues() 
+        gramplets = [g for g in self.gramplet_map.values() 
                         if g is not None]
         # put the gramplets where they go:
         # sort by row
@@ -1123,7 +1129,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         retval = []
         filename = self.configfile
         if filename and os.path.exists(filename):
-            cp = ConfigParser.ConfigParser()
+            cp = configparser.ConfigParser()
             try:
                 cp.read(filename)
             except:
@@ -1168,7 +1174,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         try:
             fp = open(filename, "w")
         except IOError:
-            print "Failed writing '%s'; gramplets not saved" % filename
+            print("Failed writing '%s'; gramplets not saved" % filename)
             return
         fp.write(";; Gramps gramplets file" + NL)
         fp.write((";; Automatically created at %s" %
@@ -1342,7 +1348,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     self.gramplet_map[opts["title"]] = g
                     self.frame_map[str(g.mainframe)] = g
                 else:
-                    print "Can't make gramplet of type '%s'." % name
+                    print("Can't make gramplet of type '%s'." % name)
         if g:
             gramplet = g
             gramplet.gstate = "maximized"
@@ -1366,7 +1372,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         all_opts = get_gramplet_options_by_tname(tname)
         name = all_opts["name"]
         if all_opts is None:
-            print "Unknown gramplet type: '%s'; bad gramplets.ini file?" % name
+            print("Unknown gramplet type: '%s'; bad gramplets.ini file?" % name)
             return
         if "title" not in all_opts:
             all_opts["title"] = "Untitled Gramplet"
@@ -1402,7 +1408,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 gramplet.pui.active = True
                 gramplet.pui.update()
         else:
-            print "Can't make gramplet of type '%s'." % name
+            print("Can't make gramplet of type '%s'." % name)
 
     def _button_press(self, obj, event):
         if is_right_click(event):
@@ -1455,7 +1461,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                         self.gramplet_map[title].pui.update()
 
     def on_delete(self):
-        gramplets = (g for g in self.gramplet_map.itervalues() 
+        gramplets = (g for g in self.gramplet_map.values() 
                         if g is not None)
         for gramplet in gramplets:
             # this is the only place where the gui runs user code directly
@@ -1480,7 +1486,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         def generate_pages():
             return [self.config_panel] + \
                 [self.build_panel(gramplet) for gramplet in 
-                 sorted(self.gramplet_map.values(), key=lambda g: g.title) 
+                 sorted(list(self.gramplet_map.values()), key=lambda g: g.title) 
                  if gramplet.gstate != "closed"]
         return generate_pages
  

@@ -45,7 +45,7 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
     
     if handle == "add":
         act = "add"
-    if request.POST.has_key("action"):
+    if "action" in request.POST:
         act = request.POST.get("action")
 
     # Handle: edit, view, add, create, save, delete

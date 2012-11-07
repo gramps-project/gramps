@@ -25,8 +25,7 @@
 """
 Provide a simplified database access interface to the GRAMPS database.
 """
-from __future__ import with_statement
-from types import NoneType
+from __future__ import with_statement, unicode_literals
 
 from ..lib import (Person, Family, Event, Source, Place, Citation, 
                    MediaObject, Repository, Note, Date)
@@ -39,6 +38,7 @@ from ..display.name import displayer as name_displayer
 from ..lib import EventType
 from ..config import config
 from ..ggettext import gettext as _
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -126,13 +126,13 @@ class SimpleAccess(object):
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))     
         if person:
             return name_displayer.display(person)
         else:
-            return u''
+            return ''
 
     def surname(self, person):
         """
@@ -143,14 +143,14 @@ class SimpleAccess(object):
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))     
         if person:
             surname = person.get_primary_name().get_surname()
             return surname or config.get('preferences.no-surname-text')
         else:
-            return u''
+            return ''
         
     def first_name(self, person):
         """
@@ -161,13 +161,13 @@ class SimpleAccess(object):
         @return: Returns the first name of the person based of the program preferences
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
         if person:
             return person.get_primary_name().get_first_name()
         else:
-            return u''
+            return ''
 
     def gid(self, obj):
         """
@@ -181,7 +181,7 @@ class SimpleAccess(object):
         if obj:
             return obj.get_gramps_id()
         else:
-            return u''
+            return ''
 
     def gender(self, person):
         """
@@ -192,12 +192,12 @@ class SimpleAccess(object):
         @return: Returns a string indentifying the person's gender
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
         if person:
             return gender_map[person.get_gender()]
-        return u''
+        return ''
 
     def __parent(self, person, func):
         """
@@ -210,7 +210,7 @@ class SimpleAccess(object):
         @return: mother or father of the associated person
         @rtype: L{gen.lib.Person}
         """
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             parent_handle_list = person.get_parent_family_handle_list()
@@ -231,7 +231,7 @@ class SimpleAccess(object):
         @return: mother or father of the associated family
         @rtype: L{gen.lib.Family}
         """
-        assert(isinstance(family, (Family, NoneType)))
+        assert(family is None or isinstance(family, Family))
 
         if family:
             handle = func(family)
@@ -250,7 +250,7 @@ class SimpleAccess(object):
         @return: Returns a string describing the date
         @rtype: unicode
         """
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             ref = func(person)
@@ -261,7 +261,7 @@ class SimpleAccess(object):
                     date_obj = event.get_date_object()
                     if date_obj:
                         return displayer.display(date_obj)
-        return u''
+        return ''
 
     def __event_date_obj(self, person, func):
         """
@@ -274,7 +274,7 @@ class SimpleAccess(object):
         @return: Returns the date
         @rtype: l{gen.lib.Date}
         """
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             ref = func(person)
@@ -300,7 +300,7 @@ class SimpleAccess(object):
         @return: Returns a string describing the place
         @rtype: unicode
         """
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             ref = func(person)
@@ -310,7 +310,7 @@ class SimpleAccess(object):
                     event = self.dbase.get_event_from_handle(event_handle)
                     place_handle = event.get_place_handle()
                     return place_name(self.dbase, place_handle)
-        return u''
+        return ''
 
     def spouse(self, person):
         """
@@ -321,9 +321,9 @@ class SimpleAccess(object):
         @return: The spouse identified as the person's primary spouse
         @rtype: L{gen.lib.Person}
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -349,9 +349,9 @@ class SimpleAccess(object):
         his/per primary spouse.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -360,7 +360,7 @@ class SimpleAccess(object):
                 family = self.dbase.get_family_from_handle(family_id)
                 if family:
                     return str(family.get_relationship())
-        return u''
+        return ''
 
     def marriage_place(self, person):
         """
@@ -373,9 +373,9 @@ class SimpleAccess(object):
         where married.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -392,7 +392,7 @@ class SimpleAccess(object):
                         if events:
                             place_handle = events[0].get_place_handle()
                             return place_name(self.dbase, place_handle)
-        return u''
+        return ''
 
     def marriage_date(self, person):
         """
@@ -405,9 +405,9 @@ class SimpleAccess(object):
         where married.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -425,7 +425,7 @@ class SimpleAccess(object):
                             date_obj = events[0].get_date_object()
                             if date_obj:
                                 return displayer.display(date_obj)
-        return u''
+        return ''
 
     def children(self, obj):
         """
@@ -436,7 +436,7 @@ class SimpleAccess(object):
         @return: Returns a list of L{gen.lib.Person} objects representing the children
         @rtype: list
         """
-        assert(isinstance(obj, (Person, Family, NoneType)))
+        assert(obj is None or isinstance(obj, (Person, Family)))
 
         if isinstance(obj, Person):
             family_handle_list = obj.get_family_handle_list()
@@ -496,7 +496,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date when the person's birth.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, Person.get_birth_ref)
 
@@ -509,7 +509,7 @@ class SimpleAccess(object):
         @return: Returns the date when the person's birth.
         @rtype: L{gen.lib.Date}
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_birth_ref)
 
@@ -523,7 +523,7 @@ class SimpleAccess(object):
         @return: Returns the date when the person's birth or fallback.
         @rtype: L{gen.lib.Date}
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         event = get_birth_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -542,7 +542,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the person's birth.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_birth_ref)
 
@@ -555,7 +555,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date when the person's death.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, Person.get_death_ref)
 
@@ -568,7 +568,7 @@ class SimpleAccess(object):
         @return: Returns the date when the person's death.
         @rtype: L{gen.lib.Date}
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_death_ref)
 
@@ -581,7 +581,7 @@ class SimpleAccess(object):
         @return: Returns the date of the person's death or fallback.
         @rtype: L{gen.lib.Date}
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         event = get_death_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -600,7 +600,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the person's death.
         @rtype: unicode
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_death_ref)
 
@@ -613,13 +613,13 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (Event, NoneType)))
+        assert(event is None or isinstance(event, Event))
 
         if event:
             place_handle = event.get_place_handle()
             return place_name(self.dbase, place_handle)
         else:
-            return u''
+            return ''
 
     def date_string(self, date_obj):
         """
@@ -633,7 +633,7 @@ class SimpleAccess(object):
         if date_obj:
             return displayer.display(date_obj)
         else:
-            return u''
+            return ''
 
     def event_date(self, event):
         """
@@ -644,12 +644,12 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (Event, NoneType)))
+        assert(event is None or isinstance(event, Event))
         date_obj = event.get_date_object()
         if date_obj:
             return displayer.display(date_obj)
         else:
-            return u''
+            return ''
 
     def event_date_obj(self, event):
         """
@@ -660,7 +660,7 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (Event, NoneType)))
+        assert(event is None or isinstance(event, Event))
         if event:
             return event.get_date_object()
 
@@ -673,11 +673,11 @@ class SimpleAccess(object):
         @return: Returns a string indicating the type of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (Event, NoneType)))
+        assert(event is None or isinstance(event, Event))
         if event:
             return str(event.get_type())
         else:
-            return u''
+            return ''
 
     def events(self, obj, restrict=None):
         """
@@ -692,7 +692,7 @@ class SimpleAccess(object):
         @return: list of events associated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (Person, Family, NoneType)))
+        assert(obj is None or isinstance(obj, (Person, Family)))
         assert(isinstance(restrict, list) or restrict is None)
 
         if obj:
@@ -717,11 +717,11 @@ class SimpleAccess(object):
         @return: list of events associated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (Person, Family, Event, NoneType)))
+        assert(obj is None or isinstance(obj, (Person, Family, Event)))
 
         if obj:
             handles = [ ref.ref for ref in obj.get_source_references() ]
-            return map(self.dbase.get_source_from_handle, handles)
+            return list(map(self.dbase.get_source_from_handle, handles))
         else:
             return []
 
@@ -735,9 +735,9 @@ class SimpleAccess(object):
            as a parent.
         @rtype: list
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))     
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -754,9 +754,9 @@ class SimpleAccess(object):
            as a child.
         @rtype: list
         """
-        if type(person) in [str, unicode]: 
+        if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
-        assert(isinstance(person, (Person, NoneType)))
+        assert(person is None or isinstance(person, Person))
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -843,10 +843,10 @@ class SimpleAccess(object):
         @return: title of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (Source, NoneType)))
+        assert(source is None or isinstance(source, Source))
         if source:
             return source.get_title()
-        return u''
+        return ''
 
     def page(self, citation):
         """
@@ -857,10 +857,10 @@ class SimpleAccess(object):
         @return: title of the citation
         @rtype: unicode
         """
-        assert(isinstance(citation, (Citation, NoneType)))
+        assert(citation is None or isinstance(citation, Citation))
         if citation:
             return citation.get_page()
-        return u''
+        return ''
 
     def author(self, source):
         """
@@ -871,21 +871,21 @@ class SimpleAccess(object):
         @return: author of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (Source, NoneType)))
+        assert(source is None or isinstance(source, Source))
         if source:
             return source.get_author()
-        return u''
+        return ''
 
     def person(self, handle):
-        assert(type(handle) in [str, unicode])
+        assert(isinstance(handle, STRTYPE))
         return self.dbase.get_person_from_handle(handle)
 
     def event(self, handle):
-        assert(type(handle) in [str, unicode])
+        assert(isinstance(handle, STRTYPE))
         return self.dbase.get_event_from_handle(handle)
 
     def family(self, handle):
-        assert(type(handle) in [str, unicode])
+        assert(isinstance(handle, STRTYPE))
         return self.dbase.get_family_from_handle(handle)
 
     def display(self, object_class, prop, value):

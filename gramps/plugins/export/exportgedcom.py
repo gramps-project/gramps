@@ -50,6 +50,7 @@ from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -276,7 +277,7 @@ class GedcomWriter(UpdateCallback):
             token_level = level
             for text in textlist:
                 # make it unicode so that breakup below does the right thin.
-                text = unicode(text)
+                text = cuni(text)
                 if limit:
                     prefix = "\n%d CONC " % (level + 1)
                     txt = prefix.join(breakup(text, limit))
@@ -373,9 +374,9 @@ class GedcomWriter(UpdateCallback):
         mail = owner.get_email()
 
         if not name : 
-            name = u'Not Provided'
+            name = cuni('Not Provided')
         if not addr : 
-            addr = u'Not Provided'
+            addr = cuni('Not Provided')
         
         self._writeln(0, "@SUBM@", "SUBM")
         self._writeln(1, "NAME", name)
@@ -383,7 +384,7 @@ class GedcomWriter(UpdateCallback):
         if city and state and post:
             self._writeln(2, "CONT", "%s, %s %s" % (city, state, post))
         else:
-            self._writeln(2, "CONT", u"Not Provided")
+            self._writeln(2, "CONT", cuni("Not Provided"))
         if addr:
             self._writeln(2, "ADR1", addr)
         if adr2:
@@ -1359,9 +1360,9 @@ class GedcomWriter(UpdateCallback):
             self._note_references(note_list, level+1)
             self._photos(citation.get_media_list(), level+1)
             
-        if "EVEN" in citation.get_data_map().keys():
+        if "EVEN" in list(citation.get_data_map().keys()):
             self._writeln(level+1, "EVEN", citation.get_data_map()["EVEN"])
-            if "EVEN:ROLE" in citation.get_data_map().keys():
+            if "EVEN:ROLE" in list(citation.get_data_map().keys()):
                 self._writeln(level+2, "ROLE", 
                                citation.get_data_map()["EVEN:ROLE"])
                 
@@ -1452,9 +1453,9 @@ def export_data(database, filename, user, option_box=None):
     try:
         ged_write = GedcomWriter(database, user, option_box)
         ret = ged_write.write_gedcom_file(filename)
-    except IOError, msg:
+    except IOError as msg:
         msg2 = _("Could not create %s") % filename
         user.notify_error(msg2, str(msg))
-    except DatabaseError, msg:
+    except DatabaseError as msg:
         user.notify_db_error(_("Export failed"), str(msg))
     return ret

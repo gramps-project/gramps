@@ -26,40 +26,40 @@
 Package providing filter rules for GRAMPS.
 """
 
-from _searchfathername import SearchFatherName
-from _searchmothername import SearchMotherName
-from _searchchildname import SearchChildName
-from _regexpfathername import RegExpFatherName
-from _regexpmothername import RegExpMotherName
-from _regexpchildname import RegExpChildName
+from ._searchfathername import SearchFatherName
+from ._searchmothername import SearchMotherName
+from ._searchchildname import SearchChildName
+from ._regexpfathername import RegExpFatherName
+from ._regexpmothername import RegExpMotherName
+from ._regexpchildname import RegExpChildName
 
-from _hasreltype import HasRelType
-from _allfamilies import AllFamilies
-from _hasgallery import HasGallery
-from _hasidof import HasIdOf
-from _haslds import HasLDS
-from _regexpidof import RegExpIdOf
-from _hasnote import HasNote
-from _hasnoteregexp import HasNoteRegexp
-from _hasnotematchingsubstringof import HasNoteMatchingSubstringOf
-from _hassourcecount import HasSourceCount
-from _hassourceof import HasSourceOf
-from _hasreferencecountof import HasReferenceCountOf
-from _hascitation import HasCitation
-from _familyprivate import FamilyPrivate
-from _hasattribute import HasAttribute
-from _hasevent import HasEvent
-from _isbookmarked import IsBookmarked
-from _matchesfilter import MatchesFilter
-from _matchessourceconfidence import MatchesSourceConfidence
-from _fatherhasnameof import FatherHasNameOf
-from _fatherhasidof import FatherHasIdOf
-from _motherhasnameof import MotherHasNameOf
-from _motherhasidof import MotherHasIdOf
-from _childhasnameof import ChildHasNameOf
-from _childhasidof import ChildHasIdOf
-from _changedsince import ChangedSince
-from _hastag import HasTag
+from ._hasreltype import HasRelType
+from ._allfamilies import AllFamilies
+from ._hasgallery import HasGallery
+from ._hasidof import HasIdOf
+from ._haslds import HasLDS
+from ._regexpidof import RegExpIdOf
+from ._hasnote import HasNote
+from ._hasnoteregexp import HasNoteRegexp
+from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
+from ._hassourcecount import HasSourceCount
+from ._hassourceof import HasSourceOf
+from ._hasreferencecountof import HasReferenceCountOf
+from ._hascitation import HasCitation
+from ._familyprivate import FamilyPrivate
+from ._hasattribute import HasAttribute
+from ._hasevent import HasEvent
+from ._isbookmarked import IsBookmarked
+from ._matchesfilter import MatchesFilter
+from ._matchessourceconfidence import MatchesSourceConfidence
+from ._fatherhasnameof import FatherHasNameOf
+from ._fatherhasidof import FatherHasIdOf
+from ._motherhasnameof import MotherHasNameOf
+from ._motherhasidof import MotherHasIdOf
+from ._childhasnameof import ChildHasNameOf
+from ._childhasidof import ChildHasIdOf
+from ._changedsince import ChangedSince
+from ._hastag import HasTag
 
 editor_rule_list = [
     AllFamilies,

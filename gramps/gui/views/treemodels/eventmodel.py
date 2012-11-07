@@ -44,6 +44,7 @@ from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.config import config
+from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -122,13 +123,13 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_PLACE]:
             return self.db.get_place_from_handle(data[COLUMN_PLACE]).get_title()
         else:
-            return u''
+            return ''
 
     def column_type(self,data):
-        return unicode(EventType(data[COLUMN_TYPE]))
+        return cuni(EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
-        return unicode(data[COLUMN_ID])
+        return cuni(data[COLUMN_ID])
 
     def column_date(self,data):
         if data[COLUMN_DATE]:
@@ -141,7 +142,7 @@ class EventModel(FlatBaseModel):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-        return u''
+        return ''
 
     def sort_date(self,data):
         if data[COLUMN_DATE]:
@@ -153,10 +154,10 @@ class EventModel(FlatBaseModel):
             else:
                 return retval
             
-        return u''
+        return ''
 
     def column_handle(self,data):
-        return unicode(data[COLUMN_HANDLE])
+        return cuni(data[COLUMN_HANDLE])
 
     def sort_change(self,data):
         return "%012x" % data[COLUMN_CHANGE]
@@ -165,4 +166,4 @@ class EventModel(FlatBaseModel):
         return format_time(data[COLUMN_CHANGE])
 
     def column_tooltip(self,data):
-        return u'Event tooltip'
+        return cuni('Event tooltip')

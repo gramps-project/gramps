@@ -23,6 +23,7 @@
 """
 Class handling language-specific selection for date parser and displayer.
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
@@ -45,9 +46,9 @@ log = logging.getLogger(".gen.datehandler")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _dateparser import DateParser
-from _datedisplay import DateDisplay, DateDisplayEn
-from ..constfunc import win
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay, DateDisplayEn
+from ..constfunc import win, cuni
 
 #-------------------------------------------------------------------------
 #
@@ -72,6 +73,9 @@ if LANG:
     LANG_SHORT = LANG.split('_')[0]
 else:
     LANG_SHORT = "C"
+
+LANG = cuni(LANG)
+LANG_SHORT = cuni(LANG_SHORT)
 
 LANG_TO_PARSER = {
     'C'                     : DateParser,

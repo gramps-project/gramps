@@ -29,6 +29,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -87,9 +89,9 @@ class Rebuild(tool.Tool, UpdateCallback):
                      _('All secondary indexes have been rebuilt.'),
                      parent=uistate.window)
         else:
-            print "Rebuilding Secondary Indexes..."
+            print("Rebuilding Secondary Indexes...")
             self.db.rebuild_secondary(self.update_empty)
-            print "All secondary indexes have been rebuilt."
+            print("All secondary indexes have been rebuilt.")
 
         self.db.enable_signals()
 

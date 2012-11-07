@@ -24,6 +24,8 @@
 Utility functions that depend on GUI components or for GUI components
 """
 
+from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -191,7 +193,7 @@ class ProgressMeter(object):
             end = buffer.get_end_iter()
             buffer.insert(end, text)
         else:
-            print "Progress:", text
+            print("Progress:", text)
 
     def set_message(self, text):
         """
@@ -201,7 +203,7 @@ class ProgressMeter(object):
             buffer = self.message_area.get_buffer()
             buffer.set_text(text)
         else:
-            print "Progress:", text
+            print("Progress:", text)
 
     def handle_cancel(self, *args, **kwargs):
         """
@@ -365,7 +367,7 @@ def open_file_with_default_application( file_path ):
     if win():
         try:
             os.startfile(norm_path)
-        except WindowsError, msg:
+        except WindowsError as msg:
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
         if mac():

@@ -28,9 +28,13 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from cStringIO import StringIO
-from gramps.gen.ggettext import gettext as _
 import os
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
+from gramps.gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -63,6 +67,7 @@ from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
+from gramps.gen.constfunc import UNITYPE
 
 DISABLED = -1
 
@@ -179,7 +184,7 @@ class History(Callback):
                 self.emit('active-changed', (self.history[self.index],))
             return str(self.history[self.index])
         except IndexError:
-            return u""
+            return ""
         
     def present(self):
         """
@@ -189,9 +194,9 @@ class History(Callback):
             if self.history :
                 return self.history[self.index]
             else:
-                return u""
+                return ""
         except IndexError:
-            return u""
+            return ""
         
     def at_end(self):
         """
@@ -268,7 +273,7 @@ class RecentDocsMenu(object):
             
         actions = []
         rfiles = gramps_rf.gramps_recent_files
-        rfiles.sort(by_time)
+        rfiles.sort(key=lambda x: x.get_time(), reverse=True)
 
         new_menu = Gtk.Menu()
 
@@ -301,10 +306,6 @@ class RecentDocsMenu(object):
 
 def make_callback(val, func):
     return lambda x: func(val)
-
-def by_time(first, second):
-    return cmp(second.get_time(), first.get_time())
-
 
 from .logger import RotateHandler
 
@@ -356,7 +357,7 @@ class DisplayState(Callback):
 
     __signals__ = {
         'filters-changed' : (str, ), 
-        'filter-name-changed' : (str, unicode, unicode), 
+        'filter-name-changed' : (str, UNITYPE, UNITYPE), 
         'nameformat-changed' : None, 
         }
     
@@ -424,7 +425,7 @@ class DisplayState(Callback):
         """
         Clear all history objects.
         """
-        for history in self.history_lookup.values():
+        for history in list(self.history_lookup.values()):
             history.clear()
 
     def get_history(self, nav_type, nav_group=0):
@@ -493,7 +494,7 @@ class DisplayState(Callback):
         self.relationship.connect_db_signals(dbstate)
         default_person = dbstate.db.get_default_person()
         if default_person is None or active_handle is None:
-            return u''
+            return ''
         if default_person.handle == self.disprel_defpers and \
                 active_handle == self.disprel_active :
             return self.disprel_old
@@ -503,7 +504,7 @@ class DisplayState(Callback):
             # During merger this method can be called at a time when treemodel
             # and database are not in sync, resulting in active_handle != None,
             # but active == None; see bug 5290 for the details.
-            return u''
+            return ''
         name = self.relationship.get_one_relationship(
                                             dbstate.db, default_person, active)
         #store present call data
@@ -513,7 +514,7 @@ class DisplayState(Callback):
         if name:
             return name
         else:
-            return u""
+            return ""
 
     def set_busy_cursor(self, value):
         if value == self.busy:

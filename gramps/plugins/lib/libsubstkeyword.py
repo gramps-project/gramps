@@ -32,6 +32,8 @@ Will return a value such as:
 Mary Smith was born on 3/28/1923.
 """
 
+from __future__ import print_function
+
 #------------------------------------------------------------------------
 #
 # Gramps modules
@@ -41,6 +43,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import displayer
 from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.constfunc import STRTYPE, cuni
 
 #------------------------------------------------------------------------
 #
@@ -54,7 +57,7 @@ class TextTypes():
     text   -> remove or display
     remove -> display
     """
-    separator, text, remove, display = range(4)
+    separator, text, remove, display = list(range(4))
 TXT = TextTypes()
 
 
@@ -209,7 +212,7 @@ class DateFormat(GenericFormat):
         
         def year():
             """  The year part only """
-            year = unicode(date.get_year())
+            year = cuni(date.get_year())
             count = self.__count_chars("y", 4)
             if year == "0":
                 return
@@ -237,7 +240,7 @@ class DateFormat(GenericFormat):
 
         def month(char_found = "m"):
             """  The month part only """
-            month = unicode(date.get_month())
+            month = cuni(date.get_month())
             count = self.__count_chars(char_found, 4)
             if month == "0":
                 return
@@ -258,7 +261,7 @@ class DateFormat(GenericFormat):
 
         def day():
             """  The day part only """
-            day = unicode(date.get_day())
+            day = cuni(date.get_day())
             count = self.__count_chars("d", 2)
             if day == "0":  #0 means not defined!
                 return
@@ -628,7 +631,7 @@ class VarString(object):
         
         #return what we have
         return (self.state, curr_string)
-        print "===" + str(self.state) + " '" + str(curr_string) + "'"
+        print("===" + str(self.state) + " '" + str(curr_string) + "'")
 
     def extend(self, acquisition):
         """ 
@@ -1107,7 +1110,7 @@ class SubstKeywords(object):
                 new.append(new_line)
         
         if new == []:
-            new = [u""]
+            new = [""]
         return new
 
 
@@ -1137,10 +1140,10 @@ if __name__ == '__main__':
         n = len(pool)
         if r > n:
             return
-        indices = range(r)
+        indices = list(range(r))
         yield tuple(pool[i] for i in indices)
         while True:
-            for i in reversed(range(r)):
+            for i in reversed(list(range(r))):
                 if indices[i] != i + n - r:
                     break
             else:
@@ -1192,66 +1195,66 @@ if __name__ == '__main__':
     line_in = "<Z>$(yyy) <a>$(<Z>Mm)<b>$(mm){<c>$(d)}{<d>$(yyyy)<e>}<f>$(yy)"
     consume_str = ConsumableString(line_in)
     
-    print line_in
-    print "#None are known"
+    print(line_in)
+    print("#None are known")
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
-    print tmp
-    print "Good" if tmp == " " else "!! bad !!"
+    print(tmp)
+    print("Good" if tmp == " " else "!! bad !!")
 
     
-    print
-    print
-    print "#One is known"
+    print()
+    print()
+    print("#One is known")
     answer = []
     for y_or_n in combinations(3, 1):
         date_set()
         consume_str = ConsumableString(line_in)
         tmp = main_level_test(consume_str, DateFormat, date_to_test)
-        print tmp
+        print(tmp)
         answer.append(tmp)
-    print "Good" if answer == [
+    print("Good" if answer == [
         "1970 d1970f70",
         " a99b09",
         " c3"
-        ] else "!! bad !!"
+        ] else "!! bad !!")
 
 
-    print
-    print
-    print "#Two are known"
+    print()
+    print()
+    print("#Two are known")
     answer = []
     for y_or_n in combinations(3, 2):
         date_set()
         consume_str = ConsumableString(line_in)
         tmp = main_level_test(consume_str, DateFormat, date_to_test)
-        print tmp
+        print(tmp)
         answer.append(tmp)
-    print "Good" if answer == [
+    print("Good" if answer == [
         "1970 a99b09d1970f70",
         "1970 c3d1970f70",
         " a99b09c3"
-        ] else "!! bad !!"
+        ] else "!! bad !!")
 
 
-    print
-    print
-    print "#All are known"
+    print()
+    print()
+    print("#All are known")
     answer = []
     y_or_n = (0, 1, 2)
     date_set()
     consume_str = ConsumableString(line_in)
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
-    print tmp
+    print(tmp)
     answer.append(tmp)
-    print "Good" if answer == ["1970 a99b09c3d1970f70"
-        ] else "!! bad !!"
+    print("Good" if answer == ["1970 a99b09c3d1970f70"
+        ] else "!! bad !!")
 
     import sys
     sys.exit()
-    print
-    print
-    print "============="
-    print "============="
+    print()
+    print()
+    print("=============")
+    print("=============")
 
     from gramps.gen.lib.name import Name
     y_or_n = ()
@@ -1269,26 +1272,26 @@ if __name__ == '__main__':
     line_in = "{$(c)$(t)<1>{<2>$(f)}{<3>$(n){<0> <0>}<4>$(x)}$(s)<5>$(l)<6>$(g)<0>"
     consume_str = ConsumableString(line_in)
     
-    print
-    print
-    print line_in
-    print "#None are known"
+    print()
+    print()
+    print(line_in)
+    print("#None are known")
     tmp = main_level_test(consume_str, NameFormat, name_to_test)
-    print tmp
-    print "Good" if tmp == None else "!! bad !!"
+    print(tmp)
+    print("Good" if tmp == None else "!! bad !!")
 
 
-    print
-    print
-    print "#Two are known"
+    print()
+    print()
+    print("#Two are known")
     answer = []
     for y_or_n in combinations(6, 2):
         name_set()
         consume_str = ConsumableString(line_in)
         tmp = main_level_test(consume_str, NameFormat, name_to_test)
-        print tmp
+        print(tmp)
         answer.append(tmp)
-    print "Good" if answer == [
+    print("Good" if answer == [
         "BobDr.4Bob",
         "Bob2Billy4Bob",
         "Bob3Buck4Bob",
@@ -1304,25 +1307,25 @@ if __name__ == '__main__':
         "BuckIV",
         "BuckThe Clubs",
         "IV6The Clubs"
-        ] else "!! bad !!"
+        ] else "!! bad !!")
 
 
-    print
-    print
-    print "#All are known"
+    print()
+    print()
+    print("#All are known")
     y_or_n = (0, 1, 2, 3, 4, 5)
     name_set()
     consume_str = ConsumableString(line_in)
     answer = main_level_test(consume_str, NameFormat, name_to_test)
-    print answer
-    print "Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs" \
-                            else "!! bad !!"
+    print(answer)
+    print("Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs" \
+                            else "!! bad !!")
 
 
-    print
-    print
-    print "============="
-    print "============="
+    print()
+    print()
+    print("=============")
+    print("=============")
 
     from gramps.gen.lib.place import Place
     y_or_n = ()
@@ -1369,18 +1372,18 @@ if __name__ == '__main__':
               "{<1>$(n)<2>}<3>$(i<0>)<4>}<5>$(t)<6>$(x)<7>}<8>$(y)"
     consume_str = ConsumableString(line_in)
     
-    print
-    print
-    print line_in
-    print "#None are known"
+    print()
+    print()
+    print(line_in)
+    print("#None are known")
     tmp = main_level_test(consume_str, PlaceFormat, place_to_test)
-    print tmp
-    print "Good" if tmp == "" else "!! bad !!"
+    print(tmp)
+    print("Good" if tmp == "" else "!! bad !!")
 
 
-    print
-    print
-    print "#Three are known (string lengths only)"
+    print()
+    print()
+    print("#Three are known (string lengths only)")
     answer = []
     for y_or_n in combinations(11, 4):
         place_set()
@@ -1388,8 +1391,8 @@ if __name__ == '__main__':
         tmp = main_level_test(consume_str, PlaceFormat, place_to_test)
         #print tmp
         answer.append(len(tmp))
-    print answer
-    print "Good" if answer == [38, 44, 44, 42, 46, 50, 49, 50, 40, 40, 38, 42,
+    print(answer)
+    print("Good" if answer == [38, 44, 44, 42, 46, 50, 49, 50, 40, 40, 38, 42,
         46, 45, 46, 46, 44, 48, 52, 51, 52, 44, 48, 52, 51, 52, 46, 50, 49, 50,
         54, 53, 54, 57, 58, 57, 28, 28, 26, 30, 34, 33, 34, 34, 32, 36, 40, 39,
         40, 32, 36, 40, 39, 40, 34, 38, 37, 38, 42, 41, 42, 45, 46, 45, 30, 28,
@@ -1407,6 +1410,6 @@ if __name__ == '__main__':
         27, 21, 25, 24, 25, 29, 28, 29, 32, 33, 32, 21, 25, 24, 25, 29, 28, 29,
         32, 33, 32, 27, 26, 27, 30, 31, 30, 34, 35, 34, 38, 27, 31, 30, 31, 35,
         34, 35, 38, 39, 38, 33, 32, 33, 36, 37, 36, 40, 41, 40, 44, 33, 32, 33,
-        36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!"
+        36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!")
     
     

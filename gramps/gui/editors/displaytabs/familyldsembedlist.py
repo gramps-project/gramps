@@ -32,7 +32,7 @@ from gramps.gen.ggettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from ldsembedlist import LdsEmbedList
+from .ldsembedlist import LdsEmbedList
 from gramps.gen.lib import LdsOrd
 
 #-------------------------------------------------------------------------

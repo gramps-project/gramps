@@ -25,6 +25,8 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function, unicode_literals
+
 from xml.sax import handler
 from ..ggettext import gettext as _
 
@@ -33,8 +35,8 @@ from ..ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from _genericfilter import GenericFilterFactory
-import rules
+from ._genericfilter import GenericFilterFactory
+from . import rules
 
 #-------------------------------------------------------------------------
 #
@@ -58,14 +60,14 @@ class FilterParser(handler.ContentHandler):
 
     def startElement(self, tag, attrs):
         if tag == "object":
-            if attrs.has_key('type'):
+            if 'type' in attrs:
                 self.namespace = attrs['type']
             else:
                 self.namespace = "generic"
         elif tag == "filter":
             self.f = GenericFilterFactory(self.namespace)()
             self.f.set_name(attrs['name'])
-            if attrs.has_key('function'):
+            if 'function' in attrs:
                 try:
                     if int(attrs['function']):
                         op = 'or'
@@ -74,9 +76,9 @@ class FilterParser(handler.ContentHandler):
                 except ValueError:
                     op = attrs['function']
                 self.f.set_logical_op(op)
-            if attrs.has_key('invert'):
+            if 'invert' in attrs:
                 self.f.set_invert(attrs['invert'])
-            if attrs.has_key('comment'):
+            if 'comment' in attrs:
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":
@@ -86,18 +88,18 @@ class FilterParser(handler.ContentHandler):
             else:
                 try:
                     # First try to use fully qualified name
-                    exec 'self.r = %s' % save_name
+                    exec('self.r = %s' % save_name)
                 except (ImportError, NameError, AttributeError ):
                     # Now try to use name from rules.namespace
                     mc_match = save_name.split('.')
                     last_name = mc_match[-1]
                     try:
-                        exec 'self.r = rules.%s.%s' % (
-                            self.namespace.lower(), last_name)
+                        exec('self.r = rules.%s.%s' % (
+                            self.namespace.lower(), last_name))
                     except (ImportError, NameError, AttributeError ):
-                        print "ERROR: Filter rule '%s' in "\
+                        print("ERROR: Filter rule '%s' in "\
                               "filter '%s' not found!"\
-                                  % (save_name, self.f.get_name())
+                                  % (save_name, self.f.get_name()))
                         self.r = None
                         return
             self.a = []
@@ -109,24 +111,24 @@ class FilterParser(handler.ContentHandler):
             if len(self.r.labels) != len(self.a):
                 self.__upgrade()
             if len(self.r.labels) < len(self.a):
-                print _("WARNING: Too many arguments in filter '%s'!\n"\
+                print(_("WARNING: Too many arguments in filter '%s'!\n"\
                         "Trying to load with subset of arguments.")  %\
-                        self.f.get_name()
+                        self.f.get_name())
                 nargs = len(self.r.labels)
                 rule = self.r(self.a[0:nargs])
                 self.f.add_rule(rule)
             else:
                 if len(self.r.labels) > len(self.a):
-                    print _("WARNING: Too few arguments in filter '%s'!\n" \
+                    print(_("WARNING: Too few arguments in filter '%s'!\n" \
                             "         Trying to load anyway in the hope this "\
                             "will be upgraded.") %\
-                            self.f.get_name()
+                            self.f.get_name())
                 try:
                     rule = self.r(self.a)
-                except AssertionError, msg:
-                    print msg
-                    print _("ERROR: filter %s could not be correctly loaded. "
-                            "Edit the filter!") % self.f.get_name()
+                except AssertionError as msg:
+                    print(msg)
+                    print(_("ERROR: filter %s could not be correctly loaded. "
+                            "Edit the filter!") % self.f.get_name())
                     return
                 
                 self.f.add_rule(rule)
@@ -140,13 +142,13 @@ class FilterParser(handler.ContentHandler):
         """
         # HasPlace rule has extra locality field in v3.3
         if self.r == rules.place.HasPlace and len(self.a) == 8:
-            self.a = self.a[0:2] + [u''] + self.a[4:8] + [self.a[3]] + \
+            self.a = self.a[0:2] + [''] + self.a[4:8] + [self.a[3]] + \
                      [self.a[2]]
         # HasNameOf rule has new fields for surnames in v3.3
         if self.r == rules.person.HasNameOf and len(self.a) == 7:
             self.a = self.a[0:2] + [self.a[3]] + [self.a[2]] + [self.a[6]] + \
-                     [u''] + [self.a[4]] + [u'', u''] + [self.a[5]] + \
-                     [u'', u'0']
+                     [''] + [self.a[4]] + ['', ''] + [self.a[5]] + \
+                     ['', '0']
 
 #-------------------------------------------------------------------------
 #

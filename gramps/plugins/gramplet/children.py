@@ -153,6 +153,7 @@ class PersonChildren(Children):
         name = name_displayer.display(child)
         if spouse:
             spouse = name_displayer.display(spouse)
+        spouse = spouse or ''
         birth = get_birth_or_fallback(self.dbstate.db, child)
         birth_date, birth_sort, birth_place = self.get_date_place(birth)
         death = get_death_or_fallback(self.dbstate.db, child)

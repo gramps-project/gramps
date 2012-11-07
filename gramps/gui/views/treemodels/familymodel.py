@@ -47,6 +47,7 @@ from gramps.gen.lib import EventRoleType, FamilyRelType
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
+from gramps.gen.constfunc import cuni
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -109,7 +110,7 @@ class FamilyModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_handle(self, data):
-        return unicode(data[0])
+        return cuni(data[0])
 
     def column_father(self, data):
         if data[2]:
@@ -140,7 +141,7 @@ class FamilyModel(FlatBaseModel):
             return ""
 
     def column_type(self, data):
-        return unicode(FamilyRelType(data[5]))
+        return cuni(FamilyRelType(data[5]))
 
     def column_marriage(self, data):
         family = self.db.get_family_from_handle(data[0])
@@ -153,7 +154,7 @@ class FamilyModel(FlatBaseModel):
             else:
                 return "%s" % displayer.display(event.date)
         else:
-            return u''
+            return ''
 
     def sort_marriage(self, data):
         family = self.db.get_family_from_handle(data[0])
@@ -161,10 +162,10 @@ class FamilyModel(FlatBaseModel):
         if event:
             return "%09d" % event.date.get_sort_value()
         else:
-            return u''
+            return ''
 
     def column_id(self, data):
-        return unicode(data[1])
+        return cuni(data[1])
 
     def sort_change(self, data):
         return "%012x" % data[12]
@@ -173,7 +174,7 @@ class FamilyModel(FlatBaseModel):
         return format_time(data[12])
 
     def column_tooltip(self, data):
-        return u'Family tooltip'
+        return cuni('Family tooltip')
 
     def get_tag_name(self, tag_handle):
         """
@@ -199,5 +200,5 @@ class FamilyModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = map(self.get_tag_name, data[13])
+        tag_list = list(map(self.get_tag_name, data[13]))
         return ', '.join(sorted(tag_list, key=locale.strxfrm))

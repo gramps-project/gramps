@@ -31,11 +31,12 @@ Source object for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from mediabase import MediaBase
-from notebase import NoteBase
-from reporef import RepoRef
-from const import DIFFERENT, EQUAL, IDENTICAL
+from .primaryobj import PrimaryObject
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .reporef import RepoRef
+from .const import DIFFERENT, EQUAL, IDENTICAL
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -61,10 +62,10 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle, self.gramps_id, unicode(self.title),
-                unicode(self.author), unicode(self.pubinfo),
+        return (self.handle, self.gramps_id, cuni(self.title),
+                cuni(self.author), cuni(self.pubinfo),
                 NoteBase.serialize(self),
-                MediaBase.serialize(self), unicode(self.abbrev),
+                MediaBase.serialize(self), cuni(self.abbrev),
                 self.change, self.datamap,
                 [rr.serialize() for rr in self.reporef_list],
                 self.private)
@@ -91,12 +92,12 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         return {"handle": self.handle, 
                 "gramps_id": self.gramps_id, 
-                "title": unicode(self.title),
-                "author": unicode(self.author), 
-                "pubinfo": unicode(self.pubinfo),
+                "title": cuni(self.title),
+                "author": cuni(self.author), 
+                "pubinfo": cuni(self.pubinfo),
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self), 
-                "abbrev": unicode(self.abbrev),
+                "abbrev": cuni(self.abbrev),
                 "change": self.change, 
                 "datamap": {"dict": self.datamap},
                 "reporef_list": [rr.to_struct() for rr in self.reporef_list],
@@ -174,7 +175,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :rtype: list
         """
         return [self.title, self.author, self.pubinfo, self.abbrev,
-                self.gramps_id] + self.datamap.keys() + self.datamap.values()
+                self.gramps_id] + list(self.datamap.keys()) + list(self.datamap.values())
     
     def get_text_data_child_list(self):
         """
@@ -385,7 +386,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         if new_handle in refs_list:
             new_ref = self.reporef_list[refs_list.index(new_handle)]
         n_replace = refs_list.count(old_handle)
-        for ix_replace in xrange(n_replace):
+        for ix_replace in range(n_replace):
             idx = refs_list.index(old_handle)
             self.reporef_list[idx].ref = new_handle
             refs_list[idx] = new_handle

@@ -146,7 +146,7 @@ class EventForm(forms.ModelForm):
         data = super(EventForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
-            msg = u"Invalid date format"
+            msg = "Invalid date format"
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data
@@ -185,7 +185,7 @@ class MediaForm(forms.ModelForm):
         data = super(MediaForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
-            msg = u"Invalid date format"
+            msg = "Invalid date format"
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data
@@ -223,7 +223,7 @@ class CitationForm(forms.ModelForm):
         data = super(CitationForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
-            msg = u"Invalid date format"
+            msg = "Invalid date format"
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data

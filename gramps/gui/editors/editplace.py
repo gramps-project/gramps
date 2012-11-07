@@ -28,6 +28,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import unicode_literals
+
 from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -46,8 +48,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
-from editprimary import EditPrimary
-from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
+from .editprimary import EditPrimary
+from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from ..widgets import MonitoredEntry, PrivacyButton
 from gramps.gen.errors import ValidationError
@@ -219,10 +221,10 @@ class EditPlace(EditPrimary):
         
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
-            return ValidationError(_(u"Invalid latitude (syntax: 18\u00b09'") +
+            return ValidationError(_("Invalid latitude (syntax: 18\u00b09'") +
                                    _('48.21"S, -18.2412 or -18:9:48.21)'))
         elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
-            return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'") +
+            return ValidationError(_("Invalid longitude (syntax: 18\u00b09'") +
                                    _('48.21"E, -18.2412 or -18:9:48.21)'))
 
     def build_menu_names(self, place):

@@ -44,6 +44,7 @@ from gi.repository import Gtk
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasPlace, 
                                      HasNoteRegexp, HasNoteMatchingSubstringOf, 
@@ -114,17 +115,17 @@ class PlaceSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        title = unicode(self.filter_title.get_text()).strip()
-        street = unicode(self.filter_street.get_text()).strip()
-        locality = unicode(self.filter_locality.get_text()).strip()
-        city = unicode(self.filter_city.get_text()).strip()
-        county = unicode(self.filter_county.get_text()).strip()
-        state = unicode(self.filter_state.get_text()).strip()
-        country = unicode(self.filter_country.get_text()).strip()
-        zipc = unicode(self.filter_zip.get_text()).strip()
-        parish = unicode(self.filter_parish.get_text()).strip()
-        note = unicode(self.filter_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        title = cuni(self.filter_title.get_text()).strip()
+        street = cuni(self.filter_street.get_text()).strip()
+        locality = cuni(self.filter_locality.get_text()).strip()
+        city = cuni(self.filter_city.get_text()).strip()
+        county = cuni(self.filter_county.get_text()).strip()
+        state = cuni(self.filter_state.get_text()).strip()
+        country = cuni(self.filter_country.get_text()).strip()
+        zipc = cuni(self.filter_zip.get_text()).strip()
+        parish = cuni(self.filter_parish.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
@@ -155,7 +156,7 @@ class PlaceSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = unicode(model.get_value(node, 0))
+                obj = cuni(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

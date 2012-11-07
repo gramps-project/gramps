@@ -24,7 +24,7 @@ This module provides the Plugin class for document generator plugins.
 """
 
 from . import Plugin
-from docgen import TextDoc, DrawDoc
+from .docgen import TextDoc, DrawDoc
 
 class DocGenPlugin(Plugin):
     """

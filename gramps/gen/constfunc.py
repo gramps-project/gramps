@@ -40,7 +40,7 @@ import sys
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from const import WINDOWS, MACOS, LINUX
+from .const import WINDOWS, MACOS, LINUX
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +48,21 @@ from const import WINDOWS, MACOS, LINUX
 #
 #-------------------------------------------------------------------------
 
+#python 2 and 3 support, use correct conversion to unicode
+
+if sys.version_info[0] < 3:
+    conv_to_unicode = unicode
+    conv_to_unicode_3 = unicode
+    conv_to_unicode_direct = unicode
+    STRTYPE = basestring
+    UNITYPE = unicode
+else:
+    conv_to_unicode = lambda x,y: str(x)
+    conv_to_unicode_3 = lambda x,y,z: str(x)
+    conv_to_unicode_direct = str
+    STRTYPE = str
+    UNITYPE = str
+cuni = conv_to_unicode_direct
 #-------------------------------------------------------------------------
 #
 # Platform determination functions

@@ -53,13 +53,13 @@ from gi.repository import Gdk
 #
 #-------------------------------------------------------------------------
 from gramps.plugins.lib.maps import constants
-from dummylayer import DummyLayer
-from dummynogps import DummyMapNoGpsPoint
-from selectionlayer import SelectionLayer
-from lifewaylayer import LifeWayLayer
-from markerlayer import MarkerLayer
-from datelayer import DateLayer
-from messagelayer import MessageLayer
+from .dummylayer import DummyLayer
+from .dummynogps import DummyMapNoGpsPoint
+from .selectionlayer import SelectionLayer
+from .lifewaylayer import LifeWayLayer
+from .markerlayer import MarkerLayer
+from .datelayer import DateLayer
+from .messagelayer import MessageLayer
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
@@ -104,7 +104,7 @@ class OsmGps():
         cache_path = config.get('geography.path')
         if not os.path.isdir(cache_path):
             try:
-                os.makedirs(cache_path, 0755) # create dir like mkdir -p
+                os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory %s") %
                              cache_path )
@@ -126,7 +126,7 @@ class OsmGps():
                                   constants.tiles_path[map_type])
         if not os.path.isdir(tiles_path):
             try:
-                os.makedirs(tiles_path, 0755) # create dir like mkdir -p
+                os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory for '%s'.") %
                              constants.map_title[map_type])

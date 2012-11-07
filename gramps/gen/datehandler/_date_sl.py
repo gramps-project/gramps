@@ -26,7 +26,7 @@
 """
 Slovenian-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -40,9 +40,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -55,114 +55,114 @@ class DateParserSL(DateParser):
     """
     month_to_int = DateParser.month_to_int
     
-    month_to_int[u"januar"] = 1
-    month_to_int[u"januarja"] = 1
-    month_to_int[u"januarjem"] = 1
-    month_to_int[u"jan"] = 1
-    month_to_int[u"i"] = 1
+    month_to_int["januar"] = 1
+    month_to_int["januarja"] = 1
+    month_to_int["januarjem"] = 1
+    month_to_int["jan"] = 1
+    month_to_int["i"] = 1
     
-    month_to_int[u"februar"] = 2
-    month_to_int[u"februarjem"] = 2
-    month_to_int[u"februarja"] = 2
-    month_to_int[u"feb"] = 2
-    month_to_int[u"ii"]  = 2
+    month_to_int["februar"] = 2
+    month_to_int["februarjem"] = 2
+    month_to_int["februarja"] = 2
+    month_to_int["feb"] = 2
+    month_to_int["ii"]  = 2
     
-    month_to_int[u"mar"] = 3
-    month_to_int[u"marcem"] = 3
-    month_to_int[u"marec"] = 3
-    month_to_int[u"marca"] = 3
-    month_to_int[u"iii"]  = 3
+    month_to_int["mar"] = 3
+    month_to_int["marcem"] = 3
+    month_to_int["marec"] = 3
+    month_to_int["marca"] = 3
+    month_to_int["iii"]  = 3
     
-    month_to_int[u"apr"] = 4
-    month_to_int[u"april"] = 4
-    month_to_int[u"aprilom"] = 4
-    month_to_int[u"aprila"] = 4
-    month_to_int[u"iv"]  = 4
+    month_to_int["apr"] = 4
+    month_to_int["april"] = 4
+    month_to_int["aprilom"] = 4
+    month_to_int["aprila"] = 4
+    month_to_int["iv"]  = 4
 
-    month_to_int[u"maj"] = 5
-    month_to_int[u"maja"] = 5
-    month_to_int[u"majem"] = 5
-    month_to_int[u"v"]  = 5
+    month_to_int["maj"] = 5
+    month_to_int["maja"] = 5
+    month_to_int["majem"] = 5
+    month_to_int["v"]  = 5
     
-    month_to_int[u"jun"] = 6
-    month_to_int[u"junij"] = 6
-    month_to_int[u"junijem"] = 6
-    month_to_int[u"junija"] = 6
-    month_to_int[u"vi"]  = 6
+    month_to_int["jun"] = 6
+    month_to_int["junij"] = 6
+    month_to_int["junijem"] = 6
+    month_to_int["junija"] = 6
+    month_to_int["vi"]  = 6
 
-    month_to_int[u"jul"]  = 7
-    month_to_int[u"julij"]  = 7
-    month_to_int[u"julijem"]  = 7
-    month_to_int[u"julija"]  = 7
-    month_to_int[u"vii"]  = 7
+    month_to_int["jul"]  = 7
+    month_to_int["julij"]  = 7
+    month_to_int["julijem"]  = 7
+    month_to_int["julija"]  = 7
+    month_to_int["vii"]  = 7
     
-    month_to_int[u"avg"]  = 8
-    month_to_int[u"avgust"]  = 8
-    month_to_int[u"avgustom"]  = 8
-    month_to_int[u"avgusta"]  = 8
-    month_to_int[u"viii"]  = 8
+    month_to_int["avg"]  = 8
+    month_to_int["avgust"]  = 8
+    month_to_int["avgustom"]  = 8
+    month_to_int["avgusta"]  = 8
+    month_to_int["viii"]  = 8
     
-    month_to_int[u"sep"]  = 9
-    month_to_int[u"sept"]  = 9
-    month_to_int[u"september"]  = 9
-    month_to_int[u"septembrom"]  = 9
-    month_to_int[u"septembra"]  = 9
-    month_to_int[u"ix"]  = 9
+    month_to_int["sep"]  = 9
+    month_to_int["sept"]  = 9
+    month_to_int["september"]  = 9
+    month_to_int["septembrom"]  = 9
+    month_to_int["septembra"]  = 9
+    month_to_int["ix"]  = 9
     
-    month_to_int[u"okt"]  = 10
-    month_to_int[u"oktober"]  = 10
-    month_to_int[u"oktobrom"]  = 10
-    month_to_int[u"oktobra"]  = 10
-    month_to_int[u"x"]  = 10
+    month_to_int["okt"]  = 10
+    month_to_int["oktober"]  = 10
+    month_to_int["oktobrom"]  = 10
+    month_to_int["oktobra"]  = 10
+    month_to_int["x"]  = 10
     
-    month_to_int[u"nov"]  = 11
-    month_to_int[u"november"]  = 11
-    month_to_int[u"novembrom"]  = 11
-    month_to_int[u"novembra"]  = 11
-    month_to_int[u"xi"]  = 11
+    month_to_int["nov"]  = 11
+    month_to_int["november"]  = 11
+    month_to_int["novembrom"]  = 11
+    month_to_int["novembra"]  = 11
+    month_to_int["xi"]  = 11
     
-    month_to_int[u"dec"]  = 12
-    month_to_int[u"december"]  = 12
-    month_to_int[u"decembrom"]  = 12
-    month_to_int[u"decembra"]  = 12
-    month_to_int[u"xii"]  = 12
+    month_to_int["dec"]  = 12
+    month_to_int["december"]  = 12
+    month_to_int["decembrom"]  = 12
+    month_to_int["decembra"]  = 12
+    month_to_int["xii"]  = 12
     
     modifier_to_int = {
-        u'pred'   : Date.MOD_BEFORE, 
-        u'pr.'    : Date.MOD_BEFORE,
-        u'po'     : Date.MOD_AFTER,
-        u'okoli'  : Date.MOD_ABOUT,
-        u'okrog'  : Date.MOD_ABOUT,
-        u'okr.'   : Date.MOD_ABOUT,
-        u'ok.'    : Date.MOD_ABOUT,
-        u'cca.'   : Date.MOD_ABOUT,
-        u'cca'    : Date.MOD_ABOUT,                      
-        u'circa'  : Date.MOD_ABOUT, 
-        u'ca.'    : Date.MOD_ABOUT, 
+        'pred'   : Date.MOD_BEFORE, 
+        'pr.'    : Date.MOD_BEFORE,
+        'po'     : Date.MOD_AFTER,
+        'okoli'  : Date.MOD_ABOUT,
+        'okrog'  : Date.MOD_ABOUT,
+        'okr.'   : Date.MOD_ABOUT,
+        'ok.'    : Date.MOD_ABOUT,
+        'cca.'   : Date.MOD_ABOUT,
+        'cca'    : Date.MOD_ABOUT,                      
+        'circa'  : Date.MOD_ABOUT, 
+        'ca.'    : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregorijanski'  : Date.CAL_GREGORIAN,
-        u'greg.'          : Date.CAL_GREGORIAN,
-        u'julijanski'     : Date.CAL_JULIAN,
-        u'jul.'           : Date.CAL_JULIAN,
-        u'hebrejski'      : Date.CAL_HEBREW,
-        u'hebr.'          : Date.CAL_HEBREW,
-        u'islamski'       : Date.CAL_ISLAMIC,
-        u'isl.'           : Date.CAL_ISLAMIC,
-        u'francoski republikanski': Date.CAL_FRENCH,
-        u'franc.'         : Date.CAL_FRENCH,
-        u'perzijski'      : Date.CAL_PERSIAN,
-        u'perz. '         : Date.CAL_PERSIAN,
-        u'švedski'        : Date.CAL_SWEDISH, 
-        u'šved.'          : Date.CAL_SWEDISH, 
+        'gregorijanski'  : Date.CAL_GREGORIAN,
+        'greg.'          : Date.CAL_GREGORIAN,
+        'julijanski'     : Date.CAL_JULIAN,
+        'jul.'           : Date.CAL_JULIAN,
+        'hebrejski'      : Date.CAL_HEBREW,
+        'hebr.'          : Date.CAL_HEBREW,
+        'islamski'       : Date.CAL_ISLAMIC,
+        'isl.'           : Date.CAL_ISLAMIC,
+        'francoski republikanski': Date.CAL_FRENCH,
+        'franc.'         : Date.CAL_FRENCH,
+        'perzijski'      : Date.CAL_PERSIAN,
+        'perz. '         : Date.CAL_PERSIAN,
+        'švedski'        : Date.CAL_SWEDISH, 
+        'šved.'          : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'približno'   : Date.QUAL_ESTIMATED,
-        u'pribl.'      : Date.QUAL_ESTIMATED,
-        u'izračunano'  : Date.QUAL_CALCULATED,
-        u'izrač.'        : Date.QUAL_CALCULATED,
+        'približno'   : Date.QUAL_ESTIMATED,
+        'pribl.'      : Date.QUAL_ESTIMATED,
+        'izračunano'  : Date.QUAL_CALCULATED,
+        'izrač.'        : Date.QUAL_CALCULATED,
         }
 
     bce = ["pred našim štetjem", "pred Kristusom",
@@ -182,7 +182,7 @@ class DateParserSL(DateParser):
         self._span  = re.compile("od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)", 
                                 re.IGNORECASE)
         self._range = re.compile(
-                            u"med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", 
+                            "med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", 
                             re.IGNORECASE)
         self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'\
                                 % self._jmon_str, re.IGNORECASE)
@@ -196,19 +196,19 @@ class DateDisplaySL(DateDisplay):
     """
     Slovenian language date display class. 
     """
-    long_months = ( u"", u"januarja", u"februarja", u"marca",u"aprila",
-        u"maja", u"junija", u"julija", u"avgusta", u"septembra",
-        u"oktobra", u"novembra", u"decembra" 
+    long_months = ( "", "januarja", "februarja", "marca","aprila",
+        "maja", "junija", "julija", "avgusta", "septembra",
+        "oktobra", "novembra", "decembra" 
         )
    
-    short_months = ( u"", u"jan", u"feb", u"mar", u"apr", u"maj", u"jun",
-        u"jul", u"avg", u"sep", u"okt", u"nov", u"dec"
+    short_months = ( "", "jan", "feb", "mar", "apr", "maj", "jun",
+        "jul", "avg", "sep", "okt", "nov", "dec"
         )
     
     calendar = (
-        "", u"julijanski", u"hebrejski", 
-        u"francoski republikanski", u"perzijski", u"islamski",
-        u"švedski" 
+        "", "julijanski", "hebrejski", 
+        "francoski republikanski", "perzijski", "islamski",
+        "švedski" 
         )
 
     _mod_str = ("", "pred ", "po ", "okrog ", "", "", "")
@@ -283,21 +283,21 @@ class DateDisplaySL(DateDisplay):
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
-            return u""
+            return ""
         elif mod == Date.MOD_SPAN:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return u"%sod %s do %s%s" % (qual_str, d_1, d_2, scal)
+            return "%sod %s do %s%s" % (qual_str, d_1, d_2, scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            date_string = u"%smed %s in %s%s" % (qual_str, d_1, d_2, scal)
-            date_string = date_string.replace(u"a ",u"em ") #to correct declination
-            date_string = date_string.replace(u"lem ",u"lom ")
-            date_string = date_string.replace(u"rem ",u"rom ")
-            date_string = date_string.replace(u"tem ",u"tom ")
+            date_string = "%smed %s in %s%s" % (qual_str, d_1, d_2, scal)
+            date_string = date_string.replace("a ","em ") #to correct declination
+            date_string = date_string.replace("lem ","lom ")
+            date_string = date_string.replace("rem ","rom ")
+            date_string = date_string.replace("tem ","tom ")
             return date_string
         else:
             text = self.display_cal[date.get_calendar()](start)

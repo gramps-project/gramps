@@ -89,15 +89,24 @@ all lines until the next level 2 token is found (in this case, skipping the
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function, unicode_literals
+
 import os
+import sys
 import re
 import time
 import codecs
 from gramps.gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
-import cStringIO
-from urlparse import urlparse
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+else:
+    from urllib.parse import urlparse
 
 #------------------------------------------------------------------------
 #
@@ -126,6 +135,7 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
+from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -450,9 +460,9 @@ MEDIA_MAP = {
 #
 #-------------------------------------------------------------------------
 CALENDAR_MAP_GEDCOM2XML = {
-    u"FRENCH R" : Date.CAL_FRENCH,
-    u"JULIAN"   : Date.CAL_JULIAN,
-    u"HEBREW"   : Date.CAL_HEBREW,
+    "FRENCH R" : Date.CAL_FRENCH,
+    "JULIAN"   : Date.CAL_JULIAN,
+    "HEBREW"   : Date.CAL_HEBREW,
 }
 
 QUALITY_MAP = {
@@ -553,7 +563,7 @@ LDS_STATUS = {
 
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
-STRIP_DICT = dict.fromkeys(range(9)+range(11, 13)+range(14, 32))
+STRIP_DICT = dict.fromkeys(list(range(9))+list(range(11, 13))+list(range(14, 32)))
 
 #-------------------------------------------------------------------------
 #
@@ -561,16 +571,16 @@ STRIP_DICT = dict.fromkeys(range(9)+range(11, 13)+range(14, 32))
 #
 #-------------------------------------------------------------------------
 GED_TO_GRAMPS_EVENT = {}
-for __val, __key in PERSONALCONSTANTEVENTS.iteritems():
+for __val, __key in PERSONALCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 
-for __val, __key in FAMILYCONSTANTEVENTS.iteritems():
+for __val, __key in FAMILYCONSTANTEVENTS.items():
     if __key != "":
         GED_TO_GRAMPS_EVENT[__key] = __val
 
 GED_TO_GRAMPS_ATTR = {}
-for __val, __key in PERSONALCONSTANTATTRIBUTES.iteritems():
+for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
     if __key != "":
         GED_TO_GRAMPS_ATTR[__key] = __val
         
@@ -1098,7 +1108,7 @@ class GedcomInfoDB(object):
         return self.standard
 
     def get_from_source_tag(self, name):
-        for k, val in self.map.iteritems():
+        for k, val in self.map.items():
             if val.get_dest() == name:
                 return val
         return self.standard
@@ -1189,7 +1199,7 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        line = unicode(self.ifile.readline(), 
+        line = cuni(self.ifile.readline(), 
                        encoding=self.enc,
                        errors='replace')
         return line.translate(STRIP_DICT)
@@ -1207,7 +1217,7 @@ class UTF8Reader(BaseReader):
             self.ifile.seek(0)
 
     def readline(self):
-        line =  unicode(self.ifile.readline(),
+        line = cuni(self.ifile.readline(),
                        encoding=self.enc,
                        errors='replace')
         return line.translate(STRIP_DICT)
@@ -1249,23 +1259,23 @@ class AnselReader(BaseReader):
     ---
     TODO: should we allow TAB, as a Gramps extension?
     """
-    __printable_ascii = map(chr, range(32, 127)) # note: up thru 126
-    __use_ASCII = map(chr, [10, 27, 29 , 30, 31]) + __printable_ascii
+    __printable_ascii = list(map(chr, list(range(32, 127)))) # note: up thru 126
+    __use_ASCII = list(map(chr, [10, 27, 29 , 30, 31])) + __printable_ascii
     
     # mappings of single byte ANSEL codes to unicode
     __onebyte = {
-         '\xA1' : u'\u0141',   '\xA2' : u'\u00d8',   '\xA3' : u'\u0110',   
-         '\xA4' : u'\u00de',   '\xA5' : u'\u00c6',   '\xA6' : u'\u0152',   
-         '\xA7' : u'\u02b9',   '\xA8' : u'\u00b7',   '\xA9' : u'\u266d',   
-         '\xAA' : u'\u00ae',   '\xAB' : u'\u00b1',   '\xAC' : u'\u01a0',   
-         '\xAD' : u'\u01af',   '\xAE' : u'\u02bc',   '\xB0' : u'\u02bb',   
-         '\xB1' : u'\u0142',   '\xB2' : u'\u00f8',   '\xB3' : u'\u0111',   
-         '\xB4' : u'\u00fe',   '\xB5' : u'\u00e6',   '\xB6' : u'\u0153',   
-         '\xB7' : u'\u02ba',   '\xB8' : u'\u0131',   '\xB9' : u'\u00a3',   
-         '\xBA' : u'\u00f0',   '\xBC' : u'\u01a1',   '\xBD' : u'\u01b0',   
-         '\xC0' : u'\u00b0',   '\xC1' : u'\u2113',   '\xC2' : u'\u2117',   
-         '\xC3' : u'\u00a9',   '\xC4' : u'\u266f',   '\xC5' : u'\u00bf',   
-         '\xC6' : u'\u00a1',   '\xC7' : u'\u00df',   '\xC8' : u'\u20ac',  
+         '\xA1' : '\u0141',   '\xA2' : '\u00d8',   '\xA3' : '\u0110',   
+         '\xA4' : '\u00de',   '\xA5' : '\u00c6',   '\xA6' : '\u0152',   
+         '\xA7' : '\u02b9',   '\xA8' : '\u00b7',   '\xA9' : '\u266d',   
+         '\xAA' : '\u00ae',   '\xAB' : '\u00b1',   '\xAC' : '\u01a0',   
+         '\xAD' : '\u01af',   '\xAE' : '\u02bc',   '\xB0' : '\u02bb',   
+         '\xB1' : '\u0142',   '\xB2' : '\u00f8',   '\xB3' : '\u0111',   
+         '\xB4' : '\u00fe',   '\xB5' : '\u00e6',   '\xB6' : '\u0153',   
+         '\xB7' : '\u02ba',   '\xB8' : '\u0131',   '\xB9' : '\u00a3',   
+         '\xBA' : '\u00f0',   '\xBC' : '\u01a1',   '\xBD' : '\u01b0',   
+         '\xC0' : '\u00b0',   '\xC1' : '\u2113',   '\xC2' : '\u2117',   
+         '\xC3' : '\u00a9',   '\xC4' : '\u266f',   '\xC5' : '\u00bf',   
+         '\xC6' : '\u00a1',   '\xC7' : '\u00df',   '\xC8' : '\u20ac',  
         }
     
     # combining forms (in ANSEL, they precede the modified ASCII character
@@ -1276,178 +1286,178 @@ class AnselReader(BaseReader):
     #  (strange things) probably not commonly found in our needs, unless one
     #   starts writing persian (or???) poetry in ANSEL
     __acombiners = {
-         '\x8D' : u'\u200d',   '\x8E' : u'\u200c',   '\xE0' : u'\u0309',   
-         '\xE1' : u'\u0300',   '\xE2' : u'\u0301',   '\xE3' : u'\u0302',   
-         '\xE4' : u'\u0303',   '\xE5' : u'\u0304',   '\xE6' : u'\u0306',   
-         '\xE7' : u'\u0307',   '\xE8' : u'\u0308',   '\xE9' : u'\u030c',   
-         '\xEA' : u'\u030a',   '\xEB' : u'\ufe20',   '\xEC' : u'\ufe21',   
-         '\xED' : u'\u0315',   '\xEE' : u'\u030b',   '\xEF' : u'\u0310',   
-         '\xF0' : u'\u0327',   '\xF1' : u'\u0328',   '\xF2' : u'\u0323',   
-         '\xF3' : u'\u0324',   '\xF4' : u'\u0325',   '\xF5' : u'\u0333',   
-         '\xF6' : u'\u0332',   '\xF7' : u'\u0326',   '\xF8' : u'\u031c',   
-         '\xF9' : u'\u032e',   '\xFA' : u'\ufe22',   '\xFB' : u'\ufe23',   
-         '\xFE' : u'\u0313',  
+         '\x8D' : '\u200d',   '\x8E' : '\u200c',   '\xE0' : '\u0309',   
+         '\xE1' : '\u0300',   '\xE2' : '\u0301',   '\xE3' : '\u0302',   
+         '\xE4' : '\u0303',   '\xE5' : '\u0304',   '\xE6' : '\u0306',   
+         '\xE7' : '\u0307',   '\xE8' : '\u0308',   '\xE9' : '\u030c',   
+         '\xEA' : '\u030a',   '\xEB' : '\ufe20',   '\xEC' : '\ufe21',   
+         '\xED' : '\u0315',   '\xEE' : '\u030b',   '\xEF' : '\u0310',   
+         '\xF0' : '\u0327',   '\xF1' : '\u0328',   '\xF2' : '\u0323',   
+         '\xF3' : '\u0324',   '\xF4' : '\u0325',   '\xF5' : '\u0333',   
+         '\xF6' : '\u0332',   '\xF7' : '\u0326',   '\xF8' : '\u031c',   
+         '\xF9' : '\u032e',   '\xFA' : '\ufe22',   '\xFB' : '\ufe23',   
+         '\xFE' : '\u0313',  
        }
     
     # mappings of two byte (precomposed forms) ANSEL codes to unicode
     __twobyte = {
-         '\xE0\x41' : u'\u1ea2',   '\xE0\x45' : u'\u1eba',
-         '\xE0\x49' : u'\u1ec8',   '\xE0\x4F' : u'\u1ece',
-         '\xE0\x55' : u'\u1ee6',   '\xE0\x59' : u'\u1ef6',
-         '\xE0\x61' : u'\u1ea3',   '\xE0\x65' : u'\u1ebb',
-         '\xE0\x69' : u'\u1ec9',   '\xE0\x6F' : u'\u1ecf',
-         '\xE0\x75' : u'\u1ee7',   '\xE0\x79' : u'\u1ef7',
-         '\xE1\x41' : u'\u00c0',   '\xE1\x45' : u'\u00c8',
-         '\xE1\x49' : u'\u00cc',   '\xE1\x4F' : u'\u00d2',
-         '\xE1\x55' : u'\u00d9',   '\xE1\x57' : u'\u1e80',
-         '\xE1\x59' : u'\u1ef2',   '\xE1\x61' : u'\u00e0',
-         '\xE1\x65' : u'\u00e8',   '\xE1\x69' : u'\u00ec',
-         '\xE1\x6F' : u'\u00f2',   '\xE1\x75' : u'\u00f9',
-         '\xE1\x77' : u'\u1e81',   '\xE1\x79' : u'\u1ef3',
-         '\xE2\x41' : u'\u00c1',   '\xE2\x43' : u'\u0106',
-         '\xE2\x45' : u'\u00c9',   '\xE2\x47' : u'\u01f4',
-         '\xE2\x49' : u'\u00cd',   '\xE2\x4B' : u'\u1e30',
-         '\xE2\x4C' : u'\u0139',   '\xE2\x4D' : u'\u1e3e',
-         '\xE2\x4E' : u'\u0143',   '\xE2\x4F' : u'\u00d3',
-         '\xE2\x50' : u'\u1e54',   '\xE2\x52' : u'\u0154',
-         '\xE2\x53' : u'\u015a',   '\xE2\x55' : u'\u00da',
-         '\xE2\x57' : u'\u1e82',   '\xE2\x59' : u'\u00dd',
-         '\xE2\x5A' : u'\u0179',   '\xE2\x61' : u'\u00e1',
-         '\xE2\x63' : u'\u0107',   '\xE2\x65' : u'\u00e9',
-         '\xE2\x67' : u'\u01f5',   '\xE2\x69' : u'\u00ed',
-         '\xE2\x6B' : u'\u1e31',   '\xE2\x6C' : u'\u013a',
-         '\xE2\x6D' : u'\u1e3f',   '\xE2\x6E' : u'\u0144',
-         '\xE2\x6F' : u'\u00f3',   '\xE2\x70' : u'\u1e55',
-         '\xE2\x72' : u'\u0155',   '\xE2\x73' : u'\u015b',
-         '\xE2\x75' : u'\u00fa',   '\xE2\x77' : u'\u1e83',
-         '\xE2\x79' : u'\u00fd',   '\xE2\x7A' : u'\u017a',
-         '\xE2\xA5' : u'\u01fc',   '\xE2\xB5' : u'\u01fd',
-         '\xE3\x41' : u'\u00c2',   '\xE3\x43' : u'\u0108',
-         '\xE3\x45' : u'\u00ca',   '\xE3\x47' : u'\u011c',
-         '\xE3\x48' : u'\u0124',   '\xE3\x49' : u'\u00ce',
-         '\xE3\x4A' : u'\u0134',   '\xE3\x4F' : u'\u00d4',
-         '\xE3\x53' : u'\u015c',   '\xE3\x55' : u'\u00db',
-         '\xE3\x57' : u'\u0174',   '\xE3\x59' : u'\u0176',
-         '\xE3\x5A' : u'\u1e90',   '\xE3\x61' : u'\u00e2',
-         '\xE3\x63' : u'\u0109',   '\xE3\x65' : u'\u00ea',
-         '\xE3\x67' : u'\u011d',   '\xE3\x68' : u'\u0125',
-         '\xE3\x69' : u'\u00ee',   '\xE3\x6A' : u'\u0135',
-         '\xE3\x6F' : u'\u00f4',   '\xE3\x73' : u'\u015d',
-         '\xE3\x75' : u'\u00fb',   '\xE3\x77' : u'\u0175',
-         '\xE3\x79' : u'\u0177',   '\xE3\x7A' : u'\u1e91',
-         '\xE4\x41' : u'\u00c3',   '\xE4\x45' : u'\u1ebc',
-         '\xE4\x49' : u'\u0128',   '\xE4\x4E' : u'\u00d1',
-         '\xE4\x4F' : u'\u00d5',   '\xE4\x55' : u'\u0168',
-         '\xE4\x56' : u'\u1e7c',   '\xE4\x59' : u'\u1ef8',
-         '\xE4\x61' : u'\u00e3',   '\xE4\x65' : u'\u1ebd',
-         '\xE4\x69' : u'\u0129',   '\xE4\x6E' : u'\u00f1',
-         '\xE4\x6F' : u'\u00f5',   '\xE4\x75' : u'\u0169',
-         '\xE4\x76' : u'\u1e7d',   '\xE4\x79' : u'\u1ef9',
-         '\xE5\x41' : u'\u0100',   '\xE5\x45' : u'\u0112',
-         '\xE5\x47' : u'\u1e20',   '\xE5\x49' : u'\u012a',
-         '\xE5\x4F' : u'\u014c',   '\xE5\x55' : u'\u016a',
-         '\xE5\x61' : u'\u0101',   '\xE5\x65' : u'\u0113',
-         '\xE5\x67' : u'\u1e21',   '\xE5\x69' : u'\u012b',
-         '\xE5\x6F' : u'\u014d',   '\xE5\x75' : u'\u016b',
-         '\xE5\xA5' : u'\u01e2',   '\xE5\xB5' : u'\u01e3',
-         '\xE6\x41' : u'\u0102',   '\xE6\x45' : u'\u0114',   
-         '\xE6\x47' : u'\u011e',   '\xE6\x49' : u'\u012c',
-         '\xE6\x4F' : u'\u014e',   '\xE6\x55' : u'\u016c',
-         '\xE6\x61' : u'\u0103',   '\xE6\x65' : u'\u0115',
-         '\xE6\x67' : u'\u011f',   '\xE6\x69' : u'\u012d',
-         '\xE6\x6F' : u'\u014f',   '\xE6\x75' : u'\u016d',
-         '\xE7\x42' : u'\u1e02',   '\xE7\x43' : u'\u010a',
-         '\xE7\x44' : u'\u1e0a',   '\xE7\x45' : u'\u0116',
-         '\xE7\x46' : u'\u1e1e',   '\xE7\x47' : u'\u0120',
-         '\xE7\x48' : u'\u1e22',   '\xE7\x49' : u'\u0130',
-         '\xE7\x4D' : u'\u1e40',   '\xE7\x4E' : u'\u1e44',
-         '\xE7\x50' : u'\u1e56',   '\xE7\x52' : u'\u1e58',
-         '\xE7\x53' : u'\u1e60',   '\xE7\x54' : u'\u1e6a',
-         '\xE7\x57' : u'\u1e86',   '\xE7\x58' : u'\u1e8a',
-         '\xE7\x59' : u'\u1e8e',   '\xE7\x5A' : u'\u017b',
-         '\xE7\x62' : u'\u1e03',   '\xE7\x63' : u'\u010b',
-         '\xE7\x64' : u'\u1e0b',   '\xE7\x65' : u'\u0117',
-         '\xE7\x66' : u'\u1e1f',   '\xE7\x67' : u'\u0121',
-         '\xE7\x68' : u'\u1e23',   '\xE7\x6D' : u'\u1e41',
-         '\xE7\x6E' : u'\u1e45',   '\xE7\x70' : u'\u1e57',
-         '\xE7\x72' : u'\u1e59',   '\xE7\x73' : u'\u1e61',
-         '\xE7\x74' : u'\u1e6b',   '\xE7\x77' : u'\u1e87',
-         '\xE7\x78' : u'\u1e8b',   '\xE7\x79' : u'\u1e8f',
-         '\xE7\x7A' : u'\u017c',   '\xE8\x41' : u'\u00c4',
-         '\xE8\x45' : u'\u00cb',   '\xE8\x48' : u'\u1e26',
-         '\xE8\x49' : u'\u00cf',   '\xE8\x4F' : u'\u00d6',
-         '\xE8\x55' : u'\u00dc',   '\xE8\x57' : u'\u1e84',
-         '\xE8\x58' : u'\u1e8c',   '\xE8\x59' : u'\u0178',
-         '\xE8\x61' : u'\u00e4',   '\xE8\x65' : u'\u00eb',
-         '\xE8\x68' : u'\u1e27',   '\xE8\x69' : u'\u00ef',
-         '\xE8\x6F' : u'\u00f6',   '\xE8\x74' : u'\u1e97',
-         '\xE8\x75' : u'\u00fc',   '\xE8\x77' : u'\u1e85',
-         '\xE8\x78' : u'\u1e8d',   '\xE8\x79' : u'\u00ff',
-         '\xE9\x41' : u'\u01cd',   '\xE9\x43' : u'\u010c',
-         '\xE9\x44' : u'\u010e',   '\xE9\x45' : u'\u011a',
-         '\xE9\x47' : u'\u01e6',   '\xE9\x49' : u'\u01cf',
-         '\xE9\x4B' : u'\u01e8',   '\xE9\x4C' : u'\u013d',
-         '\xE9\x4E' : u'\u0147',   '\xE9\x4F' : u'\u01d1',
-         '\xE9\x52' : u'\u0158',   '\xE9\x53' : u'\u0160',
-         '\xE9\x54' : u'\u0164',   '\xE9\x55' : u'\u01d3',
-         '\xE9\x5A' : u'\u017d',   '\xE9\x61' : u'\u01ce',
-         '\xE9\x63' : u'\u010d',   '\xE9\x64' : u'\u010f',
-         '\xE9\x65' : u'\u011b',   '\xE9\x67' : u'\u01e7',
-         '\xE9\x69' : u'\u01d0',   '\xE9\x6A' : u'\u01f0',
-         '\xE9\x6B' : u'\u01e9',   '\xE9\x6C' : u'\u013e',
-         '\xE9\x6E' : u'\u0148',   '\xE9\x6F' : u'\u01d2',
-         '\xE9\x72' : u'\u0159',   '\xE9\x73' : u'\u0161',
-         '\xE9\x74' : u'\u0165',   '\xE9\x75' : u'\u01d4',
-         '\xE9\x7A' : u'\u017e',   '\xEA\x41' : u'\u00c5',
-         '\xEA\x61' : u'\u00e5',   '\xEA\x75' : u'\u016f',
-         '\xEA\x77' : u'\u1e98',   '\xEA\x79' : u'\u1e99',
-         '\xEA\xAD' : u'\u016e',   '\xEE\x4F' : u'\u0150',
-         '\xEE\x55' : u'\u0170',   '\xEE\x6F' : u'\u0151',
-         '\xEE\x75' : u'\u0171',   '\xF0\x20' : u'\u00b8',
-         '\xF0\x43' : u'\u00c7',   '\xF0\x44' : u'\u1e10',
-         '\xF0\x47' : u'\u0122',   '\xF0\x48' : u'\u1e28',
-         '\xF0\x4B' : u'\u0136',   '\xF0\x4C' : u'\u013b',
-         '\xF0\x4E' : u'\u0145',   '\xF0\x52' : u'\u0156',   
-         '\xF0\x53' : u'\u015e',   '\xF0\x54' : u'\u0162',
-         '\xF0\x63' : u'\u00e7',   '\xF0\x64' : u'\u1e11',
-         '\xF0\x67' : u'\u0123',   '\xF0\x68' : u'\u1e29',
-         '\xF0\x6B' : u'\u0137',   '\xF0\x6C' : u'\u013c',
-         '\xF0\x6E' : u'\u0146',   '\xF0\x72' : u'\u0157',
-         '\xF0\x73' : u'\u015f',   '\xF0\x74' : u'\u0163',
-         '\xF1\x41' : u'\u0104',   '\xF1\x45' : u'\u0118',
-         '\xF1\x49' : u'\u012e',   '\xF1\x4F' : u'\u01ea',
-         '\xF1\x55' : u'\u0172',   '\xF1\x61' : u'\u0105',
-         '\xF1\x65' : u'\u0119',   '\xF1\x69' : u'\u012f',
-         '\xF1\x6F' : u'\u01eb',   '\xF1\x75' : u'\u0173',
-         '\xF2\x41' : u'\u1ea0',   '\xF2\x42' : u'\u1e04',
-         '\xF2\x44' : u'\u1e0c',   '\xF2\x45' : u'\u1eb8',
-         '\xF2\x48' : u'\u1e24',   '\xF2\x49' : u'\u1eca',
-         '\xF2\x4B' : u'\u1e32',   '\xF2\x4C' : u'\u1e36',
-         '\xF2\x4D' : u'\u1e42',   '\xF2\x4E' : u'\u1e46',
-         '\xF2\x4F' : u'\u1ecc',   '\xF2\x52' : u'\u1e5a',
-         '\xF2\x53' : u'\u1e62',   '\xF2\x54' : u'\u1e6c',
-         '\xF2\x55' : u'\u1ee4',   '\xF2\x56' : u'\u1e7e',
-         '\xF2\x57' : u'\u1e88',   '\xF2\x59' : u'\u1ef4',
-         '\xF2\x5A' : u'\u1e92',   '\xF2\x61' : u'\u1ea1',
-         '\xF2\x62' : u'\u1e05',   '\xF2\x64' : u'\u1e0d',
-         '\xF2\x65' : u'\u1eb9',   '\xF2\x68' : u'\u1e25',
-         '\xF2\x69' : u'\u1ecb',   '\xF2\x6B' : u'\u1e33',
-         '\xF2\x6C' : u'\u1e37',   '\xF2\x6D' : u'\u1e43',
-         '\xF2\x6E' : u'\u1e47',   '\xF2\x6F' : u'\u1ecd',
-         '\xF2\x72' : u'\u1e5b',   '\xF2\x73' : u'\u1e63',
-         '\xF2\x74' : u'\u1e6d',   '\xF2\x75' : u'\u1ee5',
-         '\xF2\x76' : u'\u1e7f',   '\xF2\x77' : u'\u1e89',
-         '\xF2\x79' : u'\u1ef5',   '\xF2\x7A' : u'\u1e93',
-         '\xF3\x55' : u'\u1e72',   '\xF3\x75' : u'\u1e73',
-         '\xF4\x41' : u'\u1e00',   '\xF4\x61' : u'\u1e01',
-         '\xF9\x48' : u'\u1e2a',   '\xF9\x68' : u'\u1e2b',  
+         '\xE0\x41' : '\u1ea2',   '\xE0\x45' : '\u1eba',
+         '\xE0\x49' : '\u1ec8',   '\xE0\x4F' : '\u1ece',
+         '\xE0\x55' : '\u1ee6',   '\xE0\x59' : '\u1ef6',
+         '\xE0\x61' : '\u1ea3',   '\xE0\x65' : '\u1ebb',
+         '\xE0\x69' : '\u1ec9',   '\xE0\x6F' : '\u1ecf',
+         '\xE0\x75' : '\u1ee7',   '\xE0\x79' : '\u1ef7',
+         '\xE1\x41' : '\u00c0',   '\xE1\x45' : '\u00c8',
+         '\xE1\x49' : '\u00cc',   '\xE1\x4F' : '\u00d2',
+         '\xE1\x55' : '\u00d9',   '\xE1\x57' : '\u1e80',
+         '\xE1\x59' : '\u1ef2',   '\xE1\x61' : '\u00e0',
+         '\xE1\x65' : '\u00e8',   '\xE1\x69' : '\u00ec',
+         '\xE1\x6F' : '\u00f2',   '\xE1\x75' : '\u00f9',
+         '\xE1\x77' : '\u1e81',   '\xE1\x79' : '\u1ef3',
+         '\xE2\x41' : '\u00c1',   '\xE2\x43' : '\u0106',
+         '\xE2\x45' : '\u00c9',   '\xE2\x47' : '\u01f4',
+         '\xE2\x49' : '\u00cd',   '\xE2\x4B' : '\u1e30',
+         '\xE2\x4C' : '\u0139',   '\xE2\x4D' : '\u1e3e',
+         '\xE2\x4E' : '\u0143',   '\xE2\x4F' : '\u00d3',
+         '\xE2\x50' : '\u1e54',   '\xE2\x52' : '\u0154',
+         '\xE2\x53' : '\u015a',   '\xE2\x55' : '\u00da',
+         '\xE2\x57' : '\u1e82',   '\xE2\x59' : '\u00dd',
+         '\xE2\x5A' : '\u0179',   '\xE2\x61' : '\u00e1',
+         '\xE2\x63' : '\u0107',   '\xE2\x65' : '\u00e9',
+         '\xE2\x67' : '\u01f5',   '\xE2\x69' : '\u00ed',
+         '\xE2\x6B' : '\u1e31',   '\xE2\x6C' : '\u013a',
+         '\xE2\x6D' : '\u1e3f',   '\xE2\x6E' : '\u0144',
+         '\xE2\x6F' : '\u00f3',   '\xE2\x70' : '\u1e55',
+         '\xE2\x72' : '\u0155',   '\xE2\x73' : '\u015b',
+         '\xE2\x75' : '\u00fa',   '\xE2\x77' : '\u1e83',
+         '\xE2\x79' : '\u00fd',   '\xE2\x7A' : '\u017a',
+         '\xE2\xA5' : '\u01fc',   '\xE2\xB5' : '\u01fd',
+         '\xE3\x41' : '\u00c2',   '\xE3\x43' : '\u0108',
+         '\xE3\x45' : '\u00ca',   '\xE3\x47' : '\u011c',
+         '\xE3\x48' : '\u0124',   '\xE3\x49' : '\u00ce',
+         '\xE3\x4A' : '\u0134',   '\xE3\x4F' : '\u00d4',
+         '\xE3\x53' : '\u015c',   '\xE3\x55' : '\u00db',
+         '\xE3\x57' : '\u0174',   '\xE3\x59' : '\u0176',
+         '\xE3\x5A' : '\u1e90',   '\xE3\x61' : '\u00e2',
+         '\xE3\x63' : '\u0109',   '\xE3\x65' : '\u00ea',
+         '\xE3\x67' : '\u011d',   '\xE3\x68' : '\u0125',
+         '\xE3\x69' : '\u00ee',   '\xE3\x6A' : '\u0135',
+         '\xE3\x6F' : '\u00f4',   '\xE3\x73' : '\u015d',
+         '\xE3\x75' : '\u00fb',   '\xE3\x77' : '\u0175',
+         '\xE3\x79' : '\u0177',   '\xE3\x7A' : '\u1e91',
+         '\xE4\x41' : '\u00c3',   '\xE4\x45' : '\u1ebc',
+         '\xE4\x49' : '\u0128',   '\xE4\x4E' : '\u00d1',
+         '\xE4\x4F' : '\u00d5',   '\xE4\x55' : '\u0168',
+         '\xE4\x56' : '\u1e7c',   '\xE4\x59' : '\u1ef8',
+         '\xE4\x61' : '\u00e3',   '\xE4\x65' : '\u1ebd',
+         '\xE4\x69' : '\u0129',   '\xE4\x6E' : '\u00f1',
+         '\xE4\x6F' : '\u00f5',   '\xE4\x75' : '\u0169',
+         '\xE4\x76' : '\u1e7d',   '\xE4\x79' : '\u1ef9',
+         '\xE5\x41' : '\u0100',   '\xE5\x45' : '\u0112',
+         '\xE5\x47' : '\u1e20',   '\xE5\x49' : '\u012a',
+         '\xE5\x4F' : '\u014c',   '\xE5\x55' : '\u016a',
+         '\xE5\x61' : '\u0101',   '\xE5\x65' : '\u0113',
+         '\xE5\x67' : '\u1e21',   '\xE5\x69' : '\u012b',
+         '\xE5\x6F' : '\u014d',   '\xE5\x75' : '\u016b',
+         '\xE5\xA5' : '\u01e2',   '\xE5\xB5' : '\u01e3',
+         '\xE6\x41' : '\u0102',   '\xE6\x45' : '\u0114',   
+         '\xE6\x47' : '\u011e',   '\xE6\x49' : '\u012c',
+         '\xE6\x4F' : '\u014e',   '\xE6\x55' : '\u016c',
+         '\xE6\x61' : '\u0103',   '\xE6\x65' : '\u0115',
+         '\xE6\x67' : '\u011f',   '\xE6\x69' : '\u012d',
+         '\xE6\x6F' : '\u014f',   '\xE6\x75' : '\u016d',
+         '\xE7\x42' : '\u1e02',   '\xE7\x43' : '\u010a',
+         '\xE7\x44' : '\u1e0a',   '\xE7\x45' : '\u0116',
+         '\xE7\x46' : '\u1e1e',   '\xE7\x47' : '\u0120',
+         '\xE7\x48' : '\u1e22',   '\xE7\x49' : '\u0130',
+         '\xE7\x4D' : '\u1e40',   '\xE7\x4E' : '\u1e44',
+         '\xE7\x50' : '\u1e56',   '\xE7\x52' : '\u1e58',
+         '\xE7\x53' : '\u1e60',   '\xE7\x54' : '\u1e6a',
+         '\xE7\x57' : '\u1e86',   '\xE7\x58' : '\u1e8a',
+         '\xE7\x59' : '\u1e8e',   '\xE7\x5A' : '\u017b',
+         '\xE7\x62' : '\u1e03',   '\xE7\x63' : '\u010b',
+         '\xE7\x64' : '\u1e0b',   '\xE7\x65' : '\u0117',
+         '\xE7\x66' : '\u1e1f',   '\xE7\x67' : '\u0121',
+         '\xE7\x68' : '\u1e23',   '\xE7\x6D' : '\u1e41',
+         '\xE7\x6E' : '\u1e45',   '\xE7\x70' : '\u1e57',
+         '\xE7\x72' : '\u1e59',   '\xE7\x73' : '\u1e61',
+         '\xE7\x74' : '\u1e6b',   '\xE7\x77' : '\u1e87',
+         '\xE7\x78' : '\u1e8b',   '\xE7\x79' : '\u1e8f',
+         '\xE7\x7A' : '\u017c',   '\xE8\x41' : '\u00c4',
+         '\xE8\x45' : '\u00cb',   '\xE8\x48' : '\u1e26',
+         '\xE8\x49' : '\u00cf',   '\xE8\x4F' : '\u00d6',
+         '\xE8\x55' : '\u00dc',   '\xE8\x57' : '\u1e84',
+         '\xE8\x58' : '\u1e8c',   '\xE8\x59' : '\u0178',
+         '\xE8\x61' : '\u00e4',   '\xE8\x65' : '\u00eb',
+         '\xE8\x68' : '\u1e27',   '\xE8\x69' : '\u00ef',
+         '\xE8\x6F' : '\u00f6',   '\xE8\x74' : '\u1e97',
+         '\xE8\x75' : '\u00fc',   '\xE8\x77' : '\u1e85',
+         '\xE8\x78' : '\u1e8d',   '\xE8\x79' : '\u00ff',
+         '\xE9\x41' : '\u01cd',   '\xE9\x43' : '\u010c',
+         '\xE9\x44' : '\u010e',   '\xE9\x45' : '\u011a',
+         '\xE9\x47' : '\u01e6',   '\xE9\x49' : '\u01cf',
+         '\xE9\x4B' : '\u01e8',   '\xE9\x4C' : '\u013d',
+         '\xE9\x4E' : '\u0147',   '\xE9\x4F' : '\u01d1',
+         '\xE9\x52' : '\u0158',   '\xE9\x53' : '\u0160',
+         '\xE9\x54' : '\u0164',   '\xE9\x55' : '\u01d3',
+         '\xE9\x5A' : '\u017d',   '\xE9\x61' : '\u01ce',
+         '\xE9\x63' : '\u010d',   '\xE9\x64' : '\u010f',
+         '\xE9\x65' : '\u011b',   '\xE9\x67' : '\u01e7',
+         '\xE9\x69' : '\u01d0',   '\xE9\x6A' : '\u01f0',
+         '\xE9\x6B' : '\u01e9',   '\xE9\x6C' : '\u013e',
+         '\xE9\x6E' : '\u0148',   '\xE9\x6F' : '\u01d2',
+         '\xE9\x72' : '\u0159',   '\xE9\x73' : '\u0161',
+         '\xE9\x74' : '\u0165',   '\xE9\x75' : '\u01d4',
+         '\xE9\x7A' : '\u017e',   '\xEA\x41' : '\u00c5',
+         '\xEA\x61' : '\u00e5',   '\xEA\x75' : '\u016f',
+         '\xEA\x77' : '\u1e98',   '\xEA\x79' : '\u1e99',
+         '\xEA\xAD' : '\u016e',   '\xEE\x4F' : '\u0150',
+         '\xEE\x55' : '\u0170',   '\xEE\x6F' : '\u0151',
+         '\xEE\x75' : '\u0171',   '\xF0\x20' : '\u00b8',
+         '\xF0\x43' : '\u00c7',   '\xF0\x44' : '\u1e10',
+         '\xF0\x47' : '\u0122',   '\xF0\x48' : '\u1e28',
+         '\xF0\x4B' : '\u0136',   '\xF0\x4C' : '\u013b',
+         '\xF0\x4E' : '\u0145',   '\xF0\x52' : '\u0156',   
+         '\xF0\x53' : '\u015e',   '\xF0\x54' : '\u0162',
+         '\xF0\x63' : '\u00e7',   '\xF0\x64' : '\u1e11',
+         '\xF0\x67' : '\u0123',   '\xF0\x68' : '\u1e29',
+         '\xF0\x6B' : '\u0137',   '\xF0\x6C' : '\u013c',
+         '\xF0\x6E' : '\u0146',   '\xF0\x72' : '\u0157',
+         '\xF0\x73' : '\u015f',   '\xF0\x74' : '\u0163',
+         '\xF1\x41' : '\u0104',   '\xF1\x45' : '\u0118',
+         '\xF1\x49' : '\u012e',   '\xF1\x4F' : '\u01ea',
+         '\xF1\x55' : '\u0172',   '\xF1\x61' : '\u0105',
+         '\xF1\x65' : '\u0119',   '\xF1\x69' : '\u012f',
+         '\xF1\x6F' : '\u01eb',   '\xF1\x75' : '\u0173',
+         '\xF2\x41' : '\u1ea0',   '\xF2\x42' : '\u1e04',
+         '\xF2\x44' : '\u1e0c',   '\xF2\x45' : '\u1eb8',
+         '\xF2\x48' : '\u1e24',   '\xF2\x49' : '\u1eca',
+         '\xF2\x4B' : '\u1e32',   '\xF2\x4C' : '\u1e36',
+         '\xF2\x4D' : '\u1e42',   '\xF2\x4E' : '\u1e46',
+         '\xF2\x4F' : '\u1ecc',   '\xF2\x52' : '\u1e5a',
+         '\xF2\x53' : '\u1e62',   '\xF2\x54' : '\u1e6c',
+         '\xF2\x55' : '\u1ee4',   '\xF2\x56' : '\u1e7e',
+         '\xF2\x57' : '\u1e88',   '\xF2\x59' : '\u1ef4',
+         '\xF2\x5A' : '\u1e92',   '\xF2\x61' : '\u1ea1',
+         '\xF2\x62' : '\u1e05',   '\xF2\x64' : '\u1e0d',
+         '\xF2\x65' : '\u1eb9',   '\xF2\x68' : '\u1e25',
+         '\xF2\x69' : '\u1ecb',   '\xF2\x6B' : '\u1e33',
+         '\xF2\x6C' : '\u1e37',   '\xF2\x6D' : '\u1e43',
+         '\xF2\x6E' : '\u1e47',   '\xF2\x6F' : '\u1ecd',
+         '\xF2\x72' : '\u1e5b',   '\xF2\x73' : '\u1e63',
+         '\xF2\x74' : '\u1e6d',   '\xF2\x75' : '\u1ee5',
+         '\xF2\x76' : '\u1e7f',   '\xF2\x77' : '\u1e89',
+         '\xF2\x79' : '\u1ef5',   '\xF2\x7A' : '\u1e93',
+         '\xF3\x55' : '\u1e72',   '\xF3\x75' : '\u1e73',
+         '\xF4\x41' : '\u1e00',   '\xF4\x61' : '\u1e01',
+         '\xF9\x48' : '\u1e2a',   '\xF9\x68' : '\u1e2b',  
        }
 
     @staticmethod
     def __ansel_to_unicode(s):
         """ Convert an ANSEL encoded string to unicode """
     
-        buff = cStringIO.StringIO()
+        buff = StringIO()
         while s:
             if ord(s[0]) < 128:
                 if s[0] in AnselReader.__use_ASCII:
@@ -1477,11 +1487,10 @@ class AnselReader(BaseReader):
                         # just drop the unexpected combiner
                         continue 
                 else:
-                    head = u'\ufffd' # "Replacement Char"
+                    head = '\ufffd' # "Replacement Char"
                     s = s[1:]
-            # note: cStringIO handles 8-bit strings, only (no unicode)
             buff.write(head.encode("utf-8"))
-        ans = unicode(buff.getvalue(), "utf-8")
+        ans = conv_to_unicode(buff.getvalue(), "utf-8")
         buff.close()
         return ans
 
@@ -1672,7 +1681,7 @@ class IdMapper(object):
             # We need to find the next gramps ID provided it is not already
             # the target of a swap
             new_val = self.find_next()
-            while new_val in self.swap.values():
+            while new_val in list(self.swap.values()):
                 new_val = self.find_next()
         else:
             # remove any @ signs
@@ -1688,9 +1697,9 @@ class IdMapper(object):
                 # now looking for I1, it wouldn't be in self.swap, and we now
                 # find that I0001 is in use, so we have to create a new id.
                 if self.trans.get(str(formatted_gid)) or \
-                        (formatted_gid in self.swap.values()):
+                        (formatted_gid in list(self.swap.values())):
                     new_val = self.find_next()
-                    while new_val in self.swap.values():
+                    while new_val in list(self.swap.values()):
                         new_val = self.find_next()
                 else:
                     new_val = formatted_gid
@@ -2505,11 +2514,11 @@ class GedcomParser(UpdateCallback):
         # look for existing place titles, build a map 
         self.place_names = {}
         cursor = dbase.get_place_cursor()
-        data = cursor.next()
+        data = next(cursor)
         while data:
             (handle, val) = data
             self.place_names[val[2]] = handle
-            data = cursor.next()
+            data = next(cursor)
         cursor.close()
 
         enc = stage_one.get_encoding()
@@ -2533,8 +2542,8 @@ class GedcomParser(UpdateCallback):
         self.error_count = 0
         amap = PERSONALCONSTANTATTRIBUTES
         
-        self.attrs = amap.values()
-        self.gedattr = dict([key, val] for val, key in amap.iteritems())
+        self.attrs = list(amap.values())
+        self.gedattr = dict([key, val] for val, key in amap.items())
         self.search_paths = []
 
     def parse_gedcom_file(self, use_trans=False):
@@ -2561,7 +2570,7 @@ class GedcomParser(UpdateCallback):
                 self.dbase.add_source(self.def_src, self.trans)
             self.__parse_record()
             self.__parse_trailer()
-            for title, handle in self.inline_srcs.iteritems():
+            for title, handle in self.inline_srcs.items():
                 src = Source()
                 src.set_handle(handle)
                 src.set_title(title)
@@ -2920,7 +2929,7 @@ class GedcomParser(UpdateCallback):
     def __check_xref(self):
 
         def __check(map, trans, class_func, commit_func, gramps_id2handle, msg):
-            for input_id, gramps_id in map.map().iteritems():
+            for input_id, gramps_id in map.map().items():
                 # Check whether an object exists for the mapped gramps_id
                 if not trans.get(str(gramps_id)):
                     handle = self.__find_from_handle(gramps_id, 
@@ -2964,11 +2973,11 @@ class GedcomParser(UpdateCallback):
 
         # Check persons membership in referenced families
         def __input_fid(gramps_id):
-            for (k,v) in self.fid_map.map().iteritems():
+            for (k,v) in self.fid_map.map().items():
                 if v == gramps_id:
                     return k
         
-        for input_id, gramps_id in self.pid_map.map().iteritems():
+        for input_id, gramps_id in self.pid_map.map().items():
             person_handle = self.__find_from_handle(gramps_id, self.gid2id)
             person = self.dbase.get_person_from_handle(person_handle)
             for family_handle in person.get_family_handle_list():
@@ -2989,11 +2998,11 @@ class GedcomParser(UpdateCallback):
                                       'orig_person' : input_id})
                         
         def __input_pid(gramps_id):
-            for (k,v) in self.pid_map.map().iteritems():
+            for (k,v) in self.pid_map.map().items():
                 if v == gramps_id:
                     return k
         
-        for input_id, gramps_id in self.fid_map.map().iteritems():
+        for input_id, gramps_id in self.fid_map.map().items():
             family_handle = self.__find_from_handle(gramps_id, self.fid2id)
             family = self.dbase.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
@@ -5204,7 +5213,7 @@ class GedcomParser(UpdateCallback):
         self.__add_location(place, location)
         # place.set_main_location(location)
 
-        map(place.add_note, note_list)
+        list(map(place.add_note, note_list))
 
         state.event.set_place_handle(place_handle)
         self.dbase.commit_place(place, self.trans)
@@ -7091,7 +7100,7 @@ class GedcomParser(UpdateCallback):
                 pass
         
     def build_media_object(self, obj, form, filename, title, note):
-        if isinstance(form, basestring) and form.lower() == "url":
+        if isinstance(form, STRTYPE) and form.lower() == "url":
             url = Url()
             url.set_path(filename)
             url.set_description(title)
@@ -7367,7 +7376,7 @@ class GedcomStageOne(object):
             elif key in ("CHIL", "CHILD") and self.__is_xref_value(value):
                 self.famc[value[1:-1]].append(current_family_id)
             elif key == 'CHAR' and not self.enc:
-                assert(isinstance(value, basestring))
+                assert(isinstance(value, STRTYPE))
                 self.enc = value
 
     def get_famc_map(self):
@@ -7392,7 +7401,7 @@ class GedcomStageOne(object):
         """
         Forces the encoding
         """
-        assert(isinstance(enc, basestring))
+        assert(isinstance(enc, STRTYPE))
         self.enc = enc
 
     def get_person_count(self):
@@ -7427,7 +7436,7 @@ def make_gedcom_date(subdate, calendar, mode, quality):
     try:
         retval = __build_date_string(day, mon, year, bce, mmap)
     except IndexError:
-        print "Month index error - %d" % mon
+        print("Month index error - %d" % mon)
         retval = "%d%s" % (year, bce)
     if calendar == Date.CAL_SWEDISH:
         # If Swedish calendar use ISO for for date and append (swedish)

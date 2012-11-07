@@ -55,6 +55,7 @@ UNDERLINE_SINGLE = Pango.Underline.SINGLE
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -86,7 +87,7 @@ STYLE_TO_PROPERTY = {
 (MATCH_START,
  MATCH_END,
  MATCH_FLAVOR,
- MATCH_STRING,) = range(4)
+ MATCH_STRING,) = list(range(4))
 
 #-------------------------------------------------------------------------
 #
@@ -122,7 +123,7 @@ class GtkSpellState(object):
     (STATE_NONE,
      STATE_CLICKED,
      STATE_DELETED,
-     STATE_INSERTING) = range(4)
+     STATE_INSERTING) = list(range(4))
 
     def __init__(self, textbuffer):
         if not isinstance(textbuffer, Gtk.TextBuffer):
@@ -335,14 +336,14 @@ class StyledTextBuffer(UndoableBuffer):
     def do_changed(self, data=None):
         """Parse for patterns in the text."""
         self.matches = []
-        text = unicode(super(StyledTextBuffer, self).get_text(
+        text = cuni(super(StyledTextBuffer, self).get_text(
                                                self.get_start_iter(),
                                                self.get_end_iter(), True))
         for regex, flavor in self.patterns:
             iter = regex.finditer(text)
             while True:
                 try:
-                    match = iter.next()
+                    match = next(iter)
                     self.matches.append((match.start(), match.end(),
                                          flavor, match.group()))
                     _LOG.debug("Matches: %d, %d: %s [%d]" %
@@ -453,7 +454,7 @@ class StyledTextBuffer(UndoableBuffer):
     def _remove_style_from_selection(self, style):
         start, end = self._get_selection()
         tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
-        for tag_name, tag_data in tags.iteritems():
+        for tag_name, tag_data in tags.items():
             if tag_name.startswith(str(style)):
                 for start, end in tag_data:
                     self.remove_tag_by_name(tag_name,
@@ -467,7 +468,7 @@ class StyledTextBuffer(UndoableBuffer):
         start, end = self._get_selection()
         tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
         removed_something = False
-        for tag_name, tag_data in tags.iteritems():
+        for tag_name, tag_data in tags.items():
             if tag_name.startswith("link"):
                 for start_pos, end_pos in tag_data:
                     self.remove_tag_by_name(tag_name,
@@ -585,13 +586,13 @@ class StyledTextBuffer(UndoableBuffer):
 
         txt = super(StyledTextBuffer, self).get_text(start, end, 
                                                         include_hidden_chars)
-        txt = unicode(txt)
+        txt = cuni(txt)
         
         # extract tags out of the buffer
         g_tags = self._get_tag_from_range()
         s_tags = []
         
-        for g_tagname, g_ranges in g_tags.items():
+        for g_tagname, g_ranges in list(g_tags.items()):
             if g_tagname.startswith('link'):
                 tag = self.get_tag_table().lookup(g_tagname)
                 s_ranges = [(start, end+1) for (start, end) in g_ranges]

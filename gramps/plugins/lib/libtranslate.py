@@ -41,6 +41,7 @@ from gramps.gen.utils.trans import get_localedomain
 from gramps.gen.datehandler import displayer, LANG_TO_DISPLAY
 from gramps.gen.config import config
 from gramps.gen.lib.grampstype import GrampsType
+from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -164,7 +165,7 @@ class Translator:
         
         """
         if self.__trans is None:
-            return unicode(gettext.gettext(message))
+            return cuni(gettext.gettext(message))
         else:
             return self.__trans.ugettext(message)
         
@@ -189,7 +190,7 @@ class Translator:
     
         """
         if self.__trans is None:
-            return unicode(gettext.ngettext(singular, plural, n))
+            return cuni(gettext.ngettext(singular, plural, n))
         else:
             return self.__trans.ungettext(singular, plural, n)
         
@@ -214,7 +215,7 @@ class Translator:
         if msgval == msgid:
             sep_idx = msgid.rfind(sep)
             msgval = msgid[sep_idx+1:]
-        return unicode(msgval)
+        return cuni(msgval)
         
     def get_date(self, date):
         """

@@ -58,7 +58,7 @@ class LdsTemples(object):
             parser.CharacterDataHandler = self.__characters
             parser.ParseFile(xml_file)
             xml_file.close()
-        except Exception, msg:
+        except Exception as msg:
             LOG.error(str(msg))
 
     def is_valid_code(self, code):
@@ -92,7 +92,7 @@ class LdsTemples(object):
         returns a list of temple codes, temple name tuples
         """
         return sorted([(code, name) for name, code 
-                       in self.__temple_codes.iteritems()],
+                       in self.__temple_codes.items()],
                       key=lambda v: v[1])
  
     def __start_element(self, tag, attrs):

@@ -24,6 +24,8 @@
 The main view from where other views are started
 """
 
+from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -64,6 +66,8 @@ from PySide import QtOpenGL
 from gramps.gen.const import ROOT_DIR
 from gramps.gen.ggettext import gettext as _
 
+from gramps.gen.constfunc import cuni, UNITYPE
+
 #-------------------------------------------------------------------------
 #
 # Classes
@@ -84,7 +88,7 @@ class DetailView(QtCore.QObject):
     changed = QtCore.Signal()
 
     #make Model.Column.property available in QML 
-    name = QtCore.Property(unicode, _name, notify=changed)
+    name = QtCore.Property(UNITYPE, _name, notify=changed)
     
 class DetViewSumModel(QtCore.QAbstractListModel):
     """
@@ -101,7 +105,7 @@ class DetViewSumModel(QtCore.QAbstractListModel):
         return len(self._detviews)
  
     def data(self, index, role):
-        print 'role', role, DetViewSumModel.COLUMNS.index('name') 
+        print('role', role, DetViewSumModel.COLUMNS.index('name')) 
         if index.isValid() and role == DetViewSumModel.COLUMNS.index('name'):
             return self._detviews[index.row()]
         return None
@@ -125,9 +129,9 @@ class CentralView(QtCore.QObject):
         self.__viewshow = viewshow
         QtCore.QObject.__init__(self)
         self.const = {
-            'titlelabel': unicode("%s" % self.dbstate.db.get_dbname()),
+            'titlelabel': str("%s" % self.dbstate.db.get_dbname()),
             }
-        print self.const['titlelabel']
+        print(self.const['titlelabel'])
         #there is one DeclarativeEngine for global settings
         self.__build_main_window(engine)
 
@@ -168,7 +172,7 @@ class CentralView(QtCore.QObject):
         """
         We load the selected family tree
         """
-        print 'User clicked on:', detview.name
+        print('User clicked on:', detview.name)
         #now only Person piece to click on, so start that
         from guiQML.views.personview import QMLPersonList
         self.__viewshow(QMLPersonList)

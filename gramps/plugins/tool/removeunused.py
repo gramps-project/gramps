@@ -414,7 +414,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         text = note.get()
 
         # convert whitespace to a single space
-        text = u" ".join(text.split())
+        text = " ".join(text.split())
 
         # if the note is too long, truncate it
         if len(text) > 80:

@@ -25,17 +25,21 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from xml.sax import make_parser, SAXParseException
 import os
 import sys
+import collections
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _filterparser import FilterParser
+from ._filterparser import FilterParser
 from ..plug import BasePluginManager
+from ..constfunc import STRTYPE
 
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
@@ -77,7 +81,7 @@ class FilterList(object):
             plugin_filters = []
             try:
                 for plug in plugins:
-                    if callable(plug):
+                    if isinstance(plug, collections.Callable):
                         plug = plug(namespace)
                     if plug:
                         if isinstance(plug, (list, tuple)):
@@ -92,7 +96,7 @@ class FilterList(object):
         return filters
 
     def add(self, namespace, filt):
-        assert(isinstance(namespace, basestring))
+        assert(isinstance(namespace, STRTYPE))
         
         if namespace not in self.filter_namespaces:
             self.filter_namespaces[namespace] = []
@@ -106,10 +110,10 @@ class FilterList(object):
                 the_file = open(self.file)
                 parser.parse(the_file)
                 the_file.close()
-        except (IOError,OSError):
+        except (IOError, OSError):
             pass
         except SAXParseException:
-            print "Parser error"
+            print("Parser error")
 
     def fix(self, line):
         l = line.strip()
@@ -137,7 +141,7 @@ class FilterList(object):
                 for rule in the_filter.get_rules():
                     f.write('    <rule class="%s">\n'
                             % rule.__class__.__name__)
-                    for value in rule.values():
+                    for value in list(rule.values()):
                         f.write('      <arg value="%s"/>\n' % self.fix(value))
                     f.write('    </rule>\n')
                 f.write('  </filter>\n')

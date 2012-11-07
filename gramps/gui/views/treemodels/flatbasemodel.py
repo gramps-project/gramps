@@ -52,8 +52,8 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
 
-from __future__ import with_statement
 import logging
 import bisect
 import time
@@ -75,12 +75,16 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
+from gramps.gen.constfunc import cuni, UNITYPE
 
 #-------------------------------------------------------------------------
 #
 # FlatNodeMap
 #
 #-------------------------------------------------------------------------
+
+UEMPTY = cuni("")
+
 class FlatNodeMap(object):
     """
     A NodeMap for a flat treeview. In such a TreeView, the paths possible are
@@ -368,8 +372,8 @@ class FlatNodeMap(object):
         :Returns type: Gtk.TreePath or None
         """
         if srtkey_hndl[1] in self._hndl2index:
-            print ('WARNING: Attempt to add row twice to the model (%s)' %
-                    srtkey_hndl[1])
+            print(('WARNING: Attempt to add row twice to the model (%s)' %
+                    srtkey_hndl[1]))
             return
         if not self._identical:
             bisect.insort_left(self._fullhndl, srtkey_hndl)
@@ -379,9 +383,14 @@ class FlatNodeMap(object):
         insert_pos = bisect.bisect_left(self._index2hndl, srtkey_hndl)
         self._index2hndl.insert(insert_pos, srtkey_hndl)
         #make sure the index map is updated
-        for hndl, index in self._hndl2index.iteritems():
-            if index >= insert_pos:
-                self._hndl2index[hndl] += 1
+        if sys.version_info[0] < 3:
+            for hndl, index in self._hndl2index.iteritems():
+                if index >= insert_pos:
+                    self._hndl2index[hndl] += 1
+        else:
+            for hndl, index in self._hndl2index.items():
+                if index >= insert_pos:
+                    self._hndl2index[hndl] += 1
         self._hndl2index[srtkey_hndl[1]] = insert_pos
         #update self.__corr so it remains correct
         if self._reverse:
@@ -406,8 +415,8 @@ class FlatNodeMap(object):
             del_pos = bisect.bisect_left(self._fullhndl, srtkey_hndl)
             #check that indeed this is correct:
             if not self._fullhndl[del_pos][1] == srtkey_hndl[1]:
-                raise KeyError, 'Handle %s not in list of all handles' %  \
-                                                srtkey_hndl[1]
+                raise KeyError('Handle %s not in list of all handles' %  \
+                                                srtkey_hndl[1])
             del self._fullhndl[del_pos]
         #now remove it from the index maps
         handle = srtkey_hndl[1]
@@ -423,9 +432,14 @@ class FlatNodeMap(object):
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         #update the handle2path map so it remains correct
-        for key, val in self._hndl2index.iteritems():
-            if val > index:
-                self._hndl2index[key] -= 1
+        if sys.version_info[0] < 3:
+            for key, val in self._hndl2index.iteritems():
+                if val > index:
+                    self._hndl2index[key] -= 1
+        else:
+            for key, val in self._hndl2index.items():
+                if val > index:
+                    self._hndl2index[key] -= 1
         return Gtk.TreePath((delpath,))
 
 #-------------------------------------------------------------------------
@@ -508,7 +522,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
                     col = search[1][0]
                     text = search[1][1]
                     inv = search[1][2]
-                    func = lambda x: self.on_get_value(x, col) or u""
+                    func = lambda x: self.on_get_value(x, col) or UEMPTY
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                     else:
@@ -571,8 +585,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle, and
             #allow for a third iter
-            return sorted((map(conv_tosrtkey,
-                           self.sort_func(data)), key) for key, data in cursor)
+            return sorted((list(map(conv_tosrtkey,
+                           self.sort_func(data))), key) for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -641,7 +655,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
-        insert_val = (map(conv_tosrtkey, self.sort_func(data)),
+        insert_val = (list(map(conv_tosrtkey, self.sort_func(data))),
                             handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
@@ -675,8 +689,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = map(conv_tosrtkey, self.sort_func(self.map(
-                            handle)))
+        newsortkey = list(map(conv_tosrtkey, self.sort_func(self.map(
+                            handle))))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
             #or the order of the object must change. 
@@ -766,7 +780,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         else:
             #GTK 3 should convert unicode objects automatically, but this
             # gives wrong column values, so we convert
-            if isinstance(val, unicode):
+            if isinstance(val, UNITYPE):
                 return val.encode('utf-8')
             else:
                 return val
@@ -794,7 +808,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_children'
-        print 'ERROR: iter children, should not be called in flat base!!'
+        print('ERROR: iter children, should not be called in flat base!!')
         raise NotImplementedError
         if handle is None and len(self.node_map):
             return self.node_map.get_first_handle()
@@ -806,7 +820,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_has_child'
-        print 'ERROR: iter has_child', iter, 'should not be called in flat base'
+        print('ERROR: iter has_child', iter, 'should not be called in flat base')
         return False
         if handle is None:
             return len(self.node_map) > 0
@@ -817,7 +831,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_n_children'
-        print 'ERROR: iter_n_children', iter, 'should not be called in flat base'
+        print('ERROR: iter_n_children', iter, 'should not be called in flat base')
         return 0
         if handle is None:
             return len(self.node_map)

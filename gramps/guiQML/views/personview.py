@@ -29,6 +29,8 @@ The listview with all people in the database
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import sys, os
 
 #-------------------------------------------------------------------------
@@ -55,12 +57,13 @@ from PySide import QtOpenGL
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import ROOT_DIR
-from gui.views.treemodels import conv_unicode_tosrtkey
+from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gui.views.treemodels import conv_unicode_tosrtkey
 from gramps.gen.ggettext import gettext as _
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import Name
 ##TODO: follow must be refractored so as not to require GTK
-from gui.views.treemodels.flatbasemodel import FlatNodeMap
+from gramps.gui.views.treemodels.flatbasemodel import FlatNodeMap
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +91,7 @@ class QMLPerson(QtCore.QObject):
     dummychanged = QtCore.Signal()
 
     #make Model.Column.property available in QML 
-    name = QtCore.Property(unicode, _name, notify=dummychanged)
+    name = QtCore.Property(UNITYPE, _name, notify=dummychanged)
     
 class QMLPersonListModel(QtCore.QAbstractListModel):
     """
@@ -131,8 +134,8 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted((map(conv_unicode_tosrtkey,
-                           self.sort_func(data)), key) for key, data in cursor)
+            return sorted((list(map(conv_unicode_tosrtkey,
+                           self.sort_func(data))), key) for key, data in cursor)
 
     def sort_name(self, data):
         n = Name()
@@ -211,4 +214,4 @@ class QMLPersonList(QtCore.QObject):
         """
         We load the selected family tree
         """
-        print 'User clicked on:', qmlperson.name
+        print('User clicked on:', qmlperson.name)

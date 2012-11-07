@@ -24,20 +24,24 @@
 Base class for the GRAMPS databases before version 3.0.
 All database interfaces should inherit from this class.
 """
-from __future__ import with_statement
+
 #-------------------------------------------------------------------------
 #
 # libraries
 #
 #-------------------------------------------------------------------------
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import time
 import random
 import locale
 import os
-from sys import maxint
+from sys import maxsize
 from gramps.gen.config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
@@ -54,6 +58,7 @@ LOG = logging.getLogger(".Db")
 from gramps.gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
                      Repository, Note, GenderStats, Researcher)
 from gramps.gen.utils.callback import Callback
+from gramps.gen.constfunc import STRTYPE, cuni
 
 #-------------------------------------------------------------------------
 #
@@ -623,7 +628,7 @@ class DbGrdb(Callback):
         person ID prefix.
         """
         index = self.person_prefix % self.pmap_index
-        while self.id_trans.has_key(str(index)):
+        while str(index) in self.id_trans:
             self.pmap_index += 1
             index = self.person_prefix % self.pmap_index
         self.pmap_index += 1
@@ -635,7 +640,7 @@ class DbGrdb(Callback):
         place ID prefix.
         """
         index = self.place_prefix % self.lmap_index
-        while self.pid_trans.has_key(str(index)):
+        while str(index) in self.pid_trans:
             self.lmap_index += 1
             index = self.place_prefix % self.lmap_index
         self.lmap_index += 1
@@ -647,7 +652,7 @@ class DbGrdb(Callback):
         event ID prefix.
         """
         index = self.event_prefix % self.emap_index
-        while self.eid_trans.has_key(str(index)):
+        while str(index) in self.eid_trans:
             self.emap_index += 1
             index = self.event_prefix % self.emap_index
         self.emap_index += 1
@@ -659,7 +664,7 @@ class DbGrdb(Callback):
         off the media object ID prefix.
         """
         index = self.mediaobject_prefix % self.omap_index
-        while self.oid_trans.has_key(str(index)):
+        while str(index) in self.oid_trans:
             self.omap_index += 1
             index = self.mediaobject_prefix % self.omap_index
         self.omap_index += 1
@@ -671,7 +676,7 @@ class DbGrdb(Callback):
         source ID prefix.
         """
         index = self.source_prefix % self.smap_index
-        while self.sid_trans.has_key(str(index)):
+        while str(index) in self.sid_trans:
             self.smap_index += 1
             index = self.source_prefix % self.smap_index
         self.smap_index += 1
@@ -683,7 +688,7 @@ class DbGrdb(Callback):
         family ID prefix.
         """
         index = self.family_prefix % self.fmap_index
-        while self.fid_trans.has_key(str(index)):
+        while str(index) in self.fid_trans:
             self.fmap_index += 1
             index = self.family_prefix % self.fmap_index
         self.fmap_index += 1
@@ -695,7 +700,7 @@ class DbGrdb(Callback):
         off the repository ID prefix.
         """
         index = self.repository_prefix % self.rmap_index
-        while self.rid_trans.has_key(str(index)):
+        while str(index) in self.rid_trans:
             self.rmap_index += 1
             index = self.repository_prefix % self.rmap_index
         self.rmap_index += 1
@@ -707,7 +712,7 @@ class DbGrdb(Callback):
         note ID prefix.
         """
         index = self.note_prefix % self.nmap_index
-        while self.nid_trans.has_key(str(index)):
+        while str(index) in self.nid_trans:
             self.nmap_index += 1
             index = self.note_prefix % self.nmap_index
         self.nmap_index += 1
@@ -1244,19 +1249,19 @@ class DbGrdb(Callback):
         """
         Return the default grouping name for a surname.
         """
-        return unicode(self.name_group.get(str(name), name))
+        return str(self.name_group.get(str(name), name))
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return map(unicode, self.name_group.keys())
+        return list(map(str, list(self.name_group.keys())))
 
     def has_name_group_key(self, name):
         """
         Return if a key exists in the name_group table.
         """
-        return self.name_group.has_key(str(name))
+        return str(name) in self.name_group
 
     def set_name_group_mapping(self, name, group):
         """
@@ -1323,7 +1328,7 @@ class DbGrdb(Callback):
         return self.get_number_of_records(self.note_map)
 
     def all_handles(self, table):
-        return table.keys()
+        return list(table.keys())
         
     def get_person_handles(self, sort_handles=True):
         """
@@ -1498,7 +1503,7 @@ class DbGrdb(Callback):
             }
 
         table = key2table[obj_key]
-        return table.keys()
+        return list(table.keys())
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -1514,7 +1519,7 @@ class DbGrdb(Callback):
 
         table = key2table[obj_key]
         #return str(gramps_id) in table
-        return table.has_key(str(gramps_id))
+        return str(gramps_id) in table
 
     def find_initial_person(self):
         person = self.get_default_person()
@@ -1525,7 +1530,7 @@ class DbGrdb(Callback):
         return person
 
     def _validated_id_prefix(self, val, default):
-        if isinstance(val, basestring) and val:
+        if isinstance(val, STRTYPE) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
@@ -1717,7 +1722,7 @@ class DbGrdb(Callback):
             self.emit(objtype + '-delete', (del_list, ))
 
     def __do_del(self, del_list, func):
-        map(func, del_list)
+        list(map(func, del_list))
         return del_list
 
     def do_commit(self, add_list, db_map):
@@ -1887,7 +1892,7 @@ class DbGrdb(Callback):
     def add_to_surname_list(self, person, batch_transaction):
         if batch_transaction:
             return
-        name = unicode(person.get_primary_name().get_surname())
+        name = cuni(person.get_primary_name().get_surname())
         if name not in self.surname_list:
             self.surname_list.append(name)
             self.sort_surname_list()
@@ -2268,12 +2273,12 @@ class DbGrdb(Callback):
         return locale.strxfrm(self.place_map.get(str(place))[2])
 
     def __sortbysource(self, first, second):
-        source1 = unicode(self.source_map[str(first)][2])
-        source2 = unicode(self.source_map[str(second)][2])
+        source1 = cuni(self.source_map[str(first)][2])
+        source2 = cuni(self.source_map[str(second)][2])
         return locale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
-        source = unicode(self.source_map[str(key)][2])
+        source = cuni(self.source_map[str(key)][2])
         return locale.strxfrm(source)
 
     def __sortbymedia(self, first, second):
@@ -2367,13 +2372,13 @@ class DbGrdb(Callback):
 
         # Find which tables to iterate over
         if (include_classes is None):
-            the_tables = primary_tables.keys()
+            the_tables = list(primary_tables.keys())
         else:
             the_tables = include_classes
         
         # Now we use the functions and classes defined above to loop through
         # each of the existing primary object tables
-        for primary_table_name, funcs in the_tables.iteritems():
+        for primary_table_name, funcs in the_tables.items():
             with funcs['cursor_func']() as cursor:
 
             # Grab the real object class here so that the lookup does
@@ -2488,7 +2493,7 @@ class Transaction(object):
         data is the tuple returned by the object's serialize method.
         """
         self.last = self.db.append(
-            cPickle.dumps((obj_type, handle, old_data, new_data), 1))
+            pickle.dumps((obj_type, handle, old_data, new_data), 1))
         if self.first is None:
             self.first = self.last
 
@@ -2499,7 +2504,7 @@ class Transaction(object):
         While the list is an arbitrary index of integers, it can be used
         to indicate record numbers for a database.
         """
-        return range (self.first, self.last+1)
+        return list(range(self.first, self.last+1))
 
     def get_record(self, recno):
         """
@@ -2507,7 +2512,7 @@ class Transaction(object):
         for the PrimaryObject, and a tuple representing the data created by
         the object's serialize method.
         """
-        return cPickle.loads(self.db[recno])
+        return pickle.loads(self.db[recno])
 
     def __len__(self):
         """

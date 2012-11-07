@@ -27,6 +27,8 @@ Based on the version from Django, a Python ORM.
 import re
 import os
 
+from ..constfunc import cuni
+
 def get_svn_revision(path=None):
     """
     Returns the SVN revision in the form SVN-XXXX,
@@ -61,5 +63,5 @@ def get_svn_revision(path=None):
             dom = minidom.parse(entries_path)
             rev = dom.getElementsByTagName('entry')[0].getAttribute('revision')
     if rev:
-        return u'SVN-%s' % rev
-    return u''
+        return cuni('SVN-%s' % rev)
+    return cuni('')

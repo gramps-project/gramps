@@ -28,6 +28,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from ...ggettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -41,6 +43,7 @@ from ...ggettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from ...constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -139,7 +142,7 @@ class DocBackend(object):
         Can only be done if the previous filename is not open
         """
         if self.__file is not None:
-            raise ValueError, _('Close file first')
+            raise ValueError(_('Close file first'))
         self._filename = value
 
     filename = property(getf, setf, None, "The filename the backend works on")
@@ -156,7 +159,7 @@ class DocBackend(object):
         self._checkfilename()
         try:
             self.__file = open(self.filename, "w")
-        except IOError, msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise DocBackendError(errmsg)
         except:
@@ -173,7 +176,7 @@ class DocBackend(object):
         Closes the file that is written on.
         """
         if self.__file is None:
-            raise IOError, 'No file open'
+            raise IOError('No file open')
         self.__file.close()
         self.__file = None        
 
@@ -284,7 +287,7 @@ class DocBackend(object):
                overwrite this method if this complexity is not needed. 
         """
         #unicode text must be sliced correctly
-        text = unicode(text)
+        text = cuni(text)
         FIRST = 0
         LAST = 1
         tagspos = {}
@@ -302,11 +305,11 @@ class DocBackend(object):
                         tagspos[end] = [(tag, LAST)]
         start = 0
         end = len(text)
-        keylist = tagspos.keys()
+        keylist = list(tagspos.keys())
         keylist.sort()
         keylist = [x for x in keylist if x <= len(text)]
         opentags = []
-        otext = u""  #the output, text with markup
+        otext = cuni("")  #the output, text with markup
         lensplit = len(split)
         for pos in keylist:
             #write text up to tag
@@ -349,8 +352,8 @@ class DocBackend(object):
             # a problem, we don't have a closing tag left but there are open
             # tags. Just keep them up to end of text
             pos = len(text)
-            print 'WARNING: DocBackend : More style tags in text than length '\
-                    'of text allows.\n', opentags
+            print('WARNING: DocBackend : More style tags in text than length '\
+                    'of text allows.\n', opentags)
             if pos > start:
                 if split:
                     #make sure text can split

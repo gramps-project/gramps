@@ -26,11 +26,16 @@
 # Python Modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 import locale
 import sys
 import re
 import datetime
-from HTMLParser import HTMLParser
+if sys.version_info[0] < 3:
+    from HTMLParser import HTMLParser
+else:
+    from html.parser import HTMLParser
 
 #------------------------------------------------------------------------
 #
@@ -65,6 +70,7 @@ from gramps.gen.lib import Person
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.plug import BasePluginManager
 from gramps.cli.grampscli import CLIManager
+from gramps.gen.constfunc import STRTYPE
 
 _ = lambda msg: msg
 
@@ -132,10 +138,10 @@ def get_person_from_handle(db, handle):
     try:
         return db.get_person_from_handle(handle)
     except:
-        print >> sys.stderr, "error in get_person_from_handle:"
+        print("error in get_person_from_handle:", file=sys.stderr)
         import sys, traceback
         cla, exc, trbk = sys.exc_info()
-        print  >> sys.stderr, _("Error") + (" : %s %s" %(cla, exc))
+        print(_("Error") + (" : %s %s" %(cla, exc)), file=sys.stderr)
         traceback.print_exc()
         return None
 
@@ -238,7 +244,7 @@ class Table(object):
         self.table.columns(*args)
 
     def row(self, *args):
-        self.table.row(*map(nbsp, args))
+        self.table.row(*list(map(nbsp, args)))
 
     def link(self, object_type_name, handle):
         self.table.set_link_col((object_type_name, handle))
@@ -283,9 +289,9 @@ def make_button(text, url, *args):
     kwargs = ""
     last = ""
     for arg in args:
-        if isinstance(arg, (str, unicode)) and arg.startswith("?"):
+        if isinstance(arg, STRTYPE) and arg.startswith("?"):
             kwargs = arg
-        elif isinstance(arg, (str, unicode)) and arg.startswith("#"):
+        elif isinstance(arg, STRTYPE) and arg.startswith("#"):
             last = arg
         elif arg == "":
             pass
@@ -937,7 +943,7 @@ def event_reference_table(obj, user, act):
             try:
                 item = ref_from_class.objects.get(id=reference.object_id)
             except:
-                print "Warning: Corrupt reference: %s" % reference
+                print("Warning: Corrupt reference: %s" % reference)
                 continue
             table.row(
                 item.__class__.__name__,
@@ -1435,7 +1441,7 @@ class WebAppParser(HTMLParser):
             self.__text += "\n\n"
             return
         else:
-            print "Unhandled start/stop tag '%s'" % tag
+            print("Unhandled start/stop tag '%s'" % tag)
 
     def handle_endtag(self, tag):
         tag = tag.lower()
@@ -1455,32 +1461,32 @@ class WebAppParser(HTMLParser):
                     if match:
                         arg = match.groups()[0]
                     else:
-                        print "Unhandled color tag: '%s'" % style
+                        print("Unhandled color tag: '%s'" % style)
                 elif 'background-color' in style:
                     tagtype = self.HIGHLIGHT
                     match = re.match("background-color:([^;]*);", style)
                     if match:
                         arg = match.groups()[0]
                     else:
-                        print "Unhandled background-color tag: '%s'" % style
+                        print("Unhandled background-color tag: '%s'" % style)
                 elif "font-family" in style:
                     tagtype = self.FONTFACE
                     match = re.match("font-family:'([^;]*)';", style)
                     if match:
                         arg = match.groups()[0]
                     else:
-                        print "Unhandled font-family tag: '%s'" % style
+                        print("Unhandled font-family tag: '%s'" % style)
                 elif "font-size" in style:
                     tagtype = self.FONTSIZE
                     match = re.match("font-size:([^;]*)px;", style)
                     if match:
                         arg = int(match.groups()[0])
                     else:
-                        print "Unhandled font-size tag: '%s'" % style
+                        print("Unhandled font-size tag: '%s'" % style)
                 else:
-                    print "Unhandled span arg: '%s'" % attrs
+                    print("Unhandled span arg: '%s'" % attrs)
             else:
-                print "span has no style: '%s'" % attrs
+                print("span has no style: '%s'" % attrs)
         # "b", "i", "u", "sup": direct conversion
         elif tag == "b":
             tagtype = self.BOLD
@@ -1507,13 +1513,13 @@ class WebAppParser(HTMLParser):
                 else:
                     arg = href
             else:
-                print "Unhandled a with no href: '%s'" % attrs
+                print("Unhandled a with no href: '%s'" % attrs)
         else:
             return
-            print "Unhandled tag: '%s'" % tag
+            print("Unhandled tag: '%s'" % tag)
 
         if start_pos == len(self.__text): return # does nothing
-        key = ((tagtype, u''), arg)
+        key = ((tagtype, ''), arg)
         if key not in self.__tags:
             self.__tags[key] = []
         self.__tags[key].append((start_pos, len(self.__text)))

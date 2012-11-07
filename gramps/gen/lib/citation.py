@@ -39,10 +39,11 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from mediabase import MediaBase
-from notebase import NoteBase
-from datebase import DateBase
+from .primaryobj import PrimaryObject
+from .mediabase import MediaBase
+from .notebase import NoteBase
+from .datebase import DateBase
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -82,7 +83,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         return (self.handle,                           #  0
                 self.gramps_id,                        #  1
                 DateBase.serialize(self, no_text_date),#  2
-                unicode(self.page),                    #  3
+                cuni(self.page),                       #  3
                 self.confidence,                       #  4
                 self.source_handle,                    #  5
                 NoteBase.serialize(self),              #  6
@@ -114,7 +115,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         return {"handle": self.handle,                           #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
-                "page": unicode(self.page),                      #  3
+                "page": cuni(self.page),                         #  3
                 "confidence": self.confidence,                   #  4
                 "source_handle": self.source_handle,             #  5
                 "note_list": NoteBase.to_struct(self),           #  6
@@ -203,7 +204,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :rtype: list
         """
         return [self.page,
-                self.gramps_id] + self.datamap.keys() + self.datamap.values()
+                self.gramps_id] + list(self.datamap.keys()) + list(self.datamap.values())
     
     def get_text_data_child_list(self):
         """

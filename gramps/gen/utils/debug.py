@@ -26,6 +26,8 @@
 Debugging utilities
 """
 
+from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # Debugging utilities
@@ -35,13 +37,13 @@ def profile(func, *args):
     import hotshot.stats
 
     prf = hotshot.Profile('mystats.profile')
-    print "Start"
+    print("Start")
     prf.runcall(func, *args)
-    print "Finished"
+    print("Finished")
     prf.close()
-    print "Loading profile"
+    print("Loading profile")
     stats = hotshot.stats.load('mystats.profile')
-    print "done"
+    print("done")
     stats.strip_dirs()
     stats.sort_stats('time', 'calls')
     stats.print_stats(100)

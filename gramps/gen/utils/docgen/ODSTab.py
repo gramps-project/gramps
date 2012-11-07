@@ -35,9 +35,10 @@ from ...ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from TabbedDoc import *
+from .TabbedDoc import *
 from ...const import PROGRAM_NAME, VERSION
 from ...errors import ReportError
+from ...constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -337,7 +338,7 @@ class ODSTab(TabbedDoc):
         try:
             self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
-        except IOError,msg:
+        except IOError as msg:
             raise ReportError(_("Could not create %s") % self.content_xml, msg)
         except:
             raise ReportError(_("Could not create %s") % self.content_xml)
@@ -389,7 +390,7 @@ class ODSTab(TabbedDoc):
             text = text.replace('>','&gt;')
             text = text.replace('\t','<text:tab-stop/>')
             text = text.replace('\n','<text:line-break/>')
-            self.f.write(unicode(text))
+            self.f.write(cuni(text))
 
         self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')
@@ -399,7 +400,7 @@ class ODSTab(TabbedDoc):
     def _write_zip(self):
         try:
             file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
         except:
@@ -422,7 +423,7 @@ class ODSTab(TabbedDoc):
         
         try:
             self.f = open(self.styles_xml,"wb")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
             raise ReportError(errmsg)
         except:
@@ -457,7 +458,7 @@ class ODSTab(TabbedDoc):
 
         try:
             self.f = open(self.manifest_xml,"wb")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
             raise ReportError(errmsg)
         except:
@@ -473,7 +474,7 @@ class ODSTab(TabbedDoc):
 
         try:
             self.f = open(self.meta_xml,"wb")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
             raise ReportError(errmsg)
         except:
@@ -496,7 +497,7 @@ class ODSTab(TabbedDoc):
 
         try:
             self.f = open(self.mimetype,"wb")
-        except IOError,msg:
+        except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.mimetype, msg)
             raise ReportError(errmsg)
         except:

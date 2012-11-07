@@ -29,6 +29,8 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
+
 from gramps.gen.ggettext import gettext as _
 from gramps.gen.ggettext import ngettext
 
@@ -137,7 +139,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
                   , "%d event records were modified.", modified) % modified
 
         if cli:
-            print "Done: ", msg
+            print("Done: ", msg)
         return (bool(modified),msg)
 
     def on_apply_clicked(self, obj):

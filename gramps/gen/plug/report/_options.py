@@ -648,7 +648,7 @@ class OptionHandler(_options.OptionHandler):
         """
 
         # First we save options from options_dict
-        for option_name, option_data in self.options_dict.iteritems():
+        for option_name, option_data in self.options_dict.items():
             self.saved_option_list.set_option(option_name,
                                               self.options_dict[option_name])
 

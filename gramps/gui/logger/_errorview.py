@@ -34,7 +34,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.ggettext import sgettext as _
-from _errorreportassistant import ErrorReportAssistant
+from ._errorreportassistant import ErrorReportAssistant
 from ..display import display_help
 
 #-------------------------------------------------------------------------

@@ -41,9 +41,9 @@ import logging
 # Gramps imports
 #
 #---------------------------------------------------------------
-from ggettext import gettext as _
-from const import HOME_DIR, USER_HOME, VERSION_DIR
-from utils.configmanager import ConfigManager
+from .ggettext import gettext as _
+from .const import HOME_DIR, USER_HOME, VERSION_DIR
+from .utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
 #

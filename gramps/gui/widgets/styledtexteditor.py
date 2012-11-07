@@ -19,7 +19,7 @@
 #
 
 # $Id$
-from __future__ import print_function
+
 
 "Text editor subclassed from Gtk.TextView handling L{StyledText}."
 
@@ -113,7 +113,7 @@ SCHEME = "(file:/|https?:|ftps?:|webcal:)"
 USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
 URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
-(GENURL, HTTP, MAIL, LINK) = range(4)
+(GENURL, HTTP, MAIL, LINK) = list(range(4))
 
 def find_parent_with_attr(self, attr="dbstate"):
     """
@@ -268,7 +268,7 @@ class StyledTextEditor(Gtk.TextView):
             self.undo()
             return True
         else:
-            for accel, accel_name in self.action_accels.iteritems():
+            for accel, accel_name in self.action_accels.items():
                 key, mod = Gtk.accelerator_parse(accel)
                 if ((event.keyval == key) and (event.get_state() & mod)):
                     action_name = accel_name
@@ -699,7 +699,7 @@ class StyledTextEditor(Gtk.TextView):
             start, end = self.textbuffer.get_bounds()
             tags = self.textbuffer._get_tag_from_range(start.get_offset(), 
                                                        end.get_offset())
-            for tag_name, tag_data in tags.iteritems():
+            for tag_name, tag_data in tags.items():
                 if tag_name.startswith("link"):
                     for start, end in tag_data:
                         self.textbuffer.remove_tag_by_name(tag_name,
@@ -713,7 +713,7 @@ class StyledTextEditor(Gtk.TextView):
 
     def _on_buffer_style_changed(self, buffer, changed_styles):
         """Synchronize actions as the format changes at the buffer's cursor."""
-        for style, style_value in changed_styles.iteritems():
+        for style, style_value in changed_styles.items():
             if str(style) in self.toggle_actions:
                 action = self.action_group.get_action(str(style))
                 self._internal_style_change = True

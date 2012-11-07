@@ -48,7 +48,7 @@ from gramps.gen.const import THUMBSCALE
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
 from ..views.treemodels import MediaModel
-from baseselector import BaseSelector
+from .baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #

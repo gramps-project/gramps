@@ -23,7 +23,7 @@
 
 "Simple access routines"
 
-from _simpleaccess import *
-from _simpledoc import *
-from _simpletable import *
+from ._simpleaccess import *
+from ._simpledoc import *
+from ._simpletable import *
 

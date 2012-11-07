@@ -27,7 +27,7 @@ import os
 import unittest
 import re
 
-from test import test_util as tu
+from .test import test_util as tu
 
 pdir = tu.path_append_parent()
 ddir = tu.make_subdir( "cli_test_data")

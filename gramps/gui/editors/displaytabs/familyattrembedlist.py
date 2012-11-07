@@ -25,7 +25,7 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from attrembedlist import AttrEmbedList
+from .attrembedlist import AttrEmbedList
 
 #-------------------------------------------------------------------------
 #

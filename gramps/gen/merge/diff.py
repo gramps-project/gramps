@@ -23,6 +23,8 @@
 """
 This package implements an object difference engine.
 """
+from __future__ import print_function
+
 import os
 
 from gramps.cli.user import User
@@ -52,7 +54,7 @@ def import_as_dict(filename):
                     name, error_tuple, pdata = item
                     # (filename, (exception-type, exception, traceback), pdata)
                     etype, exception, traceback = error_tuple
-                    print "ERROR:", name, exception
+                    print("ERROR:", name, exception)
                 return False
             retval = import_function = getattr(mod, pdata.import_function)
             import_function(db, filename, user)
@@ -106,15 +108,15 @@ def diff_items(path, json1, json2):
                             retval = True
                         pos += 1
                 elif value1 != value2:
-                    print "different parts", path + "." + key
-                    print "   old:", value1
-                    print "   new:", value2
+                    print("different parts", path + "." + key)
+                    print("   old:", value1)
+                    print("   new:", value2)
                     retval = True
         return retval 
     else:
-        print "different values", path
-        print "   old:", json1
-        print "   new:", json2
+        print("different values", path)
+        print("   old:", json1)
+        print("   new:", json2)
         return True
 
 def diff_dbs(db1, db2):

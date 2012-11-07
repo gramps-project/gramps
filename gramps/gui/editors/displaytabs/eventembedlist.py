@@ -38,8 +38,8 @@ from gi.repository import GObject
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from groupembeddedlist import GroupEmbeddedList
-from eventrefmodel import EventRefModel
+from .groupembeddedlist import GroupEmbeddedList
+from .eventrefmodel import EventRefModel
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 

@@ -95,12 +95,12 @@ def get_keyword_from_translation(word):
 
 def get_keywords():
     """ Get all keywords, longest to shortest """
-    keys = KEY_TO_TRANS.keys()
+    keys = list(KEY_TO_TRANS.keys())
     keys.sort(lambda a,b: -cmp(len(a), len(b)))
     return keys
 
 def get_translations():
     """ Get all translations, longest to shortest """
-    trans = TRANS_TO_KEY.keys()
+    trans = list(TRANS_TO_KEY.keys())
     trans.sort(lambda a,b: -cmp(len(a), len(b)))
     return trans

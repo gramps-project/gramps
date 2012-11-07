@@ -29,9 +29,9 @@ Surname class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from nameorigintype import NameOriginType
-from const import IDENTICAL, EQUAL, DIFFERENT
+from .secondaryobj import SecondaryObject
+from .nameorigintype import NameOriginType
+from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
@@ -101,8 +101,8 @@ class Surname(SecondaryObject):
         """
         Indicate if the surname is empty.
         """
-        return (self.surname == u"" and self.prefix == u"" and
-                self.connector == u"")
+        return (self.surname == "" and self.prefix == "" and
+                self.connector == "")
 
     def unserialize(self, data):
         """

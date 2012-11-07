@@ -36,7 +36,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ..views.treemodels import PeopleBaseModel, PersonTreeModel
-from baseselector import BaseSelector
+from .baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #

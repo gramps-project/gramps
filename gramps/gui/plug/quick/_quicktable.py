@@ -31,7 +31,13 @@ Provide a simplified table creation interface
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import cPickle as pickle
+from __future__ import print_function
+
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -338,7 +344,7 @@ class QuickTable(SimpleTable):
                                           Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
         tglist.add(DdTargets.HANDLE_LIST.atom_drag_type, Gtk.TargetFlags.SAME_WIDGET,
-                   0L)
+                   0)
         treeview.drag_source_set_target_list(tglist)
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
         #                                Gdk.DragAction.DEFAULT)            
@@ -402,7 +408,7 @@ class QuickTable(SimpleTable):
             try:
                 model.append(row=([count] + list(rowdata) + [col[count] for col in sort_data]))
             except:
-                print "error in row %d: data: %s, sort data: %d" % (count, rowdata, len(sort_data[0]))
+                print("error in row %d: data: %s, sort data: %d" % (count, rowdata, len(sort_data[0])))
             count += 1
         text_view.show_all()
         self.simpledoc.paragraph("")

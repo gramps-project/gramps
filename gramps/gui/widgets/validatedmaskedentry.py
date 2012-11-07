@@ -29,6 +29,7 @@ __all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import gettext as _
 import string
+import sys
 
 import logging
 _LOG = logging.getLogger(".widgets.validatedmaskedentry")
@@ -50,6 +51,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
+from gramps.gen.constfunc import cuni, UNITYPE
 from .undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
@@ -111,7 +113,7 @@ class FadeOut(GObject.GObject):
         rinc = (rd - rs) / float(steps)
         ginc = (gd - gs) / float(steps)
         binc = (bd - bs) / float(steps)
-        for dummy in xrange(steps):
+        for dummy in range(steps):
             rs += rinc
             gs += ginc
             bs += binc
@@ -614,7 +616,7 @@ class IconEntry(object):
 (INPUT_ASCII_LETTER, 
  INPUT_ALPHA, 
  INPUT_ALPHANUMERIC, 
- INPUT_DIGIT) = range(4)
+ INPUT_DIGIT) = list(range(4))
 
 INPUT_FORMATS = {
     '0': INPUT_DIGIT, 
@@ -629,15 +631,23 @@ INPUT_FORMATS = {
 #  ? - Ascii letter, optional
 #  C - Alpha, optional
 
-INPUT_CHAR_MAP = {
-    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
-    INPUT_ALPHA:            unicode.isalpha, 
-    INPUT_ALPHANUMERIC:     unicode.isalnum, 
-    INPUT_DIGIT:            unicode.isdigit, 
-    }
+if sys.version_info[0] < 3:
+    INPUT_CHAR_MAP = {
+        INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
+        INPUT_ALPHA:            unicode.isalpha, 
+        INPUT_ALPHANUMERIC:     unicode.isalnum, 
+        INPUT_DIGIT:            unicode.isdigit, 
+        }
+else:
+    INPUT_CHAR_MAP = {
+        INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
+        INPUT_ALPHA:            str.isalpha, 
+        INPUT_ALPHANUMERIC:     str.isalnum, 
+        INPUT_DIGIT:            str.isdigit, 
+        }
 
 (COL_TEXT, 
- COL_OBJECT) = range(2)
+ COL_OBJECT) = list(range(2))
 
 class MaskedEntry(UndoableEntry):
     """
@@ -744,7 +754,7 @@ class MaskedEntry(UndoableEntry):
         self._mask_fields = []
         self._current_field = -1
 
-        mask = unicode(mask)
+        mask = cuni(mask)
         input_length = len(mask)
         lenght = 0
         pos = 0
@@ -803,7 +813,7 @@ class MaskedEntry(UndoableEntry):
 
         fields = []
 
-        text = unicode(self.get_text())
+        text = cuni(self.get_text())
         for start, end in self._mask_fields:
             fields.append(text[start:end].strip())
 
@@ -828,7 +838,7 @@ class MaskedEntry(UndoableEntry):
         for validator in self._mask_validators[start:end]:
             if isinstance(validator, int):
                 s += ' '
-            elif isinstance(validator, unicode):
+            elif isinstance(validator, UNITYPE):
                 s += validator
             else:
                 raise AssertionError
@@ -1019,7 +1029,7 @@ class MaskedEntry(UndoableEntry):
         if isinstance(validator, int):
             if not INPUT_CHAR_MAP[validator](text):
                 return False
-        if isinstance(validator, unicode):
+        if isinstance(validator, UNITYPE):
             if validator == text:
                 return True
             return False
@@ -1226,7 +1236,7 @@ class MaskedEntry(UndoableEntry):
         if not self._mask:
             UndoableEntry._on_insert_text(self, editable, new, length, position)
             return
-        new = unicode(new)
+        new = cuni(new)
         pos = self.get_position()
 
         self.stop_emission('insert-text')
@@ -1567,7 +1577,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         elif prop.name == 'mandatory':
             return self.mandatory
         else:
-            raise AttributeError, 'unknown property %s' % prop.name
+            raise AttributeError('unknown property %s' % prop.name)
 
     def do_set_property(self, prop, value):
         """Set the property of writable properties."""
@@ -1588,7 +1598,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         elif prop.name == 'mandatory':
             self.mandatory = value
         else:
-            raise AttributeError, 'unknown or read only property %s' % prop.name
+            raise AttributeError('unknown or read only property %s' % prop.name)
 
     # Public API
 
@@ -1656,7 +1666,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
             self.set_valid()
             return text
-        except ValidationError, e:
+        except ValidationError as e:
             self.set_invalid(str(e))
             return None
 

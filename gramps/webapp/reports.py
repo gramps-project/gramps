@@ -23,10 +23,13 @@
 
 # imports for import/export:
 
+from __future__ import print_function
+
 from gramps.gen.dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from gramps.gen.plug import BasePluginManager
 import os
+import sys
 
 # Example for running a report:
 # ------------------------------
@@ -65,7 +68,7 @@ def import_file(db, filename, user):
 
     >>> import_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
-    from grampsdb.models import Person
+    from .grampsdb.models import Person
     dbstate = DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
@@ -81,7 +84,7 @@ def import_file(db, filename, user):
                     name, error_tuple, pdata = item
                     # (filename, (exception-type, exception, traceback), pdata)
                     etype, exception, traceback = error_tuple
-                    print "ERROR:", name, exception
+                    print("ERROR:", name, exception)
                 return False
             import_function = getattr(mod, pdata.import_function)
             db.prepare_import()
@@ -95,21 +98,24 @@ def import_file(db, filename, user):
     return False
 
 def download(url, filename=None):
-    import urllib2
+    if sys.version_info[0] < 3:
+        from urllib2 import urlopen, Request
+        from urlparse import urlsplit
+    else:
+        from urllib.request import Request, urlopen
+        from urllib.parse import urlsplit
     import shutil
-    import urlparse
     def getFilename(url,openUrl):
         if 'Content-Disposition' in openUrl.info():
             # If the response has Content-Disposition, try to get filename from it
-            cd = dict(map(
-                lambda x: x.strip().split('=') if '=' in x else (x.strip(),''),
-                openUrl.info().split(';')))
+            cd = dict([x.strip().split('=') if '=' in x else (x.strip(),'') 
+                                        for x in openUrl.info().split(';')])
             if 'filename' in cd:
                 fname = cd['filename'].strip("\"'")
                 if fname: return fname
         # if no filename was found above, parse it out of the final URL.
-        return os.path.basename(urlparse.urlsplit(openUrl.url)[2])
-    r = urllib2.urlopen(urllib2.Request(url))
+        return os.path.basename(urlsplit(openUrl.url)[2])
+    r = urlopen(Request(url))
     success = None
     try:
         filename = filename or "/tmp/%s" % getFilename(url,r)
@@ -140,7 +146,7 @@ def export_file(db, filename, user):
                 for item in pmgr.get_fail_list():
                     name, error_tuple, pdata = item
                     etype, exception, traceback = error_tuple
-                    print "ERROR:", name, exception
+                    print("ERROR:", name, exception)
                 return False
             export_function = getattr(mod, pdata.export_function)
             export_function(db, filename, user)

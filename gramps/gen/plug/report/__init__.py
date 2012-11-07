@@ -27,11 +27,11 @@
 
 "Report Generation Framework"
 
-from _constants import *
-from _reportbase import Report
+from ._constants import *
+from ._reportbase import Report
 
-from _bibliography import Bibliography, Citation
+from ._bibliography import Bibliography, Citation
 
-from _options import MenuReportOptions, ReportOptions
+from ._options import MenuReportOptions, ReportOptions
 
-from _book import BookList, Book, BookItem, create_style_sheet
+from ._book import BookList, Book, BookItem, create_style_sheet

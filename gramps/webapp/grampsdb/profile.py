@@ -23,6 +23,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
+from gramps.gen.constfunc import cuni
+
 class Profile(models.Model):
     """
     Used to save additional information of a user, such as
@@ -32,7 +34,7 @@ class Profile(models.Model):
     theme_type = models.ForeignKey("ThemeType", default=1) # The default is a pk?
 
     def __unicode__(self):
-        return unicode(self.user)
+        return cuni(self.user)
 
 def save_profile(sender, instance, created, **kwargs):
     """

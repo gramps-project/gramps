@@ -29,6 +29,8 @@ Provide autocompletion functionality.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 import locale
 
 #-------------------------------------------------------------------------
@@ -38,6 +40,9 @@ import locale
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
+
+
+from gramps.gen.constfunc import STRTYPE
 
 def fill_combo(combo, data_list):
     """
@@ -173,7 +178,7 @@ class StandardCustomSelector(object):
 
         if self.additional:
             for event_type in self.additional:
-                if isinstance(event_type, basestring):
+                if isinstance(event_type, STRTYPE):
                     if event_type:
                         self.store.append(row=[self.custom_key, event_type])
                 elif isinstance(event_type, tuple):
@@ -209,7 +214,7 @@ class StandardCustomSelector(object):
         else:
             int_val = self.custom_key
             str_val = self.selector.get_child().get_text().strip()
-        if str_val in self.mapping.itervalues():
+        if str_val in iter(self.mapping.values()):
             for key in self.mapping:
                 if str_val == self.mapping[key]:
                     int_val = key
@@ -231,7 +236,7 @@ class StandardCustomSelector(object):
         elif self.custom_key is not None:
             self.selector.get_child().set_text(text)
         else:
-            print "StandardCustomSelector.set(): Option not available:", val
+            print("StandardCustomSelector.set(): Option not available:", val)
 
     def set_int_value(self, model, path, node, val):
         if model.get_value(node, 0) == val:

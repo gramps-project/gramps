@@ -30,14 +30,19 @@ Mime utility functions for the MS Windows platform
 #
 #-------------------------------------------------------------------------
 import os
-from _winreg import *
+import sys
+
+if sys.version_info[0] < 3:
+    from _winreg import *
+else:
+    from winreg import *
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import _pythonmime
+from . import _pythonmime
 from ..ggettext import gettext as _
 
 def get_description(mime_type):

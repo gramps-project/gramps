@@ -24,7 +24,7 @@
 """
 Czech-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -38,9 +38,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -53,131 +53,131 @@ class DateParserCZ(DateParser):
     """ 
     month_to_int = DateParser.month_to_int
     
-    month_to_int[u"leden"] = 1
-    month_to_int[u"ledna"] = 1
-    month_to_int[u"lednu"] = 1
-    month_to_int[u"led"] = 1
-    month_to_int[u"I"] = 1
-    month_to_int[u"i"] = 1
+    month_to_int["leden"] = 1
+    month_to_int["ledna"] = 1
+    month_to_int["lednu"] = 1
+    month_to_int["led"] = 1
+    month_to_int["I"] = 1
+    month_to_int["i"] = 1
     
-    month_to_int[u"únor"] = 2
-    month_to_int[u"února"] = 2
-    month_to_int[u"únoru"] = 2
-    month_to_int[u"ún"] = 2
-    month_to_int[u"II"] = 2
-    month_to_int[u"ii"]  = 2
+    month_to_int["únor"] = 2
+    month_to_int["února"] = 2
+    month_to_int["únoru"] = 2
+    month_to_int["ún"] = 2
+    month_to_int["II"] = 2
+    month_to_int["ii"]  = 2
     
-    month_to_int[u"březen"] = 3
-    month_to_int[u"března"] = 3
-    month_to_int[u"březnu"] = 3
-    month_to_int[u"bře"] = 3
-    month_to_int[u"III"] = 3
-    month_to_int[u"iii"]  = 3
+    month_to_int["březen"] = 3
+    month_to_int["března"] = 3
+    month_to_int["březnu"] = 3
+    month_to_int["bře"] = 3
+    month_to_int["III"] = 3
+    month_to_int["iii"]  = 3
     
-    month_to_int[u"duben"] = 4
-    month_to_int[u"dubna"] = 4
-    month_to_int[u"dubnu"] = 4
-    month_to_int[u"dub"] = 4
-    month_to_int[u"IV"]  = 4
-    month_to_int[u"iv"]  = 4
+    month_to_int["duben"] = 4
+    month_to_int["dubna"] = 4
+    month_to_int["dubnu"] = 4
+    month_to_int["dub"] = 4
+    month_to_int["IV"]  = 4
+    month_to_int["iv"]  = 4
 
-    month_to_int[u"květen"] = 5
-    month_to_int[u"května"] = 5
-    month_to_int[u"květnu"] = 5
-    month_to_int[u"V"]  = 5
-    month_to_int[u"v"]  = 5
+    month_to_int["květen"] = 5
+    month_to_int["května"] = 5
+    month_to_int["květnu"] = 5
+    month_to_int["V"]  = 5
+    month_to_int["v"]  = 5
     
-    month_to_int[u"červen"] = 6
-    month_to_int[u"června"] = 6
-    month_to_int[u"červnu"] = 6
-    month_to_int[u"čer"] = 6
-    month_to_int[u"vi"]  = 6
+    month_to_int["červen"] = 6
+    month_to_int["června"] = 6
+    month_to_int["červnu"] = 6
+    month_to_int["čer"] = 6
+    month_to_int["vi"]  = 6
 
-    month_to_int[u"červenec"]  = 7
-    month_to_int[u"července"]  = 7
-    month_to_int[u"červenci"]  = 7
-    month_to_int[u"čvc"]  = 7
-    month_to_int[u"VII"]  = 7
-    month_to_int[u"vii"]  = 7
+    month_to_int["červenec"]  = 7
+    month_to_int["července"]  = 7
+    month_to_int["červenci"]  = 7
+    month_to_int["čvc"]  = 7
+    month_to_int["VII"]  = 7
+    month_to_int["vii"]  = 7
     
-    month_to_int[u"srpen"]  = 8
-    month_to_int[u"srpna"]  = 8
-    month_to_int[u"srpnu"]  = 8
-    month_to_int[u"srp"]  = 8
-    month_to_int[u"VIII"]  = 8
-    month_to_int[u"viii"]  = 8
+    month_to_int["srpen"]  = 8
+    month_to_int["srpna"]  = 8
+    month_to_int["srpnu"]  = 8
+    month_to_int["srp"]  = 8
+    month_to_int["VIII"]  = 8
+    month_to_int["viii"]  = 8
     
-    month_to_int[u"září"]  = 9
-    month_to_int[u"zář"]  = 9
-    month_to_int[u"IX"]  = 9
-    month_to_int[u"ix"]  = 9
+    month_to_int["září"]  = 9
+    month_to_int["zář"]  = 9
+    month_to_int["IX"]  = 9
+    month_to_int["ix"]  = 9
     
-    month_to_int[u"říjen"]  = 10
-    month_to_int[u"října"]  = 10
-    month_to_int[u"říjnu"]  = 10
-    month_to_int[u"říj"]  = 10
-    month_to_int[u"X"]  = 10
-    month_to_int[u"x"]  = 10
+    month_to_int["říjen"]  = 10
+    month_to_int["října"]  = 10
+    month_to_int["říjnu"]  = 10
+    month_to_int["říj"]  = 10
+    month_to_int["X"]  = 10
+    month_to_int["x"]  = 10
     
-    month_to_int[u"listopad"]  = 11
-    month_to_int[u"listopadu"]  = 11
-    month_to_int[u"lis"]  = 11
-    month_to_int[u"XI"]  = 11
-    month_to_int[u"xi"]  = 11
+    month_to_int["listopad"]  = 11
+    month_to_int["listopadu"]  = 11
+    month_to_int["lis"]  = 11
+    month_to_int["XI"]  = 11
+    month_to_int["xi"]  = 11
     
-    month_to_int[u"prosinec"]  = 12
-    month_to_int[u"prosince"]  = 12
-    month_to_int[u"prosinci"]  = 12
-    month_to_int[u"pro"]  = 12
-    month_to_int[u"XII"]  = 12
-    month_to_int[u"xii"]  = 12
+    month_to_int["prosinec"]  = 12
+    month_to_int["prosince"]  = 12
+    month_to_int["prosinci"]  = 12
+    month_to_int["pro"]  = 12
+    month_to_int["XII"]  = 12
+    month_to_int["xii"]  = 12
     
     modifier_to_int = {
-        u'před'   : Date.MOD_BEFORE, 
-        u'do'     : Date.MOD_BEFORE, 
-        u'po'     : Date.MOD_AFTER, 
-        u'asi'    : Date.MOD_ABOUT, 
-        u'kolem'  : Date.MOD_ABOUT, 
-        u'přibl.' : Date.MOD_ABOUT, 
+        'před'   : Date.MOD_BEFORE, 
+        'do'     : Date.MOD_BEFORE, 
+        'po'     : Date.MOD_AFTER, 
+        'asi'    : Date.MOD_ABOUT, 
+        'kolem'  : Date.MOD_ABOUT, 
+        'přibl.' : Date.MOD_ABOUT, 
         }
 
     calendar_to_int = {
-        u'gregoriánský'  : Date.CAL_GREGORIAN,
-        u'greg.'         : Date.CAL_GREGORIAN,
-        u'g'             : Date.CAL_GREGORIAN, 
-        u'juliánský'     : Date.CAL_JULIAN, 
-        u'jul.'          : Date.CAL_JULIAN, 
-        u'j'             : Date.CAL_JULIAN, 
-        u'hebrejský'     : Date.CAL_HEBREW, 
-        u'hebr.'         : Date.CAL_HEBREW, 
-        u'h'             : Date.CAL_HEBREW, 
-        u'islámský'      : Date.CAL_ISLAMIC, 
-        u'isl.'          : Date.CAL_ISLAMIC, 
-        u'i'             : Date.CAL_ISLAMIC, 
-        u'francouzský republikánský'    : Date.CAL_FRENCH, 
-        u'fr.'           : Date.CAL_FRENCH, 
-        u'perský'        : Date.CAL_PERSIAN, 
-        u'per.'          : Date.CAL_PERSIAN, 
-        u'p'             : Date.CAL_PERSIAN, 
-        u'švédský'       : Date.CAL_SWEDISH, 
-        u'sve.'          : Date.CAL_SWEDISH, 
-        u's'             : Date.CAL_SWEDISH, 
+        'gregoriánský'  : Date.CAL_GREGORIAN,
+        'greg.'         : Date.CAL_GREGORIAN,
+        'g'             : Date.CAL_GREGORIAN, 
+        'juliánský'     : Date.CAL_JULIAN, 
+        'jul.'          : Date.CAL_JULIAN, 
+        'j'             : Date.CAL_JULIAN, 
+        'hebrejský'     : Date.CAL_HEBREW, 
+        'hebr.'         : Date.CAL_HEBREW, 
+        'h'             : Date.CAL_HEBREW, 
+        'islámský'      : Date.CAL_ISLAMIC, 
+        'isl.'          : Date.CAL_ISLAMIC, 
+        'i'             : Date.CAL_ISLAMIC, 
+        'francouzský republikánský'    : Date.CAL_FRENCH, 
+        'fr.'           : Date.CAL_FRENCH, 
+        'perský'        : Date.CAL_PERSIAN, 
+        'per.'          : Date.CAL_PERSIAN, 
+        'p'             : Date.CAL_PERSIAN, 
+        'švédský'       : Date.CAL_SWEDISH, 
+        'sve.'          : Date.CAL_SWEDISH, 
+        's'             : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
-        u'odhadované' : Date.QUAL_ESTIMATED, 
-        u'odh.'       : Date.QUAL_ESTIMATED, 
-        u'vypočtené'  : Date.QUAL_CALCULATED, 
-        u'vyp.'       : Date.QUAL_CALCULATED, 
+        'odhadované' : Date.QUAL_ESTIMATED, 
+        'odh.'       : Date.QUAL_ESTIMATED, 
+        'vypočtené'  : Date.QUAL_CALCULATED, 
+        'vyp.'       : Date.QUAL_CALCULATED, 
         }
         
     def init_strings(self):
         DateParser.init_strings(self)
         self._span  = re.compile(
-            u"(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
+            "(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
             re.IGNORECASE)
         self._range = re.compile(
-            u"(mezi)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", 
+            "(mezi)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", 
             re.IGNORECASE)
 
 
@@ -190,20 +190,20 @@ class DateDisplayCZ(DateDisplay):
     """
     Czech language date display class. 
     """
-    long_months = ( u"", u"leden", u"únor", u"březen", u"duben", u"květen", 
-                    u"červen", u"červenec", u"srpen", u"září", u"říjen", 
-                    u"listopad", u"prosinec" )
+    long_months = ( "", "leden", "únor", "březen", "duben", "květen", 
+                    "červen", "červenec", "srpen", "září", "říjen", 
+                    "listopad", "prosinec" )
     
-    short_months = ( u"", u"led", u"úno", u"bře", u"dub", u"kvě", u"čer", 
-                     u"čvc", u"srp", u"zář", u"říj", u"lis", u"pro" )
+    short_months = ( "", "led", "úno", "bře", "dub", "kvě", "čer", 
+                     "čvc", "srp", "zář", "říj", "lis", "pro" )
 
     calendar = (
-        "", u"juliánský", u"hebrejský", 
-        u"francouzský republikánský", u"perský", u"islámský", 
-        u"švédský" 
+        "", "juliánský", "hebrejský", 
+        "francouzský republikánský", "perský", "islámský", 
+        "švédský" 
         )
 
-    _mod_str = ("", u"před ", u"po ", u"kolem ", "", "", "")
+    _mod_str = ("", "před ", "po ", "kolem ", "", "", "")
     
     _qual_str = ("", "přibližně ", "vypočteno ")
 
@@ -238,24 +238,24 @@ class DateDisplayCZ(DateDisplay):
             return ""
         elif mod == Date.MOD_NONE:
             date_decl_string = self.display_cal[cal](start)
-            date_decl_string = date_decl_string.replace(u"den ", u"dna ")
-            date_decl_string = date_decl_string.replace(u"or ", u"ora ")
-            date_decl_string = date_decl_string.replace(u"en ", u"na ")
-            date_decl_string = date_decl_string.replace(u"ad ", u"adu ")
-            date_decl_string = date_decl_string.replace(u"ec ", u"ce ")
+            date_decl_string = date_decl_string.replace("den ", "dna ")
+            date_decl_string = date_decl_string.replace("or ", "ora ")
+            date_decl_string = date_decl_string.replace("en ", "na ")
+            date_decl_string = date_decl_string.replace("ad ", "adu ")
+            date_decl_string = date_decl_string.replace("ec ", "ce ")
             return date_decl_string
         elif mod == Date.MOD_SPAN:
             dat1 = self.display_cal[cal](start)
             dat2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'od', dat1, 
-                                        u'do', dat2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'od', dat1, 
+                                        'do', dat2, scal)
         elif mod == Date.MOD_RANGE:
             dat1 = self.display_cal[cal](start)
             dat2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'mezi', 
-                                        dat1, u'a', dat2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'mezi', 
+                                        dat1, 'a', dat2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)

@@ -47,8 +47,8 @@ from gramps.gen.lib import Citation, Source
 from gramps.gen.lib import Source, Citation
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from citationrefmodel import CitationRefModel
-from embeddedlist import EmbeddedList
+from .citationrefmodel import CitationRefModel
+from .embeddedlist import EmbeddedList
 from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------

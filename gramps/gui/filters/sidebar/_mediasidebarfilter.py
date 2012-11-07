@@ -43,6 +43,7 @@ from gi.repository import Gtk
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.media import (RegExpIdOf, HasIdOf, HasMedia, HasTag, 
                                      HasNoteRegexp, MatchesFilter, 
@@ -107,12 +108,12 @@ class MediaSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        title = unicode(self.filter_title.get_text()).strip()
-        mime = unicode(self.filter_type.get_text()).strip()
-        path = unicode(self.filter_path.get_text()).strip()
-        date = unicode(self.filter_date.get_text()).strip()
-        note = unicode(self.filter_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        title = cuni(self.filter_title.get_text()).strip()
+        mime = cuni(self.filter_type.get_text()).strip()
+        path = cuni(self.filter_path.get_text()).strip()
+        date = cuni(self.filter_date.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
@@ -151,7 +152,7 @@ class MediaSidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = unicode(model.get_value(node, 0))
+            obj = cuni(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

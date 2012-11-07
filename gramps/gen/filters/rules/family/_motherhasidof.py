@@ -33,7 +33,7 @@ from ....ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from .. import HasGrampsId
-from _memberbase import mother_base
+from ._memberbase import mother_base
 
 #-------------------------------------------------------------------------
 #

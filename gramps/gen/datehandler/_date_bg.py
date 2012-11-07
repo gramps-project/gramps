@@ -24,7 +24,7 @@
 """
 Bulgarian-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -38,9 +38,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -50,124 +50,124 @@ from _datehandler import register_datehandler
 class DateParserBG(DateParser):
 
     modifier_to_int = {
-        u'преди'          : Date.MOD_BEFORE, 
-        u'пр.'            : Date.MOD_BEFORE,
-        u'пр'             : Date.MOD_BEFORE,
-        u'след'           : Date.MOD_AFTER,
-        u'сл.'            : Date.MOD_AFTER,
-        u'сл'             : Date.MOD_AFTER,
-        u'ок'             : Date.MOD_ABOUT,
-        u'ок.'            : Date.MOD_ABOUT,
-        u'около'          : Date.MOD_ABOUT,
-        u'примерно'       : Date.MOD_ABOUT,
-        u'прим'           : Date.MOD_ABOUT,
-        u'прим.'          : Date.MOD_ABOUT,
-        u'приблизително'  : Date.MOD_ABOUT,
-        u'приб.'          : Date.MOD_ABOUT,
-        u'прибл.'         : Date.MOD_ABOUT,
-        u'приб'           : Date.MOD_ABOUT,
-        u'прибл'          : Date.MOD_ABOUT,
+        'преди'          : Date.MOD_BEFORE, 
+        'пр.'            : Date.MOD_BEFORE,
+        'пр'             : Date.MOD_BEFORE,
+        'след'           : Date.MOD_AFTER,
+        'сл.'            : Date.MOD_AFTER,
+        'сл'             : Date.MOD_AFTER,
+        'ок'             : Date.MOD_ABOUT,
+        'ок.'            : Date.MOD_ABOUT,
+        'около'          : Date.MOD_ABOUT,
+        'примерно'       : Date.MOD_ABOUT,
+        'прим'           : Date.MOD_ABOUT,
+        'прим.'          : Date.MOD_ABOUT,
+        'приблизително'  : Date.MOD_ABOUT,
+        'приб.'          : Date.MOD_ABOUT,
+        'прибл.'         : Date.MOD_ABOUT,
+        'приб'           : Date.MOD_ABOUT,
+        'прибл'          : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'григориански'          : Date.CAL_GREGORIAN, 
-        u'г'                     : Date.CAL_GREGORIAN, 
-        u'юлиански'              : Date.CAL_JULIAN, 
-        u'ю'                     : Date.CAL_JULIAN, 
-        u'еврейски'              : Date.CAL_HEBREW, 
-        u'е'                     : Date.CAL_HEBREW, 
-        u'ислямски'              : Date.CAL_ISLAMIC, 
-        u'и'                     : Date.CAL_ISLAMIC, 
-        u'френски републикански' : Date.CAL_FRENCH, 
-        u'републикански'         : Date.CAL_FRENCH,
-        u'фр.реп.'               : Date.CAL_FRENCH,
-        u'р'                     : Date.CAL_FRENCH,
-        u'френски'               : Date.CAL_FRENCH,
-        u'фр.'                   : Date.CAL_FRENCH,
-        u'персийски'             : Date.CAL_PERSIAN, 
-        u'п'                     : Date.CAL_PERSIAN, 
+        'григориански'          : Date.CAL_GREGORIAN, 
+        'г'                     : Date.CAL_GREGORIAN, 
+        'юлиански'              : Date.CAL_JULIAN, 
+        'ю'                     : Date.CAL_JULIAN, 
+        'еврейски'              : Date.CAL_HEBREW, 
+        'е'                     : Date.CAL_HEBREW, 
+        'ислямски'              : Date.CAL_ISLAMIC, 
+        'и'                     : Date.CAL_ISLAMIC, 
+        'френски републикански' : Date.CAL_FRENCH, 
+        'републикански'         : Date.CAL_FRENCH,
+        'фр.реп.'               : Date.CAL_FRENCH,
+        'р'                     : Date.CAL_FRENCH,
+        'френски'               : Date.CAL_FRENCH,
+        'фр.'                   : Date.CAL_FRENCH,
+        'персийски'             : Date.CAL_PERSIAN, 
+        'п'                     : Date.CAL_PERSIAN, 
         }
 
     quality_to_int = {
-        u'приблизително'  : Date.QUAL_ESTIMATED,
-        u'прибл.'         : Date.QUAL_ESTIMATED,
-        u'изчислено'      : Date.QUAL_CALCULATED,
-        u'изчисл.'        : Date.QUAL_CALCULATED,
-        u'изч.'           : Date.QUAL_CALCULATED,
+        'приблизително'  : Date.QUAL_ESTIMATED,
+        'прибл.'         : Date.QUAL_ESTIMATED,
+        'изчислено'      : Date.QUAL_CALCULATED,
+        'изчисл.'        : Date.QUAL_CALCULATED,
+        'изч.'           : Date.QUAL_CALCULATED,
         }
 
     hebrew_to_int = {
-        u"тишрей":1, 
-        u"мархешван":2, 
-        u"кислев":3, 
-        u"тевет":4, 
-        u"шват":5, 
-        u"адар":6, 
-        u"адар бет":7, 
-        u"нисан":8, 
-        u"ияр":9, 
-        u"сиван":10, 
-        u"тамуз":11, 
-        u"ав":12, 
-        u"eлул":13, 
+        "тишрей":1, 
+        "мархешван":2, 
+        "кислев":3, 
+        "тевет":4, 
+        "шват":5, 
+        "адар":6, 
+        "адар бет":7, 
+        "нисан":8, 
+        "ияр":9, 
+        "сиван":10, 
+        "тамуз":11, 
+        "ав":12, 
+        "eлул":13, 
     }
 
     islamic_to_int = { 
-        u"мухаррам":1, 
-        u"саффар":2, 
-        u"рабиу-л-ауал":3, 
-        u"рабиу-с-сани":4, 
-        u"джумадал-уля":5, 
-        u"джумада-с-сания":6, 
-        u"раджаб":7, 
-        u"шаабан":8, 
-        u"рамадан":9, 
-        u"шауал":10, 
-        u"зу-л-кида":11, 
-        u"зул-л-хиджа":12, 
+        "мухаррам":1, 
+        "саффар":2, 
+        "рабиу-л-ауал":3, 
+        "рабиу-с-сани":4, 
+        "джумадал-уля":5, 
+        "джумада-с-сания":6, 
+        "раджаб":7, 
+        "шаабан":8, 
+        "рамадан":9, 
+        "шауал":10, 
+        "зу-л-кида":11, 
+        "зул-л-хиджа":12, 
         }
 
     persian_to_int = {
-        u"фарвардин":1, 
-        u"урдбихищ":2, 
-        u"хурдад":3, 
-        u"тир":4, 
-        u"мурдад":5, 
-        u"шахривар":6, 
-        u"михр":7, 
-        u"абан":8, 
-        u"азар":9, 
-        u"дай":10, 
-        u"бахман":11, 
-        u"исфаидармуз":12, 
+        "фарвардин":1, 
+        "урдбихищ":2, 
+        "хурдад":3, 
+        "тир":4, 
+        "мурдад":5, 
+        "шахривар":6, 
+        "михр":7, 
+        "абан":8, 
+        "азар":9, 
+        "дай":10, 
+        "бахман":11, 
+        "исфаидармуз":12, 
         }
 
     french_to_int = {
-        u"вандемер":1, 
-        u"брюмер":2, 
-        u"фример":3, 
-        u"нивоз":4, 
-        u"плювиоз":5, 
-        u"вантоз":6, 
-        u"жерминал":7, 
-        u"флореал":8, 
-        u"прериал":9, 
-        u"месидор":10, 
-        u"термидор":11, 
-        u"фрюктидор":12, 
-        u"допълнителен":13, 
+        "вандемер":1, 
+        "брюмер":2, 
+        "фример":3, 
+        "нивоз":4, 
+        "плювиоз":5, 
+        "вантоз":6, 
+        "жерминал":7, 
+        "флореал":8, 
+        "прериал":9, 
+        "месидор":10, 
+        "термидор":11, 
+        "фрюктидор":12, 
+        "допълнителен":13, 
         }
 
     bce = [
-        u'преди Христа', u'пр. Хр.', u'пр.Хр.'
+        'преди Христа', 'пр. Хр.', 'пр.Хр.'
         ] + DateParser.bce
 
     def init_strings(self):
         DateParser.init_strings(self)
-        _span_1 = [u'от']
-        _span_2 = [u'до']
-        _range_1 = [u'между']
-        _range_2 = [u'и']
+        _span_1 = ['от']
+        _span_2 = ['до']
+        _range_1 = ['между']
+        _range_2 = ['и']
         self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
@@ -184,94 +184,94 @@ class DateDisplayBG(DateDisplay):
     """
     Bulgarian language date display class. 
     """
-    long_months = ( u"", u"януари", u"февруари", u"март", u"април", u"май", 
-                    u"юни", u"юли", u"август", u"септември", u"октомври", 
-                    u"ноември", u"декември" )
+    long_months = ( "", "януари", "февруари", "март", "април", "май", 
+                    "юни", "юли", "август", "септември", "октомври", 
+                    "ноември", "декември" )
     
-    short_months = ( u"", u"яну", u"февр", u"март", u"апр", u"май", u"юни", 
-                     u"юли", u"авг", u"септ", u"окт", u"ное", u"дек" )
+    short_months = ( "", "яну", "февр", "март", "апр", "май", "юни", 
+                     "юли", "авг", "септ", "окт", "ное", "дек" )
     
 
     calendar = (
-        u"", 
-        u"юлиански", 
-        u"еврейски", 
-        u"републикански", 
-        u"персийски", 
-        u"ислямски",
-        u"шведски"
+        "", 
+        "юлиански", 
+        "еврейски", 
+        "републикански", 
+        "персийски", 
+        "ислямски",
+        "шведски"
         )
 
     _mod_str = ("", "преди ", "след ", "около ", "", "", "")
     
     _qual_str = ("", "приблизително ", "изчислено ")
 
-    _bce_str = u"%s пр. Хр."
+    _bce_str = "%s пр. Хр."
 
     formats = (
         "ГГГГ-ММ-ДД (ISO)", "Числов", "Месец Ден, Година", "Мес. Ден, Година", "Ден Месец Година", "Ден Мес. Година"
         )
 
-    hebrew = ( u"", 
-        u"Тишрей", 
-        u"Мархешван", 
-        u"Кислев", 
-        u"Тевет", 
-        u"Шват", 
-        u"Адар", 
-        u"Адар бет", 
-        u"Нисан", 
-        u"Ияр", 
-        u"Сиван", 
-        u"Тамуз", 
-        u"Ав", 
-        u"Елул", 
+    hebrew = ( "", 
+        "Тишрей", 
+        "Мархешван", 
+        "Кислев", 
+        "Тевет", 
+        "Шват", 
+        "Адар", 
+        "Адар бет", 
+        "Нисан", 
+        "Ияр", 
+        "Сиван", 
+        "Тамуз", 
+        "Ав", 
+        "Елул", 
         )
 
-    islamic = ( u"", 
-        u"Мухаррам", 
-        u"Саффар", 
-        u"Рабиу-л-ауал", 
-        u"Рабиу-с-сани", 
-        u"Джумадал-уля", 
-        u"Джумада-с-сания", 
-        u"Раджаб", 
-        u"Шаабан", 
-        u"Рамадан", 
-        u"Шауал", 
-        u"Зу-л-кида", 
-        u"Зул-л-хиджа", 
+    islamic = ( "", 
+        "Мухаррам", 
+        "Саффар", 
+        "Рабиу-л-ауал", 
+        "Рабиу-с-сани", 
+        "Джумадал-уля", 
+        "Джумада-с-сания", 
+        "Раджаб", 
+        "Шаабан", 
+        "Рамадан", 
+        "Шауал", 
+        "Зу-л-кида", 
+        "Зул-л-хиджа", 
         )
 
-    persian = ( u"", 
-        u"Фарвардин", 
-        u"Урдбихищ", 
-        u"Хурдад", 
-        u"Тир", 
-        u"Мурдад", 
-        u"Шахривар", 
-        u"Михр", 
-        u"Абан", 
-        u"Азар", 
-        u"Дай", 
-        u"Бахман", 
-        u"Исфаидармуз", 
+    persian = ( "", 
+        "Фарвардин", 
+        "Урдбихищ", 
+        "Хурдад", 
+        "Тир", 
+        "Мурдад", 
+        "Шахривар", 
+        "Михр", 
+        "Абан", 
+        "Азар", 
+        "Дай", 
+        "Бахман", 
+        "Исфаидармуз", 
         )
 
-    french = ( u"", 
-        u"Вандемер", 
-        u"Брюмер", 
-        u"Фример", 
-        u"Нивоз", 
-        u"Плювиоз", 
-        u"Вантоз", 
-        u"Жерминал", 
-        u"Флореал", 
-        u"Прериал", 
-        u"Мессидор", 
-        u"Термидор", 
-        u"Фрюктидор", 
-        u"Допълнителен"
+    french = ( "", 
+        "Вандемер", 
+        "Брюмер", 
+        "Фример", 
+        "Нивоз", 
+        "Плювиоз", 
+        "Вантоз", 
+        "Жерминал", 
+        "Флореал", 
+        "Прериал", 
+        "Мессидор", 
+        "Термидор", 
+        "Фрюктидор", 
+        "Допълнителен"
         )
 
     def display(self, date):
@@ -294,12 +294,12 @@ class DateDisplayBG(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'от', d1, u'до', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'от', d1, 'до', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'между', d1, u'и', d2, scal)
+            return "%s%s %s %s %s%s" % (qual_str, 'между', d1, 'и', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)

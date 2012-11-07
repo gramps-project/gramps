@@ -44,6 +44,7 @@ from ... import widgets
 from gramps.gen.lib import Event, EventType, Family, FamilyRelType
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.family import (RegExpIdOf, HasIdOf, RegExpFatherName, 
                                       SearchFatherName, RegExpMotherName, 
@@ -68,11 +69,11 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_child = widgets.BasicEntry()
         
         self.filter_event = Event()
-        self.filter_event.set_type((EventType.CUSTOM, u''))
+        self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
 
         self.family_stub = Family()
-        self.family_stub.set_relationship((FamilyRelType.CUSTOM, u''))
+        self.family_stub.set_relationship((FamilyRelType.CUSTOM, ''))
         self.rtype = Gtk.ComboBox(has_entry=True)
         
         self.event_menu = widgets.MonitoredDataType(
@@ -123,22 +124,22 @@ class FamilySidebarFilter(SidebarFilter):
         self.add_regex_entry(self.filter_regex)
 
     def clear(self, obj):
-        self.filter_id.set_text(u'')
-        self.filter_father.set_text(u'')
-        self.filter_mother.set_text(u'')
-        self.filter_child.set_text(u'')
-        self.filter_note.set_text(u'')
-        self.etype.get_child().set_text(u'')
-        self.rtype.get_child().set_text(u'')
+        self.filter_id.set_text('')
+        self.filter_father.set_text('')
+        self.filter_mother.set_text('')
+        self.filter_child.set_text('')
+        self.filter_note.set_text('')
+        self.etype.get_child().set_text('')
+        self.rtype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        father = unicode(self.filter_father.get_text()).strip()
-        mother = unicode(self.filter_mother.get_text()).strip()
-        child = unicode(self.filter_child.get_text()).strip()
-        note = unicode(self.filter_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        father = cuni(self.filter_father.get_text()).strip()
+        mother = cuni(self.filter_mother.get_text()).strip()
+        child = cuni(self.filter_child.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
         rtype = self.family_stub.get_relationship().xml_str()
         regex = self.filter_regex.get_active()
@@ -180,7 +181,7 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if etype:
-                rule = HasEvent([etype, u'', u'', u'', u''], use_regex=regex)
+                rule = HasEvent([etype, '', '', '', ''], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if rtype:
@@ -205,7 +206,7 @@ class FamilySidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = unicode(model.get_value(node, 0))
+            obj = cuni(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

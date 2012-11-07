@@ -27,7 +27,7 @@
 """
 Polish-specific classes for parsing and displaying dates.
 """
-
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -41,9 +41,9 @@ import re
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from _dateparser import DateParser
-from _datedisplay import DateDisplay
-from _datehandler import register_datehandler
+from ._dateparser import DateParser
+from ._datedisplay import DateDisplay
+from ._datehandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
@@ -53,104 +53,104 @@ from _datehandler import register_datehandler
 class DateParserPL(DateParser):
 
     month_to_int = DateParser.month_to_int
-    month_to_int[u"styczeń"] = 1
-    month_to_int[u"sty"] = 1
-    month_to_int[u"I"] = 1
-    month_to_int[u"luty"]  = 2
-    month_to_int[u"lut"]  = 2
-    month_to_int[u"II"]  = 2
-    month_to_int[u"marzec"]  = 3
-    month_to_int[u"mar"]  = 3
-    month_to_int[u"III"]  = 3
-    month_to_int[u"kwiecień"]  = 4
-    month_to_int[u"kwi"]  = 4
-    month_to_int[u"IV"]  = 4
-    month_to_int[u"maj"]  = 5
-    month_to_int[u"V"]  = 5
-    month_to_int[u"czerwiec"]  = 6
-    month_to_int[u"cze"]  = 6
-    month_to_int[u"VI"]  = 6
-    month_to_int[u"lipiec"]  = 7
-    month_to_int[u"lip"]  = 7
-    month_to_int[u"VII"]  = 7
-    month_to_int[u"sierpień"]  = 8
-    month_to_int[u"sie"]  = 8
-    month_to_int[u"VIII"]  = 8
-    month_to_int[u"wrzesień"]  = 9
-    month_to_int[u"wrz"]  = 9
-    month_to_int[u"IX"]  = 9
-    month_to_int[u"październik"]  = 10
-    month_to_int[u"paź"]  = 10
-    month_to_int[u"X"]  = 10
-    month_to_int[u"listopad"]  = 11
-    month_to_int[u"lis"]  = 11
-    month_to_int[u"XI"]  = 11
-    month_to_int[u"grudzień"]  = 12
-    month_to_int[u"gru"]  = 12
-    month_to_int[u"XII"]  = 12
+    month_to_int["styczeń"] = 1
+    month_to_int["sty"] = 1
+    month_to_int["I"] = 1
+    month_to_int["luty"]  = 2
+    month_to_int["lut"]  = 2
+    month_to_int["II"]  = 2
+    month_to_int["marzec"]  = 3
+    month_to_int["mar"]  = 3
+    month_to_int["III"]  = 3
+    month_to_int["kwiecień"]  = 4
+    month_to_int["kwi"]  = 4
+    month_to_int["IV"]  = 4
+    month_to_int["maj"]  = 5
+    month_to_int["V"]  = 5
+    month_to_int["czerwiec"]  = 6
+    month_to_int["cze"]  = 6
+    month_to_int["VI"]  = 6
+    month_to_int["lipiec"]  = 7
+    month_to_int["lip"]  = 7
+    month_to_int["VII"]  = 7
+    month_to_int["sierpień"]  = 8
+    month_to_int["sie"]  = 8
+    month_to_int["VIII"]  = 8
+    month_to_int["wrzesień"]  = 9
+    month_to_int["wrz"]  = 9
+    month_to_int["IX"]  = 9
+    month_to_int["październik"]  = 10
+    month_to_int["paź"]  = 10
+    month_to_int["X"]  = 10
+    month_to_int["listopad"]  = 11
+    month_to_int["lis"]  = 11
+    month_to_int["XI"]  = 11
+    month_to_int["grudzień"]  = 12
+    month_to_int["gru"]  = 12
+    month_to_int["XII"]  = 12
     # Alternative forms: declined nouns
-    month_to_int[u"stycznia"] = 1
-    month_to_int[u"lutego"] = 2
-    month_to_int[u"marca"] = 3
-    month_to_int[u"kwietnia"] = 4
-    month_to_int[u"maja"] = 5
-    month_to_int[u"czerwca"] = 6
-    month_to_int[u"lipca"] = 7
-    month_to_int[u"sierpnia"] = 8
-    month_to_int[u"września"] = 9
-    month_to_int[u"października"] = 10
-    month_to_int[u"listopada"] = 11
-    month_to_int[u"grudnia"] = 12
+    month_to_int["stycznia"] = 1
+    month_to_int["lutego"] = 2
+    month_to_int["marca"] = 3
+    month_to_int["kwietnia"] = 4
+    month_to_int["maja"] = 5
+    month_to_int["czerwca"] = 6
+    month_to_int["lipca"] = 7
+    month_to_int["sierpnia"] = 8
+    month_to_int["września"] = 9
+    month_to_int["października"] = 10
+    month_to_int["listopada"] = 11
+    month_to_int["grudnia"] = 12
     # Alternative forms: nouns without polish accent letters
     # (misspellings sometimes used in emails)
-    month_to_int[u"styczen"] = 1
-    month_to_int[u"kwiecien"] = 4
-    month_to_int[u"sierpien"] = 8
-    month_to_int[u"wrzesien"] = 9
-    month_to_int[u"pazdziernik"] = 10
-    month_to_int[u"grudzien"] = 12
-    month_to_int[u"wrzesnia"] = 9
-    month_to_int[u"pazdziernika"] = 10
-    month_to_int[u"paz"] = 10
+    month_to_int["styczen"] = 1
+    month_to_int["kwiecien"] = 4
+    month_to_int["sierpien"] = 8
+    month_to_int["wrzesien"] = 9
+    month_to_int["pazdziernik"] = 10
+    month_to_int["grudzien"] = 12
+    month_to_int["wrzesnia"] = 9
+    month_to_int["pazdziernika"] = 10
+    month_to_int["paz"] = 10
 
     modifier_to_int = {
-        u'przed'    : Date.MOD_BEFORE, 
-        u'po'   : Date.MOD_AFTER,
-        u'około'  : Date.MOD_ABOUT,
-        u'ok.'     : Date.MOD_ABOUT,
-        u'circa'  : Date.MOD_ABOUT,
-        u'ca.'  : Date.MOD_ABOUT,
+        'przed'    : Date.MOD_BEFORE, 
+        'po'   : Date.MOD_AFTER,
+        'około'  : Date.MOD_ABOUT,
+        'ok.'     : Date.MOD_ABOUT,
+        'circa'  : Date.MOD_ABOUT,
+        'ca.'  : Date.MOD_ABOUT,
     	# Alternative forms: misspellings sometimes used in emails
-        u'okolo'  : Date.MOD_ABOUT,
-        u'ok'     : Date.MOD_ABOUT,
+        'okolo'  : Date.MOD_ABOUT,
+        'ok'     : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'gregoriański'   : Date.CAL_GREGORIAN,
-        u'greg.'          : Date.CAL_GREGORIAN,
-        u'juliański'      : Date.CAL_JULIAN,
-        u'jul.'           : Date.CAL_JULIAN,
-        u'hebrajski'      : Date.CAL_HEBREW,
-        u'hebr.'          : Date.CAL_HEBREW,
-        u'islamski'       : Date.CAL_ISLAMIC,
-        u'isl.'           : Date.CAL_ISLAMIC,
-        u'francuski republikański': Date.CAL_FRENCH,
-        u'franc.'         : Date.CAL_FRENCH,
-        u'perski'         : Date.CAL_PERSIAN,
-        u'szwedzki'       : Date.CAL_SWEDISH, 
-        u's'              : Date.CAL_SWEDISH,
+        'gregoriański'   : Date.CAL_GREGORIAN,
+        'greg.'          : Date.CAL_GREGORIAN,
+        'juliański'      : Date.CAL_JULIAN,
+        'jul.'           : Date.CAL_JULIAN,
+        'hebrajski'      : Date.CAL_HEBREW,
+        'hebr.'          : Date.CAL_HEBREW,
+        'islamski'       : Date.CAL_ISLAMIC,
+        'isl.'           : Date.CAL_ISLAMIC,
+        'francuski republikański': Date.CAL_FRENCH,
+        'franc.'         : Date.CAL_FRENCH,
+        'perski'         : Date.CAL_PERSIAN,
+        'szwedzki'       : Date.CAL_SWEDISH, 
+        's'              : Date.CAL_SWEDISH,
     # Alternative forms: nouns without polish accent letters
     # (misspellings sometimes used in emails)
-        u'gregorianski'   : Date.CAL_GREGORIAN,
-        u'julianski'      : Date.CAL_JULIAN,
-        u'francuski republikanski': Date.CAL_FRENCH,
+        'gregorianski'   : Date.CAL_GREGORIAN,
+        'julianski'      : Date.CAL_JULIAN,
+        'francuski republikanski': Date.CAL_FRENCH,
         }
 
     quality_to_int = {
-        u'szacowany'  : Date.QUAL_ESTIMATED,
-        u'szac.'      : Date.QUAL_ESTIMATED,
-        u'obliczony'  : Date.QUAL_CALCULATED,
-        u'obl.'       : Date.QUAL_CALCULATED,
+        'szacowany'  : Date.QUAL_ESTIMATED,
+        'szac.'      : Date.QUAL_ESTIMATED,
+        'obliczony'  : Date.QUAL_CALCULATED,
+        'obl.'       : Date.QUAL_CALCULATED,
         }
 
     bce = ["przed naszą erą", "przed Chrystusem",
@@ -160,7 +160,7 @@ class DateParserPL(DateParser):
         DateParser.init_strings(self)
         self._span  = re.compile("(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE)
         # Also handle a common mistakes
-        self._range = re.compile(u"((?:po)?mi(?:ę|e)dzy)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._range = re.compile("((?:po)?mi(?:ę|e)dzy)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE)
         self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
                                  re.IGNORECASE)
         self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
@@ -176,22 +176,22 @@ class DateDisplayPL(DateDisplay):
     Polish language date display class. 
     """
 
-    long_months = ( u"", u"Styczeń", u"Luty", u"Marzec", u"Kwiecień", u"Maj", 
-                    u"Czerwiec", u"Lipiec", u"Sierpień", u"Wrzesień", u"Październik", 
-                    u"Listopad", u"Grudzień" )
+    long_months = ( "", "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", 
+                    "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", 
+                    "Listopad", "Grudzień" )
     
-    short_months = ( u"", u"Sty", u"Lut", u"Mar", u"Kwi", u"Maj", u"Cze", 
-                     u"Lip", u"Sie", u"Wrz", u"Paź", u"Lis", u"Gru" )
+    short_months = ( "", "Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", 
+                     "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru" )
     
     calendar = (
-        "", u"juliański", u"hebrajski", 
-        u"francuski republikański", u"perski", u"islamski", 
-        u"swedish" 
+        "", "juliański", "hebrajski", 
+        "francuski republikański", "perski", "islamski", 
+        "swedish" 
         )
 
-    _mod_str = ("", u"przed ", u"po ", u"ok. ", "", "", "")
+    _mod_str = ("", "przed ", "po ", "ok. ", "", "", "")
     
-    _qual_str = ("", u"szacowany ", u"obliczony ")
+    _qual_str = ("", "szacowany ", "obliczony ")
     
     _bce_str = "%s p.n.e."
 
@@ -294,13 +294,13 @@ class DateDisplayPL(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'od', d1, u'do', d2, 
+            return "%s%s %s %s %s%s" % (qual_str, 'od', d1, 'do', d2, 
                                         scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, u'między', d1, u'a', d2, 
+            return "%s%s %s %s %s%s" % (qual_str, 'między', d1, 'a', d2, 
                                         scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

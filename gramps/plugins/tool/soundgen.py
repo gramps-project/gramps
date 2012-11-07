@@ -37,6 +37,7 @@ from gramps.gui.autocomp import fill_combo
 from gramps.gen.ggettext import sgettext as _
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +109,7 @@ class SoundGen(tool.Tool, ManagedWindow):
 
     def on_apply_clicked(self, obj):
         try:
-            se_text = soundex(unicode(obj.get_text()))
+            se_text = soundex(cuni(obj.get_text()))
         except UnicodeEncodeError:
             se_text = soundex('')
         self.value.set_text(se_text)

@@ -42,14 +42,14 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Citation, NoteType, Source
 from gramps.gen.db import DbTxn
-from editprimary import EditPrimary
+from .editprimary import EditPrimary
 
-from displaytabs import (NoteTab, GalleryTab, DataEmbedList,
+from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList, CitationBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                         MonitoredDate)
 from ..dialog import ErrorDialog
-from editreference import RefTab
+from .editreference import RefTab
 from ..glade import Glade
 
 #-------------------------------------------------------------------------

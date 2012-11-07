@@ -44,6 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
+from gramps.gen.constfunc import cuni, conv_to_unicode
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -108,31 +109,31 @@ class MediaModel(FlatBaseModel):
 
     def column_description(self,data):
         try:
-            return unicode(data[4])
+            return cuni(data[4])
         except:
-            return unicode(data[4],'latin1')
+            return conv_to_unicode(data[4], 'latin1')
 
     def column_path(self,data):
         try:
-            return unicode(data[2])
+            return cuni(data[2])
         except:
-            return unicode(data[2].encode('iso-8859-1'))
+            return cuni(data[2].encode('iso-8859-1'))
 
     def column_mime(self,data):
         if data[3]:
-            return unicode(data[3])
+            return cuni(data[3])
         else:
             return _('Note')
 
     def column_id(self,data):
-        return unicode(data[1])
+        return cuni(data[1])
 
     def column_date(self,data):
         if data[9]:
             date = Date()
             date.unserialize(data[9])
-            return unicode(displayer.display(date))
-        return u''
+            return cuni(displayer.display(date))
+        return ''
 
     def sort_date(self,data):
         obj = MediaObject()
@@ -144,7 +145,7 @@ class MediaModel(FlatBaseModel):
             return ''
 
     def column_handle(self,data):
-        return unicode(data[0])
+        return cuni(data[0])
 
     def sort_change(self,data):
         return "%012x" % data[8]
@@ -153,7 +154,7 @@ class MediaModel(FlatBaseModel):
         return format_time(data[8])
 
     def column_tooltip(self,data):
-        return u'Media tooltip'
+        return cuni('Media tooltip')
 
     def get_tag_name(self, tag_handle):
         """
@@ -179,5 +180,5 @@ class MediaModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = map(self.get_tag_name, data[10])
+        tag_list = list(map(self.get_tag_name, data[10]))
         return ', '.join(sorted(tag_list, key=locale.strxfrm))

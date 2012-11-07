@@ -31,8 +31,14 @@ the create/deletion of dialog windows.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from cStringIO import StringIO
+from __future__ import print_function
+
 import os
+import sys
+if sys.version_info[0] < 3:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +74,7 @@ DISABLED = -1
 #-----------------------------------------------------------------------
 
 def get_object(self,value):
-    raise DeprecationWarning, "ManagedWindow.get_object: shouldn't get here"
+    raise DeprecationWarning("ManagedWindow.get_object: shouldn't get here")
     if self.get_name() == value:
         return self
     elif hasattr(self,'get_children'):
@@ -151,7 +157,7 @@ class GrampsWindowManager(object):
             # to remove.
             self.remove_item(track)
         except IndexError:
-            print "Missing item from window manager", track, self.close_item
+            print("Missing item from window manager", track, self.close_item)
 
     def recursive_action(self, item, func, *args):
         # This function recursively calls itself over the child items
@@ -441,7 +447,7 @@ class ManagedWindow(object):
         
     def define_glade(self, top_module, glade_file=None):
         if glade_file is None:
-            raise TypeError, "ManagedWindow.define_glade: no glade file"
+            raise TypeError("ManagedWindow.define_glade: no glade file")
             glade_file = GLADE_FILE
         self._gladeobj = Glade(glade_file, None, top_module)
         return self._gladeobj
@@ -451,10 +457,9 @@ class ManagedWindow(object):
         object = self._gladeobj.get_child_object(name)
         if object is not None:
             return object
-        raise ValueError, (
+        raise ValueError(
             'ManagedWindow.get_widget: "%s" widget not found in "%s/%s"' %
-            (name, self._gladeobj.dirname, self._gladeobj.filename)
-            )
+            (name, self._gladeobj.dirname, self._gladeobj.filename))
         return object
 
     def connect_button(self, button_name, function):

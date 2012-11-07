@@ -26,11 +26,14 @@
 
 """Tools/Debug/Generate Testcases for Persons and Families"""
 
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import print_function
+
 from random import randint,choice,random
 from gramps.gen.ggettext import gettext as _
 import time
@@ -57,6 +60,7 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.db.dbconst import *
 from gramps.gen.const import ICON, LOGO, SPLASH
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -209,7 +213,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.vbox.pack_start(self.label,0,0,5)
 
         self.entry_count = Gtk.Entry()
-        self.entry_count.set_text( unicode( self.options.handler.options_dict['person_count']))
+        self.entry_count.set_text(cuni( self.options.handler.options_dict['person_count']))
         self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
@@ -337,8 +341,8 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
             o.set_type( self.rand_type(NoteType()))
             h = self.db.add_note(o, self.trans)
-            print "object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
-                                                          o.gramps_id)
+            print("object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
+                                                          o.gramps_id))
             
             handle = o.get_handle()
     
@@ -354,8 +358,8 @@ class TestcaseGenerator(tool.BatchTool):
                 o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
             o.set_handle(handle)
             self.db.add_source(o, self.trans)
-            print "object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
-                                                          o.gramps_id)
+            print("object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
+                                                          o.gramps_id))
 
     def test_fix_encoding(self):
         # Creates a media object with character encoding errors. This tests
@@ -382,13 +386,13 @@ class TestcaseGenerator(tool.BatchTool):
             
             m = MediaObject()
             self.fill_object(m)
-            m.set_description(u'remove this media object')
-            m.set_path(u"/tmp/click_on_remove_object.png")
+            m.set_description('remove this media object')
+            m.set_path("/tmp/click_on_remove_object.png")
             m.set_mime_type("image/png")
             self.db.add_object(m, self.trans)
             
             s = Source()
-            s.set_title(u'media should be removed from this source')
+            s.set_title('media should be removed from this source')
             r = MediaRef()
             r.set_reference_handle(m.handle)
             s.add_media_reference(r)
@@ -397,7 +401,7 @@ class TestcaseGenerator(tool.BatchTool):
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(s.handle)
-            c.set_page(u'media should be removed from this citation')
+            c.set_page('media should be removed from this citation')
             r = MediaRef()
             r.set_reference_handle(m.handle)
             c.add_media_reference(r)
@@ -829,29 +833,29 @@ class TestcaseGenerator(tool.BatchTool):
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
-            c.set_page(u'unreferenced citation with invalid source ref')
+            c.set_page('unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
-            c.set_page(u'unreferenced citation with invalid source ref')
+            c.set_page('unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
-            c.set_page(u'citation and references to it should be removed')
+            c.set_page('citation and references to it should be removed')
             c_h1 = self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
-            c.set_page(u'citation and references to it should be removed')
+            c.set_page('citation and references to it should be removed')
             c_h2 = self.db.add_citation(c, self.trans)
 
             self.create_all_possible_citations([c_h1, c_h2], "Broken21",
-                                               u'non-existent source')
+                                               'non-existent source')
 
     def test_check_citation_references(self):
         # Generate objects that refer to non-existant citations
@@ -861,7 +865,7 @@ class TestcaseGenerator(tool.BatchTool):
             
             c_h = "unknowncitationhandle"
             self.create_all_possible_citations([c_h, None], "Broken22",
-                                               u'non-existent citation')
+                                               'non-existent citation')
         
     def create_all_possible_citations(self, c_h_list, name, message):
         # Create citations attached to each of the following objects:
@@ -897,7 +901,7 @@ class TestcaseGenerator(tool.BatchTool):
         #         Address
         m = MediaObject()
         m.set_description(message)
-        m.set_path(unicode(ICON))
+        m.set_path(cuni(ICON))
         m.set_mime_type(get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
         # MediaObject : Attribute
@@ -1251,7 +1255,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.person_count = self.person_count+1
         self.progress_step()
         if self.person_count % 10 == 1:
-            print "person count", self.person_count
+            print("person count", self.person_count)
         self.person_dates[person_handle] = (by,dy)
 
         return( person_handle)
@@ -1370,7 +1374,7 @@ class TestcaseGenerator(tool.BatchTool):
             return
         child = self.db.get_person_from_handle(child_h)
         if not child:
-            print "ERROR: Person handle %s does not exist in database" % child_h
+            print("ERROR: Person handle %s does not exist in database" % child_h)
             return
         if child.get_parent_family_handle_list():
             return
@@ -1577,14 +1581,14 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(o,MediaObject):
             if randint(0,3) == 1:
-                o.set_description(unicode(self.rand_text(self.LONG)))
+                o.set_description(cuni(self.rand_text(self.LONG)))
                 path = choice((ICON, LOGO, SPLASH))
-                o.set_path(unicode(path))
+                o.set_path(cuni(path))
                 mime = get_type(path)
                 o.set_mime_type(mime)
             else:
-                o.set_description(unicode(self.rand_text(self.SHORT)))
-                o.set_path(unicode(ICON))
+                o.set_description(cuni(self.rand_text(self.SHORT)))
+                o.set_path(cuni(ICON))
                 o.set_mime_type("image/png")
 
         if isinstance(o,MediaRef):
@@ -1717,7 +1721,7 @@ class TestcaseGenerator(tool.BatchTool):
             #if randint(0,1) == 1:
             #    (year, d) = self.rand_date( )
             #    o.set_date_object( d)
-            o.set_confidence_level(choice(confidence.keys()))
+            o.set_confidence_level(choice(list(confidence.keys())))
 
         if issubclass(o.__class__,gen.lib.tagbase.TagBase):
             if randint(0,1) == 1:
@@ -1768,7 +1772,7 @@ class TestcaseGenerator(tool.BatchTool):
     def rand_type( self, list):
         if issubclass( list.__class__, GrampsType):
             map = list.get_map()
-            key = choice( map.keys())
+            key = choice( list(map.keys()))
             if key == list.get_custom():
                 value = self.rand_text(self.SHORT)
             else:
@@ -1804,9 +1808,9 @@ class TestcaseGenerator(tool.BatchTool):
             result = ""
         
         if self.options.handler.options_dict['specialchars']:
-            result = result + u"ä<ö&ü%ß'\""
+            result = result + "ä<ö&ü%ß'\""
 
-        if self.options.handler.options_dict['add_serial'] and type <> self.TAG:
+        if self.options.handler.options_dict['add_serial'] and type != self.TAG:
             result = result + "#+#%06d#-#" % self.text_serial_number
             self.text_serial_number = self.text_serial_number + 1
         
@@ -1910,8 +1914,8 @@ class TestcaseGenerator(tool.BatchTool):
                 result = result.upper()
 
         if self.options.handler.options_dict['add_linebreak'] and \
-                type <> self.TAG:
-            result = result + u"\nNEWLINE"
+                type != self.TAG:
+            result = result + "\nNEWLINE"
 
         return result
     

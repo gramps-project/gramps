@@ -29,11 +29,16 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-if config.get('preferences.use-bsddb3'):
+import sys
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db as bsddb_db
 else:
     from bsddb import db as bsddb_db
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -68,10 +73,10 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
 from ..glade import Glade
 
-from editprimary import EditPrimary
-from editchildref import EditChildRef
-from editperson import EditPerson
-from displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
+from .editprimary import EditPrimary
+from .editchildref import EditChildRef
+from .editperson import EditPerson
+from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
 from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
@@ -220,7 +225,7 @@ class ChildEmbedList(EmbeddedList):
             self.call_edit_childref(ref)
 
     def run(self, skip):
-        skip_list = filter(None, skip)
+        skip_list = [_f for _f in skip if _f]
         SelectPerson(self.dbstate, self.uistate, self.track,
                      _("Select Child"), skip=skip_list)
 
@@ -627,7 +632,7 @@ class EditFamily(EditPrimary):
         self.phandles = [mhandle, fhandle]
         self.phandles.extend(x.ref for x in self.obj.get_child_ref_list())
         
-        self.phandles = filter(None, self.phandles)
+        self.phandles = [_f for _f in self.phandles if _f]
 
     def get_start_date(self):
         """
@@ -979,7 +984,7 @@ class EditFamily(EditPrimary):
     def save(self, *obj):
         try:
             self.__do_save()
-        except bsddb_db.DBRunRecoveryError, msg:
+        except bsddb_db.DBRunRecoveryError as msg:
             RunDatabaseRepair(msg[1])
 
     def __do_save(self):

@@ -27,6 +27,7 @@
 """
 Slovenian-specific definitions of relationships
 """
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -38,28 +39,28 @@ import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 
-_ancestors = [ u"", u"starš", u"stari starš", u"prastari starš" ]
-_fathers = [ u"", u"oče", u"ded", u"praded", u"prapraded" ]
-_mothers = [ u"", u"mati", u"babica", u"prababica", u"praprababica" ]
+_ancestors = [ "", "starš", "stari starš", "prastari starš" ]
+_fathers = [ "", "oče", "ded", "praded", "prapraded" ]
+_mothers = [ "", "mati", "babica", "prababica", "praprababica" ]
 _descendants = [
-  u"", u"otrok", u"vnuk(inja)", u"pravnuk(inja)", u"prapravnuk(inja)" ]
-_sons = [ u"", u"sin", u"vnuk", u"pravnuk", u"prapravnuk" ]
-_daughters = [ u"", u"hči", u"vnukinja", u"pravnukinja", u"prapravnukinja" ]
-_maleCousins = [ u"", u"brat", u"bratranec", u"mali bratranec" ]
-_femaleCousins = [ u"", u"sestra", u"sestrična", u"mala sestrična" ]
-_someCousins = [ u"", u"brat ali sestra", u"bratranec ali sestrična",
-  u"mali bratranec ali mala sestrična" ]
-_aunts = [ u"", u"teta", u"stara teta", u"prateta", u"praprateta" ]
-_uncles = [ u"", u"stric", u"stari stric", u"prastric", u"praprastric" ]  
-_nieces = [ u"", u"nečakinja", u"pranečakinja", u"prapranečakinja" ]
-_nephews = [ u"", u"nečak", u"pranečak", u"prapranečak" ]
+  "", "otrok", "vnuk(inja)", "pravnuk(inja)", "prapravnuk(inja)" ]
+_sons = [ "", "sin", "vnuk", "pravnuk", "prapravnuk" ]
+_daughters = [ "", "hči", "vnukinja", "pravnukinja", "prapravnukinja" ]
+_maleCousins = [ "", "brat", "bratranec", "mali bratranec" ]
+_femaleCousins = [ "", "sestra", "sestrična", "mala sestrična" ]
+_someCousins = [ "", "brat ali sestra", "bratranec ali sestrična",
+  "mali bratranec ali mala sestrična" ]
+_aunts = [ "", "teta", "stara teta", "prateta", "praprateta" ]
+_uncles = [ "", "stric", "stari stric", "prastric", "praprastric" ]  
+_nieces = [ "", "nečakinja", "pranečakinja", "prapranečakinja" ]
+_nephews = [ "", "nečak", "pranečak", "prapranečak" ]
 
 #plural
-_children = [ u"", u"otroci", u"vnuki", u"pravnuki", u"prapravnuki" ]
-_parents = [ u"", u"starši", u"stari starši", u"prastarši", u"praprastarši" ]
-_siblings = [ u"", u"sorojenci", u"strici", u"stari strici", u"prastrici",
-  u"praprastrici" ]
-_neph_niec = [ u"", u"nečaki", u"pranečaki", u"prapranečaki" ]
+_children = [ "", "otroci", "vnuki", "pravnuki", "prapravnuki" ]
+_parents = [ "", "starši", "stari starši", "prastarši", "praprastarši" ]
+_siblings = [ "", "sorojenci", "strici", "stari strici", "prastrici",
+  "praprastrici" ]
+_neph_niec = [ "", "nečaki", "pranečaki", "prapranečaki" ]
 
 #-------------------------------------------------------------------------
 #
@@ -76,96 +77,96 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
   def getAncestor(self, level):
     if level > len(_ancestors)-1:
-      return u"%s-krat-pra-prednik" % (level-2)
+      return "%s-krat-pra-prednik" % (level-2)
     else:
       return _ancestors[level]
       
   def getFather(self, level):
     if level > len(_fathers)-1:
-      return u"%s-krat-pra-ded" % (level-2)
+      return "%s-krat-pra-ded" % (level-2)
     else:
       return _fathers[level]
       
   def getMother(self, level):
     if level > len(_mothers)-1:
-      return u"%s-krat-pra-babica" % (level-2)
+      return "%s-krat-pra-babica" % (level-2)
     else:
       return _mothers[level]
       
   def getSon(self, level):
     if level > len(_sons)-1:
-      return u"%s-krat-pra-vnuk" % (level-2)
+      return "%s-krat-pra-vnuk" % (level-2)
     else:
       return _sons[level]
       
   def getDaughter(self, level):
     if level > len(_daughters)-1:
-      return u"%s-krat-pra-vnukinja" % (level-2)
+      return "%s-krat-pra-vnukinja" % (level-2)
     else:
       return _daughters[level]
       
   def getDescendant(self, level):
     if level > len(_descendants)-1:
-      return u"%s-krat-pra-vnuk(inja)" % (level-2)
+      return "%s-krat-pra-vnuk(inja)" % (level-2)
     else:
       return _descendants[level]
       
   def getMaleCousin(self, level):
     if level > len(_maleCousins)-1:
-      return u"bratranec v %s. kolenu" % (level*2)
+      return "bratranec v %s. kolenu" % (level*2)
     else:
       return _maleCousins[level]
 
   def getFemaleCousin(self, level):
     if level > len(_femaleCousins)-1:
-      return u"sestrična v %s. kolenu" % (level*2)
+      return "sestrična v %s. kolenu" % (level*2)
     else:
       return _femaleCousins[level]
 
   def getSomeCousin(self, level):
     if level > len(_someCousins)-1:
-      return u"bratranec ali sestrična v %s. kolenu" % (level*2)
+      return "bratranec ali sestrična v %s. kolenu" % (level*2)
     else:
       return _someCousins[level]
       
   def getSuffix(self, distance, level):
     # distance-level = 2Gb <=> Gb=1
     if distance-level == 2 or distance < 6:
-      return u""
+      return ""
     else:
-      return u" v %s. kolenu" % (distance)
+      return " v %s. kolenu" % (distance)
       
   def getAunt(self, distance, level):
     if distance == 5 and level == 1:
-      return u"mala teta"
+      return "mala teta"
     elif level > len(_aunts)-1:
-      return u"%s-krat-pra-teta%s" % (level-2, self.getSuffix(distance, level))
+      return "%s-krat-pra-teta%s" % (level-2, self.getSuffix(distance, level))
     else:
-      return u"%s%s" % (_aunts[level], self.getSuffix(distance, level))
+      return "%s%s" % (_aunts[level], self.getSuffix(distance, level))
       
   def getUncle(self, distance, level):
     if distance == 5 and level == 1:
-      return u"mali stric"
+      return "mali stric"
     elif level > len(_uncles)-1:
-      return u"%s-krat-pra-stric%s" % (level-2, self.getSuffix(distance, level))
+      return "%s-krat-pra-stric%s" % (level-2, self.getSuffix(distance, level))
     else:
-      return u"%s%s" % (_uncles[level], self.getSuffix(distance, level))
+      return "%s%s" % (_uncles[level], self.getSuffix(distance, level))
 
   def getNiece(self, distance, level):
     if distance == 5 and level == 1:
-      return u"mala nečakinja"
+      return "mala nečakinja"
     elif level > len(_nieces)-1:
-      return u"%s-krat-pra-nečakinja%s" % (level-1, self.getSuffix(distance, level))
+      return "%s-krat-pra-nečakinja%s" % (level-1, self.getSuffix(distance, level))
     else:
-      return u"%s%s" % (_nieces[level], self.getSuffix(distance, level))
+      return "%s%s" % (_nieces[level], self.getSuffix(distance, level))
       
   def getNephew(self, distance, level):
     if distance == 5 and level == 1:
-      return u"mali nečak"
+      return "mali nečak"
     elif level > len(_nephews)-1:
-      return u"%s-krat-pra-nečak%s" % (level-1, self.getSuffix(distance, level))
+      return "%s-krat-pra-nečak%s" % (level-1, self.getSuffix(distance, level))
     else:
-      return u"%s%s" % (_nephews[level], self.getSuffix(distance, level))
+      return "%s%s" % (_nephews[level], self.getSuffix(distance, level))
   
   def get_single_relationship_string(
     self, Ga, Gb, gender_a, gender_b, reltocommon_a, reltocommon_b,
@@ -234,28 +235,28 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     gender = gender_b #we don't need gender_a
     inlaw = in_law_a or in_law_b
     if sib_type == self.HALF_SIB_MOTHER or sib_type == self.HALF_SIB_FATHER:
-      prefix = u"pol"
+      prefix = "pol"
     else:
-      prefix = u""
+      prefix = ""
       
     if sib_type < self.STEP_SIB:
     # ie. NORM_SIB or one of HALF_SIBs
       if not inlaw:
         if gender == Person.MALE:
-          rel_str = u"%sbrat" % (prefix)
+          rel_str = "%sbrat" % (prefix)
         elif gender == Person.FEMALE:
-          rel_str = u"%ssestra" % (prefix)
+          rel_str = "%ssestra" % (prefix)
         else:
-          rel_str = u"%sbrat ali %ssestra" % (prefix, prefix)
+          rel_str = "%sbrat ali %ssestra" % (prefix, prefix)
       else:
         if gender == Person.MALE:
-          rel_str = u"%ssvak" % (prefix)
+          rel_str = "%ssvak" % (prefix)
         elif gender == Person.FEMALE:
-          rel_str = u"%ssvakinja" % (prefix)
+          rel_str = "%ssvakinja" % (prefix)
         else:
-          rel_str = u"%ssvak ali %ssvakinja" % (prefix, prefix)
+          rel_str = "%ssvak ali %ssvakinja" % (prefix, prefix)
     else:
-      rel_str = u""
+      rel_str = ""
     return rel_str
 
   
@@ -264,62 +265,62 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     in_law_a=False, in_law_b=False):
     
     distance = Ga+Gb
-    rel_str = u"sorodniki v %s. kolenu" % (distance)
+    rel_str = "sorodniki v %s. kolenu" % (distance)
     if Ga == 0:
     # These are descendants
       if Gb < len(_children):
         rel_str = _children[Gb]
       else:
-        rel_str = u"%s-krat-pra-vnuki" % (Gb-2)
+        rel_str = "%s-krat-pra-vnuki" % (Gb-2)
     elif Gb == 0:
     # These are parents/grand parents
       if Ga < len(_parents):
         rel_str = _parents[Ga]
       else:
-        rel_str = u"%s-krat-pra-starši" % (Ga-2)
+        rel_str = "%s-krat-pra-starši" % (Ga-2)
     elif Gb == 1:
     # These are siblings/aunts/uncles
       if Ga < len(_siblings):
         rel_str = _siblings[Ga]
       else:
-        rel_str = u"%s-krat-pra-strici" % (Ga-2)
+        rel_str = "%s-krat-pra-strici" % (Ga-2)
     elif Ga == 1:
     # These are nieces/nephews
       if Gb < len(_neph_niec):
         rel_str = _neph_niec[Gb]
       else:
-        rel_str = u"%s-krat-pra-nečaki" % (Gb-1)
+        rel_str = "%s-krat-pra-nečaki" % (Gb-1)
     elif Ga == Gb:
     # These are cousins in the same generation
       if Ga == 2:
-        rel_str = u"bratranci"
+        rel_str = "bratranci"
       elif Ga == 3:
-        rel_str = u"mali bratranci"
+        rel_str = "mali bratranci"
       else:
-        rel_str = u"bratranci v %s. kolenu" % (distance)
+        rel_str = "bratranci v %s. kolenu" % (distance)
     elif Ga > Gb:
     # These are cousins in different generations with the second person 
     # being in a higher generation from the common ancestor than the 
     # first person.
       level = Ga - Gb
       if distance == 5:
-        rel_str = u"mali strici"
+        rel_str = "mali strici"
       elif level < len(_siblings)-1:
         # len-1 and level+1 to skip the siblings in uncles' levels
-        rel_str = u"%s v %s. kolenu" % (_siblings[level+1], distance)
+        rel_str = "%s v %s. kolenu" % (_siblings[level+1], distance)
       else:
-        rel_str = u"%s-krat-pra-strici v %s. kolenu" % (level-2, distance)
+        rel_str = "%s-krat-pra-strici v %s. kolenu" % (level-2, distance)
     else: #Gb > Ga:
     # These are cousins in different generations with the second person 
     # being in a lower generation from the common ancestor than the 
     # first person.
       level = Gb - Ga
       if distance == 5:
-        rel_str = u"mali nečaki"
+        rel_str = "mali nečaki"
       elif level < len(_neph_niec):
-        rel_str = u"%s v %s. kolenu" % (_neph_niec[level], distance)
+        rel_str = "%s v %s. kolenu" % (_neph_niec[level], distance)
       else:
-        rel_str = u"%s-krat-pra-nečaki v %s. kolenu" % (level-1, distance) 
+        rel_str = "%s-krat-pra-nečaki v %s. kolenu" % (level-1, distance) 
     if in_law_b == True:
       rel_str = "zakonci, ki jih imajo %s" % rel_str
     return rel_str

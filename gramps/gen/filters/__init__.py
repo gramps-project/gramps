@@ -28,10 +28,10 @@ Package providing filtering framework for GRAMPS.
 CustomFilters = None
 
 from ..const import CUSTOM_FILTERS
-from _filterlist import FilterList
-from _genericfilter import GenericFilter, GenericFilterFactory
-from _paramfilter import ParamFilter
-from _searchfilter import SearchFilter, ExactSearchFilter
+from ._filterlist import FilterList
+from ._genericfilter import GenericFilter, GenericFilterFactory
+from ._paramfilter import ParamFilter
+from ._searchfilter import SearchFilter, ExactSearchFilter
 
 #def reload_system_filters():
     #global SystemFilters

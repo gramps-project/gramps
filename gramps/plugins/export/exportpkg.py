@@ -36,7 +36,10 @@ import shutil
 import os
 import sys
 import tarfile
-from cStringIO import StringIO
+if sys.version_info[0] < 3:
+    from cStringIO import StringIO
+else:
+    from io import StringIO
 from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -60,7 +63,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
-from exportxml import XmlWriter
+from .exportxml import XmlWriter
 from gramps.gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
 from gramps.gen.constfunc import win
 
@@ -176,7 +179,7 @@ class PackageWriter(object):
 
         try:
             archive = tarfile.open(self.filename,'w:gz')
-        except EnvironmentError, msg:
+        except EnvironmentError as msg:
             log.warn(str(msg))
             self.user.notify_error(_('Failure writing %s') % self.filename, str(msg))
             return 0

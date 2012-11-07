@@ -26,7 +26,11 @@
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import base64
 import time
 import re
@@ -44,6 +48,7 @@ from gramps.gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gramps.gen.utils.id import create_id
+from gramps.gen.constfunc import STRTYPE
 from webapp.libdjango import DjangoInterface
 from django.db import transaction
 
@@ -183,7 +188,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         import for two step adding.
         """
         # First we add the primary objects:
-        for key in self.import_cache.keys():
+        for key in list(self.import_cache.keys()):
             obj = self.import_cache[key]
             if isinstance(obj, Person):
                 self.dji.add_person(obj.serialize())
@@ -206,7 +211,7 @@ class DbDjango(DbWriteBase, DbReadBase):
             elif isinstance(obj, Tag):
                 self.dji.add_tag(obj.serialize())
         # Next we add the links:
-        for key in self.import_cache.keys():
+        for key in list(self.import_cache.keys()):
             obj = self.import_cache[key]
             if isinstance(obj, Person):
                 self.dji.add_person_detail(obj.serialize())
@@ -250,7 +255,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, basestring) and val:
+        if isinstance(val, STRTYPE) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
@@ -616,49 +621,49 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_repository(self, repository):
         if self.use_db_cache and repository.cache:
-            data = cPickle.loads(base64.decodestring(repository.cache))
+            data = pickle.loads(base64.decodestring(repository.cache))
         else:
             data = self.dji.get_repository(repository)
         return Repository.create(data)
 
     def make_citation(self, citation):
         if self.use_db_cache and citation.cache:
-            data = cPickle.loads(base64.decodestring(citation.cache))
+            data = pickle.loads(base64.decodestring(citation.cache))
         else:
             data = self.dji.get_citation(citation)
         return Citation.create(data)
 
     def make_source(self, source):
         if self.use_db_cache and source.cache:
-            data = cPickle.loads(base64.decodestring(source.cache))
+            data = pickle.loads(base64.decodestring(source.cache))
         else:
             data = self.dji.get_source(source)
         return Source.create(data)
 
     def make_family(self, family):
         if self.use_db_cache and family.cache:
-            data = cPickle.loads(base64.decodestring(family.cache))
+            data = pickle.loads(base64.decodestring(family.cache))
         else:
             data = self.dji.get_family(family)
         return Family.create(data)
 
     def make_person(self, person):
         if self.use_db_cache and person.cache:
-            data = cPickle.loads(base64.decodestring(person.cache))
+            data = pickle.loads(base64.decodestring(person.cache))
         else:
             data = self.dji.get_person(person)
         return Person.create(data)
 
     def make_event(self, event):
         if self.use_db_cache and event.cache:
-            data = cPickle.loads(base64.decodestring(event.cache))
+            data = pickle.loads(base64.decodestring(event.cache))
         else:
             data = self.dji.get_event(event)
         return Event.create(data)
 
     def make_note(self, note):
         if self.use_db_cache and note.cache:
-            data = cPickle.loads(base64.decodestring(note.cache))
+            data = pickle.loads(base64.decodestring(note.cache))
         else:
             data = self.dji.get_note(note)
         return Note.create(data)
@@ -669,14 +674,14 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_place(self, place):
         if self.use_db_cache and place.cache:
-            data = cPickle.loads(base64.decodestring(place.cache))
+            data = pickle.loads(base64.decodestring(place.cache))
         else:
             data = self.dji.get_place(place)
         return Place.create(data)
 
     def make_media(self, media):
         if self.use_db_cache and media.cache:
-            data = cPickle.loads(base64.decodestring(media.cache))
+            data = pickle.loads(base64.decodestring(media.cache))
         else:
             data = self.dji.get_media(media)
         return MediaObject.create(data)
@@ -1092,7 +1097,7 @@ class DbDjango(DbWriteBase, DbReadBase):
             }
 
         table = key2table[obj_key]
-        return table.keys()
+        return list(table.keys())
 
     def transaction_begin(self, transaction):
         return 

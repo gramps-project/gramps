@@ -30,8 +30,8 @@ LdsOrdBase class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ldsord import LdsOrd
-from const import IDENTICAL, EQUAL
+from .ldsord import LdsOrd
+from .const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #

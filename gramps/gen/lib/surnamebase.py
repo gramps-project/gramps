@@ -31,8 +31,8 @@ from ..ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from surname import Surname
-from const import IDENTICAL, EQUAL
+from .surname import Surname
+from .const import IDENTICAL, EQUAL
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +54,7 @@ class SurnameBase(object):
         :param source: Object used to initialize the new object
         :type source: SurnameBase
         """
-        self.surname_list = map(Surname, source.surname_list) if source else []
+        self.surname_list = list(map(Surname, source.surname_list)) if source else []
 
     def serialize(self):
         """

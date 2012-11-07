@@ -39,6 +39,7 @@ from gramps.gen.ggettext import gettext as _
 #
 #------------------------------------------------------------------------
 import logging
+import collections
 log = logging.getLogger(".WriteGeneWeb")
 
 #-------------------------------------------------------------------------
@@ -58,7 +59,7 @@ class GeneWebWriter(object):
         self.filename = filename
         self.user = user
         self.option_box = option_box
-        if callable(self.user.callback): # callback is really callable
+        if isinstance(self.user.callback, collections.Callable): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
@@ -89,7 +90,7 @@ class GeneWebWriter(object):
         self.dirname = os.path.dirname (self.filename)
         try:
             self.g = open(self.filename, "w")
-        except IOError,msg:
+        except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2, str(msg))
             return False
