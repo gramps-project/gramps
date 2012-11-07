@@ -27,7 +27,7 @@ The goal is to have this module not depend on any other gramps module.
 That way, e.g. database classes can safely depend on that without
 other GRAMPS baggage.
 """
-
+from __future__ import division
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -79,7 +79,7 @@ class UpdateCallback(object):
         self.count += 1
         if not count:
             count = self.count
-        newval = int(100 * count/float(self.total))
+        newval = int(100 * count/self.total)
         newtime = time.time()
         time_has_come = self.interval and (newtime-self.oldtime>self.interval)
         value_changed = newval!=self.oldval

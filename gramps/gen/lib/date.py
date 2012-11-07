@@ -28,7 +28,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from __future__ import unicode_literals
+from __future__ import unicode_literals, division
 from ..ggettext import sgettext as _
 from ..ggettext import ngettext
 
@@ -432,8 +432,8 @@ class Span(object):
         #                          Date1 - tuple -> Date2
         if date1.get_new_year() or date2.get_new_year():
             days = date1.sortval - date2.sortval
-            years = days/365
-            months = (days - years * 365) / 30
+            years = days // 365
+            months = (days - years * 365) // 30
             days = (days - years * 365) - months * 30
             if self.negative:
                 return (-years, -months, -days)
@@ -458,10 +458,10 @@ class Span(object):
         months = d1[1] - d2[1]
         years = d1[0] - d2[0]
         if days > 31: 
-            months += days / 31
+            months += days // 31
             days = days % 31
         if months > 12:
-            years += months / 12
+            years += months // 12
             months = months % 12
         # estimate: (years, months, days)
         # Check transitivity:
@@ -1249,10 +1249,10 @@ class Date(object):
                 dv[Date._POS_MON] = 12
                 dv[Date._POS_YR] -= 1
             elif dv[Date._POS_MON] < 0: # subtraction
-                dv[Date._POS_YR] -= int((-dv[Date._POS_MON]) / 12) + 1
+                dv[Date._POS_YR] -= int((-dv[Date._POS_MON]) // 12) + 1
                 dv[Date._POS_MON] = (dv[Date._POS_MON] % 12)
             elif dv[Date._POS_MON] > 12 or dv[Date._POS_MON] < 1:
-                dv[Date._POS_YR] += int(dv[Date._POS_MON] / 12)
+                dv[Date._POS_YR] += int(dv[Date._POS_MON] // 12)
                 dv[Date._POS_MON] = dv[Date._POS_MON] % 12
         self.dateval = tuple(dv)
         self._calc_sort_value()
