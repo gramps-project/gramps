@@ -56,6 +56,7 @@ from __future__ import print_function
 
 import logging
 import bisect
+import sys
 import time
 
 _LOG = logging.getLogger(".gui.basetreemodel")

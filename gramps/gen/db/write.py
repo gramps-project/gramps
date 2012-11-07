@@ -1182,7 +1182,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def create_id(self):
         return "%08x%08x" % ( int(time.time()*10000), 
-                              self.rand.randint(0, maxint))
+                              self.rand.randint(0, maxsize))
 
     def __add_object(self, obj, transaction, find_next_func, commit_func):
         if find_next_func and not obj.gramps_id:

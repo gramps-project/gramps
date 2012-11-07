@@ -133,7 +133,7 @@ def __do_export(database):
             data = cursor.first()
             while data:
                 pickle.dump(data, backup_table, 2)
-                data = next(cursor)
+                data = cursor.next()
             cursor.close()
             backup_table.close()
     except (IOError,OSError):

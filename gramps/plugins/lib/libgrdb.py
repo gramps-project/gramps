@@ -324,7 +324,7 @@ class DbGrdb(Callback):
 
     def create_id(self):
         return "%08x%08x" % ( int(time.time()*10000), 
-                              self.rand.randint(0, maxint))
+                              self.rand.randint(0, maxsize))
 
     def get_person_cursor(self):
         raise NotImplementedError
