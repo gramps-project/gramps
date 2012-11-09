@@ -29,10 +29,10 @@ Gramps distutils module.
 
 #check python version first
 import sys
-major, minor1, minor2, s, tmp = sys.version_info
 
-if (major==2 and minor1<7) or major<2 or major>3:
-    raise SystemExit("""Gramps requires Python 2.7 or later, Python 3 not supported.""")
+
+if (sys.version_info < (2, 7) or ( (3,0) <= sys.version_info < (3, 2))):
+    raise SystemExit("""Gramps requires Python 2.7 or later, or Python 3.2 or later.""")
 
 from distutils import log
 from distutils.core import setup
@@ -302,17 +302,17 @@ PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
 
 data_list = [
-            os.path.join('data', '*.txt'), 
-            os.path.join('data', '*.xml'),
-            os.path.join('gui', 'glade', '*.glade'), 
-            os.path.join('images','*.ico'), 
-            os.path.join('images', '*.png'),
-            os.path.join('images', 'splash.jpg'), 
-            os.path.join('images', '*.svg'), 
-            os.path.join('images', '16x16', '*.png'), 
-            os.path.join('images', '22x22', '*.png'), 
-            os.path.join('images', '48x48', '*.png'), 
-            os.path.join('images', 'scalable', '*.svg')
+            'data/*.txt', 
+            'data/*.xml',
+            'gui/glade/*.glade', 
+            'images/*.ico', 
+            'images/*.png',
+            'images/splash.jpg', 
+            'images/*.svg', 
+            'images/16x16/*.png', 
+            'images/22x22/*.png', 
+            'images/48x48/*.png', 
+            'images/scalable/*.svg'
             ]
 
 # add all subdirs of plugin with glade:
@@ -327,15 +327,15 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         if dirname.startswith("."):
             dirnames.remove(dirname)
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
-        data_list.append(os.path.join(dirpath[7:], '*.glade'))
-        data_list.append(os.path.join(dirpath[7:], '*.xml'))
-        data_list.append(os.path.join(dirpath[7:], '*.png'))
-        data_list.append(os.path.join(dirpath[7:], '*.svg'))
-        data_list.append(os.path.join(dirpath[7:], '*.css'))
-        data_list.append(os.path.join(dirpath[7:], '*.html'))
-        data_list.append(os.path.join(dirpath[7:], '*.js'))
-data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.gif'))
-data_list.append(os.path.join('plugins', 'webstuff', 'images', '*.ico'))
+        data_list.append(dirpath[7:] + '/*.glade')
+        data_list.append(dirpath[7:] + '/*.xml')
+        data_list.append(dirpath[7:] + '/*.png')
+        data_list.append(dirpath[7:] + '/*.svg')
+        data_list.append(dirpath[7:] + '/*.css')
+        data_list.append(dirpath[7:] + '/*.html')
+        data_list.append(dirpath[7:] + '/*.js')
+data_list.append('plugins/webstuff/images/*.gif')
+data_list.append('plugins/webstuff/images/*.ico')
 
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
@@ -421,17 +421,11 @@ setup(name = 'gramps',
             'gramps.plugins.webstuff',
             ],
       package_data={'gramps': data_list},
-      data_files=[('share' + os.sep + 'mime-info', 
-                        ['data' + os.sep + 'gramps.mime']),
-                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
-                    + '48x48' + os.sep + 'mimetypes', PNG_FILES), 
-                  ('share' + os.sep + 'icons' + os.sep + 'gnome' + os.sep 
-                    + 'scalable' + os.sep + 'mimetypes', SVG_FILES), 
-                  ('share' + os.sep + 'icons', ['gramps' + os.sep + 'images' 
-                    + os.sep + 'gramps.png']), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
-                    + 'example' + os.sep + 'gedcom', GEDCOM_FILES), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps' + os.sep 
-                    + 'example' + os.sep + 'gramps', GRAMPS_FILES), 
-                  ('share' + os.sep + 'doc' + os.sep + 'gramps', DOC_FILES)]
+      data_files=[('share/mime-info', ['data/gramps.mime']),
+                  ('share/icons/gnome/48x48/mimetypes', PNG_FILES), 
+                  ('share/icons/gnome/scalable/mimetypes', SVG_FILES), 
+                  ('share/icons', ['gramps/images/gramps.png']), 
+                  ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
+                  ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
+                  ('share/doc/gramps', DOC_FILES)]
 )
