@@ -83,7 +83,7 @@ def build_trans(build_cmd):
     for lang in ALL_LINGUAS:
         po_file = os.path.join('po', lang + '.po')
         mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'gramps.mo')
-
+        mo_file_unix = build_cmd.build_base + '/mo/' + lang + '/gramps.mo'
         mo_dir = os.path.dirname(mo_file)
         if not(os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
             os.makedirs(mo_dir)
@@ -95,8 +95,8 @@ def build_trans(build_cmd):
                 raise SystemExit(msg)
 
         #linux specific piece:
-        target = os.path.join('share', 'locale', lang, 'LC_MESSAGES')
-        data_files.append((target, [mo_file]))
+        target = 'share/locale/' + lang + '/LC_MESSAGES'
+        data_files.append((target, [mo_file_unix]))
 
         log.info('Compiling %s >> %s.', po_file, target)
 
@@ -105,7 +105,6 @@ def build_man(build_cmd):
     Compresses Gramps manual files
     '''
     data_files = build_cmd.distribution.data_files
-    build_data = build_cmd.build_base + os.sep + 'data' + os.sep
     for man_dir, dirs, files in os.walk(os.path.join('data', 'man')):
         if 'gramps.1.in' in files:
             filename = os.path.join(man_dir, 'gramps.1.in')
@@ -126,7 +125,7 @@ def build_man(build_cmd):
                     filename = False
                     os.remove(newfile)
 
-            while filename:
+            if filename:
                 f_in = open(newfile, 'rb')
                 f_out = gzip.open(man_file_gz, 'wb')
                 f_out.writelines(f_in)
@@ -137,8 +136,8 @@ def build_man(build_cmd):
                 filename = False
 
             lang = man_dir[8:]
-            src = build_data + 'man' + lang + os.sep + 'gramps.1.gz'
-            target = os.path.join('share', 'man', lang, 'man1')
+            src = build_cmd.build_base  + '/data/man/' + lang  + '/gramps.1.gz'
+            target = 'share/man/' + lang + '/man1'
             data_files.append((target, [src]))
 
             log.info('Compiling %s >> %s.', src, target)
@@ -152,24 +151,18 @@ def build_intl(build_cmd):
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
 
-    merge_files = (('data' + os.sep + 'gramps.desktop',
-                    'share' + os.sep + 'applications',
-                    '-d'),
-                    ('data' + os.sep + 'gramps.keys',
-                    'share' + os.sep + 'mime-info',
-                    '-k'),
-                    ('data' + os.sep + 'gramps.xml',
-                    'share' + os.sep + 'mime' + os.sep + 'packages',
-                    '-x'))
+    merge_files = (('data/gramps.desktop', 'share/applications', '-d'),
+                    ('data/gramps.keys', 'share/mime-info', '-k'),
+                    ('data/gramps.xml', 'share/mime/packages', '-x'))
 
     for filename, target, option in merge_files:
-        filename = convert_path(filename)
-        newfile = os.path.join(base, filename)
+        filenamelocal = convert_path(filename)
+        newfile = os.path.join(base, filenamelocal)
         newdir = os.path.dirname(newfile)
         if not(os.path.isdir(newdir) or os.path.islink(newdir)):
             os.makedirs(newdir)
-        merge(filename + '.in', newfile, option)
-        data_files.append((target, [base + os.sep + filename]))
+        merge(filenamelocal + '.in', newfile, option)
+        data_files.append((target, [base + '/' + filename]))
 
     for filename in INTLTOOL_FILES:
         filename = convert_path(filename)
@@ -206,7 +199,7 @@ def install_template(install_cmd):
         os.makedirs(build_scripts)
     data_files = install_cmd.distribution.data_files
     write_gramps_script(install_cmd, build_scripts)
-    data_files.append(('bin', [build_scripts + os.sep + 'gramps']))
+    data_files.append(('bin', [install_cmd.build_base + '/scripts/gramps']))
     write_const_py(install_cmd)
 
 def write_gramps_script(install_cmd, build_scripts):
@@ -353,7 +346,6 @@ setup(name = 'gramps',
       license = 'GPL v2 or greater', 
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
       cmdclass = {'build': build, 'install': install},
-      package_dir = {'gramps': 'gramps'}, 
       packages = ['gramps',
             'gramps.cli',
             'gramps.cli.plug',
