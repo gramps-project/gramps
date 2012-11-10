@@ -34,6 +34,7 @@ exclude po/POTFILES
 global-exclude *.pyc
 global-exclude *.py~
 global-exclude *.pyo
+global-exclude *.bak
 
 # Remove directories which should not be included in the distribution
 prune src/guiQML

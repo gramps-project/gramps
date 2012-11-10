@@ -11,10 +11,11 @@ you need to remove the old version first. You can delete the old
 version by deleting the installed directories (for example,
         /usr/share/gramps
         /usr/local/lib/pythonx.x/site-packages/gramps
-        /usr/local/lib/pythonx.x/dist-packages/
+        /usr/local/lib/pythonx.x/dist-packages/gramps
         /usr/lib/pythonx.x/site-packages/gramps
-        /usr/lib/pythonx.x/dist-packages/
+        /usr/lib/pythonx.x/dist-packages/gramps
     where pythonx.x is python2.7 or whatever version you installed gramps with.
+Also remove the gramps .egg files that are installed along the gramps directory.
 
 If you don't know the list of all files that Gramps installed, you can reinstall
 it with the --record option, and take a look at the list this produces (so
@@ -28,7 +29,8 @@ unstable!
 distutils install
 -----------------
 We do not check all dependencies of Gramps, see README for a 
-list of all required and optional dependencies.
+list of all required and optional dependencies. On running Gramps, errors will
+be returned if dependencies are missing.
 
 If you are building from released tarball, you should be able to just
 run 
@@ -56,15 +58,23 @@ Running Gramps
 Gramps is python only, so no compilation is needed, you can even run gramps
 from the source directory. 
 
- a) running with gramps installed globally
-   You can run gramps with the command:
+ a) You installed Gramps, then you can run it with the command
+
+     gramps 
+
+ b) You installed Gramps, and want to start it from the PYTHONPATH. In this
+    case use the command:
 
      python -c 'from gramps.grampsapp import main; main()'
 
-   You find in /usr/local/bin or /usr/bin the executable 'gramps' which does 
+   The executable 'gramps' in /usr/local/bin or /usr/bin from a) does 
    this for you.
 
- b) running from the source directory (where you extracted the Gramps source):
+ b) You downloaded the Gramps source code to a directory, and want to run it.
+    First, copy/rename the gramps/gen/const.py.in to gramps/gen/const.py. 
+    Edit this file if needed. Now you can start Gramps from the source code
+    directory with
+
      python Gramps.py
 
 
@@ -79,7 +89,8 @@ For example:
    python setup.py install --root ~/test --enable-packager-mode
 
 The last option, --enable-packager-mode, is needed if you want to disable
-execution of post-install mime processing.
+execution of post-install mime processing. If you don't have root/admin 
+access, this will be needed
 
 Packager's issues
 ------------------
