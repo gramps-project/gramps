@@ -23,7 +23,7 @@
 
 """ Unittest for testing POTFILES.in and Makefile contents """
 
-# PYTHONPATH=/../src python po_test.py
+# PYTHONPATH=/../gramps python po_test.py
 
 import unittest
 import os
@@ -168,8 +168,8 @@ def suite2():
             continue
         if glob.fnmatch.fnmatch(potfile,"*.py"):
             suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
-                                      ["import gettext",
-                                       "from gen.ggettext",
+                                      ["import gettext", 
+                                       "from gramps.gen.ggettext",
                                        "import sgettext"]))
         elif glob.fnmatch.fnmatch(potfile,"*.glade"):
             suite.addTest(TestGetText('test_gettext_glade_%04d', potfile,

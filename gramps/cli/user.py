@@ -38,6 +38,7 @@ import sys
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.ggettext import gettext as _
 from gramps.gen.user import User
 
 #------------------------------------------------------------------------
