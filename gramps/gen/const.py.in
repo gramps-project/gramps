@@ -1,4 +1,4 @@
-#                                                     -*- python -*-
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -26,6 +26,8 @@
 Provides constants for other modules
 """
 
+from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -40,7 +42,7 @@ import uuid
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ggettext import sgettext as _
+from .ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -119,12 +121,12 @@ WINDOWS = ["Windows", "win32"]
 # Windows apparently uses USERPROFILE
 #
 #-------------------------------------------------------------------------
-if os.environ.has_key('GRAMPSHOME'):
+if 'GRAMPSHOME' in os.environ:
     USER_HOME = os.environ['GRAMPSHOME'] 
     HOME_DIR = os.path.join(USER_HOME, 'gramps')
-elif os.environ.has_key('USERPROFILE'):
+elif 'USERPROFILE' in os.environ:
     USER_HOME = os.environ['USERPROFILE'] 
-    if os.environ.has_key('APPDATA'):
+    if 'APPDATA' in os.environ:
         HOME_DIR = os.path.join(os.environ['APPDATA'], 'gramps')
     else:
         HOME_DIR = os.path.join(USER_HOME, 'gramps')
@@ -134,8 +136,14 @@ else:
 
 # Conversion of USER_HOME to unicode was needed to have better
 # support for non ASCII path names in Windows for the Gramps database.
-USER_HOME = unicode(USER_HOME, sys.getfilesystemencoding())
-HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
+
+if sys.version_info[0] < 3:
+    if not isinstance(USER_HOME, unicode):
+        USER_HOME = unicode(USER_HOME, sys.getfilesystemencoding())
+    if not isinstance(HOME_DIR, unicode):
+        HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
+else:
+    pass
 
 #-------------------------------------------------------------------------
 #
@@ -143,13 +151,16 @@ HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
 # this one, and that the plugins directory is in a directory below this.
 #
 #-------------------------------------------------------------------------
-# test for sys.frozen to detect a py2exe executable on Windows
-if hasattr(sys, "frozen"):
-    ROOT_DIR = os.path.abspath(os.path.dirname(
-        unicode(sys.executable, sys.getfilesystemencoding())))
-else:
-    ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-        unicode(__file__, sys.getfilesystemencoding())), os.pardir))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            __file__), os.pardir))
+if sys.version_info[0] < 3:
+    # test for sys.frozen to detect a py2exe executable on Windows
+    if hasattr(sys, "frozen"):
+        ROOT_DIR = os.path.abspath(os.path.dirname(
+            unicode(sys.executable, sys.getfilesystemencoding())))
+    else:
+        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
 
 IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(
@@ -208,8 +219,8 @@ else:
 # About box information
 #
 #-------------------------------------------------------------------------
-COPYRIGHT_MSG  = u"\u00A9 2001-2006 Donald N. Allingham\n" \
-                 u"\u00A9 2007-2012 The Gramps Developers"
+COPYRIGHT_MSG  = "© 2001-2006 Donald N. Allingham\n" \
+                 "© 2007-2012 The Gramps Developers"
 COMMENTS       = _("Gramps (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
