@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-10-28 11:02+0100\n"
+"PO-Revision-Date: 2012-11-11 20:55+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -13304,7 +13304,7 @@ msgid ""
 "Gramps is a software package designed for genealogical research. Although similar to other genealogical programs, Gramps offers some unique and powerful features.\n"
 "\n"
 msgstr ""
-"Gramps is een software-pakket ontwikkeld voor genalogisch onderzoek. Al lijkt Gramps op andere genealogische programma's, toch bezit Gramps enkele unieke en krachtige mogelijkheden.\n"
+"Gramps is een software-pakket ontwikkeld voor genealogisch onderzoek. Al lijkt Gramps op andere genealogische programma's, toch bezit Gramps enkele unieke en krachtige mogelijkheden.\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:109
@@ -13352,7 +13352,7 @@ msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps is ontwikkeld door genealogen voor genealogen die georganiseerd zijn in het Gramps project. Gramps is een Open Bron Programma. U kunt dus vrijelijk  kopies maken en deze verdelen naar wie u wilt. Gramps is ontwikkeld en wordt onderhouden door eenwereldwijde groep van vrijwilligers die zich tot doel stellen Gramps zo krachtig mogelijk te maken maar toch makkelijk in gebruik.\n"
+"Gramps is ontwikkeld door genealogen voor genealogen die georganiseerd zijn in het Gramps project. Gramps is een Open Bron Programma. U kunt dus vrijelijk  kopies maken en deze verdelen naar wie u wilt. Gramps is ontwikkeld en wordt onderhouden door een wereldwijde groep van vrijwilligers die zich tot doel stellen Gramps zo krachtig mogelijk te maken maar toch makkelijk in gebruik.\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:125
@@ -13364,7 +13364,7 @@ msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"Het allereerste dat u dient te doen is een nieuwe familiestamboom aanmaken. Om een nieuwe familiestamboom (soms 'gegevensbestand' genoemd) aan te maken, selecteert u  \"Family Trees\" in het menu, kiest u  \"Familiestambomen beheren...\", drukt u op  \"Nieuw\" en benoemt u uw familiestamboom. Voor verdere details kunt u de informatie lezen die bij de bovenstaande links staat\n"
+"Het allereerste dat u dient te doen is een nieuwe familiestamboom aanmaken. Om een nieuwe familiestamboom (soms 'gegevensbestand' genoemd) aan te maken, selecteert u  \"Familiestambomen\" in het menu en kiest u  \"Familiestambomen beheren...\", drukt u op  \"Nieuw\" en benoemt u uw familiestamboom. Voor verdere details kunt u de informatie lezen die bij de bovenstaande links staat\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
@@ -13378,6 +13378,9 @@ msgid ""
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Momentteel leest u  de \"Gramplets\" pagina. Hier kunt u uw eigen gramplets toevoegen. Bovendien kunt u gramplets aan gelijk welk scherm toevoegen door gebruik te maken van het zijscherm of de onderste balk. Klik daarvoor met de rechtermuisknop rechts van de tab.\n"
+"\n"
+"U kunt op het configuratie-icoon klikken in de gereedschapsbalk om bijkomende kolommen toe te voegen. Wanneer u klikt met de rechtermuisknop op de achtergrond kunt u bijkomende gramplets toevoegen. U kunt ook de eigenschappenknop verslepen om de gramplet op een andere plaats te plaatsen en u kunt ook het scherm ontkoppelen zodat de gramplet boven de andere schermen \"zweeft\"."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -18411,9 +18414,8 @@ msgid "Center on this place"
 msgstr "Op deze locatie centreren"
 
 #: ../src/plugins/lib/maps/geography.py:980
-#, fuzzy
 msgid "You have at least two places with the same title."
-msgstr "U heeft geen leestoegangsrechten tot het geselecteerde bestand."
+msgstr "U heeft tenminste twee locaties met dezelfde titel."
 
 #: ../src/plugins/lib/maps/geography.py:981
 #, python-format
@@ -23460,9 +23462,8 @@ msgid "Stepmother"
 msgstr "Stiefmoeder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6263
-#, fuzzy
 msgid "Not siblings"
-msgstr "Broers en zussen tonen"
+msgstr "Geen halfbroers en halfzussen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6324
 msgid "Relation to main person"
@@ -24512,9 +24513,8 @@ msgid "but before:"
 msgstr "maar voor:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:51
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Gebeurtenissen veranderd na <datum/tijdstip>"
+msgstr "Voorwerpen veranderd na <datum/tijdstip>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:52
 #, fuzzy
@@ -24567,9 +24567,8 @@ msgid "Miscellaneous filters"
 msgstr "Overige filters"
 
 #: ../src/Filters/Rules/_HasSourceOfBase.py:47
-#, fuzzy
 msgid "Object with the <source>"
-msgstr "Personen met de <bron>"
+msgstr "Objecten met de <bron>"
 
 #: ../src/Filters/Rules/_HasSourceOfBase.py:48
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
@@ -24581,9 +24580,8 @@ msgid "Citation/source filters"
 msgstr "Citaat/bron filters"
 
 #: ../src/Filters/Rules/_HasSourceOfBase.py:49
-#, fuzzy
 msgid "Matches objects who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Objecten met een bepaalde bron vinden"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:47
 msgid "Persons changed after <date time>"
@@ -25547,9 +25545,8 @@ msgid "Families with the <source>"
 msgstr "Families met de <bron>"
 
 #: ../src/Filters/Rules/Family/_HasSourceOf.py:49
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Families met een bepaalde bron vinden"
 
 #: ../src/Filters/Rules/Family/_HasTag.py:49
 msgid "Families with the <tag>"
@@ -25989,9 +25986,8 @@ msgid "Matches places who have a particular source"
 msgstr "Vindt personen die een bepaalde bron hebben"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
-#, fuzzy
 msgid "Place with direct source >= <confidence level>"
-msgstr "Personen met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
+msgstr "Locatie met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:46
 #, fuzzy
@@ -25999,9 +25995,8 @@ msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr "Personen met tenminste een rechtstreekse bron met zekerheidsniveau zoeken"
 
 #: ../src/Filters/Rules/Place/_HasSourceCount.py:46
-#, fuzzy
 msgid "Place with <count> sources"
-msgstr "Personen met <aantal> bronnen"
+msgstr "Locaties met <aantal> bronnen"
 
 #: ../src/Filters/Rules/Place/_HasSourceCount.py:47
 #, fuzzy
@@ -26009,9 +26004,8 @@ msgid "Matches places with a certain number of sources connected to it"
 msgstr "Personen met een bepaald aantal bronnen vinden"
 
 #: ../src/Filters/Rules/Place/_HasCitation.py:52
-#, fuzzy
 msgid "Place with the <citation>"
-msgstr "Personen met het  <citaat>"
+msgstr "Locaties met het  <citaat>"
 
 # Geboortedatum van een bepaalde waarde (zijn bereiken ook mogelijk?)
 # Bepaalde geboortedatum misschien?
@@ -26422,9 +26416,8 @@ msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr "Vindt media-objecten waarvan de Gramps ID voldoet aan de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:46
-#, fuzzy
 msgid "Media with <count> sources"
-msgstr "Personen met <aantal> bronnen"
+msgstr "Media-objecten met <aantal> bronnen"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:47
 #, fuzzy
@@ -26432,9 +26425,8 @@ msgid "Matches media with a certain number of sources connected to it"
 msgstr "Vindt families met een bepaald aantal bronnen"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:51
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "Gebeurtenis met <citaat>"
+msgstr "Media-object met <citaat>"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:52
 #, fuzzy
@@ -26442,9 +26434,8 @@ msgid "Matches media with a citation of a particular value"
 msgstr "Vindt families met een citaat met een bapaalde waarde"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:47
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "Personen met de <bron>"
+msgstr "Media-object met de <bron>"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:49
 #, fuzzy
