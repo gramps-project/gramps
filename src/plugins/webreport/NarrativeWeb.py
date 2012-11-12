@@ -8593,6 +8593,7 @@ class NavWebOptions(MenuReportOptions):
             self.__navigation.set_available(True)
         else:
             self.__navigation.set_available(False)
+            self.__navigation.set_value("Horizontal")
 
     def __graph_changed(self):
         """
