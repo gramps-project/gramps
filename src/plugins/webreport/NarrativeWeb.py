@@ -2663,7 +2663,8 @@ class BasePage(object):
         """
         dumps the repository
         """
-
+        if len(repo_ref_list) == 0:
+            return None
         # Repository list division...
         with Html("div", class_ ="subsection", id ="repositories") as repositories:
             repositories += Html("h4", _("Repositories"), inline = True)
@@ -2694,6 +2695,7 @@ class BasePage(object):
                                                             repository.get_gramps_id(), self.up))
                         )
                         tbody += trow
+                        index += 1
         return repositories
 
     def dump_residence(self, has_res):
@@ -4270,12 +4272,24 @@ class SourcePages(BasePage):
                         repo_handle, source_fname,
                         source_name, source.gramps_id)
 
-    def display_pages(self, report, title, source_list, ppl_handle_list,
-                      database_handles_list):
-        # FIXME: Most of the parameters should be removed. report is passed to
-        # __init__, title appears not to be used and source_list,
-        # ppl_handle_list and database_handles_list violate modularity and
-        # should be removed.
+    def display_pages(self, report, title, source_list):
+        """
+        Generate and output the pages under the Sources tab, namely the sources
+        index and the individual sources pages.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        @param: source_list -- a dictionary object containg source handles as
+        the key and (backlink filename, backlink page_title, backlink gid) as
+        values -- now replaced by self.source_dict
+        
+        @param: ppl_handle_list -- list of Person handles that are included in
+        the web site -- no longer used
+        @param: database_handles_list -- tuple containg lists of persons,
+        families, events, places repositories and media that are included in
+        the web site -- no longer used
+        """
+        # FIXME: Perhaps report and title should just be passed in to the class
         log.debug("source_dict")
         for item in self.source_dict.iteritems():
             log.debug("    %s" % str(item))
@@ -4287,23 +4301,26 @@ class SourcePages(BasePage):
         log.debug("\n")
         report.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
-                                 len(source_list) + 1)
-        self.SourceListPage(report, title, source_list.keys())
+                                 len(self.source_dict) + 1)
+        self.SourceListPage(report, title, self.source_dict.keys())
 
         for item in self.source_dict.iteritems():
             report.user.step_progress()
-            self.SourcePage(report, title, item, source_list,
-                            ppl_handle_list, database_handles_list)
+            self.SourcePage(report, title, item)
 
         report.user.end_progress()
-        pass
     
-    
-    def SourceListPage(self, report, title, handle_set):
-        self.dbase_ = report.database
+    def SourceListPage(self, report, title, source_handles):
+        """
+        Generate and output the Sources index page.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        @param: source_handles -- a list of the handles of the sources to be
+        displayed
+        """
         BasePage.__init__(self, report, title)
 
-        handle_list = list(handle_set)
         source_dict = {}
 
         of, sio = self.report.create_file("sources")
@@ -4314,8 +4331,8 @@ class SourcePages(BasePage):
             body += sourceslist
 
             # Sort the sources
-            for handle in handle_list:
-                source = self.dbase_.get_source_from_handle(handle)
+            for handle in source_handles:
+                source = self.db.get_source_from_handle(handle)
                 if source is not None:
                     key = source.get_title() + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
@@ -4323,8 +4340,8 @@ class SourcePages(BasePage):
             keys = sorted(source_dict, key=locale.strxfrm)
 
             msg = _("This page contains an index of all the sources in the "
-                         "database, sorted by their title. Clicking on a source&#8217;s "
-                         "title will take you to that source&#8217;s page.")
+                    "database, sorted by their title. Clicking on a source&#8217;s "
+                    "title will take you to that source&#8217;s page.")
             sourceslist += Html("p", msg, id = "description")
 
             # begin sourcelist table and table head
@@ -4369,24 +4386,31 @@ class SourcePages(BasePage):
         # and close the file
         self.XHTMLWriter(sourcelistpage, of, sio)
 
-    def SourcePage(self, report, title, item, src_list, ppl_handle_list,
-                                        database_handles_list):
-        self.dbase_ = report.database
-
+    def SourcePage(self, report, title, item):
+        """
+        Generate and output an individual Source page.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        @param: item -- a tuple containing the source handle and a list of
+        back-references
+        """
+        self.dbase_ = report.database # needed for dump_repository_ref_list
         (src_handle, bkref_list) = item
-        source = self.dbase_.get_source_from_handle(src_handle)
+        source = self.db.get_source_from_handle(src_handle)
         if not source:
             return
 
-        self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
+        self.page_title = source.get_title()
 
         inc_repositories = self.report.options["inc_repository"]
         self.navigation  = self.report.options["navigation"]
 
         of, sio = self.report.create_file(src_handle, "src")
         self.up = True
-        sourcepage, head, body = self.write_header(_('Sources'))
+        sourcepage, head, body = self.write_header("%s - %s" % (_('Sources'), 
+                                                   self.page_title))
 
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as sourcedetail:
@@ -7559,8 +7583,7 @@ class NavWebReport(Report):
 
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
-        self.tab["Source"].display_pages(self, self.title, source_list,
-                                         ind_list, database_handles_list)
+        self.tab["Source"].display_pages(self, self.title, source_list)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
