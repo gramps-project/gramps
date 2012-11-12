@@ -4290,9 +4290,9 @@ class SourcePages(BasePage):
                                  len(source_list) + 1)
         self.SourceListPage(report, title, source_list.keys())
 
-        for source_handle in source_list:
+        for item in self.source_dict.iteritems():
             report.user.step_progress()
-            self.SourcePage(report, title, source_handle, source_list,
+            self.SourcePage(report, title, item, source_list,
                             ppl_handle_list, database_handles_list)
 
         report.user.end_progress()
@@ -4369,18 +4369,14 @@ class SourcePages(BasePage):
         # and close the file
         self.XHTMLWriter(sourcelistpage, of, sio)
 
-    def SourcePage(self, report, title, src_handle, src_list, ppl_handle_list,
+    def SourcePage(self, report, title, item, src_list, ppl_handle_list,
                                         database_handles_list):
         self.dbase_ = report.database
 
+        (src_handle, bkref_list) = item
         source = self.dbase_.get_source_from_handle(src_handle)
         if not source:
             return
-
-        # for use in determining if a citation referent is in the report database?
-        (db_people_handles, db_family_handles, db_event_handles, db_place_handles,
-                db_repository_handles, db_media_handles) = database_handles_list
-        db_source_handles = src_list
 
         self.page_title = source.get_title()
         BasePage.__init__(self, report, title, source.get_gramps_id())
@@ -4453,301 +4449,51 @@ class SourcePages(BasePage):
                 if repo_list is not None:
                     sourcedetail += repo_list
 
-            # get the Source and its Citation Referents too...
-            the_lists = Utils.get_source_and_citation_referents(src_handle, self.dbase_)
-            if the_lists:
-                (citation_list, citation_referents_list) = the_lists
-                if citation_referents_list:
-
-                    # begin Source Citation Referents section
-                    with Html("div", class_ ="subsection", id = "SourceCitationReferents") as section:
-                        sourcedetail += section
-
-                        # add secion title
-                        section += Html("h4", _("Citation References"), inline =True)
-
-                        ordered1 = Html("ol", class_ = "Col1", role = "Volume-n-Page")
-
-                        for (citation_handle, refs) in citation_referents_list:
-                            citation = self.dbase_.get_citation_from_handle(citation_handle)
-                            if citation:
-
-                                # gets all citation referents no matter on the filters...
-                                (people_list, family_list, event_list, place_list, source_list, media_list, repo_list) = refs
-
-
-                                # remove people that are not in this report database...
-                                people_list = [person_handle for person_handle in people_list if person_handle in db_people_handles]
-
-                                # Sort the person list by  the individual's surname...
-                                people_list = sort_people(self.dbase_, people_list)
-
-                                list1 = Html("li", citation.get_page())
-
-                                unordered2 = Html("ul", class_ = "Col2", id = "menu", role = "Object Type")
-
-                                # Citation Referents have Person objects... 
-                                if people_list:
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("People"), href = "#", title = _("People"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Surname")
-
-                                    for (surname, people_handle_list) in people_list:
-                                        list3 = Html("li")
-
-                                        list3.extend(
-                                            Html("a", surname, href = "#", title = surname, inline = True)
-                                        )
-
-                                        unordered4 = Html("ul", class_ = "Col4", role = "Short Name")
-
-                                        for person_handle in people_handle_list:
-                                            person = self.dbase_.get_person_from_handle(person_handle)
-                                            if person:
-                                                url = self.report.build_url_fname_html(person_handle, "ppl", up = self.up)
-                                                unordered4.extend(
-                                                    Html("li", self.person_link(url, person, name_style = False), inline = True)
-                                                )
-
-                                        list3 += unordered4
-                                        unordered3 += list3
-                                    list2 += unordered3
-                                    unordered2 += list2
-
-                                # remove family handles if they are not in this report database?
-                                family_list = [family_handle for family_handle in family_list if family_handle in db_family_handles]  
-
-                                # Citation Referents have Family Objects...
-                                if (self.inc_families and family_list):
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Families"), href = "#", title = _("Families"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Husband-n-Spouse")
-
-                                    for family_handle in family_list:
-                                        family = self.dbase_.get_family_from_handle(family_handle)
-                                        if family:
-                                            unordered3.extend(
-                                                Html("li", self.get_family_string(family))
-                                            )
-
-                                    list2 += unordered3
-                                    unordered2 += list2
-
-                                # remove event handles if they are not in this report database...
-                                event_list = [event_handle for event_handle in event_list if event_handle in db_event_handles]
-
-                                # Citation Referents have Event Objects...
-                                if (self.inc_events and event_list):
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Events"), href = "#", title = _("Events"), inline = True)
-                                    )
-                                    
-                                    event_handle_list, event_types = build_event_data_by_events(self.dbase_, event_list)
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Event Type")
-
-                                    # separate events by their types and then thier event handles
-                                    for (event_type, event_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
-
-                                        # sort data_list by date of event and event handle...
-                                        event_list = sorted(event_list, key = operator.itemgetter(0, 1))
-
-                                        list3 = Html("li")
-
-                                        list3.extend(
-                                            Html("a", event_type, href = "#", title = event_type, inline = True)
-                                        )
-
-                                        unordered4 = Html("ul", class_ = "Col4", role = "HyperLinked Event Date")
-
-                                        for (sort_value, event_handle) in event_list:
-                                            event = self.dbase_.get_event_from_handle(event_handle)
-                                            if event:
-                                                event_date = _dd.display(event.get_date_object())
-
-                                                list4 = Html("li")
-
-                                                list4.extend(
-                                                    Html("a", event_date, href = "#", title = event_date, inline = True)
-                                                )
-
-                                                unordered5 = Html("ul", class_ = "Col5")
-
-                                                # marriage or Divorce Event...
-                                                if event.get_type() in [gen.lib.EventType.MARRIAGE, gen.lib.EventType.DIVORCE]:
-
-                                                    for (classname, newhandle) in self.dbase_.find_backlink_handles(event_handle, ["Family"]):
-                                                        family = self.dbase_.get_family_from_handle(newhandle)
-                                                        if (family and newhandle in db_family_handles):
-                                                            unordered5.extend(
-                                                                Html("li", self.get_family_string(family))
-                                                            )
-
-                                                # any other event types...
-                                                else:
-                                                    back_handle_list = self.dbase_.find_backlink_handles(event_handle, ["Person"])
-                                                    back_handle_list = [(classname, handle) for (classname, handle) in back_handle_list]
-                                                    if back_handle_list:
-                                                        if len(back_handle_list) == 1:
-                                                            for (classname, newhandle) in back_handle_list:
-                                                                obj = self.dbase_.get_person_from_handle(newhandle)
-                                                                if obj:
-                                                                    unordered5.extend(
-                                                                        Html("li", self.event_link(event_handle, self.get_name(obj),
-                                                                            uplink = self.up), inline = True)
-                                                                    )
- 
-                                                        # this occurs when an event has multiple participants...
-                                                        else:
-
-                                                            for (classname, newhandle) in back_handle_list:
-                                                                obj = self.dbase_.get_person_from_handle(newhandle)
-                                                                if obj:
-                                                                    unordered5.extend(
-                                                                        Html("li", self.event_link(event_handle, self.get_name(obj),
-                                                                            uplink = self.up), inline = True)
-                                                                    )
-
-                                                list4 += unordered5
-                                                unordered4 += list4
-                                        list3 += unordered4
-                                        unordered3 += list3
-                                    list2 += unordered3
-                                    unordered2 += list2
-
-                                # remove place handles if they are not in this report database...
-                                place_list = [place_handle for place_handle in place_list if place_handle in db_place_handles]
-  
-                                # Citation Referents have Place Objects...
-                                if place_list:
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Places"), href = "#", title = _("Places"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Place Title")
-
-                                    for place_handle in place_list:
-                                        place = self.dbase_.get_place_from_handle(place_handle)
-                                        if place:
-                                            unordered3.extend(
-                                                Html("li", self.place_link(place_handle, place.get_title(), uplink = self.up),
-                                                        inline = True)
-                                            )
-
-                                    list2 += unordered3
-                                    unordered2 += list2
-  
-                                # remove sources if they are not in this report database...
-                                source_list = [source_handle for source_handle in source_list if source_handle in db_source_handles]
-
-                                # Citation Referents have Source Objects...
-                                if source_list:
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Sources"), href = "#", title = _("Sources"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Source Title")
-
-                                    for source_handle in source_list:
-                                        source = self.dbase_.get_source_from_handle(source_handle)
-                                        if source:
-                                            unordered3.extend(
-                                                Html("li", self.source_link(source_handle,
-                                                source.get_title(), source.get_gramps_id(),
-                                                        uplink = self.up), inline = True)
-                                            )
-
-                                    list2 += unordered3
-                                    unordered2 += list2
-
-                                # remove repositories if they are not in this report database...
-                                repo_list = [repo_handle for repo_handle in repo_list
-                                                if repo_handle in db_repository_handles]
-
-                                # Citation Referents have Repository Objects...
-                                if (inc_repositories and repo_list):
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Repositories"), href = "#", title = _("Repositories"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Repository Name")
-
-                                    for repository_handle in repo_list:
-                                        repository = self.dbase_.get_repository_from_handle(repository_handle)
-                                        if repository:
-                                            unordered3.extend(
-                                                Html("li", self.repository_link(repository_handle, repository.get_name(),
-                                                    uplink = self.up), inline = True)
-                                            )
-
-                                    list2 += unordered3
-                                    unordered2 += list2
-
-                                # remove media if they are not in this report database...
-                                media_list = [media_handle for media_handle in media_list if media_handle in db_media_handles]
-
-                                # Citation Referents has Media Objects...
-                                if (self.create_media and media_list):
-
-                                    sort = Sort.Sort(self.dbase_)
-                                    media_list = sorted(media_list, key = sort.by_media_title_key)
-
-                                    list2 = Html("li")
-
-                                    list2.extend(
-                                        Html("a", _("Media"), href = "#", title = _("Media"), inline = True)
-                                    )
-
-                                    unordered3 = Html("ul", class_ = "Col3", role = "Media Link")
-
-                                    for media_handle in media_list:
-                                        media = self.dbase_.get_object_from_handle(media_handle)
-                                        if media:
-                                            mime_type = media.get_mime_type()
-                                            if mime_type:
-                                                if mime_type.startswith("image/"):
-                                                    real_path, newpath = self.report.prepare_copy_media(media)
-                                                    newpath = self.report.build_url_fname(newpath, up = self.up)
-
-                                                    unordered3.extend(
-                                                        Html("li", self.media_link(media_handle, newpath, media.get_description(),
-                                                            self.up, usedescr = False), inline = True)
-                                                    )
-
-                                                else:
-                                                    unordered3.extend(
-                                                        Html("li", self.doc_link(media_handle, media.get_description(),
-                                                            self.up, usedescr = False), inline = True)
-                                                    )
-
-                                    list2 += unordered3
-                                    unordered2 += list2
-                                list1 += unordered2
-                                ordered1 += list1
-                        section += ordered1
-
+            # Source refernces lsit
+            # This would normally be simply:
+            # reflist = self.display_references(bkref_list)
+            # but that would simply give references to the citation page
+            # (which we don't actually generate), so we bypass the citation,
+            # and refer directly back to the object that referenced the 
+            # citation.
+            # Re-order the list of back references into a dictionary keyed by
+            # the Citation Volume/Page number
+            bkref_dict = defaultdict(set)
+            for bkref in bkref_list:
+                (object_bkref_path, bkref_name, bkref_gid) = bkref
+                (object_bkref_name, citation_bkref_name) = bkref_name
+                bkref_dict[citation_bkref_name].add(
+                            (object_bkref_path, object_bkref_name, bkref_gid))
+            
+            if bkref_dict:
+                # begin references division and title
+                with Html("div", class_ = "subsection", id = "references") as section:
+                    section += Html("h4", _("References"), inline = True)
+        
+                    ordered = Html("ol", class_ = "Col1",
+                                   role = "Volume-n-Page")
+                    section += ordered 
+                    # Loop round each Citation Volume/Page number
+                    for citation_bkref_name in sorted(bkref_dict,
+                                                      key=locale.strxfrm):
+                        list = Html("li")
+                        ordered += list
+                        list += citation_bkref_name
+                        
+                        ordered2 = Html("ol", type = "a")
+                        list += ordered2
+                        # Loop round each back reference sorted by the name for
+                        # this Volime/Page number
+                        for (path, name, gid) in sorted(
+                                    bkref_dict[citation_bkref_name],
+                                    key=lambda x:locale.strxfrm(x[1])):
+                            list2 = Html("li")
+                            ordered2 += list2
+                            # Note. 'path' already has a filename extension
+                            url = self.report.build_url_fname(path, None, self.up)
+                            list2 += self.person_link(url, name or _UNKNOWN, None, gid = gid)
+                sourcedetail += section
+                
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
