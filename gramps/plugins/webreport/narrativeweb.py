@@ -4293,12 +4293,6 @@ class SourcePages(BasePage):
         @param: source_list -- a dictionary object containg source handles as
         the key and (backlink filename, backlink page_title, backlink gid) as
         values -- now replaced by self.source_dict
-        
-        @param: ppl_handle_list -- list of Person handles that are included in
-        the web site -- no longer used
-        @param: database_handles_list -- tuple containg lists of persons,
-        families, events, places repositories and media that are included in
-        the web site -- no longer used
         """
         # FIXME: Perhaps report and title should just be passed in to the class
         log.debug("source_dict")
@@ -4591,10 +4585,15 @@ class MediaPages(BasePage):
                                 citation_handle, media_fname,
                                 media_name, media.gramps_id)
 
-    def display_pages(self, report, title, db_media_handles, source_list):
-        # FIXME: Most of the parameters should be removed. report is passed to
-        # __init__, title appears not to be used and db_media_handles and
-        # source_list violate modularity and should be removed.
+    def display_pages(self, report, title):
+        """
+        Generate and output the pages under the Media tab, namely the media
+        index and the individual media pages.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        """
+        # FIXME: Perhaps report and title should just be passed in to the class
         log.debug("media_dict")
         for item in self.media_dict.iteritems():
             log.debug("    %s" % str(item))
@@ -4607,32 +4606,36 @@ class MediaPages(BasePage):
         report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"), 
                                   len(report.photo_list) + 1)
-
-        # When display_pages is called, db_media_handles = [] It is populated by
-        # MediaListPage from sorted report.photo_list. It is subsequently used
-        # in various places to determine whether data has been written
-        self.MediaListPage(report, report.title)
+        
+        sort = Sort.Sort(report.database)
+        sorted_media_handles = sorted(self.media_dict,
+                                      key=sort.by_media_title_key)
+        self.MediaListPage(report, report.title, sorted_media_handles)
 
         prev = None
-        total = len(report.photo_list)
-        sort = Sort(report.database)
-        photo_keys = sorted(report.photo_list, key =sort.by_media_title_key)
-
+        total = len(self.media_dict)
         index = 1
-        for photo_handle in photo_keys:
+        for handle in sorted_media_handles:
             gc.collect() # Reduce memory usage when there are many images.
-            next = None if index == total else photo_keys[index]
+            next = None if index == total else sorted_media_handles[index]
             # Notice. Here report.photo_list[photo_handle] is used not
             # report.photo_list
             report.user.step_progress()
-            self.MediaPage(report, title, photo_handle, source_list,
-                           report.photo_list[photo_handle],
+            self.MediaPage(report, title, (handle, self.media_dict[handle]),
                            (prev, next, index, total))
-            prev = photo_handle
+            prev = handle
             index += 1
         report.user.end_progress()
 
-    def MediaListPage(self, report, title):
+    def MediaListPage(self, report, title, sorted_media_handles):
+        """
+        Generate and output the Media index page.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        @param: sorted_media_handles -- a list of the handles of the media to be
+        displayed sorted by the media title
+        """
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
@@ -4676,10 +4679,7 @@ class MediaPages(BasePage):
                 table += tbody
 
                 index = 1
-                sort = Sort(self.dbase_)
-                mlist = sorted(self.report.photo_list, key = sort.by_media_title_key)
-        
-                for media_handle in mlist:
+                 for media_handle in sorted_media_handles:
                     media = self.dbase_.get_object_from_handle(media_handle)
                     if media:
                         title = media.get_description() or "[untitled]"
@@ -4722,7 +4722,19 @@ class MediaPages(BasePage):
         # return hyperlink to its callers
         return hyper
 
-    def MediaPage(self, report, title, handle, src_list, my_media_list, info):
+    def MediaPage(self, report, title, item, info):
+        """
+        Generate and output an individual Media page.
+        
+        @param: report -- the instance of the main report class for this report
+        @param: title -- the web site title
+        @param: item -- a tuple containing the source handle and a list of
+        back-references
+        @param: info -- a tuple containing the media handle for the next and
+        previous media, the current page number, and the total number of 
+        media pages
+        """
+        (handle, my_media_list) = item
         (prev, next, page_number, total_pages) = info
         self.dbase_ = report.database
 
@@ -4736,7 +4748,7 @@ class MediaPages(BasePage):
         of, sio = self.report.create_file(handle, "img")
         self.up = True
 
-        self.src_list = src_list
+#       self.src_list = src_list
         self.bibli = Bibliography()
 
         # get media type to be used primarily with "img" tags
@@ -7587,9 +7599,8 @@ class NavWebReport(Report):
         db_media_handles = []
         if self.inc_gallery:
             if not self.create_thumbs_only:
-                self.tab["Media"].display_pages(self, self.title,
-                                             db_media_handles, source_list)
-#                db_media_handles = self.media_pages(source_list)
+                self.tab["Media"].display_pages(self, self.title)
+#                self.media_pages(source_list, db_media_handles)
 
             # build Thumbnail Preview Page...
             self.thumbnail_preview_page()
@@ -8851,8 +8862,8 @@ def first_letter(string):
         second_letter = normalize('NFKC', cuni(string))[1].upper()
         if second_letter == cuni('Z'):
             letter += cuni('z')
-        elif second_letter == cuni('‚âàŒ©'):
-            letter += cuni('‚âà√¶')
+        elif second_letter == cuni('‚Äö√¢√†≈í¬©'):
+            letter += cuni('‚Äö√¢√†‚àö¬∂')
     return letter
 
 def get_first_letters(dbase, menu_set, key):
