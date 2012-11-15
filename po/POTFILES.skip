@@ -464,8 +464,8 @@ gramps/plugins/quickview/__init__.py
 #
 # plugins/import directory
 #
-gramps/plugins/import/__init__.py
-gramps/plugins/import/test/importVCard_test.py
+gramps/plugins/importer/__init__.py
+gramps/plugins/importer/test/importVCard_test.py
 #
 # plugins/gramplet directory
 #

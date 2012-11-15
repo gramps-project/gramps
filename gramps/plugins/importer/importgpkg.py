@@ -49,7 +49,7 @@ log = logging.getLogger(".ReadPkg")
 from gramps.gen.const import XMLFILE
 from gramps.gen.utils.file import media_path
 ## we need absolute import as this is dynamically loaded:
-from gramps.plugins.importers.importxml import importData
+from gramps.plugins.importer.importxml import importData
 
 #-------------------------------------------------------------------------
 #
