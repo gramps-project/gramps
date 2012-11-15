@@ -63,7 +63,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
-from .exportxml import XmlWriter
+from exportxml import XmlWriter
 from gramps.gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
 from gramps.gen.constfunc import win
 
