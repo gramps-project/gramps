@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import win, mac, cuni, conv_to_unicode, conv_to_unicode_3
+from ..constfunc import win, mac, cuni, conv_to_unicode, UNITYPE
 from ..const import TEMP_DIR, USER_HOME
 
 #-------------------------------------------------------------------------
@@ -129,23 +129,35 @@ def get_unicode_path_from_file_chooser(path):
     :returns:    The Unicode version of path.
     """
     # make only unicode of path of type 'str'
+    if isinstance(path, UNITYPE):
+        return path
+    
     if not (isinstance(path,  str)):
         return path
-
+    ## ONLY PYTHON 2 code shoulr reach this !
     if win():
         # in windows filechooser returns officially utf-8, not filesystemencoding
         try:
             return cuni(path)
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
+            if sys.version_info[0] < 3:
+                return unicode(path, sys.getfilesystemencoding(), 
                                     errors='replace')
+            else:
+                #no idea, need to know what path is to know what to do
+                raise NotImplementedError("Path of type", type(path))
     else:
         try:
             return cuni(path, sys.getfilesystemencoding())
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return conv_to_unicode_3(path, sys.getfilesystemencoding(), errors='replace')    
+            if sys.version_info[0] < 3:
+                return unicode(path, sys.getfilesystemencoding(), errors='replace')
+            else:
+                #no idea, need to know what path is to know what to do
+                raise NotImplementedError("Path of type", type(path))
+            
 
 def get_unicode_path_from_env_var(path):
     """
@@ -167,15 +179,21 @@ def get_unicode_path_from_env_var(path):
             return new_path
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
-                                     errors='replace')
+            if sys.version_info[0] < 3:
+                return unicode(path, sys.getfilesystemencoding(), errors='replace')
+            else:
+                #no idea, need to know what path is to know what to do
+                raise NotImplementedError("Path of type", type(path))
     else:
         try:
             return str(path)
         except:
             LOG.warn("Problem encountered converting string: %s." % path)
-            return conv_to_unicode_3(path, sys.getfilesystemencoding(), 
-                                     errors='replace')    
+            if sys.version_info[0] < 3:
+                return unicode(path, sys.getfilesystemencoding(), errors='replace')
+            else:
+                #no idea, need to know what path is to know what to do
+                raise NotImplementedError("Path of type", type(path))
 
 def get_new_filename(ext, folder='~/'):
     ix = 1
@@ -300,6 +318,9 @@ def fix_encoding(value, errors='strict'):
                     codeset = locale.getpreferredencoding()
             except:
                 codeset = "UTF-8"
-            return conv_to_unicode_3(value, codeset, errors)
+            if sys.version_info[0] < 3:
+                return unicode(value, codeset, errors)
+            else:
+                return value.decode(encoding=codeset, errors=errors)
     else:
         return value

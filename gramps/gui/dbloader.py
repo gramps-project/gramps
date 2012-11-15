@@ -61,6 +61,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeError, 
                                       DbVersionError, 
                                       DbEnvironmentError)
+from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
@@ -132,7 +133,7 @@ class DbLoader(CLIDbLoader):
             
         pmgr = GuiPluginManager.get_instance()
         
-        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import database'), 
+        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'), 
                                        self.uistate.window, 
                                        Gtk.FileChooserAction.OPEN, 
                                        (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
@@ -205,8 +206,7 @@ class DbLoader(CLIDbLoader):
         In this process, a warning dialog can pop up.
         
         """
-
-        if not isinstance(filename, str):
+        if not isinstance(filename, STRTYPE):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))

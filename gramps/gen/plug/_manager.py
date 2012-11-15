@@ -312,7 +312,11 @@ class BasePluginManager(object):
         Reloads modules that might not be in the path.
         """
         try:
-            reload(module)
+            if sys.version_info[0] < 3:
+                reload(module)
+            else:
+                import imp
+                imp.reload(module)
         except:
             if pdata.mod_name in sys.modules:
                 del sys.modules[pdata.mod_name]

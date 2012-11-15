@@ -47,8 +47,9 @@ log = logging.getLogger(".ReadPkg")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import XMLFILE
-from . import importxml
 from gramps.gen.utils.file import media_path
+## we need absolute import as this is dynamically loaded:
+from gramps.plugins.importers.importxml import importData
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +92,7 @@ def impData(database, name, user):
 
     imp_db_name = os.path.join(tmpdir_path, XMLFILE)  
 
-    importer = importxml.importData
+    importer = importData
     info = importer(database, imp_db_name, user)
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!

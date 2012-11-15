@@ -410,6 +410,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         except:
             # Just assume that the Berkeley DB version is OK.
             pass
+        if not env_version:
+            #empty file, assume it is ok to open
+            env_version = (0, 0, 0)
         if (env_version[0] > bdb_version[0]) or \
             (env_version[0] == bdb_version[0] and
              env_version[1] > bdb_version[1]):
@@ -534,12 +537,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 if gstats is None:
                     # New database. Set up the current version.
-                    #self.metadata.put('version', _DBVERSION, txn=the_txn)
-                    txn.put('version', _DBVERSION)
+                    #self.metadata.put(b'version', _DBVERSION, txn=the_txn)
+                    txn.put(b'version', _DBVERSION)
                 elif b'version' not in self.metadata:
                     # Not new database, but the version is missing.
                     # Use 0, but it is likely to fail anyway.
-                    txn.put('version', 0)
+                    txn.put(b'version', 0)
             
         self.genderStats = GenderStats(gstats)
 
@@ -946,6 +949,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Remove the reference specified by the key, preserving the change in 
         the passed transaction.
         """
+        if isinstance(key, tuple):
+            #create a string key
+            key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if not self.readonly:
@@ -960,6 +966,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Add the reference specified by the key and the data, preserving the 
         change in the passed transaction.
         """
+        if isinstance(key, tuple):
+            #create a string key
+            key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if self.readonly or not key:
@@ -1193,10 +1202,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.update_env_version:
             versionpath = os.path.join(self.path, BDBVERSFN)
             try:
-                with open(versionpath, "wb") as version_file:
-                    version = db.version()
-                    if isinstance(version, UNITYPE):
-                        version = version.encode('utf-8')
+                with open(versionpath, "w") as version_file:
+                    version = str(db.version())
+                    if sys.version_info[0] < 3:
+                        if isinstance(version, UNITYPE):
+                            version = version.encode('utf-8')
                     version_file.write(version)
             except:
                 # Storing the version of Berkeley Db is not really vital.
@@ -2050,7 +2060,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.metadata  = self.__open_shelf(full_name, META)
         
         with BSDDBTxn(self.env, self.metadata) as txn:
-            txn.put('version', _DBVERSION)
+            txn.put(b'version', _DBVERSION)
         
         self.metadata.close()
         self.env.close()

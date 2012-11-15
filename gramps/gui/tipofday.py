@@ -29,10 +29,11 @@ Handles the Tip of the Day dialog
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from xml.parsers.expat import ParserCreate,ExpatError
+from xml.parsers.expat import ParserCreate, ExpatError
 from random import Random
 from gramps.gen.ggettext import gettext as _
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -139,7 +140,10 @@ class TipParser(object):
 
         self.mylist = []
         self.skip = False
-        xml_file = open(TIP_DATA)
+        if sys.version_info[0] < 3:
+            xml_file = open(TIP_DATA)
+        else:
+            xml_file = open(TIP_DATA, 'rb')
         self.tlist = []
         parser = ParserCreate()
         parser.StartElementHandler = self.startElement

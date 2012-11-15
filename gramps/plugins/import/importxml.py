@@ -437,7 +437,10 @@ class ImportOpenFileContextManager:
             if use_gzip:
                 xml_file = gzip.open(filename, "rb")
             else:
-                xml_file = open(filename, "r")
+                if sys.version_info[0] < 3:
+                    xml_file = open(filename, "r")
+                else:
+                    xml_file = open(filename, "rb")
         except IOError as msg:
             self.user.notify_error(_("%s could not be opened") % filename, str(msg))
             xml_file = None

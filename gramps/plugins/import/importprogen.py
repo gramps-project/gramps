@@ -53,7 +53,7 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event, 
                             EventRef, EventType, Family, FamilyRelType, Name, 
                             NameType, Note, NoteType, Person, Place, Source, 
-                            SourceRef, Surname)
+                            Surname)
 from gramps.gen.db import DbTxn
 
 class ProgenError(Exception):
@@ -153,17 +153,17 @@ def _read_recs(table, bname):
 
 
 def _get_defname(fname):
-    '''
+    """
     Get the name of the PG30 DEF file by looking at the user DEF file. And return
     the name of the DEF file. fname is expected to be somewhere in the PG30 tree.
 
     Contents of <fname> is something like:
-        => \0
-        => C:\PG30\NL\PG30-1.DEF
+        => \\0
+        => C:\\PG30\\NL\\PG30-1.DEF
 
     We will strip the C: and convert the rest to a native pathname. Next, this pathname
     is compared with <fname>.
-    '''
+    """
     lines = open(fname).readlines()
     if not lines[0].startswith(r'\0') or len(lines) < 2:
         raise ProgenError(_("Not a Pro-Gen file"))
@@ -596,6 +596,7 @@ class ProgenParser(object):
             self.db.add_source(source, self.trans)
             self.db.commit_source(source, self.trans)
             self.skeys[source_name] = source.get_handle()
+        raise Error('Sourceref no longer exists, this piece must be converted to citation!')
         sref = SourceRef()
         sref.set_reference_handle(source.get_handle())
         return sref

@@ -33,12 +33,9 @@ from __future__ import print_function
 
 import sys
 ## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
-try:
+if sys.version_info[0] < 3:
     reload(sys)
     sys.setdefaultencoding('utf8')
-except:
-    #python3 has no reload
-    pass
 ##
 import os
 import signal
