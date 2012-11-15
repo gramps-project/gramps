@@ -80,8 +80,27 @@ class RecentItem(object):
     def get_time(self):
         return self.time
 
-    def __cmp__(self, other_item):
-        return cmp(self.time, other_item.time)
+    def __eq__(self, other_item):
+        return self.time == other_item.time
+
+    def __ne__(self, other_item):
+        return self.time != other_item.time
+
+    def __lt__(self, other_item):
+        return self.time < other_item.time
+
+    def __gt__(self, other_item):
+        return self.time > other_item.time
+
+    def __le__(self, other_item):
+        return self.time <= other_item.time
+
+    def __ge__(self, other_item):
+        return self.time >= other_item.time
+
+##    Python 3, no __cmp__
+##    def __cmp__(self, other_item):
+##        return cmp(self.time, other_item.time)
 
 #-------------------------------------------------------------------------
 #

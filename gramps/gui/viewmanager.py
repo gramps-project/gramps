@@ -1372,7 +1372,8 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
-            filename = filename.encode(sys.getfilesystemencoding())
+            if sys.version_info[0] < 3:
+                filename = filename.encode(sys.getfilesystemencoding())
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 

@@ -292,7 +292,7 @@ class ListModel(object):
         """
         val = self.model.get_sort_column_id()
         col = val[0]
-        if col < 0:
+        if col is None or col < 0:
             return
         if col > 0:
             self.model.set_sort_column_id(col, val[1])

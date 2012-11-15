@@ -191,7 +191,10 @@ class ErrorDialog(Gtk.MessageDialog):
 
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
-        msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+        if sys.version_info[0] < 3:
+            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+        else:
+            msg = str(msg)
         ErrorDialog.__init__(
             self,
             _('Error detected in database'),
@@ -203,7 +206,10 @@ class RunDatabaseRepair(ErrorDialog):
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
-        msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+        if sys.version_info[0] < 3:
+            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+        else:
+            msg = str(msg)
         ErrorDialog.__init__(
             self,
             _("Low level database corruption detected"),

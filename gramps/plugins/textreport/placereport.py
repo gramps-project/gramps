@@ -171,7 +171,7 @@ class PlaceReport(Report):
         """
         event_handles = [event_handle for (object_type, event_handle) in
                          self.database.find_backlink_handles(handle)]
-        event_handles.sort(self.sort.by_date)
+        event_handles.sort(key=self.sort.by_date_key)
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
@@ -311,7 +311,7 @@ class PlaceReport(Report):
 
         for entry in keys:
             people = entry
-            person_dict[entry].sort(self.sort.by_date)
+            person_dict[entry].sort(key=self.sort.by_date_key)
             for evt_handle in person_dict[entry]:
                 event = self.database.get_event_from_handle(evt_handle)
                 if event:

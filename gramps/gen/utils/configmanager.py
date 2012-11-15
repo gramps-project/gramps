@@ -271,6 +271,9 @@ class ConfigManager(object):
                     if sys.version_info[0] >= 3:
                         if raw_value[:2] == "u'":
                             raw_value = raw_value[1:]
+                        elif raw_value.startswith('['):
+                            raw_value = raw_value.replace(", u'", ", '")
+                            raw_value = raw_value.replace("[u'", "['")
                     setting = opt.lower()
                     if oldstyle:
                     ####################### Upgrade from oldstyle < 3.2

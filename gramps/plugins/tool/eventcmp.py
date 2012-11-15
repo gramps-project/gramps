@@ -199,8 +199,8 @@ class EventComparison(tool.Tool,ManagedWindow):
 #
 #
 #-------------------------------------------------------------------------
-def by_value(first,second):
-    return cmp(second[0],first[0])
+##def by_value(first,second):
+##    return cmp(second[0],first[0])
 
 #-------------------------------------------------------------------------
 #
@@ -244,7 +244,7 @@ class DisplayChart(ManagedWindow):
 
         self.eventlist = self.topDialog.get_object('treeview')
         self.sort = Sort(self.db)
-        self.my_list.sort(self.sort.by_last_name)
+        self.my_list.sort(key=self.sort.by_last_name_key)
 
         self.event_titles = self.make_event_titles()
 
@@ -371,7 +371,8 @@ class DisplayChart(ManagedWindow):
                     break
                 the_map[name] += 1
 
-        unsort_list = sorted([(d, k) for k,d in the_map.items()],by_value)
+        unsort_list = sorted([(d, k) for k,d in the_map.items()],
+                             key=lambda x: x[0], reverse=True)
 
         sort_list = [ item[1] for item in unsort_list ]
 ## Presently there's no Birth and Death. Instead there's Birth Date and

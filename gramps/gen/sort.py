@@ -54,27 +54,27 @@ class Sort(object):
     def __init__(self, database):
         self.database = database
 
-    def by_last_name(self, first_id, second_id):
-        """Sort routine for comparing two last names. If last names are equal, 
-        uses the given name and suffix"""
-        first = self.database.get_person_from_handle(first_id)
-        second = self.database.get_person_from_handle(second_id)
-        
-        name1 = first.get_primary_name()
-        name2 = second.get_primary_name()
-
-        fsn = name1.get_surname()
-        ssn = name2.get_surname()
-
-        if fsn == ssn :
-            ffn = name1.get_first_name()
-            sfn = name2.get_first_name()
-            if ffn == sfn:
-                return locale.strcoll(name1.get_suffix(), name2.get_suffix())
-            else:
-                return locale.strcoll(ffn, sfn)
-        else:
-            return locale.strcoll(fsn, ssn)
+##    def by_last_name(self, first_id, second_id):
+##        """Sort routine for comparing two last names. If last names are equal, 
+##        uses the given name and suffix"""
+##        first = self.database.get_person_from_handle(first_id)
+##        second = self.database.get_person_from_handle(second_id)
+##        
+##        name1 = first.get_primary_name()
+##        name2 = second.get_primary_name()
+##
+##        fsn = name1.get_surname()
+##        ssn = name2.get_surname()
+##
+##        if fsn == ssn :
+##            ffn = name1.get_first_name()
+##            sfn = name2.get_first_name()
+##            if ffn == sfn:
+##                return locale.strcoll(name1.get_suffix(), name2.get_suffix())
+##            else:
+##                return locale.strcoll(ffn, sfn)
+##        else:
+##            return locale.strcoll(fsn, ssn)
 
     def by_last_name_key(self, first_id):
         """Sort routine for comparing two last names. If last names are equal, 
@@ -88,18 +88,18 @@ class Sort(object):
         fsu = name1.get_suffix()
         return locale.strxfrm(fsn + ffn + fsu)
 
-    def by_sorted_name(self, first_id, second_id):
-        """
-        Sort routine for comparing two displayed names.
-        """
-
-        first = self.database.get_person_from_handle(first_id)
-        second = self.database.get_person_from_handle(second_id)
-
-        name1 = _nd.sorted(first)
-        name2 = _nd.sorted(second)
-
-        return locale.strcoll(name1, name2)
+##    def by_sorted_name(self, first_id, second_id):
+##        """
+##        Sort routine for comparing two displayed names.
+##        """
+##
+##        first = self.database.get_person_from_handle(first_id)
+##        second = self.database.get_person_from_handle(second_id)
+##
+##        name1 = _nd.sorted(first)
+##        name2 = _nd.sorted(second)
+##
+##        return locale.strcoll(name1, name2)
 
     def by_sorted_name_key(self, first_id):
         """
@@ -112,31 +112,31 @@ class Sort(object):
 
         return locale.strxfrm(name1)
 
-    def by_birthdate(self, first_id, second_id):
-        """Sort routine for comparing two people by birth dates. If the birth dates
-        are equal, sorts by name"""
-        first = self.database.get_person_from_handle(first_id)
-        second = self.database.get_person_from_handle(second_id)
-
-        birth1 = get_birth_or_fallback(self.database, first)
-        if birth1:
-            date1 = birth1.get_date_object()
-        else:
-            date1 = Date()
-
-        birth2 = get_birth_or_fallback(self.database, second)
-        if birth2:
-            date2 = birth2.get_date_object()
-        else:
-            date2 = Date()
-
-        dsv1 = date1.get_sort_value()
-        dsv2 = date2.get_sort_value()
-
-        val = cmp(dsv1, dsv2)
-        if val == 0:
-            return self.by_last_name(first_id, second_id)
-        return val
+##    def by_birthdate(self, first_id, second_id):
+##        """Sort routine for comparing two people by birth dates. If the birth dates
+##        are equal, sorts by name"""
+##        first = self.database.get_person_from_handle(first_id)
+##        second = self.database.get_person_from_handle(second_id)
+##
+##        birth1 = get_birth_or_fallback(self.database, first)
+##        if birth1:
+##            date1 = birth1.get_date_object()
+##        else:
+##            date1 = Date()
+##
+##        birth2 = get_birth_or_fallback(self.database, second)
+##        if birth2:
+##            date2 = birth2.get_date_object()
+##        else:
+##            date2 = Date()
+##
+##        dsv1 = date1.get_sort_value()
+##        dsv2 = date2.get_sort_value()
+##
+##        val = cmp(dsv1, dsv2)
+##        if val == 0:
+##            return self.by_last_name(first_id, second_id)
+##        return val
 
     def by_birthdate_key(self, first_id):
         """Sort routine for comparing two people by birth dates. If the birth dates
@@ -152,15 +152,15 @@ class Sort(object):
         dsv1 = date1.get_sort_value()
         return "%08d" % dsv1 + self.by_last_name_key(first_id)
 
-    def by_date(self, a_id, b_id):
-        """Sort routine for comparing two events by their dates. """
-        if not (a_id and b_id):
-            return 0
-        a_obj = self.database.get_event_from_handle(a_id)
-        b_obj = self.database.get_event_from_handle(b_id)
-        dsv1 = a_obj.get_date_object().get_sort_value()
-        dsv2 = b_obj.get_date_object().get_sort_value()
-        return cmp(dsv1, dsv2)
+##    def by_date(self, a_id, b_id):
+##        """Sort routine for comparing two events by their dates. """
+##        if not (a_id and b_id):
+##            return 0
+##        a_obj = self.database.get_event_from_handle(a_id)
+##        b_obj = self.database.get_event_from_handle(b_id)
+##        dsv1 = a_obj.get_date_object().get_sort_value()
+##        dsv2 = b_obj.get_date_object().get_sort_value()
+##        return cmp(dsv1, dsv2)
 
     def by_date_key(self, a_id):
         """Sort routine for comparing two events by their dates. """
@@ -169,13 +169,13 @@ class Sort(object):
         a_obj = self.database.get_event_from_handle(a_id)
         return a_obj.get_date_object().get_sort_value()
 
-    def by_place_title(self, a_id, b_id):
-        """Sort routine for comparing two places. """
-        if not (a_id and b_id):
-            return 0
-        a_obj = self.database.get_place_from_handle(a_id)
-        b_obj = self.database.get_place_from_handle(b_id)
-        return locale.strcoll(a_obj.title, b_obj.title)
+##    def by_place_title(self, a_id, b_id):
+##        """Sort routine for comparing two places. """
+##        if not (a_id and b_id):
+##            return 0
+##        a_obj = self.database.get_place_from_handle(a_id)
+##        b_obj = self.database.get_place_from_handle(b_id)
+##        return locale.strcoll(a_obj.title, b_obj.title)
 
     def by_place_title_key(self, a_id):
         """Sort routine for comparing two places. """
@@ -184,21 +184,21 @@ class Sort(object):
         a_obj = self.database.get_place_from_handle(a_id)
         return locale.strxfrm(a_obj.title)
 
-    def by_event_place(self, a_id, b_id):
-        """Sort routine for comparing two events by their places. """
-        if not (a_id and b_id):
-            return 0
-        evt_a = self.database.get_event_from_handle(a_id)
-        evt_b = self.database.get_event_from_handle(b_id)
-        plc_a = self.database.get_place_from_handle(evt_a.get_place_handle())
-        plc_b = self.database.get_place_from_handle(evt_b.get_place_handle())
-        plc_a_title = ""
-        plc_b_title = ""
-        if plc_a:
-            plc_a_title = plc_a.title
-        if plc_b:
-            plc_b_title = plc_b.title
-        return locale.strcoll(plc_a_title, plc_b_title)
+##    def by_event_place(self, a_id, b_id):
+##        """Sort routine for comparing two events by their places. """
+##        if not (a_id and b_id):
+##            return 0
+##        evt_a = self.database.get_event_from_handle(a_id)
+##        evt_b = self.database.get_event_from_handle(b_id)
+##        plc_a = self.database.get_place_from_handle(evt_a.get_place_handle())
+##        plc_b = self.database.get_place_from_handle(evt_b.get_place_handle())
+##        plc_a_title = ""
+##        plc_b_title = ""
+##        if plc_a:
+##            plc_a_title = plc_a.title
+##        if plc_b:
+##            plc_b_title = plc_b.title
+##        return locale.strcoll(plc_a_title, plc_b_title)
 
     def by_event_place_key(self, a_id):
         """Sort routine for comparing two events by their places. """
@@ -209,13 +209,13 @@ class Sort(object):
         plc_a_title = plc_a.title if plc_a else ""
         return locale.strxfrm(plc_a_title)
 
-    def by_event_description(self, a_id, b_id):
-        """Sort routine for comparing two events by their descriptions. """
-        if not (a_id and b_id):
-            return 0
-        evt_a = self.database.get_event_from_handle(a_id)
-        evt_b = self.database.get_event_from_handle(b_id)
-        return locale.strcoll(evt_a.get_description(), evt_b.get_description())
+##    def by_event_description(self, a_id, b_id):
+##        """Sort routine for comparing two events by their descriptions. """
+##        if not (a_id and b_id):
+##            return 0
+##        evt_a = self.database.get_event_from_handle(a_id)
+##        evt_b = self.database.get_event_from_handle(b_id)
+##        return locale.strcoll(evt_a.get_description(), evt_b.get_description())
 
     def by_event_description_key(self, a_id):
         """Sort routine for comparing two events by their descriptions. """
@@ -224,13 +224,13 @@ class Sort(object):
         evt_a = self.database.get_event_from_handle(a_id)
         return locale.strxfrm(evt_a.get_description())
 
-    def by_event_id(self, a_id, b_id):
-        """Sort routine for comparing two events by their ID. """
-        if not (a_id and b_id):
-            return 0
-        evt_a = self.database.get_event_from_handle(a_id)
-        evt_b = self.database.get_event_from_handle(b_id)
-        return locale.strcoll(evt_a.get_gramps_id(), evt_b.get_gramps_id())
+##    def by_event_id(self, a_id, b_id):
+##        """Sort routine for comparing two events by their ID. """
+##        if not (a_id and b_id):
+##            return 0
+##        evt_a = self.database.get_event_from_handle(a_id)
+##        evt_b = self.database.get_event_from_handle(b_id)
+##        return locale.strcoll(evt_a.get_gramps_id(), evt_b.get_gramps_id())
 
     def by_event_id_key(self, a_id):
         """Sort routine for comparing two events by their ID. """
@@ -239,13 +239,13 @@ class Sort(object):
         evt_a = self.database.get_event_from_handle(a_id)
         return locale.strxfrm(evt_a.get_gramps_id())
 
-    def by_event_type(self, a_id, b_id):
-        """Sort routine for comparing two events by their type. """
-        if not (a_id and b_id):
-            return 0
-        evt_a = self.database.get_event_from_handle(a_id)
-        evt_b = self.database.get_event_from_handle(b_id)
-        return locale.strcoll(str(evt_a.get_type()), str(evt_b.get_type()))
+##    def by_event_type(self, a_id, b_id):
+##        """Sort routine for comparing two events by their type. """
+##        if not (a_id and b_id):
+##            return 0
+##        evt_a = self.database.get_event_from_handle(a_id)
+##        evt_b = self.database.get_event_from_handle(b_id)
+##        return locale.strcoll(str(evt_a.get_type()), str(evt_b.get_type()))
 
     def by_event_type_key(self, a_id):
         """Sort routine for comparing two events by their type. """
@@ -254,13 +254,13 @@ class Sort(object):
         evt_a = self.database.get_event_from_handle(a_id)
         return locale.strxfrm(str(evt_a.get_type()))
     
-    def by_media_title(self,a_id,b_id):
-        """Sort routine for comparing two media objects by their title. """
-        if not (a_id and b_id):
-            return False
-        a = self.database.get_object_from_handle(a_id)
-        b = self.database.get_object_from_handle(b_id)
-        return locale.strcoll(a.desc, b.desc)
+##    def by_media_title(self,a_id,b_id):
+##        """Sort routine for comparing two media objects by their title. """
+##        if not (a_id and b_id):
+##            return False
+##        a = self.database.get_object_from_handle(a_id)
+##        b = self.database.get_object_from_handle(b_id)
+##        return locale.strcoll(a.desc, b.desc)
     
     def by_media_title_key(self, a_id):
         """Sort routine for comparing two media objects by their title. """
@@ -268,4 +268,3 @@ class Sort(object):
             return False
         a = self.database.get_object_from_handle(a_id)
         return locale.strxfrm(a.desc)
-    

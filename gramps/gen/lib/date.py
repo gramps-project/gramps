@@ -249,17 +249,20 @@ class Span(object):
         else:
             return  (self.sort[0] + self.sort[1])
 
-    def __cmp__(self, other):
-        """
-        Comparing two Spans for SORTING purposes. 
-        Use cmp(abs(int(span1)), abs(int(span2))) for comparing
-        actual spans of times, as spans have directionality 
-        as indicated by negative values.
-        """
-        if other is None:
-            return cmp(int(self), -9999)
-        else:
-            return cmp(int(self), int(other))
+##    def __cmp__(self, other):
+##        """
+##        DEPRECATED - not available in python 3
+##        
+##        Comparing two Spans for SORTING purposes. 
+##        Use cmp(abs(int(span1)), abs(int(span2))) for comparing
+##        actual spans of times, as spans have directionality 
+##        as indicated by negative values.
+##        """
+##        raise NotImplementedError
+##        if other is None:
+##            return cmp(int(self), -9999)
+##        else:
+##            return cmp(int(self), int(other))
 
     def as_age(self):
         """
@@ -699,17 +702,64 @@ class Date(object):
         self.sortval  = source.sortval
         self.newyear  = source.newyear
 
-    def __cmp__(self, other):
+##   PYTHON 3 no __cmp__
+##    def __cmp__(self, other):
+##        """
+##        Compare two dates.
+##        
+##        Comparison function. Allows the usage of equality tests.
+##        This allows you do run statements like 'date1 <= date2'
+##        """
+##        if isinstance(other, Date):
+##            return cmp(self.sortval, other.sortval)
+##        else:
+##            return -1
+
+    # Can't use this (as is) as this breaks comparing dates to None
+    #def __eq__(self, other):
+    #    return self.sortval == other.sortval
+    
+    def __eq__(self, other):
         """
-        Compare two dates.
-        
-        Comparison function. Allows the usage of equality tests.
-        This allows you do run statements like 'date1 <= date2'
+        Equality based on sort value, use is_equal/match instead if needed
         """
         if isinstance(other, Date):
-            return cmp(self.sortval, other.sortval)
+            return self.sortval == other.sortval
         else:
-            return -1
+            #indicate this is not supported
+            return False
+
+    def __ne__(self, other):
+        """
+        Equality based on sort value, use is_equal/match instead if needed
+        """
+        if isinstance(other, Date):
+            return self.sortval != other.sortval
+        else:
+            #indicate this is not supported
+            return True
+
+    def __le__(self, other):
+        """
+        <= based on sort value, use match instead if needed
+        So this is different from using < which uses match!
+        """
+        if isinstance(other, Date):
+            return self.sortval <= other.sortval
+        else:
+            #indicate this is not supported
+            return NotImplemented
+
+    def __ge__(self, other):
+        """
+        >= based on sort value, use match instead if needed
+        So this is different from using > which uses match!
+        """
+        if isinstance(other, Date):
+            return self.sortval >= other.sortval
+        else:
+            #indicate this is not supported
+            return NotImplemented
 
     def __add__(self, other):
         """
@@ -741,10 +791,6 @@ class Date(object):
         else:
             raise AttributeError("unknown date sub type: %s " % type(other))
 
-    # Can't use this (as is) as this breaks comparing dates to None
-    #def __eq__(self, other):
-    #    return self.sortval == other.sortval
-
     def __contains__(self, string):
         """
         For use with "x in Date" syntax.
@@ -759,7 +805,7 @@ class Date(object):
 
     def __lt__(self, other):
         """
-        Comparison for less than.
+        Comparison for less than using match, use sortval instead if needed.
         """
         return self.match(other, comparison="<")
 
@@ -771,7 +817,7 @@ class Date(object):
 
     def __gt__(self, other):
         """
-        Comparison for greater than.
+        Comparison for greater than using match, use sortval instead if needed.
         """
         return self.match(other, comparison=">")
 

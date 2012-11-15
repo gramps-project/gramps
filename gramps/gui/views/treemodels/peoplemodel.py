@@ -204,11 +204,12 @@ class PeopleBaseModel(object):
             name = self.lru_name[handle]
         else:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
-            # internally we work with utf-8
-            if isinstance(name, UNITYPE):
+            # internally we work with utf-8 for python 2.7
+            if not isinstance(name, str):
                 name = name.encode('utf-8')
             if not self._in_build:
                 self.lru_name[handle] = name
+        
         return name
 
     def column_spouse(self, data):

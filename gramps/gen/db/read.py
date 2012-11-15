@@ -105,12 +105,14 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
+    returns a byte string
     """
     return __index_surname(data[3][5])
 
 def find_surname_name(key, data):
     """
     Creating a surname from raw name, to use for sort and index
+    returns a byte string
     """
     return __index_surname(data[5])
 
@@ -118,6 +120,7 @@ def __index_surname(surn_list):
     """
     All non pa/matronymic surnames are used in indexing.
     pa/matronymic not as they change for every generation!
+    returns a byte string
     """
     if surn_list:
         surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
@@ -532,9 +535,12 @@ class DbBsddbRead(DbReadBase, Callback):
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        while trans.get(str(index), txn=self.txn) is not None:
+        #in bytes
+        bindex = index.encode('utf-8')
+        while trans.get(bindex, txn=self.txn) is not None:
             map_index += 1
             index = prefix % map_index
+            bindex = index.encode('utf-8')
         map_index += 1
         return (map_index, index)
         
@@ -620,7 +626,9 @@ class DbBsddbRead(DbReadBase, Callback):
         return gid
 
     def get_from_handle(self, handle, class_type, data_map):
-        data = data_map.get(str(handle))
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        data = data_map.get(handle)
         if data:
             newobj = class_type()
             newobj.unserialize(data)
@@ -737,8 +745,10 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_from_handle(handle, Tag, self.tag_map)
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
+        if isinstance(val, UNITYPE):
+            val = val.encode('utf-8')
         try:
-            data = tbl.get(str(val), txn=self.txn)
+            data = tbl.get(val, txn=self.txn)
             if data is not None:
                 obj = class_()
                 ### FIXME: this is a dirty hack that works without no
@@ -852,12 +862,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        
         if isinstance(surname, UNITYPE):
-            ssurname = surname.encode('utf-8')
-            return conv_dbstr_to_unicode(self.name_group.get(ssurname, ssurname))
-        else:
-            return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
+            surname = surname.encode('utf-8')
+        return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
 
     def get_name_group_keys(self):
         """
@@ -872,9 +879,8 @@ class DbBsddbRead(DbReadBase, Callback):
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
         if isinstance(name, UNITYPE):
-            return name.encode('utf-8') in self.name_group
-        else:
-            return name in self.name_group
+            name = name.encode('utf-8')
+        return name in self.name_group
 
     def get_number_of_records(self, table):
         if not self.db_is_open:
@@ -1148,8 +1154,9 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        #return str(gramps_id) in table
-        return table.get(str(gramps_id), txn=self.txn) is not None
+        if isinstance(gramps_id, UNITYPE):
+            gramps_id = gramps_id.encode('utf-8')
+        return table.get(gramps_id, txn=self.txn) is not None
 
     def find_initial_person(self):
         person = self.get_default_person()
@@ -1189,7 +1196,7 @@ class DbBsddbRead(DbReadBase, Callback):
                     id_number = gramps_id[len(str_prefix):]
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
-                        if len(str(id_value)) > nr_width:
+                        if len(cuni(id_value)) > nr_width:
                             # The ID to be imported is too large to fit in the
                             # users format. For now just create a new ID,
                             # because that is also what happens with IDs that
@@ -1383,13 +1390,13 @@ class DbBsddbRead(DbReadBase, Callback):
         if person:
             return person
         elif (self.metadata is not None) and (not self.readonly):
-            self.metadata['default'] = None
+            self.metadata[b'default'] = None
         return None
 
     def get_default_handle(self):
         """Return the default Person of the database."""
         if self.metadata is not None:
-            return self.metadata.get('default')
+            return self.metadata.get(b'default')
         return None
 
     def get_save_path(self):
@@ -1505,8 +1512,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper method for get_raw_<object>_data methods
         """
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
         try:
-            return table.get(str(handle), txn=self.txn)
+            return table.get(handle, txn=self.txn)
         except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
@@ -1545,8 +1554,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper function for has_<object>_handle methods
         """
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
         try:
-            return table.get(str(handle), txn=self.txn) is not None
+            return table.get(handle, txn=self.txn) is not None
         except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
@@ -1611,62 +1622,94 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.tag_map, handle)
 
-    def __sortbyperson_key(self, person):
-        return locale.strxfrm(find_surname(str(person), 
-                                           self.person_map.get(str(person))))
+    def __sortbyperson_key(self, handle):
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        return locale.strxfrm(find_surname(handle, 
+                                           self.person_map.get(handle)))
 
     def __sortbyplace(self, first, second):
-        return locale.strcoll(self.place_map.get(str(first))[2], 
-                              self.place_map.get(str(second))[2])
+        if isinstance(first, UNITYPE):
+            first = first.encode('utf-8')
+        if isinstance(second, UNITYPE):
+            second = second.encode('utf-8')
+        return locale.strcoll(self.place_map.get(first)[2], 
+                              self.place_map.get(second)[2])
 
     def __sortbyplace_key(self, place):
-        return locale.strxfrm(self.place_map.get(str(place))[2])
+        if isinstance(place, UNITYPE):
+            place = place.encode('utf-8')
+        return locale.strxfrm(self.place_map.get(place)[2])
 
     def __sortbysource(self, first, second):
-        source1 = cuni(self.source_map[str(first)][2])
-        source2 = cuni(self.source_map[str(second)][2])
+        if isinstance(first, UNITYPE):
+            first = first.encode('utf-8')
+        if isinstance(second, UNITYPE):
+            second = second.encode('utf-8')
+        source1 = cuni(self.source_map[first][2])
+        source2 = cuni(self.source_map[second][2])
         return locale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
-        source = cuni(self.source_map[str(key)][2])
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        source = cuni(self.source_map[key][2])
         return locale.strxfrm(source)
 
     def __sortbycitation(self, first, second):
-        citation1 = cuni(self.citation_map[str(first)][3])
-        citation2 = cuni(self.citation_map[str(second)][3])
+        if isinstance(first, UNITYPE):
+            first = first.encode('utf-8')
+        if isinstance(second, UNITYPE):
+            second = second.encode('utf-8')
+        citation1 = cuni(self.citation_map[first][3])
+        citation2 = cuni(self.citation_map[second][3])
         return locale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
-        citation = cuni(self.citation_map[str(key)][3])
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        citation = cuni(self.citation_map[key][3])
         return locale.strxfrm(citation)
 
     def __sortbymedia(self, first, second):
-        media1 = self.media_map[str(first)][4]
-        media2 = self.media_map[str(second)][4]
+        if isinstance(first, UNITYPE):
+            first = first.encode('utf-8')
+        if isinstance(second, UNITYPE):
+            second = second.encode('utf-8')
+        media1 = self.media_map[first][4]
+        media2 = self.media_map[second][4]
         return locale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
-        media = self.media_map[str(key)][4]
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        media = self.media_map[key][4]
         return locale.strxfrm(media)
 
     def __sortbytag(self, first, second):
-        tag1 = self.tag_map[str(first)][1]
-        tag2 = self.tag_map[str(second)][1]
+        if isinstance(first, UNITYPE):
+            first = first.encode('utf-8')
+        if isinstance(second, UNITYPE):
+            second = second.encode('utf-8')
+        tag1 = self.tag_map[first][1]
+        tag2 = self.tag_map[second][1]
         return locale.strcoll(tag1, tag2)
 
     def __sortbytag_key(self, key):
-        tag = self.tag_map[str(key)][1]
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        tag = self.tag_map[key][1]
         return locale.strxfrm(tag)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
         if (self.metadata is not None) and (not self.readonly):
-            self.metadata['mediapath'] = path
+            self.metadata[b'mediapath'] = path
 
     def get_mediapath(self):
         """Return the default media path of the database."""
         if self.metadata is not None:
-            return self.metadata.get('mediapath', None)
+            return self.metadata.get(b'mediapath', None)
         return None
 
     def find_backlink_handles(self, handle, include_classes=None):

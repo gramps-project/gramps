@@ -109,14 +109,6 @@ _name2typeclass = {
 
 #-------------------------------------------------------------------------
 #
-# Sorting function for the filter rules
-#
-#-------------------------------------------------------------------------
-def by_rule_name(f, s):
-    return cmp(f.name, s.name)
-
-#-------------------------------------------------------------------------
-#
 # MyBoolean - check button with standard interface
 #
 #-------------------------------------------------------------------------
@@ -597,7 +589,7 @@ class EditRule(ManagedWindow):
         else:
             self.sel_class = None
 
-        keys = sorted(the_map, by_rule_name, reverse=True)
+        keys = sorted(the_map, key=lambda x: x.name, reverse=True)
         catlist = sorted(set(class_obj.category for class_obj in keys))
 
         for category in catlist:

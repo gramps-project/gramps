@@ -186,9 +186,9 @@ class SimpleTable(object):
         idx = self._columns.index(self._sort_col)
         # FIXME: move raw_data with this
         if self._sort_reverse:
-            self._rows.sort(lambda a, b: -cmp(a[idx],b[idx]))
+            self._rows.sort(key=lambda a: a[idx], reverse=True)
         else:
-            self._rows.sort(lambda a, b: cmp(a[idx],b[idx]))
+            self._rows.sort(key=lambda a: a[idx])
 
     def write(self, document, column_widths=None):
         doc = document.doc

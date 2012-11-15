@@ -1089,11 +1089,18 @@ class GedcomInfoDB(object):
         self.standard = GedcomDescription("GEDCOM 5.5 standard")
         self.standard.set_dest("GEDCOM 5.5")
 
-        try:
-            filepath = os.path.join(DATA_DIR,"gedcom.xml")
-            ged_file = open(filepath.encode('iso8859-1'),"r")
-        except:
-            return
+        if sys.version_info[0] < 3:
+            try:
+                filepath = os.path.join(DATA_DIR, "gedcom.xml")
+                ged_file = open(filepath.encode('iso8859-1'), "r")
+            except:
+                return
+        else:
+            try:
+                filepath = os.path.join(DATA_DIR, "gedcom.xml")
+                ged_file = open(filepath, "rb")
+            except:
+                return
 
         parser = GedInfoParser(self)
         parser.parse(ged_file)

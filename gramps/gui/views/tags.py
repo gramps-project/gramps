@@ -566,7 +566,7 @@ class EditTag(object):
                 self.db.add_tag(self.tag, trans)
         else:
             orig = self.db.get_tag_from_handle(self.tag.get_handle())
-            if cmp(self.tag.serialize(), orig.serialize()):
+            if self.tag.serialize() != orig.serialize():
                 msg = _("Edit Tag (%s)") % self.tag.get_name()
                 with DbTxn(msg, self.db) as trans:
                     self.db.commit_tag(self.tag, trans)

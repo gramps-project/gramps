@@ -157,7 +157,7 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
             #add tuple function, translated name, name, status
             showlst.append(pdata)
             
-    showlst.sort(by_menu_name)
+    showlst.sort(key=lambda x: x.name)
     for pdata in showlst:
         new_key = pdata.id.replace(' ', '-')
         ofile.write('<menuitem action="%s"/>' % new_key)
@@ -167,9 +167,6 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     ofile.write('</menu>')
     
     return (ofile.getvalue(), actions)
-
-def by_menu_name(first, second):
-    return cmp(first.name, second.name)
 
 def make_quick_report_callback(pdata, category, dbstate, uistate, handle):
     return lambda x: run_report(dbstate, uistate, category, handle, pdata)

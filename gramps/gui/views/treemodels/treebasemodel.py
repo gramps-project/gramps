@@ -891,8 +891,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             # according to column_defs table
             val = self._get_value(node.handle, col, node.secondary)
             #GTK 3 should convert unicode objects automatically, but this
-            # gives wrong column values, so we convert
-            if isinstance(val, UNITYPE):
+            # gives wrong column values, so we convert, so we convert for python 2.7
+            if not isinstance(val, str):
                 return val.encode('utf-8')
             else:
                 return val

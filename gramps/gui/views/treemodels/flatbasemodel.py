@@ -768,7 +768,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         #print 'do_get_val', iter, iter.user_data, col
         handle = self.node_map._index2hndl[iter.user_data][1]
         if handle != self.prev_handle:
-            data = self.map(str(handle))
+            data = self.map(handle)
             if data is None:
                 #object is no longer present
                 return ''
@@ -780,8 +780,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             return val
         else:
             #GTK 3 should convert unicode objects automatically, but this
-            # gives wrong column values, so we convert
-            if isinstance(val, UNITYPE):
+            # gives wrong column values, so we convert for python 2.7
+            if not isinstance(val, str):
                 return val.encode('utf-8')
             else:
                 return val

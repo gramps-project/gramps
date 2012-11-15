@@ -117,7 +117,8 @@ PAT_AS_SURN = False
 # avoid translations of shorter terms which appear in longer ones, eg
 # namelast may not be mistaken with name, so namelast must first be 
 # converted to %k before name is converted. 
-def _make_cmp(a, b): return -cmp((len(a[1]),a[1]), (len(b[1]), b[1]))
+##def _make_cmp(a, b): return -cmp((len(a[1]),a[1]), (len(b[1]), b[1]))
+def _make_cmp_key(a): return (len(a[1]),a[1])  # set reverse to True!!
 
 #-------------------------------------------------------------------------
 #
@@ -458,7 +459,7 @@ class NameDisplay(object):
         """
         the_list = []
 
-        keys = sorted(self.name_formats, self._sort_name_format) 
+        keys = sorted(self.name_formats, key=self.cmp_to_key(self._sort_name_format)) 
         
         for num in keys:
             if ((also_default or num) and
@@ -468,6 +469,29 @@ class NameDisplay(object):
 
         return the_list
 
+    def cmp_to_key(self, mycmp):
+        """
+        python 2 to 3 conversion, python recipe http://code.activestate.com/recipes/576653/
+        Convert a cmp= function into a key= function
+        We use this in Gramps as understanding the old compare function is 
+        not trivial. This should be replaced by a proper key function
+        """
+        class K(object):
+            def __init__(self, obj, *args):
+                self.obj = obj
+            def __lt__(self, other):
+                return mycmp(self.obj, other.obj) < 0
+            def __gt__(self, other):
+                return mycmp(self.obj, other.obj) > 0
+            def __eq__(self, other):
+                return mycmp(self.obj, other.obj) == 0
+            def __le__(self, other):
+                return mycmp(self.obj, other.obj) <= 0  
+            def __ge__(self, other):
+                return mycmp(self.obj, other.obj) >= 0
+            def __ne__(self, other):
+                return mycmp(self.obj, other.obj) != 0
+        return K
     def _sort_name_format(self, x, y):
         if x < 0:
             if y < 0: 
@@ -942,7 +966,7 @@ class NameDisplay(object):
             pass
         else:
             d_keys = [(code, _tuple[2]) for code, _tuple in d.items()]
-            d_keys.sort(_make_cmp) # reverse on length and by ikeyword
+            d_keys.sort(key=_make_cmp_key, reverse=True) # reverse on length and by ikeyword
             for (code, ikeyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
                 #ikeyword = unicode(ikeyword, "utf8")
@@ -958,7 +982,7 @@ class NameDisplay(object):
             pass
         else:
             d_keys = [(code, _tuple[1]) for code, _tuple in d.items()]
-            d_keys.sort(_make_cmp) # reverse sort on length and by keyword
+            d_keys.sort(key=_make_cmp_key, reverse=True) # reverse sort on length and by keyword
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
@@ -1024,6 +1048,6 @@ def fn(%s):
     return cleanup_name("%s" %% (%s))""" % (args, new_fmt, ",".join(param))
         exec(s)
 
-        return fn
+        return locals()['fn']
 
 displayer = NameDisplay()

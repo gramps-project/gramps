@@ -35,6 +35,7 @@ __all__ = ["MonitoredCheckbox", "MonitoredEntry",
 import logging
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
 import locale
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -140,7 +141,11 @@ class MonitoredEntry(object):
         self.obj.connect(signal, callback, *data)
 
     def _on_change(self, obj):
-        self.set_val(cuni(obj.get_text(), 'utf-8'))
+        if sys.version_info[0] < 3:
+            self.set_val(cuni(obj.get_text(), 'utf-8'))
+        else:
+            #all is unicode
+            self.set_val(obj.get_text())
         if self.changed:
             self.changed(obj)
 

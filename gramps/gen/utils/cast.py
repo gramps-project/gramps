@@ -32,6 +32,7 @@ Utility functions to cast types
 #
 #-------------------------------------------------------------------------
 import locale
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -44,8 +45,10 @@ from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYP
 """
 strxfrm needs it's unicode argument correctly cast before used.
 """
-
-conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
+if sys.version_info[0] < 3:
+    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
+else:
+    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x)
 
 if codeset == 'UTF-8':
     conv_str_tosrtkey = lambda x: locale.strxfrm(x)
@@ -56,6 +59,8 @@ else:
 def conv_tosrtkey(value):
     if isinstance(value, UNITYPE):
         return conv_unicode_tosrtkey(value)
+    elif not isinstance(value, STRTYPE):
+        return conv_str_tosrtkey(str(value))
     return conv_str_tosrtkey(value)
 
 #strings in database are utf-8

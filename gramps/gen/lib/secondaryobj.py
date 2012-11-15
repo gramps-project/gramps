@@ -43,7 +43,7 @@ class SecondaryObject(BaseObject):
     """
     
     def is_equal(self, source):
-        return cmp(self.serialize(), source.serialize()) == 0
+        return self.serialize() == source.serialize()
 
     def is_equivalent(self, other):
         """

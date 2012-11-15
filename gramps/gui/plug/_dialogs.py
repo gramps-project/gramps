@@ -208,7 +208,7 @@ class PluginDialog(ManagedWindow):
             node = self.store.insert_after(None, prev)
             self.store.set(node, 0, key)
             next = None
-            data.sort(lambda x, y: cmp(x.name, y.name))
+            data.sort(key=lambda x: x.name)
             for item in data:
                 next = self.store.insert_after(node, next)
                 ilist.append((next, item))

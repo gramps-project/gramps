@@ -761,11 +761,6 @@ class StatisticsChart(Report):
         #print heading
         #print table[1]
 
-
-    def lookup_compare(self, a, b):
-        "compare given keys according to corresponding lookup values"
-        return cmp(self.lookup_items[a], self.lookup_items[b])
-
     def index_items(self, data, sort, reverse):
         """creates & stores a sorted index for the items"""
 
@@ -777,8 +772,8 @@ class StatisticsChart(Report):
             self.lookup_items = data
         
             # then sort by value
-            index.sort(self.lookup_compare, 
-                reverse=True if reverse else False)
+            index.sort(key=lambda x: self.lookup_items[x], 
+                       reverse=True if reverse else False)
 
         return index
 

@@ -310,8 +310,7 @@ class VCardWriter(object):
                     [self.db.get_event_from_handle(ref.ref) for ref in event_refs]
                     if event.get_type() == EventType(EventType.OCCUPATION)]
         if len(events) > 0:
-            events.sort(cmp=lambda x, y: cmp(x.get_date_object(),
-                                            y.get_date_object()))
+            events.sort(key=lambda x: x.get_date_object())
             occupation = events[-1].get_description()
             if occupation:
                 self.writeln("ROLE:%s" % occupation)

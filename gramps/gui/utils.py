@@ -24,7 +24,7 @@
 Utility functions that depend on GUI components or for GUI components
 """
 
-from __future__ import print_function
+from __future__ import print_function, division
 
 #-------------------------------------------------------------------------
 #
@@ -463,7 +463,7 @@ def hex_to_rgb_float(value):
     """
     value = value.lstrip('#')
     lenv = len(value)
-    return tuple(int(value[i:i+lenv/3], 16)/256.0 for i in range(0, lenv, lenv/3))
+    return tuple(int(value[i:i+lenv//3], 16)/256.0 for i in range(0, lenv, lenv//3))
 
 def hex_to_rgb(value):
     """
@@ -471,7 +471,7 @@ def hex_to_rgb(value):
     """
     value = value.lstrip('#')
     lenv = len(value)
-    return tuple(int(value[i:i+lenv/3], 16) for i in range(0, lenv, lenv/3))
+    return tuple(int(value[i:i+lenv//3], 16) for i in range(0, lenv, lenv//3))
 
 def rgb_to_hex(rgb):
     """

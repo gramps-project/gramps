@@ -269,8 +269,9 @@ def find_records(db, filter, top_size, callname):
 
             _record(family_shortest, family_longest,
                     duration, name, 'Family', family.handle, top_size)
-
-    return [(text, varname, locals()[varname]) 
+    #python 3 workaround: assign locals to tmp so we work with runtime version
+    tmp = locals()
+    return [(text, varname, tmp[varname]) 
                 for (text, varname, default) in RECORDS]
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):
@@ -284,7 +285,7 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
     if lowest is not None:
         lowest.append((high_value, value, text, handle_type, handle))
-        lowest.sort(lambda a, b: cmp(a[0], b[0]))   # FIXME: Ist das lambda notwendig?
+        lowest.sort(key=lambda a: a[0])   # FIXME: Ist das lambda notwendig?
         for i in range(top_size, len(lowest)):
             if lowest[i-1][0] < lowest[i][0]:
                 del lowest[i:]

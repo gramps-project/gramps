@@ -994,6 +994,7 @@ class SimpleAccess(object):
 
 def by_date(event1, event2):
     """
+    DEPRECATED! 
     Sort function that will compare two events by their dates.
 
     @param event1: first event

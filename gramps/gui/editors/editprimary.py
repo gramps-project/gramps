@@ -161,8 +161,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         self.__tabs = None
 
     def object_is_empty(self):
-        return cmp(self.obj.serialize()[1:],
-                   self.empty_object().serialize()[1:]) == 0
+        return self.obj.serialize()[1:] == self.empty_object().serialize()[1:]
 
     def define_ok_button(self, button, function):
         self.ok_button = button
@@ -258,12 +257,10 @@ class EditPrimary(ManagedWindow, DbGUIElement):
                 cmp_obj = orig
             else:
                 cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize()[1:],
-                       self.obj.serialize()[1:]) != 0
+            return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
         else:
             cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize()[1:],
-                       self.obj.serialize()[1:]) != 0
+            return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
 
     def save(self, *obj):
         """ Save changes and close. Inheriting classes must implement this

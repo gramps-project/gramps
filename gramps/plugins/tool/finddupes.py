@@ -662,15 +662,6 @@ def get_surnames(name):
     """Construct a full surname of the surnames"""
     return ' '.join([surn.get_surname() for surn in name.get_surname_list()])
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_id(p1,p2):
-    return cmp(p1.get_handle(),p2.get_handle())
-
-
 #------------------------------------------------------------------------
 #
 # 

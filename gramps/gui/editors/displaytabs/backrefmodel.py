@@ -21,6 +21,8 @@
 
 # $Id$
 
+import sys
+
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -53,7 +55,10 @@ class BackRefModel(Gtk.ListStore):
         self.db = db
         self.sref_list = sref_list
         self.count = 0
-        self.idle = GObject.idle_add(self.load_model().next)
+        if sys.version_info[0] < 3:
+            self.idle = GObject.idle_add(self.load_model().next)
+        else:
+            self.idle = GObject.idle_add(self.load_model().__next__)
 
     def destroy(self):
         GObject.source_remove(self.idle)

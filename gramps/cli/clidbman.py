@@ -190,7 +190,10 @@ class CLIDbManager(object):
             else:
                 retval["Locked?"] = "no"
             retval["DB version"] = version
-            retval["Family tree"] = name.encode(sys.getfilesystemencoding())
+            if sys.version_info[0] < 3:
+                retval["Family tree"] = name.encode(sys.getfilesystemencoding())
+            else:
+                retval["Family tree"] = name
             retval["Path"] = dirpath
             retval["Last accessed"] = time.strftime('%x %X', 
                                                     time.localtime(tval))
@@ -202,7 +205,8 @@ class CLIDbManager(object):
         """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
-        dbdir = dbdir.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            dbdir = dbdir.encode(sys.getfilesystemencoding())
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -211,7 +215,8 @@ class CLIDbManager(object):
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
                 if os.path.isfile(path_name):
-                    name = file(path_name).readline().strip()
+                    file = open(path_name)
+                    name = file.readline().strip()
 
                     (tval, last) = time_val(dirpath)
                     (enable, stock_id) = self.icon_values(dirpath, self.active, 
@@ -436,7 +441,8 @@ def find_next_db_dir():
     while True:
         base = "%x" % int(time.time())
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
-        dbdir = dbdir.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            dbdir = dbdir.encode(sys.getfilesystemencoding())
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break

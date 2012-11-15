@@ -118,16 +118,6 @@ QUALITY_MAP = {
     Citation.CONF_VERY_LOW  : "0", 
     }
 
-#-------------------------------------------------------------------------
-#
-# sort_by_gramps_id
-#
-#-------------------------------------------------------------------------
-def sort_by_gramps_id(first, second):
-    """
-    Sort objects by their Gramps ID.
-    """
-    return cmp(first.gramps_id, second.gramps_id)
 
 #-------------------------------------------------------------------------
 #

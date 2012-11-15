@@ -1089,10 +1089,12 @@ class PluginRegister(object):
                 continue
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
+            if sys.version_info[0] < 3:
+                full_filename = full_filename.encode(sys.getfilesystemencoding())
             local_gettext = get_addon_translator(full_filename).gettext
             try:
                 #execfile(full_filename,
-                exec(compile(open(full_filename.encode(sys.getfilesystemencoding())).read(), full_filename.encode(sys.getfilesystemencoding()), 'exec'),
+                exec(compile(open(full_filename).read(), full_filename, 'exec'),
                          make_environment(_=local_gettext),
                          {})
             except ValueError as msg:

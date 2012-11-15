@@ -114,7 +114,8 @@ class SurnameTab(EmbeddedList):
         no = NameOriginType()
         self.cmborig = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         self.cmborigmap = no.get_map().copy()
-        keys = sorted(self.cmborigmap, self.by_value)
+        #sort the keys based on the value
+        keys = sorted(self.cmborigmap, key=lambda x: locale.strxfrm(self.cmborigmap[x]))
         for key in keys:
             if key != no.get_custom():
                 self.cmborig.append(row=[key, self.cmborigmap[key]])
@@ -154,13 +155,13 @@ class SurnameTab(EmbeddedList):
         self.columns.append(column)
         self.tree.append_column(column)
 
-    def by_value(self, first, second):
-        """
-        Method for sorting keys based on the values.
-        """
-        fvalue = self.cmborigmap[first]
-        svalue = self.cmborigmap[second]
-        return locale.strcoll(fvalue, svalue)
+##    def by_value(self, first, second):
+##        """
+##        Method for sorting keys based on the values.
+##        """
+##        fvalue = self.cmborigmap[first]
+##        svalue = self.cmborigmap[second]
+##        return locale.strcoll(fvalue, svalue)
 
     def get_data(self):
         return self.obj.get_surname_list()

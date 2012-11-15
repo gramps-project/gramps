@@ -167,7 +167,7 @@ class StandardCustomSelector(object):
         """
         Fill with data
         """
-        keys = sorted(self.mapping, self.by_value)
+        keys = sorted(self.mapping, key=self.by_value)
         index = 0
         for key in keys:
             if key != self.custom_key:
@@ -190,13 +190,11 @@ class StandardCustomSelector(object):
                     self.active_index = index
                 index += 1
 
-    def by_value(self, first, second):
+    def by_value(self, val):
         """
         Method for sorting keys based on the values.
         """
-        fvalue = self.mapping[first]
-        svalue = self.mapping[second]
-        return locale.strcoll(fvalue, svalue)
+        return locale.strxfrm(self.mapping[val])
 
     def get_values(self):
         """

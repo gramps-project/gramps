@@ -455,8 +455,7 @@ class EditCitation(EditPrimary):
 
     def source_is_empty(self, obj):
         empty_object = Source()
-        return cmp(obj.serialize()[1:],
-                   empty_object.serialize()[1:]) == 0
+        return obj.serialize()[1:] == empty_object.serialize()[1:]
     
     def source_uses_duplicate_id(self, obj):
         """
@@ -495,12 +494,10 @@ class EditCitation(EditPrimary):
                 cmp_obj = orig
             else:
                 cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize(True)[1:],
-                       self.obj.serialize(True)[1:]) != 0
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
             cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize(True)[1:],
-                       self.obj.serialize()[1:]) != 0
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
     def source_data_has_changed(self):
         """
@@ -514,12 +511,10 @@ class EditCitation(EditPrimary):
                 cmp_obj = orig
             else:
                 cmp_obj = Source()
-            return cmp(cmp_obj.serialize()[1:],
-                       self.source.serialize()[1:]) != 0
+            return cmp_obj.serialize()[1:] != self.source.serialize()[1:]
         else:
             cmp_obj = Source()
-            return cmp(cmp_obj.serialize()[1:],
-                       self.source.serialize()[1:]) != 0
+            return cmp_obj.serialize()[1:] != self.source.serialize()[1:]
 
 class DeleteCitationQuery(object):
     def __init__(self, dbstate, uistate, citation, the_lists):

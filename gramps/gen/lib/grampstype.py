@@ -271,24 +271,50 @@ class GrampsType(GrampsTypeC):
     def get_custom(self):
         return self._CUSTOM
     
-    def __cmp__(self, value):
+    def __eq__(self, value):
         if isinstance(value, int):
-            return cmp(self.__value, value)
+            return self.__value == value
         elif isinstance(value, STRTYPE):
             if self.__value == self._CUSTOM:
-                return cmp(self.__string, value)
+                return self.__string == value
             else:
-                return cmp(self._I2SMAP.get(self.__value), value)
+                return self._I2SMAP.get(self.__value) == value
         elif isinstance(value, tuple):
             if self.__value == self._CUSTOM:
-                return cmp((self.__value, self.__string), value)
+                return (self.__value, self.__string) == value
             else:
-                return cmp(self.__value, value[0])
+                return self.__value == value[0]
         else:
             if value.value == self._CUSTOM:
-                return cmp(self.__string, value.string)
+                return self.__string == value.string
             else:
-                return cmp(self.__value, value.value)
+                return self.__value == value.value
+
+    def __ne__(self, value):
+        return not self.__eq__(value)
+    
+##    Python 3 does not have __cmp__
+##    def __cmp__(self, value):
+##        print ('cmp', type(value), STRTYPE)
+##        if isinstance(value, int):
+##            return cmp(self.__value, value)
+##        elif isinstance(value, STRTYPE):
+##            print('ok!')
+##            if self.__value == self._CUSTOM:
+##                return cmp(self.__string, value)
+##            else:
+##                print (self._I2SMAP.get(self.__value), value, cmp(self._I2SMAP.get(self.__value), value))
+##                return cmp(self._I2SMAP.get(self.__value), value)
+##        elif isinstance(value, tuple):
+##            if self.__value == self._CUSTOM:
+##                return cmp((self.__value, self.__string), value)
+##            else:
+##                return cmp(self.__value, value[0])
+##        else:
+##            if value.value == self._CUSTOM:
+##                return cmp(self.__string, value.string)
+##            else:
+##                return cmp(self.__value, value.value)
 
     value = property(__int__, __set_int, None, "Returns or sets integer value")
     string = property(__str__, __set_str, None, "Returns or sets string value")

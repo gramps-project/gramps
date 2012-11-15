@@ -50,7 +50,7 @@ def run(database, document, person):
         event_list += sdb.events(family)
 
     # Sort the events by their date
-    event_list.sort(by_date)
+    event_list.sort(key=lambda x: x.get_date_object())
 
     # display the results
 
@@ -93,8 +93,8 @@ def run_fam(database, document, family):
         event_list_children += [(child, x) for x in sdb.events(child)]
         
     # Sort the events by their date
-    event_list.sort(fam_sort)
-    event_list_children.sort(fam_sort)
+    event_list.sort(key=lambda x: x[1].get_date_object())
+    event_list_children.sort(key=lambda x: x[1].get_date_object())
     
     # display the results
 
@@ -123,17 +123,3 @@ def run_fam(database, document, family):
                  sdb.event_place(event))
         document.has_data = True
     stab.write(sdoc)
-
-def fam_sort(event1, event2):
-    """
-    Sort function that will compare two events by their dates.
-
-    @param event1: first event
-    @type event1: L{Event}
-    @param event2: second event
-    @type event2: L{Event}
-    @return: Returns -1 if event1 < event2, 0 if they are equal, and
-       1 if they are the same.
-    @rtype: int
-    """
-    return by_date(event1[1],event2[1])

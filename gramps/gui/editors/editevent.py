@@ -261,7 +261,7 @@ class EditEvent(EditPrimary):
                 self.db.add_event(self.obj, trans)
         else:
             orig = self.get_from_handle(self.obj.handle)
-            if cmp(self.obj.serialize(), orig.serialize()):
+            if self.obj.serialize() != orig.serialize():
                 with DbTxn(_("Edit Event (%s)") % self.obj.get_gramps_id(),
                            self.db) as trans:
                     if not self.obj.get_gramps_id():
@@ -288,12 +288,10 @@ class EditEvent(EditPrimary):
                 cmp_obj = orig
             else:
                 cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize(True)[1:],
-                       self.obj.serialize(True)[1:]) != 0
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
             cmp_obj = self.empty_object()
-            return cmp(cmp_obj.serialize(True)[1:],
-                       self.obj.serialize()[1:]) != 0
+            return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
 
 class EditPersonEvent(EditEvent):
