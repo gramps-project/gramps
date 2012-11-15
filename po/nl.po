@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-11 20:55+0100\n"
+"PO-Revision-Date: 2012-11-15 23:20+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -12145,7 +12145,7 @@ msgstr "Gramplet die de verwijzingen naar een persoon toont"
 #: ../src/plugins/webreport/NarrativeWeb.py:5051
 #: ../src/plugins/webreport/NarrativeWeb.py:5662
 msgid "References"
-msgstr "Referenties"
+msgstr "Verwijzingen"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:517
 msgid "Event Backlinks"
@@ -12682,7 +12682,7 @@ msgstr "Echtgenoten bewerken"
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 #, python-format
 msgid "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of spouses?</a>\n"
-msgstr "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I change the order of spouses?</a>\n"
+msgstr "  1. <a wiki='%s_-_FAQ/nl#Hoe_kan_ik_de_volgorde_van_de_echtgenoten_veranderen.3F'>Hoe kan ik de volgorde van de echtgenoten veranderen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 #, python-format
@@ -12692,7 +12692,7 @@ msgstr "  2. <a wiki='%s_-_FAQ/nl#Hoe_bewaar_ik_reservekopie.C3.ABn.3F'>Hoe bewa
 #: ../src/plugins/gramplet/FaqGramplet.py:45
 #, python-format
 msgid "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a spouse?</a>\n"
-msgstr "  3. <a wiki='%s_-_FAQ#Hoe_een_echtgenoot_verwijderenb.3F'>Hoe een echtgenoot verwijderen?</a>\n"
+msgstr "  3. <a wiki='%s_-_FAQ/nl#Hoe_een_echtgenoot_verwijderen.3F'>Hoe een echtgenoot verwijderen?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
@@ -12742,9 +12742,8 @@ msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F
 msgstr " 10. <a wiki='%s_-_FAQ/nl#Hoe_kan_ik_webstekken_die_aangemaakt_zijn_via_GRAMPS_publiceren.3F'>Hoe kan ik webstekken die aangemaakt zijn via GRAMPS publiceren?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hoe registreer ik een beroep van iemand?</a>\n"
+msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Hoe noteer ik iemand zijn beroep?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -12765,7 +12764,7 @@ msgstr " 15. <a wiki='Category:Nl:Hoe...'>Hoe ...</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 16. <a wiki='How_you_can_help/nl'>Hoe kunt u helpen</a>\n"
+msgstr " 16. <a wiki='%s_-_How_you_can_help/nl'>Hoe kunt u helpen</a>\n"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
@@ -13378,7 +13377,7 @@ msgid ""
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Momentteel leest u  de \"Gramplets\" pagina. Hier kunt u uw eigen gramplets toevoegen. Bovendien kunt u gramplets aan gelijk welk scherm toevoegen door gebruik te maken van het zijscherm of de onderste balk. Klik daarvoor met de rechtermuisknop rechts van de tab.\n"
+"Momenteel leest u  de \"Gramplets\" pagina. Hier kunt u uw eigen gramplets toevoegen. Bovendien kunt u gramplets aan gelijk welk scherm toevoegen door gebruik te maken van het zijscherm of de onderste balk. Klik daarvoor met de rechtermuisknop rechts van de tab.\n"
 "\n"
 "U kunt op het configuratie-icoon klikken in de gereedschapsbalk om bijkomende kolommen toe te voegen. Wanneer u klikt met de rechtermuisknop op de achtergrond kunt u bijkomende gramplets toevoegen. U kunt ook de eigenschappenknop verslepen om de gramplet op een andere plaats te plaatsen en u kunt ook het scherm ontkoppelen zodat de gramplet boven de andere schermen \"zweeft\"."
 
@@ -13538,7 +13537,7 @@ msgstr "Maakt een zandlopergrafiek aan met \"Graphviz\"."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
-msgstr "Relatiegrafiek"
+msgstr "Verwantschapsgrafiek"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
@@ -14182,7 +14181,7 @@ msgstr "%s kon niet worden geopend"
 
 #: ../src/plugins/import/ImportGrdb.py:67
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (family tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
-msgstr ""
+msgstr "De versie van het gegevensbestand wordt niet opndersteund door deze versie van Gramps. U dient dus een oude Gramps-kopie versie 3.0 te gebruiken en uw gegevensbestand in die versie importeren. U moet dan een kopie van uw gegevens naar het Gramps-XML formaat exporteren. Dan dient u uw Gramps-versie op te waarderen, een nieuwe lege familiestamboom aanmaken en dan het Graùmps-XML bestand daarin importeren. Zie ook: http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees/nl#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -18993,7 +18992,7 @@ msgstr "Geen andere gebeurtenissen in %(year)d"
 
 #: ../src/plugins/quickview/quickview.gpr.py:33
 msgid "Display people and ages on a particular date"
-msgstr "Toont personen en leeftijden op een bepaalde dag"
+msgstr "Personen en leeftijden op een bepaalde dag tonen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:52
 msgid "Attribute Match"
@@ -19001,7 +19000,7 @@ msgstr "Kenmerkovereenkomst"
 
 #: ../src/plugins/quickview/quickview.gpr.py:53
 msgid "Display people with same attribute."
-msgstr "Toont personen met dezelfde kenmerken."
+msgstr "Personen met dezelfde kenmerken tonen."
 
 # Gebeuren (korter)
 #: ../src/plugins/quickview/quickview.gpr.py:72
@@ -19022,7 +19021,7 @@ msgstr "Toont de familie en de gebeurtenissen van de familieleden."
 
 #: ../src/plugins/quickview/quickview.gpr.py:107
 msgid "Relation to Home Person"
-msgstr "Relatie met de beginpersoon"
+msgstr "Verwantschap tot de beginpersoon"
 
 #: ../src/plugins/quickview/quickview.gpr.py:108
 msgid "Display all relationships between person and home person."
@@ -19030,7 +19029,7 @@ msgstr "Toont alle verwantschappen tussen persoon en de beginpersoon."
 
 #: ../src/plugins/quickview/quickview.gpr.py:128
 msgid "Display filtered data"
-msgstr "Toon gefilterde gegevens"
+msgstr "Gefilterde gegevens tonen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:147
 msgid "Father lineage"
@@ -19038,7 +19037,7 @@ msgstr "Familielijn langs vaderszijde"
 
 #: ../src/plugins/quickview/quickview.gpr.py:148
 msgid "Display father lineage"
-msgstr "Toont de familielijn langs vaderszijde"
+msgstr "Familielijn langs vaderszijde tonen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:161
 msgid "Mother lineage"
@@ -19046,7 +19045,7 @@ msgstr "Familielijn langs moederszijde"
 
 #: ../src/plugins/quickview/quickview.gpr.py:162
 msgid "Display mother lineage"
-msgstr "Toont familielijn langs moederszijde"
+msgstr "Familielijn langs moederszijde tonen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:181
 msgid "On This Day"
@@ -19054,7 +19053,7 @@ msgstr "Op deze dag"
 
 #: ../src/plugins/quickview/quickview.gpr.py:182
 msgid "Display events on a particular day"
-msgstr "Toont gebeurtenissen op een bepaalde dag"
+msgstr "Gebeurtenissen op een bepaalde dag tonen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
@@ -19070,7 +19069,7 @@ msgstr "%s verwijzingen"
 #: ../src/plugins/quickview/quickview.gpr.py:215
 #, python-format
 msgid "Display references for a %s"
-msgstr "Toon verwijzingen voor een %s"
+msgstr "Verwijzingen voor een %s tonen"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/plugins/quickview/quickview.gpr.py:228
@@ -19095,7 +19094,7 @@ msgstr "Zelfde achternamen"
 
 #: ../src/plugins/quickview/quickview.gpr.py:270
 msgid "Display people with the same surname as a person."
-msgstr "Toont personen met dezelfde achternaam als een persoon."
+msgstr "Personen met dezelfde achternaam als een persoon tonen."
 
 #: ../src/plugins/quickview/quickview.gpr.py:283
 msgid "Same Given Names"
@@ -19104,15 +19103,15 @@ msgstr "Zelfde voornamen"
 #: ../src/plugins/quickview/quickview.gpr.py:284
 #: ../src/plugins/quickview/quickview.gpr.py:298
 msgid "Display people with the same given name as a person."
-msgstr "Toont personen met dezelfde voornaam als een persoon."
+msgstr "Personen met dezelfde voornaam als een persoon tonen."
 
 #: ../src/plugins/quickview/quickview.gpr.py:297
 msgid "Same Given Names - stand-alone"
-msgstr "Zelfde voornamen - aleenstaand"
+msgstr "Zelfde voornamen - alleenstaand"
 
 #: ../src/plugins/quickview/quickview.gpr.py:317
 msgid "Display a person's siblings."
-msgstr "Toon de broers en de zussen van een persoon."
+msgstr "Broers en zussen van een persoon tonen."
 
 #. display the title
 #: ../src/plugins/quickview/References.py:68
@@ -19164,7 +19163,7 @@ msgstr "Personen met onvolledige achternamen"
 
 #: ../src/plugins/quickview/SameSurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr "Vindt personen waarvan de achternaam ontbreekt"
+msgstr "Personen zonder achternaam vinden"
 
 #: ../src/plugins/quickview/SameSurnames.py:41
 #: ../src/plugins/quickview/SameSurnames.py:53
@@ -19245,7 +19244,7 @@ msgstr "Personen met de <naam>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
-msgstr "Vindt personen met dezelfde achternaam"
+msgstr "Personen met dezelfde achternaam vinden"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
@@ -19253,7 +19252,7 @@ msgstr "Personen die overeenkomen met <opgegeven>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
-msgstr "Vindt personen met dezelfde voornaam"
+msgstr "Personen met dezelfde voornaam vinden"
 
 #: ../src/plugins/quickview/SameSurnames.py:81
 msgid "People with incomplete given names"
@@ -20798,6 +20797,7 @@ msgid "Looking for cross table duplicates"
 msgstr "Mogelijke dubbele kruistabellen zoeken"
 
 #: ../src/plugins/tool/Check.py:143
+#, fuzzy
 msgid ""
 "Your family tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -22286,7 +22286,7 @@ msgstr "Om een samenvoeging uit te voeren moeten precies twee citaten worden ges
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
-msgstr ""
+msgstr "De twee geselecteerde citaten moeten dezelfde bron hebben om een samenvoeging mogelijk te maken. Wenst u toch deze citaten samen te voegen, dient  eerst de bronnen samen te voegen."
 
 #: ../src/plugins/view/citationtreeview.py:562
 msgid "Cannot perform merge."
@@ -24613,7 +24613,7 @@ msgstr "Relatiefilters"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:126
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
-msgstr "Doorzoek het volledige gegevensbestand vanaf een opgegeven persoon en geeft een lijst van alle personen tussen die persoon en personendoelgroep die opgegeven wordt door een filter. Dit geeft dan een verzameling van realtiepaden (huwelijk inbegrepen) tussen de gekozen persoon en de doelgroep. Elk relatiepad is niet steeds het korst mogelijke pad."
+msgstr "Doorzoek het volledige gegevensbestand vanaf een opgegeven persoon en geeft een lijst van alle personen tussen die persoon en personendoelgroep die opgegeven wordt door een filter. Dit geeft dan een verzameling van relatiepaden (huwelijk inbegrepen) tussen de gekozen persoon en de doelgroep. Elk relatiepad is niet steeds het korst mogelijke pad."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:136
 msgid "Finding relationship paths"
@@ -25981,9 +25981,8 @@ msgid "Places with the <source>"
 msgstr "Locaties met de <bron>"
 
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:49
-#, fuzzy
 msgid "Matches places who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Locaties met een bepaalde bron vinden"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
 msgid "Place with direct source >= <confidence level>"
@@ -26172,9 +26171,8 @@ msgid "Citations matching parameters"
 msgstr "Citaten met parameters"
 
 #: ../src/Filters/Rules/Citation/_HasCitation.py:54
-#, fuzzy
 msgid "Matches citations with particular parameters"
-msgstr "Vindt opmerkingen met bepaalde parameters"
+msgstr "Citaten met bepaalde parameters vinden"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
 msgid "Citations with <count> media"
@@ -26429,18 +26427,16 @@ msgid "Media with the <citation>"
 msgstr "Media-object met <citaat>"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:52
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "Vindt families met een citaat met een bapaalde waarde"
+msgstr "Media-objecten met een citaat met een bepaalde waarde vinden"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:47
 msgid "Media with the <source>"
 msgstr "Media-object met de <bron>"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:49
-#, fuzzy
 msgid "Matches media who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Media-objecten met een bepaalde bron vinden"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:45
 #, fuzzy
@@ -27708,7 +27704,7 @@ msgstr "Een unieke ID voor de familie"
 
 #: ../src/glade/editfamily.glade.h:19
 msgid "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more details."
-msgstr "Het realtietype, vb. 'Gehuwd' of 'Ongehuwd'. Voor verdere details kunt u gebeurtenissen gebruiken."
+msgstr "Het relatietype, vb. 'Gehuwd' of 'Ongehuwd'. Voor verdere details kunt u gebeurtenissen gebruiken."
 
 #: ../src/glade/editchildref.glade.h:1
 msgid "Relationship to _Mother:"
