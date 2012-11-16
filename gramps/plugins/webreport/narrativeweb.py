@@ -3032,7 +3032,8 @@ class FamilyPages(BasePage):
         # Either some clever coding is needed, or an alternative family index
         # page is needed.
     
-    def display_pages(self, report, ind_list, place_list, place_lat_long):
+    def display_pages(self, report, ind_list, place_list, place_lat_long,
+                      db_family_handles):
         # FIXME: Most of the parameters should be removed. report is (or should
         # be) passed to __init__, ind_list should be replaced by a different
         # algorithm for choosing all the families to be output,
@@ -4306,8 +4307,8 @@ class SourcePages(BasePage):
         log.debug("\n")
         report.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
-                                 len(source_dict) + 1)
-        self.SourceListPage(report, title, list(source_dict.keys()))
+                                 len(self.source_dict) + 1)
+        self.SourceListPage(report, title, list(self.source_dict.keys()))
 
         for item in self.source_dict.iteritems():
             report.user.step_progress()
@@ -4536,9 +4537,6 @@ class SourcePages(BasePage):
         # and close the file
         self.XHTMLWriter(sourcepage, of, sio)
 
-        # and close the file
-        self.XHTMLWriter(sourcepage, of, sio)
-
 #################################################
 #
 #    creates the Media List Page and Media Pages
@@ -4607,7 +4605,7 @@ class MediaPages(BasePage):
                                   _("Creating media pages"), 
                                   len(report.photo_list) + 1)
         
-        sort = Sort.Sort(report.database)
+        sort = Sort(report.database)
         sorted_media_handles = sorted(self.media_dict,
                                       key=sort.by_media_title_key)
         self.MediaListPage(report, report.title, sorted_media_handles)
@@ -4679,20 +4677,20 @@ class MediaPages(BasePage):
                 table += tbody
 
                 index = 1
-                 for media_handle in sorted_media_handles:
+                for media_handle in sorted_media_handles:
                     media = self.dbase_.get_object_from_handle(media_handle)
                     if media:
                         title = media.get_description() or "[untitled]"
-
+                    
                         trow = Html("tr")
                         tbody += trow
-
+                    
                         media_data_row = [
                             [index,                                    "ColumnRowLabel"],
                             [self.media_ref_link(media_handle, title), "ColumnName"],
                             [_dd.display(media.get_date_object() ),    "ColumnDate"],
                             [media.get_mime_type(),                    "ColumnMime"] ]
-
+                    
                         trow.extend(
                             Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
@@ -6969,7 +6967,8 @@ class RepositoryPages(BasePage):
         report.user.end_progress()
 
 #class RepositoryListPage(BasePage):
-    def RepositoryListPage(self, report, title, repos_dict, keys):
+    def RepositoryListPage(self, report, title, repos_dict, keys,
+                           db_repository_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
         inc_repos = self.report.options["inc_repository"]
@@ -7023,6 +7022,7 @@ class RepositoryPages(BasePage):
                                                                 repo.get_gramps_id(), self.up), class_ = "ColumnName")
                     else:
                         trow += Html("td", "[ untitled ]", class_ = "ColumnName")
+                    db_repository_handles.append(handle)
 
         # add clearline for proper styling
         # add footer section
@@ -7581,10 +7581,10 @@ class NavWebReport(Report):
 #            db_event_handles = self.event_pages(ind_list)
 
         # build classes PlaceListPage and PlacePage
-        db_place_handles = []
+#        db_place_handles = []
         self.tab["Place"].display_pages(self, self.title, place_list,
-                                        source_list, db_place_handles)
-        db_place_handles = self.place_pages(place_list, source_list)
+                                        source_list)
+#        db_place_handles = self.place_pages(place_list, source_list)
         # build classes RepositoryListPage and RepositoryPage
         db_repository_handles = []
         if self.inc_repository:
@@ -7593,7 +7593,7 @@ class NavWebReport(Report):
                 self.tab["Repository"].display_pages(self, self.title, 
                                                      repolist, source_list,
                                                      db_repository_handles)
-                db_repository_handles = self.repository_pages(repolist, source_list)
+#                db_repository_handles = self.repository_pages(repolist, source_list)
 
         # build classes MediaListPage and MediaPage
         db_media_handles = []
@@ -7610,8 +7610,8 @@ class NavWebReport(Report):
             self.addressbook_pages(ind_list)
 
         # for use in class SourcePage's Citations Referents section...
-        database_handles_list = (db_family_handles, db_event_handles, db_place_handles,
-                db_repository_handles, db_media_handles)
+#        database_handles_list = (db_family_handles, db_event_handles, db_place_handles,
+#                db_repository_handles, db_media_handles)
 
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
@@ -7823,6 +7823,7 @@ class NavWebReport(Report):
 #            self.user.step_progress()
 #        self.user.end_progress()
 
+
 #    def place_pages(self, place_list, source_list, db_place_handles):
 #        """
 #        creates PlaceListPage and PlacePage
@@ -7832,6 +7833,7 @@ class NavWebReport(Report):
 #
 #        PlaceListPage(self, self.title, place_list, db_place_handles)
 #
+
 #        for place in place_list:
 #            PlacePage(self, self.title, place, source_list, place_list)
 #            self.user.step_progress()
@@ -7882,8 +7884,8 @@ class NavWebReport(Report):
 #            prev = photo_handle
 #            index += 1
 #        self.user.end_progress()
-
-        return photo_keys
+#
+#        return photo_keys
 
     def thumbnail_preview_page(self):
         """
@@ -7895,37 +7897,37 @@ class NavWebReport(Report):
         ThumbnailPreviewPage(self, self.title, self.user.step_progress)
         self.user.end_progress()
 
-    def repository_pages(self, repolist, source_list):
-        """
-        will create RepositoryPage() and RepositoryListPage()
-        """
-        repos_dict = {}
-
-        # Sort the repositories
-        for repository_handle in repolist:
-            repository = self.database.get_repository_from_handle(repository_handle)
-            key = repository.get_name() + str(repository.get_gramps_id())
-            repos_dict[key] = (repository, repository_handle)
-            
-        keys = sorted(repos_dict, key = locale.strxfrm)
-
-        # set progress bar pass for Repositories
-        repository_size = len(repos_dict)
-        
-        self.user.begin_progress(_("Narrated Web Site Report"),
-                                  _('Creating repository pages'), 
-                                  repository_size)
-        # RepositoryListPage Class
-        RepositoryListPage(self, self.title, repos_dict, keys)
-
-        for index, key in enumerate(keys):
-            (repo, handle) = repos_dict[key]
-
-            RepositoryPage(self, self.title, repo, handle, source_list)
-            self.user.step_progress()
-        self.user.end_progress()
-
-        return repolist
+#    def repository_pages(self, repolist, source_list):
+#        """
+#        will create RepositoryPage() and RepositoryListPage()
+#        """
+#        repos_dict = {}
+#
+#        # Sort the repositories
+#        for repository_handle in repolist:
+#            repository = self.database.get_repository_from_handle(repository_handle)
+#            key = repository.get_name() + str(repository.get_gramps_id())
+#            repos_dict[key] = (repository, repository_handle)
+#            
+#        keys = sorted(repos_dict, key = locale.strxfrm)
+#
+#        # set progress bar pass for Repositories
+#        repository_size = len(repos_dict)
+#        
+#        self.user.begin_progress(_("Narrated Web Site Report"),
+#                                  _('Creating repository pages'), 
+#                                  repository_size)
+#        # RepositoryListPage Class
+#        RepositoryListPage(self, self.title, repos_dict, keys)
+#
+#        for index, key in enumerate(keys):
+#            (repo, handle) = repos_dict[key]
+#
+#            RepositoryPage(self, self.title, repo, handle, source_list)
+#            self.user.step_progress()
+#        self.user.end_progress()
+#
+#        return repolist
 
     def addressbook_pages(self, ind_list):
         """
