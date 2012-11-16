@@ -831,7 +831,10 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         Get the gramps handle for a node.  Return None if the node does
         not correspond to a gramps object.
         """
-        return node.handle
+        handle = node.handle
+        if not isinstance(handle, UNITYPE):
+            handle = handle.decode('utf-8')
+        return handle
 
     def get_node(self, handle):
         """

@@ -123,7 +123,12 @@ LOG = logging.getLogger(".libgedcom")
 #-------------------------------------------------------------------------
 from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
-from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject, MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Researcher, Source, SourceMediaType, Surname, Url, UrlType
+from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
+        ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
+        EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject,
+        MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
+        RepoRef, Repository, RepositoryType, Researcher, Source,
+        SourceMediaType, Surname, Url, UrlType)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.mime import get_type
@@ -135,7 +140,7 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE
+from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE
 
 #-------------------------------------------------------------------------
 #
@@ -1206,9 +1211,13 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        line = cuni(self.ifile.readline(), 
-                       encoding=self.enc,
-                       errors='replace')
+        if sys.version_info[0] < 3:
+            line = unicode(self.ifile.readline(), 
+                           encoding=self.enc,
+                           errors='replace')
+        else:
+            line = self.ifile.readline()
+            line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class UTF8Reader(BaseReader):
@@ -1224,9 +1233,13 @@ class UTF8Reader(BaseReader):
             self.ifile.seek(0)
 
     def readline(self):
-        line = cuni(self.ifile.readline(),
-                       encoding=self.enc,
-                       errors='replace')
+        line = self.ifile.readline()
+        if sys.version_info[0] < 3:
+            line = unicode(line,
+                           encoding=self.enc,
+                           errors='replace')
+        else:
+            line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class UTF16Reader(BaseReader):
@@ -1497,7 +1510,10 @@ class AnselReader(BaseReader):
                     head = '\ufffd' # "Replacement Char"
                     s = s[1:]
             buff.write(head.encode("utf-8"))
-        ans = conv_to_unicode(buff.getvalue(), "utf-8")
+        if sys.version_info[0] < 3:
+            ans = unicode(buff.getvalue(), "utf-8")
+        else:
+            ans = buff.getvalue().decode("utf-8")
         buff.close()
         return ans
 
@@ -1703,7 +1719,10 @@ class IdMapper(object):
                 # have found it. If we had already encountered I0001 and we are
                 # now looking for I1, it wouldn't be in self.swap, and we now
                 # find that I0001 is in use, so we have to create a new id.
-                if self.trans.get(str(formatted_gid)) or \
+                bformatted_gid = formatted_gid
+                if isinstance(bformatted_gid, UNITYPE):
+                    bformatted_gid = bformatted_gid.encode('utf-8')
+                if self.trans.get(bformatted_gid) or \
                         (formatted_gid in list(self.swap.values())):
                     new_val = self.find_next()
                     while new_val in list(self.swap.values()):
@@ -2938,7 +2957,8 @@ class GedcomParser(UpdateCallback):
         def __check(map, trans, class_func, commit_func, gramps_id2handle, msg):
             for input_id, gramps_id in map.map().items():
                 # Check whether an object exists for the mapped gramps_id
-                if not trans.get(str(gramps_id)):
+                bgramps_id = gramps_id.encode('utf-8')
+                if not trans.get(bgramps_id):
                     handle = self.__find_from_handle(gramps_id, 
                                                      gramps_id2handle)
                     if msg == "FAM":

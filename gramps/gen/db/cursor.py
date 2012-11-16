@@ -119,7 +119,10 @@ class BsddbBaseCursor(object):
 
     current = _get(db.DB_CURRENT)
     first   = _get(db.DB_FIRST)
+    ##python2 iterator
     next    = _get(db.DB_NEXT)
+    ##python3 iterator
+    __next__ = _get(db.DB_NEXT)
     last    = _get(db.DB_LAST)
     prev    = _get(db.DB_PREV)
 

@@ -67,7 +67,7 @@ from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
-from gramps.gen.constfunc import UNITYPE
+from gramps.gen.constfunc import UNITYPE, cuni
 
 DISABLED = -1
 
@@ -83,7 +83,7 @@ class History(Callback):
     """
 
     __signals__ = {
-        'active-changed' : (str, ), 
+        'active-changed' : (UNITYPE, ), 
         'mru-changed' : (list, )
         }
 
@@ -138,7 +138,10 @@ class History(Callback):
             self.mru.remove(del_id)
         self.emit('mru-changed', (self.mru, ))
         if self.history:
-            self.emit('active-changed', (self.history[self.index],))
+            newact = self.history[self.index]
+            if not isinstance(newact, UNITYPE):
+                newact = cuni(newact)
+            self.emit('active-changed', (newact,))
 
     def push(self, handle):
         """
@@ -146,14 +149,17 @@ class History(Callback):
         """
         self.prune()
         if len(self.history) == 0 or handle != self.history[-1]:
-            self.history.append(str(handle))
+            self.history.append(handle)
             if handle in self.mru:
                 self.mru.remove(handle)
             self.mru.append(handle)
             self.emit('mru-changed', (self.mru, ))
             self.index += 1
         if self.history:
-            self.emit('active-changed', (self.history[self.index],))
+            newact = self.history[self.index]
+            if not isinstance(newact, UNITYPE):
+                newact = cuni(newact)
+            self.emit('active-changed', (newact,))
  
     def forward(self, step=1):
         """
@@ -165,9 +171,11 @@ class History(Callback):
             self.mru.remove(handle)
         self.mru.append(handle)
         self.emit('mru-changed', (self.mru, ))
-        if self.history:
-            self.emit('active-changed', (self.history[self.index],))
-        return str(self.history[self.index])
+        newact = self.history[self.index]
+        if not isinstance(newact, UNITYPE):
+            newact = cuni(newact)
+        self.emit('active-changed', (newact,))
+        return newact
 
     def back(self, step=1):
         """
@@ -180,9 +188,11 @@ class History(Callback):
                 self.mru.remove(handle)
             self.mru.append(handle)
             self.emit('mru-changed', (self.mru, ))
-            if self.history:
-                self.emit('active-changed', (self.history[self.index],))
-            return str(self.history[self.index])
+            newact = self.history[self.index]
+            if not isinstance(newact, UNITYPE):
+                newact = cuni(newact)
+            self.emit('active-changed', (newact,))
+            return newact
         except IndexError:
             return ""
         

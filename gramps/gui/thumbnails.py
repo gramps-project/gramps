@@ -30,6 +30,7 @@ Handles generation and access to thumbnails used in GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import logging
 try:
     from hashlib import md5
@@ -145,7 +146,10 @@ def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
     extra = ""
     if rectangle is not None:
         extra = "?" + str(rectangle)
-    md5_hash = md5(path+extra)
+    prehash = path+extra
+    if sys.version_info[0] >= 3:
+        prehash =prehash.encode('utf-8')
+    md5_hash = md5(prehash)
     if size == SIZE_LARGE:
         base_dir = THUMB_LARGE
     else:

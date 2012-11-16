@@ -281,6 +281,7 @@ class DbManager(CLIDbManager):
         self.column = Gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
+        self.column.set_sort_indicator(True)
         self.column.set_resizable(True)
         self.column.set_min_width(275)
         self.dblist.append_column(self.column)
@@ -323,6 +324,7 @@ class DbManager(CLIDbManager):
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
                 data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
                 self.model.append(node, data)
+        self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
         self.dblist.set_model(self.model)
 
     def existing_name(self, name, skippath=None):

@@ -305,8 +305,12 @@ class FlatNodeMap(object):
         
         :param path: path as it appears in the treeview
         :type path: integer
+        :return handle: unicode form of the handle
         """
-        return self._index2hndl[self.real_index(path)][1]
+        handle = self._index2hndl[self.real_index(path)][1]
+        if not isinstance(handle, UNITYPE):
+            handle = handle.decode('utf-8')
+        return handle
     
     def find_next_handle(self, iter):
         """

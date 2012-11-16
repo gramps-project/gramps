@@ -104,7 +104,10 @@ def importData(database, filename, user):
     assert(isinstance(code_set, STRTYPE))
 
     try:
-        ifile = open(filename, "rU")
+        if sys.version_info[0] < 3:
+            ifile = open(filename, "rU")
+        else:
+            ifile = open(filename, "rb")
         stage_one = libgedcom.GedcomStageOne(ifile)
         stage_one.parse()
 

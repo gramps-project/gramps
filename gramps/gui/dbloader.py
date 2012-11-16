@@ -136,8 +136,10 @@ class DbLoader(CLIDbLoader):
         import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'), 
                                        self.uistate.window, 
                                        Gtk.FileChooserAction.OPEN, 
-                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
-                                        'gramps-import', Gtk.ResponseType.OK))
+                                       (Gtk.STOCK_CANCEL, 
+                                            Gtk.ResponseType.CANCEL, 
+                                        _('Import'), 
+                                            Gtk.ResponseType.OK))
         import_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
