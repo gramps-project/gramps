@@ -44,7 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gramps.gen.constfunc import cuni, conv_to_unicode
+from gramps.gen.constfunc import cuni, conv_to_unicode, UNITYPE
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -107,21 +107,30 @@ class MediaModel(FlatBaseModel):
     def do_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_description(self,data):
+    def column_description(self, data):
+        descr = data[4]
+        if isinstance(descr, UNITYPE):
+            return descr
         try:
-            return cuni(data[4])
+            return cuni(descr)
         except:
-            return conv_to_unicode(data[4], 'latin1')
+            return conv_to_unicode(descr, 'latin1')
 
-    def column_path(self,data):
+    def column_path(self, data):
+        path = data[2]
+        if isinstance(path, UNITYPE):
+            return path
         try:
-            return cuni(data[2])
+            return cuni(path)
         except:
-            return cuni(data[2].encode('iso-8859-1'))
+            return cuni(path.encode('iso-8859-1'))
 
-    def column_mime(self,data):
-        if data[3]:
-            return cuni(data[3])
+    def column_mime(self, data):
+        mime = data[3]
+        if mime and isinstance(mime, UNITYPE):
+            return mime
+        if mime:
+            return cuni(mime)
         else:
             return _('Note')
 

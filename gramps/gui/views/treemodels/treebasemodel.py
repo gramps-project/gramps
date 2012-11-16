@@ -37,6 +37,7 @@ This module provides the model that is used for all hierarchical treeviews.
 
 import time
 import locale
+import sys
 from gramps.gen.ggettext import gettext as _
 import logging
 
@@ -90,13 +91,16 @@ class Node(object):
     def __init__(self, ref, parent, sortkey, handle, secondary):
         if sortkey:
             if isinstance(sortkey, UNITYPE):
-                self.name = sortkey.encode('utf-8')
+                self.name = sortkey
                 #sortkey must be localized sort, so 
                 self.sortkey = conv_unicode_tosrtkey(sortkey)
             else:
-                self.name = sortkey
+                self.name = sortkey.decode('utf-8')
                 #sortkey must be localized sort, so
-                self.sortkey = conv_str_tosrtkey(sortkey)
+                if sys.version_info[0] < 3:
+                    self.sortkey = conv_str_tosrtkey(sortkey)
+                else:
+                    self.sortkey = conv_unicode_tosrtkey(self.name)
         else:
             self.name = ''
             self.sortkey = None
@@ -832,7 +836,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         not correspond to a gramps object.
         """
         handle = node.handle
-        if not isinstance(handle, UNITYPE):
+        if handle and not isinstance(handle, UNITYPE):
             handle = handle.decode('utf-8')
         return handle
 
@@ -881,24 +885,25 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if node.handle is None:
             # Header rows dont get the foreground color set
             if col == self.color_column():
+                #color must not be utf-8
                 return "#000000000000"
 
             # Return the node name for the first column
             if col == 0:
-                return self.column_header(node)
+                val = self.column_header(node)
             else:
                 #no value to show in other header column
-                return ''
+                val = ''
         else:
             # return values for 'data' row, calling a function
             # according to column_defs table
             val = self._get_value(node.handle, col, node.secondary)
-            #GTK 3 should convert unicode objects automatically, but this
-            # gives wrong column values, so we convert, so we convert for python 2.7
-            if not isinstance(val, str):
-                return val.encode('utf-8')
-            else:
-                return val
+        #GTK 3 should convert unicode objects automatically, but this
+        # gives wrong column values, so we convert, so we convert for python 2.7
+        if not isinstance(val, str):
+            return val.encode('utf-8')
+        else:
+            return val
 
     def _get_value(self, handle, col, secondary=False):
         """

@@ -194,8 +194,8 @@ class PeopleBaseModel(object):
     def sort_name(self, data):
         name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
         # internally we work with utf-8
-        if isinstance(name, UNITYPE):
-            name = name.encode('utf-8')
+        if not isinstance(name, UNITYPE):
+            name = name.decode('utf-8')
         return name
 
     def column_name(self, data):
@@ -209,7 +209,6 @@ class PeopleBaseModel(object):
                 name = name.encode('utf-8')
             if not self._in_build:
                 self.lru_name[handle] = name
-        
         return name
 
     def column_spouse(self, data):
@@ -537,8 +536,8 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
-        if isinstance(group_name, UNITYPE):
-            group_name = group_name.encode('utf-8')
+        #if isinstance(group_name, UNITYPE):
+        #    group_name = group_name.encode('utf-8')
         sort_key = self.sort_func(data)
 
         #if group_name not in self.group_list:

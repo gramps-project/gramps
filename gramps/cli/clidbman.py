@@ -480,7 +480,7 @@ def find_locker_name(dirpath):
     """
     try:
         fname = os.path.join(dirpath, "lock")
-        ifile = open(fname)
+        ifile = open(fname, 'rb')
         username = ifile.read().strip()
         # Convert username to unicode according to system encoding
         # Otherwise problems with non ASCII characters in

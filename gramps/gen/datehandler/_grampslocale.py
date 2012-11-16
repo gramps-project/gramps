@@ -35,67 +35,71 @@ strftime.
 Since these routines return values encoded into selected character
 set, we have to convert to unicode.
 """
-
+if sys.version_info[0] < 3:
+    to_uni = conv_to_unicode
+else:
+    #locale returns unicode in python 3
+    to_uni = lambda x, y: x
 try:
     codeset = locale.nl_langinfo(locale.CODESET)
 
     month_to_int = {
-        conv_to_unicode(locale.nl_langinfo(locale.MON_1),codeset).lower()   : 1,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_1),codeset).lower() : 1,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_2),codeset).lower()   : 2,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_2),codeset).lower() : 2,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_3),codeset).lower()   : 3,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_3),codeset).lower() : 3,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_4),codeset).lower()   : 4,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_4),codeset).lower() : 4,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_5),codeset).lower()   : 5,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_5),codeset).lower() : 5,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_6),codeset).lower()   : 6,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_6),codeset).lower() : 6,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_7),codeset).lower()   : 7,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_7),codeset).lower() : 7,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_8),codeset).lower()   : 8,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_8),codeset).lower() : 8,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_9),codeset).lower()   : 9,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_9),codeset).lower() : 9,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_10),codeset).lower()  : 10,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_10),codeset).lower(): 10,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_11),codeset).lower()  : 11,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_11),codeset).lower(): 11,
-        conv_to_unicode(locale.nl_langinfo(locale.MON_12),codeset).lower()  : 12,
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_12),codeset).lower(): 12,
+        to_uni(locale.nl_langinfo(locale.MON_1), codeset).lower()   : 1,
+        to_uni(locale.nl_langinfo(locale.ABMON_1), codeset).lower() : 1,
+        to_uni(locale.nl_langinfo(locale.MON_2), codeset).lower()   : 2,
+        to_uni(locale.nl_langinfo(locale.ABMON_2), codeset).lower() : 2,
+        to_uni(locale.nl_langinfo(locale.MON_3), codeset).lower()   : 3,
+        to_uni(locale.nl_langinfo(locale.ABMON_3), codeset).lower() : 3,
+        to_uni(locale.nl_langinfo(locale.MON_4), codeset).lower()   : 4,
+        to_uni(locale.nl_langinfo(locale.ABMON_4), codeset).lower() : 4,
+        to_uni(locale.nl_langinfo(locale.MON_5), codeset).lower()   : 5,
+        to_uni(locale.nl_langinfo(locale.ABMON_5), codeset).lower() : 5,
+        to_uni(locale.nl_langinfo(locale.MON_6), codeset).lower()   : 6,
+        to_uni(locale.nl_langinfo(locale.ABMON_6), codeset).lower() : 6,
+        to_uni(locale.nl_langinfo(locale.MON_7), codeset).lower()   : 7,
+        to_uni(locale.nl_langinfo(locale.ABMON_7), codeset).lower() : 7,
+        to_uni(locale.nl_langinfo(locale.MON_8), codeset).lower()   : 8,
+        to_uni(locale.nl_langinfo(locale.ABMON_8), codeset).lower() : 8,
+        to_uni(locale.nl_langinfo(locale.MON_9), codeset).lower()   : 9,
+        to_uni(locale.nl_langinfo(locale.ABMON_9), codeset).lower() : 9,
+        to_uni(locale.nl_langinfo(locale.MON_10), codeset).lower()  : 10,
+        to_uni(locale.nl_langinfo(locale.ABMON_10), codeset).lower(): 10,
+        to_uni(locale.nl_langinfo(locale.MON_11), codeset).lower()  : 11,
+        to_uni(locale.nl_langinfo(locale.ABMON_11), codeset).lower(): 11,
+        to_uni(locale.nl_langinfo(locale.MON_12), codeset).lower()  : 12,
+        to_uni(locale.nl_langinfo(locale.ABMON_12), codeset).lower(): 12,
        }
 
     long_months = (
         "",
-        conv_to_unicode(locale.nl_langinfo(locale.MON_1),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_2),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_3),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_4),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_5),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_6),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_7),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_8),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_9),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_10),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_11),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.MON_12),codeset),
+        to_uni(locale.nl_langinfo(locale.MON_1), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_2), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_3), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_4), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_5), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_6), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_7), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_8), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_9), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_10), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_11), codeset),
+        to_uni(locale.nl_langinfo(locale.MON_12), codeset),
         )
 
     short_months = (
         "",
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_1),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_2),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_3),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_4),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_5),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_6),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_7),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_8),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_9),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_10),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_11),codeset),
-        conv_to_unicode(locale.nl_langinfo(locale.ABMON_12),codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_1), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_2), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_3), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_4), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_5), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_6), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_7), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_8), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_9), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_10), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_11), codeset),
+        to_uni(locale.nl_langinfo(locale.ABMON_12), codeset),
         )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
@@ -106,24 +110,24 @@ try:
     # see http://docs.python.org/library/locale.html
     long_days = (
         "",
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_1),codeset), # Sunday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_2),codeset), # Monday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_3),codeset), # Tuesday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_4),codeset), # Wednesday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_5),codeset), # Thursday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_6),codeset), # Friday
-        conv_to_unicode(locale.nl_langinfo(locale.DAY_7),codeset), # Saturday
+        to_uni(locale.nl_langinfo(locale.DAY_1), codeset), # Sunday
+        to_uni(locale.nl_langinfo(locale.DAY_2), codeset), # Monday
+        to_uni(locale.nl_langinfo(locale.DAY_3), codeset), # Tuesday
+        to_uni(locale.nl_langinfo(locale.DAY_4), codeset), # Wednesday
+        to_uni(locale.nl_langinfo(locale.DAY_5), codeset), # Thursday
+        to_uni(locale.nl_langinfo(locale.DAY_6), codeset), # Friday
+        to_uni(locale.nl_langinfo(locale.DAY_7), codeset), # Saturday
         )
 
     short_days = (
         "",
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_1),codeset), # Sunday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_2),codeset), # Monday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_3),codeset), # Tuesday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_4),codeset), # Wednesday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_5),codeset), # Thursday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_6),codeset), # Friday
-        conv_to_unicode(locale.nl_langinfo(locale.ABDAY_7),codeset), # Saturday
+        to_uni(locale.nl_langinfo(locale.ABDAY_1), codeset), # Sunday
+        to_uni(locale.nl_langinfo(locale.ABDAY_2), codeset), # Monday
+        to_uni(locale.nl_langinfo(locale.ABDAY_3), codeset), # Tuesday
+        to_uni(locale.nl_langinfo(locale.ABDAY_4), codeset), # Wednesday
+        to_uni(locale.nl_langinfo(locale.ABDAY_5), codeset), # Thursday
+        to_uni(locale.nl_langinfo(locale.ABDAY_6), codeset), # Friday
+        to_uni(locale.nl_langinfo(locale.ABDAY_7), codeset), # Saturday
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
@@ -140,62 +144,62 @@ except:
         codeset = locale.getpreferredencoding()
 
     month_to_int = {
-        conv_to_unicode(time.strftime('%B',(0,1,1,1,1,1,1,1,1)),codeset).lower() : 1,
-        conv_to_unicode(time.strftime('%b',(0,1,1,1,1,1,1,1,1)),codeset).lower() : 1,
-        conv_to_unicode(time.strftime('%B',(0,2,1,1,1,1,1,1,1)),codeset).lower() : 2,
-        conv_to_unicode(time.strftime('%b',(0,2,1,1,1,1,1,1,1)),codeset).lower() : 2,
-        conv_to_unicode(time.strftime('%B',(0,3,1,1,1,1,1,1,1)),codeset).lower() : 3,
-        conv_to_unicode(time.strftime('%b',(0,3,1,1,1,1,1,1,1)),codeset).lower() : 3,
-        conv_to_unicode(time.strftime('%B',(0,4,1,1,1,1,1,1,1)),codeset).lower() : 4,
-        conv_to_unicode(time.strftime('%b',(0,4,1,1,1,1,1,1,1)),codeset).lower() : 4,
-        conv_to_unicode(time.strftime('%B',(0,5,1,1,1,1,1,1,1)),codeset).lower() : 5,
-        conv_to_unicode(time.strftime('%b',(0,5,1,1,1,1,1,1,1)),codeset).lower() : 5,
-        conv_to_unicode(time.strftime('%B',(0,6,1,1,1,1,1,1,1)),codeset).lower() : 6,
-        conv_to_unicode(time.strftime('%b',(0,6,1,1,1,1,1,1,1)),codeset).lower() : 6,
-        conv_to_unicode(time.strftime('%B',(0,7,1,1,1,1,1,1,1)),codeset).lower() : 7,
-        conv_to_unicode(time.strftime('%b',(0,7,1,1,1,1,1,1,1)),codeset).lower() : 7,
-        conv_to_unicode(time.strftime('%B',(0,8,1,1,1,1,1,1,1)),codeset).lower() : 8,
-        conv_to_unicode(time.strftime('%b',(0,8,1,1,1,1,1,1,1)),codeset).lower() : 8,
-        conv_to_unicode(time.strftime('%B',(0,9,1,1,1,1,1,1,1)),codeset).lower() : 9,
-        conv_to_unicode(time.strftime('%b',(0,9,1,1,1,1,1,1,1)),codeset).lower() : 9,
-        conv_to_unicode(time.strftime('%B',(0,10,1,1,1,1,1,1,1)),codeset).lower() : 10,
-        conv_to_unicode(time.strftime('%b',(0,10,1,1,1,1,1,1,1)),codeset).lower() : 10,
-        conv_to_unicode(time.strftime('%B',(0,11,1,1,1,1,1,1,1)),codeset).lower() : 11,
-        conv_to_unicode(time.strftime('%b',(0,11,1,1,1,1,1,1,1)),codeset).lower() : 11,
-        conv_to_unicode(time.strftime('%B',(0,12,1,1,1,1,1,1,1)),codeset).lower() : 12,
-        conv_to_unicode(time.strftime('%b',(0,12,1,1,1,1,1,1,1)),codeset).lower() : 12,
+        to_uni(time.strftime('%B',(0,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
+        to_uni(time.strftime('%b',(0,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
+        to_uni(time.strftime('%B',(0,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
+        to_uni(time.strftime('%b',(0,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
+        to_uni(time.strftime('%B',(0,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
+        to_uni(time.strftime('%b',(0,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
+        to_uni(time.strftime('%B',(0,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
+        to_uni(time.strftime('%b',(0,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
+        to_uni(time.strftime('%B',(0,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
+        to_uni(time.strftime('%b',(0,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
+        to_uni(time.strftime('%B',(0,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
+        to_uni(time.strftime('%b',(0,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
+        to_uni(time.strftime('%B',(0,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
+        to_uni(time.strftime('%b',(0,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
+        to_uni(time.strftime('%B',(0,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
+        to_uni(time.strftime('%b',(0,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
+        to_uni(time.strftime('%B',(0,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
+        to_uni(time.strftime('%b',(0,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
+        to_uni(time.strftime('%B',(0,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
+        to_uni(time.strftime('%b',(0,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
+        to_uni(time.strftime('%B',(0,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
+        to_uni(time.strftime('%b',(0,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
+        to_uni(time.strftime('%B',(0,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
+        to_uni(time.strftime('%b',(0,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
        }
 
     long_months = (
         "",
-        conv_to_unicode(time.strftime('%B',(0,1,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,2,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,3,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,4,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,5,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,6,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,7,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,8,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,9,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,10,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,11,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%B',(0,12,1,1,1,1,1,1,1)),codeset),
+        to_uni(time.strftime('%B',(0,1,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,2,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,3,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,4,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,5,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,6,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,7,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,8,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,9,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,10,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,11,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(0,12,1,1,1,1,1,1,1)), codeset),
        )
 
     short_months = (
         "",
-        conv_to_unicode(time.strftime('%b',(0,1,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,2,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,3,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,4,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,5,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,6,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,7,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,8,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,9,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,10,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,11,1,1,1,1,1,1,1)),codeset),
-        conv_to_unicode(time.strftime('%b',(0,12,1,1,1,1,1,1,1)),codeset),
+        to_uni(time.strftime('%b',(0,1,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,2,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,3,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,4,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,5,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,6,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,7,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,8,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,9,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,10,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,11,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(0,12,1,1,1,1,1,1,1)), codeset),
        )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
@@ -209,24 +213,24 @@ except:
     # just a dummy.
     long_days = (
         "",
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,6,1,1)),codeset), # Sunday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,0,1,1)),codeset), # Monday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,1,1,1)),codeset), # Tuesday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,2,1,1)),codeset), # Wednesday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,3,1,1)),codeset), # Thursday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,4,1,1)),codeset), # Friday
-        conv_to_unicode(time.strftime('%A',(0,1,1,1,1,1,5,1,1)),codeset), # Saturday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,6,1,1)), codeset), # Sunday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,0,1,1)), codeset), # Monday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,1,1,1)), codeset), # Tuesday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,2,1,1)), codeset), # Wednesday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,3,1,1)), codeset), # Thursday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,4,1,1)), codeset), # Friday
+        to_uni(time.strftime('%A',(0,1,1,1,1,1,5,1,1)), codeset), # Saturday
         )
 
     short_days = (
         "",
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,6,1,1)),codeset), # Sunday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,0,1,1)),codeset), # Monday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,1,1,1)),codeset), # Tuesday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,2,1,1)),codeset), # Wednesday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,3,1,1)),codeset), # Thursday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,4,1,1)),codeset), # Friday
-        conv_to_unicode(time.strftime('%a',(0,1,1,1,1,1,5,1,1)),codeset), # Saturday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,6,1,1)), codeset), # Sunday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,0,1,1)), codeset), # Monday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,1,1,1)), codeset), # Tuesday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,2,1,1)), codeset), # Wednesday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,3,1,1)), codeset), # Thursday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,4,1,1)), codeset), # Friday
+        to_uni(time.strftime('%a',(0,1,1,1,1,1,5,1,1)), codeset), # Saturday
         )
 
     # depending on the locale, the value returned for 20th Feb 2009 could be 

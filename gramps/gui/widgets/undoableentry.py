@@ -48,7 +48,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.constfunc import conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode, UNITYPE
 from .undoablebuffer import Stack
 
 class UndoableInsertEntry(object):
@@ -57,7 +57,9 @@ class UndoableInsertEntry(object):
         self.offset = position
         self.text = str(text)
         #unicode char can have length > 1 as it points in the buffer
-        charlength = len(conv_to_unicode(text, 'utf-8'))
+        if not isinstance(text, UNITYPE):
+            text = conv_to_unicode(text, 'utf-8')
+        charlength = len(text)
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False

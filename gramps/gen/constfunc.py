@@ -55,7 +55,11 @@ if sys.version_info[0] < 3:
     STRTYPE = basestring
     UNITYPE = unicode
 else:
-    conv_to_unicode = lambda x,y: str(x)
+    def conv_to_unicode(x, y):
+        if isinstance(x, str):
+            return x
+        else:
+            return x.decode(y)
     conv_to_unicode_direct = str
     STRTYPE = str
     UNITYPE = str

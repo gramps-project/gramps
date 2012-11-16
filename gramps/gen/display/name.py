@@ -61,7 +61,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import cuni, conv_to_unicode
+from ..constfunc import cuni, conv_to_unicode, UNITYPE
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
 
@@ -986,7 +986,8 @@ class NameDisplay(object):
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
-                keyword = conv_to_unicode(keyword, "utf8")
+                if not isinstance(keyword, UNITYPE):
+                    keyword = conv_to_unicode(keyword, "utf-8")
                 format_str = format_str.replace(keyword, "%"+ code)
                 format_str = format_str.replace(keyword.title(), "%"+ code)
                 format_str = format_str.replace(keyword.upper(), "%"+ code.upper())
