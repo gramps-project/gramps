@@ -84,7 +84,7 @@ class MapService():
            None, None if invalid
         """
         return conv_lat_lon(place.get_latitude(), 
-                                       place.get_longitude(), format)
+                            place.get_longitude(), format)
 
     def calc_url(self):
         """Base class needs to overwrite this, calculation of the self.path"""

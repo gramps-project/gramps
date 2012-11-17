@@ -49,7 +49,6 @@ from gramps.gen.ggettext import gettext as _
 #----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ..dbguielement import DbGUIElement
-from ..widgets.menutoolbuttonaction import MenuToolButtonAction
 from ..grampsbar import GrampsBar
 from ..configure import ConfigureDialog
 from gramps.gen.config import config
@@ -431,16 +430,6 @@ class PageView(DbGUIElement):
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
-        for action_toolmenu in self.action_toolmenu_list:
-            self.action_toolmenu[action_toolmenu[0]] = \
-                    MenuToolButtonAction(action_toolmenu[0], #unique name
-                                         action_toolmenu[1], #label
-                                         action_toolmenu[2], #tooltip
-                                         action_toolmenu[3], #callback
-                                         action_toolmenu[4]  #arrow tooltip
-                                        )
-            self.action_group.add_action(
-                                    self.action_toolmenu[action_toolmenu[0]])
 
     def _add_action(self, name, stock_icon, label, accel=None, tip=None, 
                    callback=None):
