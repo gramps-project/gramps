@@ -103,7 +103,7 @@ class Node(object):
                     self.sortkey = conv_unicode_tosrtkey(self.name)
         else:
             self.name = ''
-            self.sortkey = None
+            self.sortkey = ''
         self.ref = ref
         self.handle = handle
         self.secondary = secondary
