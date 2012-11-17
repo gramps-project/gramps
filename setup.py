@@ -320,15 +320,16 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         if dirname.startswith("."):
             dirnames.remove(dirname)
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
-        data_list.append(dirpath[7:] + '/*.glade')
-        data_list.append(dirpath[7:] + '/*.xml')
-        data_list.append(dirpath[7:] + '/*.png')
-        data_list.append(dirpath[7:] + '/*.svg')
-        data_list.append(dirpath[7:] + '/*.css')
-        data_list.append(dirpath[7:] + '/*.html')
-        data_list.append(dirpath[7:] + '/*.js')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.glade')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.xml')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.png')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.svg')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.css')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.html')
+        data_list.append(dirpath[7:] + '/' + dirname + '/*.js')
 data_list.append('plugins/webstuff/images/*.gif')
 data_list.append('plugins/webstuff/images/*.ico')
+print data_list
 
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
