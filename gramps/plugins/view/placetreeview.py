@@ -172,7 +172,6 @@ class PlaceTreeView(PlaceBaseView):
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
               <separator/>
-              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -204,28 +203,34 @@ class PlaceTreeView(PlaceBaseView):
         level1 = level2 = level3 = ""
         if len(pathlist) == 1:
             path = pathlist[0]
-            node = model.on_get_iter(path)
-            value = model.on_get_value(node, 0)
-            
-            if len(path) == 1:
-                level[0] = node.name
-            elif len(path) == 2:
-                level[1] = node.name
-                parent = model.on_iter_parent(node)
-                level[0] = parent.name
-            elif len(path) == 3:
-                level[2] = node.name
-                parent = model.on_iter_parent(node)
-                level[1] = parent.name
-                parent = model.on_iter_parent(parent)
-                level[0] = parent.name
-            else:
-                parent = model.on_iter_parent(node)
-                level[2] = parent.name
-                parent = model.on_iter_parent(parent)
-                level[1] = parent.name
-                parent = model.on_iter_parent(parent)
-                level[0] = parent.name
+            suc, node = model.do_get_iter(path)
+            if suc:
+                noden = model.get_node_from_iter(node)
+                if len(path) == 1:
+                    level[0] = noden.name
+                elif len(path) == 2:
+                    level[1] = noden.name
+                    suc, parent = model.do_iter_parent(node)
+                    parentn = model.get_node_from_iter(parent)
+                    level[0] = parentn.name
+                elif len(path) == 3:
+                    level[2] = noden.name
+                    suc, parent = model.do_iter_parent(node)
+                    parentn = model.get_node_from_iter(parent)
+                    level[1] = parentn.name
+                    suc, parent = model.do_iter_parent(parent)
+                    parentn = model.get_node_from_iter(parent)
+                    level[0] = parentn.name
+                else:
+                    suc, parent = model.do_iter_parent(node)
+                    parentn = model.get_node_from_iter(parent)
+                    level[2] = parentn.name
+                    suc, parent = model.do_iter_parent(parent)
+                    parentn = model.get_node_from_iter(parent)
+                    level[1] = parentn.name
+                    suc, parent = model.do_iter_parent(parent)
+                    parentn = model.get_node_from_iter(parent)
+                    level[0] = parentn.name
 
         for ind in [0, 1, 2]: 
             if level[ind] and level[ind] == COUNTRYLEVELS['default'][ind+1]:
