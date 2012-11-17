@@ -150,11 +150,15 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.geo_mainmap = None
         path = os.path.join(ROOT_DIR, "images", "48x48",
                             ('gramps-geo-mainmap' + '.png' ))
-        pathu = path.encode(sys.getfilesystemencoding())
+        pathu = path
+        if sys.version_info[0] < 3:
+            pathu = path.encode(sys.getfilesystemencoding())
         self.geo_mainmap = cairo.ImageSurface.create_from_png(pathu)
         path = os.path.join(ROOT_DIR, "images", "48x48",
                             ('gramps-geo-altmap' + '.png' ))
-        pathu = path.encode(sys.getfilesystemencoding())
+        pathu = path
+        if sys.version_info[0] < 3:
+            pathu = path.encode(sys.getfilesystemencoding())
         self.geo_altmap = cairo.ImageSurface.create_from_png(pathu)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP,
@@ -169,7 +173,9 @@ class GeoGraphyView(OsmGps, NavigationView):
                     EventType.MARRIAGE ):
             path = os.path.join(ROOT_DIR, "images", "48x48",
                                 (constants.ICONS.get(int(ident), default_image) + '.png' ))
-            pathu = path.encode(sys.getfilesystemencoding())
+            pathu = path
+            if sys.version_info[0] < 3:
+                pathu = path.encode(sys.getfilesystemencoding())
             self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(pathu)
 
     def change_page(self):

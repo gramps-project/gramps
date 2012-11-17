@@ -208,7 +208,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.img_surf = None    
         if image:
             image_path = self.get_image(dbstate, person)
-            if isinstance(image_path, STRTYPE):
+            if sys.version_info[0] < 3 and isinstance(image_path, STRTYPE):
                 image_path = image_path.encode(sys.getfilesystemencoding())
             if image_path and os.path.exists(image_path):
                 self.img_surf = cairo.ImageSurface.create_from_png(image_path)
