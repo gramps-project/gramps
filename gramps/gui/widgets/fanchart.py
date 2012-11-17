@@ -724,7 +724,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         radius = math.sqrt((curx - cx) ** 2 + (cury - cy) ** 2)
         if radius < TRANSLATE_PX:
             generation = -1
-        elif (self.angle[-2] and 
+        elif (self.childring and self.angle[-2] and 
                     radius < TRANSLATE_PX + CHILDRING_WIDTH):
             generation = -2  # indication of one of the children
         elif radius < self.CENTER:
