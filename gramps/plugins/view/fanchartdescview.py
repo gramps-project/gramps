@@ -233,9 +233,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
         if self.form == fanchart.FORM_HALFCIRCLE:
-            heightpx = heightpx / 2 + fanchart.CENTER + fanchart.PAD_PX
+            heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
         elif self.form == fanchart.FORM_QUADRANT:
-            heightpx = heightpx / 2 + fanchart.CENTER + fanchart.PAD_PX
+            heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
             widthpx = heightpx
         
         prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
