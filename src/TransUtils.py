@@ -49,7 +49,10 @@ from constfunc import mac
 #
 #-------------------------------------------------------------------------
 if "GRAMPSI18N" in os.environ:
-    LOCALEDIR = os.environ["GRAMPSI18N"]
+    if os.path.exists(os.environ["GRAMPSI18N"]):
+        LOCALEDIR = os.environ["GRAMPSI18N"]
+    else:
+        LOCALEDIR = None
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
     LOCALEDIR = os.path.join(const.ROOT_DIR, "lang")
 elif os.path.exists(os.path.join(const.PREFIXDIR, "share/locale")):
@@ -219,8 +222,8 @@ def setup_windows_gettext():
         return
 
     # No complete/working translation found
-    logging.warning("Translation might not be complete/not working for",\
-           locale.getlocale()[0])
+    logging.warning("Translation might not be complete, "
+                    "not working for your locale")
     
 
 def get_localedomain():
