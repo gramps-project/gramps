@@ -42,7 +42,7 @@ from distutils.command.install import install as _install
 import os
 import glob
 import codecs
-import commands
+import subprocess
 from stat import ST_MODE
 
 VERSION = '4.0.0'
@@ -56,7 +56,7 @@ def intltool_version():
     Return the version of intltool as a tuple.
     '''
     cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
-    retcode, version_str = commands.getstatusoutput(cmd)
+    retcode, version_str = subprocess.getstatusoutput(cmd)
     if retcode != 0:
         return None
     else:
@@ -113,7 +113,7 @@ def build_man(build_cmd):
                 os.makedirs(newdir)
 
             newfile = os.path.join(newdir, 'gramps.1')
-            subst_vars = ((u'@VERSION@', VERSION), )
+            subst_vars = (('@VERSION@', VERSION), )
             substitute_variables(filename, newfile, subst_vars)
 
             import gzip
@@ -215,7 +215,7 @@ def write_gramps_script(install_cmd, build_scripts):
 
     if os.name == 'posix':
         # set read and execute bits
-        mode = ((os.stat(filename)[ST_MODE]) | 0555) & 07777
+        mode = ((os.stat(filename).st_mode) | 0o555) & 0o7777
         log.info('changing mode of %s to %o', filename, mode)
         os.chmod(filename, mode)
 
@@ -234,9 +234,9 @@ def write_const_py(install_cmd):
         prefix = 'os.path.join(os.path.dirname(__file__), os.pardir)'
         sysconfdir = prefix + ' + "' + os.sep + 'etc"'  # Is this correct?
     
-    subst_vars = ((u'@VERSIONSTRING@', VERSION), 
-                  (u'"@prefix@"', prefix),
-                  (u'"@sysconfdir@"', sysconfdir))
+    subst_vars = (('@VERSIONSTRING@', VERSION), 
+                  ('"@prefix@"', prefix),
+                  ('"@sysconfdir@"', sysconfdir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
@@ -329,7 +329,7 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         data_list.append(dirpath[7:] + '/' + dirname + '/*.js')
 data_list.append('plugins/webstuff/images/*.gif')
 data_list.append('plugins/webstuff/images/*.ico')
-print data_list
+print(data_list)
 
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
