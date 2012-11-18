@@ -259,7 +259,7 @@ openstreetmap_jsc = """
 
   function initialize(){
     var map = new OpenLayers.Map('place_canvas');
-  
+
     var osm = new OpenLayers.Layer.OSM()
     map.addLayer(osm);
     
@@ -515,11 +515,10 @@ def copy_thumbnail(report, handle, photo, region=None):
     report.copy_file(from_path, to_path)
     return to_path
 
-#################################################
-#
+'''
 #    Manages all the functions, variables, and everything needed 
 #    for all of the classes contained within this plugin
-#################################################
+'''
 class BasePage(object):
     def __init__(self, report, title, gid = None):
         self.up = False
@@ -1561,15 +1560,8 @@ class BasePage(object):
         as part of the header title.
         """
 
-        # Header constants
-        xmllang = Utils.xml_lang()
-        _META1 = 'name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
-        _META2 = 'name ="apple-mobile-web-app-capable" content="yes"'
-        _META3 = 'name="generator" content="%s %s %s"' % (
-                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
-        _META4 = 'name="author" content="%s"' % self.author
-
         # begin each html page...
+        xmllang = Utils.xml_lang()
         page, head, body = Html.page('%s - %s' % 
                                     (html_escape(self.title_str.strip()), 
                                      html_escape(title)),
@@ -1578,6 +1570,13 @@ class BasePage(object):
         # temporary fix for .php parsing error
         if self.ext in [".php", ".php3", ".cgi"]:
             del page[0]
+
+        # Header constants
+        _META1 = 'name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
+        _META2 = 'name ="apple-mobile-web-app-capable" content="yes"'
+        _META3 = 'name="generator" content="%s %s %s"' % (
+                    const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE)
+        _META4 = 'name="author" content="%s"' % self.author
 
         # create additional meta tags
         meta = Html("meta", attr = _META1) + (
@@ -1623,9 +1622,8 @@ class BasePage(object):
         header_note = self.report.options['headernote']
         if header_note:
             note = self.get_note_format(
-                self.report.database.get_note_from_gramps_id(header_note),
-                False
-                )
+                self.report.database.get_note_from_gramps_id(header_note), False)
+
             user_header = Html("div", id = 'user_header')
             headerdiv += user_header  
  
@@ -1633,12 +1631,16 @@ class BasePage(object):
             user_header += note
 
         # Begin Navigation Menu
-        if self.report.navigation == "DropDown":
+        # is the style sheet either Basic-Blue or Visually Impaired,
+        # and menu layout is Drop Down?
+        if (self.report.css == _("Basic-Blue") or 
+            self.report.css == _("Visually Impaired")) and \
+            self.report.navigation == "dropdown":
             body += self.display_drop_menu()
         else: 
             body += self.display_nav_links(title)
 
-        # return page, head, and body
+        # return page, head, and body to its classes...
         return page, head, body
 
     def display_nav_links(self, currentsection):
@@ -1676,7 +1678,8 @@ class BasePage(object):
             ('thumbnails',              _("Thumbnails"),    self.create_media),
             ('download',                _("Download"),      self.report.inc_download),
             ("addressbook",             _("Address Book"),  self.report.inc_addressbook),
-            ('contact',                 _("Contact"),       self.report.use_contact)]
+            ('contact',                 _("Contact"),       self.report.use_contact)
+        ]
 
         # Remove menu sections if they are not being created?
         navs = ((url_text, nav_text) for url_text, nav_text, cond in navs if cond)
@@ -1684,11 +1687,12 @@ class BasePage(object):
 
         number_items = len(menu_items)
         num_cols = 10
-        num_rows = (number_items // num_cols) + 1
+        num_rows = ((number_items // num_cols) + 1)
 
         # begin navigation menu division...
         with Html("div", class_ = "wrapper", id = "nav", role = "navigation") as navigation:
             with Html("div", class_ = "container") as container:
+
                 index = 0
                 for rows in range(num_rows):
                     unordered = Html("ul", class_ = "menu", id = "dropmenu")
@@ -3029,7 +3033,7 @@ class FamilyPages(BasePage):
         # place_lat_long violate modularity and should be removed.
         report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating family pages..."), 
-                                  len(db_family_handles) + 1)
+                                  len(self.family_dict) + 1)
         self.FamilyListPage(report, report.title, ind_list,
                             db_family_handles)
 
@@ -3774,15 +3778,11 @@ class EventPages(BasePage):
 
                             # family event 
                             if int(_type) in _EVENTMAP:
-                                handle_list = set(self.dbase_.find_backlink_handles(
-                                    event_handle, 
-                                    include_classes=['Family', 'Person']))
-
-                            # personal event
+                                handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
+                                                                                    include_classes = ['Family', 'Person']))
                             else:
-                                handle_list = set(self.dbase_.find_backlink_handles(
-                                    event_handle, 
-                                    include_classes=['Person']))
+                                handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
+                                                                                    include_classes = ['Person']))
                             if handle_list:
 
                                 trow = Html("tr")
@@ -4313,6 +4313,7 @@ class SourcePages(BasePage):
         @param: source_handles -- a list of the handles of the sources to be
         displayed
         """
+        self.dbase_ = report.database
         BasePage.__init__(self, report, title)
 
         source_dict = {}
@@ -4389,7 +4390,8 @@ class SourcePages(BasePage):
         @param: item -- a tuple containing the source handle and a list of
         back-references
         """
-        self.dbase_ = report.database # needed for dump_repository_ref_list
+        self.dbase_ = report.database  # needed for dump_repository_ref_list
+
         (src_handle, bkref_list) = item
         source = self.db.get_source_from_handle(src_handle)
         if not source:
@@ -4399,7 +4401,7 @@ class SourcePages(BasePage):
         self.page_title = source.get_title()
 
         inc_repositories = self.report.options["inc_repository"]
-        self.navigation  = self.report.options["navigation"]
+        self.navigation = self.report.options["navigation"]
 
         of, sio = self.report.create_file(src_handle, "src")
         self.up = True
@@ -4622,22 +4624,22 @@ class MediaPages(BasePage):
         BasePage.__init__(self, report, title)
 
         of, sio = self.report.create_file("media")
-        media_listpage, head, body = self.write_header(_('Media'))
+        medialistpage, head, body = self.write_header(_('Media'))
 
         # begin gallery division
-        with Html("div", class_ = "content", id = "Gallery") as media_list:
-            body += media_list
+        with Html("div", class_ = "content", id = "Gallery") as medialist:
+            body += medialist
 
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
                           "the title will take you to that media object&#8217;s page.  "
                           "If you see media size dimensions above an image, click on the "
                           "image to see the full sized version.  ")
-            media_list += Html("p", msg, id = "description")
+            medialist += Html("p", msg, id = "description")
 
             # begin gallery table and table head
             with Html("table", class_ = "infolist primobjlist gallerylist") as table:
-                media_list += table
+                medialist += table
 
                 # begin table head
                 thead = Html("thead")
@@ -4679,7 +4681,6 @@ class MediaPages(BasePage):
                             Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
                         )
- 
                         index += 1
 
         # add footer section
@@ -4689,7 +4690,7 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(media_listpage, of, sio)
+        self.XHTMLWriter(medialistpage, of, sio)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -6952,7 +6953,8 @@ class RepositoryPages(BasePage):
         report.user.end_progress()
 
 #class RepositoryListPage(BasePage):
-    def RepositoryListPage(self, report, title, repos_dict, keys, db_repository_handles):
+    def RepositoryListPage(self, report, title, repos_dict, keys,
+                           db_repository_handles):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
         inc_repos = self.report.options["inc_repository"]
@@ -8901,6 +8903,7 @@ def alphabet_navigation(menu_set):
                 unordered.extend(
                     Html("li", hyper, inline = True)
                 )
+
                 index += 1
                 cols += 1
             num_of_rows -= 1
