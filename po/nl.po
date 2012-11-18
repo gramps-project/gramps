@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-15 23:20+0100\n"
+"PO-Revision-Date: 2012-11-18 11:04+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -14918,9 +14918,8 @@ msgid "Submission: Generations of ancestors"
 msgstr "Submissie: Het aantal vooroudergeneraties"
 
 #: ../src/plugins/lib/libgedcom.py:6993
-#, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Het aantal ouders beperken"
+msgstr "Submissie: Afstammelingengeneraties"
 
 #: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
@@ -23418,7 +23417,7 @@ msgstr "%s traceren"
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5605
 msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr ""
+msgstr "Deze kaart toont alle gebeurtenissen en locaties van de persoon en zijn afstammelingen. Wanneer u met de muis over een merker gaat, wordt de locatienaam getoond.  De merkers en de verwijzingslijst worden op datum (indien aanwezig) gesorteerd. Klikt up de locatie&#8217;s naam in het deel verwijzingen dan wordt u doorverwezen naar de locatie&#8217;s bladzijde."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5657
 msgid "Drop Markers"
@@ -25793,7 +25792,7 @@ msgstr "Vindt gebeurtenissen met bronnen die overeenkomen met een opgegeven bron
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:46
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr "Bebeurtenissen met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
+msgstr "Gebeurtenissen met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceConfidence.py:47
 msgid "Matches events with at least one direct source with confidence level(s)"
@@ -25989,18 +25988,16 @@ msgid "Place with direct source >= <confidence level>"
 msgstr "Locatie met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:46
-#, fuzzy
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr "Personen met tenminste een rechtstreekse bron met zekerheidsniveau zoeken"
+msgstr "Locaties met tenminste een rechtstreekse bron met zekerheidsniveau zoeken"
 
 #: ../src/Filters/Rules/Place/_HasSourceCount.py:46
 msgid "Place with <count> sources"
 msgstr "Locaties met <aantal> bronnen"
 
 #: ../src/Filters/Rules/Place/_HasSourceCount.py:47
-#, fuzzy
 msgid "Matches places with a certain number of sources connected to it"
-msgstr "Personen met een bepaald aantal bronnen vinden"
+msgstr "Locaties met een bepaald aantal bronnen vinden"
 
 #: ../src/Filters/Rules/Place/_HasCitation.py:52
 msgid "Place with the <citation>"
@@ -26009,9 +26006,8 @@ msgstr "Locaties met het  <citaat>"
 # Geboortedatum van een bepaalde waarde (zijn bereiken ook mogelijk?)
 # Bepaalde geboortedatum misschien?
 #: ../src/Filters/Rules/Place/_HasCitation.py:53
-#, fuzzy
 msgid "Matches places with a citation of a particular value"
-msgstr "Vindt personen met een citaat met een bepaalde waarde"
+msgstr "Locaties met een citaat met een bepaalde waarde vinden"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -26418,9 +26414,8 @@ msgid "Media with <count> sources"
 msgstr "Media-objecten met <aantal> bronnen"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:47
-#, fuzzy
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Vindt families met een bepaald aantal bronnen"
+msgstr "Media-objecten met een bepaald aantal bronnen vinden"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:51
 msgid "Media with the <citation>"
@@ -26439,9 +26434,8 @@ msgid "Matches media who have a particular source"
 msgstr "Media-objecten met een bepaalde bron vinden"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:45
-#, fuzzy
 msgid "Media with at least one direct source >= <confidence level>"
-msgstr "Bebeurtenissen met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
+msgstr "Media-objecten met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:46
 #, fuzzy
@@ -29205,7 +29199,6 @@ msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only abou
 msgstr "<b>The 'Hoe' en 'Waarom' van de genealogie</b><br/> Genealogie is méér dan enkel namen en datums. Het gaat over mensen. Beschrijf de zaken. Denk ook aan <b>waarom</b> bepaalde dingen gebeurden, en hoe de afstammelingen gevormd werden door de gebeurtenissen die ze meemaakten. Beschrijvingen en verhalen maken een familiegeschiedenis echt boeiend."
 
 #: ../src/data/tips.xml.in.h:56
-#, fuzzy
 msgid "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
 msgstr "<b>U spreekt geen Engels?</b><br/>Vrijwilligers hebben Gramps vertaald in meer dan 20 talen. Als Gramps ondersteuning heeft voor uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw computer en start Gramps opnieuw op."
 
