@@ -66,7 +66,6 @@ from collections import defaultdict
 from xml.sax.saxutils import escape
 
 from operator import itemgetter
-
 from decimal import Decimal, getcontext
 getcontext().prec = 8
 
@@ -1644,9 +1643,9 @@ class BasePage(object):
         # is the style sheet either Basic-Blue or Visually Impaired,
         # and menu layout is Drop Down?
         if (self.report.css == _("Basic-Blue") or 
-            self.report.css == _("Visually Impaired")):
-            if self.report.navigation == "dropdown":
-                body += self.display_drop_menu()
+            self.report.css == _("Visually Impaired")) and \
+            self.report.navigation == "dropdown":
+            body += self.display_drop_menu()
         else: 
             body += self.display_nav_links(title)
 
@@ -3043,8 +3042,7 @@ class FamilyPages(BasePage):
         # place_lat_long violate modularity and should be removed.
         report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating family pages..."), 
-                                  len(db_family_handles) + 1)
-        db_family_handles = []
+                                  len(self.family_dict) + 1)
         self.FamilyListPage(report, report.title, ind_list,
                             db_family_handles)
 
@@ -3365,7 +3363,8 @@ class PlacePages(BasePage):
                         citation_handle, place_fname,
                         place_name, place.gramps_id)
 
-    def display_pages(self, report, title, place_list, source_list):
+    def display_pages(self, report, title, place_list, source_list,
+                      db_place_handles):
         # FIXME: Most of the parameters should be removed. report is passed to
         # __init__, title appears not to be used and place_list, source_list and
         # db_place_handles violate modularity and should be removed.
@@ -3382,11 +3381,11 @@ class PlacePages(BasePage):
                                   _("Creating place pages"),
                                   len(place_list) + 1)
 
-        self.PlaceListPage(report, title, place_list)
+        self.PlaceListPage(report, title, place_list, db_place_handles)
 
         for place in place_list:
             report.user.step_progress()
-            self.PlacePage(report, title, place, source_list, place_list)
+            self.PlacePage(report, title, place, source_list, place_list, db_place_handles)
         report.user.end_progress()
         pass
 
@@ -3491,6 +3490,7 @@ class PlacePages(BasePage):
                         else:
                             tcell1 += '&nbsp;'
                             tcell2 += '&nbsp;'
+                    db_place_handles.append(place_handles)
  
         # add clearline for proper styling
         # add footer section
@@ -3705,18 +3705,16 @@ class EventPages(BasePage):
                                   len(event_handle_list) + 1)
         self.EventListPage(report, title, event_types,
                            event_handle_list,
-                           ind_list)
+                           ind_list, db_event_handles)
 
         for event_handle in event_handle_list:
             report.user.step_progress()
             self.EventPage(report, title, event_handle, ind_list)
 
         report.user.end_progress()
-        
-        return event_handle_list
     
     def EventListPage(self, report, title, event_types, event_handle_list,
-                      ppl_handle_list):
+                      ppl_handle_list, db_event_handles):
         """
         Will create the event list page
 
@@ -3771,9 +3769,7 @@ class EventPages(BasePage):
 
                 prev_letter = ""
                 # separate events by their type and then thier event handles
-                for (evt_type, data_list) in sort_event_types(self.dbase_,
-                                                               event_types,
-                                                               event_handle_list):
+                for (evt_type, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
                     first_letter = True
                     _EVENT_DISPLAYED = []
 
@@ -3858,6 +3854,7 @@ class EventPages(BasePage):
 
                         _EVENT_DISPLAYED.append(gid)
                         first_event = False
+                        db_event_handles.append(event_handle)
 
         # add clearline for proper styling
         # add footer section
@@ -4315,8 +4312,6 @@ class SourcePages(BasePage):
             self.SourcePage(report, title, item)
 
         report.user.end_progress()
-        pass
-    
     
     def SourceListPage(self, report, title, source_handles):
         """
@@ -4439,6 +4434,7 @@ class SourcePages(BasePage):
             # add section title
             sourcedetail += Html("h3", html_escape(source.get_title()), inline = True)
 
+            # begin sources table
             with Html("table", class_ = "infolist source") as table:
                 sourcedetail += table
 
@@ -4681,7 +4677,7 @@ class MediaPages(BasePage):
                     media = self.dbase_.get_object_from_handle(media_handle)
                     if media:
                         title = media.get_description() or "[untitled]"
-                    
+
                         trow = Html("tr")
                         tbody += trow
                     
@@ -4690,7 +4686,7 @@ class MediaPages(BasePage):
                             [self.media_ref_link(media_handle, title), "ColumnName"],
                             [_dd.display(media.get_date_object() ),    "ColumnDate"],
                             [media.get_mime_type(),                    "ColumnMime"] ]
-                    
+
                         trow.extend(
                             Html("td", data, class_ = colclass)
                                 for data, colclass in media_data_row
@@ -7455,9 +7451,6 @@ class NavWebReport(Report):
                             str(value))
                 return
 
-        # copy all of the neccessary files for NarrativeWeb report...
-        self.copy_narrated_files()
-
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
         rel_class = get_relationship_calculator()
@@ -7571,20 +7564,20 @@ class NavWebReport(Report):
         if self.inc_families:
             self.tab["Family"].display_pages(self, ind_list, place_list,
                                             place_lat_long, db_family_handles)
-#            db_family_handles = self.F(ind_list, place_list, place_lat_long)
+#            self.family_pages(ind_list, place_list, place_lat_long, db_family_handles)
 
         # build classes EventListPage and EventPage
         db_event_handles = []
         if self.inc_events:
             self.tab["Event"].display_pages(self, self.title, ind_list,
                                           db_event_handles)
-#            db_event_handles = self.event_pages(ind_list)
+#            self.event_pages(ind_list, db_event_handles)
 
         # build classes PlaceListPage and PlacePage
-#        db_place_handles = []
+        db_place_handles = []
         self.tab["Place"].display_pages(self, self.title, place_list,
-                                        source_list)
-#        db_place_handles = self.place_pages(place_list, source_list)
+                                        source_list, db_place_handles)
+
         # build classes RepositoryListPage and RepositoryPage
         db_repository_handles = []
         if self.inc_repository:
@@ -7593,7 +7586,6 @@ class NavWebReport(Report):
                 self.tab["Repository"].display_pages(self, self.title, 
                                                      repolist, source_list,
                                                      db_repository_handles)
-#                db_repository_handles = self.repository_pages(repolist, source_list)
 
         # build classes MediaListPage and MediaPage
         db_media_handles = []
@@ -7609,13 +7601,15 @@ class NavWebReport(Report):
         if self.inc_addressbook:
             self.addressbook_pages(ind_list)
 
-        # for use in class SourcePage's Citations Referents section...
-#        database_handles_list = (db_family_handles, db_event_handles, db_place_handles,
-#                db_repository_handles, db_media_handles)
+        database_handles_list = (db_family_handles, db_event_handles, db_place_handles,
+                db_repository_handles, db_media_handles)
 
         # build classes SourceListPage and SourcePage
         # has been moved so that all Sources can be found before processing...
         self.tab["Source"].display_pages(self, self.title, source_list)
+
+        # copy all of the neccessary files for NarrativeWeb report...
+        self.copy_narrated_files()
 
         # if an archive is being used, close it?
         if self.archive:
@@ -7808,7 +7802,7 @@ class NavWebReport(Report):
             self.user.step_progress()
         self.user.end_progress()
 
-#    def family_pages(self, ppl_handle_list, place_list, place_lat_long):
+#    def family_pages(self, ppl_handle_list, place_list, place_lat_long, db_family_handles):
 #        """
 #        creates the FamiliesListPage and FamilyPages
 #        """
@@ -7823,7 +7817,6 @@ class NavWebReport(Report):
 #            self.user.step_progress()
 #        self.user.end_progress()
 
-
 #    def place_pages(self, place_list, source_list, db_place_handles):
 #        """
 #        creates PlaceListPage and PlacePage
@@ -7833,7 +7826,6 @@ class NavWebReport(Report):
 #
 #        PlaceListPage(self, self.title, place_list, db_place_handles)
 #
-
 #        for place in place_list:
 #            PlacePage(self, self.title, place, source_list, place_list)
 #            self.user.step_progress()
@@ -7884,8 +7876,6 @@ class NavWebReport(Report):
 #            prev = photo_handle
 #            index += 1
 #        self.user.end_progress()
-#
-#        return photo_keys
 
     def thumbnail_preview_page(self):
         """
