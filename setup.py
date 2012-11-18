@@ -43,6 +43,8 @@ import os
 import glob
 import codecs
 import subprocess
+if sys.version_info[0] < 3:
+    import commands
 from stat import ST_MODE
 
 VERSION = '4.0.0'
@@ -56,7 +58,10 @@ def intltool_version():
     Return the version of intltool as a tuple.
     '''
     cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
-    retcode, version_str = subprocess.getstatusoutput(cmd)
+    if sys.version_info[0] < 3:
+        retcode, version_str = commands.getstatusoutput(cmd)
+    else:
+        retcode, version_str = subprocess.getstatusoutput(cmd)
     if retcode != 0:
         return None
     else:
@@ -329,7 +334,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         data_list.append(dirpath[7:] + '/' + dirname + '/*.js')
 data_list.append('plugins/webstuff/images/*.gif')
 data_list.append('plugins/webstuff/images/*.ico')
-print(data_list)
 
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
