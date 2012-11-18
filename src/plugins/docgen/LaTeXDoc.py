@@ -86,12 +86,12 @@ _LATEX_TEMPLATE = '''%
 % when utf8 is specified as an option to the inputenc
 % package. This package is included by default in some
 % installations, but not in others, so we do not make it
-% the default.  Uncomment the second line if you wish to use it
+% the default.  Uncomment the first line if you wish to use it
 % (If you do not have ucs.sty, you may obtain it from
 %  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)
 %
-\\usepackage[latin1]{inputenc}%
-%\\usepackage[latin1,utf8]{inputenc}%
+%\\usepackage[latin1]{inputenc}%
+\\usepackage[latin1,utf8]{inputenc}%
 \\usepackage{graphicx}% Extended graphics support
 \\usepackage{longtable}% For multi-page tables
 \\usepackage{calc}% For some calculations
