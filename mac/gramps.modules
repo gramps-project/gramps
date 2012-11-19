@@ -59,13 +59,13 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 
-  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-unstable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-unstable/gtk-osx.modules"/-->
+  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
+  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
 
 
   <distutils id="gramps-svn" >
-    <branch module="gramps" repo="gramps"/>
+    <branch module="code" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
       <dep package="librsvg"/>
@@ -80,22 +80,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pyexiv2"/>
     </after>
   </distutils>
-
-  <distutils id="gramps-addons">
-    <branch module="branches/gramps32/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps"/>
-    </dependencies>
-  </distutils>
-
-  <autotools id="gramps33-addons" skip-autogen="true" >
-    <branch module="branches/gramps33/contrib"
-	    repo="gramps-addons"/>
-    <dependencies>
-      <dep package="gramps33"/>
-    </dependencies>
-  </autotools>
 
   <distutils id="gramps-addons-svn">
     <branch module="gramps-addons/trunk/contrib"
@@ -114,16 +98,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-<!-- Later versions of librsvg2 require libxml2-2.7, available only in
-     Snow Leopard 
-  <autotools id="librsvg2" >
-    <branch module="librsvg/2.22/librsvg-2.22.3.tar.bz2" version="2.22.3"
-	    repo="ftp.gnome.org"/>
-    <dependencies>
-      <dep package="libgsf"/>
-      <dep package="libart_lgpl"/>< goffice.modules >
-    </dependencies>
-  </autotools -->
 
   <distutils id="pyenchant">
     <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
@@ -162,6 +136,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=yes --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
+      <dep package="meta-gtk-osx-freetype"/>
       <dep package="pango"/>
       <dep package="zlib"/>
     </dependencies>
