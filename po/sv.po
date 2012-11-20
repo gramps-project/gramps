@@ -25,14 +25,14 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:05+0200\n"
-"PO-Revision-Date: 2012-10-25 15:08+0200\n"
+"PO-Revision-Date: 2012-11-20 19:19+0100\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
@@ -12826,7 +12826,7 @@ msgstr "Dubbelklicka på förnamn för detaljer"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:133
 msgid "Total unique given names"
-msgstr "Totalt antal unika förnamn"
+msgstr "Totalt antal olika förnamn"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:135
 msgid "Total given names showing"
@@ -13286,7 +13286,7 @@ msgstr "Antal familjer"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:173
 msgid "Unique surnames"
-msgstr "Unika efternamn"
+msgstr "Antal olika efternamn"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:177
 #: ../src/plugins/textreport/Summary.py:206
@@ -13303,7 +13303,7 @@ msgstr "Totalt antal referenser till mediaobjekt"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:187
 msgid "Number of unique media objects"
-msgstr "Antal unika mediaobjekt"
+msgstr "Antal olika mediaobjekt"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:192
 msgid "Total size of media objects"
@@ -13340,7 +13340,7 @@ msgstr "Största typsnittsstorlek"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:165
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:107
 msgid "Total unique surnames"
-msgstr "Antal unika efternamn"
+msgstr "Antal olika efternamn"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:167
 msgid "Total surnames showing"
@@ -19481,7 +19481,7 @@ msgstr "isolerade personer"
 
 #: ../src/plugins/quickview/FilterByName.py:68
 msgid "Filtering_on|unique surnames"
-msgstr "unika efternamn"
+msgstr "olika efternamn"
 
 #: ../src/plugins/quickview/FilterByName.py:69
 msgid "Filtering_on|people with media"
@@ -21249,7 +21249,7 @@ msgstr "Isolerade personer: %d"
 #: ../src/plugins/textreport/Summary.py:177
 #, python-format
 msgid "Unique surnames: %d"
-msgstr "Unika efternamn: %d"
+msgstr "Olika efternamn: %d"
 
 #: ../src/plugins/textreport/Summary.py:181
 #, python-format
