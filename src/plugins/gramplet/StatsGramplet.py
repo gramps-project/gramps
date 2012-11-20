@@ -106,14 +106,19 @@ class StatsGramplet(Gramplet):
             for name in [person.get_primary_name()] + person.get_alternate_names():
                 if name.get_first_name().strip() == "":
                     incomp_names += 1
+                    if not name.get_surname().strip() in namelist:
+                        namelist.append(name.get_surname().strip())
                 else:
                     if name.get_surname_list():
                         for surname in name.get_surname_list():
                             if surname.get_surname().strip() == "":
                                 incomp_names += 1
+                            else: 
+                                if not surname.get_surname().strip() in namelist:
+                                    namelist.append(surname.get_surname().strip())
                     else:
                         incomp_names += 1
-                    
+
             if (not person.get_main_parents_family_handle() and 
                 not len(person.get_family_handle_list())):
                 disconnected += 1

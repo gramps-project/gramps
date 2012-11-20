@@ -106,12 +106,13 @@ class SurnameCloudGramplet(Gramplet):
         surname_sort = []
         total = cnt = 0
         for surname in surnames:
-            surname_sort.append( (surnames[surname], surname) )
-            total += surnames[surname]
-            cnt += 1
+            if not surname.strip() == "":
+                surname_sort.append( (surnames[surname], surname) )
+                total += surnames[surname]
+                cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
-
+                
         total_surnames = cnt
         surname_sort.sort(reverse=True)
         cloud_names = []
