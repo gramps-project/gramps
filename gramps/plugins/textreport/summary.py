@@ -147,8 +147,10 @@ class SummaryReport(Report):
                 unknowns += 1
                 
             # Count unique surnames
-            if name.get_surname() not in namelist:
-                namelist.append(name.get_surname())
+            for name in [person.get_primary_name()] + person.get_alternate_names():
+                if not name.get_surname().strip() in namelist \
+                    and not name.get_surname().strip() == "":
+                    namelist.append(name.get_surname().strip())
         
         self.doc.start_paragraph("SR-Normal")
         self.doc.write_text(_("Number of individuals: %d") % num_people)
