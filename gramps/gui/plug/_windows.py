@@ -694,7 +694,7 @@ class PluginTrace(ManagedWindow):
 #-------------------------------------------------------------------------
 class LinkTag(Gtk.TextTag):
     def __init__(self, link, buffer):
-        GObject.GObject.__init__(self, link)
+        GObject.GObject.__init__(self, name=link)
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', "#0000ff")
         self.set_property('underline', Pango.Underline.SINGLE)
