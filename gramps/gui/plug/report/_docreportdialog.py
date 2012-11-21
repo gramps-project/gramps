@@ -94,7 +94,11 @@ class DocReportDialog(ReportDialog):
         """
         pstyle = self.paper_frame.get_paper_style()
         
-        self.doc = self.format(self.selected_style, pstyle)
+        if self.doc_options:
+            self.doc = self.format(self.selected_style, pstyle,
+                                   self.doc_options)
+        else:
+            self.doc = self.format(self.selected_style, pstyle)
         if not self.format_menu.get_active_plugin().get_paper_used():
             #set css filename
             self.doc.set_css_filename(self.css_filename)
@@ -147,6 +151,11 @@ class DocReportDialog(ReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(docgen_plugin.get_style_support())
             self.style_menu.set_sensitive(docgen_plugin.get_style_support())
+
+        self.basedocname = docgen_plugin.get_basedocname()
+        self.doc_option_class = docgen_plugin.get_doc_option_class()
+        self.setup_doc_options_frame()
+        self.show()
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function
@@ -267,6 +276,8 @@ class DocReportDialog(ReportDialog):
         # Create the output document.
         self.make_document()
         
+        self.parse_doc_options()
+
         # Save options
         self.options.handler.save_options()
         config.set('interface.open-with-default-viewer', 

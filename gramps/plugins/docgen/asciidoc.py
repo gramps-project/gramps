@@ -6,6 +6,7 @@
 # Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,6 +40,8 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gramps.gen.errors import ReportError
+from gramps.gen.plug.menu import NumberOption
+from gramps.gen.plug.report import DocOptions
 
 #------------------------------------------------------------------------
 #
@@ -46,7 +49,6 @@ from gramps.gen.errors import ReportError
 #
 #------------------------------------------------------------------------
 LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
-_WIDTH_IN_CHARS = 72
 
 #------------------------------------------------------------------------
 #
@@ -82,11 +84,13 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
                     end_words = 1
             else:                             # Compose line of words
                 while len(line)+len(words[word]) <= right-real_left:
-                    line += words[word]+' '
+                    line += words[word]
                     word += 1
                     if word >= len(words):
                         end_words = 1
                         break
+                    elif len(line) < right-real_left:
+                        line += ' ' # add a space since there is still room
             lines.append(line)
             #first line finished, discard first
             real_left = left
@@ -130,9 +134,14 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
 #------------------------------------------------------------------------
 class AsciiDoc(BaseDoc,TextDoc):
 
-    def __init__(self, styles, type):
+    def __init__(self, styles, type, options=None):
         BaseDoc.__init__(self, styles, type)
         self.__note_format = False
+
+        self._cpl = 72 # characters per line, in case the options are ignored
+        if options:
+            menu = options.menu
+            self._cpl = menu.get_option_by_name('linechars').get_value()
 
     #--------------------------------------------------------------------
     #
@@ -165,7 +174,7 @@ class AsciiDoc(BaseDoc,TextDoc):
         self.f.close()
 
     def get_usable_width(self):
-        return _WIDTH_IN_CHARS
+        return self._cpl
 
     #--------------------------------------------------------------------
     #
@@ -410,3 +419,26 @@ class AsciiDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None,links=False):
         self.text = self.text + text
+
+#------------------------------------------------------------------------
+#
+# AsciiDocOptions class
+#
+#------------------------------------------------------------------------
+class AsciiDocOptions(DocOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self, name, dbase):
+        DocOptions.__init__(self, name)
+        
+    def add_menu_options(self, menu):
+        """
+        Add options to the document menu for the AsciiDoc docgen.
+        """
+        category_name = 'Document Options' # internal name: don't translate
+
+        linechars = NumberOption(_('Characters per line'), 72, 20, 9999)
+        linechars.set_help(_("The number of characters per line"))
+        menu.add_option(category_name, 'linechars', linechars)

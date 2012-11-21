@@ -51,7 +51,7 @@ from gramps.gen.ggettext import gettext as _
 from gramps.gen.config import config
 from gramps.gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
 from ...utils import open_file_with_default_application
-from .. import add_gui_options
+from .. import add_gui_options, make_gui_option
 from ...user import User
 from ...dialog import ErrorDialog, OptionDialog
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
@@ -144,6 +144,7 @@ class ReportDialog(ManagedWindow):
 
     def init_interface(self):
         self.widgets = []
+        self.doc_widgets = []
         self.frame_names = []
         self.frames = {}
         self.format_menu = None
@@ -571,6 +572,65 @@ class ReportDialog(ManagedWindow):
         menu for selecting a style."""
         StyleListDisplay(self.style_sheet_list, self.build_style_menu,
                          self.window)
+
+    #----------------------------------------------------------------------
+    #
+    # Functions related to any docgen options for a dialog.
+    #
+    #----------------------------------------------------------------------
+    def setup_doc_options_frame(self):
+        if self.doc_widgets:
+            for option_widget in self.doc_widgets:
+                self.tbl.remove(option_widget)
+            self.doc_widgets = []
+        self.doc_options = None
+
+        if not self.doc_option_class:
+            return # this docgen type has no options
+
+        self.init_doc_options(self.doc_option_class)
+        menu = self.doc_options.menu
+        for name in menu.get_option_names('Document Options'):
+            option = menu.get_option('Document Options', name)
+            # override option default with xml-saved value:
+            if name in self.doc_options.options_dict:
+                option.set_value(self.doc_options.options_dict[name])
+            widget, has_label = make_gui_option(option, self.dbstate,
+                                                self.uistate, self.track)
+            if has_label:
+                widget_text = Gtk.Label('%s:' % option.get_label())
+                widget_text.set_alignment(0.0, 0.0)
+                self.tbl.attach(widget_text, 1, 2, self.row, self.row+1,
+                                Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
+                self.doc_widgets.append(widget_text)
+            self.tbl.attach(widget, 2, 4, self.row, self.row+1,
+                            yoptions=Gtk.AttachOptions.SHRINK)
+            self.doc_widgets.append(widget)
+            self.row += 1
+
+    def init_doc_options(self, option_class):
+        try:
+            if (issubclass(option_class, object) or     # New-style class
+                isinstance(option_class, ClassType)):   # Old-style class
+                self.doc_options = option_class(self.raw_name, self.db)
+        except TypeError:
+            self.doc_options = option_class
+        self.doc_options.load_previous_values()
+
+    def parse_doc_options(self):
+        """
+        Called to allow parsing of added docgen widgets.
+        It is called when OK is pressed in a dialog. 
+        """
+        if not self.doc_options:
+            return
+        try:
+            self.doc_options.parse_user_options()
+            for opt in self.doc_options.options_dict:
+                self.options.options_dict[opt] = \
+                    [self.basedocname, self.doc_options.options_dict[opt]]
+        except:
+            logging.warning("Failed to parse doc options")
 
 #------------------------------------------------------------------------
 #

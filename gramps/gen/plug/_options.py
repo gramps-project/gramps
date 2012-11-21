@@ -55,6 +55,8 @@ except:
 #-------------------------------------------------------------------------
 from ..utils.cast import get_type_converter
 from .menu import Menu
+from ..plug import BasePluginManager
+PLUGMAN = BasePluginManager.get_instance()
 
 #-------------------------------------------------------------------------
 #
@@ -134,6 +136,7 @@ class OptionListCollection(object):
 
         self.filename = os.path.expanduser(filename)
         self.option_list_map = {}
+        self.docgen_names = PLUGMAN.get_docgen_names()
         self.init_common()
         self.parse()
 
@@ -173,7 +176,7 @@ class OptionListCollection(object):
         @param name: name associated with the module to add or replace.
         @type name: str
         @param option_list: list of options
-        @type option_list: str
+        @type option_list: OptionList
         """
         self.option_list_map[name] = option_list
 
@@ -199,25 +202,42 @@ class OptionListCollection(object):
 
         self.write_common(f)
 
-        for module_name in self.get_module_names():
+        for module_name in sorted(self.get_module_names()): # enable a diff
             option_list = self.get_option_list(module_name)
+            module_docgen_opts = {}
+            for docgen_name in self.docgen_names:
+                module_docgen_opts[docgen_name] = []
             f.write('<module name=%s>\n' % quoteattr(module_name))
             options = option_list.get_options()
-            for option_name, option_data in options.items():
+            for option_name in sorted(options.keys()): # enable a diff
+                option_data = options[option_name]
                 if isinstance(option_data, (list, tuple)):
-                    f.write('  <option name=%s value="" length="%d">\n' % (
-                                quoteattr(option_name),
-                                len(option_data) ) )
-                    for list_index, list_data in enumerate(option_data):
-                        f.write('    <listitem number="%d" value=%s/>\n' % (
-                                list_index,
-                                quoteattr(str(list_data))) )
-                    f.write('  </option>\n')
+                    if option_data and option_data[0] in self.docgen_names:
+                        module_docgen_opts[option_data[0]].append(
+                                               (option_name, option_data[1]))
+                    else:
+                        f.write('  <option name=%s '
+                                'value="" length="%d">\n' % (
+                                    quoteattr(option_name),
+                                    len(option_data) ) )
+                        for list_index, list_data in enumerate(option_data):
+                            f.write('    <listitem '
+                                    'number="%d" value=%s/>\n' % (
+                                        list_index,
+                                        quoteattr(unicode(list_data))) )
+                        f.write('  </option>\n')
                 else:
-                    f.write('  <option name=%s value=%s/>\n' % (
-                            quoteattr(option_name),
-                            quoteattr(str(option_data))) )
-
+                     f.write('  <option name=%s value=%s/>\n' % (
+                             quoteattr(option_name),
+                             quoteattr(unicode(option_data))) )
+            for docgen_name in self.docgen_names:
+                if module_docgen_opts[docgen_name]:
+                    for ix, data in enumerate(module_docgen_opts[docgen_name]):
+                        f.write('  <docgen-option docgen=%s '
+                                'name=%s value=%s/>\n' %
+                                    (quoteattr(docgen_name),
+                                     quoteattr(data[0]),
+                                     quoteattr(unicode(data[1])) ))
             self.write_module_common(f, option_list)
 
             f.write('</module>\n')
@@ -341,10 +361,6 @@ class OptionHandler(object):
         bad_opts = []
         for option_name, option_data in options.items():
             if option_name not in self.options_dict:
-                print("Option '%s' is present in %s but is not known "\
-                      "to the module." % (option_name,
-                                          self.option_list_collection.filename))
-                print("Ignoring...")
                 bad_opts.append(option_name)
                 continue
             try:
@@ -355,7 +371,16 @@ class OptionHandler(object):
             except TypeError:
                 pass
 
+        docgen_names = self.option_list_collection.docgen_names
         for option_name in bad_opts:
+            option_data = options[option_name]
+            if not ( isinstance(option_data, list) and
+                     option_data and 
+                     option_data[0] in docgen_names ):
+                print( _("Option '%(opt_name)s' is present in %(file)s\n"
+                        "  but is not known to the module.  Ignoring...") % \
+                            { 'opt_name' : option_name,
+                              'file' : self.option_list_collection.filename } )
             options.pop(option_name)
 
         # Then we set common options from whatever was found

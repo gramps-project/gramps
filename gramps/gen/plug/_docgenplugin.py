@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +31,8 @@ class DocGenPlugin(Plugin):
     """
     This class represents a plugin for generating documents from Gramps
     """
-    def __init__(self, name, description, basedoc, paper, style, extension):
+    def __init__(self, name, description, basedoc,
+                 paper, style, extension, docoptclass, basedocname):
         """
         @param name: A friendly name to call this plugin.
             Example: "Plain Text"
@@ -50,6 +52,11 @@ class DocGenPlugin(Plugin):
         @param extension: The extension for the output file.
             Example: "txt"
         @type extension: str
+        @param docoptclass: either None or a subclass of DocOptions
+        @type docoptclass: either None or a DocOptions subclass
+        @param basedocname: The BaseDoc name of this plugin.
+            Example: "AsciiDoc"
+        @type basedocname: string
         @return: nothing
         """
         Plugin.__init__(self, name, description, basedoc.__module__)
@@ -57,6 +64,8 @@ class DocGenPlugin(Plugin):
         self.__paper = paper
         self.__style = style
         self.__extension = extension
+        self.__docoptclass = docoptclass
+        self.__basedocname = basedocname
     
     def get_basedoc(self):
         """
@@ -90,6 +99,22 @@ class DocGenPlugin(Plugin):
         """
         return self.__extension
 
+    def get_doc_option_class(self):
+        """
+        Get the DocOptions subclass for this plugin, if any
+        
+        @return: the DocOptions subclass passed into __init__ 
+        """
+        return self.__docoptclass
+
+    def get_basedocname(self):
+        """
+        Get the BaseDoc name for this plugin.
+        
+        @return: the BaseDoc name passed into __init__ 
+        """
+        return self.__basedocname
+    
     def get_text_support(self):
         """
         Check if the plugin supports the TextDoc interface.

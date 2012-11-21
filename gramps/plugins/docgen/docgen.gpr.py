@@ -39,6 +39,7 @@ plg.basedocclass = 'AsciiDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "txt"
+plg.options = True
 
 #------------------------------------------------------------------------
 #
@@ -59,6 +60,7 @@ plg.basedocclass = 'GtkPrint'
 plg.paper = True
 plg.style = True
 plg.extension = ""
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -79,6 +81,7 @@ plg.basedocclass = 'HtmlDoc'
 plg.paper = False
 plg.style = True
 plg.extension = "html"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -99,6 +102,7 @@ plg.basedocclass = 'LaTeXDoc'
 plg.paper = True
 plg.style = False
 plg.extension = "tex"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -120,6 +124,7 @@ plg.basedocclass = 'ODFDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "odt"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -140,6 +145,7 @@ plg.basedocclass = 'PdfDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "pdf"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -160,6 +166,7 @@ plg.basedocclass = 'PSDrawDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "ps"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -180,6 +187,7 @@ plg.basedocclass = 'RTFDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "rtf"
+plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -201,3 +209,4 @@ plg.basedocclass = 'SvgDrawDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "svg"
+plg.options = False

@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2005  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2012       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,6 +91,7 @@ class BasePluginManager(object):
         self.__failmsg_list      = []
         self.__external_opt_dict = {}
         self.__success_list      = []
+        self.__docgen_names      = []
 
         self.__mod2text          = {}
         self.__modules           = {}
@@ -526,20 +528,39 @@ class BasePluginManager(object):
         ##       So, only do import when docgen.get_basedoc() is requested
         if self.__docgen_plugins == []:
             #The modules still need to be imported
+            hiddenplugins = config.get("plugin.hiddenplugins")
             for pdata in self.get_reg_docgens():
-                if pdata.id in config.get("plugin.hiddenplugins"):
+                if pdata.id in hiddenplugins:
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
+                    oclass = None
+                    if pdata.options:
+                        oclass = getattr(mod, pdata.basedocclass + 'Options')
                     dgp = DocGenPlugin(name=pdata.name, 
                             description = pdata.description,
                             basedoc     = getattr(mod, pdata.basedocclass),
                             paper       = pdata.paper,
                             style       = pdata.style, 
-                            extension   = pdata.extension )
+                            extension   = pdata.extension,
+                            docoptclass = oclass,
+                            basedocname = pdata.basedocclass )
                     self.__docgen_plugins.append(dgp)
                 
         return self.__docgen_plugins
+
+    def get_docgen_names(self):
+        """
+        Get the list of docgen plugin names.
+        
+        @return: a list of DocGenPlugin names
+        """
+        if self.__docgen_names == []:
+            hiddenplugins = config.get("plugin.hiddenplugins")
+            for pdata in self.get_reg_docgens():
+                if pdata.id not in hiddenplugins:
+                    self.__docgen_names.append(pdata.basedocclass)
+        return self.__docgen_names
 
     def register_option(self, option, guioption):
         """

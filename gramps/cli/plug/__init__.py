@@ -6,7 +6,7 @@
 # Copyright (C) 2008      Raphael Ackermann
 # Copyright (C) 2008-2011 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2011      Paul Franklin
+# Copyright (C) 2011-2012 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -224,6 +224,7 @@ class CommandLineReport(object):
         self.database = database
         self.category = category
         self.format = None
+        self.raw_name = name
         self.option_class = option_class(name, database)
         if category == CATEGORY_GRAPHVIZ:
             # Need to include GraphViz options
@@ -241,6 +242,7 @@ class CommandLineReport(object):
         self.init_standard_options(noopt)
         self.init_report_options()
         self.parse_options()
+        self.init_report_options_help()
         self.show_options()
 
     def init_standard_options(self, noopt):
@@ -340,6 +342,17 @@ class CommandLineReport(object):
         for name in menu.get_all_option_names():
             option = menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
+            
+    def init_report_options_help(self):
+        """
+        Initialize help for the options that are defined by each report.
+        (And also any docgen options, if defined by the docgen.)
+        """
+        if not hasattr(self.option_class, "menu"):
+            return
+        menu = self.option_class.menu
+        for name in menu.get_all_option_names():
+            option = menu.get_option_by_name(name)
             self.options_help[name] = [ "", option.get_help() ]
             
             if isinstance(option, PersonOption):
@@ -419,56 +432,35 @@ class CommandLineReport(object):
         else:
             menu = self.option_class.menu
             menu_opt_names = menu.get_all_option_names()
-        for opt in self.options_str_dict:
-            if opt in self.options_dict:
-                self.options_dict[opt] = \
-                    _convert_str_to_match_type(self.options_str_dict[opt], 
-                                               self.options_dict[opt])
 
-                self.option_class.handler.options_dict[opt] = \
-                                                        self.options_dict[opt]
-                                                        
-                if menu and opt in menu_opt_names:
-                    option = menu.get_option_by_name(opt)
-                    option.set_value(self.options_dict[opt])
-                
-            else:
-                print(_("Ignoring unknown option: %s") % opt)
-                print(_("   Valid options are:"), ", ".join(
-                                                     list(self.options_dict.keys())))
-                print((_("   Use '%(donottranslate)s' to see description "
-                         "and acceptable values") %
-                       {'donottranslate' : "show=option"}))
+        format_str = self.options_str_dict.pop('off', None)
+        if _format_str:
+            self.options_dict['off'] = _format_str
         
         self.option_class.handler.output = self.options_dict['of']
 
         self.css_filename = None
         _chosen_format = None
-        if self.category == CATEGORY_TEXT:
-            for plugin in self.__textdoc_plugins:
-                if plugin.get_extension() == self.options_dict['off']:
-                    self.format = plugin.get_basedoc()
-            self.css_filename = self.options_dict['css']
+
+        self.doc_option_class = None
+        if self.category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK]:
+            if self.category == CATEGORY_TEXT:
+                plugins = self.__textdoc_plugins
+                self.css_filename = self.options_dict['css']
+            elif self.category == CATEGORY_DRAW:
+                plugins = self.__drawdoc_plugins
+            elif self.category == CATEGORY_BOOK:
+                plugins = self.__bookdoc_plugins
+            for plugin in plugins:
+                 if plugin.get_extension() == self.options_dict['off']:
+                     self.format = plugin.get_basedoc()
+                     self.doc_option_class = plugin.get_doc_option_class()
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = self.__textdoc_plugins[0].get_basedoc()
-                _chosen_format = self.__textdoc_plugins[0].get_extension()
-        elif self.category == CATEGORY_DRAW:
-            for plugin in self.__drawdoc_plugins:
-                if plugin.get_extension() == self.options_dict['off']:
-                    self.format = plugin.get_basedoc()
-            if self.format is None:
-                # Pick the first one as the default.
-                self.format = self.__drawdoc_plugins[0].get_basedoc()
-                _chosen_format = self.__drawdoc_plugins[0].get_extension()
-        elif self.category == CATEGORY_BOOK:
-            for plugin in self.__bookdoc_plugins:
-                if plugin.get_extension() == self.options_dict['off']:
-                    self.format = plugin.get_basedoc()
-            if self.format is None:
-                # Pick the first one as the default.
-                self.format = self.__bookdoc_plugins[0].get_basedoc()
-                _chosen_format = self.__bookdoc_plugins[0].get_extension()
+                plugin = plugins[0]
+                self.format = plugin.get_basedoc()
+                self.doc_option_class = plugin.get_doc_option_class()
+                _chosen_format = plugin.get_extension()
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
                 if graph_format['ext'] == self.options_dict['off']:
@@ -480,7 +472,7 @@ class CommandLineReport(object):
                 _chosen_format = graphdoc.FORMATS[0]["ext"]
         else:
             self.format = None
-        if _chosen_format and 'off' in self.options_str_dict:
+        if _chosen_format and  _format_str:
             print((_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
                      "and using '%(notranslate1)s=%(notranslate3)s'.") %
                    {'notranslate1' : "off",
@@ -488,6 +480,31 @@ class CommandLineReport(object):
                     'notranslate3' : _chosen_format}))
             print((_("Use '%(notranslate)s' to see valid values.") %
                    {'notranslate' : "show=off"}))
+
+        self.do_doc_options()
+
+        for opt in self.options_str_dict:
+            if opt in self.options_dict:
+                self.options_dict[opt] = \
+                    _convert_str_to_match_type(self.options_str_dict[opt], 
+                                               self.options_dict[opt])
+
+                self.option_class.handler.options_dict[opt] = \
+                                                      self.options_dict[opt]
+                                                        
+                if menu and opt in menu_opt_names:
+                    option = menu.get_option_by_name(opt)
+                    option.set_value(self.options_dict[opt])
+                
+            else:
+                print(_("Ignoring unknown option: %s") % opt )
+                print(_("   Valid options are:"), ", ".join(
+                                                   self.options_dict.keys()))
+                print(_("   Use '%(donottranslate)s' to see description "
+                         "and acceptable values") %
+                       {'donottranslate' : "show=option"})
+        
+        self.option_class.handler.output = self.options_dict['of']
 
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
@@ -513,6 +530,35 @@ class CommandLineReport(object):
             style_name = self.option_class.handler.get_default_stylesheet_name()
             self.selected_style = self.style_list.get_style_sheet(style_name)
 
+    def do_doc_options(self):
+        self.doc_options = None
+        if not self.doc_option_class:
+            return # this docgen type has no options
+        try:
+            if (issubclass(self.doc_option_class, object) or   # new class
+                isinstance(self.doc_option_class, ClassType)): # old class
+                self.doc_options = self.doc_option_class(self.raw_name,
+                                                         self.database)
+                doc_options_dict = self.doc_options.options_dict
+        except TypeError:
+            self.doc_options = self.doc_option_class
+        self.doc_options.load_previous_values()
+        docgen_menu = self.doc_options.menu
+        report_menu = self.option_class.menu # "help" checks the option type
+        for oname in docgen_menu.get_option_names('Document Options'):
+            docgen_opt = docgen_menu.get_option('Document Options', oname)
+            if oname in self.options_str_dict and oname in doc_options_dict:
+                doc_options_dict[oname] = \
+                    _convert_str_to_match_type(self.options_str_dict[oname],
+                                               doc_options_dict[oname])
+                self.options_str_dict.pop(oname)
+            if oname in doc_options_dict:
+                docgen_opt.set_value(doc_options_dict[oname])
+            report_menu.add_option('Document Options', oname, docgen_opt)
+        for oname in doc_options_dict: # enable "help"
+            self.options_dict[oname] = doc_options_dict[oname]
+            self.options_help[oname] = self.doc_options.options_help[oname][:3]
+
     def show_options(self):
         """
         Print available options on the CLI.
@@ -529,7 +575,8 @@ class CommandLineReport(object):
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
                     print(optmsg.encode(sys.getfilesystemencoding()))
                 else:
-                    optmsg = " %s" % key
+                    optmsg = "      %s%s%s" % (key, tabs,
+                                               _('(no help available)'))
                     print(optmsg.encode(sys.getfilesystemencoding()))
             print((_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
@@ -573,10 +620,17 @@ def cl_report(database, name, category, report_class, options_class,
     # write report
     try:
         if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK]:
-            clr.option_class.handler.doc = clr.format(
-                        clr.selected_style,
-                        PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                   clr.marginr,clr.margint,clr.marginb))
+            if clr.doc_options:
+                clr.option_class.handler.doc = clr.format(
+                            clr.selected_style,
+                            PaperStyle(clr.paper,clr.orien,clr.marginl,
+                                       clr.marginr,clr.margint,clr.marginb),
+                            clr.doc_options)
+            else:
+                clr.option_class.handler.doc = clr.format(
+                            clr.selected_style,
+                            PaperStyle(clr.paper,clr.orien,clr.marginl,
+                                       clr.marginr,clr.margint,clr.marginb))
         elif category == CATEGORY_GRAPHVIZ:
             clr.option_class.handler.doc = clr.format(
                         clr.option_class,

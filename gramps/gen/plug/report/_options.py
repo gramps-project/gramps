@@ -62,6 +62,7 @@ from ...config import config
 from ..docgen import PAPER_PORTRAIT
 from .. import _options
 from .. import MenuOptions
+from gramps.gen.utils.cast import get_type_converter
 
 #-------------------------------------------------------------------------
 #
@@ -507,6 +508,10 @@ class OptionParser(_options.OptionParser):
         # First we try report-specific tags
         if tag == "last-common":
             self.common = True
+        elif tag == 'docgen-option':
+            if not self.common:
+                self.oname = attrs['name']
+                self.an_o = [attrs['docgen'], attrs['value']]
         elif tag == "style":
             self.option_list.set_style_name(attrs['name'])
         elif tag == "paper":
@@ -561,6 +566,8 @@ class OptionParser(_options.OptionParser):
         # First we try report-specific tags
         if tag == "last-common":
             self.common = False
+        elif tag == 'docgen-option':
+            self.o[self.oname] = self.an_o
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.endElement(self, tag)
@@ -870,3 +877,130 @@ class MenuReportOptions(MenuOptions, ReportOptions):
             menu_option = self.menu.get_option_by_name(optname)
             if menu_option:
                 menu_option.set_value(self.options_dict[optname])
+
+#-------------------------------------------------------------------------
+#
+# DocOptionHandler class
+#
+#-------------------------------------------------------------------------
+class DocOptionHandler(_options.OptionHandler):
+    """
+    Implements handling of the docgen options for the plugins.
+    """
+
+    def __init__(self, module_name, options_dict):
+        _options.OptionHandler.__init__(self, module_name, options_dict)
+
+    def init_subclass(self):
+        self.collection_class = DocOptionListCollection
+        self.list_class = OptionList
+        self.filename = REPORT_OPTIONS
+
+    def set_options(self):
+        """
+        Set options to be used in this plugin according to the passed
+        options dictionary.
+        
+        Dictionary values are all strings, since they were read from XML.
+        Here we need to convert them to the needed types. We use default
+        values to determine the type.
+        """
+        # First we set options_dict values based on the saved options
+        options = self.saved_option_list.get_options()
+        docgen_names = self.option_list_collection.docgen_names
+        for option_name, option_data in options.iteritems():
+            if ( option_name in self.options_dict and
+                 isinstance(option_data, list) and
+                 option_data and 
+                 option_data[0] in docgen_names ):
+                try:
+                    converter = get_type_converter(
+                                            self.options_dict[option_name])
+                    self.options_dict[option_name] = converter(option_data[1])
+                except (TypeError, ValueError):
+                    pass
+
+#------------------------------------------------------------------------
+#
+# DocOptions class
+#
+#------------------------------------------------------------------------
+class DocOptions(MenuOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self, name):
+        """
+        Initialize the class, performing usual house-keeping tasks.
+        Subclasses MUST call this in their __init__() method.
+        """
+        self.name = name
+        MenuOptions.__init__(self)
+        
+    def load_previous_values(self):
+        self.handler = DocOptionHandler(self.name, self.options_dict)
+
+#-------------------------------------------------------------------------
+#
+# DocOptionListCollection class
+#
+#-------------------------------------------------------------------------
+class DocOptionListCollection(_options.OptionListCollection):
+    """
+    Implements a collection of option lists.
+    """
+
+    def __init__(self, filename):
+        _options.OptionListCollection.__init__(self, filename)
+
+    def init_common(self):
+        pass
+
+    def parse(self):
+        """
+        Loads the OptionList from the associated file, if it exists.
+        """
+        try:
+            if os.path.isfile(self.filename):
+                p = make_parser()
+                p.setContentHandler(DocOptionParser(self))
+                the_file = open(self.filename)
+                p.parse(the_file)
+                the_file.close()
+        except (IOError, OSError, SAXParseException):
+            pass
+
+#------------------------------------------------------------------------
+#
+# DocOptionParser class
+#
+#------------------------------------------------------------------------
+class DocOptionParser(_options.OptionParser):
+    """
+    SAX parsing class for the DocOptionListCollection XML file.
+    """
+    
+    def __init__(self, collection):
+        """
+        Create a DocOptionParser class that populates the passed collection.
+
+        collection:   DocOptionListCollection to be loaded from the file.
+        """
+        _options.OptionParser.__init__(self, collection)
+        self.list_class = OptionList
+
+    def startElement(self, tag, attrs):
+        "Overridden class that handles the start of a XML element"
+        if tag == 'docgen-option':
+            self.oname = attrs['name']
+            self.an_o = [attrs['docgen'], attrs['value']]
+        else:
+            _options.OptionParser.startElement(self, tag, attrs)
+
+    def endElement(self, tag):
+        "Overridden class that handles the end of a XML element"
+        if tag == 'docgen-option':
+            self.o[self.oname] = self.an_o
+        else:
+            _options.OptionParser.endElement(self, tag)
