@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-18 11:04+0100\n"
+"PO-Revision-Date: 2012-11-21 23:29+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -7519,7 +7519,7 @@ msgstr "Kan locatie niet opslaan. ID bestaat reeds."
 #: ../src/gui/editors/editplace.py:315
 #, python-format
 msgid "Add Place (%s)"
-msgstr "Locatie (%s) toeveogen"
+msgstr "Locatie (%s) toevoegen"
 
 #: ../src/gui/editors/editplace.py:320
 #, python-format
@@ -7689,6 +7689,9 @@ msgid ""
 "\n"
 "To edit the citation, close the source editor and open an editor for the citation alone"
 msgstr ""
+"Momenteel kan het scherm om citaten aan te passen niet openen. Ofwel wordt het citaat of de bron verbonden met het citaat, al aangepast. Door het openen van het aanpasscherm zou een onduidelijke situatie kunnen onstaan.\n"
+"\n"
+"Om het citaat toch te kunnen aanpassen dient u eerst het aanpassen van de bron te sluiten om vervolgens verder te gaan met het aanpassen van het citaat"
 
 #: ../src/gui/editors/displaytabs/backreflist.py:182
 msgid "Cannot open new citation editor"
@@ -10227,7 +10230,7 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
-"CEntrale persoon\n"
+"Centrale persoon\n"
 "gebruikt welk weergaveformaat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:905
@@ -10271,7 +10274,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:936
 msgid "Display format for the mothers box."
-msgstr "Beeldformaat van de moderrechthoek."
+msgstr "Beeldformaat van de moederrechthoek."
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1521
@@ -10409,7 +10412,7 @@ msgstr "Al of niet een rand rond het verslag toevoegen."
 #: ../src/plugins/drawreport/AncestorTree.py:1001
 #: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include Page Numbers"
-msgstr "Paginanummers toeveogen"
+msgstr "Paginanummers toevoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1002
 msgid "Whether to print page numbers on each page."
@@ -18425,6 +18428,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
+"De locatietitel is:\n"
+"<b>%(title)s</b>\n"
+"Volgende locaties zijn gelijkaardig: %(gid)s\n"
+"Ofwel dient u de locatie te hernoemen of u dient ze samen te voegen.\n"
+"\n"
+"<b>Aan de vraag kan niet worden voldaan</b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
@@ -19319,7 +19328,7 @@ msgstr "Catalaanse relatieberekenaar"
 #: ../src/plugins/rel/relplugins.gpr.py:274
 #: ../src/plugins/rel/relplugins.gpr.py:287
 msgid "Calculates relationships between people"
-msgstr "Berekent de relatie tussen personen"
+msgstr "Relatie tussen personen berekenen"
 
 #: ../src/plugins/rel/relplugins.gpr.py:45
 msgid "Czech Relationship Calculator"
@@ -20478,7 +20487,7 @@ msgstr "Voetnoot voor de pagina."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:148
 msgid "Gramps ID of the media object to use as an image."
-msgstr "GRAMPS-ID van het media-object gebruiken als beeld."
+msgstr "Gramps-ID van het media-object gebruiken als beeld."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:151
 msgid "Image Size"
@@ -20696,11 +20705,11 @@ msgstr "Titelpagina"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:321
 msgid "Produces a title page for book reports."
-msgstr "Maakt een titelpagina voor boekverslagen aan."
+msgstr "Een titelpagina voor het boekverslagen aanmaken."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:343
 msgid "Provides a summary of the current database"
-msgstr "Levert een samenvatting van het huidig gegevensbestand"
+msgstr "Een samenvatting van het huidig gegevensbestand"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
@@ -20772,11 +20781,11 @@ msgstr "Typen wijzigen"
 
 #: ../src/plugins/tool/ChangeTypes.py:117
 msgid "Analyzing Events"
-msgstr "Analyseren van gebeurtenissen"
+msgstr "Gebeurtenissen analyzeren"
 
 #: ../src/plugins/tool/ChangeTypes.py:134
 msgid "No event record was modified."
-msgstr "Geen gebeurtenis-archief is aangepast."
+msgstr "Er werd geen gebeurtenisgegeven aangepast."
 
 #: ../src/plugins/tool/ChangeTypes.py:136
 #, python-format
@@ -20812,11 +20821,11 @@ msgstr "Integriteit controleren"
 #: ../src/plugins/tool/Check.py:228
 #, python-format
 msgid "Objects referenced by this note were referenced but missing so that is why they have been created when you ran Check and Repair on %s."
-msgstr ""
+msgstr "Voorwerpen waarnaar verwezen werd in deze opmerking, ontbraken. Daarom zijn ze aangemaakt wanneer u met het controle- en herstelgereedschap %s controleerde."
 
 #: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
-msgstr "Zoeken naar ongeldige verwijzingen naar naam formaten"
+msgstr "Naar ongeldige verwijzingen naar naamformaten zoeken"
 
 # Duplicaat
 #: ../src/plugins/tool/Check.py:302
@@ -20833,11 +20842,11 @@ msgstr "Opmerkingen op 'ctrl'-lettertekens nakijken"
 
 #: ../src/plugins/tool/Check.py:390
 msgid "Looking for broken family links"
-msgstr "Zoeken naar gebroken familieverbanden"
+msgstr "Naar gebroken familieverbanden zoeken"
 
 #: ../src/plugins/tool/Check.py:590
 msgid "Looking for unused objects"
-msgstr "Zoeken naar ongebruikte objecten"
+msgstr "Naar ongebruikte objecten zoeken"
 
 #: ../src/plugins/tool/Check.py:696
 msgid "Media object could not be found"
@@ -20853,51 +20862,51 @@ msgstr "Er wordt naar %(file_name)s verwezen in het gegevensbestand, maar deze b
 
 #: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty people records"
-msgstr "Zoeken naar lege persoonsgegevens"
+msgstr "Naar lege persoonsgegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:782
 msgid "Looking for empty family records"
-msgstr "Zoeken naar lege familiegegevens"
+msgstr "Naar lege familiegegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:790
 msgid "Looking for empty event records"
-msgstr "Zoeken naar lege gebeurtenissengegevens"
+msgstr "Naar lege gebeurtenissengegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:798
 msgid "Looking for empty source records"
-msgstr "Zoeken naar lege bronnengegevens"
+msgstr "Naar lege bronnengegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:806
 msgid "Looking for empty citation records"
-msgstr "Zoeken naar lege citaten"
+msgstr "Naar lege citaten zoeken"
 
 #: ../src/plugins/tool/Check.py:814
 msgid "Looking for empty place records"
-msgstr "Zoeken naar lege locatiegegevens"
+msgstr "Naar lege locatiegegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:822
 msgid "Looking for empty media records"
-msgstr "Zoeken naar lege mediagegevens"
+msgstr "Naar lege mediagegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:830
 msgid "Looking for empty repository records"
-msgstr "Zoeken naar lege bibliothekengegevens"
+msgstr "Naar lege bibliothekengegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:838
 msgid "Looking for empty note records"
-msgstr "Zoeken naar lege opmerkingengegevens"
+msgstr "Naar lege opmerkingengegevens zoeken"
 
 #: ../src/plugins/tool/Check.py:884
 msgid "Looking for empty families"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Naar lege families zoeken"
 
 #: ../src/plugins/tool/Check.py:919
 msgid "Looking for broken parent relationships"
-msgstr "Zoeken naar gebroken ouderrelaties"
+msgstr "Naar gebroken ouderrelaties zoeken"
 
 #: ../src/plugins/tool/Check.py:956
 msgid "Looking for event problems"
-msgstr "Zoeken naar gebeurtenissen problemen"
+msgstr "Naar problemen met gebeurtenissen zoeken"
 
 #: ../src/plugins/tool/Check.py:1120
 msgid "Looking for person reference problems"
@@ -20941,7 +20950,7 @@ msgstr "Er zijn geen fouten gevonden"
 
 #: ../src/plugins/tool/Check.py:1935
 msgid "The database has passed internal checks"
-msgstr "Het gegevensbestand is goed door de interne controle gekomen"
+msgstr "Het gegevensbestand is door de interne controles gekomen"
 
 # gebroken link, klinkt zo stom, verkeerd is duidelijker, komt op hetzelfde neer.
 #: ../src/plugins/tool/Check.py:1944
@@ -23779,7 +23788,7 @@ msgstr "Al of niet een galerij van de media-objecten toevoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7756
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Miniaturen aanmaken en gebruiken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7757
 msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
@@ -26438,9 +26447,8 @@ msgid "Media with at least one direct source >= <confidence level>"
 msgstr "Media-objecten met tenminste een rechtstreekse bron >=<zekerheidsniveau>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:46
-#, fuzzy
 msgid "Matches media with at least one direct source with confidence level(s)"
-msgstr "Families met tenminste één rechtstreekse bron met zekerheidsniveau zoeken"
+msgstr "Media-objecten met tenminste één rechtstreekse bron met zekerheidsniveau zoeken"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
