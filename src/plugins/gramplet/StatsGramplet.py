@@ -104,18 +104,19 @@ class StatsGramplet(Gramplet):
                 total_media += length
 
             for name in [person.get_primary_name()] + person.get_alternate_names():
+
+            # Count unique surnames
+                if not name.get_surname().strip() in namelist \
+                    and not name.get_surname().strip() == "":
+                    namelist.append(name.get_surname().strip())
+
                 if name.get_first_name().strip() == "":
                     incomp_names += 1
-                    if not name.get_surname().strip() in namelist:
-                        namelist.append(name.get_surname().strip())
                 else:
                     if name.get_surname_list():
                         for surname in name.get_surname_list():
                             if surname.get_surname().strip() == "":
                                 incomp_names += 1
-                            else: 
-                                if not surname.get_surname().strip() in namelist:
-                                    namelist.append(surname.get_surname().strip())
                     else:
                         incomp_names += 1
 

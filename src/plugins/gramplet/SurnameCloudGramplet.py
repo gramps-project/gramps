@@ -92,6 +92,7 @@ class SurnameCloudGramplet(Gramplet):
         representative_handle = {}
 
         cnt = 0
+        namelist =[]
         for person in self.dbstate.db.iter_people():
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set([name.get_group_name().strip() for name in allnames])
@@ -101,6 +102,11 @@ class SurnameCloudGramplet(Gramplet):
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
+            # Count unique surnames
+            for name in [person.get_primary_name()] + person.get_alternate_names():
+                if not name.get_surname().strip() in namelist \
+                    and not name.get_surname().strip() == "":
+                    namelist.append(name.get_surname().strip())
 
         total_people = cnt
         surname_sort = []
@@ -112,8 +118,7 @@ class SurnameCloudGramplet(Gramplet):
                 cnt += 1
             if not cnt % _YIELD_INTERVAL:
                 yield True
-                
-        total_surnames = cnt
+               
         surname_sort.sort(reverse=True)
         cloud_names = []
         cloud_values = []
@@ -164,7 +169,7 @@ class SurnameCloudGramplet(Gramplet):
                 self.append_text(" ")
                 showing += 1
         self.append_text(("\n\n" + _("Total unique surnames") + ": %d\n") % 
-                         total_surnames)
+                         len(namelist))
         self.append_text((_("Total surnames showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
 
