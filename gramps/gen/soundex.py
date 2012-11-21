@@ -41,7 +41,7 @@ IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
 TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ', 
                           '012301202245501262301202')
 
-from constfunc import conv_to_unicode_direct
+from gramps.gen.constfunc import conv_to_unicode_direct
 
 #-------------------------------------------------------------------------
 #
