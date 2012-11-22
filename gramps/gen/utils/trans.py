@@ -64,7 +64,7 @@ else:
     else:
         logging.warning('Locale dir does not exist at ' + 
                         os.path.join(PREFIXDIR, "share/locale"))
-        logging.warning('Running ./configure --prefix=YourPrefixDir might fix the problem') 
+        logging.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem') 
     LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
