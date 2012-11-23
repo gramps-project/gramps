@@ -535,16 +535,16 @@ class BasePluginManager(object):
                 mod = self.load_plugin(pdata)
                 if mod:
                     oclass = None
-                    if pdata.options:
-                        oclass = getattr(mod, pdata.basedocclass + 'Options')
+                    if pdata.optionclass:
+                        oclass = getattr(mod, pdata.optionclass)
                     dgp = DocGenPlugin(name=pdata.name, 
                             description = pdata.description,
-                            basedoc     = getattr(mod, pdata.basedocclass),
+                            basedoc     = getattr(mod, pdata.docclass),
                             paper       = pdata.paper,
                             style       = pdata.style, 
                             extension   = pdata.extension,
                             docoptclass = oclass,
-                            basedocname = pdata.basedocclass )
+                            basedocname = pdata.docclass )
                     self.__docgen_plugins.append(dgp)
                 
         return self.__docgen_plugins

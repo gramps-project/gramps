@@ -254,7 +254,7 @@ class PluginData(object):
        or the view category a plugin belongs to, 
            default=("Miscellaneous", _("Miscellaneous"))
     
-    Attributes for REPORT and TOOL plugins
+    Attributes for REPORT and TOOL and DOCGEN plugins
     .. attribute:: optionclass
        The class in the module that is the option class
     
@@ -265,7 +265,7 @@ class PluginData(object):
        The tool modes: list of TOOL_MODE_GUI, TOOL_MODE_CLI
     
     Attributes for DOCGEN plugins
-    .. attribute :: basedocclass
+    .. attribute :: docclass
        The class in the module that is the BaseDoc defined
     .. attribute :: paper
        bool, Indicates whether the plugin uses paper or not, default=True
@@ -641,8 +641,8 @@ class PluginData(object):
 
     #REPORT OR TOOL attributes
     def _set_optionclass(self, optionclass):
-        if not (self._ptype == REPORT or self.ptype == TOOL):
-            raise ValueError('optionclass may only be set for REPORT/TOOL plugins')
+        if not (self._ptype == REPORT or self.ptype == TOOL or self._ptype == DOCGEN):
+            raise ValueError('optionclass may only be set for REPORT/TOOL/DOCGEN plugins')
         self._optionclass = optionclass
 
     def _get_optionclass(self):

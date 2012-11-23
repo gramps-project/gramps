@@ -433,7 +433,7 @@ class CommandLineReport(object):
             menu = self.option_class.menu
             menu_opt_names = menu.get_all_option_names()
 
-        format_str = self.options_str_dict.pop('off', None)
+        _format_str = self.options_str_dict.pop('off', None)
         if _format_str:
             self.options_dict['off'] = _format_str
         

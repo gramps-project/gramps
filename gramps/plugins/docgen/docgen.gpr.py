@@ -35,11 +35,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'asciidoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'AsciiDoc'
+plg.docclass = 'AsciiDoc'
+plg.optionclass = 'AsciiDocOptions'
 plg.paper = True
 plg.style = True
 plg.extension = "txt"
-plg.options = True
 
 #------------------------------------------------------------------------
 #
@@ -56,11 +56,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'gtkprint.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'GtkPrint'
+plg.docclass = 'GtkPrint'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = ""
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -77,11 +77,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'htmldoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'HtmlDoc'
+plg.docclass = 'HtmlDoc'
+plg.optionclass = None
 plg.paper = False
 plg.style = True
 plg.extension = "html"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -98,11 +98,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'latexdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'LaTeXDoc'
+plg.docclass = 'LaTeXDoc'
+plg.optionoclass = None
 plg.paper = True
 plg.style = False
 plg.extension = "tex"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -120,11 +120,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'odfdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'ODFDoc'
+plg.docclass = 'ODFDoc'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = "odt"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -141,11 +141,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'pdfdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'PdfDoc'
+plg.docclass = 'PdfDoc'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = "pdf"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -162,11 +162,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'psdrawdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'PSDrawDoc'
+plg.docclass = 'PSDrawDoc'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = "ps"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -183,11 +183,11 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'rtfdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'RTFDoc'
+plg.docclass = 'RTFDoc'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = "rtf"
-plg.options = False
 
 #------------------------------------------------------------------------
 #
@@ -205,8 +205,8 @@ plg.gramps_target_version = '4.0'
 plg.status = STABLE
 plg.fname = 'svgdrawdoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'SvgDrawDoc'
+plg.docclass = 'SvgDrawDoc'
+plg.optionclass = None
 plg.paper = True
 plg.style = True
 plg.extension = "svg"
-plg.options = False
