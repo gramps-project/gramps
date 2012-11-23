@@ -34,7 +34,7 @@ Manages the main window and the pluggable views
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 
 from collections import defaultdict
 import os
@@ -44,7 +44,7 @@ import datetime
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
 if sys.version_info[0] < 3:
-    from StringIO import StringIO
+    from cStringIO import StringIO
 else:
     from io import StringIO
 import posixpath
