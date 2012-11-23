@@ -53,6 +53,7 @@ except:
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from ..constfunc import cuni
 from ..utils.cast import get_type_converter
 from .menu import Menu
 from ..plug import BasePluginManager
@@ -224,12 +225,12 @@ class OptionListCollection(object):
                             f.write('    <listitem '
                                     'number="%d" value=%s/>\n' % (
                                         list_index,
-                                        quoteattr(unicode(list_data))) )
+                                        quoteattr(cuni(list_data))) )
                         f.write('  </option>\n')
                 else:
                      f.write('  <option name=%s value=%s/>\n' % (
                              quoteattr(option_name),
-                             quoteattr(unicode(option_data))) )
+                             quoteattr(cuni(option_data))) )
             for docgen_name in self.docgen_names:
                 if module_docgen_opts[docgen_name]:
                     for ix, data in enumerate(module_docgen_opts[docgen_name]):
@@ -237,7 +238,7 @@ class OptionListCollection(object):
                                 'name=%s value=%s/>\n' %
                                     (quoteattr(docgen_name),
                                      quoteattr(data[0]),
-                                     quoteattr(unicode(data[1])) ))
+                                     quoteattr(cuni(data[1])) ))
             self.write_module_common(f, option_list)
 
             f.write('</module>\n')

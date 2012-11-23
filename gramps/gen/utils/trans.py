@@ -42,7 +42,7 @@ import logging
 #
 #-------------------------------------------------------------------------
 from ..const import PREFIXDIR, ROOT_DIR
-from ..constfunc import mac
+from ..constfunc import mac, UNITYPE
 #-------------------------------------------------------------------------
 #
 # Public Constants
@@ -267,15 +267,17 @@ def get_addon_translator(filename=None, domain="addon", languages=None):
     path = os.path.dirname(os.path.abspath(filename))
     # Check if path is of type str. Do import and conversion if so.
     # The import cannot be done at the top as that will conflict with the translation system.
-    if type(path) == str:
+    if not isinstance(path, UNITYPE) == str:
         from .file import get_unicode_path_from_env_var
         path = get_unicode_path_from_env_var(path)
     if languages:
-        addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+        addon_translator = gettext.translation(domain,
+                                               os.path.join(path, "locale"),
                                                languages=languages,
                                                fallback=True)
     else:
-        addon_translator = gettext.translation(domain, os.path.join(path,"locale"),
+        addon_translator = gettext.translation(domain,
+                                               os.path.join(path, "locale"),
                                                fallback=True)
     gramps_translator.add_fallback(addon_translator)
     return gramps_translator # with a language fallback
