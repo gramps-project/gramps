@@ -17,12 +17,10 @@
             <child>
               <object class="GtkButton" id="button180">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -80,17 +78,15 @@
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
               <object class="GtkCheckButton" id="dont_show">
                 <property name="label" translatable="yes">Do not show this dialog again</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
                 <property name="xalign">0.5</property>
                 <property name="draw_indicator">True</property>
@@ -100,8 +96,8 @@
                 <property name="right_attach">3</property>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
-                <property name="x_options"></property>
-                <property name="y_options"></property>
+                <property name="x_options"/>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -121,7 +117,7 @@
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
           </object>
@@ -153,12 +149,10 @@
             <child>
               <object class="GtkButton" id="button182">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -215,7 +209,7 @@
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -272,13 +266,11 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button8">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Remove object and all references to it from the database</property>
-                <property name="use_action_appearance">False</property>
                 <child>
                   <object class="GtkAlignment" id="alignment4">
                     <property name="visible">True</property>
@@ -329,13 +321,11 @@
             <child>
               <object class="GtkButton" id="button9">
                 <property name="label" translatable="yes">_Keep Reference</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Keep reference to the missing file</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -346,7 +336,6 @@
             </child>
             <child>
               <object class="GtkButton" id="button11">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
@@ -354,7 +343,6 @@
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Select replacement for the missing file</property>
-                <property name="use_action_appearance">False</property>
                 <child>
                   <object class="GtkAlignment" id="alignment3">
                     <property name="visible">True</property>
@@ -445,7 +433,7 @@
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -475,18 +463,16 @@
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
               <object class="GtkCheckButton" id="use_always">
                 <property name="label" translatable="yes">_Use this selection for all missing media files</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files.</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
                 <property name="xalign">0.5</property>
                 <property name="draw_indicator">True</property>
@@ -497,7 +483,7 @@
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
           </object>
@@ -530,12 +516,10 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="option1">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -546,12 +530,10 @@
             </child>
             <child>
               <object class="GtkButton" id="option2">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -597,7 +579,7 @@
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -627,7 +609,7 @@
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
           </object>
@@ -695,7 +677,7 @@
                     <property name="can_focus">False</property>
                     <property name="xpad">6</property>
                     <property name="ypad">6</property>
-                    <property name="label" translatable="yes">This is a test of the wrapping ze This is a test of the wrapping ze This is a test of the wrapping ze This is a test of the wrapping ze label</property>
+                    <property name="label" translatable="yes">label</property>
                     <property name="use_markup">True</property>
                     <property name="wrap">True</property>
                   </object>
@@ -727,12 +709,10 @@
             <child>
               <object class="GtkButton" id="no">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -743,12 +723,10 @@
             </child>
             <child>
               <object class="GtkButton" id="okbutton">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -788,12 +766,10 @@
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label" translatable="yes">Close _without saving</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -805,14 +781,12 @@
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -824,12 +798,10 @@
             <child>
               <object class="GtkButton" id="button3">
                 <property name="label">gtk-save</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -865,7 +837,7 @@
                 <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="xpad">6</property>
-                <property name="label" translatable="yes">This is a test of the wrapping ze This is a test of the wrapping ze This is a test of the wrapping ze This is a test of the wrapping ze label</property>
+                <property name="label" translatable="yes">label</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -875,7 +847,7 @@
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -905,17 +877,15 @@
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
               <object class="GtkCheckButton" id="dontask">
                 <property name="label" translatable="yes">Do not ask again</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
                 <property name="xalign">0.5</property>
                 <property name="draw_indicator">True</property>
@@ -926,7 +896,7 @@
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
