@@ -168,9 +168,9 @@ class SurnameCloudGramplet(Gramplet):
                 self.append_text(" ")
                 showing += 1
         self.append_text(("\n\n" + _("Total unique surnames") + ": %d\n") % 
-                         total_surnames)
+                         len(namelist))
         self.append_text((_("Total surnames showing") + ": %d\n") % showing)
-        self.append_text((_("Total people") + ": %d") % len(namelist), "begin")
+        self.append_text((_("Total people") + ": %d") % total_people, "begin")
 
     def build_options(self):
         from gramps.gen.plug.menu import NumberOption
