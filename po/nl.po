@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-23 23:14+0100\n"
+"PO-Revision-Date: 2012-11-26 20:08+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2270,7 +2270,6 @@ msgstr "Onbekende actie: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2300,14 +2299,15 @@ msgstr ""
 "Gebruik: gramps.py [OPTIE...]\n"
 "  --load-modules=MODULE1,MODULE2,...     Welke dynamische modules geladen worden\n"
 "\n"
-"Helpopties\n"
+"Hulpopties\n"
 "  -?, --help                             deze helpboodschap tonen\n"
-" --usage                                korte boodschap over het gebruik tonen\n"
+"  --usage                                korte boodschap over het gebruik tonen\n"
 " \n"
 "Toepassingsopties\n"
 "  -O, --open=FAMILIESTAMBOOM                 familiestamboom openen\n"
-"  -i, --import=BESTANDSNAAM                  bestand importeren\n"
-"  -e, --export=BESTANDSNAAM                  bestand exporteren\n"
+"  -C, --create=FAMILIESTAMBOOM               nieuwe familiestamboom aanmaken\n"
+"  -i, --import=BESTANDSNAAM                      bestand importeren\n"
+"  -e, --export=BESTANDSNAAM                    bestand exporteren\n"
 "  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
 "  -a, --action=ACTIE                    actie opgeven\n"
 "  -p, --options=OPTIETEKST           opties opgeven\n"
@@ -11302,7 +11302,7 @@ msgstr "Personen meenemen tot geboortejaar"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:947
 msgid "Include people without known birth years"
-msgstr "Personen met zonder geboortejaar bijvoegen"
+msgstr "Personen zonder geboortejaar bijvoegen"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:949
 msgid "Whether to include people without known birth years."
@@ -23792,7 +23792,7 @@ msgstr "Miniaturen aanmaken en gebruiken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7757
 msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr ""
+msgstr "Deze optie laat u toe om enkel miniaturen aan te maken in plaats van de volledige beeldgrootte. Zo kunt u het totale volume van de grootte van de 'upload' naar uw site beperken."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7763
 msgid "Max width of initial image"
@@ -24071,7 +24071,7 @@ msgstr "Google/FamiyMap optie"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7956
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
-msgstr ""
+msgstr "Welke optie wenst u te gebruiken voor de familiekaartpagina's voor Google Maps..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../src/plugins/webreport/NarrativeWeb.py:8273
@@ -24525,9 +24525,8 @@ msgid "Objects changed after <date time>"
 msgstr "Voorwerpen veranderd na <datum/tijdstip>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:52
-#, fuzzy
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given."
-msgstr "Vindt gebeurtenissen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
+msgstr "Gebeurtenissen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:81
 msgid "Wrong format of date-time"
@@ -24536,7 +24535,7 @@ msgstr "Verkeerd datum-tijd formaat"
 #: ../src/Filters/Rules/_ChangedSinceBase.py:82
 #, python-format
 msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-msgstr ""
+msgstr "Enkel datum/tijd in het iso format van dd-mm-jjjj hh:mm:ss, waar het tijdsdeel optioneel is, worden aanvaard. %s voldoet hieraan niet."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -25194,7 +25193,7 @@ msgstr "Vindt personen die voorouder zijn van iemand gevonden via een filter"
 
 #: ../src/Filters/Rules/Person/_PeoplePublic.py:44
 msgid "People not marked private"
-msgstr "Personen met zonder aanduiding: privé"
+msgstr "Personen zonder aanduiding: privé"
 
 #: ../src/Filters/Rules/Person/_PeoplePublic.py:45
 msgid "Matches people that are not indicated as private"
@@ -26091,16 +26090,16 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Vindt bronnen waarnaar een bepaald aantal bibliotheken naar verwijzen"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:45
-#, fuzzy
 msgid "Sources with repository reference containing <substring> in \"Call Number\""
-msgstr "Bronnen met notities die <deeltekenreeks> bevatten"
+msgstr "Bronnen met een bibliotheekverwijzing die <deeltekenreeks> in \"Inventarisnummer\" bevatten"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:46
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
-msgstr "Vindt bronnen waarvan de notities tekst bevatten die met een deeltekenreeks overeenkomen"
+msgstr ""
+"Bronnen waarvan de bibliotheekverwijzing\n"
+"een deeltekenreeks bevatten in \"Inventarisnummer\""
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
