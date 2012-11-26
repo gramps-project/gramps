@@ -24279,7 +24279,7 @@ msgstr[1] "%(quantity)d notes ont été référencées, mais non-trouvées\n"
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] "%(quantity)d étiquette a été référencée, mais non-trouvée\n"
-msgstr[1] "%(quantity)d notes ont été référencées, mais non-trouvées\n"
+msgstr[1] "%(quantity)d étiquettes ont été référencées, mais non-trouvées\n"
 
 #: ../gramps/plugins/tool/check.py:2155
 #, python-format
