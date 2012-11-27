@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: grampsapp.py -1   $
+# $Id$
 
 """
 This is a stub to start Gramps. It is provided for the sole reason of being
