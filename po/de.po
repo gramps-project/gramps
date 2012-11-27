@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-24 13:30+0100\n"
-"PO-Revision-Date: 2012-11-25 14:11+0100\n"
+"POT-Creation-Date: 2012-11-27 21:33+0100\n"
+"PO-Revision-Date: 2012-11-27 22:29+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -4974,9 +4974,8 @@ msgid "Underline"
 msgstr "Unterstrichen"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
-#, fuzzy
 msgid "Fontface"
-msgstr "Schrift"
+msgstr "Schriftart"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
 msgid "Fontsize"
@@ -19081,8 +19080,7 @@ msgid ""
 "the resulting database!"
 msgstr ""
 "Import der GEDCOM Datei %(filename)s mit dem ZIEL=%(by)s kann Fehler in der "
-"resultierenden "
-"Datenbank verursachen!"
+"resultierenden Datenbank verursachen!"
 
 #: ../gramps/plugins/lib/libgedcom.py:6749
 #: ../gramps/plugins/lib/libgedcom.py:6785
@@ -20814,158 +20812,158 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libnarrate.py:658
 #: ../gramps/plugins/lib/libnarrate.py:660
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:661
 #: ../gramps/plugins/lib/libnarrate.py:663
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde %(modified_date)s in %(baptism_place)s getauft%"
+"%(unknown_gender_name)s wurde getauft %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:662
 #: ../gramps/plugins/lib/libnarrate.py:664
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Diese Person wurde %(modified_date)s in %(baptism_place)s getauft%(endnotes)s."
+"Diese Person wurde getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:664
 #: ../gramps/plugins/lib/libnarrate.py:666
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:669
 #: ../gramps/plugins/lib/libnarrate.py:671
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "%(male_name)s wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:670
 #: ../gramps/plugins/lib/libnarrate.py:672
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized %(modified_date)s%(endnotes)s."
-msgstr "Er wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "Er wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:673
 #: ../gramps/plugins/lib/libnarrate.py:675
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "%(female_name)s wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #: ../gramps/plugins/lib/libnarrate.py:676
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s%(endnotes)s."
-msgstr "Sie wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "Sie wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:677
 #: ../gramps/plugins/lib/libnarrate.py:679
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:678
 #: ../gramps/plugins/lib/libnarrate.py:680
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
-msgstr "Diese Person wurde %(modified_date)s getauft%(endnotes)s."
+msgstr "Diese Person wurde getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:680
 #: ../gramps/plugins/lib/libnarrate.py:682
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
 msgstr "Getauft %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:685
 #: ../gramps/plugins/lib/libnarrate.py:687
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(male_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:686
 #: ../gramps/plugins/lib/libnarrate.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Er wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:689
 #: ../gramps/plugins/lib/libnarrate.py:691
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "%(female_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:690
 #: ../gramps/plugins/lib/libnarrate.py:692
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Sie wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:693
 #: ../gramps/plugins/lib/libnarrate.py:695
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde in %(baptism_place)s getauft%(endnotes)s."
+"%(unknown_gender_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:694
 #: ../gramps/plugins/lib/libnarrate.py:696
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Diese Person wurde in %(baptism_place)s getauft%(endnotes)s."
+msgstr "Diese Person wurde getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:696
 #: ../gramps/plugins/lib/libnarrate.py:698
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Getauft in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:701
 #: ../gramps/plugins/lib/libnarrate.py:703
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized%(endnotes)s."
 msgstr "%(male_name)s wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:702
 #: ../gramps/plugins/lib/libnarrate.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized%(endnotes)s."
 msgstr "Er wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:705
 #: ../gramps/plugins/lib/libnarrate.py:707
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
 msgstr "%(female_name)s wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:706
 #: ../gramps/plugins/lib/libnarrate.py:708
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized%(endnotes)s."
 msgstr "Sie wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:709
 #: ../gramps/plugins/lib/libnarrate.py:711
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized%(endnotes)s."
 msgstr "%(unknown_gender_name)s wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:710
 #: ../gramps/plugins/lib/libnarrate.py:712
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized%(endnotes)s."
 msgstr "Diese Person wurde getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:712
 #: ../gramps/plugins/lib/libnarrate.py:714
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized%(endnotes)s."
 msgstr "Getauft %(endnotes)s."
 
@@ -23724,14 +23722,13 @@ msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
 #: ../gramps/plugins/lib/maps/geography.py:994
 #: ../gramps/plugins/lib/maps/geography.py:1000
-#, fuzzy
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Wenn du keinen Platz auf deinem Dateisystem mehr hast,\n"
-"Du kannst alle Kacheln die im obigen Pfad liegen entfernen.\n"
+"Wenn du keinen Platz auf deinem Dateisystem mehr hast, kannst du alle Kacheln "
+"die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
 #: ../gramps/plugins/lib/maps/geography.py:999
@@ -23741,9 +23738,8 @@ msgstr "Zoom der beim Zentrieren verwendet wird"
 
 #: ../gramps/plugins/lib/maps/geography.py:1003
 #: ../gramps/plugins/lib/maps/geography.py:1009
-#, fuzzy
 msgid "The maximum number of places to show"
-msgstr "Maximale Anzahl der Vorfahrengenerationen"
+msgstr "Maximale Anzahl der angezeigten Orte"
 
 #: ../gramps/plugins/lib/maps/geography.py:1012
 #: ../gramps/plugins/lib/maps/geography.py:1018
@@ -23802,14 +23798,12 @@ msgid " state"
 msgstr " Bundesland"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:139
-#, fuzzy
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr "Geogr. Breite nicht innerhalb von %s und %s\n"
+msgstr "Breite nicht innerhalb von '54.55' bis '69.05'\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:140
-#, fuzzy
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "Geogr. Länge nicht innerhalb von %s und %s"
+msgstr "Länge nicht innerhalb von '8.05' bis '24.15'"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:141
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:168
@@ -24086,7 +24080,6 @@ msgid "Filtering_on|people with unknown gender"
 msgstr "Personen mit unbekanntem Geschlecht"
 
 #: ../gramps/plugins/quickview/filterbyname.py:64
-#, fuzzy
 msgid "Filtering_on|incomplete names"
 msgstr "Personen mit unvollständigen Namen"
 
@@ -24760,9 +24753,8 @@ msgstr "Geburtstags- und Jahrestage-Bericht"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:363
 #: ../gramps/plugins/textreport/birthdayreport.py:365
-#, fuzzy
 msgid "Year of report"
-msgstr "Kalender für Berichte"
+msgstr "Jahr des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:370
 #, fuzzy
@@ -29399,9 +29391,9 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1520
 #: ../gramps/plugins/webreport/narrativeweb.py:1540
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%(url)s\">%(name)s</a>"
-msgstr "<br />Erstellt für <a href = \"%s\">%s</a>"
+msgstr "<br />Erstellt für <a href = \"%(url)s\">%(name)s</a>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1625
 #: ../gramps/plugins/webreport/narrativeweb.py:7166
@@ -31028,14 +31020,12 @@ msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
 #: ../gramps/webapp/grampsdb/view/family.py:43
-#, fuzzy
 msgid "Familes"
 msgstr "Familien"
 
 #: ../gramps/webapp/grampsdb/view/person.py:328
-#, fuzzy
 msgid "Names"
-msgstr "_Namen"
+msgstr "Namen"
 
 #: ../gramps/webapp/grampsdb/view/person.py:462
 #: ../gramps/webapp/grampsdb/view/person.py:468
@@ -31081,9 +31071,8 @@ msgstr ""
 #: ../gramps/webapp/grampsdb/views.py:164
 #: ../gramps/webapp/grampsdb/views.py:74
 #: ../gramps/webapp/grampsdb/views.py:168
-#, fuzzy
 msgid "User"
-msgstr "Benutzername:"
+msgstr "Benutzer"
 
 #: ../gramps/webapp/grampsdb/views.py:160
 #: ../gramps/webapp/grampsdb/views.py:164
@@ -32581,9 +32570,8 @@ msgstr ""
 "Eine beschreibender Titel für die Internet Lokation  die du speicherst."
 
 #: ../gramps/gui/glade/grampletpane.glade:7
-#, fuzzy
 msgid "window2"
-msgstr "Hauptfenster"
+msgstr "Fenster2"
 
 #: ../gramps/gui/glade/grampletpane.glade:60
 msgid "Drag to move; click to detach"
@@ -33205,9 +33193,8 @@ msgid "Delete the selected style"
 msgstr "Gewählte Stil löschen"
 
 #: ../gramps/gui/glade/tipofday.glade:8
-#, fuzzy
 msgid "window1"
-msgstr "Hauptfenster"
+msgstr "Fenster1"
 
 #: ../gramps/gui/glade/tipofday.glade:54
 msgid "_Display on startup"
@@ -34655,9 +34642,8 @@ msgstr ""
 "und Analyse"
 
 #: ../gramps/cli/plug/__init__.py:579
-#, fuzzy
 msgid "(no help available)"
-msgstr "N.V."
+msgstr "(keine Hilfe verfügbar)"
 
 #: ../gramps/gui/dbloader.py:136
 #, fuzzy
@@ -34666,40 +34652,34 @@ msgstr "Gramps XML Stammbaum"
 
 #: ../gramps/gui/editors/editplace.py:224
 #: ../gramps/plugins/gramplet/editexifmetadata.py:1146
-#, fuzzy
 msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Ungültiger Breitengrad (Syntax: 18°9'"
+msgstr "Ungültiger Breitengrad (Syntax: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:227
 #: ../gramps/plugins/gramplet/editexifmetadata.py:1151
-#, fuzzy
 msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Ungültiger Längengrad (Syntax: 18°9'"
+msgstr "Ungültiger Längengrad (Syntax: 18\\u00b09'"
 
 #: ../gramps/plugins/docgen/asciidoc.py:442
-#, fuzzy
 msgid "Characters per line"
-msgstr "Zeichensatz"
+msgstr "Zeichen pro Zeile"
 
 #: ../gramps/plugins/docgen/asciidoc.py:443
-#, fuzzy
 msgid "The number of characters per line"
-msgstr "Die Anzahl der Jahre nach dem letzten Ereignisdatum"
+msgstr "Die Anzahl der Zeichen pro Zeile"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:347
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s [%(gid)s]"
-msgstr "%(father)s [%(gramps_id)s]"
+msgstr "%(name)s [%(gid)s]"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:728
-#, fuzzy
 msgid "Include Gramps ID"
-msgstr "IDs aufnehmen"
+msgstr "Gramps ID aufnehmen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:729
-#, fuzzy
 msgid "Whether to include Gramps ID next to names."
-msgstr "Ob GRAMPS IDs von Objekten aufgenommen werden"
+msgstr "Ob Gramps ID neben den Namen aufgenommen werden."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6699
 msgid "Stepfather"
