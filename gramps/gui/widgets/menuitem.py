@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: toolcomboentry.py 19858 2012-06-17 21:25:37Z bmcage $
+# $Id$
 
 "ToolComboEntry class."
 

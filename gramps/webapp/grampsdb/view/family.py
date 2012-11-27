@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id: utils.py 19637 2012-05-24 17:22:14Z dsblank $
+# $Id$
 #
 
 """ Views for Person, Name, and Surname """
