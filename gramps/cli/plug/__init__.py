@@ -417,8 +417,8 @@ class CommandLineReport(object):
                 self.options_help[name].append(option.get_help())
             else:
                 print(_("Unknown option: %s") % option)
-                print(_("   Valid options are:"), ", ".join(
-                                                     list(self.options_dict.keys())))
+                print(_("   Valid options are:"),
+                      ", ".join(list(self.options_dict.keys())))
                 print((_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
                        {'donottranslate' : "show=option"}))
@@ -437,8 +437,6 @@ class CommandLineReport(object):
         if _format_str:
             self.options_dict['off'] = _format_str
         
-        self.option_class.handler.output = self.options_dict['of']
-
         self.css_filename = None
         _chosen_format = None
 
@@ -472,7 +470,7 @@ class CommandLineReport(object):
                 _chosen_format = graphdoc.FORMATS[0]["ext"]
         else:
             self.format = None
-        if _chosen_format and  _format_str:
+        if _chosen_format and _format_str:
             print((_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
                      "and using '%(notranslate1)s=%(notranslate3)s'.") %
                    {'notranslate1' : "off",
@@ -498,8 +496,8 @@ class CommandLineReport(object):
                 
             else:
                 print(_("Ignoring unknown option: %s") % opt )
-                print(_("   Valid options are:"), ", ".join(
-                                                   self.options_dict.keys()))
+                print(_("   Valid options are:"),
+                      ", ".join(list(self.options_dict.keys())))
                 print(_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
                        {'donottranslate' : "show=option"})
@@ -535,8 +533,7 @@ class CommandLineReport(object):
         if not self.doc_option_class:
             return # this docgen type has no options
         try:
-            if (issubclass(self.doc_option_class, object) or   # new class
-                isinstance(self.doc_option_class, ClassType)): # old class
+            if issubclass(self.doc_option_class, object):
                 self.doc_options = self.doc_option_class(self.raw_name,
                                                          self.database)
                 doc_options_dict = self.doc_options.options_dict
