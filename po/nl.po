@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-26 20:08+0100\n"
+"PO-Revision-Date: 2012-11-27 10:16+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -11069,7 +11069,7 @@ msgstr "Generatie afhankelijk"
 
 #: ../src/plugins/drawreport/FanChart.py:415
 msgid "Background color is either white or generation dependent"
-msgstr "De achtergrondkleur is ofwel wit, ofwel generatie-afhankelijk"
+msgstr "De achtergrondkleur is ofwel wit, ofwel generatie afhankelijk"
 
 #: ../src/plugins/drawreport/FanChart.py:419
 msgid "Orientation of radial texts"
@@ -11081,11 +11081,11 @@ msgstr "rechtop"
 
 #: ../src/plugins/drawreport/FanChart.py:422
 msgid "roundabout"
-msgstr "omstreeks"
+msgstr "radiaal"
 
 #: ../src/plugins/drawreport/FanChart.py:423
 msgid "Print radial texts upright or roundabout"
-msgstr "Druk radiale teksten rechtop af, of in een ronde vorm"
+msgstr "Teksten rechtop of in een radiale vorm afdrukken"
 
 #: ../src/plugins/drawreport/FanChart.py:447
 #: ../src/plugins/textreport/AlphabeticalIndex.py:90
