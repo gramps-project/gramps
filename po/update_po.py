@@ -50,7 +50,7 @@ from __future__ import print_function
 
 import os
 import sys
-from optparse import OptionParser, OptionGroup
+from argparse import ArgumentParser
 
 
 if sys.platform == 'win32':          
@@ -340,98 +340,86 @@ def main():
     The utility for handling translation stuff.
     What is need by Gramps, nothing more.
     """
-    
-    parser = OptionParser( 
+       
+    parser = ArgumentParser( 
                          description='This program generates a new template and '
                                       'also provides some common features.', 
-                         usage='%prog [options]'
                          )
-                         
-    extract = OptionGroup(
-                          parser, 
-                          "Extract Options", 
-                          "Everything around extraction for message strings."
-                          )   
-    parser.add_option_group(extract)
-    
-    update = OptionGroup(
-                          parser, 
-                          "Update Options", 
-                          "Everything around update for translation files."
-                          )   
-    parser.add_option_group(update)
-    
-    trans = OptionGroup(
-                          parser, 
-                          "Translation Options", 
-                          "Some informations around translation."
-                          )   
-    parser.add_option_group(trans)
-                         
-    parser.add_option("-t", "--test",
-            action="store_true", dest="test", default=False,
+    parser.add_argument("-t", "--test",
+            action="store_true", dest="test",  default=False,
             help="test if 'python' and 'gettext' are properly installed")
-                                       
-    extract.add_option("-x", "--xml",
-            action="store_true", dest="xml", default=False,
+                        
+    parser.add_argument("-x", "--xml",
+            action="store_true", dest="xml",  default=False,
             help="extract messages from xml based file formats")
-    extract.add_option("-g", "--glade",
-            action="store_true", dest="glade", default=False,
+    parser.add_argument("-g", "--glade",
+            action="store_true", dest="glade",  default=False,
             help="extract messages from glade file format only")
-    extract.add_option("-c", "--clean",
-            action="store_true", dest="clean", default=False,
+    parser.add_argument("-c", "--clean",
+            action="store_true", dest="clean",  default=False,
             help="remove created files")
-    extract.add_option("-p", "--pot",
-            action="store_true", dest="catalog", default=False,
+    parser.add_argument("-p", "--pot", 
+            action="store_true", dest="catalog",  default=False,
             help="create a new catalog")
-              
+                    
+    update = parser.add_argument_group('Update', 'Maintenance around translations')
+    
     # need at least one argument (sv.po, de.po, etc ...)
-    update.add_option("-m", "--merge",
-            action="store_true", dest="merge", default=False,
+
+    # lang.po files maintenance                          
+    update.add_argument("-m", "--merge",
+            type=int, dest="merge", default=[file for file in os.listdir('.')],
             help="merge lang.po files with last catalog")
-    update.add_option("-k", "--check",
-            action="store_true", dest="check", default=False,
-            help="check lang.po files")
               
-    # testing stage
-    trans.add_option("-u", "--untranslated",
+    update.add_argument("-k", "--check",
+            type=int, dest="check", default=[file for file in os.listdir('.')],
+            help="check lang.po files")
+        
+     # testing stage
+    trans = parser.add_argument_group('Translation', 'Display content of  translations file')
+       
+    # need one argument (eg, de.po)
+              
+    trans.add_argument("-u", "--untranslated",
             action="store_true", dest="untranslated", default=False,
             help="list untranslated messages")
-    trans.add_option("-f", "--fuzzy",
+    trans.add_argument("-f", "--fuzzy",
             action="store_true", dest="fuzzy", default=False,
             help="list fuzzy messages")
     
-    (options, args) = parser.parse_args()
     
-    if options.test:
+    args = parser.parse_args()
+    #print(args, '\n\t\t###\n', vars(args), sys.argv[2:])
+
+    if args.test:
         tests()
        
-    if options.xml:
+    if args.xml:
         extract_xml()
         
-    if options.glade:
+    if args.glade:
         create_filesfile()
         extract_glade()
         if os.path.isfile('tmpfiles'):
             os.unlink('tmpfiles')
         
-    if options.catalog:
+    if args.catalog:
         retrieve()
         
-    if options.clean:
+    if args.clean:
         clean()
         
-    if options.merge:
-        merge(args)
+    if parser.get_default(merge):
+        merge(sys.argv[2:])
         
-    if options.check:
-        check(args)
+    if parser.get_default(check):
+        check(sys.argv[2:])
         
-    if options.untranslated:
-        untranslated(args)
+    if args.untranslated and sys.argv[2:]:
+        untranslated(sys.argv[2:])
         
-    if options.fuzzy:
-        fuzzy(args)
+    if args.fuzzy and sys.argv[2:]:
+        fuzzy(sys.argv[2:])
 
 def create_filesfile():
     """
@@ -610,8 +598,6 @@ def merge(args):
     """
     Merge messages with 'gramps.pot'
     """
-    if not args:
-        print ('Please, add at least one argument (sv.po, de.po).')
     for arg in args: 
         if arg[-3:] == '.po':
             print ('Merge %(lang)s with current template' % {'lang': arg})
@@ -626,8 +612,6 @@ def check(args):
     """
     Check the translation file
     """
-    if not args:
-        print ('Please, add at least one argument (sv.po, de.po).')
     print (args)
     for arg in args:
         if arg[-3:] == '.po':
