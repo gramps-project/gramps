@@ -34,6 +34,7 @@ else:
 import base64
 import time
 import re
+import gramps
 from gramps.gen.lib import (Person, Family, Event, Place, Repository, 
                             Citation, Source, Note, MediaObject, Tag, 
                             Researcher)
@@ -106,6 +107,98 @@ class DbDjango(DbWriteBase, DbReadBase):
     def __init__(self):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        self._tables = {
+            'Person':
+                {
+                "handle_func": self.get_person_from_handle, 
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": gramps.gen.lib.Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                },
+            'Family':
+                {
+                "handle_func": self.get_family_from_handle, 
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": gramps.gen.lib.Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                },
+            'Source':
+                {
+                "handle_func": self.get_source_from_handle, 
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": gramps.gen.lib.Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                },
+            'Citation':
+                {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": gramps.gen.lib.Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                },
+            'Event':
+                {
+                "handle_func": self.get_event_from_handle, 
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": gramps.gen.lib.Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                },
+            'Media':
+                {
+                "handle_func": self.get_object_from_handle, 
+                "gramps_id_func": self.get_object_from_gramps_id,
+                "class_func": gramps.gen.lib.MediaObject,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
+                "iter_func": self.iter_media_objects,
+                },
+            'Place':
+                {
+                "handle_func": self.get_place_from_handle, 
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": gramps.gen.lib.Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                },
+            'Repository':
+                {
+                "handle_func": self.get_repository_from_handle, 
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": gramps.gen.lib.Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                },
+            'Note':
+                {
+                "handle_func": self.get_note_from_handle, 
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": gramps.gen.lib.Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                },
+            'Tag':
+                {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": gramps.gen.lib.Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                },
+            }
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
         self.dji = DjangoInterface()
@@ -748,6 +841,55 @@ class DbDjango(DbWriteBase, DbReadBase):
     def iter_family_handles(self):
         return (family.handle for family in self.dji.Family.all())
 
+    def iter_notes(self):
+        return (self.get_note_from_handle(note.handle) 
+                for note in self.dji.Note.all())
+
+    def iter_note_handles(self):
+        return (note.handle for note in self.dji.Note.all())
+
+    def iter_events(self):
+        return (self.get_event_from_handle(event.handle) 
+                for event in self.dji.Event.all())
+
+    def iter_event_handles(self):
+        return (event.handle for event in self.dji.Event.all())
+
+    def iter_places(self):
+        return (self.get_place_from_handle(place.handle) 
+                for place in self.dji.Place.all())
+
+    def iter_place_handles(self):
+        return (place.handle for place in self.dji.Place.all())
+
+    def iter_repositories(self):
+        return (self.get_repository_from_handle(repository.handle) 
+                for repository in self.dji.Repository.all())
+
+    def iter_repository_handles(self):
+        return (repository.handle for repository in self.dji.Repository.all())
+
+    def iter_sources(self):
+        return (self.get_source_from_handle(source.handle) 
+                for source in self.dji.Source.all())
+
+    def iter_source_handles(self):
+        return (source.handle for source in self.dji.Source.all())
+
+    def iter_citations(self):
+        return (self.get_citation_from_handle(citation.handle) 
+                for citation in self.dji.Citation.all())
+
+    def iter_citation_handles(self):
+        return (citation.handle for citation in self.dji.Citation.all())
+
+    def iter_tags(self):
+        return (self.get_tag_from_handle(tag.handle) 
+                for tag in self.dji.Tag.all())
+
+    def iter_tag_handles(self):
+        return (tag.handle for tag in self.dji.Tag.all())
+
     def get_tag_from_name(self, name):
         try:
             tag = self.dji.Tag.filter(name=name)
@@ -805,7 +947,7 @@ class DbDjango(DbWriteBase, DbReadBase):
     def get_family_cursor(self):
         return Cursor(self.dji.Family, self.get_raw_family_data).iter()
 
-    def get_events_cursor(self):
+    def get_event_cursor(self):
         return Cursor(self.dji.Event, self.get_raw_event_data).iter()
 
     def get_citation_cursor(self):
@@ -813,6 +955,18 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def get_source_cursor(self):
         return Cursor(self.dji.Source, self.get_raw_source_data).iter()
+
+    def get_note_cursor(self):
+        return Cursor(self.dji.Note, self.get_raw_note_data).iter()
+
+    def get_tag_cursor(self):
+        return Cursor(self.dji.Tag, self.get_raw_tag_data).iter()
+
+    def get_repository_cursor(self):
+        return Cursor(self.dji.Repository, self.get_raw_repository_data).iter()
+
+    def get_media_cursor(self):
+        return Cursor(self.dji.Media, self.get_raw_object_data).iter()
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -965,6 +1119,24 @@ class DbDjango(DbWriteBase, DbReadBase):
             else:
                 return None
 
+    def get_raw_tag_data(self, handle):
+        try:
+            return self.dji.get_tag(self.dji.Tag.get(handle=handle))
+        except:
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
+
+    def get_raw_event_data(self, handle):
+        try:
+            return self.dji.get_event(self.dji.Event.get(handle=handle))
+        except:
+            if handle in self.import_cache:
+                return self.import_cache[handle].serialize()
+            else:
+                return None
+
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
             person.handle = create_id()
@@ -1107,4 +1279,59 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def set_researcher(self, owner):
         pass
+
+    def copy_from_db(self, db):
+        """
+        A (possibily) implementation-specific method to get data from
+        db into this database.
+        """
+        # First we add the primary objects:
+        for key in db._tables.keys():
+            cursor = db._tables[key]["cursor_func"]
+            for (handle, data) in cursor():
+                if key == "Person":
+                    self.dji.add_person(data)
+                elif key == "Family":
+                    self.dji.add_family(data)
+                elif key == "Event":
+                    self.dji.add_event(data)
+                elif key == "Place":
+                    self.dji.add_place(data)
+                elif key == "Repository":
+                    self.dji.add_repository(data)
+                elif key == "Citation":
+                    self.dji.add_citation(data)
+                elif key == "Source":
+                    self.dji.add_source(data)
+                elif key == "Note":
+                    self.dji.add_note(data)
+                elif key == "Media":
+                    self.dji.add_media(data)
+                elif key == "Tag":
+                    self.dji.add_tag(data)
+        for key in db._tables.keys():
+            cursor = db._tables[key]["cursor_func"]
+            for (handle, data) in cursor():
+                if key == "Person":
+                    self.dji.add_person_detail(data)
+                elif key == "Family":
+                    self.dji.add_family_detail(data)
+                elif key == "Event":
+                    self.dji.add_event_detail(data)
+                elif key == "Place":
+                    self.dji.add_place_detail(data)
+                elif key == "Repository":
+                    self.dji.add_repository_detail(data)
+                elif key == "Citation":
+                    self.dji.add_citation_detail(data)
+                elif key == "Source":
+                    self.dji.add_source_detail(data)
+                elif key == "Note":
+                    self.dji.add_note_detail(data)
+                elif key == "Media":
+                    self.dji.add_media_detail(data)
+                elif key == "Tag":
+                    self.dji.add_tag_detail(data)
+            # Next we add the links:
+        self.dji.update_publics()
 

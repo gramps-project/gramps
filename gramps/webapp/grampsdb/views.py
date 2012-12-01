@@ -58,11 +58,11 @@ from django.utils import simplejson
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import webapp
-from webapp.utils import _, build_args
-from webapp.grampsdb.models import *
-from webapp.grampsdb.view import *
-from webapp.dbdjango import DbDjango
+import gramps.webapp
+from gramps.webapp.utils import _, build_args
+from gramps.webapp.grampsdb.models import *
+from gramps.webapp.grampsdb.view import *
+from gramps.webapp.dbdjango import DbDjango
 from gramps.cli.user import User
 from gramps.gen.const import VERSION_TUPLE
 from gramps.gen.utils.svn import get_svn_revision
@@ -137,7 +137,8 @@ def logout_page(request):
 
 def make_message(request, message):
     if request.user.is_authenticated():
-        request.user.message_set.create(message = message)
+        #request.user.message_set.create(message = message)
+        print("FIXME: message_set:", message)
     else:
         request.session['message'] = message
 
@@ -188,7 +189,7 @@ def process_report_run(request, handle):
     """
     Run a report or export.
     """
-    from webapp.reports import import_file, export_file, download
+    from gramps.webapp.reports import import_file, export_file, download
     from gramps.cli.plug import run_report
     import traceback
     db = DbDjango()
@@ -444,7 +445,7 @@ def action(request, view, handle, act, add_to=None):
     View a particular object given /object/handle (implied view),
     /object/handle/action, or /object/add.
     """
-    from webapp.reports import get_plugin_options
+    from gramps.webapp.reports import get_plugin_options
     # redirect:
     rd = None
     obj = None

@@ -228,8 +228,8 @@ CREATE TABLE "auth_user" (
     "last_login" datetime NOT NULL,
     "date_joined" datetime NOT NULL
 );
-INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$248cf$71082f5ec314e2706d1cc9e44a0d63b953ba1d08',1,1,1,'2012-07-31 07:58:28.096063','2012-07-31 07:58:28.096063');
-INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$bd368$2e83f9d34578f66402e62b698950adae05f4d6bf',1,1,1,'2012-07-31 07:58:37.492571','2012-07-31 07:58:37.492571');
+INSERT INTO "auth_user" VALUES(1,'admin','','','bugs@gramps-project.org','sha1$e6c7c$4b1fb71d557b37a04eecffaf9c61f086b1ca35f5',1,1,1,'2012-08-10 08:16:43.964714','2012-08-10 08:16:43.964714');
+INSERT INTO "auth_user" VALUES(2,'admin1','','','bugs@gramps-project.org','sha1$f466d$20b08567aa61bd56d523ee497f215119ffe8c4fa',1,1,1,'2012-08-10 08:16:49.093450','2012-08-10 08:16:49.093450');
 CREATE TABLE "auth_message" (
     "id" integer NOT NULL PRIMARY KEY,
     "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
@@ -648,7 +648,7 @@ CREATE TABLE "grampsdb_config" (
 );
 INSERT INTO "grampsdb_config" VALUES(1,'sitename','site name of family tree','str','Gramps-Connect');
 INSERT INTO "grampsdb_config" VALUES(2,'db_version','database scheme version','str','0.6.1');
-INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-07-31 07:56');
+INSERT INTO "grampsdb_config" VALUES(3,'db_created','database creation date/time','str','2012-08-10 08:12');
 INSERT INTO "grampsdb_config" VALUES(4,'htmlview.url-handler',NULL,'bool','False');
 INSERT INTO "grampsdb_config" VALUES(5,'htmlview.start-url',NULL,'str','http://gramps-project.org');
 INSERT INTO "grampsdb_config" VALUES(6,'paths.recent-export-dir',NULL,'str','');

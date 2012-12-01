@@ -9,7 +9,7 @@
     <meta name="generator" content="Gramps 3.2.0-0.SVN12859M http://gramps-project.org/" />
     <meta name="author" content="" />
     {% endblock %}
-    <link href="/images/favicon2.ico" type="image/x-icon" rel="shortcut icon" />
+    <link href="/images/ped24.ico" type="image/x-icon" rel="shortcut icon" />
     {% block css %}
     <link media="screen" href="/styles/css/{{css_theme}}" type="text/css" rel="stylesheet" />
     <link media="print" href="/styles/css/Web_Print-Default.css" type="text/css" rel="stylesheet" />
@@ -266,6 +266,16 @@ function setReturnValues() {
 	    elems[i].value = v.value;
 	}
     }
+}
+
+function buttonOver(button) {
+    button.style.backgroundColor = "white"; 
+    button.style.border = "1px solid gray";
+}
+
+function buttonOut(button) {
+    button.style.backgroundColor = "lightgray"; 
+    button.style.border = "1px solid lightgray";
 }
 //-->
 </SCRIPT>

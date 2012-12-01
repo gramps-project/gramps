@@ -4,21 +4,25 @@
 ####    $ PYTHONPATH=..:../plugins/lib python -i shell.py 
 ####    >>> Person.objects.all()
 
+import os
+pystartup = os.path.expanduser("~/.pystartup")
+if os.path.exists(pystartup):
+    execfile(pystartup)
 from django.conf import settings
-import webapp.settings as default_settings
+import gramps.webapp.settings as default_settings
 try:
     settings.configure(default_settings)
 except RuntimeError:
     # already configured; ignore
     pass
 
-from webapp.grampsdb.models import *
-from webapp.grampsdb.forms import *
-from webapp.dbdjango import DbDjango
-from webapp.reports import import_file
-from webapp.libdjango import DjangoInterface, totime, todate
+from .grampsdb.models import *
+from .grampsdb.forms import *
+from .dbdjango import DbDjango
+from .reports import import_file
+from .libdjango import DjangoInterface, totime, todate
 from gramps.gen.datehandler import displayer, parser
-from webapp.utils import StyledNoteFormatter, parse_styled_text
+from .utils import StyledNoteFormatter, parse_styled_text
 from gramps.gen.lib import StyledText
 from gramps.cli.user import User
 

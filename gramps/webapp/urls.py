@@ -38,7 +38,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 
-from webapp.grampsdb.views import * 
+from gramps.webapp.grampsdb.views import * 
 
 urlpatterns = patterns('',
     # Specific matches first:

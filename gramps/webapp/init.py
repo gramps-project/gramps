@@ -30,7 +30,7 @@ from __future__ import print_function
 import time
 import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
-from . import settings
+import settings
 
 from gramps.gen.config import config
 from gramps.gen.lib.nametype import NameType
@@ -46,8 +46,9 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.lib.notetype import NoteType
 from gramps.gen.lib.styledtexttagtype import StyledTextTagType
 
-from .grampsdb.models import (GenderType, LdsType, LdsStatus, 
-                             NameFormatType, NameOriginType, ThemeType)
+from gramps.webapp.grampsdb.models import (GenderType, LdsType, LdsStatus, 
+                                           NameFormatType, NameOriginType, 
+                                           ThemeType)
 
 def get_datamap(x):
     """

@@ -30,7 +30,7 @@ from django.forms.models import BaseModelFormSet
 from django.forms.widgets import TextInput, HiddenInput
 
 # Gramps Modules:
-from webapp.grampsdb.models import *
+from gramps.webapp.grampsdb.models import *
 from gramps.gen.mime import get_type
 
 # Python Modules:
@@ -142,7 +142,7 @@ class EventForm(forms.ModelForm):
                    "place"]
 
     def clean(self):
-        from webapp.utils import dp
+        from gramps.webapp.utils import dp
         data = super(EventForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
@@ -152,8 +152,8 @@ class EventForm(forms.ModelForm):
         return data
  
     def save(self, commit=True):
-        from webapp.utils import dp
-        from webapp.libdjango import DjangoInterface
+        from gramps.webapp.utils import dp
+        from gramps.webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(EventForm, self).save(commit=False)
         dobj = dp(self.cleaned_data['text'])
@@ -181,7 +181,7 @@ class MediaForm(forms.ModelForm):
                    "newyear", "calendar", "modifier", "quality", "cache"]
 
     def clean(self):
-        from webapp.utils import dp
+        from gramps.webapp.utils import dp
         data = super(MediaForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
@@ -191,8 +191,8 @@ class MediaForm(forms.ModelForm):
         return data
  
     def save(self, commit=True):
-        from webapp.utils import dp
-        from webapp.libdjango import DjangoInterface
+        from gramps.webapp.utils import dp
+        from gramps.webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(MediaForm, self).save(commit=False)
         model.mime = get_type(model.path)
@@ -219,7 +219,7 @@ class CitationForm(forms.ModelForm):
                    "newyear", "calendar", "modifier", "quality", "cache"]
 
     def clean(self):
-        from webapp.utils import dp
+        from gramps.webapp.utils import dp
         data = super(CitationForm, self).clean()
         dobj = dp(data.get('text'))
         if not dobj.is_valid():
@@ -229,8 +229,8 @@ class CitationForm(forms.ModelForm):
         return data
  
     def save(self, commit=True):
-        from webapp.utils import dp
-        from webapp.libdjango import DjangoInterface
+        from gramps.webapp.utils import dp
+        from gramps.webapp.libdjango import DjangoInterface
         dji = DjangoInterface()
         model = super(CitationForm, self).save(commit=False)
         dobj = dp(self.cleaned_data['text'])

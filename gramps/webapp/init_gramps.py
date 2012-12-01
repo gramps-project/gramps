@@ -25,8 +25,8 @@ Clears gramps data
 
 import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
-from . import settings
+import settings
 
-from . import grampsdb.models as dj
+from .grampsdb models import models as dj
 
 dj.clear_tables("primary", "secondary", "ref", "system")

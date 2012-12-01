@@ -51,10 +51,10 @@ from django.db.models import Q
 # Gramps-Connect Modules
 #
 #------------------------------------------------------------------------
-import webapp.grampsdb.models as models
-import webapp.grampsdb.forms as forms
-from webapp import libdjango
-from webapp.dbdjango import DbDjango
+import gramps.webapp.grampsdb.models as models
+import gramps.webapp.grampsdb.forms as forms
+from gramps.webapp import libdjango
+from gramps.webapp.dbdjango import DbDjango
 
 #------------------------------------------------------------------------
 #
@@ -299,8 +299,83 @@ def make_button(text, url, *args):
             newargs.append(arg)
     if newargs:
         url = url % tuple(newargs)
-    return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
-                     (text, url, kwargs, last))
+    if text[0] in "+$-?x" or text in ["x", "^", "v", "<", "<<", ">", ">>"]:
+        return mark_safe(make_image_button(text, url, kwargs, last))
+    else:
+        return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
+                         (text, url, kwargs, last))
+
+def make_image_button(text, url, kwargs, last):
+    if text == "x":
+        button = "x"
+        text = "Delete row"
+    elif text == "^":
+        button = "^"
+        text = "Move row up"
+    elif text == "v":
+        button = "v"
+        text = "Move row down"
+    elif text.startswith("+"):
+        button = "+"
+        text = text[1:]
+    elif text.startswith("<"):
+        button = "<"
+        text = text[1:]
+    elif text.startswith("<<"):
+        button = "<<"
+        text = text[2:]
+    elif text.startswith(">"):
+        button = ">"
+        text = text[1:]
+    elif text.startswith(">>"):
+        button = ">>"
+        text = text[2:]
+    elif text.startswith("-"):
+        button = "x"
+        text = text[1:]
+    elif text.startswith("$"):
+        button = "$"
+        text = text[1:]
+    elif text.startswith("?"):
+        button = "?"
+        text = text[1:]
+    elif text.startswith("x"):
+        button = "cancel"
+        text = text[1:]
+    return make_image_button2(button, text, url, kwargs, last)
+
+def make_image_button2(button, text, url, kwargs="", last=""):
+    if button == "cancel": 
+        filename = "/images/gtk-remove.png"
+    elif button == "x": # delete
+        filename = "/images/gtk-remove.png"
+    elif button == "^": # move up
+        filename = "/images/up.png"
+    elif button == "v": # move down
+        filename = "/images/down.png"
+    elif button == "<": # prev
+        filename = "/images/previous.png"
+    elif button == "<<": # start
+        filename = "/images/player-start.png"
+    elif button == ">": # next
+        filename = "/images/next.png"
+    elif button == ">>": # end
+        filename = "/images/player-end.png"
+    elif button == "+": # add
+        filename = "/images/add.png"
+    elif button == "$": # pick, share
+        filename = "/images/stock_index_24.png"
+    elif button == "?": # edit
+        filename = "/images/text-editor.png"
+    elif button == "add child to existing family":
+        filename = "/images/scalable/gramps-parents-open.svg"
+    elif button == "add child to new family":
+        filename = "/images/scalable/gramps-parents-add.svg"
+    elif button == "add spouse to existing family":
+        filename = "/images/scalable/add-parent-existing-family.svg"
+    elif button == "add spouse to new family":
+        filename = "/images/scalable/gramps-parents.svg"
+    return """<img height="22" width="22" alt="%s" title="%s" src="%s" onmouseover="buttonOver(this)" onmouseout="buttonOut(this)" onclick="document.location.href='%s%s%s'" style="background-color: lightgray; border: 1px solid lightgray; border-radius:5px; margin: 0px 1px; padding: 1px;" />""" % (text, text, filename, url, kwargs, last)
 
 def event_table(obj, user, act, url, args):
     retval = ""
@@ -315,7 +390,7 @@ def event_table(obj, user, act, url, args):
         _("Date"),
         _("Place"),
         _("Role"))
-    table.column_widths = [10, 20, 10, 7, 20, 23, 10]
+    table.column_widths = [11, 19, 10, 7, 20, 23, 10]
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
@@ -325,7 +400,7 @@ def event_table(obj, user, act, url, args):
         links = []
         count = 1
         for (djevent, event_ref) in event_list:
-            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and act == "view" else "",
+            table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and act == "view" else "",
                 djevent.description,
                 table.db.get_event_from_handle(djevent.handle),
                 djevent.gramps_id, 
@@ -336,19 +411,24 @@ def event_table(obj, user, act, url, args):
             has_data = True
             count += 1
         table.links(links)
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and act == "view":
+        retval += make_button(_("+Add New Event"), (url % args).replace("$act", "add"))
+        retval += make_button(_("$Add Existing Event"), (url % args).replace("$act", "share"))
+    else:
+        retval += """<div style="height: 26px;"></div>""" # to keep tabs same height
+    retval += """</div>"""
     retval += table.get_html()
     if user.is_superuser and act == "view":
         count = 1
+        retval = retval.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        retval = retval.replace("}}", """</div>""")
         for (djevent, event_ref) in event_list:
             item = obj.__class__.__name__.lower()
             retval = retval.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/eventref/%d" % (item, obj.handle, count)))
             retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/eventref/%d" % (item, obj.handle, count)))
             retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/eventref/%d" % (item, obj.handle, count)))
             count += 1
-        retval += make_button(_("Add New Event"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Add Existing Event"), (url % args).replace("$act", "share"))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -417,11 +497,13 @@ def name_table(obj, user, act, url=None, *args):
                           (url % name.person.handle) + ("/%s" % name.order)))
             has_data = True
         table.links(links)
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Name"), (url % args))
+        retval += make_button(_("+Add Name"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -434,6 +516,12 @@ def surname_table(obj, user, act, url=None, *args):
     cssid = "tab-surnames"
     table = Table("surname_table")
     table.columns(_("Order"), _("Surname"),)
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and url and act == "view":
+        retval += make_button(_("+Add Surname"), (url % args))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
     if user.is_authenticated() or obj.public:
         try:
             name = obj.name_set.filter(order=order)[0]
@@ -446,10 +534,6 @@ def surname_table(obj, user, act, url=None, *args):
             retval += table.get_html()
         else:
             retval += "<p id='error'>No such name order = %s</p>" % order
-    if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Surname"), (url % args))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -465,7 +549,7 @@ def citation_table(obj, user, act, url=None, *args):
                   _("ID"), 
                   _("Confidence"),
                   _("Page"))
-    table.column_widths = [10, 10, 50, 30]
+    table.column_widths = [11, 10, 49, 30]
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         citation_refs = dji.CitationRef.filter(object_type=obj_type,
@@ -476,7 +560,7 @@ def citation_table(obj, user, act, url=None, *args):
             if citation_ref.citation:
                 citation = table.db.get_citation_from_handle(
                     citation_ref.citation.handle)
-                table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
+                table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                           citation.gramps_id,
                           str(citation.confidence),
                           str(citation.page),
@@ -485,8 +569,17 @@ def citation_table(obj, user, act, url=None, *args):
                 has_data = True
                 count += 1
         table.links(links)
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and url and act == "view":
+        retval += make_button(_("+Add New Citation"), (url % args).replace("$act", "add"))
+        retval += make_button(_("$Add Existing Citation"), (url % args).replace("$act", "share"))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
     retval += table.get_html()
     if user.is_superuser and url and act == "view":
+        retval = retval.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        retval = retval.replace("}}", """</div>""")
         count = 1
         for citation_ref in citation_refs:
             item = obj.__class__.__name__.lower()
@@ -494,10 +587,6 @@ def citation_table(obj, user, act, url=None, *args):
             retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/citationref/%d" % (item, obj.handle, count)))
             retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/citationref/%d" % (item, obj.handle, count)))
             count += 1
-        retval += make_button(_("Add New Citation"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Add Existing Citation"), (url % args).replace("$act", "share"))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -514,6 +603,14 @@ def repository_table(obj, user, act, url=None, *args):
         _("Call number"),
         _("Type"),
         )
+    table.column_widths = [11, 49, 20, 20]
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and url and act == "view":
+        retval += make_button(_("+Add New Repository"), (url % args).replace("$act", "add"))
+        retval += make_button(_("$Add Existing Repository"), (url % args).replace("$act", "share"))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         refs = dji.RepositoryRef.filter(object_type=obj_type,
@@ -522,7 +619,7 @@ def repository_table(obj, user, act, url=None, *args):
         for repo_ref in refs:
             repository = repo_ref.ref_object
             table.row(
-                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                 repository.gramps_id,
                 repository.name,
                 repo_ref.call_number, 
@@ -531,6 +628,8 @@ def repository_table(obj, user, act, url=None, *args):
             has_data = True
             count += 1
         text = table.get_html()
+        text = text.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        text = text.replace("}}", """</div>""")
         count = 1
         for repo_ref in refs:
             item = obj.__class__.__name__.lower()
@@ -539,11 +638,6 @@ def repository_table(obj, user, act, url=None, *args):
             text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/repositoryref/%d" % (item, obj.handle, count)))
             count += 1
         retval += text
-    if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add New Repository"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Add Existing Repository"), (url % args).replace("$act", "share"))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -567,12 +661,14 @@ def note_table(obj, user, act, url=None, *args):
                       str(note.note_type),
                       note.text[:50])
             has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add New Note"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Add Existing Note"), (url % args).replace("$act", "share"))
+        retval += make_button(_("+Add New Note"), (url % args).replace("$act", "add"))
+        retval += make_button(_("$Add Existing Note"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -587,6 +683,14 @@ def data_table(obj, user, act, url=None, *args):
         _("Type"), 
         _("Value"),
         )
+    table.column_widths = [11, 39, 50]
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and url and act == "view":
+        # /data/$act/citation/%s
+        retval += make_button(_("+Add Data"), (url.replace("$act", "add") % args))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
     if user.is_authenticated() or obj.public:
         item_class = obj.__class__.__name__.lower()
         if item_class == "citation":
@@ -600,13 +704,15 @@ def data_table(obj, user, act, url=None, *args):
             elif item_class == "source":
                 ref_obj = ref.source
             table.row(
-                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                 ref_obj.key,
                 ref_obj.value,
                 )
             has_data = True
             count += 1
         text = table.get_html()
+        text = text.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        text = text.replace("}}", """</div>""")
         count = 1
         for repo_ref in refs:
             text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/datamap/%d" % (item_class, obj.handle, count)))
@@ -614,11 +720,6 @@ def data_table(obj, user, act, url=None, *args):
             text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/datamap/%d" % (item_class, obj.handle, count)))
             count += 1
         retval += text
-    if user.is_superuser and url and act == "view":
-        # /data/$act/citation/%s
-        retval += make_button(_("Add Data"), (url.replace("$act", "add") % args))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -639,11 +740,13 @@ def attribute_table(obj, user, act, url=None, *args):
             table.row(attribute.attribute_type.name,
                       attribute.value)
             has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Attribute"), (url % args))
+        retval += make_button(_("+Add Attribute"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -668,11 +771,13 @@ def address_table(obj, user, act, url=None, *args):
                           location.state,
                           location.country)
                 has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Address"), (url % args))
+        retval += make_button(_("+Add Address"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -697,12 +802,14 @@ def media_table(obj, user, act, url=None, *args):
                       str(media_ref.ref_object.desc),
                       media_ref.ref_object.path)
             has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add New Media"), (url % args).replace("$act", "add"))
-        retval += make_button(_("Add Existing Media"), (url % args).replace("$act", "share"))
+        retval += make_button(_("+Add New Media"), (url % args).replace("$act", "add"))
+        retval += make_button(_("$Add Existing Media"), (url % args).replace("$act", "share"))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -722,11 +829,13 @@ def internet_table(obj, user, act, url=None, *args):
                       url_obj.path,
                       url_obj.desc)
             has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Internet"), (str(url) % args))
+        retval += make_button(_("+Add Internet"), (str(url) % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -739,6 +848,12 @@ def association_table(obj, user, act, url=None, *args):
     table.columns(_("Name"), 
                   _("ID"),
                   _("Association"))
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    if user.is_superuser and url and act == "view":
+        retval += make_button(_("+Add Association"), (url % args))
+    else:
+        retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
     if user.is_authenticated() or obj.public:
         person = table.db.get_person_from_handle(obj.handle)
         if person:
@@ -746,7 +861,7 @@ def association_table(obj, user, act, url=None, *args):
             count = 1
             associations = person.get_person_ref_list()
             for association in associations: # PersonRef
-                table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
+                table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                           association.ref_object.get_primary_name(), 
                           association.ref_object.gramps_id, 
                           association.description, 
@@ -756,16 +871,14 @@ def association_table(obj, user, act, url=None, *args):
                 count += 1
             table.links(links)
             text = table.get_html()
+            text = text.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+            text = text.replace("}}", """</div>""")
             count = 1
             for association in associations: # PersonRef
                 text = text.replace("[[x%d]]" % count, make_button("x", "/person/%s/remove/association/%d" % (obj.handle, count)))
                 text = text.replace("[[^%d]]" % count, make_button("^", "/person/%s/up/association/%d" % (obj.handle, count)))
                 text = text.replace("[[v%d]]" % count, make_button("v", "/person/%s/down/association/%d" % (obj.handle, count)))
             retval += text
-    if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add Association"), (url % args))
-    else:
-        retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -794,11 +907,13 @@ def location_table(obj, user, act, url=None, *args):
                 location.state,
                 location.country)
             has_data = True
-    retval += table.get_html()	 
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":	 
-        retval += make_button(_("Add Address"), (url % args))	 
+        retval += make_button(_("+Add Address"), (url % args))	 
     else:	 
         retval += nbsp("") # to keep tabs same height	 
+    retval += """</div>"""
+    retval += table.get_html()	 
     if has_data:	 
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid	 
     return retval	 
@@ -823,17 +938,19 @@ def lds_table(obj, user, act, url=None, *args):
                       lds.temple,
                       get_title(lds.place))
             has_data = True
-    retval += table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("Add LDS"), (url % args))
+        retval += make_button(_("+Add LDS"), (url % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += table.get_html()
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def person_reference_table(obj, user, act):
-    retval = """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
+    retval = ""
     has_data = False
     cssid = "tab-references"
     text1 = ""
@@ -844,26 +961,28 @@ def person_reference_table(obj, user, act):
         _("ID"),
         _("Reference"), 
         )
-    table1.column_widths = [10, 10, 82]
+    table1.column_widths = [11, 10, 79]
     table2 = Table("person_reference_table", style="background-color: #f4f0ec;")
     table2.columns(
         "As Child",
         _("ID"),
         _("Reference"), 
         )
-    table2.column_widths = [10, 10, 82]
+    table2.column_widths = [11, 10, 79]
     if (user.is_authenticated() or obj.public) and act != "add":
         count = 1
         for through in models.MyFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             table1.row(
-                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                 reference.gramps_id,
                 reference,
                 )
             has_data = True
             count += 1
         text1 += table1.get_html()
+        text1 = text1.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        text1 = text1.replace("}}", """</div>""")
         count = 1
         for through in models.MyFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
@@ -876,13 +995,15 @@ def person_reference_table(obj, user, act):
         for through in models.MyParentFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
             table2.row(
-                Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser else "",
+                Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                 reference.gramps_id,
                 reference,
                 )
             has_data = True
             count += 1
         text2 += table2.get_html()
+        text2 = text2.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        text2 = text2.replace("}}", """</div>""")
         count = 1
         for through in models.MyParentFamilies.objects.filter(person=obj).order_by("order"):
             reference = through.family
@@ -891,15 +1012,23 @@ def person_reference_table(obj, user, act):
             text2 = text2.replace("[[v%d]]" % count, make_button("v", "/person/%s/down/parentfamily/%d" % (obj.handle, count)))
             count += 1
 
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
+    retval += make_image_button2("add spouse to new family", 
+                                 _("Add as Spouse to New Family"), 
+                                 "/family/add/spouse/%s" % obj.handle)
+    retval += make_image_button2("add spouse to existing family", 
+                                 _("Add as Spouse to Existing Family"), 
+                                 "/family/share/spouse/%s" % obj.handle)
+    retval += "&nbsp;"
+    retval += make_image_button2("add child to new family", 
+                                 _("Add as Child to New Family"), 
+                                 "/family/add/child/%s" % obj.handle)
+    retval += make_image_button2("add child to existing family", 
+                                 _("Add as Child to Existing Family"), 
+                                 "/family/share/child/%s" % obj.handle)
+    retval += """</div>"""
+    retval += """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
     retval += text1 + text2 + "</div>"
-    retval += make_button(_("Add as Spouse to New Family"), 
-                          "/family/add/spouse/%s" % obj.handle)
-    retval += make_button(_("Add as Spouse to Existing Family"), 
-                          "/family/share/spouse/%s" % obj.handle)
-    retval += make_button(_("Add as Child to New Family"), 
-                          "/family/add/child/%s" % obj.handle)
-    retval += make_button(_("Add as Child to Existing Family"), 
-                          "/family/share/child/%s" % obj.handle)
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
@@ -1121,7 +1250,7 @@ def children_table(obj, user, act, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
-    table.column_widths = [10, 3, 8, 30, 8, 8, 8, 25] 
+    table.column_widths = [11, 5, 10, 29, 8, 8, 10, 19] 
 
     family = obj
     obj_type = ContentType.objects.get_for_model(family)
@@ -1132,7 +1261,7 @@ def children_table(obj, user, act, url=None, *args):
     for childref in childrefs:
         child = childref.ref_object
         if user.is_authenticated() or obj.public:
-            table.row(Link("[[x%d]][[^%d]][[v%d]]" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
+            table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                       str(count), 
                       "[%s]" % child.gramps_id,
                       render_name(child, user),
@@ -1161,18 +1290,23 @@ def children_table(obj, user, act, url=None, *args):
             has_data = True
             count += 1
     table.links(links)
-    retval += table.get_html()
+    text = table.get_html()
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
+        text = text.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+        text = text.replace("}}", """</div>""")
         count = 1
         for childref in childrefs:
-            retval = retval.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
-            retval = retval.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
-            retval = retval.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
             count += 1
-        retval += make_button(_("Add New Person as Child"), (url.replace("$act", "add") % args))
-        retval += make_button(_("Add Existing Person as Child"), (url.replace("$act", "share") % args))
+        retval += make_button(_("+Add New Person as Child"), (url.replace("$act", "add") % args))
+        retval += make_button(_("$Add Existing Person as Child"), (url.replace("$act", "share") % args))
     else:
         retval += nbsp("") # to keep tabs same height
+    retval += """</div>"""
+    retval += text
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
@@ -1341,9 +1475,9 @@ def update_last_changed(obj, user):
 register_plugins()
 
 # works after registering plugins:
-from htmldoc import HtmlDoc 
-from libhtmlbackend import HtmlBackend, DocBackend, process_spaces
-from libhtml import Html
+from gramps.plugins.docgen.htmldoc import HtmlDoc 
+from gramps.plugins.lib.libhtmlbackend import HtmlBackend, DocBackend, process_spaces
+from gramps.plugins.lib.libhtml import Html
 
 class WebAppBackend(HtmlBackend):
     SUPPORTED_MARKUP = [

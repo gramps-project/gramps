@@ -59,8 +59,9 @@ ADMIN_MEDIA_PREFIX = '/gramps-media/'
 SECRET_KEY = 'zd@%vslj5sqhx94_8)0hsx*rk9tj3^ly$x+^*tq4bggr&uh$ac'
 
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.filesystem.Loader', # 1.4
+   #'django.template.loaders.filesystem.load_template_source',
+   #'django.template.loaders.app_directories.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,10 +69,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+#   'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'webapp.urls'
+ROOT_URLCONF = 'gramps.webapp.urls'
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
@@ -79,12 +80,13 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.auth",
-#    "django.core.context_processors.debug",
+    "django.contrib.auth.context_processors.auth", # 1.4
+#   "django.core.context_processors.auth",
+#   "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "webapp.grampsdb.views.context_processor",
-    "webapp.context.messages",
+    "gramps.webapp.grampsdb.views.context_processor",
+    "gramps.webapp.context.messages",
 )
 
 INSTALLED_APPS = (
@@ -93,7 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'webapp.grampsdb',
+    'gramps.webapp.grampsdb',
 #    'django_extensions',
 #    'debug_toolbar',
 )
@@ -141,13 +143,3 @@ FORMAT_MODULE_PATH = ""
 USE_TZ = True
 ## End Changes for Django 1.4
 
-# In versions < 2.7 python does not properly copy methods when doing a 
-# deepcopy. This workaround makes the copy work properly. When Gramps no longer
-# supports python 2.6, this workaround can be removed.
-import sys
-if sys.version_info < (2, 7) :
-    import copy
-    import types
-    def _deepcopy_method(x, memo):
-        return type(x)(x.im_func, copy.deepcopy(x.im_self, memo), x.im_class)
-    copy._deepcopy_dispatch[types.MethodType] = _deepcopy_method

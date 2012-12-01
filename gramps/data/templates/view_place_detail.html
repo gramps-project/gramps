@@ -134,9 +134,11 @@
       <input type="hidden" name="page" value="{{page}}"/>
       <input type="submit" value="Create"/>
     {% else %}
-      {% make_button "Add Place" "/place/add" args %}
-      {% make_button "Edit Place" "/place/%s/edit" place.handle args %}
-      {% make_button "Delete Place" "/place/%s/delete" place.handle args %}
+      <div style="background-color: lightgray; padding: 2px 0px 0px 2px; clear: both;">
+      {% make_button "+Add Place" "/place/add" args %}
+      {% make_button "?Edit Place" "/place/%s/edit" place.handle args %}
+      {% make_button "-Delete Place" "/place/%s/delete" place.handle args %}
+      </div>
     {% endifequal %}
   {% endif %}
 {% else %}

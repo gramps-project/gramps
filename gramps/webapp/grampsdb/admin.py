@@ -23,7 +23,7 @@
 
 from __future__ import print_function
 
-from webapp.grampsdb.models import *
+from gramps.webapp.grampsdb.models import *
 from django.contrib import admin
 
 class MyAdmin(admin.ModelAdmin): 

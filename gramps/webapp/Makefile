@@ -1,21 +1,21 @@
 # Initialize GRAMPS Django site
 
 update: grampsdb/fixtures/initial_data.json
-	PYTHONPATH=../../src python manage.py syncdb --noinput
-	PYTHONPATH=../../src python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
-	PYTHONPATH=../../src python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
+	PYTHONPATH=../.. python manage.py syncdb --noinput
+	PYTHONPATH=../.. python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
+	PYTHONPATH=../.. python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
 
 grampsdb/fixtures/initial_data.json: init.py
-	PYTHONPATH=../../src python init.py > grampsdb/fixtures/initial_data.json
+	PYTHONPATH=../.. python init.py > grampsdb/fixtures/initial_data.json
 
 init_gramps:
-	PYTHONPATH=../../src python init_gramps.py # clear primary and secondary tables
+	PYTHONPATH=../.. python init_gramps.py # clear primary and secondary tables
 
 run:
-	PYTHONPATH=../../src python manage.py runserver
+	PYTHONPATH=../.. python manage.py runserver
 
 sql:
-	PYTHONPATH=../../src python manage.py sqlall > gramps-sql.sql
+	PYTHONPATH=../.. python manage.py sqlall > gramps-sql.sql
 
 dump:
 	echo ".dump" | sqlite3 sqlite.db > gramps-data.sql
@@ -24,17 +24,17 @@ load:
 	sqlite3 sqlite.db < gramps-data.sql
 
 superusers:
-	PYTHONPATH=../../src python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
-	PYTHONPATH=../../src python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
+	PYTHONPATH=../.. python manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
+	PYTHONPATH=../.. python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
 
 backup:
-	PYTHONPATH=../../src python manage.py dumpdata > backup.json
+	PYTHONPATH=../.. python manage.py dumpdata > backup.json
 
 restore: empty
-	PYTHONPATH=../../src python manage.py loaddata backup.json
+	PYTHONPATH=../.. python manage.py loaddata backup.json
 
 initial_data: 
-	PYTHONPATH=../../src python manage.py loaddata grampsdb/fixtures/initial_data.json
+	PYTHONPATH=../.. python manage.py loaddata grampsdb/fixtures/initial_data.json
 
 docs:
 	mkdir -p docs
