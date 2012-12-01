@@ -29,7 +29,7 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
 **OPTIONS**
-       gramps FICHIER
+       **gramps** *FICHIER*
 	      Si  FICHIER  est	désigné  (sans	autres	commandes) comme arbre
 	      familial ou comme répertoire d'arbre familial, alors une session
 	      interactive  est	ouverte.  Si  FICHIER est un format de fichier
@@ -40,7 +40,7 @@ gramps(1)			     4.0.0			     gramps(1)
 	      Les formats natifs de gramps sont acceptés, voir ci-dessous.
 
 
-       -f,--format= FORMAT
+       **-f** , **--format=** *FORMAT*
 	      Le format spécifique du FICHIER est précédé  par	les  arguments
 	      -i,  ou  -e.  Si	l'option  -f n'est pas donnée pour le FICHIER,
 	      alors le format sera celui de l'extension ou du type-MIME.
@@ -60,14 +60,14 @@ gramps(1)			     4.0.0			     gramps(1)
 	      -f).
 
 
-       -l     Imprime une liste des arbres familiaux disponibles.
+       **-l**     Imprime une liste des arbres familiaux disponibles.
 
 
-       -u,--force-unlock
+       **-u** , **--force-unlock**
 	      Débloquer une base de données verrouillée.
 
 
-       -O,--open= BASE_DE_DONNEES
+       **-O** , **--open=** *BASE_DE_DONNEES*
 	      Ouvrir une BASE_DE_DONNEES qui doit être une base présente  dans
 	      le  répertoire des bases ou le nom d'un arbre familial existant.
 	      Si aucune action n'est définie, les options d'import ou d'export
@@ -78,7 +78,7 @@ gramps(1)			     4.0.0			     gramps(1)
 	      sources, vous devez utiliser l'option d'import.
 
 
-       -i,--import= FICHIER
+       **-i** , **--import=** *FICHIER*
 	      Importer	des  données  depuis  un  FICHIER.  Si vous n'avez pas
 	      spécifié de base de données alors une base de données temporaire
 	      est utilisée; elle sera effacée quand vous quitterez gramps.
@@ -89,18 +89,18 @@ gramps(1)			     4.0.0			     gramps(1)
 	      FICHIER1 vont tous les deux produire différents IDs gramps.
 
 
-       -e,--export= FICHIER
+       **-e** , **--export=** *FICHIER*
 	      Exporter des données dans un FICHIER. Pour  le  format  iso,  le
 	      FICHIER  est le nom du répertoire dans lequel la base de données
 	      gramps est écrite.  Pour gramps-xml, gedcom, wft, gramps-pkg, et
 	      geneweb, le FICHIER est le nom du fichier de sortie
 
-	      Quand  plus  d'un  fichier  doit	être exporté, chacun doit être
+	      Quand plus d'un fichier doit être exporté, chacun doit être
 	      précédé par la commande -e. Ces fichiers sont importés  dans  le
 	      même ordre.
 
 
-       -a,--action= ACTION
+       **-a** , **--action=** *ACTION*
 	      Accomplir une ACTION sur les données importées. C'est effectué à
 	      la fin de l'importation.	Les  actions  possibles  sont  summary
 	      (comme  le  rapport  ->  Afficher  -> Statistiques sur la base),
@@ -119,16 +119,16 @@ gramps(1)			     4.0.0			     gramps(1)
 	      La  plupart  des options sont spécifiques à chaque rapport. Même
 	      s'il existe des options communes.
 
-	      name=name
+	      **name=name**
 	      Cette option est obligatoire, elle  détermine  quel  rapport  ou
 	      outil  sera utilisé. Si le name saisi ne correspond à aucun mod‐
 	      ule disponible, un message d'erreur sera ajouté.
 
-	      show=all
+	      **show=all**
 	      Cette option  produit  une  liste  avec  les  noms  des  options
 	      disponibles pour un rapport donné.
 
-	      show=optionname
+	      **show=optionname**
 	      Cette  option  affiche  une  description de toutes les fonction‐
 	      nalités proposées par optionname, aussi bien les types  que  les
 	      valeurs pour une option.
@@ -138,15 +138,15 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        Quand plus d'une action doit être effectuée, chacune doit être précédée
-       par  la	commande  -a.  Les  actions  seront  réalisées une à une, dans
+       par la commande **-a** . Les actions seront réalisées une à une, dans
        l'ordre spécifié.
 
 
-       -d,--debug= NOM_LOGGER
+       **-d** , **--debug=** *NOM_LOGGER*
 	      Permet les logs de debug pour le	développement  et  les	tests.
 	      Regarder le code source pour les détails.
 
-       --version
+       **--version**
 	      Imprime le numéro de version pour gramps puis quitte.
 
 
@@ -173,19 +173,19 @@ gramps(1)			     4.0.0			     gramps(1)
        jours être la première!
 
 
-       Si  aucune  option  -O  ou  -i  n'est  donnée, gramps lancera sa propre
+       Si aucune option **-O** ou **-i** n'est donnée, gramps lancera sa propre
        fenêtre et demarrera avec une base vide, puisqu'il n'y a pas données.
 
 
-       Si aucune option -e ou  -a  n'est  donnée,  gramps  lancera  sa	propre
+       Si aucune option **-e** ou **-a** n'est donnée, gramps lancera sa propre
        fenêtre et démarrera avec la base de données issue de tout les imports.
-       Cette base sera import_db.grdb sous le répertoire ~/.gramps/import.
+       Cette base sera **import_db.grdb** sous le **répertoire ~/.gramps/import**.
 
 
        Les erreurs  rencontrées  lors  d'import,  export,  ou  action,	seront
        mémorisées  en  stdout  (si  elles  sont le fait de la manipulation par
-       gramps) ou en stderr (si elles ne sont pas le fait d'une manipulation).
-       Utilisez les shell de redirection de stdout	et  stderr  pour  sauver  
+       gramps) ou en *stderr* (si elles ne sont pas le fait d'une manipulation).
+       Utilisez les shell de redirection de *stdout* et *stderr* pour sauver  
        les messages et les erreurs dans les fichiers.
 
 
@@ -204,34 +204,36 @@ gramps(1)			     4.0.0			     gramps(1)
        Lecture	de  quatre  bases  de  données	dont  les formats peuvent être
        devinés d'après les noms, puis vérification des données:
        
-	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps -i file4.wft -a
-	      check
+	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
+          **-i** *file4.wft* **-a** *check*
 
        Si  vous  voulez  préciser  les	formats de fichiers dans l'exemple ci-
        dessus, complétez les noms de fichiers par les options -f appropriées:
        
-	      gramps -i file1.ged -f gedcom  -i  file2.tgz  -f	gramps-pkg  -i
-	      ~/db3.gramps -f gramps-xml -i file4.wft -f wft  -a check
+	      **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
+          *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
+          **-f** *wft* **-a** *check*
 
        Pour   enregistrer  le  résultat  des  lectures,  donnez  l'option   -e
        (utiliser -f si le nom de fichier ne permet pas à gramps de deviner  le
        format):
        
-	      gramps -i file1.ged -i file2.tgz -e ~/new-package -f gramps-pkg
+	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
+          **-f** *gramps-pkg*
 
-       Pour  lire  trois ensembles de données puis lancer une session interac‐
+       Pour lire trois ensembles de données puis lancer une session interac‐
        tive de gramps sur le tout :
        
-	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
+	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
 
        Pour lancer l'outil de vérification de la base  de  données  depuis  la
        ligne de commande et obtenir le résultat :
        
-	      gramps -O file.grdb -a tool -p name=verify
+	      **gramps -O** *'My Family Tree'* **-a** *tool* **-p name=** *verify*
 
        Enfin, pour lancer une session interactive normale, entrer : 
        
-          gramps
+          **gramps**
 
 
 **VARIABLES D'ENVIRONMENT**
@@ -254,9 +256,9 @@ gramps(1)			     4.0.0			     gramps(1)
        et  afficher  des  filtres  pouvant  être ajoutés sans modifier le pro‐
        gramme.
 
-       Par ailleurs, gramps permet la génération directe  :  impression,  rap‐
-       ports avec sortie vers d'autres formats, comme OpenOffice.org, AbiWord,
-       HTML, ou LaTeX pour permettre à	l'utilisateur  de  choisir  selon  ses
+       Par ailleurs, gramps permet la génération directe : impression, rap‐
+       ports avec sortie vers d'autres formats, comme *LibreOffice.org* ,
+       *HTML* , ou *LaTeX* pour permettre à	l'utilisateur de choisir selon ses
        besoins
 
 
