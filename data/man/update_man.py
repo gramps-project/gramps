@@ -22,7 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 """
-update_doc.py for Gramps API(s) documentation.
+update_man.py for command line documentation.
 
 Examples: 
    python update_man.py -t
@@ -78,8 +78,8 @@ def main():
     """
     
     parser = ArgumentParser( 
-                         description='This program aims to handle manual' 
-                                      ' and translated version.', 
+                         description='This program aims to handle documentation' 
+                                      ' and realted translated versions.', 
                          )
                          
     parser.add_argument("-t", "--test",
