@@ -204,23 +204,23 @@ gramps(1)			     4.0.0			     gramps(1)
        Lecture	de  quatre  bases  de  données	dont  les formats peuvent être
        devinés d'après les noms, puis vérification des données:
        
-	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
           **-i** *file4.wft* **-a** *check*
-
+          
        Si  vous  voulez  préciser  les	formats de fichiers dans l'exemple ci-
        dessus, complétez les noms de fichiers par les options -f appropriées:
        
-	      **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
+          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
           *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
           **-f** *wft* **-a** *check*
-
+          
        Pour   enregistrer  le  résultat  des  lectures,  donnez  l'option   -e
        (utiliser -f si le nom de fichier ne permet pas à gramps de deviner  le
        format):
        
-	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
           **-f** *gramps-pkg*
-
+          
        Pour lire trois ensembles de données puis lancer une session interac‐
        tive de gramps sur le tout :
        
