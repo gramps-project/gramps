@@ -1,23 +1,25 @@
-gramps(1)			     3.4.0			     gramps(1)
+gramps(1)			     4.0.0			     gramps(1)
 
 
 
-NOM
+**NOM**
        gramps	-  Gramps  est	une  application  de  généalogie.  Gramps  est
        l'acronyme de Genealogical Research and Analysis Management Programming
        System  (Systeme de Programmation pour Recherche, Analyse et Gestion de
        données généalogiques)
 
 
-SYNOPSIS
-       gramps  [-?|--help]  [--usage]  [--version]  [-l]   [-u|--force-unlock]
-       [-O|--open=   BASE_DE_DONNEES   [-f|--format=   FORMAT]]  [-i|--import=
-       FICHIER	[-f|--format=  FORMAT]]  [-i|--import=	 ...]	 [-e|--export=
-       FICHIER	[-f|--format=  FORMAT]]  [-a|--action=	ACTION] [-p|--options=
-       OPTION]] [ FICHIER ] [--version]
+**SYNOPSIS**
+       **gramps** [**-?** | **--help**] [**--usage**] [**--version**]
+       [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *BASE_DE_DONNEES*
+       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *FILE*
+       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *...*]
+       [**-e** | **--export=** *FICHIER* [**-f** | **--format=** *FORMAT*]]
+       [**-a** | **--action=** *ACTION*] [*-p* | **--options=** *CHAÎNE‐
+       OPTION*]] [*FICHIER*] [**--version**]
 
 
-DESCRIPTION
+**DESCRIPTION**
        Gramps est un programme Libre/OpenSource de généalogie. Il est écrit en
        python,	et  utilise  une interface GTK+/GNOME.	Gramps est semblable à
        d'autres programmes de généalogie tel  que  Family  Tree  Maker	(FTM),
@@ -26,7 +28,7 @@ DESCRIPTION
        généalogie : GEDCOM.
 
 
-OPTIONS
+**OPTIONS**
        gramps FICHIER
 	      Si  FICHIER  est	désigné  (sans	autres	commandes) comme arbre
 	      familial ou comme répertoire d'arbre familial, alors une session
@@ -150,7 +152,7 @@ OPTIONS
 
 
 
-Operation
+**Operation**
        Si  le  premier argument de la ligne de commande ne commence pas par un
        tiret (i.e. pas d'instruction), gramps va essayer d'ouvrir la  base  de
        données	avec le nom donné par le premier argument et démarrer une ses‐
@@ -188,7 +190,7 @@ Operation
        fichiers.
 
 
-EXEMPLES
+**EXEMPLES**
        Pour ouvrir un arbre familial et y importer un  fichier	XML,  on  peut
        saisir:
 	      gramps -O 'Mon Arbre Familial' -i ~/db3.gramps
@@ -224,7 +226,7 @@ EXEMPLES
        Enfin, pour lancer une session interactive normale, entrer : gramps
 
 
-VARIABLES D'ENVIRONMENT
+**VARIABLES D'ENVIRONMENT**
        Le programme vérifie si ces variables d'environnement sont déclarées:
 
        LANG  -	décrit,  quelle  langue est utilisée: Ex.: pour le français on
@@ -238,7 +240,7 @@ VARIABLES D'ENVIRONMENT
        PROFILE pour Windows 2000/XP).
 
 
-CONCEPTS
+**CONCEPTS**
        Gramps  est un système basé sur le support de plugin-python, permettant
        d'importer et d'exporter, la saisie, générer des rapports, des  outils,
        et  afficher  des  filtres  pouvant  être ajoutés sans modifier le pro‐
@@ -250,14 +252,17 @@ CONCEPTS
        besoins
 
 
-BUGS CONNUS ET LIMITATIONS
-FICHIERS
-       ${PREFIX}/bin/gramps
-       ${PREFIX}/share/gramps
-       ${HOME}/.gramps
+**BUGS CONNUS ET LIMITATIONS**
+**FICHIERS**
+
+       *${PREFIX}/bin/gramps*
+       
+       *${PREFIX}/share/gramps*
+       
+       *${HOME}/.gramps*
 
 
-AUTEURS
+**AUTEURS**
        Donald Allingham <don@gramps-project.org>
        http://gramps.sourceforge.net
 
@@ -272,15 +277,13 @@ AUTEURS
        Jérôme Rapinat <romjerome@yahoo.fr>
 
 
-DOCUMENTATION
-       La documentation-utilisateur est disponible par le navigateur d'aide de
-       GNOME  sous  la	forme  du  manuel  Gramps.  Ce	manuel	est  également
-       disponible sous format XML comme gramps-manual.xml sous doc/gramps-man‐
-       ual/$LANG dans les sources officielles.
+**DOCUMENTATION**
+       La documentation-utilisateur est disponible par via un navigateur
+       standard sous la forme du manuel Gramps.
 
        La  documentation  pour	développeur  est  disponible   sur   le   site
-       http://developers.gramps-project.org.
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 
 
-Mars 2009			     3.4.0			     gramps(1)
+Janvier 2013			     4.0.0			     gramps(1)
