@@ -222,40 +222,45 @@ Działanie
 PRZYKŁADY
        Aby  otworzyć  istniejące drzewo rodzinne i zaimportować dane do niego,
        można wpisać:
+       
 	      gramps -O 'Moje drzewo' -i ~/db3.gramps
 
        Powyższa opcja otwiera istniejące drzewo, ale gdy chcesz zrobić wykonać
-       taką
-	      samą  akcję  tworząc tymczasowe drzewo: wystarczy wpisać: gramps
-	      -i 'Moje drzewo' -i ~/db3.gramps
+       taką samą  akcję  tworząc tymczasowe drzewo: wystarczy wpisać: 
+          
+          gramps -i 'Moje drzewo' -i ~/db3.gramps
 
        Aby zaimportować cztery bazy (których formaty zostaną określone na pod‐
-       stawie
-	      ich  nazw)  i następnie sprawdić powstałą bazę pod kątem błędów,
-	      należy wpisać: gramps -i plik1.ged -i plik2.tgz -i  ~/db3.gramps
+       stawie ich  nazw)  i następnie sprawdić powstałą bazę pod kątem błędów,
+       należy wpisać: 
+          
+          gramps -i plik1.ged -i plik2.tgz -i  ~/db3.gramps
 	      -i plik4.wft -a check
 
        Aby jawnie określić formaty w powyższym przykładzie, należy dodać nazwy
-       plików
-	      z odpowiednimi opcjami -f options: gramps -i plik1.ged -f gedcom
-	      -i  plik2.tgz  -f  gramps-pkg  -i  ~/db3.gramps -f gramps-xml -i
-	      plik4.wft -f wft	-a check
+       plików z odpowiednimi opcjami -f options: 
+       
+       gramps -i plik1.ged -f gedcom -i  plik2.tgz  -f  gramps-pkg  -i  
+       ~/db3.gramps -f gramps-xml -i plik4.wft -f wft -a check
 
        Aby zachować bazę z wynikami wszystkich importów, należy dodać flagę -e
        (należy użyć -f jeśli nazwa pliku nie pozwala gramps'owi na odgadnięcie
        formatu wyjściowego):
+       
 	      gramps -i plik1.ged -i plik2.tgz -e ~/nowy-pakiet -f gramps-pkg
 
        W celu zaimportwania trzech baz i  rozpoczęcia  sesji  interaktywnej  z
-       wynikiem
-	      importu należy użyć polecenia podobnego do poniższego: gramps -i
-	      plik1.ged -i plik22.tgz -i ~/db3.gramps
+       wynikiem importu należy użyć polecenia podobnego do poniższego: 
+       
+          gramps -i plik1.ged -i plik22.tgz -i ~/db3.gramps
 
        Aby uruchomić narzędzie weryfikacji z linii poleceń i wyświetlić wyniki
-       na
-	      stdout: gramps -O 'Moje drzewo' -a tool -p name=verify
+       na stdout: 
+       
+          gramps -O 'Moje drzewo' -a tool -p name=verify
 
        Zawsze można też po prostu uruchomić sesję interaktywną wpisująć:
+       
 	      gramps
 
 

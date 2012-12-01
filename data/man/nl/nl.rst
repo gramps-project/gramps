@@ -59,156 +59,158 @@ OPTIES
 	      guessed, always specify with -f option).
 
 
-       -O,--open= DATABASE
-	      Open  DATABASE  which  must be an existing database directory or
-	      existing family tree name.   If  no  action,  import  or	export
-	      options  are  given on the command line then an interactive ses‐
-	      sion is started using that database.
+       **-O** , **--open=** *DATABASE*
+          Open *DATABASE* which  must be an existing database directory or
+          existing family tree name. If no action, import or export
+          options are given on the command line then an interactive ses‐
+          sion is started using that database.
 
 
-       -i,--import= FILE
-	      Import data from FILE. If you haven't specified a database  then
-	      a  temporary  database  is  used;  this is deleted when you exit
-	      gramps.
+       **-i** , **--import=** *FILE*
+          Import data from *FILE* . If you haven't specified a database then
+          a  temporary database is used; this is deleted when you exit
+          gramps.
 
-	      When more than one input file is given, each has to be  preceded
-	      by  -i flag. The files are imported in the specified order, i.e.
-	      -i FILE1 -i FILE2 and -i FILE2 -i FILE1 might produce  different
-	      gramps IDs in the resulting database.
-
-
-       -e,--export= FILE
-	      Export  data into FILE. For iso format, the FILE is actually the
-	      name of directory the gramps database will be written into.  For
-	      gramps-xml,  gedcom,  wft,  gramps-pkg, and geneweb, the FILE is
-	      the name of the resulting file.
-
-	      When more than one output file is given, each has to be preceded
-	      by  -e  flag. The files are written one by one, in the specified
-	      order.
+          When more than one input file is given, each has to be preceded
+          by **-i** flag. The files are imported in the specified order, i.e.
+          **-i** *FILE1* **-i** *FILE2* and **-i** *FILE2* **-i** *FILE1* 
+          might produce different gramps IDs in the resulting database.
 
 
-       -a,--action= ACTION
-	      Perform ACTION on the imported data.  This  is  done  after  all
-	      imports  are successfully completed. Currently available actions
-	      are summary (same as  Reports->View->Summary),  check  (same  as
-	      Tools->Database  Processing->Check and Repair), and report (gen‐
-	      erates report, needs the OPTIONSTRING supplied by the -p flag).
+       **-a** , **--action=** *ACTION*
+          Perform *ACTION* on the imported data. This is done after all
+          imports are successfully completed. Currently available  actions
+          are **summary** (same  as  Reports->View->Summary), **check** (same as
+          Tools->Database Processing->Check and Repair), **report** (generates
+          report),  and  tool  (runs a plugin tool).  Both **report** and **tool**
+          need the *OPTIONSTRING* supplied by the **-p** flag).
 
-	      The report option string should  satisfy	the  following	condi‐
-	      tions:
-	      It  must	not  contain  any  spaces.   If some arguments need to
-	      include spaces, the string should  be  enclosed  with  quotation
-	      marks.   Option  string must list pairs of option names and val‐
-	      ues.  Withing a pair, option name and value must be separated by
-	      the equality sign.  Different pairs must be separated by commas.
+          The *OPTIONSTRING* should satisfy the following conditions:
+          It must not contain any  spaces. If some arguments need to
+          include spaces, the string should be enclosed with quotation
+          marks, i.e., follow the shell syntax. Option string is a list
+          of  pairs  with name and value (separated by the equality sign).
+          The name and value pairs must be separated by commas.
 
-	      Most  of	the report options are specific for every report. How‐
-	      ever, there some common options.
+          Most of the report or tools options are specific for each report
+          or tool. However, there are some common options.
 
-	      name=reportname
-	      This mandatory option determines which report will be generated.
-	      If the supplied report_name does not correspond to any available
-	      report, the error message will be printed followed by  the  list
-	      of available reports.
+          **name=name**
+          This mandatory option determines which report or tool will be
+          run. If the supplied name does not correspond to any  available
+          report or tool, an error message will be printed followed by the
+          list of available reports or tools (depending on the *ACTION* ).
 
-	      show=all
-	      This  will  produce  the list of names for all options available
-	      for a given report.
+          **show=all**
+          This will produce the list of names for all options available
+          for a given report or tool.
 
-	      show=optionname
-	      This will print the description of the functionality supplied by
-	      optionname,  as well as what are the acceptable types and values
-	      for this option.
+          **show=optionname**
+          This will print the description of the functionality supplied by
+          *optionname*, as well as what are the acceptable types and  values
+          for this option.
 
-	      Use the above options to	find  out  everything  about  a  given
-	      report.
-
-
-       When  more  than one output action is given, each has to be preceded by
-       -a flag. The actions are performed one by one, in the specified order.
+          Use the above options to find out everything about a given
+          report.
 
 
-       -d,--debug= LOGGER_NAME
-	      Enables debug logs for development  and  testing.  Look  at  the
-	      source code for details
+       When more than one output action is given, each has to be preceded  by
+       **-a** flag. The actions are performed one by one, in the specified order.
 
-       --version
-	      Prints the version number of gramps and then exits
+
+       **-d** , **--debug=** *LOGGER_NAME*
+          Enables debug logs for development and testing. Look at the
+          source code for details
+
+       **--version**
+          Prints the version number of gramps and then exits
 
 
 
 
-werking
+**werking**
        Indien het eerste argument in de opdrachtregel niet start met dash (dus
        geen vlag) dan zal Gramps trachten om het bestand  te  openen  met  een
        naam  die  in  het eerste argument werd opgegeven. Vervolgens wordt een
        interactieve  sessie  gestart  en  de   overige	 argumenten   van   de
        opdrachtregel worden genegeerd.
 
-
-       If  the	-O  flag  is  given, then gramps will try opening the supplied
-       database and then work with that data, as  instructed  by  the  further
+       If the  **-O** flag is given, then gramps will try opening the supplied
+       database and then work with that data, as instructed by the further
        command line parameters.
 
 
-       With  or without the -O flag, there could be multiple imports, exports,
-       and actions specified further on the command line by using -i, -e,  and
-       -a flags.
+       With or without the **-O** flag, there could be multiple imports, exports,
+       and actions specified further on the command line by using **-i** , 
+       **-e** , and **-a** flags.
 
 
-       The  order  of  -i, -e, or -a options does not matter. The actual order
+       The order of **-i** , **-e** , or **-a** options does not matter. The actual order
        always is: all imports (if any) -> all actions (if any) -> all  exports
        (if any). But opening must always be first!
 
 
-       If  no -O or -i option is given, gramps will launch its main window and
-       start the usual interactive session  with  the  empty  database,  since
+       If no **-O** or **-i** option is given, gramps will launch its main window and
+       start the usual interactive session with the empty database, since
        there is no data to process, anyway.
 
 
-       If  no  -o  or -a options are given, gramps will launch its main window
+       If no **-e**  or **-a** options are given, gramps will launch its main window
        and start the usual interactive session with the database resulted from
-       all   imports.  This  database  resides	in  the  import_db.grdb  under
-       ~/.gramps/import directory.
+       all imports. This database resides in the **import_db.grdb** under
+       **~/.gramps/import** directory.
 
 
-       The error encountered during import, export, or action, will be	either
-       dumped  to  stdout  (if	these  are exceptions handled by gramps) or to
-       stderr (if these are not handled). Use usual shell redirections of std‐
-       out and stderr to save messages and errors in files.
+       The error encountered during import, export, or action, will be  either
+       dumped to stdout (if  these  are exceptions handled by gramps) or to
+       *stderr* (if these are not handled). Use usual shell redirections of
+       *stdout* and *stderr* to save messages and errors in files.
 
 
-EXAMPLES
-       To  open  an  existing family tree and import an xml file  into it, one
+**EXAMPLES**
+       To open an existing family tree and import an xml file into it, one
        may type:
-	      gramps -O 'My Family Tree' -i ~/db3.gramps
+          
+          **gramps -O** *'My Family Tree'* **-i** *~/db3.gramps*
 
-       The above changes the opened family tree, to do the  same,  but	import
-       both  in  a temporary family tree and start an interactive session, one
+       The above changes the opened family tree, to do the  same, but import
+       both in a temporary family tree and start an interactive session, one
        may type:
-	      gramps -i 'My Family Tree' -i ~/db3.gramps
+       
+          **gramps -i** *'My Family Tree'* **-i** *~/db3.gramps*
 
-       To import four databases (whose formats can be  determined  from  their
+       To import four databases (whose formats can be  determined from their
        names) and then check the resulting database for errors, one may type:
-	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps -i file4.wft -a
-	      check
+       
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
+          **-i** *file4.wft* **-a** *check*
 
        To explicitly specify the formats in the above  example,  append  file‐
-       names with appropriate -f options:
-	      gramps  -i  file1.ged  -f  gedcom  -i file2.tgz -f gramps-pkg -i
-	      ~/db3.gramps -f gramps-xml -i file4.wft -f wft  -a check
+       names with appropriate **-f** options:
+          
+          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
+          *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
+          **-f** *wft* **-a** *check*
 
-       To record the database resulting from all imports, supply -e flag  (use
-       -f if the filename does not allow gramps to guess the format):
-	      gramps -i file1.ged -i file2.tgz -e ~/new-package -f gramps-pkg
+       To record the database resulting from all imports, supply **-e** flag  (use
+       **-f** if the filename does not allow gramps to guess the format):
+       
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
+          **-f** *gramps-pkg*
 
        To import three databases and start interactive gramps session with the
        result:
-	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
+          
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
+
+       To run the Verify tool from the commandline and output the result to
+       stdout:
+       
+          **gramps -O** *'My Family Tree'* **-a** *tool* **-p name=** *verify*
 
        Finally, to start normal interactive session type:
-	      gramps
+       
+          **gramps**
 
 
 CONCEPTEN
@@ -223,9 +225,12 @@ CONCEPTEN
 
 GEKENDE BUGS EN BEPERKINGEN
 BESTANDEN
-       ${PREFIX}/bin/gramps
-       ${PREFIX}/share/gramps
-       ${HOME}/.gramps
+
+       *${PREFIX}/bin/gramps*
+       
+       *${PREFIX}/share/gramps*
+       
+       *${HOME}/.gramps*
 
 
 AUTEURS

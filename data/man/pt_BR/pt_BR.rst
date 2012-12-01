@@ -2,12 +2,14 @@ gramps(1)                4.0.0               gramps(1)
 
 
 **NOME**
+
 ----
 
 gramps - Programa para pesquisa geneal?gica.
 
 
 **RESUMO**
+
 ------
 
 **gramps** [**-?|--help**] [**--usage**] [**--version**] [**-l**] [**-u
@@ -19,6 +21,7 @@ gramps - Programa para pesquisa geneal?gica.
 
 
 **DESCRI??O**
+
 -----------
 
 *Gramps* ? um programa de genealogia livre e de c?digo aberto. Ele ? escrito
@@ -30,6 +33,7 @@ todos os outros programas de genealogia.
 
 
 OP??ES
+
 --------
 
 **gramps*** ARQUIVO* Quando *ARQUIVO* for indicado (sem qualquer outra op??o)
@@ -128,6 +132,7 @@ da vers?o do Gramps e finaliza.
 
 
 Opera??o
+
 ----------
 
 
@@ -165,34 +170,64 @@ direcionados para *stdout* (se forem exce??es tratadas pelo Gramps) ou para
 
 
 EXEMPLOS
+
 --------
 
 Abrir uma ?rvore geneal?gica existente e importar um arquivo xml para ela:
-**gramps** **-O** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* Fazer as
+
+**gramps** **-O** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+
+Fazer as
 mesmas altera??es da ?rvore geneal?gica do comando anterior, mas importar a
-?rvore geneal?gica tempor?ria e iniciar uma sess?o interativa: **gramps**
-**-i** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* Importar quatro
+?rvore geneal?gica tempor?ria e iniciar uma sess?o interativa: 
+
+**gramps**
+**-i** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+
+Importar quatro
 bancos de dados (cujos formatos podem ser reconhecidos pelos nomes) e
-verificar a exist?ncia de erros no banco de dados resultante: **gramps**
+verificar a exist?ncia de erros no banco de dados resultante: 
+
+**gramps**
 **-i** *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* **-i**
-*arquivo4.wft* **-a** *check* Indicar de forma expl?cita os formatos do
+*arquivo4.wft* **-a** *check* 
+
+Indicar de forma expl?cita os formatos do
 exemplo acima, atribuindo os nomes dos arquivos com as op??es **-f**
-apropriadas: **gramps** **-i** *arquivo1.ged* **-f** *gedcom* **-i**
-*arquivo2.tgz* **-f** *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml*
-**-i** *arquivo4.wft* **-f** *wft* **-a** *check* Gravar o banco de dados
+apropriadas: 
+
+**gramps** **-i** *arquivo1.ged* **-f** *gedcom* **-i** *arquivo2.tgz* 
+**-f** *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml*
+**-i** *arquivo4.wft* **-f** *wft* **-a** *check* 
+
+Gravar o banco de dados
 resultante de todas as importa??es, indicando a op??o **-e** (use **-f** se o
 nome do arquivo n?o permirtir que o gramps reconhe?a o formato
-automaticamente): **gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
-**-e** *~/novo-pacote* **-f** *gramps-pkg* Importar tr?s bancos de dados e
-iniciar a sess?o interativa do Gramps com o resultado: **gramps** **-i**
-*arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* Executar a
+automaticamente): 
+
+**gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
+**-e** *~/novo-pacote* **-f** *gramps-pkg* 
+
+Importar tr?s bancos de dados e
+iniciar a sess?o interativa do Gramps com o resultado: 
+
+**gramps** **-i**
+*arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* 
+
+Executar a
 ferramenta de verifica??o a partir da linha de comando e direcionar o
-resultado para stdout: **gramps** **-O** *'Minha ?rvore geneal?gica'* **-a**
-*tool* **-p** **name**=*verify* Finalmente, para iniciar uma sess?o
-interativa normal, digite: **gramps**
+resultado para stdout:
+
+**gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** **name**=*verify* 
+
+Finalmente, para iniciar uma sess?o
+interativa normal, digite: 
+
+**gramps**
 
 
-VARI?VEIS DE AMBIENTE
+**VARI?VEIS DE AMBIENTE**
+
 ----------------------
 
 O programa verifica se estas vari?veis de ambiente est?o definidas:
@@ -208,7 +243,8 @@ dados e configura??es do perfil devem ser criadas na pasta do usu?rio
 2000/XP).
 
 
-CONCEITOS
+**CONCEITOS**
+
 ---------
 
 Suporta um sistema de plugins baseado em Python, permitindo acrescentar
@@ -220,11 +256,13 @@ arquivo, tais como *OpenOffice.org*, *AbiWord*, HTML ou LaTeX, para permitir
 aos usu?rios a modifica??o de acordo com suas necessidades.
 
 
-LIMITA??ES E ERROS CONHECIDOS
+**LIMITA??ES E ERROS CONHECIDOS**
+
 -------------------------------
 
 
-ARQUIVOS
+**ARQUIVOS**
+
 --------
 
 *${PREFIX}/bin/gramps*
@@ -232,7 +270,8 @@ ARQUIVOS
 *${HOME}/.gramps*
 
 
-AUTORES
+**AUTORES**
+
 -------
 
 Donald Allingham *<`don@gramps-project.org`_>*
@@ -247,7 +286,8 @@ Projeto Gramps *<`xxx@gramps-project.org`_>*
 
 
 
-DOCUMENTA??O
+**DOCUMENTA??O**
+
 --------------
 
 A documenta??o para usu?rios est? dispon?vel atrav?s da op??o de ajuda padr?o
@@ -259,45 +299,11 @@ A documenta??o para desenvolvedores pode ser encontrada na p?gina
 *`http://developers.gramps-project.org`_*.
 
 
-TRADU??O
+**TRADU??O**
+
 ----------
 
 ``Andr? Marcelo Alvarenga <`andrealvarenga@gmx.net`_> em 05/08/2012``
 
---------
+January 2013                 4.0.0               gramps(1)
 
-
-Index
------
-
-`NOME`_ `RESUMO`_ `DESCRI??O`_ `OP??ES`_ `Opera??o`_ `EXEMPLOS`_ `VARI?VEIS
-DE AMBIENTE`_ `CONCEITOS`_ `LIMITA??ES E ERROS CONHECIDOS`_ `ARQUIVOS`_
-`AUTORES`_ `DOCUMENTA??O`_ `TRADU??O`_
-
---------
-
-This document was created by `man2html`_, using the manual pages.
-Time: 16:19:23 GMT, December 01, 2012
-
-.. _Index: #index
-.. _Return to Main Contents: /cgi-bin/man/man2html
-.. _don@gramps-project.org: mailto:don@gramps-project.org
-.. _http://gramps.sourceforge.net: http://gramps.sourceforge.net
-.. _brandon@debian.org: mailto:brandon@debian.org
-.. _xxx@gramps-project.org: mailto:xxx@gramps-project.org
-.. _http://developers.gramps-project.org: http://developers.gramps-
-    project.org
-.. _andrealvarenga@gmx.net: mailto:andrealvarenga@gmx.net
-.. _NOME: #lbAB
-.. _RESUMO: #lbAC
-.. _DESCRI??O: #lbAD
-.. _OP??ES: #lbAE
-.. _Opera??o: #lbAF
-.. _EXEMPLOS: #lbAG
-.. _VARI?VEIS DE AMBIENTE: #lbAH
-.. _CONCEITOS: #lbAI
-.. _LIMITA??ES E ERROS CONHECIDOS: #lbAJ
-.. _ARQUIVOS: #lbAK
-.. _AUTORES: #lbAL
-.. _DOCUMENTA??O: #lbAM
-.. _TRADU??O: #lbAN

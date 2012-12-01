@@ -225,20 +225,22 @@ gramps(1)			     4.0.0			     gramps(1)
 	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
 
        Pour lancer l'outil de vérification de la base  de  données  depuis  la
-       ligne de commande et obtenir le résultat:
+       ligne de commande et obtenir le résultat :
        
 	      gramps -O file.grdb -a tool -p name=verify
 
-       Enfin, pour lancer une session interactive normale, entrer : gramps
+       Enfin, pour lancer une session interactive normale, entrer : 
+       
+          gramps
 
 
 **VARIABLES D'ENVIRONMENT**
        Le programme vérifie si ces variables d'environnement sont déclarées:
 
-       LANG  -	décrit,  quelle  langue est utilisée: Ex.: pour le français on
+       **LANG**  -	décrit,  quelle  langue est utilisée: Ex.: pour le français on
        peut définir fr_FR.UTF-8.
 
-       GRAMPSHOME  -  si  défini,  force  Gramps  à  utiliser  un   répertoire
+       **GRAMPSHOME**  -  si  défini,  force  Gramps  à  utiliser  un   répertoire
        spécifique  pour  y  conserver ses préférences et bases de données. Par
        défaut, cette variable n'est pas active et Gramps sait que les  options
        et  bases  de données doivent être créées dans le répertoire par défaut

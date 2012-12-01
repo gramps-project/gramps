@@ -97,7 +97,7 @@ ALTERNATIV
 	      summary	(samma	  som	 Rapporter->Visa->Sammanfattning    av
 	      databasen),  check  (samma  som Verktyg->Reparera databas ->Kon‐
 	      trollera och reparera) samt report (skapar report, kräver en
-	       ALTERNATIVSTRÄNG lämnad via -p-flaggan).
+          ALTERNATIVSTRÄNG lämnad via -p-flaggan).
 
 	      ALTERNATIVSTRÄNG-en måste uppfylla följand villkor:
 	      Får ej innehålla några mellanslag.  Om  några  argument  behöver
@@ -138,8 +138,6 @@ ALTERNATIV
 
        --version
 	      Skriver ur Gramps versionsnummer och avslutar
-
-
 
 
 Operation
@@ -186,38 +184,46 @@ Operation
 EXAMPEL
        För  att öppna ett befintligt familjeträd och importera en xml-fil till
        det, kan man skriva:
+       
 	      Gramps -O 'Mitt familjeträd' -i ~/db3.Gramps
 
        Ovanstående ändrar det öppnade familjeträdet, för att göra  samma  sak,
        men  importera  bägge  till  ett tillfälligt familjeträd och påbörja en
        interaktiv session, kan man skriva:
+       
 	      Gramps -i 'My Family Tree' -i ~/db3.Gramps
 
        För att importera fyra databaser (vars  format  kan  avgöras  av  deras
        namn)  och  sedan  felkontrollera  den resulterande  databasen, kan man
        skriva:
+       
 	      Gramps -i FIL1.ged -i FIL2.tgz -i ~/db3.Gramps  -i  FIL4.wft  -a
 	      check
 
        För  att  uttryckligen  specificera formaten i examplet ovan, lägg till
        filnamn med passande -f-alternativ:
+       
 	      Gramps -i FIL1.ged  -f  gedcom  -i  FIL2.tgz  -f	Gramps-pkg  -i
 	      ~/db3.Gramps -f Gramps-xml -i FIL4.wft -f wft -a check
 
        För  att  spara	den  databas,  som är resultat av all import, ange -e-
        flagga (använd -f om filnamnet inte tillåter Gramps att gissa dess for‐
        mat):
+       
 	      Gramps -i FIL1.ged -i FIL2.tgz -e ~/new-package -f Gramps-pkg
 
        För  att importera tre databaser och påbörja en interaklive Gramps-ses‐
        sion med importresultatet:
+       
 	      Gramps -i FIL1.ged -i FIL2.tgz -i ~/db3.Gramps
 
        För att köra  verifieringsverktyget  från  kommandoraden  och  mata  ut
        resultatet till stdout:
+       
 	      Gramps -O file.grdb -a tool -p name=verify
 
        Slutligen, för att påbörja en normal interaktiv session skriv bara:
+       
 	      Gramps
 
 
@@ -233,9 +239,12 @@ BEGREPP
 
 KÄNDA FEL OCH BEGRÄNSNINGAR
 FILER
-       ${PREFIX}/bin/gramps
-       ${PREFIX}/share/gramps
-       ${HOME}/.gramps
+
+       *${PREFIX}/bin/gramps*
+       
+       *${PREFIX}/share/gramps*
+       
+       *${HOME}/.gramps*
 
 
 FÖRFATTARE

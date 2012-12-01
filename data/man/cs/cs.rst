@@ -174,34 +174,42 @@ Chování
 PŘÍKLADY
        Otevření existujícího rodokmenu a import xml souboru do něho  může  být
        proveden takto:
+       
 	      gramps -O 'Můj rodokmen' -i ~/db3.gramps
 
        To  samé,  jen  s importem do dočasné databáze a otevřením interaktivní
        relace:
+       
 	      gramps -i 'My Family Tree' -i ~/db3.gramps
 
        Import čtyř databází (jejichž formáty jsou stanoveny podle  názvů  sou‐
        borů)  a  následná  kontrola  bezchybnosti  výsledné  databáze může být
        provedena takto:
+       
 	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps -i file4.wft -a
 	      check
 
        Explicitní  specifikace	formátu databází předchozího příkladu přidáním
        příslušného parametru -f za název souboru:
+       
 	      gramps -i file1.ged -f gedcom  -i  file2.tgz  -f	gramps-pkg  -i
 	      ~/db3.gramps -f gramps-xml -i file4.wft -f wft  -a check
 
        Zapsání	výsledné  databáze vytvořené ze všech importů zajistí parametr
        -e (použijte -f pokud nelze uhodnout formát z názvu souboru):
+       
 	      gramps -i file1.ged -i file2.tgz -e ~/nový-balíček -f gramps-pkg
 
        Import tří databází a start interaktivní gramps relace nad výsledkem:
+       
 	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
 
        Spuštění nástroje kontroly z příkazové řádky s výstupem na stdout:
+       
 	      gramps -O 'Můj rodokmen' -a tool -p name=verify
 
        A konečně spuštění normální interaktivní relace aplikace:
+       
 	      gramps
 
 
