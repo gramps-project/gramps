@@ -118,8 +118,8 @@ def build():
                    % {'lang': lang, 'program': sphinxCmd})
         os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" . _build/htmlhelp/%(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b man -D language="%(lang)s" master_doc="%(lang)s" . _build/man/%(lang)s''' 
-                   % {'lang': lang, 'program': sphinxCmd})
+        #os.system('''%(program)s -b man -D language="%(lang)s" master_doc="%(lang)s" . _build/man/%(lang)s''' 
+                   #% {'lang': lang, 'program': sphinxCmd})
         os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" . _build/text/%(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
         # for update/migration

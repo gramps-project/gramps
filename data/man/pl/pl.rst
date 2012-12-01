@@ -290,8 +290,8 @@ KONCEPCJA
 
 
 ZNANE BŁĘDY I OGRANICZENIA
-       Prawdopodobne. Lista błędów i propozycji znajduje się na: http://devel‐
-       opers.gramps-project.org.
+       Prawdopodobne. Lista błędów i propozycji znajduje się na: 
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 
 PLIKI
@@ -303,7 +303,7 @@ PLIKI
 
 AUTORZY
        Donald Allingham <don@gramps-project.org>
-       http://gramps.sourceforge.net
+       http://gramps-project.org/
 
        Ta strona man jest tłumaczeniem strony man napisanej przez:
        Brandon L. Griffith <brandon@debian.org>
@@ -321,7 +321,7 @@ DOCUMENTATION
        głównym źródle dystrybucji.
 
        Dokumentacja  dla  programistów	jest  dostępna	na  stronie  projektu:
-       http://developers.gramps-project.org.
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
 

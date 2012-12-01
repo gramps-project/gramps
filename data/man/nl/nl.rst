@@ -235,7 +235,7 @@ BESTANDEN
 
 AUTEURS
        Donald Allingham <don@gramps-project.org>
-       http://gramps.sourceforge.net
+       http://gramps-project.org/
 
        Deze man pagina werd oorspronkelijk geschreven door:
        Brandon L. Griffith <brandon@debian.org>
@@ -254,8 +254,9 @@ DOCUMENTATIE
        beschikbaar in  XML-formaat:  gramps-manual.xml	onder  doc/gramps-man‐
        ual/$LANG in de officiële brondistributie.
 
-       De  ontwikkelingsdocumentatie kan gevonden worden op de http://develop‐
-       ers.gramps-project.org webstek.
+       De  ontwikkelingsdocumentatie kan gevonden worden op de 
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
+       webstek.
 
 
 

@@ -274,7 +274,7 @@ gramps(1)			     4.0.0			     gramps(1)
 
 **AUTEURS**
        Donald Allingham <don@gramps-project.org>
-       http://gramps.sourceforge.net
+       http://gramps-project.org/
 
        Cette page man a d'abord été écrite par:
        Brandon L. Griffith <brandon@debian.org>

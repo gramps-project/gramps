@@ -249,7 +249,7 @@ SOUBORY
 
 AUTOŘI
        Donald Allingham <don@gramps-project.org>
-       http://gramps.sourceforge.net
+       http://gramps-project.org/
 
        Originální manuálovou stránku vytvořil:
        Brandon L. Griffith <brandon@debian.org>
@@ -265,8 +265,8 @@ DOKUMENTACE
        dostupná ve formátu XML jako gramps-manual.xml v  adresáři  doc/gramps-
        manual/$LANG v oficiální distribuci zdrojového kódu.
 
-       Dokumentace  pro  vývojáře  je  k  dispozici  na  webu  http://develop‐
-       ers.gramps-project.org.
+       Dokumentace  pro  vývojáře  je  k  dispozici  na  webu
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers
 
 
 

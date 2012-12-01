@@ -96,7 +96,7 @@ ALTERNATIV
 	      import har avslutats felfritt. F. n. är följand åtgärder möjliga
 	      summary	(samma	  som	 Rapporter->Visa->Sammanfattning    av
 	      databasen),  check  (samma  som Verktyg->Reparera databas ->Kon‐
-	      trollera och reparera) samt report (skapar report, kräver en
+	      trollera och reparera) samt report (skapar report, kräver en 
           ALTERNATIVSTRÄNG lämnad via -p-flaggan).
 
 	      ALTERNATIVSTRÄNG-en måste uppfylla följand villkor:
@@ -249,7 +249,7 @@ FILER
 
 FÖRFATTARE
        Donald Allingham <don@gramps-project.org>
-       http://gramps.sourceforge.net
+       http://gramps-project.org/
 
        Denna man-sida skrevs ursprungligen av:
        Brandon L. Griffith <brandon@debian.org>
@@ -268,9 +268,8 @@ DOCUMENTATION
        som  gramps-manual.xml  under  doc/gramps-manual/$LANG i den officiella
        källdistributionen. Dock ej på svenska.
 
-       Utvecklingsdokumentationen  kan	hittas	på   http://developers.gramps-
-       project.org.
-
+       Utvecklingsdokumentationen kan hittas på
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
 Januari 2008			     3.4.0			     Gramps(1)
