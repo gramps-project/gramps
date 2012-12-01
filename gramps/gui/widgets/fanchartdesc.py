@@ -133,6 +133,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.form = form
         self.anglealgo = angle_algo
         self.dupcolor = hex_to_rgb(dupcolor)
+        self.childring = False
 
     def gen_pixels(self):
         """
