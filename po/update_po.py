@@ -346,7 +346,7 @@ def main():
                                       'also provides some common features.', 
                          )
     parser.add_argument("-t", "--test",
-            action="store_true", dest="test",  default=False,
+            action="store_true", dest="test",  default=True,
             help="test if 'python' and 'gettext' are properly installed")
                         
     parser.add_argument("-x", "--xml",
@@ -368,11 +368,11 @@ def main():
 
     # lang.po files maintenance                          
     update.add_argument("-m", "--merge",
-            type=int, dest="merge", default=[file for file in os.listdir('.')],
+            type=int, dest="merge", default=[file for file in os.listdir('.') if file.endswith('.po')],
             help="merge lang.po files with last catalog")
               
     update.add_argument("-k", "--check",
-            type=int, dest="check", default=[file for file in os.listdir('.')],
+            type=int, dest="check", default=[file for file in os.listdir('.') if file.endswith('.po')],
             help="check lang.po files")
         
      # testing stage
@@ -389,6 +389,7 @@ def main():
     
     
     args = parser.parse_args()
+    namespace, extra = parser.parse_known_args()
     #print(args, '\n\t\t###\n', vars(args), sys.argv[2:])
 
     if args.test:
@@ -409,10 +410,10 @@ def main():
     if args.clean:
         clean()
         
-    if parser.get_default(merge):
+    if args.merge and sys.argv[2:] in namespace.merge:
         merge(sys.argv[2:])
         
-    if parser.get_default(check):
+    if args.check and sys.argv[2:] in namespace.check:
         check(sys.argv[2:])
         
     if args.untranslated and sys.argv[2:]:
