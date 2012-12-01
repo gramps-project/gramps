@@ -380,11 +380,11 @@ def main():
        
     # need one argument (eg, de.po)
               
-    trans.add_argument("-u", "--untranslated",
-            action="store_true", dest="untranslated", default=False,
+    trans.add_argument("-u", "--untranslated", dest="untranslated", 
+            choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list untranslated messages")
-    trans.add_argument("-f", "--fuzzy",
-            action="store_true", dest="fuzzy", default=False,
+    trans.add_argument("-f", "--fuzzy", dest="fuzzy",
+            choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list fuzzy messages")
     
     
@@ -416,10 +416,10 @@ def main():
     if args.check:
         check(sys.argv[2:])
         
-    if args.untranslated and sys.argv[2:]:
+    if args.untranslated:
         untranslated(sys.argv[2:])
         
-    if args.fuzzy and sys.argv[2:]:
+    if args.fuzzy:
         fuzzy(sys.argv[2:])
 
 def create_filesfile():
@@ -621,25 +621,23 @@ def check(arg):
     os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
                         % {'msgfmt': msgfmtCmd, 'lang.po': arg})
 
-def untranslated(args):
+def untranslated(arg):
     """
     List untranslated messages
     """
-    if len(args) > 1:
-        print ('Please, use only one argument (ex: fr.po).')
-        return
     
-    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': args[0]})
+    arg = arg[0]
+    
+    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
 
-def fuzzy(args):
+def fuzzy(arg):
     """
     List fuzzy messages
     """
-    if len(args) > 1:
-        print ('Please, use only one argument (ex: fr.po).')
-        return
+
+    arg = arg[0]
     
-    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': args[0]})
+    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
 
 if __name__ == "__main__":
 	main()
