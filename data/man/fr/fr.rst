@@ -185,42 +185,48 @@ gramps(1)			     4.0.0			     gramps(1)
        Les erreurs  rencontrées  lors  d'import,  export,  ou  action,	seront
        mémorisées  en  stdout  (si  elles  sont le fait de la manipulation par
        gramps) ou en stderr (si elles ne sont pas le fait d'une manipulation).
-       Utilisez les shell de redirection de
-	stdout	et  stderr  pour  sauver  les messages et les erreurs dans les
-       fichiers.
+       Utilisez les shell de redirection de stdout	et  stderr  pour  sauver  
+       les messages et les erreurs dans les fichiers.
 
 
 **EXEMPLES**
        Pour ouvrir un arbre familial et y importer un  fichier	XML,  on  peut
        saisir:
-	      gramps -O 'Mon Arbre Familial' -i ~/db3.gramps
+       
+	      **gramps -O** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
        Ceci  ouvre  un	arbre familial, pour faire la même chose, mais importer
        dans un arbre familial temporaire et démarrer une session  interactive,
        on peut saisir:
-	      gramps -i 'Mon Arbre Familial' -i ~/db3.gramps
+       
+	      **gramps -i** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
        Lecture	de  quatre  bases  de  données	dont  les formats peuvent être
        devinés d'après les noms, puis vérification des données:
+       
 	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps -i file4.wft -a
 	      check
 
        Si  vous  voulez  préciser  les	formats de fichiers dans l'exemple ci-
        dessus, complétez les noms de fichiers par les options -f appropriées:
+       
 	      gramps -i file1.ged -f gedcom  -i  file2.tgz  -f	gramps-pkg  -i
 	      ~/db3.gramps -f gramps-xml -i file4.wft -f wft  -a check
 
        Pour   enregistrer  le  résultat  des  lectures,  donnez  l'option   -e
        (utiliser -f si le nom de fichier ne permet pas à gramps de deviner  le
        format):
+       
 	      gramps -i file1.ged -i file2.tgz -e ~/new-package -f gramps-pkg
 
        Pour  lire  trois ensembles de données puis lancer une session interac‐
        tive de gramps sur le tout :
+       
 	      gramps -i file1.ged -i file2.tgz -i ~/db3.gramps
 
        Pour lancer l'outil de vérification de la base  de  données  depuis  la
        ligne de commande et obtenir le résultat:
+       
 	      gramps -O file.grdb -a tool -p name=verify
 
        Enfin, pour lancer une session interactive normale, entrer : gramps
