@@ -367,12 +367,12 @@ def main():
     # need at least one argument (sv.po, de.po, etc ...)
 
     # lang.po files maintenance                          
-    update.add_argument("-m", "--merge",
-            type=int, dest="merge", default=[file for file in os.listdir('.') if file.endswith('.po')],
+    update.add_argument("-m", "--merge", dest="merge",
+            choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="merge lang.po files with last catalog")
               
-    update.add_argument("-k", "--check",
-            type=int, dest="check", default=[file for file in os.listdir('.') if file.endswith('.po')],
+    update.add_argument("-k", "--check", dest="check",
+            choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="check lang.po files")
         
      # testing stage
@@ -410,10 +410,10 @@ def main():
     if args.clean:
         clean()
         
-    if args.merge and sys.argv[2:] in namespace.merge:
+    if args.merge:
         merge(sys.argv[2:])
         
-    if args.check and sys.argv[2:] in namespace.check:
+    if args.check:
         check(sys.argv[2:])
         
     if args.untranslated and sys.argv[2:]:
@@ -595,36 +595,31 @@ def clean():
         os.unlink('tmpfiles')
         print ("Remove 'tmpfiles'")
 
-def merge(args):
+def merge(arg):
     """
     Merge messages with 'gramps.pot'
     """
-    for arg in args: 
-        if arg[-3:] == '.po':
-            print ('Merge %(lang)s with current template' % {'lang': arg})
-            os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
-                     % {'msgmerge': msgmergeCmd, 'lang': arg})
-            print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
-        else:
-            print ("Please, try to set an argument with .po extension like "
-                    "'%(arg)s.po'." % {'arg': arg})
+    
+    arg = arg[0]
+    
+    print ('Merge %(lang)s with current template' % {'lang': arg})
+    os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
+                % {'msgmerge': msgmergeCmd, 'lang': arg})
+    print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
 
-def check(args):
+def check(arg):
     """
     Check the translation file
     """
-    print (args)
-    for arg in args:
-        if arg[-3:] == '.po':
-            print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
-                        % {'lang.po': arg, 'txt': arg[:-3]})
-            os.system('''%(python)s ./check_po --skip-fuzzy ./%(lang.po)s > %(lang)s.txt''' \
-                        % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
-            os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
-                                % {'msgfmt': msgfmtCmd, 'lang.po': arg})
-        else:
-            print ("Please, try to set an argument with .po extension like "
-                    "'%(arg)s.po'." % {'arg': arg})
+    
+    arg = arg[0]
+    
+    print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
+                % {'lang.po': arg, 'txt': arg[:-3]})
+    os.system('''%(python)s ./check_po --skip-fuzzy ./%(lang.po)s > %(lang)s.txt''' \
+                % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
+    os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
+                        % {'msgfmt': msgfmtCmd, 'lang.po': arg})
 
 def untranslated(args):
     """
