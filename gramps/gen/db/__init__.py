@@ -38,15 +38,15 @@
 
     The full database hierarchy is:
 
-    - B{DbBsddb} - read and write implementation to BSDDB databases (U{gen/db/write<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/write.py?view=markup>})
-        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup>})
-        - B{DbBsddbRead} - read-only (accessors, getters) implementation to BSDDB databases (U{gen/db/read.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/read.py?view=markup})
-            - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
-            - B{Callback} - callback and signal functions (U{gen/utils/callback.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/utils/callback.py?view=markup})
-        - B{UpdateCallback} - callback functionality (U{gen/updatecallback.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/read.py?view=markup gen/updatecallback.py?view=markup>})
-    - B{DbDjango} - read and write implementation to Django-based databases (U{web/dbdjango.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/webapp/dbdjango.py?view=markup})
-        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
-        - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/src/gen/db/base.py?view=markup})
+    - B{DbBsddb} - read and write implementation to BSDDB databases (U{gen/db/write<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/write.py?view=markup>})
+        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/base.py?view=markup>})
+        - B{DbBsddbRead} - read-only (accessors, getters) implementation to BSDDB databases (U{gen/db/read.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/read.py?view=markup})
+            - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/base.py?view=markup})
+            - B{Callback} - callback and signal functions (U{gen/utils/callback.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/utils/callback.py?view=markup})
+        - B{UpdateCallback} - callback functionality (U{gen/updatecallback.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/read.py?view=markup gen/updatecallback.py?view=markup>})
+    - B{DbDjango} - read and write implementation to Django-based databases (U{web/dbdjango.py<http://svn.code.sf.net/p/gramps/code/trunk/src/webapp/dbdjango.py?view=markup})
+        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/base.py?view=markup})
+        - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/src/gen/db/base.py?view=markup})
 
     DbBsddb
     =======
