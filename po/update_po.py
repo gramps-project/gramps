@@ -390,7 +390,7 @@ def main():
     
     args = parser.parse_args()
     namespace, extra = parser.parse_known_args()
-    #print(args, '\n\t\t###\n', vars(args), sys.argv[2:])
+    #print(args, '\n\t\t###\n', vars(args), '\n\t\t###\n', sys.argv[2:])
 
     if args.test:
         tests()
