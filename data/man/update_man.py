@@ -107,20 +107,20 @@ def build():
     
     os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
     os.system('''%(program)s -b htmlhelp . _build/htmlhelp''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b man . _build/man''' % {'program': sphinxCmd})
+    os.system('''%(program)s -b man . .''' % {'program': sphinxCmd})
     os.system('''%(program)s -b text . _build/text''' % {'program': sphinxCmd})
     os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
     os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
     os.system('''%(program)s -b gettext . _build/gettext''' % {'program': sphinxCmd})
     
     for lang in LANGUAGES:
-        os.system('''%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" . _build/html/%(lang)s''' 
+        os.system('''%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" . _build/htmlhelp/%(lang)s''' 
+        os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
-        #os.system('''%(program)s -b man -D language="%(lang)s" master_doc="%(lang)s" . _build/man/%(lang)s''' 
-                   #% {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" . _build/text/%(lang)s''' 
+        os.system('''%(program)s -b man -D master_doc="%(lang)s" %(lang)s %(lang)s''' 
+                   % {'lang': lang, 'program': sphinxCmd})
+        os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
         # for update/migration
         os.system('''%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s''' 
