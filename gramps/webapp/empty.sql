@@ -1325,7 +1325,7 @@ INSERT INTO "grampsdb_report" VALUES(17,'R0017','Gramps XML Export','ex_gpkg','e
 INSERT INTO "grampsdb_report" VALUES(18,'R0018','Import','im_ged','import','iff=ged
 i=http://arborvita.free.fr/Kennedy/Kennedy.ged');
 INSERT INTO "grampsdb_report" VALUES(19,'R0019','Gramps package (portable XML) Import','im_gpkg','import','iff=gramps
-i=http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/example/gramps/example.gramps');
+i=http://svn.code.sf.net/p/gramps/code/trunk/example/gramps/example.gramps');
 CREATE TABLE "grampsdb_result" (
     "id" integer NOT NULL PRIMARY KEY,
     "name" text,
