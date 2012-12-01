@@ -34,6 +34,7 @@ import datetime
 import math
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 import os
+import sys
 
 #------------------------------------------------------------------------
 #
