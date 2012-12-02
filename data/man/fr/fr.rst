@@ -7,9 +7,9 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
 **NOM**
-       gramps	-  Gramps  est	une  application  de  généalogie.  Gramps  est
+       gramps - Gramps est une application de généalogie. Gramps est
        l'acronyme de Genealogical Research and Analysis Management Programming
-       System  (Systeme de Programmation pour Recherche, Analyse et Gestion de
+       System (Systeme de Programmation pour Recherche, Analyse et Gestion de
        données généalogiques)
 
 
@@ -25,46 +25,46 @@ gramps(1)			     4.0.0			     gramps(1)
 
 **DESCRIPTION**
        Gramps est un programme Libre/OpenSource de généalogie. Il est écrit en
-       python,	et  utilise  une interface GTK+/GNOME.	Gramps est semblable à
-       d'autres programmes de généalogie tel  que  Family  Tree  Maker	(FTM),
-       Personal  Ancestral  Files,  ou	le  programme  GNU  Geneweb.   Il peut
+       python, et utilise une interface GTK+/GNOME. Gramps est semblable à
+       d'autres programmes de généalogie tel  que  Family Tree Maker (FTM),
+       Personal Ancestral Files, ou le programme GNU Geneweb. Il peut
        importer/exporter le format le plus utilisé par les autres logiciels de
        généalogie : GEDCOM.
 
 
 **OPTIONS**
        **gramps** *FICHIER*
-	      Si  FICHIER  est	désigné  (sans	autres	commandes) comme arbre
+	      Si *FICHIER* est désigné (sans autres commandes) comme arbre
 	      familial ou comme répertoire d'arbre familial, alors une session
-	      interactive  est	ouverte.  Si  FICHIER est un format de fichier
-	      supporté par Gramps, une base vide est créée  dont  le  nom  est
-	      celui  du  FICHIER et les données y seront importées. Les autres
-	      options sont ignorées. Ce type de  lancement  permet  d'utiliser
+	      interactive est ouverte. Si *FICHIER* est un format de fichier
+	      supporté par Gramps, une base vide est créée  dont le nom est
+	      celui du *FICHIER* et les données y seront importées. Les autres
+	      options sont ignorées. Ce type de lancement permet d'utiliser
 	      gramps  pour manipuler des données comme dans un navigateur web.
 	      Les formats natifs de gramps sont acceptés, voir ci-dessous.
 
 
        **-f** , **--format=** *FORMAT*
-	      Le format spécifique du FICHIER est précédé  par	les  arguments
-	      -i,  ou  -e.  Si	l'option  -f n'est pas donnée pour le FICHIER,
+	      Le format spécifique du *FICHIER* est précédé par les arguments
+	      **-i** ,  ou  **-e** . Si	l'option **-f** n'est pas donnée pour le *FICHIER* ,
 	      alors le format sera celui de l'extension ou du type-MIME.
 
-	      Les formats de sortie disponibles  sont  gramps-xml  (deviné  si
-	      FICHIER se termine par .gramps), et gedcom (deviné si FICHIER se
-	      termine  par  .ged),  ou	tout   autre   fichier	 d'exportation
+	      Les formats de sortie disponibles sont **gramps-xml** (deviné si
+	      *FICHIER* se termine par **.gramps** ), et **gedcom** (deviné si *FICHIER* se
+	      termine  par **.ged** ), ou tout autre fichier d'exportation
 	      disponible dans le système de plugin Gramps.
 
-	      Les   formats   disponibles   pour   l'importation   sont  grdb,
-	      gramps-xml, gedcom, gramps-pkg (deviné si FICHIER se termine par
-	      .gpkg), et geneweb (deviné si FICHIER se termine par .gw).
+	      Les formats disponibles pour l'importation sont  **grdb** ,
+	      **gramps-xml** , **gedcom** , **gramps-pkg** (deviné si *FICHIER* se termine par
+	      **.gpkg** ), et **geneweb** (deviné si *FICHIER* se termine par **.gw** ).
 
-	      Les formats disponibles pour l'exportation sont gramps-xml, ged‐
-	      com, gramps-pkg, wft (deviné si FICHIER se  termine  par	.wft),
-	      geneweb,	et iso (jamais deviné, toujours spécifié avec l'option
-	      -f).
+	      Les formats disponibles pour l'exportation sont **gramps-xml** , **ged‐
+	      com** , **gramps-pkg** , **wft** (deviné si *FICHIER* se termine par **.wft** ),
+	      **geneweb** .
 
 
-       **-l**     Imprime une liste des arbres familiaux disponibles.
+       **-l**     
+          Imprime une liste des arbres familiaux disponibles.
 
 
        **-u** , **--force-unlock**
@@ -72,7 +72,7 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        **-O** , **--open=** *BASE_DE_DONNEES*
-	      Ouvrir une BASE_DE_DONNEES qui doit être une base présente  dans
+	      Ouvrir une *BASE_DE_DONNEES* qui doit être une base présente dans
 	      le  répertoire des bases ou le nom d'un arbre familial existant.
 	      Si aucune action n'est définie, les options d'import ou d'export
 	      sont  données par la ligne de commande puis une session interac‐
@@ -83,41 +83,40 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        **-i** , **--import=** *FICHIER*
-	      Importer	des  données  depuis  un  FICHIER.  Si vous n'avez pas
+	      Importer des données depuis un *FICHIER* . Si vous n'avez pas
 	      spécifié de base de données alors une base de données temporaire
 	      est utilisée; elle sera effacée quand vous quitterez gramps.
 
 	      Quand  plus  d'un  fichier  doit	être importé, chacun doit être
-	      précédé par la commande -i. Ces fichiers sont importés  dans  le
-	      même  ordre,  i.e.  -i  FICHIER1	-i  FICHIER2 et -i FICHIER2 -i
-	      FICHIER1 vont tous les deux produire différents IDs gramps.
+	      précédé par la commande **-i** . Ces fichiers sont importés dans le
+	      même ordre,  i.e.  **-i** *FICHIER1* **-i** *FICHIER2* et **-i** *FICHIER2* **-i**
+	      *FICHIER1* vont tous les deux produire différents IDs gramps.
 
 
        **-e** , **--export=** *FICHIER*
-	      Exporter des données dans un FICHIER. Pour  le  format  iso,  le
-	      FICHIER  est le nom du répertoire dans lequel la base de données
-	      gramps est écrite.  Pour gramps-xml, gedcom, wft, gramps-pkg, et
-	      geneweb, le FICHIER est le nom du fichier de sortie
+	      Exporter des données dans un *FICHIER* . Pour les fichiers **gramps-xml** , 
+          **gedcom** , **wft** , **gramps-pkg** , et **geneweb**, le 
+          *FICHIER* est le nom du fichier de sortie
 
 	      Quand plus d'un fichier doit être exporté, chacun doit être
-	      précédé par la commande -e. Ces fichiers sont importés  dans  le
+	      précédé par la commande **-e** . Ces fichiers sont importés dans le
 	      même ordre.
 
 
        **-a** , **--action=** *ACTION*
-	      Accomplir une ACTION sur les données importées. C'est effectué à
-	      la fin de l'importation.	Les  actions  possibles  sont  summary
-	      (comme  le  rapport  ->  Afficher  -> Statistiques sur la base),
-	      check (comme l'outil -> Réparation de la	base  ->  Vérifier  et
-	      réparer),  report  (produit  un  rapport)  et  tool  (utilise un
-	      outil), ces derniers ont besoin de OPTION précédé  par  la  com‐
+	      Accomplir une *ACTION* sur les données importées. C'est effectué à
+	      la fin de l'importation.	Les  actions  possibles sont **summary**
+	      (comme le rapport  ->  Afficher  -> Statistiques sur la base),
+	      **check** (comme l'outil -> Réparation de la	base  ->  Vérifier  et
+	      réparer),  **report** (produit un rapport) et **tool** (utilise un
+	      outil), ces derniers ont besoin de OPTION précédé par la com‐
 	      mande -p.
 
-	      L'OPTION doit satisfaire ces conditions:
+	      L' *OPTION* doit satisfaire ces conditions:
 	      Il  ne doit pas y avoir d'espace.  Si certains arguments doivent
 	      utiliser des espaces, la	chaîne	doit  être  encadrée  par  des
 	      guillemets.   Les  options  vont	par  paire nom et valeur.  Une
-	      paire est séparée par un signe égal.   Différentes  paires  sont
+	      paire est séparée par un signe égal. Différentes paires sont
 	      séparées par une virgule.
 
 	      La  plupart  des options sont spécifiques à chaque rapport. Même
@@ -156,8 +155,8 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
 
-**Operation**
-       Si  le  premier argument de la ligne de commande ne commence pas par un
+**Opération**
+       Si le premie argument de la ligne de commande ne commence pas par un
        tiret (i.e. pas d'instruction), gramps va essayer d'ouvrir la  base  de
        données	avec le nom donné par le premier argument et démarrer une ses‐
        sion interactive, en ignorant le reste de la ligne de commande.

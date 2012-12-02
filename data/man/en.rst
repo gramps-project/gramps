@@ -90,6 +90,15 @@ gramps(1)                4.0.0               gramps(1)
           by **-i** flag. The files are imported in the specified order, i.e.
           **-i** *FILE1* **-i** *FILE2* and **-i** *FILE2* **-i** *FILE1* 
           might produce different gramps IDs in the resulting database.
+          
+          
+       **-e** , **--export=** *FICHIER*
+	      Export data into *FILE* . For **gramps-xml** , **gedcom** , 
+          **wft** , **gramps-pkg** , et **geneweb** , 
+          The *FILE* is the name of the resulting file.
+
+	      When more than one output file is given, each has to be preceded 
+          by **-e**flag. The files are written one by one, in the specified order.
 
 
        **-a** , **--action=** *ACTION*
