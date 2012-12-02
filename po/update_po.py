@@ -376,7 +376,7 @@ def main():
             help="check lang.po files")
         
      # testing stage
-    trans = parser.add_argument_group('Translation', 'Display content of  translations file')
+    trans = parser.add_argument_group('Translation', 'Display content of translations file')
        
     # need one argument (eg, de.po)
               

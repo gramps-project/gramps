@@ -31,7 +31,7 @@ Base view for Place Views
 # Global modules
 #
 #-------------------------------------------------------------------------
-
+from __future__ import print_function
 
 #-------------------------------------------------------------------------
 #
@@ -128,7 +128,7 @@ class PlaceBaseView(ListView):
             '<PRIMARY>J' : self.jump,
             '<PRIMARY>BackSpace' : self.key_delete,
             })
-
+        self.maptoolbtn = None
         self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):
@@ -139,11 +139,6 @@ class PlaceBaseView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_toolmenu_action('MapsList', _('Loading...'),
-                        _("Attempt to see selected locations with a Map "
-                                "Service (OpenstreetMap, Google Maps, ...)"),
-                        self.gotomap,
-                        _('Select a Map Service'))
         self._add_action('GotoMap', Gtk.STOCK_JUMP_TO, 
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
@@ -153,6 +148,13 @@ class PlaceBaseView(ListView):
                          callback=self.filter_editor)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
 
+    def set_inactive(self):
+        """called by viewmanager when moving away from the page
+        Here we need to remove the menutoolbutton from the menu
+        """
+        tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
+        tb.remove(self.maptoolbtn)
+        
     def change_page(self):
         """
         Called by viewmanager at end of realization when arriving on the page
@@ -164,11 +166,18 @@ class PlaceBaseView(ListView):
           5. store label so it can be changed when selection changes
         """
         ListView.change_page(self)
-        #menutoolbutton actions are stored in PageView class, 
-        # obtain the widgets where we need to add to menu
-        actionservices = self.action_toolmenu['MapsList']
-        widgets = actionservices.get_proxies()
-        mmenu = self.__create_maps_menu_actions()
+        #menutoolbutton has to be made and added in correct place on toolbar
+        if not self.maptoolbtn:
+            self.maptoolbtn = Gtk.MenuToolButton.new_from_stock(Gtk.STOCK_JUMP_TO)
+            self.maptoolbtn.connect('clicked', self.gotomap)
+            self.mmenu = self.__create_maps_menu_actions()
+            self.maptoolbtn.set_menu(self.mmenu)
+            self.maptoolbtn.show()
+        tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
+        ind = tb.get_item_index(self.uistate.viewmanager.uimanager.get_widget(
+                        '/ToolBar/CommonEdit/Merge'))
+        tb.insert(self.maptoolbtn, ind+1)
+        widget = self.maptoolbtn
 
         if not self.mapservicedata:
             return
@@ -176,18 +185,19 @@ class PlaceBaseView(ListView):
         self.mapslistlabel = []
         if not self.mapservice in self.mapservicedata: 
             #stored val no longer exists, use the first key instead
-            self.set_mapservice(self.mapservicedata.keys()[0])
+            self.set_mapservice(list(self.mapservicedata.keys())[0])
 
-        #store all gtk labels to be able to update label on selection change
-        for widget in widgets :
-            if isinstance(widget, Gtk.MenuToolButton):
-                widget.set_menu(mmenu)
-                widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
-                lbl = Gtk.Label(label=self.mapservice_label())
-                lbl.show()
-                self.mapslistlabel.append(lbl)
-                widget.set_label_widget(self.mapslistlabel[-1])
-                widget.set_stock_id(Gtk.STOCK_JUMP_TO)
+        #store all gtk labels to be able to update label on selection change_('Loading...'),
+        widget.set_menu(self.mmenu)
+        widget.set_arrow_tooltip_text(_('Select a Map Service'))
+        widget.set_tooltip_text(
+                          _("Attempt to see selected locations with a Map "
+                            "Service (OpenstreetMap, Google Maps, ...)"))
+        lbl = Gtk.Label(label=self.mapservice_label())
+        lbl.show()
+        self.mapslistlabel.append(lbl)
+        widget.set_label_widget(self.mapslistlabel[-1])
+        widget.set_stock_id(Gtk.STOCK_JUMP_TO)
         if self.drag_info():
             self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
               [],
@@ -196,7 +206,7 @@ class PlaceBaseView(ListView):
             tglist.add(self.drag_info().atom_drag_type, 
                        self.drag_info().target_flags,
                        self.drag_info().app_id)
-            tglist.add_text_targets (0L)
+            tglist.add_text_targets (0)
             self.list.drag_source_set_target_list(tglist)
 
     def __create_maps_menu_actions(self):
@@ -269,7 +279,7 @@ class PlaceBaseView(ListView):
             servfunc = eval('mod.' +  serv.mapservice)
             servfunc()(self.dbstate.db, places)
         else:
-            print 'Failed to load map plugin, see Plugin Manager'
+            print('Failed to load map plugin, see Plugin Manager')
 
     def drag_info(self):
         return DdTargets.PLACE_LINK
@@ -319,7 +329,6 @@ class PlaceBaseView(ListView):
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
               <separator/>
-              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
