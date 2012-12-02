@@ -70,6 +70,10 @@ elif sys.platform == 'linux2' or os.name == 'darwin':
 else:
     print ("ERROR: unknown system, don't know msgmerge, ... commands")
     sys.exit(0)
+    
+LANG = [file for file in os.listdir('.') if file.endswith('.po')]
+LANG.append("all")
+LANG.sort()
 
 def tests():
     """
@@ -368,18 +372,18 @@ def main():
 
     # lang.po files maintenance                          
     update.add_argument("-m", "--merge", dest="merge",
-            choices=[file for file in os.listdir('.') if file.endswith('.po')],
+            choices=LANG,
             help="merge lang.po files with last catalog")
               
     update.add_argument("-k", "--check", dest="check",
-            choices=[file for file in os.listdir('.') if file.endswith('.po')],
+            choices=LANG,
             help="check lang.po files")
         
      # testing stage
     trans = parser.add_argument_group('Translation', 'Display content of translations file')
        
     # need one argument (eg, de.po)
-              
+    
     trans.add_argument("-u", "--untranslated", dest="untranslated", 
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list untranslated messages")
@@ -411,9 +415,13 @@ def main():
         clean()
         
     if args.merge:
+        if sys.argv[2:] == ['all']:
+            sys.argv[2:] = LANG
         merge(sys.argv[2:])
         
     if args.check:
+        if sys.argv[2:] == ['all']:
+            sys.argv[2:] = LANG
         check(sys.argv[2:])
         
     if args.untranslated:
@@ -595,49 +603,47 @@ def clean():
         os.unlink('tmpfiles')
         print ("Remove 'tmpfiles'")
 
-def merge(arg):
+def merge(args):
     """
     Merge messages with 'gramps.pot'
     """
     
-    arg = arg[0]
-    
-    print ('Merge %(lang)s with current template' % {'lang': arg})
-    os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
-                % {'msgmerge': msgmergeCmd, 'lang': arg})
-    print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
+    for arg in args:
+        if arg == 'all':
+            continue  
+        print ('Merge %(lang)s with current template' % {'lang': arg})
+        os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
+                    % {'msgmerge': msgmergeCmd, 'lang': arg})
+        print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
 
-def check(arg):
+def check(args):
     """
     Check the translation file
     """
     
-    arg = arg[0]
-    
-    print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
-                % {'lang.po': arg, 'txt': arg[:-3]})
-    os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
-                % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
-    os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
-                        % {'msgfmt': msgfmtCmd, 'lang.po': arg})
+    for arg in args:
+        if arg == 'all':
+            continue
+        print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
+                    % {'lang.po': arg, 'txt': arg[:-3]})
+        os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
+                    % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
+        os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
+                    % {'msgfmt': msgfmtCmd, 'lang.po': arg})
 
 def untranslated(arg):
     """
     List untranslated messages
     """
-    
-    arg = arg[0]
-    
-    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+        
+    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 def fuzzy(arg):
     """
     List fuzzy messages
     """
-
-    arg = arg[0]
-    
-    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+   
+    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 if __name__ == "__main__":
 	main()
