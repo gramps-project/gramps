@@ -313,7 +313,7 @@ class DbLoader(CLIDbLoader):
                                    str(msg), 
                                    _("Upgrade now"), 
                                    _("Cancel")).run():
-                    db = gen.db.DbBsddb()
+                    db = DbBsddb()
                     db.disable_signals()
                     db.load(filename, self._pulse_progress, 
                                          mode, upgrade=True)
