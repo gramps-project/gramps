@@ -25,18 +25,19 @@
 """
 Place object for GRAMPS.
 """
+from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from citationbase import CitationBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from urlbase import UrlBase
-from location import Location
+from .primaryobj import PrimaryObject
+from .citationbase import CitationBase
+from .notebase import NoteBase
+from .mediabase import MediaBase
+from .urlbase import UrlBase
+from .location import Location
 
 #-------------------------------------------------------------------------
 #

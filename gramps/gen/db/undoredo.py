@@ -31,13 +31,18 @@ undos and redos.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement
+from __future__ import print_function, with_statement
+
 import time, os
-import cPickle as pickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 from collections import deque
 
 from ..config import config
-if config.get('preferences.use-bsddb3'):
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
@@ -48,7 +53,7 @@ from ..ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from dbconst import *
+from .dbconst import *
 from . import BSDDBTxn
 from ..errors import DbError
 
@@ -208,7 +213,7 @@ class DbUndo(object):
                     self.db.txn = None
                     return status
 
-            except DBERRS, msg:
+            except DBERRS as msg:
                 self.db._log_error()
                 raise DbError(msg)
 
@@ -301,7 +306,7 @@ class DbUndo(object):
             else:
                 db_map.put(handle, data, txn=self.txn)
 
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.db._log_error()
             raise DbError(msg)
 
@@ -322,7 +327,7 @@ class DbUndo(object):
                 db_map.put(handle, data, txn=self.txn)
                 emit(signal, ([handle],))
 
-        except DBERRS, msg:
+        except DBERRS as msg:
             self.db._log_error()
             raise DbError(msg)
 
@@ -455,7 +460,7 @@ class DbUndoBSDDB(DbUndo):
         data = cursor.first()
         while data:
             yield data
-            data = cursor.next()
+            data = next(cursor)
 
 def testundo():
     class T:
@@ -479,32 +484,32 @@ def testundo():
             self.repository_map = {}
             self.reference_map  = {}
 
-    print "list tests"
+    print("list tests")
     undo = DbUndoList(D())
-    print undo.append('foo')
-    print undo.append('bar')
-    print undo[0]
+    print(undo.append('foo'))
+    print(undo.append('bar'))
+    print(undo[0])
     undo[0] = 'foobar'
-    print undo[0]
-    print "len", len(undo)
-    print "iter"
+    print(undo[0])
+    print("len", len(undo))
+    print("iter")
     for data in undo:
-        print data
-    print
-    print "bsddb tests"
+        print(data)
+    print()
+    print("bsddb tests")
     undo = DbUndoBSDDB(D(), '/tmp/testundo')
     undo.open()
-    print undo.append('foo')
-    print undo.append('fo2')
-    print undo.append('fo3')
-    print undo[1]
+    print(undo.append('foo'))
+    print(undo.append('fo2'))
+    print(undo.append('fo3'))
+    print(undo[1])
     undo[1] = 'bar'
-    print undo[1]
+    print(undo[1])
     for data in undo:
-        print data
-    print "len", len(undo)
+        print(data)
+    print("len", len(undo))
 
-    print "test commit"
+    print("test commit")
     undo.commit(T(), msg="test commit")
     undo.close()
 

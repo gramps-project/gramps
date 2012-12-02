@@ -33,7 +33,6 @@ Geography for one person
 from gramps.gen.ggettext import gettext as _
 import os
 import sys
-import urlparse
 import operator
 import locale
 from gi.repository import Gdk

@@ -28,7 +28,7 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.db import DbTxn
-from editsecondary import EditSecondary
+from .editsecondary import EditSecondary
 from ..glade import Glade
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon

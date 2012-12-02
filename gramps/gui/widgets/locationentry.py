@@ -69,7 +69,7 @@ class LocationEntry(object):
         if handle:
             locs = []
             loc = db.get_location_from_handle(handle)
-            while loc.parent is not None:
+            while loc.parent != str(None):
                 locs.append(loc)
                 loc = db.get_location_from_handle(loc.parent)
             locs.append(loc)

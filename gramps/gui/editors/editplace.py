@@ -44,11 +44,11 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Place
+from gramps.gen.lib import NoteType, Place, Location
 from gramps.gen.db import DbTxn
-from editprimary import EditPrimary
-from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
-                         GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
+from .editprimary import EditPrimary
+from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
+                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from ..widgets import MonitoredEntry, PrivacyButton, LocationEntry
 from ..dialog import ErrorDialog
 from ..glade import Glade
@@ -252,7 +252,7 @@ class EditPlace(EditPrimary):
         handle, new_locations = self.lentry.get_result()
         with DbTxn(_('Add location'), self.dbstate.db) as trans:
             for loc_type, name in new_locations:
-                new_location = gen.lib.Location()
+                new_location = Location()
                 new_location.parent = handle
                 new_location.name = name
                 new_location.set_type(loc_type)

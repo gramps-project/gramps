@@ -48,6 +48,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -112,19 +113,19 @@ class PlaceBaseModel(object):
         return len(self.fmap)+1
 
     def column_handle(self, data):
-        return unicode(data[0])
+        return cuni(data[0])
 
     def column_place_name(self, data):
-        return unicode(data[2])
+        return cuni(data[2])
 
     def column_id(self, data):
-        return unicode(data[1])
+        return cuni(data[1])
 
     def column_location(self, data):
         try:
             loc = self.db.get_location_from_handle(data[3])
             lines = [loc.name]
-            while loc.parent is not None:
+            while loc.parent != str(None):
                 loc = self.db.get_location_from_handle(loc.parent)
                 lines.append(loc.name)
             return ', '.join(lines)
@@ -164,7 +165,7 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         FlatBaseModel.destroy(self)
 
     def column_name(self, data):
-        return unicode(data[2])
+        return cuni(data[2])
 
 #-------------------------------------------------------------------------
 #
@@ -254,16 +255,16 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         if data[5] is not None:
             level = [data[5][0][i] for i in range(5,-1,-1)]
             if not (level[3] or level[4] or level[5]):
-                name = unicode(level[2] or level[1] or level[0])
+                name = cuni(level[2] or level[1] or level[0])
             else:
                 name = ', '.join([item for item in level[3:] if item])
         if not name:
-            name = unicode(data[2])
+            name = cuni(data[2])
 
         if name:
             return cgi.escape(name)
         else:
-            return u"<i>%s<i>" % cgi.escape(_("<no name>"))
+            return "<i>%s<i>" % cgi.escape(_("<no name>"))
         
     def column_header(self, node):
         """

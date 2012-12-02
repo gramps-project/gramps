@@ -125,7 +125,7 @@ class PlaceDetails(Gramplet):
         """
         loc = self.dbstate.db.get_location_from_handle(handle)
         lines = [loc.name]
-        while loc.parent is not None:
+        while loc.parent != str(None):
             loc = self.dbstate.db.get_location_from_handle(loc.parent)
             lines.append(loc.name)
         self.add_row(_('Location'), '\n'.join(lines))

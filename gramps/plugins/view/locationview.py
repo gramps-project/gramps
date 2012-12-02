@@ -49,6 +49,7 @@ from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditLocation
 from gramps.gen.plug import CATEGORY_QR_PLACE
+from gramps.gui.views.listview import LISTTREE
 
 #-------------------------------------------------------------------------
 #
@@ -113,6 +114,12 @@ class LocationView(ListView):
             })
 
         self.additional_uis.append(self.additional_ui())
+
+    def type_list(self):
+        """
+        set the listtype, this governs eg keybinding
+        """
+        return LISTTREE
 
     def navigation_type(self):
         return 'Place'

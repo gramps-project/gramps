@@ -44,6 +44,7 @@ from gi.repository import Gtk
 from ... import widgets
 from .. import build_filter_model
 from . import SidebarFilter
+from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasLocation, 
                                      HasNoteRegexp, HasNoteMatchingSubstringOf, 
@@ -94,10 +95,10 @@ class PlaceSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = unicode(self.filter_id.get_text()).strip()
-        title = unicode(self.filter_title.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        title = cuni(self.filter_title.get_text()).strip()
         location = self.filter_location.get_handle()
-        note = unicode(self.filter_note.get_text()).strip()
+        note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
@@ -127,7 +128,7 @@ class PlaceSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = unicode(model.get_value(node, 0))
+                obj = cuni(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 
