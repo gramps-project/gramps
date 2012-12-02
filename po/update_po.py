@@ -616,7 +616,7 @@ def check(arg):
     
     print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
                 % {'lang.po': arg, 'txt': arg[:-3]})
-    os.system('''%(python)s ./check_po --skip-fuzzy ./%(lang.po)s > %(lang)s.txt''' \
+    os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
                 % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
     os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
                         % {'msgfmt': msgfmtCmd, 'lang.po': arg})

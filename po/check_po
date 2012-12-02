@@ -27,7 +27,8 @@
 
 import sys
 import re
-from optparse import OptionParser
+import os
+from argparse import ArgumentParser
 
 all_total = {}
 all_fuzzy = {}
@@ -504,7 +505,7 @@ def read_msgs( fname ):
 	msgs = msgs1
 	return msgs
 
-def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
+def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 	nr_fuzzy = 0
 	nr_untranslated = 0
 
@@ -531,8 +532,6 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 
 		if msg.is_fuzzy:
 			nr_fuzzy += 1
-			if options.skip_fuzzy:
-				continue
 
 		for c in checks:
 			c.process( msg )
@@ -565,30 +564,27 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 	else:
 		print text + ' (previous gramps.pot)'
 
-	if not options.only_summary:
-		for c in checks:
-			c.diag()
 
 def main():
-	parser = OptionParser( description='This program validates a PO file for GRAMPS.', usage='%prog [options] po-file...' )
-
-	parser.add_option("", "--skip-fuzzy",
-			  action="store_true", dest="skip_fuzzy", default=False,
-			  help="skip fuzzies")
-
-	parser.add_option("-s", "--only-summary",
-			  action="store_true", dest="only_summary", default=False,
-			  help="only give the summary")
-
-	(options, args) = parser.parse_args()
+    
+    parser = ArgumentParser( description='This program validates a PO file for GRAMPS.')
+                 
+    parser.add_argument("-s", "--summary", dest="summary",
+              choices=[file for file in os.listdir('.') if file.endswith('.po')], 
+              default=False, help="only give the summary")
+              
+    args = parser.parse_args()
+    
+    if args.summary:
+        files = sys.argv[2:]
 
 	try:
 		pot_msgs = read_msgs( 'gramps.pot' )
 		nr_templates = len( pot_msgs )
 		nth = 0
-		for fname in args:
+		for fname in files:
 			msgs = read_msgs( fname )
-			analyze_msgs( options, fname, msgs, nr_templates, nth )
+			analyze_msgs( files, fname, msgs, nr_templates, nth )
 			nth += 1
 
 	except CheckException, e:
