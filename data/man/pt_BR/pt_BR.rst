@@ -1,3 +1,6 @@
+Portuguese (Brazil)
+===================
+
 gramps(1)                4.0.0               gramps(1)
 
 
@@ -208,17 +211,16 @@ automaticamente):
 **gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
 **-e** *~/novo-pacote* **-f** *gramps-pkg* 
 
-Importar tr?s bancos de dados e
-iniciar a sess?o interativa do Gramps com o resultado: 
+Importar tr?s bancos de dados e iniciar a sess?o interativa do Gramps com o resultado: 
 
 **gramps** **-i**
 *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* 
 
-Executar a
-ferramenta de verifica??o a partir da linha de comando e direcionar o
+Executar a ferramenta de verifica??o a partir da linha de comando e direcionar o
 resultado para stdout:
 
-**gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** **name**=*verify* 
+**gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** 
+**name**=*verify* 
 
 Finalmente, para iniciar uma sess?o
 interativa normal, digite: 

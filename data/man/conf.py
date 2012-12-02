@@ -37,7 +37,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'en'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Gramps'
@@ -215,7 +215,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('en', 'gramps', u'Gramps Documentation',
-     [u'.'], 1)
+     ['Gramps project'], 1)
 ]
 
 # If true, show URL addresses after external links.

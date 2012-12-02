@@ -61,7 +61,7 @@ gettext_compact = True
 # non-false value, then it is used:
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
-today_fmt = '%B %d, %Y'
+today_fmt = '%d %B %Y'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -215,7 +215,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('fr', 'gramps', u'Gramps Documentation',
-     [u'.'], 1)
+     ['Jerome Rapinat'], 1)
 ]
 
 # If true, show URL addresses after external links.
