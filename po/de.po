@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-27 21:33+0100\n"
-"PO-Revision-Date: 2012-11-27 22:29+0100\n"
+"POT-Creation-Date: 2012-12-02 02:21+0100\n"
+"PO-Revision-Date: 2012-12-02 02:59+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -632,12 +632,14 @@ msgstr "Unbekannte Option: %s"
 
 #: ../gramps/cli/plug/__init__.py:404 ../gramps/cli/plug/__init__.py:434
 #: ../gramps/cli/plug/__init__.py:420 ../gramps/cli/plug/__init__.py:501
+#: ../gramps/cli/plug/__init__.py:499
 msgid "   Valid options are:"
 msgstr "   Gültige Optionen sind:"
 
 #: ../gramps/cli/plug/__init__.py:406 ../gramps/cli/plug/__init__.py:436
 #: ../gramps/cli/plug/__init__.py:531 ../gramps/cli/plug/__init__.py:422
 #: ../gramps/cli/plug/__init__.py:503 ../gramps/cli/plug/__init__.py:581
+#: ../gramps/cli/plug/__init__.py:501 ../gramps/cli/plug/__init__.py:578
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
@@ -645,11 +647,13 @@ msgstr ""
 "sehen"
 
 #: ../gramps/cli/plug/__init__.py:433 ../gramps/cli/plug/__init__.py:500
+#: ../gramps/cli/plug/__init__.py:498
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ignoriere unbekannte Option: %s"
 
 #: ../gramps/cli/plug/__init__.py:481 ../gramps/cli/plug/__init__.py:476
+#: ../gramps/cli/plug/__init__.py:474
 #, python-format
 msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s=%"
@@ -659,19 +663,23 @@ msgstr ""
 "(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:486 ../gramps/cli/plug/__init__.py:481
+#: ../gramps/cli/plug/__init__.py:479
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Verwende '%(notranslate)s' um gültige Werte zu sehen."
 
 #: ../gramps/cli/plug/__init__.py:520 ../gramps/cli/plug/__init__.py:569
+#: ../gramps/cli/plug/__init__.py:566
 msgid "   Available options:"
 msgstr "   Verfügbare Optionen:"
 
 #: ../gramps/cli/plug/__init__.py:538 ../gramps/cli/plug/__init__.py:588
+#: ../gramps/cli/plug/__init__.py:585
 msgid "   Available values are:"
 msgstr "   Verfügbare Werte sind:"
 
 #: ../gramps/cli/plug/__init__.py:550 ../gramps/cli/plug/__init__.py:600
+#: ../gramps/cli/plug/__init__.py:597
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -681,6 +689,7 @@ msgstr ""
 "alle gültigen Optionen zu sehen."
 
 #: ../gramps/cli/plug/__init__.py:562 ../gramps/cli/plug/__init__.py:612
+#: ../gramps/cli/plug/__init__.py:609
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
@@ -4782,6 +4791,7 @@ msgstr "Fundstelle"
 #: ../gramps/gui/logger/_errorview.py:134
 #: ../gramps/webapp/grampsdb/views.py:582 ../gramps/gen/plug/_pluginreg.py:79
 #: ../gramps/webapp/grampsdb/views.py:586
+#: ../gramps/webapp/grampsdb/views.py:587
 msgid "Report"
 msgstr "Bericht"
 
@@ -6441,6 +6451,7 @@ msgstr "Name"
 #: ../gramps/plugins/webreport/narrativeweb.py:4762
 #: ../gramps/webapp/grampsdb/views.py:82
 #: ../gramps/webapp/grampsdb/views.py:278
+#: ../gramps/webapp/grampsdb/views.py:279
 msgid "Media"
 msgstr "Medien"
 
@@ -10454,6 +10465,7 @@ msgstr "Datum bearbeiten"
 #: ../gramps/webapp/grampsdb/view/event.py:137
 #: ../gramps/webapp/grampsdb/views.py:80
 #: ../gramps/webapp/grampsdb/views.py:268
+#: ../gramps/webapp/grampsdb/views.py:269
 msgid "Events"
 msgstr "Ereignisse"
 
@@ -10560,6 +10572,7 @@ msgstr "Zusammenfassen"
 #: ../gramps/plugins/webreport/narrativeweb.py:1485
 #: ../gramps/webapp/grampsdb/views.py:81
 #: ../gramps/webapp/grampsdb/views.py:288
+#: ../gramps/webapp/grampsdb/views.py:289
 msgid "Notes"
 msgstr "Notizen"
 
@@ -10624,6 +10637,7 @@ msgstr "Ahnentafel"
 #: ../gramps/plugins/webreport/narrativeweb.py:3516
 #: ../gramps/webapp/grampsdb/views.py:85
 #: ../gramps/webapp/grampsdb/views.py:318
+#: ../gramps/webapp/grampsdb/views.py:319
 msgid "Places"
 msgstr "Orte"
 
@@ -10633,6 +10647,8 @@ msgstr "Orte"
 #: ../gramps/webapp/grampsdb/views.py:73
 #: ../gramps/webapp/grampsdb/views.py:368
 #: ../gramps/webapp/grampsdb/views.py:587
+#: ../gramps/webapp/grampsdb/views.py:369
+#: ../gramps/webapp/grampsdb/views.py:588
 msgid "Reports"
 msgstr "Berichte"
 
@@ -10657,6 +10673,7 @@ msgstr "Berichte"
 #: ../gramps/plugins/webreport/narrativeweb.py:7039
 #: ../gramps/webapp/grampsdb/views.py:86
 #: ../gramps/webapp/grampsdb/views.py:328
+#: ../gramps/webapp/grampsdb/views.py:329
 msgid "Repositories"
 msgstr "Aufbewahrungsorte"
 
@@ -10690,6 +10707,7 @@ msgstr "Aufbewahrungsorte"
 #: ../gramps/plugins/webreport/narrativeweb.py:4418
 #: ../gramps/webapp/grampsdb/views.py:84
 #: ../gramps/webapp/grampsdb/views.py:348
+#: ../gramps/webapp/grampsdb/views.py:349
 msgid "Sources"
 msgstr "Quellen"
 
@@ -10753,6 +10771,7 @@ msgstr "Ganze Seite"
 #: ../gramps/webapp/grampsdb/views.py:334 ../gramps/gui/grampsgui.py:174
 #: ../gramps/webapp/grampsdb/views.py:83
 #: ../gramps/webapp/grampsdb/views.py:338
+#: ../gramps/webapp/grampsdb/views.py:339
 msgid "Citations"
 msgstr "Fundstellen"
 
@@ -12192,6 +12211,7 @@ msgstr "Notiz wählen"
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/webapp/grampsdb/views.py:87
 #: ../gramps/webapp/grampsdb/views.py:358
+#: ../gramps/webapp/grampsdb/views.py:359
 msgid "Tags"
 msgstr "Markierungen"
 
@@ -16514,6 +16534,7 @@ msgstr "Gramplet zeigt Referenzen einer Person"
 #: ../gramps/plugins/webreport/narrativeweb.py:5129
 #: ../gramps/plugins/webreport/narrativeweb.py:6132
 #: ../gramps/webapp/grampsdb/views.py:1305
+#: ../gramps/webapp/grampsdb/views.py:1306
 msgid "References"
 msgstr "Referenzen"
 
@@ -17486,6 +17507,7 @@ msgstr "Die Farbe die verwendet wird, wenn das Geschlecht unbekannt ist."
 #: ../gramps/plugins/webreport/narrativeweb.py:3070
 #: ../gramps/webapp/grampsdb/views.py:79
 #: ../gramps/webapp/grampsdb/views.py:308
+#: ../gramps/webapp/grampsdb/views.py:309
 msgid "Families"
 msgstr "Familien"
 
@@ -24148,6 +24170,7 @@ msgstr "Gesamt"
 #: ../gramps/webapp/grampsdb/views.py:294
 #: ../gramps/webapp/grampsdb/views.py:78
 #: ../gramps/webapp/grampsdb/views.py:298
+#: ../gramps/webapp/grampsdb/views.py:299
 msgid "People"
 msgstr "Personen"
 
@@ -24188,6 +24211,7 @@ msgstr "Medienanzahl"
 #: ../gramps/plugins/quickview/references.py:71
 #: ../gramps/webapp/grampsdb/views.py:1300
 #: ../gramps/webapp/grampsdb/views.py:1304
+#: ../gramps/webapp/grampsdb/views.py:1305
 msgid "Reference"
 msgstr "Referenz"
 
@@ -24757,14 +24781,12 @@ msgid "Year of report"
 msgstr "Jahr des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:370
-#, fuzzy
 msgid "Select filter to restrict people that appear on report"
-msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
+msgstr "Filter wählen um Personen, die im Bericht erscheinen zu begrenzen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:406
-#, fuzzy
 msgid "Select the first day of the week for the report"
-msgstr "Ersten Tag der Woche für den Kalender wählen"
+msgstr "Wähle den ersten Tag der Woche für den Bericht"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:417
 #, fuzzy
@@ -24772,14 +24794,12 @@ msgid "Include only living people in the report"
 msgstr "Kalender nur mit lebenden Personen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:421
-#, fuzzy
 msgid "Include birthdays in the report"
-msgstr "Kalender mit Geburtstagen"
+msgstr "Geburtstage in den Bericht aufnehmen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:425
-#, fuzzy
 msgid "Include anniversaries in the report"
-msgstr "Kalender mit Jubiläen"
+msgstr "Jubiläen in dem Bericht aufnehmen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:428
 msgid "Include relationships to center person"
@@ -24794,29 +24814,24 @@ msgid "Title text"
 msgstr "Titeltext"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:437
-#, fuzzy
 msgid "Title of report"
-msgstr "Titel des Kalenders"
+msgstr "Titel des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:440
-#, fuzzy
 msgid "My Birthday Report"
-msgstr "Geburtstags- und Jahrestage-Bericht"
+msgstr "Mein Geburtstage-Bericht"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:441
-#, fuzzy
 msgid "First line of text at bottom of report"
-msgstr "Erste Zeile des Text am Fuß des Kalenders"
+msgstr "Erste Zeile des Text am Fuß des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:445
-#, fuzzy
 msgid "Second line of text at bottom of report"
-msgstr "Zweite Zeile des Text am Fuß des Kalenders"
+msgstr "Zweite Zeile des Text am Fuß des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:449
-#, fuzzy
 msgid "Third line of text at bottom of report"
-msgstr "Dritte Zeile des Text am Fuß des Kalenders"
+msgstr "Dritte Zeile des Text am Fuß des Berichts"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:503
 msgid "Title text style"
@@ -25287,9 +25302,9 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Nachkommenbericht für %(person_name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr "%(number)s. %(name)s (%(value)s)"
+msgstr "Ref: %(number)s. %(name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:666
 #, python-format
@@ -25730,9 +25745,9 @@ msgid "Type of Event"
 msgstr "Ereignisart"
 
 #: ../gramps/plugins/textreport/placereport.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
-msgstr "%(father)s und %(mother)s (%(id)s)"
+msgstr "%(persons)s und %(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:251
 msgid "People associated with this place"
@@ -25824,15 +25839,13 @@ msgstr "nicht verwenden"
 
 #: ../gramps/plugins/textreport/recordsreport.py:153
 #: ../gramps/plugins/textreport/recordsreport.py:154
-#, fuzzy
 msgid "Replace first names with call name"
 msgstr "Vornamen durch Rufnamen ersetzen"
 
 #: ../gramps/plugins/textreport/recordsreport.py:154
 #: ../gramps/plugins/textreport/recordsreport.py:155
-#, fuzzy
 msgid "Underline call name in first names / add call name to first name"
-msgstr "Rufnamen im Vornamen unterstreichen / Rufnamen zum Vornamen hinzufügen"
+msgstr "Rufnamen in Vornamen unterstreichen / Rufnamen zum Vornamen hinzufügen"
 
 #: ../gramps/plugins/textreport/recordsreport.py:157
 #: ../gramps/plugins/textreport/recordsreport.py:158
@@ -25963,9 +25976,9 @@ msgstr "Personen mit unbekanntem Geschlecht: %d"
 
 #: ../gramps/plugins/textreport/summary.py:170
 #: ../gramps/plugins/textreport/summary.py:172
-#, fuzzy, python-format
+#, python-format
 msgid "Incomplete names: %d"
-msgstr "Personen mit unvollständigen Namen: %d"
+msgstr "Unvollständige Namen: %d"
 
 #: ../gramps/plugins/textreport/summary.py:175
 #: ../gramps/plugins/textreport/summary.py:177
@@ -26919,9 +26932,8 @@ msgstr "Einleitung"
 
 #: ../gramps/plugins/tool/mediamanager.py:99
 #: ../gramps/plugins/tool/mediamanager.py:101
-#, fuzzy
 msgid "Selection"
-msgstr "Abschnitte"
+msgstr "Auswahl"
 
 #: ../gramps/plugins/tool/mediamanager.py:220
 #: ../gramps/plugins/tool/mediamanager.py:222
@@ -26969,28 +26981,25 @@ msgstr "betreffendes Verzeichnis"
 
 #: ../gramps/plugins/tool/mediamanager.py:335
 #: ../gramps/plugins/tool/mediamanager.py:337
-#, fuzzy
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Drücke OK um fortzufahren, Abbrechen um abzubrechen oder Zurück um die "
+"Drücke Anwenden  um fortzufahren, Abbrechen um abzubrechen oder Zurück um die "
 "Optionen zu ändern."
 
 #: ../gramps/plugins/tool/mediamanager.py:373
 #: ../gramps/plugins/tool/mediamanager.py:375
-#, fuzzy
 msgid "Operation successfully finished"
 msgstr "Operation erfolgreich beendet."
 
 #: ../gramps/plugins/tool/mediamanager.py:375
 #: ../gramps/plugins/tool/mediamanager.py:377
-#, fuzzy
 msgid ""
 "The operation you requested has finished successfully. You may press Close "
 "now to continue."
 msgstr ""
-"Die gewählte Aktion wurde erfolgreich abgeschlossen. Du kannst jetzt OK zum "
-"Fortfahren drücken."
+"Die gewählte Aktion wurde erfolgreich abgeschlossen. Du kannst jetzt "
+"schließen zum Fortfahren drücken."
 
 #: ../gramps/plugins/tool/mediamanager.py:378
 #: ../gramps/plugins/tool/mediamanager.py:380
@@ -27306,17 +27315,14 @@ msgid "Extract information from names"
 msgstr "Information aus Namen extrahieren"
 
 #: ../gramps/plugins/tool/rebuild.py:77 ../gramps/plugins/tool/rebuild.py:79
-#, fuzzy
 msgid "Rebuilding secondary indexes..."
 msgstr "Erstelle sekundäre Datenbankindexe neu..."
 
 #: ../gramps/plugins/tool/rebuild.py:86 ../gramps/plugins/tool/rebuild.py:88
-#, fuzzy
 msgid "Secondary indexes rebuilt"
 msgstr "Sekundäre Indexe neu erstellt"
 
 #: ../gramps/plugins/tool/rebuild.py:87 ../gramps/plugins/tool/rebuild.py:89
-#, fuzzy
 msgid "All secondary indexes have been rebuilt."
 msgstr "Alle sekundäre Indexe wurden neu erstellt."
 
@@ -27611,14 +27617,12 @@ msgstr ""
 "Familiennamen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:352
-#, fuzzy
 msgid "Rebuild Secondary Indexes"
 msgstr "Neuaufbau sekundäre Indexe"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
-#, fuzzy
 msgid "Rebuilds secondary indexes"
-msgstr "Erstellt sekundäre Indexe"
+msgstr "Erstellt sekundäre Indexe neu"
 
 #: ../gramps/plugins/tool/tools.gpr.py:374
 msgid "Rebuild Reference Maps"
@@ -28117,15 +28121,13 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:167
 #: ../gramps/plugins/view/fanchartview.py:165
-#, fuzzy
 msgid "_Print..."
-msgstr "Drucken..."
+msgstr "_Drucken..."
 
 #: ../gramps/plugins/view/fanchartdescview.py:169
 #: ../gramps/plugins/view/fanchartview.py:167
-#, fuzzy
 msgid "Print or save the Fan Chart View"
-msgstr "Fächergrafikansicht"
+msgstr "Drucke oder speichere die Fächergrafikansicht"
 
 #: ../gramps/plugins/view/fanchartdescview.py:280
 #: ../gramps/plugins/view/fanchartview.py:278
@@ -28135,20 +28137,18 @@ msgstr "Nur Text"
 
 #: ../gramps/plugins/view/fanchartdescview.py:284
 #: ../gramps/plugins/view/fanchartview.py:282
-#, fuzzy
 msgid "Gender colors"
-msgstr "Geschlecht"
+msgstr "Geschlechtsfarben"
 
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
-#, fuzzy
 msgid "Generation based gradient"
-msgstr "von der Generation abhängig"
+msgstr "Generationen basierender Farbverlauf"
 
 #: ../gramps/plugins/view/fanchartdescview.py:286
 #: ../gramps/plugins/view/fanchartview.py:284
 msgid "Age (0-100) based gradient"
-msgstr ""
+msgstr "Alter (0-100) basierender Farbverlauf"
 
 #: ../gramps/plugins/view/fanchartdescview.py:288
 #: ../gramps/plugins/view/fanchartview.py:286
@@ -28163,7 +28163,6 @@ msgstr "Zeitspanne Einstellung"
 
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
-#, fuzzy
 msgid "White"
 msgstr "Weiß"
 
@@ -28179,47 +28178,42 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:301
 #: ../gramps/plugins/view/fanchartview.py:299
-#, fuzzy
 msgid "Background"
-msgstr "Hintergrundfarbe"
+msgstr "Hintergrund"
 
 #: ../gramps/plugins/view/fanchartdescview.py:308
 #: ../gramps/plugins/view/fanchartview.py:305
 msgid "Start gradient/Main color"
-msgstr ""
+msgstr "Start Farbverlauf/Hauptfarbe"
 
 #: ../gramps/plugins/view/fanchartdescview.py:310
 #: ../gramps/plugins/view/fanchartview.py:307
 msgid "End gradient/2nd color"
-msgstr ""
+msgstr "Ende Farbverlauf/2. Farbe"
 
 #: ../gramps/plugins/view/fanchartdescview.py:312
-#, fuzzy
 msgid "Color for duplicates"
-msgstr "Suche nach doppelt vorkommenden Partnern"
+msgstr "Farbe für Duplikate"
 
 #: ../gramps/plugins/view/fanchartdescview.py:315
 #: ../gramps/plugins/view/fanchartview.py:310
-#, fuzzy
 msgid "Fan chart type"
-msgstr "Fächergrafikansicht"
+msgstr "Fächergrafikart"
 
 #: ../gramps/plugins/view/fanchartdescview.py:317
 #: ../gramps/plugins/view/fanchartview.py:312
-#, fuzzy
 msgid "Full Circle"
 msgstr "Vollkreis"
 
 #: ../gramps/plugins/view/fanchartdescview.py:318
 #: ../gramps/plugins/view/fanchartview.py:312
-#, fuzzy
 msgid "Half Circle"
 msgstr "Halbkreis"
 
 #: ../gramps/plugins/view/fanchartdescview.py:319
 #: ../gramps/plugins/view/fanchartview.py:313
 msgid "Quadrant"
-msgstr ""
+msgstr "Viertelkreis"
 
 #: ../gramps/plugins/view/fanchartdescview.py:322
 #, fuzzy
@@ -28231,9 +28225,8 @@ msgid "Homogeneous children distribution"
 msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:327
-#, fuzzy
 msgid "Size  proportional to number of descendants"
-msgstr "Anzahl der Nachkommen begrenzen"
+msgstr "Größe proportional zur Anzahl der Nachkommen"
 
 #: ../gramps/plugins/view/fanchartdescview.py:331
 #: ../gramps/plugins/view/fanchartview.py:325
@@ -28246,9 +28239,8 @@ msgstr "Layout"
 
 #: ../gramps/plugins/view/fanchartdescview.py:504
 #: ../gramps/plugins/view/fanchartview.py:513
-#, fuzzy
 msgid "No preview available"
-msgstr "Kein Kartenservice verfügbar."
+msgstr "Keine Vorschau verfügbar."
 
 #: ../gramps/plugins/view/fanchartview.py:318
 #, fuzzy
@@ -28266,19 +28258,18 @@ msgid "GeoClose"
 msgstr "Schließen"
 
 #: ../gramps/plugins/view/geoclose.py:219
-#, fuzzy, python-format
+#, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "Referenz : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:222
-#, fuzzy, python-format
+#, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr "Fremde: %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:227
-#, fuzzy
 msgid "You must choose one reference person."
-msgstr "Gewählte Person entfernen"
+msgstr "Du musst eine Referenzperson wählen"
 
 #: ../gramps/plugins/view/geoclose.py:228
 msgid ""
@@ -28362,7 +28353,7 @@ msgstr "Auf Ort zentrieren"
 #: ../gramps/plugins/view/geofamclose.py:129
 #: ../gramps/plugins/view/geography.gpr.py:121
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "War es diesen zwei Familien möglich sich zu treffen?"
 
 #: ../gramps/plugins/view/geofamclose.py:160
 #, fuzzy
@@ -28372,9 +28363,9 @@ msgstr "Schließen"
 #: ../gramps/plugins/view/geofamclose.py:203
 #: ../gramps/plugins/view/geofamily.py:281
 #: ../gramps/plugins/view/geofamily.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
-msgstr "Kind von %(father)s und %(mother)s."
+msgstr "%(gramps_id)s : %(father)s und %(mother)s"
 
 #: ../gramps/plugins/view/geofamclose.py:249
 #, fuzzy, python-format
@@ -28382,9 +28373,9 @@ msgid "Family reference : %s"
 msgstr "Referenzen für ein %s anzeigen"
 
 #: ../gramps/plugins/view/geofamclose.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "The other family : %s"
-msgstr "die Familie"
+msgstr "die andere Familie: %s"
 
 #: ../gramps/plugins/view/geofamclose.py:252
 msgid "You must choose one reference family."
@@ -28409,16 +28400,16 @@ msgstr "Das Löschen der Person entfernt die Person aus der Datenbank."
 #: ../gramps/plugins/view/geofamclose.py:545
 #: ../gramps/plugins/view/geofamily.py:326
 #: ../gramps/plugins/view/geofamily.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %(id)s : %(name)s"
-msgstr "Vater : %s : %s"
+msgstr "Vater : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:551
 #: ../gramps/plugins/view/geofamily.py:333
 #: ../gramps/plugins/view/geofamily.py:332
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %(id)s : %(name)s"
-msgstr "Mutter : %s : %s"
+msgstr "Mutter : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:561
 #: ../gramps/plugins/view/geofamily.py:344
@@ -28461,11 +28452,11 @@ msgid "Family places for %s"
 msgstr "Familie Ortskarte"
 
 #: ../gramps/plugins/view/geography.gpr.py:54
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.8. yours is %s"
 msgstr ""
-"WARNUNG: osmgpsmap Modul nicht geladen. osmgpsmap Version muss >=0.7.0 seine. "
+"WARNUNG: osmgpsmap Modul nicht geladen. osmgpsmap Version muss >=0.8 seine. "
 "Deine ist %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:61
@@ -28477,9 +28468,8 @@ msgstr ""
 "zur Verfügung."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
-#, fuzzy
 msgid "All known places for one Person"
-msgstr "Alle Ereignis Orte für"
+msgstr "Alle bekannten Orte für eine Person"
 
 #: ../gramps/plugins/view/geography.gpr.py:69
 msgid "A view showing the places visited by one person during his life."
@@ -28488,9 +28478,8 @@ msgstr ""
 "Lebens besucht wurden."
 
 #: ../gramps/plugins/view/geography.gpr.py:85
-#, fuzzy
 msgid "All known places for one Family"
-msgstr "Alle Ereignis Orte für"
+msgstr "Alle bekannten Orte für eine Familie"
 
 #: ../gramps/plugins/view/geography.gpr.py:86
 msgid "A view showing the places visited by one family during all their life."
@@ -28531,9 +28520,8 @@ msgstr ""
 "Lebens besucht wurden."
 
 #: ../gramps/plugins/view/geography.gpr.py:157
-#, fuzzy
 msgid "All known Places"
-msgstr "_Alle Orte"
+msgstr "Alle bekannten Orte"
 
 #: ../gramps/plugins/view/geography.gpr.py:158
 msgid "A view showing all places of the database."
@@ -28558,18 +28546,17 @@ msgid "GeoMoves"
 msgstr ""
 
 #: ../gramps/plugins/view/geomoves.py:472
-#, fuzzy, python-format
+#, python-format
 msgid "All descendance for %s"
-msgstr "Nachkommen von %s"
+msgstr "Alle Nachkommen von %s"
 
 #: ../gramps/plugins/view/geomoves.py:637
-#, fuzzy
 msgid "The maximum number of generations.\n"
-msgstr "Maximale Anzahl der Vorfahrengenerationen"
+msgstr "Maximale Anzahl der Generationen.\n"
 
 #: ../gramps/plugins/view/geomoves.py:644
 msgid "Time in milliseconds between drawing two generations.\n"
-msgstr ""
+msgstr "Zeit in Millisekunden zwischen dem Zeichnen zweier Generationen.\n"
 
 #: ../gramps/plugins/view/geomoves.py:650
 msgid "The parameters for moves"
@@ -28636,9 +28623,8 @@ msgstr "Maximale Anzahl der enthaltenen Vorfahren."
 
 #: ../gramps/plugins/view/geoplaces.py:296
 #: ../gramps/plugins/view/geoplaces.py:295
-#, fuzzy
 msgid "Some information are missing."
-msgstr "Persönliche Informationen fehlen"
+msgstr "Einige Informationen fehlen."
 
 #: ../gramps/plugins/view/geoplaces.py:298
 #: ../gramps/plugins/view/geoplaces.py:297
@@ -28924,27 +28910,23 @@ msgstr "Baumausrichtung"
 
 #: ../gramps/plugins/view/pedigreeview.py:2010
 #: ../gramps/plugins/view/pedigreeview.py:2016
-#, fuzzy
 msgid "Vertical (↓)"
-msgstr "Vertikal"
+msgstr "Vertikal (↓)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2011
 #: ../gramps/plugins/view/pedigreeview.py:2017
-#, fuzzy
 msgid "Vertical (↑)"
-msgstr "Vertikal"
+msgstr "Vertikal (↑)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2012
 #: ../gramps/plugins/view/pedigreeview.py:2018
-#, fuzzy
 msgid "Horizontal (→)"
-msgstr "Horizontal (von links nach rechts)"
+msgstr "Horizontal (→)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2013
 #: ../gramps/plugins/view/pedigreeview.py:2019
-#, fuzzy
 msgid "Horizontal (←)"
-msgstr "Horizontal (von links nach rechts)"
+msgstr "Horizontal (←)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2015
 #: ../gramps/plugins/view/pedigreeview.py:2021
@@ -29106,9 +29088,9 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 #: ../gramps/plugins/view/relview.py:1206
 #: ../gramps/plugins/view/relview.py:1205
 #: ../gramps/plugins/view/relview.py:1207
-#, fuzzy, python-format
+#, python-format
 msgid "%(event)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1267
 #: ../gramps/plugins/view/relview.py:1268
@@ -29327,9 +29309,8 @@ msgid "The view showing all the places of the family tree"
 msgstr "Die Ansicht zeigt alle Orte des Stammbaums"
 
 #: ../gramps/plugins/view/view.gpr.py:221
-#, fuzzy
 msgid "Place Tree"
-msgstr "Ortebaumansicht"
+msgstr "Ortsbaum"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "A view displaying places in a tree format."
@@ -29348,9 +29329,8 @@ msgid "The view showing all the citations"
 msgstr "Die Ansicht zeigt alle Fundstellen"
 
 #: ../gramps/plugins/view/view.gpr.py:282
-#, fuzzy
 msgid "Citation Tree"
-msgstr "Fundstellenbaumansicht"
+msgstr "Fundstellenbaum"
 
 #: ../gramps/plugins/view/view.gpr.py:283
 msgid "A view displaying citations and sources in a tree format."
@@ -29895,9 +29875,9 @@ msgstr "Kompletter Name"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6986
 #: ../gramps/plugins/webreport/narrativeweb.py:7407
-#, fuzzy, python-format
+#, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
-msgstr "Weder %s noch %s ist ein Verzeichnis"
+msgstr "Weder %(current)s noch %(parent)s ist ein Verzeichnis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6994
 #: ../gramps/plugins/webreport/narrativeweb.py:6999
@@ -31054,6 +31034,18 @@ msgstr "Namen"
 #: ../gramps/webapp/grampsdb/views.py:528
 #: ../gramps/webapp/grampsdb/views.py:536
 #: ../gramps/webapp/grampsdb/views.py:544
+#: ../gramps/webapp/grampsdb/views.py:463
+#: ../gramps/webapp/grampsdb/views.py:465
+#: ../gramps/webapp/grampsdb/views.py:473
+#: ../gramps/webapp/grampsdb/views.py:481
+#: ../gramps/webapp/grampsdb/views.py:489
+#: ../gramps/webapp/grampsdb/views.py:497
+#: ../gramps/webapp/grampsdb/views.py:505
+#: ../gramps/webapp/grampsdb/views.py:513
+#: ../gramps/webapp/grampsdb/views.py:521
+#: ../gramps/webapp/grampsdb/views.py:529
+#: ../gramps/webapp/grampsdb/views.py:537
+#: ../gramps/webapp/grampsdb/views.py:545
 #, fuzzy, python-format
 msgid "Requested %s does not exist."
 msgstr "Datei %s existiert nicht"
@@ -31064,28 +31056,34 @@ msgstr "Datei %s existiert nicht"
 #: ../gramps/webapp/grampsdb/views.py:72
 #: ../gramps/webapp/grampsdb/views.py:150
 #: ../gramps/webapp/grampsdb/views.py:456
+#: ../gramps/webapp/grampsdb/views.py:151
+#: ../gramps/webapp/grampsdb/views.py:457
 msgid "Browse"
-msgstr ""
+msgstr "Durchsuchen"
 
 #: ../gramps/webapp/grampsdb/views.py:70
 #: ../gramps/webapp/grampsdb/views.py:164
 #: ../gramps/webapp/grampsdb/views.py:74
 #: ../gramps/webapp/grampsdb/views.py:168
+#: ../gramps/webapp/grampsdb/views.py:169
 msgid "User"
 msgstr "Benutzer"
 
 #: ../gramps/webapp/grampsdb/views.py:160
 #: ../gramps/webapp/grampsdb/views.py:164
+#: ../gramps/webapp/grampsdb/views.py:165
 msgid "Requested user not found."
 msgstr ""
 
 #: ../gramps/webapp/grampsdb/views.py:167
 #: ../gramps/webapp/grampsdb/views.py:171
+#: ../gramps/webapp/grampsdb/views.py:172
 msgid "Requested page is not accessible."
 msgstr ""
 
 #: ../gramps/webapp/grampsdb/views.py:567
 #: ../gramps/webapp/grampsdb/views.py:571
+#: ../gramps/webapp/grampsdb/views.py:572
 msgid "Requested page type not known"
 msgstr ""
 
@@ -34641,7 +34639,7 @@ msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
 
-#: ../gramps/cli/plug/__init__.py:579
+#: ../gramps/cli/plug/__init__.py:579 ../gramps/cli/plug/__init__.py:576
 msgid "(no help available)"
 msgstr "(keine Hilfe verfügbar)"
 
