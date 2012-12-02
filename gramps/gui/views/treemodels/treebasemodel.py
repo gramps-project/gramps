@@ -965,7 +965,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             pathlist.append(index)
             node = parent
 
-        if pathlist is not None:
+        if pathlist:
             pathlist.reverse()
             return Gtk.TreePath(tuple(pathlist))
         else:
