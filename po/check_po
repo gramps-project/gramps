@@ -569,7 +569,7 @@ def main():
     
     parser = ArgumentParser( description='This program validates a PO file for GRAMPS.')
                  
-    parser.add_argument("-s", "--summary", dest="summary",
+    parser.add_argument("-s", dest="summary",
               choices=[file for file in os.listdir('.') if file.endswith('.po')], 
               default=False, help="only give the summary")
               
