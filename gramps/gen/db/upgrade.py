@@ -412,7 +412,7 @@ def gramps_upgrade_16(self):
 
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
-        txn.put('version', 16)
+        txn.put(b'version', 16)
         
     LOG.debug([data_upgradeobject])
     txt = _("Number of new objects upgraded:\n")
@@ -736,7 +736,7 @@ def gramps_upgrade_15(self):
 
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
-        txn.put('version', 15)
+        txn.put(b'version', 15)
 
 def convert_marker(self, marker_field):
     """Convert a marker into a tag."""
@@ -1038,7 +1038,7 @@ def gramps_upgrade_14(self):
 
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
-        txn.put('version', 14)
+        txn.put(b'version', 14)
 
 def new_source_list_14(source_list):
     new_source_list = []
