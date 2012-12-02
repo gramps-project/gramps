@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "January 2008" "@VERSION@"
+.TH gramps 1 "@VERSION@" "December 2012" "@VERSION@"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -112,6 +112,16 @@ flag. The files are imported in the specified order,
 i.e. \fB\-i\fR \fIFILE1\fR \fB\-i\fR \fIFILE2\fR  
 and \fB\-i\fR \fIFILE2\fR \fB\-i\fR \fIFILE1\fR might produce different 
 gramps IDs in the resulting database. 
+
+.TP 
+.BI \-e,\-\^\-export= " FILE"
+Export data into \fIFILE\fR. For \fBgramps\-xml\fR, \fBgedcom\fR, 
+\fBwft\fR, \fBgramps\-pkg\fR, and \fBgeneweb\fR, the \fIFILE\fR is 
+the name of the resulting file. 
+.br
+
+When more than one output file is given, each has to be preceded 
+by \fB\-e\fR flag. The files are written one by one, in the specified order.
 
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
