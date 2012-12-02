@@ -371,11 +371,11 @@ def main():
     # need at least one argument (sv.po, de.po, etc ...)
 
     # lang.po files maintenance                          
-    update.add_argument("-m", "--merge", dest="merge",
+    update.add_argument("-m", dest="merge",
             choices=LANG,
             help="merge lang.po files with last catalog")
               
-    update.add_argument("-k", "--check", dest="check",
+    update.add_argument("-k", dest="check",
             choices=LANG,
             help="check lang.po files")
         
@@ -384,10 +384,10 @@ def main():
        
     # need one argument (eg, de.po)
     
-    trans.add_argument("-u", "--untranslated", dest="untranslated", 
+    trans.add_argument("-u", dest="untranslated", 
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list untranslated messages")
-    trans.add_argument("-f", "--fuzzy", dest="fuzzy",
+    trans.add_argument("-f", dest="fuzzy",
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list fuzzy messages")
     
