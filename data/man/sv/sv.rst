@@ -99,8 +99,8 @@ ALTERNATIV
 	      import har avslutats felfritt. F. n. är följand åtgärder möjliga
 	      summary	(samma	  som	 Rapporter->Visa->Sammanfattning    av
 	      databasen) ,  check  (samma  som Verktyg->Reparera databas ->Kon‐
-	      trollera och reparera) samt report (skapar report, kräver en 
-          ALTERNATIVSTRÄNG lämnad via -p-flaggan) .
+	      trollera och reparera) samt report ( skapar report, kräver en 
+          ALTERNATIVSTRÄNG lämnad via **-p** flaggan ) .
 
 	      ALTERNATIVSTRÄNG-en måste uppfylla följand villkor:
 	      Får ej innehålla några mellanslag.  Om  några  argument  behöver

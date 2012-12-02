@@ -178,54 +178,54 @@ EXEMPLOS
 
 Abrir uma ?rvore geneal?gica existente e importar um arquivo xml para ela:
 
-**gramps** **-O** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+ **gramps** **-O** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
 
 Fazer as
 mesmas altera??es da ?rvore geneal?gica do comando anterior, mas importar a
 ?rvore geneal?gica tempor?ria e iniciar uma sess?o interativa: 
 
-**gramps**
-**-i** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+ **gramps**
+ **-i** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
 
 Importar quatro
 bancos de dados (cujos formatos podem ser reconhecidos pelos nomes) e
 verificar a exist?ncia de erros no banco de dados resultante: 
 
-**gramps**
-**-i** *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* **-i**
-*arquivo4.wft* **-a** *check* 
+ **gramps**
+ **-i** *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* **-i**
+ *arquivo4.wft* **-a** *check* 
 
 Indicar de forma expl?cita os formatos do
 exemplo acima, atribuindo os nomes dos arquivos com as op??es **-f**
 apropriadas: 
 
-**gramps** **-i** *arquivo1.ged* **-f** *gedcom* **-i** *arquivo2.tgz* 
-**-f** *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml*
-**-i** *arquivo4.wft* **-f** *wft* **-a** *check* 
+ **gramps** **-i** *arquivo1.ged* **-f** *gedcom* **-i** *arquivo2.tgz* 
+ **-f** *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml*
+ **-i** *arquivo4.wft* **-f** *wft* **-a** *check* 
 
 Gravar o banco de dados
 resultante de todas as importa??es, indicando a op??o **-e** (use **-f** se o
 nome do arquivo n?o permirtir que o gramps reconhe?a o formato
 automaticamente): 
 
-**gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
-**-e** *~/novo-pacote* **-f** *gramps-pkg* 
+ **gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
+ **-e** *~/novo-pacote* **-f** *gramps-pkg* 
 
 Importar tr?s bancos de dados e iniciar a sess?o interativa do Gramps com o resultado: 
 
-**gramps** **-i**
-*arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* 
+ **gramps** **-i**
+ *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* 
 
 Executar a ferramenta de verifica??o a partir da linha de comando e direcionar o
 resultado para stdout:
 
-**gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** 
-**name**=*verify* 
+ **gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** 
+ **name**=*verify* 
 
 Finalmente, para iniciar uma sess?o
 interativa normal, digite: 
 
-**gramps**
+ **gramps**
 
 
 **VARI?VEIS DE AMBIENTE**

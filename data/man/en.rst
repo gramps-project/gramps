@@ -93,12 +93,12 @@ gramps(1)                4.0.0               gramps(1)
           
           
        **-e** , **--export=** *FICHIER*
-	      Export data into *FILE* . For **gramps-xml** , **gedcom** , 
-          **wft** , **gramps-pkg** , et **geneweb** , 
-          The *FILE* is the name of the resulting file.
-
-	      When more than one output file is given, each has to be preceded 
-          by **-e**flag. The files are written one by one, in the specified order.
+          Export data into *FILE* . For **gramps-xml** , **gedcom** 
+          , **wft** , **gramps-pkg** , et **geneweb** , the *FILE* is the 
+          name of the resulting file.
+          
+          When more than one output file is given, each has to be preceded 
+          by **-e** flag. The files are written one by one, in the specified order.
 
 
        **-a** , **--action=** *ACTION*

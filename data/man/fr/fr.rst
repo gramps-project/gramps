@@ -94,13 +94,13 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        **-e** , **--export=** *FICHIER*
-	      Exporter des données dans un *FICHIER* . Pour les fichiers **gramps-xml** , 
-          **gedcom** , **wft** , **gramps-pkg** , et **geneweb**, le 
-          *FICHIER* est le nom du fichier de sortie
-
-	      Quand plus d'un fichier doit être exporté, chacun doit être
-	      précédé par la commande **-e** . Ces fichiers sont importés dans le
-	      même ordre.
+          Exporter des données dans un *FICHIER* . Pour les fichiers **gramps-xml** 
+          , **gedcom** , **wft** , **gramps-pkg** , et **geneweb** , le 
+          *FICHIER* est le nom du fichier de sortie.
+          
+          Quand plus d'un fichier doit être exporté, chacun doit être 
+          précédé par la commande **-e** . Ces fichiers sont importés dans le
+          même ordre.
 
 
        **-a** , **--action=** *ACTION*
@@ -162,18 +162,18 @@ gramps(1)			     4.0.0			     gramps(1)
        sion interactive, en ignorant le reste de la ligne de commande.
 
 
-       Si la commande -O est notée, alors gramps va essayer le fichier	défini
-       et  va travailler avec ses données, comme pour les autres paramètres de
+       Si la commande **-O** est notée, alors gramps va essayer le fichier	défini
+       et va travailler avec ses données, comme pour les autres paramètres de
        la ligne de commande.
 
 
-       Avec ou sans la	commande  -O,  il  peut  y  avoir  plusieurs  imports,
-       exports, et actions dans la ligne de commande -i, -e, et -a.
+       Avec ou sans la commande **-O** , il peut y avoir plusieurs imports,
+       exports, et actions dans la ligne de commande **-i** , **-e** , et **-a** .
 
 
-       L'ordre	des  options -i, -e, ou -a n'a pas de sens. L'ordre actuel est
-       toujours : imports -> actions -> exports. Mais  l'ouverture  doit  tou‐
-       jours être la première!
+       L'ordre des options **-i** , **-e** , ou **-a** n'a pas de sens. L'ordre actuel est
+       toujours : imports -> actions -> exports. Mais l'ouverture doit tou‐
+       jours être la première !
 
 
        Si aucune option **-O** ou **-i** n'est donnée, gramps lancera sa propre
@@ -182,11 +182,11 @@ gramps(1)			     4.0.0			     gramps(1)
 
        Si aucune option **-e** ou **-a** n'est donnée, gramps lancera sa propre
        fenêtre et démarrera avec la base de données issue de tout les imports.
-       Cette base sera **import_db.grdb** sous le **répertoire ~/.gramps/import**.
+       Cette base sera **import_db.grdb** dans le répertoire **~/.gramps/import**.
 
 
-       Les erreurs  rencontrées  lors  d'import,  export,  ou  action,	seront
-       mémorisées  en  stdout  (si  elles  sont le fait de la manipulation par
+       Les erreurs  rencontrées lors d'importation, d'exportation, ou d'action,	seront
+       mémorisées en *stdout* (si elles sont le fait de la manipulation par
        gramps) ou en *stderr* (si elles ne sont pas le fait d'une manipulation).
        Utilisez les shell de redirection de *stdout* et *stderr* pour sauver  
        les messages et les erreurs dans les fichiers.
