@@ -36,8 +36,8 @@ from gi.repository import GObject
 from gramps.gen.lib import Location
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
-from .locationmodel import LocationModel
-from .embeddedlist import EmbeddedList
+from locationmodel import LocationModel
+from embeddedlist import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -46,18 +46,13 @@ from .embeddedlist import EmbeddedList
 #-------------------------------------------------------------------------
 class LocationEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 6
+    _HANDLE_COL = 1
     _DND_TYPE   = DdTargets.LOCATION
     
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Street'),         0, 150, 0, -1), 
-        (_('Locality'),       1, 100, 0, -1), 
-        (_('City'),           2, 100, 0, -1), 
-        (_('County'),         3, 100, 0, -1), 
-        (_('State'),          4, 100, 0, -1), 
-        (_('Country'),        5, 75, 0, -1), 
+        (_('Location'),       0, 300, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
@@ -70,7 +65,7 @@ class LocationEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
+        return ((1, 0),)
 
     def add_button_clicked(self, obj):
         loc = Location()
@@ -81,15 +76,16 @@ class LocationEmbedList(EmbeddedList):
         except WindowActiveError:
             pass
 
-    def add_callback(self, name):
+    def add_callback(self, location):
         data = self.get_data()
-        data.append(name)
+        data.append(location.handle)
         self.rebuild()
         GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
-        loc = self.get_selected()
-        if loc:
+        handle = self.get_selected()
+        if handle:
+            loc = self.dbstate.db.get_location_from_handle(handle)
             try:
                 from .. import EditLocation
                 EditLocation(self.dbstate, self.uistate, self.track, 

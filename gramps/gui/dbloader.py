@@ -61,7 +61,6 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeError, 
                                       DbVersionError, 
                                       DbEnvironmentError)
-from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
@@ -133,13 +132,11 @@ class DbLoader(CLIDbLoader):
             
         pmgr = GuiPluginManager.get_instance()
         
-        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'), 
+        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import database'), 
                                        self.uistate.window, 
                                        Gtk.FileChooserAction.OPEN, 
-                                       (Gtk.STOCK_CANCEL, 
-                                            Gtk.ResponseType.CANCEL, 
-                                        _('Import'), 
-                                            Gtk.ResponseType.OK))
+                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
+                                        'gramps-import', Gtk.ResponseType.OK))
         import_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
@@ -208,7 +205,8 @@ class DbLoader(CLIDbLoader):
         In this process, a warning dialog can pop up.
         
         """
-        if not isinstance(filename, STRTYPE):
+
+        if not isinstance(filename, basestring):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))
@@ -251,7 +249,7 @@ class DbLoader(CLIDbLoader):
                             User(callback=self._pulse_progress))
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
-        except UnicodeError as msg:
+        except UnicodeError, msg:
             ErrorDialog(
                 _("Could not import file: %s") % filename, 
                 _("This file incorrectly identifies its character "
@@ -268,7 +266,7 @@ class DbLoader(CLIDbLoader):
         is returned
         """
         if self.import_info is None:
-            return ""
+            return u""
         return self.import_info.info_text()
     
     def read_file(self, filename):
@@ -308,12 +306,12 @@ class DbLoader(CLIDbLoader):
                 db.load(filename, self._pulse_progress, 
                                      mode, upgrade=False)
                 self.dbstate.change_database(db)
-            except DbUpgradeRequiredError as msg:
+            except DbUpgradeRequiredError, msg:
                 if QuestionDialog2(_("Need to upgrade database!"), 
                                    str(msg), 
                                    _("Upgrade now"), 
                                    _("Cancel")).run():
-                    db = gen.db.DbBsddb()
+                    db = DbBsddb()
                     db.disable_signals()
                     db.load(filename, self._pulse_progress, 
                                          mode, upgrade=True)
@@ -321,20 +319,20 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.change_database(db)
                 else:
                     self.dbstate.no_database()
-        except BsddbDowngradeError as msg:
+        except BsddbDowngradeError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbVersionError as msg:
+        except DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except DbEnvironmentError as msg:
+        except DbEnvironmentError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except OSError as msg:
+        except OSError, msg:
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except DbError as msg:
+        except DbError, msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception as newerror:

@@ -21,9 +21,8 @@
 
 # $Id$
 
-from __future__ import with_statement, unicode_literals
+from __future__ import with_statement
 
-import sys
 from ..lib.markertype import MarkerType
 from ..lib.tag import Tag
 import time
@@ -31,22 +30,86 @@ import logging
 LOG = logging.getLogger(".citation")
 
 from ..ggettext import gettext as _
-from ..constfunc import cuni
 
 """
 methods to upgrade a database from version 13 to current version
 """
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
 from . import BSDDBTxn
 from ..lib.nameorigintype import NameOriginType
-from .write import _mkname, SURNAMES
-from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
-                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
+from write import _mkname, SURNAMES
+from dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
+                            MEDIA_KEY, PLACE_KEY, LOCATION_KEY, REPOSITORY_KEY)
 from gramps.gui.dialog import (InfoDialog)
+
+def gramps_upgrade_17(self):
+    self.set_total(len(self.place_map))
+    self.children = {None: []}
+    for handle in self.place_map.keys():
+        place = self.place_map[handle]
+        new_place = list(place)
+        lat_long = (new_place[4], new_place[3])
+        if new_place[5] is not None:
+            new_place[5] = process_location(self, new_place[5], lat_long)
+        else:
+            new_place[5] = process_location(self, None, lat_long)
+        add_reference(self, handle, new_place[5])
+        alt_locs = []
+        for alt_loc in new_place[6]:
+            ref_handle = process_location(self, alt_loc, lat_long)
+            add_reference(self, handle, ref_handle)
+            alt_locs.append(ref_handle)
+        new_place[6] = alt_locs
+        new_place = tuple(new_place[:3] + new_place[5:])
+        with BSDDBTxn(self.env, self.place_map) as txn:
+            txn.put(str(handle), new_place)
+        self.update()
+
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put('version', 17)
+
+def add_reference(self, pri_handle, ref_handle):
+    key = (PLACE_KEY, pri_handle)
+    data = ((PLACE_KEY, pri_handle), (LOCATION_KEY, ref_handle))
+    with BSDDBTxn(self.env, self.reference_map) as txn:
+        txn.put(str(key), data)
+        
+def process_location(self, loc, lat_long):
+    if loc is None:
+        location = ['Unknown']
+    else:
+        # (street, locality, parish, city, county, state, country)
+        # We need to think about where to put ZIP code and Phone number
+        location = loc[0][:2] + (loc[1],) + loc[0][2:6]
+        location = list(location)
+        location.reverse()
+    items = [x for x in enumerate(location) if x[1]]
+    parent = None
+    for item in items:
+        parent = match_location(self, parent, item, lat_long)
+    return parent
+
+def match_location(self, parent, item, lat_long):
+    for handle in self.children[parent]:
+        if self.location_map[handle][2] == item[1]:
+            return handle
+    handle = self.create_id()
+    self.children[handle] = []
+    self.children[parent].append(handle)
+    new_location = (handle, 
+                    parent, 
+                    item[1], # Name
+                    item[0]+1, # Type
+                    lat_long[0],
+                    lat_long[1],
+                    int(time.time()))
+    with BSDDBTxn(self.env, self.location_map) as txn:
+        txn.put(str(handle), new_location)
+    return handle
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all
@@ -148,10 +211,10 @@ def gramps_upgrade_16(self):
         self.update()
 
     LOG.debug("%d persons upgraded with %d citations in %d seconds. " % 
-              (len(list(self.person_map.keys())), 
+              (len(self.person_map.keys()), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
-    data_upgradeobject[key2data[PERSON_KEY]] = (len(list(self.person_map.keys())),
+    data_upgradeobject[key2data[PERSON_KEY]] = (len(self.person_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
 
@@ -184,7 +247,7 @@ def gramps_upgrade_16(self):
     LOG.debug("Media upgrade %d citations upgraded in %d seconds" % 
               (self.cmap_index - start_num_citations, 
                int(time.time() - start_time)))
-    data_upgradeobject[key2data[MEDIA_KEY]] = (len(list(self.media_map.keys())),
+    data_upgradeobject[key2data[MEDIA_KEY]] = (len(self.media_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
 
@@ -195,7 +258,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
-        (handle, gramps_id, title, int, lat,
+        (handle, gramps_id, title, long, lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          change, private) = place
         if source_list:
@@ -208,7 +271,7 @@ def gramps_upgrade_16(self):
                                     self, media_list)
         if source_list or media_list:
             new_place = (handle, gramps_id, title, 
-                         int, lat, main_loc, alt_loc, urls,
+                         long, lat, main_loc, alt_loc, urls,
                          media_list, new_citation_list, note_list, 
                          change, private)
             with BSDDBTxn(self.env, self.place_map) as txn:
@@ -216,10 +279,10 @@ def gramps_upgrade_16(self):
         self.update()
 
     LOG.debug("%d places upgraded with %d citations in %d seconds. " % 
-              (len(list(self.place_map.keys())), 
+              (len(self.place_map.keys()), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
-    data_upgradeobject[key2data[PLACE_KEY]] = (len(list(self.place_map.keys())),
+    data_upgradeobject[key2data[PLACE_KEY]] = (len(self.place_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
 
@@ -264,10 +327,10 @@ def gramps_upgrade_16(self):
         self.update()
 
     LOG.debug("%d familys upgraded with %d citations in %d seconds. " % 
-              (len(list(self.family_map.keys())), 
+              (len(self.family_map.keys()), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
-    data_upgradeobject[key2data[FAMILY_KEY]] = (len(list(self.family_map.keys())),
+    data_upgradeobject[key2data[FAMILY_KEY]] = (len(self.family_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
     # ---------------------------------
@@ -309,10 +372,10 @@ def gramps_upgrade_16(self):
 
     LOG.debug("%d events upgraded with %d citations in %d seconds. "
               "Backlinks took %d seconds" % 
-              (len(list(self.event_map.keys())), 
+              (len(self.event_map.keys()), 
                self.cmap_index - start_num_citations, 
                int(upgrade_time), int(backlink_time)))
-    data_upgradeobject[key2data[EVENT_KEY]] = (len(list(self.event_map.keys())),
+    data_upgradeobject[key2data[EVENT_KEY]] = (len(self.event_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
 
@@ -336,10 +399,10 @@ def gramps_upgrade_16(self):
         self.update()
 
     LOG.debug("%d repositorys upgraded with %d citations in %d seconds. " % 
-              (len(list(self.repository_map.keys())), 
+              (len(self.repository_map.keys()), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
-    data_upgradeobject[key2data[REPOSITORY_KEY]] = (len(list(self.repository_map.keys())),
+    data_upgradeobject[key2data[REPOSITORY_KEY]] = (len(self.repository_map.keys()),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
     # ---------------------------------
@@ -594,9 +657,9 @@ def gramps_upgrade_15(self):
             tags = [tag_handle]
         else:
             tags = []
-        address_list = list(map(convert_address, address_list))
+        address_list = map(convert_address, address_list)
         new_primary_name = convert_name_15(primary_name)
-        new_alternate_names = list(map(convert_name_15, alternate_names))
+        new_alternate_names = map(convert_name_15, alternate_names)
         new_person = (junk_handle,        #  0
                       gramps_id,          #  1
                       gender,             #  2
@@ -700,7 +763,7 @@ def gramps_upgrade_15(self):
         new_place = list(place)
         if new_place[5] is not None:
             new_place[5] = convert_location(new_place[5])
-        new_place[6] = list(map(convert_location, new_place[6]))
+        new_place[6] = map(convert_location, new_place[6])
         new_place = new_place[:12] + new_place[13:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -728,7 +791,7 @@ def gramps_upgrade_15(self):
         repository = self.repository_map[handle]
         new_repository = list(repository)
         new_repository = new_repository[:8] + new_repository[9:]
-        new_repository[5] = list(map(convert_address, new_repository[5]))
+        new_repository[5] = map(convert_address, new_repository[5])
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
             txn.put(str(handle), new_repository)
@@ -742,7 +805,7 @@ def convert_marker(self, marker_field):
     """Convert a marker into a tag."""
     marker = MarkerType()
     marker.unserialize(marker_field)
-    tag_name = cuni(marker)
+    tag_name = unicode(marker)
     
     if tag_name != '':
         if tag_name not in self.tags:
@@ -761,7 +824,7 @@ def convert_marker(self, marker_field):
 
 def convert_locbase(loc):
     """Convert location base to include an empty locality field."""
-    return tuple([loc[0], ''] + list(loc[1:]))
+    return tuple([loc[0], u''] + list(loc[1:]))
     
 def convert_location(loc):
     """Convert a location into the new format."""
@@ -777,26 +840,26 @@ def convert_name_15(name):
      name_type, prefix, patronymic,
      group_as, sort_as, display_as, call) = name
     
-    connector = ""
-    origintype = (NameOriginType.NONE, "")
-    patorigintype = (NameOriginType.PATRONYMIC, "")
+    connector = u""
+    origintype = (NameOriginType.NONE, u"")
+    patorigintype = (NameOriginType.PATRONYMIC, u"")
     
-    if patronymic.strip() == "":
+    if patronymic.strip() == u"":
         #no patronymic, create a single surname
         surname_list = [(surname, prefix, True, origintype, connector)]
     else:
         #a patronymic, if no surname or equal as patronymic, a single surname
-        if (surname.strip() == "") or (surname == patronymic and prefix == ""):
+        if (surname.strip() == u"") or (surname == patronymic and prefix == u""):
             surname_list = [(patronymic, prefix, True, patorigintype, connector)]
         else:
             #two surnames, first patronymic, then surname which is primary
-            surname_list = [(patronymic, "", False, patorigintype, ""),
+            surname_list = [(patronymic, u"", False, patorigintype, u""),
                             (surname, prefix, True, origintype, connector)]
     
     #return new value, add two empty strings for nick and family nick
     return (privacy, source_list, note_list, date,
          first_name, surname_list, suffix, title, name_type,
-         group_as, sort_as, display_as, call, "", "")
+         group_as, sort_as, display_as, call, u"", u"")
 
 def gramps_upgrade_14(self):
     """Upgrade database from version 13 to 14."""
@@ -1004,12 +1067,12 @@ def gramps_upgrade_14(self):
     # ---------------------------------
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
-        (handle, gramps_id, title, int, lat,
+        (handle, gramps_id, title, long, lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          change, marker, private) = place
         new_media_list = new_media_list_14(media_list)
         new_source_list = new_source_list_14(source_list)
-        new_place = (handle, gramps_id, title, int, lat,
+        new_place = (handle, gramps_id, title, long, lat,
                      main_loc, alt_loc, urls, new_media_list, 
                      new_source_list, note_list, change, marker, private) 
 

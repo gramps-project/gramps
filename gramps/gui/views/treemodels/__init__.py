@@ -24,14 +24,15 @@
 Package init for the treemodels package.
 """
 
-from .peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
-from .familymodel import FamilyModel
-from .eventmodel import EventModel
-from .sourcemodel import SourceModel
-from .placemodel import PlaceBaseModel, PlaceListModel, PlaceTreeModel
-from .mediamodel import MediaModel
-from .repomodel import RepositoryModel
-from .notemodel import NoteModel
-from .citationbasemodel import CitationBaseModel
-from .citationlistmodel import CitationListModel
-from .citationtreemodel import CitationTreeModel
+from peoplemodel import PeopleBaseModel, PersonListModel, PersonTreeModel
+from familymodel import FamilyModel
+from eventmodel import EventModel
+from sourcemodel import SourceModel
+from placemodel import PlaceBaseModel, PlaceListModel, PlaceTreeModel
+from locationmodel import LocationTreeModel
+from mediamodel import MediaModel
+from repomodel import RepositoryModel
+from notemodel import NoteModel
+from citationbasemodel import CitationBaseModel
+from citationlistmodel import CitationListModel
+from citationtreemodel import CitationTreeModel

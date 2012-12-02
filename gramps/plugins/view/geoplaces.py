@@ -34,6 +34,7 @@ from gramps.gen.ggettext import gettext as _
 import os
 import sys
 import time
+import urlparse
 import operator
 import locale
 from gi.repository import Gdk
@@ -201,8 +202,10 @@ class GeoPlaces(GeoGraphyView):
         if self.nbplaces >= self._config.get("geography.max_places"):
             return
         descr = place.get_title()
-        longitude = place.get_longitude()
-        latitude = place.get_latitude()
+        mloc = place.get_main_location()
+        location = self.dbstate.db.get_location_from_handle(mloc)
+        longitude = location.get_longitude()
+        latitude = location.get_latitude()
         latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
         # place.get_longitude and place.get_latitude return
         # one string. We have coordinates when the two values

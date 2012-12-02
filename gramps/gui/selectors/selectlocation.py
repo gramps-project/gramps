@@ -34,15 +34,15 @@ from gramps.gen.ggettext import gettext as _
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ..views.treemodels.placemodel import PlaceListModel
+from ..views.treemodels.locationmodel import LocationTreeModel
 from baseselector import BaseSelector
 
 #-------------------------------------------------------------------------
 #
-# SelectPlace
+# SelectLocation
 #
 #-------------------------------------------------------------------------
-class SelectPlace(BaseSelector):
+class SelectLocation(BaseSelector):
 
     def _local_init(self):
         """
@@ -52,20 +52,19 @@ class SelectPlace(BaseSelector):
         self.height_key = 'interface.place-sel-height'
 
     def get_window_title(self):
-        return _("Select Place")
+        return _("Select Location")
         
     def get_model_class(self):
-        return PlaceListModel
+        return LocationTreeModel
 
     def get_column_titles(self):
         return [
-            (_('Title'),    350, BaseSelector.TEXT, 0),
-            (_('ID'),       75,  BaseSelector.TEXT, 1),
-            (_('Location'), 350, BaseSelector.TEXT, 2),
+            (_('Name'), 350, BaseSelector.TEXT, 0),
+            (_('Type'), 75, BaseSelector.TEXT, 1),
             ]
 
     def get_from_handle_func(self):
-        return self.db.get_place_from_handle
+        return self.db.get_location_from_handle
         
     def get_handle_column(self):
-        return PlaceListModel.HANDLE_COL
+        return LocationTreeModel.HANDLE_COL

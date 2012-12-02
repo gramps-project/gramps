@@ -1,9 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2009-2010  Gary Burton
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2012       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,48 +22,42 @@
 
 #-------------------------------------------------------------------------
 #
-# internationalization
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..views.treemodels.placemodel import PlaceListModel
-from baseselector import BaseSelector
+from .. import Rule
 
 #-------------------------------------------------------------------------
 #
-# SelectPlace
+# HasLocation
 #
 #-------------------------------------------------------------------------
-class SelectPlace(BaseSelector):
+class HasLocation(Rule):
+    """Rule that checks if a Place is at a specified Location"""
 
-    def _local_init(self):
+    labels      = [ _('Location:') ]
+    name        = _('Place at <Location>')
+    description = _("Matches places at a specified Location")
+    category    = _('General filters')
+
+    def prepare(self, db):
+        self.children = []
+        to_do = [self.list[0]]
+        while to_do:
+            for child in db.find_location_child_handles(to_do.pop()):
+                to_do.append(child)
+                self.children.append(child)
+
+    def apply(self, db, obj):
         """
-        Perform local initialisation for this class
+        apply the rule on the obj.
+        return true if the rule passes, false otherwise.
         """
-        self.width_key = 'interface.place-sel-width'
-        self.height_key = 'interface.place-sel-height'
-
-    def get_window_title(self):
-        return _("Select Place")
-        
-    def get_model_class(self):
-        return PlaceListModel
-
-    def get_column_titles(self):
-        return [
-            (_('Title'),    350, BaseSelector.TEXT, 0),
-            (_('ID'),       75,  BaseSelector.TEXT, 1),
-            (_('Location'), 350, BaseSelector.TEXT, 2),
-            ]
-
-    def get_from_handle_func(self):
-        return self.db.get_place_from_handle
-        
-    def get_handle_column(self):
-        return PlaceListModel.HANDLE_COL
+        return obj.get_main_location() in self.children

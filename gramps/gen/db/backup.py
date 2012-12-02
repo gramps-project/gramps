@@ -55,19 +55,15 @@ db.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import cPickle as pickle
 
 #------------------------------------------------------------------------
 #
 # Gramps libs
 #
 #------------------------------------------------------------------------
-from .exceptions import DbException
-from .write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
+from exceptions import DbException
+from write import FAMILY_TBL, PLACES_TBL, LOCATION_TBL, SOURCES_TBL, MEDIA_TBL,\
     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, TAG_TBL, META, CITATIONS_TBL
 
 #------------------------------------------------------------------------
@@ -91,7 +87,7 @@ def backup(database):
     """
     try:
         __do_export(database)
-    except (OSError, IOError) as msg:
+    except (OSError, IOError), msg:
         raise DbException(str(msg))
 
 def __mk_backup_name(database, base):
@@ -159,7 +155,7 @@ def restore(database):
     """
     try:
         __do_restore(database)
-    except (OSError, IOError) as msg:
+    except (OSError, IOError), msg:
         raise DbException(str(msg))
 
 def __do_restore(database):
@@ -215,5 +211,6 @@ def __build_tbl_map(database):
         ( MEDIA_TBL,   database.media_map.db),
         ( EVENTS_TBL,  database.event_map.db),
         ( TAG_TBL,     database.tag_map.db),
+        ( LOCATION_TBL, database.location_map.db),
         ( META,        database.metadata.db),
         ]

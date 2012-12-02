@@ -41,8 +41,8 @@ from ..ggettext import gettext as _
 #-------------------------------------------------------------------------
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
-from .txn import DbTxn
-from .exceptions import DbTransactionCancel
+from txn import DbTxn
+from exceptions import DbTransactionCancel
 
 class DbReadBase(object):
     """
@@ -321,6 +321,27 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_location_cursor(self):
+        """
+        Return a reference to a cursor over Location objects
+        """
+        raise NotImplementedError
+
+    def get_location_from_handle(self, handle):
+        """
+        Find a Location in the database from the passed handle.
+        
+        If no such Location exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_location_handles(self):
+        """
+        Return a list of database handles, one handle for each Location in
+        the database.
+        """
+        raise NotImplementedError
+
     def get_media_attribute_types(self):
         """
         Return a list of all Attribute types associated with Media and MediaRef 
@@ -433,6 +454,12 @@ class DbReadBase(object):
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
+        """
+        raise NotImplementedError
+
+    def get_number_of_locations(self):
+        """
+        Return the number of locations currently in the database.
         """
         raise NotImplementedError
 
@@ -588,6 +615,12 @@ class DbReadBase(object):
     def get_raw_family_data(self, handle):
         """
         Return raw (serialized and pickled) Family object from handle
+        """
+        raise NotImplementedError
+
+    def get_raw_location_data(self, handle):
+        """
+        Return raw (serialized and pickled) Location object from handle
         """
         raise NotImplementedError
 
@@ -867,6 +900,12 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def has_location_handle(self, handle):
+        """
+        Return True if the handle exists in the current Location database.
+        """
+        raise NotImplementedError
+
     def has_name_group_key(self, name):
         """
         Return if a key exists in the name_group table.
@@ -942,6 +981,18 @@ class DbReadBase(object):
     def iter_family_handles(self):
         """
         Return an iterator over handles for Families in the database
+        """
+        raise NotImplementedError
+
+    def iter_location_handles(self):
+        """
+        Return an iterator over handles for Locations in the database
+        """
+        raise NotImplementedError
+
+    def iter_locations(self):
+        """
+        Return an iterator over objects for Locations in the database
         """
         raise NotImplementedError
 
@@ -1235,6 +1286,13 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
+    def add_location(self, location, transaction):
+        """
+        Add a Location to the database, assigning a handle if it has not already
+        been defined.
+        """
+        raise NotImplementedError
+
     def add_note(self, obj, transaction, set_gid=True):
         """
         Add a Note to the database, assigning internal IDs if they have
@@ -1340,6 +1398,13 @@ class DbWriteBase(DbReadBase):
         """
         Commit the specified family Event to the database, storing the
         changes as part of the transaction.
+        """
+        raise NotImplementedError
+
+    def commit_location(self, location, transaction, change_time=None):
+        """
+        Commit the specified Location to the database, storing the changes as 
+        part of the transaction.
         """
         raise NotImplementedError
 
@@ -1457,6 +1522,15 @@ class DbWriteBase(DbReadBase):
         
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
+        """
+        raise NotImplementedError
+
+    def remove_location(self, handle, transaction):
+        """
+        Remove the Location specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         raise NotImplementedError
 

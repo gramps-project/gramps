@@ -83,8 +83,10 @@ class MapService():
         """return the lat, lon value of place in the requested format
            None, None if invalid
         """
-        return conv_lat_lon(place.get_latitude(), 
-                            place.get_longitude(), format)
+        mloc = place.get_main_location()
+        location = self.database.get_location_from_handle(mloc)
+        return conv_lat_lon(location.get_latitude(), 
+                                       location.get_longitude(), format)
 
     def calc_url(self):
         """Base class needs to overwrite this, calculation of the self.path"""

@@ -75,7 +75,7 @@ class PlaceDetails(Gramplet):
         """
         Remove all the rows from the table.
         """
-        list(map(self.table.remove, self.table.get_children()))
+        map(self.table.remove, self.table.get_children())
         self.table.resize(1, 2)
 
     def db_changed(self):
@@ -107,21 +107,27 @@ class PlaceDetails(Gramplet):
         self.title.set_text(place.get_title())
 
         self.clear_table()
-        self.display_location(place.get_main_location())
+        mloc = place.get_main_location()
+        self.display_location(mloc)
         self.display_separator()
-        lat, lon = conv_lat_lon(place.get_latitude(),
-                                place.get_longitude(),
+        location = self.dbstate.db.get_location_from_handle(mloc)
+        lat, lon = conv_lat_lon(location.get_latitude(),
+                                location.get_longitude(),
                                 format='DEG')
         if lat:
             self.add_row(_('Latitude'), lat)
         if lon:
             self.add_row(_('Longitude'), lon)
 
-    def display_location(self, location):
+    def display_location(self, handle):
         """
         Display a location.
         """
-        lines = [line for line in location.get_text_data_list()[:-1] if line]
+        loc = self.dbstate.db.get_location_from_handle(handle)
+        lines = [loc.name]
+        while loc.parent is not None:
+            loc = self.dbstate.db.get_location_from_handle(loc.parent)
+            lines.append(loc.name)
         self.add_row(_('Location'), '\n'.join(lines))
 
     def display_empty(self):

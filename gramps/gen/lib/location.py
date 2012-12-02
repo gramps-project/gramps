@@ -30,16 +30,14 @@ Location class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .locationbase import LocationBase
-from .const import IDENTICAL, DIFFERENT
+from .tableobj import TableObject
 
 #-------------------------------------------------------------------------
 #
 # Location class for Places
 #
 #-------------------------------------------------------------------------
-class Location(SecondaryObject, LocationBase):
+class Location(TableObject):
     """
     Provide information about a place.
 
@@ -52,17 +50,31 @@ class Location(SecondaryObject, LocationBase):
         """
         Create a Location object, copying from the source object if it exists.
         """
-        LocationBase.__init__(self, source)
+        TableObject.__init__(self, source)
         if source:
-            self.parish = source.parish
+            self.parent = source.parent
+            self.name = source.name
+            self.location_type = source.location_type
+            self.lat = source.lat
+            self.long = source.long
         else:
-            self.parish = ""
+            self.parent = None
+            self.name = ''
+            self.location_type = 1 # Country
+            self.lat = ''
+            self.long = ''
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (LocationBase.serialize(self), self.parish)
+        return (self.handle,
+                self.parent,
+                self.name,
+                self.location_type,
+                self.lat,
+                self.long,
+                self.change)
 
     def to_struct(self):
         """
@@ -98,9 +110,13 @@ class Location(SecondaryObject, LocationBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (lbase, self.parish) = data
-        LocationBase.unserialize(self, lbase)
-        return self
+        (self.handle,
+         self.parent,
+         self.name,
+         self.location_type,
+         self.lat,
+         self.long,
+         self.change) = data
 
     def get_text_data_list(self):
         """
@@ -109,42 +125,102 @@ class Location(SecondaryObject, LocationBase):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.parish] + LocationBase.get_text_data_list(self)
-
-    def is_equivalent(self, other):
-        """
-        Return if this location is equivalent to other.
-
-        :param other: The location to compare this one to.
-        :rtype other: Location
-        :returns: Constant inidicating degree of equivalence.
-        :rtype: int
-        """
-        if self.is_equal(other):
-            return IDENTICAL
-        else:
-            return DIFFERENT
-
-    def merge(self, acquisition):
-        """
-        Merge the content of acquisition into this location.
-
-        Lost: everything of acquisition.
-
-        :param acquisition: The location to merge with the present location.
-        :rtype acquisition: Location
-        """
-        pass
+        return [self.name, self.lat, self.long]
 
     def is_empty(self):
-        return not self.street and not self.locality and not self.city and \
-               not self.county and not self.state and not self.country and \
-               not self.postal and not self.phone
-        
-    def set_parish(self, data):
-        """Set the religious parish name."""
-        self.parish = data
+        """
+        Return True if the Location is an empty object (no values set).
 
-    def get_parish(self):
-        """Get the religious parish name."""
-        return self.parish
+        :returns: True if the Location is empty
+        :rtype: bool
+        """
+        return self.name == ''
+
+    def are_equal(self, other):
+        """
+        Return True if the passed Tag is equivalent to the current Location.
+
+        :param other: Location to compare against
+        :type other: Location
+        :returns: True if the Locations are equal
+        :rtype: bool
+        """
+        if other is None:
+            other = Location()
+
+        if self.name != other.name or \
+           self.parent != other.parent:
+            return False
+        return True
+
+    def set_parent(self, parent):
+        """
+        Set the parent of the Location to the passed string.
+        """
+        self.parent = parent
+
+    def get_parent(self):
+        """
+        Return the parent of the Location.
+        """
+        return self.parent
+
+    def set_name(self, name):
+        """
+        Set the name of the Location to the passed string.
+        """
+        self.name = name
+
+    def get_name(self):
+        """
+        Return the name of the Location.
+        """
+        return self.name
+
+    def set_type(self, location_type):
+        """
+        Set the type of the Location to the passed integer.
+        """
+        self.location_type = location_type
+
+    def get_type(self):
+        """
+        Return the type of the Location.
+        """
+        return self.location_type
+
+    def set_latitude(self, latitude):
+        """
+        Set the latitude of the Location object.
+
+        :param latitude: latitude to assign to the Location
+        :type latitude: str
+        """
+        self.lat = latitude
+
+    def get_latitude(self):
+        """
+        Return the latitude of the Location object.
+
+        :returns: Returns the latitude of the Location
+        :rtype: str
+        """
+        return self.lat
+
+    def set_longitude(self, longitude):
+        """
+        Set the longitude of the Location object.
+
+        :param longitude: longitude to assign to the Location
+        :type longitude: str
+        """
+        self.long = longitude
+
+    def get_longitude(self):
+        """
+        Return the longitude of the Location object.
+
+        :returns: Returns the longitude of the Location
+        :rtype: str
+        """
+        return self.long

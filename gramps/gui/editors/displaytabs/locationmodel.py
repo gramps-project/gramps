@@ -41,9 +41,19 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 class LocationModel(Gtk.ListStore):
 
-    def __init__(self, obj_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, str, object)
+    def __init__(self, location_list, db):
+        Gtk.ListStore.__init__(self, str, object)
         self.db = db
-        for obj in obj_list:
-            self.append(row=[obj.street, obj.locality, obj.city, obj.county, 
-                             obj.state, obj.country, obj, ])
+        for handle in location_list:
+            self.__add_location(handle)
+
+    def __add_location(self, handle):
+        """
+        Append a location to the model.
+        """
+        loc = self.db.get_location_from_handle(handle)
+        lines = [loc.name]
+        while loc.parent is not None:
+            loc = self.db.get_location_from_handle(loc.parent)
+            lines.append(loc.name)
+        self.append(row=[', '.join(lines), handle])

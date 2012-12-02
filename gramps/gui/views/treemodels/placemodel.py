@@ -48,7 +48,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -76,7 +75,7 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 14
+    HANDLE_COL = 5
 
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
@@ -84,16 +83,7 @@ class PlaceBaseModel(object):
         self.fmap = [
             self.column_name,
             self.column_id,
-            self.column_street,
-            self.column_locality,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_postal_code,
-            self.column_parish,
-            self.column_latitude,
-            self.column_longitude,
+            self.column_location,
             self.column_change,
             self.column_place_name,
             self.column_handle,
@@ -102,16 +92,7 @@ class PlaceBaseModel(object):
         self.smap = [
             self.column_name,
             self.column_id,
-            self.column_street,
-            self.column_locality,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_postal_code,
-            self.column_parish,
-            self.sort_latitude,
-            self.sort_longitude,
+            self.column_location,
             self.sort_change,
             self.column_place_name,
             self.column_handle,
@@ -131,102 +112,33 @@ class PlaceBaseModel(object):
         return len(self.fmap)+1
 
     def column_handle(self, data):
-        return cuni(data[0])
+        return unicode(data[0])
 
     def column_place_name(self, data):
-        return cuni(data[2])
-
-    def column_longitude(self, data):
-        if not data[3]:
-            return ''
-        value = conv_lat_lon('0', data[3], format='DEG')[1]
-        if not value:
-            return _("Error in format")
-        return value
-
-    def column_latitude(self, data):
-        if not data[4]:
-            return ''
-        value = conv_lat_lon(data[4], '0', format='DEG')[0]
-        if not value:
-            return _("Error in format")
-        return value
-
-    def sort_longitude(self, data):
-        if not data[3]:
-            return ''
-        value = conv_lat_lon('0', data[3], format='ISO-DMS') if data[3] else ''
-        if not value:
-             return _("Error in format")
-        return value
-
-    def sort_latitude(self, data):
-        if not data[4]:
-            return ''
-        value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else ''
-        if not value:
-            return _("Error in format")
-        return value 
+        return unicode(data[2])
 
     def column_id(self, data):
-        return cuni(data[1])
+        return unicode(data[1])
 
-    def column_parish(self, data):
+    def column_location(self, data):
         try:
-            return data[5][1]
+            loc = self.db.get_location_from_handle(data[3])
+            lines = [loc.name]
+            while loc.parent is not None:
+                loc = self.db.get_location_from_handle(loc.parent)
+                lines.append(loc.name)
+            return ', '.join(lines)
         except:
-            return ''
-
-    def column_street(self, data):
-        try:
-            return data[5][0][0]
-        except:
-            return ''
-
-    def column_locality(self, data):
-        try:
-            return data[5][0][1]
-        except:
-            return ''
-
-    def column_city(self, data):
-        try:
-            return data[5][0][2]
-        except:
-            return ''
-        
-    def column_county(self, data):
-        try:
-            return data[5][0][3]
-        except:
-            return ''
-    
-    def column_state(self, data):
-        try:
-            return data[5][0][4]
-        except:
-            return ''
-
-    def column_country(self, data):
-        try:
-            return data[5][0][5]
-        except:
-            return ''
-
-    def column_postal_code(self, data):
-        try:
-            return data[5][0][6]
-        except:
-            return ''
+            return u''
 
     def sort_change(self, data):
-        return "%012x" % data[11]
+        return "%012x" % data[9]
     
     def column_change(self, data):
-        return format_time(data[11])
+        return format_time(data[9])
 
     def column_tooltip(self, data):
-        return cuni('Place tooltip')
+        return u'Place tooltip'
 
 #-------------------------------------------------------------------------
 #
@@ -252,7 +164,7 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         FlatBaseModel.destroy(self)
 
     def column_name(self, data):
-        return cuni(data[2])
+        return unicode(data[2])
 
 #-------------------------------------------------------------------------
 #
@@ -342,16 +254,16 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         if data[5] is not None:
             level = [data[5][0][i] for i in range(5,-1,-1)]
             if not (level[3] or level[4] or level[5]):
-                name = cuni(level[2] or level[1] or level[0])
+                name = unicode(level[2] or level[1] or level[0])
             else:
                 name = ', '.join([item for item in level[3:] if item])
         if not name:
-            name = cuni(data[2])
+            name = unicode(data[2])
 
         if name:
             return cgi.escape(name)
         else:
-            return "<i>%s<i>" % cgi.escape(_("<no name>"))
+            return u"<i>%s<i>" % cgi.escape(_("<no name>"))
         
     def column_header(self, node):
         """

@@ -32,23 +32,19 @@ This is used since GRAMPS version 3.0
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+from __future__ import with_statement
+import cPickle as pickle
 import os
 import time
 import locale
 import bisect
 from functools import wraps
 import logging
-from sys import maxsize
+from sys import maxint
 
 from ..ggettext import gettext as _
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+if config.get('preferences.use-bsddb3'):
     from bsddb3 import dbshelve, db
 else:
     from bsddb import dbshelve, db
@@ -64,6 +60,7 @@ from ..lib.src import Source
 from ..lib.citation import Citation
 from ..lib.event import Event
 from ..lib.place import Place
+from ..lib.location import Location
 from ..lib.repo import Repository
 from ..lib.mediaobj import MediaObject
 from ..lib.note import Note
@@ -75,17 +72,17 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
                     find_surname_name, DbUndoBSDDB as DbUndo)
-from .dbconst import *
+from dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import win, conv_to_unicode, cuni, UNITYPE
+from ..constfunc import win
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
 _MINVERSION = 9
-_DBVERSION = 16
+_DBVERSION = 17
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -97,6 +94,8 @@ NIDTRANS    = "note_id"
 SIDTRANS    = "source_id"
 CIDTRANS    = "citation_id"
 TAGTRANS    = "tag_name"
+LPARENTS    = "location_parent"
+LNAMES      = "location_name"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
 META        = "meta_data"
@@ -111,6 +110,7 @@ PERSON_TBL  = "person"
 REPO_TBL    = "repo"
 NOTE_TBL    = "note"
 TAG_TBL     = "tag"
+LOCATION_TBL = "location"
 
 REF_MAP     = "reference_map"
 REF_PRI     = "primary_map"
@@ -134,7 +134,8 @@ CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
                     Place.__name__: PLACE_KEY, 
                     Repository.__name__:REPOSITORY_KEY,
                     Note.__name__: NOTE_KEY,
-                    Tag.__name__: TAG_KEY}
+                    Tag.__name__: TAG_KEY,
+                    Location.__name__: LOCATION_KEY}
 
 KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
                     FAMILY_KEY: Family.__name__, 
@@ -145,7 +146,8 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     PLACE_KEY: Place.__name__, 
                     REPOSITORY_KEY: Repository.__name__,
                     NOTE_KEY: Note.__name__,
-                    TAG_KEY: Tag.__name__}
+                    TAG_KEY: Tag.__name__,
+                    LOCATION_KEY: Location.__name__}
 
 KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
                    FAMILY_KEY: 'family',
@@ -157,7 +159,8 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
                    REPOSITORY_KEY: 'repository',
                    #REFERENCE_KEY: 'reference',
                    NOTE_KEY: 'note',
-                   TAG_KEY: 'tag'}
+                   TAG_KEY: 'tag',
+                   LOCATION_KEY: 'location'}
 #-------------------------------------------------------------------------
 #
 # Helper functions
@@ -165,13 +168,13 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
 #-------------------------------------------------------------------------
 
 def find_idmap(key, data):
-    """ return id for association of secondary index.
-    returns a byte string
-    """
-    val = data[1]
-    if isinstance(val, UNITYPE):
-        val = val.encode('utf-8')
-    return val
+    return str(data[1])
+
+def find_parent(key, data):
+    return str(data[1])
+
+def find_name(key, data):
+    return str(data[2]).upper()
 
 # Secondary database key lookups for reference_map table
 # reference_map data values are of the form:
@@ -179,22 +182,10 @@ def find_idmap(key, data):
 #    (referenced_object_class_name, referenced_object_handle))
 
 def find_primary_handle(key, data):
-    """ return handle for association of indexes
-    returns byte string
-    """
-    val = (data)[0][1]
-    if isinstance(val, UNITYPE):
-        val = val.encode('utf-8')
-    return val
+    return str((data)[0][1])
 
 def find_referenced_handle(key, data):
-    """ return handle for association of indexes
-    returns byte string
-    """
-    val = (data)[1][1]
-    if isinstance(val, UNITYPE):
-        val = val.encode('utf-8')
-    return val
+    return str((data)[1][1])
 
 #-------------------------------------------------------------------------
 #
@@ -219,7 +210,7 @@ class DbBsddbAssocCursor(BsddbBaseCursor):
         BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.cursor(txn)
         self.source = source
-        
+
 #-------------------------------------------------------------------------
 #
 # DbBsddb
@@ -235,7 +226,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     # 1. Signals for primary objects
     __signals__ = dict((obj+'-'+op, signal)
             for obj in
-                ['person', 'family', 'event', 'place',
+                ['person', 'family', 'event', 'place', 'location', 
                  'source', 'citation', 'media', 'note', 'repository', 'tag']
             for op, signal in zip(
                 ['add',   'update', 'delete', 'rebuild'],
@@ -252,11 +243,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     # 3. Special signal for change in home person
     __signals__['home-person-changed'] = None
     
-    # 4. Signal for change in person group name, parameters are
-    if sys.version_info[0] < 3:
-        __signals__['person-groupname-rebuild'] = (unicode, unicode)
-    else:
-        __signals__['person-groupname-rebuild'] = (str, str)
+    # 4. Signal for change in person group name, parameters are 
+    __signals__['person-groupname-rebuild'] = (unicode, unicode)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -280,7 +268,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         def try_(self, *args, **kwargs):
             try:
                 return func(self, *args, **kwargs)
-            except DBERRS as msg:
+            except DBERRS, msg:
                 self.__log_error()
                 raise DbError(msg)
         return try_
@@ -363,19 +351,30 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return DbBsddbAssocCursor(self.reference_map_referenced_map, 
                                         self.txn)
 
+    @catch_db_error
+    def get_location_parent_cursor(self):
+        """
+        Returns a reference to a cursor over the location parents
+        """
+        return DbBsddbAssocCursor(self.parents, self.txn)
+
+    @catch_db_error
+    def get_location_name_cursor(self):
+        """
+        Returns a reference to a cursor over the location names
+        """
+        return DbBsddbAssocCursor(self.names, self.txn)
+
     # These are overriding the DbBsddbRead's methods of saving metadata
     # because we now have txn-capable metadata table
 
     @catch_db_error
     def set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
-        #we store a byte string!
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(b'default', handle)
+                txn.put('default', str(handle))
             self.emit('home-person-changed')
 
     @catch_db_error
@@ -387,7 +386,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         elif (self.metadata) and (not self.readonly):
             # Start transaction
             with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(b'default', None)            
+                txn.put('default', None)            
         return None
 
     def set_mediapath(self, path):
@@ -395,7 +394,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.metadata and not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(b'mediapath', path)            
+                txn.put('mediapath', path)            
 
     def __check_bdb_version(self, name):
         """Older version of Berkeley DB can't read data created by a newer
@@ -410,9 +409,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         except:
             # Just assume that the Berkeley DB version is OK.
             pass
-        if not env_version:
-            #empty file, assume it is ok to open
-            env_version = (0, 0, 0)
         if (env_version[0] > bdb_version[0]) or \
             (env_version[0] == bdb_version[0] and
              env_version[1] > bdb_version[1]):
@@ -423,12 +419,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     @catch_db_error
     def version_supported(self):
-        dbversion = self.metadata.get(b'version', default=0)
+        dbversion = self.metadata.get('version', default=0)
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
 
     @catch_db_error
     def need_upgrade(self):
-        dbversion = self.metadata.get(b'version', default=0)
+        dbversion = self.metadata.get('version', default=0)
         return not self.readonly and dbversion < _DBVERSION
 
     def __check_readonly(self, name):
@@ -444,7 +440,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # See if we lack write access to any files in the directory
         for base in [FAMILY_TBL, PLACES_TBL, SOURCES_TBL, CITATIONS_TBL, 
                      MEDIA_TBL,  EVENTS_TBL, PERSON_TBL, REPO_TBL,
-                     NOTE_TBL, REF_MAP, META]:
+                     NOTE_TBL, TAG_TBL, LOCATION_TBL, REF_MAP, META]:
             path = os.path.join(name, base + DBEXT)
             if os.path.isfile(path) and not os.access(path, os.W_OK):
                 return True
@@ -506,7 +502,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         try:
             self.env.open(env_name, env_flags)
-        except Exception as msg:
+        except Exception, msg:
             _LOG.warning("Error opening db environment: " + str(msg))
             try:
                 self.__close_early()
@@ -529,7 +525,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             raise DbVersionError()
 
         self.__load_metadata()
-        gstats = self.metadata.get(b'gender_stats', default=None)
+        gstats = self.metadata.get('gender_stats', default=None)
 
         # Ensure version info in metadata
         if not self.readonly:
@@ -537,12 +533,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 if gstats is None:
                     # New database. Set up the current version.
-                    #self.metadata.put(b'version', _DBVERSION, txn=the_txn)
-                    txn.put(b'version', _DBVERSION)
-                elif b'version' not in self.metadata:
+                    #self.metadata.put('version', _DBVERSION, txn=the_txn)
+                    txn.put('version', _DBVERSION)
+                elif 'version' not in self.metadata:
                     # Not new database, but the version is missing.
                     # Use 0, but it is likely to fail anyway.
-                    txn.put(b'version', 0)
+                    txn.put('version', 0)
             
         self.genderStats = GenderStats(gstats)
 
@@ -558,6 +554,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     ("repository_map", REPO_TBL,    db.DB_HASH),
                     ("note_map",       NOTE_TBL,    db.DB_HASH),
                     ("tag_map",        TAG_TBL,     db.DB_HASH),
+                    ("location_map",   LOCATION_TBL, db.DB_HASH),
                     ("reference_map",  REF_MAP,     db.DB_BTREE),
                   ]
 
@@ -629,7 +626,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __load_metadata(self):
         # name display formats
-        self.name_formats = self.metadata.get(b'name_formats', default=[])
+        self.name_formats = self.metadata.get('name_formats', default=[])
         # upgrade formats if they were saved in the old way
         for format_ix in range(len(self.name_formats)):
             format = self.name_formats[format_ix]
@@ -639,7 +636,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         # database owner
         try:
-            owner_data = self.metadata.get(b'researcher')
+            owner_data = self.metadata.get('researcher')
             if owner_data:
                 if len(owner_data[0]) == 7: # Pre-3.3 format
                     owner_data = upgrade_researcher(owner_data)
@@ -650,35 +647,35 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # bookmarks
         meta = lambda meta: self.metadata.get(meta, default=[])
         
-        self.bookmarks.set(meta(b'bookmarks'))
-        self.family_bookmarks.set(meta(b'family_bookmarks'))
-        self.event_bookmarks.set(meta(b'event_bookmarks'))
-        self.source_bookmarks.set(meta(b'source_bookmarks'))
-        self.citation_bookmarks.set(meta(b'citation_bookmarks'))
-        self.repo_bookmarks.set(meta(b'repo_bookmarks'))
-        self.media_bookmarks.set(meta(b'media_bookmarks'))
-        self.place_bookmarks.set(meta(b'place_bookmarks'))
-        self.note_bookmarks.set(meta(b'note_bookmarks'))
+        self.bookmarks.set(meta('bookmarks'))
+        self.family_bookmarks.set(meta('family_bookmarks'))
+        self.event_bookmarks.set(meta('event_bookmarks'))
+        self.source_bookmarks.set(meta('source_bookmarks'))
+        self.citation_bookmarks.set(meta('citation_bookmarks'))
+        self.repo_bookmarks.set(meta('repo_bookmarks'))
+        self.media_bookmarks.set(meta('media_bookmarks'))
+        self.place_bookmarks.set(meta('place_bookmarks'))
+        self.note_bookmarks.set(meta('note_bookmarks'))
 
         # Custom type values
-        self.family_event_names = set(meta(b'fevent_names'))
-        self.individual_event_names = set(meta(b'pevent_names'))
-        self.family_attributes = set(meta(b'fattr_names'))
-        self.individual_attributes = set(meta(b'pattr_names'))
-        self.marker_names = set(meta(b'marker_names'))
-        self.child_ref_types = set(meta(b'child_refs'))
-        self.family_rel_types = set(meta(b'family_rels'))
-        self.event_role_names = set(meta(b'event_roles'))
-        self.name_types = set(meta(b'name_types'))
-        self.origin_types = set(meta(b'origin_types'))
-        self.repository_types = set(meta(b'repo_types'))
-        self.note_types = set(meta(b'note_types'))
-        self.source_media_types = set(meta(b'sm_types'))
-        self.url_types = set(meta(b'url_types'))
-        self.media_attributes = set(meta(b'mattr_names'))
+        self.family_event_names = set(meta('fevent_names'))
+        self.individual_event_names = set(meta('pevent_names'))
+        self.family_attributes = set(meta('fattr_names'))
+        self.individual_attributes = set(meta('pattr_names'))
+        self.marker_names = set(meta('marker_names'))
+        self.child_ref_types = set(meta('child_refs'))
+        self.family_rel_types = set(meta('family_rels'))
+        self.event_role_names = set(meta('event_roles'))
+        self.name_types = set(meta('name_types'))
+        self.origin_types = set(meta('origin_types'))
+        self.repository_types = set(meta('repo_types'))
+        self.note_types = set(meta('note_types'))
+        self.source_media_types = set(meta('sm_types'))
+        self.url_types = set(meta('url_types'))
+        self.media_attributes = set(meta('mattr_names'))
 
         # surname list
-        self.surname_list = meta(b'surname_list')
+        self.surname_list = meta('surname_list')
 
     def __connect_secondary(self):
         """
@@ -706,6 +703,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ("rid_trans", RIDTRANS, db.DB_HASH, 0),
             ("nid_trans", NIDTRANS, db.DB_HASH, 0),
             ("tag_trans", TAGTRANS, db.DB_HASH, 0),
+            ("parents", LPARENTS, db.DB_HASH, 0),
+            ("names", LNAMES, db.DB_BTREE, db.DB_DUPSORT),
             ("reference_map_primary_map",    REF_PRI, db.DB_BTREE, 0),
             ("reference_map_referenced_map", REF_REF, db.DB_BTREE, db.DB_DUPSORT),            
             ]
@@ -729,6 +728,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 (self.repository_map, self.rid_trans, find_idmap),
                 (self.note_map,   self.nid_trans, find_idmap),
                 (self.tag_map,    self.tag_trans, find_idmap),
+                (self.location_map, self.parents, find_parent),
+                (self.location_map, self.names, find_name),
                 (self.reference_map, self.reference_map_primary_map,
                     find_primary_handle),
                 (self.reference_map, self.reference_map_referenced_map,
@@ -770,6 +771,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ( self.nid_trans, NIDTRANS ),
             ( self.cid_trans, CIDTRANS ),
             ( self.tag_trans, TAGTRANS ),
+            ( self.parents, LPARENTS ),
+            ( self.names, LNAMES ),
             ( self.reference_map_primary_map, REF_PRI),
             ( self.reference_map_referenced_map, REF_REF),
             ]
@@ -797,6 +800,60 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             callback(12)
 
     @catch_db_error
+    def find_location_child_handles(self, handle):
+        """
+        """
+        handle = str(handle)
+        parent_cur = self.get_location_parent_cursor()
+
+        try:
+            ret = parent_cur.set(handle)
+        except:
+            ret = None
+
+        while (ret is not None):
+            (key, data) = ret
+            
+            ### FIXME: this is a dirty hack that works without no
+            ### sensible explanation. For some reason, for a readonly
+            ### database, secondary index returns a primary table key
+            ### corresponding to the data, not the data.
+            if self.readonly:
+                data = self.location_map.get(data)
+            else:
+                data = pickle.loads(data)
+
+            yield data[0]
+            ret = parent_cur.next_dup()
+
+        parent_cur.close()
+
+    @catch_db_error
+    def find_location_from_name(self, name):
+        """
+        """
+        name = str(name).upper()
+        size = len(name)
+        name_cur = self.get_location_name_cursor()
+
+        try:
+            ret = name_cur.set_range(name)
+            ret = name_cur.current()
+        except:
+            ret = None
+
+        while (ret is not None):
+            (key, data) = ret
+
+            if key[:size] != name:
+                break
+
+            yield data[0]
+            ret = name_cur.next()
+
+        name_cur.close()
+
+    @catch_db_error
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
@@ -814,8 +871,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
             result_list = list(find_backlink_handles(handle))
         """
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
+
+        handle = str(handle)
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
         referenced_cur = self.get_reference_map_referenced_cursor()
@@ -949,34 +1006,25 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Remove the reference specified by the key, preserving the change in 
         the passed transaction.
         """
-        if isinstance(key, tuple):
-            #create a string key
-            key = str(key)
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
         if not self.readonly:
             if not transaction.batch:
-                old_data = self.reference_map.get(key, txn=txn)
-                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
+                old_data = self.reference_map.get(str(key), txn=txn)
+                transaction.add(REFERENCE_KEY, TXNDEL, str(key), old_data, None)
                 #transaction.reference_del.append(str(key))
-            self.reference_map.delete(key, txn=txn)
+            self.reference_map.delete(str(key), txn=txn)
 
     def __add_reference(self, key, data, transaction, txn):
         """
         Add the reference specified by the key and the data, preserving the 
         change in the passed transaction.
         """
-        if isinstance(key, tuple):
-            #create a string key
-            key = str(key)
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
+
         if self.readonly or not key:
             return
         
-        self.reference_map.put(key, data, txn=txn)
+        self.reference_map.put(str(key), data, txn=txn)
         if not transaction.batch:
-            transaction.add(REFERENCE_KEY, TXNADD, key, None, data)
+            transaction.add(REFERENCE_KEY, TXNADD, str(key), None, data)
             #transaction.reference_add.append((str(key), data))
 
     @catch_db_error
@@ -1063,45 +1111,45 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
 
             # name display formats
-                txn.put(b'name_formats', self.name_formats)
+                txn.put('name_formats', self.name_formats)
                 
                 # database owner
                 owner_data = self.owner.serialize()
-                txn.put(b'researcher', owner_data)
+                txn.put('researcher', owner_data)
 
                 # bookmarks
-                txn.put(b'bookmarks', self.bookmarks.get())
-                txn.put(b'family_bookmarks', self.family_bookmarks.get())
-                txn.put(b'event_bookmarks', self.event_bookmarks.get())
-                txn.put(b'source_bookmarks', self.source_bookmarks.get())
-                txn.put(b'citation_bookmarks', self.citation_bookmarks.get())
-                txn.put(b'place_bookmarks', self.place_bookmarks.get())
-                txn.put(b'repo_bookmarks', self.repo_bookmarks.get())
-                txn.put(b'media_bookmarks', self.media_bookmarks.get())
-                txn.put(b'note_bookmarks', self.note_bookmarks.get())
+                txn.put('bookmarks', self.bookmarks.get())
+                txn.put('family_bookmarks', self.family_bookmarks.get())
+                txn.put('event_bookmarks', self.event_bookmarks.get())
+                txn.put('source_bookmarks', self.source_bookmarks.get())
+                txn.put('citation_bookmarks', self.citation_bookmarks.get())
+                txn.put('place_bookmarks', self.place_bookmarks.get())
+                txn.put('repo_bookmarks', self.repo_bookmarks.get())
+                txn.put('media_bookmarks', self.media_bookmarks.get())
+                txn.put('note_bookmarks', self.note_bookmarks.get())
 
                 # gender stats
-                txn.put(b'gender_stats', self.genderStats.save_stats())
+                txn.put('gender_stats', self.genderStats.save_stats())
 
                 # Custom type values
-                txn.put(b'fevent_names', list(self.family_event_names))
-                txn.put(b'pevent_names', list(self.individual_event_names))
-                txn.put(b'fattr_names', list(self.family_attributes))
-                txn.put(b'pattr_names', list(self.individual_attributes))
-                txn.put(b'marker_names', list(self.marker_names))
-                txn.put(b'child_refs', list(self.child_ref_types))
-                txn.put(b'family_rels', list(self.family_rel_types))
-                txn.put(b'event_roles', list(self.event_role_names))
-                txn.put(b'name_types', list(self.name_types))
-                txn.put(b'origin_types', list(self.origin_types))
-                txn.put(b'repo_types', list(self.repository_types))
-                txn.put(b'note_types', list(self.note_types))
-                txn.put(b'sm_types', list(self.source_media_types))
-                txn.put(b'url_types', list(self.url_types))
-                txn.put(b'mattr_names', list(self.media_attributes))
+                txn.put('fevent_names', list(self.family_event_names))
+                txn.put('pevent_names', list(self.individual_event_names))
+                txn.put('fattr_names', list(self.family_attributes))
+                txn.put('pattr_names', list(self.individual_attributes))
+                txn.put('marker_names', list(self.marker_names))
+                txn.put('child_refs', list(self.child_ref_types))
+                txn.put('family_rels', list(self.family_rel_types))
+                txn.put('event_roles', list(self.event_role_names))
+                txn.put('name_types', list(self.name_types))
+                txn.put('origin_types', list(self.origin_types))
+                txn.put('repo_types', list(self.repository_types))
+                txn.put('note_types', list(self.note_types))
+                txn.put('sm_types', list(self.source_media_types))
+                txn.put('url_types', list(self.url_types))
+                txn.put('mattr_names', list(self.media_attributes))
 
                 # name display formats
-                txn.put(b'surname_list', self.surname_list)
+                txn.put('surname_list', self.surname_list)
 
         self.metadata.close()
 
@@ -1143,6 +1191,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.cid_trans.close()
         self.pid_trans.close()
         self.tag_trans.close()
+        self.parents.close()
+        self.names.close()
         self.reference_map_primary_map.close()
         self.reference_map_referenced_map.close()
         self.reference_map.close()
@@ -1160,6 +1210,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map.close()
         self.event_map.close()
         self.tag_map.close()
+        self.location_map.close()
         self.env.close()
         self.__close_undodb()
 
@@ -1173,6 +1224,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.tag_map        = None
+        self.location_map   = None
         self.surnames       = None
         self.env            = None
         self.metadata       = None
@@ -1191,6 +1243,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map = None
         self.event_map = None
         self.tag_map = None
+        self.location_map = None
         self.reference_map_primary_map = None
         self.reference_map_referenced_map = None
         self.reference_map = None
@@ -1203,14 +1256,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             versionpath = os.path.join(self.path, BDBVERSFN)
             try:
                 with open(versionpath, "w") as version_file:
-                    version = str(db.version())
-                    if sys.version_info[0] < 3:
-                        if isinstance(version, UNITYPE):
-                            version = version.encode('utf-8')
-                    version_file.write(version)
+                    version_file.write(str(db.version()))
             except:
                 # Storing the version of Berkeley Db is not really vital.
-                print ("Error storing berkeley db version")
                 pass
 
         try:
@@ -1220,7 +1268,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def create_id(self):
         return "%08x%08x" % ( int(time.time()*10000), 
-                              self.rand.randint(0, maxsize))
+                              self.rand.randint(0, maxint))
 
     def __add_object(self, obj, transaction, find_next_func, commit_func):
         if find_next_func and not obj.gramps_id:
@@ -1356,12 +1404,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.__add_object(obj, transaction, None, self.commit_tag)
 
+    def add_location(self, obj, transaction):
+        """
+        Add a Location to the database, assigning a handle if it has not already
+        been defined.
+        """
+        return self.__add_object(obj, transaction, None, self.commit_location)
+
     def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return
 
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
+        handle = str(handle)
         if transaction.batch:
             with BSDDBTxn(self.env, data_map) as txn:
                 self.delete_primary_from_reference_map(handle, transaction,
@@ -1385,8 +1439,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
         self.remove_from_surname_list(person)
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:            
                 self.delete_primary_from_reference_map(handle, transaction,
@@ -1395,7 +1447,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             self.delete_primary_from_reference_map(handle, transaction,
                                                    txn=self.txn)
-            self.person_map.delete(handle, txn=self.txn)
+            self.person_map.delete(str(handle), txn=self.txn)
             transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
 
     def remove_source(self, handle, transaction):
@@ -1470,6 +1522,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__do_remove(handle, transaction, self.tag_map, 
                               TAG_KEY)
 
+    def remove_location(self, handle, transaction):
+        """
+        Remove the Location specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.location_map, 
+                              LOCATION_KEY)
+
     @catch_db_error
     def set_name_group_mapping(self, name, group):
         if not self.readonly:
@@ -1482,7 +1542,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 if group is not None:
                     txn.put(sname, group)
             if group == None:
-                grouppar = ''
+                grouppar = u''
             else:
                 grouppar = group
             self.emit('person-groupname-rebuild', (name, grouppar))
@@ -1508,7 +1568,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if batch_transaction:
             return
-        name = conv_to_unicode(find_surname_name(person.handle, 
+        name = unicode(find_surname_name(person.handle, 
                             person.get_primary_name().serialize()), 'utf-8')
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
@@ -1528,18 +1588,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         name = find_surname_name(person.handle, 
                                      person.get_primary_name().serialize())
-        if sys.version_info[0] < 3:
-            if isinstance(name, unicode):
-                uname = name
-                name = str(name)
-            else:
-                uname = unicode(name, 'utf-8')
+        if isinstance(name, unicode):
+            uname = name
+            name = str(name)
         else:
-            if isinstance(name, str):
-                uname = name
-                name = name.encode('utf-8')
-            else:
-                uname = str(name)
+            uname = unicode(name, 'utf-8')
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
@@ -1548,7 +1601,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 i = bisect.bisect(self.surname_list, uname)
                 if 0 <= i-1 < len(self.surname_list):
                     del self.surname_list[i-1]
-        except db.DBError as err:
+        except db.DBError, err:
             if str(err) == "(0, 'DB object has been closed')":
                 pass # A batch transaction closes the surnames db table.
             else:
@@ -1566,9 +1619,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return 
 
         obj.change = int(change_time or time.time())
-        handle = obj.handle
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
+        handle = str(obj.handle)
 
         self.update_reference_map(obj, transaction, self.txn)
 
@@ -1790,11 +1841,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.commit_base(tag, self.tag_map, TAG_KEY, 
                           transaction, change_time)
 
+    def commit_location(self, location, transaction, change_time=None):
+        """
+        Commit the specified Location to the database, storing the changes as
+        part of the transaction.
+        """
+        self.commit_base(location, self.location_map, LOCATION_KEY, 
+                          transaction, change_time)
+
     def get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         try:
-            data = data_map.get(handle, txn=self.txn)
+            data = data_map.get(str(handle), txn=self.txn)
         except:
             data = None
             # under certain circumstances during a database reload,
@@ -1879,7 +1936,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.log_flush()
         if not transaction.batch:
             emit = self.__emit
-            for obj_type, obj_name in KEY_TO_NAME_MAP.items():
+            for obj_type, obj_name in KEY_TO_NAME_MAP.iteritems():
                 emit(transaction, obj_type, TXNADD, obj_name, '-add')
                 emit(transaction, obj_type, TXNUPD, obj_name, '-update')
                 emit(transaction, obj_type, TXNDEL, obj_name, '-delete')
@@ -1926,7 +1983,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             # "while Gtk.events_pending(): Gtk.main_iteration() loop"
             # (typically used in a progress bar), so emit rebuild signals
             # to correct that.
-            object_types = set([x[0] for x in list(transaction.keys())])
+            object_types = set([x[0] for x in transaction.keys()])
             for object_type in object_types:
                 if object_type == REFERENCE_KEY:
                     continue
@@ -1983,11 +2040,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def gramps_upgrade(self, callback=None):
         UpdateCallback.__init__(self, callback)
         
-        version = self.metadata.get(b'version', default=_MINVERSION)
+        version = self.metadata.get('version', default=_MINVERSION)
 
         t = time.time()
 
-        from . import upgrade
+        import upgrade
         if version < 14:
             upgrade.gramps_upgrade_14(self)
         if version < 15:
@@ -2007,6 +2064,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.__close_undodb()
             self.db_is_open = False
 
+        if version < 17:
+            self.__connect_secondary()
+            upgrade.gramps_upgrade_17(self)
 
         _LOG.debug("Upgrade time: %d seconds" % int(time.time()-t))
 
@@ -2060,7 +2120,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.metadata  = self.__open_shelf(full_name, META)
         
         with BSDDBTxn(self.env, self.metadata) as txn:
-            txn.put(b'version', _DBVERSION)
+            txn.put('version', _DBVERSION)
         
         self.metadata.close()
         self.env.close()
@@ -2133,14 +2193,13 @@ if __name__ == "__main__":
                 db_name = f.read()
                 if db_name == 'Small Example':
                     break
-    print("loading", db_path)
+    print "loading", db_path
     d.load(db_path, lambda x: x)
 
-    print(d.get_default_person())
-    out = ''
+    print d.get_default_person()
     with d.get_person_cursor() as c:
         for key, data in c:
             person = Person(data)
-            out += key + person.get_primary_name().get_name()
+            print key, person.get_primary_name().get_name(),
 
-    print(out, list(d.surnames.keys()))
+    print d.surnames.keys()

@@ -25,21 +25,18 @@
 """
 Place object for GRAMPS.
 """
-from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .primaryobj import PrimaryObject
-from .citationbase import CitationBase
-from .notebase import NoteBase
-from .mediabase import MediaBase
-from .urlbase import UrlBase
-from .location import Location
-
-_EMPTY_LOC = Location().serialize()
+from primaryobj import PrimaryObject
+from citationbase import CitationBase
+from notebase import NoteBase
+from mediabase import MediaBase
+from urlbase import UrlBase
+from location import Location
 
 #-------------------------------------------------------------------------
 #
@@ -66,14 +63,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         MediaBase.__init__(self, source)
         UrlBase.__init__(self, source)
         if source:
-            self.long = source.long
-            self.lat = source.lat
             self.title = source.title
-            self.main_loc = Location(source.main_loc)
-            self.alt_loc = list(map(Location, source.alt_loc))
+            self.main_loc = source.main_loc
+            self.alt_loc = source.alt_loc
         else:
-            self.long = ""
-            self.lat = ""
             self.title = ""
             self.main_loc = None
             self.alt_loc = []
@@ -96,14 +89,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             be considered persistent.
         :rtype: tuple
         """
-
-        if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
-            main_loc = None
-        else:
-            main_loc = self.main_loc.serialize()
-
-        return (self.handle, self.gramps_id, self.title, self.long, self.lat,
-                main_loc, [al.serialize() for al in self.alt_loc],
+        return (self.handle, self.gramps_id, self.title,
+                self.main_loc, self.alt_loc,
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
                 CitationBase.serialize(self),
@@ -158,15 +145,11 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             Person object
         :type data: tuple
         """
-        (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         main_loc, alt_loc, urls, media_list, citation_list, note_list,
+        (self.handle, self.gramps_id, self.title,
+         self.main_loc, self.alt_loc,
+         urls, media_list, citation_list, note_list,
          self.change, self.private) = data
 
-        if main_loc is None:
-            self.main_loc = None
-        else:
-            self.main_loc = Location().unserialize(main_loc)
-        self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         CitationBase.unserialize(self, citation_list)
@@ -180,7 +163,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.long, self.lat, self.title, self.gramps_id]
+        return [self.title, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -224,6 +207,20 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.get_citation_child_list()
 
+    def get_referenced_location_handles(self):
+        """
+        Return the list of (classname, handle) tuples for all referenced notes.
+        
+        This method should be used to get the :class:`~gen.lib.note.Note` portion of the list
+        by objects that store note lists.
+        
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
+        """
+        refs = [('Location', self.main_loc)]
+        refs.extend([('Location', handle) for handle in self.alt_loc])
+        return refs
+
     def get_referenced_handles(self):
         """
         Return the list of (classname, handle) tuples for all directly
@@ -232,7 +229,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
+        return self.get_referenced_location_handles() + \
+                self.get_referenced_note_handles() + \
                 self.get_referenced_citation_handles()
 
     def merge(self, acquisition):
@@ -266,42 +264,6 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.title
 
-    def set_longitude(self, longitude):
-        """
-        Set the longitude of the Place object.
-
-        :param longitude: longitude to assign to the Place
-        :type longitude: str
-        """
-        self.long = longitude
-
-    def get_longitude(self):
-        """
-        Return the longitude of the Place object.
-
-        :returns: Returns the longitude of the Place
-        :rtype: str
-        """
-        return self.long
-
-    def set_latitude(self, latitude):
-        """
-        Set the latitude of the Place object.
-
-        :param latitude: latitude to assign to the Place
-        :type latitude: str
-        """
-        self.lat = latitude
-
-    def get_latitude(self):
-        """
-        Return the latitude of the Place object.
-
-        :returns: Returns the latitude of the Place
-        :rtype: str
-        """
-        return self.lat
-
     def get_main_location(self):
         """
         Return the :class:`~gen.lib.location.Location` object representing the primary information for 
@@ -313,8 +275,6 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 location information about the Place.
         :rtype: :class:`~gen.lib.location.Location`
         """
-        if not self.main_loc:
-            self.main_loc = Location()
         return self.main_loc
 
     def set_main_location(self, location):
@@ -382,28 +342,3 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                     break
             else:
                 self.alt_loc.append(addendum)
-
-    def get_display_info(self):
-        """
-        Get the display information associated with the object.
-
-        This includes the information that is used for display and for sorting.
-        Returns a list consisting of 13 strings. These are:
-        
-        Place Title, Place ID, Main Location Parish, Main Location County,
-        Main Location City, Main Location State/Province,
-        Main Location Country, upper case Place Title, upper case Parish,
-        upper case city, upper case county, upper case state,
-        upper case country.
-        """
-        
-        if self.main_loc:
-            return [self.title, self.gramps_id, self.main_loc.parish,
-                    self.main_loc.city, self.main_loc.county,
-                    self.main_loc.state, self.main_loc.country,
-                    self.title.upper(), self.main_loc.parish.upper(),
-                    self.main_loc.city.upper(), self.main_loc.county.upper(),
-                    self.main_loc.state.upper(), self.main_loc.country.upper()]
-        else:
-            return [self.title, self.gramps_id, '', '', '', '', '',
-                    self.title.upper(), '', '', '', '', '']

@@ -28,8 +28,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
-
 from gramps.gen.ggettext import gettext as _
 import logging
 log = logging.getLogger(".")
@@ -48,12 +46,10 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
-from .editprimary import EditPrimary
-from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
+from editprimary import EditPrimary
+from displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from ..widgets import MonitoredEntry, PrivacyButton
-from gramps.gen.errors import ValidationError
-from gramps.gen.utils.place import conv_lat_lon
+from ..widgets import MonitoredEntry, PrivacyButton, LocationEntry
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -123,12 +119,12 @@ class EditPlace(EditPrimary):
 
         self.set_window(self.top.toplevel, None,
                         self.get_menu_title())
-        tblmloc =  self.top.get_object('table19')
+        self.tblmloc =  self.top.get_object('loc_table')
         notebook = self.top.get_object('notebook3')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
-                              _('_Location'), tblmloc)
+                              _('_Location'), self.tblmloc)
         self.track_ref_for_deletion("mloc")
 
 
@@ -154,23 +150,10 @@ class EditPlace(EditPrimary):
         self._add_db_signal('place-delete', self.check_for_close)
 
     def _setup_fields(self):
-        mloc = self.obj.get_main_location()
-        
+
         self.title = MonitoredEntry(self.top.get_object("place_title"),
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
-        
-        self.street = MonitoredEntry(self.top.get_object("street"),
-                                     mloc.set_street, mloc.get_street, 
-                                     self.db.readonly)
-
-        self.locality = MonitoredEntry(self.top.get_object("locality"),
-                                     mloc.set_locality, mloc.get_locality, 
-                                     self.db.readonly)
-
-        self.city = MonitoredEntry(self.top.get_object("city"),
-                                   mloc.set_city, mloc.get_city, 
-                                   self.db.readonly)
         
         self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.obj.set_gramps_id, 
@@ -178,54 +161,6 @@ class EditPlace(EditPrimary):
         
         self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
-
-        self.parish = MonitoredEntry(self.top.get_object("parish"),
-                                     mloc.set_parish, mloc.get_parish, 
-                                     self.db.readonly)
-        
-        self.county = MonitoredEntry(self.top.get_object("county"),
-                                     mloc.set_county, mloc.get_county, 
-                                     self.db.readonly)
-        
-        self.state = MonitoredEntry(self.top.get_object("state"),
-                                    mloc.set_state, mloc.get_state, 
-                                    self.db.readonly)
-
-        self.phone = MonitoredEntry(self.top.get_object("phone"),
-                                    mloc.set_phone, mloc.get_phone, 
-                                    self.db.readonly)
-        
-        self.postal = MonitoredEntry(self.top.get_object("postal"),
-                                     mloc.set_postal_code, 
-                                     mloc.get_postal_code, self.db.readonly)
-
-        self.country = MonitoredEntry(self.top.get_object("country"),
-                                      mloc.set_country, mloc.get_country, 
-                                      self.db.readonly)
-
-        self.longitude = MonitoredEntry(
-            self.top.get_object("lon_entry"),
-            self.obj.set_longitude, self.obj.get_longitude,
-            self.db.readonly)
-        self.longitude.connect("validate", self._validate_coordinate, "lon")
-        #force validation now with initial entry
-        self.top.get_object("lon_entry").validate(force=True)
-
-        self.latitude = MonitoredEntry(
-            self.top.get_object("lat_entry"),
-            self.obj.set_latitude, self.obj.get_latitude,
-            self.db.readonly)
-        self.latitude.connect("validate", self._validate_coordinate, "lat")
-        #force validation now with initial entry
-        self.top.get_object("lat_entry").validate(force=True)
-        
-    def _validate_coordinate(self, widget, text, typedeg):
-        if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
-            return ValidationError(_("Invalid latitude (syntax: 18\u00b09'") +
-                                   _('48.21"S, -18.2412 or -18:9:48.21)'))
-        elif (typedeg == 'lon') and not conv_lat_lon("0", text, "ISO-D"):
-            return ValidationError(_("Invalid longitude (syntax: 18\u00b09'") +
-                                   _('48.21"E, -18.2412 or -18:9:48.21)'))
 
     def build_menu_names(self, place):
         return (_('Edit Place'), self.get_menu_title())
@@ -239,6 +174,9 @@ class EditPlace(EditPrimary):
         notebook = self.top.get_object('notebook3')
 
         self._add_tab(notebook, self.mloc)
+
+        handle = self.obj.get_main_location()
+        self.lentry = LocationEntry(self.tblmloc, self.dbstate.db, handle)
 
         self.loc_list = LocationEmbedList(self.dbstate,
                                           self.uistate,
@@ -310,6 +248,16 @@ class EditPlace(EditPrimary):
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
+
+        handle, new_locations = self.lentry.get_result()
+        with DbTxn(_('Add location'), self.dbstate.db) as trans:
+            for loc_type, name in new_locations:
+                new_location = gen.lib.Location()
+                new_location.parent = handle
+                new_location.name = name
+                new_location.set_type(loc_type)
+                handle = self.dbstate.db.add_location(new_location, trans)
+        self.obj.set_main_location(handle)
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():

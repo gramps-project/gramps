@@ -121,6 +121,10 @@ class InLatLonNeighborhood(Rule):
                 
             
     def apply(self,db,place):
+        location = db.get_location_from_handle(place.get_main_location())
+        latitude = location.get_latitude().strip()
+        longitude = location.get_longitude().strip()
+        
         if self.halfheight == -1 and self.halfwidth ==-1 :
             return False
         

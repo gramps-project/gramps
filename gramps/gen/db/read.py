@@ -25,27 +25,21 @@
 """
 Read classes for the GRAMPS databases.
 """
-
+from __future__ import with_statement
 #-------------------------------------------------------------------------
 #
 # libraries
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import cPickle
 import time
 import random
 import locale
 import os
-from sys import maxsize
+from sys import maxint
 
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+if config.get('preferences.use-bsddb3'):
     from bsddb3 import db
 else:
     from bsddb import db
@@ -66,6 +60,7 @@ from ..lib.src import Source
 from ..lib.citation import Citation
 from ..lib.event import Event
 from ..lib.place import Place
+from ..lib.location import Location
 from ..lib.repo import Repository
 from ..lib.note import Note
 from ..lib.tag import Tag
@@ -73,13 +68,12 @@ from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher 
 from ..lib.nameorigintype import NameOriginType
 
-from .dbconst import *
+from dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import UNITYPE, STRTYPE, cuni
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -88,10 +82,10 @@ LOG = logging.getLogger(".citation")
 # constants
 #
 #-------------------------------------------------------------------------
-from .dbconst import *
+from dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'citation', 
-            'event',  'media', 'place', 'repository',
+            'event',  'media', 'place', 'location', 'repository',
             'reference', 'note', 'tag')
 
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
@@ -105,14 +99,12 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
-    returns a byte string
     """
     return __index_surname(data[3][5])
 
 def find_surname_name(key, data):
     """
     Creating a surname from raw name, to use for sort and index
-    returns a byte string
     """
     return __index_surname(data[5])
 
@@ -120,13 +112,12 @@ def __index_surname(surn_list):
     """
     All non pa/matronymic surnames are used in indexing.
     pa/matronymic not as they change for every generation!
-    returns a byte string
     """
     if surn_list:
-        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
+        surn = u" ".join([x[0] for x in surn_list if not (x[3][0] in [
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
-        surn = ""
+        surn = u""
     return surn.encode('utf-8')
     
 
@@ -174,6 +165,32 @@ class DbReadCursor(BsddbBaseCursor):
         BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.db.cursor(txn)
         self.source = source
+
+#-------------------------------------------------------------------------
+#
+# DbBsddbTreeCursor
+#
+#-------------------------------------------------------------------------
+class DbBsddbTreeCursor(BsddbBaseCursor):
+
+    def __init__(self, source, txn=None, **kwargs):
+        BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
+        self.cursor = source.cursor(txn)
+        self.source = source
+
+    def __iter__(self):
+        """
+        Iterator
+        """
+        to_do = [None]
+        while to_do:
+            data = self.set(str(to_do.pop()))
+            _n = self.next_dup
+            while data:
+                payload = cPickle.loads(data[1])
+                yield (payload[0], payload)
+                to_do.append(payload[0])
+                data = _n()
 
 class DbBsddbRead(DbReadBase, Callback):
     """
@@ -324,6 +341,13 @@ class DbBsddbRead(DbReadBase, Callback):
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
                 },
+            'Location':
+                {
+                "handle_func": self.get_location_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Location,
+                "cursor_func": self.get_location_cursor,
+                },
             }
 
         self.set_person_id_prefix('I%04d')
@@ -378,6 +402,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.nid_trans = {}
         self.eid_trans = {}
         self.tag_trans = {}
+        self.loc_trans = {}
         self.env = None
         self.person_map = {}
         self.family_map = {}
@@ -436,7 +461,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self._tables.keys())
+        return self._tables.keys()
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
@@ -447,7 +472,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_cursor(self, table, *args, **kwargs):
         try:
             return DbReadCursor(table, self.txn)
-        except DBERRS as msg:
+        except DBERRS, msg:
             self.__log_error()
             raise DbError(msg)
 
@@ -480,6 +505,9 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_tag_cursor(self, *args, **kwargs):
         return self.get_cursor(self.tag_map, *args, **kwargs)
+
+    def get_location_cursor(self, *args, **kwargs):
+        return DbBsddbTreeCursor(self.parents, self.txn)
 
     def close(self):
         """
@@ -529,18 +557,16 @@ class DbBsddbRead(DbReadBase, Callback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
         self.emit('tag-rebuild')
+        self.emit('location-rebuild')
 
     def __find_next_gramps_id(self, prefix, map_index, trans):
         """
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        #in bytes
-        bindex = index.encode('utf-8')
-        while trans.get(bindex, txn=self.txn) is not None:
+        while trans.get(str(index), txn=self.txn) is not None:
             map_index += 1
             index = prefix % map_index
-            bindex = index.encode('utf-8')
         map_index += 1
         return (map_index, index)
         
@@ -626,9 +652,7 @@ class DbBsddbRead(DbReadBase, Callback):
         return gid
 
     def get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
-        data = data_map.get(handle)
+        data = data_map.get(str(handle))
         if data:
             newobj = class_type()
             newobj.unserialize(data)
@@ -744,11 +768,17 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_from_handle(handle, Tag, self.tag_map)
 
+    def get_location_from_handle(self, handle):
+        """
+        Find a Location in the database from the passed handle.
+        
+        If no such Location exists, None is returned.
+        """
+        return self.get_from_handle(handle, Location, self.location_map)
+
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
-        if isinstance(val, UNITYPE):
-            val = val.encode('utf-8')
         try:
-            data = tbl.get(val, txn=self.txn)
+            data = tbl.get(str(val), txn=self.txn)
             if data is not None:
                 obj = class_()
                 ### FIXME: this is a dirty hack that works without no
@@ -758,12 +788,12 @@ class DbBsddbRead(DbReadBase, Callback):
                 if self.readonly:
                     tuple_data = prim_tbl.get(data, txn=self.txn)
                 else:
-                    tuple_data = pickle.loads(data)
+                    tuple_data = cPickle.loads(data)
                 obj.unserialize(tuple_data)
                 return obj
             else:
                 return None
-        except DBERRS as msg:
+        except DBERRS, msg:
             self.__log_error()
             raise DbError(msg)
 
@@ -862,15 +892,17 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        if isinstance(surname, UNITYPE):
-            surname = surname.encode('utf-8')
-        return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
+        if isinstance(surname, unicode):
+            ssurname = surname.encode('utf-8')
+            return conv_dbstr_to_unicode(self.name_group.get(ssurname, ssurname))
+        else:
+            return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return list(map(conv_dbstr_to_unicode, list(self.name_group.keys())))
+        return map(conv_dbstr_to_unicode, self.name_group.keys())
 
     def has_name_group_key(self, name):
         """
@@ -878,9 +910,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
-        if isinstance(name, UNITYPE):
-            name = name.encode('utf-8')
-        return name in self.name_group
+        if isinstance(name, unicode):
+            return self.name_group.has_key(name.encode('utf-8'))
+        else:
+            return self.name_group.has_key(name)
 
     def get_number_of_records(self, table):
         if not self.db_is_open:
@@ -949,6 +982,12 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the number of tags currently in the database.
         """
         return self.get_number_of_records(self.tag_map)
+
+    def get_number_of_locations(self):
+        """
+        Return the number of locations currently in the database.
+        """
+        return self.get_number_of_records(self.location_map)
 
     def all_handles(self, table):
         return table.keys(txn=self.txn)
@@ -1074,6 +1113,15 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
+    def get_location_handles(self):
+        """
+        Return a list of database handles, one handle for each Location in the 
+        database.
+        """
+        if self.db_is_open:
+            return self.all_handles(self.location_map)
+        return []
+
     def _f(curs_):
         """
         Closure that returns an iterator over handles in the database.
@@ -1096,6 +1144,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
     iter_tag_handles          = _f(get_tag_cursor)
+    iter_location_handles     = _f(get_location_cursor)
     del _f
     
     def _f(curs_, obj_):
@@ -1122,6 +1171,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
     iter_tags          = _f(get_tag_cursor, Tag)
+    iter_locations     = _f(get_location_cursor, Location)
     del _f
 
     def get_gramps_ids(self, obj_key):
@@ -1138,7 +1188,7 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        return list(table.keys())
+        return table.keys()
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -1154,9 +1204,8 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        if isinstance(gramps_id, UNITYPE):
-            gramps_id = gramps_id.encode('utf-8')
-        return table.get(gramps_id, txn=self.txn) is not None
+        #return str(gramps_id) in table
+        return table.get(str(gramps_id), txn=self.txn) is not None
 
     def find_initial_person(self):
         person = self.get_default_person()
@@ -1168,7 +1217,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, STRTYPE) and val:
+        if isinstance(val, basestring) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
@@ -1190,24 +1239,23 @@ class DbBsddbRead(DbReadBase, Callback):
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
         if pattern_match:
             str_prefix = pattern_match.group(1)
-            ##nr_width = pattern_match.group(2)
+            nr_width = pattern_match.group(2)
             def closure_func(gramps_id):
                 if gramps_id and gramps_id.startswith(str_prefix):
                     id_number = gramps_id[len(str_prefix):]
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
-                        ## this code never ran, as an int compared to str with > is False!
-##                        if len(cuni(id_value)) > nr_width:
-##                            # The ID to be imported is too large to fit in the
-##                            # users format. For now just create a new ID,
-##                            # because that is also what happens with IDs that
-##                            # are identical to IDs already in the database. If
-##                            # the problem of colliding import and already
-##                            # present IDs is solved the code here also needs
-##                            # some solution.
-##                            gramps_id = id_pattern % 1
-##                        else:
-                        gramps_id = id_pattern % id_value
+                        if len(str(id_value)) > nr_width:
+                            # The ID to be imported is too large to fit in the
+                            # users format. For now just create a new ID,
+                            # because that is also what happens with IDs that
+                            # are identical to IDs already in the database. If
+                            # the problem of colliding import and already
+                            # present IDs is solved the code here also needs
+                            # some solution.
+                            gramps_id = id_pattern % 1
+                        else:
+                            gramps_id = id_pattern % id_value
                 return gramps_id
         else:
             def closure_func(gramps_id):
@@ -1391,13 +1439,13 @@ class DbBsddbRead(DbReadBase, Callback):
         if person:
             return person
         elif (self.metadata is not None) and (not self.readonly):
-            self.metadata[b'default'] = None
+            self.metadata['default'] = None
         return None
 
     def get_default_handle(self):
         """Return the default Person of the database."""
         if self.metadata is not None:
-            return self.metadata.get(b'default')
+            return self.metadata.get('default')
         return None
 
     def get_save_path(self):
@@ -1513,11 +1561,9 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper method for get_raw_<object>_data methods
         """
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         try:
-            return table.get(handle, txn=self.txn)
-        except DBERRS as msg:
+            return table.get(str(handle), txn=self.txn)
+        except DBERRS, msg:
             self.__log_error()
             raise DbError(msg)
     
@@ -1551,15 +1597,16 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_raw_tag_data(self, handle):
         return self.__get_raw_data(self.tag_map, handle)
 
+    def get_raw_location_data(self, handle):
+        return self.__get_raw_data(self.location_map, handle)
+
     def __has_handle(self, table, handle):
         """
         Helper function for has_<object>_handle methods
         """
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         try:
-            return table.get(handle, txn=self.txn) is not None
-        except DBERRS as msg:
+            return table.get(str(handle), txn=self.txn) is not None
+        except DBERRS, msg:
             self.__log_error()
             raise DbError(msg)
         
@@ -1623,94 +1670,68 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.tag_map, handle)
 
-    def __sortbyperson_key(self, handle):
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
-        return locale.strxfrm(find_surname(handle, 
-                                           self.person_map.get(handle)))
+    def has_location_handle(self, handle):
+        """
+        Return True if the handle exists in the current Location database.
+        """
+        return self.__has_handle(self.location_map, handle)
+
+    def __sortbyperson_key(self, person):
+        return locale.strxfrm(find_surname(str(person), 
+                                           self.person_map.get(str(person))))
 
     def __sortbyplace(self, first, second):
-        if isinstance(first, UNITYPE):
-            first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
-            second = second.encode('utf-8')
-        return locale.strcoll(self.place_map.get(first)[2], 
-                              self.place_map.get(second)[2])
+        return locale.strcoll(self.place_map.get(str(first))[2], 
+                              self.place_map.get(str(second))[2])
 
     def __sortbyplace_key(self, place):
-        if isinstance(place, UNITYPE):
-            place = place.encode('utf-8')
-        return locale.strxfrm(self.place_map.get(place)[2])
+        return locale.strxfrm(self.place_map.get(str(place))[2])
 
     def __sortbysource(self, first, second):
-        if isinstance(first, UNITYPE):
-            first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
-            second = second.encode('utf-8')
-        source1 = cuni(self.source_map[first][2])
-        source2 = cuni(self.source_map[second][2])
+        source1 = unicode(self.source_map[str(first)][2])
+        source2 = unicode(self.source_map[str(second)][2])
         return locale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
-        source = cuni(self.source_map[key][2])
+        source = unicode(self.source_map[str(key)][2])
         return locale.strxfrm(source)
 
     def __sortbycitation(self, first, second):
-        if isinstance(first, UNITYPE):
-            first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
-            second = second.encode('utf-8')
-        citation1 = cuni(self.citation_map[first][3])
-        citation2 = cuni(self.citation_map[second][3])
+        citation1 = unicode(self.citation_map[str(first)][3])
+        citation2 = unicode(self.citation_map[str(second)][3])
         return locale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
-        citation = cuni(self.citation_map[key][3])
+        citation = unicode(self.citation_map[str(key)][3])
         return locale.strxfrm(citation)
 
     def __sortbymedia(self, first, second):
-        if isinstance(first, UNITYPE):
-            first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
-            second = second.encode('utf-8')
-        media1 = self.media_map[first][4]
-        media2 = self.media_map[second][4]
+        media1 = self.media_map[str(first)][4]
+        media2 = self.media_map[str(second)][4]
         return locale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
-        media = self.media_map[key][4]
+        media = self.media_map[str(key)][4]
         return locale.strxfrm(media)
 
     def __sortbytag(self, first, second):
-        if isinstance(first, UNITYPE):
-            first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
-            second = second.encode('utf-8')
-        tag1 = self.tag_map[first][1]
-        tag2 = self.tag_map[second][1]
+        tag1 = self.tag_map[str(first)][1]
+        tag2 = self.tag_map[str(second)][1]
         return locale.strcoll(tag1, tag2)
 
     def __sortbytag_key(self, key):
-        if isinstance(key, UNITYPE):
-            key = key.encode('utf-8')
-        tag = self.tag_map[key][1]
+        tag = self.tag_map[str(key)][1]
         return locale.strxfrm(tag)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
         if (self.metadata is not None) and (not self.readonly):
-            self.metadata[b'mediapath'] = path
+            self.metadata['mediapath'] = path
 
     def get_mediapath(self):
         """Return the default media path of the database."""
         if self.metadata is not None:
-            return self.metadata.get(b'mediapath', None)
+            return self.metadata.get('mediapath', None)
         return None
 
     def find_backlink_handles(self, handle, include_classes=None):
@@ -1779,17 +1800,21 @@ class DbBsddbRead(DbReadBase, Callback):
                 'cursor_func': self.get_tag_cursor, 
                 'class_func': Tag,
                 },
+            'Location':   {
+                'cursor_func': self.get_location_cursor, 
+                'class_func': Location,
+                },
             }
 
         # Find which tables to iterate over
         if (include_classes is None):
-            the_tables = list(primary_tables.keys())
+            the_tables = primary_tables.keys()
         else:
             the_tables = include_classes
         
         # Now we use the functions and classes defined above to loop through
         # each of the existing primary object tables
-        for primary_table_name, funcs in the_tables.items():
+        for primary_table_name, funcs in the_tables.iteritems():
             with funcs['cursor_func']() as cursor:
 
             # Grab the real object class here so that the lookup does
@@ -1834,7 +1859,7 @@ class DbBsddbRead(DbReadBase, Callback):
             name_file = open(filepath, "r")
             name = name_file.read()
             name_file.close()
-        except (OSError, IOError) as msg:
+        except (OSError, IOError), msg:
             self.__log_error()
             name = None
         return name

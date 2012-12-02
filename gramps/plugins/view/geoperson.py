@@ -33,6 +33,7 @@ Geography for one person
 from gramps.gen.ggettext import gettext as _
 import os
 import sys
+import urlparse
 import operator
 import locale
 from gi.repository import Gdk
@@ -318,8 +319,10 @@ class GeoPerson(GeoGraphyView):
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
                     if place:
-                        longitude = place.get_longitude()
-                        latitude = place.get_latitude()
+                        mloc = place.get_main_location()
+                        location = self.dbstate.db.get_location_from_handle(mloc)
+                        longitude = location.get_longitude()
+                        latitude = location.get_latitude()
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
                         descr = place.get_title()
