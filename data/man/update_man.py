@@ -36,6 +36,12 @@ import os
 import sys
 from argparse import ArgumentParser
 
+DOCUTILS = True
+try:
+    import docutils.core, docutils.writers
+except:
+    DOCUTILS = False
+
 LANGUAGES = ['sv', 'nl', 'pl', 'cs', 'pt_BR', 'fr']
 VERSION = '4.0.0'
 DATE = ''
@@ -70,6 +76,9 @@ def tests():
         os.system('''%(program)s''' % {'program': sphinxCmd})
     except:
         print ('Please, install sphinx')
+        
+    if not DOCUTILS:
+        print('\nNo docutils support, cannot use -m/--man and -o/--odt arguments.')
 
 def main():
     """
@@ -106,10 +115,10 @@ def main():
     if args.build:
         build()
         
-    if args.man:
+    if args.man and DOCUTILS:
         man()
         
-    if args.odt:
+    if args.odt and DOCUTILS:
         odt()
         
 def build():
@@ -143,6 +152,9 @@ def build():
 def man():
     """
     man file generation via docutils (python)
+    
+    from docutils.core import publish_cmdline, default_description
+    from docutils.writers import manpage
     """
     
     os.system('''rst2man en.rst gramps.1''') 
@@ -154,6 +166,9 @@ def man():
 def odt():
     """
     odt file generation via docutils (python)
+    
+    from docutils.core import publish_cmdline_to_binary, default_description
+    from docutils.writers.odf_odt import Writer, Reader
     """
     
     os.system('''rst2odt en.rst gramps.odt''') 
