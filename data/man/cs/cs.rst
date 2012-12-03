@@ -5,11 +5,11 @@ gramps(1)			     3.4.0			     gramps(1)
 
 
 
-JMÉNO
+**JMÉNO**
        gramps - programový systém pro správu genealogického výzkumu a analýzy.
 
 
-POUŽITÍ
+**POUŽITÍ**
        gramps	[-?|--help]  [--usage]	[--version]  [-l]  [-u|--force-unlock]
        [-O|--open=  DATABÁZE  [-f|--format=  FORMÁT]]	[-i|--import=	SOUBOR
        [-f|--format=   FORMÁT]]   [-i|--import=   ...]	 [-e|--export=	SOUBOR
@@ -17,7 +17,7 @@ POUŽITÍ
        SOUBOR ] [--version]
 
 
-POPIS
+**POPIS**
        Gramps  je  zdarma šířený Open Source genealogický program. Je napsán v
        jazyce Python s využitím rozhraní  GTK+/GNOME.	Gramps	bude  povědomý
        komukoli,  kdo už pracoval s jinými genealogickými programy jako Family
@@ -26,8 +26,8 @@ POPIS
        rozšířen a je využíván téměř všemi ostatními genealogickými programy.
 
 
-MOŽNOSTI
-       gramps SOUBOR
+**MOŽNOSTI**
+       **gramps** *SOUBOR*
 	      Pokud je zadán SOUBOR (bez dalších parametrů) jako název	rodok‐
 	      menu  nebo jako adresář databáze rodokmenu, je gramps otevřeno v
 	      interaktivním  módu.  Pokud  je  SOUBOR  formátem   podporovaným
@@ -39,7 +39,7 @@ MOŽNOSTI
 	      data ve formátu podporovaném gramps, viz dále.
 
 
-       -f,--format= FORMÁT
+       **-f** , **--format=** *FORMÁT*
 	      Explicitně definuje formát  SOUBORu  předchozího	parametru  -i,
 	      nebo  -e.  Pokud	není parametr -f pro SOUBOR specifikován, bude
 	      automaticky použit formát  odpovídající  koncovce  souboru  nebo
@@ -60,21 +60,22 @@ MOŽNOSTI
 	      parametrem -f).
 
 
-       -l     Vypíše seznam známých rodokmenů.
+       **-l**     
+          Vypíše seznam známých rodokmenů.
 
 
-       -u,--force-unlock
+       **-u** , **--force-unlock**
 	      Odemkne zamčenou databázi.
 
 
-       -O,--open= DATABÁZE
-	      Otevření	DATABÁZE.  Hodnota  musí  být  existujícím databázovým
+       **-O** , **--open=** *DATABÁZE*
+	      Otevření *DATABÁZE* . Hodnota  musí  být  existujícím databázovým
 	      adresářem,  nebo	názvem	existujícího  rodokmenu.    Pokud   na
 	      příkazové  řádce nejsou žádné parametry importu nebo exportu, je
 	      nad danou databází spuštěna interaktivní relace.
 
 
-       -i,--import= SOUBOR
+       **-i** , **--import=** *SOUBOR*
 	      Importuje data ze SOUBORu. Pokud není specifikována databáze, je
 	      použita dočasná. Ta je po ukončení gramps smazána.
 
@@ -85,7 +86,7 @@ MOŽNOSTI
 	      různá gramps ID.
 
 
-       -a,--action= AKCE
+       **-a** , **--action=** *AKCE*
 	      Provedení  AKCE  nad importovanými daty. Akce jsou spuštěny poté
 	      co jsou všechny importy dat úspěšně ukončeny. V tuto chvíli jsou
 	      podporovány    následující    akce:    summary	(stejné   jako
@@ -104,17 +105,17 @@ MOŽNOSTI
 	      konkrétní  nástroj  nebo	zprávu.   Existují ale i takové, které
 	      jsou společné.
 
-	      name=name
+	      **name=name**
 	      Povinná  předvolba  určující  který  nástroj  nebo  zpráva  bude
 	      spuštěna.    Pokud   zadané   name   neodpovídá  žádné  dostupné
 	      funkčnosti, vypíše se chybové hlášení následované seznamem  dos‐
 	      tupných nástrojů a zpráv (záleží na AKCE).
 
-	      show=all
+	      **show=all**
 	      Vytvoří seznam názvů všech předvoleb dostupných pro danou zprávu
 	      nebo nástroj.
 
-	      show=optionname
+	      **show=optionname**
 	      Vypíše popis všech  funkcionalit	poskytnutých  optionname,  ale
 	      také všechny přijatelné typy a hodnoty pro tuto volbu.
 
@@ -126,17 +127,17 @@ MOŽNOSTI
        předvolbou -a. Akce jsou prováděny jedna za druhou v zadaném pořadí.
 
 
-       -d,--debug= LOGGER_NAME
+       **-d** , **--debug=** *LOGGER_NAME*
 	      Zapne  ladicí  výstup  pro vývoj a testování. Detaily najdete ve
 	      zdrojovém kódu.
 
-       --version
+       **--version**
 	      Vytiskne číslo verze gramps a skončí
 
 
 
 
-Chování
+**Chování**
        Pokud první parametr  příkazové	řádky  nezačíná  pomlčkou,  pokusí  se
        gramps  otevřít	soubor	s  názvem daným prvním argumentem na příkazové
        řádce a spustit interaktivní  relaci.  Zbytek  argumentů  na  příkazové
@@ -174,7 +175,7 @@ Chování
        obvyklá přesměrování výstupů stdout a stderr příkazové řádky.
 
 
-PŘÍKLADY
+**PŘÍKLADY**
        Otevření existujícího rodokmenu a import xml souboru do něho  může  být
        proveden takto:
        
@@ -216,20 +217,20 @@ PŘÍKLADY
 	      gramps
 
 
-PROMĚNNÉ PROSTŘEDÍ
+**PROMĚNNÉ PROSTŘEDÍ**
        Program kontroluje, zda jsou nastaveny následující proměnné:
 
-       LANG - popisuje, který jazyk bude použit: Příklad: pro češtinu musí mít
+       **LANG** - popisuje, který jazyk bude použit: Příklad: pro češtinu musí mít
        proměnná hodnotu cs_CZ.utf8.
 
-       GRAMPSHOME  -  pokud  je  nastavena,  Gramps  použije její hodnotu jako
+       **GRAMPSHOME**  -  pokud  je  nastavena,  Gramps  použije její hodnotu jako
        adresář v němž jsou uložena nastavení a databáze.  Ve  výchozím	stavu,
        kdy  proměnná není nastavena gramps předpokládá že adresář s databázemi
        a nastavením bude vytvořen v adresáři s	uživatelským  profile  (popsán
        proměnnou prostředí HOME v Linuxu nebo USERPROFILE ve Windows 2000/XP).
 
 
-KONCEPTY
+**KONCEPTY**
        gramps  podporuje  systém  zásuvných modulů založených na jazyku python
        jehož prostřednictvím umožňuje přidání	import/export  modulů,	modulů
        pro  vytváření  zpráv,  nástrojů  a  zobrazovacích  filtrů bez nutnosti
@@ -240,17 +241,20 @@ KONCEPTY
        nebo LaTeX. Tím dává možnost přizpůsobit formát požadavku uživatelů.
 
 
-ZNÁMÉ CHYBY A OMEZENÍ
+**ZNÁMÉ CHYBY A OMEZENÍ**
        nejsou
 
 
-SOUBORY
-       ${PREFIX}/bin/gramps
-       ${PREFIX}/share/gramps
-       ${HOME}/.gramps
+**SOUBORY**
+
+       *${PREFIX}/bin/gramps*
+       
+       *${PREFIX}/share/gramps*
+       
+       *${HOME}/.gramps*
 
 
-AUTOŘI
+**AUTOŘI**
        Donald Allingham <don@gramps-project.org>
        http://gramps-project.org/
 
@@ -262,7 +266,7 @@ AUTOŘI
        Zdeněk Hataš <zdenek.hatas@gmail.com>
 
 
-DOKUMENTACE
+**DOKUMENTACE**
        Uživatelská dokumentace je  k  dispozici  prostřednictvím  standardního
        prohlížeče  nápovědy  GNOME  ve formě příručky Gramps. Příručka je také
        dostupná ve formátu XML jako gramps-manual.xml v  adresáři  doc/gramps-
@@ -273,4 +277,4 @@ DOKUMENTACE
 
 
 
-Leden 2011			     3.4.0			     gramps(1)
+Leden 2012			     3.4.0			     gramps(1)
