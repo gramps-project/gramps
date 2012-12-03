@@ -109,34 +109,32 @@ gramps(1)			     4.0.0			     gramps(1)
 	      (comme le rapport  ->  Afficher  -> Statistiques sur la base),
 	      **check** (comme l'outil -> Réparation de la	base  ->  Vérifier  et
 	      réparer),  **report** (produit un rapport) et **tool** (utilise un
-	      outil), ces derniers ont besoin de OPTION précédé par la com‐
-	      mande -p.
+	      outil), ces derniers ont besoin de *OPTION* précédé par la commande -p.
 
 	      L' *OPTION* doit satisfaire ces conditions:
-	      Il  ne doit pas y avoir d'espace.  Si certains arguments doivent
-	      utiliser des espaces, la	chaîne	doit  être  encadrée  par  des
-	      guillemets.   Les  options  vont	par  paire nom et valeur.  Une
+	      Il  ne doit pas y avoir d'espace. Si certains arguments doivent
+	      utiliser des espaces, la chaîne doit être encadrée par des
+	      guillemets. Les options vont par paire nom et valeur. Une
 	      paire est séparée par un signe égal. Différentes paires sont
 	      séparées par une virgule.
 
-	      La  plupart  des options sont spécifiques à chaque rapport. Même
+	      La plupart des options sont spécifiques à chaque rapport. Même
 	      s'il existe des options communes.
 
 	      **name=name**
-	      Cette option est obligatoire, elle  détermine  quel  rapport  ou
-	      outil  sera utilisé. Si le name saisi ne correspond à aucun mod‐
-	      ule disponible, un message d'erreur sera ajouté.
+	      Cette option est obligatoire, elle  détermine quel rapport ou
+	      outil sera utilisé. Si le name saisi ne correspond à aucun 
+	      module disponible, un message d'erreur sera ajouté.
 
 	      **show=all**
-	      Cette option  produit  une  liste  avec  les  noms  des  options
+	      Cette option produit une liste avec les noms des options
 	      disponibles pour un rapport donné.
 
-	      **show=optionname**
-	      Cette  option  affiche  une  description de toutes les fonction‐
-	      nalités proposées par optionname, aussi bien les types  que  les
-	      valeurs pour une option.
+          **show=optionname**
+          Cette option affiche une description de toutes les fonctionnalités
+          proposées par optionname, aussi bien les types que les valeurs pour une option.
 
-	      Utiliser	les options ci-dessus pour trouver tout sur un rapport
+          Utiliser les options ci-dessus pour trouver tout sur un rapport
 	      choisi.
 
 
@@ -146,7 +144,7 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        **-d** , **--debug=** *NOM_LOGGER*
-	      Permet les logs de debug pour le	développement  et  les	tests.
+	      Permet les logs de debug pour le développement et les tests.
 	      Regarder le code source pour les détails.
 
        **--version**
@@ -172,8 +170,8 @@ gramps(1)			     4.0.0			     gramps(1)
 
 
        L'ordre des options **-i** , **-e** , ou **-a** n'a pas de sens. L'ordre actuel est
-       toujours : imports -> actions -> exports. Mais l'ouverture doit tou‐
-       jours être la première !
+       toujours : imports -> actions -> exports. Mais l'ouverture doit toujours
+       être la première !
 
 
        Si aucune option **-O** ou **-i** n'est donnée, gramps lancera sa propre
@@ -198,38 +196,38 @@ gramps(1)			     4.0.0			     gramps(1)
        
 	      **gramps -O** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
-       Ceci  ouvre  un	arbre familial, pour faire la même chose, mais importer
+       Ceci ouvre un arbre familial, pour faire la même chose, mais importer
        dans un arbre familial temporaire et démarrer une session  interactive,
        on peut saisir:
        
 	      **gramps -i** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
-       Lecture	de  quatre  bases  de  données	dont  les formats peuvent être
+       Lecture de quatre bases de données dont les formats peuvent être
        devinés d'après les noms, puis vérification des données:
        
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
           **-i** *file4.wft* **-a** *check*
           
-       Si  vous  voulez  préciser  les	formats de fichiers dans l'exemple ci-
+       Si vous voulez préciser lesformats de fichiers dans l'exemple ci-
        dessus, complétez les noms de fichiers par les options -f appropriées:
        
           **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
           *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
           **-f** *wft* **-a** *check*
           
-       Pour   enregistrer  le  résultat  des  lectures,  donnez  l'option   -e
-       (utiliser -f si le nom de fichier ne permet pas à gramps de deviner  le
+       Pour enregistrer le résultat des lectures, donnez l'option **-e** 
+       (utiliser -f si le nom de fichier ne permet pas à gramps de deviner le
        format):
        
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
           **-f** *gramps-pkg*
           
-       Pour lire trois ensembles de données puis lancer une session interac‐
-       tive de gramps sur le tout :
+       Pour lire trois ensembles de données puis lancer une session 
+       interactive de gramps sur le tout :
        
 	      **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
 
-       Pour lancer l'outil de vérification de la base  de  données  depuis  la
+       Pour lancer l'outil de vérification de la base de données depuis la
        ligne de commande et obtenir le résultat :
        
 	      **gramps -O** *'My Family Tree'* **-a** *tool* **-p name=** *verify*
@@ -242,22 +240,21 @@ gramps(1)			     4.0.0			     gramps(1)
 **VARIABLES D'ENVIRONMENT**
        Le programme vérifie si ces variables d'environnement sont déclarées:
 
-       **LANG**  -	décrit,  quelle  langue est utilisée: Ex.: pour le français on
+       **LANG** - décrit, quelle langue est utilisée: Ex.: pour le français on
        peut définir fr_FR.UTF-8.
 
-       **GRAMPSHOME**  -  si  défini,  force  Gramps  à  utiliser  un   répertoire
-       spécifique  pour  y  conserver ses préférences et bases de données. Par
-       défaut, cette variable n'est pas active et Gramps sait que les  options
-       et  bases  de données doivent être créées dans le répertoire par défaut
-       de l'utilisateur (la variable d'environnement HOME pour Linux ou  USER‐
+       **GRAMPSHOME**  - si  défini, force Gramps à utiliser un répertoire
+       spécifique pour y conserver ses préférences et bases de données. Par
+       défaut, cette variable n'est pas active et Gramps sait que les options
+       et bases de données doivent être créées dans le répertoire par défaut
+       de l'utilisateur (la variable d'environnement HOME pour Linux ou USER‐
        PROFILE pour Windows 2000/XP).
 
 
 **CONCEPTS**
-       Gramps  est un système basé sur le support de plugin-python, permettant
+       Gramps est un système basé sur le support de plugin-python, permettant
        d'importer et d'exporter, la saisie, générer des rapports, des  outils,
-       et  afficher  des  filtres  pouvant  être ajoutés sans modifier le pro‐
-       gramme.
+       et  afficher des filtres pouvant être ajoutés sans modifier le programme.
 
        Par ailleurs, gramps permet la génération directe : impression, rap‐
        ports avec sortie vers d'autres formats, comme *LibreOffice.org* ,
