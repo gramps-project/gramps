@@ -5,11 +5,11 @@ gramps(1)			     3.4.0			     gramps(1)
 
 
 
-NAAM
+**NAAM**
        gramps - Genealogisch Onderzoek en Analyse Beheersysteem.
 
 
-SAMENVATTING
+**SAMENVATTING**
        gramps  [-?|--help]  [--usage]  [--version] [-O|--open= GEGEVENSBESTAND
        [-f|--format= FORMAAT]] [-i|--import= BESTAND  [-f|--format=  FORMAAT]]
        [-i|--import=   ...]   [-e|--export=  BESTAND  [-f|--format=  FORMAAT]]
@@ -17,7 +17,7 @@ SAMENVATTING
        sion]
 
 
-BESCHRIJVING
+**BESCHRIJVING**
        Gramps  is  een	Free/OpenSource  genealogisch programma dat in Python,
        geschreven is en gebruik maakt van de GTK+/GNOME interface.  Gramps zal
        voor iedereen die al gewerkt heeft met andere genealogische programma's
@@ -27,14 +27,14 @@ BESCHRIJVING
        che software.
 
 
-OPTIES
-       grampsBESTAND
-	      Wanneer BESTAND opgegeven wordt (zonder vlaggen) als een famili‐
+**OPTIES**
+       **gramps** *BESTAND*
+	      Wanneer *BESTAND* opgegeven wordt (zonder vlaggen) als een famili‐
 	      estamboom of als een familistamboommap, dan  wordt  dit  bestand
 	      geopend en een interactieve sessie wordt gestart. Indien BESTAND
 	      een bestandsformaat dat door Gramps herkent wordt, zal een  lege
 	      familiestamboom	aangemaakt   worden.   De  bestandsnaam  wordt
-	      gebaseerd op de BESTAND  naam  en  de  gegevens  worden  in  dit
+	      gebaseerd op de *BESTAND*  naam  en  de  gegevens  worden  in  dit
 	      bestand  geïmporteerd. Met resterende opties wordt geen rekening
 	      gehouden. Deze wijze van opstarten is zeer bruikbaar  om	Gramps
 	      te  gebruiken  voor  genealogische  gegevens via een webbrowser.
@@ -42,7 +42,7 @@ OPTIES
 	      Gramps behandelen, zie onder.
 
 
-       -f,--format= FORMAAT
+       **-f** , **--format=** *FORMAAT*
 	      Expliciet  een formaat opgeven voor BESTAND door de optie -i, of
 	      -e mee te geven. Indien de -f optie niet	opgegeven  wordt  voor
 	      BESTAND,	wordt  het formaat gebaseerd op de bestandsextensie of
@@ -216,7 +216,7 @@ OPTIES
           **gramps**
 
 
-CONCEPTEN
+**CONCEPTEN**
        Ondersteuning van een op python-gebaseerd plugin systeem. Dit laat  toe
        om verslagen, hulpgereedschappen en vensterfilters toe te voegen zonder
        dat het hoofdprogramma dient aangepast.
@@ -226,8 +226,8 @@ CONCEPTEN
        of LaTeX. Zo kunnen gebruikers het formaat wijzigen naar eigen wens.
 
 
-GEKENDE BUGS EN BEPERKINGEN
-BESTANDEN
+**GEKENDE BUGS EN BEPERKINGEN**
+**BESTANDEN**
 
        *${PREFIX}/bin/gramps*
        
@@ -236,7 +236,7 @@ BESTANDEN
        *${HOME}/.gramps*
 
 
-AUTEURS
+**AUTEURS**
        Donald Allingham <don@gramps-project.org>
        http://gramps-project.org/
 
@@ -251,11 +251,8 @@ AUTEURS
        Erik De Richter <frederik.de.richter@pandora.be>
 
 
-DOCUMENTATIE
-       De gebruikersdocumentatie is beschikbaar  via  de  normale  GNOME  Help
-       browser	in  de	vorm van een Gramps-handleiding. De handleiding is ook
-       beschikbaar in  XML-formaat:  gramps-manual.xml	onder  doc/gramps-man‐
-       ual/$LANG in de officiële brondistributie.
+**DOCUMENTATIE**
+       De gebruikersdocumentatie is beschikbaar via browser in de webstek.
 
        De  ontwikkelingsdocumentatie kan gevonden worden op de 
        http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
@@ -263,4 +260,4 @@ DOCUMENTATIE
 
 
 
-August 2005			     3.4.0			     gramps(1)
+August 2005			     4.0.0			     gramps(1)

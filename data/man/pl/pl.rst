@@ -5,14 +5,14 @@ gramps(1)			     3.4.0			     gramps(1)
 
 
 
-NAME
+**NAME**
        gramps - Genealogical Research and Analysis Management Programming Sys‐
        tem.
        (w wolnym tłumaczeniu: System Wspomagania Badań Genealogicznych i  Pro‐
        gramowego Zarządzania Tą Informacją)
 
 
-SYNOPSIS
+**SYNOPSIS**
        gramps	[-?|--help]  [--usage]	[--version]  [-l]  [-u|--force-unlock]
        [-O|--open=  BAZA_DANYCH  [-f|--format=	FORMAT]]  [-i|--import=   PLIK
        [-f|--format=   FORMAT]]   [-i|--import=   ...]	  [-e|--export=   PLIK
@@ -20,7 +20,7 @@ SYNOPSIS
        [ PLIK ] [--version]
 
 
-OPIS
+**OPIS**
        Gramps  jest wolnym, darmowym programem genealogicznym OpenSource. Jest
        napisany w Python, przy użyciu interfejsu GTK+/GNOME.  Dla każdego, kto
        wcześniej  używał  innego  programu  genealogicznego  (np.  Family Tree
@@ -30,9 +30,9 @@ OPIS
        jest używany przez większość programów genealogicznych na świecie.
 
 
-OPCJE
-       gramps PLIK
-	      Kiedy  PLIK  jest  podany  (bez  żadnych flag) jako nazwa drzewa
+**OPCJE**
+       **gramps** *PLIK*
+	      Kiedy *PLIK* jest  podany  (bez  żadnych flag) jako nazwa drzewa
 	      rodzinnego albo nazwa katalogu z drzewem, to wybrane drzewo jest
 	      otwierane  i  rozpoczynana  jest	sesja interaktywna. Jeśli PLIK
 	      jest formatem rozpoznawanym przez Gramps, to tworzone jest puste
@@ -43,7 +43,7 @@ OPCJE
 	      akceptuje każdy format natywny dla grampsa, zobacz poniżej.
 
 
-       -f,--format= FORMAT
+       **-f** , **--format=** *FORMAT*
 	      Jawne  określenie formatu PLIKU przez poprzedzenie opcji -i, lub
 	      -e.  Jeśli opcja -f nie jest podana dla żadnego PLIKU, to format
 	      pliku jest określany na podstawie rozszerzenia albo typu MIME.
@@ -63,22 +63,23 @@ OPCJE
 	      iso (używany tylko, jeśli jawnie określony przez parametr -f ).
 
 
-       -l     Wyświetla listę dosŧępnych drzew genealogicznych.
+       **-l**     
+          Wyświetla listę dosŧępnych drzew genealogicznych.
 
 
-       -u,--force-unlock
+       **-u** , **--force-unlock**
 	      Wymusza odblokowanie bazy danych.
 
 
-       -O,--open= BAZA_DANYCH
-	      Otwiera BAZĘ_DANYCH, która musi istnieć w katalogu baz  lub  być
+       **-O** , **--open=** *BAZA_DANYCH*
+	      Otwiera *BAZĘ_DANYCH* , która musi istnieć w katalogu baz  lub  być
 	      nazwą istniejącego drzewa rodzinnego. Jeśli nie podano akcji, to
 	      opcje eksportu albo importu  są  wykonywane,  a  następnie  jest
 	      uruchamiana sesja interaktywna z otwarciem wybranej bazy.
 
 
-       -i,--import= PLIK
-	      Importuje  dane  z  PLIKU.  Jeśli  nie określono bazy danych, to
+       **-i** , **--import=** *PLIK*
+	      Importuje  dane  z *PLIKU* . Jeśli  nie określono bazy danych, to
 	      tworzona jest tymczasowa baza kasowana po zamknięciu programu.
 
 	      Kiedy podany jest więcej niż jeden plik do importu, to  każdy  z
@@ -88,8 +89,8 @@ OPCJE
 	      bazie wynikowej.
 
 
-       -e,--export= PLIK
-	      Eksportuje dane do PLIKU. Dla formatu iso, PLIK natomiast  nazwą
+       **-e** , **--export=** *PLIK*
+	      Eksportuje dane do *PLIKU* . Dla formatu iso, PLIK natomiast  nazwą
 	      katalogu,  do którego baza danych gramps zostanie zapisana.  Dla
 	      gramps-xml, gedcom, wft, gramps-pkg,  oraz  geneweb,  PLIK  jest
 	      nazwą pliku wynikowego.
@@ -99,7 +100,7 @@ OPCJE
 	      podanej przez parametry kolejności.
 
 
-       -a,--action= AKCJA
+       **-a** , **--action=** *AKCJA*
 	      Wykonuje	AKCJĘ  na  zaimportowanych  danych.  Działanie to jest
 	      wykonywane dopiero, gdy wszystkie określone importy zakończą się
 	      powodzeniem. Aktualnie dostępne akcje to:
@@ -122,18 +123,18 @@ OPCJE
 	      konkretnej opcji, jednak część z opcji jest wspólna, szczególnie
 	      dla raportów.
 
-	      name=nazwa
+	      **name=nazwa**
 	      Opcja wymagana, określający który raport	czy  narzędzie	będzie
 	      uruchamiane.   Jeśli  podana wartość nazwy nie pasuje do żadnego
 	      dostępnego raportu czy narzędzia, zostanie wyświetlony komunikat
 	      o   błędzie   oraz  lista  dostępnych  raportów  albo  opcji  (w
 	      zależności od wartości parametru AKCJA).
 
-	      show=all
+	      **show=all**
 	      Wyświetla listę wszystkich nazw dostępnych opcji wraz z  krótkim
 	      opisem dla danego raportu albo narzędzia.
 
-	      show=nazwa_opcji
+	      **show=nazwa_opcji**
 	      Wyświetla opis funkcji udostępnianej przez daną nazwę_opcji, jak
 	      również listę parametrów, które akceptuje dana opcja.
 
@@ -146,43 +147,16 @@ OPCJE
        jności w jakiej występują w linii poleceń.
 
 
-       -d,--debug= NAZWA_LOGGERA
+       **-d** , **--debug=** *NAZWA_LOGGERA*
 	      Włącza   logi   debuggowania   dla   celów  programistycznych  i
 	      testowych. Zobacz do kodu źródłowego po szczegóły.
 
 
-       --version
+       **--version**
 	      Wyświetla wersję programu i kończy działanie.
 
 
-
-       Następujące opcje są używane przy aktywacji Bonobo:
-
-       --oaf-ior-fd=FD
-	      Deskryptor pliku, do którego wpisać OAF IOR.
-
-       --oaf-activate-iid= IID
-	      OAF IID do aktywacji.
-
-       --oaf-private
-	      Wstgrzymuje rejestrację serwera przez OAF.
-
-
-
-       Następujące opcje są używane do kontroli dźwięku generowanego za pomocą
-       Gnome Library.
-
-       --disable-sound
-	      Wyłącza użycie serwera dźwięku.
-
-       --enable-sound
-	      Włącza użycie serwera dźwięku.
-
-       --espeaker= HOSTNAME:PORT
-	      Host:port na którym jest uruchomiony serwer dźwięku.
-
-
-Działanie
+**Działanie**
        Jeśli  pierwszy	argument nie rozpoczyna się znakiem myślnik, (nie jest
        flagą), to gramps będzie próbował otworzyć plik podany  przez  pierwszy
        argument, a następnie sesję interaktywną a pozostałą część parametrów w
@@ -222,7 +196,7 @@ Działanie
        cje i błędy do pliku.
 
 
-PRZYKŁADY
+**PRZYKŁADY**
        Aby  otworzyć  istniejące drzewo rodzinne i zaimportować dane do niego,
        można wpisać:
        
@@ -267,21 +241,22 @@ PRZYKŁADY
 	      gramps
 
 
-ZMIENNE ŚRODOWISKOWE
+**ZMIENNE ŚRODOWISKOWE**
+
        Program	sprawdza  w systemie istnienie i wartości następujących zmien‐
        nych:
 
-       LANG - określa ustawienia, jaki język zostanie wybrany.	Np.: polski to
+       **LANG** - określa ustawienia, jaki język zostanie wybrany.	Np.: polski to
        pl_PL.UTF-8.
 
-       GRAMPSHOME  -  określa  folder, w którym będzie zapisywane ustawienia i
+       **GRAMPSHOME**  -  określa  folder, w którym będzie zapisywane ustawienia i
        bazy programu. Domyślnie jest on nieustawiony, a program przyjmuje,  że
        katalog z danymi zostanie utworzony w profilu użytkownika (zmienna HOME
        pod Linuxem albo USERPROFILE pod Windows 2000/XP).
 
 
 
-KONCEPCJA
+**KONCEPCJA**
        Obsługa systemu rozszerzeń bazującego  na  pythonie,  pozwalającego  na
        dodawanie  formatów  importu  i eksportu zapisów, generatorów raportów,
        narzędzi i filtrów wyświetlania bez modyfikowania głównego programu
@@ -292,19 +267,22 @@ KONCEPCJA
        użytkownikm wybór formatu wyjściowego w zależności od ich potrzeb.
 
 
-ZNANE BŁĘDY I OGRANICZENIA
+**ZNANE BŁĘDY I OGRANICZENIA**
        Prawdopodobne. Lista błędów i propozycji znajduje się na: 
        http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 
-PLIKI
-       ${PREFIX}/bin/gramps
-       ${PREFIX}/share/gramps
-       ${HOME}/.gramps (jeśli nie użyta została  zmienna  środowiskowa	GRAMP‐
-       SHOME)
+**PLIKI**
+       
+       *${PREFIX}/bin/gramps*
+       
+       *${PREFIX}/share/gramps*
+       
+       *${HOME}/.gramps (jeśli nie użyta została  zmienna  środowiskowa	GRAMP‐
+       SHOME)*
 
 
-AUTORZY
+**AUTORZY**
        Donald Allingham <don@gramps-project.org>
        http://gramps-project.org/
 
@@ -317,15 +295,12 @@ AUTORZY
        Tłumaczenie na polski: Łukasz Rymarczyk <yenidai@poczta.onet.pl>
 
 
-DOCUMENTATION
-       Dokumentacja użytkownika jest dostępna poprzez standardową przeglądarkę
-       pomocy systemu GNOME. Dokumentacja dostępna jest także w  formacie  XML
-       jako   plik  gramps-manual.xml  w  folderze  doc/gramps-manual/$LANG  w
-       głównym źródle dystrybucji.
+**DOCUMENTATION**
+       Dokumentacja użytkownika jest dostępna poprzez standardową przeglądarkę.
 
        Dokumentacja  dla  programistów	jest  dostępna	na  stronie  projektu:
        http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
 
-January 2008			     3.4.0			     gramps(1)
+January 2008			     4.0.0			     gramps(1)
