@@ -1,13 +1,13 @@
 ##########################
-The :mod:`gui` Module
+The :mod:`gramps.gui` Module
 ##########################
 
-.. automodule:: gui
+.. automodule:: gramps.gui
 
 *****************************
 Gramps
 *****************************
-.. automodule:: gui.grampsgui
+.. automodule:: gramps.gui.grampsgui
 .. autoclass:: Gramps
    :members:
    :undoc-members:
@@ -16,7 +16,7 @@ Gramps
 *****************************
 About Dialog
 *****************************
-.. automodule:: gui.aboutdialog
+.. automodule:: gramps.gui.aboutdialog
 .. autoclass:: AuthorParser
    :members:
    :undoc-members:
@@ -29,7 +29,7 @@ About Dialog
 *****************************
 Base Sidebar
 *****************************
-.. automodule:: gui.basesidebar
+.. automodule:: gramps.gui.basesidebar
 .. autoclass::  BaseSidebar
    :members:
    :undoc-members:
@@ -38,7 +38,7 @@ Base Sidebar
 *****************************
 Column Order
 *****************************
-.. automodule:: gui.columnorder
+.. automodule:: gramps.gui.columnorder
 .. autoclass::  ColumnOrder
    :members:
    :undoc-members:
@@ -47,7 +47,7 @@ Column Order
 *****************************
 Configuration
 *****************************
-.. automodule:: gui.configure
+.. automodule:: gramps.gui.configure
 .. autoclass::  ConfigureDialog
    :members:
    :undoc-members:
@@ -64,7 +64,7 @@ Configuration
 *****************************
 GUI Element (DB)
 *****************************
-.. automodule:: gui.dbguielement
+.. automodule:: gramps.gui.dbguielement
 .. autoclass::  DbGUIElement
    :members:
    :undoc-members:
@@ -73,7 +73,7 @@ GUI Element (DB)
 *****************************
 DB Loader
 *****************************
-.. automodule:: gui.dbloader
+.. automodule:: gramps.gui.dbloader
 .. autoclass::  DbLoader
    :members:
    :undoc-members:
@@ -86,7 +86,7 @@ DB Loader
 *****************************
 DB Manager
 *****************************
-.. automodule:: gui.dbman
+.. automodule:: gramps.gui.dbman
 .. autoclass::  DbManager
    :members:
    :undoc-members:
@@ -95,7 +95,7 @@ DB Manager
 *****************************
 Filter Editor
 *****************************
-.. automodule:: gui.editors.filtereditor
+.. automodule:: gramps.gui.editors.filtereditor
 .. autoclass:: EditFilter
    :members:
    :undoc-members:
@@ -156,7 +156,7 @@ Filter Editor
 *****************************
 Gramps Bar
 *****************************
-.. automodule:: gui.grampsbar
+.. automodule:: gramps.gui.grampsbar
 .. autoclass::  DetachedWindow
    :members:
    :undoc-members:
@@ -173,7 +173,7 @@ Gramps Bar
 *****************************
 Navigator
 *****************************
-.. automodule:: gui.navigator
+.. automodule:: gramps.gui.navigator
 .. autoclass::  Navigator
    :members:
    :undoc-members:
@@ -182,7 +182,7 @@ Navigator
 *****************************
 Plugins Manager
 *****************************
-.. automodule:: gui.pluginmanager
+.. automodule:: gramps.gui.pluginmanager
 .. autoclass::  GuiPluginManager
    :members:
    :undoc-members:
@@ -191,7 +191,7 @@ Plugins Manager
 *****************************
 User
 *****************************
-.. automodule:: gui.user
+.. automodule:: gramps.gui.user
 .. autoclass:: User
    :members:
    :undoc-members:
@@ -200,7 +200,7 @@ User
 *****************************
 Utils
 *****************************
-.. automodule:: gui.utils
+.. automodule:: gramps.gui.utils
 .. autoclass::  CLIDialog
    :members:
    :undoc-members:
@@ -217,7 +217,7 @@ Utils
 *****************************
 Views Manager
 *****************************
-.. automodule:: gui.viewmanager
+.. automodule:: gramps.gui.viewmanager
 .. autoclass:: ViewManager
    :members:
    :undoc-members:
