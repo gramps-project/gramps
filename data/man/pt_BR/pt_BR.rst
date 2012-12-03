@@ -3,309 +3,155 @@ Portuguese (Brazil)
 
 gramps(1)                4.0.0               gramps(1)
 
+ 
+NOME
 
-**NOME**
+gramps - Programa para pesquisa genealógica.
+ 
 
-----
+RESUMO
 
-gramps - Programa para pesquisa geneal?gica.
+gramps [-?|--help] [--usage] [--version] [-l] [-u|--force-unlock] [-O|--open= BANCODEDADOS [-f|--format= FORMATO]] [-i|--import= ARQUIVO [-f|--format= FORMATO]] [-i|--import= ...] [-e|--export= ARQUIVO [-f|--format= FORMATO]] [-a|--action= AÇÃO] [-p|--options= OPÇÕES]] [ ARQUIVO ] [--version]
+ 
 
+DESCRIÇÃO
 
-**RESUMO**
+Gramps é um programa de genealogia livre e de código aberto. Ele é escrito em Python e usa a interface GTK+/GNOME. Gramps deve parecer familiar a qualquer pessoa que já tenha usado outro programa de genealogia, tais como o Family Tree Maker (TM), Personal Ancestral Files (TM), ou o GNU Geneweb. Ele suporta a importação do formato GEDCOM, que é amplamente usado por quase todos os outros programas de genealogia.
 
-------
+ 
 
-**gramps** [**-?|--help**] [**--usage**] [**--version**] [**-l**] [**-u
-|--force-unlock**] [**-O|--open=** *BANCODEDADOS* [**-f|--format=**
-*FORMATO*]] [**-i|--import=** *ARQUIVO* [**-f|--format=** *FORMATO*]]
-[**-i|--import=** *...*] [**-e|--export=** *ARQUIVO* [**-f|--format=**
-*FORMATO*]] [**-a|--action=** *A??O*] [**-p|--options=** *OP??ES*]] [
-*ARQUIVO* ] [**--version**]
+OPÇÕES
 
+gramps ARQUIVO
+Quando ARQUIVO for indicado (sem qualquer outra opção) como um nome de árvore genealógica ou como pasta do banco de dados, ela será aberta e iniciada uma sessão interativa. Se ARQUIVO for um formato compreendido pelo Gramps, será criada uma árvore genealógica vazia com o nome baseado no ARQUIVO e os dados são importados para ela. As demais opções serão ignoradas. Esta forma de execução é apropriada para usar o Gramps como manipulador de dados genealógicos em, por exemplo, navegadores Web. Este método aceita qualquer formato de dados nativo do Gramps, conforme abaixo. 
+-f,--format= FORMATO
+Indica expressamente o formato do ARQUIVO, precedente das opções -i ou -e. Se a opção -f não for fornecida para um ARQUIVO, o formato será identificado de acordo com a sua extensão ou tipo MIME. 
+Os formatos disponíveis para exportação são gramps-xml (se o ARQUIVO terminar com .gramps), gedcom (se o ARQUIVO terminar com .ged) ou qualquer outro formato de arquivo disponível através do sistema de plugins do Gramps. 
+Os formatos disponíveis para importação são grdb, gramps-xml, gedcom, gramps-pkg (se o ARQUIVO terminar com .gpkg), e geneweb (se o ARQUIVO terminar com .gw). 
+Os formatos disponíveis para exportação são gramps-xml, gedcom, gramps-pkg, wft (se o ARQUIVO terminar com .wft), geneweb, e iso (deve sempre ser indicado com a opção -f).
 
-**DESCRI??O**
+-l
+Exibe uma lista com as árvores genealógicas conhecidas.
+-u,--force-unlock
+Desbloqueia um banco de dados previamente bloqueado.
+-O,--open= BANCODEDADOS
+Abre o BANCODEDADOS, que deve ser uma pasta de banco de dados ou um nome de árvore genealógica existentes. Se não forem indicadas opções de ação, importação ou exportação na linha de comando, será iniciada uma sessão interativa usando este banco de dados.
+-i,--import= ARQUIVO
+Importa os dados do ARQUIVO. Se não for indicado um banco de dados, o Gramps usará um arquivo temporário, que será excluído ao sair do programa. 
+Quando mais de um arquivo de origem for indicado, cada um deles deve ser precedido da opção -i. Os arquivos são importados na ordem indicada, por exemplo, -i ARQUIVO1 -i ARQUIVO2 e -i ARQUIVO2 -i ARQUIVO1 poderá produzir diferentes gramps IDs no banco de dados resultante.
 
------------
+-a,--action= AÇÃO
+Executa a AÇÃO nos dados importados. Isto será executado após a conclusão de todas as importações. Até o momento, as ações disponíveis são summary (o mesmo que Relatórios->Exibir->Resumo), check (o mesmo que Ferramentas->Processamento do banco de dados->Verificar e reparar), report (gera o relatório), e tool (executa uma ferramenta de plugin). Para o report e tool é necessário fornecer OPÇÕES (com uso da opção -p). 
+As OPÇÕES devem satisfazer as seguintes condições: 
+Não podem conter espaços. Se alguns argumentos precisam incluir espaços, a string deve ser colocada entre aspas, ou seja, seguir a sintaxe do shell. String de opção é uma lista de pares com o nome e o valor (separados por sinal de igual). Os pares de nome e valor devem ser separados por vírgula. 
+Muitas opções são específicas de cada relatório ou ferramenta. Entretanto, algumas opções são comuns.
 
-*Gramps* ? um programa de genealogia livre e de c?digo aberto. Ele ? escrito
-em Python e usa a interface GTK+/GNOME. Gramps deve parecer familiar a
-qualquer pessoa que j? tenha usado outro programa de genealogia, tais como o
-*Family Tree Maker (TM)*, *Personal Ancestral Files (TM)*, ou o GNU Geneweb.
-Ele suporta a importa??o do formato GEDCOM, que ? amplamente usado por quase
-todos os outros programas de genealogia.
+name=nome 
+Esta opção obrigatória determina qual relatório ou ferramenta será executado. Se o nome fornecido não corresponder a um relatório ou ferramenta, será exibida uma mensagem de erro seguida de uma lista de relatórios e ferramentas disponíveis (dependendo da AÇÃO).
 
+show=all 
+Isto irá gerar uma lista com os nomes para todas as opções disponíveis de um determinado relatório ou ferramenta.
 
-OP??ES
-
---------
-
-**gramps*** ARQUIVO* Quando *ARQUIVO* for indicado (sem qualquer outra op??o)
-como um nome de ?rvore geneal?gica ou como pasta do banco de dados, ela ser?
-aberta e iniciada uma sess?o interativa. Se ARQUIVO for um formato
-compreendido pelo Gramps, ser? criada uma ?rvore geneal?gica vazia com o nome
-baseado no *ARQUIVO* e os dados s?o importados para ela. As demais op??es
-ser?o ignoradas. Esta forma de execu??o ? apropriada para usar o Gramps como
-manipulador de dados geneal?gicos em, por exemplo, navegadores Web. Este
-m?todo aceita qualquer formato de dados nativo do Gramps, conforme abaixo.
-
-
-**-f,--format=*** FORMATO* Indica expressamente o formato do *ARQUIVO*,
-precedente das op??es **-i** ou **-e**. Se a op??o **-f** n?o for fornecida
-para um *ARQUIVO*, o formato ser? identificado de acordo com a sua extens?o
-ou tipo MIME.
-
-
-Os formatos dispon?veis para exporta??o s?o **gramps-xml** (se o *ARQUIVO*
-terminar com **.gramps**), **gedcom** (se o *ARQUIVO* terminar com **.ged**)
-ou qualquer outro formato de arquivo dispon?vel atrav?s do sistema de plugins
-do Gramps.
+show=nome_opção 
+Isto irá exibir a descrição da funcionalidade indicada por nome_opção, bem como quais são os tipos aceitáveis e os valores para esta opção.
 
 
-Os formatos dispon?veis para importa??o s?o **grdb**, **gramps-xml**,
-**gedcom**, **gramps-pkg** (se o *ARQUIVO* terminar com **.gpkg**), e
-**geneweb** (se o *ARQUIVO* terminar com **.gw**).
+Use as opções acima para descobrir tudo sobre um determinado relatório.
+
+Quando mais de uma ação de saída for indicada, cada uma deve ser precedida da opção -a. As ações são realizadas uma a uma, na ordem indicada.
+
+-d,--debug= ARQUIVO_REGISTRO
+Ativa os registros para desenvolvimento e testes. Veja o código-fonte para mais detalhes.
+--version
+Exibe o número da versão do Gramps e finaliza.
+ 
+Operação
 
 
-Os formatos dispon?veis para exporta??o s?o **gramps-xml**, **gedcom**,
-**gramps-pkg**, **wft** (se o *ARQUIVO* terminar com **.wft**), **geneweb**,
-e **iso** (deve sempre ser indicado com a op??o **-f**).
+Se o primeiro argumento da linha de comando não começar com um traço (isto é, sem uma opção), o Gramps tentará abrir o arquivo com o nome fornecido pelo primeiro argumento e iniciar a sessão interativa, ignorando o resto dos argumentos da linha de comando.
+Se for fornecida a opção -O, então o Gramps tentará abrir o banco de dados indicado e trabalhar com estes dados, de acordo com as instruções dos parâmetros adicionais da linha de comando.
 
-**-l** Exibe uma lista com as ?rvores geneal?gicas conhecidas.
+Com ou sem a opção -O, pode haver múltiplas importações, exportações e ações indicadas pela linha de comando usando as opções -i, -e e -a.
 
-**-u,--force-unlock** Desbloqueia um banco de dados previamente bloqueado.
+A ordem das opções -i, -e ou -a não importa. A ordem utilizada será sempre esta: todas as importações (se existirem) -> todas as ações (se existirem) -> todas as exportações (se existirem). Mas a abertura deve estar sempre em primeiro lugar!
 
-**-O,--open=*** BANCODEDADOS* Abre o *BANCODEDADOS*, que deve ser uma pasta
-de banco de dados ou um nome de ?rvore geneal?gica existentes. Se n?o forem
-indicadas op??es de a??o, importa??o ou exporta??o na linha de comando, ser?
-iniciada uma sess?o interativa usando este banco de dados.
+Se as opções -O ou -i não forem fornecidas, o Gramps será aberto com a sua janela principal e iniciará a sessão interativa padrão com um banco de dados vazio, uma vez que não há nada a processar.
 
-**-i,--import=*** ARQUIVO* Importa os dados do *ARQUIVO*. Se n?o for indicado
-um banco de dados, o Gramps usar? um arquivo tempor?rio, que ser? exclu?do ao
-sair do programa.
+Se as opções -e ou -a não forem fornecidas, o Gramps será aberto com a sua janela principal e iniciará a sessão interativa padrão com um banco de dados resultante de todas as importações. Este banco de dados está localizado no arquivo import_db.grdb da pasta ~/.gramps/import.
 
+Os erros encontrados durante a importação, exportação ou ação, serão direcionados para stdout (se forem exceções tratadas pelo Gramps) ou para stderr (se não forem tratadas). Use redirecionamentos usuais de stdout e stderr do shell para salvar mensagens e erros em arquivos.
 
-Quando mais de um arquivo de origem for indicado, cada um deles deve ser
-precedido da op??o **-i**. Os arquivos s?o importados na ordem indicada, por
-exemplo, **-i** *ARQUIVO1* **-i** *ARQUIVO2* e **-i** *ARQUIVO2* **-i**
-*ARQUIVO1* poder? produzir diferentes gramps IDs no banco de dados
-resultante.
-
-**-a,--action=*** A??O* Executa a *A??O* nos dados importados. Isto ser?
-executado ap?s a conclus?o de todas as importa??es. At? o momento, as a??es
-dispon?veis s?o **summary** (o mesmo que Relat?rios->Exibir->Resumo),
-**check** (o mesmo que Ferramentas->Processamento do banco de
-dados->Verificar e reparar), **report** (gera o relat?rio), e **tool**
-(executa uma ferramenta de plugin). Para o **report** e **tool** ? necess?rio
-fornecer *OP??ES* (com uso da op??o **-p**).
-
-
-As *OP??ES* devem satisfazer as seguintes condi??es:
-N?o podem conter espa?os. Se alguns argumentos precisam incluir espa?os, a
-string deve ser colocada entre aspas, ou seja, seguir a sintaxe do shell.
-String de op??o ? uma lista de pares com o nome e o valor (separados por
-sinal de igual). Os pares de nome e valor devem ser separados por v?rgula.
-
-
-Muitas op??es s?o espec?ficas de cada relat?rio ou ferramenta. Entretanto,
-algumas op??es s?o comuns.
-
-**name=nome**
-Esta op??o obrigat?ria determina qual relat?rio ou ferramenta ser? executado.
-Se o *nome* fornecido n?o corresponder a um relat?rio ou ferramenta, ser?
-exibida uma mensagem de erro seguida de uma lista de relat?rios e ferramentas
-dispon?veis (dependendo da *A??O*).
-
-**show=all**
-Isto ir? gerar uma lista com os nomes para todas as op??es dispon?veis de um
-determinado relat?rio ou ferramenta.
-
-**show=nome_op??o**
-Isto ir? exibir a descri??o da funcionalidade indicada por *nome_op??o*, bem
-como quais s?o os tipos aceit?veis e os valores para esta op??o.
-
-
-Use as op??es acima para descobrir tudo sobre um determinado relat?rio.
-
-Quando mais de uma a??o de sa?da for indicada, cada uma deve ser precedida da
-op??o **-a**. As a??es s?o realizadas uma a uma, na ordem indicada.
-
-**-d,--debug=*** ARQUIVO_REGISTRO* Ativa os registros para desenvolvimento e
-testes. Veja o c?digo-fonte para mais detalhes. **--version** Exibe o n?mero
-da vers?o do Gramps e finaliza.
-
-
-Opera??o
-
-----------
-
-
-Se o primeiro argumento da linha de comando n?o come?ar com um tra?o (isto ?,
-sem uma op??o), o Gramps tentar? abrir o arquivo com o nome fornecido pelo
-primeiro argumento e iniciar a sess?o interativa, ignorando o resto dos
-argumentos da linha de comando.
-
-Se for fornecida a op??o **-O**, ent?o o Gramps tentar? abrir o banco de
-dados indicado e trabalhar com estes dados, de acordo com as instru??es dos
-par?metros adicionais da linha de comando.
-
-Com ou sem a op??o **-O**, pode haver m?ltiplas importa??es, exporta??es e
-a??es indicadas pela linha de comando usando as op??es **-i**, **-e** e
-**-a**.
-
-A ordem das op??es **-i**, **-e** ou **-a** n?o importa. A ordem utilizada
-ser? sempre esta: todas as importa??es (se existirem) -> todas as a??es (se
-existirem) -> todas as exporta??es (se existirem). Mas a abertura deve estar
-sempre em primeiro lugar!
-
-Se as op??es **-O** ou **-i** n?o forem fornecidas, o Gramps ser? aberto com
-a sua janela principal e iniciar? a sess?o interativa padr?o com um banco de
-dados vazio, uma vez que n?o h? nada a processar.
-
-Se as op??es **-e** ou **-a** n?o forem fornecidas, o Gramps ser? aberto com
-a sua janela principal e iniciar? a sess?o interativa padr?o com um banco de
-dados resultante de todas as importa??es. Este banco de dados est? localizado
-no arquivo **import_db.grdb** da pasta **~/.gramps/import**.
-
-Os erros encontrados durante a importa??o, exporta??o ou a??o, ser?o
-direcionados para *stdout* (se forem exce??es tratadas pelo Gramps) ou para
-*stderr* (se n?o forem tratadas). Use redirecionamentos usuais de *stdout* e
-*stderr* do shell para salvar mensagens e erros em arquivos.
-
+ 
 
 EXEMPLOS
 
---------
+Abrir uma árvore genealógica existente e importar um arquivo xml para ela:
+gramps -O 'Minha árvore genealógica' -i ~/db3.gramps
+Fazer as mesmas alterações da árvore genealógica do comando anterior, mas importar a árvore genealógica temporária e iniciar uma sessão interativa:
+gramps -i 'Minha árvore genealógica' -i ~/db3.gramps
+Importar quatro bancos de dados (cujos formatos podem ser reconhecidos pelos nomes) e verificar a existência de erros no banco de dados resultante:
+gramps -i arquivo1.ged -i arquivo2.tgz -i ~/db3.gramps -i arquivo4.wft -a check
+Indicar de forma explícita os formatos do exemplo acima, atribuindo os nomes dos arquivos com as opções -f apropriadas:
+gramps -i arquivo1.ged -f gedcom -i arquivo2.tgz -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i arquivo4.wft -f wft -a check
+Gravar o banco de dados resultante de todas as importações, indicando a opção -e (use -f se o nome do arquivo não permirtir que o gramps reconheça o formato automaticamente):
+gramps -i arquivo1.ged -i arquivo2.tgz -e ~/novo-pacote -f gramps-pkg
+Importar três bancos de dados e iniciar a sessão interativa do Gramps com o resultado:
+gramps -i arquivo1.ged -i arquivo2.tgz -i ~/db3.gramps
+Executar a ferramenta de verificação a partir da linha de comando e direcionar o resultado para stdout:
+gramps -O 'Minha árvore genealógica' -a tool -p name=verify
+Finalmente, para iniciar uma sessão interativa normal, digite:
+gramps
+ 
+VARIÁVEIS DE AMBIENTE
 
-Abrir uma ?rvore geneal?gica existente e importar um arquivo xml para ela:
+O programa verifica se estas variáveis de ambiente estão definidas:
+LANG - identifica o idioma a ser usado. Ex.: Para o idioma português do Brasil, a variável deve ser definida como pt_BR.UTF-8.
 
- **gramps** **-O** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+GRAMPSHOME - se definida, força o Gramps a usar a pasta indicada para armazenar as configurações e os bancos de dados do programa. Por padrão, esta variável não é definida e o Gramps assume que a pasta com todos os bancos de dados e configurações do perfil devem ser criadas na pasta do usuário (descrita na variável de ambiente HOME no Linux ou USERPROFILE no Windows 2000/XP).
 
-Fazer as
-mesmas altera??es da ?rvore geneal?gica do comando anterior, mas importar a
-?rvore geneal?gica tempor?ria e iniciar uma sess?o interativa: 
+ 
 
- **gramps**
- **-i** *'Minha ?rvore geneal?gica'* **-i** *~/db3.gramps* 
+CONCEITOS
 
-Importar quatro
-bancos de dados (cujos formatos podem ser reconhecidos pelos nomes) e
-verificar a exist?ncia de erros no banco de dados resultante: 
+Suporta um sistema de plugins baseado em Python, permitindo acrescentar importações e exportações adicionais, geradores de relatórios, ferramentas e filtros de exibição, sem modificação do programa principal.
+Além da impressão direta, é possível gerar relatórios em diversos formatos de arquivo, tais como OpenOffice.org, AbiWord, HTML ou LaTeX, para permitir aos usuários a modificação de acordo com suas necessidades.
 
- **gramps**
- **-i** *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* **-i**
- *arquivo4.wft* **-a** *check* 
+ 
 
-Indicar de forma expl?cita os formatos do
-exemplo acima, atribuindo os nomes dos arquivos com as op??es **-f**
-apropriadas: 
+LIMITAÇÕES E ERROS CONHECIDOS
 
- **gramps** **-i** *arquivo1.ged* **-f** *gedcom* **-i** *arquivo2.tgz* 
- **-f** *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml*
- **-i** *arquivo4.wft* **-f** *wft* **-a** *check* 
+ 
 
-Gravar o banco de dados
-resultante de todas as importa??es, indicando a op??o **-e** (use **-f** se o
-nome do arquivo n?o permirtir que o gramps reconhe?a o formato
-automaticamente): 
+ARQUIVOS
 
- **gramps** **-i** *arquivo1.ged* **-i** *arquivo2.tgz*
- **-e** *~/novo-pacote* **-f** *gramps-pkg* 
+${PREFIX}/bin/gramps 
+${PREFIX}/share/gramps 
+${HOME}/.gramps
 
-Importar tr?s bancos de dados e iniciar a sess?o interativa do Gramps com o resultado: 
+ 
 
- **gramps** **-i**
- *arquivo1.ged* **-i** *arquivo2.tgz* **-i** *~/db3.gramps* 
+AUTORES
 
-Executar a ferramenta de verifica??o a partir da linha de comando e direcionar o
-resultado para stdout:
+Donald Allingham <don@gramps-project.org> 
+http://gramps.sourceforge.net
+Este manual foi originalmente escrito por: 
+Brandon L. Griffith <brandon@debian.org> 
+para inclusão na distribuição Debian GNU/Linux.
 
- **gramps** **-O** *'Minha ?rvore geneal?gica'* **-a** *tool* **-p** 
- **name**=*verify* 
+Este manual é atualmente mantido pelo: 
+Projeto Gramps <xxx@gramps-project.org> 
+ 
 
-Finalmente, para iniciar uma sess?o
-interativa normal, digite: 
+DOCUMENTAÇÃO
 
- **gramps**
+A documentação para usuários está disponível através da opção de ajuda padrão do GNOME, na forma de Manual do Gramps. O Manual também está disponível no formato XML como gramps-manual.xml em doc/gramps-manual/$LANG nas fontes oficiais da sua distribuição.
+A documentação para desenvolvedores pode ser encontrada na página http://developers.gramps-project.org.
 
+ 
 
-**VARI?VEIS DE AMBIENTE**
+TRADUÇÃO
 
-----------------------
-
-O programa verifica se estas vari?veis de ambiente est?o definidas:
-
-**LANG** - identifica o idioma a ser usado. Ex.: Para o idioma portugu?s do
-Brasil, a vari?vel deve ser definida como pt_BR.UTF-8.
-
-**GRAMPSHOME** - se definida, for?a o Gramps a usar a pasta indicada para
-armazenar as configura??es e os bancos de dados do programa. Por padr?o, esta
-vari?vel n?o ? definida e o Gramps assume que a pasta com todos os bancos de
-dados e configura??es do perfil devem ser criadas na pasta do usu?rio
-(descrita na vari?vel de ambiente HOME no Linux ou USERPROFILE no Windows
-2000/XP).
-
-
-**CONCEITOS**
-
----------
-
-Suporta um sistema de plugins baseado em Python, permitindo acrescentar
-importa??es e exporta??es adicionais, geradores de relat?rios, ferramentas e
-filtros de exibi??o, sem modifica??o do programa principal.
-
-Al?m da impress?o direta, ? poss?vel gerar relat?rios em diversos formatos de
-arquivo, tais como *OpenOffice.org*, *AbiWord*, HTML ou LaTeX, para permitir
-aos usu?rios a modifica??o de acordo com suas necessidades.
-
-
-**LIMITA??ES E ERROS CONHECIDOS**
-
--------------------------------
-
-
-**ARQUIVOS**
-
---------
-
-*${PREFIX}/bin/gramps*
-*${PREFIX}/share/gramps*
-*${HOME}/.gramps*
-
-
-**AUTORES**
-
--------
-
-Donald Allingham *<`don@gramps-project.org`_>*
-*`http://gramps.sourceforge.net`_*
-
-Este manual foi originalmente escrito por:
-Brandon L. Griffith *<`brandon@debian.org`_>*
-para inclus?o na distribui??o Debian GNU/Linux.
-
-Este manual ? atualmente mantido pelo:
-Projeto Gramps *<`xxx@gramps-project.org`_>*
-
-
-
-**DOCUMENTA??O**
-
---------------
-
-A documenta??o para usu?rios est? dispon?vel atrav?s da op??o de ajuda padr?o
-do GNOME, na forma de Manual do Gramps. O Manual tamb?m est? dispon?vel no
-formato XML como **gramps-manual.xml** em *doc/gramps-manual/$LANG* nas
-fontes oficiais da sua distribui??o.
-
-A documenta??o para desenvolvedores pode ser encontrada na p?gina
-*`http://developers.gramps-project.org`_*.
-
-
-**TRADU??O**
-
-----------
-
-``Andr? Marcelo Alvarenga <`andrealvarenga@gmx.net`_> em 05/08/2012``
+André Marcelo Alvarenga <andrealvarenga@gmx.net> em 05/08/2012
 
 January 2013                 4.0.0               gramps(1)
 
