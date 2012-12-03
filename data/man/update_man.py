@@ -87,8 +87,16 @@ def main():
             help="test if 'python' and 'sphinx' are properly installed")
     
     parser.add_argument("-b", "--build",
-            action="store_true", dest="build",  default=True,
-            help="build documentation")
+            action="store_true", dest="build",  default=False,
+            help="build man documentation (via sphinx-build)")
+    
+    parser.add_argument("-m", "--man",
+            action="store_true", dest="man",  default=False,
+            help="build man documentation (via docutils)")
+    
+    parser.add_argument("-o", "--odt",
+            action="store_true", dest="odt",  default=False,
+            help="build odt documentation (via docutils)")
                              
     args = parser.parse_args()
     
@@ -97,6 +105,12 @@ def main():
         
     if args.build:
         build()
+        
+    if args.man:
+        man()
+        
+    if args.odt:
+        odt()
         
 def build():
     """
@@ -125,6 +139,28 @@ def build():
         # for update/migration
         os.system('''%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
+                   
+def man():
+    """
+    man file generation via docutils (python)
+    """
+    
+    os.system('''rst2man en.rst gramps.1''') 
+    
+    for lang in LANGUAGES:
+        os.system('''rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1''' 
+                   % {'lang': lang})
+                   
+def odt():
+    """
+    odt file generation via docutils (python)
+    """
+    
+    os.system('''rst2odt en.rst gramps.odt''') 
+    
+    for lang in LANGUAGES:
+        os.system('''rst2odt %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.odt''' 
+                   % {'lang': lang})
     
 if __name__ == "__main__":
 	main()
