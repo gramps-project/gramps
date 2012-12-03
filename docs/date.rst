@@ -273,7 +273,7 @@ The :class:`Date Edition` Classes
 
 DateEdit
 ====================================
-.. automodule:: gui.editors.editdate
+.. automodule:: gramps.gui.editors.editdate
    :members:
    :undoc-members:
    :show-inheritance:
