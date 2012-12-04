@@ -276,22 +276,22 @@ gramps(1)			     4.0.0			     gramps(1)
        Donald Allingham <don@gramps-project.org>
        http://gramps-project.org/
 
-       Cette page man a d'abord été écrite par:
+       Cette page man a d'abord été écrite par :
        Brandon L. Griffith <brandon@debian.org>
        pour Debian GNU/Linux système.
 
-       Cette page man est maintenue par:
+       Cette page man est maintenue par :
        Gramps project <xxx@gramps-project.org>
 
-       La traduction française:
+       La traduction française :
        Jérôme Rapinat <romjerome@yahoo.fr>
 
 
 **DOCUMENTATION**
-       La documentation-utilisateur est disponible par via un navigateur
+       La documentation-utilisateur est disponible par un navigateur
        standard sous la forme du manuel Gramps.
 
-       La  documentation  pour	développeur  est  disponible   sur   le   site
+       La documentation pour développeur est disponible sur le site
        http://www.gramps-project.org/wiki/index.php?title=Portal:Developers .
 
 

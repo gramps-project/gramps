@@ -130,7 +130,8 @@ def build():
     
     os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
     os.system('''%(program)s -b htmlhelp . _build/htmlhelp''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b man . .''' % {'program': sphinxCmd})
+    if DOCUTILS:
+        os.system('''%(program)s -b man . .''' % {'program': sphinxCmd})
     os.system('''%(program)s -b text . _build/text''' % {'program': sphinxCmd})
     os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
     #os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
@@ -141,8 +142,9 @@ def build():
                    % {'lang': lang, 'program': sphinxCmd})
         os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b man %(lang)s %(lang)s''' 
-                   % {'lang': lang, 'program': sphinxCmd})
+        if DOCUTILS:
+            os.system('''%(program)s -b man %(lang)s %(lang)s''' 
+                       % {'lang': lang, 'program': sphinxCmd})
         os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
                    % {'lang': lang, 'program': sphinxCmd})
         # for update/migration

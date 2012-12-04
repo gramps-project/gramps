@@ -1,4 +1,4 @@
-.TH "GRAMPS" "1" "03 December 2012" "4.0" "Gramps"
+.TH "GRAMPS" "1" "04 December 2012" "4.0" "Gramps"
 .SH NAME
 gramps \- Gramps Documentation
 .
@@ -318,21 +318,21 @@ besoins
 Donald Allingham <\fI\%don@gramps-project.org\fP>
 \fI\%http://gramps-project.org/\fP
 .sp
-Cette page man a d\(aqabord été écrite par:
+Cette page man a d\(aqabord été écrite par :
 Brandon L. Griffith <\fI\%brandon@debian.org\fP>
 pour Debian GNU/Linux système.
 .sp
-Cette page man est maintenue par:
+Cette page man est maintenue par :
 Gramps project <\fI\%xxx@gramps-project.org\fP>
 .sp
-La traduction française:
+La traduction française :
 Jérôme Rapinat <\fI\%romjerome@yahoo.fr\fP>
 .TP
 .B \fBDOCUMENTATION\fP
-La documentation\-utilisateur est disponible par via un navigateur
+La documentation\-utilisateur est disponible par un navigateur
 standard sous la forme du manuel Gramps.
 .sp
-La  documentation  pour  développeur  est  disponible   sur   le   site
+La documentation pour développeur est disponible sur le site
 \fI\%http://www.gramps-project.org/wiki/index.php?title=Portal:Developers\fP .
 .UNINDENT
 .sp
