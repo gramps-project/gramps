@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-11-27 10:16+0100\n"
+"PO-Revision-Date: 2012-12-05 21:25+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -13589,7 +13589,7 @@ msgstr "Ouders en hun voorouders zullen overwogen worden om \"familielijnen\" te
 
 #: ../src/plugins/graph/GVFamilyLines.py:125
 msgid "Follow children to determine \"family lines\""
-msgstr "Volg de kinderen om een \"familielijn\" te bepalen"
+msgstr "Kinderen volgen om een \"familielijn\" te bepalen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:127
 msgid "Children will be considered when determining \"family lines\"."
@@ -16844,47 +16844,47 @@ msgstr "Dochter van %(mother)s."
 #: ../src/plugins/lib/libnarrate.py:968
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:969
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:970
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:973
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:974
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:975
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:978
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:979
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:983
 #, python-format
@@ -16904,47 +16904,47 @@ msgstr "Huwde %(spouse)s %(modified_date)s te %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:991
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:992
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:993
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:996
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:997
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde ooks %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:998
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1006
 #, python-format
@@ -16964,47 +16964,47 @@ msgstr "Huwde tevens %(spouse)s %(modified_date)s te %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1014
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1015
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1016
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1019
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hij trouwde %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1024
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Zij trouwde %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1029
 #, python-format
@@ -17024,47 +17024,47 @@ msgstr "Huwde %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1037
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Deze persoon huwde ook %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1038
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Deze persoon huwde ook %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1039
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon huwde ook %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1042
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Zij trouwde tevens %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1052
 #, python-format
@@ -17084,17 +17084,17 @@ msgstr "Huwde ook %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1059
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1060
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1061
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1062
 #, python-format
@@ -17104,17 +17104,17 @@ msgstr "Huwde %(spouse)s te %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon huwde ook met %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1068
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Zij trouwde tevens met %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1069
 #, python-format
@@ -17124,17 +17124,17 @@ msgstr "Huwde tevens  %(spouse)s te %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1073
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Deze persoon trouwde met %(spouse)s%(endnotes)s."
+msgstr "Deze persoon huwde %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1074
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "Hij trouwde met %(spouse)s%(endnotes)s."
+msgstr "Hij huwde %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1075
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "Zij trouwde met %(spouse)s%(endnotes)s."
+msgstr "Zij huwde %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1076
 #, python-format
@@ -17144,22 +17144,22 @@ msgstr "Huwde  %(spouse)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Deze persoon trouwde tevens met %(spouse)s%(endnotes)s."
+msgstr "Deze persoon huwde ook %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "Hij trouwde tevens met %(spouse)s%(endnotes)s."
+msgstr "Hij huwde ook %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1082
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr "Zij trouwde tevens met %(spouse)s%(endnotes)s."
+msgstr "Zij huwde ook %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1083
 #, python-format
 msgid "Also married %(spouse)s%(endnotes)s."
-msgstr "Trouwde tevens met %(spouse)s%(endnotes)s."
+msgstr "Huwde ook %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1093
 #, python-format
@@ -19791,13 +19791,13 @@ msgstr "Beknopte vorm gebruiken of volledige zinnen."
 #: ../src/plugins/textreport/DetAncestralReport.py:794
 #: ../src/plugins/textreport/DetDescendantReport.py:969
 msgid "Add descendant reference in child list"
-msgstr "Afstammeling-verwijzingen in kinderen-lijst toevoegen"
+msgstr "Afstammelingenverwijzingen in de lijst met de kinderen toevoegen"
 
 # Opnemen ipv toevoegen
 #: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:972
 msgid "Whether to add descendant references in child list."
-msgstr "Al of niet afstammelingverwijzingen in kinderenlijst toevoegen."
+msgstr "Al of niet afstammelingenverwijzingen in de lijst van de kinderen toevoegen."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:803
 #: ../src/plugins/textreport/DetDescendantReport.py:978
@@ -19915,12 +19915,12 @@ msgstr "Al of niet ontbrekende datums vervangen door spaties."
 #: ../src/plugins/textreport/DetAncestralReport.py:878
 #: ../src/plugins/textreport/DetDescendantReport.py:1073
 msgid "The style used for the children list title."
-msgstr "De gebruikte stijl voor de titel van de kinderenlijst."
+msgstr "De gebruikte stijl voor de titel van de lijst van de kinderen."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:888
 #: ../src/plugins/textreport/DetDescendantReport.py:1083
 msgid "The style used for the children list."
-msgstr "De gebruikte stijl voor de kinderenlijst."
+msgstr "De gebruikte stijl voor de lijst van de kinderen."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:911
 #: ../src/plugins/textreport/DetDescendantReport.py:1106
@@ -19991,7 +19991,7 @@ msgstr "Toevoegen van het nakomellingenteken ('+' in de kinderlijst"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1021
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
-msgstr "Al of niet een teken ('+') toevoegen voor het nakomelingennummer in de kinderlijst om aan te geven dat kinderen nakomelingen hebben."
+msgstr "Al of niet een teken ('+') toevoegen voor het nakomelingennummer in de lijst van de kinderen om aan te geven dat kinderen nakomelingen hebben."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:1026
 msgid "Include path to start-person"
@@ -20664,7 +20664,7 @@ msgstr "Levert een eindelijnsverslag in tekstvorm"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid "Produces a family group report showing information on a set of parents and their children."
-msgstr "Maakt een familiegroepsverslag met informatie over een stel ouders en hun kinderen."
+msgstr "Familiegroepsverslag met informatie over een stel ouders en hun kinderen aanmaken."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
 msgid "Complete Individual Report"
@@ -25065,7 +25065,7 @@ msgstr "Personen met bladwijzers"
 
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:48
 msgid "Matches the people on the bookmark list"
-msgstr "Vindt de personen op de lijst met bladwijzers"
+msgstr "Personen op de lijst met bladwijzers zoeken"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:48
 msgid "Children of <filter> match"
@@ -25073,7 +25073,7 @@ msgstr "Is een kind van resultaat van <filter>"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:50
 msgid "Matches children of anybody matched by a filter"
-msgstr "Vindt kinderen van personen gevonden via een filter"
+msgstr "Kinderen van personen gevonden via een filter"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
 msgid "Default person"
@@ -25594,7 +25594,7 @@ msgstr "Families met moeder met <Id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Vindt families waarvan de moeder de opgegeven Gramps ID heeft"
+msgstr "Families waarvan de moeder de opgegeven Gramps ID heeft, zoeken"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
@@ -25667,7 +25667,7 @@ msgstr "Elke gebeurtenis"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
-msgstr "Vindt alle gebeurtenissen in het gegevensbestand"
+msgstr "Alle gebeurtenissen in het gegevensbestand zoeken"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:47
 msgid "Events changed after <date time>"
@@ -25915,7 +25915,7 @@ msgstr "Locaties met overeenkomende parameters"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Matches places with particular parameters"
-msgstr "Vindt locaties met bepaalde parameters"
+msgstr "Locaties met bepaalde parameters zoeken"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
 msgid "Places with a reference count of <count>"
@@ -25989,7 +25989,7 @@ msgstr "Locaties met de <bron>"
 
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:49
 msgid "Matches places who have a particular source"
-msgstr "Locaties met een bepaalde bron vinden"
+msgstr "Locaties met een bepaalde bron zoeken"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
 msgid "Place with direct source >= <confidence level>"
@@ -26023,7 +26023,7 @@ msgstr "Alle bronnen"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
 msgid "Matches every source in the database"
-msgstr "Vindt alle bronnen in het gegevensbestand"
+msgstr "Alle bronnen in het gegevensbestand zoeken"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:47
 msgid "Sources changed after <date time>"
