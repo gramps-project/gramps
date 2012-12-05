@@ -153,16 +153,16 @@ class LocationBaseModel(object):
         return "%012x" % data[6]
     
     def column_change(self, data):
-        return Utils.format_time(data[6])
+        return format_time(data[6])
 
     def column_place_name(self, data):
         return unicode(data[2])
 
     def sort_place_change(self, data):
-        return "%012x" % data[9]
+        return "%012x" % data[6]
     
     def column_place_change(self, data):
-        return Utils.format_time(data[9])
+        return Utils.format_time(data[6])
 
 #-------------------------------------------------------------------------
 #

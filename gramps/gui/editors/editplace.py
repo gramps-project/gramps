@@ -253,7 +253,7 @@ class EditPlace(EditPrimary):
         with DbTxn(_('Add location'), self.dbstate.db) as trans:
             for loc_type, name in new_locations:
                 new_location = Location()
-                new_location.parent = handle
+                new_location.parent = str(handle)
                 new_location.name = name
                 new_location.set_type(loc_type)
                 handle = self.dbstate.db.add_location(new_location, trans)

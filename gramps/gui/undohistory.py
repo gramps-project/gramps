@@ -119,7 +119,7 @@ class UndoHistory(ManagedWindow):
 
     def _selection_changed(self, obj):
         (model, node) = self.selection.get_selected()
-        if not node:
+        if not node or len(self.model) == 1:
             return
         path = self.model.get_path(node)
         start = min(path[0], self.undodb.undo_count)
