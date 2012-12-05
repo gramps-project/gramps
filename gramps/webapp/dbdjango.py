@@ -50,7 +50,7 @@ from gramps.gen.db import (PERSON_KEY,
                     NOTE_KEY)
 from gramps.gen.utils.id import create_id
 from gramps.gen.constfunc import STRTYPE
-from webapp.libdjango import DjangoInterface
+from gramps.webapp.libdjango import DjangoInterface
 from django.db import transaction
 
 class Cursor(object):

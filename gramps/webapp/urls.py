@@ -36,6 +36,7 @@ import os
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR
 from django.conf.urls.defaults import *
 from django.contrib import admin
+
 admin.autodiscover()
 
 from gramps.webapp.grampsdb.views import * 
