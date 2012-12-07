@@ -115,7 +115,7 @@
   </div>
   <div class="ui-tabs-panel ui-widget-content ui-corner-bottom
 	      ui-tabs-hide" id="tab-notes" style="background-color: #f4f0ec;"> 
-    {% note_table nameform.model user action "/person/%s/name/%s/note" person.handle nameform.model.order %}
+    {% note_table nameform.model user action "/note/$act/person/%s/name/%s" person.handle nameform.model.order %}
   </div>
 </div>
 

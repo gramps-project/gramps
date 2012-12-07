@@ -1365,6 +1365,7 @@ def process_list_item(request, view, handle, act, item, index):
         "eventref":       "#tab-events", 
         "citationref":    "#tab-citations", 
         "repositoryref":  "#tab-repositories", 
+        "noteref":        "#tab-notes", 
         "attribute":      "#tab-attributes", 
         "media":          "#tab-media", 
         "lds":            "#tab-lds",
@@ -1394,6 +1395,9 @@ def process_list_item(request, view, handle, act, item, index):
     elif item == "repositoryref":
         refs = dji.RepositoryRef.filter(object_id=obj.id,
                                         object_type=obj_type).order_by("order")
+    elif item == "noteref":
+        refs = dji.NoteRef.filter(object_id=obj.id,
+                                  object_type=obj_type).order_by("order")
     elif item == "parentfamily":
         refs = dji.MyParentFamilies.filter(person=obj).order_by("order")
     elif item == "family":

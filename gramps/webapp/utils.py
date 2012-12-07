@@ -648,19 +648,28 @@ def note_table(obj, user, act, url=None, *args):
     cssid = "tab-notes"
     table = Table("note_table")
     table.columns(
+        "",
         _("ID"),
         _("Type"),
         _("Note"))
+    table.column_widths = [11, 10, 20, 59]
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         note_refs = dji.NoteRef.filter(object_type=obj_type,
-                                       object_id=obj.id)
+                                       object_id=obj.id).order_by("order")
+        links = []
+        count = 1
         for note_ref in note_refs:
             note = note_ref.ref_object
-            table.row(note,
+            table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
+                      note.gramps_id,
                       str(note.note_type),
-                      note.text[:50])
+                      note.text[:50]
+                      )
+            links.append(('URL', note_ref.get_url()))
             has_data = True
+            count += 1
+        table.links(links)
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
         retval += make_button(_("+Add New Note"), (url % args).replace("$act", "add"))
@@ -668,7 +677,18 @@ def note_table(obj, user, act, url=None, *args):
     else:
         retval += nbsp("") # to keep tabs same height
     retval += """</div>"""
-    retval += table.get_html()
+    text = table.get_html()
+    text = text.replace("{{", """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+    text = text.replace("}}", """</div>""")
+    if user.is_authenticated() or obj.public:
+        count = 1
+        for note_ref in note_refs:
+            item = obj.__class__.__name__.lower()
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/noteref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/noteref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/noteref/%d" % (item, obj.handle, count)))
+            count += 1
+    retval += text
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
