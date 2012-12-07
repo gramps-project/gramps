@@ -314,11 +314,13 @@ class BasePluginManager(object):
         Reloads modules that might not be in the path.
         """
         try:
-            if sys.version_info[0] < 3:
-                reload(module)
-            else:
-                import imp
-                imp.reload(module)
+            import imp
+            fp, pathname, description = imp.find_module(pdata.mod_name, [pdata.fpath])
+            try:
+                module = imp.load_module(pdata.mod_name, fp, pathname,description)
+            finally:
+                if fp:
+                    fp.close()
         except:
             if pdata.mod_name in sys.modules:
                 del sys.modules[pdata.mod_name]
