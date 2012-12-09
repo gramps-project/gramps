@@ -126,7 +126,7 @@ from gramps.gen.utils.string import confidence
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
-from gramps.gen.constfunc import win, cuni, conv_to_unicode
+from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
@@ -475,7 +475,7 @@ strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32))
 
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
-    return md5(text).hexdigest()
+    return md5(text.encode('utf-8')).hexdigest()
 
 def conf_priv(obj):
     if obj.get_privacy() != 0:
@@ -698,7 +698,7 @@ class BasePage(object):
                                 children = sorted(children) 
 
                             ordered.extend(
-                             (Html("li") +
+                             (Html("li", inline=True) +
                               self.display_child_link(chandle))
                                     for birth_date, chandle in children
                             )
@@ -1231,7 +1231,7 @@ class BasePage(object):
                 tbody = Html("tbody")
                 table += tbody
 
-                for key in list(data_map.keys()):
+                for key in data_map.keys():
                     trow = Html("tr") + (
                         Html("td", self.fix(key), class_ = "ColumnAttribute", inline = True),
                         Html("td", self.fix(data_map[key]), class_ = "ColumnValue", inline = True)
@@ -2387,7 +2387,7 @@ class BasePage(object):
             )
             table += trow
   
-            tcell = Html("td", class_ ="ColumnValue")
+            tcell = Html("td", class_ ="ColumnValue", inline=True)
             trow += tcell
 
             tcell += self.new_person_link(spouse_handle, uplink=True,
@@ -2734,7 +2734,7 @@ class BasePage(object):
         # Sort by the name of the object at the bkref_class, bkref_handle
         for (bkref_class, bkref_handle) in sorted(
                 bkref_list, key=lambda x:self.report.obj_dict[x[0]][x[1]][1]):
-            list = Html("li")
+            list = Html("li", inline=True)
             path = self.report.obj_dict[bkref_class][bkref_handle][0]
             name = self.report.obj_dict[bkref_class][bkref_handle][1]
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
@@ -2858,7 +2858,7 @@ class SurnamePage(BasePage):
                     link = self.new_person_link(person_handle, uplink=True,
                                                  person=person,
                                                  name_style=_NAME_STYLE_FIRST)
-                    trow += Html("td", link, class_ = "ColumnName")  
+                    trow += Html("td", link, class_ = "ColumnName", inline=True)  
 
                     # birth column
                     if showbirth:
@@ -2890,7 +2890,7 @@ class SurnamePage(BasePage):
 
                     # partner column
                     if showpartner:
-                        tcell = Html("td", class_ = "ColumnPartner")
+                        tcell = Html("td", class_ = "ColumnPartner", inline=True)
                         trow += tcell
                         family_list = person.get_family_handle_list()
                         first_family = True
@@ -3061,7 +3061,7 @@ class FamilyPages(BasePage):
                                         trow = Html("tr")
                                         tbody += trow
 
-                                        tcell = Html("td", class_ ="ColumnRowLabel")
+                                        tcell = Html("td", class_ ="ColumnRowLabel", inline=True)
                                         trow += tcell 
 
                                         if letter not in ltrs_displayed:
@@ -3073,7 +3073,7 @@ class FamilyPages(BasePage):
                                         else:
                                             tcell += '&nbsp;'
 
-                                        tcell = Html("td", class_ ="ColumnPartner")
+                                        tcell = Html("td", class_ ="ColumnPartner", inline=True)
                                         trow += tcell
 
                                         if first_family:
@@ -3086,7 +3086,7 @@ class FamilyPages(BasePage):
                                         else:
                                             tcell += '&nbsp;'
 
-                                        tcell = Html("td", class_ ="ColumnPartner")
+                                        tcell = Html("td", class_ ="ColumnPartner", inline=True)
                                         trow += tcell
 
                                         # get partner if there is one listed?
@@ -3252,24 +3252,24 @@ class PlacePages(BasePage):
         self.db = report.database
         self.place_dict = defaultdict(set)
     
-    def display_pages(self, report, title):
+    def display_pages(self, title):
         # FIXME: Most of the parameters should be removed. report is passed to
         # __init__, title appears not to be used and place_list, source_list and
         # db_place_handles violate modularity and should be removed.
         log.debug("obj_dict[Place]")
-        for item in self.obj_dict[Place].items():
+        for item in self.report.obj_dict[Place].items():
             log.debug("    %s" % str(item))
-        report.user.begin_progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"),
-                                  len(self.obj_dict[Place]) + 1)
+                                  len(self.report.obj_dict[Place]) + 1)
 
-        self.PlaceListPage(report, title,
-                           self.obj_dict[Place].keys())
+        self.PlaceListPage(self.report, title,
+                           self.report.obj_dict[Place].keys())
 
-        for place in self.obj_dict[Place]:
-            report.user.step_progress()
-            self.PlacePage(report, title, place_handle)
-        report.user.end_progress()
+        for place_handle in self.report.obj_dict[Place]:
+            self.report.user.step_progress()
+            self.PlacePage(self.report, title, place_handle)
+        self.report.user.end_progress()
         pass
 
     def PlaceListPage(self, report, title, place_handles):
@@ -3535,7 +3535,7 @@ class EventPages(BasePage):
         log.debug("obj_dict[Event]")
         for item in self.report.obj_dict[Event].items():
             log.debug("    %s" % str(item))
-        event_handle_list = list(self.report.obj_dict[Event].keys())
+        event_handle_list = self.report.obj_dict[Event].keys()
         event_types = []
         for event_handle in event_handle_list:
             event = self.report.database.get_event_from_handle(event_handle)
@@ -4083,7 +4083,7 @@ class SourcePages(BasePage):
         self.report = report
         self.db = report.database
     
-    def display_pages(self, report, title):
+    def display_pages(self, title):
         """
         Generate and output the pages under the Sources tab, namely the sources
         index and the individual sources pages.
@@ -4093,15 +4093,15 @@ class SourcePages(BasePage):
         """
         # FIXME: Perhaps report and title should just be passed in to the class
         log.debug("obj_dict[Source]")
-        for item in self.obj_dict[Source].items():
+        for item in self.report.obj_dict[Source].items():
             log.debug("    %s" % str(item))
         self.report.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
                                  len(self.source_dict) + 1)
-        self.SourceListPage(self.report, title, list(self.source_dict.keys()))
+        self.SourceListPage(self.report, title, self.report.obj_dict[Source].keys())
 
-        for item in self.source_dict.iteritems():
-            report.user.step_progress()
+        for item in self.report.obj_dict[Source].items():
+            self.report.user.step_progress()
             self.SourcePage(self.report, title, item)
 
         self.report.user.end_progress()
@@ -4317,7 +4317,7 @@ class MediaPages(BasePage):
                                   _("Creating media pages"), 
                                   len(self.report.obj_dict[MediaObject]) + 1)
         
-        sort = Sort.Sort(self.report.database)
+        sort = Sort(self.report.database)
         sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
                                       key=sort.by_media_title_key)
         self.MediaListPage(self.report, title, sorted_media_handles)
@@ -5112,7 +5112,7 @@ class PersonPages(BasePage):
         @param: title -- the web site title
         """
         log.debug("obj_dict[Person]")
-        for item in self.report.obj_dict[Person].iteritems():
+        for item in self.report.obj_dict[Person].items():
             log.debug("    %s" % str(item))
         self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Creating individual pages'), 
@@ -5220,7 +5220,7 @@ class PersonPages(BasePage):
                     # firstname column
                     link = self.new_person_link(person_handle, person=person,
                                                  name_style=_NAME_STYLE_FIRST)
-                    trow += Html("td", link, class_ = "ColumnName")
+                    trow += Html("td", link, class_ = "ColumnName", inline=True)
 
                     # birth column
                     if showbirth:
@@ -5252,7 +5252,7 @@ class PersonPages(BasePage):
 
                     # partner column
                     if showpartner:
-                        tcell = Html("td", class_ = "ColumnPartner")
+                        tcell = Html("td", class_ = "ColumnPartner", inline=True)
                         trow += tcell
 
                         family_list = person.get_family_handle_list()
@@ -5322,6 +5322,7 @@ class PersonPages(BasePage):
         }
 
     def IndividualPage(self, report, title, person):
+        place_lat_long = []
         self.dbase_ = report.database
         BasePage.__init__(self, report, title, person.get_gramps_id())
 
@@ -5975,7 +5976,7 @@ class PersonPages(BasePage):
                         child_ped(ol)
                     else:
                         child = self.dbase_.get_person_from_handle(handle)
-                        ol += Html("li") + self.pedigree_person(child)
+                        ol += Html("li", inline=True) + self.pedigree_person(child)
             else:
                 child_ped(ol)
             return ol
@@ -6006,24 +6007,24 @@ class PersonPages(BasePage):
             with Html("ol", class_ = "pedigreegen") as pedol:
                 ped += pedol
                 if father and mother:
-                    pedfa = Html("li") + self.pedigree_person(father)
+                    pedfa = Html("li", inline=True) + self.pedigree_person(father)
                     pedol += pedfa
                     with Html("ol") as pedma:
                         pedfa += pedma
-                        pedma += (Html("li", class_ = "spouse") +
+                        pedma += (Html("li", class_ = "spouse", inline=True) +
                                       self.pedigree_person(mother) +
                                       children_ped(Html("ol"))
                                  )
                 elif father:
-                    pedol += (Html("li") + self.pedigree_person(father) +
+                    pedol += (Html("li", inline=True) + self.pedigree_person(father) +
                                   children_ped(Html("ol"))
                              )
                 elif mother:
-                    pedol += (Html("li") + self.pedigree_person(mother) +
+                    pedol += (Html("li", inline=True) + self.pedigree_person(mother) +
                                   children_ped(Html("ol"))
                              )
                 else:
-                    pedol += (Html("li") + children_ped(Html("ol")))
+                    pedol += (Html("li", inline=True) + children_ped(Html("ol")))
         return ped
         
     def display_ind_general(self):
@@ -7084,6 +7085,10 @@ class NavWebReport(Report):
                                   _('Constructing list of other objects...'), 
                                   sum(1 for _ in ind_list))
         for handle in ind_list:
+            # FIXME work around bug that self.database.iter under python 3
+            # returns (binary) data rather than text
+            if not isinstance(handle, UNITYPE):
+                handle = handle.decode('utf-8')
             self.user.step_progress()
             self._add_person(handle, "", "")
         self.user.end_progress()
@@ -7213,7 +7218,7 @@ class NavWebReport(Report):
         """
         name_format = self.options['name_format']
         primary_name = person.get_primary_name()
-        name = gen.lib.Name(primary_name)
+        name = Name(primary_name)
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
@@ -7766,8 +7771,12 @@ class NavWebReport(Report):
             self.cur_fname = fname + ext
         if self.archive:
             string_io = StringIO()
-            of = codecs.EncodedFile(string_io, 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
+            if sys.version_info[0] < 3:
+                of = open(fname, "w")
+            else:
+                of = open(fname, "w", encoding='utf-8')
+#            of = codecs.EncodedFile(string_io, 'utf-8',
+#                                    self.encoding, 'xmlcharrefreplace')
         else:
             string_io = None
             if subdir:
@@ -7775,8 +7784,12 @@ class NavWebReport(Report):
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
             fname = os.path.join(self.html_dir, self.cur_fname)
-            of = codecs.EncodedFile(open(fname, "w"), 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
+            if sys.version_info[0] < 3:
+                of = open(fname, "w")
+            else:
+                of = open(fname, "w", encoding='utf-8')
+#            of = codecs.EncodedFile(string_io, 'utf-8',
+#                                    self.encoding, 'xmlcharrefreplace')
         return (of, string_io)
 
     def close_file(self, of, string_io):
@@ -8589,14 +8602,11 @@ def add_birthdate(dbase, ppl_handle_list):
     This will sort a list of child handles in birth order
     """
     sortable_individuals = []
-    birth_date = False
     for person_handle in ppl_handle_list:
+        birth_date = 0    # dummy value in case none is found
         person = dbase.get_person_from_handle(person_handle)
         if person:
-
-            # get birth date: if birth_date equals nothing, then generate a fake one?
             birth_ref = person.get_birth_ref()
-            birth_date = Date.EMPTY
             if birth_ref:
                 birth = dbase.get_event_from_handle(birth_ref.ref)
                 if birth:
