@@ -6200,7 +6200,7 @@ class PersonPages(BasePage):
         This will display a parent ...
         """
         tcell1 = Html("td", title, class_ = "ColumnAttribute", inline = True)
-        tcell2 = Html("td", class_ = "ColumnValue")
+        tcell2 = Html("td", class_ = "ColumnValue", inline=True)
 
         tcell2 += self.new_person_link(handle, uplink=True)
 
@@ -6720,7 +6720,7 @@ class AddressBookPage(BasePage):
             body += addressbookdetail
 
             link = self.new_person_link(person_handle, uplink=True, person=person)
-            addressbookdetail += Html("h3", link)
+            addressbookdetail += Html("h3", link, inline=True)
 
             # individual has an address
             if has_add:
