@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:00+0200\n"
-"PO-Revision-Date: 2012-12-05 21:25+0100\n"
+"PO-Revision-Date: 2012-12-08 10:37+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -19824,7 +19824,7 @@ msgstr "Al of niet kenmerken toevoegen."
 #: ../src/plugins/textreport/DetDescendantReport.py:986
 #: ../src/plugins/textreport/IndivComplete.py:714
 msgid "Include Photo/Images from Gallery"
-msgstr "Foto's/Afbeeldingen uit de galerie bijvoegen"
+msgstr "Foto's/Afbeeldingen uit de galerij bijvoegen"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:812
 #: ../src/plugins/textreport/DetDescendantReport.py:987
@@ -19876,7 +19876,7 @@ msgstr "Al of niet bronverwijzingen toevoegen."
 #: ../src/plugins/textreport/DetDescendantReport.py:1006
 #: ../src/plugins/textreport/IndivComplete.py:709
 msgid "Include sources notes"
-msgstr "Opmerkingsbronnen bijvoegen"
+msgstr "Bronopmerkingen bijvoegen"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:832
 #: ../src/plugins/textreport/DetDescendantReport.py:1007
@@ -23646,7 +23646,7 @@ msgstr "Copyright"
 #: ../src/plugins/webreport/NarrativeWeb.py:7668
 #: ../src/plugins/webreport/WebCal.py:1350
 msgid "The copyright to be used for the web files"
-msgstr "Autheursrecht gebruiken voor de webpagina's"
+msgstr "Auteursrecht gebruiken voor de webpagina's"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7671
 #: ../src/plugins/webreport/WebCal.py:1356
@@ -23664,15 +23664,15 @@ msgstr "Horizontaal - standaard"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7682
 msgid "Vertical   -- Left Side"
-msgstr "Vertikaal - linkse kant"
+msgstr "Vertikaal - linkerzijde"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7683
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Uitregelen        -- enkel WebKit browsers"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7684
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Uitvalmenu   -- enkel WebKit browsers"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7686
 msgid "Navigation Menu Layout"
@@ -23852,7 +23852,7 @@ msgstr "Al of niet privé-objecten toevoegen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7792
 msgid "Living People"
-msgstr "Nog in levenzijnde personen"
+msgstr "Nog in leven zijnde personen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7797
 msgid "Include Last Name Only"
@@ -23872,7 +23872,7 @@ msgstr "Jaren van overlijden om levende personen te bepalen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7808
 msgid "This allows you to restrict information on people who have not been dead for very long"
-msgstr "Dit laadt u toe om informatie over personen die nog niet lang overleden zijn, te beperken"
+msgstr "Dit laat u toe om informatie over personen die nog niet lang overleden zijn, te beperken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7823
 msgid "Include download page"
@@ -23885,7 +23885,7 @@ msgstr "Al of niet een optie toevoegen om het gegevensbestand te kunnen download
 #: ../src/plugins/webreport/NarrativeWeb.py:7828
 #: ../src/plugins/webreport/NarrativeWeb.py:7837
 msgid "Download Filename"
-msgstr "Bestandnaam downloaden"
+msgstr "Bestandsnaam downloaden"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7830
 #: ../src/plugins/webreport/NarrativeWeb.py:7839
@@ -23923,7 +23923,7 @@ msgstr "Tekensetcodering"
 #: ../src/plugins/webreport/NarrativeWeb.py:7858
 #: ../src/plugins/webreport/WebCal.py:1504
 msgid "The encoding to be used for the web files"
-msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
+msgstr "De gebruikte tekensetcodering voor de webpagina's"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7861
 msgid "Include link to active person on every page"
@@ -24035,7 +24035,7 @@ msgstr "Kaartsysteem"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7929
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr "Uw keuze welke kaartdienst er gebruikt wordt om de plaatskaartpagina's aan te maken."
+msgstr "Uw keuze welke kaartdienst er gebruikt wordt om de locatiekaartpagina's aan te maken."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7934
 msgid "Include Place map on Place Pages"
@@ -24067,7 +24067,7 @@ msgstr "Markeringen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7953
 msgid "Google/ FamilyMap Option"
-msgstr "Google/FamiyMap optie"
+msgstr "Google/ Familiekaartoptie"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7956
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
@@ -24168,7 +24168,7 @@ msgstr "Kalendertitel"
 
 #: ../src/plugins/webreport/WebCal.py:1366
 msgid "Content Options"
-msgstr "Inhoudopties"
+msgstr "Inhoudsopties"
 
 #: ../src/plugins/webreport/WebCal.py:1371
 msgid "Create multiple year calendars"
@@ -24176,7 +24176,7 @@ msgstr "Kalenders voor meerdere jaren aanmaken"
 
 #: ../src/plugins/webreport/WebCal.py:1372
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Al of niet klaenders over meerdere jaren aanmaken."
+msgstr "Al of niet kalenders over meerdere jaren aanmaken."
 
 #: ../src/plugins/webreport/WebCal.py:1376
 msgid "Start Year for the Calendar(s)"
@@ -24184,7 +24184,7 @@ msgstr "Startjaar voor de kalender(s)"
 
 #: ../src/plugins/webreport/WebCal.py:1378
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr "Vul een startjaar in voor de kalenders dat ligt tussen 1900 en 3000"
+msgstr "Startjaar voor de kalenders: kies van 1900 tot 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1382
 msgid "End Year for the Calendar(s)"
