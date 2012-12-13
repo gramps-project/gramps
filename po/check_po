@@ -548,6 +548,7 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 
 	for c in checks:
 		c.summary()
+		c.diag()
 
 	po_coverage = (1.0 - (float(nr_untranslated) / float(nr_msgs))) * 100
 	print "%-20s%5.2f%%" % ( "PO Coverage:",       po_coverage )
@@ -564,14 +565,13 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 	else:
 		print text + ' (previous gramps.pot)'
 
-
 def main():
     
     parser = ArgumentParser( description='This program validates a PO file for GRAMPS.')
                  
     parser.add_argument("-s", dest="summary",
               choices=[file for file in os.listdir('.') if file.endswith('.po')], 
-              default=False, help="only give the summary")
+              default=False, help="the summary of check, and if need, it gives details")
               
     args = parser.parse_args()
     

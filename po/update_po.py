@@ -52,6 +52,7 @@ import os
 import sys
 from argparse import ArgumentParser
 
+# Windows OS
 
 if sys.platform == 'win32':          
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
@@ -61,6 +62,9 @@ if sys.platform == 'win32':
     msgattribCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgattrib.exe')
     xgettextCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'xgettext.exe')
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
+
+# Others OS
+
 elif sys.platform == 'linux2' or os.name == 'darwin':
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
@@ -70,9 +74,14 @@ elif sys.platform == 'linux2' or os.name == 'darwin':
 else:
     print ("ERROR: unknown system, don't know msgmerge, ... commands")
     sys.exit(0)
-    
+
+# List of available languages, useful for grouped actions
+
+# need files with po extension
 LANG = [file for file in os.listdir('.') if file.endswith('.po')]
+# add a special 'all' argument (for 'check' and 'merge' arguments)
 LANG.append("all")
+# visual polish on the languages list
 LANG.sort()
 
 def tests():
@@ -116,7 +125,7 @@ def tests():
     except:
         print ('Please, install python')
         
-# See also 'get_string' from Gramps 2.0 (sample with SAX)
+
 def TipsParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'tips.xml'.
@@ -205,6 +214,7 @@ def HolidaysParse(filename, mark):
         if key.attrib.get(mark):
             line = key.attrib
             string = line.items
+            # mapping via the line dict (_name is the key)
             name = 'char *s = N_("%(_name)s");\n' % line
             holidays.write(name)
     holidays.close()
@@ -298,19 +308,19 @@ def KeyParse(filename, mark):
     
     '''
     application/x-gramps-xml:
-		_description=Gramps XML database
-		default_action_type=application
-		short_list_application_ids=gramps
-		short_list_application_ids_for_novice_user_level=gramps
-		short_list_application_ids_for_intermediate_user_level=gramps
-		short_list_application_ids_for_advanced_user_level=gramps
-		category=Documents/Genealogy
-		icon-filename=/usr/share/gramps/gramps.png
-		open=gramps %f
+    _description=Gramps XML database
+    default_action_type=application
+    short_list_application_ids=gramps
+    short_list_application_ids_for_novice_user_level=gramps
+    short_list_application_ids_for_intermediate_user_level=gramps
+    short_list_application_ids_for_advanced_user_level=gramps
+    category=Documents/Genealogy
+    icon-filename=/usr/share/gramps/gramps.png
+    open=gramps %f
 
     application/x-gedcom:
-		_description=GEDCOM
-		default_action_type=application
+    _description=GEDCOM
+    default_action_type=application
     
     msgid "Gramps XML database"
     msgid "GEDCOM"
@@ -394,7 +404,6 @@ def main():
     
     args = parser.parse_args()
     namespace, extra = parser.parse_known_args()
-    #print(args, '\n\t\t###\n', vars(args), '\n\t\t###\n', sys.argv[2:])
 
     if args.test:
         tests()
@@ -415,11 +424,13 @@ def main():
         clean()
         
     if args.merge:
+        #retrieve() windows os?
         if sys.argv[2:] == ['all']:
             sys.argv[2:] = LANG
         merge(sys.argv[2:])
         
     if args.check:
+        #retrieve() windows os?
         if sys.argv[2:] == ['all']:
             sys.argv[2:] = LANG
         check(sys.argv[2:])
