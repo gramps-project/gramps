@@ -36,6 +36,7 @@ from __future__ import print_function
 import re
 import locale
 
+from gramps.gen.constfunc import STRTYPE
 """
 HTML operations.
 
@@ -331,7 +332,8 @@ class Html(list):
         :rtype:  object reference
         :returns: reference to object with new value added
         """
-        if isinstance(value, Html) or not hasattr(value, '__iter__'):
+        if isinstance(value, Html) or (not hasattr(value, '__iter__') and 
+                not isinstance(value, STRTYPE)):
             value = [value]
         index = len(self) - (1 if self.close else 0)
         self[index:index] = value
@@ -553,8 +555,9 @@ class Html(list):
         :param name: new HTML contents
         """
         if len(self) < 2:
-            raise AttributeError('No closing tag. Cannot set inside value') 
-        if isinstance(value, Html) or not hasattr(value, '__iter__'):
+            raise AttributeError('No closing tag. Cannot set inside value')
+        if isinstance(value, Html) or (not hasattr(value, '__iter__') and 
+                not isinstance(value, STRTYPE)):
             value = [value]
         self[1:-1] = value
 #

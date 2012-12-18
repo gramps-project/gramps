@@ -4102,7 +4102,7 @@ class SourcePages(BasePage):
 
         for item in self.report.obj_dict[Source].items():
             self.report.user.step_progress()
-            self.SourcePage(self.report, title, item)
+            self.SourcePage(self.report, title, item[0])
 
         self.report.user.end_progress()
     
