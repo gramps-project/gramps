@@ -455,7 +455,7 @@ class MonitoredDataType(object):
             
         map = get_val().get_map().copy()
         if ignore_values :
-            for key in map.keys():
+            for key in list(map.keys()):
                 if key in ignore_values and key not in (None, default):
                     del map[key]
 
