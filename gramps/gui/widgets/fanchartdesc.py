@@ -348,8 +348,12 @@ class FanChartDescWidget(FanChartBaseWidget):
             for data in self.gen2people[gen]:
                 #obtain start and stop of family this is child of
                 parentfamdata = self.gen2fam[gen-1][data[5]]
-                nrdescfam = self.famhandle2desc[parentfamdata[0].handle]
-                nrdesc = self.handle2desc[data[0].handle]
+                nrdescfam = 0
+                if not parentfamdata[1]:
+                    nrdescfam = self.famhandle2desc[parentfamdata[0].handle]
+                nrdesc = 0
+                if not data[1]:
+                    nrdesc = self.handle2desc[data[0].handle]
                 famstart = parentfamdata[2]
                 famslice = parentfamdata[3]
                 nrchild = parentfamdata[6]
