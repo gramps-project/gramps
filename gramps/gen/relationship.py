@@ -1015,7 +1015,7 @@ class RelationshipCalculator(object):
                                 pmap, depth, stoprecursemap)
         except:
             import traceback
-            print(traceback.print_exc())
+            traceback.print_exc()
             return
 
     def collapse_relations(self, relations):
