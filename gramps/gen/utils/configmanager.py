@@ -302,11 +302,20 @@ class ConfigManager(object):
                     ####################### Now, let's test and set:
                     if (name in self.default and 
                         setting in self.default[name]):
+                        if isinstance(self.default[name][setting], bool):
+                            #make sure 0 and 1 are False and True
+                            if value == 0:
+                                value = False
+                            elif value == 1:
+                                value = True
                         if self.check_type(self.default[name][setting], value):
                             self.data[name][setting] = value
                         else:
                             logging.warning("WARNING: ignoring key with wrong type "
-                                   "'%s.%s'" % (name, setting))
+                                   "'%s.%s' %s needed instead of %s" % 
+                                           (name, setting,
+                                            type(self.data[name][setting]),
+                                            type(value)))
                     else:
                         # this could be a third-party setting; add it:
                         self.data[name][setting] = value
