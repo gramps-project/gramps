@@ -278,7 +278,7 @@ class ConfigureDialog(ManagedWindow):
                      config=None):
         if not config:
             config = self.__config
-        radiobox = Gtk.RadioButton(group,label)
+        radiobox = Gtk.RadioButton.new_with_mnemonic_from_widget(group, label)
         if config.get(constant) == True:
             radiobox.set_active(True)
         radiobox.connect('toggled', self.update_radiobox, constant)

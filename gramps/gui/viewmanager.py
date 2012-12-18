@@ -1562,7 +1562,7 @@ class ViewManager(CLIManager):
         hbox.pack_start(label, False, True, 0)
         include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
                                                         mbytes, _("Megabyte|MB")))
-        exclude = Gtk.RadioButton(include, _("Exclude"))
+        exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, False, True, 0)
         hbox.pack_end(exclude, False, True, 0)
@@ -1591,13 +1591,13 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
-                from exportpkg import PackageWriter
+                from gramps.plugins.export.exportpkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
                                        User(error=ErrorDialog,
                                             callback=self.pulse_progressbar))
                 writer.export()
             else:
-                from exportxml import XmlWriter
+                from gramps.plugins.export.exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
                                    User(error=ErrorDialog,
                                         callback=self.pulse_progressbar),
