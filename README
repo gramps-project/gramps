@@ -36,8 +36,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
 The following packages are optional
    gtkspell         Enable spell checking in the notes. Gtkspell depends on 
                     enchant. A version of gtkspell with gobject introspection
-                    is needed (if not the official yet, use
-                    https://github.com/manisandro/gtkspell3/tree/changes/gtkspell)
+                    is needed, so minimally version 3.0.0
 
    ttf-freefont     More font support in the reports
 
