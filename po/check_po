@@ -532,6 +532,7 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 
 		if msg.is_fuzzy:
 			nr_fuzzy += 1
+			continue
 
 		for c in checks:
 			c.process( msg )
@@ -548,7 +549,6 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 
 	for c in checks:
 		c.summary()
-		c.diag()
 
 	po_coverage = (1.0 - (float(nr_untranslated) / float(nr_msgs))) * 100
 	print "%-20s%5.2f%%" % ( "PO Coverage:",       po_coverage )
@@ -564,6 +564,9 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 		print text
 	else:
 		print text + ' (previous gramps.pot)'
+
+	for c in checks:
+		c.diag()
 
 def main():
     
