@@ -96,8 +96,15 @@ def build_trans(build_cmd):
         if newer(po_file, mo_file):
             cmd = 'msgfmt %s -o %s' % (po_file, mo_file)
             if os.system(cmd) != 0:
+                os.remove(mo_file)
                 msg = 'ERROR: Building language translation files failed.'
-                raise SystemExit(msg)
+                ask = msg + '\n Continue building y/n [n] '
+                if sys.version_info[0] < 3:
+                    reply = raw_input(ask)
+                else:
+                    reply = input(ask)
+                if reply in ['n', 'N']:
+                    raise SystemExit(msg)
 
         #linux specific piece:
         target = 'share/locale/' + lang + '/LC_MESSAGES'
