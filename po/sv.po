@@ -12493,7 +12493,7 @@ msgid "Color"
 msgstr "Färg"
 
 #: ../gramps/gui/plug/_guioptions.py:1513
-#, python-format
+#, fuzzy, python-format
 msgid "Select color for %s"
 msgstr "Välj färg på teckensnitt"
 
@@ -12703,7 +12703,7 @@ msgstr ""
 "att återse alternativ."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:452
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -19567,6 +19567,7 @@ msgstr "GEDCOM importrappport: %s fel hittades"
 msgid "Tag recognized but not supported"
 msgstr "Flagga upptäck, men stöds ej"
 
+#, fuzzy
 #: ../gramps/plugins/lib/libgedcom.py:2840
 msgid "Line ignored as not understood"
 msgstr "Rad %d gick inte att förstå, så den ignorerades."
@@ -27089,7 +27090,7 @@ msgid "Number of merges done"
 msgstr "Antal utförda sammanslagningar"
 
 #: ../gramps/plugins/tool/mergecitations.py:226
-#, python-format
+#, fuzzy, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
 msgstr[0] "%d citering sammanslagen"
