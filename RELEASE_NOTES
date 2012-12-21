@@ -1,24 +1,33 @@
-Gramps 3.2 Release Notes
+"UNSTABLE Gramps 4.0.0 Alpha1 release.
 
-General Improvements
+This is a technology preview to allow plugin writers and packagers-installer 
+writers to update their plugins and scripts. This release is not production 
+ready, so use for testing!"
 
-* New Plugin System
-In the Help Menu -> Menu Status, all available plugins are visible. All plugins can be hidden, saving resources and hiding options you do not need. Eg: You don't use the Pedigree View? Hide it in the Plugin Status, and it will not be present anymore. You don't use vcard export? Hide it in the Plugin Status, and it will not be offered anymore.
+It is recommended to use Gramps 4.0.0 with python 3.2 so as to be ready 
+for the future (python 2.7 works though). 
 
-* Faster
-Many under the hood improvements have occurred that should improve perfamance enormously. Yes, new features are present to use all your processing power, but they are all implemented as plugins that can be hidden. Eg: Insert of a person in a 30000 people family tree took 4sec on 1.4Ghz PC in 3.1, Now it is done in milliseconds.
+The dependencies for Gramps 4.0.0 are _completely_ different than 3.4 due 
+to the switch to GObject introspection, and the removal of autotools. So 
+only install 4.0.0 if you are certain you can obtain the dependencies, 
+see README and INSTALL. 
 
-*New Views
-There are new views, and some views have been greatly improved
-  - People view can now be sorted on the columns
-  - A Place treeview is present, nicely grouping your places under country groups
-  - GeoView has left it's beta status behind and shows your data on an 
-    online map (Openstreetmap or google maps, fast internet connection required)
-  - Help Menu -> Extra Reports/Tools open a webpage with downloadable extra views
+For linux, in Ubuntu 12.10 you can install 4.0.0, but you will need to 
+compile and install osmgpsmap manually to have the maps working (see 
+http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography ) 
 
 
-Other Improvements
+Major enhancements in Gramps 4.0.0:
 
-* Styled Notes now in most output formats that support styles, eg in the web report
-* New languages
-* Select language in which report should be created (only present now in some reports)
+* GEP 8: code reorganization: http://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
+
+* GEP 26: Replace make: http://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
+
+* GEP 29: Gtk 3 :http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
+
+* GEP 31: Python 3 support: http://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
+
+More info in the manual 
+http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_What%27s_new%3F
+
+Everybody is invited to update the manual to make it current!
