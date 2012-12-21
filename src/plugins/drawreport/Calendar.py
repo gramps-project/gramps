@@ -248,10 +248,9 @@ class Calendar(Report):
             last_edge = 0
         font_height = pt2cm(1.5 * ptext1style.get_font().get_size())
         x = last_edge + (width - last_edge)/2
-        y = height - font_height
-        self.doc.center_text("CAL-Text1style", self.text1, x, y * 3) 
-        self.doc.center_text("CAL-Text2style", self.text2, x, y * 2) 
-        self.doc.center_text("CAL-Text3style", self.text3, x, y * 1) 
+        self.doc.center_text("CAL-Text1style", self.text1, x, height - font_height * 3) 
+        self.doc.center_text("CAL-Text2style", self.text2, x, height - font_height * 2) 
+        self.doc.center_text("CAL-Text3style", self.text3, x, height - font_height * 1) 
         self.doc.end_page()
 
     def collect_data(self):
