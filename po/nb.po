@@ -396,7 +396,7 @@ msgid "Could not rename family tree"
 msgstr "Kunne ikke omdøpe fila"
 
 #: ../gramps/cli/clidbman.py:406
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "\n"
 "ERROR: Wrong database path in Edit Menu->Preferences.\n"
