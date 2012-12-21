@@ -37,8 +37,8 @@ global-exclude *.pyo
 global-exclude *.bak
 
 # Remove directories which should not be included in the distribution
-prune src/guiQML
-prune src/webapp
+prune gramps/guiQML
+prune gramps/webapp
 
 # Remove Makefiles used by autotools
 global-exclude Makefile*
