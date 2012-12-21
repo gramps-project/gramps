@@ -709,6 +709,7 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_from_handle(handle, Tag, self.tag_map)
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
+        if isinstance(tbl, dict): return None ## trying to get object too early
         try:
             data = tbl.get(str(val), txn=self.txn)
             if data is not None:
