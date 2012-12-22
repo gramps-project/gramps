@@ -255,9 +255,11 @@ gramps(1)                4.0.0               gramps(1)
 *ARQUIVOS**
 
        *${PREFIX}/bin/gramps*
-
-       *${PREFIX}/share/gramps*
-
+       
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
+       
        *${HOME}/.gramps*
 
 
