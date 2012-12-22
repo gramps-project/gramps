@@ -1,7 +1,7 @@
 French
 =======
 
-gramps(1)                4.0.0               gramps(1)
+gramps(1)                @VERSION@               gramps(1)
 
 
 **NOM**
@@ -44,7 +44,7 @@ gramps(1)                4.0.0               gramps(1)
 
        **-f** , **--format=** *FORMAT*
           Le format spécifique du *FICHIER* est précédé par les arguments
-          **-i** ,  ou  **-e** . Si	l'option **-f** n'est pas donnée pour le *FICHIER* ,
+          **-i** , ou **-e** . Si l'option **-f** n'est pas donnée pour le *FICHIER* ,
           alors le format sera celui de l'extension ou du type-MIME.
 
           Les formats de sortie disponibles sont **gramps-xml** (deviné si
@@ -71,7 +71,7 @@ gramps(1)                4.0.0               gramps(1)
 
        **-O** , **--open=** *BASE_DE_DONNEES*
           Ouvrir une *BASE_DE_DONNEES* qui doit être une base présente dans
-          le  répertoire des bases ou le nom d'un arbre familial existant.
+          le répertoire des bases ou le nom d'un arbre familial existant.
           Si aucune action n'est définie, les options d'import ou d'export
           sont  données par la ligne de commande puis une session interac‐
           tive est ouverte, utilisant cette base de données.
@@ -85,9 +85,9 @@ gramps(1)                4.0.0               gramps(1)
           spécifié de base de données alors une base de données temporaire
           est utilisée; elle sera effacée quand vous quitterez gramps.
 
-          Quand  plus  d'un  fichier  doit	être importé, chacun doit être
+          Quand plus d'un fichier doit être importé, chacun doit être
           précédé par la commande **-i** . Ces fichiers sont importés dans le
-          même ordre,  i.e.  **-i** *FICHIER1* **-i** *FICHIER2* et **-i** *FICHIER2* **-i**
+          même ordre,  **-i** *FICHIER1* **-i** *FICHIER2* et **-i** *FICHIER2* **-i**
           *FICHIER1* vont tous les deux produire différents IDs gramps.
 
 
@@ -103,14 +103,14 @@ gramps(1)                4.0.0               gramps(1)
 
        **-a** , **--action=** *ACTION*
           Accomplir une *ACTION* sur les données importées. C'est effectué à
-          la fin de l'importation.	Les  actions  possibles sont **summary**
-          (comme le rapport  ->  Afficher  -> Statistiques sur la base),
-          **check** (comme l'outil -> Réparation de la	base  ->  Vérifier  et
-          réparer),  **report** (produit un rapport) et **tool** (utilise un
+          la fin de l'importation. Les actions possibles sont **summary**
+          (comme le rapport -> Afficher -> Statistiques sur la base),
+          **check** (comme l'outil -> Réparation de la base -> Vérifier et
+          réparer), **report** (produit un rapport) et **tool** (utilise un
           outil), ces derniers ont besoin de *OPTION* précédé par la commande -p.
 
           L' *OPTION* doit satisfaire ces conditions:
-          Il  ne doit pas y avoir d'espace. Si certains arguments doivent
+          Il ne doit pas y avoir d'espace. Si certains arguments doivent
           utiliser des espaces, la chaîne doit être encadrée par des
           guillemets. Les options vont par paire nom et valeur. Une
           paire est séparée par un signe égal. Différentes paires sont
@@ -120,7 +120,7 @@ gramps(1)                4.0.0               gramps(1)
           s'il existe des options communes.
 
           **name=name**
-          Cette option est obligatoire, elle  détermine quel rapport ou
+          Cette option est obligatoire, elle détermine quel rapport ou
           outil sera utilisé. Si le name saisi ne correspond à aucun 
           module disponible, un message d'erreur sera ajouté.
 
@@ -153,12 +153,12 @@ gramps(1)                4.0.0               gramps(1)
 
 **Opération**
        Si le premie argument de la ligne de commande ne commence pas par un
-       tiret (i.e. pas d'instruction), gramps va essayer d'ouvrir la  base  de
-       données	avec le nom donné par le premier argument et démarrer une ses‐
+       tiret (i.e. pas d'instruction), gramps va essayer d'ouvrir la base de
+       données avec le nom donné par le premier argument et démarrer une ses‐
        sion interactive, en ignorant le reste de la ligne de commande.
 
 
-       Si la commande **-O** est notée, alors gramps va essayer le fichier	défini
+       Si la commande **-O** est notée, alors gramps va essayer le fichier défini
        et va travailler avec ses données, comme pour les autres paramètres de
        la ligne de commande.
 
@@ -181,7 +181,7 @@ gramps(1)                4.0.0               gramps(1)
        Cette base sera **import_db.grdb** dans le répertoire **~/.gramps/import**.
 
 
-       Les erreurs  rencontrées lors d'importation, d'exportation, ou d'action,	seront
+       Les erreurs  rencontrées lors d'importation, d'exportation, ou d'action, seront
        mémorisées en *stdout* (si elles sont le fait de la manipulation par
        gramps) ou en *stderr* (si elles ne sont pas le fait d'une manipulation).
        Utilisez les shell de redirection de *stdout* et *stderr* pour sauver  
@@ -189,14 +189,14 @@ gramps(1)                4.0.0               gramps(1)
 
 
 **EXEMPLES**
-       Pour ouvrir un arbre familial et y importer un  fichier	XML,  on  peut
+       Pour ouvrir un arbre familial et y importer un fichier XML, on peut
        saisir:
        
           **gramps -O** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
        Ceci ouvre un arbre familial, pour faire la même chose, mais importer
-       dans un arbre familial temporaire et démarrer une session  interactive,
-       on peut saisir:
+       dans un arbre familial temporaire et démarrer une session interactive,
+       on peut saisir :
        
           **gramps -i** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
@@ -251,12 +251,12 @@ gramps(1)                4.0.0               gramps(1)
 
 **CONCEPTS**
        Gramps est un système basé sur le support de plugin-python, permettant
-       d'importer et d'exporter, la saisie, générer des rapports, des  outils,
-       et  afficher des filtres pouvant être ajoutés sans modifier le programme.
+       d'importer et d'exporter, la saisie, générer des rapports, des outils,
+       et afficher des filtres pouvant être ajoutés sans modifier le programme.
 
        Par ailleurs, gramps permet la génération directe : impression, rap‐
        ports avec sortie vers d'autres formats, comme *LibreOffice.org* ,
-       *HTML* , ou *LaTeX* pour permettre à	l'utilisateur de choisir selon ses
+       *HTML* , ou *LaTeX* pour permettre à l'utilisateur de choisir selon ses
        besoins
 
 
@@ -297,4 +297,4 @@ gramps(1)                4.0.0               gramps(1)
 
 
 
-gramps(1)                 4.0.0               gramps(1)
+gramps(1)                 @VERSION@               gramps(1)
