@@ -699,10 +699,11 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         
     def reverse_order(self):
         """
-        Reverse the order of the map. This does not signal rows_reordered,
-        so to propagate the change to the view, you need to reattach the
-        model to the view. 
+        Reverse the order of the map. Only for Gtk 3.9+ does this signal
+        rows_reordered, so to propagate the change to the view, you need to
+        reattach the model to the view. 
         """
+        self.GTK38PLUS = (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3,8)
         self.__reverse = not self.__reverse
         top_node = self.tree[None]
         self._reverse_level(top_node)
@@ -722,8 +723,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             else:
                 iternode = self.get_iter(node)
                 path = self.do_get_path(iternode)
-            ##TODO GTK3: rows_reordered is not exposed in gi
-            #self.rows_reordered(path, iter, rows)
+            if self.GTK38PLUS:
+                ##rows_reordered is only exposed in gi starting GTK 3.8
+                self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
                 for child in node.children:
                     self._reverse_level(self.nodemap.node(child[1]))
