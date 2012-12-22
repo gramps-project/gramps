@@ -276,7 +276,9 @@ gramps(1)			     3.4.0			     gramps(1)
        
        *${PREFIX}/bin/gramps*
        
-       *${PREFIX}/share/gramps*
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
        
        *${HOME}/.gramps (jeśli nie użyta została  zmienna  środowiskowa	GRAMP‐
        SHOME)*

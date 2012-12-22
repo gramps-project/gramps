@@ -246,7 +246,9 @@ Gramps(1)			     3.4.0			     Gramps(1)
 
        *${PREFIX}/bin/gramps*
        
-       *${PREFIX}/share/gramps*
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
        
        *${HOME}/.gramps*
 

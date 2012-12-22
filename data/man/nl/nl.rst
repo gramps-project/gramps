@@ -227,11 +227,14 @@ gramps(1)			     3.4.0			     gramps(1)
 
 
 **GEKENDE BUGS EN BEPERKINGEN**
+
 **BESTANDEN**
 
        *${PREFIX}/bin/gramps*
        
-       *${PREFIX}/share/gramps*
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
        
        *${HOME}/.gramps*
 

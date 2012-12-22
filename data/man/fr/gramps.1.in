@@ -1,4 +1,4 @@
-.TH "GRAMPS" "1" "04 December 2012" "4.0" "Gramps"
+.TH "GRAMPS" "1" "22 December 2012" "4.0" "Gramps"
 .SH NAME
 gramps \- Gramps Documentation
 .
@@ -31,7 +31,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" Man page generated from reStructeredText.
 .
 .sp
-gramps(1)                            4.0.0                           gramps(1)
+gramps(1)                4.0.0               gramps(1)
 .INDENT 0.0
 .TP
 .B \fBNOM\fP
@@ -72,7 +72,7 @@ Les formats natifs de gramps sont acceptés, voir ci\-dessous.
 .TP
 .B \fB\-f\fP , \fB\-\-format=\fP \fIFORMAT\fP
 Le format spécifique du \fIFICHIER\fP est précédé par les arguments
-\fB\-i\fP ,  ou  \fB\-e\fP . Si l\(aqoption \fB\-f\fP n\(aqest pas donnée pour le \fIFICHIER\fP ,
+\fB\-i\fP ,  ou  \fB\-e\fP . Si     l\(aqoption \fB\-f\fP n\(aqest pas donnée pour le \fIFICHIER\fP ,
 alors le format sera celui de l\(aqextension ou du type\-MIME.
 .sp
 Les formats de sortie disponibles sont \fBgramps\-xml\fP (deviné si
@@ -109,7 +109,7 @@ Importer des données depuis un \fIFICHIER\fP . Si vous n\(aqavez pas
 spécifié de base de données alors une base de données temporaire
 est utilisée; elle sera effacée quand vous quitterez gramps.
 .sp
-Quand  plus  d\(aqun  fichier  doit  être importé, chacun doit être
+Quand  plus  d\(aqun  fichier  doit      être importé, chacun doit être
 précédé par la commande \fB\-i\fP . Ces fichiers sont importés dans le
 même ordre,  i.e.  \fB\-i\fP \fIFICHIER1\fP \fB\-i\fP \fIFICHIER2\fP et \fB\-i\fP \fIFICHIER2\fP \fB\-i\fP
 \fIFICHIER1\fP vont tous les deux produire différents IDs gramps.
@@ -124,12 +124,10 @@ précédé par la commande \fB\-e\fP . Ces fichiers sont importés dans le
 même ordre.
 .TP
 .B \fB\-a\fP , \fB\-\-action=\fP \fIACTION\fP
-.INDENT 7.0
-.INDENT 3.5
 Accomplir une \fIACTION\fP sur les données importées. C\(aqest effectué à
-la fin de l\(aqimportation.  Les  actions  possibles sont \fBsummary\fP
+la fin de l\(aqimportation.      Les  actions  possibles sont \fBsummary\fP
 (comme le rapport  \->  Afficher  \-> Statistiques sur la base),
-\fBcheck\fP (comme l\(aqoutil \-> Réparation de la      base  \->  Vérifier  et
+\fBcheck\fP (comme l\(aqoutil \-> Réparation de la  base  \->  Vérifier  et
 réparer),  \fBreport\fP (produit un rapport) et \fBtool\fP (utilise un
 outil), ces derniers ont besoin de \fIOPTION\fP précédé par la commande \-p.
 .sp
@@ -151,17 +149,13 @@ module disponible, un message d\(aqerreur sera ajouté.
 \fBshow=all\fP
 Cette option produit une liste avec les noms des options
 disponibles pour un rapport donné.
-.UNINDENT
-.UNINDENT
 .sp
 \fBshow=optionname\fP
 Cette option affiche une description de toutes les fonctionnalités
 proposées par optionname, aussi bien les types que les valeurs pour une option.
-.INDENT 7.0
-.TP
-.B Utiliser les options ci\-dessus pour trouver tout sur un rapport
+.sp
+Utiliser les options ci\-dessus pour trouver tout sur un rapport
 choisi.
-.UNINDENT
 .UNINDENT
 .sp
 Quand plus d\(aqune action doit être effectuée, chacune doit être précédée
@@ -302,12 +296,15 @@ besoins
 .UNINDENT
 .sp
 \fBBUGS CONNUS ET LIMITATIONS\fP
+.sp
 \fBFICHIERS\fP
 .INDENT 0.0
 .INDENT 3.5
 \fI${PREFIX}/bin/gramps\fP
 .sp
-\fI${PREFIX}/share/gramps\fP
+\fI${PREFIX}/lib/python/dist\-packages/gramps/\fP
+.sp
+\fI${PREFIX}/share/\fP
 .sp
 \fI${HOME}/.gramps\fP
 .UNINDENT
@@ -336,7 +333,7 @@ La documentation pour développeur est disponible sur le site
 \fI\%http://www.gramps-project.org/wiki/index.php?title=Portal:Developers\fP .
 .UNINDENT
 .sp
-Janvier 2013                         4.0.0                           gramps(1)
+gramps(1)                 4.0.0               gramps(1)
 .SH AUTHOR
 Jerome Rapinat
 .SH COPYRIGHT
