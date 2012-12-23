@@ -620,7 +620,9 @@ class ListView(NavigationView):
             filter_info = (False, value, value[0] in self.exact_search())
 
         if same_col:
-            if (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3,8):
+            # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
+            # is resolved
+            if False and (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3,8):
                 self.model.reverse_order()
             else:
                 ## GTK 3.6 rows_reordered not exposed by gi, we need to reconnect
