@@ -62,10 +62,26 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-
-
   <distutils id="gramps-svn" >
     <branch module="code" repo="gramps"/>
+    <dependencies>
+      <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="librsvg"/>
+      <dep package="shared-mime-info"/>
+      <dep package="hunspell"/>
+      <dep package="gtkspell3"/>
+      <dep package="osmgpsmap"/>
+      <dep package="graphviz"/>
+      <dep package="pil"/>
+    </dependencies>
+    <after>
+      <dep package="pyexiv2"/>
+    </after>
+  </distutils>
+
+  <distutils id="gramps-40">
+    <branch module="gramps/gramps-4.0.0-alpha1.tar.gz" version="4.0.0-alpha1"
+	    repo="sourceforge"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
       <dep package="librsvg"/>
@@ -127,19 +143,18 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    version="0.7.3"/>
     <dependencies>
       <dep package="osmgpsmap"/>
-       <dep package="pygtk"/>
-       <dep package="pycairo-python2.6"/>
-      <dep package="pygobject"/>
   </dependencies>
+  <after>
+    <dep package="pygtk"/>
+    <dep package="pygobject"/>
+    <dep package="pygobject3"/>
+    <dep package="pycairo-python2.6"/>
+    <dep package="pycairo-python3"/>
+  </after>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=yes --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
+  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=no --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-freetype"/>
-      <dep package="pango"/>
-      <dep package="zlib"/>
-    </dependencies>
   </autotools>
 
   <autotools id="exiv2">
