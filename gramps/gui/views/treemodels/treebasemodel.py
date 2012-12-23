@@ -723,7 +723,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             else:
                 iternode = self.get_iter(node)
                 path = self.do_get_path(iternode)
-            if self.GTK38PLUS:
+            # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
+            # is resolved
+            if False and self.GTK38PLUS:
                 ##rows_reordered is only exposed in gi starting GTK 3.8
                 self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
