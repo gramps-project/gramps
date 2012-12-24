@@ -28,13 +28,12 @@ A plugin to verify the data against user-adjusted tests.
 This is the research tool, not the low-level data ingerity check.
 """
 
-from __future__ import division
+from __future__ import division, print_function
 #------------------------------------------------------------------------
 #
 # standard python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
 
 import os
 import sys
@@ -127,7 +126,7 @@ def clear_cache():
 # helper functions
 #
 #-------------------------------------------------------------------------
-def get_date_from_event_handle(db,event_handle,estimate=False):
+def get_date_from_event_handle(db, event_handle, estimate=False):
     if not event_handle:
         return 0
     event =  find_event(db,event_handle)
@@ -140,7 +139,7 @@ def get_date_from_event_handle(db,event_handle,estimate=False):
     else:
         return 0
 
-def get_date_from_event_type(db,person,event_type,estimate=False):
+def get_date_from_event_type(db, person, event_type, estimate=False):
     if not person:
         return 0
     for event_ref in person.get_event_ref_list():
@@ -157,11 +156,11 @@ def get_date_from_event_type(db,person,event_type,estimate=False):
                 return date_obj.get_sort_value()
     return 0
 
-def get_bapt_date(db,person,estimate=False):
+def get_bapt_date(db, person, estimate=False):
     return get_date_from_event_type(db, person, 
                                     EventType.BAPTISM, estimate)
 
-def get_bury_date(db,person,estimate=False):
+def get_bury_date(db, person, estimate=False):
     # check role on burial event
     for event_ref in person.get_event_ref_list():
         event = find_event(db, event_ref.ref)
@@ -170,7 +169,7 @@ def get_bury_date(db,person,estimate=False):
             return get_date_from_event_type(db, person, 
                                             EventType.BURIAL, estimate)
 
-def get_birth_date(db,person,estimate=False):
+def get_birth_date(db, person, estimate=False):
     if not person:
         return 0
     birth_ref = person.get_birth_ref()
@@ -182,7 +181,7 @@ def get_birth_date(db,person,estimate=False):
         ret = get_bapt_date(db,person,estimate)
     return ret
 
-def get_death_date(db,person,estimate=False):
+def get_death_date(db, person, estimate=False):
     if not person:
         return 0
     death_ref = person.get_death_ref()
@@ -194,14 +193,14 @@ def get_death_date(db,person,estimate=False):
         ret = get_bury_date(db,person,estimate)
     return ret
 
-def get_age_at_death(db,person,estimate):
+def get_age_at_death(db, person, estimate):
     birth_date = get_birth_date(db,person,estimate)
     death_date = get_death_date(db,person,estimate)
     if (birth_date > 0) and (death_date > 0):
         return death_date - birth_date
     return 0
 
-def get_father(db,family):
+def get_father(db, family):
     if not family:
         return None
     father_handle = family.get_father_handle()
@@ -209,24 +208,24 @@ def get_father(db,family):
         return find_person(db,father_handle)
     return None
 
-def get_mother(db,family):
+def get_mother(db, family):
     if not family:
         return None
     mother_handle = family.get_mother_handle()
     if mother_handle:
-        return find_person(db,mother_handle)
+        return find_person(db, mother_handle)
     return None
 
-def get_child_birth_dates(db,family,estimate):
+def get_child_birth_dates(db, family, estimate):
     dates = []
     for child_ref in family.get_child_ref_list():
         child = find_person(db,child_ref.ref)
-        child_birth_date = get_birth_date(db,child,estimate)
+        child_birth_date = get_birth_date(db, child, estimate)
         if child_birth_date > 0:
             dates.append(child_birth_date)
     return dates
 
-def get_n_children(db,person):
+def get_n_children(db, person):
     n = 0
     for family_handle in person.get_family_handle_list():
         family = find_family(db,family_handle)
@@ -234,7 +233,7 @@ def get_n_children(db,person):
             n += len(family.get_child_ref_list())
     return n
 
-def get_marriage_date(db,family):
+def get_marriage_date(db, family):
     if not family:
         return 0
     for event_ref in family.get_event_ref_list():
@@ -496,10 +495,10 @@ class VerifyResults(ManagedWindow):
         self.renderer = Gtk.CellRendererText()
         self.img_renderer = Gtk.CellRendererPixbuf()
         self.bool_renderer = Gtk.CellRendererToggle()
-        self.bool_renderer.connect('toggled',self.selection_toggled)
+        self.bool_renderer.connect('toggled', self.selection_toggled)
 
         # Add ignore column
-        ignore_column = Gtk.TreeViewColumn(_('Mark'),self.bool_renderer,
+        ignore_column = Gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
                                            active=VerifyResults.IGNORE_COL)
         ignore_column.set_sort_column_id(VerifyResults.IGNORE_COL)
         self.warn_tree.append_column(ignore_column)
@@ -588,13 +587,13 @@ class VerifyResults(ManagedWindow):
                 new_ignores[handle].add(rule_id)
         return new_ignores
 
-    def close(self,*obj):
+    def close(self, *obj):
         new_ignores = self.get_new_marking()
         self.save_ignored(new_ignores)
 
         ManagedWindow.close(self,*obj)
 
-    def hide_toggled(self,button):
+    def hide_toggled(self, button):
         if button.get_active():
             button.set_label(_("_Show all"))
             self.filt_model = self.real_model.filter_new()
@@ -608,16 +607,16 @@ class VerifyResults(ManagedWindow):
             self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
         
-    def selection_toggled(self,cell,path_string):
+    def selection_toggled(self, cell, path_string):
         sort_path = tuple(map(int, path_string.split(':')))
-        filt_path = self.sort_model.convert_path_to_child_path(sort_path)
+        filt_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
         real_path = self.filt_model.convert_path_to_child_path(filt_path)
         row = self.real_model[real_path]
         row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
         row[VerifyResults.SHOW_COL] = not row[VerifyResults.IGNORE_COL]
         self.real_model.row_changed(real_path,row.iter)
 
-    def mark_clicked(self,mark_button):
+    def mark_clicked(self, mark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
@@ -625,7 +624,7 @@ class VerifyResults(ManagedWindow):
             row[VerifyResults.SHOW_COL] = False
         self.filt_model.refilter()
 
-    def unmark_clicked(self,unmark_button):
+    def unmark_clicked(self, unmark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
@@ -633,7 +632,7 @@ class VerifyResults(ManagedWindow):
             row[VerifyResults.SHOW_COL] = True
         self.filt_model.refilter()
 
-    def invert_clicked(self,invert_button):
+    def invert_clicked(self, invert_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
@@ -641,7 +640,7 @@ class VerifyResults(ManagedWindow):
             row[VerifyResults.SHOW_COL] = not row[VerifyResults.SHOW_COL]
         self.filt_model.refilter()
 
-    def double_click(self, obj,event):
+    def double_click(self, obj, event):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
