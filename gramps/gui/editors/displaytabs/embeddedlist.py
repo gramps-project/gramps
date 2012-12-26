@@ -81,6 +81,7 @@ class EmbeddedList(ButtonTab):
         self.build_model = build_model
 
         # handle the selection
+        self.tree.set_hover_selection(True)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self._selection_changed)
         self.track_ref_for_deletion("selection")
