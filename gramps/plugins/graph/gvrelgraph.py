@@ -400,8 +400,15 @@ class RelGraphReport(Report):
             label += " (%s)" % p_id
         if self.includedates:
             birth, death = self.get_date_strings(person)
-            label = label + '%s(%s - %s)' % (lineDelimiter, birth, death)
-            
+            if birth or death:
+                label += ' %s(' % lineDelimiter
+                if birth:
+                    label += '%s' % birth
+                label += ' - '
+                if death:
+                    label += '%s' % death
+                label += ')'
+
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
             label += '</TD></TR></TABLE>'
