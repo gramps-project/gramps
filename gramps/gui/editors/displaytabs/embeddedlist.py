@@ -107,10 +107,13 @@ class EmbeddedList(ButtonTab):
             #ref = self.get_selected()
             #if ref:
             self.right_click(obj, event)
+            return True
         elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
             fun = self.get_middle_click()
             if fun:
                 fun()
+                return True
+        return False
 
     def get_popup_menu_items(self):
         """
