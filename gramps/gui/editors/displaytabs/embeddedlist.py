@@ -104,9 +104,9 @@ class EmbeddedList(ButtonTab):
         Handle button press, not double-click, that is done in init_interface
         """
         if is_right_click(event):
-            ref = self.get_selected()
-            if ref:
-                self.right_click(obj, event)
+            #ref = self.get_selected()
+            #if ref:
+            self.right_click(obj, event)
         elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
             fun = self.get_middle_click()
             if fun:
@@ -146,20 +146,18 @@ class EmbeddedList(ButtonTab):
         On right click show a popup menu.
         This is populated with get_popup_menu_items
         """
-        menu = Gtk.Menu()
+        self.__store_menu = Gtk.Menu() #need to keep reference or menu disappears
+        menu = self.__store_menu
         for (needs_write_access, image, title, func) in self.get_popup_menu_items():
             if image:
                 if isinstance(title, tuple):
                     img_stock, txt = title
-                    item = Gtk.ImageMenuItem(txt)
+                    item = Gtk.ImageMenuItem.new_from_label(txt)
                     img = Gtk.Image()
                     img.set_from_stock(img_stock, Gtk.IconSize.MENU)
                     item.set_image(img)
                 else:
-                    item = Gtk.ImageMenuItem('')
-                    img = Gtk.Image()
-                    img.set_from_stock(title, Gtk.IconSize.MENU)
-                    item.set_image(img)
+                    item = Gtk.ImageMenuItem.new_from_stock(title, None)
             else:
                 item = Gtk.MenuItem(label=title)
             item.connect('activate', func)
