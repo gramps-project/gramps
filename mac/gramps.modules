@@ -153,8 +153,12 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </after>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=no --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
+  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
+    <dependencies>
+      <dep package="meta-gtk-osx-freetype"/>
+      <dep package="librsvg"/>
+    </dependencies>
   </autotools>
 
   <autotools id="exiv2">
