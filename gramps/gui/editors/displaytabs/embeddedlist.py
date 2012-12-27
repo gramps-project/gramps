@@ -156,7 +156,7 @@ class EmbeddedList(ButtonTab):
             if image:
                 if isinstance(title, tuple):
                     img_stock, txt = title
-                    item = Gtk.ImageMenuItem.new_from_label(txt)
+                    item = Gtk.ImageMenuItem.new_with_label(txt)
                     img = Gtk.Image()
                     img.set_from_stock(img_stock, Gtk.IconSize.MENU)
                     item.set_image(img)
