@@ -227,7 +227,6 @@ UIDEFAULT = '''<ui>
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
-ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/branches/gramps34/"
 
 #-------------------------------------------------------------------------
 #
@@ -357,7 +356,7 @@ class ViewManager(CLIManager):
             elif howoften == 4: # always
                 update = True
         if update:
-            import urllib, locale
+            import urllib2, locale
             LOG.debug("Checking for updated addons...")
             langs = []
             lang = locale.getlocale()[0] # not None
@@ -370,10 +369,10 @@ class ViewManager(CLIManager):
             # now we have a list of languages to try:
             fp = None
             for lang in langs:
-                URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
+                URL = "%s/listings/addons-%s.txt" % (config.get("behavior.addons-url"), lang)
                 LOG.debug("   trying: %s" % URL)
                 try:
-                    fp = urllib.urlopen(URL)
+                    fp = urllib2.urlopen(URL, timeout=10) # wait up to 10 seconds
                 except: # some error
                     LOG.debug("   IOError!")
                     fp = None
@@ -407,7 +406,7 @@ class ViewManager(CLIManager):
                                      plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                     addon_update_list.append((_("Updated"),
                                                               "%s/download/%s" %
-                                                              (ADDONS_URL,
+                                                              (config.get("behavior.addons-url"),
                                                                plugin_dict["z"]),
                                                               plugin_dict))
                         else:
@@ -419,14 +418,20 @@ class ViewManager(CLIManager):
                                  plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                 addon_update_list.append((_("New"),
                                                           "%s/download/%s" %
-                                                          (ADDONS_URL,
+                                                          (config.get("behavior.addons-url"),
                                                            plugin_dict["z"]),
                                                           plugin_dict))
                 config.set("behavior.last-check-for-updates",
                            datetime.date.today().strftime("%Y/%m/%d"))
                 count += 1
-            if fp:
-                fp.close()
+            else:
+                from QuestionDialog import OkDialog
+                OkDialog(_("Checking Addons Failed"),
+                         _("The addon repository appears to be unavailable. Please try again later."),
+                         self.window)
+                if fp:
+                    fp.close()
+                return
             LOG.debug("Done checking!")
             # List of translated strings used here
             # Dead code for l10n

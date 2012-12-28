@@ -307,7 +307,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
     def add_entry(self, table, label, index, constant, callback=None,
-                  config=None):
+                  config=None, col_attach=0):
         if not config:
             config = self.__config
         if not callback:
@@ -316,9 +316,9 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         entry = gtk.Entry()
         entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
+        table.attach(lwidget, col_attach, col_attach+1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0)
+        table.attach(entry, col_attach+1, col_attach+2, index, index+1, yoptions=0)
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
                           config=None, col_attach=1):
@@ -1039,7 +1039,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('Dates'), table
         
     def add_behavior_panel(self, configdialog):
-        table = gtk.Table(3, 6)
+        table = gtk.Table(2, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1097,16 +1097,18 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
         table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
 
+        self.add_entry(table, _('Where to check'), 8, 'behavior.addons-url', col_attach=1)
+
         checkbutton = gtk.CheckButton(
             _("Do not ask about previously notified addons"))
         checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
-        table.attach(checkbutton, 0, 3, 8, 9, yoptions=0)
+        table.attach(checkbutton, 1, 2, 9, 10, yoptions=0)
         button = gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
-        table.attach(button, 3, 4, 8, 9, yoptions=0)
+        table.attach(button, 2, 3, 9, 10, yoptions=0)
 
         return _('General'), table
 
