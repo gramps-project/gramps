@@ -119,6 +119,14 @@ class GroupEmbeddedList(EmbeddedList):
                 if fun:
                     fun()
                     return True
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
+            if self.tree.get_hover_selection():
+                self.tree.set_hover_selection(False)
+                return True
+            else:
+                self.tree.set_hover_selection(True)
+                #let code for single click still select the current row:
+                return False
         return False
 
     def is_empty(self):
