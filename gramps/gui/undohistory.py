@@ -121,7 +121,7 @@ class UndoHistory(ManagedWindow):
         (model, node) = self.selection.get_selected()
         if not node or len(self.model) == 1:
             return
-        path = self.model.get_path(node)
+        path = self.model.get_path(node).get_indices()
         start = min(path[0], self.undodb.undo_count)
         end = max(path[0], self.undodb.undo_count)
 
@@ -158,7 +158,7 @@ class UndoHistory(ManagedWindow):
             (model, node) = self.selection.get_selected()
             if not node:
                 return
-            path = self.model.get_path(node)
+            path = self.model.get_path(node).get_indices()
             nsteps = path[0] - self.undodb.undo_count - 1
             self._move(nsteps or -1)
 
@@ -167,7 +167,7 @@ class UndoHistory(ManagedWindow):
             (model, node) = self.selection.get_selected()
             if not node:
                 return
-            path = self.model.get_path(node)
+            path = self.model.get_path(node).get_indices()
             nsteps = path[0] - self.undodb.undo_count
             self._move(nsteps or 1)
 
