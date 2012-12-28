@@ -231,24 +231,24 @@ def write_gramps_script(install_cmd, build_scripts):
         log.info('changing mode of %s to %o', filename, mode)
         os.chmod(filename, mode)
 
-def write_const_py(install_cmd):
+def write_const_py(command):
     '''
     Write the const.py file.
     '''
     const_py_in = os.path.join('gramps', 'gen', 'const.py.in')
     const_py = os.path.join('gramps', 'gen', 'const.py')
-    if hasattr(install_cmd, 'install_data'):
+    if hasattr(command, 'install_data'):
         #during install
-        prefix = "'%s'" % install_cmd.install_data
-        sysconfdir = "'%s'" % os.path.join(install_cmd.install_data, 'etc') # Is this correct?
+        locale_dir = os.path.join(command.install_data, 'share', 'locale')
     else:
         #in build
-        prefix = 'os.path.join(os.path.dirname(__file__), os.pardir)'
-        sysconfdir = prefix + ' + "' + os.sep + 'etc"'  # Is this correct?
+        if os.access(const_py, os.F_OK):
+            # Prevent overwriting version created during install
+            return
+        locale_dir = os.path.join(command.build_base, 'mo')
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
-                  ('"@prefix@"', prefix),
-                  ('"@sysconfdir@"', sysconfdir))
+                  ('@LOCALE_DIR@', locale_dir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
