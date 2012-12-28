@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-24 03:04+0100\n"
-"PO-Revision-Date: 2012-12-24 03:09+0100\n"
+"POT-Creation-Date: 2012-12-29 00:20+0100\n"
+"PO-Revision-Date: 2012-12-29 00:26+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -82,7 +82,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
-#: ../src/gui/viewmanager.py:469 ../src/gui/editors/editfamily.py:117
+#: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
@@ -1217,7 +1217,7 @@ msgstr "Aufbewahrungsort"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:908 ../src/gui/viewmanager.py:468
+#: ../src/ScratchPad.py:908 ../src/gui/viewmanager.py:473
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:75
@@ -1294,7 +1294,7 @@ msgstr "Wert"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1133
+#: ../src/gui/configure.py:1135
 msgid "Family Tree"
 msgstr "Stammbaum"
 
@@ -1333,7 +1333,7 @@ msgid "On"
 msgstr "An"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:774
 msgid "Tip of the Day"
 msgstr "Tipp des Tages"
 
@@ -2765,7 +2765,7 @@ msgid "Caste"
 msgstr "Gesellschaftsklasse"
 
 #. 2 name (version)
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:470
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:475
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
 #: ../src/gui/editors/displaytabs/webembedlist.py:67
 #: ../src/gui/plug/_windows.py:119 ../src/gui/plug/_windows.py:230
@@ -3579,7 +3579,7 @@ msgstr "Patrilineal"
 msgid "Matrilineal"
 msgstr "Matrilineal"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1111
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1113
 #: ../src/gui/editors/editcitation.py:202
 #: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79 ../src/gui/editors/editmediaref.py:94
@@ -4547,7 +4547,7 @@ msgid " Name Editor"
 msgstr " Namenseditor"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1235 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1237 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -4877,27 +4877,31 @@ msgstr "Neue und aktualisierte Erweiterungen"
 msgid "What to check"
 msgstr "Was prüfen"
 
-#: ../src/gui/configure.py:1101
+#: ../src/gui/configure.py:1100
+msgid "Where to check"
+msgstr "Wo prüfen"
+
+#: ../src/gui/configure.py:1103
 msgid "Do not ask about previously notified addons"
 msgstr "Nicht erneut für früher benachrichtigte Erweiterungen fragen"
 
-#: ../src/gui/configure.py:1106
+#: ../src/gui/configure.py:1108
 msgid "Check now"
 msgstr "Jetzt prüfen"
 
-#: ../src/gui/configure.py:1122
+#: ../src/gui/configure.py:1124
 msgid "Family Tree Database path"
 msgstr "Stammbaumdatenbankpfad"
 
-#: ../src/gui/configure.py:1130
+#: ../src/gui/configure.py:1132
 msgid "Automatically load last family tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
-#: ../src/gui/configure.py:1143
+#: ../src/gui/configure.py:1145
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
 
-#: ../src/gui/configure.py:1167
+#: ../src/gui/configure.py:1169
 msgid "Select database directory"
 msgstr "Wähle Datenbankverzeichnis"
 
@@ -4983,7 +4987,7 @@ msgstr "Datenbank muss aktualisiert werden!"
 msgid "Upgrade now"
 msgstr "Jetzt aktualisieren"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1041
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1046
 #: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1068
 #: ../src/plugins/view/familyview.py:259
 msgid "Cancel"
@@ -5915,7 +5919,7 @@ msgid "List"
 msgstr "Liste"
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:463
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:468
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:5
@@ -6035,269 +6039,279 @@ msgstr "Fehler beim Öffnen der Datei"
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
-#: ../src/gui/viewmanager.py:408
+#: ../src/gui/viewmanager.py:407
 msgid "Updated"
 msgstr "Aktualisiert"
 
-#: ../src/gui/viewmanager.py:420
+#: ../src/gui/viewmanager.py:419
 msgid "New"
 msgstr "Neu"
 
+#: ../src/gui/viewmanager.py:429
+msgid "Checking Addons Failed"
+msgstr "Prüfen der Erweiterungen ist fehlgeschlagen"
+
+#: ../src/gui/viewmanager.py:430
+msgid "The addon repository appears to be unavailable. Please try again later."
+msgstr ""
+"Das Erweiterungen Repository scheint nicht verfügbar zu sein. Bitte versuch "
+"es später."
+
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:438
 msgid "new"
 msgstr "neu"
 
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:438
 msgid "update"
 msgstr "Aktualisierung"
 
-#: ../src/gui/viewmanager.py:438
+#: ../src/gui/viewmanager.py:443
 msgid "There are no available addons of this type"
 msgstr "Es sind keine Erweiterungen dieses Typs verfügbar"
 
-#: ../src/gui/viewmanager.py:439
+#: ../src/gui/viewmanager.py:444
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Prüfe nach '%s'"
 
-#: ../src/gui/viewmanager.py:440
+#: ../src/gui/viewmanager.py:445
 msgid "' and '"
 msgstr "' und '"
 
-#: ../src/gui/viewmanager.py:451
+#: ../src/gui/viewmanager.py:456
 msgid "Available Gramps Updates for Addons"
 msgstr "Verfügbare Gramps Aktualisierungen für Erweiterungen"
 
-#: ../src/gui/viewmanager.py:480
+#: ../src/gui/viewmanager.py:485
 #, python-format
 msgid "%(adjective)s: %(addon)s"
 msgstr "%(adjective)s: %(addon)s"
 
-#: ../src/gui/viewmanager.py:537
+#: ../src/gui/viewmanager.py:542
 msgid "Downloading and installing selected addons..."
 msgstr "Herunterladen und installieren der gewählten Erweiterungen..."
 
-#: ../src/gui/viewmanager.py:569 ../src/gui/viewmanager.py:576
+#: ../src/gui/viewmanager.py:574 ../src/gui/viewmanager.py:581
 msgid "Done downloading and installing addons"
 msgstr "Herunterladen und Installation der Erweiterungen abgeschlossen"
 
-#: ../src/gui/viewmanager.py:570
+#: ../src/gui/viewmanager.py:575
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] "%d Erweiterung wurde installiert."
 msgstr[1] "%d Erweiterungen wurden installiert."
 
-#: ../src/gui/viewmanager.py:573
+#: ../src/gui/viewmanager.py:578
 msgid "You need to restart Gramps to see new views."
 msgstr "Du musst Gramps neu starten um neue Ansichten zu sehen."
 
-#: ../src/gui/viewmanager.py:577
+#: ../src/gui/viewmanager.py:582
 msgid "No addons were installed."
 msgstr "Es wurden keine Erweiterungen installiert."
 
-#: ../src/gui/viewmanager.py:723
+#: ../src/gui/viewmanager.py:728
 msgid "Connect to a recent database"
 msgstr "Mit neuer Datenbank verbinden"
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:746
 msgid "_Family Trees"
 msgstr "_Stammbäume"
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:747
 msgid "_Manage Family Trees..."
 msgstr "Stammbäume _verwalten..."
 
-#: ../src/gui/viewmanager.py:743
+#: ../src/gui/viewmanager.py:748
 msgid "Manage databases"
 msgstr "Stammbäume verwalten"
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:749
 msgid "Open _Recent"
 msgstr "_Zuletzt geöffnet"
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:750
 msgid "Open an existing database"
 msgstr "Eine existierende Datenbank öffnen"
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:751
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:753
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:754
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
-#: ../src/gui/viewmanager.py:750
+#: ../src/gui/viewmanager.py:755
 msgid "_Preferences..."
 msgstr "_Einstellungen..."
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:757
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:758
 msgid "Gramps _Home Page"
 msgstr "Gramps _Homepage"
 
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:760
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _Mailinglisten"
 
-#: ../src/gui/viewmanager.py:757
+#: ../src/gui/viewmanager.py:762
 msgid "_Report a Bug"
 msgstr "_Programmfehler melden"
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:764
 msgid "_Extra Reports/Tools"
 msgstr "_Extra Berichte/Werkzeuge"
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:766
 msgid "_About"
 msgstr "_Info"
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:768
 msgid "_Plugin Manager"
 msgstr "_Zusatzmodulverwaltung"
 
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:770
 msgid "_FAQ"
 msgstr "Häufig gestellte _Fragen"
 
-#: ../src/gui/viewmanager.py:766
+#: ../src/gui/viewmanager.py:771
 msgid "_Key Bindings"
 msgstr "Tastatur_kürzel"
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:772
 msgid "_User Manual"
 msgstr "_Benutzerhandbuch"
 
-#: ../src/gui/viewmanager.py:774
+#: ../src/gui/viewmanager.py:779
 msgid "_Export..."
 msgstr "_Export..."
 
-#: ../src/gui/viewmanager.py:776
+#: ../src/gui/viewmanager.py:781
 msgid "Make Backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../src/gui/viewmanager.py:777
+#: ../src/gui/viewmanager.py:782
 msgid "Make a Gramps XML backup of the database"
 msgstr "Gramps XML Sicherung der Datenbank erstellen"
 
-#: ../src/gui/viewmanager.py:779
+#: ../src/gui/viewmanager.py:784
 msgid "_Abandon Changes and Quit"
 msgstr "Änderungen _Verwerfen und Beenden"
 
-#: ../src/gui/viewmanager.py:780 ../src/gui/viewmanager.py:783
+#: ../src/gui/viewmanager.py:785 ../src/gui/viewmanager.py:788
 msgid "_Reports"
 msgstr "Be_richte"
 
-#: ../src/gui/viewmanager.py:781
+#: ../src/gui/viewmanager.py:786
 msgid "Open the reports dialog"
 msgstr "Öffnet den Berichtsdialog"
 
-#: ../src/gui/viewmanager.py:782
+#: ../src/gui/viewmanager.py:787
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../src/gui/viewmanager.py:784
+#: ../src/gui/viewmanager.py:789
 msgid "_Windows"
 msgstr "_Fenster"
 
-#: ../src/gui/viewmanager.py:821
+#: ../src/gui/viewmanager.py:826
 msgid "Clip_board"
 msgstr "Zwischena_blage"
 
-#: ../src/gui/viewmanager.py:822
+#: ../src/gui/viewmanager.py:827
 msgid "Open the Clipboard dialog"
 msgstr "Öffnet den Zwischenablagedialog"
 
-#: ../src/gui/viewmanager.py:823
+#: ../src/gui/viewmanager.py:828
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../src/gui/viewmanager.py:825 ../src/gui/viewmanager.py:828
+#: ../src/gui/viewmanager.py:830 ../src/gui/viewmanager.py:833
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
-#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:831
 msgid "Open the tools dialog"
 msgstr "Öffnet den Werkzeugdialog"
 
-#: ../src/gui/viewmanager.py:827
+#: ../src/gui/viewmanager.py:832
 msgid "_Bookmarks"
 msgstr "_Lesezeichen"
 
-#: ../src/gui/viewmanager.py:829
+#: ../src/gui/viewmanager.py:834
 msgid "_Configure View..."
 msgstr "_Ansicht konfigurieren..."
 
-#: ../src/gui/viewmanager.py:830
+#: ../src/gui/viewmanager.py:835
 msgid "Configure the active view"
 msgstr "Die aktive Ansicht konfigurieren"
 
-#: ../src/gui/viewmanager.py:835
+#: ../src/gui/viewmanager.py:840
 msgid "_Navigator"
 msgstr "_Navigator"
 
-#: ../src/gui/viewmanager.py:837
+#: ../src/gui/viewmanager.py:842
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/gui/viewmanager.py:839
+#: ../src/gui/viewmanager.py:844
 msgid "F_ull Screen"
 msgstr "Vollbild"
 
-#: ../src/gui/viewmanager.py:844 ../src/gui/viewmanager.py:1426
+#: ../src/gui/viewmanager.py:849 ../src/gui/viewmanager.py:1431
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../src/gui/viewmanager.py:849 ../src/gui/viewmanager.py:1443
+#: ../src/gui/viewmanager.py:854 ../src/gui/viewmanager.py:1448
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
-#: ../src/gui/viewmanager.py:855
+#: ../src/gui/viewmanager.py:860
 msgid "Undo History..."
 msgstr "Bearbeitungschronik..."
 
-#: ../src/gui/viewmanager.py:869
+#: ../src/gui/viewmanager.py:874
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Schlüssel %s ist nicht eingebunden"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:970
+#: ../src/gui/viewmanager.py:975
 msgid "Loading plugins..."
 msgstr "Lade Zusatzmodule..."
 
-#: ../src/gui/viewmanager.py:977 ../src/gui/viewmanager.py:992
+#: ../src/gui/viewmanager.py:982 ../src/gui/viewmanager.py:997
 msgid "Ready"
 msgstr "Bereit"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:985
+#: ../src/gui/viewmanager.py:990
 msgid "Registering plugins..."
 msgstr "Zusatzmodule registrieren..."
 
-#: ../src/gui/viewmanager.py:1022
+#: ../src/gui/viewmanager.py:1027
 msgid "Autobackup..."
 msgstr "Automatisches Backup..."
 
-#: ../src/gui/viewmanager.py:1026
+#: ../src/gui/viewmanager.py:1031
 msgid "Error saving backup data"
 msgstr "Fehler beim speichern der Sicherungsdaten"
 
-#: ../src/gui/viewmanager.py:1037
+#: ../src/gui/viewmanager.py:1042
 msgid "Abort changes?"
 msgstr "Änderungen verwerfen?"
 
-#: ../src/gui/viewmanager.py:1038
+#: ../src/gui/viewmanager.py:1043
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -6305,15 +6319,15 @@ msgstr ""
 "Änderungen verwerfen bringt die Datenbank in den Stand vor Beginn dieser "
 "Bearbeitungssitzung zurück."
 
-#: ../src/gui/viewmanager.py:1040
+#: ../src/gui/viewmanager.py:1045
 msgid "Abort changes"
 msgstr "Änderungen verwerfen"
 
-#: ../src/gui/viewmanager.py:1050
+#: ../src/gui/viewmanager.py:1055
 msgid "Cannot abandon session's changes"
 msgstr "Sitzungsänderungen können nicht zurück genommen werden werden"
 
-#: ../src/gui/viewmanager.py:1051
+#: ../src/gui/viewmanager.py:1056
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -6321,41 +6335,41 @@ msgstr ""
 "Die Änderungen können nicht vollständig zurück genommen werden werden, da "
 "die Nummer der Änderungen das Limit der Sitzung überschritten hat."
 
-#: ../src/gui/viewmanager.py:1205
+#: ../src/gui/viewmanager.py:1210
 msgid "View failed to load. Check error output."
 msgstr "Ansicht konnte nicht geladen werden. Fehlerbericht kontrollieren."
 
-#: ../src/gui/viewmanager.py:1344
+#: ../src/gui/viewmanager.py:1349
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../src/gui/viewmanager.py:1395
+#: ../src/gui/viewmanager.py:1400
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../src/gui/viewmanager.py:1478
+#: ../src/gui/viewmanager.py:1483
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Sicherung"
 
-#: ../src/gui/viewmanager.py:1488
+#: ../src/gui/viewmanager.py:1493
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/mergemedia.glade.h:6
 msgid "Path:"
 msgstr "Pfad:"
 
-#: ../src/gui/viewmanager.py:1508 ../src/plugins/tool/phpgedview.glade.h:5
+#: ../src/gui/viewmanager.py:1513 ../src/plugins/tool/phpgedview.glade.h:5
 #: ../src/plugins/import/importgedcom.glade.h:7
 msgid "File:"
 msgstr "Datei:"
 
-#: ../src/gui/viewmanager.py:1540
+#: ../src/gui/viewmanager.py:1545
 msgid "Media:"
 msgstr "Medium:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1545
+#: ../src/gui/viewmanager.py:1550
 #: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
@@ -6366,54 +6380,54 @@ msgstr "Medium:"
 msgid "Include"
 msgstr "Einbeziehen"
 
-#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:200
+#: ../src/gui/viewmanager.py:1551 ../src/plugins/gramplet/StatsGramplet.py:200
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../src/gui/viewmanager.py:1547
+#: ../src/gui/viewmanager.py:1552
 #: ../src/plugins/webreport/NarrativeWeb.py:8109
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1569
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1570
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../src/gui/viewmanager.py:1566
+#: ../src/gui/viewmanager.py:1571
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../src/gui/viewmanager.py:1567
+#: ../src/gui/viewmanager.py:1572
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../src/gui/viewmanager.py:1574
+#: ../src/gui/viewmanager.py:1579
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../src/gui/viewmanager.py:1591
+#: ../src/gui/viewmanager.py:1596
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../src/gui/viewmanager.py:1594
+#: ../src/gui/viewmanager.py:1599
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
-#: ../src/gui/viewmanager.py:1612
+#: ../src/gui/viewmanager.py:1617
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
-#: ../src/gui/viewmanager.py:1878
+#: ../src/gui/viewmanager.py:1883
 msgid "Failed Loading Plugin"
 msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
-#: ../src/gui/viewmanager.py:1879
+#: ../src/gui/viewmanager.py:1884
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -6439,11 +6453,11 @@ msgstr ""
 "laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
 "verstecken."
 
-#: ../src/gui/viewmanager.py:1927
+#: ../src/gui/viewmanager.py:1932
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../src/gui/viewmanager.py:1928
+#: ../src/gui/viewmanager.py:1933
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -9216,23 +9230,23 @@ msgstr "'%s' ist kein gültiger Datumswert"
 msgid "See data not in Filter"
 msgstr "Daten nicht im Filter ansehen"
 
-#: ../src/config.py:289
+#: ../src/config.py:290
 msgid "Missing Given Name"
 msgstr "Fehlender Vorname"
 
-#: ../src/config.py:290
+#: ../src/config.py:291
 msgid "Missing Record"
 msgstr "Fehlender Datensatz"
 
-#: ../src/config.py:291
+#: ../src/config.py:292
 msgid "Missing Surname"
 msgstr "Fehlender Familienname"
 
-#: ../src/config.py:298 ../src/config.py:300
+#: ../src/config.py:299 ../src/config.py:301
 msgid "Living"
 msgstr "Lebt"
 
-#: ../src/config.py:299
+#: ../src/config.py:300
 msgid "Private Record"
 msgstr "Vertraulicher Datensatz"
 
