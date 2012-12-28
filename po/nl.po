@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-21 14:21+0100\n"
-"PO-Revision-Date: 2012-12-23 23:09+0100\n"
+"PO-Revision-Date: 2012-12-27 00:15+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -130,9 +130,8 @@ msgstr "%(full_DB_path)s met naam \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:416
 #: ../gramps/cli/arghandler.py:421
-#, fuzzy
 msgid "Gramps Family Trees:"
-msgstr "Gramps XML familiestamboom"
+msgstr "Gramps-familiestambomen:"
 
 #: ../gramps/cli/arghandler.py:420
 #: ../gramps/cli/arghandler.py:425
@@ -184,9 +183,8 @@ msgstr "Fout bij openen bestand."
 #: ../gramps/cli/arghandler.py:515
 #: ../gramps/cli/arghandler.py:493
 #: ../gramps/cli/arghandler.py:520
-#, fuzzy
 msgid "Exiting..."
-msgstr "Selecteren..."
+msgstr "Verlaten..."
 
 #: ../gramps/cli/arghandler.py:494
 #: ../gramps/cli/arghandler.py:499
@@ -447,7 +445,7 @@ msgstr "Kon de familiestamboom niet herbenoemen"
 
 #: ../gramps/cli/clidbman.py:406
 #: ../gramps/cli/clidbman.py:417
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "ERROR: Wrong database path in Edit Menu->Preferences.\n"
@@ -461,7 +459,7 @@ msgstr ""
 "FOUT: Verkeer gegevensbestandspad in Bewerken Menu->Voorkeuren.\n"
 "Voorkeuren openen en juiste pad instellen.\n"
 "\n"
-"Details: gegevensbestandsmap kon niet worden aangemaakt:\n"
+"Details: gegevensbestandsfolder kon niet worden aangemaakt:\n"
 "    %s\n"
 "\n"
 
@@ -695,7 +693,7 @@ msgstr "   Geldige opties zijn:"
 #: ../gramps/cli/plug/__init__.py:578
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr ""
+msgstr "   Om de beschrijving en geldige waarden te zien gebruikt u '%(donottranslate)s'"
 
 #: ../gramps/cli/plug/__init__.py:433
 #: ../gramps/cli/plug/__init__.py:498
@@ -923,9 +921,8 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:426
 #: ../gramps/gen/db/upgrade.py:428
-#, fuzzy
 msgid "Upgrade Statistics"
-msgstr "Statistieken importeren"
+msgstr "Statistieken opwaarderen"
 
 #: ../gramps/gen/db/write.py:980
 #: ../gramps/gen/db/write.py:1020
@@ -1261,7 +1258,6 @@ msgid "General filters"
 msgstr "Algemene filters"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:81
-#, fuzzy
 msgid "Wrong format of date-time"
 msgstr "Verkeerd datum-tijd formaat"
 
@@ -1568,9 +1564,8 @@ msgid "Matches a citation with a specified Gramps ID"
 msgstr "Vindt de familie met de opgegeven Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Families met <aantal> notities"
+msgstr "Citaten met <aantal> notities"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
 #, fuzzy
@@ -2149,9 +2144,8 @@ msgid "Families with the <source>"
 msgstr "Families met de <bron>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:49
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Families die met bepaalde bron zoeken"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:48
 #: ../gramps/gen/filters/rules/media/_hastag.py:48
@@ -2372,9 +2366,8 @@ msgid "Matches media objects with a certain reference count"
 msgstr "Vindt media-objecten waarnaar een bepaald aantal keer wordt verwezen"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:46
-#, fuzzy
 msgid "Media with <count> sources"
-msgstr "Personen met <aantal> bronnen"
+msgstr "Media-objecten met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
 #, fuzzy
@@ -2386,9 +2379,8 @@ msgid "Media with the <source>"
 msgstr "Media-objecten met de <bron>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:49
-#, fuzzy
 msgid "Matches media who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Media-objecten met een bepaalde bron zoeken"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
@@ -3301,9 +3293,8 @@ msgid "People not marked private"
 msgstr "Personen zonder aanduiding: privé"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
-#, fuzzy
 msgid "Matches people that are not indicated as private"
-msgstr "Vindt personen die aangegeven zijn als privé"
+msgstr "Personen die niet met privé gemarkeerd zijn"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:43
 msgid "People with incomplete events"
@@ -3517,9 +3508,8 @@ msgid "Matches places with a certain reference count"
 msgstr "Vindt locaties waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
-#, fuzzy
 msgid "Place with <count> sources"
-msgstr "Personen met <aantal> bronnen"
+msgstr "Locaties met <aantal> bronnen"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 #, fuzzy
@@ -3527,14 +3517,12 @@ msgid "Matches places with a certain number of sources connected to it"
 msgstr "Personen met een bepaald aantal bronnen vinden"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:47
-#, fuzzy
 msgid "Places with the <source>"
-msgstr "Personen met de <bron>"
+msgstr "Locaties met de <bron>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:49
-#, fuzzy
 msgid "Matches places who have a particular source"
-msgstr "Vindt personen die een bepaalde bron hebben"
+msgstr "Locaties met een bepaalde bron zoeken"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:50
 #: ../gramps/gui/glade/mergeplace.glade:255
@@ -5696,9 +5684,9 @@ msgstr "'%s' is NIET voor deze Gramps-versie."
 
 #: ../gramps/gen/plug/utils.py:271
 #: ../gramps/gen/plug/utils.py:278
-#, fuzzy, python-format
+#, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "Het is voor versie %d.%d"
+msgstr "Het is voor versie %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:281
 #: ../gramps/gen/plug/utils.py:288
@@ -6455,13 +6443,13 @@ msgstr "FOUT: de locale taalinstelling 'C' werkte ook niet"
 
 #: ../gramps/grampsapp.py:175
 #: ../gramps/grampsapp.py:181
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Uw versie van Python voldoet niet. Tenminste is python %d %d %d nodig om Gramps op te starten.\n"
+"Uw Python-versie voldoet niet. Tenminste is python %(v1)d.%(v2)d.%(v3)d nodig om Gramps op te starten.\n"
 "\n"
 "Gramps wordt nu gestopt."
 
@@ -6831,9 +6819,9 @@ msgstr "Kinderen"
 
 #: ../gramps/gui/clipboard.py:683
 #: ../gramps/gui/clipboard.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "%(frel)s %(mrel)s"
-msgstr "%(date)s %(time)s"
+msgstr "%(frel)s %(mrel)s"
 
 #: ../gramps/gui/clipboard.py:695
 #: ../gramps/gui/configure.py:493
@@ -7093,7 +7081,7 @@ msgstr "Zie %s details"
 #: ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
-msgstr ""
+msgstr "%s activeren"
 
 #: ../gramps/gui/clipboard.py:1479
 #: ../gramps/gui/clipboard.py:1484
@@ -7211,7 +7199,7 @@ msgstr "Voorkeuren"
 #: ../gramps/gui/configure.py:472
 #: ../gramps/gui/configure.py:476
 msgid "Enter your information so people can contact you when you distribute your family tree"
-msgstr ""
+msgstr "U kunt uw informatie hier invullen zodat mensen u kunnen contacteren wanneer u uw familiestamboom deelt met anderen"
 
 #: ../gramps/gui/configure.py:476
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
@@ -7327,79 +7315,67 @@ msgstr "ID Formaten"
 #: ../gramps/gui/configure.py:518
 #: ../gramps/gui/configure.py:522
 msgid "Set the colors used for boxes in the graphical views"
-msgstr ""
+msgstr "De kleuren die gebruikt worden voor de grafische schermen vastleggen"
 
 #: ../gramps/gui/configure.py:520
 #: ../gramps/gui/configure.py:524
-#, fuzzy
 msgid "Gender Male Alive"
-msgstr "Personen die waarschijnlijk in leven zijn"
+msgstr "Achtergrond mannen nog in leven"
 
 #: ../gramps/gui/configure.py:522
 #: ../gramps/gui/configure.py:526
-#, fuzzy
 msgid "Border Male Alive"
-msgstr "Families herschikken"
+msgstr "Rand voor mannen nog in leven"
 
 #: ../gramps/gui/configure.py:524
 #: ../gramps/gui/configure.py:528
-#, fuzzy
 msgid "Gender Male Death"
-msgstr "Leeftijd bij overlijden"
+msgstr "Achtergrond overleden mannen"
 
 #: ../gramps/gui/configure.py:526
 #: ../gramps/gui/configure.py:530
-#, fuzzy
 msgid "Border Male Death"
-msgstr "Leeftijd bij overlijden"
+msgstr "Rand overleden mannen"
 
 #: ../gramps/gui/configure.py:528
 #: ../gramps/gui/configure.py:532
-#, fuzzy
 msgid "Gender Female Alive"
-msgstr "Personen die waarschijnlijk in leven zijn"
+msgstr "Achtergrond vrouwen nog in leven"
 
 #: ../gramps/gui/configure.py:530
 #: ../gramps/gui/configure.py:534
-#, fuzzy
 msgid "Border Female Alive"
-msgstr "Personen die waarschijnlijk in leven zijn"
+msgstr "Rand voor vrouwen nog in leven"
 
 #: ../gramps/gui/configure.py:532
 #: ../gramps/gui/configure.py:536
-#, fuzzy
 msgid "Gender Female Death"
-msgstr "%(female_name)s overleed %(death_date)s."
+msgstr "Achtergrond overleden vrouwen"
 
 #: ../gramps/gui/configure.py:534
 #: ../gramps/gui/configure.py:538
-#, fuzzy
 msgid "Border Female Death"
-msgstr "%(female_name)s overleed %(death_date)s."
+msgstr "Rand overleden vrouwen"
 
 #: ../gramps/gui/configure.py:544
 #: ../gramps/gui/configure.py:548
-#, fuzzy
 msgid "Gender Unknown Alive"
-msgstr "Geslacht onbekend"
+msgstr "Achtergrond onbekend geslacht nog in leven"
 
 #: ../gramps/gui/configure.py:546
 #: ../gramps/gui/configure.py:550
-#, fuzzy
 msgid "Border Unknown Alive"
-msgstr "Personen die waarschijnlijk in leven zijn"
+msgstr "Rand voor onbekend geslacht nog in leven"
 
 #: ../gramps/gui/configure.py:548
 #: ../gramps/gui/configure.py:552
-#, fuzzy
 msgid "Gender Unknown Death"
-msgstr "Geslacht onbekend"
+msgstr "Achtergrond onbekend geslacht"
 
 #: ../gramps/gui/configure.py:550
 #: ../gramps/gui/configure.py:554
-#, fuzzy
 msgid "Border Unknown Death"
-msgstr "Vader onbekend"
+msgstr "and onbekend geslacht overleden"
 
 #: ../gramps/gui/configure.py:552
 #: ../gramps/gui/configure.py:556
@@ -7413,7 +7389,6 @@ msgstr "Onderdruk waarschuwing als ouders aan een kind worden toegevoegd."
 
 #: ../gramps/gui/configure.py:564
 #: ../gramps/gui/configure.py:568
-#, fuzzy
 msgid "Suppress warning when canceling with changed data."
 msgstr "Onderdruk waarschuwing wanneer verwijderopdracht wordt gegeven met veranderde gegevens."
 
@@ -7536,15 +7511,13 @@ msgstr "_Jaren"
 
 #: ../gramps/gui/configure.py:965
 #: ../gramps/gui/configure.py:969
-#, fuzzy
 msgid "Years, Months"
-msgstr "Maanden formateren..."
+msgstr "Jaren, maanden"
 
 #: ../gramps/gui/configure.py:966
 #: ../gramps/gui/configure.py:970
-#, fuzzy
 msgid "Years, Months, Days"
-msgstr "Tekst dagen van de week"
+msgstr "Jaren, maanden en dagen"
 
 #: ../gramps/gui/configure.py:978
 #: ../gramps/gui/configure.py:982
@@ -7564,9 +7537,8 @@ msgstr "Achternaam raden"
 
 #: ../gramps/gui/configure.py:1017
 #: ../gramps/gui/configure.py:1021
-#, fuzzy
 msgid "Default family relationship"
-msgstr "%d gecorrumpeerde familierelatie hersteld\n"
+msgstr "Standaard familierelatie"
 
 #: ../gramps/gui/configure.py:1024
 #: ../gramps/gui/configure.py:1028
@@ -7778,14 +7750,13 @@ msgstr "Laatste familiestamboom automatisch laden"
 #: ../gramps/gui/configure.py:1247
 #: ../gramps/gui/configure.py:1251
 msgid "Select media directory"
-msgstr "Selecteer media-objectmap"
+msgstr "Media-objecten folder selecteren"
 
 # dit is een soort titel in een file-selector
 #: ../gramps/gui/configure.py:1271
 #: ../gramps/gui/configure.py:1275
-#, fuzzy
 msgid "Select database directory"
-msgstr "Selecteer media-objectmap"
+msgstr "Gegevensbestandsfolder selecteren"
 
 #: ../gramps/gui/dbloader.py:122
 #: ../gramps/gui/plug/tool.py:110
@@ -7843,7 +7814,7 @@ msgstr "Kan gegevensbestand niet openen"
 #: ../gramps/gui/dbloader.py:219
 #: ../gramps/gui/dbloader.py:221
 msgid "The selected file is a directory, not a file.\n"
-msgstr "Het geselecteerde bestand is een map, geen bestand.\n"
+msgstr "Het geselecteerde bestand is een folder, geen bestand.\n"
 
 #: ../gramps/gui/dbloader.py:225
 #: ../gramps/gui/dbloader.py:227
@@ -8065,7 +8036,7 @@ msgid ""
 "Before doing a repair, try to open the family tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory."
 msgstr ""
 "Indien u op <b>Verder gaan</b> klikt, zal Gramps uw familistamboom proberen te herstellen vanuit de laatste goede reservekopie. Er zijn meerdere redenen dat dit echter ongewenste effecten kan opleveren, dus steeds eerst een <b>kopie</b>van de stamboom nemen.\n"
-"De familistamboom die u geselecteerd heeft is opgeslagen in %s.\n"
+"De familiestamboom die u geselecteerd heeft is opgeslagen in %s.\n"
 "\n"
 "Voor u een herstelling uitvoert, dient u zeker te zijn dat de familiestamboom niet meer kan geopend worden. Het is mogelijk dat het niet-zichtbare programmadeel van het gegevensbestand van sommige fouten automatisch hersteld.\n"
 "\n"
@@ -8268,7 +8239,7 @@ msgstr "%s kon niet geïmporteerd worden"
 #: ../gramps/gui/editors/addmedia.py:161
 #, python-format
 msgid "Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing"
-msgstr "Map opgegeven in voorkeuren: basispad voor de relatieve mediapaden: %s bestaat niet. U dient de voorkeuren te veranderen of geen relatieve paden te gebruiken bij het importeren"
+msgstr "Folder opgegeven in voorkeuren: basispad voor de relatieve mediapaden: %s bestaat niet. U dient de voorkeuren te veranderen of geen relatieve paden te gebruiken bij het importeren"
 
 #: ../gramps/gui/editors/addmedia.py:223
 #: ../gramps/gui/editors/addmedia.py:224
@@ -8588,9 +8559,8 @@ msgid "Edit the selected citation"
 msgstr "Het geselecteerde citaat aanpassen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "Een bestaande bron toevoegen"
+msgstr "Een bestaande bron of citaat toevoegen"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
 #, fuzzy
@@ -8802,7 +8772,7 @@ msgstr "Weergeven"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:156
 #: ../gramps/plugins/view/mediaview.py:232
 msgid "Open Containing _Folder"
-msgstr "Open de map"
+msgstr "Folder openen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:255
 #: ../gramps/gui/editors/editperson.py:933
@@ -9271,9 +9241,9 @@ msgid "Edit Source (%s)"
 msgstr "Bron (%s) bewerken"
 
 #: ../gramps/gui/editors/editcitation.py:443
-#, fuzzy, python-format
+#, python-format
 msgid "Add Citation (%s)"
-msgstr "Tag (%s) verwijderen"
+msgstr "Citaat (%s) toevoegen"
 
 #: ../gramps/gui/editors/editcitation.py:449
 #, fuzzy, python-format
@@ -11710,9 +11680,9 @@ msgstr "onbekende moeder"
 
 #: ../gramps/gui/plug/_guioptions.py:849
 #: ../gramps/gui/plug/_guioptions.py:852
-#, fuzzy, python-format
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s en %(mother)s %(id)s"
+msgstr "%(father_name)s en %(mother_name)s (%(family_id)s)"
 
 #: ../gramps/gui/plug/_guioptions.py:1195
 #: ../gramps/gui/plug/_guioptions.py:1198
@@ -11987,7 +11957,7 @@ msgstr ""
 "Klik op Volgende om door te gaan, Annuleren om te af te breken, of Terug om uw instellingen te wijzigen"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:452
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -11999,11 +11969,11 @@ msgid ""
 msgstr ""
 "De gegevens zullen als volgt worden opgeslagen:\n"
 "\n"
-"Formaat:\t%s\n"
-"Naam:\t%s\n"
-"Map:\t%s\n"
+"Formaat:\t%(format)s\n"
+"Naam:\t%(name)s\n"
+"Folder:\t%(folder)s\n"
 "\n"
-"Klik op Volgende om door te gaan, Annuleren om te af te breken, of Terug om uw instellingen te wijzigen"
+"Klik op Volgende om door te gaan, Annuleren om af te breken, of Terug om uw instellingen te wijzigen"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:462
 msgid ""
@@ -12011,7 +11981,7 @@ msgid ""
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
-"Het gekozen bestand en de doelmap om bestand in op te slaan \n"
+"Het gekozen bestand en de folder om bestand in op te slaan \n"
 "kunnen niet gevonden of aangemaakt worden \n"
 "\n"
 "Druk Terug en kies een geldige bestandsnaam."
@@ -12519,9 +12489,9 @@ msgid ""
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
-"U heeft geen schrijfrechten voor de map %s\n"
+"U heeft geen schrijfrechten voor de folder %s\n"
 "\n"
-"Kies een andere map of wijzig de schrijfrechten."
+"Een andere folder kiezen of de schrijfrechten wijzigen."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:504
 #: ../gramps/gui/plug/report/_reportdialog.py:503
@@ -13294,7 +13264,7 @@ msgstr "Reservekopie aanmaken werd afgebroken"
 #: ../gramps/gui/viewmanager.py:1621
 #: ../gramps/gui/viewmanager.py:1630
 msgid "Select backup directory"
-msgstr "Een map voor de reservekopie selecteren"
+msgstr "Een folder voor de reservekopie selecteren"
 
 #: ../gramps/gui/viewmanager.py:1887
 #: ../gramps/gui/viewmanager.py:1890
@@ -13719,9 +13689,8 @@ msgstr "Scherm wordt opgebouwd"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:571
 #: ../gramps/gui/views/treemodels/treebasemodel.py:576
-#, fuzzy
 msgid "Obtaining all rows"
-msgstr "Alle personen ophalen"
+msgstr "Alle rijen samenstellen"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:587
 #: ../gramps/gui/views/treemodels/treebasemodel.py:592
@@ -14020,7 +13989,7 @@ msgstr "Mogelijk een doelfout"
 #: ../gramps/plugins/webreport/webcal.py:246
 #: ../gramps/plugins/webreport/narrativeweb.py:7912
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
-msgstr "De doelmap die u ingesteld hebt wordt ook gebruikt voor gegevens op te slaan. Dit kan tot problemen leiden met het bestandbeheersysteem. Het is aangeraden om een aparte map te gebruiken om uw webpagina's in op te slaan."
+msgstr "De folder die u ingesteld hebt wordt ook gebruikt om gegevens op te slaan. Dit kan tot problemen leiden met het bestandbeheersysteem. Het is aangeraden om een aparte folder te gebruiken om uw webpagina's in op te slaan."
 
 #: ../gramps/plugins/docgen/htmldoc.py:554
 #, python-format
@@ -14378,7 +14347,7 @@ msgstr "Boom niet schalen"
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
 #: ../gramps/plugins/drawreport/descendtree.py:1607
 msgid "Make the box shadow bigger or smaller"
-msgstr ""
+msgstr "De schaduw rond de rechthoeken groter of kleiner maken"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1022
 #: ../gramps/plugins/drawreport/descendtree.py:1613
@@ -15844,7 +15813,7 @@ msgstr "Verjaardag: %s"
 #: ../gramps/plugins/export/exportxml.py:137
 #: ../gramps/plugins/export/exportxml.py:138
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
-msgstr "Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om in de map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en probeer dan opnieuw."
+msgstr "Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om naar de folder te schrijven. Zorg dat u schrijftoegang krijgt tot de folder en probeer dan opnieuw."
 
 #: ../gramps/plugins/export/exportxml.py:147
 #: ../gramps/plugins/export/exportxml.py:148
@@ -15977,9 +15946,8 @@ msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Dubbelklikken op een rij om de geselecteerde bron te bewerken."
 
 #: ../gramps/plugins/gramplet/citations.py:48
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Citaat"
+msgstr "Bron/Citaat"
 
 #: ../gramps/plugins/gramplet/citations.py:50
 msgid "Publisher"
@@ -16929,36 +16897,32 @@ msgid "Person Citations"
 msgstr "Personendetails"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:717
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet die de verwijzingen naar een persoon toont"
+msgstr "Gramplet die de citaten van een persoon toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:730
 msgid "Event Citations"
 msgstr "Gebeurteniscitaten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:731
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet die de verwijzingen naar een gebeurtenis toont"
+msgstr "Gramplet die de citaten van een gebeurtenis toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:744
 msgid "Family Citations"
 msgstr "Familiecitaten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:745
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet die de verwijzingen naar een familie toont"
+msgstr "Gramplet die de citaten van een familie toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:758
 msgid "Place Citations"
 msgstr "Locatiecitaten"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:759
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet die de verwijzingen naar een locatie toont"
+msgstr "Gramplet die de citaten van een locatie toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:772
 #, fuzzy
@@ -18209,7 +18173,7 @@ msgstr "URLs bijvoegen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:509
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
-msgstr "Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden  worden aangemaakt met actieve links naar de bestanden die gegenereerd zijn met het 'Website'-verslag ."
+msgstr "Een \"URL\" bij elk grafiekknoopunt voegen zodat PDF en \"imagemap\"-bestanden  worden aangemaakt met actieve links naar de bestanden die gegenereerd zijn met het 'Website'-verslag ."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:516
 msgid "Include IDs"
@@ -18598,19 +18562,19 @@ msgstr "GeneWeb import"
 #: ../gramps/plugins/importer/importgpkg.py:72
 #, python-format
 msgid "Could not create media directory %s"
-msgstr "Kon de mediamap %s niet aanmaken"
+msgstr "De mediafolder %s kon niet aangemaakt worden"
 
 #: ../gramps/plugins/import/importgpkg.py:75
 #: ../gramps/plugins/importer/importgpkg.py:76
 #, python-format
 msgid "Media directory %s is not writable"
-msgstr "Mediamap %s is niet beschrijfbaar"
+msgstr "Mediafolder %s is niet beschrijfbaar"
 
 #: ../gramps/plugins/import/importgpkg.py:80
 #: ../gramps/plugins/importer/importgpkg.py:81
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "Mediamap %s bestaat reeds. Eerst verwijderen, dan het importproces nieuw starten"
+msgstr "Mediafolder %s bestaat reeds. Eerst verwijderen, dan het importproces nieuw starten"
 
 #: ../gramps/plugins/import/importgpkg.py:89
 #: ../gramps/plugins/importer/importgpkg.py:90
@@ -18632,7 +18596,7 @@ msgstr "Het standaard ingestelde mediapad voor deze familiestamboom is %s. Overw
 #: ../gramps/plugins/import/importgpkg.py:115
 #: ../gramps/plugins/importer/importgpkg.py:116
 msgid "Cannot set base media path"
-msgstr "Kan mediamap niet instellen"
+msgstr "Mediafolder kon niet worden ingesteld"
 
 #: ../gramps/plugins/import/importgpkg.py:116
 #: ../gramps/plugins/importer/importgpkg.py:117
@@ -18709,7 +18673,7 @@ msgstr "Individuen importeren"
 #: ../gramps/plugins/importer/importprogen.py:826
 #, python-format
 msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
-msgstr ""
+msgstr "Patroniem naam overgeslagen: %(patronym)s' (%(msg)s)"
 
 #: ../gramps/plugins/import/importprogen.py:1061
 #: ../gramps/plugins/importer/importprogen.py:1070
@@ -18823,9 +18787,9 @@ msgstr "  Opmerking %(id)s met %(id2)s\n"
 
 #: ../gramps/plugins/import/importxml.py:290
 #: ../gramps/plugins/importer/importxml.py:291
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Familie %(id)s met %(id2)s\n"
+msgstr "  Citaat %(id)s met %(id2)s\n"
 
 # Mensen
 #: ../gramps/plugins/import/importxml.py:298
@@ -19151,9 +19115,8 @@ msgstr "Tag werd herkend maar niet ondersteund"
 # Let op, ipv waarschuwing
 #: ../gramps/plugins/lib/libgedcom.py:2840
 #: ../gramps/plugins/lib/libgedcom.py:2875
-#, fuzzy
 msgid "Line ignored as not understood"
-msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
+msgstr "Regel werd niet begrepen en daarom genegeerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:2865
 #: ../gramps/plugins/lib/libgedcom.py:2900
@@ -19169,9 +19132,9 @@ msgstr "%s kon niet worden geïmporteerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:2932
 #: ../gramps/plugins/lib/libgedcom.py:2968
-#, fuzzy, python-format
+#, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
-msgstr "Fout: %(msg)s  '%(gramps_id)s' (invoer zoals @%(xref)s@) niet in GEDCOM invoer. Gegevens gesynthetiseerd"
+msgstr "Fout: %(msg)s  '%(gramps_id)s' (invoer zoals @%(xref)s@) niet in \"GEDCOM\"-invoer. Gegeven gesynthetiseerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:2941
 #: ../gramps/plugins/lib/libgedcom.py:2977
@@ -19181,7 +19144,7 @@ msgstr "Fout: %(msg)s '%(gramps_id)s' (invoer als @%(xref)s@) niet in GEDCOM-inv
 
 #: ../gramps/plugins/lib/libgedcom.py:2980
 #: ../gramps/plugins/lib/libgedcom.py:3016
-#, fuzzy, python-format
+#, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Fout: familie '%(family)s' (invoer als @%(orig_family)s@) persoon %(person)s (invoer als %(orig_person)s) is geen lid van de familie waarnaar verwezen wordt. Familieverwijzing wordt verwijderen bij die persoon"
 
@@ -19384,21 +19347,18 @@ msgstr "Bedrijf dat %s heeft geproduceerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:6632
 #: ../gramps/plugins/lib/libgedcom.py:6668
-#, fuzzy
 msgid "Name of source data"
-msgstr "Naamformaat"
+msgstr "Naam van de brongegevens"
 
 #: ../gramps/plugins/lib/libgedcom.py:6646
 #: ../gramps/plugins/lib/libgedcom.py:6682
-#, fuzzy
 msgid "Copyright of source data"
 msgstr "Auteursrecht van de brongegevens"
 
 #: ../gramps/plugins/lib/libgedcom.py:6660
 #: ../gramps/plugins/lib/libgedcom.py:6696
-#, fuzzy
 msgid "Publication date of source data"
-msgstr "Publicatie-informatie"
+msgstr "Publicatiedatum van de brongegevens"
 
 #: ../gramps/plugins/lib/libgedcom.py:6673
 #: ../gramps/plugins/lib/libgedcom.py:6709
@@ -19459,9 +19419,8 @@ msgstr "GEDCOM-import"
 
 #: ../gramps/plugins/lib/libgedcom.py:6798
 #: ../gramps/plugins/lib/libgedcom.py:6834
-#, fuzzy
 msgid "GEDCOM form"
-msgstr "GEDCOM-import"
+msgstr "\"GEDCOM\"-formulier"
 
 #: ../gramps/plugins/lib/libgedcom.py:6844
 #: ../gramps/plugins/lib/libgedcom.py:6880
@@ -19478,9 +19437,8 @@ msgstr "Aanmaakdatum en tijdstip van GEDCOM"
 #: ../gramps/plugins/lib/libgedcom.py:6922
 #: ../gramps/plugins/lib/libgedcom.py:6921
 #: ../gramps/plugins/lib/libgedcom.py:6958
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "Regel %d: lege opmerking werd genegeerd."
+msgstr "Lege opmerking werd genegeerd"
 
 #: ../gramps/plugins/lib/libgedcom.py:6937
 #: ../gramps/plugins/lib/libgedcom.py:6973
@@ -20477,9 +20435,9 @@ msgstr "Overleden te %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:412
 #: ../gramps/plugins/lib/libnarrate.py:414
-#, fuzzy, python-format
+#, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "Overleed te %(death_place)s (leeftijd %(age)d dagen)."
+msgstr "Overleed te %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:419
 #: ../gramps/plugins/lib/libnarrate.py:421
@@ -20513,9 +20471,9 @@ msgstr "Hij overleed op een leeftijd van %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:440
 #: ../gramps/plugins/lib/libnarrate.py:442
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Zij overleed op een leeftijd van %(age)d dagen."
+msgstr "Zij overleed op de leeftijd van %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:445
 #: ../gramps/plugins/lib/libnarrate.py:447
@@ -23035,12 +22993,12 @@ msgstr "Laden..."
 #: ../gramps/plugins/lib/libplaceview.py:165
 #: ../gramps/plugins/lib/libplaceview.py:216
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr "Poging om de gekozen locaties te tonen met een kaartsysteem (OpenstreetMap, Google Maps, ...)"
+msgstr "Poging om de gekozen locaties te tonen met een kaartsysteem (\"OpenstreetMap\", \"Google Maps\", ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:168
 #: ../gramps/plugins/lib/libplaceview.py:214
 msgid "Select a Map Service"
-msgstr "Mapsysteem kiezen"
+msgstr "Kaartsysteem kiezen"
 
 #: ../gramps/plugins/lib/libplaceview.py:170
 #: ../gramps/plugins/lib/libplaceview.py:165
@@ -23050,7 +23008,7 @@ msgstr "Opzoeken met kaartsysteem"
 #: ../gramps/plugins/lib/libplaceview.py:172
 #: ../gramps/plugins/lib/libplaceview.py:167
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr "Poging om deze locatie te tonen met een kaartsysteem (OpenstreetMap, Google Maps, ...)"
+msgstr "Poging om deze locatie te tonen met een kaartsysteem (\"OpenstreetMap\", \"Google Maps\", ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:174
 #: ../gramps/plugins/lib/libplaceview.py:169
@@ -23581,12 +23539,12 @@ msgstr "De kaart"
 #: ../gramps/plugins/lib/maps/osmGps.py:109
 #, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "Kon de map %s niet aanmaken om de tegels op te slaan"
+msgstr "De folder %s kon niet aangemaakt worden om de tegels in op te slaan"
 
 #: ../gramps/plugins/lib/maps/osmGps.py:131
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Kon de map %s niet aanmaken."
+msgstr "De folder %s kon niet worden aangemaakt."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:123
 #: ../gramps/plugins/lib/maps/placeselection.py:125
@@ -23662,7 +23620,7 @@ msgstr ""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:31
 msgid "EniroMaps"
-msgstr "EniroMaps"
+msgstr "\"EniroMaps\""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:32
 msgid "Opens on kartor.eniro.se"
@@ -23670,21 +23628,21 @@ msgstr "Opent op kartor.eniro.se"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:50
 msgid "GoogleMaps"
-msgstr "GoogleMaps"
+msgstr "\"GoogleMaps\""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:51
 msgid "Open on maps.google.com"
-msgstr "Openen met maps.google.com"
+msgstr "Met \"maps.google.com\" openen"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:69
 #: ../gramps/plugins/webreport/narrativeweb.py:8080
 #: ../gramps/plugins/webreport/narrativeweb.py:8286
 msgid "OpenStreetMap"
-msgstr "OpenStreetMap"
+msgstr "\"OpenStreetMap\""
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:70
 msgid "Open on openstreetmap.org"
-msgstr "openen met openstreetmap.org"
+msgstr "Met \"openstreetmap.org\" openen"
 
 #: ../gramps/plugins/quickview/ageondate.py:50
 #, python-format
@@ -24603,24 +24561,20 @@ msgid "Select filter to restrict people that appear on report"
 msgstr "Kies een filter om het aantal personen te beperken dat getoond wordt op de kalender"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:406
-#, fuzzy
 msgid "Select the first day of the week for the report"
-msgstr "Kies de eerste dag van de week voor de kalender"
+msgstr "De eerste dag van de week voor het verslag kiezen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:417
-#, fuzzy
 msgid "Include only living people in the report"
-msgstr "Enkel nog levende personen tonen in de kalender"
+msgstr "Enkel nog levende personen aan het verslag toevoegen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:421
-#, fuzzy
 msgid "Include birthdays in the report"
-msgstr "Verjaardagen toevoegen in de kalender"
+msgstr "Verjaardagen aan het verslag toevoegen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:425
-#, fuzzy
 msgid "Include anniversaries in the report"
-msgstr "Verjaardagen toevoegen in de kalender"
+msgstr "Verjaardagen aan het verslag toevoegen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:428
 msgid "Include relationships to center person"
@@ -24643,9 +24597,8 @@ msgid "My Birthday Report"
 msgstr "Mijn geboortedatumverslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:441
-#, fuzzy
 msgid "First line of text at bottom of report"
-msgstr "Eerste tekstlijn onderaan de kalender"
+msgstr "Eerste tekstlijn onderaan het verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:445
 #, fuzzy
@@ -24729,9 +24682,9 @@ msgid "sp. see  %(reference)s : %(spouse)s"
 msgstr ""
 
 #: ../gramps/plugins/textreport/descendreport.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "    echtgnt.   "
+msgstr "%s echtgt."
 
 #: ../gramps/plugins/textreport/descendreport.py:407
 #: ../gramps/plugins/textreport/detdescendantreport.py:903
@@ -25660,9 +25613,8 @@ msgstr "Gebruik de roepnaam niet"
 
 #: ../gramps/plugins/textreport/recordsreport.py:153
 #: ../gramps/plugins/textreport/recordsreport.py:154
-#, fuzzy
 msgid "Replace first names with call name"
-msgstr "Vervang de voornaam door de roepnaam"
+msgstr "De voornaam door de roepnaam vervangen"
 
 #: ../gramps/plugins/textreport/recordsreport.py:154
 #: ../gramps/plugins/textreport/recordsreport.py:155
@@ -25994,9 +25946,8 @@ msgid "Produces a table of contents for book reports."
 msgstr "Een inhoudstafel voor de boekverslagen aanmaken."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:389
-#, fuzzy
 msgid "Produces an alphabetical index for book reports."
-msgstr "Maakt een titelpagina voor boekverslagen aan."
+msgstr "Een alfabetische index voor het boekverslag aanmaken."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:410
 msgid "Records Report"
@@ -26887,7 +26838,7 @@ msgstr "Deeltekenreeks vervangen in het pad"
 #: ../gramps/plugins/tool/mediamanager.py:473
 #: ../gramps/plugins/tool/mediamanager.py:475
 msgid "This tool allows replacing specified substring in the path of media objects with another substring. This can be useful when you move your media files from one directory to another"
-msgstr "Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer u uw mediabestanden van een map naar een andere map wilt verplaatsen"
+msgstr "Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer u uw mediabestanden van een folder naar een andere folder wilt verplaatsen"
 
 #: ../gramps/plugins/tool/mediamanager.py:479
 #: ../gramps/plugins/tool/mediamanager.py:481
@@ -26948,7 +26899,7 @@ msgstr "Beelden die niet in het gegevenensbestand zitten, toevoegen"
 #: ../gramps/plugins/tool/mediamanager.py:627
 #: ../gramps/plugins/tool/mediamanager.py:629
 msgid "Check directories for images not included in database"
-msgstr "Mappen op beelden die niet in het gegevensbestand zitten, controleren"
+msgstr "Folders op beelden controleren die niet in het gegevensbestand zitten"
 
 #: ../gramps/plugins/tool/mediamanager.py:628
 #: ../gramps/plugins/tool/mediamanager.py:630
@@ -26968,14 +26919,13 @@ msgstr "Datum negeren"
 # Vertrouwen
 #: ../gramps/plugins/tool/mergecitations.py:77
 #: ../gramps/plugins/tool/mergecitations.py:79
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Zekerheid"
+msgstr "Zekerheid negeren"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 #: ../gramps/plugins/tool/mergecitations.py:80
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Datum e zekerheidsniveau negeren"
 
 #: ../gramps/plugins/tool/mergecitations.py:82
 #: ../gramps/plugins/tool/mergecitations.py:84
@@ -27723,14 +27673,12 @@ msgstr "Huwelijksdatum maar niet gehuwd"
 
 #: ../gramps/plugins/tool/verify.py:1577
 #: ../gramps/plugins/tool/verify.py:1584
-#, fuzzy
 msgid "Old age but no death"
-msgstr "Zeer oud bij overlijden"
+msgstr "Zeer oud maar niet overleden"
 
 #: ../gramps/plugins/view/citationlistview.py:101
-#, fuzzy
 msgid "Source: Title"
-msgstr "Bronnenfilter"
+msgstr "Titel"
 
 #: ../gramps/plugins/view/citationlistview.py:102
 msgid "Source: ID"
@@ -27738,24 +27686,20 @@ msgstr "Bron: ID"
 
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:97
-#, fuzzy
 msgid "Source: Author"
-msgstr "Bron: %s"
+msgstr "Auteur"
 
 #: ../gramps/plugins/view/citationlistview.py:104
 #: ../gramps/plugins/view/citationtreeview.py:98
-#, fuzzy
 msgid "Source: Abbreviation"
 msgstr "Afkorting"
 
 #: ../gramps/plugins/view/citationlistview.py:105
 #: ../gramps/plugins/view/citationtreeview.py:99
-#, fuzzy
 msgid "Source: Publication Information"
 msgstr "Publicatie-informatie"
 
 #: ../gramps/plugins/view/citationlistview.py:106
-#, fuzzy
 msgid "Source: Last Changed"
 msgstr "Laatste wijziging"
 
@@ -27852,9 +27796,8 @@ msgid "Citation Tree View"
 msgstr "Personenscherm met boomstruktuur"
 
 #: ../gramps/plugins/view/citationtreeview.py:281
-#, fuzzy
 msgid "Add source..."
-msgstr "Een bron toevoegen"
+msgstr "Een bron toevoegen..."
 
 #: ../gramps/plugins/view/citationtreeview.py:286
 msgid "Add citation..."
@@ -27973,7 +27916,6 @@ msgstr "Om een samenvoeging uit te voeren moeten precies twee families worden ge
 
 #: ../gramps/plugins/view/fanchartdescview.py:167
 #: ../gramps/plugins/view/fanchartview.py:165
-#, fuzzy
 msgid "_Print..."
 msgstr "Afdrukken..."
 
@@ -27991,9 +27933,8 @@ msgstr "Alleen tekst"
 
 #: ../gramps/plugins/view/fanchartdescview.py:284
 #: ../gramps/plugins/view/fanchartview.py:282
-#, fuzzy
 msgid "Gender colors"
-msgstr "Geslacht"
+msgstr "Kleuren voor de geslachten"
 
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
@@ -28227,9 +28168,9 @@ msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "Kind van %(father)s en %(mother)s."
 
 #: ../gramps/plugins/view/geofamclose.py:249
-#, fuzzy, python-format
+#, python-format
 msgid "Family reference : %s"
-msgstr "Toon verwijzingen voor een %s"
+msgstr "Familieverwijzing : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:250
 #, fuzzy, python-format
@@ -28308,13 +28249,13 @@ msgid "Family places for %s"
 msgstr "Familielocatieskaart"
 
 #: ../gramps/plugins/view/geography.gpr.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.8. yours is %s"
-msgstr "WAARSCHUWING: osmgpsmap module is niet geladen. osmgpsmap moet versie >= 0.7.0. Uw versie is %s"
+msgstr "WAARSCHUWING: \"osmgpsmap\"-module is niet geladen. \"osmgpsmap\" moet versie >= 0.8. Uw versie is %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:61
 msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be available."
-msgstr "WAARSCHUWING: osmgpsmap module is niet geladen. De gegrafische functionaliteit is niet beschikbaar."
+msgstr "WAARSCHUWING: de \"osmgpsmap\"-module is niet geladen. De geografische functionaliteit is niet beschikbaar."
 
 #: ../gramps/plugins/view/geography.gpr.py:68
 msgid "All known places for one Person"
@@ -28362,7 +28303,6 @@ msgid "All known Places"
 msgstr "Alle bekende locaties"
 
 #: ../gramps/plugins/view/geography.gpr.py:158
-#, fuzzy
 msgid "A view showing all places of the database."
 msgstr "Een scherm dat alle locaties in het gegevensbestand toont."
 
@@ -28391,9 +28331,8 @@ msgid "All descendance for %s"
 msgstr "Afstammelingen van %s"
 
 #: ../gramps/plugins/view/geomoves.py:637
-#, fuzzy
 msgid "The maximum number of generations.\n"
-msgstr "Het maximum aantal vooroudergeneraties"
+msgstr "Het maximum aantal generaties.\n"
 
 #: ../gramps/plugins/view/geomoves.py:644
 msgid "Time in milliseconds between drawing two generations.\n"
@@ -28457,20 +28396,19 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:293
 #: ../gramps/plugins/view/geoplaces.py:292
-#, fuzzy, python-format
+#, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr "Het maximum aantal voorouders waarmee verder gegaan wordt."
+msgstr "Het maximum aantal locaties (%d) werd bereikt."
 
 #: ../gramps/plugins/view/geoplaces.py:296
 #: ../gramps/plugins/view/geoplaces.py:295
-#, fuzzy
 msgid "Some information are missing."
-msgstr "Persoonlijke informatie ontbreekt"
+msgstr "Sommige informatie ontbreekt"
 
 #: ../gramps/plugins/view/geoplaces.py:298
 #: ../gramps/plugins/view/geoplaces.py:297
 msgid "Please, use filtering to reduce this number."
-msgstr ""
+msgstr "Om het aantal te beperken kunt u best een filter gebruiken."
 
 #: ../gramps/plugins/view/geoplaces.py:300
 #: ../gramps/plugins/view/geoplaces.py:299
@@ -28578,7 +28516,7 @@ msgstr "In het standaardscherm tonen"
 #: ../gramps/plugins/view/mediaview.py:226
 #: ../gramps/plugins/view/mediaview.py:233
 msgid "Open the folder containing the media file"
-msgstr "De map die het mediabestand bevat openen"
+msgstr "De folder die het mediabestand bevat openen"
 
 #: ../gramps/plugins/view/mediaview.py:374
 #: ../gramps/plugins/view/mediaview.py:381
@@ -29189,14 +29127,12 @@ msgid "The view showing all the sources"
 msgstr "Scherm toont alle bronnen"
 
 #: ../gramps/plugins/view/view.gpr.py:268
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "Het scherm toont alle opmerkingen"
+msgstr "Het scherm toont alle citaten"
 
 #: ../gramps/plugins/view/view.gpr.py:282
-#, fuzzy
 msgid "Citation Tree"
-msgstr "Personenscherm met boomstruktuur"
+msgstr "Citatenscherm met boomstruktuur"
 
 #: ../gramps/plugins/view/view.gpr.py:283
 #, fuzzy
@@ -29237,9 +29173,9 @@ msgstr "Gegenereerd met <a href = \"%(homepage)s\">Gramps</a> %(version)s op %(d
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1520
 #: ../gramps/plugins/webreport/narrativeweb.py:1614
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%(url)s\">%(name)s</a>"
-msgstr " <br />Opgemaakt voor <a href = \"%s\">%s</a>"
+msgstr "<br />Voor <a href = \"%(url)s\">%(name)s</a> aangemaakt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1625
 #: ../gramps/plugins/webreport/narrativeweb.py:7166
@@ -29654,9 +29590,9 @@ msgstr "Volledige naam"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6986
 #: ../gramps/plugins/webreport/narrativeweb.py:6935
-#, fuzzy, python-format
+#, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
-msgstr "Noch %s noch %s zijn mappen"
+msgstr "Noch %(current)s en %(parent)s zijn folders"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6994
 #: ../gramps/plugins/webreport/narrativeweb.py:6999
@@ -29668,7 +29604,7 @@ msgstr "Noch %s noch %s zijn mappen"
 #: ../gramps/plugins/webreport/narrativeweb.py:6966
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "Kon de map %s niet aanmaken"
+msgstr "De folder %s kon niet worden aangemaakt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7023
 #: ../gramps/plugins/webreport/narrativeweb.py:6972
@@ -29678,7 +29614,7 @@ msgstr "Ongeldige bestandsnaam"
 #: ../gramps/plugins/webreport/narrativeweb.py:7024
 #: ../gramps/plugins/webreport/narrativeweb.py:6973
 msgid "The archive file must be a file, not a directory"
-msgstr "Het archief moet een bestand zijn, niet een map"
+msgstr "Het archief moet een bestand zijn, geen folder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7102
 #: ../gramps/plugins/webreport/narrativeweb.py:7093
@@ -29799,7 +29735,7 @@ msgstr "Bestemming"
 #: ../gramps/plugins/webreport/webcal.py:1307
 #: ../gramps/plugins/webreport/narrativeweb.py:7970
 msgid "The destination directory for the web files"
-msgstr "De bestemmingsmap voor de webpagina's"
+msgstr "De doelfolder voor de webpagina's"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7770
 #: ../gramps/plugins/webreport/narrativeweb.py:7976
@@ -29865,7 +29801,6 @@ msgstr "Horizontaal  -- Standaard"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7826
 #: ../gramps/plugins/webreport/narrativeweb.py:8032
-#, fuzzy
 msgid "Vertical   -- Left Side"
 msgstr "Vertikaal - linkse kant"
 
@@ -30414,7 +30349,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:8637
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Alfabetisch menu: %s"
 
 #: ../gramps/plugins/webreport/webcal.py:296
 #: ../gramps/plugins/webreport/webcal.py:824
@@ -31235,9 +31170,8 @@ msgid "<b>Note:</b> Any changes in the shared citation information will be refle
 msgstr "<b>Merk op:</b> Alle veranderingen in de gedeelde bibliotheek zal gereflecteerd worden in de bibliotheek zelf en voor alle items die naar deze bibliotheek verwijzen."
 
 #: ../gramps/gui/glade/editcitation.glade:316
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "Een unieke ID voor de opmerking."
+msgstr "Een unieke ID voor het citaat"
 
 #: ../gramps/gui/glade/editcitation.glade:373
 #: ../gramps/gui/glade/editcitation.glade:587
@@ -32729,9 +32663,8 @@ msgid "Add a new style"
 msgstr "Een nieuwe stijl toevoegen"
 
 #: ../gramps/gui/glade/styleeditor.glade:1390
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Een geselecteerde opmerking aanpassen"
+msgstr "De geselecteerde stijl aanpassen"
 
 #: ../gramps/gui/glade/styleeditor.glade:1423
 #, fuzzy
@@ -32946,7 +32879,7 @@ msgstr "<b>Niet verzamelde objecten</b>"
 
 #: ../gramps/plugins/tool/mergecitations.glade:159
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "Niet samenvoegen wanneer het citaat opmerkingen bevat"
 
 #: ../gramps/plugins/tool/notrelated.glade:172
 msgid "_Tag"
@@ -33655,9 +33588,8 @@ msgid "Relation within this family (if not by birth)"
 msgstr "Relatie in deze familie (indien niet door geboorte) "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7130
-#, fuzzy
 msgid "Applying Person Filter..."
-msgstr "Filter wordt toegepast..."
+msgstr "Persoonsfilter toepassen..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7137
 msgid "Constructing list of other objects..."
