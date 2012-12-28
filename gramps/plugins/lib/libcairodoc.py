@@ -69,7 +69,7 @@ log = logging.getLogger(".libcairodoc")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Pango, PangoCairo
+from gi.repository import Pango, PangoCairo, Gdk
 
 #------------------------------------------------------------------------
 #
@@ -629,18 +629,50 @@ class GtkDocParagraph(GtkDocBaseElement):
         #now recalculate the attrilist:
         newattrlist = layout.get_attributes().copy()
         newattrlist.filter(self.filterattr, index)
-        oldattrlist = newattrlist.get_iterator()
-        while next(oldattrlist) :
-            vals = oldattrlist.get_attrs()
-            #print vals
-            for attr in vals:
-                newattr = attr.copy()
-                newattr.start_index -= index if newattr.start_index > index \
-                                                else 0
-                newattr.end_index -= index
-                newattrlist.insert(newattr)
-        new_paragraph.__set_attrlist(newattrlist)
         
+##      GTK3 PROBLEM: get_iterator no longer available!!
+##      REFERENCES: 
+##          http://www.gramps-project.org/bugs/view.php?id=6208
+##          https://bugzilla.gnome.org/show_bug.cgi?id=646788
+##          workaround: https://github.com/matasbbb/pitivit/commit/da815339e5ce3631b122a72158ba9ffcc9ee4372
+##      OLD EASY CODE:
+##        oldattrlist = newattrlist.get_iterator()
+##        while oldattrlist.next() :
+##            vals = oldattrlist.get_attrs()
+##            #print (vals)
+##            for attr in vals:
+##                newattr = attr.copy()
+##                newattr.start_index -= index if newattr.start_index > index \
+##                                                else 0
+##                newattr.end_index -= index
+##                newattrlist.insert(newattr)
+##      ## START OF WORKAROUND
+        oldtext = self._text
+        pos = 0
+        realpos = 0
+        markstarts = []
+        while pos < index:
+            char = oldtext[realpos]
+            if char == '<' and oldtext[realpos+1] != '/':
+                # a markup starts
+                end = realpos + oldtext[realpos:].find('>') + 1
+                markstarts += [oldtext[realpos:end]]
+                realpos = end
+            elif char == '<':
+                #this is the closing tag, we did not stop yet, so remove tag!
+                realpos = realpos + oldtext[realpos:].find('>') + 1
+                markstarts.pop()
+            else:
+                pos +=1
+                realpos += 1
+        #now construct the marked up text to use
+        newtext = ''.join(markstarts)
+        newtext += oldtext[realpos:]
+        #have it parsed
+        parse_ok, newattrlist, _plaintext, accel_char= \
+                                Pango.parse_markup(newtext, -1, '\000')
+##      ##END OF WORKAROUND
+        new_paragraph.__set_attrlist(newattrlist)
         # then update the first one
         self.__set_plaintext(self._plaintext.encode('utf-8')[:index])
         self._style.set_bottom_margin(0)
@@ -1031,8 +1063,7 @@ class GtkDocPicture(GtkDocBaseElement):
         cr.save()
         cr.translate(l_margin, 0)
         cr.scale(scale, scale)
-        gcr = Gdk.CairoContext(cr)
-        gcr.set_source_pixbuf(pixbuf,
+        Gdk.cairo_set_source_pixbuf(cr, pixbuf, 
                               (img_width / scale - pixbuf_width) / 2,
                               (img_height / scale - pixbuf_height) / 2)
         cr.rectangle(0 , 0, img_width / scale, img_height / scale)
