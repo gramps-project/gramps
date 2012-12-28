@@ -298,9 +298,11 @@ or LaTeX to allow the users to modify the format to suit their needs.
 
 .SH FILES
 .LP 
-\fI${PREFIX}/bin/gramps\fP 
+\fI${PREFIX}/bin/gramps\fP
 .br 
-\fI${PREFIX}/share/gramps\fP
+\fI${PREFIX}/lib/python/dist\-packages/gramps/\fP 
+.br 
+\fI${PREFIX}/share/\fP
 .br 
 \fI${HOME}/.gramps\fP 
 
