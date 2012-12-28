@@ -565,6 +565,5 @@ class GalleryTab(ButtonTab, DbGUIElement):
         return self.get_data().index(obj)
 
     def clean_up(self):
-        print "CLEANING"
         self.iconlist.disconnect(self.__id_connect_sel)
         super(ButtonTab, self).clean_up()
