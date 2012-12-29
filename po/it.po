@@ -8762,14 +8762,12 @@ msgid "<Countries>"
 msgstr "<Nazioni>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<States>"
-msgstr "<Stati/Regioni>"
+msgstr "<Stati>"
 
 #: ../src/gui/views/treemodels/placemodel.py:69
-#, fuzzy
 msgid "<Counties>"
-msgstr "<Province>"
+msgstr "<Regioni>"
 
 #: ../src/gui/views/treemodels/placemodel.py:70
 msgid "<Places>"
@@ -28481,7 +28479,6 @@ msgid "_Locality:"
 msgstr "_Località:"
 
 #: ../src/glade/editlocation.glade.h:15 ../src/glade/editplace.glade.h:34
-#, fuzzy
 msgid "_State:"
 msgstr "_Regione:"
 
