@@ -87,8 +87,10 @@ def build_trans(build_cmd):
     data_files = build_cmd.distribution.data_files
     for lang in ALL_LINGUAS:
         po_file = os.path.join('po', lang + '.po')
-        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'gramps.mo')
-        mo_file_unix = build_cmd.build_base + '/mo/' + lang + '/gramps.mo'
+        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES', 
+                               'gramps.mo')
+        mo_file_unix = (build_cmd.build_base + '/mo/' + lang + 
+                        '/LC_MESSAGES/gramps.mo')
         mo_dir = os.path.dirname(mo_file)
         if not(os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
             os.makedirs(mo_dir)
