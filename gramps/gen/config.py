@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Gary Burton 
-# Copyright (C) 2009       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2009-2012  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -151,6 +151,7 @@ register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
+register('behavior.addons-url', "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk")
 
 register('export.proxy-order', [
         ["privacy", 0], 

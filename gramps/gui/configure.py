@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2010       Benny Malengier
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -321,7 +322,7 @@ class ConfigureDialog(ManagedWindow):
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
     def add_entry(self, table, label, index, constant, callback=None,
-                  config=None):
+                  config=None, col_attach=0):
         if not config:
             config = self.__config
         if not callback:
@@ -330,9 +331,9 @@ class ConfigureDialog(ManagedWindow):
         entry = Gtk.Entry()
         entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
+        table.attach(lwidget, col_attach, col_attach+1, index, index+1, yoptions=0, 
                      xoptions=Gtk.AttachOptions.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0)
+        table.attach(entry, col_attach+1, col_attach+2, index, index+1, yoptions=0)
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
                           config=None, col_attach=1):
@@ -1147,7 +1148,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('Dates'), table
         
     def add_behavior_panel(self, configdialog):
-        table = Gtk.Table(3, 6)
+        table = Gtk.Table(2, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1205,16 +1206,18 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
         table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
 
+        self.add_entry(table, _('Where to check'), 8, 'behavior.addons-url', col_attach=1)
+
         checkbutton = Gtk.CheckButton(
             _("Do not ask about previously notified addons"))
         checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
-        table.attach(checkbutton, 0, 3, 8, 9, yoptions=0)
+        table.attach(checkbutton, 0, 3, 9, 10, yoptions=0)
         button = Gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
-        table.attach(button, 3, 4, 8, 9, yoptions=0)
+        table.attach(button, 3, 4, 9, 10, yoptions=0)
 
         return _('General'), table
 
