@@ -40,9 +40,12 @@ class CalendarGramplet(Gramplet):
         self.gui.calendar = Gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         if self.uistate.screen_width() <= 1024:
-            self.gui.calendar.set_display_options(Gtk.CALENDAR_SHOW_HEADING)
+            self.gui.calendar.set_display_options(
+                                    Gtk.CalendarDisplayOptions.SHOW_HEADING)
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.gui.calendar)
+        vbox = Gtk.VBox(False, 0)
+        vbox.pack_start(self.gui.calendar, False, False, 0)
+        self.gui.get_container_widget().add_with_viewport(vbox)
         self.gui.calendar.show()
 
     def post_init(self):
