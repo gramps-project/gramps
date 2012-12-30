@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-19 10:59+0100\n"
-"PO-Revision-Date: 2012-12-30 20:46+0100\n"
+"PO-Revision-Date: 2012-12-30 21:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -415,7 +415,7 @@ msgstr "Velger..."
 
 #: ../src/ExportOptions.py:143
 msgid "Unfiltered Family Tree:"
-msgstr "Ufiltrert slektstre"
+msgstr "Ufiltrert slektsdatabase"
 
 #: ../src/ExportOptions.py:145 ../src/ExportOptions.py:249
 #: ../src/ExportOptions.py:545
@@ -740,7 +740,7 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Slektstreet g bakover med mer enn det maksimale antallet generasjoner på %d.\n"
+"Slektsdatabasen går bakover med mer enn det maksimale antallet generasjoner på %d.\n"
 "Det er mulig at noen slektsforhold ikke ble med"
 
 #: ../src/Relationship.py:929
@@ -1299,7 +1299,7 @@ msgstr "Verdi"
 #: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
 #: ../src/gui/configure.py:1133
 msgid "Family Tree"
-msgstr "Slektstre"
+msgstr "Slektsdatabase"
 
 #: ../src/ScratchPad.py:1309 ../src/ScratchPad.py:1315
 #: ../src/ScratchPad.py:1354 ../src/ScratchPad.py:1398
@@ -1901,9 +1901,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family tree "
 "instead."
 msgstr ""
-"Feil: Slektstreet \"%s\" finnes ikke.\n"
+"Feil: Slektsdatabasen \"%s\" finnes ikke.\n"
 "Hvis fila er gedcom, Gramps-xml eller grdb, bruk opsjonen -i for å importere "
-"til et slektstre istedet."
+"til en slektsdatabase istedet."
 
 #: ../src/cli/arghandler.py:243
 #, python-format
@@ -2378,7 +2378,7 @@ msgstr "Kunne ikke laste et av de siste Slektstrærne."
 
 #: ../src/cli/grampscli.py:220
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "Slektstre finnes ikke, eller det er blitt slettet."
+msgstr "Slektsdatabasen finnes ikke, eller det er blitt slettet."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
@@ -4594,7 +4594,7 @@ msgstr "Telefon"
 #: ../src/gui/configure.py:437 ../src/gui/plug/_windows.py:598
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
-msgstr "E-post:"
+msgstr "E-post"
 
 #: ../src/gui/configure.py:438
 msgid "Researcher"
@@ -4992,7 +4992,7 @@ msgstr "_Arkiver"
 
 #: ../src/gui/dbman.py:271
 msgid "Family tree name"
-msgstr "Navn på slektstre"
+msgstr "Navn på slektsdatabase"
 
 #: ../src/gui/dbman.py:281
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
@@ -12519,7 +12519,7 @@ msgstr "Lagrer en kopi av datafeltene i bildets Exif-metadata."
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
-msgstr ""
+msgstr "Vis på nytt de datafelt som ble fjernet fra redigeringsområdet."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
@@ -14888,6 +14888,8 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
+"Feil: %(msg)s '%(gramps_id)s' (inndata som @%(xref)s@) ikke i inndata fra "
+"GEDCOM. En post med typisk egenskap 'Ukjent' ble opprettet"
 
 #: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
@@ -14896,6 +14898,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
+"Feil: familie '%(family)s' (inndata som @%(orig_family)s@) person %(person)s "
+"(inndata som %(orig_person)s) er ikke med i den familien som det blir "
+"referert til. Familiereferansen er fjernet fra personen"
 
 #: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
@@ -14907,6 +14912,11 @@ msgid ""
 "Where possible these 'Unkown' objects are \n"
 "referenced by note %s.\n"
 msgstr ""
+"Den importerte fila var ikke komplett.\n"
+"For å rette dette, ble det opprettet %d objekter og\n"
+"deres typiske egenskaper ble satt til 'Ukjent'.\n"
+"Der det er mulig ble disse 'Ukjent'-objektene\n"
+"referert til av notatet %s.\n"
 
 #: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
@@ -15027,7 +15037,7 @@ msgstr "Versjonsnummer tilprogramvaren"
 #: ../src/plugins/lib/libgedcom.py:6609
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Firma som lagde produktet: %s"
 
 #: ../src/plugins/lib/libgedcom.py:6630
 msgid "Name of source data"
@@ -15131,7 +15141,7 @@ msgstr "Innsending: Antall generasjoner med etterkommere"
 
 #: ../src/plugins/lib/libgedcom.py:6995
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Innsending: Merke for prestevigsel"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
@@ -19082,6 +19092,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
+"Tittel til stedet er :\n"
+"<b>%(title)s</b>\n"
+"De følgende stedene er liknende : %(gid)s\n"
+"Enten må du navne om stedet eller flette dem sammen.\n"
+"\n"
+"<b>Ønsket ditt kan ikke utføres</b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
@@ -20191,7 +20207,7 @@ msgstr "ef. %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:235
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "ef. se %(reference)s : %(spouse)s"
 
 #: ../src/plugins/textreport/DescendReport.py:290
 #, python-format
@@ -21456,7 +21472,7 @@ msgstr "Kontrollerer database"
 
 #: ../src/plugins/tool/Check.py:98
 msgid "Looking for cross table duplicates"
-msgstr ""
+msgstr "Ser etter duplikater i krysstabeller"
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -21466,6 +21482,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
+"Slektsdatabasen din inneholder kryssende duplikate referanser.\n"
+" Dette er ikke bra og kan repareres ved å lage en kopi av din\n"
+"slektsdatabase og importere sikkerhetskopien i en tom\n"
+"slektsdatabase. Resten av denne kontrollen er avbrutt og du bør\n"
+"kjøre verktøyet 'Kontroller og reparer' på nytt for denne\n"
+"slektsdatabasen."
 
 #: ../src/plugins/tool/Check.py:150
 msgid "Check Integrity"
@@ -21477,6 +21499,8 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
+"Objekter som blir henvist til av dette notatet manglet.  De er derfor blitt "
+"opprettet da du kjørte Kontroller og Reparer på %s."
 
 #: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
@@ -22229,7 +22253,7 @@ msgstr ""
 
 #: ../src/plugins/tool/MergeCitations.py:75
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Treff på side/bind, dato og troverdighetsnivå"
 
 #: ../src/plugins/tool/MergeCitations.py:76
 msgid "Ignore Date"
@@ -23904,7 +23928,7 @@ msgstr "Alternative steder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:385
 msgid "<absent>"
-msgstr ""
+msgstr "<fraværende>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1291
 msgid "Data Map"
