@@ -98,8 +98,8 @@ Débloquer une base de données verrouillée.
 Ouvrir une \fIBASE_DE_DONNEES\fP qui doit être une base présente dans
 le répertoire des bases ou le nom d\(aqun arbre familial existant.
 Si aucune action n\(aqest définie, les options d\(aqimport ou d\(aqexport
-sont  données par la ligne de commande puis une session interac‐
-tive est ouverte, utilisant cette base de données.
+sont données par la ligne de commande puis une session interactive
+est ouverte, utilisant cette base de données.
 .sp
 Seulement une base peut être ouverte. Si vous utilisez plusieurs
 sources, vous devez utiliser l\(aqoption d\(aqimport.
