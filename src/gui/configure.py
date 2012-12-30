@@ -1108,7 +1108,7 @@ class GrampsPreferences(ConfigureDialog):
         button = gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
-        table.attach(button, 2, 3, 9, 10, yoptions=0)
+        table.attach(button, 3, 4, 9, 10, yoptions=0)
 
         return _('General'), table
 
