@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-19 10:59+0100\n"
+"POT-Creation-Date: 2012-12-30 16:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr ""
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
 #: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
-#: ../src/gui/viewmanager.py:469 ../src/gui/editors/editfamily.py:117
+#: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
@@ -1143,7 +1143,7 @@ msgstr ""
 
 #. Create the tree columns
 #. 0 selected?
-#: ../src/ScratchPad.py:908 ../src/gui/viewmanager.py:468
+#: ../src/ScratchPad.py:908 ../src/gui/viewmanager.py:473
 #: ../src/gui/editors/displaytabs/attrembedlist.py:63
 #: ../src/gui/editors/displaytabs/backreflist.py:60
 #: ../src/gui/editors/displaytabs/eventembedlist.py:75
@@ -1220,7 +1220,7 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1133
+#: ../src/gui/configure.py:1135
 msgid "Family Tree"
 msgstr ""
 
@@ -1259,7 +1259,7 @@ msgid "On"
 msgstr ""
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:769
+#: ../src/gui/viewmanager.py:774
 msgid "Tip of the Day"
 msgstr ""
 
@@ -2528,7 +2528,7 @@ msgid "Caste"
 msgstr ""
 
 #. 2 name (version)
-#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:470
+#: ../src/gen/lib/attrtype.py:66 ../src/gui/viewmanager.py:475
 #: ../src/gui/editors/displaytabs/eventembedlist.py:74
 #: ../src/gui/editors/displaytabs/webembedlist.py:67
 #: ../src/gui/plug/_windows.py:119 ../src/gui/plug/_windows.py:230
@@ -3342,7 +3342,7 @@ msgstr ""
 msgid "Matrilineal"
 msgstr ""
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1111
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1113
 #: ../src/gui/editors/editcitation.py:202
 #: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79 ../src/gui/editors/editmediaref.py:94
@@ -4239,7 +4239,7 @@ msgid " Name Editor"
 msgstr ""
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1235 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1237 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr ""
 
@@ -4372,7 +4372,7 @@ msgid "Example"
 msgstr ""
 
 #. label for the combo
-#: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:427
+#: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
@@ -4566,27 +4566,31 @@ msgstr ""
 msgid "What to check"
 msgstr ""
 
-#: ../src/gui/configure.py:1101
+#: ../src/gui/configure.py:1100
+msgid "Where to check"
+msgstr ""
+
+#: ../src/gui/configure.py:1103
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../src/gui/configure.py:1106
+#: ../src/gui/configure.py:1108
 msgid "Check now"
 msgstr ""
 
-#: ../src/gui/configure.py:1122
+#: ../src/gui/configure.py:1124
 msgid "Family Tree Database path"
 msgstr ""
 
-#: ../src/gui/configure.py:1130
+#: ../src/gui/configure.py:1132
 msgid "Automatically load last family tree"
 msgstr ""
 
-#: ../src/gui/configure.py:1143
+#: ../src/gui/configure.py:1145
 msgid "Select media directory"
 msgstr ""
 
-#: ../src/gui/configure.py:1167
+#: ../src/gui/configure.py:1169
 msgid "Select database directory"
 msgstr ""
 
@@ -4660,7 +4664,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1041
+#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1046
 #: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1068
 #: ../src/plugins/view/familyview.py:259
 msgid "Cancel"
@@ -5196,7 +5200,7 @@ msgstr ""
 
 #. ###############################
 #: ../src/gui/filtereditor.py:1024 ../src/plugins/Records.py:516
-#: ../src/plugins/drawreport/Calendar.py:412
+#: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 #: ../src/plugins/drawreport/TimeLine.py:369
 #: ../src/plugins/gramplet/bottombar.gpr.py:637
@@ -5533,7 +5537,7 @@ msgid "List"
 msgstr ""
 
 #. name, click?, width, toggle
-#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:463
+#: ../src/gui/grampsgui.py:146 ../src/gui/viewmanager.py:468
 #: ../src/plugins/tool/ChangeNames.py:194
 #: ../src/plugins/tool/ExtractCity.py:540
 #: ../src/plugins/tool/PatchNames.py:396 ../src/glade/mergedata.glade.h:12
@@ -5640,323 +5644,331 @@ msgstr ""
 msgid "Unsupported"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:408
+#: ../src/gui/viewmanager.py:407
 msgid "Updated"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:420
+#: ../src/gui/viewmanager.py:419
 msgid "New"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:429
+msgid "Checking Addons Failed"
+msgstr ""
+
+#: ../src/gui/viewmanager.py:430
+msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:438
 msgid "new"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:433
+#: ../src/gui/viewmanager.py:438
 msgid "update"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:438
+#: ../src/gui/viewmanager.py:443
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:439
+#: ../src/gui/viewmanager.py:444
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:440
+#: ../src/gui/viewmanager.py:445
 msgid "' and '"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:451
+#: ../src/gui/viewmanager.py:456
 msgid "Available Gramps Updates for Addons"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:480
+#: ../src/gui/viewmanager.py:485
 #, python-format
 msgid "%(adjective)s: %(addon)s"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:537
+#: ../src/gui/viewmanager.py:542
 msgid "Downloading and installing selected addons..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:569 ../src/gui/viewmanager.py:576
+#: ../src/gui/viewmanager.py:574 ../src/gui/viewmanager.py:581
 msgid "Done downloading and installing addons"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:570
+#: ../src/gui/viewmanager.py:575
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/gui/viewmanager.py:573
+#: ../src/gui/viewmanager.py:578
 msgid "You need to restart Gramps to see new views."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:577
+#: ../src/gui/viewmanager.py:582
 msgid "No addons were installed."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:723
+#: ../src/gui/viewmanager.py:728
 msgid "Connect to a recent database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:741
+#: ../src/gui/viewmanager.py:746
 msgid "_Family Trees"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:742
+#: ../src/gui/viewmanager.py:747
 msgid "_Manage Family Trees..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:743
+#: ../src/gui/viewmanager.py:748
 msgid "Manage databases"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:744
+#: ../src/gui/viewmanager.py:749
 msgid "Open _Recent"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:750
 msgid "Open an existing database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:746
+#: ../src/gui/viewmanager.py:751
 msgid "_Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:753
 msgid "_View"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:749
+#: ../src/gui/viewmanager.py:754
 msgid "_Edit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:750
+#: ../src/gui/viewmanager.py:755
 msgid "_Preferences..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:752
+#: ../src/gui/viewmanager.py:757
 msgid "_Help"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:753
+#: ../src/gui/viewmanager.py:758
 msgid "Gramps _Home Page"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:760
 msgid "Gramps _Mailing Lists"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:757
+#: ../src/gui/viewmanager.py:762
 msgid "_Report a Bug"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:759
+#: ../src/gui/viewmanager.py:764
 msgid "_Extra Reports/Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:761
+#: ../src/gui/viewmanager.py:766
 msgid "_About"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:763
+#: ../src/gui/viewmanager.py:768
 msgid "_Plugin Manager"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:765
+#: ../src/gui/viewmanager.py:770
 msgid "_FAQ"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:766
+#: ../src/gui/viewmanager.py:771
 msgid "_Key Bindings"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:767
+#: ../src/gui/viewmanager.py:772
 msgid "_User Manual"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:774
+#: ../src/gui/viewmanager.py:779
 msgid "_Export..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:776
+#: ../src/gui/viewmanager.py:781
 msgid "Make Backup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:777
+#: ../src/gui/viewmanager.py:782
 msgid "Make a Gramps XML backup of the database"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:779
+#: ../src/gui/viewmanager.py:784
 msgid "_Abandon Changes and Quit"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:780 ../src/gui/viewmanager.py:783
+#: ../src/gui/viewmanager.py:785 ../src/gui/viewmanager.py:788
 msgid "_Reports"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:781
+#: ../src/gui/viewmanager.py:786
 msgid "Open the reports dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:782
+#: ../src/gui/viewmanager.py:787
 msgid "_Go"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:784
+#: ../src/gui/viewmanager.py:789
 msgid "_Windows"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:821
+#: ../src/gui/viewmanager.py:826
 msgid "Clip_board"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:822
+#: ../src/gui/viewmanager.py:827
 msgid "Open the Clipboard dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:823
+#: ../src/gui/viewmanager.py:828
 msgid "_Import..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:825 ../src/gui/viewmanager.py:828
+#: ../src/gui/viewmanager.py:830 ../src/gui/viewmanager.py:833
 msgid "_Tools"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:826
+#: ../src/gui/viewmanager.py:831
 msgid "Open the tools dialog"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:827
+#: ../src/gui/viewmanager.py:832
 msgid "_Bookmarks"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:829
+#: ../src/gui/viewmanager.py:834
 msgid "_Configure View..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:830
+#: ../src/gui/viewmanager.py:835
 msgid "Configure the active view"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:835
+#: ../src/gui/viewmanager.py:840
 msgid "_Navigator"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:837
+#: ../src/gui/viewmanager.py:842
 msgid "_Toolbar"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:839
+#: ../src/gui/viewmanager.py:844
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:844 ../src/gui/viewmanager.py:1426
+#: ../src/gui/viewmanager.py:849 ../src/gui/viewmanager.py:1431
 msgid "_Undo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:849 ../src/gui/viewmanager.py:1443
+#: ../src/gui/viewmanager.py:854 ../src/gui/viewmanager.py:1448
 msgid "_Redo"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:855
+#: ../src/gui/viewmanager.py:860
 msgid "Undo History..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:869
+#: ../src/gui/viewmanager.py:874
 #, python-format
 msgid "Key %s is not bound"
 msgstr ""
 
 #. load plugins
-#: ../src/gui/viewmanager.py:970
+#: ../src/gui/viewmanager.py:975
 msgid "Loading plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:977 ../src/gui/viewmanager.py:992
+#: ../src/gui/viewmanager.py:982 ../src/gui/viewmanager.py:997
 msgid "Ready"
 msgstr ""
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:985
+#: ../src/gui/viewmanager.py:990
 msgid "Registering plugins..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1022
+#: ../src/gui/viewmanager.py:1027
 msgid "Autobackup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1026
+#: ../src/gui/viewmanager.py:1031
 msgid "Error saving backup data"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1037
+#: ../src/gui/viewmanager.py:1042
 msgid "Abort changes?"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1038
+#: ../src/gui/viewmanager.py:1043
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1040
+#: ../src/gui/viewmanager.py:1045
 msgid "Abort changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1050
+#: ../src/gui/viewmanager.py:1055
 msgid "Cannot abandon session's changes"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1051
+#: ../src/gui/viewmanager.py:1056
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1205
+#: ../src/gui/viewmanager.py:1210
 msgid "View failed to load. Check error output."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1344
+#: ../src/gui/viewmanager.py:1349
 msgid "Import Statistics"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1395
+#: ../src/gui/viewmanager.py:1400
 msgid "Read Only"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1478
+#: ../src/gui/viewmanager.py:1483
 msgid "Gramps XML Backup"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1488
+#: ../src/gui/viewmanager.py:1493
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/mergemedia.glade.h:7
 msgid "Path:"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1508 ../src/plugins/tool/phpgedview.glade.h:3
+#: ../src/gui/viewmanager.py:1513 ../src/plugins/tool/phpgedview.glade.h:3
 #: ../src/plugins/import/importgedcom.glade.h:11
 msgid "File:"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1540
+#: ../src/gui/viewmanager.py:1545
 msgid "Media:"
 msgstr ""
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1545
+#: ../src/gui/viewmanager.py:1550
 #: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1581
 #: ../src/plugins/textreport/DetAncestralReport.py:801
@@ -5967,54 +5979,54 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1546 ../src/plugins/gramplet/StatsGramplet.py:200
+#: ../src/gui/viewmanager.py:1551 ../src/plugins/gramplet/StatsGramplet.py:200
 msgid "Megabyte|MB"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1547
+#: ../src/gui/viewmanager.py:1552
 #: ../src/plugins/webreport/NarrativeWeb.py:8109
 msgid "Exclude"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1564
+#: ../src/gui/viewmanager.py:1569
 msgid "Backup file already exists! Overwrite?"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1565
+#: ../src/gui/viewmanager.py:1570
 #, python-format
 msgid "The file '%s' exists."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1566
+#: ../src/gui/viewmanager.py:1571
 msgid "Proceed and overwrite"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1567
+#: ../src/gui/viewmanager.py:1572
 msgid "Cancel the backup"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1574
+#: ../src/gui/viewmanager.py:1579
 msgid "Making backup..."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1591
+#: ../src/gui/viewmanager.py:1596
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1594
+#: ../src/gui/viewmanager.py:1599
 msgid "Backup aborted"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1612
+#: ../src/gui/viewmanager.py:1617
 msgid "Select backup directory"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1878
+#: ../src/gui/viewmanager.py:1883
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1879
+#: ../src/gui/viewmanager.py:1884
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -6029,11 +6041,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1927
+#: ../src/gui/viewmanager.py:1932
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../src/gui/viewmanager.py:1928
+#: ../src/gui/viewmanager.py:1933
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -7974,7 +7986,7 @@ msgstr ""
 #. #########################
 #. ###############################
 #: ../src/gui/plug/report/_reportdialog.py:357 ../src/plugins/Records.py:514
-#: ../src/plugins/drawreport/Calendar.py:406
+#: ../src/plugins/drawreport/Calendar.py:405
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:908
 #: ../src/plugins/drawreport/TimeLine.py:367
@@ -8675,23 +8687,23 @@ msgstr ""
 msgid "See data not in Filter"
 msgstr ""
 
-#: ../src/config.py:289
+#: ../src/config.py:290
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../src/config.py:290
+#: ../src/config.py:291
 msgid "Missing Record"
 msgstr ""
 
-#: ../src/config.py:291
+#: ../src/config.py:292
 msgid "Missing Surname"
 msgstr ""
 
-#: ../src/config.py:298 ../src/config.py:300
+#: ../src/config.py:299 ../src/config.py:301
 msgid "Living"
 msgstr ""
 
-#: ../src/config.py:299
+#: ../src/config.py:300
 msgid "Private Record"
 msgstr ""
 
@@ -9524,7 +9536,7 @@ msgid "Tree Options"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:870
-#: ../src/plugins/drawreport/Calendar.py:417
+#: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/graph/GVHourGlass.py:261
 #: ../src/plugins/textreport/AncestorReport.py:268
@@ -9826,8 +9838,8 @@ msgstr ""
 
 #. generate the report:
 #: ../src/plugins/drawreport/Calendar.py:166
-#: ../src/plugins/drawreport/Calendar.py:264
-#: ../src/plugins/drawreport/Calendar.py:272
+#: ../src/plugins/drawreport/Calendar.py:263
+#: ../src/plugins/drawreport/Calendar.py:271
 msgid "Calendar Report"
 msgstr ""
 
@@ -9836,25 +9848,25 @@ msgstr ""
 msgid "Formatting months..."
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:265
+#: ../src/plugins/drawreport/Calendar.py:264
 #: ../src/plugins/textreport/BirthdayReport.py:215
 #: ../src/plugins/webreport/WebCal.py:1065
 msgid "Applying Filter..."
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:273
+#: ../src/plugins/drawreport/Calendar.py:272
 #: ../src/plugins/textreport/BirthdayReport.py:224
 #: ../src/plugins/webreport/WebCal.py:1071
 msgid "Reading database..."
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:314
+#: ../src/plugins/drawreport/Calendar.py:313
 #: ../src/plugins/textreport/BirthdayReport.py:276
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:318
+#: ../src/plugins/drawreport/Calendar.py:317
 #: ../src/plugins/textreport/BirthdayReport.py:280
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
@@ -9862,7 +9874,7 @@ msgid_plural "%(person)s, %(age)d%(relation)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/drawreport/Calendar.py:372
+#: ../src/plugins/drawreport/Calendar.py:371
 #: ../src/plugins/textreport/BirthdayReport.py:326
 #, python-format
 msgid ""
@@ -9870,7 +9882,7 @@ msgid ""
 " %(person)s, wedding"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:377
+#: ../src/plugins/drawreport/Calendar.py:376
 #: ../src/plugins/textreport/BirthdayReport.py:330
 #, python-format
 msgid ""
@@ -9882,20 +9894,20 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/drawreport/Calendar.py:407
-#: ../src/plugins/drawreport/Calendar.py:409
+#: ../src/plugins/drawreport/Calendar.py:406
+#: ../src/plugins/drawreport/Calendar.py:408
 #: ../src/plugins/textreport/BirthdayReport.py:362
 #: ../src/plugins/textreport/BirthdayReport.py:364
 msgid "Year of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:414
+#: ../src/plugins/drawreport/Calendar.py:413
 #: ../src/plugins/textreport/BirthdayReport.py:369
 #: ../src/plugins/webreport/WebCal.py:1314
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:418
+#: ../src/plugins/drawreport/Calendar.py:417
 #: ../src/plugins/drawreport/FanChart.py:397
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:373
@@ -9908,7 +9920,7 @@ msgstr ""
 msgid "The center person for the report"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:430
+#: ../src/plugins/drawreport/Calendar.py:429
 #: ../src/plugins/textreport/AncestorReport.py:279
 #: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/textreport/DescendReport.py:404
@@ -9924,178 +9936,178 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:433
+#: ../src/plugins/drawreport/Calendar.py:432
 #: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1390
 msgid "Country for holidays"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:444
+#: ../src/plugins/drawreport/Calendar.py:443
 #: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
 msgstr ""
 
 #. Default selection ????
-#: ../src/plugins/drawreport/Calendar.py:447
+#: ../src/plugins/drawreport/Calendar.py:446
 #: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1415
 msgid "First day of week"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:451
+#: ../src/plugins/drawreport/Calendar.py:450
 #: ../src/plugins/textreport/BirthdayReport.py:405
 #: ../src/plugins/webreport/WebCal.py:1418
 msgid "Select the first day of the week for the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:454
+#: ../src/plugins/drawreport/Calendar.py:453
 #: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1405
 msgid "Birthday surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:455
+#: ../src/plugins/drawreport/Calendar.py:454
 #: ../src/plugins/textreport/BirthdayReport.py:409
 #: ../src/plugins/webreport/WebCal.py:1406
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:456
+#: ../src/plugins/drawreport/Calendar.py:455
 #: ../src/plugins/textreport/BirthdayReport.py:410
 #: ../src/plugins/webreport/WebCal.py:1408
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:457
+#: ../src/plugins/drawreport/Calendar.py:456
 #: ../src/plugins/textreport/BirthdayReport.py:411
 #: ../src/plugins/webreport/WebCal.py:1410
 msgid "Wives use their own surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:458
+#: ../src/plugins/drawreport/Calendar.py:457
 #: ../src/plugins/textreport/BirthdayReport.py:412
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Select married women's displayed surname"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:461
+#: ../src/plugins/drawreport/Calendar.py:460
 #: ../src/plugins/textreport/BirthdayReport.py:415
 #: ../src/plugins/webreport/WebCal.py:1426
 msgid "Include only living people"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:462
+#: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:416
 #: ../src/plugins/webreport/WebCal.py:1427
 msgid "Include only living people in the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:465
+#: ../src/plugins/drawreport/Calendar.py:464
 #: ../src/plugins/textreport/BirthdayReport.py:419
 #: ../src/plugins/webreport/WebCal.py:1430
 msgid "Include birthdays"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:466
+#: ../src/plugins/drawreport/Calendar.py:465
 #: ../src/plugins/textreport/BirthdayReport.py:420
 #: ../src/plugins/webreport/WebCal.py:1431
 msgid "Include birthdays in the calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:469
+#: ../src/plugins/drawreport/Calendar.py:468
 #: ../src/plugins/textreport/BirthdayReport.py:423
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include anniversaries"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:470
+#: ../src/plugins/drawreport/Calendar.py:469
 #: ../src/plugins/textreport/BirthdayReport.py:424
 #: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
+#: ../src/plugins/drawreport/Calendar.py:472
 #: ../src/plugins/drawreport/Calendar.py:473
-#: ../src/plugins/drawreport/Calendar.py:474
 #: ../src/plugins/textreport/BirthdayReport.py:432
 msgid "Text Options"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:476
+#: ../src/plugins/drawreport/Calendar.py:475
 #: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "Text Area 1"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:476
+#: ../src/plugins/drawreport/Calendar.py:475
 #: ../src/plugins/textreport/BirthdayReport.py:439
 msgid "My Calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:477
+#: ../src/plugins/drawreport/Calendar.py:476
 #: ../src/plugins/textreport/BirthdayReport.py:440
 msgid "First line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:480
+#: ../src/plugins/drawreport/Calendar.py:479
 #: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Text Area 2"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:480
+#: ../src/plugins/drawreport/Calendar.py:479
 #: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Produced with Gramps"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:481
+#: ../src/plugins/drawreport/Calendar.py:480
 #: ../src/plugins/textreport/BirthdayReport.py:444
 msgid "Second line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:484
+#: ../src/plugins/drawreport/Calendar.py:483
 #: ../src/plugins/textreport/BirthdayReport.py:447
 msgid "Text Area 3"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:485
+#: ../src/plugins/drawreport/Calendar.py:484
 #: ../src/plugins/textreport/BirthdayReport.py:448
 msgid "Third line of text at bottom of calendar"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:539
+#: ../src/plugins/drawreport/Calendar.py:538
 msgid "Title text and background color"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:543
+#: ../src/plugins/drawreport/Calendar.py:542
 msgid "Calendar day numbers"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:546
+#: ../src/plugins/drawreport/Calendar.py:545
 msgid "Daily text display"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:548
+#: ../src/plugins/drawreport/Calendar.py:547
 msgid "Holiday text display"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:551
+#: ../src/plugins/drawreport/Calendar.py:550
 msgid "Days of the week text"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:555
+#: ../src/plugins/drawreport/Calendar.py:554
 #: ../src/plugins/textreport/BirthdayReport.py:512
 msgid "Text at bottom, line 1"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:557
+#: ../src/plugins/drawreport/Calendar.py:556
 #: ../src/plugins/textreport/BirthdayReport.py:514
 msgid "Text at bottom, line 2"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:559
+#: ../src/plugins/drawreport/Calendar.py:558
 #: ../src/plugins/textreport/BirthdayReport.py:516
 msgid "Text at bottom, line 3"
 msgstr ""
 
-#: ../src/plugins/drawreport/Calendar.py:561
+#: ../src/plugins/drawreport/Calendar.py:560
 msgid "Borders"
 msgstr ""
 
