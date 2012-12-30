@@ -73,8 +73,8 @@ gramps(1)                @VERSION@               gramps(1)
           Ouvrir une *BASE_DE_DONNEES* qui doit être une base présente dans
           le répertoire des bases ou le nom d'un arbre familial existant.
           Si aucune action n'est définie, les options d'import ou d'export
-          sont  données par la ligne de commande puis une session interac‐
-          tive est ouverte, utilisant cette base de données.
+          sont données par la ligne de commande puis une session interactive
+          est ouverte, utilisant cette base de données.
 
           Seulement une base peut être ouverte. Si vous utilisez plusieurs
           sources, vous devez utiliser l'option d'import.
