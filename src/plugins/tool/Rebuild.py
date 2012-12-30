@@ -77,7 +77,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             uistate.push_message(dbstate, _("Rebuilding secondary indices..."))
             
             UpdateCallback.__init__(self, self.callback)
-            self.set_total(11)
+            self.set_total(12)
             self.db.rebuild_secondary(self.update)
             self.reset()
             
