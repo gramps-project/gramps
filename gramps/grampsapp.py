@@ -237,13 +237,26 @@ def show_settings():
         gobjectver_str = 'not found'
 
     try:
+        from gi.repository import Pango
+        try:
+            pangover_str = Pango.version_string()
+        except :# any failure to 'get' the version
+            pangover_str = 'unknown version'
+
+    except ImportError:
+        pangover_str = 'not found'
+
+    try:
         import cairo
         try:
-            cairover_str = '%d.%d.%d' % cairo.version_info 
+            pycairover_str = '%d.%d.%d' % cairo.version_info 
+            cairover_str = cairo.cairo_version_string()
         except :# any failure to 'get' the version
+            pycairover_str = 'unknown version'
             cairover_str = 'unknown version'
 
     except ImportError:
+        pycairover_str = 'not found'
         cairover_str = 'not found'
 
     try:
@@ -279,7 +292,8 @@ def show_settings():
         else:
             import bsddb
         bsddb_str = bsddb.__version__
-        bsddb_db_str = str(bsddb.db.version())
+        bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
+                                        .replace('(', '').replace(')', '')
     except:
         bsddb_str = 'not found'
         bsddb_db_str = 'not found'
@@ -327,6 +341,7 @@ def show_settings():
     print (' gramps    : %s' % gramps_str)
     print (' gtk++     : %s' % gtkver_str)
     print (' gobject   : %s' % gobjectver_str)
+    print (' pango     : %s' % pangover_str)
     if usebsddb3:
         print (' Using bsddb3')
     else:
@@ -334,6 +349,7 @@ def show_settings():
     print (' bsddb     : %s' % bsddb_str)
     print (' bsddb.db  : %s' % bsddb_db_str)
     print (' cairo     : %s' % cairover_str)
+    print (' pycairo   : %s' % pycairover_str)
     print (' osmgpsmap : %s' % osmgpsmap_str)
     print (' pyexiv2   : %s' % pyexiv2_str)
     print (' o.s.      : %s' % operating_system)
