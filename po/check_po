@@ -560,7 +560,7 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
 	translation = (1.0 - (float(not_displayed) / float(nr_templates))) * 100
 	text = "%-20s%5.2f%%" % ( "Localized at:",     translation)
 
-	if template_coverage == po_coverage:
+	if int(template_coverage*1000) == int(po_coverage*1000):
 		print text
 	else:
 		print text + ' (previous gramps.pot)'
