@@ -2445,32 +2445,32 @@ msgstr "_Gjør om %s"
 #: ../src/gen/db/upgrade.py:83
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Personer        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Personer           oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:84
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Familier        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Familier           oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:85
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Hendelser        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Hendelser          oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:86
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Mediaobjekter        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Mediaobjekter      oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:87
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Steder        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Steder             oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:88
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
-msgstr "%6d Oppbevaringssteder        oppgradert med %6d siteringer iløpet av %6d sekunder\n"
+msgstr "%6d Oppbevaringssteder oppgradert med %6d siteringer iløpet av %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:416
 msgid "Number of new objects upgraded:\n"
