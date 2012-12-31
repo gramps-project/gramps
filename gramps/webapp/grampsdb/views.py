@@ -32,6 +32,7 @@ Each object can be operated on with the following actions:
 
 import os
 import sys
+import time
 if sys.version_info[0] < 3:
     import cPickle as pickle
 else:
@@ -171,6 +172,12 @@ def user_page(request, username=None):
     else:
         raise Http404(_("Requested page is not accessible."))
 
+def timestamp():
+    """
+    Construct a string of current time for filenames.
+    """
+    return time.strftime("%Y-%m-%d:%H:%M:%S")
+
 def send_file(request, filename, mimetype):
     """                                                                         
     Send a file through Django without loading the whole file into              
@@ -215,17 +222,18 @@ def process_report_run(request, handle):
                             args[key] = value
         #############################################################################
         if report.report_type == "report":
-            filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
+            filename = "/tmp/%s-%s-%s.%s" % (str(profile.user.username), str(handle), timestamp(), args["off"])
             run_report(db, handle, of=filename, **args)
             mimetype = 'application/%s' % args["off"]
         elif report.report_type == "export":
-            filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
+            filename = "/tmp/%s-%s-%s.%s" % (str(profile.user.username), str(handle), timestamp(), args["off"])
             export_file(db, filename, gramps.cli.user.User()) # callback
             mimetype = 'text/plain'
         elif report.report_type == "import":
-            filename = download(args["i"], "/tmp/%s-%s.%s" % (str(profile.user.username), 
-                                                              str(handle),
-                                                              args["iff"]))
+            filename = download(args["i"], "/tmp/%s-%s-%s.%s" % (str(profile.user.username), 
+                                                                 str(handle),
+                                                                 timestamp(),
+                                                                 args["iff"]))
             if filename is not None:
                 if True: # run in background, with error handling
                     import threading
