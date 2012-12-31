@@ -55,14 +55,13 @@ from gramps.gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX,
 #-------------------------------------------------------------------------
 
 tool_categories = {
-    TOOL_DEBUG  : _("Debug"),
-    TOOL_ANAL   : _("Analysis and Exploration"),
-    TOOL_DBPROC : _("Family Tree Processing"),
-    TOOL_DBFIX  : _("Family Tree Repair"),
-    TOOL_REVCTL : _("Revision Control"),
-    TOOL_UTILS  : _("Utilities"),
+    TOOL_DEBUG  : ("ToolDebug", _("Debug")),
+    TOOL_ANAL   : ("ToolAnExp", _("Analysis and Exploration")),
+    TOOL_DBPROC : ("ToolProc", _("Family Tree Processing")),
+    TOOL_DBFIX  : ("ToolRep", _("Family Tree Repair")),
+    TOOL_REVCTL : ("ToolRev", _("Revision Control")),
+    TOOL_UTILS  : ("ToolUtil", _("Utilities")),
     }
-
 #-------------------------------------------------------------------------
 #
 # Tool

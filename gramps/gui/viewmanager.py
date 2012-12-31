@@ -120,7 +120,7 @@ if is_quartz():
 else:
     _GTKOSXAPPLICATION = False
 
-_UNSUPPORTED = _("Unsupported")
+_UNSUPPORTED = ("Unsupported", _("Unsupported"))
 
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
@@ -1804,9 +1804,9 @@ class ViewManager(CLIManager):
                    if item != _UNSUPPORTED)
 
         for key in catlist:
-            new_key = key.replace(' ', '-')
+            new_key = key[0].replace(' ', '-')
             ofile.write('<menu action="%s">' % new_key)
-            actions.append((new_key, None, key))
+            actions.append((new_key, None, key[1]))
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
