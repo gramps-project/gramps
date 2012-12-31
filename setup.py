@@ -244,7 +244,7 @@ def write_const_py(command):
         locale_dir = os.path.join(command.install_data, 'share', 'locale')
     else:
         #in build
-        if os.access(const_py, os.F_OK):
+        if 'install' in command.distribution.command_obj:
             # Prevent overwriting version created during install
             return
         locale_dir = os.path.join(command.build_base, 'mo')
