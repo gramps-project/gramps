@@ -1163,7 +1163,10 @@ class ClipboardListView(object):
     def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
-        tgs = context.targets
+        if hasattr(context, "targets"):
+            tgs = context.targets
+        else:
+            tgs = context.list_targets()
         if len(paths) == 1:
             path = paths[0]
             node = model.get_iter(path)
@@ -1181,7 +1184,10 @@ class ClipboardListView(object):
                                   time, title=None, value=None, dbid=None,
                                   dbname=None):
         model = widget.get_model()
-        sel_data = selection.data
+        if hasattr(selection, "data"):
+            sel_data = selection.data
+        else:
+            sel_data = selection.get_data() # GtkSelectionData
         # In Windows time is always zero. Until that is fixed, use the seconds
         # of the local time to filter out double drops.
         realTime = strftime("%S")
@@ -1212,7 +1218,10 @@ class ClipboardListView(object):
             if dragtype in self._target_type_to_wrapper_class_map:
                 possible_wrappers = [dragtype]
         else:
-            tgs = context.targets
+            if hasattr(context, "targets"):
+                tgs = context.targets
+            else:
+                tgs = [atm.name() for atm in context.list_targets()]
             possible_wrappers = [target for target in tgs
                         if target in self._target_type_to_wrapper_class_map]
 
@@ -1246,7 +1255,8 @@ class ClipboardListView(object):
             data = [o.__class__.DRAG_TARGET.drag_type, o, None, 
                     o._type, o._value, o._dbid, o._dbname]
             contains = model_contains(model, data)
-            if context.action != Gdk.DragAction.MOVE and contains:
+            if ((context.action if hasattr(context, "action") else context.get_actions())
+                != Gdk.DragAction.MOVE) and contains:
                 continue
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
@@ -1263,7 +1273,8 @@ class ClipboardListView(object):
         # FIXME: there is one bug here: if you multi-select and drop
         # on self, then it moves the first, and copies the rest.
 
-        if context.action == Gdk.DragAction.MOVE:
+        if ((context.action if hasattr(context, "action") else context.get_actions()) == 
+            Gdk.DragAction.MOVE):
             context.finish(True, True, time)
 
         # remember time for double drop workaround.
