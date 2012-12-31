@@ -1,0 +1,7 @@
+person,surname,given
+a,"CSV Surname","Given 1"
+b,"CSV Surname","Given 2"
+
+marriage,mother,father
+1,a,b
+
