@@ -1,8 +1,7 @@
-#! /usr/bin/env python
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2012       Benny Malengier
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,11 +20,23 @@
 
 # $Id$
 
-"""
-This is a stub to start Gramps. It is provided for the sole reason of being
-able to run gramps from the source directory without setting PYTHONPATH
+import sys
+import subprocess
 
-From this position, import gramps works great
-"""
-import gramps.grampsapp as app
-app.main()
+if sys.version_info[0] < 3:
+    cuni = unicode
+else:
+    def to_utf8(s):
+        return s.decode("utf-8")
+    cuni = to_utf8
+
+def get_svn_revision(path=""):
+    stdout = ""
+    try:
+        p = subprocess.Popen("svnversion -n \"%s\"" % path, shell=True, 
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        (stdout, stderr) = p.communicate()
+    except:
+        pass
+    return "-r" + cuni(stdout) if stdout else ""
+

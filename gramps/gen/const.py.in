@@ -43,6 +43,7 @@ import uuid
 #
 #-------------------------------------------------------------------------
 from .ggettext import sgettext as _
+from .svn_revision import get_svn_revision
 
 #-------------------------------------------------------------------------
 #
@@ -50,11 +51,12 @@ from .ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "4.0.0"
-else:
-    VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (4, 0, 0)
+VERSION        = "@VERSIONSTRING@"
+if VERSION == "@" + "VERSIONSTRING" + "@":
+    raise Exception("Please run 'python setup.py build'")
+VERSION_TUPLE  = tuple(map(int, VERSION.split(".")))
+major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+VERSION += get_svn_revision()
 
 #-------------------------------------------------------------------------
 #
@@ -65,11 +67,11 @@ URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
-URL_MANUAL_PAGE = "Gramps_4.0_Wiki_Manual"
+URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 WIKI_FAQ = "FAQ"
-WIKI_KEYBINDINGS = "Gramps_4.0_Wiki_Manual_-_Keybindings"
-WIKI_EXTRAPLUGINS= "4.0_Addons"
-WIKI_EXTRAPLUGINS_RAWDATA = "Plugins4.0&action=raw"
+WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
+WIKI_EXTRAPLUGINS= "%s_Addons" % major_version
+WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 
 #-------------------------------------------------------------------------
 #
