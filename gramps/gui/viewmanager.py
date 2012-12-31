@@ -250,7 +250,7 @@ def update_rows(model, path, iter, user_data):
     """
     #path: (8,)   iter: <GtkTreeIter at 0xbfa89fa0>
     #path: (8, 0) iter: <GtkTreeIter at 0xbfa89f60>
-    if len(path) == 2:
+    if len(path.get_indices()) == 2:
         row = model[path]
         row[0] = user_data
         model.row_changed(path, iter)
