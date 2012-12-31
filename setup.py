@@ -47,7 +47,7 @@ if sys.version_info[0] < 3:
     import commands
 from stat import ST_MODE
 
-VERSION = '4.0.0-alpha1'
+VERSION = '4.0.0-alpha2'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
@@ -87,8 +87,10 @@ def build_trans(build_cmd):
     data_files = build_cmd.distribution.data_files
     for lang in ALL_LINGUAS:
         po_file = os.path.join('po', lang + '.po')
-        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'gramps.mo')
-        mo_file_unix = build_cmd.build_base + '/mo/' + lang + '/gramps.mo'
+        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES', 
+                               'gramps.mo')
+        mo_file_unix = (build_cmd.build_base + '/mo/' + lang + 
+                        '/LC_MESSAGES/gramps.mo')
         mo_dir = os.path.dirname(mo_file)
         if not(os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
             os.makedirs(mo_dir)
@@ -231,24 +233,24 @@ def write_gramps_script(install_cmd, build_scripts):
         log.info('changing mode of %s to %o', filename, mode)
         os.chmod(filename, mode)
 
-def write_const_py(install_cmd):
+def write_const_py(command):
     '''
     Write the const.py file.
     '''
     const_py_in = os.path.join('gramps', 'gen', 'const.py.in')
     const_py = os.path.join('gramps', 'gen', 'const.py')
-    if hasattr(install_cmd, 'install_data'):
+    if hasattr(command, 'install_data'):
         #during install
-        prefix = "'%s'" % install_cmd.install_data
-        sysconfdir = "'%s'" % os.path.join(install_cmd.install_data, 'etc') # Is this correct?
+        locale_dir = os.path.join(command.install_data, 'share', 'locale')
     else:
         #in build
-        prefix = 'os.path.join(os.path.dirname(__file__), os.pardir)'
-        sysconfdir = prefix + ' + "' + os.sep + 'etc"'  # Is this correct?
+        if os.access(const_py, os.F_OK):
+            # Prevent overwriting version created during install
+            return
+        locale_dir = os.path.join(command.build_base, 'mo')
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
-                  ('"@prefix@"', prefix),
-                  ('"@sysconfdir@"', sysconfdir))
+                  ('@LOCALE_DIR@', locale_dir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 

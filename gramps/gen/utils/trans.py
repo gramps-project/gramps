@@ -41,7 +41,7 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ..const import PREFIXDIR, ROOT_DIR
+from ..const import LOCALE_DIR
 from ..constfunc import mac, UNITYPE
 #-------------------------------------------------------------------------
 #
@@ -49,22 +49,16 @@ from ..constfunc import mac, UNITYPE
 #
 #-------------------------------------------------------------------------
 if "GRAMPSI18N" in os.environ:
-    if os.path.exists(os.environ["GRAMPSI18N"]):
-        LOCALEDIR = os.environ["GRAMPSI18N"]
-    else:
-        LOCALEDIR = None
-elif os.path.exists( os.path.join(ROOT_DIR, "lang") ):
-    LOCALEDIR = os.path.join(ROOT_DIR, "lang")
-elif os.path.exists(os.path.join(PREFIXDIR, "share/locale")):
-    LOCALEDIR = os.path.join(PREFIXDIR, "share/locale")
-else: 
+    LOCALEDIR = os.environ["GRAMPSI18N"]
+else:
+    LOCALEDIR = LOCALE_DIR
+
+if not os.path.exists(LOCALEDIR):
     lang = os.environ.get('LANG', 'en')
     if lang and lang[:2] == 'en':
         pass # No need to display warning, we're in English
     else:
-        logging.warning('Locale dir does not exist at ' + 
-                        os.path.join(PREFIXDIR, "share/locale"))
-        logging.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem') 
+        logging.warning('Locale dir does not exist at ' + LOCALEDIR)
     LOCALEDIR = None
 
 LOCALEDOMAIN = 'gramps'
