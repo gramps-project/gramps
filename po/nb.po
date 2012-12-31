@@ -5042,11 +5042,11 @@ msgstr ""
 
 #: ../src/gui/dbman.py:468
 msgid "Could not rename the Family Tree."
-msgstr "Kunne ikke endre navn på Slektstreet."
+msgstr "Kunne ikke endre navn på Slektsdatabasen."
 
 #: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Dette Slektstreet eksisterer allerede.  Velg et unikt navn."
+msgstr "Denne Slektsdatabasen eksisterer allerede.  Velg et unikt navn."
 
 #: ../src/gui/dbman.py:507
 msgid "Extracting archive..."
@@ -5059,15 +5059,15 @@ msgstr "Importerer data..."
 #: ../src/gui/dbman.py:528
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "Fjerne slektstreet '%s'?"
+msgstr "Fjerne slektsdatabasen '%s'?"
 
 #: ../src/gui/dbman.py:529
 msgid "Removing this family tree will permanently destroy the data."
-msgstr "Fjerning av dette slektstreet vil ødelegge dataene permanent."
+msgstr "Fjerning av denne slektsdatabasen vil ødelegge dataene permanent."
 
 #: ../src/gui/dbman.py:530
 msgid "Remove family tree"
-msgstr "Fjerne slektstreet"
+msgstr "Fjerne slektsdatabase"
 
 #: ../src/gui/dbman.py:536
 #, python-format
@@ -5087,7 +5087,7 @@ msgstr "Fjern versjon"
 
 #: ../src/gui/dbman.py:571
 msgid "Could not delete family tree"
-msgstr "Kunne ikke fjerne slektstreet"
+msgstr "Kunne ikke fjerne slektsdatabase"
 
 #: ../src/gui/dbman.py:596
 msgid "Deletion failed"
@@ -5106,7 +5106,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:625
 msgid "Repair family tree?"
-msgstr "Reparere slektstreet?"
+msgstr "Reparere slektsdatabase?"
 
 #: ../src/gui/dbman.py:627
 #, python-format
@@ -5147,7 +5147,7 @@ msgstr ""
 "lukke Gramps vil all denne informasjonen være tapt! Hvis rekonstruksjonen "
 "ikke fungerer vil hele databasen være tapt for alltid. Altså er det nødvendig "
 "med sikkerhetskopier. Hvis rekonstruksjonen feiler eller du mister for mye "
-"data under rekonstruksjonen kan du reparere det originale slektstreet "
+"data under rekonstruksjonen kan du reparere den originale slektsdatabasen "
 "manuelt. Les om dette på Internettsiden\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Før du utfører en reparasjon må du forsøke å åpne slektsdatabasen på vanlig "
@@ -5174,7 +5174,7 @@ msgstr "Feil ved innhenting av data fra sikkerhetskopi"
 
 #: ../src/gui/dbman.py:710
 msgid "Could not create family tree"
-msgstr "Kunne ikke opprette slektstre"
+msgstr "Kunne ikke opprette slektsdatabase"
 
 #: ../src/gui/dbman.py:824
 msgid "Retrieve failed"
@@ -8564,11 +8564,11 @@ msgstr "Analyse og utforskning"
 
 #: ../src/gui/plug/tool.py:58
 msgid "Family Tree Processing"
-msgstr "Prosessering av slektstre"
+msgstr "Prosessering av slektsdatabase"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
-msgstr "Reparere slektstre"
+msgstr "Reparere slektsdatabase"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -9728,7 +9728,7 @@ msgstr "Dobbeltklikk på navn for å se detaljer"
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
 #: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
-msgstr "Ingen Slektstre er lastet."
+msgstr "Ingen Slektsdatabase er lastet."
 
 #: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
@@ -10054,11 +10054,11 @@ msgstr "Anetre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:699
 msgid "Making the Tree..."
-msgstr "Lager slektstreet..."
+msgstr "Lager Treet..."
 
 #: ../src/plugins/drawreport/AncestorTree.py:788
 msgid "Printing the Tree..."
-msgstr "Skriver ut treet..."
+msgstr "Skriver ut Treet..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:868
@@ -10710,16 +10710,16 @@ msgstr "Etterkommertre for %(father)s og %(mother)s"
 #: ../src/plugins/drawreport/DescendTree.py:322
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr "Slektstre for %(person)s"
+msgstr "Slektstavle for %(person)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:324
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr "Slektstre for %(father1)s og %(mother1)s"
+msgstr "Slektstavle for %(father1)s og %(mother1)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:347
 msgid "Cousin Chart for "
-msgstr "Etterkommertre for "
+msgstr "Etterkommertavle for "
 
 #: ../src/plugins/drawreport/DescendTree.py:735
 #, python-format
@@ -10738,7 +10738,7 @@ msgstr "Hovedpersonen for denne rapporten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1460
 msgid "The main family for the report"
-msgstr "Slektstre for denne rapporten"
+msgstr "Hovedfamilien for denne rapporten"
 
 #: ../src/plugins/drawreport/DescendTree.py:1464
 msgid "Start with the parent(s) of the selected first"
@@ -10844,7 +10844,7 @@ msgstr "Om det skal tas med sidetall på hver side."
 
 #: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Family Chart for [names of chosen family]"
-msgstr "Slektstre for [navn på valgt familie]"
+msgstr "Slektstavle for [navn på valgt familie]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Cousin Chart for [names of children]"
@@ -13443,7 +13443,7 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"Det første du må gjøre er å lage et nytt slektstre. For å lage et nytt "
+"Det første du må gjøre er å lage en ny slektsdatabase. For å lage et nytt "
 "slektstre (ofte kalt 'slektsdatabase') velger du \"Slektstrær\" fra menyen og "
 "velger \"Behandle Slektstrær\". Klikk \"Ny\" og gi slektstreet ditt et navn. "
 "For flere detaljer kan du lese informasjonen i lenken over\n"
