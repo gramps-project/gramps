@@ -526,6 +526,8 @@ class CSVParser(object):
                 new_note.handle = create_id()
                 new_note.type.set(NoteType.PERSON)
                 new_note.set(note)
+                if self.default_tag:
+                    new_note.add_tag(self.default_tag.handle)
                 self.db.add_note(new_note, self.trans)
                 child.add_note(new_note.handle)
         self.db.commit_person(child, self.trans)
@@ -612,6 +614,8 @@ class CSVParser(object):
                 new_note.handle = create_id()
                 new_note.type.set(NoteType.PERSON)
                 new_note.set(note)
+                if self.default_tag:
+                    new_note.add_tag(self.default_tag.handle)
                 self.db.add_note(new_note, self.trans)
                 person.add_note(new_note.handle)
         if grampsid is not None:
@@ -729,8 +733,6 @@ class CSVParser(object):
                     if wife.get_handle() != fam_wife_handle:
                         # this wife is not the same old one! Add her!
                         family.set_mother_handle(wife.get_handle())
-                if self.default_tag:
-                    family.add_tag(self.default_tag.handle)
                 LOG.debug("   returning existing family")
                 return family
         # if not, create one:
@@ -741,6 +743,8 @@ class CSVParser(object):
             family.set_gramps_id(id_)
         # add it:
         family.set_handle(self.db.create_id())
+        if self.default_tag:
+            family.add_tag(self.default_tag.handle)
         if husband:
             family.set_father_handle(husband.get_handle())
             husband.add_family_handle(family.get_handle())
