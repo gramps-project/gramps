@@ -121,7 +121,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.status = None
 
-    def write(self,filename):
+    def write(self, filename):
         """
         Write the database to the specified file.
         """
@@ -180,7 +180,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if self.compress and _gzip_ok:
             try:
-                g = gzip.GzipFile(mode="wb",fileobj=handle)
+                g = gzip.GzipFile(mode="wb", fileobj=handle)
             except:
                 g = handle
         else:
