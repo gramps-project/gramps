@@ -610,7 +610,7 @@ class EditPerson(EditPrimary):
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
-            gui.utilsadd_menuitem(menu, _("View"), photo,
+            gui.utils.add_menuitem(menu, _("View"), photo,
                                   self._popup_view_photo)
         gui.utils.add_menuitem(menu, _("Edit Object Properties"), photo,
                                self._popup_change_description)
