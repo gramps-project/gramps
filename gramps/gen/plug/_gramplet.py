@@ -368,7 +368,7 @@ class Gramplet(object):
         """
         from gi.repository import GObject
         self._pause = True
-        if self._idle_id == 0:
+        if self._idle_id != 0:
             GObject.source_remove(self._idle_id)
             self._idle_id = 0
 
