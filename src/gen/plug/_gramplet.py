@@ -365,7 +365,7 @@ class Gramplet(object):
         """
         import gobject
         self._pause = True
-        if self._idle_id == 0:
+        if self._idle_id != 0:
             gobject.source_remove(self._idle_id)
             self._idle_id = 0
 
