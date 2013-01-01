@@ -151,7 +151,7 @@ register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
-register('behavior.addons-url', "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/branches/gramps34/")
+register('behavior.addons-url', "http://svn.code.sf.net/p/gramps-addons/code/branches/gramps34/")
 
 register('export.proxy-order', [
         ["privacy", 0], 
