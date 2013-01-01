@@ -483,7 +483,8 @@ class PluginStatus(ManagedWindow):
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
                     i[0], str(i[1][1]), i[1], pdata.id, hiddenstr])
 
-        success_list = sorted(self.__pmgr.get_success_list())
+        success_list = sorted(self.__pmgr.get_success_list(),
+                              key=lambda x: (x[0], x[2]._get_name()))
         for i in success_list:
             # i = (filename, module, pdata)
             pdata = i[2]
