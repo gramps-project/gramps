@@ -88,13 +88,6 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
-# system paths
-#
-#-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
-
-#-------------------------------------------------------------------------
-#
 # Platforms
 # Never test on LINUX, handle Linux in the else statement as default
 #
@@ -135,24 +128,6 @@ if sys.version_info[0] < 3:
 else:
     pass
 
-#-------------------------------------------------------------------------
-#
-# Paths to files - assumes that files reside in the same directory as
-# this one, and that the plugins directory is in a directory below this.
-#
-#-------------------------------------------------------------------------
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            __file__), os.pardir))
-if sys.version_info[0] < 3:
-    # test for sys.frozen to detect a py2exe executable on Windows
-    if hasattr(sys, "frozen"):
-        ROOT_DIR = os.path.abspath(os.path.dirname(
-            unicode(sys.executable, sys.getfilesystemencoding())))
-    else:
-        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
-
-IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
@@ -170,15 +145,26 @@ USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
-ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
-LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
-SPLASH         = os.path.join(ROOT_DIR, "images", "splash.jpg")
-LICENSE_FILE   = os.path.join(ROOT_DIR, "COPYING")
+#-------------------------------------------------------------------------
+#
+# Paths to python modules - assumes that the root directory is one level 
+# above this one, and that the plugins directory is below the root directory.
+#
+#-------------------------------------------------------------------------
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            __file__), os.pardir))
+if sys.version_info[0] < 3:
+    # test for sys.frozen to detect a py2exe executable on Windows
+    if hasattr(sys, "frozen"):
+        ROOT_DIR = os.path.abspath(os.path.dirname(
+            unicode(sys.executable, sys.getfilesystemencoding())))
+    else:
+        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
 
 #
 # Glade files
 #
-
 GLADE_DIR      = os.path.join(ROOT_DIR, "gui", "glade")
 GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
 PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
@@ -188,21 +174,42 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
 PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
-DATA_DIR           = os.path.join(ROOT_DIR, "data")
 WEB_DIR            = os.path.join(ROOT_DIR, 'webapp')
-#SYSTEM_FILTERS    = os.path.join(DATA_DIR, "system_filters.xml")
-TIP_DATA           = os.path.join(DATA_DIR, "tips.xml")
 WEBSTUFF_DIR       = os.path.join(PLUGINS_DIR, "webstuff")
 WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
-PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
-
-USE_TIPS       = False
+USE_TIPS = False
 
 if os.sys.platform in WINDOWS:
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
+
+#-------------------------------------------------------------------------
+#
+# Paths to data files.
+#
+#-------------------------------------------------------------------------
+SHARE_DIR = "@SHARE_DIR@"
+LOCALE_DIR = "@LOCALE_DIR@"
+
+if SHARE_DIR != '':
+    DATA_DIR = os.path.join(SHARE_DIR, 'gramps')
+    IMAGE_DIR = os.path.join(SHARE_DIR, 'gramps', 'icons', 'hicolor')
+    DOC_DIR = os.path.join(SHARE_DIR, 'doc', 'gramps')
+else:
+    DATA_DIR = os.path.join('gramps', 'data')
+    IMAGE_DIR = os.path.join('gramps', 'images')
+    DOC_DIR = os.curdir
+
+TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
+PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
+
+ICON = os.path.join(IMAGE_DIR, "gramps.png")
+LOGO = os.path.join(IMAGE_DIR, "logo.png")
+SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
+
+LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
 
 #-------------------------------------------------------------------------
 #

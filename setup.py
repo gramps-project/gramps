@@ -241,15 +241,18 @@ def write_const_py(command):
     const_py = os.path.join('gramps', 'gen', 'const.py')
     if hasattr(command, 'install_data'):
         #during install
+        share_dir = os.path.join(command.install_data, 'share')
         locale_dir = os.path.join(command.install_data, 'share', 'locale')
     else:
         #in build
         if 'install' in command.distribution.command_obj:
             # Prevent overwriting version created during install
             return
+        share_dir = ''
         locale_dir = os.path.join(command.build_base, 'mo')
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
+                  ('@SHARE_DIR@', share_dir), 
                   ('@LOCALE_DIR@', locale_dir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
@@ -307,21 +310,14 @@ GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
+DATA_FILES = glob.glob(os.path.join('gramps', 'data', '*.xml'))
+IMAGE_FILES = glob.glob(os.path.join('gramps', 'images', '*.*'))
+IMAGE_16 = glob.glob(os.path.join('gramps', 'images', '16x16', '*.png'))
+IMAGE_22 = glob.glob(os.path.join('gramps', 'images', '22x22', '*.png'))
+IMAGE_48 = glob.glob(os.path.join('gramps', 'images', '48x48', '*.png'))
+IMAGE_S = glob.glob(os.path.join('gramps', 'images', 'scalable', '*.svg'))
 
-data_list = [
-            'data/*.txt', 
-            'data/*.xml',
-            'gui/glade/*.glade', 
-            'images/*.ico', 
-            'images/*.png',
-            'images/splash.jpg', 
-            'images/*.svg', 
-            'images/16x16/*.png', 
-            'images/22x22/*.png', 
-            'images/48x48/*.png', 
-            'images/scalable/*.svg'
-            ]
-
+data_list = ['gui/glade/*.glade']
 # add all subdirs of plugin with glade:
 basedir = os.path.join('gramps', 'plugins')
 for (dirpath, dirnames, filenames) in os.walk(basedir):
@@ -433,5 +429,12 @@ setup(name = 'gramps',
                   ('share/icons', ['gramps/images/gramps.png']), 
                   ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
                   ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
-                  ('share/doc/gramps', DOC_FILES)]
+                  ('share/doc/gramps', DOC_FILES),
+                  ('share/gramps', DATA_FILES), 
+                  ('share/gramps/icons/hicolor', IMAGE_FILES), 
+                  ('share/gramps/icons/hicolor/16x16', IMAGE_16), 
+                  ('share/gramps/icons/hicolor/22x22', IMAGE_22), 
+                  ('share/gramps/icons/hicolor/48x48', IMAGE_48), 
+                  ('share/gramps/icons/hicolor/scalable', IMAGE_S),
+                  ]
 )
