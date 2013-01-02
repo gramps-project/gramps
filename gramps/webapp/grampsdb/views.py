@@ -256,12 +256,17 @@ def process_report_run(request, handle):
         else:
             make_message(request, "Invalid report type '%s'" % report.report_type)
             return redirect("/report/")
-        if os.path.exists(filename):
-            return send_file(request, filename, mimetype)
+        # need to wait for the file to exist:
+        start = time.time()
+        while not os.path.exists(filename):
+            # but let's not wait forever:
+            if time.time() - start > 10: # after 10 seconds, give up!
+                context = RequestContext(request)
+                make_message(request, "Failed: '%s' is not found" % filename)
+                return redirect("/report/")
+            time.sleep(1)
+        return send_file(request, filename, mimetype)
         else:
-            context = RequestContext(request)
-            make_message(request, "Failed: '%s' is not found" % filename)
-            return redirect("/report/")
     # If failure, just fail for now:
     context = RequestContext(request)
     context["message"] = "You need to be logged in."
