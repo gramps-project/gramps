@@ -94,6 +94,7 @@ def impData(database, name, user):
 
     importer = importData
     info = importer(database, imp_db_name, user)
+
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!
     if not oldmediapath == newmediapath :

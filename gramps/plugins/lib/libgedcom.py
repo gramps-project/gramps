@@ -127,7 +127,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
         ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
         EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
-        RepoRef, Repository, RepositoryType, Researcher, Source,
+        RepoRef, Repository, RepositoryType, Researcher, Source, Tag,
         SourceMediaType, Surname, Url, UrlType)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
@@ -1807,7 +1807,7 @@ class GedcomParser(UpdateCallback):
         return name
 
     def __init__(self, dbase, ifile, filename, user, stage_one, 
-                 default_source):
+                 default_source, default_tag_format=None):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
         self.set_total(stage_one.get_line_count())
@@ -1835,6 +1835,16 @@ class GedcomParser(UpdateCallback):
             self.def_src = Source()
             fname = os.path.basename(filename).split('\\')[-1]
             self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
+        if default_tag_format:
+            name = time.strftime(default_tag_format)
+            tag = self.dbase.get_tag_from_name(name)
+            if tag:
+                self.default_tag = tag
+            else:
+                self.default_tag = Tag()
+                self.default_tag.set_name(name)
+        else:
+            self.default_tag = None
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
         self.groups = None
@@ -2594,6 +2604,8 @@ class GedcomParser(UpdateCallback):
             self.want_parse_warnings = True
             if self.use_def_src:
                 self.dbase.add_source(self.def_src, self.trans)
+            if self.default_tag and self.default_tag.handle is None:
+                self.dbase.add_tag(self.default_tag, self.trans)
             self.__parse_record()
             self.__parse_trailer()
             for title, handle in self.inline_srcs.items():
@@ -3317,6 +3329,9 @@ class GedcomParser(UpdateCallback):
 
         # Add the default reference if no source has found
         self.__add_default_source(person)
+
+        # Add a default tag if provided
+        self.__add_default_tag(person)
 
         self.__check_msgs(_("INDI (individual) Gramps ID %s") % 
                           person.get_gramps_id(), state, person)
@@ -4578,6 +4593,9 @@ class GedcomParser(UpdateCallback):
 
         # add default reference if no reference exists
         self.__add_default_source(family)
+
+        # Add a default tag if provided
+        self.__add_default_tag(family)
 
         self.__check_msgs(_("FAM (family) Gramps ID %s") % family.get_gramps_id(), 
                           state, family)
@@ -6118,6 +6136,9 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(media)
 
+        # Add a default tag if provided
+        self.__add_default_tag(media)
+
         self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") % 
                           media.get_gramps_id(), state, media)
         # commit the person to the database
@@ -6931,6 +6952,9 @@ class GedcomParser(UpdateCallback):
                                    self.__undefined)
                 state.msg += sub_state.msg
 
+                # Add a default tag if provided
+                self.__add_default_tag(new_note)
+
                 self.dbase.commit_note(new_note, self.trans, new_note.change)
                 obj.add_note(new_note.get_handle())
 
@@ -7254,6 +7278,13 @@ class GedcomParser(UpdateCallback):
             citation.set_reference_handle(self.def_src.handle)
             self.dbase.add_citation(citation, self.trans)
             obj.add_citation(citation.handle)
+
+    def __add_default_tag(self, obj):
+        """
+        Add the default tag to the object.
+        """
+        if self.default_tag:
+            obj.add_tag(self.default_tag.handle)
 
     def __subm_name(self, line, state):
         """

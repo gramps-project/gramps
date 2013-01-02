@@ -50,7 +50,7 @@ LOG = logging.getLogger(".ImportCSV")
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.ggettext import ngettext
-from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname
+from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
 from gramps.gen.datehandler import parser as _dp
@@ -59,6 +59,7 @@ from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -95,6 +96,8 @@ class UTF8Recoder(object):
         "Encode the next line of the file."
         return self.reader.next().encode("utf-8")
 
+    next = __next__
+
 class UnicodeReader(object):
     """
     A CSV reader which will iterate over lines in the CSV file,
@@ -120,6 +123,8 @@ class UnicodeReader(object):
     def __iter__(self):
         return self
 
+    next = __next__
+
 #-------------------------------------------------------------------------
 #
 # Support and main functions
@@ -141,7 +146,8 @@ def rd(line_number, row, col, key, default = None):
 
 def importData(dbase, filename, user):
     """Function called by Gramps to import data on persons in CSV format."""
-    parser = CSVParser(dbase, user)
+    parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if 
+                                     config.get('preferences.tag-on-import') else None))
     try:
         with OpenFileOrStdin(filename, 'b') as filehandle:
             parser.parse(filehandle)
@@ -157,7 +163,7 @@ def importData(dbase, filename, user):
 #-------------------------------------------------------------------------
 class CSVParser(object):
     """Class to read data in CSV format from a file object."""
-    def __init__(self, dbase, user):
+    def __init__(self, dbase, user, default_tag_format=None):
         self.db = dbase
         self.user = user
         self.trans = None
@@ -235,6 +241,16 @@ class CSVParser(object):
             for val in column2label[key]:
                 lab2col_dict.append((val, key))
         self.label2column = dict(lab2col_dict)
+        if default_tag_format:
+            name = time.strftime(default_tag_format)
+            tag = self.db.get_tag_from_name(name)
+            if tag:
+                self.default_tag = tag
+            else:
+                self.default_tag = Tag()
+                self.default_tag.set_name(name)
+        else:
+            self.default_tag = None
 
     def cleanup_column_name(self, column):
         """Handle column aliases for CSV spreadsheet import and SQL."""
@@ -313,6 +329,8 @@ class CSVParser(object):
         tym = time.time()
         self.db.disable_signals()
         with DbTxn(_("CSV import"), self.db, batch=True) as self.trans:
+            if self.default_tag and self.default_tag.handle is None:
+                self.db.add_tag(self.default_tag, self.trans)
             self._parse_csv_data(data, progress)
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -432,6 +450,8 @@ class CSVParser(object):
                     new_note.handle = create_id()
                     new_note.type.set(NoteType.EVENT)
                     new_note.set(note)
+                    if self.default_tag:
+                        new_note.add_tag(self.default_tag.handle)
                     self.db.add_note(new_note, self.trans)
                     marriage.add_note(new_note.handle)
                 self.db.commit_event(marriage, self.trans)
@@ -506,6 +526,8 @@ class CSVParser(object):
                 new_note.handle = create_id()
                 new_note.type.set(NoteType.PERSON)
                 new_note.set(note)
+                if self.default_tag:
+                    new_note.add_tag(self.default_tag.handle)
                 self.db.add_note(new_note, self.trans)
                 child.add_note(new_note.handle)
         self.db.commit_person(child, self.trans)
@@ -592,6 +614,8 @@ class CSVParser(object):
                 new_note.handle = create_id()
                 new_note.type.set(NoteType.PERSON)
                 new_note.set(note)
+                if self.default_tag:
+                    new_note.add_tag(self.default_tag.handle)
                 self.db.add_note(new_note, self.trans)
                 person.add_note(new_note.handle)
         if grampsid is not None:
@@ -719,6 +743,8 @@ class CSVParser(object):
             family.set_gramps_id(id_)
         # add it:
         family.set_handle(self.db.create_id())
+        if self.default_tag:
+            family.add_tag(self.default_tag.handle)
         if husband:
             family.set_father_handle(husband.get_handle())
             husband.add_family_handle(family.get_handle())
@@ -775,6 +801,8 @@ class CSVParser(object):
     def create_person(self):
         """ Used to create a new person we know doesn't exist """
         person = Person()
+        if self.default_tag:
+            person.add_tag(self.default_tag.handle)
         self.db.add_person(person, self.trans)
         self.indi_count += 1
         return person

@@ -67,6 +67,7 @@ from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    CITATION_KEY)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.const import VERSION
+from gramps.gen.config import config
 #import gramps.plugins.lib.libgrampsxml
 from gramps.plugins.lib import libgrampsxml
 
@@ -123,7 +124,9 @@ def importData(database, filename, user):
             change = time.time()
         else:
             change = os.path.getmtime(filename)
-        parser = GrampsParser(database, user, change)
+        parser = GrampsParser(database, user, change,
+                              (config.get('preferences.tag-on-import-format') if 
+                               config.get('preferences.tag-on-import') else None))
 
         if filename != '-':
             linecounter = LineParser(filename)
@@ -457,7 +460,7 @@ class ImportOpenFileContextManager:
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, user, change):
+    def __init__(self, database, user, change, default_tag_format=None):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
         self.__gramps_version = 'unknown'
@@ -563,6 +566,17 @@ class GrampsParser(UpdateCallback):
         self.nidswap = {}
         self.eidswap = {}
         self.import_handles = {}
+
+        if default_tag_format:
+            name = time.strftime(default_tag_format)
+            tag = self.db.get_tag_from_name(name)
+            if tag:
+                self.default_tag = tag
+            else:
+                self.default_tag = Tag()
+                self.default_tag.set_name(name)
+        else:
+            self.default_tag = None
 
         self.func_map = {
             #name part
@@ -894,6 +908,9 @@ class GrampsParser(UpdateCallback):
             self.set_total(linecount)
 
             self.db.disable_signals()
+
+            if self.default_tag and self.default_tag.handle is None:
+                self.db.add_tag(self.default_tag, self.trans)
 
             self.p = ParserCreate()
             self.p.StartElementHandler = self.startElement
@@ -1384,6 +1401,8 @@ class GrampsParser(UpdateCallback):
         self.person.change = int(attrs.get('change', self.change))
         self.info.add('new-object', PERSON_KEY, self.person)
         self.convert_marker(attrs, self.person)
+        if self.default_tag: 
+            self.person.add_tag(self.default_tag.handle)
         return self.person
 
     def start_people(self, attrs):
@@ -1520,6 +1539,8 @@ class GrampsParser(UpdateCallback):
         if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
         self.convert_marker(attrs, self.family)
+        if self.default_tag: 
+            self.family.add_tag(self.default_tag.handle)
         return self.family
 
     def start_rel(self, attrs):
@@ -1833,6 +1854,8 @@ class GrampsParser(UpdateCallback):
             #set correct change time
             self.db.commit_note(self.note, self.trans, self.change)
             self.info.add('new-object', NOTE_KEY, self.note)
+        if self.default_tag: 
+            self.note.add_tag(self.default_tag.handle)
         return self.note
 
     def start_noteref(self, attrs):
@@ -2088,6 +2111,8 @@ class GrampsParser(UpdateCallback):
         src = attrs.get("src", '')
         if src:
             self.object.path = src
+        if self.default_tag: 
+            self.object.add_tag(self.default_tag.handle)
         return self.object
 
     def start_repo(self, attrs):
