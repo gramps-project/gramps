@@ -54,6 +54,7 @@ Specific symbols for parts of a name are defined:
 #
 #-------------------------------------------------------------------------
 from ..ggettext import sgettext as _
+import sys
 import re
 import logging
 LOG = logging.getLogger(".gramps.gen")
@@ -1050,7 +1051,7 @@ def fn(%s):
             return p + str + s
     return cleanup_name("%s" %% (%s))""" % (args, new_fmt, ",".join(param))
         try:
-            exec(s)
+            exec(s) in globals(), locals()
             return locals()['fn']
         except:
             LOG.error("\n" + 'Wrong name format string %s' % new_fmt
