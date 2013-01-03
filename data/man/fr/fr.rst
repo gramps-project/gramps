@@ -152,7 +152,7 @@ gramps(1)                @VERSION@               gramps(1)
 
 
 **Opération**
-       Si le premie argument de la ligne de commande ne commence pas par un
+       Si le premier argument de la ligne de commande ne commence pas par un
        tiret (i.e. pas d'instruction), gramps va essayer d'ouvrir la base de
        données avec le nom donné par le premier argument et démarrer une ses‐
        sion interactive, en ignorant le reste de la ligne de commande.

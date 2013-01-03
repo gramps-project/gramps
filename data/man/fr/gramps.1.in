@@ -172,7 +172,7 @@ Imprime le numéro de version pour gramps puis quitte.
 .UNINDENT
 .TP
 .B \fBOpération\fP
-Si le premie argument de la ligne de commande ne commence pas par un
+Si le premier argument de la ligne de commande ne commence pas par un
 tiret (i.e. pas d\(aqinstruction), gramps va essayer d\(aqouvrir la base de
 données avec le nom donné par le premier argument et démarrer une ses‐
 sion interactive, en ignorant le reste de la ligne de commande.
