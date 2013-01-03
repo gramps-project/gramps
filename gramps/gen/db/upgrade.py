@@ -195,7 +195,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
-        (handle, gramps_id, title, int, lat,
+        (handle, gramps_id, title, longi, lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          change, private) = place
         if source_list:
@@ -208,7 +208,7 @@ def gramps_upgrade_16(self):
                                     self, media_list)
         if source_list or media_list:
             new_place = (handle, gramps_id, title, 
-                         int, lat, main_loc, alt_loc, urls,
+                         longi, lat, main_loc, alt_loc, urls,
                          media_list, new_citation_list, note_list, 
                          change, private)
             with BSDDBTxn(self.env, self.place_map) as txn:
@@ -1004,12 +1004,12 @@ def gramps_upgrade_14(self):
     # ---------------------------------
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
-        (handle, gramps_id, title, int, lat,
+        (handle, gramps_id, title, longi, lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          change, marker, private) = place
         new_media_list = new_media_list_14(media_list)
         new_source_list = new_source_list_14(source_list)
-        new_place = (handle, gramps_id, title, int, lat,
+        new_place = (handle, gramps_id, title, longi, lat,
                      main_loc, alt_loc, urls, new_media_list, 
                      new_source_list, note_list, change, marker, private) 
 
