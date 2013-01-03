@@ -146,10 +146,11 @@ class NoteModel(FlatBaseModel):
         tag_priority = None
         for handle in data[Note.POS_TAGS]:
             tag = self.db.get_tag_from_handle(handle)
-            this_priority = tag.get_priority()
-            if tag_priority is None or this_priority < tag_priority:
-                tag_color = tag.get_color()
-                tag_priority = this_priority
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
         return tag_color
 
     def column_tags(self, data):
