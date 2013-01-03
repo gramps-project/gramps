@@ -227,23 +227,23 @@ class ProbablyAlive(object):
                         father = self.db.get_person_from_handle(father_handle)
                         date1, date2, explain, other = self.probably_alive_range(father, is_spouse=True)
                         if date1 and date1.get_year() != 0:
-                            return (gen.lib.Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
-                                    gen.lib.Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
+                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
+                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
                                     _("a spouse's birth-related date, ") + explain, other)
                         elif date2 and date2.get_year() != 0:
-                            return (gen.lib.Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
-                                    gen.lib.Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
+                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
+                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
                                     _("a spouse's death-related date, ") + explain, other)
                     elif father_handle == person.handle and mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
                         date1, date2, explain, other = self.probably_alive_range(mother, is_spouse=True)
                         if date1 and date1.get_year() != 0:
-                            return (gen.lib.Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
-                                    gen.lib.Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
+                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
+                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
                                     _("a spouse's birth-related date, ") + explain, other)
                         elif date2 and date2.get_year() != 0:
-                            return (gen.lib.Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
-                                    gen.lib.Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
+                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
+                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
                                     _("a spouse's death-related date, ") + explain, other)
                     # Let's check the family events and see if we find something
                     for ref in family.get_event_ref_list():
