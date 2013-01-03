@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-31 10:58+0100\n"
-"PO-Revision-Date: 2013-01-01 17:44+0100\n"
+"PO-Revision-Date: 2013-01-02 15:54+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2532,9 +2532,8 @@ msgid "Preparing sub-filter"
 msgstr "Subfilter voorbereiden"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:53
-#, fuzzy
 msgid "Retrieving all sub-filter matches"
-msgstr "Is een broer/zus van resultaat van <filter>"
+msgstr "Alle overeenkomsten van de filters opstellen"
 
 # Berekent de relatie tussen twee personen<
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:124
@@ -16315,6 +16314,8 @@ msgid ""
 "The original date/ time when the image was first created/ taken as in a photograph.\n"
 "Example: 1830-01-1 09:30:59"
 msgstr ""
+"De oorspronkelijke datum/tijd wanneer het beeld aangemaakt werd.\n"
+"Voorbeeld: 1/01/1895 09:30:59"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:182
 #: ../gramps/plugins/gramplet/editexifmetadata.py:183
@@ -16322,6 +16323,8 @@ msgid ""
 "This is the date/ time that the image was last changed/ modified.\n"
 "Example: 2011-05-24 14:30:00"
 msgstr ""
+"Dit is de datum/tijd dat het beeld werd veranderd.\n"
+"Voorbeeld: 24/05/2011 14:30:00"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:185
 #: ../gramps/plugins/gramplet/editexifmetadata.py:186
@@ -16359,21 +16362,23 @@ msgid ""
 "This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
 "  It will also allow you to be able to Save the modified metadata."
 msgstr ""
+"Hiermee wordt een nieuw scherm geopend waar u de 'Evif'-metagegevens van het beeld kunt aanpassen.\n"
+"  Tevens kunt u hier de aangepaste metagegevens opslaan."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:207
 #: ../gramps/plugins/gramplet/editexifmetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Een scherm wordt getoond met ruimte voor de bekijken van de miniaturen"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:209
 #: ../gramps/plugins/gramplet/editexifmetadata.py:210
 msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
-msgstr ""
+msgstr "Via een uitvalsmenu kunt u het bestandstype kiezen dat u kunt te gebruiken om uw 'non-Exiv2' media-object om te zetten."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:212
 #: ../gramps/plugins/gramplet/editexifmetadata.py:213
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
-msgstr ""
+msgstr "Indien uw beeld geen formaat heeft dat 'Exiv2'-metagegevens kan opslaan, wenst u dit beeld dan om te zetten naaar een formaat dat wel geschikt is?"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:215
 #: ../gramps/plugins/gramplet/editexifmetadata.py:216
@@ -16473,7 +16478,7 @@ msgstr "Er trad een fout op. Gelieve het mappad van uw bron en bestemming na te 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:846
 #: ../gramps/plugins/gramplet/editexifmetadata.py:847
 msgid "There was an error in deleting the original file.  You will need to delete it yourself!"
-msgstr ""
+msgstr "Er was een fout bij het verwijderen van het oorspronkelijke bestand. U dient dit bestand zelf te verwijderen!"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:863
 #: ../gramps/plugins/gramplet/editexifmetadata.py:864
@@ -16495,17 +16500,17 @@ msgstr "Er onstond een fout bij het wissen van de exif-metagegevens van dit beel
 #: ../gramps/plugins/gramplet/editexifmetadata.py:914
 #: ../gramps/plugins/gramplet/editexifmetadata.py:915
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr ""
+msgstr "Wanneer u de aanpassingen van de 'Exif'-metagegevens hebt beëindigd klikt u op de knop sluiten."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:952
 #: ../gramps/plugins/gramplet/editexifmetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Een kopie van de gegevens in de invoervelden worden in de 'Exif'-metagegevens opgeslagen."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:955
 #: ../gramps/plugins/gramplet/editexifmetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
-msgstr ""
+msgstr "Opnieuw tonen van de gegevens in de invoervelden die gewist werden in het aanpasscherm."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:958
 #: ../gramps/plugins/gramplet/editexifmetadata.py:959
@@ -16518,6 +16523,8 @@ msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
+"Dit aanpasscherm sluiten.\n"
+"WAARSCHUWING: met deze actie worden de aanpassingen NIET opgeslagen in de 'Exif'-metagegevens."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:988
 #: ../gramps/plugins/gramplet/editexifmetadata.py:989
@@ -16745,7 +16752,7 @@ msgstr " 15. <a wiki='Category:Nl:Hoe...'>Hoe ...</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:70
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr ""
+msgstr " 16. <a wiki='How_you_can_help/nl'>Hoe kunt u helpen?<a>\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:43
 msgid "Double-click given name for details"
@@ -19191,6 +19198,14 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+" Het geïmporteerd bestand was niet volledig.\n"
+"Om dit te corrigeren werden %(new)d nieuwe objecten aangemaakt en\n"
+"hun typekenmerk werd als 'Onbekend' opgeslagen.\n"
+"De verdeling per categorie wordt hier weergegeven\n"
+"door het getal tussen haakjes. Waar mogelijk kregen deze\n"
+"'onbekende' objecten een verwijzing mee met de opmerkings:\n"
+"%(unknown)s.\n"
 
 #: ../gramps/plugins/import/importxml.py:326
 #: ../gramps/plugins/importer/importxml.py:327
@@ -26357,6 +26372,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
+"Uw familiestamboom bevat dubbele verwijzingen in de kruistabellen.\n"
+" Dit is niet goed en kan verholpen worden door een reservekopie van uw\n"
+"familiestamboom te maken en deze reservekopie opnieuw te importeren\n"
+"in een lege familiestamboom. Het vervolg van het controleproces wordt\n"
+"overgeslagen. U doet er goed aan om het hulpmiddel 'controle en herstellen'\n"
+"opnieuw uit te voeren op deze nieuwe familistamboom."
 
 #: ../gramps/plugins/tool/check.py:154
 #: ../gramps/plugins/tool/check.py:158
@@ -27214,7 +27235,7 @@ msgstr "Dit gereedschap voegt beelden in mappen waarnaar verwezen wordt door bes
 #: ../gramps/plugins/tool/mergecitations.py:75
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Overeenkomt met pagina/volume, datum en zekerheid"
 
 #: ../gramps/plugins/tool/mergecitations.py:76
 #: ../gramps/plugins/tool/mergecitations.py:78
@@ -28524,7 +28545,7 @@ msgstr "Verwijzingsfilter"
 
 #: ../gramps/plugins/view/geofamclose.py:269
 msgid "Select the family which is the reference for life ways"
-msgstr ""
+msgstr "De familie selecteren die als referentie geldt voor de levenswegen"
 
 #: ../gramps/plugins/view/geofamclose.py:545
 #: ../gramps/plugins/view/geofamily.py:326
@@ -29851,7 +29872,7 @@ msgstr "%s traceren"
 #: ../gramps/plugins/webreport/narrativeweb.py:5621
 #: ../gramps/plugins/webreport/narrativeweb.py:5669
 msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr ""
+msgstr "Deze kaartpagina geeft een beeld van alle gebeurtenissen en locaties van de persoon en zijn afstammelingen. Wanneer u met de muis over een merker gaat, wordt de locatienaam getoond.  De merkers en de verwijzingslijst worden gesorteerd op datum (indien beschikbaar). Door te klikken op een locatie&#8217;s naam in de verwijzingen gaat u naar de pagina van die locatie."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5673
 #: ../gramps/plugins/webreport/narrativeweb.py:5721
@@ -30181,7 +30202,7 @@ msgstr "Koppelingverwijzingen"
 #: ../gramps/plugins/webreport/narrativeweb.py:7845
 #: ../gramps/plugins/webreport/narrativeweb.py:8051
 msgid "Determine the default layout for the Source Page's Citation Referents section"
-msgstr ""
+msgstr "De standaard lay-out voor de sectie  van de citaatverwijzingen van de bronpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7849
 #: ../gramps/plugins/webreport/narrativeweb.py:8055
@@ -30679,7 +30700,7 @@ msgstr "Locatiekaartopties"
 #: ../gramps/plugins/webreport/narrativeweb.py:8111
 #: ../gramps/plugins/webreport/narrativeweb.py:8317
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
-msgstr ""
+msgstr "Welke optie wenst u te gebruiken voor de pagina's van de 'Google Maps' familiekaarten..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8428
 #: ../gramps/plugins/webreport/narrativeweb.py:8637
@@ -31494,6 +31515,11 @@ msgid ""
 "High =Secondary evidence, data officially recorded sometime after event\n"
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
+"Een kwantitatieve beoordeling van de geloofwaardigheid van de informatie gebaseerd op ondersteund bewijs. Het is echter niet bedoeld om de evaluatie van de geloofwaardigheid zelf te vervangen.\n"
+"Zeer laag =onbetrouwbaar bewijs of geschatte gegevens\n"
+"Laag =Betrouwbaarheid van het bewijs is twijfelachtig (interviews, volkstellingen, mondelinge genealogieën of een mogelijk vertekend beeld zoals in een autobiografie)\n"
+"Hoog =Secondair bewijs, officiele gegevens die zijn opgetekend na de gebeurtenis\n"
+"Zeer hoog =Direct en primair bewijs of overtuigende bewijzen "
 
 #: ../gramps/gui/glade/editcitation.glade:253
 #: ../gramps/gui/glade/editsourceref.glade:286
