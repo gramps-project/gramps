@@ -51,7 +51,14 @@ except (ImportError, ValueError):
              "pygobject version 3.3.2 or later.\n\n"
              "Gramps will terminate now.")))
     sys.exit(0)
-    
+
+try:
+    import cairo
+except ImportError:
+    print((_("\ncairo python support not installed. Install cairo for your "
+             "version of python\n\n"
+             "Gramps will terminate now.")))
+    sys.exit(0)
 #-------------------------------------------------------------------------
 #
 # Miscellaneous initialization
