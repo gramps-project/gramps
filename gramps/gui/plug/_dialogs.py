@@ -216,7 +216,7 @@ class PluginDialog(ManagedWindow):
         for key in key_list:
             data = item_hash[key]
             node = self.store.insert_after(None, prev)
-            self.store.set(node, 0, key)
+            self.store.set(node, 0, key[1])
             next = None
             data.sort(key=lambda k:k.name)
             for item in data:

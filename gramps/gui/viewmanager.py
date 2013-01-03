@@ -1821,8 +1821,8 @@ class ViewManager(CLIManager):
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
             ofile.write('<separator/>')
-            ofile.write('<menu action="%s">' % _UNSUPPORTED)
-            actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
+            ofile.write('<menu action="%s">' % _UNSUPPORTED[0])
+            actions.append((_UNSUPPORTED[0], None, _UNSUPPORTED[1]))
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
