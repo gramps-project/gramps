@@ -6,13 +6,13 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-29 00:20+0100\n"
-"PO-Revision-Date: 2012-12-29 00:26+0100\n"
+"POT-Creation-Date: 2013-01-03 00:09+0100\n"
+"PO-Revision-Date: 2013-01-03 00:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -608,8 +608,8 @@ msgstr ""
 
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
-#: ../src/Utils.py:1654 ../src/Utils.py:1656 ../src/Utils.py:1660
-#: ../src/Utils.py:1666 ../src/Utils.py:1671 ../src/cli/clidbman.py:473
+#: ../src/Utils.py:1666 ../src/Utils.py:1668 ../src/Utils.py:1672
+#: ../src/Utils.py:1678 ../src/Utils.py:1683 ../src/cli/clidbman.py:473
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1058,7 +1058,7 @@ msgid "Event ref"
 msgstr "Ereignisref."
 
 #. show surname and first name
-#: ../src/ScratchPad.py:577 ../src/Utils.py:1275 ../src/gui/configure.py:515
+#: ../src/ScratchPad.py:577 ../src/Utils.py:1287 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:519
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:526
@@ -1570,54 +1570,55 @@ msgstr "Geschwister geburtsbezogenes Datum"
 msgid "sibling death-related date"
 msgstr "Geschwister todesbezogenes Datum"
 
-#: ../src/Utils.py:671 ../src/Utils.py:676
+#: ../src/Utils.py:673 ../src/Utils.py:677 ../src/Utils.py:684
+#: ../src/Utils.py:688
 msgid "a spouse, "
 msgstr "ein Ehepartner, "
 
-#: ../src/Utils.py:694
+#: ../src/Utils.py:706
 msgid "event with spouse"
 msgstr "Ereignisse mit Partner(in)"
 
-#: ../src/Utils.py:718
+#: ../src/Utils.py:730
 msgid "descendant birth date"
 msgstr "Nachfahre Geburtsdatum"
 
-#: ../src/Utils.py:727
+#: ../src/Utils.py:739
 msgid "descendant death date"
 msgstr "Nachfahre Todesdatum"
 
-#: ../src/Utils.py:743
+#: ../src/Utils.py:755
 msgid "descendant birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../src/Utils.py:751
+#: ../src/Utils.py:763
 msgid "descendant death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
-#: ../src/Utils.py:764
+#: ../src/Utils.py:776
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 "Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
 
-#: ../src/Utils.py:788 ../src/Utils.py:834
+#: ../src/Utils.py:800 ../src/Utils.py:846
 msgid "ancestor birth date"
 msgstr "Vorfahre Geburtsdatum"
 
-#: ../src/Utils.py:798 ../src/Utils.py:844
+#: ../src/Utils.py:810 ../src/Utils.py:856
 msgid "ancestor death date"
 msgstr "Vorfahre Sterbedatum"
 
-#: ../src/Utils.py:809 ../src/Utils.py:855
+#: ../src/Utils.py:821 ../src/Utils.py:867
 msgid "ancestor birth-related date"
 msgstr "Nachfahre geburtsbezogenes Datum"
 
-#: ../src/Utils.py:817 ../src/Utils.py:863
+#: ../src/Utils.py:829 ../src/Utils.py:875
 msgid "ancestor death-related date"
 msgstr "Nachfahre todesbezogenes Datum"
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:921
+#: ../src/Utils.py:933
 msgid "no evidence"
 msgstr "kein Beleg"
 
@@ -1649,17 +1650,17 @@ msgstr "kein Beleg"
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1273 ../src/plugins/export/ExportCsv.py:338
+#: ../src/Utils.py:1285 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/Utils.py:1273
+#: ../src/Utils.py:1285
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1274 ../src/gen/display/name.py:327
+#: ../src/Utils.py:1286 ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:515 ../src/gui/configure.py:517
 #: ../src/gui/configure.py:522 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:526 ../src/gui/configure.py:527
@@ -1672,44 +1673,44 @@ msgstr "TITEL"
 msgid "Given"
 msgstr "Vorname"
 
-#: ../src/Utils.py:1274
+#: ../src/Utils.py:1286
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1275 ../src/gui/configure.py:522
+#: ../src/Utils.py:1287 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:529 ../src/gui/configure.py:531
 #: ../src/gui/configure.py:532 ../src/gui/configure.py:533
 #: ../src/gui/configure.py:534 ../src/gui/configure.py:535
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/Utils.py:1276
+#: ../src/Utils.py:1288
 msgid "Name|Call"
 msgstr "Rufname"
 
-#: ../src/Utils.py:1276
+#: ../src/Utils.py:1288
 msgid "Name|CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1277 ../src/gui/configure.py:519
+#: ../src/Utils.py:1289 ../src/gui/configure.py:519
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:524
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:531
 msgid "Name|Common"
 msgstr "Üblich"
 
-#: ../src/Utils.py:1277
+#: ../src/Utils.py:1289
 msgid "Name|COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1278
+#: ../src/Utils.py:1290
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1278
+#: ../src/Utils.py:1290
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1279 ../src/gui/configure.py:515
+#: ../src/Utils.py:1291 ../src/gui/configure.py:515
 #: ../src/gui/configure.py:517 ../src/gui/configure.py:519
 #: ../src/gui/configure.py:521 ../src/gui/configure.py:522
 #: ../src/gui/configure.py:527 ../src/gui/configure.py:529
@@ -1719,137 +1720,137 @@ msgstr "INITIALEN"
 msgid "Suffix"
 msgstr "Suffix"
 
-#: ../src/Utils.py:1279
+#: ../src/Utils.py:1291
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1280 ../src/gui/editors/displaytabs/surnametab.py:80
+#: ../src/Utils.py:1292 ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
 msgstr "Primär"
 
-#: ../src/Utils.py:1280
+#: ../src/Utils.py:1292
 msgid "PRIMARY"
 msgstr "PRIMÄR"
 
-#: ../src/Utils.py:1281
+#: ../src/Utils.py:1293
 msgid "Primary[pre]"
 msgstr "Primär[pri]"
 
-#: ../src/Utils.py:1281
+#: ../src/Utils.py:1293
 msgid "PRIMARY[PRE]"
 msgstr "PRIMÄR[PRI]"
 
-#: ../src/Utils.py:1282
+#: ../src/Utils.py:1294
 msgid "Primary[sur]"
 msgstr "Primär[Nach]"
 
-#: ../src/Utils.py:1282
+#: ../src/Utils.py:1294
 msgid "PRIMARY[SUR]"
 msgstr "PRIMÄR[NACH]"
 
-#: ../src/Utils.py:1283
+#: ../src/Utils.py:1295
 msgid "Primary[con]"
 msgstr "Primär[übl]"
 
-#: ../src/Utils.py:1283
+#: ../src/Utils.py:1295
 msgid "PRIMARY[CON]"
 msgstr "PRIMÄR[ÜBL]"
 
-#: ../src/Utils.py:1284 ../src/gen/lib/nameorigintype.py:86
+#: ../src/Utils.py:1296 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:528
 msgid "Patronymic"
 msgstr "Patronymikon"
 
-#: ../src/Utils.py:1284
+#: ../src/Utils.py:1296
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1285
+#: ../src/Utils.py:1297
 msgid "Patronymic[pre]"
 msgstr "Patronymikon[pri]"
 
-#: ../src/Utils.py:1285
+#: ../src/Utils.py:1297
 msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYMIKON[PRI]"
 
-#: ../src/Utils.py:1286
+#: ../src/Utils.py:1298
 msgid "Patronymic[sur]"
 msgstr "Patronymikon[Nach]"
 
-#: ../src/Utils.py:1286
+#: ../src/Utils.py:1298
 msgid "PATRONYMIC[SUR]"
 msgstr "PATRONYMIKON[NACH]"
 
-#: ../src/Utils.py:1287
+#: ../src/Utils.py:1299
 msgid "Patronymic[con]"
 msgstr "Patronymikon[übl]"
 
-#: ../src/Utils.py:1287
+#: ../src/Utils.py:1299
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYMIKON[ÜBL]"
 
-#: ../src/Utils.py:1288 ../src/gui/configure.py:536
+#: ../src/Utils.py:1300 ../src/gui/configure.py:536
 msgid "Rawsurnames"
 msgstr "Familiennamen"
 
-#: ../src/Utils.py:1288
+#: ../src/Utils.py:1300
 msgid "RAWSURNAMES"
 msgstr "FAMILIENNAMEN"
 
-#: ../src/Utils.py:1289
+#: ../src/Utils.py:1301
 msgid "Notpatronymic"
 msgstr "KeinPatronymikon"
 
-#: ../src/Utils.py:1289
+#: ../src/Utils.py:1301
 msgid "NOTPATRONYMIC"
 msgstr "KEINPATRONYMIKON"
 
-#: ../src/Utils.py:1290 ../src/gui/editors/displaytabs/surnametab.py:75
+#: ../src/Utils.py:1302 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:179 ../src/glade/editperson.glade.h:26
 msgid "Prefix"
 msgstr "Präfix"
 
-#: ../src/Utils.py:1290
+#: ../src/Utils.py:1302
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
-#: ../src/Utils.py:1291 ../src/gen/lib/attrtype.py:71
+#: ../src/Utils.py:1303 ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:518 ../src/gui/configure.py:520
 #: ../src/gui/configure.py:525 ../src/gui/configure.py:532
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Spitzname"
 
-#: ../src/Utils.py:1291
+#: ../src/Utils.py:1303
 msgid "NICKNAME"
 msgstr "SPITZNAME"
 
-#: ../src/Utils.py:1292
+#: ../src/Utils.py:1304
 msgid "Familynick"
 msgstr "Familienspitzname"
 
-#: ../src/Utils.py:1292
+#: ../src/Utils.py:1304
 msgid "FAMILYNICK"
 msgstr "FAMILIENSPITZNAME"
 
-#: ../src/Utils.py:1405 ../src/Utils.py:1424
+#: ../src/Utils.py:1417 ../src/Utils.py:1436
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../src/Utils.py:1674
+#: ../src/Utils.py:1686
 msgid "Unknown, created to replace a missing note object."
 msgstr "Unbekannt, wurde erstellt um ein fehlendes Notizobjekt zu ersetzen."
 
 #. primitive static variable
-#: ../src/Utils.py:1684
+#: ../src/Utils.py:1696
 #, python-format
 msgid "Unknown, was missing %s (%d)"
 msgstr "Unbekannt, hat gefehlt %s (%d)"
 
-#: ../src/Utils.py:1703
+#: ../src/Utils.py:1715
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
@@ -13496,10 +13497,9 @@ msgstr "Gramps online Handbuch"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:114
 msgid ""
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual"
 msgstr ""
-"http://www.gramps-project.org/wiki/index.php?title=De:"
-"Gramps_3.4_Wiki_Handbuch"
+"http://www.gramps-project.org/wiki/index.php?title=De:Gramps_3.4_Wiki_Handbuch"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:115
 msgid "Ask questions on gramps-users mailing list"
