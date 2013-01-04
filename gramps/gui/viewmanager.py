@@ -880,7 +880,10 @@ class ViewManager(CLIManager):
         """
         Run a book.
         """
-        BookSelector(self.dbstate, self.uistate)
+        try:
+            BookSelector(self.dbstate, self.uistate)
+        except WindowActiveError:
+            return
 
     def __keypress(self, action):
         """
