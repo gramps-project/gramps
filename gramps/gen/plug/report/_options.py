@@ -34,7 +34,6 @@ Report option handling, including saving and parsing.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 import copy
 from xml.sax.saxutils import escape
 
@@ -909,31 +908,17 @@ class DocOptionHandler(_options.OptionHandler):
         # First we set options_dict values based on the saved options
         options = self.saved_option_list.get_options()
         docgen_names = self.option_list_collection.docgen_names
-        if sys.version_info[0] >= 3:
-            for option_name, option_data in options.items():
-                if ( option_name in self.options_dict and
-                     isinstance(option_data, list) and
-                     option_data and 
-                     option_data[0] in docgen_names ):
-                    try:
-                        converter = get_type_converter(
-                                                self.options_dict[option_name])
-                        self.options_dict[option_name] = converter(option_data[1])
-                    except (TypeError, ValueError):
-                        pass
-
-        if sys.version_info[0] < 3:
-            for option_name, option_data in options.iteritems():
-                if ( option_name in self.options_dict and
-                     isinstance(option_data, list) and
-                     option_data and 
-                     option_data[0] in docgen_names ):
-                    try:
-                        converter = get_type_converter(
-                                                self.options_dict[option_name])
-                        self.options_dict[option_name] = converter(option_data[1])
-                    except (TypeError, ValueError):
-                        pass
+        for option_name, option_data in options.items():
+            if ( option_name in self.options_dict and
+                 isinstance(option_data, list) and
+                 option_data and 
+                 option_data[0] in docgen_names ):
+                try:
+                    converter = get_type_converter(
+                                            self.options_dict[option_name])
+                    self.options_dict[option_name] = converter(option_data[1])
+                except (TypeError, ValueError):
+                    pass
 
 #------------------------------------------------------------------------
 #
