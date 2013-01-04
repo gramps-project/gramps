@@ -47,11 +47,11 @@ if sys.version_info[0] < 3:
     import commands
 from stat import ST_MODE
 
-VERSION = '4.0.0-alpha3'
+VERSION = '4.0.0'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
-INTLTOOL_FILES = ('gramps/data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
 def intltool_version():
     '''
@@ -241,15 +241,18 @@ def write_const_py(command):
     const_py = os.path.join('gramps', 'gen', 'const.py')
     if hasattr(command, 'install_data'):
         #during install
+        share_dir = os.path.join(command.install_data, 'share')
         locale_dir = os.path.join(command.install_data, 'share', 'locale')
     else:
         #in build
         if 'install' in command.distribution.command_obj:
             # Prevent overwriting version created during install
             return
+        share_dir = ''
         locale_dir = os.path.join(command.build_base, 'mo')
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
+                  ('@SHARE_DIR@', share_dir), 
                   ('@LOCALE_DIR@', locale_dir))
                   
     substitute_variables(const_py_in, const_py, subst_vars)
@@ -307,21 +310,14 @@ GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
+XML_FILES = glob.glob(os.path.join('data', '*.xml'))
+IMAGE_FILES = glob.glob(os.path.join('images', '*.*'))
+IMAGE_16 = glob.glob(os.path.join('images', '16x16', '*.png'))
+IMAGE_22 = glob.glob(os.path.join('images', '22x22', '*.png'))
+IMAGE_48 = glob.glob(os.path.join('images', '48x48', '*.png'))
+IMAGE_SC = glob.glob(os.path.join('images', 'scalable', '*.svg'))
 
-data_list = [
-            'data/*.txt', 
-            'data/*.xml',
-            'gui/glade/*.glade', 
-            'images/*.ico', 
-            'images/*.png',
-            'images/splash.jpg', 
-            'images/*.svg', 
-            'images/16x16/*.png', 
-            'images/22x22/*.png', 
-            'images/48x48/*.png', 
-            'images/scalable/*.svg'
-            ]
-
+data_list = ['gui/glade/*.glade']
 # add all subdirs of plugin with glade:
 basedir = os.path.join('gramps', 'plugins')
 for (dirpath, dirnames, filenames) in os.walk(basedir):
@@ -433,5 +429,12 @@ setup(name = 'gramps',
                   ('share/icons', ['gramps/images/gramps.png']), 
                   ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
                   ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
-                  ('share/doc/gramps', DOC_FILES)]
+                  ('share/doc/gramps', DOC_FILES),
+                  ('share/gramps', XML_FILES), 
+                  ('share/gramps/icons/hicolor', IMAGE_FILES), 
+                  ('share/gramps/icons/hicolor/16x16', IMAGE_16), 
+                  ('share/gramps/icons/hicolor/22x22', IMAGE_22), 
+                  ('share/gramps/icons/hicolor/48x48', IMAGE_48), 
+                  ('share/gramps/icons/hicolor/scalable', IMAGE_SC),
+                  ]
 )

@@ -43,6 +43,7 @@ import uuid
 #
 #-------------------------------------------------------------------------
 from .ggettext import sgettext as _
+from .svn_revision import get_svn_revision
 
 #-------------------------------------------------------------------------
 #
@@ -50,11 +51,12 @@ from .ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "4.0.0"
-else:
-    VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (4, 0, 0)
+VERSION        = "@VERSIONSTRING@"
+if VERSION == "@" + "VERSIONSTRING" + "@":
+    raise Exception("Please run 'python setup.py build'")
+VERSION_TUPLE  = tuple(map(int, VERSION.split(".")))
+major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+VERSION += get_svn_revision()
 
 #-------------------------------------------------------------------------
 #
@@ -65,11 +67,11 @@ URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
-URL_MANUAL_PAGE = "Gramps_4.0_Wiki_Manual"
+URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 WIKI_FAQ = "FAQ"
-WIKI_KEYBINDINGS = "Gramps_4.0_Wiki_Manual_-_Keybindings"
-WIKI_EXTRAPLUGINS= "4.0_Addons"
-WIKI_EXTRAPLUGINS_RAWDATA = "Plugins4.0&action=raw"
+WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
+WIKI_EXTRAPLUGINS= "%s_Addons" % major_version
+WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 
 #-------------------------------------------------------------------------
 #
@@ -83,13 +85,6 @@ APP_GEDCOM      = "application/x-gedcom"
 APP_GRAMPS_PKG  = "application/x-gramps-package"
 APP_GENEWEB     = "application/x-geneweb"
 APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
-
-#-------------------------------------------------------------------------
-#
-# system paths
-#
-#-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
 
 #-------------------------------------------------------------------------
 #
@@ -133,24 +128,6 @@ if sys.version_info[0] < 3:
 else:
     pass
 
-#-------------------------------------------------------------------------
-#
-# Paths to files - assumes that files reside in the same directory as
-# this one, and that the plugins directory is in a directory below this.
-#
-#-------------------------------------------------------------------------
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            __file__), os.pardir))
-if sys.version_info[0] < 3:
-    # test for sys.frozen to detect a py2exe executable on Windows
-    if hasattr(sys, "frozen"):
-        ROOT_DIR = os.path.abspath(os.path.dirname(
-            unicode(sys.executable, sys.getfilesystemencoding())))
-    else:
-        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
-
-IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
@@ -168,15 +145,26 @@ USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
-ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
-LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
-SPLASH         = os.path.join(ROOT_DIR, "images", "splash.jpg")
-LICENSE_FILE   = os.path.join(ROOT_DIR, "COPYING")
+#-------------------------------------------------------------------------
+#
+# Paths to python modules - assumes that the root directory is one level 
+# above this one, and that the plugins directory is below the root directory.
+#
+#-------------------------------------------------------------------------
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            __file__), os.pardir))
+if sys.version_info[0] < 3:
+    # test for sys.frozen to detect a py2exe executable on Windows
+    if hasattr(sys, "frozen"):
+        ROOT_DIR = os.path.abspath(os.path.dirname(
+            unicode(sys.executable, sys.getfilesystemencoding())))
+    else:
+        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
 
 #
 # Glade files
 #
-
 GLADE_DIR      = os.path.join(ROOT_DIR, "gui", "glade")
 GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
 PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
@@ -186,21 +174,42 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
 PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
-DATA_DIR           = os.path.join(ROOT_DIR, "data")
 WEB_DIR            = os.path.join(ROOT_DIR, 'webapp')
-#SYSTEM_FILTERS    = os.path.join(DATA_DIR, "system_filters.xml")
-TIP_DATA           = os.path.join(DATA_DIR, "tips.xml")
 WEBSTUFF_DIR       = os.path.join(PLUGINS_DIR, "webstuff")
 WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
-PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
-
-USE_TIPS       = False
+USE_TIPS = False
 
 if os.sys.platform in WINDOWS:
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
+
+#-------------------------------------------------------------------------
+#
+# Paths to data files.
+#
+#-------------------------------------------------------------------------
+SHARE_DIR = "@SHARE_DIR@"
+LOCALE_DIR = "@LOCALE_DIR@"
+
+if SHARE_DIR != '':
+    DATA_DIR = os.path.join(SHARE_DIR, 'gramps')
+    IMAGE_DIR = os.path.join(SHARE_DIR, 'gramps', 'icons', 'hicolor')
+    DOC_DIR = os.path.join(SHARE_DIR, 'doc', 'gramps')
+else:
+    DATA_DIR = 'data'
+    IMAGE_DIR = 'images'
+    DOC_DIR = os.curdir
+
+TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
+PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
+
+ICON = os.path.join(IMAGE_DIR, "gramps.png")
+LOGO = os.path.join(IMAGE_DIR, "logo.png")
+SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
+
+LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
 
 #-------------------------------------------------------------------------
 #
