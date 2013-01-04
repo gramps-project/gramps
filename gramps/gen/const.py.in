@@ -198,8 +198,8 @@ if SHARE_DIR != '':
     IMAGE_DIR = os.path.join(SHARE_DIR, 'gramps', 'icons', 'hicolor')
     DOC_DIR = os.path.join(SHARE_DIR, 'doc', 'gramps')
 else:
-    DATA_DIR = os.path.join('gramps', 'data')
-    IMAGE_DIR = os.path.join('gramps', 'images')
+    DATA_DIR = 'data'
+    IMAGE_DIR = 'images'
     DOC_DIR = os.curdir
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")

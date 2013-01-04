@@ -51,7 +51,7 @@ VERSION = '4.1.0'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
-INTLTOOL_FILES = ('gramps/data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
 def intltool_version():
     '''
@@ -310,12 +310,12 @@ GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-DATA_FILES = glob.glob(os.path.join('gramps', 'data', '*.xml'))
-IMAGE_FILES = glob.glob(os.path.join('gramps', 'images', '*.*'))
-IMAGE_16 = glob.glob(os.path.join('gramps', 'images', '16x16', '*.png'))
-IMAGE_22 = glob.glob(os.path.join('gramps', 'images', '22x22', '*.png'))
-IMAGE_48 = glob.glob(os.path.join('gramps', 'images', '48x48', '*.png'))
-IMAGE_S = glob.glob(os.path.join('gramps', 'images', 'scalable', '*.svg'))
+XML_FILES = glob.glob(os.path.join('data', '*.xml'))
+IMAGE_FILES = glob.glob(os.path.join('images', '*.*'))
+IMAGE_16 = glob.glob(os.path.join('images', '16x16', '*.png'))
+IMAGE_22 = glob.glob(os.path.join('images', '22x22', '*.png'))
+IMAGE_48 = glob.glob(os.path.join('images', '48x48', '*.png'))
+IMAGE_SC = glob.glob(os.path.join('images', 'scalable', '*.svg'))
 
 data_list = ['gui/glade/*.glade']
 # add all subdirs of plugin with glade:
@@ -430,11 +430,11 @@ setup(name = 'gramps',
                   ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
                   ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
                   ('share/doc/gramps', DOC_FILES),
-                  ('share/gramps', DATA_FILES), 
+                  ('share/gramps', XML_FILES), 
                   ('share/gramps/icons/hicolor', IMAGE_FILES), 
                   ('share/gramps/icons/hicolor/16x16', IMAGE_16), 
                   ('share/gramps/icons/hicolor/22x22', IMAGE_22), 
                   ('share/gramps/icons/hicolor/48x48', IMAGE_48), 
-                  ('share/gramps/icons/hicolor/scalable', IMAGE_S),
+                  ('share/gramps/icons/hicolor/scalable', IMAGE_SC),
                   ]
 )
