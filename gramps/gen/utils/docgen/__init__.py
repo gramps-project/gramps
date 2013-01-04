@@ -20,6 +20,6 @@
 
 # $Id$
 
-from .TabbedDoc import TabbedDoc
-from .ODSTab import ODSTab
-from .CSVTab import CSVTab
+from .tabbeddoc import TabbedDoc
+from .odstab import ODSTab
+from .csvtab import CSVTab

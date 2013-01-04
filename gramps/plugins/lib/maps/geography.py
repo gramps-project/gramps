@@ -62,7 +62,7 @@ from gramps.gui.selectors.selectplace import SelectPlace
 
 from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
-from .osmGps import OsmGps
+from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 

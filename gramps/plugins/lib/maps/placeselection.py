@@ -54,7 +54,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
-from .osmGps import OsmGps
+from .osmgps import OsmGps
 
 #-------------------------------------------------------------------------
 #

@@ -35,7 +35,7 @@ from ...ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .TabbedDoc import *
+from .tabbeddoc import *
 from ...const import PROGRAM_NAME, VERSION
 from ...errors import ReportError
 from ...constfunc import cuni
