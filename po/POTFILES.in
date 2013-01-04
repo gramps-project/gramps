@@ -425,7 +425,6 @@ gramps/gui/glade/rule.glade
 gramps/gui/glade/styleeditor.glade
 gramps/gui/glade/tipofday.glade
 gramps/gui/glade/updateaddons.glade
-gramps/gui/grampsbar.py
 gramps/gui/grampsgui.py
 gramps/gui/logger/_errorreportassistant.py
 gramps/gui/logger/_errorview.py
@@ -481,6 +480,7 @@ gramps/gui/views/treemodels/placemodel.py
 gramps/gui/views/treemodels/treebasemodel.py
 gramps/gui/widgets/buttons.py
 gramps/gui/widgets/expandcollapsearrow.py
+gramps/gui/widgets/grampletbar.py
 gramps/gui/widgets/grampletpane.py
 gramps/gui/widgets/labels.py
 gramps/gui/widgets/monitoredwidgets.py
