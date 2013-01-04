@@ -49,7 +49,7 @@ from gramps.gen.ggettext import gettext as _
 #----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ..dbguielement import DbGUIElement
-from ..grampsbar import GrampsBar
+from ..widgets.grampletbar import GrampletBar
 from ..configure import ConfigureDialog
 from gramps.gen.config import config
 
@@ -147,12 +147,12 @@ class PageView(DbGUIElement):
         Returns a gtk container widget.
         """
         defaults = self.get_default_gramplets()
-        self.sidebar = GrampsBar(self.dbstate, self.uistate, self,
+        self.sidebar = GrampletBar(self.dbstate, self.uistate, self,
                                    self.ident + "_sidebar",
                                    defaults[0])
-        self.bottombar = GrampsBar(self.dbstate, self.uistate, self,
-                                   self.ident + "_bottombar",
-                                   defaults[1])
+        self.bottombar = GrampletBar(self.dbstate, self.uistate, self,
+                                     self.ident + "_bottombar",
+                                     defaults[1])
         hpane = Gtk.HPaned()
         vpane = Gtk.VPaned()
         hpane.pack1(vpane, resize=True, shrink=False)
