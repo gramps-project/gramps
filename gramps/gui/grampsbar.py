@@ -592,7 +592,7 @@ class DetachedWindow(ManagedWindow):
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
         self.notebook.show()
-        self.window.vbox.add(self.notebook)
+        self.window.vbox.pack_start(self.notebook, True, True, 0)
         self.show()
 
     def handle_response(self, object, response):
