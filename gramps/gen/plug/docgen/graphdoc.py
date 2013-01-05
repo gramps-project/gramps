@@ -37,7 +37,7 @@ import sys
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
-    from io import StringIO
+    from io import BytesIO
 import tempfile
 from subprocess import Popen, PIPE
 import sys
@@ -369,7 +369,10 @@ class GVDocBase(BaseDoc, GVDoc):
         BaseDoc.__init__(self, None, paper_style)
 
         self._filename      = None
-        self._dot           = StringIO()
+        if sys.version_info[0] < 3:
+            self._dot = StringIO()
+        else:
+            self._dot = BytesIO()
         self._paper         = paper_style
         
         get_option_by_name = options.menu.get_option_by_name
@@ -873,7 +876,10 @@ class GVPdfGvDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
