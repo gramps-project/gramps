@@ -164,7 +164,7 @@ def TipsParse(filename, mark):
     "Editor."
     '''
     
-    tips = open('../gramps/data/tips.xml.in.h', 'w')
+    tips = open('../data/tips.xml.in.h', 'w')
     marklist = root.iter(mark)
     for key in marklist:
         tip = ElementTree.tostring(key, encoding="UTF-8")
@@ -177,7 +177,7 @@ def TipsParse(filename, mark):
         tip = tip.replace('"', '&quot;')
         tips.write('char *s = N_("%s");\n' % tip)
     tips.close()
-    print ('Wrote ../gramps/data/tips.xml.in.h')
+    print ('Wrote ../data/tips.xml.in.h')
     root.clear()
     
 def HolidaysParse(filename, mark):
@@ -519,8 +519,8 @@ def headers():
     headers = []
 
     # in.h; extract_xml
-    if os.path.isfile('''../gramps/data/tips.xml.in.h'''):
-        headers.append('''../gramps/data/tips.xml.in.h''')
+    if os.path.isfile('''../data/tips.xml.in.h'''):
+        headers.append('''../data/tips.xml.in.h''')
     if os.path.isfile('''../gramps/plugins/lib/holidays.xml.in.h'''):
         headers.append('''../gramps/plugins/lib/holidays.xml.in.h''')
     if os.path.isfile('''../data/gramps.xml.in.h'''):
@@ -538,8 +538,8 @@ def extract_xml():
     files. Own XML files parsing and custom translation marks.
     """
   
-    TipsParse('../gramps/data/tips.xml.in', '_tip')
     HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
+    TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
     DesktopParse('../data/gramps.desktop.in')
     KeyParse('../data/gramps.keys.in', '_description')
