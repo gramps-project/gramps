@@ -651,6 +651,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         pos = 0
         realpos = 0
         markstarts = []
+        #index is in bytecode in the text.. !!
         while pos < index:
             char = oldtext[realpos]
             if char == '<' and oldtext[realpos+1] != '/':
@@ -663,7 +664,7 @@ class GtkDocParagraph(GtkDocBaseElement):
                 realpos = realpos + oldtext[realpos:].find('>') + 1
                 markstarts.pop()
             else:
-                pos +=1
+                pos += len(char.encode('utf-8'))
                 realpos += 1
         #now construct the marked up text to use
         newtext = ''.join(markstarts)
