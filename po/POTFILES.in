@@ -699,4 +699,4 @@ gramps/webapp/grampsdb/views.py
 data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in
-gramps/data/tips.xml.in
+data/tips.xml.in
