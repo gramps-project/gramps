@@ -54,7 +54,16 @@ PROGRAM_NAME   = "Gramps"
 VERSION        = "@VERSIONSTRING@"
 if VERSION == "@" + "VERSIONSTRING" + "@":
     raise Exception("Please run 'python setup.py build'")
-VERSION_TUPLE  = tuple(map(int, VERSION.split(".")))
+def get_version_tuple(v):
+    """ Get the numeric-dotted part of version number"""
+    retval = ""
+    for c in v:
+        if c.isdigit() or (c == "." and retval.count(".") <= 1):
+            retval += c
+        else:
+            break
+    return tuple(map(int, retval.split(".")))
+VERSION_TUPLE  = get_version_tuple(VERSION)
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 VERSION += get_svn_revision()
 
