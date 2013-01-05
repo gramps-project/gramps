@@ -164,7 +164,7 @@ def TipsParse(filename, mark):
     "Editor."
     '''
     
-    tips = open('../gramps/tips.xml.in.h', 'w')
+    tips = open('../data/tips.xml.in.h', 'w')
     marklist = root.iter(mark)
     for key in marklist:
         tip = ElementTree.tostring(key, encoding="UTF-8")
@@ -538,8 +538,8 @@ def extract_xml():
     files. Own XML files parsing and custom translation marks.
     """
   
-    TipsParse('../data/tips.xml.in', '_tip')
     HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
+    TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
     DesktopParse('../data/gramps.desktop.in')
     KeyParse('../data/gramps.keys.in', '_description')
