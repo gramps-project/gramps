@@ -38,6 +38,9 @@ The following packages are optional
                     enchant. A version of gtkspell with gobject introspection
                     is needed, so minimally version 3.0.0
 
+   PIL              Python Image Library is needed to convert non jpg images to
+                    jpg so as to include them in LaTeX output
+
    ttf-freefont     More font support in the reports
 
    gir-webkit       GObject introspection data of WebKit is required for the

@@ -295,7 +295,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.text += '}'
 
     def start_superscript(self):
-        self.text += '{{\*\updnprop5801}\up10 '
+        self.text += '{{\\*\\updnprop5801}\\up10 '
 
     def end_superscript(self):
         self.text += '}'
