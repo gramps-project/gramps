@@ -23,8 +23,8 @@
 	      href="http://pypi.python.org/packages/source/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
-  <repository type="git" name="snoiraud"
-	      href="git://github.com/SNoiraud"/>
+  <repository type="git" name="github"
+	      href="git://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="launchpad"
@@ -83,7 +83,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="gramps/gramps-4.0.0-alpha1.tar.gz" version="4.0.0-alpha1"
 	    repo="sourceforge"/>
     <dependencies>
-      <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="meta-gtk-osx-python3-gtk3"/>
+      <dep package="pybsddb"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
@@ -102,6 +103,16 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="gramps-addons"/>
     <dependencies>
       <dep package="gramps-svn"/>
+    </dependencies>
+  </distutils>
+
+  <distutils id="pybsddb">
+    <branch module="b/bsddb3/bsddb3-5.3.0.tar.gz"
+	    hash="md5:d5aa4f293c4ea755e84383537f74be82" repo="pymodules"
+	    version="5.3.0"/>
+    <dependencies>
+      <dep package="python3"/>
+      <dep package="berkeleydb"/>
     </dependencies>
   </distutils>
 
@@ -131,7 +142,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  </autotools>
 
   <autotools id="osmgpsmap">
-    <branch module="osm-gps-map" revision="gtk3" repo="snoiraud"/>
+    <branch module="SNoiraud/osm-gps-map" revision="gtk3" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
@@ -166,8 +177,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <autotools id="boost">
-    <branch module="boost/boost_1_46_1.tar.bz2" repo="sourceforge"
-	    version="1.46.1"/>
+    <branch module="boost/boost_1_52_0.tar.bz2" repo="sourceforge"
+	    version="1.52.0"/>
   </autotools>
 
   <distutils id="scons">
@@ -187,7 +198,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <distutils id="pil">
-    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+    <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/-->
+    <branch module="sloonz/pil-py3k.git" repo="github"/>
   </distutils>
 
 </moduleset>
