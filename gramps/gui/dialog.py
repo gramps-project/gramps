@@ -181,10 +181,10 @@ class ErrorDialog(Gtk.MessageDialog):
                                    flags=Gtk.DialogFlags.MODAL,
                                    type=Gtk.MessageType.ERROR,
                                    buttons=Gtk.ButtonsType.CLOSE)
-        self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
+        self.set_markup('<span weight="bold" size="larger">%s</span>' % str(msg1))
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
-        self.set_title("%s - Gramps" % msg1)
+        self.set_title("%s - Gramps" % str(msg1))
         self.show()
         self.run()
         self.destroy()
