@@ -294,7 +294,7 @@ def __startgramps(errors, argparser):
 
     if argparser.errors:
         for error in argparser.errors:
-            ErrorDialog(argparser.error[0], argparser.error[1])
+            ErrorDialog(error[0], error[1])
         Gtk.main_quit()
         sys.exit(1)
 
