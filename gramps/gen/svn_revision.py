@@ -37,6 +37,17 @@ def get_svn_revision(path=""):
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = p.communicate()
     except:
-        pass
-    return "-r" + cuni(stdout) if stdout else ""
+        return "" # subprocess failed
+    # subprocess worked
+    if stdout: # has output
+        stdout = cuni(stdout) # get a proper string
+        if " " in stdout: # one of svnversion's non-version responses:
+            # 'Unversioned directory'
+            # 'Unversioned file'
+            # 'Uncommitted local addition, copy or move'
+            return ""
+        else:
+            return "-r" + stdout
+    else: # no output from svnversion
+        return ""
 
