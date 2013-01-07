@@ -261,7 +261,7 @@ def get_addon_translator(filename=None, domain="addon", languages=None):
     path = os.path.dirname(os.path.abspath(filename))
     # Check if path is of type str. Do import and conversion if so.
     # The import cannot be done at the top as that will conflict with the translation system.
-    if not isinstance(path, UNITYPE) == str:
+    if not isinstance(path, UNITYPE):
         from .file import get_unicode_path_from_env_var
         path = get_unicode_path_from_env_var(path)
     if languages:
