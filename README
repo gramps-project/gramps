@@ -65,9 +65,6 @@ No longer needed in 3.2:
 No longer needed in 3.1:
    yelp             Gnome help browser. At the moment no help is shipped
 
-Remark: There is a conflict when using python-gnome2 in Ubuntu. This is evident
-        with the error: TypeError: Error when calling the metaclass bases
-                                   metaclass conflict
 
 Documentation
 ---------------------------------
