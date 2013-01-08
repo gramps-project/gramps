@@ -2,11 +2,12 @@
 *.py[cod]
 
 # Distutils
+MANIFEST
 build/
-sdist/
+dist/
 
 # Gramps
-gramps/data/tips.xml
+data/tips.xml
 gramps/gen/const.py
 gramps/plugins/lib/holidays.xml
 po/.intltool-merge-cache
