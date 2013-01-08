@@ -266,7 +266,6 @@ def process_report_run(request, handle):
                 return redirect("/report/")
             time.sleep(1)
         return send_file(request, filename, mimetype)
-        else:
     # If failure, just fail for now:
     context = RequestContext(request)
     context["message"] = "You need to be logged in."
