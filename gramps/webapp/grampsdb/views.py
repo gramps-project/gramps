@@ -66,7 +66,7 @@ from gramps.webapp.grampsdb.view import *
 from gramps.webapp.dbdjango import DbDjango
 import gramps.cli.user
 from gramps.gen.const import VERSION_TUPLE
-from gramps.gen.utils.svn import get_svn_revision
+from gramps.gen.svn_revision import get_svn_revision
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
 MENU = [
