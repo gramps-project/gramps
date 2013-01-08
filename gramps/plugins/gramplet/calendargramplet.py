@@ -45,7 +45,8 @@ class CalendarGramplet(Gramplet):
         vbox = Gtk.VBox(False, 0)
         vbox.pack_start(self.gui.calendar, False, False, 0)
         self.gui.get_container_widget().add_with_viewport(vbox)
-        self.gui.calendar.show()
+        vbox.show_all()
+        #self.gui.calendar.show()
 
     def post_init(self):
         self.disconnect("active-changed")
