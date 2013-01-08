@@ -242,18 +242,26 @@ def write_const_py(command):
     if hasattr(command, 'install_data'):
         #during install
         share_dir = os.path.join(command.install_data, 'share')
-        locale_dir = os.path.join(command.install_data, 'share', 'locale')
+        locale_dir = os.path.join(share_dir, 'locale')
+        data_dir = os.path.join(share_dir, 'gramps')
+        image_dir = os.path.join(share_dir, 'gramps', 'icons', 'hicolor')
+        doc_dir = os.path.join(share_dir, 'doc', 'gramps')
     else:
         #in build
         if 'install' in command.distribution.command_obj:
             # Prevent overwriting version created during install
             return
-        share_dir = ''
-        locale_dir = os.path.join(command.build_base, 'mo')
+        base_dir = os.path.abspath(os.path.dirname(__file__))
+        locale_dir = os.path.abspath(os.path.join(command.build_base, 'mo'))
+        data_dir = os.path.join(base_dir, 'data')
+        image_dir = os.path.join(base_dir, 'images')
+        doc_dir = base_dir
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
-                  ('@SHARE_DIR@', share_dir), 
-                  ('@LOCALE_DIR@', locale_dir))
+                  ('@LOCALE_DIR@', locale_dir),
+                  ('@DATA_DIR@', data_dir),
+                  ('@IMAGE_DIR@', image_dir),
+                  ('@DOC_DIR@', doc_dir),)
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
