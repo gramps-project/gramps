@@ -199,17 +199,10 @@ else:
 # Paths to data files.
 #
 #-------------------------------------------------------------------------
-SHARE_DIR = "@SHARE_DIR@"
 LOCALE_DIR = "@LOCALE_DIR@"
-
-if SHARE_DIR != '':
-    DATA_DIR = os.path.join(SHARE_DIR, 'gramps')
-    IMAGE_DIR = os.path.join(SHARE_DIR, 'gramps', 'icons', 'hicolor')
-    DOC_DIR = os.path.join(SHARE_DIR, 'doc', 'gramps')
-else:
-    DATA_DIR = 'data'
-    IMAGE_DIR = 'images'
-    DOC_DIR = os.curdir
+DATA_DIR = "@DATA_DIR@"
+IMAGE_DIR = "@IMAGE_DIR@"
+DOC_DIR = "@DOC_DIR@"
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
 PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
