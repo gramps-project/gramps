@@ -66,10 +66,10 @@ log = logging.getLogger(".libcairodoc")
 
 #-------------------------------------------------------------------------
 #
-# GTK modules
+# Pango modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Pango, PangoCairo, Gdk
+from gi.repository import Pango, PangoCairo
 
 #------------------------------------------------------------------------
 #
@@ -1040,7 +1040,7 @@ class GtkDocPicture(GtkDocBaseElement):
             return (None, self), 0
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
-        from gi.repository import Gtk
+        from gi.repository import Gtk, Gdk
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
         
