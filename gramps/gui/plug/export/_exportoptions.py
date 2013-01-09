@@ -374,7 +374,7 @@ class WriterOptionBox(object):
                 # Now, we can't add something that we want hidden
                 for n in range(5):
                     self.vbox_n[n].pack_start(self.up_n[n], True, True, 0)
-                    self.vbox_n[n].pack_end(self.down_n[n])
+                    self.vbox_n[n].pack_end(self.down_n[n], False, True, 0)
                 # some spacer buttons:
                 up = Gtk.Button()
                 up.set_sensitive(0) 
