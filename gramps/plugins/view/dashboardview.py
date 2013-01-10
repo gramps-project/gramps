@@ -21,7 +21,7 @@
 # $Id$
 
 """
-GrampletView interface.
+DashboardView interface.
 """
 
 #-------------------------------------------------------------------------
@@ -40,16 +40,16 @@ from gramps.gui.views.pageview import PageView
 from gramps.gen.ggettext import gettext as _
 from gramps.gui.widgets.grampletpane import GrampletPane
 
-class GrampletView(PageView): 
+class DashboardView(PageView): 
     """
-    GrampletView interface
+    DashboardView interface
     """
 
     def __init__(self, pdata, dbstate, uistate):
         """
-        Create a GrampletView, with the current dbstate and uistate
+        Create a DashboardView, with the current dbstate and uistate
         """
-        PageView.__init__(self, _('Gramplets'), pdata, dbstate, uistate)
+        PageView.__init__(self, _('Dashboard'), pdata, dbstate, uistate)
         self.ui_def = '''<ui>
          <popup name="GrampletPopup">
             <menuitem action="AddGramplet"/>
@@ -72,7 +72,7 @@ class GrampletView(PageView):
         the base class. Returns a gtk container widget.
         """
         # load the user's gramplets and set columns, etc
-        self.widget = GrampletPane("Gramplets_grampletview_gramplets", self,
+        self.widget = GrampletPane("Gramplets_dashboardview_gramplets", self,
                             self.dbstate, self.uistate)
         return self.widget
 
