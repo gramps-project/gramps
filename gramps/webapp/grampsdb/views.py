@@ -59,14 +59,15 @@ from django.utils import simplejson
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import VERSION
+
+# Gramps-connect imports:
 import gramps.webapp
 from gramps.webapp.utils import _, build_args
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.view import *
 from gramps.webapp.dbdjango import DbDjango
 import gramps.cli.user
-from gramps.gen.const import VERSION_TUPLE
-from gramps.gen.svn_revision import get_svn_revision
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
 MENU = [
@@ -101,7 +102,7 @@ def context_processor(request):
     else:
         context["css_theme"] = "Web_Mainz.css"
     # Other things for all environments:
-    context["gramps_version"] = ".".join([str(v) for v in VERSION_TUPLE]) + " " + get_svn_revision()
+    context["gramps_version"] = VERSION
     context["views"] = VIEWS
     context["menu"] = MENU
     context["None"] = None
