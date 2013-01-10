@@ -197,6 +197,8 @@ def process_report_run(request, handle):
     """
     Run a report or export.
     """
+    # can also use URL with %0A as newline and "=" is "=":
+    # http://localhost:8000/report/ex_gpkg/run?options=off=gpkg%0Ax=10
     from gramps.webapp.reports import import_file, export_file, download
     from gramps.cli.plug import run_report
     import traceback
@@ -269,8 +271,8 @@ def process_report_run(request, handle):
         return send_file(request, filename, mimetype)
     # If failure, just fail for now:
     context = RequestContext(request)
-    context["message"] = "You need to be logged in."
-    return render_to_response("process_action.html", context)
+    context["message"] = "You need to be logged in to run reports."
+    return render_to_response("main_page.html", context)
 
 def view_list(request, view):
     """
