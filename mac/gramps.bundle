@@ -172,6 +172,10 @@
   </data>
 
   <data>
+    ${prefix}/lib/python2.7/site-packages/gramps/images/splash.jpg
+  </data>
+
+  <data>
     ${prefix}/share/mime-info/
   </data>
 
