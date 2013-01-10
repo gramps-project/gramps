@@ -61,17 +61,17 @@ order = START,
   )
 
 register(VIEW, 
-id    = 'grampletview',
-name  = _("Gramplets"),
+id    = 'dashboardview',
+name  = _("Dashboard"),
 description =  _("The view showing Gramplets"),
 version = '1.0',
 gramps_target_version = '4.1',
 status = STABLE,
-fname = 'grampletview.py',
+fname = 'dashboardview.py',
 authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
-category = ("Gramplets", _("Gramplets")),
-viewclass = 'GrampletView',
+category = ("Dashboard", _("Dashboard")),
+viewclass = 'DashboardView',
 order = START,
   )
 

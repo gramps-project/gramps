@@ -188,7 +188,7 @@ register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.view-categories',
-         ["Gramplets", "People", "Relationships", "Families", 
+         ["Dashboard", "People", "Relationships", "Families", 
           "Ancestry", "Events", "Places", "Geography", "Sources",
           "Citations", "Repositories", "Media", "Notes"])
 register('interface.edit-filter-width', 500)
