@@ -21,7 +21,7 @@
 # $Id$
 
 """
-GrampletView interface.
+DashboardView interface.
 """
 
 #-------------------------------------------------------------------------
@@ -47,7 +47,7 @@ class DashboardView(PageView):
 
     def __init__(self, pdata, dbstate, uistate):
         """
-        Create a GrampletView, with the current dbstate and uistate
+        Create a DashboardView, with the current dbstate and uistate
         """
         PageView.__init__(self, _('Dashboard'), pdata, dbstate, uistate)
         self.ui_def = '''<ui>
