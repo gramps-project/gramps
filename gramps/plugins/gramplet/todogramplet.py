@@ -30,9 +30,9 @@ from gramps.gen.db import DbTxn
 from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
 
-class TODOGramplet(Gramplet):
+class ToDoGramplet(Gramplet):
     """
-    Displays all the ToDo notes in the database.
+    Displays all the To Do notes in the database.
     """
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -48,14 +48,19 @@ class TODOGramplet(Gramplet):
         
         hbox = Gtk.HBox()
         self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
+        self.left.set_tooltip_text(_('Previous To Do note'))
         self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False, 0)
         self.right = SimpleButton(Gtk.STOCK_GO_FORWARD, self.right_clicked)
+        self.right.set_tooltip_text(_('Next To Do note'))
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
         self.edit = SimpleButton(Gtk.STOCK_EDIT, self.edit_clicked)
+        self.edit.set_tooltip_text(_('Edit the selected To Do note'))
+        self.edit.set_sensitive(False)
         hbox.pack_start(self.edit, False, False, 0)
         self.new = SimpleButton(Gtk.STOCK_NEW, self.new_clicked)
+        self.new.set_tooltip_text(_('Add a new To Do note'))
         hbox.pack_start(self.new, False, False, 0)
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
@@ -83,7 +88,7 @@ class TODOGramplet(Gramplet):
 
     def get_note_list(self):
         """
-        Get a list of all ToDo notes.
+        Get a list of all To Do notes.
         """
         all_notes = self.dbstate.db.get_note_handles()
         FilterClass = GenericFilterFactory('Note')
@@ -94,16 +99,18 @@ class TODOGramplet(Gramplet):
 
     def get_notes(self):
         """
-        Display all the ToDo notes.
+        Display all the To Do notes.
         """
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.note_list = self.get_note_list()
         self.page.set_text('')
         self.title.set_text('')
         if len(self.note_list) > 0:
             self.set_has_data(True)
+            self.edit.set_sensitive(True)
             if len(self.note_list) > 1:
                 self.right.set_sensitive(True)
             self.current = 0
@@ -114,6 +121,7 @@ class TODOGramplet(Gramplet):
     def clear_text(self):
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.page.set_text('')
         self.title.set_text('')
@@ -130,7 +138,7 @@ class TODOGramplet(Gramplet):
             name, obj = navigation_label(self.dbstate.db, obj[0][0], obj[0][1])
             self.title.set_text(name)
         else:
-            self.title.set_text("Unattached")
+            self.title.set_text(_("Unattached"))
         self.texteditor.set_text(note.get_styledtext())
         self.page.set_text(_('%(current)d of %(total)d') % 
                                     {'current': self.current + 1,
@@ -168,7 +176,7 @@ class TODOGramplet(Gramplet):
 
     def edit_clicked(self, obj):
         """
-        Edit current ToDo note.
+        Edit current To Do note.
         """
         from gramps.gui.editors import EditNote
         note_handle = self.note_list[self.current]
@@ -180,7 +188,7 @@ class TODOGramplet(Gramplet):
 
     def new_clicked(self, obj):
         """
-        Create a new ToDo note.
+        Create a new To Do note.
         """
         from gramps.gui.editors import EditNote
         note = Note()

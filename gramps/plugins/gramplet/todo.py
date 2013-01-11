@@ -29,7 +29,7 @@ from gi.repository import Gtk
 
 class ToDo(Gramplet):
     """
-    Displays the ToDo notes for an object.
+    Displays the To Do notes for an object.
     """
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -45,14 +45,19 @@ class ToDo(Gramplet):
         
         hbox = Gtk.HBox()
         self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
+        self.left.set_tooltip_text(_('Previous To Do note'))
         self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False, 0)
         self.right = SimpleButton(Gtk.STOCK_GO_FORWARD, self.right_clicked)
+        self.right.set_tooltip_text(_('Next To Do note'))
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
         self.edit = SimpleButton(Gtk.STOCK_EDIT, self.edit_clicked)
+        self.edit.set_tooltip_text(_('Edit the selected To Do note'))
+        self.edit.set_sensitive(False)
         hbox.pack_start(self.edit, False, False, 0)
         self.new = SimpleButton(Gtk.STOCK_NEW, self.new_clicked)
+        self.new.set_tooltip_text(_('Add a new To Do note'))
         hbox.pack_start(self.new, False, False, 0)
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
@@ -72,7 +77,7 @@ class ToDo(Gramplet):
 
     def get_note_list(self, obj):
         """
-        Get a list of ToDo notes for the current object.
+        Get a list of To Do notes for the current object.
         """
         note_list = []
         for note_handle in obj.get_note_list():
@@ -83,16 +88,18 @@ class ToDo(Gramplet):
 
     def get_notes(self, obj):
         """
-        Display the ToDo notes for the current object.
+        Display the To Do notes for the current object.
         """
         self.obj = obj
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.note_list = self.get_note_list(obj)
         self.page.set_text('')
         if len(self.note_list) > 0:
             self.set_has_data(True)
+            self.edit.set_sensitive(True)
             if len(self.note_list) > 1:
                 self.right.set_sensitive(True)
             self.current = 0
@@ -103,6 +110,7 @@ class ToDo(Gramplet):
     def clear_text(self):
         self.left.set_sensitive(False)
         self.right.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.texteditor.set_text(StyledText())
         self.page.set_text('')
         self.current = 0
@@ -152,7 +160,7 @@ class ToDo(Gramplet):
 
     def edit_clicked(self, obj):
         """
-        Edit current ToDo note.
+        Edit current To Do note.
         """
         from gramps.gui.editors import EditNote
         note_handle = self.note_list[self.current]
@@ -164,7 +172,7 @@ class ToDo(Gramplet):
 
     def new_clicked(self, obj):
         """
-        Create a new ToDo note.
+        Create a new To Do note.
         """
         from gramps.gui.editors import EditNote
         note = Note()
@@ -176,7 +184,7 @@ class ToDo(Gramplet):
 
 class PersonToDo(ToDo):
     """
-    Displays the ToDo notes for a person.
+    Displays the To Do notes for a person.
     """
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
@@ -205,7 +213,7 @@ class PersonToDo(ToDo):
 
 class EventToDo(ToDo):
     """
-    Displays the ToDo notes for an event.
+    Displays the To Do notes for an event.
     """
     def db_changed(self):
         self.dbstate.db.connect('event-update', self.update)
@@ -232,7 +240,7 @@ class EventToDo(ToDo):
 
 class FamilyToDo(ToDo):
     """
-    Displays the ToDo notes for a family.
+    Displays the To Do notes for a family.
     """
     def db_changed(self):
         self.dbstate.db.connect('family-update', self.update)
@@ -259,7 +267,7 @@ class FamilyToDo(ToDo):
 
 class PlaceToDo(ToDo):
     """
-    Displays the ToDo notes for a place.
+    Displays the To Do notes for a place.
     """
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
@@ -286,7 +294,7 @@ class PlaceToDo(ToDo):
 
 class SourceToDo(ToDo):
     """
-    Displays the ToDo notes for a source.
+    Displays the To Do notes for a source.
     """
     def db_changed(self):
         self.dbstate.db.connect('source-update', self.update)
@@ -313,7 +321,7 @@ class SourceToDo(ToDo):
 
 class CitationToDo(ToDo):
     """
-    Displays the ToDo notes for a Citation.
+    Displays the To Do notes for a Citation.
     """
     def db_changed(self):
         self.dbstate.db.connect('citation-update', self.update)
@@ -340,7 +348,7 @@ class CitationToDo(ToDo):
 
 class RepositoryToDo(ToDo):
     """
-    Displays the ToDo notes for a repository.
+    Displays the To Do notes for a repository.
     """
     def db_changed(self):
         self.dbstate.db.connect('repository-update', self.update)
@@ -367,7 +375,7 @@ class RepositoryToDo(ToDo):
 
 class MediaToDo(ToDo):
     """
-    Displays the ToDo notes for a media object.
+    Displays the To Do notes for a media object.
     """
     def db_changed(self):
         self.dbstate.db.connect('media-update', self.update)
