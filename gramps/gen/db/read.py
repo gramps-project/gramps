@@ -127,7 +127,10 @@ def __index_surname(surn_list):
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
         surn = ""
-    return surn.encode('utf-8')
+    if sys.version_info[0] < 3:
+        return surn.encode('utf-8')
+    else:
+        return surn
     
 
 #-------------------------------------------------------------------------
