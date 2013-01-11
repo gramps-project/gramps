@@ -74,7 +74,7 @@ from ..lib.researcher import Researcher
 from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_surname_name, DbUndoBSDDB as DbUndo)
+                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
 from .dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
@@ -718,7 +718,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
 
             assoc = [
-                (self.person_map, self.surnames,  find_surname),
+                (self.person_map, self.surnames,  find_byte_surname),
                 (self.person_map, self.id_trans,  find_idmap),
                 (self.family_map, self.fid_trans, find_idmap),
                 (self.event_map,  self.eid_trans, find_idmap),

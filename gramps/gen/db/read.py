@@ -102,6 +102,17 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 # Helper functions
 #
 #-------------------------------------------------------------------------  
+def find_byte_surname(key, data):
+    """
+    Creating a surname from raw data of a person, to use for sort and index
+    returns a byte string
+    """
+    surn = __index_surname(data[3][5])
+    # in python 3 we work with unicode internally, but need byte function sometimes
+    if isinstance(surn, UNITYPE):
+        return surn.encode('utf-8')
+    return surn
+
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
