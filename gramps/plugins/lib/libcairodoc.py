@@ -30,13 +30,12 @@
 """Report output generator based on Cairo.
 """
 
-from __future__ import division
+from __future__ import division, print_function
 #------------------------------------------------------------------------
 #
 # Python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
 
 from gramps.gen.ggettext import gettext as _
 from math import radians
@@ -47,6 +46,7 @@ import re
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.constfunc import conv_to_unicode, UNITYPE
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
@@ -502,7 +502,10 @@ class GtkDocParagraph(GtkDocBaseElement):
         """
         Internal method to allow for splitting of paragraphs
         """
-        self._plaintext = plaintext
+        if not isinstance(plaintext, UNITYPE):
+            self._plaintext = conv_to_unicode(plaintext, 'utf-8')
+        else:
+            self._plaintext = plaintext
         
     def __set_attrlist(self, attrlist):
         """
