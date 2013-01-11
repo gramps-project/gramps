@@ -345,7 +345,7 @@ class CheckIntegrity(object):
                     logging.warning('    FAIL: encoding error on media object '
                                     '"%(gid)s" path "%(path)s"' %
                                     {'gid' : obj.gramps_id, 'path' : obj.path})
-                if not isinstance(data[2], UNITYPE):
+                if not isinstance(data[4], UNITYPE):
                     logging.warning('    FAIL: encoding error on media object ' 
                                     '"%(gid)s" description "%(desc)s"' %
                                     {'gid' : obj.gramps_id, 'desc' : obj.desc})
