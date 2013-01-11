@@ -59,7 +59,7 @@ UICATEGORY = '''<ui>
 '''
 
 CATEGORY_ICON = {
-    'Gramplets': 'gramps-gramplet',
+    'Dashboard': 'gramps-gramplet',
     'People': 'gramps-person',
     'Relationships': 'gramps-relation',
     'Families': 'gramps-family',
