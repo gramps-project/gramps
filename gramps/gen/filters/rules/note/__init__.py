@@ -36,6 +36,7 @@ from ._matchesfilter import MatchesFilter
 from ._hasnote import HasNote
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
+from ._hastype import HasType
 
 editor_rule_list = [
     AllNotes,
@@ -49,4 +50,5 @@ editor_rule_list = [
     MatchesFilter,
     ChangedSince,
     HasTag,
+    HasType,
 ]
