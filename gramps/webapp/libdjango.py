@@ -35,6 +35,7 @@ if sys.version_info[0] < 3:
 else:
     import pickle
 import base64
+import collections
 
 #------------------------------------------------------------------------
 #
@@ -52,7 +53,7 @@ from django.db import transaction
 import gramps.webapp.grampsdb.models as models
 from gramps.gen.lib import Name
 from gramps.gen.utils.id import create_id
-import collections
+from gramps.gen.utils.file import fix_encoding
 
 # To get a django person from a django database:
 #    djperson = dji.Person.get(handle='djhgsdh324hjg234hj24')
@@ -432,9 +433,9 @@ class DjangoInterface(object):
         date = self.get_date(media)
         return (str(media.handle), 
                 media.gramps_id, 
-                media.path, 
-                media.mime, 
-                media.desc,
+                fix_encoding(media.path), 
+                str(media.mime), 
+                fix_encoding(media.desc),
                 attribute_list,
                 citation_list,
                 note_list,
