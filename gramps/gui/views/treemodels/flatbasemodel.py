@@ -252,6 +252,8 @@ class FlatNodeMap(object):
         :param type: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
         index = self._hndl2index.get(handle)
         if index is None:
             return None

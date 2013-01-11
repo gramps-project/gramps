@@ -848,6 +848,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Get the node for a handle.
         """
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
         return self.handle2node.get(handle)
 
     def handle2path(self, handle):
