@@ -86,7 +86,9 @@ class PdfDoc(libcairodoc.CairoDoc):
         top_margin = self.paper.get_top_margin() * DPI / 2.54
 
         # create cairo context and pango layout
-        filename = self._backend.filename.encode(sys.getfilesystemencoding())
+        filename = self._backend.filename
+        if sys.version_info[0] < 3:
+            filename = filename.encode(sys.getfilesystemencoding())
         try:
             surface = cairo.PDFSurface(filename, paper_width, paper_height)
         except IOError as msg:

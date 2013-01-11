@@ -239,12 +239,12 @@ def show_settings():
     try:
         from gi.repository import GObject
         try:
-            gobjectver_str = '%d.%d.%d' % GObject.pygobject_version
+            pygobjectver_str = '%d.%d.%d' % GObject.pygobject_version
         except :# any failure to 'get' the version
-            gobjectver_str = 'unknown version'
+            pygobjectver_str = 'unknown version'
 
     except ImportError:
-        gobjectver_str = 'not found'
+        pygobjectver_str = 'not found'
 
     try:
         from gi.repository import Pango
@@ -350,7 +350,7 @@ def show_settings():
     print (' python    : %s' % py_str)
     print (' gramps    : %s' % gramps_str)
     print (' gtk++     : %s' % gtkver_str)
-    print (' gobject   : %s' % gobjectver_str)
+    print (' pygobject : %s' % pygobjectver_str)
     print (' pango     : %s' % pangover_str)
     if usebsddb3:
         print (' Using bsddb3')
