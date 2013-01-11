@@ -69,6 +69,7 @@ class NoteType(GrampsType):
     REPORT_TEXT = 23    # this is used for notes used for reports
     # indicate a note is html code
     HTML_CODE  = 24
+    TODO = 25
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -84,6 +85,7 @@ class NoteType(GrampsType):
         (CITATION,    _('Citation'),    "Citation"),
         (REPORT_TEXT, _("Report"),      "Report"),
         (HTML_CODE,   _("Html code"),   "Html code"),
+        (TODO,        _("To Do"),       "To Do"),
         ]
         
     _DATAMAPIGNORE = [
