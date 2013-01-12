@@ -24,7 +24,7 @@ to your language:
 The following packages are *STRONGLY RECOMMENDED* to be installed:
    osmgpsmap        Used to show maps in the geography view. 
                     Without this the GeoView will not be active, see
-                    http://gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual_-_Main_Window#Geography_Category
+                    http://gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Main_Window#Geography_Category
                     The package is named osmgpsmap, osm-gps-map
                     or python-osmgpsmap. Or obtain it from: http://nzjrs.github.com/osm-gps-map/
    GraphViz         Enable creation of graphs using GraphViz engine.
@@ -38,6 +38,11 @@ The following packages are optional
    gtkspell         Enable spell checking in the notes. Gtkspell depends on 
                     enchant. A version of gtkspell with gobject introspection
                     is needed, so minimally version 3.0.0
+
+   rcs              The GNU Revision Control System (RCS) can be used to manage
+                    multiple revisions of your family trees. See info at
+                    http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
+                    Only rcs is needed, NO python bindings are required
 
    PIL              Python Image Library is needed to convert non jpg images to
                     jpg so as to include them in LaTeX output
