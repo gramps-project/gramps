@@ -594,9 +594,17 @@ class DetachedWindow(ManagedWindow):
         self.notebook = Gtk.Notebook()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
+        self.notebook.connect('page-added', self.page_added)
         self.notebook.show()
         self.window.vbox.pack_start(self.notebook, True, True, 0)
         self.show()
+
+    def page_added(self, notebook, gramplet, page_num):
+        """
+        Called when the gramplet is added to the notebook.  This takes the
+        focus from the help button (bug #6306).
+        """
+        gramplet.grab_focus()
 
     def handle_response(self, object, response):
         """
