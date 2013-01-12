@@ -176,6 +176,7 @@ class PlaceBaseView(ListView):
         """
         tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
         tb.remove(self.maptoolbtn)
+        ListView.set_inactive(self)
         
     def change_page(self):
         """
