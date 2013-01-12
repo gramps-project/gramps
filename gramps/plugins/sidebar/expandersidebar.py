@@ -21,7 +21,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id: categorysidebar.py 20634 2012-11-07 17:53:14Z bmcage $
 
 #-------------------------------------------------------------------------
 #
@@ -37,40 +37,26 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
-from gramps.gui.viewmanager import get_available_views, views_to_show
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# ExpanderSidebar class
 #
 #-------------------------------------------------------------------------
-UICATEGORY = '''<ui>
-<toolbar name="ToolBar">
-  <placeholder name="ViewsInCategory">%s
-  </placeholder>
-</toolbar>
-</ui>
-'''
-
-#-------------------------------------------------------------------------
-#
-# CategorySidebar class
-#
-#-------------------------------------------------------------------------
-class CategorySidebar(BaseSidebar):
+class ExpanderSidebar(BaseSidebar):
     """
-    A sidebar displaying a column of toggle buttons that allows the user to
-    change the current view.
+    A sidebar displaying toggle buttons and buttons with drop-down menus that 
+    allows the user to change the current view.
     """
     def __init__(self, dbstate, uistate, categories, views):
 
         self.viewmanager = uistate.viewmanager
+        self.views = views
 
+        self.expanders = []
         self.buttons = []
         self.button_handlers = []
-
-        self.ui_category = {}
-        self.merge_ids = []
+        self.lookup = {}
 
         self.window = Gtk.ScrolledWindow()
         vbox = Gtk.VBox()
@@ -81,22 +67,32 @@ class CategorySidebar(BaseSidebar):
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_name, cat_icon in categories:
 
-            # create the button and add it to the sidebar
-            button = self.__make_sidebar_button(use_text, cat_num,
-                                                cat_name, cat_icon)
-            vbox.pack_start(button, False, True, 0)
+            expander = Gtk.Expander()
+            self.expanders.append(expander)
+
+            catbox = Gtk.HBox()
+            image = Gtk.Image()
+            image.set_from_stock(cat_icon, Gtk.IconSize.BUTTON)
+            catbox.pack_start(image, False, False, 4)
+            if use_text:
+                label = Gtk.Label(label=cat_name)
+                catbox.pack_start(label, False, True, 4)
+            catbox.set_tooltip_text(cat_name)
+            expander.set_label_widget(catbox)
+
+            viewbox = Gtk.VBox()
+            for view_num, view_name, view_icon in views[cat_num]:
+                # create the button and add it to the sidebar
+                button = self.__make_sidebar_button(use_text, cat_num, view_num,
+                                                    view_name, view_icon)
+
+                viewbox.pack_start(button, False, False, 0)
+            expander.add(viewbox)
+            vbox.pack_start(expander, False, True, 0)
             
             # Enable view switching during DnD
-            button.drag_dest_set(0, [], 0)
-            button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
-
-            # toollbar buttons for switching views in a category
-            uitoolitems = ''
-            for view_num, view_name, view_icon in views[cat_num]:
-                pageid = 'page_%i_%i' % (cat_num, view_num)
-                uitoolitems += '\n<toolitem action="%s"/>' % pageid
-            if len(views[cat_num]) > 1:
-                self.ui_category[cat_num] = UICATEGORY % uitoolitems
+            #catbox.drag_dest_set(0, [], 0)
+            #catbox.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
 
         vbox.show_all()
 
@@ -110,17 +106,15 @@ class CategorySidebar(BaseSidebar):
         """
         Called when the active view is changed.
         """
-        # Add buttons to the toolbar for the different view in the category
-        uimanager = self.viewmanager.uimanager
-        list(map(uimanager.remove_ui, self.merge_ids))
-        if cat_num in self.ui_category:
-            mergeid = uimanager.add_ui_from_string(self.ui_category[cat_num])
-            self.merge_ids.append(mergeid)
-
+        if cat_num is None:
+            return
+        # Expand category
+        self.expanders[cat_num].set_expanded(True)
         # Set new button as selected
+        button_num = self.lookup[(cat_num, view_num)]
         self.__handlers_block()
         for index, button in enumerate(self.buttons):
-            if index == cat_num:
+            if index == button_num:
                 button.set_active(True)
             else:
                 button.set_active(False)
@@ -149,29 +143,44 @@ class CategorySidebar(BaseSidebar):
 
     def __category_clicked(self, button, cat_num):
         """
-        Called when a button causes a category change.
+        Called when a category button is clicked.
         """
         # Make the button inactive.  It will be set to active in the
         # view_changed method if the change was successful.
         button.set_active(False)
         self.viewmanager.goto_page(cat_num, None)
 
-    def __make_sidebar_button(self, use_text, index, page_title, page_stock):
+    def __view_clicked(self, button, cat_num, view_num):
+        """
+        Called when a view button is clicked.
+        """
+        self.viewmanager.goto_page(cat_num, view_num)
+
+    def cb_menu_clicked(self, menuitem, cat_num, view_num):
+        """
+        Called when a view is selected from a drop-down menu.
+        """
+        self.viewmanager.goto_page(cat_num, view_num)
+
+    def __make_sidebar_button(self, use_text, cat_num, view_num, view_name, view_icon):
         """
         Create the sidebar button. The page_title is the text associated with
         the button.
         """
+        top = Gtk.HBox()
+        
         # create the button
         button = Gtk.ToggleButton()
         button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_alignment(0, 0.5)
         self.buttons.append(button)
+        self.lookup[(cat_num, view_num)] = len(self.buttons) - 1
 
         # add the tooltip
-        button.set_tooltip_text(page_title)
+        button.set_tooltip_text(view_name)
 
         # connect the signal, along with the index as user data
-        handler_id = button.connect('clicked', self.__category_clicked, index)
+        handler_id = button.connect('clicked', self.__view_clicked, cat_num, view_num)
         self.button_handlers.append(handler_id)
         button.show()
 
@@ -181,21 +190,24 @@ class CategorySidebar(BaseSidebar):
         hbox.show()
         image = Gtk.Image()
         if use_text:
-            image.set_from_stock(page_stock, Gtk.IconSize.BUTTON)
+            image.set_from_stock(view_icon, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(page_stock, Gtk.IconSize.DND)
+            image.set_from_stock(view_icon, Gtk.IconSize.DND)
         image.show()
         hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)
 
         # add text if requested
         if use_text:
-            label = Gtk.Label(label=page_title)
+            label = Gtk.Label(label=view_name)
             label.show()
             hbox.pack_start(label, False, True, 0)
             
         button.add(hbox)
-        return button
+        
+        top.pack_start(button, False, True, 0)
+       
+        return top
 
     def cb_switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
         """
@@ -206,9 +218,12 @@ class CategorySidebar(BaseSidebar):
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
 
-    def inactive(self):
-        """
-        Called when the sidebar is hidden.
-        """
-        uimanager = self.viewmanager.uimanager
-        list(map(uimanager.remove_ui, self.merge_ids))
+def cb_menu_position(menu, button):
+    """
+    Determine the position of the popup menu.
+    """
+    ret_val, x_pos, y_pos = button.get_window().get_origin()
+    x_pos += button.get_allocation().x
+    y_pos += button.get_allocation().y + button.get_allocation().height
+    
+    return (x_pos, y_pos, False)

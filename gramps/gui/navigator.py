@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id: navigator.py 20492 2012-10-02 21:08:19Z nick-h $
 
 """
 A module that provides pluggable sidebars.  These provide an interface to
@@ -29,6 +29,7 @@ manage pages in the main Gramps window.
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -36,6 +37,38 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.plug import (START, END)
+from .pluginmanager import GuiPluginManager
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+UICATEGORY = '''<ui>
+<menubar name="MenuBar">
+  <menu action="ViewMenu">
+    <placeholder name="ViewsInCategory">%s
+    </placeholder>
+  </menu>
+</menubar>
+</ui>
+'''
+
+CATEGORY_ICON = {
+    'Dashboard': 'gramps-gramplet',
+    'People': 'gramps-person',
+    'Relationships': 'gramps-relation',
+    'Families': 'gramps-family',
+    'Events': 'gramps-event',
+    'Ancestry': 'gramps-pedigree',
+    'Places': 'gramps-place',
+    'Geography': 'gramps-geo',
+    'Sources': 'gramps-source',
+    'Repositories': 'gramps-repository',
+    'Media': 'gramps-media',
+    'Notes': 'gramps-notes',
+    'Citations': 'gramps-citation',
+}
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +83,14 @@ class Navigator(object):
 
         self.viewmanager = viewmanager
         self.pages = []
+        self.active_cat = None
+        self.active_view = None
+
+        self.ui_category = {}
+        self.view_toggle_actions = {}
+        self.cat_view_group = None
+        self.merge_ids = []
+
         self.top = Gtk.VBox()
         
         frame = Gtk.Frame()
@@ -92,6 +133,59 @@ class Navigator(object):
         self.top.show()
         self.top.pack_start(self.notebook, True, True, 0)
         
+    def load_plugins(self, dbstate, uistate):
+        """
+        Load the sidebar plugins.
+        """
+        plugman = GuiPluginManager.get_instance()
+
+        categories = []
+        views = {}
+        for cat_num, cat_views in enumerate(self.viewmanager.get_views()):
+            uimenuitems = ''
+            self.view_toggle_actions[cat_num] = []
+            for view_num, page in enumerate(cat_views):
+
+                if view_num == 0:
+                    views[cat_num] = []
+                    cat_name = page[0].category[1]
+                    cat_icon = CATEGORY_ICON.get(page[0].category[0])
+                    if cat_icon is None:
+                        cat_icon = 'gramps-view'
+                    categories.append([cat_num, cat_name, cat_icon])
+
+                pageid = 'page_%i_%i' % (cat_num, view_num)
+                uimenuitems += '\n<menuitem action="%s"/>' % pageid
+                # id, stock, button text, UI, tooltip, page
+                if view_num < 9:
+                    modifier = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
+                else:
+                    modifier = ""
+
+                stock_icon = page[0].stock_icon
+                if stock_icon is None:
+                    stock_icon = cat_icon
+                self.view_toggle_actions[cat_num].append((pageid, 
+                            stock_icon,
+                            page[0].name, modifier, page[0].name, view_num))
+
+                views[cat_num].append((view_num, page[0].name, stock_icon))
+
+            if len(cat_views) > 1:
+                #allow for switching views in a category
+                self.ui_category[cat_num] = UICATEGORY % uimenuitems
+
+        for pdata in plugman.get_reg_sidebars():
+            module = plugman.load_plugin(pdata)
+            if not module:
+                print("Error loading sidebar '%s': skipping content"
+                      % pdata.name)
+                continue
+
+            sidebar_class = getattr(module, pdata.sidebarclass)
+            sidebar_page = sidebar_class(dbstate, uistate, categories, views)
+            self.add(pdata.menu_label, sidebar_page, pdata.order)
+
     def get_top(self):
         """
         Return the top container widget for the GUI.
@@ -121,8 +215,37 @@ class Navigator(object):
         """
         Called when a Gramps view is changed.
         """
-        for page in self.pages:
-            page[1].view_changed(cat_num, view_num)
+        self.active_cat = cat_num
+        self.active_view = view_num
+
+        # Add buttons to the menu for the different view in the category
+        uimanager = self.viewmanager.uimanager
+        if self.cat_view_group:
+            if self.cat_view_group in uimanager.get_action_groups(): 
+                uimanager.remove_action_group(self.cat_view_group)
+                
+            list(map(uimanager.remove_ui, self.merge_ids))
+
+        if cat_num in self.ui_category:
+            self.cat_view_group = Gtk.ActionGroup('viewmenu')
+            self.cat_view_group.add_radio_actions(
+                    self.view_toggle_actions[cat_num], value=view_num,
+                    on_change=self.cb_view_clicked, user_data=cat_num)
+            self.cat_view_group.set_sensitive(True)
+            uimanager.insert_action_group(self.cat_view_group, 1)
+            mergeid = uimanager.add_ui_from_string(self.ui_category[cat_num])
+            self.merge_ids.append(mergeid)
+
+        # Call the view_changed method for the active sidebar
+        sidebar = self.pages[self.notebook.get_current_page()][1]
+        sidebar.view_changed(cat_num, view_num)
+
+    def cb_view_clicked(self, radioaction, current, cat_num):
+        """
+        Called when a view is selected from the menu.
+        """
+        view_num = radioaction.get_current_value()
+        self.viewmanager.goto_page(cat_num, view_num)
 
     def __menu_button_pressed(self, button, event):
         """
@@ -145,6 +268,11 @@ class Navigator(object):
         """
         Called when the user has switched to a new sidebar plugin page.
         """
+        old_page = notebook.get_current_page()
+        if old_page != -1:
+            self.pages[old_page][1].inactive()
+        self.pages[index][1].active(self.active_cat, self.active_view)
+        self.pages[index][1].view_changed(self.active_cat, self.active_view)
         if self.pages:
             self.title_label.set_text(self.pages[index][0])
 
@@ -164,9 +292,9 @@ def cb_menu_position(menu, button):
     """
     Determine the position of the popup menu.
     """
-    x_pos, y_pos = button.window.get_origin()
-    x_pos += button.allocation.x
-    y_pos += button.allocation.y + button.allocation.height
+    ret_val, x_pos, y_pos = button.get_window().get_origin()
+    x_pos += button.get_allocation().x
+    y_pos += button.get_allocation().y + button.get_allocation().height
     
     return (x_pos, y_pos, False)
 

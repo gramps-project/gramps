@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id: sidebar.gpr.py 20634 2012-11-07 17:53:14Z bmcage $
 
 #------------------------------------------------------------------------
 #
@@ -38,4 +38,34 @@ authors_email = ["nick__hall@hotmail.com"],
 sidebarclass = 'CategorySidebar',
 menu_label = _('Category'),
 order = START
+)
+
+register(SIDEBAR, 
+id    = 'dropdownsidebar',
+name  = _("Drop-down Sidebar"),
+description =  _("Selection of categories and views from drop-down lists"),
+version = '1.0',
+gramps_target_version = '4.1',
+status = STABLE,
+fname = 'dropdownsidebar.py',
+authors = ["Nick Hall"],
+authors_email = ["nick__hall@hotmail.com"],
+sidebarclass = 'DropdownSidebar',
+menu_label = _('Drop-Down'),
+order = END
+)
+
+register(SIDEBAR, 
+id    = 'expandersidebar',
+name  = _("Expander Sidebar"),
+description =  _("Selection of views from lists with expanders"),
+version = '1.0',
+gramps_target_version = '4.1',
+status = STABLE,
+fname = 'expandersidebar.py',
+authors = ["Nick Hall"],
+authors_email = ["nick__hall@hotmail.com"],
+sidebarclass = 'ExpanderSidebar',
+menu_label = _('Expander'),
+order = END
 )
