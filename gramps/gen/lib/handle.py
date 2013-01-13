@@ -20,7 +20,7 @@
 
 # $Id$
 
- from gramps.gen.constfunc import UNITYPE
+from gramps.gen.constfunc import UNITYPE
 
 class Handle:
     def __init__(self, classname, handle):
