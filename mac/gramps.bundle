@@ -131,11 +131,11 @@
 
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
-  <data>
+   <data>
     ${prefix}/share/glib-2.0/schemas
   </data>
 
-  <data recurse="True">
+ <data recurse="True">
     ${prefix}/lib/python2.7/*.py
   </data>
 
@@ -145,6 +145,10 @@
 
   <data>
     ${prefix}/include/python2.7/pyconfig.h
+  </data>
+
+  <data>
+    ${prefix}/lib/girepository-1.0/
   </data>
 
   <!--data>
