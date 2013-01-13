@@ -892,6 +892,7 @@ class BookDialog(DocReportDialog):
         self.doc = self.format(None, pstyle)
         user = User()
         self.rptlist = []
+        self.global_style = None
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
@@ -899,6 +900,13 @@ class BookDialog(DocReportDialog):
                                   item.option_class, user)
             style_sheet = create_style_sheet(item)
             self.rptlist.append((obj, style_sheet))
+            if ( item.name == 'table_of_contents' or
+                 item.name == 'alphabetical_index' ): # ugly hack: FIXME
+                if self.global_style is None:
+                    self.global_style = style_sheet
+                else:
+                    self.global_style = create_style_sheet(item,
+                                                           self.global_style)
         self.doc.open(self.target_path)
 
     def make_book(self):
@@ -915,6 +923,8 @@ class BookDialog(DocReportDialog):
             if rpt:
                 rpt.begin_report()
                 rpt.write_report()
+        if self.global_style:
+            self.doc.set_style_sheet(self.global_style)
         self.doc.close()
         
         if self.open_with_app.get_active():
