@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.4.0//EN"
-"http://gramps-project.org/xml/1.4.0/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.4.0/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.5.0//EN"
+"http://gramps-project.org/xml/1.5.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.5.0/">
   <header>
-    <created date="2011-10-11" version="3.4.0-0.SVN"/>
+    <created date="2013-01-13" version="4.1.0-r21095M"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -336,7 +336,7 @@
       <dateval val="1961-05-24"/>
       <place hlink="_LTNT6DKZ5CR8PZSVUS"/>
       <description>Birth of Edwin Michael Smith</description>
-      <sourceref hlink="_VTNT6DYLDJMSJSCJMU"/>
+      <citationref hlink="_c5a0f183598786f5e46249885bc"/>
     </event>
     <event handle="_a701e8fe7334aab749d" change="1198197326" id="E0056">
       <type>Occupation</type>
@@ -475,7 +475,7 @@
       <dateval val="1954-06-04"/>
       <place hlink="_S1NT6DPOBYC1JGMR1P"/>
       <description>Marriage of John Hjalmar Smith and Alice Paula Perkins</description>
-      <sourceref hlink="_H9OT6DH812QJAQS5A8"/>
+      <citationref hlink="_c5a0f18382a3fd46ae92f4d2792"/>
     </event>
     <event handle="_a701e8fee674aa12936" change="1198197326" id="E0080">
       <type>Marriage</type>
@@ -742,7 +742,7 @@
       <name type="Birth Name">
         <first>Edwin Michael</first>
         <surname>Smith</surname>
-        <sourceref hlink="_4TNT6DX8JM3BW08CUR"/>
+        <citationref hlink="_c5a0f183dde9ccfe90d5f68ab7"/>
       </name>
       <eventref hlink="_a701e8fe703747db89d" role="Primary"/>
       <eventref hlink="_a701e8fe7334aab749d" role="Primary">
@@ -1087,6 +1087,20 @@
       <eventref hlink="_a701e8ff0514bd46d08" role="Family"/>
     </family>
   </families>
+  <citations>
+    <citation handle="_c5a0f183598786f5e46249885bc" change="1358093983" id="C0000">
+      <confidence>2</confidence>
+      <sourceref hlink="_VTNT6DYLDJMSJSCJMU"/>
+    </citation>
+    <citation handle="_c5a0f18382a3fd46ae92f4d2792" change="1358093983" id="C0001">
+      <confidence>2</confidence>
+      <sourceref hlink="_H9OT6DH812QJAQS5A8"/>
+    </citation>
+    <citation handle="_c5a0f183dde9ccfe90d5f68ab7" change="1358093983" id="C0002">
+      <confidence>2</confidence>
+      <sourceref hlink="_4TNT6DX8JM3BW08CUR"/>
+    </citation>
+  </citations>
   <sources>
     <source handle="_4TNT6DX8JM3BW08CUR" change="1198197326" id="S0001">
       <stitle>Birth Certificate</stitle>
