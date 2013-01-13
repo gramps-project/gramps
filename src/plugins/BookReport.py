@@ -1228,6 +1228,7 @@ class BookReportDialog(DocReportDialog):
         self.doc = self.format(None, pstyle)
         user = gui.user.User()
         self.rptlist = []
+        self.global_style = None
         for item in self.book.get_item_list():
             style_sheet = create_style_sheet(item)
             item.option_class.set_document(self.doc)
@@ -1235,6 +1236,13 @@ class BookReportDialog(DocReportDialog):
             obj = write_book_item(self.database, report_class, 
                                   item.option_class, user)
             self.rptlist.append((obj, style_sheet))
+            if ( item.name == 'table_of_contents' or
+                 item.name == 'alphabetical_index' ): # ugly hack: FIXME
+                if self.global_style is None:
+                    self.global_style = style_sheet
+                else:
+                    self.global_style = create_style_sheet(item,
+                                                           self.global_style)
         self.doc.open(self.target_path)
 
     def make_report(self):
@@ -1251,6 +1259,8 @@ class BookReportDialog(DocReportDialog):
             if item:
                 item.begin_report()
                 item.write_report()
+        if self.global_style:
+            self.doc.set_style_sheet(self.global_style)
         self.doc.close()
         
         if self.open_with_app.get_active():
@@ -1291,6 +1301,7 @@ def cl_report(database, name, category, options_str_dict):
                                 clr.marginr, clr.margint, clr.marginb))
     user = cli.user.User()
     rptlist = []
+    global_style = None
     for item in book.get_item_list():
         style_sheet = create_style_sheet(item)
         
@@ -1308,6 +1319,12 @@ def cl_report(database, name, category, options_str_dict):
         obj = write_book_item(database,
                               report_class, item.option_class, user)
         rptlist.append((obj, style_sheet))
+        if ( item.name == 'table_of_contents' or
+             item.name == 'alphabetical_index' ): # ugly hack: FIXME
+            if global_style is None:
+                global_style = style_sheet
+            else:
+                global_style = create_style_sheet(item, global_style)
 
     doc.open(clr.option_class.get_output())
     doc.init()
@@ -1319,13 +1336,15 @@ def cl_report(database, name, category, options_str_dict):
         newpage = 1
         item.begin_report()
         item.write_report()
+    if global_style:
+        doc.set_style_sheet(global_style)
     doc.close()
 
-def create_style_sheet(item):
+def create_style_sheet(item, previous_style=None):
     """
-    Create a style sheet for a book item.
+    Create a style sheet for a book item, appending any previous_style.
     """
-    selected_style = StyleSheet()
+    selected_style = StyleSheet(previous_style)
 
     # Set up default style
     default_style = StyleSheet()
