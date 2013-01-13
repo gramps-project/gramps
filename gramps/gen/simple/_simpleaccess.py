@@ -28,7 +28,7 @@ Provide a simplified database access interface to the GRAMPS database.
 from __future__ import with_statement, unicode_literals
 
 from ..lib import (Person, Family, Event, Source, Place, Citation, 
-                   MediaObject, Repository, Note, Date)
+                   MediaObject, Repository, Note, Date, Tag)
 from ..datehandler import displayer
 from ..utils.string import gender as gender_map
 from ..utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -937,6 +937,9 @@ class SimpleAccess(object):
                     return "%s: %s [%s]" % (_(object_class), 
                                             obj.type, 
                                             self.gid(obj))
+                elif isinstance(obj, Tag):
+                    return "%s: [%s]" % (_(object_class), 
+                                         obj.name)
                 else:
                     return "Error: incorrect object class: '%s'" % type(obj)
             else:
@@ -944,40 +947,42 @@ class SimpleAccess(object):
         else:
             return "Error: invalid object class: '%s'" % object_class
 
-    def describe(self, obj):
+    def describe(self, obj, prop=None, value=None):
         """
         Given a object, return a string describing the object.  
         """
+        if prop and value:
+            obj = self.dbase.get_table_metadata(obj)[prop + "_func"](value)
         if isinstance(obj, Person):
-            return self.name(obj)
+            return "%s [%s]" % (self.name(obj), 
+                                self.gid(obj))
         elif isinstance(obj, Event):
-            return self.event_type(obj)
+            return "%s [%s]" % (self.event_type(obj),
+                                self.gid(obj))
         elif isinstance(obj, Family):
-            father = self.father(obj)
-            mother = self.mother(obj)
-            if father:
-                father_text = self.name(father)
-            else:
-                father_text = _("Unknown father")
-            if mother:
-                mother_text = self.name(mother)
-            else:
-                mother_text = _("Unknown mother")
-            return "%s and %s" % (mother_text, father_text)
+            return "%s/%s [%s]" % (self.name(self.mother(obj)), 
+                                   self.name(self.father(obj)), 
+                                   self.gid(obj))
         elif isinstance(obj, MediaObject):
-            return obj.desc
-        elif isinstance(obj, Citation):
-            return obj.gramps_id
+            return "%s [%s]" % (obj.desc, 
+                                self.gid(obj))
         elif isinstance(obj, Source):
-            return self.title(obj)
+            return "%s [%s]" % (self.title(obj), 
+                                self.gid(obj))
+        elif isinstance(obj, Citation):
+            return "[%s]" % (self.gid(obj))
         elif isinstance(obj, Place):
-            return place_name(self.dbase, obj.handle)
+            return "%s [%s]" % (place_name(self.dbase, 
+                                           obj.handle), 
+                                self.gid(obj))
         elif isinstance(obj, Repository):
-            return obj.gramps_id
+            return "%s [%s]" % (obj.type, 
+                                self.gid(obj))
         elif isinstance(obj, Note):
-            return obj.gramps_id
-        elif obj is None:
-            return ""
+            return "%s [%s]" % (obj.type, 
+                                self.gid(obj))
+        elif isinstance(obj, Tag):
+            return "[%s]" % (obj.name)
         else:
             return "Error: incorrect object class: '%s'" % type(obj)
 

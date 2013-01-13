@@ -30,6 +30,7 @@ Tag object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from .tableobj import TableObject
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -219,7 +220,7 @@ class Tag(TableObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle,
+        return {"handle": Handle("Tag", self.handle),
                 "name": self.__name,
                 "color": self.__color,
                 "priority": self.__priority,

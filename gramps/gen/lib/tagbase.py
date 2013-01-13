@@ -23,6 +23,9 @@
 """
 TagBase class for Gramps.
 """
+
+from .handle import Handle
+
 #-------------------------------------------------------------------------
 #
 # TagBase class
@@ -74,7 +77,7 @@ class TagBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: list
         """
-        return self.tag_list
+        return [Handle('Tag', t) for t in self.tag_list]
 
     def unserialize(self, data):
         """

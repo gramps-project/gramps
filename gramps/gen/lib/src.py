@@ -37,6 +37,7 @@ from .notebase import NoteBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +91,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Source", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "title": cuni(self.title),
                 "author": cuni(self.author), 

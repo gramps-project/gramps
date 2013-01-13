@@ -124,9 +124,12 @@ def importData(database, filename, user):
             change = time.time()
         else:
             change = os.path.getmtime(filename)
-        parser = GrampsParser(database, user, change,
-                              (config.get('preferences.tag-on-import-format') if 
-                               config.get('preferences.tag-on-import') else None))
+        if database.get_feature("skip-import-additions"): # don't add source or tags
+            parser = GrampsParser(database, user, change, None)
+        else:
+            parser = GrampsParser(database, user, change,
+                                  (config.get('preferences.tag-on-import-format') if 
+                                   config.get('preferences.tag-on-import') else None))
 
         if filename != '-':
             linecounter = LineParser(filename)

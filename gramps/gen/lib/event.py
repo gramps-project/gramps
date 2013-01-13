@@ -47,6 +47,7 @@ from .attrbase import AttributeBase
 from .datebase import DateBase
 from .placebase import PlaceBase
 from .eventtype import EventType
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -137,12 +138,12 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Event", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "type": self.__type.to_struct(),
                 "date": DateBase.to_struct(self),
                 "description": self.__description, 
-                "place": self.place, 
+                "place": Handle("Place", self.place), 
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self),

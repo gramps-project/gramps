@@ -38,6 +38,7 @@ from .notebase import NoteBase
 from .mediabase import MediaBase
 from .urlbase import UrlBase
 from .location import Location
+from .handle import Handle
 
 _EMPTY_LOC = Location().serialize()
 
@@ -135,7 +136,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         else:
             main_loc = self.main_loc.to_struct()
 
-        return {"handle": self.handle, 
+        return {"handle": Handle("Place", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "title": self.title, 
                 "long": self.long, 

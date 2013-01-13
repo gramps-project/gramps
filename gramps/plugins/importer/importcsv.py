@@ -146,8 +146,11 @@ def rd(line_number, row, col, key, default = None):
 
 def importData(dbase, filename, user):
     """Function called by Gramps to import data on persons in CSV format."""
-    parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if 
-                                     config.get('preferences.tag-on-import') else None))
+    if dbase.get_feature("skip-import-additions"): # don't add source or tags
+        parser = CSVParser(dbase, user, None)
+    else:
+        parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if 
+                                         config.get('preferences.tag-on-import') else None))
     try:
         with OpenFileOrStdin(filename, 'b') as filehandle:
             parser.parse(filehandle)

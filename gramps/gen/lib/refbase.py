@@ -24,6 +24,8 @@
 Base Reference class for GRAMPS.
 """
 
+from .handle import Handle
+
 #-------------------------------------------------------------------------
 #
 # RefBase class
@@ -68,7 +70,7 @@ class RefBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: str
         """
-        return self.ref
+        return [Handle(*t) for t in self.get_referenced_handles()]
 
     def unserialize(self, data):
         """
