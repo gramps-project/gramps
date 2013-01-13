@@ -14,7 +14,7 @@
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
   <repository type="svn" name="gramps"
-	      href="https://gramps.svn.sourceforge.net/svnroot/"/>
+	      href="http://svn.code.sf.net/p/gramps/code/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
   <repository type="tarball" name="oracle"
@@ -63,7 +63,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
   <distutils id="gramps-svn" >
-    <branch module="code" repo="gramps"/>
+    <branch module="trunk" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
       <dep package="librsvg"/>
@@ -164,9 +164,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </after>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo --with-included-ltdl=yes">
+  <autotools id="graphviz" autogen-sh="configure"
+	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
+      <dep package='pango'/>
       <dep package="meta-gtk-osx-freetype"/>
       <dep package="librsvg"/>
     </dependencies>
