@@ -23,7 +23,6 @@
 """
 This package implements an object difference engine.
 """
-from __future__ import print_function
 
 import os
 
@@ -32,12 +31,14 @@ from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
 from ..db.dictionary import DictionaryDb
+from gramps.gen.lib.handle import Handle
 
-def import_as_dict(filename):
+def import_as_dict(filename, user=None):
     """
     Import the filename into a DictionaryDb and return it.
     """
-    user = User()
+    if user is None:
+        user = User()
     db = DictionaryDb()
     dbstate = DbState()
     climanager = CLIManager(dbstate, False) # do not load db_loader
@@ -54,9 +55,9 @@ def import_as_dict(filename):
                     name, error_tuple, pdata = item
                     # (filename, (exception-type, exception, traceback), pdata)
                     etype, exception, traceback = error_tuple
-                    print("ERROR:", name, exception)
+                    #print("ERROR:", name, exception)
                 return False
-            retval = import_function = getattr(mod, pdata.import_function)
+            import_function = getattr(mod, pdata.import_function)
             import_function(db, filename, user)
             return db
     return None
@@ -65,8 +66,8 @@ def diff_dates(json1, json2):
     """
     Compare two json date objects. Returns True if different.
     """
-    if json1 == json2:
-        return False
+    if json1 == json2: # if same, then Not Different
+        return False   # else, they still might be Not Different
     elif isinstance(json1, dict) and isinstance(json2, dict):
         if json1["dateval"] == json2["dateval"] and json2["dateval"] != 0:
             return False
@@ -83,43 +84,43 @@ def diff_items(path, json1, json2):
     """
     if json1 == json2:
         return False
+    elif isinstance(json1, Handle) and isinstance(json2, Handle):
+        return not (json1.classname == json2.classname and
+                    json1.handle == json2.handle)
+    elif isinstance(json1, list) and isinstance(json2, list):
+        if len(json1) != len(json2):
+            return True
+        else:
+            pos = 0
+            for v1, v2 in zip(json1, json2):
+                result = diff_items(path + ("[%d]" % pos), v1, v2)
+                if result:
+                    return True
+                pos += 1
+            return False
     elif isinstance(json1, dict) and isinstance(json2, dict):
-        retval = False
         for key in json1.keys():
             if key == "change":
                 continue # don't care about time differences, only data changes
             elif key == "date":
                 result = diff_dates(json1["date"], json2["date"])
                 if result:
-                    retval = result
+                    #print("different dates", path)
+                    #print("   old:", json1["date"])
+                    #print("   new:", json2["date"])
+                    return True
             else:
-                value1 = json1[key]
-                value2 = json2[key]
-                if isinstance(value1, dict) and isinstance(value2, dict):
-                    result = diff_items(path + "." + key, value1, value2)
-                    if result:
-                        retval = True
-                elif isinstance(value1, list) and isinstance(value2, list):
-                    pos = 0
-                    for v1, v2 in zip(value1, value2):
-                        result = diff_items(path + "." + key + ("[%d]" % pos), 
-                                            v1, v2)
-                        if result:
-                            retval = True
-                        pos += 1
-                elif value1 != value2:
-                    print("different parts", path + "." + key)
-                    print("   old:", value1)
-                    print("   new:", value2)
-                    retval = True
-        return retval 
+                result = diff_items(path + "." + key, json1[key], json2[key])
+                if result:
+                    return True
+        return False
     else:
-        print("different values", path)
-        print("   old:", json1)
-        print("   new:", json2)
+        #print("different values", path)
+        #print("   old:", json1)
+        #print("   new:", json2)
         return True
 
-def diff_dbs(db1, db2):
+def diff_dbs(db1, db2, user=None):
     """
     1. new objects => mark for insert 
     2. deleted objects, no change locally after delete date => mark
@@ -129,11 +130,16 @@ def diff_dbs(db1, db2):
     4. updated objects => do a diff on differences, mark origin
        values as new data
     """
+    if user is None:
+        user = User()
     missing_from_old = []
     missing_from_new = []
     diffs = []
+    user.begin_progress(_('Family Tree Differences'), 
+                        _('Searching...'), 10)
     for item in ['Person', 'Family', 'Source', 'Citation', 'Event', 'Media',
                  'Place', 'Repository', 'Note', 'Tag']:
+        user.step_progress()
         handles1 = sorted(db1._tables[item]["handles_func"]())
         handles2 = sorted(db2._tables[item]["handles_func"]())
         p1 = 0
@@ -164,12 +170,15 @@ def diff_dbs(db1, db2):
             item2 = db2._tables[item]["handle_func"](handles2[p2])
             missing_from_old += [(item, item2)]
             p2 += 1
+    user.end_progress()
     return diffs, missing_from_old, missing_from_new 
 
-def diff_db_to_file(old_db, filename):
+def diff_db_to_file(old_db, filename, user=None):
+    if user is None:
+        user = User()
     # First, get data as a DictionaryDb
-    new_db = import_as_dict(filename)
+    new_db = import_as_dict(filename, user, user)
     # Next get differences:
-    diffs, m_old, m_new = diff_dbs(old_db, new_db)
+    diffs, m_old, m_new = diff_dbs(old_db, new_db, user)
     return diffs, m_old, m_new
     

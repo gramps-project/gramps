@@ -44,6 +44,7 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .datebase import DateBase
 from ..constfunc import cuni
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -112,12 +113,12 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle,                           #  0
+        return {"handle": Handle("Citation", self.handle),       #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
                 "page": cuni(self.page),                         #  3
                 "confidence": self.confidence,                   #  4
-                "source_handle": self.source_handle,             #  5
+                "source_handle": Handle("Source", self.source_handle), #  5
                 "note_list": NoteBase.to_struct(self),           #  6
                 "media_list": MediaBase.to_struct(self),         #  7
                 "datamap": self.datamap,                         #  8

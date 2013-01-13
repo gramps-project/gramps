@@ -37,6 +37,7 @@ from .addressbase import AddressBase
 from .urlbase import UrlBase
 from .repotype import RepositoryType
 from ..constfunc import cuni
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -88,7 +89,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Repository", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "type": self.type.to_struct(),
                 "name": cuni(self.name),

@@ -52,6 +52,7 @@ from .tagbase import TagBase
 from .childref import ChildRef
 from .familyreltype import FamilyRelType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -148,10 +149,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Family", self.handle), 
                 "gramps_id": self.gramps_id, 
-                "father_handle": self.father_handle,
-                "mother_handle": self.mother_handle,
+                "father_handle": Handle("Person", self.father_handle),
+                "mother_handle": Handle("Person", self.mother_handle),
                 "child_ref_list": [cr.to_struct() for cr in self.child_ref_list],
                 "type": self.type.to_struct(),
                 "event_ref_list": [er.to_struct() for er in self.event_ref_list],

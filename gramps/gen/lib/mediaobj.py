@@ -52,6 +52,7 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .attrbase import AttributeBase
 from .tagbase import TagBase
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -140,7 +141,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Media", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "path": self.path, 
                 "mime": self.mime, 
