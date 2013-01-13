@@ -147,7 +147,7 @@
     ${prefix}/include/python2.7/pyconfig.h
   </data>
 
-   <data>
+  <data>
     ${prefix}/lib/girepository-1.0/
   </data>
 
