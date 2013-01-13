@@ -273,8 +273,7 @@ class Navigator(object):
             self.pages[old_page][1].inactive()
         self.pages[index][1].active(self.active_cat, self.active_view)
         self.pages[index][1].view_changed(self.active_cat, self.active_view)
-        if self.pages:
-            self.title_label.set_text(self.pages[index][0])
+        self.title_label.set_text(self.pages[index][0])
 
     def cb_close_clicked(self, button):
         """

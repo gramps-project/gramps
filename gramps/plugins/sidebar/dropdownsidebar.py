@@ -57,24 +57,16 @@ class DropdownSidebar(BaseSidebar):
         self.button_handlers = []
 
         self.window = Gtk.ScrolledWindow()
-        vbox = Gtk.VBox()
-        self.window.add_with_viewport(vbox)
+        grid = Gtk.Grid()
+        self.window.add_with_viewport(grid)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
         
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_name, cat_icon in categories:
+            self.__make_category(grid, use_text, cat_num, cat_name, cat_icon)
 
-            # create the button and add it to the sidebar
-            button = self.__make_sidebar_button(use_text, cat_num,
-                                                cat_name, cat_icon)
-            vbox.pack_start(button, False, True, 0)
-            
-            # Enable view switching during DnD
-            button.drag_dest_set(0, [], 0)
-            button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
-
-        vbox.show_all()
+        grid.show_all()
 
     def get_top(self):
         """
@@ -146,31 +138,32 @@ class DropdownSidebar(BaseSidebar):
         """
         self.viewmanager.goto_page(cat_num, view_num)
 
-    def __make_sidebar_button(self, use_text, index, page_title, page_stock):
+    def __make_category(self, grid, use_text, cat_num, cat_name, cat_icon):
         """
-        Create the sidebar button. The page_title is the text associated with
-        the button.
+        Create a row in the sidebar for a category.
         """
-        top = Gtk.HBox()
-        
         # create the button
         button = Gtk.ToggleButton()
         button.set_relief(Gtk.ReliefStyle.NONE)
         button.set_alignment(0, 0.5)
         self.buttons.append(button)
 
-        button2 = Gtk.Button()
-        button2.set_relief(Gtk.ReliefStyle.NONE)
-        button2.set_alignment(0.5, 0.5)
-        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
-        button2.add(arrow)
-        button2.connect('clicked', self.__view_clicked, index)
-        
-        # add the tooltip
-        button.set_tooltip_text(page_title)
+        # create the drop-down button to display views
+        if len(self.views[cat_num]) > 1:
+            dropdown = Gtk.Button()
+            dropdown.set_relief(Gtk.ReliefStyle.NONE)
+            dropdown.set_alignment(0.5, 0.5)
+            arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+            dropdown.add(arrow)
+            dropdown.connect('clicked', self.__view_clicked, cat_num)
+            dropdown.set_tooltip_text(_('Click to select a view'))
+            grid.attach(dropdown, 1, cat_num, 1, 1)
 
-        # connect the signal, along with the index as user data
-        handler_id = button.connect('clicked', self.__category_clicked, index)
+        # add the tooltip
+        button.set_tooltip_text(cat_name)
+
+        # connect the signal, along with the cat_num as user data
+        handler_id = button.connect('clicked', self.__category_clicked, cat_num)
         self.button_handlers.append(handler_id)
         button.show()
 
@@ -180,25 +173,26 @@ class DropdownSidebar(BaseSidebar):
         hbox.show()
         image = Gtk.Image()
         if use_text:
-            image.set_from_stock(page_stock, Gtk.IconSize.BUTTON)
+            image.set_from_stock(cat_icon, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(page_stock, Gtk.IconSize.DND)
+            image.set_from_stock(cat_icon, Gtk.IconSize.DND)
         image.show()
         hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)
 
         # add text if requested
         if use_text:
-            label = Gtk.Label(label=page_title)
+            label = Gtk.Label(label=cat_name)
             label.show()
             hbox.pack_start(label, False, True, 0)
-            
+
         button.add(hbox)
-        
-        top.pack_start(button, False, True, 0)
-        top.pack_start(button2, False, True, 0)
-       
-        return top
+            
+        # Enable view switching during DnD
+        button.drag_dest_set(0, [], 0)
+        button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
+
+        grid.attach(button, 0, cat_num, 1, 1)        
 
     def cb_switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
         """

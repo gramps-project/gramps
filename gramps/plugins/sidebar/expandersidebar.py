@@ -106,10 +106,9 @@ class ExpanderSidebar(BaseSidebar):
         """
         Called when the active view is changed.
         """
-        if cat_num is None:
-            return
         # Expand category
-        self.expanders[cat_num].set_expanded(True)
+        if cat_num is not None:
+            self.expanders[cat_num].set_expanded(True)
         # Set new button as selected
         button_num = self.lookup[(cat_num, view_num)]
         self.__handlers_block()
