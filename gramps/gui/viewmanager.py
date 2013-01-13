@@ -685,21 +685,6 @@ class ViewManager(CLIManager):
         # But we need to realize it here to have Gdk.window handy
         self.window.realize()
 
-    def __load_sidebar_plugins(self):
-        """
-        Load the sidebar plugins.
-        """
-        for pdata in self._pmgr.get_reg_sidebars():
-            module = self._pmgr.load_plugin(pdata)
-            if not module:
-                print("Error loading sidebar '%s': skipping content"
-                      % pdata.name)
-                continue
-
-            sidebar_class = getattr(module, pdata.sidebarclass)
-            sidebar_page = sidebar_class(self.dbstate, self.uistate)
-            self.navigator.add(pdata.menu_label, sidebar_page, pdata.order)
-
     def __setup_statusbar(self):
         """
         Create the statusbar that sits at the bottom of the window
@@ -957,7 +942,7 @@ class ViewManager(CLIManager):
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
 
-        self.__load_sidebar_plugins()
+        self.navigator.load_plugins(self.dbstate, self.uistate)
 
         self.goto_page(defaults[0], defaults[1])
 

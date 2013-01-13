@@ -45,34 +45,12 @@ from gramps.gui.viewmanager import get_available_views, views_to_show
 #
 #-------------------------------------------------------------------------
 UICATEGORY = '''<ui>
-<menubar name="MenuBar">
-  <menu action="ViewMenu">
-    <placeholder name="ViewsInCategory">%s
-    </placeholder>
-  </menu>
-</menubar>
 <toolbar name="ToolBar">
   <placeholder name="ViewsInCategory">%s
   </placeholder>
 </toolbar>
 </ui>
 '''
-
-CATEGORY_ICON = {
-    'Dashboard': 'gramps-gramplet',
-    'People': 'gramps-person',
-    'Relationships': 'gramps-relation',
-    'Families': 'gramps-family',
-    'Events': 'gramps-event',
-    'Ancestry': 'gramps-pedigree',
-    'Places': 'gramps-place',
-    'Geography': 'gramps-geo',
-    'Sources': 'gramps-source',
-    'Repositories': 'gramps-repository',
-    'Media': 'gramps-media',
-    'Notes': 'gramps-notes',
-    'Citations': 'gramps-citation',
-}
 
 #-------------------------------------------------------------------------
 #
@@ -84,7 +62,7 @@ class CategorySidebar(BaseSidebar):
     A sidebar displaying a column of toggle buttons that allows the user to
     change the current view.
     """
-    def __init__(self, dbstate, uistate):
+    def __init__(self, dbstate, uistate, categories, views):
 
         self.viewmanager = uistate.viewmanager
 
@@ -92,8 +70,6 @@ class CategorySidebar(BaseSidebar):
         self.button_handlers = []
 
         self.ui_category = {}
-        self.view_toggle_actions = {}
-        self.cat_view_group = None
         self.merge_ids = []
 
         self.window = Gtk.ScrolledWindow()
@@ -103,49 +79,26 @@ class CategorySidebar(BaseSidebar):
         self.window.show()
         
         use_text = config.get('interface.sidebar-text')
-        for cat_num, cat_views in enumerate(self.viewmanager.get_views()):
-            uimenuitems = ''
+        for cat_num, cat_name, cat_icon in categories:
+
+            # create the button and add it to the sidebar
+            button = self.__make_sidebar_button(use_text, cat_num,
+                                                cat_name, cat_icon)
+            vbox.pack_start(button, False, True, 0)
+            
+            # Enable view switching during DnD
+            button.drag_dest_set(0, [], 0)
+            button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
+
+            # toollbar buttons for switching views in a category
             uitoolitems = ''
-            self.view_toggle_actions[cat_num] = []
-            for view_num, page in enumerate(cat_views):
-
-                if view_num == 0:
-                    category = page[0].category[1]
-                    cat_icon = CATEGORY_ICON.get(page[0].category[0])
-                    if cat_icon is None:
-                        cat_icon = 'gramps-view'
-
-                    # create the button and add it to the sidebar
-                    button = self.__make_sidebar_button(use_text, cat_num,
-                                                        category, cat_icon)
-                    vbox.pack_start(button, False, True, 0)
-                    
-                    # Enable view switching during DnD
-                    button.drag_dest_set(0, [], 0)
-                    button.connect('drag_motion', self.cb_switch_page_on_dnd,
-                                   cat_num)
-                    vbox.show_all()
-
-                pageid = (page[0].id + '_%i' % view_num)
-                uimenuitems += '\n<menuitem action="%s"/>' % pageid
+            for view_num, view_name, view_icon in views[cat_num]:
+                pageid = 'page_%i_%i' % (cat_num, view_num)
                 uitoolitems += '\n<toolitem action="%s"/>' % pageid
-                # id, stock, button text, UI, tooltip, page
-                if view_num < 9:
-                    modifier = "<PRIMARY><ALT>%d" % ((view_num % 9) + 1)
-                else:
-                    modifier = ""
+            if len(views[cat_num]) > 1:
+                self.ui_category[cat_num] = UICATEGORY % uitoolitems
 
-                stock_icon = page[0].stock_icon
-                if stock_icon is None:
-                    stock_icon = cat_icon
-                self.view_toggle_actions[cat_num].append((pageid, 
-                            stock_icon,
-                            page[0].name, modifier, page[0].name, view_num))
-
-            if len(cat_views) > 1:
-                #allow for switching views in a category
-                self.ui_category[cat_num] = UICATEGORY % (uimenuitems,
-                                                        uitoolitems)
+        vbox.show_all()
 
     def get_top(self):
         """
@@ -159,19 +112,8 @@ class CategorySidebar(BaseSidebar):
         """
         # Add buttons to the toolbar for the different view in the category
         uimanager = self.viewmanager.uimanager
-        if self.cat_view_group:
-            if self.cat_view_group in uimanager.get_action_groups(): 
-                uimanager.remove_action_group(self.cat_view_group)
-                
-            list(map(uimanager.remove_ui, self.merge_ids))
-
+        list(map(uimanager.remove_ui, self.merge_ids))
         if cat_num in self.ui_category:
-            self.cat_view_group = Gtk.ActionGroup('categoryviews')
-            self.cat_view_group.add_radio_actions(
-                    self.view_toggle_actions[cat_num], value=view_num,
-                    on_change=self.cb_view_clicked, user_data=cat_num)
-            self.cat_view_group.set_sensitive(True)
-            uimanager.insert_action_group(self.cat_view_group, 1)
             mergeid = uimanager.add_ui_from_string(self.ui_category[cat_num])
             self.merge_ids.append(mergeid)
 
@@ -263,3 +205,10 @@ class CategorySidebar(BaseSidebar):
         if self.viewmanager.notebook.get_current_page() != page_no:
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
+
+    def inactive(self):
+        """
+        Called when the sidebar is hidden.
+        """
+        uimanager = self.viewmanager.uimanager
+        list(map(uimanager.remove_ui, self.merge_ids))

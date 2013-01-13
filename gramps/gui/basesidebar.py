@@ -42,3 +42,15 @@ class BaseSidebar(object):
         Called when the active view is changed.
         """
         raise NotImplementedError
+
+    def active(self, cat_num, view_num):
+        """
+        Called when the sidebar is made visible.
+        """
+        pass
+
+    def inactive(self):
+        """
+        Called when the sidebar is hidden.
+        """
+        pass
