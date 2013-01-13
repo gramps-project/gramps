@@ -726,6 +726,7 @@ def cl_book(database, name, book, options_str_dict):
                                 clr.marginr, clr.margint, clr.marginb))
     user = User()
     rptlist = []
+    global_style = None
     for item in book.get_item_list():
 
         # The option values were loaded magically by the book parser.
@@ -743,6 +744,12 @@ def cl_book(database, name, book, options_str_dict):
                               report_class, item.option_class, user)
         style_sheet = create_style_sheet(item)
         rptlist.append((obj, style_sheet))
+        if ( item.name == 'table_of_contents' or
+             item.name == 'alphabetical_index' ): # ugly hack: FIXME
+            if global_style is None:
+                global_style = style_sheet
+            else:
+                global_style = create_style_sheet(item, global_style)
 
     doc.open(clr.option_class.get_output())
     doc.init()
@@ -754,6 +761,8 @@ def cl_book(database, name, book, options_str_dict):
         newpage = 1
         rpt.begin_report()
         rpt.write_report()
+    if global_style:
+        doc.set_style_sheet(global_style)
     doc.close()
 
 #------------------------------------------------------------------------
