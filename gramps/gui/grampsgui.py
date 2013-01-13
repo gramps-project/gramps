@@ -39,16 +39,47 @@ LOG = logging.getLogger(".grampsgui")
 # Miscellaneous initialization
 #
 #-------------------------------------------------------------------------
+
+MIN_PYGOBJECT_VERSION = (3, 3, 2)
+PYGOBJ_ERR = False
+
 try:
+    #import gnome introspection, part of pygobject
     import gi
+    giversion = gi.version_info
+except:
+    PYGOBJ_ERR = True
+
+if not PYGOBJ_ERR:
+    try:
+        from gi.repository import GObject
+        if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
+            PYGOBJ_ERR = True
+    except:
+        PYGOBJ_ERR = True
+
+if PYGOBJ_ERR:
+    print((_("Your pygobject version does not meet the "
+             "requirements. At least pygobject "
+             "%(major)d.%(feature)d.%(minor)d is needed to"
+             " start Gramps with a GUI.\n\n"
+             "Gramps will terminate now.") % 
+            {'major':MIN_PYGOBJECT_VERSION[0], 
+            'feature':MIN_PYGOBJECT_VERSION[1],
+            'minor':MIN_PYGOBJECT_VERSION[2]}))
+    sys.exit(0)
+
+try:
     gi.require_version('Gtk', '3.0')
     #It is important to import Pango before Gtk, or some things start to go
     #wrong in GTK3 !
     from gi.repository import Pango
     from gi.repository import Gtk, Gdk
 except (ImportError, ValueError):
-    print((_("Gtk typelib not installed. Install Gnome Introspection, and "
-             "pygobject version 3.3.2 or later.\n\n"
+    print((_("Gdk, Gtk or Pango typelib not installed.\n"
+             "Install Gnome Introspection, and "
+             "pygobject version 3.3.2 or later.\n"
+             "Install then instrospection data for Gdk, Gtk and Pango\n\n"
              "Gramps will terminate now.")))
     sys.exit(0)
 
@@ -58,24 +89,6 @@ except ImportError:
     print((_("\ncairo python support not installed. Install cairo for your "
              "version of python\n\n"
              "Gramps will terminate now.")))
-    sys.exit(0)
-#-------------------------------------------------------------------------
-#
-# Miscellaneous initialization
-#
-#-------------------------------------------------------------------------
-from gi.repository import GObject
-
-MIN_PYGOBJECT_VERSION = (3, 3, 2)
-if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
-    print((_("Your pygobject version does not meet the "
-             "requirements. At least pygobject "
-             "%(major)d.%(feature)d.%(minor)d is needed to"
-             " start Gramps with a GUI.\n\n"
-             "Gramps will terminate now.") % 
-            {'major':MIN_PYGOBJECT_VERSION[0], 
-            'feature':MIN_PYGOBJECT_VERSION[1],
-            'minor':MIN_PYGOBJECT_VERSION[2]}))
     sys.exit(0)
 
 #-------------------------------------------------------------------------
