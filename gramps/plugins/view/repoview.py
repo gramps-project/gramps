@@ -77,7 +77,10 @@ class RepositoryView(ListView):
     COL_ZIP = 9
     COL_EMAIL = 10
     COL_SURL = 11
-    COL_CHAN = 12
+    COL_PRIV = 12
+    COL_CHAN = 13
+
+    PIXBUF_COLS = [COL_PRIV]
 
     COLUMN_NAMES = [
         _('Name'),
@@ -92,6 +95,7 @@ class RepositoryView(ListView):
         _('ZIP/Postal Code'),
         _('Email'),
         _('Search URL'),
+        _('Private'),
         _('Last Changed'),
         ]
     # default setting with visible columns, order of the col, and their size
@@ -100,9 +104,9 @@ class RepositoryView(ListView):
                              ]),
         ('columns.rank', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                           COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
-                          COL_ZIP, COL_EMAIL, COL_SURL, COL_CHAN]),
+                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_CHAN]),
         ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
-                             100, 100, 100, 100])
+                             100, 100, 100, 50, 100])
         )    
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
@@ -127,7 +131,8 @@ class RepositoryView(ListView):
             dbstate.db.get_repo_bookmarks(),
             RepoBookmarks, nav_group,
             multiple=True,
-            filter_class=RepoSidebarFilter)
+            filter_class=RepoSidebarFilter, 
+            pixbuf=RepositoryView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

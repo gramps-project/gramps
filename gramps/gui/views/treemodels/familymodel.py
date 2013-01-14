@@ -68,6 +68,7 @@ class FamilyModel(FlatBaseModel):
             self.column_mother, 
             self.column_type, 
             self.column_marriage, 
+            self.column_private,
             self.column_tags,
             self.column_change, 
             self.column_handle, 
@@ -80,6 +81,7 @@ class FamilyModel(FlatBaseModel):
             self.sort_mother, 
             self.column_type, 
             self.sort_marriage, 
+            self.column_private,
             self.column_tags,
             self.sort_change, 
             self.column_handle, 
@@ -104,7 +106,7 @@ class FamilyModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 8
+        return 9
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
@@ -166,6 +168,13 @@ class FamilyModel(FlatBaseModel):
 
     def column_id(self, data):
         return cuni(data[1])
+
+    def column_private(self, data):
+        if data[14]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def sort_change(self, data):
         return "%012x" % data[12]

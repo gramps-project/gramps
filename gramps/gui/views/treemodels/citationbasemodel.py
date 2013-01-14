@@ -59,6 +59,7 @@ COLUMN_PAGE        = 3
 COLUMN_CONFIDENCE  = 4
 COLUMN_SOURCE      = 5
 COLUMN_CHANGE      = 9
+COLUMN_PRIV        = 10
 
 # Data for the Source object
 COLUMN2_HANDLE     = 0
@@ -68,6 +69,7 @@ COLUMN2_AUTHOR     = 3
 COLUMN2_PUBINFO    = 4
 COLUMN2_ABBREV     = 7
 COLUMN2_CHANGE     = 8
+COLUMN2_PRIV       = 11
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -112,6 +114,13 @@ class CitationBaseModel(object):
 
     def citation_confidence(self, data):
         return cuni(confidence[data[COLUMN_CONFIDENCE]])
+
+    def citation_private(self, data):
+        if data[COLUMN_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def citation_handle(self, data):
         return cuni(data[COLUMN_HANDLE])
@@ -165,6 +174,18 @@ class CitationBaseModel(object):
         except:
             return ''
 
+    def citation_src_private(self, data):
+        source_handle = data[COLUMN_SOURCE]
+        try:
+            source = self.db.get_source_from_handle(source_handle)
+            if source.get_privacy():
+                return 'gramps-lock'
+            else:
+                # There is a problem returning None here.
+                return ''
+        except:
+            return ''
+
     def citation_src_chan(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
@@ -195,6 +216,13 @@ class CitationBaseModel(object):
 
     def source_src_pinfo(self, data):
         return cuni(data[COLUMN2_PUBINFO])
+
+    def source_src_private(self, data):
+        if data[COLUMN2_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def source_src_chan(self, data):
         return format_time(data[COLUMN2_CHANGE])

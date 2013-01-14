@@ -76,7 +76,7 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 14
+    HANDLE_COL = 15
 
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
@@ -94,6 +94,7 @@ class PlaceBaseModel(object):
             self.column_parish,
             self.column_latitude,
             self.column_longitude,
+            self.column_private,
             self.column_change,
             self.column_place_name,
             self.column_handle,
@@ -112,6 +113,7 @@ class PlaceBaseModel(object):
             self.column_parish,
             self.sort_latitude,
             self.sort_longitude,
+            self.column_private,
             self.sort_change,
             self.column_place_name,
             self.column_handle,
@@ -219,6 +221,13 @@ class PlaceBaseModel(object):
         except:
             return ''
 
+    def column_private(self, data):
+        if data[12]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+    
     def sort_change(self, data):
         return "%012x" % data[11]
     

@@ -78,6 +78,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_id,      # COL_ID         (both Source & Citation)
             None,                    # COL_DATE       (not for Source)
             None,                    # COL_CONFIDENCE (not for Source)
+            self.source_src_private, # COL_PRIV       (both Source & Citation)
             self.source_src_chan,    # COL_CHAN       (both Source & Citation)
             self.source_src_auth,    # COL_SRC_AUTH   (Source only)
             self.source_src_abbr,    # COL_SRC_ABBR   (Source only)
@@ -90,6 +91,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_id,
             self.dummy_sort_key,
             self.dummy_sort_key,
+            self.source_src_private,
             self.source_sort2_change,
             self.source_src_auth,
             self.source_src_abbr,
@@ -134,6 +136,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.citation_id,
             self.citation_date,
             self.citation_confidence,
+            self.citation_private,
             self.citation_change,
             None,
             None,
@@ -146,6 +149,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.citation_id,
             self.citation_sort_date,
             self.citation_confidence,
+            self.citation_private,
             self.citation_sort_change,
             self.dummy_sort_key,
             self.dummy_sort_key,

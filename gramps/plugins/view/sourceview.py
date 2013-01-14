@@ -74,7 +74,11 @@ class SourceView(ListView):
     COL_AUTH = 2
     COL_ABBR = 3
     COL_PINFO = 4
-    COL_CHAN = 5
+    COL_PRIV = 5
+    COL_CHAN = 6
+    
+    PIXBUF_COLS = [COL_PRIV]
+    
     # name of the columns
     COLUMN_NAMES = [
         _('Title'),
@@ -82,14 +86,15 @@ class SourceView(ListView):
         _('Author'),
         _('Abbreviation'),
         _('Publication Information'),
+        _('Private'),
         _('Last Changed'),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
-                           COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 100])
+                          COL_PRIV, COL_CHAN]),
+        ('columns.size', [200, 75, 150, 100, 150, 50, 100])
         )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
@@ -114,7 +119,8 @@ class SourceView(ListView):
             dbstate.db.get_source_bookmarks(),
             SourceBookmarks, nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter)
+            filter_class=SourceSidebarFilter, 
+            pixbuf=SourceView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

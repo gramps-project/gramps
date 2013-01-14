@@ -88,7 +88,8 @@ class PlaceBaseView(ListView):
     COL_PARISH = 9
     COL_LAT = 10
     COL_LON = 11
-    COL_CHAN = 12
+    COL_PRIV = 12
+    COL_CHAN = 13
     # name of the columns
     COLUMN_NAMES = [
         _('Place Name'),
@@ -103,19 +104,21 @@ class PlaceBaseView(ListView):
         _('Church Parish'),
         _('Latitude'),
         _('Longitude'),
+        _('Private'),
         _('Last Changed'),
         ]
     # columns that contain markup
     MARKUP_COLS = [COL_NAME]
+    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY,
                              COL_CITY, COL_COUNTY, COL_STATE]),
         ('columns.rank', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
-                           COL_PARISH, COL_LAT, COL_LON, COL_CHAN]),
+                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_CHAN]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 100])
+                             100, 150, 150, 50, 100])
         )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -124,8 +127,7 @@ class PlaceBaseView(ListView):
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 
-    def __init__(self, pdata, dbstate, uistate, title, model, nav_group,
-                 markup=None):
+    def __init__(self, pdata, dbstate, uistate, title, model, nav_group):
 
         signal_map = {
             'place-add'     : self.row_add,
@@ -139,12 +141,14 @@ class PlaceBaseView(ListView):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            self.COLUMN_NAMES, 14, 
+            self.COLUMN_NAMES, 15, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
             PlaceBookmarks, nav_group,
             multiple=True,
-            filter_class=PlaceSidebarFilter, markup=markup)
+            filter_class=PlaceSidebarFilter, 
+            markup=PlaceBaseView.MARKUP_COLS,
+            pixbuf=PlaceBaseView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
@@ -161,6 +165,11 @@ class PlaceBaseView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
+        self._add_toolmenu_action('MapsList', _('Loading...'),
+                        _("Attempt to see selected locations with a Map "
+                                "Service (OpenstreetMap, Google Maps, ...)"),
+                        self.gotomap,
+                        _('Select a Map Service'))
         self._add_action('GotoMap', Gtk.STOCK_JUMP_TO, 
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
@@ -352,6 +361,7 @@ class PlaceBaseView(ListView):
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
               <separator/>
+              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">

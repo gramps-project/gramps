@@ -65,6 +65,7 @@ class MediaModel(FlatBaseModel):
             self.column_mime,
             self.column_path,
             self.column_date,
+            self.column_private,
             self.column_tags,
             self.column_change,
             self.column_handle,
@@ -78,13 +79,14 @@ class MediaModel(FlatBaseModel):
             self.column_mime,
             self.column_path,
             self.sort_date,
+            self.column_private,
             self.column_tags,
             self.sort_change,
             self.column_handle,
             self.column_tag_color,
             self.column_tooltip
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=10,
                            search=search, skip=skip, sort_map=sort_map)
 
     def destroy(self):
@@ -102,7 +104,7 @@ class MediaModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 8
+        return 9
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
@@ -155,6 +157,13 @@ class MediaModel(FlatBaseModel):
 
     def column_handle(self,data):
         return cuni(data[0])
+
+    def column_private(self, data):
+        if data[11]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def sort_change(self,data):
         return "%012x" % data[8]

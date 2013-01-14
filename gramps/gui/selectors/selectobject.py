@@ -67,7 +67,7 @@ class SelectObject(BaseSelector):
         return self.db.get_object_from_handle
         
     def get_handle_column(self):
-        return 7
+        return 8
 
     def get_column_titles(self):
         return [
