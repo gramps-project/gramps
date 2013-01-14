@@ -41,10 +41,13 @@ def get_svn_revision(path=""):
     # subprocess worked
     if stdout: # has output
         stdout = cuni(stdout) # get a proper string
-        if " " in stdout: # one of svnversion's non-version responses:
+        if (" " in stdout) or (stdout == "exported"): 
+            # one of svnversion's 1.7 non-version responses:
             # 'Unversioned directory'
             # 'Unversioned file'
             # 'Uncommitted local addition, copy or move'
+            # svnversion's 1.6 non-version response:
+            # 'exported'
             return ""
         else:
             return "-r" + stdout
