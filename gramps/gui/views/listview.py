@@ -1071,18 +1071,22 @@ class ListView(NavigationView):
         if node is None:
             return
         while node is not None:
-            new_level = level + [self.model.do_get_value(node, 0)]
+            iternode = self.model.get_iter(node)
+            new_level = level + [self.model.do_get_value(iternode, 0)]
             if self.model.get_handle(node):
                 ofile.start_row()
                 padded_level = new_level + [''] * (depth - len(new_level))
                 list(map(ofile.write_cell, padded_level))
                 for index in data_cols:
-                    ofile.write_cell(self.model.do_get_value(node, index))
+                    ofile.write_cell(self.model.do_get_value(iternode, index))
                 ofile.end_row()
 
-            has_child, first_child = self.model.do_iter_children(node)
-            self.write_node(first_child, depth, new_level, ofile, data_cols)
-            has_next = self.model.do_iter_next(node)
+            has_child, first_child = self.model.do_iter_children(iternode)
+            if has_child:
+                self.write_node(self.model.get_node_from_iter(first_child),
+                                depth, new_level, ofile, data_cols)
+            has_next = self.model.do_iter_next(iternode)
+            node = self.model.get_node_from_iter(iternode)
             if not has_next:
                 node = None
 
