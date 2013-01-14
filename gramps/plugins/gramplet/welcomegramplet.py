@@ -128,9 +128,9 @@ class WelcomeGramplet(Gramplet):
         '"Family Trees" from the menu, pick "Manage Family Trees", press '
         '"New" and name your family tree. For more details, please read the '
         'information at the links above\n\n')
-        welcome += boldst(_('Gramplet View')) + '\n\n' + _(
-        'You are currently reading from the "Gramplets" page, where you can'
-        ' add your own gramplets. You can also add Gramplets to any view by'
+        welcome += boldst(_('Dashboard View')) + '\n\n' + _(
+        'You are currently reading from the "Dashboard" view, where you can'
+        ' add your own gramplets. You can also add gramplets to any view by'
         ' adding a sidebar and/or bottombar, and right-clicking to the right'
         ' of the tab.\n\n'
         'You can click the configuration icon in the toolbar to add additional'
