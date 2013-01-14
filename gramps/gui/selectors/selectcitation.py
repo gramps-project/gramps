@@ -74,4 +74,4 @@ class SelectCitation(BaseSelector):
         return self.db.get_citation_from_handle
         
     def get_handle_column(self):
-        return 8
+        return 9

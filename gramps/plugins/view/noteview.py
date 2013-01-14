@@ -71,21 +71,26 @@ class NoteView(ListView):
     COL_PREVIEW = 0
     COL_ID = 1
     COL_TYPE = 2
-    COL_TAGS = 3
-    COL_CHAN = 4
+    COL_PRIV = 3
+    COL_TAGS = 4
+    COL_CHAN = 5
     
+    PIXBUF_COLS = [COL_PRIV]
+
     COLUMN_NAMES = [
         _('Preview'),
         _('ID'),
         _('Type'),
+        _('Private'),
         _('Tags'),
         _('Last Changed')
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
-        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [350, 75, 100, 100, 100]))
+        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS, 
+                          COL_CHAN]),
+        ('columns.size', [350, 75, 100, 50, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
@@ -110,7 +115,8 @@ class NoteView(ListView):
             dbstate.db.get_note_bookmarks(),
             NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
-            multiple=True)
+            multiple=True,
+            pixbuf=NoteView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

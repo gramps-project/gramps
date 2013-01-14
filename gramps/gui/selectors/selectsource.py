@@ -66,4 +66,4 @@ class SelectSource(BaseSelector):
         return self.db.get_source_from_handle
         
     def get_handle_column(self):
-        return 6
+        return 7

@@ -74,8 +74,9 @@ class EventView(ListView):
     COL_TYPE = 2
     COL_DATE = 3
     COL_PLACE = 4
-    COL_CHAN = 5
-    COL_PARTIC = 6
+    COL_PRIV = 5
+    COL_CHAN = 6
+    COL_PARTIC = 7
     # name of the columns
     COLUMN_NAMES = [
         _('Description'),
@@ -83,17 +84,19 @@ class EventView(ListView):
         _('Type'),
         _('Date'),
         _('Place'),
+        _('Private'),
         _('Last Changed'),
         _('Main Participants'),
         ]
     # columns that contain markup
     MARKUP_COLS = [COL_DATE]
+    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
         ('columns.rank', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
-                           COL_PLACE, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 230, 150, 200, 100])
+                           COL_PLACE, COL_PRIV, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 230, 150, 200, 50, 100])
         )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
@@ -121,7 +124,8 @@ class EventView(ListView):
             EventBookmarks, nav_group,
             multiple=True,
             filter_class=EventSidebarFilter,
-            markup = EventView.MARKUP_COLS)
+            markup = EventView.MARKUP_COLS, 
+            pixbuf = EventView.PIXBUF_COLS)
             
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

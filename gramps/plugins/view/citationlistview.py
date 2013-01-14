@@ -79,42 +79,49 @@ class CitationListView(ListView):
     sources as separate list entries).
     """
     # The data items here have to correspond, in order, to the items in
-    # src/giu.views/treemodels/citationlismodel.py
+    # src/giu/views/treemodels/citationlismodel.py
     COL_TITLE_PAGE     =  0
     COL_ID             =  1
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
-    COL_CHAN           =  4    
-    COL_SRC_TITLE      =  5
-    COL_SRC_ID         =  6
-    COL_SRC_AUTH       =  7
-    COL_SRC_ABBR       =  8
-    COL_SRC_PINFO      =  9
-    COL_SRC_CHAN       = 10
+    COL_PRIV           =  4    
+    COL_CHAN           =  5    
+    COL_SRC_TITLE      =  6
+    COL_SRC_ID         =  7
+    COL_SRC_AUTH       =  8
+    COL_SRC_ABBR       =  9
+    COL_SRC_PINFO      = 10
+    COL_SRC_PRIV       = 11
+    COL_SRC_CHAN       = 12
     # name of the columns
     COLUMN_NAMES = [
         _('Volume/Page'),
         _('ID'),
         _('Date'),
         _('Confidence'),
+        _('Private'),
         _('Last Changed'),
         _('Source: Title'),
         _('Source: ID'),
         _('Source: Author'),
         _('Source: Abbreviation'),
         _('Source: Publication Information'),
+        _('Source: Private'),
         _('Source: Last Changed'),
         ]
     # columns that contain markup
     MARKUP_COLS = [COL_DATE]
+    PIXBUF_COLS = [COL_PRIV, COL_SRC_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
                              COL_CONFIDENCE]),
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, COL_SRC_AUTH,
-                          COL_SRC_ABBR, COL_SRC_PINFO, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 100, 200, 75, 75, 100, 150, 100])
+                          COL_PRIV, COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, 
+                          COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
+                          COL_SRC_PRIV, COL_SRC_CHAN]),
+        ('columns.size', [200, 75, 100, 100, 50, 100, 200, 75, 75, 100, 150, 
+                          50, 100])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -142,7 +149,8 @@ class CitationListView(ListView):
             CitationBookmarks, nav_group,
             multiple=True,
             filter_class=CitationSidebarFilter,
-            markup = CitationListView.MARKUP_COLS)
+            markup = CitationListView.MARKUP_COLS,
+            pixbuf = CitationListView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

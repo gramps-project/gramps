@@ -66,11 +66,11 @@ class SelectNote(BaseSelector):
             (_('Preview'), 350, BaseSelector.TEXT, 0),
             (_('ID'),      75,  BaseSelector.TEXT, 1),
             (_('Type'),    100, BaseSelector.TEXT, 2),
-            (_('Tags'),    100, BaseSelector.TEXT, 3)
+            (_('Tags'),    100, BaseSelector.TEXT, 4)
             ]
             
     def get_from_handle_func(self):
         return self.db.get_note_from_handle
         
     def get_handle_column(self):
-        return 5
+        return 6

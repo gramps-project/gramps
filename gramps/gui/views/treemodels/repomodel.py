@@ -69,6 +69,7 @@ class RepositoryModel(FlatBaseModel):
             self.column_postal_code,
             self.column_email,
             self.column_search_url,
+            self.column_private,
             self.column_change,
             self.column_handle,
             self.column_tooltip
@@ -87,11 +88,12 @@ class RepositoryModel(FlatBaseModel):
             self.column_postal_code,
             self.column_email,
             self.column_search_url,
+            self.column_private,
             self.sort_change,           
             self.column_handle,            
             ]
         
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=15,
                            search=search, skip=skip, sort_map=sort_map)
 
     def destroy(self):
@@ -220,6 +222,13 @@ class RepositoryModel(FlatBaseModel):
 
     def column_tooltip(self,data):
         return cuni('Repository tooltip')
+
+    def column_private(self, data):
+        if data[8]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def sort_change(self,data):
         return "%012x" % data[7]

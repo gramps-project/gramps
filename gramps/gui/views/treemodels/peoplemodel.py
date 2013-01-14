@@ -79,6 +79,7 @@ COLUMN_EVENT  = 7
 COLUMN_FAMILY = 8
 COLUMN_CHANGE = 17
 COLUMN_TAGS   = 18
+COLUMN_PRIV   = 19
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -94,7 +95,7 @@ class PeopleBaseModel(object):
     _GENDER = [ _('female'), _('male'), _('unknown') ]
 
     # The following is accessed from the Person Selector
-    COLUMN_INT_ID = 10  # dynamic calculation of column indices
+    COLUMN_INT_ID = 11  # dynamic calculation of column indices
     # LRU cache size
     _CACHE_SIZE = 250
 
@@ -115,6 +116,7 @@ class PeopleBaseModel(object):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_private,
             self.column_tags,
             self.column_change,
             self.column_int_id,
@@ -130,6 +132,7 @@ class PeopleBaseModel(object):
             self.sort_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_private,
             self.column_tags,
             self.sort_change,
             self.column_int_id,
@@ -160,7 +163,7 @@ class PeopleBaseModel(object):
         """
         Return the color column.
         """
-        return 11
+        return 12
 
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -220,6 +223,13 @@ class PeopleBaseModel(object):
             if not self._in_build:
                 self.lru_spouse[handle] = value
         return value
+
+    def column_private(self, data):
+        if data[COLUMN_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
     
     def _get_spouse_data(self, data):
         spouses_names = ""

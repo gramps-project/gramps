@@ -94,8 +94,12 @@ class MediaView(ListView):
     COL_TYPE = 2
     COL_PATH = 3
     COL_DATE = 4
-    COL_TAGS = 5
-    COL_CHAN = 6
+    COL_PRIV = 5
+    COL_TAGS = 6
+    COL_CHAN = 7
+    
+    PIXBUF_COLS = [COL_PRIV]
+    
     #name of the columns
     COLUMN_NAMES = [
         _('Title'), 
@@ -103,6 +107,7 @@ class MediaView(ListView):
         _('Type'), 
         _('Path'), 
         _('Date'), 
+        _('Private'), 
         _('Tags'), 
         _('Last Changed'), 
         ]
@@ -111,8 +116,8 @@ class MediaView(ListView):
         ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                              COL_DATE]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
-                           COL_DATE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 200, 150, 100, 150])
+                           COL_DATE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 200, 150, 50, 100, 150])
         )    
     
     ADD_MSG     = _("Add a new media object")
@@ -139,7 +144,8 @@ class MediaView(ListView):
             signal_map, dbstate.db.get_media_bookmarks(), 
             MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
-            multiple=True)
+            multiple=True,
+            pixbuf=MediaView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump, 

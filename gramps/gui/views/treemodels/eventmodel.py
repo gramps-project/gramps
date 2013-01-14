@@ -59,6 +59,7 @@ COLUMN_DATE        = 3
 COLUMN_DESCRIPTION = 4
 COLUMN_PLACE       = 5
 COLUMN_CHANGE      = 10
+COLUMN_PRIV        = 11
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -80,6 +81,7 @@ class EventModel(FlatBaseModel):
             self.column_type,
             self.column_date,
             self.column_place,
+            self.column_private,
             self.column_change,
             self.column_participant,
             self.column_handle,
@@ -91,6 +93,7 @@ class EventModel(FlatBaseModel):
             self.column_type,
             self.sort_date,
             self.column_place,
+            self.column_private,
             self.sort_change,
             self.column_participant,
             self.column_handle,
@@ -159,6 +162,13 @@ class EventModel(FlatBaseModel):
     def column_handle(self,data):
         return cuni(data[COLUMN_HANDLE])
 
+    def column_private(self, data):
+        if data[COLUMN_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+    
     def sort_change(self,data):
         return "%012x" % data[COLUMN_CHANGE]
 

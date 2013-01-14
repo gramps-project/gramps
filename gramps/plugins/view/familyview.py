@@ -72,16 +72,19 @@ class FamilyView(ListView):
     COL_MOTHER = 2
     COL_REL = 3
     COL_MARDATE = 4
-    COL_TAGS = 5
-    COL_CHAN = 6
+    COL_PRIV = 5
+    COL_TAGS = 6
+    COL_CHAN = 7
     # name of the columns
     MARKUP_COLS = [COL_MARDATE]
+    PIXBUF_COLS = [COL_PRIV]
     COLUMN_NAMES = [
         _('ID'),
         _('Father'),
         _('Mother'),
         _('Relationship'),
         _('Marriage Date'),
+        _('Private'),
         _('Tags'),
         _('Last Changed'),
         ]
@@ -90,8 +93,8 @@ class FamilyView(ListView):
         ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                              COL_MARDATE]),
         ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
-                           COL_MARDATE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [75, 200, 200, 100, 100, 100, 100])
+                           COL_MARDATE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [75, 200, 200, 100, 100, 50, 100, 100])
         )    
 
     ADD_MSG     = _("Add a new family")
@@ -119,7 +122,8 @@ class FamilyView(ListView):
             FamilyBookmarks, nav_group,
             multiple=True,
             filter_class=FamilySidebarFilter,
-            markup=FamilyView.MARKUP_COLS)
+            markup=FamilyView.MARKUP_COLS, 
+            pixbuf=FamilyView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
