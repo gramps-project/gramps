@@ -26,7 +26,7 @@ class Handle:
     def __init__(self, classname, handle):
         """ Class to hold type and handle of referenced item """
         self.classname = classname
-        if not isinstance(handle, UNITYPE):
+        if handle and not isinstance(handle, UNITYPE):
             handle = handle.decode('utf-8')
         self.handle = handle
 
