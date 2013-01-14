@@ -940,7 +940,10 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if not self.tree or not self.tree[None].children:
             return False, Gtk.TreeIter()
         node = self.tree[None]
-        pathlist = path.get_indices()
+        if isinstance(path, tuple):
+            pathlist = path
+        else:
+            pathlist = path.get_indices()
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
             node = self.nodemap.node(node.children[_index][1])
