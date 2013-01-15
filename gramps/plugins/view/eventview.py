@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Event
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import EventModel
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import EventBookmarks
@@ -77,26 +77,23 @@ class EventView(ListView):
     COL_PRIV = 5
     COL_CHAN = 6
     COL_PARTIC = 7
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Description'),
-        _('ID'),
-        _('Type'),
-        _('Date'),
-        _('Place'),
-        _('Private'),
-        _('Last Changed'),
-        _('Main Participants'),
+    # column definitions
+    COLUMNS = [
+        (_('Description'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Date'), MARKUP, None),
+        (_('Place'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
+        (_('Main Participants'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_DATE]
-    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
         ('columns.rank', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
                            COL_PLACE, COL_PRIV, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 230, 150, 200, 50, 100])
+        ('columns.size', [200, 75, 100, 230, 150, 200, 40, 100])
         )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
@@ -118,14 +115,12 @@ class EventView(ListView):
 
         ListView.__init__(
             self, _('Events'), pdata, dbstate, uistate,
-            EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
+            len(EventView.COLUMNS), 
             EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
             EventBookmarks, nav_group,
             multiple=True,
-            filter_class=EventSidebarFilter,
-            markup = EventView.MARKUP_COLS, 
-            pixbuf = EventView.PIXBUF_COLS)
+            filter_class=EventSidebarFilter)
             
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

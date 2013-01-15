@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.widgets.menuitem import add_menuitem
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
@@ -90,26 +90,23 @@ class PlaceBaseView(ListView):
     COL_LON = 11
     COL_PRIV = 12
     COL_CHAN = 13
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Place Name'),
-        _('ID'),
-        _('Street'),
-        _('Locality'),
-        _('City'),
-        _('County'),
-        _('State'),
-        _('Country'),
-        _('ZIP/Postal Code'),
-        _('Church Parish'),
-        _('Latitude'),
-        _('Longitude'),
-        _('Private'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Place Name'), MARKUP, None),
+        (_('ID'), TEXT, None),
+        (_('Street'), TEXT, None),
+        (_('Locality'), TEXT, None),
+        (_('City'), TEXT, None),
+        (_('County'), TEXT, None),
+        (_('State'), TEXT, None),
+        (_('Country'), TEXT, None),
+        (_('ZIP/Postal Code'), TEXT, None),
+        (_('Church Parish'), TEXT, None),
+        (_('Latitude'), TEXT, None),
+        (_('Longitude'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_NAME]
-    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY,
@@ -118,7 +115,7 @@ class PlaceBaseView(ListView):
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
                            COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_CHAN]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 50, 100])
+                             100, 150, 150, 40, 100])
         )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -141,14 +138,12 @@ class PlaceBaseView(ListView):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            self.COLUMN_NAMES, 15, 
+            15, 
             model, signal_map,
             dbstate.db.get_place_bookmarks(),
             PlaceBookmarks, nav_group,
             multiple=True,
-            filter_class=PlaceSidebarFilter, 
-            markup=PlaceBaseView.MARKUP_COLS,
-            pixbuf=PlaceBaseView.PIXBUF_COLS)
+            filter_class=PlaceSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels.citationtreemodel import CitationTreeModel
 from gramps.gen.plug import CATEGORY_QR_SOURCE_OR_CITATION
 from gramps.gen.lib import Citation, Source
@@ -88,17 +88,17 @@ class CitationTreeView(ListView):
     COL_SRC_AUTH       =  6
     COL_SRC_ABBR       =  7
     COL_SRC_PINFO      =  8
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Title or Page'),
-        _('ID'),
-        _('Date'),
-        _('Confidence'),
-        _('Private'),
-        _('Last Changed'),
-        _('Source: Author'),
-        _('Source: Abbreviation'),
-        _('Source: Publication Information'),
+    # column definitions
+    COLUMNS = [
+        (_('Title or Page'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Date'), MARKUP, None),
+        (_('Confidence'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
+        (_('Source: Author'), TEXT, None),
+        (_('Source: Abbreviation'), TEXT, None),
+        (_('Source: Publication Information'), TEXT, None),
         ]
     COLUMN_FILTERABLE = [
         COL_TITLE_PAGE, 
@@ -108,9 +108,6 @@ class CitationTreeView(ListView):
         COL_SRC_ABBR,
         COL_SRC_PINFO
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_DATE]
-    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
@@ -118,7 +115,7 @@ class CitationTreeView(ListView):
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
                           COL_PRIV, COL_CHAN, COL_SRC_AUTH,
                           COL_SRC_ABBR, COL_SRC_PINFO]),
-        ('columns.size', [200, 75, 100, 75, 50, 100, 150, 100, 150])
+        ('columns.size', [200, 75, 100, 75, 40, 100, 150, 100, 150])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -144,14 +141,12 @@ class CitationTreeView(ListView):
 
         ListView.__init__(
             self, _('Citation Tree View'), pdata, dbstate, uistate, 
-            self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
+            len(self.COLUMNS), 
             CitationTreeModel, signal_map,
             dbstate.db.get_citation_bookmarks(),
             CitationBookmarks, nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter,
-            markup = CitationTreeView.MARKUP_COLS,
-            pixbuf = CitationTreeView.PIXBUF_COLS)
+            filter_class=SourceSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
@@ -170,7 +165,7 @@ class CitationTreeView(ListView):
             if i == 0:
                 return _('Title')
             else:
-                return self.colinfo[i]
+                return self.COLUMNS[i][0]
              
         self.search_bar.setup_filter(
             [(name(pair[1]), pair[1], pair[1] in self.exact_search())
@@ -248,12 +243,6 @@ class CitationTreeView(ListView):
         else:
             return DdTargets.CITATION_LINK
     
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
-
     def get_stock(self):
         return 'gramps-citation'
 

@@ -79,8 +79,9 @@ from ..utils import is_right_click
 # Constants
 #
 #----------------------------------------------------------------
-LISTFLAT = 0
-LISTTREE = 1
+TEXT = 1
+MARKUP = 2
+ICON = 3
 
 #----------------------------------------------------------------
 #
@@ -88,7 +89,7 @@ LISTTREE = 1
 #
 #----------------------------------------------------------------
 class ListView(NavigationView):
-    COLUMN_NAMES = []
+    COLUMNS = []
     #listview config settings that are always present related to the columns
     CONFIGSETTINGS = (
         ('columns.visible', []),
@@ -102,9 +103,9 @@ class ListView(NavigationView):
     FILTER_TYPE = None  # Set in inheriting class
     QR_CATEGORY = -1
 
-    def __init__(self, title, pdata, dbstate, uistate, columns, handle_col, 
+    def __init__(self, title, pdata, dbstate, uistate, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, nav_group,
-                 multiple=False, filter_class=None, markup=None, pixbuf=None):
+                 multiple=False, filter_class=None):
         NavigationView.__init__(self, title, pdata, dbstate, uistate, 
                               get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
@@ -117,15 +118,12 @@ class ListView(NavigationView):
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
         self.columns = []
-        self.colinfo = columns
         self.handle_col = handle_col
         self.make_model = make_model
         self.model = None
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
-        self.markup_columns = markup or []
-        self.pixbuf_columns = pixbuf or []
         dbstate.connect('database-changed', self.change_db)
         self.connect_signals()
 
@@ -138,12 +136,6 @@ class ListView(NavigationView):
         self.model = None
         self.build_tree()
         
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTFLAT
-
     ####################################################################
     # Build interface
     ####################################################################
@@ -167,13 +159,8 @@ class ListView(NavigationView):
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
-        if self.type_list() == LISTFLAT:
-            # Flat list
-            self.list.connect('key-press-event', self._key_press)
-        else:
-            # Tree
-            self.list.connect('key-press-event', self._key_press_tree)
-
+        self.list.connect('key-press-event', self._key_press)
+        
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
@@ -248,17 +235,24 @@ class ListView(NavigationView):
         index = 0
         for pair in self.column_order():
             if not pair[0]: continue
-            name = self.colinfo[pair[1]]
+            col_name, col_type, col_icon = self.COLUMNS[pair[1]]
 
-            if pair[1] in self.pixbuf_columns:
-                column = Gtk.TreeViewColumn(name, self.pb_renderer)
+            if col_type == ICON:
+                column = Gtk.TreeViewColumn(col_name, self.pb_renderer)
                 column.set_cell_data_func(self.pb_renderer, self.icon, pair[1])
             else:
-                column = Gtk.TreeViewColumn(name, self.renderer)
-                if pair[1] in self.markup_columns:
+                column = Gtk.TreeViewColumn(col_name, self.renderer)
+                if col_type == MARKUP:
                     column.add_attribute(self.renderer, 'markup', pair[1])
                 else:
                     column.add_attribute(self.renderer, 'text', pair[1])
+
+            if col_icon is not None:
+                image = Gtk.Image()
+                image.set_from_stock(col_icon, Gtk.IconSize.MENU)
+                image.set_tooltip_text(col_name)
+                image.show()
+                column.set_widget(image)
             
             if self.model and self.model.color_column() is not None:
                 column.set_cell_data_func(self.renderer, self.foreground_color)
@@ -375,7 +369,7 @@ class ListView(NavigationView):
     def setup_filter(self):
         """Build the default filters and add them to the filter menu."""
         self.search_bar.setup_filter(
-            [(self.colinfo[pair[1]], pair[1], pair[1] in self.exact_search())
+            [(self.COLUMNS[pair[1]][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0]])
 
     def sidebar_toggled(self, active, data=None):
@@ -410,7 +404,7 @@ class ListView(NavigationView):
         if not handle or handle in self.selected_handles():
             return
 
-        if self.type_list() == LISTFLAT:
+        if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
             # Flat
             path = self.model.node_map.get_path_from_handle(handle)
         else:
@@ -810,7 +804,7 @@ class ListView(NavigationView):
         if not self.dbstate.open:
             return False
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
-            if self.type_list() == LISTFLAT:
+            if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
                 self.edit(obj)
                 return True
             else:
@@ -867,14 +861,25 @@ class ListView(NavigationView):
             menu.show()
         else:
             menu.hide()
-    
+
     def _key_press(self, obj, event):
+        """
+        Called when a key is pressed on a listview
+        """
+        if not self.dbstate.open:
+            return False
+        if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
+            # Flat list
+            self._key_press_flat(obj, event)
+        else:
+            # Tree
+            self._key_press_tree(obj, event)
+    
+    def _key_press_flat(self, obj, event):
         """
         Called when a key is pressed on a flat listview
         ENTER --> edit selection
         """
-        if not self.dbstate.open:
-            return False
         if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             self.edit(obj)
             return True
@@ -886,9 +891,7 @@ class ListView(NavigationView):
         ENTER --> edit selection or open group node
         SHIFT+ENTER --> open group node and all children nodes
         """
-        if not self.dbstate.open:
-            return False
-        elif event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+        if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
             if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
@@ -909,7 +912,6 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
-            
         return False
 
     def expand_collapse_tree(self):
@@ -1031,7 +1033,7 @@ class ListView(NavigationView):
         ofile = None
         data_cols = [pair[1] for pair in self.column_order() if pair[0]]
 
-        column_names = [self.colinfo[i] for i in data_cols]
+        column_names = [self.COLUMNS[i][0] for i in data_cols]
         if type == 0:
             ofile = CSVTab(len(column_names))                        
         else:
@@ -1201,8 +1203,10 @@ class ListView(NavigationView):
         :return: list of functions
         """
         def columnpage(configdialog):
-            return _('Columns'), ColumnOrder(self._config, self.COLUMN_NAMES,
+            flat = self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY
+            column_names = [col[0] for col in self.COLUMNS]
+            return _('Columns'), ColumnOrder(self._config, column_names,
                                             self.get_column_widths(),
                                             self.set_column_order,
-                                            tree=self.type_list()==LISTTREE)
+                                            tree=not flat)
         return [columnpage]

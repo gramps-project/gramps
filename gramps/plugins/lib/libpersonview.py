@@ -49,7 +49,7 @@ _LOG = logging.getLogger(".gui.personview")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Person, Surname
 from gramps.gen.db import DbTxn
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.dialog import ErrorDialog, QuestionDialog
@@ -89,30 +89,27 @@ class BasePersonView(ListView):
     COL_PRIV = 8
     COL_TAGS = 9
     COL_CHAN = 10
-    #name of the columns
-    COLUMN_NAMES = [
-        _('Name'),
-        _('ID'),
-        _('Gender'),
-        _('Birth Date'),
-        _('Birth Place'),
-        _('Death Date'),
-        _('Death Place'),
-        _('Spouse'),
-        _('Private'),
-        _('Tags'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Name'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Gender'), TEXT, None),
+        (_('Birth Date'), MARKUP, None),
+        (_('Birth Place'), MARKUP, None),
+        (_('Death Date'), MARKUP, None),
+        (_('Death Place'), MARKUP, None),
+        (_('Spouse'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_BDAT, COL_BPLAC, COL_DDAT, COL_DPLAC]
-    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
         ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
                            COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_PRIV, COL_TAGS,
                            COL_CHAN]),
-        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 50, 100, 100])
+        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 40, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
@@ -137,13 +134,11 @@ class BasePersonView(ListView):
  
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            BasePersonView.COLUMN_NAMES, len(BasePersonView.COLUMN_NAMES), 
+            len(BasePersonView.COLUMNS), 
             model, signal_map, dbstate.db.get_bookmarks(),
             PersonBookmarks, nav_group,
             multiple=True,
-            filter_class=PersonSidebarFilter,
-            markup=BasePersonView.MARKUP_COLS,
-            pixbuf=BasePersonView.PIXBUF_COLS)
+            filter_class=PersonSidebarFilter)
             
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

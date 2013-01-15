@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import NoteModel
 from gramps.gen.utils.db import get_note_referents
 from gramps.gen.errors import WindowActiveError
@@ -75,22 +75,21 @@ class NoteView(ListView):
     COL_TAGS = 4
     COL_CHAN = 5
     
-    PIXBUF_COLS = [COL_PRIV]
-
-    COLUMN_NAMES = [
-        _('Preview'),
-        _('ID'),
-        _('Type'),
-        _('Private'),
-        _('Tags'),
-        _('Last Changed')
+    # column definitions
+    COLUMNS = [
+        (_('Preview'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
         ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS, 
                           COL_CHAN]),
-        ('columns.size', [350, 75, 100, 50, 100, 100]))
+        ('columns.size', [350, 75, 100, 40, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
@@ -110,13 +109,12 @@ class NoteView(ListView):
         }
 
         ListView.__init__(
-            self, _('Notes'), pdata, dbstate, uistate, NoteView.COLUMN_NAMES,
-            len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
+            self, _('Notes'), pdata, dbstate, uistate,
+            len(NoteView.COLUMNS), NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
             NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
-            multiple=True,
-            pixbuf=NoteView.PIXBUF_COLS)
+            multiple=True)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

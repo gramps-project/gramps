@@ -46,7 +46,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Family
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import FamilyModel
 from gramps.gui.editors import EditFamily
 from gramps.gui.views.bookmarks import FamilyBookmarks
@@ -75,18 +75,16 @@ class FamilyView(ListView):
     COL_PRIV = 5
     COL_TAGS = 6
     COL_CHAN = 7
-    # name of the columns
-    MARKUP_COLS = [COL_MARDATE]
-    PIXBUF_COLS = [COL_PRIV]
-    COLUMN_NAMES = [
-        _('ID'),
-        _('Father'),
-        _('Mother'),
-        _('Relationship'),
-        _('Marriage Date'),
-        _('Private'),
-        _('Tags'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('ID'), TEXT, None),
+        (_('Father'), TEXT, None),
+        (_('Mother'), TEXT, None),
+        (_('Relationship'), TEXT, None),
+        (_('Marriage Date'), MARKUP, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     #default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -94,7 +92,7 @@ class FamilyView(ListView):
                              COL_MARDATE]),
         ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                            COL_MARDATE, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [75, 200, 200, 100, 100, 50, 100, 100])
+        ('columns.size', [75, 200, 200, 100, 100, 40, 100, 100])
         )    
 
     ADD_MSG     = _("Add a new family")
@@ -116,14 +114,12 @@ class FamilyView(ListView):
 
         ListView.__init__(
             self, _('Families'), pdata, dbstate, uistate,
-            FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
+            len(FamilyView.COLUMNS), 
             FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             FamilyBookmarks, nav_group,
             multiple=True,
-            filter_class=FamilySidebarFilter,
-            markup=FamilyView.MARKUP_COLS, 
-            pixbuf=FamilyView.PIXBUF_COLS)
+            filter_class=FamilySidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

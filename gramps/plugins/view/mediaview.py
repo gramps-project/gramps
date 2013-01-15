@@ -57,7 +57,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.utils import open_file_with_default_application
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.constfunc import win, cuni
 from gramps.gen.config import config
@@ -98,18 +98,16 @@ class MediaView(ListView):
     COL_TAGS = 6
     COL_CHAN = 7
     
-    PIXBUF_COLS = [COL_PRIV]
-    
-    #name of the columns
-    COLUMN_NAMES = [
-        _('Title'), 
-        _('ID'), 
-        _('Type'), 
-        _('Path'), 
-        _('Date'), 
-        _('Private'), 
-        _('Tags'), 
-        _('Last Changed'), 
+    # column definitions
+    COLUMNS = [
+        (_('Title'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Path'), TEXT, None),
+        (_('Date'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -117,7 +115,7 @@ class MediaView(ListView):
                              COL_DATE]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                            COL_DATE, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 200, 150, 50, 100, 150])
+        ('columns.size', [200, 75, 100, 200, 150, 40, 100, 150])
         )    
     
     ADD_MSG     = _("Add a new media object")
@@ -139,13 +137,12 @@ class MediaView(ListView):
 
         ListView.__init__(
             self, _('Media'), pdata, dbstate, uistate, 
-            MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
+            len(MediaView.COLUMNS), 
             MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
             MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
-            multiple=True,
-            pixbuf=MediaView.PIXBUF_COLS)
+            multiple=True)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump, 

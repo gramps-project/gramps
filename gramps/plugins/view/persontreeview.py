@@ -38,7 +38,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonTreeModel
 from gramps.gen.lib import Name, Person, Surname
@@ -66,12 +66,6 @@ class PersonTreeView(BasePersonView):
         BasePersonView.__init__(self, pdata, dbstate, uistate,
                                _('People Tree View'), PersonTreeModel,
                                nav_group=nav_group)
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
 
     def get_viewtype_stock(self):
         """
