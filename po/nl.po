@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-16 20:41+0200\n"
-"PO-Revision-Date: 2013-01-07 14:18+0100\n"
+"PO-Revision-Date: 2013-01-13 20:56+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -6674,7 +6674,7 @@ msgstr "Achtergrond onbekend geslacht"
 
 #: ../gramps/gui/configure.py:550
 msgid "Border Unknown Death"
-msgstr "and onbekend geslacht overleden"
+msgstr "Rand onbekend geslacht overleden"
 
 #: ../gramps/gui/configure.py:552
 msgid "Colors"
@@ -12126,7 +12126,7 @@ msgstr "Begin"
 # Vindt de filter genaamd?
 #: ../gramps/gui/views/navigationview.py:307
 msgid "Go to the default person"
-msgstr "Naar de standaardpersoon gaan"
+msgstr "Naar de beginpersoon gaan"
 
 #: ../gramps/gui/views/navigationview.py:311
 msgid "Set _Home Person"
@@ -12134,13 +12134,13 @@ msgstr "Be_ginpersoon instellen"
 
 #: ../gramps/gui/views/navigationview.py:336
 msgid "No Home Person"
-msgstr "Geen thuispersoon"
+msgstr "Geen beginpersoon"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
 #: ../gramps/gui/views/navigationview.py:337
 msgid "You need to set a 'default person' to go to."
-msgstr "U dient een 'standaardpersoon' te definiëren om naar toe te gaan."
+msgstr "U dient een 'beginpersoon' te definiëren om naar toe te gaan."
 
 #: ../gramps/gui/views/navigationview.py:343
 #: ../gramps/gui/views/navigationview.py:346
