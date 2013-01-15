@@ -48,7 +48,7 @@ from gi.repository import Gtk
 from gramps.gui.views.treemodels.citationlistmodel import CitationListModel
 from gramps.gen.plug import CATEGORY_QR_CITATION
 from gramps.gen.lib import Citation, Source
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gen.utils.db import get_citation_referents
 from gramps.gui.views.bookmarks import CitationBookmarks
 from gramps.gen.errors import WindowActiveError
@@ -93,25 +93,22 @@ class CitationListView(ListView):
     COL_SRC_PINFO      = 10
     COL_SRC_PRIV       = 11
     COL_SRC_CHAN       = 12
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Volume/Page'),
-        _('ID'),
-        _('Date'),
-        _('Confidence'),
-        _('Private'),
-        _('Last Changed'),
-        _('Source: Title'),
-        _('Source: ID'),
-        _('Source: Author'),
-        _('Source: Abbreviation'),
-        _('Source: Publication Information'),
-        _('Source: Private'),
-        _('Source: Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Volume/Page'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Date'), MARKUP, None),
+        (_('Confidence'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
+        (_('Source: Title'), TEXT, None),
+        (_('Source: ID'), TEXT, None),
+        (_('Source: Author'), TEXT, None),
+        (_('Source: Abbreviation'), TEXT, None),
+        (_('Source: Publication Information'), TEXT, None),
+        (_('Source: Private'), ICON, 'gramps-lock'),
+        (_('Source: Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_DATE]
-    PIXBUF_COLS = [COL_PRIV, COL_SRC_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
@@ -120,8 +117,8 @@ class CitationListView(ListView):
                           COL_PRIV, COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, 
                           COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
                           COL_SRC_PRIV, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 50, 100, 200, 75, 75, 100, 150, 
-                          50, 100])
+        ('columns.size', [200, 75, 100, 100, 40, 100, 200, 75, 75, 100, 150, 
+                          40, 100])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -143,14 +140,12 @@ class CitationListView(ListView):
 
         ListView.__init__(
             self, _('Citation View'), pdata, dbstate, uistate, 
-            self.COLUMN_NAMES, len(self.COLUMN_NAMES), 
+            len(self.COLUMNS), 
             CitationListModel, signal_map,
             dbstate.db.get_citation_bookmarks(),
             CitationBookmarks, nav_group,
             multiple=True,
-            filter_class=CitationSidebarFilter,
-            markup = CitationListView.MARKUP_COLS,
-            pixbuf = CitationListView.PIXBUF_COLS)
+            filter_class=CitationSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

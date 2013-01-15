@@ -41,7 +41,7 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Source
 from gramps.gen.config import config
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import SourceModel
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gui.views.bookmarks import SourceBookmarks
@@ -77,24 +77,22 @@ class SourceView(ListView):
     COL_PRIV = 5
     COL_CHAN = 6
     
-    PIXBUF_COLS = [COL_PRIV]
-    
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Title'),
-        _('ID'),
-        _('Author'),
-        _('Abbreviation'),
-        _('Publication Information'),
-        _('Private'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Title'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Author'), TEXT, None),
+        (_('Abbreviation'), TEXT, None),
+        (_('Publication Information'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
                           COL_PRIV, COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 50, 100])
+        ('columns.size', [200, 75, 150, 100, 150, 40, 100])
         )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
@@ -114,13 +112,12 @@ class SourceView(ListView):
 
         ListView.__init__(
             self, _('Sources'), pdata, dbstate, uistate, 
-            SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
+            len(SourceView.COLUMNS), 
             SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
             SourceBookmarks, nav_group,
             multiple=True,
-            filter_class=SourceSidebarFilter, 
-            pixbuf=SourceView.PIXBUF_COLS)
+            filter_class=SourceSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
