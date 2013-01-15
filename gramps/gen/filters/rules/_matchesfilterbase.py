@@ -34,7 +34,9 @@ LOG = logging.getLogger(".filter")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .. import CustomFilters
+# we need global variableCustomFilters, so we need to query gramps.gen.filters
+# when we need this variable, not import it at the start!
+import gramps.gen.filters
 from . import Rule
 
 #-------------------------------------------------------------------------
@@ -50,15 +52,14 @@ class MatchesFilterBase(Rule):
     Subclasses need to define the namespace class attribute.
     
     """
-
     labels      = [_('Filter name:')]
     name        = 'Objects matching the <filter>'
     description = "Matches objects matched by the specified filter name"
     category    = _('General filters')
 
     def prepare(self, db):
-        if CustomFilters:
-            filters = CustomFilters.get_filters_dict(self.namespace)
+        if gramps.gen.filters.CustomFilters:
+            filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
@@ -71,16 +72,16 @@ class MatchesFilterBase(Rule):
                                     % self.list[0])
 
     def reset(self):
-        if CustomFilters:
-            filters = CustomFilters.get_filters_dict(self.namespace)
+        if gramps.gen.filters.CustomFilters:
+            filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
                     rule.requestreset()
 
     def apply(self, db, obj):
-        if CustomFilters:
-            filters = CustomFilters.get_filters_dict(self.namespace)
+        if gramps.gen.filters.CustomFilters:
+            filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 filt = filters[self.list[0]]
                 return filt.check(db, obj.handle)
@@ -90,8 +91,8 @@ class MatchesFilterBase(Rule):
         """
         Return the selected filter or None.
         """
-        if CustomFilters:
-            filters = CustomFilters.get_filters_dict(self.namespace)
+        if gramps.gen.filters.CustomFilters:
+            filters = gramps.gen.filters.CustomFilters.get_filters_dict(self.namespace)
             if self.list[0] in filters:
                 return filters[self.list[0]]
         return None
