@@ -80,7 +80,7 @@ from ..utils.callback import Callback
 from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import win, conv_to_unicode, cuni, UNITYPE
+from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -163,7 +163,7 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
 # Helper functions
 #
 #-------------------------------------------------------------------------
-
+    
 def find_idmap(key, data):
     """ return id for association of secondary index.
     returns a byte string
@@ -857,6 +857,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
         """
         Remove all references to the primary object from the reference_map.
+        handle should be utf-8
         """
         primary_cur = self.get_reference_map_primary_cursor()
 
@@ -875,8 +876,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             
             # so we need the second tuple give us a reference that we can
             # combine with the primary_handle to get the main key.
-
-            main_key = (handle, pickle.loads(data)[1][1])
+            if sys.version_info[0] < 3:
+                #handle should be in python 2 str
+                main_key = (handle, pickle.loads(data)[1][1])
+            else:
+                #python 3 work internally with unicode
+                main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
             
             # The trick is not to remove while inside the cursor,
             # but collect them all and remove after the cursor is closed
@@ -950,7 +955,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         the passed transaction.
         """
         if isinstance(key, tuple):
-            #create a string key
+            #create a byte string key, first validity check in python 3!
+            for val in key:
+                if sys.version_info[0] >= 3 and isinstance(val, bytes):
+                    raise DbError(_('An attempt is made to safe a reference key '
+                        'which is partly bytecode, this is not allowed.\n'
+                        'Key is %s') % str(key))
             key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
@@ -1895,10 +1905,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if (obj_type, trans_type) in transaction:
             if trans_type == TXNDEL:
-                handles = [handle for handle, data in
+                handles = [handle2internal(handle) for handle, data in
                             transaction[(obj_type, trans_type)]]
             else:
-                handles = [handle for handle, data in
+                handles = [handle2internal(handle) for handle, data in
                             transaction[(obj_type, trans_type)]
                             if (handle, None) not in transaction[(obj_type,
                                                                   TXNDEL)]]
