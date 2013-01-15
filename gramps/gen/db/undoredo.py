@@ -53,7 +53,7 @@ from ..ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import conv_to_unicode
+from ..constfunc import conv_to_unicode, handle2internal
 from .dbconst import *
 from . import BSDDBTxn
 from ..errors import DbError
@@ -68,17 +68,6 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
             'place', 'repository', 'reference', 'note', 'tag', 'citation')
-
-#-------------------------------------------------------------------------
-#
-# Helper functions
-#
-#-------------------------------------------------------------------------
-# handle in database is bytes, while internally Gramps wants unicode for py3
-if sys.version_info[0] < 3:
-    handle2internal = lambda x: x
-else:
-    handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
 
 #-------------------------------------------------------------------------
 #
