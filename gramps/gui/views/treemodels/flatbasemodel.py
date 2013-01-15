@@ -76,8 +76,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
-from gramps.gen.constfunc import cuni, UNITYPE
-
+from gramps.gen.constfunc import cuni, UNITYPE, conv_to_unicode, handle2internal
+    
 #-------------------------------------------------------------------------
 #
 # FlatNodeMap
@@ -252,8 +252,6 @@ class FlatNodeMap(object):
         :param type: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         index = self._hndl2index.get(handle)
         if index is None:
             return None
@@ -593,7 +591,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             #loop over database and store the sort field, and the handle, and
             #allow for a third iter
             return sorted((list(map(conv_tosrtkey,
-                           self.sort_func(data))), key) for key, data in cursor)
+                           self.sort_func(data))), handle2internal(key)) 
+                                for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -659,6 +658,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
@@ -679,6 +680,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Delete a row, called after the object with handle is deleted
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)

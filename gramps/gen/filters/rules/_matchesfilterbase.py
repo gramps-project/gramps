@@ -26,6 +26,8 @@
 #
 #-------------------------------------------------------------------------
 from ...ggettext import gettext as _
+import logging
+LOG = logging.getLogger(".filter")
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +63,12 @@ class MatchesFilterBase(Rule):
                 filt = filters[self.list[0]]
                 for rule in filt.flist:
                     rule.requestprepare(db)
+            else:
+                LOG.warning(_("Can't find filter %s in the defined custom filters")
+                                    % self.list[0])
+        else:
+            LOG.warning(_("Can't find filter %s in the defined custom filters") 
+                                    % self.list[0])
 
     def reset(self):
         if CustomFilters:

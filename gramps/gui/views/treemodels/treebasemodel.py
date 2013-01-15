@@ -536,6 +536,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         pmon.add_op(status)
         with gen_cursor() as cursor:
             for handle, data in cursor:
+                # for python3 this returns a byte object, so conversion needed
+                if not isinstance(handle, UNITYPE):
+                    handle = handle.decode('utf-8')
                 status.heartbeat()
                 if status.should_cancel():
                     break
@@ -581,6 +584,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
         def beat(key):
             status_ppl.heartbeat()
+            # for python3 this returns a byte object, so conversion needed
+            if not isinstance(key, UNITYPE):
+                key = key.decode('utf-8')
             return key
         
         with gen_cursor() as cursor:
@@ -749,6 +755,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Add a row to the model.
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
@@ -770,6 +778,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Delete a row from the model.
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         cput = time.clock()
         node = self.get_node(handle)
         if node is None:
@@ -800,6 +810,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Update a row in the model.
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.get_node(handle) is None:
             return # row not currently displayed
 
@@ -848,8 +860,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Get the node for a handle.
         """
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
         return self.handle2node.get(handle)
 
     def handle2path(self, handle):
@@ -905,7 +915,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             # according to column_defs table
             val = self._get_value(node.handle, col, node.secondary)
         #GTK 3 should convert unicode objects automatically, but this
-        # gives wrong column values, so we convert, so we convert for python 2.7
+        # gives wrong column values, so convert for python 2.7
         if not isinstance(val, str):
             return val.encode('utf-8')
         else:

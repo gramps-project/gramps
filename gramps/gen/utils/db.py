@@ -558,7 +558,6 @@ def get_referents(handle, db, primary_objects):
     for primary in primary_objects:
         primary_list = [item[1] for item in object_list if item[0] == primary]
         the_lists = the_lists + (primary_list, )
-
     return the_lists
 
 def get_source_referents(source_handle, db):
