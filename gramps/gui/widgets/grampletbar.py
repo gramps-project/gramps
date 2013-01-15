@@ -77,7 +77,7 @@ NL = "\n"
 
 #-------------------------------------------------------------------------
 #
-# GarmpletBar class
+# GrampletBar class
 #
 #-------------------------------------------------------------------------
 class GrampletBar(Gtk.Notebook):
@@ -283,13 +283,13 @@ class GrampletBar(Gtk.Notebook):
 
     def has_gramplet(self, gname):
         """
-        Return True if the GarmpletBar contains the gramplet, else False.
+        Return True if the GrampletBar contains the gramplet, else False.
         """
         return gname in self.all_gramplets()
 
     def all_gramplets(self):
         """
-        Return a list of names of all the gramplets in the GarmpletBar.
+        Return a list of names of all the gramplets in the GrampletBar.
         """
         if self.empty:
             return self.detached_gramplets
@@ -299,7 +299,7 @@ class GrampletBar(Gtk.Notebook):
 
     def restore(self):
         """
-        Restore the GarmpletBar to its default gramplets.
+        Restore the GrampletBar to its default gramplets.
         """
         list(map(self.remove_gramplet, self.all_gramplets()))
         list(map(self.add_gramplet, self.defaults))
@@ -307,7 +307,7 @@ class GrampletBar(Gtk.Notebook):
 
     def __create_empty_tab(self):
         """
-        Create an empty tab to be displayed when the GarmpletBar is empty.
+        Create an empty tab to be displayed when the GrampletBar is empty.
         """
         tab_label = Gtk.Label(label=_('Gramplet Bar'))
         tab_label.show()
@@ -358,7 +358,7 @@ class GrampletBar(Gtk.Notebook):
 
     def __switch_page(self, notebook, unused, new_page):
         """
-        Called when the user has switched to a new GarmpletBar page.
+        Called when the user has switched to a new GrampletBar page.
         """
         old_page = notebook.get_current_page()
         if old_page >= 0:
@@ -375,7 +375,7 @@ class GrampletBar(Gtk.Notebook):
 
     def __page_added(self, notebook, unused, new_page):
         """
-        Called when a new page is added to the GarmpletBar.
+        Called when a new page is added to the GrampletBar.
         """
         gramplet = self.get_nth_page(new_page)
         if self.empty:
@@ -398,7 +398,7 @@ class GrampletBar(Gtk.Notebook):
 
     def __page_removed(self, notebook, unused, page_num):
         """
-        Called when a page is removed to the GarmpletBar.
+        Called when a page is removed to the GrampletBar.
         """
         if self.get_n_pages() == 0:
             self.empty = True
@@ -406,7 +406,7 @@ class GrampletBar(Gtk.Notebook):
         
     def __create_window(self, grampletbar, gramplet, x_pos, y_pos):
         """
-        Called when the user has switched to a new GarmpletBar page.
+        Called when the user has switched to a new GrampletBar page.
         """
         gramplet.page = self.page_num(gramplet)
         self.detached_gramplets.append(gramplet)
@@ -423,7 +423,7 @@ class GrampletBar(Gtk.Notebook):
 
     def __button_press(self, widget, event):
         """
-        Called when a button is pressed in the tabs section of the GarmpletBar.
+        Called when a button is pressed in the tabs section of the GrampletBar.
         """
         if is_right_click(event):
             menu = Gtk.Menu()
@@ -494,7 +494,7 @@ class GrampletBar(Gtk.Notebook):
         Called when restore defaults is clicked from the context menu.
         """
         QuestionDialog(_("Restore to defaults?"),
-            _("The GarmpletBar will be restored to contain its default "
+            _("The gramplet bar will be restored to contain its default "
               "gramplets.  This action cannot be undone."),
             _("OK"),
             self.restore)
@@ -643,7 +643,7 @@ class DetachedWindow(ManagedWindow):
 
     def close(self, *args):
         """
-        Dock the detached gramplet back in the GarmpletBar from where it came.
+        Dock the detached gramplet back in the GrampletBar from where it came.
         """
         size = self.window.get_size()
         self.gramplet.detached_width = size[0]
