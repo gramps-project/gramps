@@ -520,9 +520,7 @@ class PedigreeView(NavigationView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
-                                      PersonBookmarks,
-                                      nav_group)
+                                PersonBookmarks, nav_group)
 
         self.func_list.update({
             'F2' : self.kb_goto_home,
@@ -715,7 +713,6 @@ class PedigreeView(NavigationView):
         from self.state.db
         """
         self._change_db(db)
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()

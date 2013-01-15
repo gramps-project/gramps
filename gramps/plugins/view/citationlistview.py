@@ -142,7 +142,6 @@ class CitationListView(ListView):
             self, _('Citation View'), pdata, dbstate, uistate, 
             len(self.COLUMNS), 
             CitationListModel, signal_map,
-            dbstate.db.get_citation_bookmarks(),
             CitationBookmarks, nav_group,
             multiple=True,
             filter_class=CitationSidebarFilter)
@@ -156,9 +155,6 @@ class CitationListView(ListView):
 
     def navigation_type(self):
         return 'Citation'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_citation_bookmarks()
 
     def drag_info(self):
         return DdTargets.CITATION_LINK

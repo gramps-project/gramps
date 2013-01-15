@@ -135,7 +135,7 @@ class BasePersonView(ListView):
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
             len(BasePersonView.COLUMNS), 
-            model, signal_map, dbstate.db.get_bookmarks(),
+            model, signal_map,
             PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter)
@@ -154,12 +154,6 @@ class BasePersonView(ListView):
         Return the navigation type of the view.
         """
         return 'Person'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
 
     def drag_info(self):
         """

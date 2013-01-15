@@ -128,7 +128,6 @@ class GeoFamClose(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have these two families been able to meet?"),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -185,12 +184,6 @@ class GeoFamClose(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Family'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
 
     def family_label(self,family):
         if family is None:
