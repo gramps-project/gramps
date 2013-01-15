@@ -95,6 +95,7 @@ gramps/gen/filters/rules/family/_hasreltype.py
 gramps/gen/filters/rules/family/_hassourcecount.py
 gramps/gen/filters/rules/family/_hassourceof.py
 gramps/gen/filters/rules/family/_hastag.py
+gramps/gen/filters/rules/family/_hastwins.py
 gramps/gen/filters/rules/family/_isbookmarked.py
 gramps/gen/filters/rules/family/_matchesfilter.py
 gramps/gen/filters/rules/family/_matchessourceconfidence.py

@@ -60,6 +60,7 @@ from ._childhasnameof import ChildHasNameOf
 from ._childhasidof import ChildHasIdOf
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
+from ._hastwins import HasTwins
 
 editor_rule_list = [
     AllFamilies,
@@ -89,4 +90,5 @@ editor_rule_list = [
     ChildHasIdOf,
     ChangedSince,
     HasTag,
+    HasTwins,
 ]
