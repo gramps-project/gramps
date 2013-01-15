@@ -1063,8 +1063,10 @@ class ListView(NavigationView):
                 ofile.end_row()
         else:
             # Tree model
-            node = self.model.get_node_from_iter(self.model.do_get_iter((0,))[1])
-            self.write_node(node, len(levels), [], ofile, data_cols)
+            hasmodel, iter = self.model.do_get_iter((0,))
+            if hasmodel:
+                node = self.model.get_node_from_iter(iter)
+                self.write_node(node, len(levels), [], ofile, data_cols)
         
         ofile.end_page()
         ofile.close()
