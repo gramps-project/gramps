@@ -64,6 +64,13 @@ else:
     STRTYPE = str
     UNITYPE = str
 cuni = conv_to_unicode_direct
+
+# handle in database is bytes, while internally Gramps wants unicode for py3
+if sys.version_info[0] < 3:
+    handle2internal = lambda x: x
+else:
+    handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
+
 #-------------------------------------------------------------------------
 #
 # Platform determination functions

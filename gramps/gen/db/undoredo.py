@@ -53,6 +53,7 @@ from ..ggettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..constfunc import conv_to_unicode
 from .dbconst import *
 from . import BSDDBTxn
 from ..errors import DbError
@@ -67,6 +68,18 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
             'place', 'repository', 'reference', 'note', 'tag', 'citation')
+
+#-------------------------------------------------------------------------
+#
+# Helper functions
+#
+#-------------------------------------------------------------------------
+# handle in database is bytes, while internally Gramps wants unicode for py3
+if sys.version_info[0] < 3:
+    handle2internal = lambda x: x
+else:
+    handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
+
 #-------------------------------------------------------------------------
 #
 # DbUndo class
@@ -315,7 +328,7 @@ class DbUndo(object):
         """
         try:
             if data is None:
-                emit(signal_root + '-delete', ([handle],))
+                emit(signal_root + '-delete', ([handle2internal(handle)],))
                 db_map.delete(handle, txn=self.txn)
             else:
                 ex_data = db_map.get(handle, txn=self.txn)
@@ -324,7 +337,7 @@ class DbUndo(object):
                 else:
                     signal = signal_root + '-add'
                 db_map.put(handle, data, txn=self.txn)
-                emit(signal, ([handle],))
+                emit(signal, ([handle2internal(handle)],))
 
         except DBERRS as msg:
             self.db._log_error()
