@@ -126,7 +126,7 @@ class GeoGraphyView(OsmGps, NavigationView):
     def __init__(self, title, pdata, dbstate, uistate,
                  get_bookmarks, bm_type, nav_group):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
-                              get_bookmarks, bm_type, nav_group)
+                                bm_type, nav_group)
 
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
@@ -224,7 +224,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
 

@@ -71,7 +71,6 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
 
         NavigationView.__init__(self, _('Fan Chart'),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
         fanchart.FanChartGrampsGUI.__init__(self, self.on_childmenu_changed)
@@ -198,7 +197,6 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
     
     def change_db(self, db):
         self._change_db(db)
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
         self.update()

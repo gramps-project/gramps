@@ -114,7 +114,6 @@ class SourceView(ListView):
             self, _('Sources'), pdata, dbstate, uistate, 
             len(SourceView.COLUMNS), 
             SourceModel, signal_map,
-            dbstate.db.get_source_bookmarks(),
             SourceBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
@@ -128,9 +127,6 @@ class SourceView(ListView):
 
     def navigation_type(self):
         return 'Source'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_source_bookmarks()
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK

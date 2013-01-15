@@ -104,10 +104,10 @@ class ListView(NavigationView):
     QR_CATEGORY = -1
 
     def __init__(self, title, pdata, dbstate, uistate, handle_col, 
-                 make_model, signal_map, get_bookmarks, bm_type, nav_group,
+                 make_model, signal_map, bm_type, nav_group,
                  multiple=False, filter_class=None):
         NavigationView.__init__(self, title, pdata, dbstate, uistate, 
-                              get_bookmarks, bm_type, nav_group)
+                                bm_type, nav_group)
         #default is listviews keep themself in sync with database
         self._dirty_on_change_inactive = False
         
@@ -681,7 +681,6 @@ class ListView(NavigationView):
         self._change_db(db)
         self.connect_signals()
 
-        self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
             #force rebuild of the model on build of tree
             self.dirty = True

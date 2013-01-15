@@ -116,7 +116,7 @@ class FamilyView(ListView):
             self, _('Families'), pdata, dbstate, uistate,
             len(FamilyView.COLUMNS), 
             FamilyModel,
-            signal_map, dbstate.db.get_family_bookmarks(),
+            signal_map,
             FamilyBookmarks, nav_group,
             multiple=True,
             filter_class=FamilySidebarFilter)
@@ -226,9 +226,6 @@ class FamilyView(ListView):
         """
         ListView.set_inactive(self)
         self.uistate.viewmanager.tags.tag_disable()
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_family_bookmarks()
 
     def add_bookmark(self, obj):
         mlist = self.selected_handles()

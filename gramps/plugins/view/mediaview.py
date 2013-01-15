@@ -139,7 +139,7 @@ class MediaView(ListView):
             self, _('Media'), pdata, dbstate, uistate, 
             len(MediaView.COLUMNS), 
             MediaModel, 
-            signal_map, dbstate.db.get_media_bookmarks(), 
+            signal_map,
             MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
             multiple=True)
@@ -212,12 +212,6 @@ class MediaView(ListView):
                     self.dbstate.db.add_object(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
                 
-    def get_bookmarks(self):
-        """
-        Return the bookmarks associated with this view
-        """
-        return self.dbstate.db.get_media_bookmarks()
-
     def define_actions(self):
         """
         Defines the UIManager actions specific to Media View. We need to make

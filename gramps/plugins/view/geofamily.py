@@ -111,7 +111,6 @@ class GeoFamily(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Family places map'),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_family_bookmarks(), 
                                       FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -159,12 +158,6 @@ class GeoFamily(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Family'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_family_bookmarks()
 
     def goto_handle(self, handle=None):
         """
