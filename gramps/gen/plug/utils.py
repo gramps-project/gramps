@@ -35,7 +35,7 @@ import os
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
-    from io import StringIO
+    from io import StringIO, BytesIO
 
 #-------------------------------------------------------------------------
 #
@@ -219,7 +219,11 @@ def load_addon_file(path, callback=None):
                 callback(_("Unable to open '%s'") % path)
             return
     try:
-        buffer = StringIO(fp.read())
+        content = fp.read()
+        if sys.version_info[0] < 3:
+            buffer = StringIO(content)
+        else:
+            buffer = BytesIO(content)
     except:
         if callback:
             callback(_("Error in reading '%s'") % path)

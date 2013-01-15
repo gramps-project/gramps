@@ -397,13 +397,15 @@ class ViewManager(CLIManager):
                 lines = list(fp.readlines())
                 count = 0
                 for line in lines:
+                    if sys.version_info[0] >= 3:
+                        line = line.decode('utf-8').replace(": u'", ": '")
                     try:
                         plugin_dict = safe_eval(line)
                         if type(plugin_dict) != type({}):
                             raise TypeError("Line with addon metadata is not "
                                             "a dictionary")
                     except:
-                        LOG.debug("Skipped a line in the addon listing: " +
+                        LOG.warning("Skipped a line in the addon listing: " +
                                  str(line))
                         continue
                     id = plugin_dict["i"]
