@@ -893,6 +893,12 @@ class GrampsPreferences(ConfigureDialog):
         self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                            only_active=False)
 
+    def cb_grampletbar_close(self, obj):
+        """
+        Gramplet bar close button preference callback
+        """
+        self.uistate.emit('grampletbar-close-changed')
+
     def add_formats_panel(self, configdialog):
         row = 0
         table = Gtk.Table(4, 4)
@@ -1057,6 +1063,13 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(table, 
                           _("Show text in sidebar buttons (requires restart)"), 
                           row, 'interface.sidebar-text', stop=3)
+        row += 1
+
+        # Gramplet bar close buttons:
+        self.add_checkbox(table, 
+                          _("Show close button in gramplet bar tabs"), 
+                          row, 'interface.grampletbar-close', stop=3,
+                          extra_callback=self.cb_grampletbar_close)
         row += 1
         return _('Display'), table
 

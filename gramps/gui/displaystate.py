@@ -369,6 +369,7 @@ class DisplayState(Callback):
         'filters-changed' : (str, ), 
         'filter-name-changed' : (str, UNITYPE, UNITYPE), 
         'nameformat-changed' : None, 
+        'grampletbar-close-changed' : None, 
         }
     
     #nav_type to message
