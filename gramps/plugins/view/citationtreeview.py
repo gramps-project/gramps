@@ -78,21 +78,23 @@ class CitationTreeView(ListView):
     A hierarchical view of sources with citations below them.
     """
     # The data items here have to correspond, in order, to the items in
-    # src/giu.views/treemodels/citationtreemodel.py
+    # src/giu/views/treemodels/citationtreemodel.py
     COL_TITLE_PAGE     =  0
     COL_ID             =  1
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
-    COL_CHAN           =  4    
-    COL_SRC_AUTH       =  5
-    COL_SRC_ABBR       =  6
-    COL_SRC_PINFO      =  7
+    COL_PRIV           =  4    
+    COL_CHAN           =  5    
+    COL_SRC_AUTH       =  6
+    COL_SRC_ABBR       =  7
+    COL_SRC_PINFO      =  8
     # name of the columns
     COLUMN_NAMES = [
         _('Title or Page'),
         _('ID'),
         _('Date'),
         _('Confidence'),
+        _('Private'),
         _('Last Changed'),
         _('Source: Author'),
         _('Source: Abbreviation'),
@@ -108,14 +110,15 @@ class CitationTreeView(ListView):
         ]
     # columns that contain markup
     MARKUP_COLS = [COL_DATE]
+    PIXBUF_COLS = [COL_PRIV]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
                              COL_SRC_PINFO]),
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_CHAN, COL_SRC_AUTH,
+                          COL_PRIV, COL_CHAN, COL_SRC_AUTH,
                           COL_SRC_ABBR, COL_SRC_PINFO]),
-        ('columns.size', [200, 75, 100, 75, 100, 150, 100, 150])
+        ('columns.size', [200, 75, 100, 75, 50, 100, 150, 100, 150])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -147,7 +150,8 @@ class CitationTreeView(ListView):
             CitationBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter,
-            markup = CitationTreeView.MARKUP_COLS)
+            markup = CitationTreeView.MARKUP_COLS,
+            pixbuf = CitationTreeView.PIXBUF_COLS)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,

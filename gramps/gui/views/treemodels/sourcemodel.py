@@ -60,6 +60,7 @@ class SourceModel(FlatBaseModel):
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
+            self.column_private,
             self.column_change,
             self.column_handle,
             self.column_tooltip
@@ -70,9 +71,10 @@ class SourceModel(FlatBaseModel):
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
+            self.column_private,
             self.sort_change,
             ]
-        FlatBaseModel.__init__(self,db,scol, order,tooltip_column=7,search=search,
+        FlatBaseModel.__init__(self,db,scol, order,tooltip_column=8,search=search,
                            skip=skip, sort_map=sort_map)
 
     def destroy(self):
@@ -106,6 +108,13 @@ class SourceModel(FlatBaseModel):
 
     def column_pubinfo(self,data):
         return cuni(data[4])
+
+    def column_private(self, data):
+        if data[11]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def column_change(self,data):
         return format_time(data[8])

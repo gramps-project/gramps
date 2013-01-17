@@ -63,6 +63,7 @@ class NoteModel(FlatBaseModel):
             self.column_preview,
             self.column_id,
             self.column_type,
+            self.column_private,
             self.column_tags,
             self.column_change,
             self.column_handle,
@@ -72,6 +73,7 @@ class NoteModel(FlatBaseModel):
             self.column_preview,
             self.column_id,
             self.column_type,
+            self.column_private,
             self.column_tags,
             self.sort_change,
             self.column_handle,
@@ -95,7 +97,7 @@ class NoteModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 6
+        return 7
 
     def do_get_n_columns(self):
         """Return the column number of the Note tab."""
@@ -125,6 +127,13 @@ class NoteModel(FlatBaseModel):
             return note[:80] + "..."
         else:
             return note
+
+    def column_private(self, data):
+        if data[Note.POS_PRIVATE]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
 
     def sort_change(self, data):
         return "%012x" % data[Note.POS_CHANGE]

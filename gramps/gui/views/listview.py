@@ -104,13 +104,14 @@ class ListView(NavigationView):
 
     def __init__(self, title, pdata, dbstate, uistate, columns, handle_col, 
                  make_model, signal_map, get_bookmarks, bm_type, nav_group,
-                 multiple=False, filter_class=None, markup=None):
+                 multiple=False, filter_class=None, markup=None, pixbuf=None):
         NavigationView.__init__(self, title, pdata, dbstate, uistate, 
                               get_bookmarks, bm_type, nav_group)
         #default is listviews keep themself in sync with database
         self._dirty_on_change_inactive = False
         
         self.filter_class = filter_class
+        self.pb_renderer = Gtk.CellRendererPixbuf()
         self.renderer = Gtk.CellRendererText()
         self.renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.sort_col = 0
@@ -124,6 +125,7 @@ class ListView(NavigationView):
         self.multiple_selection = multiple
         self.generic_filter = None
         self.markup_columns = markup or []
+        self.pixbuf_columns = pixbuf or []
         dbstate.connect('database-changed', self.change_db)
         self.connect_signals()
 
@@ -248,15 +250,18 @@ class ListView(NavigationView):
             if not pair[0]: continue
             name = self.colinfo[pair[1]]
 
-            column = Gtk.TreeViewColumn(name, self.renderer)
+            if pair[1] in self.pixbuf_columns:
+                column = Gtk.TreeViewColumn(name, self.pb_renderer)
+                column.set_cell_data_func(self.pb_renderer, self.icon, pair[1])
+            else:
+                column = Gtk.TreeViewColumn(name, self.renderer)
+                if pair[1] in self.markup_columns:
+                    column.add_attribute(self.renderer, 'markup', pair[1])
+                else:
+                    column.add_attribute(self.renderer, 'text', pair[1])
             
             if self.model and self.model.color_column() is not None:
                 column.set_cell_data_func(self.renderer, self.foreground_color)
-
-            if pair[1] in self.markup_columns:
-                column.add_attribute(self.renderer, 'markup', pair[1])
-            else:
-                column.add_attribute(self.renderer, 'text', pair[1])
 
             column.connect('clicked', self.column_clicked, index)
 
@@ -268,6 +273,16 @@ class ListView(NavigationView):
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
+
+    def icon(self, column, renderer, model, iter_, col_num):
+        '''
+        Set the stock icon property of the cell renderer.  We use a cell data
+        function because there is a problem returning None from a model.
+        '''
+        stock_id = model.get_value(iter_, col_num)
+        if stock_id == '':
+            stock_id = None
+        renderer.set_property('stock_id', stock_id)
 
     def foreground_color(self, column, renderer, model, iter_, data=None):
         '''

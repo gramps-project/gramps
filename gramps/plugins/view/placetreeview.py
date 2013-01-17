@@ -65,8 +65,9 @@ class PlaceTreeView(PlaceBaseView):
     COL_PARISH = 9
     COL_LAT = 10
     COL_LON = 11
-    COL_CHAN = 12
-    COL_NAME = 13
+    COL_PRIV = 12
+    COL_CHAN = 13
+    COL_NAME = 14
     # name of the columns
     COLUMN_NAMES = [
         _('Place'),
@@ -81,6 +82,7 @@ class PlaceTreeView(PlaceBaseView):
         _('Church Parish'),
         _('Latitude'),
         _('Longitude'),
+        _('Private'),
         _('Last Changed'),
         _('Place Name'),
         ]
@@ -90,15 +92,16 @@ class PlaceTreeView(PlaceBaseView):
                              COL_CITY, COL_COUNTY, COL_STATE]),
         ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
-                           COL_PARISH, COL_LAT, COL_LON, COL_CHAN, COL_NAME]),
+                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_CHAN, 
+                           COL_NAME]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 100, 150])
+                             100, 150, 150, 50, 100, 150])
         )    
 
     def __init__(self, pdata, dbstate, uistate):
         PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place Tree View'), PlaceTreeModel,
-                               nav_group=0, markup=PlaceBaseView.MARKUP_COLS)
+                               nav_group=0)
 
     def type_list(self):
         """
