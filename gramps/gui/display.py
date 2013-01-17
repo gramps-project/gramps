@@ -23,7 +23,7 @@
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
-import locale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 import os
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
@@ -40,28 +40,11 @@ MANUALS = {
 }
 
 #first, determine language code, so nl_BE --> wiki /nl
-LANG = locale.getlocale()[0]
-if not LANG:
-    LANG = 'C'
-#support environment overrule:
-try: 
-    if not os.environ['LANGUAGE'] or \
-            os.environ['LANGUAGE'].split(':')[0] == LANG:
-        pass
-    else:
-        LANG = os.environ['LANGUAGE'].split(':')[0]
-except:
-    pass
-EXTENSION = ''
-try:
-    EXTENSION = MANUALS[LANG]
-except KeyError:
-    pass
-try:
-    if not EXTENSION :
-        EXTENSION = MANUALS[LANG.split('_')[0]]
-except KeyError:
-    pass
+lang = glocale.get_translation().language()
+if lang in MANUALS:
+    EXTENSION = MANUALS[lang]
+else:
+    EXTENSION = ''
 
 def display_help(webpage='', section=''):
     """
