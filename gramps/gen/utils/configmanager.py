@@ -335,7 +335,10 @@ class ConfigManager(object):
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
-            key_file = open(filename, "w")
+            if sys.version_info[0] < 3:
+                key_file = open(filename, "w")
+            else:
+                key_file = open(filename, "w", encoding="utf-8")
             key_file.write(";; Gramps key file\n")
             key_file.write((";; Automatically created at %s" % 
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
