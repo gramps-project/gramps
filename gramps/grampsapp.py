@@ -39,8 +39,7 @@ if sys.version_info[0] < 3:
 ##
 import os
 import signal
-import gettext
-_ = gettext.gettext
+
 import locale
 import logging
 
@@ -53,8 +52,9 @@ from subprocess import Popen, PIPE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE, GRAMPS_LOCALE
+from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
 from .gen.constfunc import win
+
 #-------------------------------------------------------------------------
 #
 # Setup logging
@@ -113,14 +113,15 @@ def exc_hook(type, value, tb):
 sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
-from .gen.utils.grampslocale import GrampsLocale
+
 #-------------------------------------------------------------------------
 #
-# Load internationalization setup
+# Instantiate Localization
 #
 #-------------------------------------------------------------------------
 
-const.GRAMPS_LOCALE = GrampsLocale()
+from .gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

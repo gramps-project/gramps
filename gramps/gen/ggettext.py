@@ -30,65 +30,17 @@ This module ("Gramps Gettext") is an extension to the Python gettext module.
 # python modules
 #
 #------------------------------------------------------------------------
-import gettext as pgettext
-
-import sys
-if sys.version_info[0] < 3:
-    cuni = unicode
-else:
-    cuni = str
-
-def gettext(msgid):
-    """
-    Obtain translation of gettext, return a unicode object
-    :param msgid: The string to translated.
-    :type msgid: unicode
-    :returns: Translation or the original.
-    :rtype: unicode
-    """
-    # If msgid =="" then gettext will return po file header
-    # and that's not what we want.
-    if len(msgid.strip()) == 0:
-        return msgid
-    return cuni(pgettext.gettext(msgid))
-
-def ngettext(singular, plural, n):
-    """
-    The translation of singular/plural is returned unless the translation is
-    not available and the singular contains the separator. In that case,
-    the returned value is the singular.
-
-    :param singular: The singular form of the string to be translated.
-                      may contain a context seperator
-    :type singular: unicode
-    :param plural: The plural form of the string to be translated.
-    :type plural: unicode
-    :param n: the amount for which to decide the translation
-    :type n: int
-    :returns: Translation or the original.
-    :rtype: unicode
-    """
-    return cuni(pgettext.ngettext(singular, plural, n))
-    
-def sgettext(msgid, sep='|'):
-    """
-    Strip the context used for resolving translation ambiguities.
-    
-    The translation of msgid is returned unless the translation is
-    not available and the msgid contains the separator. In that case,
-    the returned value is the portion of msgid following the last
-    separator. Default separator is '|'.
-
-    :param msgid: The string to translated.
-    :type msgid: unicode
-    :param sep: The separator marking the context.
-    :type sep: unicode
-    :returns: Translation or the original with context stripped.
-    :rtype: unicode
-
-    """
-    msgval = pgettext.gettext(msgid)
-    if msgval == msgid:
-        sep_idx = msgid.rfind(sep)
-        msgval = msgid[sep_idx+1:]
-    return cuni(msgval)
+from gramps.gen.const import GRAMPS_LOCALE as _gl
+_tl = _gl.get_translation()
+gettext = _tl.gettext
+# When in the 'C' locale, get_translation returns a NULLTranslation
+# which doesn't provide sgettext. This traps that case and uses
+# gettext instead -- which is fine, because there's no translation
+# file involved and it's just going to return the msgid anyeay.
+sgettext = None
+try:
+    _tl.__getattr__(sgettext)
+    sgettext = _tl.sgettext
+except AttributeError:
+    sgettext = _tl.gettext
+ngettext = _tl.ngettext
