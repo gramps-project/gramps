@@ -54,6 +54,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.config import config
 from ..managedwindow import ManagedWindow
 from ..display import display_help, display_url
 from .grampletpane import (AVAILABLE_GRAMPLETS, 
@@ -94,15 +95,28 @@ class GrampletBar(Gtk.Notebook):
         self.defaults = defaults
         self.detached_gramplets = []
         self.empty = False
+        self.close_buttons = []
 
         self.set_group_name("grampletbar")
         self.set_show_border(False)
         self.set_scrollable(True)
+
+        book_button = Gtk.Button()
+        box = Gtk.VBox() # Arrow is too small unless in a Vbox
+        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+        arrow.show()
+        box.add(arrow)
+        box.show()
+        book_button.add(box)
+        book_button.set_relief(Gtk.ReliefStyle.NONE)
+        book_button.connect('clicked', self.__button_clicked)
+        book_button.show()
+        self.set_action_widget(book_button, Gtk.PackType.END)
+
         self.connect('switch-page', self.__switch_page)
         self.connect('page-added', self.__page_added)
         self.connect('page-removed', self.__page_removed)
         self.connect('create-window', self.__create_window)
-        self.connect('button-press-event', self.__button_press)
 
         config_settings, opts_list = self.__load(defaults)
 
@@ -122,6 +136,8 @@ class GrampletBar(Gtk.Notebook):
         if config_settings[0]:
             self.show()
         self.set_current_page(config_settings[1])
+
+        uistate.connect('grampletbar-close-changed', self.cb_close_changed)
 
     def __load(self, defaults):
         """
@@ -333,21 +349,29 @@ class GrampletBar(Gtk.Notebook):
 
     def __create_tab_label(self, gramplet):
         """
-        Create a tab label.
+        Create a tab label consisting of a label and a close button.
         """
-        label = Gtk.Label()
+        tablabel = TabLabel(gramplet, self.__delete_clicked)
+
         if hasattr(gramplet.pui, "has_data"):
-            if gramplet.pui.has_data:
-                label.set_text("<b>%s</b>" % gramplet.title)
-            else:
-                label.set_text(gramplet.title)
+            tablabel.set_has_data(gramplet.pui.has_data)
         else: # just a function; always show yes it has data
-            label.set_text("<b>%s</b>" % gramplet.title)
-            
-        label.set_use_markup(True)
-        label.set_tooltip_text(gramplet.tname)
-        label.show_all()
-        return label
+            tablabel.set_has_data(True)
+
+        if config.get('interface.grampletbar-close'):
+            tablabel.use_close(True)
+        else:
+            tablabel.use_close(False)
+
+        return tablabel
+
+    def cb_close_changed(self):
+        """
+        Close button preference changed.
+        """
+        for gramplet in self.get_children():
+            tablabel = self.get_tab_label(gramplet)
+            tablabel.use_close(config.get('interface.grampletbar-close'))
 
     def __delete_clicked(self, button, gramplet):
         """
@@ -421,47 +445,39 @@ class GrampletBar(Gtk.Notebook):
         gramplet.detached_window.close()
         gramplet.detached_window = None
 
-    def __button_press(self, widget, event):
+    def __button_clicked(self, button):
         """
-        Called when a button is pressed in the tabs section of the GrampletBar.
+        Called when the drop-down button is clicked.
         """
-        if is_right_click(event):
-            menu = Gtk.Menu()
+        menu = Gtk.Menu()
 
-            ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
-            nav_type = self.pageview.navigation_type()
-            skip = self.all_gramplets()
-            gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
+        ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
+        nav_type = self.pageview.navigation_type()
+        skip = self.all_gramplets()
+        gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
+        gramplet_list.sort()
+        self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
+        ag_menu.show()
+        menu.append(ag_menu)
+
+        if not (self.empty or config.get('interface.grampletbar-close')):
+            rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
+            gramplet_list = [(gramplet.title, gramplet.gname)
+                             for gramplet in self.get_children() +
+                                             self.detached_gramplets]
             gramplet_list.sort()
-            self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
-            ag_menu.show()
-            menu.append(ag_menu)
+            self.__create_submenu(rg_menu, gramplet_list,
+                                  self.__remove_clicked)
+            rg_menu.show()
+            menu.append(rg_menu)
 
-            if not self.empty:
-                rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
-                gramplet_list = [(gramplet.title, gramplet.gname)
-                                 for gramplet in self.get_children() +
-                                                 self.detached_gramplets]
-                gramplet_list.sort()
-                self.__create_submenu(rg_menu, gramplet_list,
-                                      self.__remove_clicked)
-                rg_menu.show()
-                menu.append(rg_menu)
+        rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
+        rd_menu.connect("activate", self.__restore_clicked)
+        rd_menu.show()
+        menu.append(rd_menu)
 
-            rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
-            rd_menu.connect("activate", self.__restore_clicked)
-            rd_menu.show()
-            menu.append(rd_menu)
-
-            menu.show_all()
-            #GTK3 does not show the popup, workaround: pass position function
-            menu.popup(None, None, 
-                       lambda menu, data: (event.get_root_coords()[0],
-                                          event.get_root_coords()[1], True),
-                       None, event.button, event.time)
-            return True
-
-        return False
+        menu.show_all()
+        menu.popup(None, None, cb_menu_position, button, 0, 0)
 
     def __create_submenu(self, main_menu, gramplet_list, callback_func):
         """
@@ -651,3 +667,61 @@ class DetachedWindow(ManagedWindow):
         self.gramplet.detached_window = None
         self.gramplet.reparent(self.grampletbar)
         ManagedWindow.close(self, *args)
+
+#-------------------------------------------------------------------------
+#
+# TabLabel class
+#
+#-------------------------------------------------------------------------
+class TabLabel(Gtk.HBox):
+    """
+    Create a tab label consisting of a label and a close button.
+    """
+    def __init__(self, gramplet, callback):
+        Gtk.HBox.__init__(self)
+        
+        self.text = gramplet.title
+        self.set_spacing(4)
+
+        self.label = Gtk.Label()
+        self.label.set_tooltip_text(gramplet.tname)
+        self.label.show()
+
+        self.closebtn = Gtk.Button()
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_CLOSE, Gtk.IconSize.MENU)
+        self.closebtn.connect("clicked", callback, gramplet)
+        self.closebtn.set_image(image)
+        self.closebtn.set_relief(Gtk.ReliefStyle.NONE)
+
+        self.pack_start(self.label, True, True, 0)
+        self.pack_end(self.closebtn, False, False, 0)
+
+    def set_has_data(self, has_data):
+        """
+        Set the label to indicate if the gramplet has data.
+        """
+        if has_data:
+            self.label.set_text("<b>%s</b>" % self.text)
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(self.text)
+
+    def use_close(self, use_close):
+        """
+        Display the cose button according to user preference.
+        """
+        if use_close:
+            self.closebtn.show()
+        else:
+            self.closebtn.hide()
+
+def cb_menu_position(menu, button):
+    """
+    Determine the position of the popup menu.
+    """
+    ret_val, x_pos, y_pos = button.get_window().get_origin()
+    x_pos += button.get_allocation().x
+    y_pos += button.get_allocation().y + button.get_allocation().height
+    
+    return (x_pos, y_pos, False)
