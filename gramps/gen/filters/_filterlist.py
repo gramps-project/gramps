@@ -124,7 +124,7 @@ class FilterList(object):
         return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file.encode(sys.getfilesystemencoding()), 'w')
+        f = open(self.file.encode(glocale.getfilesystemencoding()), 'w')
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
         for namespace in self.filter_namespaces:

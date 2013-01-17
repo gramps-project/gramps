@@ -42,6 +42,7 @@ else:
 import errno
 import copy
 import logging
+import io
 
 from ..constfunc import STRTYPE
 from ..const import GRAMPS_LOCALE as glocale
@@ -335,10 +336,7 @@ class ConfigManager(object):
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
-            if sys.version_info[0] < 3:
-                key_file = open(filename, "w")
-            else:
-                key_file = open(filename, "w", encoding="utf-8")
+            key_file = io.open(filename, "w", encoding = "utf-8")
             key_file.write(";; Gramps key file\n")
             key_file.write((";; Automatically created at %s" % 
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")

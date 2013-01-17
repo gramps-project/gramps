@@ -145,12 +145,11 @@ class VCardWriter(object):
 
         Can't cope with nested VCards, section 2.4.2 of RFC 2426.
         """
-        sysencoding = sys.getfilesystemencoding()
         self.filehandle.write('%s\r\n' % '\r\n'.join(
-            [line.encode(sysencoding) for line in self.txtwrp.wrap(text)]))
+            [line.encode('utf-8') for line in self.txtwrp.wrap(text)]))
 
     def export_data(self):
-        """Open the file and loop over everyone two write their VCards."""
+        """Open the file and loop over everyone too write their VCards."""
         with OpenFileOrStdout(self.filename) as self.filehandle:
             if self.filehandle:
                 self.count = 0
