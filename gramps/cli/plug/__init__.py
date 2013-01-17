@@ -571,11 +571,11 @@ class CommandLineReport(object):
                     # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
                 else:
                     optmsg = "      %s%s%s" % (key, tabs,
                                                _('(no help available)'))
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
             print((_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
                    {'donottranslate' : "show=option"}))
@@ -588,10 +588,10 @@ class CommandLineReport(object):
             if isinstance(vals, (list, tuple)):
                 for val in vals:
                     optmsg = "      %s" % val
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
             else:
                 optmsg = "      %s" % opt[2]
-                print(optmsg.encode(sys.getfilesystemencoding()))
+                print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
 
         else:
             #there was a show option given, but the option is invalid
