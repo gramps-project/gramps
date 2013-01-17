@@ -25,6 +25,8 @@ import locale
 import sys
 from ..constfunc import mac, win, conv_to_unicode
 
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 """
 Some OS environments do not support the locale.nl_langinfo() method
 of determing month names and other date related information.
@@ -41,7 +43,11 @@ else:
     #locale returns unicode in python 3
     to_uni = lambda x, y: x
 try:
-    codeset = locale.nl_langinfo(locale.CODESET)
+    codeset = glocale.get_translation().info()["charset"]
+except KeyError:
+    codeset = "UTF-8"
+
+try:
 
     month_to_int = {
         to_uni(locale.nl_langinfo(locale.MON_1), codeset).lower()   : 1,
@@ -137,11 +143,6 @@ try:
 
 except:
     import time
-    codeset = None
-    if win() or mac():
-        codeset = locale.getlocale()[1]
-    if codeset is None:
-        codeset = locale.getpreferredencoding()
 
     month_to_int = {
         to_uni(time.strftime('%B',(0,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
