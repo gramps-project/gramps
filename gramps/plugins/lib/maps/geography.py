@@ -125,7 +125,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         )
 
     def __init__(self, title, pdata, dbstate, uistate,
-                 get_bookmarks, bm_type, nav_group):
+                 bm_type, nav_group):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
                                 bm_type, nav_group)
 
