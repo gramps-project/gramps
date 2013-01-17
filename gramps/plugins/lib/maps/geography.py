@@ -55,7 +55,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import HOME_DIR, ROOT_DIR
+from gramps.gen.const import HOME_DIR, IMAGE_DIR
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
@@ -149,13 +149,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = None
-        path = os.path.join(ROOT_DIR, "images", "48x48",
+        path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-mainmap' + '.png' ))
         pathu = path
         if sys.version_info[0] < 3:
             pathu = path.encode(glocale.getfilesystemencoding())
         self.geo_mainmap = cairo.ImageSurface.create_from_png(pathu)
-        path = os.path.join(ROOT_DIR, "images", "48x48",
+        path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-altmap' + '.png' ))
         pathu = path
         if sys.version_info[0] < 3:
@@ -172,7 +172,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( EventType.BIRTH,
                     EventType.DEATH,
                     EventType.MARRIAGE ):
-            path = os.path.join(ROOT_DIR, "images", "48x48",
+            path = os.path.join(IMAGE_DIR, "48x48",
                                 (constants.ICONS.get(int(ident), default_image) + '.png' ))
             pathu = path
             if sys.version_info[0] < 3:
