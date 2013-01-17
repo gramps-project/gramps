@@ -340,73 +340,6 @@ class GrampsLocale(object):
 
 #-------------------------------------------------------------------------
 #
-# GrampsTranslation Class
-#
-#-------------------------------------------------------------------------
-class GrampsTranslations(gettext.GNUTranslations):
-    """
-    Overrides and extends gettext.GNUTranslations. See the Python gettext
-    "Class API" documentation for how to use this.
-    """
-    def language(self):
-        """
-        Return the target languge of this translations object.
-        """
-        return self.info()["language"]
-
-    def gettext(self, msgid):
-        """
-        Obtain translation of gettext, return a unicode object
-        :param msgid: The string to translated.
-        :type msgid: unicode
-        :returns: Translation or the original.
-        :rtype: unicode
-        """
-        # If msgid =="" then gettext will return po file header
-        # and that's not what we want.
-        if len(msgid.strip()) == 0:
-            return msgid
-        if sys.version_info[0] < 3:
-            return gettext.GNUTranslations.ugettext(self, msgid)
-        else:
-            return gettext.GNUTranslations.gettext(self, msgid)
-
-    def ngettext(self, singular, plural, num):
-        """
-        The translation of singular/plural is returned unless the translation is
-        not available and the singular contains the separator. In that case,
-        the returned value is the singular.
-
-        :param singular: The singular form of the string to be translated.
-                         may contain a context seperator
-        :type singular: unicode
-        :param plural: The plural form of the string to be translated.
-        :type plural: unicode
-        :param num: the amount for which to decide the translation
-        :type num: int
-        :returns: Translation or the original.
-        :rtype: unicode
-        """
-        if sys.version_info[0] < 3:
-            return gettext.GNUTranslations.ungettext(self, singular,
-                                                     plural, num)
-        else:
-            return gettext.GNUTranslations.ngettext(self, singular,
-                                                    plural, num)
-
-    def sgettext(self, msgid, sep='|'):
-        """
-        Even with a null translator we need to filter out the translator hint.
-        """
-        msgval = self.gettext(msgid)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return msgval
-
-
-#-------------------------------------------------------------------------
-#
 # Translations Classes
 #
 #-------------------------------------------------------------------------
@@ -482,7 +415,6 @@ class GrampsTranslations(gettext.GNUTranslations):
             sep_idx = msgid.rfind(sep)
             msgval = msgid[sep_idx+1:]
         return msgval
-
 
 class GrampsNullTranslations(gettext.NullTranslations):
     """

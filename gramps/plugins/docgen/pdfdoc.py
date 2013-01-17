@@ -89,7 +89,7 @@ class PdfDoc(libcairodoc.CairoDoc):
         # create cairo context and pango layout
         filename = self._backend.filename
         if sys.version_info[0] < 3:
-            filename = filename.encode(sys.getfilesystemencoding())
+            filename = self._backend.filename.encode(glocale.getfilesystemencoding())
         try:
             surface = cairo.PDFSurface(filename, paper_width, paper_height)
         except IOError as msg:

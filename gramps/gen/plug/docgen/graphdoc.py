@@ -658,7 +658,7 @@ class GVPsDoc(GVDocBase):
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
 
@@ -706,7 +706,7 @@ class GVSvgDoc(GVDocBase):
         dotfile.close()
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
 
@@ -749,7 +749,7 @@ class GVSvgzDoc(GVDocBase):
         dotfile.close()
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         
@@ -792,7 +792,7 @@ class GVPngDoc(GVDocBase):
         dotfile.close()
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         
@@ -835,7 +835,7 @@ class GVJpegDoc(GVDocBase):
         dotfile.close()
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         
@@ -878,7 +878,7 @@ class GVGifDoc(GVDocBase):
         dotfile.close()
         # Covert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         
@@ -924,7 +924,7 @@ class GVPdfGvDoc(GVDocBase):
         dotfile.close()
         # Convert filename to str using file system encoding.
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         
@@ -989,7 +989,7 @@ class GVPdfGsDoc(GVDocBase):
         
         # Convert to PDF using ghostscript
         if sys.version_info[0] < 3:
-            fname = self._filename.encode(sys.getfilesystemencoding())
+            fname = self._filename.encode(glocale.getfilesystemencoding())
         else:
             fname = self._filename
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \

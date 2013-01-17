@@ -193,7 +193,7 @@ class ErrorDialog(Gtk.MessageDialog):
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
         if sys.version_info[0] < 3:
-            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+            msg = cuni(str(msg).decode(glocale.getfilesystemencoding()))
         else:
             msg = str(msg)
         ErrorDialog.__init__(
@@ -208,7 +208,7 @@ class RunDatabaseRepair(ErrorDialog):
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
         if sys.version_info[0] < 3:
-            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+            msg = cuni(str(msg).decode(glocale.getfilesystemencoding()))
         else:
             msg = str(msg)
         ErrorDialog.__init__(

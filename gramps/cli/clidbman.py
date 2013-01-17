@@ -192,7 +192,7 @@ class CLIDbManager(object):
                 retval["Locked?"] = "no"
             retval["DB version"] = version
             if sys.version_info[0] < 3:
-                retval["Family tree"] = name.encode(sys.getfilesystemencoding())
+                retval["Family tree"] = name.encode(glocale.getfilesystemencoding())
             else:
                 retval["Family tree"] = name
             retval["Path"] = dirpath
@@ -207,7 +207,7 @@ class CLIDbManager(object):
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(sys.getfilesystemencoding())
+            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -414,7 +414,7 @@ def make_dbdir(dbdir):
         if not os.path.isdir(dbdir):
             os.makedirs(dbdir)
     except (IOError, OSError) as msg:
-        msg = conv_to_unicode(str(msg), sys.getfilesystemencoding())
+        msg = conv_to_unicode(str(msg), glocale.getfilesystemencoding())
         LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
                     "Open preferences and set correct database path.\n\n"
                     "Details: Could not make database directory:\n    %s\n\n") % msg)
@@ -443,7 +443,7 @@ def find_next_db_dir():
         base = "%x" % int(time.time())
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(sys.getfilesystemencoding())
+            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break
@@ -486,7 +486,7 @@ def find_locker_name(dirpath):
         # Convert username to unicode according to system encoding
         # Otherwise problems with non ASCII characters in
         # username in Windows
-        username = conv_to_unicode(username, sys.getfilesystemencoding())
+        username = conv_to_unicode(username, glocale.getfilesystemencoding())
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()
