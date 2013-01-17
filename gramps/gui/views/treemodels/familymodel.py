@@ -71,9 +71,7 @@ class FamilyModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change, 
-            self.column_handle, 
             self.column_tag_color,
-            self.column_tooltip,
             ]
         self.smap = [
             self.column_id, 
@@ -84,12 +82,10 @@ class FamilyModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change, 
-            self.column_handle, 
             self.column_tag_color,
-            self.column_tooltip,
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9, 
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -106,13 +102,10 @@ class FamilyModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 9
+        return 8
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
-
-    def column_handle(self, data):
-        return cuni(data[0])
 
     def column_father(self, data):
         if data[2]:
@@ -181,9 +174,6 @@ class FamilyModel(FlatBaseModel):
     
     def column_change(self, data):
         return format_time(data[12])
-
-    def column_tooltip(self, data):
-        return cuni('Family tooltip')
 
     def get_tag_name(self, tag_handle):
         """

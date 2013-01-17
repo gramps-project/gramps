@@ -459,7 +459,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
     """
 
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING,
-                 tooltip_column=None, search=None, skip=set(),
+                 search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()
         GObject.GObject.__init__(self)
@@ -489,7 +489,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         self.set_search(search)
             
         self._reverse = (order == Gtk.SortType.DESCENDING)
-        self._tooltip_column = tooltip_column
 
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
@@ -558,12 +557,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         self._reverse = not self._reverse
         self.node_map.reverse_order()
 
-    def tooltip_column(self):
-        """
-        Return the column for tooltips.
-        """
-        return self._tooltip_column
-        
     def color_column(self):
         """
         Return the color column.
@@ -719,6 +712,21 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         return self.on_get_path_from_handle(handle)
 
+    def get_iter_from_handle(self, handle):
+        """
+        Get the iter for a gramps handle.
+        """
+        return self.node_map.new_iter(handle)
+
+    def get_handle_from_iter(self, iter):
+        """
+        Get the gramps handle for an iter.
+        """
+        index = self.node_map.real_index(iter.user_data)
+        return self.node_map.get_handle(index)
+
+    # The following implement the public interface of Gtk.TreeModel
+
     def do_get_flags(self):
         """
         Returns the GtkTreeModelFlags for this particular type of model
@@ -749,8 +757,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_get_col_type'
-        if index == self._tooltip_column:
-            return object
         return str
 
     def do_get_iter_first(self):
@@ -792,15 +798,13 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         handle = self.node_map._index2hndl[iter.user_data][1]
         val = self.get_value_from_handle(handle, col)
         #print 'val is', val, type(val)
-        if col == self._tooltip_column:
-            return val
+
+        #GTK 3 should convert unicode objects automatically, but this
+        # gives wrong column values, so we convert for python 2.7
+        if not isinstance(val, str):
+            return val.encode('utf-8')
         else:
-            #GTK 3 should convert unicode objects automatically, but this
-            # gives wrong column values, so we convert for python 2.7
-            if not isinstance(val, str):
-                return val.encode('utf-8')
-            else:
-                return val
+            return val
 
     def do_iter_previous(self, iter):
         #print 'do_iter_previous'

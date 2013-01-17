@@ -75,8 +75,6 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_chan,
-            self.citation_handle,
-            self.citation_tooltip
             ]
         self.smap = [
             self.citation_page,
@@ -92,11 +90,9 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_chan,
-            self.citation_handle,
-            self.citation_tooltip
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=12,
-                               search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """

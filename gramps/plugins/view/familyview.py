@@ -115,7 +115,6 @@ class FamilyView(ListView):
 
         ListView.__init__(
             self, _('Families'), pdata, dbstate, uistate,
-            len(FamilyView.COLUMNS), 
             FamilyModel,
             signal_map,
             FamilyBookmarks, nav_group,

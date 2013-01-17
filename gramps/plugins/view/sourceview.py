@@ -113,7 +113,6 @@ class SourceView(ListView):
 
         ListView.__init__(
             self, _('Sources'), pdata, dbstate, uistate, 
-            len(SourceView.COLUMNS), 
             SourceModel, signal_map,
             SourceBookmarks, nav_group,
             multiple=True,

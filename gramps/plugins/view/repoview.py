@@ -126,7 +126,6 @@ class RepositoryView(ListView):
         
         ListView.__init__(
             self, _('Repositories'), pdata, dbstate, uistate,
-            len(RepositoryView.COLUMNS),
             RepositoryModel, signal_map,
             RepoBookmarks, nav_group,
             multiple=True,

@@ -138,7 +138,6 @@ class MediaView(ListView):
 
         ListView.__init__(
             self, _('Media'), pdata, dbstate, uistate, 
-            len(MediaView.COLUMNS), 
             MediaModel, 
             signal_map,
             MediaBookmarks, nav_group,

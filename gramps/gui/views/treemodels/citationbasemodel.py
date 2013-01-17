@@ -122,9 +122,6 @@ class CitationBaseModel(object):
             # There is a problem returning None here.
             return ''
 
-    def citation_handle(self, data):
-        return cuni(data[COLUMN_HANDLE])
-
     def citation_change(self, data):
         return format_time(data[COLUMN_CHANGE])
     
@@ -194,13 +191,7 @@ class CitationBaseModel(object):
         except:
             return ''
 
-    def citation_tooltip(self, data):
-        return cuni('Citation tooltip')
-
 # Fields access when 'data' is a Source
-
-    def source_handle(self, data):
-        return cuni(data[COLUMN2_HANDLE])
 
     def source_src_title(self, data):
         return cuni(data[COLUMN2_TITLE])
@@ -230,10 +221,6 @@ class CitationBaseModel(object):
     def source_sort2_change(self, data):
         return "%012x" % data[COLUMN2_CHANGE]
 
-    def source_tooltip(self, data):
-        return cuni('Source tooltip')
-
     def dummy_sort_key(self, data):
         # dummy sort key for columns that don't have data
         return None
-    
