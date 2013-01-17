@@ -111,7 +111,7 @@ class NoteView(ListView):
 
         ListView.__init__(
             self, _('Notes'), pdata, dbstate, uistate,
-            len(NoteView.COLUMNS), NoteModel, signal_map,
+            NoteModel, signal_map,
             NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)

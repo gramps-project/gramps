@@ -95,8 +95,6 @@ class PeopleBaseModel(object):
     """
     _GENDER = [ _('female'), _('male'), _('unknown') ]
 
-    # The following is accessed from the Person Selector
-    COLUMN_INT_ID = 11  # dynamic calculation of column indices
     # LRU cache size
     _CACHE_SIZE = 250
 
@@ -120,9 +118,7 @@ class PeopleBaseModel(object):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_int_id,
             self.column_tag_color,
-            self.column_tooltip,
             ]
         self.smap = [
             self.sort_name,
@@ -136,9 +132,7 @@ class PeopleBaseModel(object):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_int_id,
             self.column_tag_color,
-            self.column_tooltip,
             ]
 
         #columns are accessed on every mouse over, so it is worthwhile to
@@ -164,7 +158,7 @@ class PeopleBaseModel(object):
         """
         Return the color column.
         """
-        return 12
+        return 11
 
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -441,12 +435,6 @@ class PeopleBaseModel(object):
                         return "<i>" + cgi.escape(place_title) + "</i>"
         return ""
 
-    def column_tooltip(self, data):
-        return 'Person tooltip'
-        
-    def column_int_id(self, data):
-        return data[0]
-
     def get_tag_name(self, tag_handle):
         """
         Return the tag name from the given tag handle.
@@ -481,9 +469,8 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         PeopleBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, search=search, skip=skip,
-                                tooltip_column=12,
-                                scol=scol, order=order, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
+                               order=order, sort_map=sort_map)
 
     def clear_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -504,8 +491,8 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
                  skip=set(), sort_map=None):
 
         PeopleBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, 12, search=search, skip=skip,
-                                scol=scol, order=order, sort_map=sort_map)
+        TreeBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
+                               order=order, sort_map=sort_map)
 
     def destroy(self):
         """

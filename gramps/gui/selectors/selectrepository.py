@@ -63,8 +63,5 @@ class SelectRepository(BaseSelector):
             (_('ID'),     75, BaseSelector.TEXT, 1)
             ]
 
-    def get_handle_column(self):
-        return 14
-
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle

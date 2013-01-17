@@ -71,8 +71,6 @@ class RepositoryModel(FlatBaseModel):
             self.column_search_url,
             self.column_private,
             self.column_change,
-            self.column_handle,
-            self.column_tooltip
             ]
         
         self.smap = [
@@ -90,11 +88,10 @@ class RepositoryModel(FlatBaseModel):
             self.column_search_url,
             self.column_private,
             self.sort_change,           
-            self.column_handle,            
             ]
         
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=15,
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -110,9 +107,6 @@ class RepositoryModel(FlatBaseModel):
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
-
-    def column_handle(self,data):
-        return cuni(data[0])
 
     def column_id(self,data):
         return cuni(data[1])
@@ -219,9 +213,6 @@ class RepositoryModel(FlatBaseModel):
                 if url.get_type() == UrlType.WEB_HOME:
                     return cuni(url.path)
         return ""
-
-    def column_tooltip(self,data):
-        return cuni('Repository tooltip')
 
     def column_private(self, data):
         if data[8]:

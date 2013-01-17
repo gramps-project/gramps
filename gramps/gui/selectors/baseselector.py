@@ -179,12 +179,19 @@ class BaseSelector(ManagedWindow):
 
     def get_selected_ids(self):
         mlist = []
-        self.selection.selected_foreach(self.select_function,mlist)
+        self.selection.selected_foreach(self.select_function, mlist)
         return mlist
 
-    def select_function(self,store,path,iter,id_list):
-        handle_column = self.get_handle_column()
-        id_list.append(self.model.get_value(iter, handle_column))
+    def first_selected(self):
+        """ first selected entry in the Selector tree
+        """
+        mlist = []
+        self.selection.selected_foreach(self.select_function, mlist)
+        return mlist[0] if mlist else None
+
+    def select_function(self, store, path, iter_, id_list):
+        handle = store.get_handle_from_iter(iter_)
+        id_list.append(handle)
 
     def run(self):
         val = self.window.run()
@@ -230,10 +237,6 @@ class BaseSelector(ManagedWindow):
     def get_from_handle_func2(self):
         return None
         
-    def get_handle_column(self):
-        # return 3
-        assert False, "Must be defined in the subclass"
-        
     def set_show_search_bar(self, value):
         """make the search bar at the top shown
         """
@@ -245,18 +248,6 @@ class BaseSelector(ManagedWindow):
         else :
             self.search_bar.hide()
             
-    def begintree(self, store, path, node, sel_list):
-        handle_column = self.get_handle_column()
-        handle = store.get_value(node, handle_column)
-        sel_list.append(handle)
-        
-    def first_selected(self):
-        """ first selected entry in the Selector tree
-        """
-        mlist = []
-        self.selection.selected_foreach(self.begintree, mlist)
-        return mlist[0] if mlist else None
-
     def column_order(self):
         """
         returns a tuple indicating the column order of the model

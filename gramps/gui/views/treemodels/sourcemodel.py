@@ -50,7 +50,7 @@ from .flatbasemodel import FlatBaseModel
 #-------------------------------------------------------------------------
 class SourceModel(FlatBaseModel):
 
-    def __init__(self,db,scol=0, order=Gtk.SortType.ASCENDING,search=None,
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
@@ -62,8 +62,6 @@ class SourceModel(FlatBaseModel):
             self.column_pubinfo,
             self.column_private,
             self.column_change,
-            self.column_handle,
-            self.column_tooltip
             ]
         self.smap = [
             self.column_title,
@@ -74,8 +72,8 @@ class SourceModel(FlatBaseModel):
             self.column_private,
             self.sort_change,
             ]
-        FlatBaseModel.__init__(self,db,scol, order,tooltip_column=8,search=search,
-                           skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -93,9 +91,6 @@ class SourceModel(FlatBaseModel):
 
     def column_title(self,data):
         return cuni(data[2])
-
-    def column_handle(self,data):
-        return cuni(data[0])
 
     def column_author(self,data):
         return cuni(data[3])
@@ -121,6 +116,3 @@ class SourceModel(FlatBaseModel):
     
     def sort_change(self,data):
         return "%012x" % data[8]
-
-    def column_tooltip(self,data):
-        return cuni('Source tooltip')

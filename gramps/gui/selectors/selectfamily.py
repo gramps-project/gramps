@@ -66,6 +66,3 @@ class SelectFamily(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_family_from_handle
-        
-    def get_handle_column(self):
-        return 8

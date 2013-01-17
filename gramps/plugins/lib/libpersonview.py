@@ -135,7 +135,6 @@ class BasePersonView(ListView):
  
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            len(BasePersonView.COLUMNS), 
             model, signal_map,
             PersonBookmarks, nav_group,
             multiple=True,

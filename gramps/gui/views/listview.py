@@ -104,7 +104,7 @@ class ListView(NavigationView):
     FILTER_TYPE = None  # Set in inheriting class
     QR_CATEGORY = -1
 
-    def __init__(self, title, pdata, dbstate, uistate, handle_col, 
+    def __init__(self, title, pdata, dbstate, uistate,
                  make_model, signal_map, bm_type, nav_group,
                  multiple=False, filter_class=None):
         NavigationView.__init__(self, title, pdata, dbstate, uistate, 
@@ -119,7 +119,6 @@ class ListView(NavigationView):
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
         self.columns = []
-        self.handle_col = handle_col
         self.make_model = make_model
         self.model = None
         self.signal_map = signal_map
