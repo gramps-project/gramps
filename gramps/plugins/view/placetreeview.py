@@ -30,7 +30,7 @@ from __future__ import unicode_literals
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 from gramps.gen.lib import Place
@@ -68,23 +68,23 @@ class PlaceTreeView(PlaceBaseView):
     COL_PRIV = 12
     COL_CHAN = 13
     COL_NAME = 14
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Place'),
-        _('ID'),
-        _('Street'),
-        _('Locality'),
-        _('City'),
-        _('County'),
-        _('State'),
-        _('Country'),
-        _('ZIP/Postal Code'),
-        _('Church Parish'),
-        _('Latitude'),
-        _('Longitude'),
-        _('Private'),
-        _('Last Changed'),
-        _('Place Name'),
+    # column definitions
+    COLUMNS = [
+        (_('Place'), MARKUP, None),
+        (_('ID'), TEXT, None),
+        (_('Street'), TEXT, None),
+        (_('Locality'), TEXT, None),
+        (_('City'), TEXT, None),
+        (_('County'), TEXT, None),
+        (_('State'), TEXT, None),
+        (_('Country'), TEXT, None),
+        (_('ZIP/Postal Code'), TEXT, None),
+        (_('Church Parish'), TEXT, None),
+        (_('Latitude'), TEXT, None),
+        (_('Longitude'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
+        (_('Place Name'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -95,19 +95,13 @@ class PlaceTreeView(PlaceBaseView):
                            COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_CHAN, 
                            COL_NAME]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 50, 100, 150])
+                             100, 150, 150, 40, 100, 150])
         )    
 
     def __init__(self, pdata, dbstate, uistate):
         PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place Tree View'), PlaceTreeModel,
                                nav_group=0)
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
 
     def get_viewtype_stock(self):
         """

@@ -31,7 +31,6 @@ Person list View
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonListModel
 

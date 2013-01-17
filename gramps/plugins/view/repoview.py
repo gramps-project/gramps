@@ -37,7 +37,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Repository
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import RepositoryModel
 from gramps.gui.views.bookmarks import RepoBookmarks
 from gramps.gen.errors import WindowActiveError
@@ -80,23 +80,22 @@ class RepositoryView(ListView):
     COL_PRIV = 12
     COL_CHAN = 13
 
-    PIXBUF_COLS = [COL_PRIV]
-
-    COLUMN_NAMES = [
-        _('Name'),
-        _('ID'),
-        _('Type'),
-        _('Home URL'),
-        _('Street'),
-        _('Locality'),
-        _('City'),
-        _('State/County'),
-        _('Country'),
-        _('ZIP/Postal Code'),
-        _('Email'),
-        _('Search URL'),
-        _('Private'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Name'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Home URL'), TEXT, None),
+        (_('Street'), TEXT, None),
+        (_('Locality'), TEXT, None),
+        (_('City'), TEXT, None),
+        (_('State/County'), TEXT, None),
+        (_('Country'), TEXT, None),
+        (_('ZIP/Postal Code'), TEXT, None),
+        (_('Email'), TEXT, None),
+        (_('Search URL'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -106,7 +105,7 @@ class RepositoryView(ListView):
                           COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
                           COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_CHAN]),
         ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
-                             100, 100, 100, 50, 100])
+                             100, 100, 100, 40, 100])
         )    
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
@@ -126,13 +125,12 @@ class RepositoryView(ListView):
         
         ListView.__init__(
             self, _('Repositories'), pdata, dbstate, uistate,
-            RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
+            len(RepositoryView.COLUMNS),
             RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
             RepoBookmarks, nav_group,
             multiple=True,
-            filter_class=RepoSidebarFilter, 
-            pixbuf=RepositoryView.PIXBUF_COLS)
+            filter_class=RepoSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
