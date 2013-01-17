@@ -95,8 +95,9 @@ class PdfDoc(libcairodoc.CairoDoc):
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
             raise ReportError(errmsg)
-        except:
-            raise ReportError(_("Could not create %s") % filename)
+        except Exception as err:
+            errmsg = "%s\n%s" % (_("Could not create %s") % filename, err)
+            raise ReportError(errmsg)
         surface.set_fallback_resolution(300, 300)
         cr = cairo.Context(surface)
         fontmap = PangoCairo.font_map_new()
