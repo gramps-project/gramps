@@ -73,36 +73,23 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 import sys, os, subprocess
 
-def get_available_translations(dir, domain):
+def mac_setup_localization(glocale):
     """
-    Get a list of available translations.
-
-    :returns: A list of translation languages.
-    :rtype: unicode[]
-
+    Set up the localization parameters from OSX's "defaults" system,
+    permitting environment variables to override the settings.
     """
-    languages = ["en"]
-
-    if dir is None:
-        return languages
-
-    for langdir in os.listdir(dir):
-        mofilename = os.path.join( dir, langdir,
-                                   "LC_MESSAGES", "%s.mo" % domain )
-        if os.path.exists(mofilename):
-            languages.append(langdir)
-
-    languages.sort()
-
-    return languages
-
-def mac_setup_localization(dir, domain):
     defaults = "/usr/bin/defaults"
     find = "/usr/bin/find"
     locale_dir = "/usr/share/locale"
-    available = get_available_translations(dir, domain)
+    if glocale:
+        available = glocale.get_available_translations()
+    else:
+        available = ['en']
 
     def mac_language_list():
+        """
+        Extract the languages list from defaults.
+        """
         languages = []
         try:
             languages = subprocess.Popen(
@@ -140,6 +127,9 @@ def mac_setup_localization(dir, domain):
         return usable
 
     def mac_get_locale():
+        """
+        Get the locale and specifiers from defaults.
+        """
         locale = ""
         calendar = ""
         currency = ""
@@ -177,6 +167,9 @@ def mac_setup_localization(dir, domain):
         return (locale, calendar, currency)
 
     def mac_get_collation():
+        """
+        Extract the collation (sort order) locale from the defaults string.
+        """
         collation = ""
         try:
             collation = subprocess.Popen(
@@ -196,11 +189,13 @@ def mac_setup_localization(dir, domain):
 
         return collation
 
-# Locale.setlocale() will throw if any LC_* environment variable isn't
-# a fully qualified one present in
-# /usr/share/locale. mac_resolve_locale ensures that a locale meets
-# that requirement.
     def mac_resolve_locale(loc):
+        """
+        Locale.setlocale() will throw if any LC_* environment variable
+        isn't a fully qualified one present in
+        /usr/share/locale. mac_resolve_locale ensures that a locale
+        meets that requirement.
+        """
         if len(loc) < 2:
             return None
         if len(loc) >= 5 and os.path.exists(os.path.join(locale_dir, loc[:5])):
@@ -214,11 +209,10 @@ def mac_setup_localization(dir, domain):
         else:
     # OK, no, look through the translation list, but that's not likely
     # to be 5 letters long either
-            for l in translations:
-                if (l.startswith(loc) and len(l) >= 5
-                    and os.path.exists(os.path.join(locale_dir, l[:5]))):
-                    return l[:5]
-                    break
+            for _la in translations:
+                if (_la.startswith(loc) and len(_la) >= 5
+                    and os.path.exists(os.path.join(locale_dir, _la[:5]))):
+                    return _la[:5]
 
             else:
     # so as a last resort, pick the first one for that language.
@@ -237,20 +231,22 @@ def mac_setup_localization(dir, domain):
     collation = mac_get_collation()
     translations = mac_language_list()
 
-    if "LANGUAGE" not in os.environ:
-        if len(translations) > 0:
-            if "MULTI_TRANSLATION" in os.environ:
-                os.environ["LANGUAGE"] = ":".join(translations)
-            else:
-                os.environ["LANGUAGE"] = translations[0]
-        elif (len(loc) > 0 and loc in available
-              and not locale.starts_with("en")):
-            os.environ["LANGUAGE"] = locale
-        elif (len(collation) > 0 and collation in available
-              and not collation.starts_with("en")):
-            os.environ["LANGUAGE"] = collation
+    if currency and "LC_MONETARY" not in os.environ:
+        os.environ["LC_MONETARY"] = currency
 
-    if "LANG" not in os.environ:
+    if calendar and "LC_TIME" not in os.environ:
+        os.environ["LC_TIME"] = calendar
+
+    if currency and "LC_MONETARY" not in os.environ:
+        os.environ["LC_MONETARY"] = currency
+
+
+    if calendar and "LC_TIME" not in os.environ:
+        os.environ["LC_TIME"] = calendar
+
+    if "LANG" in os.environ:
+        lang = os.environ["LANG"]
+    else:
         lang = "en_US"
         loc = mac_resolve_locale(loc)
         if loc != None:
@@ -261,6 +257,20 @@ def mac_setup_localization(dir, domain):
 
         elif len(collation) > 0:
             lang = mac_resolve_locale(collation)
-        if lang != None:
-            os.environ["LANG"] = lang
-            os.environ["LC_CTYPE"] = lang + ".UTF-8"
+
+    if "LANGUAGE" in os.environ:
+        language =  [l for l in os.environ["LANGUAGE"].split(":")
+                     if l in available]
+    elif "LANG" in os.environ:
+        language = [lang[0:2]]
+    else:
+        if len(translations) > 0:
+            language = translations
+        elif (len(loc) > 0 and loc in available
+              and not loc.startswith("en")):
+            language = [loc]
+        elif (len(collation) > 0 and collation in available
+              and not collation.startswith("en")):
+            language = [collation]
+
+    return (lang, language)

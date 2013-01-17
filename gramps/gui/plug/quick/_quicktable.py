@@ -52,9 +52,9 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.simple import SimpleTable
-from gramps.gen.utils.grampslocale import trans_objclass
 from gramps.gen.errors import WindowActiveError
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets
@@ -127,7 +127,7 @@ class QuickTable(SimpleTable):
             if (index is not None and self._link[index]):
             # See details (edit, etc):
                 objclass, handle = self._link[index]
-                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % trans_objclass(objclass))
+                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % glocale.trans_objclass(objclass))
                 menu_item.connect("activate", 
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
@@ -137,7 +137,7 @@ class QuickTable(SimpleTable):
                 (index is not None and self._link[index])):
                 objclass, handle = self._link[index]
                 if objclass == 'Person':
-                    menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % trans_objclass('Person'))
+                    menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % glocale.trans_objclass('Person'))
                     menu_item.connect("activate", 
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)

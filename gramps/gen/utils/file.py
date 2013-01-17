@@ -170,7 +170,7 @@ def get_unicode_path_from_env_var(path):
     """
     # make only unicode of path of type 'str'
     if not (isinstance(path,  str)):
-        return path
+        raise TypeError("path %s isn't a str" % str(path))
 
     if win():
         # In Windows path/filename returned from a environment variable is in filesystemencoding
