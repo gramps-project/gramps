@@ -423,7 +423,7 @@ class GrampsNullTranslations(gettext.NullTranslations):
     Note that it's necessary for msgid to be unicode. If it's not,
     neither will be the returned string.
     """
-    def sgettext(self, msgid):
+    def sgettext(self, msgid, sep='|'):
         msgval = self.gettext(msgid)
         if msgval == msgid:
             sep_idx = msgid.rfind(sep)
