@@ -372,13 +372,7 @@ class ViewManager(CLIManager):
                 from urllib.request import urlopen
             import locale
             LOG.debug("Checking for updated addons...")
-            langs = []
-            lang = locale.getlocale()[0] # not None
-            if lang:
-                langs.append(lang)
-                if "_" in lang:
-                    lang, variation = lang.split("_", 1)
-                    langs.append(lang)
+            langs = glocale.get_language_list()
             langs.append("en")
             # now we have a list of languages to try:
             fp = None

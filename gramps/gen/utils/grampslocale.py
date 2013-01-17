@@ -147,6 +147,14 @@ class GrampsLocale(object):
         """
         return self.localedomain
 
+    def get_language_list(self):
+        """
+        Return the list of configured languages.  Used by
+        ViewManager.check_for_updates to select the language for the
+        addons descriptions.
+        """
+        return self.language
+
     def _get_translation(self, domain = None,
                          localedir = None,
                          languages=None):
