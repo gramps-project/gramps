@@ -36,7 +36,7 @@ import os
 import sys
 import re
 import traceback
-import codecs
+import io
 
 #-------------------------------------------------------------------------
 #
@@ -1093,13 +1093,16 @@ class PluginRegister(object):
             full_filename = os.path.join(dir, filename)
             if sys.version_info[0] < 3:
                 full_filename = full_filename.encode(glocale.getfilesystemencoding())
+                fd = open(full_filename, "r")
+            else:
+                fd = io.open(full_filename, 'r', encoding = 'utf-8')
+            stream = fd.read()
+            fd.close()
             local_gettext = glocale.get_addon_translator(full_filename).gettext
             try:
                 #execfile(full_filename,
-                exec(compile(codecs.open(full_filename, 'r', 'utf-8').read(),
-                             full_filename, 'exec'),
-                     make_environment(_=local_gettext),
-                         {})
+                exec (compile(stream, full_filename, 'exec'),
+                      make_environment(_=local_gettext), {})
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename})
