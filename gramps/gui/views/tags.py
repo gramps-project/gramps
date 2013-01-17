@@ -42,7 +42,8 @@ from gi.repository import Gdk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
 from ..dbguielement import DbGUIElement

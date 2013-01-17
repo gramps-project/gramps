@@ -31,7 +31,8 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 LOG = logging.getLogger(".citation")
 

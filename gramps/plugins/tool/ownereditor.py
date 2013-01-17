@@ -44,7 +44,8 @@ from gramps.gui.display import display_help
 from gramps.gui.widgets import MonitoredEntry
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.plug import tool
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.utils import is_right_click
 

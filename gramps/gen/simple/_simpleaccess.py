@@ -37,7 +37,8 @@ from ..plug.report.utils import place_name
 from ..display.name import displayer as name_displayer
 from ..lib import EventType
 from ..config import config
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------

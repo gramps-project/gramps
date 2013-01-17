@@ -43,7 +43,8 @@ LOG = logging.getLogger(".gen.utils.alive")
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..errors import DatabaseError
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #

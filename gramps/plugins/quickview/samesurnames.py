@@ -29,8 +29,8 @@ Display a people who have a person's same surname or given name.
 
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.lib import Person
 from gramps.gen.filters.rules import Rule
 from gramps.gen.filters import GenericFilterFactory
@@ -124,7 +124,7 @@ def run(database, document, person):
         matches += 1
 
     document.has_data = matches > 0
-    sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
+    sdoc.paragraph(glocale.get_translation().ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,
                    "There are %d people with a matching name, or alternate name.\n"
                    , matches) % matches)
@@ -166,7 +166,7 @@ def run_given(database, document, person):
         matches += 1
 
     document.has_data = matches > 0
-    sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
+    sdoc.paragraph(glocale.get_translation().ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,
                    "There are %d people with a matching name, or alternate name.\n"
                    , matches) % matches)

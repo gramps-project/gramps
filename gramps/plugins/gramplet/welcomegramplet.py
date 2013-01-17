@@ -35,7 +35,8 @@ from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
 from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #------------------------------------------------------------------------
 #

@@ -21,7 +21,8 @@
 
 # $Id$
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from bisect import insort_left
 from gi.repository import Gdk
 from gi.repository import Gtk

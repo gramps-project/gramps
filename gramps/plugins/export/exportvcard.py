@@ -47,7 +47,8 @@ log = logging.getLogger(".ExportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.const import PROGRAM_NAME, VERSION
 from gramps.gen.lib import Date

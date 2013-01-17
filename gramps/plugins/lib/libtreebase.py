@@ -27,7 +27,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 from gramps.gen.plug.report import utils as ReportUtils
 

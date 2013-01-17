@@ -30,7 +30,8 @@ Base class for filter rules.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import re
 
 #-------------------------------------------------------------------------

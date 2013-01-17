@@ -32,7 +32,6 @@
 import os
 import sys
 from time import localtime
-from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -48,6 +47,8 @@ log = logging.getLogger(".ExportVCal")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.db import family_name
 from gramps.gen.lib import Date, EventType

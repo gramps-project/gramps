@@ -32,7 +32,8 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 import csv
 if sys.version_info[0] < 3:
     from cStringIO import StringIO

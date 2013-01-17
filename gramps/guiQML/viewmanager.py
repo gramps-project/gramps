@@ -63,7 +63,8 @@ from PySide import QtOpenGL
 #-------------------------------------------------------------------------
 from gramps.gen.const import ROOT_DIR
 from gramps.cli.grampscli import CLIManager, CLIDbLoader
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from guiQML.views.dbman import DbManager
 from guiQML.questiondialog import ErrorDialog
 

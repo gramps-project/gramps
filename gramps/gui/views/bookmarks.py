@@ -58,7 +58,8 @@ from ..display import display_help
 from ..listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #

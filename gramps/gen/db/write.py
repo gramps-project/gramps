@@ -46,7 +46,8 @@ from functools import wraps
 import logging
 from sys import maxsize
 
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import dbshelve, db

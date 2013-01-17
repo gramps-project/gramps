@@ -30,14 +30,13 @@ Translator class for use by plugins.
 #
 #------------------------------------------------------------------------
 
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.ggettext import gettext as _
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.datehandler import displayer, LANG_TO_DISPLAY
 from gramps.gen.config import config
 from gramps.gen.lib.grampstype import GrampsType

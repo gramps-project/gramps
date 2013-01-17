@@ -30,8 +30,9 @@ import time
 import logging
 LOG = logging.getLogger(".citation")
 
-from ..ggettext import gettext as _
-from ..constfunc import cuni, UNITYPE
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+from ..constfunc import cuni
 
 """
 methods to upgrade a database from version 13 to current version

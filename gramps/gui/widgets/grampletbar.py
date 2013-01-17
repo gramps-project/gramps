@@ -31,7 +31,8 @@ Module that implements the gramplet bar fuctionality.
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import time
 import os
 import sys

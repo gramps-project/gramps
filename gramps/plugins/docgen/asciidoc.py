@@ -30,13 +30,15 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-
+import io
+import sys
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gramps.gen.errors import ReportError

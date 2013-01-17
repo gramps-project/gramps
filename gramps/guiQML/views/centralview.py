@@ -64,7 +64,8 @@ from PySide import QtOpenGL
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import ROOT_DIR
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 from gramps.gen.constfunc import cuni, UNITYPE
 

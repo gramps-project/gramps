@@ -58,7 +58,8 @@ from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gen.utils.file import media_path_full, relative_path, media_path
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.mime import get_type, is_image_type
 from gramps.gen.constfunc import cuni
 

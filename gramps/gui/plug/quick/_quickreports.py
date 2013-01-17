@@ -33,7 +33,8 @@ This module provides the functions to build the quick report context menu's
 #------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import sys
 if sys.version_info[0] < 3:
     from StringIO import StringIO

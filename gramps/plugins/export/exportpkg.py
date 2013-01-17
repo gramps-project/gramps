@@ -39,8 +39,9 @@ import tarfile
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
-    import io
-from gramps.gen.ggettext import gettext as _
+    from io import StringIO
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #

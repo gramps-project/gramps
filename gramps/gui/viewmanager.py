@@ -42,8 +42,6 @@ import os
 import sys
 import time
 import datetime
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
@@ -70,6 +68,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.cli.grampscli import CLIManager
 from .user import User
 from .plug import tool
@@ -589,7 +589,7 @@ class ViewManager(CLIManager):
         if count:
             self.do_reg_plugins(self.dbstate, self.uistate)
             OkDialog(_("Done downloading and installing addons"),
-                     "%s %s" % (ngettext("%d addon was installed.",
+                     "%s %s" % (glocale.get_translation().ngettext("%d addon was installed.",
                                          "%d addons were installed.",
                                          count) % count,
                                 _("You need to restart Gramps to see new views.")),
