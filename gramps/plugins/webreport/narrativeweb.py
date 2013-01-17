@@ -81,7 +81,7 @@ except ImportError:
 import time, datetime
 import locale
 import shutil
-import codecs
+import io
 import tarfile
 import tempfile
 if sys.version_info[0] < 3:
@@ -7829,12 +7829,8 @@ class NavWebReport(Report):
             self.cur_fname = fname + ext
         if self.archive:
             string_io = StringIO()
-            if sys.version_info[0] < 3:
-                of = open(fname, "w")
-            else:
-                of = open(fname, "w", encoding='utf-8')
-#            of = codecs.EncodedFile(string_io, 'utf-8',
-#                                    self.encoding, 'xmlcharrefreplace')
+            of = io.open(fname, "w", encoding = self.encoding,
+                         errors = 'xmlcharrefreplace')
         else:
             string_io = None
             if subdir:
@@ -7842,12 +7838,8 @@ class NavWebReport(Report):
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
             fname = os.path.join(self.html_dir, self.cur_fname)
-            if sys.version_info[0] < 3:
-                of = open(fname, "w")
-            else:
-                of = open(fname, "w", encoding='utf-8')
-#            of = codecs.EncodedFile(string_io, 'utf-8',
-#                                    self.encoding, 'xmlcharrefreplace')
+            of = io.open(fname, "w", encoding = self.encoding,
+                         errors = 'xmlcharrefreplace')
         return (of, string_io)
 
     def close_file(self, of, string_io):

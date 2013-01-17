@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import time
+import io
 from  xml.parsers.expat import ParserCreate
 
 try:
@@ -181,7 +182,7 @@ class RecentFiles(object):
         """
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
-        xml_file = file(os.path.expanduser(GRAMPS_FILENAME),'w')
+        xml_file = io.open(os.path.expanduser(GRAMPS_FILENAME),'w', encoding="utf-8")
         if use_lock:
             fcntl.lockf(xml_file,fcntl.LOCK_EX)
         xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
@@ -215,7 +216,8 @@ class RecentParser(object):
         self.recent_files = []
 
         try:
-            xml_file = open(os.path.expanduser(GRAMPS_FILENAME))
+            xml_file = io.open(os.path.expanduser(GRAMPS_FILENAME), "r",
+                               encoding = 'utf-8')
             if use_lock:
                 fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
@@ -229,7 +231,8 @@ class RecentParser(object):
                 fcntl.lockf(xml_file,fcntl.LOCK_UN)
             xml_file.close()
         except:
-            pass
+            if xml_file:
+                xml_file.close()
 
     def get(self):
         return self.recent_files
