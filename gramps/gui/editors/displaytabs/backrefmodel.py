@@ -31,7 +31,8 @@ import sys
 from gi.repository import GObject
 from gi.repository import Gtk
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

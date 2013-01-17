@@ -29,6 +29,8 @@ from gramps.gen.utils.db import navigation_label
 from gramps.gen.db import DbTxn
 from gramps.gen.ggettext import gettext as _
 from gi.repository import Gtk
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 class ToDoGramplet(Gramplet):
     """

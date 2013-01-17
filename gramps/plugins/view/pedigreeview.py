@@ -31,8 +31,8 @@
 #-------------------------------------------------------------------------
 from __future__ import unicode_literals, division
 
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from cgi import escape
 import math
 import sys

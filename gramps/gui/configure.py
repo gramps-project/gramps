@@ -32,7 +32,8 @@
 from __future__ import print_function
 
 import random
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 from xml.sax.saxutils import escape
 import collections

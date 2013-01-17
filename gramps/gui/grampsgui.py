@@ -30,9 +30,19 @@ from __future__ import print_function
 
 import sys
 import os
-from gramps.gen.ggettext import gettext as _
 import logging
 LOG = logging.getLogger(".grampsgui")
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS Modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.config import config
+from gramps.gen.const import DATA_DIR, IMAGE_DIR
+from gramps.gen.constfunc import has_display, win
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -90,15 +100,6 @@ except ImportError:
              "version of python\n\n"
              "Gramps will terminate now.")))
     sys.exit(0)
-
-#-------------------------------------------------------------------------
-#
-# GRAMPS Modules
-#
-#-------------------------------------------------------------------------
-from gramps.gen.config import config
-from gramps.gen.const import DATA_DIR, IMAGE_DIR
-from gramps.gen.constfunc import has_display, win
 
 #-------------------------------------------------------------------------
 #

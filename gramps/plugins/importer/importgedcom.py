@@ -29,7 +29,6 @@
 #
 #------------------------------------------------------------------------
 import sys
-from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -44,6 +43,8 @@ LOG = logging.getLogger(".GedcomImport")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin

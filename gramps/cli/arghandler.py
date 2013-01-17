@@ -39,7 +39,8 @@ Module responsible for handling the command line arguments for GRAMPS.
 from __future__ import print_function
 import os
 import sys
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

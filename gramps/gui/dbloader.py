@@ -31,7 +31,6 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-from gramps.gen.ggettext import gettext as _
 import logging
 
 #-------------------------------------------------------------------------
@@ -54,6 +53,8 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
 from gramps.gen.db import DbBsddb

@@ -33,7 +33,8 @@ import re
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from ..glade import Glade

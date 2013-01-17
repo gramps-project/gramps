@@ -37,7 +37,8 @@ else:
 from gi.repository import Gtk
 import os
 from tempfile import mkstemp
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gui.glade import Glade
 import gramps.plugins.lib.libgedcom as libgedcom
 

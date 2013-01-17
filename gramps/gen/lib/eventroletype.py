@@ -28,7 +28,8 @@ Provide the different event roles.
 # Python modules
 #
 #------------------------------------------------------------------------
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #

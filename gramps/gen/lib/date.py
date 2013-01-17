@@ -29,8 +29,6 @@
 #
 #------------------------------------------------------------------------
 from __future__ import unicode_literals, division
-from ..ggettext import sgettext as _
-from ..ggettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -52,6 +50,10 @@ log = logging.getLogger(".Date")
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
+ngettext = glocale.get_translation().ngettext
+
 from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                       french_sdn, persian_sdn, islamic_sdn, swedish_sdn,
                       gregorian_ymd, julian_ymd, hebrew_ymd, 

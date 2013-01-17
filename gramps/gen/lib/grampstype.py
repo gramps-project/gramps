@@ -31,13 +31,14 @@ Base type for all gramps types.
 #
 #------------------------------------------------------------------------
 from __future__ import unicode_literals
-from ..ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..constfunc import STRTYPE
 
 _UNKNOWN = _('Unknown')

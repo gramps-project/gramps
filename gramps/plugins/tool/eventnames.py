@@ -29,8 +29,9 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+
 
 #-------------------------------------------------------------------------
 #
@@ -111,7 +112,7 @@ class EventNames(tool.BatchTool, ManagedWindow):
 
         if self.change == True:
             OkDialog(_('Modifications made'), 
-                    ngettext("%s event description has been added", 
+                     glocale.get_translation().ngettext("%s event description has been added", 
                     "%s event descriptions have been added", counter) % counter)
         else:
             OkDialog(_('No modifications made'), 

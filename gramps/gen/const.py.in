@@ -224,8 +224,7 @@ LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
 #-------------------------------------------------------------------------
 from .utils.grampslocale import GrampsLocale
 GRAMPS_LOCALE = GrampsLocale()
-from .ggettext import sgettext as _
->>>>>>> GrampsLocale: Replace use of the GNU Gettext API with the Gettext Class API
+_ = GRAMPS_LOCALE.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -339,7 +338,6 @@ SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 
-<<<<<<< HEAD
 def need_to_update_const():
     """ Check to see if this file is older than 
         setup.py or const.py.in """
@@ -365,11 +363,3 @@ def need_to_update_const():
 
 if need_to_update_const():
     print("Outdated gramps.gen.const; please run 'python setup.py build'")
-
-GRAMPS_LOCALE = 0
-from .utils.grampslocale import GrampsLocale
-GRAMPS_LOCALE = GrampsLocale()
-
-
-=======
->>>>>>> GrampsLocale: Replace use of the GNU Gettext API with the Gettext Class API

@@ -44,7 +44,6 @@ else:
     from urllib.parse import urlparse
     from urllib.request import urlopen, url2pathname
 import tempfile
-from gramps.gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -58,6 +57,8 @@ LOG = logging.getLogger(".clidbman")
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config

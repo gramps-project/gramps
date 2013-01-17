@@ -34,7 +34,8 @@ to edit information about a particular Person.
 #
 #-------------------------------------------------------------------------
 from copy import copy
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #

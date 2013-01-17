@@ -29,7 +29,8 @@ Provide the different Attribute Types for GRAMPS.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

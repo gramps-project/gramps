@@ -49,7 +49,8 @@ from .attrtype import AttributeType
 from .eventroletype import EventRoleType
 from .attribute import Attribute
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..constfunc import STRTYPE
 from .handle import Handle
 

@@ -37,7 +37,6 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.ggettext import gettext as _
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -45,6 +44,8 @@ from functools import partial
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError

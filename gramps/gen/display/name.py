@@ -53,8 +53,8 @@ Specific symbols for parts of a name are defined:
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..ggettext import sgettext as _
-import sys
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 import re
 import logging
 LOG = logging.getLogger(".gramps.gen")

@@ -36,9 +36,8 @@ Web Calendar generator.
 from functools import partial
 import os, codecs, shutil, re
 import datetime, calendar
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
-
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #------------------------------------------------------------------------
 # Set up logging
@@ -1689,10 +1688,11 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
                             'couple' : text}
             else: 
-                txt_str = (ngettext('%(couple)s, <em>%(years)d'
-                                    '</em> year anniversary',
-                                    '%(couple)s, <em>%(years)d'
-                                    '</em> year anniversary', nyears)
+                txt_str = (glocale.get_translation().ngettext(
+                        '%(couple)s, <em>%(years)d'
+                        '</em> year anniversary',
+                        '%(couple)s, <em>%(years)d'
+                        '</em> year anniversary', nyears)
                            % {'couple' : text, 'years'  : nyears})
             txt_str = Html('span', txt_str, class_ = "yearsmarried")
 

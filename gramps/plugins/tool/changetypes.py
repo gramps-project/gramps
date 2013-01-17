@@ -31,8 +31,8 @@
 #------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -135,7 +135,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         if modified == 0:
             msg = _("No event record was modified.")
         else:
-            msg = ngettext("%d event record was modified."
+            msg = glocale.get_translation().ngettext("%d event record was modified."
                   , "%d event records were modified.", modified) % modified
 
         if cli:

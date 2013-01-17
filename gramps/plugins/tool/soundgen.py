@@ -34,7 +34,8 @@ from gramps.gen.soundex import soundex
 from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gen.constfunc import cuni

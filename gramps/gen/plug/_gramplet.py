@@ -30,7 +30,8 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
 else:
     import bsddb
 import types
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 import logging
 LOG = logging.getLogger(".Gramplets")

@@ -28,7 +28,8 @@ Display all events on a particular day.
 
 from gramps.gen.simple import SimpleAccess, SimpleDoc, SimpleTable
 from gramps.gui.plug.quick import QuickTable
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.lib import Date
 
 def get_ref(db, objclass, handle):

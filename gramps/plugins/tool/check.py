@@ -41,8 +41,9 @@ else:
     from io import StringIO
 import time
 
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+ngettext = glocale.get_translation().ngettext
 from collections import defaultdict
 
 #------------------------------------------------------------------------

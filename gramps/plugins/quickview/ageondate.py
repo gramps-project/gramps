@@ -30,7 +30,8 @@ Display references for any object
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.datehandler import displayer
 from gramps.gen.config import config
 

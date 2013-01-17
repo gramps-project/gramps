@@ -37,7 +37,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.views.pageview import PageView
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gui.widgets.grampletpane import GrampletPane
 
 class DashboardView(PageView): 

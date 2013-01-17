@@ -43,7 +43,8 @@ else:
 #
 #-------------------------------------------------------------------------
 from . import _pythonmime
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 def get_description(mime_type):
     """Return the description of the specfied mime type"""

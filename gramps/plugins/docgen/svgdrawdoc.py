@@ -31,7 +31,6 @@ SVG document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
 import sys
 if sys.version_info[0] < 3:
     from StringIO import StringIO
@@ -43,6 +42,8 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.errors import ReportError
 

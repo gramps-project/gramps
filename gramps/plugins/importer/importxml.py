@@ -33,7 +33,8 @@ import os
 import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import re
 import logging
 import collections
