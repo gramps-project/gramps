@@ -37,7 +37,7 @@ _ = gettext.gettext
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.utils.trans import get_localedomain
+from gramps.gen.utils.grampslocale import get_localedomain
 from gramps.gen.datehandler import displayer, LANG_TO_DISPLAY
 from gramps.gen.config import config
 from gramps.gen.lib.grampstype import GrampsType

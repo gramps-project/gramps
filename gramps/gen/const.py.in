@@ -351,3 +351,6 @@ def need_to_update_const():
 
 if need_to_update_const():
     print("Outdated gramps.gen.const; please run 'python setup.py build'")
+
+GRAMPS_LOCALE = 0
+

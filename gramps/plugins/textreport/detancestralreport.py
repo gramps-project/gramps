@@ -54,7 +54,7 @@ from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.gen.utils.trans import get_available_translations
+from gramps.gen.utils.grampslocale import get_available_translations
 from gramps.plugins.lib.libtranslate import Translator, get_language_string
 
 #------------------------------------------------------------------------

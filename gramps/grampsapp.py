@@ -53,7 +53,7 @@ from subprocess import Popen, PIPE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
+from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE, GRAMPS_LOCALE
 from .gen.constfunc import win
 #-------------------------------------------------------------------------
 #
@@ -113,62 +113,14 @@ def exc_hook(type, value, tb):
 sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
-from .gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
+from .gen.utils.grampslocale import GrampsLocale
 #-------------------------------------------------------------------------
 #
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
 
-#the order in which bindtextdomain on gettext and on locale is called
-#appears important, so we refrain from doing first all gettext.
-#
-#setup_gettext()
-gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-try:
-    locale.setlocale(locale.LC_ALL,'')
-except:
-    logging.warning(_("WARNING: Setting locale failed. Please fix the "
-        "LC_* and/or the LANG environment variables to prevent this error"))
-    try:
-        # It is probably not necessary to set the locale to 'C'
-        # because the locale will just stay at whatever it was,
-        # which at startup is "C".
-        # however this is done here just to make sure that the locale
-        # functions are working 
-        locale.setlocale(locale.LC_ALL,'C')
-    except:
-        logging.warning(_("ERROR: Setting the 'C' locale didn't work either"))
-        # FIXME: This should propagate the exception,
-        # if that doesn't break Gramps under Windows
-        # raise
-
-gettext.textdomain(LOCALEDOMAIN)
-if sys.version_info[0] < 3:
-    gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
-else:
-    gettext.install(LOCALEDOMAIN, localedir=None) #None is sys default locale
-
-if hasattr(os, "uname"):
-    operating_system = os.uname()[0]
-else:
-    operating_system = sys.platform
-
-if win(): # Windows
-    setup_windows_gettext()
-elif operating_system == 'FreeBSD':
-    try:
-        gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-    except locale.Error:
-        logging.warning('No translation in some Gtk.Builder strings, ')
-elif operating_system == 'OpenBSD':
-    pass
-else: # normal case
-    try:
-        locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-        #locale.textdomain(LOCALEDOMAIN)
-    except locale.Error:
-        logging.warning('No translation in some Gtk.Builder strings, ')
+const.GRAMPS_LOCALE = GrampsLocale()
 
 #-------------------------------------------------------------------------
 #
