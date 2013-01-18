@@ -169,9 +169,8 @@ class PersonTreeView(BasePersonView):
             pathids = path.get_indices()
             if len(pathids) == 1:
                 path = Gtk.TreePath((pathids[0], 0))
-            nodeiter = model.do_get_iter(path)[1]
-            node = model.get_node_from_iter(nodeiter)
-            handle = model.get_handle(node)
+            iter_ = model.get_iter(path)
+            handle = model.get_handle_from_iter(iter_)
             basepers = self.dbstate.db.get_person_from_handle(handle)
         if basepers:
             preset_name(basepers, name)

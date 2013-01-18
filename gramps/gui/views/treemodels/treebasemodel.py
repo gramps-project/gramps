@@ -643,7 +643,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
             if not self._in_build:
                 # emit row_inserted signal
-                iternode = self.get_iter(child_node)
+                iternode = self._get_iter(child_node)
                 path = self.do_get_path(iternode)
                 self.row_inserted(path, iternode)
                 if handle:
@@ -680,7 +680,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             self.__displayed -= 1
             self.__total -= 1
         elif node.parent: # don't remove the hidden root node
-            iternode = self.get_iter(node)
+            iternode = self._get_iter(node)
             path = self.do_get_path(iternode)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
@@ -718,7 +718,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if node.parent is None:
                 path = iter = None
             else:
-                iternode = self.get_iter(node)
+                iternode = self._get_iter(node)
                 path = self.do_get_path(iternode)
             # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
             # is resolved
@@ -748,7 +748,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         if sys.version_info[0] >= 3:
             assert isinstance(handle, str)
-        if self.get_node(handle) is not None:
+        if self._get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
         if not self.search or \
@@ -772,7 +772,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if sys.version_info[0] >= 3:
             assert isinstance(handle, str)
         cput = time.clock()
-        node = self.get_node(handle)
+        node = self._get_node(handle)
         if node is None:
             return # row not currently displayed
 
@@ -785,7 +785,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if not parent.children:
                 if parent.handle:
                     # emit row_has_child_toggled signal
-                    iternode = self.get_iter(parent)
+                    iternode = self._get_iter(parent)
                     path = self.do_get_path(iternode)
                     self.row_has_child_toggled(path, iternode)
                 else:
@@ -803,7 +803,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         if sys.version_info[0] >= 3:
             assert isinstance(handle, str)
-        if self.get_node(handle) is None:
+        if self._get_node(handle) is None:
             return # row not currently displayed
 
         self.delete_row_by_handle(handle)
@@ -812,7 +812,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         # If the node hasn't moved, all we need is to call row_changed.
         #self.row_changed(path, node)
 
-    def new_iter(self, nodeid):
+    def _new_iter(self, nodeid):
         """
         Return a new iter containing the nodeid in the nodemap
         """
@@ -823,7 +823,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         iter.user_data = nodeid
         return iter
 
-    def get_iter(self, node):
+    def _get_iter(self, node):
         """
         Return an iter from the node.
         iters are always created afresh
@@ -834,37 +834,20 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         :param path: node as it appears in the treeview
         :type path: Node
         """
-        iter = self.new_iter(id(node))
+        iter = self._new_iter(id(node))
         return iter
 
-    def get_handle(self, node):
-        """
-        Get the gramps handle for a node.  Return None if the node does
-        not correspond to a gramps object.
-        """
-        handle = node.handle
-        if handle and not isinstance(handle, UNITYPE):
-            handle = handle.decode('utf-8')
-        return handle
-
-    def get_node(self, handle):
+    def _get_node(self, handle):
         """
         Get the node for a handle.
         """
         return self.handle2node.get(handle)
 
-    def handle2path(self, handle):
-        """
-        Obtain from a handle, a path.
-        Part of common api with flat/treebasemodel
-        """
-        return self.do_get_path(self.get_iter(self.get_node(handle)))
-
     def get_iter_from_handle(self, handle):
         """
         Get the iter for a gramps handle.
         """
-        return self.get_iter(self._get_node(handle))
+        return self._get_iter(self._get_node(handle))
         
     def get_handle_from_iter(self, iter):
         """
@@ -963,7 +946,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
             node = self.nodemap.node(node.children[_index][1])
-        return True, self.get_iter(node)
+        return True, self._get_iter(node)
 
     def get_node_from_iter(self, iter):
         if iter and iter.user_data:
@@ -1023,7 +1006,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
                 nodeid = nodeparent.children[-1 if self.__reverse else 0][1]
             else:
                 return False, None
-        return True, self.new_iter(nodeid)
+        return True, self._new_iter(nodeid)
         
     def do_iter_has_child(self, iter):
         """
@@ -1053,7 +1036,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if node.children:
             if len(node.children) > index:
                 _index = (-index - 1) if self.__reverse else index
-                return True, self.new_iter(node.children[_index][1])
+                return True, self._new_iter(node.children[_index][1])
             else:
                 return False, None
         else:
@@ -1065,6 +1048,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         node = self.get_node_from_iter(iterchild)
         if node.parent:
-            return True, self.new_iter(node.parent)
+            return True, self._new_iter(node.parent)
         else:
             return False, None
