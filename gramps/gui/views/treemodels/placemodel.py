@@ -76,8 +76,6 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 15
-
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
@@ -97,8 +95,6 @@ class PlaceBaseModel(object):
             self.column_private,
             self.column_change,
             self.column_place_name,
-            self.column_handle,
-            self.column_tooltip
             ]
         self.smap = [
             self.column_name,
@@ -116,7 +112,6 @@ class PlaceBaseModel(object):
             self.column_private,
             self.sort_change,
             self.column_place_name,
-            self.column_handle,
             ]
 
     def destroy(self):
@@ -131,9 +126,6 @@ class PlaceBaseModel(object):
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
-
-    def column_handle(self, data):
-        return cuni(data[0])
 
     def column_place_name(self, data):
         return cuni(data[2])
@@ -234,9 +226,6 @@ class PlaceBaseModel(object):
     def column_change(self, data):
         return format_time(data[11])
 
-    def column_tooltip(self, data):
-        return cuni('Place tooltip')
-
 #-------------------------------------------------------------------------
 #
 # PlaceListModel
@@ -250,8 +239,8 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
                  skip=set(), sort_map=None):
 
         PlaceBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=15,
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -277,10 +266,9 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=15,
-                                search=search, skip=skip, sort_map=sort_map,
-                                nrgroups = 3,
-                                group_can_have_handle = True)
+                               search=search, skip=skip, sort_map=sort_map,
+                               nrgroups=3,
+                               group_can_have_handle=True)
 
     def destroy(self):
         """

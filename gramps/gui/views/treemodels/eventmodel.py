@@ -84,8 +84,6 @@ class EventModel(FlatBaseModel):
             self.column_private,
             self.column_change,
             self.column_participant,
-            self.column_handle,
-            self.column_tooltip,
             ]
         self.smap = [
             self.column_description,
@@ -96,11 +94,9 @@ class EventModel(FlatBaseModel):
             self.column_private,
             self.sort_change,
             self.column_participant,
-            self.column_handle,
-            self.column_tooltip,
-            ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=8,
-                           search=search, skip=skip, sort_map=sort_map)
+           ]
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -159,9 +155,6 @@ class EventModel(FlatBaseModel):
             
         return ''
 
-    def column_handle(self,data):
-        return cuni(data[COLUMN_HANDLE])
-
     def column_private(self, data):
         if data[COLUMN_PRIV]:
             return 'gramps-lock'
@@ -174,6 +167,3 @@ class EventModel(FlatBaseModel):
 
     def column_change(self,data):
         return format_time(data[COLUMN_CHANGE])
-
-    def column_tooltip(self,data):
-        return cuni('Event tooltip')

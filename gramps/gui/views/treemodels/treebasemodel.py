@@ -267,7 +267,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
     
     Creation:
     db      :   the database
-    tooltip_column :  column number of tooltip
     search         :  the search that must be shown
     skip           :  values not to show
     scol           :  column on which to sort
@@ -290,7 +289,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
     # LRU cache size
     _CACHE_SIZE = 250
    
-    def __init__(self, db, tooltip_column,
+    def __init__(self, db,
                     search=None, skip=set(),
                     scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
                     nrgroups = 1,
@@ -346,8 +345,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         self._in_build = False
         
         self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
-
-        self._tooltip_column = tooltip_column
 
         self.__total = 0
         self.__displayed = 0
@@ -413,12 +410,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         Return the total number of rows without a filter or search condition.
         """
         return self.__total
-
-    def tooltip_column(self):
-        """
-        Return the tooltip column.
-        """
-        return self._tooltip_column
 
     def color_column(self):
         """
@@ -869,6 +860,23 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         return self.do_get_path(self.get_iter(self.get_node(handle)))
 
+    def get_iter_from_handle(self, handle):
+        """
+        Get the iter for a gramps handle.
+        """
+        return self.get_iter(self._get_node(handle))
+        
+    def get_handle_from_iter(self, iter):
+        """
+        Get the gramps handle for an iter.  Return None if the iter does
+        not correspond to a gramps object.
+        """
+        node = self.get_node_from_iter(iter)
+        handle = node.handle
+        if handle and not isinstance(handle, UNITYPE):
+            handle = handle.decode('utf-8')
+        return handle
+
     # The following implement the public interface of Gtk.TreeModel
 
     def do_get_flags(self):
@@ -888,8 +896,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         See Gtk.TreeModel
         """
-        if index == self._tooltip_column:
-            return object
         return str
 
     def do_get_value(self, iter, col):

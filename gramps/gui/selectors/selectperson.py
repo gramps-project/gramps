@@ -86,9 +86,6 @@ class SelectPerson(BaseSelector):
     def get_from_handle_func(self):
         return self.db.get_person_from_handle
         
-    def get_handle_column(self):
-        return PeopleBaseModel.COLUMN_INT_ID
-
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search

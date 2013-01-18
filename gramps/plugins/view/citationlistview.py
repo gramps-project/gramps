@@ -140,7 +140,6 @@ class CitationListView(ListView):
 
         ListView.__init__(
             self, _('Citation View'), pdata, dbstate, uistate, 
-            len(self.COLUMNS), 
             CitationListModel, signal_map,
             CitationBookmarks, nav_group,
             multiple=True,

@@ -66,7 +66,6 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_handle,
             self.column_tag_color
         ]
         self.smap = [
@@ -76,11 +75,10 @@ class NoteModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_handle,
             self.column_tag_color
         ]
-        FlatBaseModel.__init__(self, db, scol, order, search=search,
-                           skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -97,15 +95,11 @@ class NoteModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 7
+        return 6
 
     def do_get_n_columns(self):
         """Return the column number of the Note tab."""
         return len(self.fmap) + 1
-
-    def column_handle(self, data):
-        """Return the handle of the Note."""
-        return data[Note.POS_HANDLE]
 
     def column_id(self, data):
         """Return the id of the Note."""

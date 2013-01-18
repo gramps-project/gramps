@@ -115,7 +115,6 @@ class EventView(ListView):
 
         ListView.__init__(
             self, _('Events'), pdata, dbstate, uistate,
-            len(EventView.COLUMNS), 
             EventModel,
             signal_map,
             EventBookmarks, nav_group,

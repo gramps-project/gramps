@@ -138,7 +138,6 @@ class PlaceBaseView(ListView):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            15, 
             model, signal_map,
             PlaceBookmarks, nav_group,
             multiple=True,

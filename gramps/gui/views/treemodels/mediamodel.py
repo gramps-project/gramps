@@ -68,9 +68,7 @@ class MediaModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_handle,
             self.column_tag_color,
-            self.column_tooltip
             ]
         
         self.smap = [
@@ -82,12 +80,10 @@ class MediaModel(FlatBaseModel):
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_handle,
             self.column_tag_color,
-            self.column_tooltip
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=10,
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -104,7 +100,7 @@ class MediaModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 9
+        return 8
 
     def do_get_n_columns(self):
         return len(self.fmap)+1

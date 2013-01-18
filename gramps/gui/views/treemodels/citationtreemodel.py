@@ -83,8 +83,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_auth,    # COL_SRC_AUTH   (Source only)
             self.source_src_abbr,    # COL_SRC_ABBR   (Source only)
             self.source_src_pinfo,   # COL_SRC_PINFO  (Source only)
-            self.source_handle,
-            self.source_tooltip
             ]
         self.smap = [
             self.source_src_title,
@@ -96,15 +94,12 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_auth,
             self.source_src_abbr,
             self.source_src_pinfo,
-            self.source_handle,
-            self.source_tooltip
             ]
         
         TreeBaseModel.__init__(self, self.db, scol=scol, order=order,
-                               tooltip_column=9,
                                search=search, skip=skip, sort_map=sort_map,
-                               nrgroups = 1,
-                               group_can_have_handle = True,
+                               nrgroups=1,
+                               group_can_have_handle=True,
                                has_secondary=True)
 
     def destroy(self):
@@ -141,8 +136,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             None,
             None,
             None,
-            self.citation_handle,
-            self.citation_tooltip
             ]
         self.smap2 = [
             self.citation_page,
@@ -154,8 +147,6 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.dummy_sort_key,
             self.dummy_sort_key,
             self.dummy_sort_key,
-            self.citation_handle,
-            self.citation_tooltip
             ]
 
     def get_tree_levels(self):
