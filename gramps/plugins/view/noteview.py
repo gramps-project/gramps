@@ -111,7 +111,6 @@ class NoteView(ListView):
         ListView.__init__(
             self, _('Notes'), pdata, dbstate, uistate,
             len(NoteView.COLUMNS), NoteModel, signal_map,
-            dbstate.db.get_note_bookmarks(),
             NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)
@@ -125,12 +124,6 @@ class NoteView(ListView):
 
     def navigation_type(self):
         return 'Note'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_note_bookmarks()
 
     def drag_info(self):
         """

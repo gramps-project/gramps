@@ -140,7 +140,6 @@ class PlaceBaseView(ListView):
             self, title, pdata, dbstate, uistate,
             15, 
             model, signal_map,
-            dbstate.db.get_place_bookmarks(),
             PlaceBookmarks, nav_group,
             multiple=True,
             filter_class=PlaceSidebarFilter)
@@ -155,9 +154,6 @@ class PlaceBaseView(ListView):
     def navigation_type(self):
         return 'Place'
     
-    def get_bookmarks(self):
-        return self.dbstate.db.get_place_bookmarks()
-
     def define_actions(self):
         ListView.define_actions(self)
         self._add_toolmenu_action('MapsList', _('Loading...'),

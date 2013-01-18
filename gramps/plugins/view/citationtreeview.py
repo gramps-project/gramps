@@ -143,7 +143,6 @@ class CitationTreeView(ListView):
             self, _('Citation Tree View'), pdata, dbstate, uistate, 
             len(self.COLUMNS), 
             CitationTreeModel, signal_map,
-            dbstate.db.get_citation_bookmarks(),
             CitationBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
@@ -220,9 +219,6 @@ class CitationTreeView(ListView):
     
     def navigation_type(self):
         return 'Citation'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_citation_bookmarks()
 
     def drag_info(self):
         # Since drag only needs to work when just one row is selected, ideally,

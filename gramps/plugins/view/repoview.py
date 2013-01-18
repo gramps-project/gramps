@@ -127,7 +127,6 @@ class RepositoryView(ListView):
             self, _('Repositories'), pdata, dbstate, uistate,
             len(RepositoryView.COLUMNS),
             RepositoryModel, signal_map,
-            dbstate.db.get_repo_bookmarks(),
             RepoBookmarks, nav_group,
             multiple=True,
             filter_class=RepoSidebarFilter)
@@ -141,9 +140,6 @@ class RepositoryView(ListView):
 
     def navigation_type(self):
         return 'Repository'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_repo_bookmarks()
 
     def drag_info(self):
         return DdTargets.REPO_LINK

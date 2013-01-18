@@ -117,7 +117,7 @@ class EventView(ListView):
             self, _('Events'), pdata, dbstate, uistate,
             len(EventView.COLUMNS), 
             EventModel,
-            signal_map, dbstate.db.get_event_bookmarks(),
+            signal_map,
             EventBookmarks, nav_group,
             multiple=True,
             filter_class=EventSidebarFilter)
@@ -133,12 +133,6 @@ class EventView(ListView):
 
     def navigation_type(self):
         return 'Event'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_event_bookmarks()
 
     def drag_info(self):
         """
