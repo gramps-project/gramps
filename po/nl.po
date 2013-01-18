@@ -40,8 +40,8 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-03 19:13+0100\n"
-"PO-Revision-Date: 2013-01-13 20:56+0100\n"
-"Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
+"PO-Revision-Date: 2013-01-15 09:55+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -7877,7 +7877,7 @@ msgstr "Standaard familierelatie"
 #: ../gramps/gui/configure.py:1029
 #: ../gramps/gui/configure.py:1034
 msgid "Height multiple surname box (pixels)"
-msgstr "Hoogte rechthoeek voor meerdere achternamen (pixels)"
+msgstr "Hoogte rechthoek voor meerdere achternamen (pixels)"
 
 #: ../gramps/gui/configure.py:1031
 #: ../gramps/gui/configure.py:1035
