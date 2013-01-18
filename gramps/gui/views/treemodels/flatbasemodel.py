@@ -526,7 +526,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
                     col = search[1][0]
                     text = search[1][1]
                     inv = search[1][2]
-                    func = lambda x: self.get_value_from_handle(x, col) or UEMPTY
+                    func = lambda x: self._get_value(x, col) or UEMPTY
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                     else:
@@ -705,17 +705,12 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             node = self.do_get_iter(path)[1]
             self.row_changed(path, node)
 
-    def handle2path(self, handle):
-        """
-        Obtain from a handle, a path.
-        Part of common api with flat/treebasemodel
-        """
-        return self.on_get_path_from_handle(handle)
-
     def get_iter_from_handle(self, handle):
         """
         Get the iter for a gramps handle.
         """
+        if self.node_map.get_path_from_handle(handle) is None:
+            return None
         return self.node_map.new_iter(handle)
 
     def get_handle_from_iter(self, iter):
@@ -775,7 +770,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         except IndexError:
             return False, Gtk.TreeIter()
 
-    def get_value_from_handle(self, handle, col):
+    def _get_value(self, handle, col):
         """
         Given handle and column, return unicode value in the column
         We need this to search in the column in the GUI
@@ -796,7 +791,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         #print 'do_get_val', iter, iter.user_data, col
         handle = self.node_map._index2hndl[iter.user_data][1]
-        val = self.get_value_from_handle(handle, col)
+        val = self._get_value(handle, col)
         #print 'val is', val, type(val)
 
         #GTK 3 should convert unicode objects automatically, but this

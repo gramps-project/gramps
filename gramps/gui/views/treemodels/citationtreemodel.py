@@ -174,7 +174,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         data        The object data.
         """
         sort_key = self.sort_func2(data)
-        if self.get_node(data[5]):
+        if self._get_node(data[5]):
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
     def do_get_n_columns(self):
