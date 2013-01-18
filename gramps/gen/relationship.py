@@ -44,7 +44,7 @@ UNKNOWN = Person.UNKNOWN
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().sgettext
 from .plug import PluginRegister, BasePluginManager
-
+from gramps.plugins.lib.libtranslate import get_languate_string
 #-------------------------------------------------------------------------
 #
 #
@@ -1813,7 +1813,7 @@ def get_relationship_calculator(reinit=False):
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
             print((("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % enlang))
+                    "Using 'english' instead.") % lang))
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
