@@ -1062,10 +1062,11 @@ class MaskedEntry(UndoableEntry):
             self.override_background_color(Gtk.StateFlags.NORMAL |
                 Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED | 
                 Gtk.StateFlags.FOCUSED, None)
-            self.override_symbolic_color('bg_color', None)
-            self.override_symbolic_color('base_color', None)
-            self.override_symbolic_color('theme_bg_color', None)
-            self.override_symbolic_color('theme_base_color', None)
+            # Setting the following to None causes an error (bug #6353).
+            #self.override_symbolic_color('bg_color', None)
+            #self.override_symbolic_color('base_color', None)
+            #self.override_symbolic_color('theme_bg_color', None)
+            #self.override_symbolic_color('theme_base_color', None)
             pango_context = self.get_layout().get_context()
             font_description = pango_context.get_font_description()
             font_description.set_weight(Pango.Weight.NORMAL)
