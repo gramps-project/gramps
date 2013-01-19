@@ -262,7 +262,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             if rows > 1:
                 progress = ProgressMeter(self.title,_('Starting'))
                 #TRANS: no singular form needed, as rows is always > 1
-                progress.set_passngettext("Setting tag for %d person",
+                progress.set_pass(ngettext("Setting tag for %d person",
                                            "Setting tag for %d people", 
                                             rows) % rows, rows)
 
