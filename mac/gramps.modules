@@ -66,25 +66,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="trunk" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
-      <dep package="librsvg"/>
-      <dep package="shared-mime-info"/>
-      <dep package="hunspell"/>
-      <dep package="gtkspell3"/>
-      <dep package="osmgpsmap"/>
-      <dep package="graphviz"/>
-      <dep package="pil"/>
-    </dependencies>
-    <after>
-      <dep package="pyexiv2"/>
-    </after>
-  </distutils>
-
-  <distutils id="gramps-40">
-    <branch module="gramps/gramps-4.0.0-alpha1.tar.gz" version="4.0.0-alpha1"
-	    repo="sourceforge"/>
-    <dependencies>
-      <dep package="meta-gtk-osx-python3-gtk3"/>
-      <dep package="pybsddb"/>
+      <dep package="goocanvas"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
@@ -163,6 +145,14 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dep package="pycairo-python3"/>
   </after>
   </distutils>
+
+  <autotools id="goocanvas" autogen-sh="configure">
+    <branch module="goocanvas/2.0/goocanvas-2.0.1.tar.bz2" version="2.0.1"
+	    repo="ftp.gnome.org" hash="sha256:e7491c30325318d4f5fe2683eb63e6195b484b2f330c3f07c96bbb9213027773"/>
+    <dependencies>
+      <dep package="gtk+-3.0"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="graphviz" autogen-sh="configure"
 	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo --with-included-ltdl=yes">
