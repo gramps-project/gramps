@@ -31,9 +31,11 @@ Utility functions to cast types
 # Python modules
 #
 #-------------------------------------------------------------------------
+import os
 import locale
 import sys
-
+import logging
+LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -42,19 +44,48 @@ import sys
 from ..datehandler import codeset
 from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYPE
 
-"""
-strxfrm needs it's unicode argument correctly cast before used.
-"""
-if sys.version_info[0] < 3:
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
-else:
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x)
-
-if codeset == 'UTF-8':
-    conv_str_tosrtkey = lambda x: locale.strxfrm(x)
-else:
-    conv_str_tosrtkey = lambda x: locale.strxfrm(
-                        conv_to_unicode(x,'UTF-8').encode(codeset, 'replace'))
+try:
+    import PyICU
+    if os.environ.has_key("LC_COLLATE"):
+        collation = os.environ['LC_COLLATE']
+    else:
+        collation = os.environ["LANG"]
+    language_and_country = collation.rsplit('.', 1)[0]
+    if language_and_country in PyICU.Collator.getAvailableLocales().keys():
+        loc = language_and_country
+    else:
+        language = collation.rsplit('_', 1)[0]
+        if language in PyICU.Collator.getAvailableLocales().keys():
+            LOG.warn(_("Language and country %s not supported by ICU: "
+                       "but language %s is supported and will be used" %
+                       (language_and_country, language)))
+            loc = language
+        else:
+            LOG.warn(_("Neither Language and country %s nor language %s "
+                       "supported by ICU: using en_GB" % 
+                       (language_and_country, language)))
+            loc = "en_GB"
+    
+    collator = PyICU.Collator.createInstance(PyICU.Locale(loc))
+    # on ICU, the functions need to receive unicode
+    conv_unicode_tosrtkey = lambda x: collator.getCollationKey(
+                                        x).getByteArray()
+    conv_str_tosrtkey = lambda x: collator.getCollationKey(
+                                        x.decode("UTF-8")).getByteArray()
+except:
+    """
+    strxfrm needs it's unicode argument correctly cast before used.
+    """
+    if sys.version_info[0] < 3:
+        conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
+    else:
+        conv_unicode_tosrtkey = lambda x: locale.strxfrm(x)
+    
+    if codeset == 'UTF-8':
+        conv_str_tosrtkey = lambda x: locale.strxfrm(x)
+    else:
+        conv_str_tosrtkey = lambda x: locale.strxfrm(
+                            conv_to_unicode(x,'UTF-8').encode(codeset, 'replace'))
 
 def conv_tosrtkey(value):
     if isinstance(value, UNITYPE):
