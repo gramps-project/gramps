@@ -52,11 +52,11 @@ SPHINXBUILD   = 'sphinx-build'
 if sys.platform == 'win32':          
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
     sphinxCmd = os.path.join(sys.prefix, 'bin', 'sphinx-build.exe')
-elif sys.platform == 'linux2' or os.name == 'darwin':
+elif sys.platform in ['linux2', 'darwin', 'cygwin']:
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
     sphinxCmd = SPHINXBUILD
 else:
-    print ("ERROR: unknown system, don't know sphinx, ... commands")
+    print ("Update Man ERROR: unknown system, don't know sphinx, ... commands")
     sys.exit(0)
 
 def tests():

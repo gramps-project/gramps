@@ -65,14 +65,15 @@ if sys.platform == 'win32':
 
 # Others OS
 
-elif sys.platform == 'linux2' or os.name == 'darwin':
+elif sys.platform in ['linux2', 'darwin', 'cygwin']:
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
     msgattribCmd = 'msgattrib'
     xgettextCmd = 'xgettext'
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
 else:
-    print ("ERROR: unknown system, don't know msgmerge, ... commands")
+    print("Found platform %s, OS %s" % (sys.platform, os.name))
+    print ("Update PO ERROR: unknown system, don't know msgmerge, ... commands")
     sys.exit(0)
 
 # List of available languages, useful for grouped actions
