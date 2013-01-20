@@ -112,8 +112,8 @@ class FlatNodeMap(object):
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
     
-    ..Note: If a string sortkey is used, apply conv_unicode_tosrtkey
-            on it , so as to have localized sort
+    ..Note: conv_unicode_tosrtkey is applied to the underlying sort key,
+            so as to have localized sort
     """
 
     def __init__(self):
@@ -456,6 +456,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
+    ..Note: conv_unicode_tosrtkey is applied to the underlying sort key,
+            so as to have localized sort
     """
 
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING,
@@ -478,9 +480,9 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             self.sort_map = [ f for f in sort_map if f[0]]
             #we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
-            self.sort_func = self.smap[col]
         else:
-            self.sort_func = self.smap[scol]
+            col = scol
+        self.sort_func = lambda x: conv_unicode_tosrtkey(self.smap[col](x))
         self.sort_col = scol
         self.skip = skip
         self._in_build = False
@@ -577,15 +579,11 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
         This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey which uses strxfrm
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
-            #loop over database and store the sort field, and the handle, and
-            #allow for a third iter
-            return sorted((list(map(conv_tosrtkey,
-                           self.sort_func(data))), handle2internal(key)) 
-                                for key, data in cursor)
+            #loop over database and store the sort field, and the handle
+            return sorted((self.sort_func(data), key) for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -656,8 +654,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
-        insert_val = (list(map(conv_tosrtkey, self.sort_func(data))),
-                            handle)
+        insert_val = (self.sort_func(data), handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -692,8 +689,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = list(map(conv_tosrtkey, self.sort_func(self.map(
-                            handle))))
+        newsortkey = self.sort_func(self.map(handle))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
             #or the order of the object must change. 
