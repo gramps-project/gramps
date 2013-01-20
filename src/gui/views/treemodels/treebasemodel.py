@@ -88,7 +88,7 @@ class Node(object):
     def __init__(self, ref, parent, sortkey, handle, secondary):
         self.name = sortkey
         if sortkey:
-            self.sortkey = map(conv_unicode_tosrtkey_ongtk, sortkey)
+            self.sortkey = conv_unicode_tosrtkey_ongtk(sortkey)
         else:
             self.sortkey = None
         self.ref = ref

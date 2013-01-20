@@ -280,26 +280,74 @@ def encodingdefs():
     """
     pass
 
-if constfunc.win():
-    # python encoding is ascii, but C functions need to receive the 
-    # windows codeset, so convert over to it
-    conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
-                                                        codeset))
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset))
-    #when gtk is imported the python defaultencoding is utf-8, 
-    #so no need to specify it
-    conv_utf8_tosrtkey_ongtk = lambda x: locale.strxfrm(unicode(x).encode(
-                                                                    codeset))
-    conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset,'replace'))
-else:
-    # on unix C functions need to receive utf-8. Default conversion would
-    # use ascii, so it is needed to be explicit about the resulting encoding 
-    conv_utf8_tosrtkey = lambda x: locale.strxfrm(x)
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode("utf-8"))
-    # when gtk loaded, default encoding (sys.getdefaultencoding ) is utf-8,
-    # so default conversion happens with utf-8 
-    conv_utf8_tosrtkey_ongtk = lambda x:  locale.strxfrm(x)
-    conv_unicode_tosrtkey_ongtk = lambda x:  locale.strxfrm(x)
+try:
+    import PyICU
+    if os.environ.has_key("LC_COLLATE"):
+        collation = os.environ['LC_COLLATE']
+    else:
+        collation = os.environ["LANG"]
+    language_and_country = collation.rsplit('.', 1)[0]
+    if language_and_country in PyICU.Collator.getAvailableLocales().keys():
+        loc = language_and_country
+    else:
+        language = collation.rsplit('_', 1)[0]
+        if language in PyICU.Collator.getAvailableLocales().keys():
+            LOG.warn(_("Language and country %s not supported by ICU: "
+                       "but language %s is supported and will be used" %
+                       (language_and_country, language)))
+            loc = language
+        else:
+            LOG.warn(_("Neither Language and country %s nor language %s "
+                       "supported by ICU: using en_GB" % 
+                       (language_and_country, language)))
+            loc = "en_GB"
+    
+    collator = PyICU.Collator.createInstance(PyICU.Locale(loc))
+    # on ICU, the functions need to receive unicode
+    conv_utf8_tosrtkey = lambda x: collator.getCollationKey(
+                                        x.decode("UTF-8")).getByteArray()
+    conv_unicode_tosrtkey = lambda x: collator.getCollationKey(
+                                        x).getByteArray()
+    conv_utf8_tosrtkey_ongtk = lambda x: collator.getCollationKey(
+                                        x.decode("UTF-8")).getByteArray()
+    conv_unicode_tosrtkey_ongtk = lambda x: collator.getCollationKey(
+                                    x).getByteArray()
+except:
+    LOG.warn(_("PyICU not available: sorting may be incorrect"))
+    if constfunc.win():
+        # python encoding is ascii, but C functions need to receive the 
+        # windows codeset, so convert over to it
+        conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
+                                                            codeset))
+        conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset))
+        #when gtk is imported the python defaultencoding is utf-8, 
+        #so no need to specify it
+        conv_utf8_tosrtkey_ongtk = lambda x: locale.strxfrm(unicode(x).encode(
+                                                                        codeset))
+        conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset,'replace'))
+    elif constfunc.mac():
+        # On mac strxfrm seems to be broken such that better results are
+        # obtained by applying strxfrm to each character individually, rather
+        # than applying the function to the whole string. See in particular
+        # greek names at bug 5645
+        
+        # on mac C functions need to receive utf-8. Default conversion would
+        # use ascii, so it is needed to be explicit about the resulting encoding 
+        conv_utf8_tosrtkey = lambda x: map(locale.strxfrm, x)
+        conv_unicode_tosrtkey = lambda x: map(locale.strxfrm, x.encode("utf-8"))
+        # when gtk loaded, default encoding (sys.getdefaultencoding ) is utf-8,
+        # so default conversion happens with utf-8 
+        conv_utf8_tosrtkey_ongtk = lambda x:  map(locale.strxfrm, x)
+        conv_unicode_tosrtkey_ongtk = lambda x:  map(locale.strxfrm, x.encode("utf-8"))
+    else:
+        # on unix C functions need to receive utf-8. Default conversion would
+        # use ascii, so it is needed to be explicit about the resulting encoding 
+        conv_utf8_tosrtkey = lambda x: locale.strxfrm(x)
+        conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode("utf-8"))
+        # when gtk loaded, default encoding (sys.getdefaultencoding ) is utf-8,
+        # so default conversion happens with utf-8 
+        conv_utf8_tosrtkey_ongtk = lambda x:  locale.strxfrm(x)
+        conv_unicode_tosrtkey_ongtk = lambda x:  locale.strxfrm(x.encode("utf-8"))
 
 #-------------------------------------------------------------------------
 #
