@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-03 19:13+0100\n"
-"PO-Revision-Date: 2013-01-21 09:54+0100\n"
+"PO-Revision-Date: 2013-01-21 21:31+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -801,7 +801,7 @@ msgid ""
 "between different database versions."
 msgstr ""
 "De versie van het gegevensbestand wordt niet ondersteund door deze \n"
-"versie van Gramps. Gelieve op te waarderen naar een gepastere versie of "
+"versie van Gramps. Gelieve op te waarderen naar een aangepaste versie of "
 "gebruik XML om gegevens over te zetten tussen verschillende versies van "
 "gegevensbestanden."
 
@@ -952,7 +952,7 @@ msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
 "active in the database."
 msgstr ""
-"Een tweede transactie wordtg gestart terwijl er nog een transactie \"%s\" "
+"Een tweede transactie wordt gestart terwijl er nog een transactie \"%s\" "
 "actief is in het gegevensbestand."
 
 #: ../gramps/gen/display/name.py:326 ../gramps/gen/display/name.py:328
@@ -7948,7 +7948,7 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "<i>need_recover</i> in the family tree directory."
 msgstr ""
-"Indien u op <b>Verder gaan</b> klikt, zal Gramps uw familistamboom proberen "
+"Indien u op <b>Verder gaan</b> klikt, zal Gramps uw familiestamboom proberen "
 "te herstellen vanuit de laatste goede reservekopie. Er zijn meerdere redenen "
 "dat dit echter ongewenste effecten kan opleveren, dus steeds eerst een "
 "<b>kopie</b>van de stamboom nemen.\n"
@@ -9131,7 +9131,7 @@ msgstr "Kan bronnen niet opslaan"
 #: ../gramps/gui/editors/editsource.py:182
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
-"Er bestaan geen gegevens voor deze bron. Gelieve gegevens inte voeren of te "
+"Er bestaan geen gegevens voor deze bron. Gelieve gegevens in te voeren of de "
 "aanpassing teniet te doen."
 
 #: ../gramps/gui/editors/editcitation.py:402
@@ -9613,7 +9613,7 @@ msgid ""
 "editing of this window, and select the existing family"
 msgstr ""
 "Een familie met deze ouders bestaat al in het gegevensbestand. Indien u nu "
-"te gegevens opslaat zal een duplikaat familie worden aangemaakt. Het is "
+"te gegevens opslaat zal een duplicaat familie worden aangemaakt. Het is "
 "aangeraden dat u deze aanpassing stopt in dit venster en een bestaande "
 "familie kiest"
 
@@ -13186,7 +13186,7 @@ msgstr "Automatisch reservekopie maken..."
 #: ../gramps/gui/viewmanager.py:1037 ../gramps/gui/viewmanager.py:1045
 #: ../gramps/gui/viewmanager.py:1053
 msgid "Error saving backup data"
-msgstr "Er is een fout onstaan bij het backuppen van de gegevens"
+msgstr "Er is een fout ontstaan bij het 'backuppen' van de gegevens"
 
 #: ../gramps/gui/viewmanager.py:1048 ../gramps/gui/viewmanager.py:1056
 #: ../gramps/gui/viewmanager.py:1064
@@ -13653,7 +13653,7 @@ msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"De tagdefinitie wordt verwijderd en de tag wordt verwijderd voor alle "
+"De tag-definitie wordt verwijderd en de tag wordt verwijderd voor alle "
 "objecten in het gegevensbestand."
 
 #: ../gramps/gui/views/tags.py:505 ../gramps/gui/views/tags.py:506
@@ -14059,8 +14059,9 @@ msgid ""
 "pages."
 msgstr ""
 "De folder die u ingesteld hebt wordt ook gebruikt om gegevens op te slaan. "
-"Dit kan tot problemen leiden met het bestandbeheersysteem. Het is aangeraden "
-"om een aparte folder te gebruiken om uw webpagina's in op te slaan."
+"Dit kan tot problemen leiden met het bestandbeheerssysteem. Het is "
+"aangeraden om een aparte folder te gebruiken om uw webpagina's in op te "
+"slaan."
 
 #: ../gramps/plugins/docgen/htmldoc.py:554
 #, python-format
@@ -16286,7 +16287,7 @@ msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
 msgstr ""
-"WAARSCHUWING: dit zal al uw Exif-metagegevens van dit beeld voledig wissen! "
+"WAARSCHUWING: dit zal al uw Exif-metagegevens van dit beeld volledig wissen! "
 "Bent u zeker dat u dit wilt doen?"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:313
@@ -16558,7 +16559,7 @@ msgstr "Alle Exif-beeldgegevens werden gewist..."
 #: ../gramps/plugins/gramplet/editexifmetadata.py:1473
 msgid "There was an error in stripping the Exif metadata from this image..."
 msgstr ""
-"Er onstond een fout bij het wissen van de exif-metagegevens van dit beeld..."
+"Er ontstond een fout bij het wissen van de exif-metagegevens van dit beeld..."
 
 #: ../gramps/plugins/gramplet/events.py:49
 #: ../gramps/plugins/gramplet/personresidence.py:45
@@ -19130,7 +19131,7 @@ msgid ""
 "php?title=Gramps_3.4_Wiki_Manual_-"
 "_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr ""
-"De versie van het gegevensbestand wordt niet opndersteund door deze versie "
+"De versie van het gegevensbestand wordt niet ondersteund door deze versie "
 "van Gramps. U dient dus een oude Gramps-kopie versie 3.0 te gebruiken en uw "
 "gegevensbestand in die versie importeren. U moet dan een kopie van uw "
 "gegevens naar het Gramps-XML formaat exporteren. Dan dient u uw Gramps-"
@@ -19712,7 +19713,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:1757
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
-"Uw GEDCOM bestand is corrupt. Het lijkt erop dat bepaaldegegevens niet "
+"Uw 'GEDCOM'-bestand is corrupt. Het lijkt erop dat bepaalde gegevens niet "
 "volledig zijn."
 
 #: ../gramps/plugins/lib/libgedcom.py:1802
@@ -25466,7 +25467,7 @@ msgstr "Toont alle verwantschappen tussen persoon en de beginpersoon."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:128
 msgid "Display filtered data"
-msgstr "Toon gefilterde gegevens"
+msgstr "Gefilterde gegevens tonen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:147
 msgid "Father lineage"
@@ -25914,7 +25915,7 @@ msgstr "Stijl titel"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:506
 msgid "Data text display"
-msgstr "Gegevens tekst weergave"
+msgstr "Gegevens tekstweergave"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:508
 msgid "Day text style"
@@ -27899,7 +27900,7 @@ msgstr "Locatienaam"
 #: ../gramps/plugins/tool/extractcity.py:416
 #: ../gramps/plugins/tool/extractcity.py:596
 msgid "Extract Place data"
-msgstr "Haal locatiegegevens op"
+msgstr "Locatiegegevens ophalen"
 
 #: ../gramps/plugins/tool/extractcity.py:432
 #: ../gramps/plugins/tool/extractcity.py:433
@@ -28108,7 +28109,7 @@ msgstr "Betreffende pad"
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Klik op OK om door te gaan, Annuleren om te af te breken, of Terug om uw "
+"Klik op Toepassen om door te gaan, Annuleren om af te breken, of Terug om uw "
 "opties opnieuw te bekijken."
 
 #: ../gramps/plugins/tool/mediamanager.py:373
@@ -28237,7 +28238,7 @@ msgstr ""
 #: ../gramps/plugins/tool/mediamanager.py:626
 #: ../gramps/plugins/tool/mediamanager.py:628
 msgid "Add images not included in database"
-msgstr "Beelden die niet in het gegevenensbestand zitten, toevoegen"
+msgstr "Beelden die niet in het gegevensbestand zitten, toevoegen"
 
 #: ../gramps/plugins/tool/mediamanager.py:627
 #: ../gramps/plugins/tool/mediamanager.py:629
