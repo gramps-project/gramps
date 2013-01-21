@@ -305,7 +305,7 @@ gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
-gramps/gen/utils/trans.py
+gramps/gen/utils/grampslocale.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -663,7 +663,7 @@ gramps/plugins/view/geography.gpr.py
 gramps/plugins/view/geomoves.py
 gramps/plugins/view/geoperson.py
 gramps/plugins/view/geoplaces.py
-gramps/plugins/view/grampletview.py
+#gramps/plugins/view/grampletview.py
 gramps/plugins/view/htmlrenderer.gpr.py
 gramps/plugins/view/htmlrenderer.py
 gramps/plugins/view/mediaview.py
