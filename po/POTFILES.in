@@ -284,7 +284,6 @@ gramps/gen/merge/mergepersonquery.py
 gramps/gen/merge/mergeplacequery.py
 gramps/gen/merge/mergerepositoryquery.py
 gramps/gen/merge/mergesourcequery.py
-gramps/gen/mime/_gnomemime.py
 gramps/gen/mime/_pythonmime.py
 gramps/gen/mime/_winmime.py
 gramps/gen/plug/_gramplet.py
