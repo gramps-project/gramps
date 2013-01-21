@@ -44,7 +44,6 @@ UNKNOWN = Person.UNKNOWN
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().sgettext
 from .plug import PluginRegister, BasePluginManager
-from gramps.plugins.lib.libtranslate import get_language_string
 #-------------------------------------------------------------------------
 #
 #
