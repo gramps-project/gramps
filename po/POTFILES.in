@@ -284,7 +284,6 @@ gramps/gen/merge/mergepersonquery.py
 gramps/gen/merge/mergeplacequery.py
 gramps/gen/merge/mergerepositoryquery.py
 gramps/gen/merge/mergesourcequery.py
-gramps/gen/mime/_gnomemime.py
 gramps/gen/mime/_pythonmime.py
 gramps/gen/mime/_winmime.py
 gramps/gen/plug/_gramplet.py
@@ -652,6 +651,7 @@ gramps/plugins/tool/verify.glade
 gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py
 gramps/plugins/view/citationtreeview.py
+gramps/plugins/view/dashboardview.py
 gramps/plugins/view/eventview.py
 gramps/plugins/view/familyview.py
 gramps/plugins/view/fanchartdescview.py
@@ -664,7 +664,6 @@ gramps/plugins/view/geography.gpr.py
 gramps/plugins/view/geomoves.py
 gramps/plugins/view/geoperson.py
 gramps/plugins/view/geoplaces.py
-gramps/plugins/view/grampletview.py
 gramps/plugins/view/htmlrenderer.gpr.py
 gramps/plugins/view/htmlrenderer.py
 gramps/plugins/view/mediaview.py
