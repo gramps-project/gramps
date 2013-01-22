@@ -371,16 +371,21 @@ class LineParser(object):
 
         try:
             if use_gzip:
-                import io
-                # Bug 6255. TextIOWrapper is required for python3 to present
-                #           file contents as text, otherwise they are read
-                #           as binary. However due to a missing method (read1)
-                #           in early python3 versions this try block will fail
-                #           It should work correctly from version 3.3
-                #           Gramps will still import XML files using python
-                #           versions < 3.3.0 but the file progress meter will
-                #           not work properly, going immediately to 100%.
-                ofile = io.TextIOWrapper(gzip.open(filename, "rb"))
+                if sys.version_info[0] == 2:
+                    ofile = gzip.open(filename, "rb")
+                else:
+                    import io
+                    # Bug 6255. TextIOWrapper is required for python3 to
+                    #           present file contents as text, otherwise they
+                    #           are read as binary. However due to a missing
+                    #           method (read1) in early python3 versions this
+                    #           try block will fail.
+                    #           Gramps will still import XML files using python
+                    #           versions < 3.3.0 but the file progress meter
+                    #           will not work properly, going immediately to
+                    #           100%.
+                    #           It should work correctly from version 3.3.
+                    ofile = io.TextIOWrapper(gzip.open(filename, "rb"))
             else:
                 ofile = open(filename, "r")
 
