@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-20 18:38+0100\n"
-"PO-Revision-Date: 2013-01-20 18:56+0100\n"
+"POT-Creation-Date: 2013-01-22 20:31+0100\n"
+"PO-Revision-Date: 2013-01-22 22:38+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -895,7 +895,7 @@ msgstr "Mutter"
 #: ../src/plugins/textreport/FamilyGroup.py:519
 #: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
-msgstr "Ehepartner"
+msgstr "Partner(in)"
 
 #: ../src/Reorder.py:41 ../src/plugins/textreport/TagReport.py:223
 #: ../src/plugins/view/familyview.py:82
@@ -1552,8 +1552,8 @@ msgstr ""
 msgid ""
 "Neither Language and country %s nor language %s supported by ICU: using en_GB"
 msgstr ""
-"Weder die Sprache und Land %s noch die Sprache %s werden von ICU unterstützt: "
-"verwende en_GB"
+"Weder die Sprache und Land %s noch die Sprache %s werden von ICU "
+"unterstützt: verwende en_GB"
 
 #: ../src/Utils.py:316
 msgid "PyICU not available: sorting may be incorrect"
@@ -1594,7 +1594,7 @@ msgstr "Geschwister todesbezogenes Datum"
 #: ../src/Utils.py:721 ../src/Utils.py:725 ../src/Utils.py:732
 #: ../src/Utils.py:736
 msgid "a spouse, "
-msgstr "ein Ehepartner, "
+msgstr "ein(e) Partner(in), "
 
 #: ../src/Utils.py:754
 msgid "event with spouse"
@@ -3700,7 +3700,7 @@ msgstr "Medienreferenznotiz"
 msgid "Child Reference Note"
 msgstr "Kind-Referenzen Notiz"
 
-#: ../src/gen/lib/person.py:457
+#: ../src/gen/lib/person.py:458
 msgid "Merged Gramps ID"
 msgstr "Zusammengefasste Gramps-ID"
 
