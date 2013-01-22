@@ -52,7 +52,7 @@ from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from ..widgets import MonitoredEntry, PrivacyButton
+from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
 from ..dialog import ErrorDialog
@@ -177,6 +177,14 @@ class EditPlace(EditPrimary):
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
         
+        self.tags = MonitoredTagList(self.top.get_object("tag_label"), 
+                                     self.top.get_object("tag_button"), 
+                                     self.obj.set_tag_list, 
+                                     self.obj.get_tag_list,
+                                     self.db,
+                                     self.uistate, self.track,
+                                     self.db.readonly)
+
         self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
 

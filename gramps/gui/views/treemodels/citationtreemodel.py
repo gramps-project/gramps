@@ -80,10 +80,12 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             None,                    # COL_DATE       (not for Source)
             None,                    # COL_CONFIDENCE (not for Source)
             self.source_src_private, # COL_PRIV       (both Source & Citation)
+            self.source_src_tags,    # COL_TAGS       (both Source & Citation)
             self.source_src_chan,    # COL_CHAN       (both Source & Citation)
             self.source_src_auth,    # COL_SRC_AUTH   (Source only)
             self.source_src_abbr,    # COL_SRC_ABBR   (Source only)
             self.source_src_pinfo,   # COL_SRC_PINFO  (Source only)
+            self.source_src_tag_color
             ]
         self.smap = [
             self.source_src_title,
@@ -91,10 +93,12 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.dummy_sort_key,
             self.dummy_sort_key,
             self.source_src_private,
+            self.source_src_tags,
             self.source_sort2_change,
             self.source_src_auth,
             self.source_src_abbr,
             self.source_src_pinfo,
+            self.source_src_tag_color
             ]
         
         TreeBaseModel.__init__(self, self.db, scol=scol, order=order,
@@ -133,10 +137,12 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.citation_date,
             self.citation_confidence,
             self.citation_private,
+            self.citation_tags,
             self.citation_change,
             None,
             None,
             None,
+            self.citation_tag_color
             ]
         self.smap2 = [
             self.citation_page,
@@ -144,11 +150,19 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.citation_sort_date,
             self.citation_confidence,
             self.citation_private,
+            self.citation_tags,
             self.citation_sort_change,
             self.dummy_sort_key,
             self.dummy_sort_key,
             self.dummy_sort_key,
+            self.citation_tag_color
             ]
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 10
 
     def get_tree_levels(self):
         """

@@ -35,6 +35,7 @@ from .primaryobj import PrimaryObject
 from .notebase import NoteBase
 from .addressbase import AddressBase
 from .urlbase import UrlBase
+from .tagbase import TagBase
 from .repotype import RepositoryType
 from ..constfunc import cuni
 from .handle import Handle
@@ -67,7 +68,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
-                self.change, self.private)
+                self.change, TagBase.serialize(self), self.private)
 
     def to_struct(self):
         """
@@ -97,6 +98,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
                 "address_list": AddressBase.to_struct(self),
                 "urls": UrlBase.to_struct(self),
                 "change": self.change, 
+                "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
     def unserialize(self, data):
@@ -105,13 +107,14 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         back into the data in a Repository structure.
         """
         (self.handle, self.gramps_id, the_type, self.name, note_list,
-         address_list, urls, self.change, self.private) = data
+         address_list, urls, self.change, tag_list, self.private) = data
 
         self.type = RepositoryType()
         self.type.unserialize(the_type)
         NoteBase.unserialize(self, note_list)
         AddressBase.unserialize(self, address_list)
         UrlBase.unserialize(self, urls)
+        TagBase.unserialize(self, tag_list)
         return self
         
     def get_text_data_list(self):
@@ -170,7 +173,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return (self.get_referenced_note_handles() +
+                self.get_referenced_tag_handles())
 
     def has_citation_reference(self, citation_handle) :
         """
@@ -236,6 +240,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         self._merge_address_list(acquisition)
         self._merge_url_list(acquisition)
         self._merge_note_list(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set_type(self, the_type):
         """

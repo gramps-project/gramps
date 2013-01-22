@@ -67,8 +67,9 @@ class PlaceTreeView(PlaceBaseView):
     COL_LAT = 10
     COL_LON = 11
     COL_PRIV = 12
-    COL_CHAN = 13
-    COL_NAME = 14
+    COL_TAGS = 13
+    COL_CHAN = 14
+    COL_NAME = 15
     # column definitions
     COLUMNS = [
         (_('Place'), MARKUP, None),
@@ -84,6 +85,7 @@ class PlaceTreeView(PlaceBaseView):
         (_('Latitude'), TEXT, None),
         (_('Longitude'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         (_('Place Name'), TEXT, None),
         ]
@@ -93,10 +95,10 @@ class PlaceTreeView(PlaceBaseView):
                              COL_CITY, COL_COUNTY, COL_STATE]),
         ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
-                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_CHAN, 
-                           COL_NAME]),
+                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_TAGS, 
+                           COL_CHAN, COL_NAME]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 40, 100, 150])
+                             100, 150, 150, 40, 100, 100, 150])
         )    
 
     def __init__(self, pdata, dbstate, uistate):

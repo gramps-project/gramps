@@ -79,7 +79,8 @@ class RepositoryView(ListView):
     COL_EMAIL = 10
     COL_SURL = 11
     COL_PRIV = 12
-    COL_CHAN = 13
+    COL_TAGS = 13
+    COL_CHAN = 14
 
     # column definitions
     COLUMNS = [
@@ -96,6 +97,7 @@ class RepositoryView(ListView):
         (_('Email'), TEXT, None),
         (_('Search URL'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
@@ -104,9 +106,10 @@ class RepositoryView(ListView):
                              ]),
         ('columns.rank', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                           COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
-                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_CHAN]),
+                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_TAGS, 
+                          COL_CHAN]),
         ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
-                             100, 100, 100, 40, 100])
+                             100, 100, 100, 40, 100, 100])
         )    
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
@@ -257,6 +260,26 @@ class RepositoryView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='Repository')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, repo_handle, tag_handle):
+        """
+        Add the given tag to the given repository.
+        """
+        repo = self.dbstate.db.get_repository_from_handle(repo_handle)
+        repo.add_tag(tag_handle)
+        self.dbstate.db.commit_repository(repo, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

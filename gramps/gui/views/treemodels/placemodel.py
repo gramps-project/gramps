@@ -33,6 +33,7 @@ Place Model.
 import cgi
 import logging
 _LOG = logging.getLogger(".gui.views.treemodels.placemodel")
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -94,8 +95,10 @@ class PlaceBaseModel(object):
             self.column_latitude,
             self.column_longitude,
             self.column_private,
+            self.column_tags,
             self.column_change,
             self.column_place_name,
+            self.column_tag_color
             ]
         self.smap = [
             self.column_name,
@@ -111,8 +114,10 @@ class PlaceBaseModel(object):
             self.sort_latitude,
             self.sort_longitude,
             self.column_private,
+            self.column_tags,
             self.sort_change,
             self.column_place_name,
+            self.column_tag_color
             ]
 
     def destroy(self):
@@ -124,6 +129,12 @@ class PlaceBaseModel(object):
         self.map = None
         self.fmap = None
         self.smap = None
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 16
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
@@ -215,7 +226,7 @@ class PlaceBaseModel(object):
             return ''
 
     def column_private(self, data):
-        if data[12]:
+        if data[13]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
@@ -226,6 +237,34 @@ class PlaceBaseModel(object):
     
     def column_change(self, data):
         return format_time(data[11])
+
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
+    def column_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[12]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
+
+    def column_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[12]))
+        return ', '.join(sorted(tag_list, key=locale.strxfrm))
 
 #-------------------------------------------------------------------------
 #

@@ -37,6 +37,7 @@ from .citationbase import CitationBase
 from .notebase import NoteBase
 from .mediabase import MediaBase
 from .urlbase import UrlBase
+from .tagbase import TagBase
 from .location import Location
 from .handle import Handle
 
@@ -109,7 +110,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 MediaBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, self.private)
+                self.change, TagBase.serialize(self), self.private)
 
     def to_struct(self):
         """
@@ -148,6 +149,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "change": self.change, 
+                "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
     def unserialize(self, data):
@@ -161,7 +163,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          main_loc, alt_loc, urls, media_list, citation_list, note_list,
-         self.change, self.private) = data
+         self.change, tag_list, self.private) = data
 
         if main_loc is None:
             self.main_loc = None
@@ -172,6 +174,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         MediaBase.unserialize(self, media_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
+        TagBase.unserialize(self, tag_list)
         return self
 
     def get_text_data_list(self):
@@ -233,8 +236,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        return (self.get_referenced_note_handles() +
+                self.get_referenced_citation_handles() +
+                self.get_referenced_tag_handles())
 
     def merge(self, acquisition):
         """ Merge the content of acquisition into this place.
@@ -248,6 +252,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self._merge_url_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set_title(self, title):
         """

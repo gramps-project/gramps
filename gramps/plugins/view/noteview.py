@@ -106,7 +106,6 @@ class NoteView(ListView):
             'note-update'  : self.row_update,
             'note-delete'  : self.row_delete,
             'note-rebuild' : self.object_build,
-            'tag-update'   : self.tag_updated
         }
 
         ListView.__init__(
@@ -202,20 +201,6 @@ class NoteView(ListView):
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_note_from_gramps_id(gid)

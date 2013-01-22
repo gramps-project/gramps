@@ -60,7 +60,7 @@ from .handle import Handle
 #
 #-------------------------------------------------------------------------
 class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
-                  TagBase, PrimaryObject):
+                  PrimaryObject):
     """
     Container for information about an image file, including location,
     description and privacy.
@@ -81,7 +81,6 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
         AttributeBase.__init__(self, source)
-        TagBase.__init__(self)
 
         if source:
             self.path = source.path

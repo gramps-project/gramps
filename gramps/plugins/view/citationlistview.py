@@ -85,15 +85,16 @@ class CitationListView(ListView):
     COL_ID             =  1
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
-    COL_PRIV           =  4    
-    COL_CHAN           =  5    
-    COL_SRC_TITLE      =  6
-    COL_SRC_ID         =  7
-    COL_SRC_AUTH       =  8
-    COL_SRC_ABBR       =  9
-    COL_SRC_PINFO      = 10
-    COL_SRC_PRIV       = 11
-    COL_SRC_CHAN       = 12
+    COL_PRIV           =  4
+    COL_TAGS           =  5
+    COL_CHAN           =  6
+    COL_SRC_TITLE      =  7
+    COL_SRC_ID         =  8
+    COL_SRC_AUTH       =  9
+    COL_SRC_ABBR       = 10
+    COL_SRC_PINFO      = 11
+    COL_SRC_PRIV       = 12
+    COL_SRC_CHAN       = 13
     # column definitions
     COLUMNS = [
         (_('Volume/Page'), TEXT, None),
@@ -101,6 +102,7 @@ class CitationListView(ListView):
         (_('Date'), MARKUP, None),
         (_('Confidence'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         (_('Source: Title'), TEXT, None),
         (_('Source: ID'), TEXT, None),
@@ -115,11 +117,11 @@ class CitationListView(ListView):
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
                              COL_CONFIDENCE]),
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_PRIV, COL_CHAN, COL_SRC_TITLE, COL_SRC_ID, 
-                          COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
+                          COL_PRIV, COL_TAGS, COL_CHAN, COL_SRC_TITLE,
+                          COL_SRC_ID, COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
                           COL_SRC_PRIV, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 40, 100, 200, 75, 75, 100, 150, 
-                          40, 100])
+        ('columns.size', [200, 75, 100, 100, 40, 100, 100, 200, 75, 75, 100, 
+                          150, 40, 100])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -335,6 +337,26 @@ class CitationListView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='Citation')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, citation_handle, tag_handle):
+        """
+        Add the given tag to the given citation.
+        """
+        citation = self.dbstate.db.get_citation_from_handle(citation_handle)
+        citation.add_tag(tag_handle)
+        self.dbstate.db.commit_citation(citation, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

@@ -60,7 +60,7 @@ from .handle import Handle
 #
 #-------------------------------------------------------------------------
 class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
-             TagBase, PrimaryObject):
+             PrimaryObject):
     """
     The Family record is the GRAMPS in-memory representation of the
     relationships between people. It contains all the information
@@ -91,7 +91,6 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
-        TagBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []

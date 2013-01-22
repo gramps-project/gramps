@@ -34,13 +34,14 @@ from .tableobj import TableObject
 from .privacybase import PrivacyBase
 from .citationbase import CitationBase
 from .mediabase import MediaBase
+from .tagbase import TagBase
 
 #-------------------------------------------------------------------------
 #
 # Basic Primary Object class
 #
 #-------------------------------------------------------------------------
-class BasicPrimaryObject(TableObject, PrivacyBase):
+class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     """
     The BasicPrimaryObject is the base class for Note objects.
     
@@ -66,6 +67,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase):
         """
         TableObject.__init__(self, source)
         PrivacyBase.__init__(self, source)
+        TagBase.__init__(self)
         if source:
             self.gramps_id = source.gramps_id
         else:

@@ -46,9 +46,9 @@ from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 
 from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
-                         SourceBackRefList, RepoEmbedList, CitationBackRefList)
+                          SourceBackRefList, RepoEmbedList, CitationBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
-                        MonitoredDate)
+                       MonitoredDate, MonitoredTagList)
 from ..dialog import ErrorDialog
 from .editreference import RefTab
 from ..glade import Glade
@@ -277,6 +277,15 @@ class EditCitation(EditPrimary):
             (_('Very High'), Citation.CONF_VERY_HIGH)],
             self.db.readonly)
 
+        self.tags2 = MonitoredTagList(
+            self.glade.get_object("tag_label2"), 
+            self.glade.get_object("tag_button2"), 
+            self.obj.set_tag_list, 
+            self.obj.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
+
         self.ref_privacy = PrivacyButton(
             self.glade.get_object('privacy'), self.obj, self.db.readonly)
         
@@ -295,6 +304,15 @@ class EditCitation(EditPrimary):
         self.gid = MonitoredEntry(
             self.glade.get_object('gid'), self.source.set_gramps_id,
             self.source.get_gramps_id,self.db.readonly)
+
+        self.tags = MonitoredTagList(
+            self.glade.get_object("tag_label"), 
+            self.glade.get_object("tag_button"), 
+            self.source.set_tag_list, 
+            self.source.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
 
         self.source_privacy = PrivacyButton(
             self.glade.get_object("private"),

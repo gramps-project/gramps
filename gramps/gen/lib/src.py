@@ -34,6 +34,7 @@ Source object for GRAMPS.
 from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
 from .notebase import NoteBase
+from .tagbase import TagBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
@@ -69,7 +70,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 MediaBase.serialize(self), cuni(self.abbrev),
                 self.change, self.datamap,
                 [rr.serialize() for rr in self.reporef_list],
-                self.private)
+                TagBase.serialize(self), self.private)
 
     def to_struct(self):
         """
@@ -102,6 +103,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 "change": self.change, 
                 "datamap": {"dict": self.datamap},
                 "reporef_list": [rr.to_struct() for rr in self.reporef_list],
+                "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
     def unserialize(self, data):
@@ -112,10 +114,11 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, note_list, media_list,
          self.abbrev, self.change, self.datamap, reporef_list,
-         self.private) = data
+         tag_list, self.private) = data
 
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
+        TagBase.unserialize(self, tag_list)
         self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         return self
         
@@ -225,7 +228,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles()
+        return (self.get_referenced_note_handles() +
+                self.get_referenced_tag_handles())
 
     def merge(self, acquisition):
         """
@@ -237,6 +241,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)
         self._merge_media_list(acquisition)
+        self._merge_tag_list(acquisition)
         my_datamap = self.get_data_map()
         acquisition_map = acquisition.get_data_map()
         for key in acquisition.get_data_map():

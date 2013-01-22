@@ -44,7 +44,8 @@ from gi.repository import Gtk
 from gramps.gen.lib import NoteType, Repository
 from gramps.gen.db import DbTxn
 
-from ..widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from ..widgets import (MonitoredEntry, MonitoredDataType, PrivacyButton,
+                       MonitoredTagList)
 from .displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from .editprimary import EditPrimary
 from ..dialog import ErrorDialog
@@ -93,13 +94,20 @@ class EditRepository(EditPrimary):
         self.type = MonitoredDataType(self.glade.get_object("repository_type"),
                                       self.obj.set_type, self.obj.get_type,
                                       self.db.readonly,
-                                      self.db.get_repository_types(),
-            )
+                                      self.db.get_repository_types())
 
         self.call_number = MonitoredEntry(self.glade.get_object('gid'),
                                           self.obj.set_gramps_id,
                                           self.obj.get_gramps_id, 
                                           self.db.readonly)
+
+        self.tags = MonitoredTagList(self.glade.get_object("tag_label"), 
+                                     self.glade.get_object("tag_button"), 
+                                     self.obj.set_tag_list, 
+                                     self.obj.get_tag_list,
+                                     self.db,
+                                     self.uistate, self.track,
+                                     self.db.readonly)
 
         self.privacy = PrivacyButton(self.glade.get_object("private"), 
                                      self.obj, self.db.readonly)

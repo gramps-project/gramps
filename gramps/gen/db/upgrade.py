@@ -43,11 +43,100 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
 else:
     from bsddb import db
 from . import BSDDBTxn
+from ..constfunc import UNITYPE
 from ..lib.nameorigintype import NameOriginType
 from .write import _mkname, SURNAMES
 from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
 from gramps.gui.dialog import (InfoDialog)
+
+def gramps_upgrade_17(self):
+    """Upgrade database from version 16 to 17. This upgrade adds tags to
+       event, place, repository, source and citation objects.
+    """
+    length = (len(self.event_map) + len(self.place_map) +
+              len(self.repository_map) + len(self.source_map) +
+              len(self.citation_map))
+    self.set_total(length)
+
+    # ---------------------------------
+    # Modify Event
+    # ---------------------------------
+    # Add new tag_list field.
+    for handle in self.event_map.keys():
+        event = self.event_map[handle]
+        new_event = list(event)
+        new_event = new_event[:11] + [[]] + new_event[11:]
+        new_event = tuple(new_event)
+        with BSDDBTxn(self.env, self.event_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_event)
+        self.update()
+
+    # ---------------------------------
+    # Modify Place
+    # ---------------------------------
+    # Add new tag_list field.
+    for handle in self.place_map.keys():
+        place = self.place_map[handle]
+        new_place = list(place)
+        new_place = new_place[:12] + [[]] + new_place[12:]
+        new_place = tuple(new_place)
+        with BSDDBTxn(self.env, self.place_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_place)
+        self.update()
+
+    # ---------------------------------
+    # Modify Repository
+    # ---------------------------------
+    # Add new tag_list field.
+    for handle in self.repository_map.keys():
+        repository = self.repository_map[handle]
+        new_repository = list(repository)
+        new_repository = new_repository[:8] + [[]] + new_repository[8:]
+        new_repository = tuple(new_repository)
+        with BSDDBTxn(self.env, self.repository_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_repository)
+        self.update()
+
+    # ---------------------------------
+    # Modify Source
+    # ---------------------------------
+    # Add new tag_list field.
+    for handle in self.source_map.keys():
+        source = self.source_map[handle]
+        new_source = list(source)
+        new_source = new_source[:11] + [[]] + new_source[11:]
+        new_source = tuple(new_source)
+        with BSDDBTxn(self.env, self.source_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_source)
+        self.update()
+
+    # ---------------------------------
+    # Modify Citation
+    # ---------------------------------
+    # Add new tag_list field.
+    for handle in self.citation_map.keys():
+        citation = self.citation_map[handle]
+        new_citation = list(citation)
+        new_citation = new_citation[:10] + [[]] + new_citation[10:]
+        new_citation = tuple(new_citation)
+        with BSDDBTxn(self.env, self.citation_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_citation)
+        self.update()
+
+    # Bump up database version. Separate transaction to save metadata.
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put(b'version', 17)
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all

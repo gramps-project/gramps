@@ -76,8 +76,9 @@ class EventView(ListView):
     COL_DATE = 3
     COL_PLACE = 4
     COL_PRIV = 5
-    COL_CHAN = 6
-    COL_PARTIC = 7
+    COL_TAGS = 6
+    COL_CHAN = 7
+    COL_PARTIC = 8
     # column definitions
     COLUMNS = [
         (_('Description'), TEXT, None),
@@ -86,6 +87,7 @@ class EventView(ListView):
         (_('Date'), MARKUP, None),
         (_('Place'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         (_('Main Participants'), TEXT, None),
         ]
@@ -93,8 +95,8 @@ class EventView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_DESCR, COL_ID, COL_TYPE, COL_DATE, COL_PLACE]),
         ('columns.rank', [COL_DESCR, COL_ID, COL_TYPE, COL_PARTIC, COL_DATE,
-                           COL_PLACE, COL_PRIV, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 230, 150, 200, 40, 100])
+                           COL_PLACE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 230, 150, 200, 40, 100, 100])
         )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
@@ -267,6 +269,26 @@ class EventView(ListView):
         else:
             MergeEvent(self.dbstate, self.uistate, mlist[0], mlist[1])
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                    include_classes='Event')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, event_handle, tag_handle):
+        """
+        Add the given tag to the given event.
+        """
+        event = self.dbstate.db.get_event_from_handle(event_handle)
+        event.add_tag(tag_handle)
+        self.dbstate.db.commit_event(event, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

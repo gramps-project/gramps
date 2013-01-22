@@ -110,7 +110,6 @@ class FamilyView(ListView):
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
             'family-rebuild' : self.object_build,
-            'tag-update'     : self.tag_updated
             }
 
         ListView.__init__(
@@ -212,20 +211,6 @@ class FamilyView(ListView):
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ])
         self._add_action_group(self.all_action)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
 
     def add_bookmark(self, obj):
         mlist = self.selected_handles()

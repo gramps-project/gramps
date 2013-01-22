@@ -51,9 +51,9 @@ from .objectentries import PlaceEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
 from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
-                         EventBackRefList, AttrEmbedList)
-from ..widgets import (MonitoredEntry, PrivacyButton, 
-                     MonitoredDataType, MonitoredDate)
+                          EventBackRefList, AttrEmbedList)
+from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredDataType, 
+                       MonitoredDate, MonitoredTagList)
 from gramps.gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
@@ -153,8 +153,16 @@ class EditEvent(EditPrimary):
                                   self.obj.set_gramps_id,
                                   self.obj.get_gramps_id, self.db.readonly)
 
-        self.priv = PrivacyButton( self.top.get_object("private"),
-                                   self.obj, self.db.readonly)
+        self.tags = MonitoredTagList(self.top.get_object("tag_label"), 
+                                     self.top.get_object("tag_button"), 
+                                     self.obj.set_tag_list, 
+                                     self.obj.get_tag_list,
+                                     self.db,
+                                     self.uistate, self.track,
+                                     self.db.readonly)
+
+        self.priv = PrivacyButton(self.top.get_object("private"),
+                                  self.obj, self.db.readonly)
 
         self.event_menu = MonitoredDataType(self.top.get_object("personal_events"),
                                             self.obj.set_type,

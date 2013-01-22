@@ -1755,7 +1755,22 @@ class GrampsParser(UpdateCallback):
 
         if self.note:
             self.note.add_tag(handle)
-    
+
+        if self.event:
+            self.event.add_tag(handle)
+
+        if self.placeobj:
+            self.placeobj.add_tag(handle)
+
+        if self.repo:
+            self.repo.add_tag(handle)
+
+        if self.source:
+            self.source.add_tag(handle)
+
+        if self.citation:
+            self.citation.add_tag(handle)
+
     def start_range(self, attrs):
         self.note_tags[-1].ranges.append((int(attrs['start']),
                                           int(attrs['end'])))

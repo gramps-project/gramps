@@ -133,7 +133,6 @@ class MediaView(ListView):
             'media-update'  : self.row_update, 
             'media-delete'  : self.row_delete, 
             'media-rebuild' : self.object_build,
-            'tag-update'    : self.tag_updated
             }
 
         ListView.__init__(
@@ -232,20 +231,6 @@ class MediaView(ListView):
 
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
                         
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
-
     def view_media(self, obj):
         """
         Launch external viewers for the selected objects.

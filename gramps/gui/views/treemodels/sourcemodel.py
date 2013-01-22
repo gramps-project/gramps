@@ -26,6 +26,7 @@
 #-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".")
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +62,9 @@ class SourceModel(FlatBaseModel):
             self.column_abbrev,
             self.column_pubinfo,
             self.column_private,
+            self.column_tags,
             self.column_change,
+            self.column_tag_color
             ]
         self.smap = [
             self.column_title,
@@ -70,7 +73,9 @@ class SourceModel(FlatBaseModel):
             self.column_abbrev,
             self.column_pubinfo,
             self.column_private,
+            self.column_tags,
             self.sort_change,
+            self.column_tag_color
             ]
         FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
                                sort_map=sort_map)
@@ -85,6 +90,12 @@ class SourceModel(FlatBaseModel):
         self.fmap = None
         self.smap = None
         FlatBaseModel.destroy(self)
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 8
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
@@ -105,7 +116,7 @@ class SourceModel(FlatBaseModel):
         return cuni(data[4])
 
     def column_private(self, data):
-        if data[11]:
+        if data[12]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
@@ -116,3 +127,31 @@ class SourceModel(FlatBaseModel):
     
     def sort_change(self,data):
         return "%012x" % data[8]
+
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
+    def column_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[11]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
+
+    def column_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[11]))
+        return ', '.join(sorted(tag_list, key=locale.strxfrm))

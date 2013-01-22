@@ -129,7 +129,6 @@ class BasePersonView(ListView):
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
-            'tag-update' : self.tag_updated,
             'no-database': self.no_database,
             }
  
@@ -374,20 +373,6 @@ class BasePersonView(ListView):
 
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
 
     def merge(self, obj):
         """
