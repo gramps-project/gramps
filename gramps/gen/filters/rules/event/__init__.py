@@ -47,6 +47,7 @@ from ._matchessourcefilter import MatchesSourceFilter
 from ._hasattribute import HasAttribute
 from ._hasdata import HasData
 from ._changedsince import ChangedSince
+from ._hastag import HasTag
 
 editor_rule_list = [
     AllEvents,
@@ -67,5 +68,6 @@ editor_rule_list = [
     MatchesSourceFilter,
     HasAttribute,
     HasData,
-    ChangedSince
+    ChangedSince,
+    HasTag
 ]

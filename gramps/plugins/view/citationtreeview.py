@@ -85,10 +85,11 @@ class CitationTreeView(ListView):
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
     COL_PRIV           =  4    
-    COL_CHAN           =  5    
-    COL_SRC_AUTH       =  6
-    COL_SRC_ABBR       =  7
-    COL_SRC_PINFO      =  8
+    COL_TAGS           =  5    
+    COL_CHAN           =  6    
+    COL_SRC_AUTH       =  7
+    COL_SRC_ABBR       =  8
+    COL_SRC_PINFO      =  9
     # column definitions
     COLUMNS = [
         (_('Title or Page'), TEXT, None),
@@ -96,6 +97,7 @@ class CitationTreeView(ListView):
         (_('Date'), MARKUP, None),
         (_('Confidence'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         (_('Source: Author'), TEXT, None),
         (_('Source: Abbreviation'), TEXT, None),
@@ -114,9 +116,9 @@ class CitationTreeView(ListView):
         ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_SRC_AUTH,
                              COL_SRC_PINFO]),
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
-                          COL_PRIV, COL_CHAN, COL_SRC_AUTH,
+                          COL_PRIV, COL_TAGS, COL_CHAN, COL_SRC_AUTH,
                           COL_SRC_ABBR, COL_SRC_PINFO]),
-        ('columns.size', [200, 75, 100, 75, 40, 100, 150, 100, 150])
+        ('columns.size', [200, 75, 100, 75, 40, 100, 100, 150, 100, 150])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
@@ -550,6 +552,26 @@ class CitationTreeView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='Citation')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, citation_handle, tag_handle):
+        """
+        Add the given tag to the given citation.
+        """
+        citation = self.dbstate.db.get_citation_from_handle(citation_handle)
+        citation.add_tag(tag_handle)
+        self.dbstate.db.commit_citation(citation, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

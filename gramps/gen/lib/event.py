@@ -46,6 +46,7 @@ from .mediabase import MediaBase
 from .attrbase import AttributeBase
 from .datebase import DateBase
 from .placebase import PlaceBase
+from .tagbase import TagBase
 from .eventtype import EventType
 from .handle import Handle
 
@@ -116,7 +117,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
                 AttributeBase.serialize(self),
-                self.change, self.private)
+                self.change, TagBase.serialize(self), self.private)
 
     def to_struct(self):
         """
@@ -149,6 +150,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                 "media_list": MediaBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),
                 "change": self.change, 
+                "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
     def unserialize(self, data):
@@ -163,7 +165,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         (self.handle, self.gramps_id, the_type, date,
          self.__description, self.place, 
          citation_list, note_list, media_list, attribute_list,
-         self.change, self.private) = data
+         self.change, tag_list, self.private) = data
 
         self.__type = EventType()
         self.__type.unserialize(the_type)
@@ -172,6 +174,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         AttributeBase.unserialize(self, attribute_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
+        TagBase.unserialize(self, tag_list)
         return self
 
     def _has_handle_reference(self, classname, handle):
@@ -263,8 +266,9 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        ret = (self.get_referenced_note_handles() +
+               self.get_referenced_citation_handles() +
+               self.get_referenced_tag_handles())
         if self.place:
             ret.append(('Place', self.place))
         return ret
@@ -338,6 +342,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_media_list(acquisition)
+        self._merge_tag_list(acquisition)
 
     def set_type(self, the_type):
         """

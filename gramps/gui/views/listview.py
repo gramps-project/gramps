@@ -288,10 +288,21 @@ class ListView(NavigationView):
         renderer.set_property('foreground', fg_color)
 
     def set_active(self):
+        """
+        Called when the page is displayed.
+        """
         NavigationView.set_active(self)
+        self.uistate.viewmanager.tags.tag_enable()
         self.uistate.show_filter_results(self.dbstate, 
                                          self.model.displayed(), 
                                          self.model.total())
+
+    def set_inactive(self):
+        """
+        Called when the page is no longer displayed.
+        """
+        NavigationView.set_inactive(self)
+        self.uistate.viewmanager.tags.tag_disable()
 
     def __build_tree(self):
         profile(self._build_tree)
@@ -660,7 +671,8 @@ class ListView(NavigationView):
         """
         for sig in self.signal_map:
             self.callman.add_db_signal(sig, self.signal_map[sig])
-        
+        self.callman.add_db_signal('tag-update', self.tag_updated)
+
     def change_db(self, db):
         """
         Called when the database is changed.

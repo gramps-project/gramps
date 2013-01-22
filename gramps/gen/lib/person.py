@@ -60,7 +60,7 @@ from .handle import Handle
 #
 #-------------------------------------------------------------------------
 class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
-             AddressBase, UrlBase, LdsOrdBase, TagBase, PrimaryObject):
+             AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
     """
     The Person record is the GRAMPS in-memory representation of an
     individual person. It contains all the information related to
@@ -98,7 +98,6 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
-        TagBase.__init__(self)
         self.primary_name = Name()
         self.event_ref_list = []
         self.family_list = []

@@ -86,7 +86,7 @@ from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
 _MINVERSION = 9
-_DBVERSION = 16
+_DBVERSION = 17
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -2005,6 +2005,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_15(self)
         if version < 16:
             upgrade.gramps_upgrade_16(self)
+        if version < 17:
+            upgrade.gramps_upgrade_17(self)
             
             self.reset()
             self.set_total(6)

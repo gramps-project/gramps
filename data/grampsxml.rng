@@ -32,7 +32,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.5.0/"
+  ns="http://gramps-project.org/xml/1.6.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -160,6 +160,9 @@
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="person-content">
@@ -204,9 +207,6 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
-    </element></zeroOrMore>
-    <zeroOrMore><element name="tagref">
-        <ref name="tagref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -403,9 +403,6 @@
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="tagref">
-        <ref name="tagref-content"/>
-    </element></zeroOrMore>
   </define>
 
   <define name="event-content">
@@ -520,9 +517,6 @@
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="tagref">
-        <ref name="tagref-content"/>
-    </element></zeroOrMore>
   </define>
 
   <define name="repository-content">
@@ -581,9 +575,6 @@
     </choice></attribute></optional>
     <attribute name="type"><text/></attribute>
     <ref name="styledtext"/>
-    <zeroOrMore><element name="tagref">
-        <ref name="tagref-content"/>
-    </element></zeroOrMore>
   </define>
 
   <define name="styledtext">

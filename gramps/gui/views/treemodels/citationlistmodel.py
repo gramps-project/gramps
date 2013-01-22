@@ -67,6 +67,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_date,
             self.citation_confidence,
             self.citation_private,
+            self.citation_tags,
             self.citation_change,
             self.citation_src_title,
             self.citation_src_id,
@@ -75,6 +76,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_chan,
+            self.citation_tag_color
             ]
         self.smap = [
             self.citation_page,
@@ -82,6 +84,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_sort_date,
             self.citation_confidence,
             self.citation_private,
+            self.citation_tags,
             self.citation_sort_change,
             self.citation_src_title,
             self.citation_src_id,
@@ -90,6 +93,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_pinfo,
             self.citation_src_private,
             self.citation_src_chan,
+            self.citation_tag_color
             ]
         FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
                                sort_map=sort_map)
@@ -104,6 +108,12 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
         self.fmap = None
         self.smap = None
         FlatBaseModel.destroy(self)
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 14
 
     def do_get_n_columns(self):
         return len(self.fmap)+1

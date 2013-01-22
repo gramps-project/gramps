@@ -43,7 +43,7 @@ from .handle import Handle
 # Class for notes used throughout the majority of GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Note(BasicPrimaryObject, TagBase):
+class Note(BasicPrimaryObject):
     """Define a text note.
     
     Starting from GRAMPS 3.1 Note object stores the text in :class:`gen.lib.styledtext.StyledText`
@@ -83,7 +83,6 @@ class Note(BasicPrimaryObject, TagBase):
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
         BasicPrimaryObject.__init__(self)
-        TagBase.__init__(self)
         self.text = StyledText(text)
         self.format = Note.FLOWED
         self.type = NoteType()

@@ -35,6 +35,7 @@ from ._matchesfilter import MatchesFilter
 from ._hasrepo import HasRepo
 from ._changedsince import ChangedSince
 from ._matchesnamesubstringof import MatchesNameSubstringOf
+from ._hastag import HasTag
 
 editor_rule_list = [
     AllRepos,
@@ -46,5 +47,6 @@ editor_rule_list = [
     RepoPrivate,
     MatchesFilter,
     ChangedSince,
-    MatchesNameSubstringOf
+    MatchesNameSubstringOf,
+    HasTag
 ]
