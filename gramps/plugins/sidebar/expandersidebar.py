@@ -29,6 +29,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -110,7 +111,11 @@ class ExpanderSidebar(BaseSidebar):
         if cat_num is not None:
             self.expanders[cat_num].set_expanded(True)
         # Set new button as selected
-        button_num = self.lookup[(cat_num, view_num)]
+        try:
+            button_num = self.lookup[(cat_num, view_num)]
+        except KeyError as err:
+            logging.warning("Key Error retrieving button number: %s" % str(err))
+            button_num = 0
         self.__handlers_block()
         for index, button in enumerate(self.buttons):
             if index == button_num:
