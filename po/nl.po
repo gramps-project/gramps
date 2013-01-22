@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 16:57+0100\n"
-"PO-Revision-Date: 2013-01-22 00:12+0100\n"
+"PO-Revision-Date: 2013-01-22 10:00+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -2988,8 +2988,8 @@ msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
 msgstr ""
-"Vindt personen die afstammeling zijn, of de echtgenoot van een afstammeling "
-"van een gespecificeerd persoon"
+"Personen die afstammelingen zijn, of de echtgenoot van een afstammeling van "
+"een gespecificeerd persoon"
 
 # afstammelingen
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:48
@@ -3010,7 +3010,7 @@ msgstr "Afstammelingen van <persoon>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:49
 msgid "Matches all descendants for the specified person"
-msgstr "Vindt alle afstammelingen van de gespecificeerde persoon"
+msgstr "Alle afstammelingen van de gespecificeerde persoon"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:48
 msgid "Descendants of <filter> match"
@@ -3018,8 +3018,7 @@ msgstr "Is een afstammeling van resultaat van <filter>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr ""
-"Vindt personen die afstammeling zijn van iemand gevonden via een filter"
+msgstr "Personen die afstammeling zijn van iemand gevonden via een filter"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:48
 msgid "Duplicated ancestors of <person>"
@@ -3100,8 +3099,8 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Vindt personen die afstammeling zijn van een gespecificeerd persoon, niet "
-"meer dan N generaties verwijderd"
+"Personen die afstammeling zijn van een gespecificeerd persoon, niet meer dan "
+"N generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_ismale.py:46
 #: ../gramps/plugins/gramplet/statsgramplet.py:151
@@ -3135,8 +3134,8 @@ msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Vindt personen die die afstammeling zijn van een gespecificeerd persoon, "
-"tenminste N generaties verwijderd"
+"Personen die afstammeling zijn van een gespecificeerd persoon, tenminste N "
+"generaties verwijderd"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:48
 msgid "Parents of <filter> match"
@@ -13524,7 +13523,7 @@ msgstr "Weergaveformaat voor een afstammeling."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1517
 msgid "Bold direct descendants"
-msgstr "Rechtstreekse afstammelingen vet"
+msgstr "Rechtstreekse afstammelingen: vet"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1519
 msgid ""
@@ -13630,7 +13629,7 @@ msgstr "Afstammelingenstamboom"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
-msgstr "Levert een grafische afstammelingenstamboom"
+msgstr "Grafische afstammelingenstamboom aanmaken"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:130
 msgid "Family Descendant Chart"
@@ -13638,7 +13637,7 @@ msgstr "Familie-afstammelingenstamboom"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:131
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Een grafische afstammelingenstamboom rond een familie wordt aangemaakt"
+msgstr "Een grafische afstammelingenstamboom rond een familie aanmaken"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -13646,7 +13645,7 @@ msgstr "Familie-afstammelingenstamboom"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Een grafische afstammelingenstamboom rond een familie wordt aangemaakt"
+msgstr "Een grafische afstammelingenstamboom rond een familie aanmaken"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
@@ -15051,7 +15050,7 @@ msgstr "Afstammeling"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:93
 msgid "Gramplet showing active person's descendants"
-msgstr "Gramplet toont de afstammelingen van de actieve persoon"
+msgstr "Gramplet die de afstammelingen van de actieve persoon toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:99
 msgid "Descendants"
@@ -15060,14 +15059,14 @@ msgstr "Afstammelingen"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:110
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr ""
-"Gramplet toont de rechtstreekse afstammelingen van de actieve persoon in een "
-"waaiergrafiek"
+"Gramplet die de rechtstreekse afstammelingen van de actieve persoon in een "
+"waaiergrafiek toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:127
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr ""
-"Gramplet toont de rechtstreekse afstammelingen van de actieve persoon in een "
-"waaiergrafiek"
+"Gramplet die de rechtstreekse afstammelingen van de actieve persoon in een "
+"waaiergrafiek toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:156
@@ -15094,7 +15093,7 @@ msgstr "Gramplet toont alle achternamen in een tekstwolk"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:171
 msgid "Gramplet showing active person's ancestors"
-msgstr "Gramplet toont de afstammelingen van de actieve persoon"
+msgstr "Gramplet die de voorouders van de actieve persoon toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:188
 msgid "Gramplet showing an active item Quick View"
@@ -23233,7 +23232,7 @@ msgstr "Beknopte vorm gebruiken of volledige zinnen."
 #: ../gramps/plugins/textreport/detancestralreport.py:791
 #: ../gramps/plugins/textreport/detdescendantreport.py:966
 msgid "Add descendant reference in child list"
-msgstr "Afstammeling-verwijzingen in kinderen-lijst toevoegen"
+msgstr "Afstammeling-verwijzingen in kinderenlijst toevoegen"
 
 # Opnemen ipv toevoegen
 #: ../gramps/plugins/textreport/detancestralreport.py:793
@@ -24155,7 +24154,7 @@ msgstr "Afstammelingenverslag"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:99
 msgid "Produces a list of descendants of the active person"
-msgstr "Genereert een lijst met afstammelingen van de actieve persoon"
+msgstr "Lijst met de afstammelingen van de actieve persoon"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:120
 msgid "Detailed Ancestral Report"
@@ -24171,7 +24170,7 @@ msgstr "Gedetailleerd afstammelingenverslag"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:143
 msgid "Produces a detailed descendant report"
-msgstr "Levert een gedetailleerd afstammelingenverslag"
+msgstr "Gedetailleerd afstammelingenverslag aanmaken"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:164
 msgid "End of Line Report"
@@ -24735,7 +24734,7 @@ msgstr "Controleren en herstellen"
 
 #: ../gramps/plugins/tool/desbrowser.py:55
 msgid "manual|Interactive_Descendant_Browser..."
-msgstr "Interactieve_afstammeling-browser..."
+msgstr "Interactieve_afstammelingen-browser..."
 
 #: ../gramps/plugins/tool/desbrowser.py:70
 #, python-format
@@ -25551,7 +25550,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:104
 msgid "Interactive Descendant Browser"
-msgstr "Interactieve afstammeling-browser"
+msgstr "Interactieve afstammelingen-browser"
 
 # browsable?
 #: ../gramps/plugins/tool/tools.gpr.py:105
@@ -31481,7 +31480,7 @@ msgstr ""
 "hulpmiddelen. Deze laten u toe dingen te doen zoals controle van het "
 "gegevensbestand op fouten en consistentie, onderzoeken en analyseren van "
 "gebeurtenissen, het vinden van dubbele personen, het gebruik van een "
-"interactieve afstammeling-browser enzovoort. Alle hulpmiddelen zijn "
+"interactieve afstammelingen-browser enzovoort. Alle hulpmiddelen zijn "
 "beschikbaar via het menu &quot;Hulpmiddelen|quot;."
 
 #: ../data/tips.xml.in.h:13
