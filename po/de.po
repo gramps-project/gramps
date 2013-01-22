@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-13 03:10+0100\n"
-"PO-Revision-Date: 2013-01-13 03:50+0100\n"
+"POT-Creation-Date: 2013-01-19 13:59+0100\n"
+"PO-Revision-Date: 2013-01-22 22:39+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5759,7 +5759,7 @@ msgstr "Geschwister todesbezogenes Datum"
 
 #: ../gramps/gen/utils/alive.py:230 ../gramps/gen/utils/alive.py:235
 msgid "a spouse, "
-msgstr "ein Ehepartner, "
+msgstr "ein(e) Partner(in), "
 
 #: ../gramps/gen/utils/alive.py:253 ../gramps/gen/utils/alive.py:265
 msgid "event with spouse"
@@ -11426,7 +11426,7 @@ msgstr "(Ehe-)Partner"
 #: ../gramps/plugins/view/relview.py:1367
 #: ../gramps/plugins/view/relview.py:1368
 msgid "Spouse"
-msgstr "Ehepartner"
+msgstr "Partner(in)"
 
 #: ../gramps/gui/merge/mergeperson.py:251
 msgid "No spouses or children found"
