@@ -258,7 +258,7 @@ gramps/gen/filters/rules/source/_matchesrepositoryfilter.py
 gramps/gen/filters/rules/source/_matchestitlesubstringof.py
 gramps/gen/filters/rules/source/_regexpidof.py
 gramps/gen/filters/rules/source/_sourceprivate.py
-gramps/gen/lib/attrtype.pygramps/plugins/lib/libtreebase.py
+gramps/gen/lib/attrtype.py
 gramps/gen/lib/childreftype.py
 gramps/gen/lib/date.py
 gramps/gen/lib/eventroletype.py
