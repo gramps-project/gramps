@@ -61,7 +61,7 @@ from gramps.gui.glade import Glade
 #
 #-------------------------------------------------------------------------
 
-column_names = BasePersonView.COLUMN_NAMES
+column_names = [column[0] for column in BasePersonView.COLUMNS]
 
 #-------------------------------------------------------------------------
 #
@@ -166,11 +166,11 @@ class RelCalc(tool.Tool, ManagedWindow):
         return (_("Relationship Calculator tool"),None)
 
     def on_apply_clicked(self, obj):
-        model, node = self.tree.get_selection().get_selected()
-        if not node:
+        model, iter_ = self.tree.get_selection().get_selected()
+        if not iter_:
             return
         
-        handle = model.get_value(node, PeopleBaseModel.COLUMN_INT_ID)
+        handle = model.get_handle_from_iter(iter_)
         other_person = self.db.get_person_from_handle(handle)        
         if other_person is None :
             self.textbuffer.set_text("")
