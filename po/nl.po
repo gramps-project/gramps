@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-21 16:57+0100\n"
-"PO-Revision-Date: 2013-01-22 10:00+0100\n"
+"PO-Revision-Date: 2013-01-24 14:52+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -9858,7 +9858,6 @@ msgstr ""
 "Gramps wordt nu gestopt."
 
 #: ../gramps/gui/grampsgui.py:79
-#, fuzzy
 msgid ""
 "Gdk, Gtk or Pango typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
@@ -9866,8 +9865,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Gtk typelib is niet geïnstalleerd. U dient 'Gnome Introspection' en "
-"'pygobject'-versie 3.3.2 of later te installeren.\n"
+"'Gdk', 'Gtk' of 'Pango typelib'' niet geïnstalleerd.\n"
+"U dient 'Gnome Introspection' en 'pygobject'-versie 3.3.2 of later te "
+"installeren.\n"
+"Vervolgens dient u de 'introspection'-gegevens van 'Gdk', 'Gtk' en 'Pango' "
+"te installeren\n"
 "\n"
 "Gramps wordt nu afgesloten."
 
@@ -12239,6 +12241,9 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
+"U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
+"selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via het "
+"menu Bewerken -> Basispersoon."
 
 #: ../gramps/gui/views/navigationview.py:346
 #: ../gramps/gui/views/navigationview.py:349
@@ -12453,12 +12458,11 @@ msgid "Restore to defaults?"
 msgstr "Naar standaard herstellen"
 
 #: ../gramps/gui/widgets/grampletbar.py:513
-#, fuzzy
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
-"De Grampsbalk zal opnieuw hersteld worden om de standaard gramplets te "
+"De gramplet-balk zal opnieuw hersteld worden om de standaard gramplets te "
 "bevatten. Deze actie kan niet meer ongedaan gemaakt worden."
 
 #: ../gramps/gui/widgets/grampletpane.py:781
@@ -15112,7 +15116,7 @@ msgstr "Gramplet toont de verwanten van de actieve persoon"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:219
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:226
 msgid "Session Log"
-msgstr "Log sessie"
+msgstr "Sessielog"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:220
 msgid "Gramplet showing all activity for this session"
@@ -15132,9 +15136,8 @@ msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Gramplet toont alle voornamen in een tekstwolk"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
-#, fuzzy
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet die een opmerkingenfilter toont"
+msgstr "Gramplet die een lijst nog te doen toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:275
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:281
@@ -15636,7 +15639,7 @@ msgstr "Gramplet die een opmerkingenfilter toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1066
 msgid "Records Gramplet"
-msgstr "Records-gramplet"
+msgstr "Records"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1067
 #: ../gramps/plugins/textreport/textplugins.gpr.py:411
@@ -15650,85 +15653,69 @@ msgid "Records"
 msgstr "Records"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
-#, fuzzy
 msgid "Person To Do"
-msgstr "Persoon ID:"
+msgstr "Persoon 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1083
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet die de opmerkingen van een persoon toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een persoon toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1096
-#, fuzzy
 msgid "Event To Do"
-msgstr "Gebeurtenistype"
+msgstr "Gebeurtenis 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
-#, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet die de opmerkingen van een gebeurtenis toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een gebeurtenis toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
-#, fuzzy
 msgid "Family To Do"
-msgstr "Familie van "
+msgstr "Familie 'te doen' "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1111
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Gramplet die de opmerkingen van een familie toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een familie toont"
 
 # Plaatsnaam
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
-#, fuzzy
 msgid "Place To Do"
-msgstr "Locatieboomstruktuur"
+msgstr "Locatie 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Gramplet die de opmerkingen van een locatie toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een locatie toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
-#, fuzzy
 msgid "Source To Do"
-msgstr "Bron-ID:"
+msgstr "Bron 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1139
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Gramplet die de opmerkingen van een bron toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een bron toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1152
-#, fuzzy
 msgid "Citation To Do"
-msgstr "Citatenscherm met boomstruktuur"
+msgstr "Citaat 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet die de opmerkingen van een citaat toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een citaat toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1166
-#, fuzzy
 msgid "Repository To Do"
-msgstr "Bibliotheekopmerking"
+msgstr "Bibliotheek 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1167
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet die de opmerkingen van een bibliotheek toont"
+msgstr "Gramplet die de 'te doen'-opmerkingen van een bibliotheek toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
-#, fuzzy
 msgid "Media To Do"
-msgstr "Media-opmerking"
+msgstr "Media 'te doen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1181
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Gramplet die de opmerkingen van een  media-object toont"
+msgstr "Gramplet die de te doen'-opmerkingen van een  media-object toont"
 
 #: ../gramps/plugins/gramplet/notes.py:100
 #: ../gramps/plugins/gramplet/todogramplet.py:143
@@ -16080,21 +16067,19 @@ msgstr "Totaal aantal achternamen"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:51
 msgid "Previous To Do note"
-msgstr ""
+msgstr "Vorige 'te doen'-opmerking"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:55
 msgid "Next To Do note"
-msgstr ""
+msgstr "Volgende 'te doen'-opmerking"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:59
-#, fuzzy
 msgid "Edit the selected To Do note"
-msgstr "Een geselecteerde opmerking aanpassen"
+msgstr "Een geselecteerde 'te doen'-opmerking aanpassen"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:63
-#, fuzzy
 msgid "Add a new To Do note"
-msgstr "Een nieuwe opmerking toevoegen"
+msgstr "Een nieuwe 'te doen'-opmerking toevoegen"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:141
 msgid "Unattached"
@@ -16145,7 +16130,7 @@ msgstr "Gramps online handboek"
 msgid ""
 "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 msgstr ""
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual/nl"
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual/nl"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
 msgid "Ask questions on gramps-users mailing list"
@@ -16201,7 +16186,6 @@ msgid "Dashboard View"
 msgstr "Dashboard-scherm"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
-#, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add "
 "your own gramplets. You can also add gramplets to any view by adding a "
@@ -16212,15 +16196,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"U leest momenteel de tekst van de \"Gramplets\"-pagina waar u uw eigen "
-"gramplets kunt toevoegen. Bovendien kunt u Gramplets toevoegen aan alle "
-"schermen via de onderbalk of de zijbalk door rechts te klikken op de tab.\n"
+"U leest momenteel de tekst van de \"Dashboard\"-pagina waar u uw eigen "
+"'gramplets' kunt toevoegen. Bovendien kunt u 'gramplets' toevoegen aan alle "
+"schermen door een onderbalk of de zijbalk te voegen en rechts te klikken op "
+"de tab.\n"
 "\n"
-"U kunt op de het configuratie-icoontje klikken in de gereedschapsbalk om "
-"bijkomende kolommen toe te voegen. Door op de achtergrond rechts te klikken "
-"kunt u Gramplets toevoegen. U  kunt met slepen en plaatsen van de "
-"eigenschappenknop de Gramplet herpositioneren of de Gramplet los maken van "
-"het scherm zodat  de Gramplet boven Gramps 'zweeft'."
+"U kunt op de het configuratie-icoontje klikken in de werkbalk om bijkomende "
+"kolommen toe te voegen. Door op de achtergrond rechts te klikken kunt u "
+"'gramplets' toevoegen. U  kunt met slepen en plaatsen van de "
+"eigenschappenknop de 'gramplet' herpositioneren of los maken van het scherm "
+"zodat de 'gramplet' boven Gramps 'zweeft'."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:58
 msgid "Minimum number of items to display"
@@ -25901,9 +25886,8 @@ msgid "Source: Publication Information"
 msgstr "Publicatie-informatie"
 
 #: ../gramps/plugins/view/citationlistview.py:109
-#, fuzzy
 msgid "Source: Private"
-msgstr "Titel"
+msgstr "Bron: Privé"
 
 #: ../gramps/plugins/view/citationlistview.py:110
 msgid "Source: Last Changed"
@@ -29657,7 +29641,7 @@ msgstr ""
 "Gramps zal het media-object zelf niet intern opslaan. Enkel het pad wordt "
 "opgeslagen! U kunt in 'Voorkeuren' het relatieve pad instellen zodat u niet "
 "telkens het gemeenschappelijke paddeel hoeft te hertypen. Het gereedschap "
-"'mediabeheerder' kan u helpen om de paden van een verzaeling media-objecten "
+"'mediabeheerder' kan u helpen om de paden van een verzameling media-objecten "
 "te beheren. "
 
 #: ../gramps/gui/glade/editmedia.glade:236
@@ -30915,10 +30899,10 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
-"Gramps beschikt over een kernset van 'plugins' die alle nodige mogelijkheden "
-"bieden. U kunt echter deze functionaliteit met bijkomende uitbreidingen "
-"aanvullen. Deze uitbreidingen leveren bijkomende verslagen, lijsten, "
-"schermen en gramplets. Hier kunt u een keuze uit de beschikbare bijkomende "
+"Gramps beschikt over een kernset die vele nodige mogelijkheden biedt. U kunt "
+"echter deze functionaliteit met bijkomende uitbreidingen aanvullen. Deze "
+"uitbreidingen leveren bijkomende verslagen, lijsten, schermen en "
+"'gramplets'. Hier kunt u een keuze uit de beschikbare bijkomende "
 "uitbreidingen maken. Deze uitbreidingen worden via de Gramps-webstek "
 "opgehaald via het internet en worden lokaal op uw computer geïnstalleerd. "
 "Indien u nu deze dialoog sluit, kunt u altijd op een later tijdstip via het "
