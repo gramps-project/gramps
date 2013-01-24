@@ -46,10 +46,13 @@ PYGOBJ_ERR = False
 try:
     #import gnome introspection, part of pygobject
     import gi
-    giversion = gi.version_info
+    giversion = gi.require_version
 except:
-    PYGOBJ_ERR = True
-
+    print(_("Your version of gi (gnome-instrospection) seems to be too old. "
+            "You need a version which has the function 'require_version' "
+            "to start Gramps"))
+    sys.exit(0)
+            
 if not PYGOBJ_ERR:
     try:
         from gi.repository import GObject
