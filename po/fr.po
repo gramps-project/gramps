@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-21 16:57+0100\n"
-"PO-Revision-Date: 2013-01-23 20:00+0100\n"
+"POT-Creation-Date: 2013-01-24 16:55+0100\n"
+"PO-Revision-Date: 2013-01-24 18:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -873,6 +873,8 @@ msgid ""
 "An attempt is made to safe a reference key which is partly bytecode, this is not allowed.\n"
 "Key is %s"
 msgstr ""
+"Une tentative de sauvetage d'un clé de référence a été faite car elle était partiellement en bytecode, ceci n'est pas supporté.\n"
+" La clé est %s"
 
 #: ../gramps/gen/db/write.py:1030
 msgid "Rebuild reference map"
@@ -882,7 +884,7 @@ msgstr "Reconstruire la table de référence"
 #: ../gramps/gen/db/write.py:1832
 #, python-format
 msgid "A second transaction is started while there is still a transaction, \"%s\", active in the database."
-msgstr ""
+msgstr "Une seconde transaction a été débutée alors qu'il y avait déjà une transaction active dans la base de données : \"%s\". "
 
 #: ../gramps/gen/display/name.py:331
 msgid "Default format (defined by Gramps preferences)"
@@ -1051,9 +1053,8 @@ msgstr ""
 
 # trunk
 #: ../gramps/gen/display/name.py:1063
-#, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
-msgstr "Recherche de références à un format de nom invalide"
+msgstr "ERREUR, format d'édition du nom dans les préférences"
 
 #: ../gramps/gen/filters/_filterparser.py:114
 #, python-format
@@ -1146,6 +1147,7 @@ msgstr "ERREUR : le filtre %s ne peut pas être chargé. Éditez le filtre !"
 #: ../gramps/plugins/quickview/samesurnames.py:54
 #: ../gramps/plugins/quickview/samesurnames.py:67
 #: ../gramps/plugins/quickview/samesurnames.py:84
+#: ../gramps/gen/filters/rules/note/_hastype.py:49
 msgid "General filters"
 msgstr "Filtres généraux"
 
@@ -1332,12 +1334,13 @@ msgstr "ID de la source :"
 msgid "Filter name:"
 msgstr "Nom du filtre :"
 
+# custom = défini par l'utilisateur(rice)
 # trunk
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:68
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:71
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr ""
+msgstr "Impossible de trouver le filtre %s défini dans vos règles de filtrage"
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:48
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
@@ -2405,6 +2408,7 @@ msgstr "Texte :"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:48
 #: ../gramps/gui/editors/filtereditor.py:105
+#: ../gramps/gen/filters/rules/note/_hastype.py:46
 msgid "Note type:"
 msgstr "Type de note :"
 
@@ -5156,6 +5160,7 @@ msgstr "Vue Gramps"
 #: ../gramps/plugins/view/relview.py:149
 #: ../gramps/plugins/view/view.gpr.py:110
 #: ../gramps/plugins/view/view.gpr.py:118
+#: ../gramps/gui/grampsgui.py:179
 msgid "Relationships"
 msgstr "Relations"
 
@@ -5467,6 +5472,7 @@ msgstr "« %s » enregistré"
 #: ../gramps/gui/glade/editsourceref.glade:231
 #: ../gramps/gui/glade/editsourceref.glade:537
 #: ../gramps/gui/glade/editurl.glade:152
+#: ../gramps/gui/grampsgui.py:190
 msgid "Private"
 msgstr "Privé"
 
@@ -6079,7 +6085,7 @@ msgstr "Inconnu, créé pour remplacer l'objet note manquant."
 #: ../gramps/gen/utils/unknown.py:149
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr ""
+msgstr "Inconnu, été manquant %(time)s (%(count)d)"
 
 #: ../gramps/gen/utils/unknown.py:168
 #, python-format
@@ -6125,14 +6131,19 @@ msgstr ""
 #: ../gramps/grampsapp.py:397
 #: ../gramps/grampsapp.py:404
 #: ../gramps/grampsapp.py:475
+#: ../gramps/grampsapp.py:398
+#: ../gramps/grampsapp.py:405
+#: ../gramps/grampsapp.py:476
 msgid "Configuration error:"
 msgstr "Erreur de configuration :"
 
 #: ../gramps/grampsapp.py:401
+#: ../gramps/grampsapp.py:402
 msgid "Error reading configuration"
 msgstr "Erreur à la lecture de la configuration"
 
 #: ../gramps/grampsapp.py:405
+#: ../gramps/grampsapp.py:406
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -6193,6 +6204,7 @@ msgstr "Non-disponible"
 #: ../gramps/plugins/gramplet/repositorydetails.py:123
 #: ../gramps/plugins/textreport/familygroup.py:324
 #: ../gramps/plugins/webreport/narrativeweb.py:6703
+#: ../gramps/gui/grampsgui.py:145
 msgid "Address"
 msgstr "Adresse "
 
@@ -6296,6 +6308,7 @@ msgstr "Url"
 #: ../gramps/gui/clipboard.py:456
 #: ../gramps/gui/editors/editattribute.py:135
 #: ../gramps/gui/grampsgui.py:143
+#: ../gramps/gui/grampsgui.py:146
 msgid "Attribute"
 msgstr "Attribut"
 
@@ -6381,6 +6394,7 @@ msgstr "Nom "
 #: ../gramps/webapp/grampsdb/view/media.py:55
 #: ../gramps/webapp/grampsdb/views.py:84
 #: ../gramps/webapp/grampsdb/views.py:294
+#: ../gramps/gui/grampsgui.py:170
 msgid "Media"
 msgstr "Media"
 
@@ -6440,6 +6454,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/webapp/grampsdb/view/person.py:345
 #: ../gramps/webapp/grampsdb/view/person.py:475
 #: ../gramps/gui/glade/editpersonref.glade:206
+#: ../gramps/gui/grampsgui.py:177
 msgid "Person"
 msgstr "Individu "
 
@@ -6466,6 +6481,7 @@ msgstr "Individu "
 #: ../gramps/plugins/webreport/narrativeweb.py:3109
 #: ../gramps/webapp/grampsdb/view/family.py:42
 #: ../gramps/gui/glade/editldsord.glade:267
+#: ../gramps/gui/grampsgui.py:155
 msgid "Family"
 msgstr "Famille "
 
@@ -7040,7 +7056,7 @@ msgstr "Afficher le texte des boutons de la barre verticale (nécessite de relan
 # trunk
 #: ../gramps/gui/configure.py:1070
 msgid "Show close button in gramplet bar tabs"
-msgstr ""
+msgstr "Afficher le bouton de fermeture dans les onglets de la barre gramplet"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1082
@@ -7250,12 +7266,12 @@ msgstr "Ann_uler"
 
 # trunk
 #: ../gramps/gui/dbloader.py:136
-#, fuzzy
 msgid "Gramps: Import Family Tree"
-msgstr "Arbre généalogique Gramps XML"
+msgstr "Gramps : importation d'un arbre familial"
 
 #: ../gramps/gui/dbloader.py:141
 #: ../gramps/gui/grampsgui.py:200
+#: ../gramps/gui/grampsgui.py:203
 msgid "Import"
 msgstr "Importer"
 
@@ -7726,6 +7742,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../gramps/gui/glade/editname.glade:648
 #: ../gramps/gui/glade/editsourceref.glade:148
 #: ../gramps/gui/glade/editsourceref.glade:158
+#: ../gramps/gui/grampsgui.py:152
 msgid "Date"
 msgstr "Date"
 
@@ -7830,7 +7847,6 @@ msgstr "Éditer la référence"
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/backreflist.py:169
-#, fuzzy
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editor on the same source. \n"
 "\n"
@@ -7842,7 +7858,6 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/editors/displaytabs/backreflist.py:182
-#, fuzzy
 msgid "Cannot open new citation editor"
 msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
 
@@ -8102,6 +8117,8 @@ msgstr "_Galerie"
 #: ../gramps/gui/grampsgui.py:188
 #: ../gramps/gui/grampsgui.py:189
 #: ../gramps/plugins/view/mediaview.py:224
+#: ../gramps/gui/grampsgui.py:191
+#: ../gramps/gui/grampsgui.py:192
 msgid "View"
 msgstr "Afficher"
 
@@ -9446,6 +9463,7 @@ msgstr "Éditer les étiquettes"
 #: ../gramps/plugins/textreport/tagreport.py:535
 #: ../gramps/plugins/textreport/tagreport.py:539
 #: ../gramps/webapp/grampsdb/view/tag.py:41
+#: ../gramps/gui/grampsgui.py:184
 msgid "Tag"
 msgstr "Étiquette"
 
@@ -9852,6 +9870,7 @@ msgstr "Paroisse"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:97
 #: ../gramps/gui/grampsgui.py:202
+#: ../gramps/gui/grampsgui.py:205
 msgid "URL"
 msgstr "URL"
 
@@ -9871,18 +9890,20 @@ msgstr "Publication"
 
 # trunk
 #: ../gramps/gui/grampsgui.py:62
-#, fuzzy, python-format
+#: ../gramps/gui/grampsgui.py:65
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements. At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Votre version de Python ne remplit pas toutes les conditions requises. Python %d.%d.%d (ou supérieur) est nécessaire pour exécuter Gramps.\n"
+"Votre version de pygobject ne remplit pas toutes les conditions requises. Pygobject %(major)d.%(feature)d.%(minor)d (ou supérieur) est nécessaire pour lancer Gramps.\n"
 "\n"
 "Gramps va maintenant s'arrêter."
 
 # trunk
 #: ../gramps/gui/grampsgui.py:79
+#: ../gramps/gui/grampsgui.py:82
 msgid ""
 "Gdk, Gtk or Pango typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
@@ -9893,6 +9914,7 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/grampsgui.py:89
+#: ../gramps/gui/grampsgui.py:92
 msgid ""
 "\n"
 "cairo python support not installed. Install cairo for your version of python\n"
@@ -9901,10 +9923,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:141
+#: ../gramps/gui/grampsgui.py:144
 msgid "Family Trees"
 msgstr "Arbres familiaux"
 
 #: ../gramps/gui/grampsgui.py:146
+#: ../gramps/gui/grampsgui.py:149
 msgid "_Add bookmark"
 msgstr "_Ajouter un signet"
 
@@ -9912,14 +9936,17 @@ msgstr "_Ajouter un signet"
 #: ../gramps/gui/views/bookmarks.py:210
 #: ../gramps/gui/views/bookmarks.py:217
 #: ../gramps/gui/views/navigationview.py:274
+#: ../gramps/gui/grampsgui.py:150
 msgid "Organize Bookmarks"
 msgstr "Édition des signets"
 
 #: ../gramps/gui/grampsgui.py:148
+#: ../gramps/gui/grampsgui.py:151
 msgid "Configure"
 msgstr "Configuration"
 
 #: ../gramps/gui/grampsgui.py:150
+#: ../gramps/gui/grampsgui.py:153
 msgid "Edit Date"
 msgstr "Éditer la date"
 
@@ -9941,6 +9968,7 @@ msgstr "Éditer la date"
 #: ../gramps/webapp/grampsdb/view/event.py:137
 #: ../gramps/webapp/grampsdb/views.py:82
 #: ../gramps/webapp/grampsdb/views.py:284
+#: ../gramps/gui/grampsgui.py:154
 msgid "Events"
 msgstr "Événements"
 
@@ -9950,6 +9978,7 @@ msgstr "Événements"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/view/fanchartview.py:72
 #: ../gramps/plugins/view/view.gpr.py:141
+#: ../gramps/gui/grampsgui.py:156
 msgid "Fan Chart"
 msgstr "Roue des ascendants"
 
@@ -9957,24 +9986,28 @@ msgstr "Roue des ascendants"
 #: ../gramps/gui/grampsgui.py:154
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:126
 #: ../gramps/plugins/view/fanchartdescview.py:73
-#, fuzzy
+#: ../gramps/gui/grampsgui.py:157
 msgid "Descendant Fan Chart"
 msgstr "Graphique du descendant"
 
 #: ../gramps/gui/grampsgui.py:155
+#: ../gramps/gui/grampsgui.py:158
 msgid "Font"
 msgstr "Police"
 
 #: ../gramps/gui/grampsgui.py:156
 #: ../gramps/gui/widgets/styledtexteditor.py:475
+#: ../gramps/gui/grampsgui.py:159
 msgid "Font Color"
 msgstr "Couleur de la police"
 
 #: ../gramps/gui/grampsgui.py:157
+#: ../gramps/gui/grampsgui.py:160
 msgid "Font Background Color"
 msgstr "Couleur d'arrière-plan de la police"
 
 #: ../gramps/gui/grampsgui.py:158
+#: ../gramps/gui/grampsgui.py:161
 msgid "Gramplets"
 msgstr "Gramplets"
 
@@ -9988,34 +10021,43 @@ msgstr "Gramplets"
 #: ../gramps/plugins/view/geography.gpr.py:149
 #: ../gramps/plugins/view/geography.gpr.py:165
 #: ../gramps/plugins/view/geography.gpr.py:182
+#: ../gramps/gui/grampsgui.py:162
+#: ../gramps/gui/grampsgui.py:163
+#: ../gramps/gui/grampsgui.py:164
 msgid "Geography"
 msgstr "Géographie"
 
 #: ../gramps/gui/grampsgui.py:162
 #: ../gramps/plugins/view/geoperson.py:162
+#: ../gramps/gui/grampsgui.py:165
 msgid "GeoPerson"
 msgstr "GéoIndividu"
 
 #: ../gramps/gui/grampsgui.py:163
 #: ../gramps/plugins/view/geofamily.py:133
+#: ../gramps/gui/grampsgui.py:166
 msgid "GeoFamily"
 msgstr "GéoFamille"
 
 #: ../gramps/gui/grampsgui.py:164
 #: ../gramps/plugins/view/geoevents.py:134
+#: ../gramps/gui/grampsgui.py:167
 msgid "GeoEvents"
 msgstr "GéoÉvénements"
 
 #: ../gramps/gui/grampsgui.py:165
 #: ../gramps/plugins/view/geoplaces.py:134
+#: ../gramps/gui/grampsgui.py:168
 msgid "GeoPlaces"
 msgstr "GéoLieux"
 
 #: ../gramps/gui/grampsgui.py:166
+#: ../gramps/gui/grampsgui.py:169
 msgid "Public"
 msgstr "Public"
 
 #: ../gramps/gui/grampsgui.py:168
+#: ../gramps/gui/grampsgui.py:171
 msgid "Merge"
 msgstr "Fusion"
 
@@ -10040,6 +10082,7 @@ msgstr "Fusion"
 #: ../gramps/webapp/grampsdb/view/note.py:52
 #: ../gramps/webapp/grampsdb/views.py:83
 #: ../gramps/webapp/grampsdb/views.py:304
+#: ../gramps/gui/grampsgui.py:172
 msgid "Notes"
 msgstr "Notes"
 
@@ -10055,14 +10098,17 @@ msgstr "Notes"
 #: ../gramps/plugins/webreport/narrativeweb.py:2910
 #: ../gramps/plugins/webreport/narrativeweb.py:5221
 #: ../gramps/plugins/webreport/narrativeweb.py:6374
+#: ../gramps/gui/grampsgui.py:173
 msgid "Parents"
 msgstr "Parents "
 
 #: ../gramps/gui/grampsgui.py:171
+#: ../gramps/gui/grampsgui.py:174
 msgid "Add Parents"
 msgstr "Ajouter des parents"
 
 #: ../gramps/gui/grampsgui.py:172
+#: ../gramps/gui/grampsgui.py:175
 msgid "Select Parents"
 msgstr "Sélectionner les parents"
 
@@ -10072,6 +10118,7 @@ msgstr "Sélectionner les parents"
 #: ../gramps/plugins/view/pedigreeview.py:522
 #: ../gramps/plugins/view/view.gpr.py:125
 #: ../gramps/plugins/webreport/narrativeweb.py:6058
+#: ../gramps/gui/grampsgui.py:176
 msgid "Pedigree"
 msgstr "Arbre généalogique"
 
@@ -10088,6 +10135,7 @@ msgstr "Arbre généalogique"
 #: ../gramps/webapp/grampsdb/view/place.py:42
 #: ../gramps/webapp/grampsdb/views.py:87
 #: ../gramps/webapp/grampsdb/views.py:334
+#: ../gramps/gui/grampsgui.py:178
 msgid "Places"
 msgstr "Lieux"
 
@@ -10095,6 +10143,7 @@ msgstr "Lieux"
 #: ../gramps/webapp/grampsdb/views.py:75
 #: ../gramps/webapp/grampsdb/views.py:384
 #: ../gramps/webapp/grampsdb/views.py:603
+#: ../gramps/gui/grampsgui.py:180
 msgid "Reports"
 msgstr "Rapports"
 
@@ -10111,6 +10160,7 @@ msgstr "Rapports"
 #: ../gramps/webapp/grampsdb/view/repository.py:42
 #: ../gramps/webapp/grampsdb/views.py:88
 #: ../gramps/webapp/grampsdb/views.py:344
+#: ../gramps/gui/grampsgui.py:181
 msgid "Repositories"
 msgstr "Dépôts"
 
@@ -10132,27 +10182,33 @@ msgstr "Dépôts"
 #: ../gramps/webapp/grampsdb/view/source.py:42
 #: ../gramps/webapp/grampsdb/views.py:86
 #: ../gramps/webapp/grampsdb/views.py:364
+#: ../gramps/gui/grampsgui.py:182
 msgid "Sources"
 msgstr "Sources"
 
 #: ../gramps/gui/grampsgui.py:180
+#: ../gramps/gui/grampsgui.py:183
 msgid "Add Spouse"
 msgstr "Ajouter un conjoint"
 
 #: ../gramps/gui/grampsgui.py:182
 #: ../gramps/gui/views/tags.py:582
+#: ../gramps/gui/grampsgui.py:185
 msgid "New Tag"
 msgstr "Nouvelle étiquette"
 
 #: ../gramps/gui/grampsgui.py:183
+#: ../gramps/gui/grampsgui.py:186
 msgid "Tools"
 msgstr "Outils"
 
 #: ../gramps/gui/grampsgui.py:184
+#: ../gramps/gui/grampsgui.py:187
 msgid "Grouped List"
 msgstr "Liste groupée"
 
 #: ../gramps/gui/grampsgui.py:185
+#: ../gramps/gui/grampsgui.py:188
 msgid "List"
 msgstr "Liste"
 
@@ -10163,22 +10219,27 @@ msgstr "Liste"
 #: ../gramps/plugins/tool/patchnames.py:392
 #: ../gramps/gui/glade/mergedata.glade:169
 #: ../gramps/gui/glade/mergedata.glade:190
+#: ../gramps/gui/grampsgui.py:189
 msgid "Select"
 msgstr "Sélectionner"
 
 #: ../gramps/gui/grampsgui.py:190
+#: ../gramps/gui/grampsgui.py:193
 msgid "Zoom In"
 msgstr "Agrandir"
 
 #: ../gramps/gui/grampsgui.py:191
+#: ../gramps/gui/grampsgui.py:194
 msgid "Zoom Out"
 msgstr "Réduire"
 
 #: ../gramps/gui/grampsgui.py:192
+#: ../gramps/gui/grampsgui.py:195
 msgid "Fit Width"
 msgstr "Largeur idéale"
 
 #: ../gramps/gui/grampsgui.py:193
+#: ../gramps/gui/grampsgui.py:196
 msgid "Fit Page"
 msgstr "Optimisé pour la page"
 
@@ -10194,23 +10255,28 @@ msgstr "Optimisé pour la page"
 #: ../gramps/webapp/grampsdb/view/citation.py:42
 #: ../gramps/webapp/grampsdb/views.py:85
 #: ../gramps/webapp/grampsdb/views.py:354
+#: ../gramps/gui/grampsgui.py:197
 msgid "Citations"
 msgstr "Citations"
 
 #: ../gramps/gui/grampsgui.py:199
+#: ../gramps/gui/grampsgui.py:202
 msgid "Export"
 msgstr "Exporter"
 
 #: ../gramps/gui/grampsgui.py:201
 #: ../gramps/gui/undohistory.py:64
+#: ../gramps/gui/grampsgui.py:204
 msgid "Undo History"
 msgstr "Historique d'annulation"
 
 #: ../gramps/gui/grampsgui.py:214
+#: ../gramps/gui/grampsgui.py:217
 msgid "Danger: This is unstable code!"
 msgstr "Danger : ce code est instable !"
 
 #: ../gramps/gui/grampsgui.py:215
+#: ../gramps/gui/grampsgui.py:218
 msgid ""
 "This Gramps 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -10235,11 +10301,13 @@ msgstr ""
 "<b>SAUVEGARDEZ</b> vos bases de données existantes avant de les ouvrir avec cette version, et assurez-vous d'exporter régulièrement vos données au format XML."
 
 #: ../gramps/gui/grampsgui.py:287
+#: ../gramps/gui/grampsgui.py:290
 msgid "Error parsing arguments"
 msgstr "Erreur dans l'analyse des arguments"
 
 # trunk
 #: ../gramps/gui/grampsgui.py:360
+#: ../gramps/gui/grampsgui.py:363
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -10251,9 +10319,8 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/logger/_errorreportassistant.py:72
-#, fuzzy
 msgid "Error Report Assistant"
-msgstr "Assistant d'exportation"
+msgstr "Assistant de rapport d'erreur"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:228
 msgid "Report a bug"
@@ -11145,15 +11212,13 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/plug/report/_bookdialog.py:550
-#, fuzzy
 msgid "No selected book item"
-msgstr "Enlever l'article sélectionné ?"
+msgstr "Aucun article du livre sélectionné"
 
 # trunk
 #: ../gramps/gui/plug/report/_bookdialog.py:551
-#, fuzzy
 msgid "Please select a book item to configure."
-msgstr "Sélectionnez un filtre différent pour l'édition"
+msgstr "Sélectionnez un article du livre pour le configurer."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:614
 msgid "Setup"
@@ -11499,9 +11564,8 @@ msgstr "Activé"
 
 # trunk
 #: ../gramps/gui/spell.py:127
-#, fuzzy
 msgid "Spelling checker could not be attached to TextView"
-msgstr "Le vérificateur orthographique n'est pas installé"
+msgstr "Le vérificateur orthographique ne peut pas être associé à TextView"
 
 #: ../gramps/gui/tipofday.py:69
 #: ../gramps/gui/tipofday.py:70
@@ -11580,13 +11644,11 @@ msgstr "Nouveau"
 # trunk
 # Substantif (GNOME fr)
 #: ../gramps/gui/viewmanager.py:447
-#, fuzzy
 msgid "Checking Addons Failed"
 msgstr "La vérification des greffons a échouée"
 
 # trunk
 #: ../gramps/gui/viewmanager.py:448
-#, fuzzy
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Le dépôt des greffons semble inaccessible. Essayez un peu plus tard."
 
@@ -12927,9 +12989,8 @@ msgstr ""
 # trunk
 #: ../gramps/plugins/drawreport/ancestortree.py:1014
 #: ../gramps/plugins/drawreport/descendtree.py:1605
-#, fuzzy
 msgid "box shadow scale factor"
-msgstr "Ne pas adapter l'arbre"
+msgstr "facteur d'adaptation pour l'ombre de l'aire"
 
 # trunk
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
@@ -13677,9 +13738,8 @@ msgstr ""
 
 # trunk
 #: ../gramps/plugins/drawreport/fanchart.py:673
-#, fuzzy
 msgid "Use one font style for all generations"
-msgstr "Cliquez deux fois pour afficher toutes les générations"
+msgstr "Utilisez un style de police pour toutes les générations"
 
 # trunk
 #: ../gramps/plugins/drawreport/fanchart.py:674
@@ -13694,15 +13754,13 @@ msgstr "Le style utilisé pour l'en-tête."
 
 # trunk
 #: ../gramps/plugins/drawreport/fanchart.py:710
-#, fuzzy
 msgid "The basic style used for the default text display."
-msgstr "Le style de base pour afficher du texte."
+msgstr "Le style de base pour afficher le texte par défaut."
 
 # trunk
 #: ../gramps/plugins/drawreport/fanchart.py:720
-#, fuzzy
 msgid "The style used for the text display of generation "
-msgstr "Le style utilisé pour l'affichage du texte en gras."
+msgstr "Le style utilisé pour l'affichage de la génération."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:298
 msgid "Item count"
@@ -14382,9 +14440,8 @@ msgstr "Attention : changer cette entrée mettra à jour le titre stocké par G
 
 # trunk
 #: ../gramps/plugins/gramplet/editexifmetadata.py:173
-#, fuzzy
 msgid "Provide a short description for this image."
-msgstr "Fournit une description sommaire pour l'image."
+msgstr "Fournit une description sommaire de l'image."
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:175
 msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
@@ -14501,9 +14558,8 @@ msgstr "Vous pouvez essayer de convertir cette image vers Exiv2- type d'image co
 
 # trunk
 #: ../gramps/plugins/gramplet/editexifmetadata.py:469
-#, fuzzy
 msgid "Image Size : %04(width)d x %04(height)d pixels"
-msgstr "Taille de l'image : %04d x %04d pixels"
+msgstr "Taille de l'image : %04(width)d x %04(height)d pixels"
 
 # Substantif (GNOME fr)
 # trunk
@@ -14909,9 +14965,8 @@ msgstr "Gramplet affichant dans une roue les ascendants directs de l'individu ac
 
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:127
-#, fuzzy
 msgid "Gramplet showing active person's direct descendants as a fanchart"
-msgstr "Gramplet affichant dans une roue les ascendants directs de l'individu actif"
+msgstr "Gramplet affichant dans une roue les descendants directs de l'individu actif"
 
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
@@ -16875,6 +16930,8 @@ msgstr "L'arbre familial que vous venez d'importer a déjà un chemin de base me
 #: ../gramps/plugins/importer/importprogen.py:83
 #: ../gramps/plugins/importer/importxml.py:458
 #: ../gramps/plugins/importer/importxml.py:461
+#: ../gramps/plugins/importer/importxml.py:463
+#: ../gramps/plugins/importer/importxml.py:466
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s ouverture impossible"
@@ -17126,27 +17183,36 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1247
 #: ../gramps/plugins/importer/importxml.py:1499
 #: ../gramps/plugins/importer/importxml.py:1878
+#: ../gramps/plugins/importer/importxml.py:816
+#: ../gramps/plugins/importer/importxml.py:1252
+#: ../gramps/plugins/importer/importxml.py:1504
+#: ../gramps/plugins/importer/importxml.py:1883
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Le fichier Gramps Xml que vous tentez d'importer est malformé."
 
 #: ../gramps/plugins/importer/importxml.py:812
+#: ../gramps/plugins/importer/importxml.py:817
 msgid "Attributes that link the data together are missing."
 msgstr "Les attributs qui lient les données sont absents."
 
 #: ../gramps/plugins/importer/importxml.py:916
+#: ../gramps/plugins/importer/importxml.py:921
 msgid "Gramps XML import"
 msgstr "Importation XML Gramps"
 
 #: ../gramps/plugins/importer/importxml.py:949
+#: ../gramps/plugins/importer/importxml.py:954
 msgid "Could not change media path"
 msgstr "Impossible de changer le chemin media"
 
 #: ../gramps/plugins/importer/importxml.py:950
+#: ../gramps/plugins/importer/importxml.py:955
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
 
 #: ../gramps/plugins/importer/importxml.py:1007
+#: ../gramps/plugins/importer/importxml.py:1012
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -17157,10 +17223,12 @@ msgstr ""
 "Votre fichier ne sera pas importé."
 
 #: ../gramps/plugins/importer/importxml.py:1010
+#: ../gramps/plugins/importer/importxml.py:1015
 msgid "Import file misses Gramps version"
 msgstr "Le numéro de version Gramps est manquant sur le fichier importé"
 
 #: ../gramps/plugins/importer/importxml.py:1012
+#: ../gramps/plugins/importer/importxml.py:1017
 msgid ""
 "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
 "\n"
@@ -17171,15 +17239,18 @@ msgstr ""
 "Votre fichier ne sera pas importé."
 
 #: ../gramps/plugins/importer/importxml.py:1015
+#: ../gramps/plugins/importer/importxml.py:1020
 msgid "Import file contains unacceptable XML namespace version"
 msgstr "Le fichier importé a un espace de nommage XML non-accepté"
 
 #: ../gramps/plugins/importer/importxml.py:1018
+#: ../gramps/plugins/importer/importxml.py:1023
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
 #: ../gramps/plugins/importer/importxml.py:1026
+#: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -17197,10 +17268,12 @@ msgstr ""
 "pour plus d'informations."
 
 #: ../gramps/plugins/importer/importxml.py:1038
+#: ../gramps/plugins/importer/importxml.py:1043
 msgid "The file will not be imported"
 msgstr "Le fichier n'a pas pu être importé"
 
 #: ../gramps/plugins/importer/importxml.py:1040
+#: ../gramps/plugins/importer/importxml.py:1045
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -17218,59 +17291,72 @@ msgstr ""
 "pour plus d'informations."
 
 #: ../gramps/plugins/importer/importxml.py:1053
+#: ../gramps/plugins/importer/importxml.py:1058
 msgid "Old xml file"
 msgstr "Ancien fichier xml"
 
 #: ../gramps/plugins/importer/importxml.py:1168
 #: ../gramps/plugins/importer/importxml.py:2526
+#: ../gramps/plugins/importer/importxml.py:1173
+#: ../gramps/plugins/importer/importxml.py:2531
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin : %s"
 
 #: ../gramps/plugins/importer/importxml.py:1248
+#: ../gramps/plugins/importer/importxml.py:1253
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Toute référence à un événement doit avoir un attribut « hlink »."
 
 #: ../gramps/plugins/importer/importxml.py:1500
+#: ../gramps/plugins/importer/importxml.py:1505
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Toute référence à un individu doit avoir un attribut « hlink »."
 
 #: ../gramps/plugins/importer/importxml.py:1663
+#: ../gramps/plugins/importer/importxml.py:1668
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Votre arbre familial groupe le nom « %(key)s » avec « %(parent)s » ; ce regroupement n'a pas été changé en « %(value)s »."
 
 #: ../gramps/plugins/importer/importxml.py:1666
+#: ../gramps/plugins/importer/importxml.py:1671
 msgid "Gramps ignored namemap value"
 msgstr "Groupement de noms ignorés"
 
 #: ../gramps/plugins/importer/importxml.py:1725
+#: ../gramps/plugins/importer/importxml.py:1730
 msgid "Unknown when imported"
 msgstr "Inconnu lors de l'importation"
 
 #: ../gramps/plugins/importer/importxml.py:1879
+#: ../gramps/plugins/importer/importxml.py:1884
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Toute référence à la note doit avoir un attribut « hlink »."
 
 #: ../gramps/plugins/importer/importxml.py:2417
+#: ../gramps/plugins/importer/importxml.py:2422
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin : %s"
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:3044
+#: ../gramps/plugins/importer/importxml.py:3049
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' père '%(father)s' est manquante. Cette référence a été ajoutée."
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:3060
+#: ../gramps/plugins/importer/importxml.py:3065
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' mère '%(mother)s' est manquante. Cette référence a été ajoutée."
 
 # trunk
 #: ../gramps/plugins/importer/importxml.py:3082
+#: ../gramps/plugins/importer/importxml.py:3087
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' enfant '%(child)s' est manquante. Cette référence a été ajoutée."
@@ -24619,7 +24705,7 @@ msgstr "Tous les seconds indices ont été reconstruits."
 # trunk
 #: ../gramps/plugins/tool/rebuildgenderstat.py:84
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Reconstruction des statistiques du prénom d'après le genre..."
 
 # trunk
 #: ../gramps/plugins/tool/rebuildgenderstat.py:97
@@ -24629,7 +24715,7 @@ msgstr "Statistiques 'prénoms par genre' reconstruites"
 # trunk
 #: ../gramps/plugins/tool/rebuildgenderstat.py:98
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr ""
+msgstr "Les statistiques du prénom d'après le genre ont été reconstruites."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/rebuildrefmap.py:80
@@ -24916,12 +25002,12 @@ msgstr "Reconstruit les tables de références"
 # trunk
 #: ../gramps/plugins/tool/tools.gpr.py:396
 msgid "Rebuild Gender Statistics"
-msgstr "Reconstruit les statistiques des prénoms par genre"
+msgstr "Reconstruire les statistiques du prénom d'après le genre"
 
 # trunk
 #: ../gramps/plugins/tool/tools.gpr.py:397
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Reconstruit les statistiques pour l'estimation du prénom selon le genre..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:418
 msgid "Relationship Calculator"
@@ -25441,27 +25527,26 @@ msgstr "Couleurs du genre"
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:283
 #: ../gramps/plugins/view/fanchartview.py:281
-#, fuzzy
 msgid "Generation based gradient"
-msgstr "selon la génération"
+msgstr "Gradient basé sur la génération"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:284
 #: ../gramps/plugins/view/fanchartview.py:282
 msgid "Age (0-100) based gradient"
-msgstr ""
+msgstr "Gradient basé sur l'âge (0-100)"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:286
 #: ../gramps/plugins/view/fanchartview.py:284
 msgid "Single main (filter) color"
-msgstr ""
+msgstr "Couleur unique de filtrage"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:285
 msgid "Time period based gradient"
-msgstr ""
+msgstr "Gradient basé sur une période temporelle"
 
 #: ../gramps/plugins/view/fanchartdescview.py:288
 #: ../gramps/plugins/view/fanchartview.py:286
@@ -25472,13 +25557,13 @@ msgstr "Blanc"
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
 msgid "Color scheme classic report"
-msgstr ""
+msgstr "Schéma de couleur classique pour le rapport"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
 msgid "Color scheme classic view"
-msgstr ""
+msgstr "Schéma de couleur classique pour la vue"
 
 #: ../gramps/plugins/view/fanchartdescview.py:299
 #: ../gramps/plugins/view/fanchartview.py:297
@@ -25489,19 +25574,18 @@ msgstr "Fond"
 #: ../gramps/plugins/view/fanchartdescview.py:306
 #: ../gramps/plugins/view/fanchartview.py:303
 msgid "Start gradient/Main color"
-msgstr ""
+msgstr "Gradient de départ/couleur principale"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:308
 #: ../gramps/plugins/view/fanchartview.py:305
 msgid "End gradient/2nd color"
-msgstr ""
+msgstr "Gradient de fin/deuxième couleur"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:310
-#, fuzzy
 msgid "Color for duplicates"
-msgstr "Recherche de doublons de conjoint"
+msgstr "Couleur des doublons"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:313
@@ -25523,13 +25607,12 @@ msgstr "Demi-cercle"
 #: ../gramps/plugins/view/fanchartdescview.py:317
 #: ../gramps/plugins/view/fanchartview.py:311
 msgid "Quadrant"
-msgstr ""
+msgstr "Quadrant"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:320
-#, fuzzy
 msgid "Fan chart distribution"
-msgstr "Répartition de l'espérance de vie"
+msgstr "Distribution de la roue"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:323
@@ -25538,9 +25621,8 @@ msgstr "Distribution homogène des enfants"
 
 # trunk
 #: ../gramps/plugins/view/fanchartdescview.py:325
-#, fuzzy
 msgid "Size  proportional to number of descendants"
-msgstr "Limiter le nombre de descendants"
+msgstr "Taille proportionnelle au nombre de descendants"
 
 #: ../gramps/plugins/view/fanchartdescview.py:329
 #: ../gramps/plugins/view/fanchartview.py:323
@@ -25599,15 +25681,13 @@ msgstr "référence de l'individu"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:270
-#, fuzzy
 msgid "Select the person which is the reference for life ways"
-msgstr "La suppression de l'individu l'enlèvera de la base de données."
+msgstr "Sélectionnez l'individu de référence pour les lieux de vie."
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:283
-#, fuzzy
 msgid "Select the person which will be our reference."
-msgstr "Inclure ou non les références de la source."
+msgstr "Sélectionnez l'individu de référence."
 
 #: ../gramps/plugins/view/geoclose.py:374
 #: ../gramps/plugins/view/geofamclose.py:439
@@ -25620,9 +25700,8 @@ msgstr "%(eventtype)s : %(name)s"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:525
-#, fuzzy
 msgid "Choose the reference person"
-msgstr "Supprimer l'individu sélectionné"
+msgstr "Choisissez l'individu de référence"
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:548
@@ -25634,6 +25713,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Le rayon pour l'aire de rencontre probable.\n"
+"La zone colorée est approximative.\n"
+"L'aire de rencontre n'est affichée que pour l'individu de référence.\n"
+"La valeur 9 correspond à environ 42 miles ou 67 kms.\n"
+"La valeur 1 correspond à environ 4,6 miles ou 7,5 kms.\n"
+"L'unité est en dizième de degré."
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:559
@@ -25664,7 +25749,7 @@ msgstr "Centrer sur ce lieu"
 #: ../gramps/plugins/view/geofamclose.py:129
 #: ../gramps/plugins/view/geography.gpr.py:121
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "Ces deux familles se sont-elles rencontrées ?"
 
 # trunk
 #: ../gramps/plugins/view/geofamclose.py:159
@@ -25750,6 +25835,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Le rayon pour l'aire de rencontre probable.\n"
+"La zone colorée est approximative.\n"
+"L'aire de rencontre n'est affichée que pour la famille de référence.\n"
+"La valeur 9 correspond à environ 42 miles ou 67 kms.\n"
+"La valeur 1 correspond à environ 4,6 miles ou 7,5 kms.\n"
+"L'unité est en dizième de degré."
 
 #: ../gramps/plugins/view/geofamily.py:112
 msgid "Family places map"
@@ -25763,9 +25854,9 @@ msgstr "Lieux familiaux pour %s"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "WARNING: osmgpsmap module not loaded. osmgpsmap must be >= 0.8. yours is %s"
-msgstr "MISE EN GARDE : le module osmgpsmap n'est pas chargé. osmgpsmap doit être >= 0.7.0, votre version est %s"
+msgstr "MISE EN GARDE : le module osmgpsmap n'est pas chargé. osmgpsmap doit être >= 0.8, votre version est %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:61
 msgid "WARNING: osmgpsmap module not loaded. Geography functionality will not be available."
@@ -25774,7 +25865,7 @@ msgstr "MISE EN GARDE : le module osmgpsmap n'est pas chargé. Les fonctionnali
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:68
 msgid "All known places for one Person"
-msgstr ""
+msgstr "Tous les lieux connus pour un individu"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:69
@@ -25784,7 +25875,7 @@ msgstr "Une vue permettant de voir les lieux fréquentés par une personne duran
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:85
 msgid "All known places for one Family"
-msgstr ""
+msgstr "Tous les lieux connus pour une famille"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:86
@@ -25794,7 +25885,7 @@ msgstr "Une vue permettant de voir tous les lieux de la famille durant son exist
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:102
 msgid "All displacements for one person and their descendants"
-msgstr ""
+msgstr "Tous les déplacements pour un individu et ses descendants"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:103
@@ -25806,15 +25897,13 @@ msgstr ""
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:122
-#, fuzzy
 msgid "A view showing the places visited by all family's members during their life: have these two people been able to meet?"
-msgstr "Une vue permettant de voir tous les lieux de la famille durant son existence."
+msgstr "Une vue permettant de voir tous les lieux des membres d'une famille durant leurs vies : se sont-ils rencontrés ?"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:140
-#, fuzzy
 msgid "A view showing the places visited by two persons during their life: have these two people been able to meet?"
-msgstr "Une vue permettant de voir les lieux fréquentés par une personne durant sa vie."
+msgstr "Une vue permettant de voir les lieux fréquentés par deux individus durant leurs vies : se sont-ils rencontrés ?"
 
 # trunk
 #: ../gramps/plugins/view/geography.gpr.py:157
@@ -25838,9 +25927,8 @@ msgstr "Cette vue permet de voir tous les lieux des événements de la base de d
 
 # trunk
 #: ../gramps/plugins/view/geomoves.py:132
-#, fuzzy
 msgid "Descendance of the active person."
-msgstr "Éditer l'individu actif"
+msgstr "Descendance de l'individu actif."
 
 # trunk
 #: ../gramps/plugins/view/geomoves.py:162
@@ -25855,19 +25943,18 @@ msgstr "Toute la descendance de %s"
 
 # trunk
 #: ../gramps/plugins/view/geomoves.py:630
-#, fuzzy
 msgid "The maximum number of generations.\n"
-msgstr "Le nombre maximum de générations d'ascendants"
+msgstr "Le nombre maximum de générations.\n"
 
 # trunk
 #: ../gramps/plugins/view/geomoves.py:637
 msgid "Time in milliseconds between drawing two generations.\n"
-msgstr ""
+msgstr "Durée en millisecondes entre deux générations affichées.\n"
 
 # trunk
 #: ../gramps/plugins/view/geomoves.py:643
 msgid "The parameters for moves"
-msgstr ""
+msgstr "Les paramètres pour les déplacements"
 
 #: ../gramps/plugins/view/geoperson.py:141
 msgid "Person places map"
@@ -25915,9 +26002,9 @@ msgstr "Le nom du lieu a été désactivé dans la barre de statut."
 
 # trunk
 #: ../gramps/plugins/view/geoplaces.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr "Le nombre maximum d'ascendants à inclure."
+msgstr "Le nombre maximum de places (%d)."
 
 # trunk
 #: ../gramps/plugins/view/geoplaces.py:288
@@ -25927,17 +26014,17 @@ msgstr "Des informations sont manquantes."
 # trunk
 #: ../gramps/plugins/view/geoplaces.py:290
 msgid "Please, use filtering to reduce this number."
-msgstr ""
+msgstr "Utilisez le filtrage pour réduire le nombre."
 
 # trunk
 #: ../gramps/plugins/view/geoplaces.py:292
 msgid "You can modify this value in the geography option."
-msgstr ""
+msgstr "Vous pouvez modifier cette valeur dans l'option géographie."
 
 # trunk
 #: ../gramps/plugins/view/geoplaces.py:294
 msgid "In this case, it may take time to show all markers."
-msgstr ""
+msgstr "Dans ce cas, ceci peut nécessiter du temps pour afficher toutes les marques."
 
 #: ../gramps/plugins/view/geoplaces.py:352
 msgid "Show all places"
@@ -26492,17 +26579,16 @@ msgstr "Cette vue affiche un arbre des ascendants de la personne sélectionnée"
 msgid "Charts"
 msgstr "Graphiques"
 
+# ascendants dans le contexte
 # trunk
 #: ../gramps/plugins/view/view.gpr.py:143
-#, fuzzy
 msgid "A view showing parents through a fanchart"
-msgstr "Cette vue affiche toutes les relations dans une roue"
+msgstr "Cette vue affiche les ascendants dans une roue"
 
 # trunk
 #: ../gramps/plugins/view/view.gpr.py:158
-#, fuzzy
 msgid "Showing descendants through a fanchart"
-msgstr "Cette vue affiche toutes les relations dans une roue"
+msgstr "Affiche les descendants dans une roue"
 
 # trunk
 #: ../gramps/plugins/view/view.gpr.py:171
@@ -27143,7 +27229,7 @@ msgstr "Mise en page des références de citation"
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:8051
 msgid "Determine the default layout for the Source Page's Citation Referents section"
-msgstr ""
+msgstr "Déterminer la mise en page par défaut pour la section Références de la citation dans la page source"
 
 # en général plusieurs ascendants
 #: ../gramps/plugins/webreport/narrativeweb.py:8055
@@ -27932,9 +28018,9 @@ msgstr "Noms"
 #: ../gramps/webapp/grampsdb/views.py:544
 #: ../gramps/webapp/grampsdb/views.py:552
 #: ../gramps/webapp/grampsdb/views.py:560
-#, fuzzy, python-format
+#, python-format
 msgid "Requested %s does not exist."
-msgstr "Fichier %s inexistant"
+msgstr "%s demandé(e) n'existe pas."
 
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:74
@@ -27952,17 +28038,17 @@ msgstr "Utilisateur"
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:167
 msgid "Requested user not found."
-msgstr ""
+msgstr "Utilisateur demandé non-trouvé."
 
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:174
 msgid "Requested page is not accessible."
-msgstr ""
+msgstr "Page demandée inaccessible."
 
 # trunk
 #: ../gramps/webapp/grampsdb/views.py:587
 msgid "Requested page type not known"
-msgstr ""
+msgstr "Type de page demandé inconnu."
 
 #: ../gramps/gui/glade/addmedia.glade:135
 #: ../gramps/gui/glade/editmedia.glade:205
@@ -29265,9 +29351,8 @@ msgstr "Une légende descriptive de l'emplacement internet que vous enregistrez.
 
 # trunk
 #: ../gramps/gui/glade/grampletpane.glade:7
-#, fuzzy
 msgid "window2"
-msgstr "Fenêtre principale"
+msgstr "Fenêtre 2"
 
 #: ../gramps/gui/glade/grampletpane.glade:60
 msgid "Drag to move; click to detach"
@@ -29930,9 +30015,8 @@ msgstr "Supprimer le style sélectionné"
 
 # trunk
 #: ../gramps/gui/glade/tipofday.glade:8
-#, fuzzy
 msgid "window1"
-msgstr "Fenêtre principale"
+msgstr "Fenêtre 1"
 
 #: ../gramps/gui/glade/tipofday.glade:54
 msgid "_Display on startup"
@@ -30778,6 +30862,38 @@ msgstr "Système de généalogie Gramps"
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gestion des informations généalogiques, optimisation de la recherche et de l'analyse"
 
+# trunk
+#: ../gramps/gen/filters/rules/note/_hastype.py:47
+msgid "Notes with the particular type"
+msgstr "Notes avec un type particulier"
+
+# trunk
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../gramps/gen/filters/rules/note/_hastype.py:48
+msgid "Matches notes with the particular type "
+msgstr "Correspond aux notes avec un type précis "
+
+# trunk
+#: ../gramps/gui/grampsgui.py:51
+msgid "Your version of gi (gnome-instrospection) seems to be too old. You need a version which has the function 'require_version' to start Gramps"
+msgstr "Votre version de gi (gnome-instrospection) semble trop ancienne. Vous avez besoin d'une version qui a la fonction 'require_version' pour démarrer Gramps."
+
+#: ../gramps/plugins/lib/libtreebase.py:749
+msgid "Top Left"
+msgstr "Supérieur gauche"
+
+#: ../gramps/plugins/lib/libtreebase.py:750
+msgid "Top Right"
+msgstr "Supérieur droit"
+
+#: ../gramps/plugins/lib/libtreebase.py:751
+msgid "Bottom Left"
+msgstr "Inférieur gauche"
+
+#: ../gramps/plugins/lib/libtreebase.py:752
+msgid "Bottom Right"
+msgstr "Inférieur droit"
+
 #~ msgid "a spouse, "
 #~ msgstr "un conjoint, "
 
@@ -31017,14 +31133,6 @@ msgstr "Gestion des informations généalogiques, optimisation de la recherche e
 #~ msgstr "Les vCards sont utilisées dans la plupart des logiciels de carnets d'adresses et de gestion de données personnelles."
 #~ msgid "vCard export options"
 #~ msgstr "Options de l'exportation vCard"
-#~ msgid "Top Left"
-#~ msgstr "Supérieur gauche"
-#~ msgid "Top Right"
-#~ msgstr "Supérieur droit"
-#~ msgid "Bottom Left"
-#~ msgstr "Inférieur gauche"
-#~ msgid "Bottom Right"
-#~ msgstr "Inférieur droit"
 #~ msgid "Category Sidebar"
 #~ msgstr "Barre latérale (Catégorie)"
 #~ msgid "A sidebar to allow the selection of view categories"
