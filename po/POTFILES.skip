@@ -543,7 +543,6 @@ gramps/test/utils_test.py
 gramps/webapp/connection.py
 gramps/webapp/context.py
 gramps/webapp/dbdjango.py
-gramps/webapp/utils.py
 gramps/webapp/grampsdb/admin.py
 gramps/webapp/grampsdb/forms.py
 gramps/webapp/grampsdb/__init__.py
