@@ -106,9 +106,9 @@ class ProbablyAlive(object):
         if death_ref and death_ref.get_role().is_primary():
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
-                if death and death.get_date_object().get_start_date() != Date.EMPTY:
+                if death and death.get_date_object().is_valid():
                     death_date = death.get_date_object()
-                elif death: # has a death event, but it is empty:
+                elif death: # has a death event, but it is no valid:
                     death_date = Today() # before today
                     death_date.set_modifier(Date.MOD_BEFORE)
                     explain = _("death event without date")
@@ -121,7 +121,7 @@ class ProbablyAlive(object):
                     ev = self.db.get_event_from_handle(ev_ref.ref)
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
-                        if death_date.get_start_date() != Date.EMPTY:
+                        if death_date.get_start_date().is_valid():
                             explain = _("death-related evidence")
                         else:
                             death_date = Today() # before today
