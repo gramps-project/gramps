@@ -970,6 +970,7 @@ class GrampsParser(UpdateCallback):
             del self.func_map
             del self.func_list
             del self.p
+            del self.update
         self.db.enable_signals()
         self.db.request_rebuild()
         return self.info
