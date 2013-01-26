@@ -9659,7 +9659,7 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Ihre pygobject erfüllt nicht Vorgaben. Mindestens pygobject %(major)d.%"
-"(bug)d.%(minor)d wird benötigt um Gramps mit GUI zu starten.\n"
+"(feature)d.%(minor)d wird benötigt um Gramps mit GUI zu starten.\n"
 "\n"
 "Gramps wird nun beendet."
 

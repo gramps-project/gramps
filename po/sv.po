@@ -11681,7 +11681,7 @@ msgstr ""
 "återse alternativ."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:452
-#, python-format
+#, python-format, fuzzy
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -19290,6 +19290,7 @@ msgstr "Flagga upptäck, men stöds ej"
 #: ../gramps/plugins/lib/libgedcom.py:2840
 #: ../gramps/plugins/lib/libgedcom.py:2875
 #: ../gramps/plugins/lib/libgedcom.py:2887
+#, fuzzy
 msgid "Line ignored as not understood"
 msgstr "Rad %d gick inte att förstå, så den ignorerades."
 
