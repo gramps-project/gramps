@@ -19,14 +19,14 @@
 # Bo Rosén <bo.rosen@home.se>, 2001.
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
-# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012.
+# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-25 15:05+0200\n"
-"PO-Revision-Date: 2012-11-20 19:19+0100\n"
-"Last-Translator: Peter Landgren\n"
+"PO-Revision-Date: 2013-01-27 12:14+0100\n"
+"Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -17289,7 +17289,7 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen gifte om sig med %(spouse)s %(partial_date)s i %(place)s"
+"Personen var även gift med %(spouse)s %(partial_date)s i %(place)s"
 "%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:992
@@ -17298,7 +17298,7 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+"Personen var även gift med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:993
 #, python-format
@@ -17306,7 +17306,7 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
-"Personen gifte om sig med %(spouse)s %(modified_date)s i %(place)s"
+"Personen var även gift med %(spouse)s %(modified_date)s i %(place)s"
 "%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:996
@@ -17314,36 +17314,38 @@ msgstr ""
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+"Han var även gift med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:997
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Han var även gift med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:998
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+"Han var även gift med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+"Hon var även gift med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr ""
+"Hon var även gift med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+"Hon var även gift med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1006
 #, python-format
@@ -17423,47 +17425,47 @@ msgstr "Gift %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1037
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Personen gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Personen var även gift med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1038
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Personen gifte om sig med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Personen var även gift med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1039
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Personen gifte om sig med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Personen var även gift med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1042
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Han var även gift med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Han var även gift med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Han var även gift med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Hon var även gift med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Hon var även gift med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hon var även gift med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1052
 #, python-format
@@ -17503,17 +17505,17 @@ msgstr "Gift %(spouse)s i %(place)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Personen gifte om sig med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Personen var även gift med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Han var även gift med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1068
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hon var även gift med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1069
 #, python-format
@@ -17543,17 +17545,17 @@ msgstr "Gift %(spouse)s%(endnotes)s."
 #: ../src/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Personen gifte om sig med %(spouse)s%(endnotes)s."
+msgstr "Personen var även gift med %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "Han gifte om sig med %(spouse)s%(endnotes)s."
+msgstr "Han var även gift med %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1082
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr "Hon gifte om sig med %(spouse)s%(endnotes)s."
+msgstr "Hon var även gift med %(spouse)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:1083
 #, python-format
