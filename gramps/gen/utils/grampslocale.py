@@ -223,6 +223,7 @@ class GrampsLocale(object):
 
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
+        self._set_dictionaries()
 
 
 
@@ -250,6 +251,76 @@ class GrampsLocale(object):
                 LOG.debug("Unable to find translations for %s and %s in %s",
                           domain, languages, localedir)
             return GrampsNullTranslations()
+
+    def _set_dictionaries(self):
+        """
+        Create a dictionary of language names localized to the
+        GrampsLocale's primary language, keyed by language and
+        country code.
+        """
+        _ = self.translation.gettext
+        self.lang_map = {
+            "bg" : _("Bulgarian"),
+            "ca" : _("Catalan"),
+            "cs" : _("Czech"),
+            "da" : _("Danish"),
+            "de" : _("German"),
+            "el" : _("Greek"),
+            "en" : _("English"),
+            "eo" : _("Esperanto"),
+            "es" : _("Spanish"),
+            "fi" : _("Finnish"),
+            "fr" : _("French"),
+            "he" : _("Hebrew"),
+            "hr" : _("Croatian"),
+            "hu" : _("Hungarian"),
+            "it" : _("Italian"),
+            "ja" : _("Japanese"),
+            "lt" : _("Lithuanian"),
+            "mk" : _("Macedonian"),
+            "nb" : _("Norwegian Bokmal"),
+            "nl" : _("Dutch"),
+            "nn" : _("Norwegian Nynorsk"),
+            "pl" : _("Polish"),
+            "pt" : _("Portuguese"),
+            "ro" : _("Romanian"),
+            "ru" : _("Russian"),
+            "sk" : _("Slovak"),
+            "sl" : _("Slovenian"),
+            "sq" : _("Albanian"),
+            "sv" : _("Swedish"),
+            "tr" : _("Turkish"),
+            "uk" : _("Ukrainian"),
+            "vi" : _("Vietnamese"),
+            "zh" : _("Chinese")
+            }
+
+        self.country_map = {
+            "BR" : _("Brazil"),
+            "CN" : _("China"),
+            "PT" : _("Portugal")
+            }
+
+    def _get_language_string(self, lang_code):
+        """
+        Given a language code of the form "lang_region", return a text string
+        representing that language.
+        """
+        code_parts = lang_code.rsplit("_")
+
+        lang = code_parts[0]
+        if lang in self.lang_map:
+            lang = self.lang_map[lang]
+
+        country = None
+        if len(code_parts) > 1:
+            country = code_parts[1]
+        if country in self.country_map:
+            country = self.country_map[country]
+            lang = "%(language)s (%(country)s)" % \
+                { 'language' : lang, 'country'  : country  }
+
+        return lang
 
 #-------------------------------------------------------------------------
 #
@@ -367,6 +438,18 @@ class GrampsLocale(object):
         languages.sort()
 
         return languages
+
+    def get_language_dict(self):
+        '''
+        return a dictionary of language names : codes for use by language
+        pickers.
+        '''
+        langs = {}
+        for code in self.get_available_translations():
+            langs[self._get_language_string(code)] = code
+
+        return langs
+
 
     def trans_objclass(self, objclass_str):
         """
