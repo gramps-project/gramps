@@ -95,12 +95,6 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
-# system paths
-#
-#-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
-#-------------------------------------------------------------------------
-#
 # Platforms
 # Never test on LINUX, handle Linux in the else statement as default
 #
@@ -205,10 +199,23 @@ else:
 # Paths to data files.
 #
 #-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
-DATA_DIR = "@DATA_DIR@"
-IMAGE_DIR = "@IMAGE_DIR@"
-DOC_DIR = "@DOC_DIR@"
+if "XDG_DATA_DIRS" in os.environ:
+    share = None
+    for path in os.environ["XDG_DATA_DIRS"].split(":"):
+        if os.path.exists(os.path.join(path, "gramps", "tips.xml")):
+            share = path
+            break
+    if not share:
+        share = os.path.split("@DATA_DIR@")[0]
+    LOCALE_DIR = os.path.join(share, "locale")
+    DATA_DIR = os.path.join(share, "gramps")
+    IMAGE_DIR = os.path.join(DATA_DIR, "icons", "hicolor")
+    DOC_DIR = os.path.join(share, "doc", "gramps")
+else:
+    LOCALE_DIR = "@LOCALE_DIR@"
+    DATA_DIR = "@DATA_DIR@"
+    IMAGE_DIR = "@IMAGE_DIR@"
+    DOC_DIR = "@DOC_DIR@"
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
 PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
