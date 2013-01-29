@@ -17837,7 +17837,7 @@ msgstr ""
 "De følgende stednavne ligner hinanden : %(gid)s\n"
 "Du kan enten omdøbe dem eller sammenflette dem.\n"
 "\n"
-"<b>Jeg kan ikke behandle din "
+"<b>Jeg kan ikke behandle din </b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
