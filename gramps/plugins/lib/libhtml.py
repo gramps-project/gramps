@@ -202,7 +202,7 @@ class Html(list):
         if title is not None: 
             head += (Html('title', title, inline=True, indent=True))
         if html5:
-            head += Html('meta', charset="utf-8", indent=True)
+            head += Html('meta', charset=encoding, indent=True)
         else:
             meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
             meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
