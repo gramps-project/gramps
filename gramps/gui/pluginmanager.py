@@ -84,13 +84,21 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
             icon_file = os.path.expanduser(os.path.join(dirname, data[0]+ext))
             if os.path.isfile(icon_file):
                 try:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+                    if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > \
+                            (2, 26) or not win(): 
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+                    else:
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file_utf8 (icon_file)
                     break
                 except:
                     pass
                   
         if not pixbuf :
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file (ICON)
+            if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) or \
+                    not win():
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file (ICON)
+            else:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_utf8 (ICON)
 
         pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
         icon_set = Gtk.IconSet.new_from_pixbuf (pixbuf)
@@ -101,7 +109,11 @@ def base_reg_stock_icons(iconpaths, extraiconsize, items):
                     os.path.join(size[0], data[0]+'.png'))
             if os.path.isfile(icon_file):
                 try:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+                    if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > \
+                            (2, 26) or not win():
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file (icon_file)
+                    else:
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file_utf8 (icon_file)
                 except:
                     pass
                     
