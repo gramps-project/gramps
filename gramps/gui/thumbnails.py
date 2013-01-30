@@ -53,7 +53,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, 
                               THUMBSCALE, THUMBSCALE_LARGE, USE_THUMBNAILER)
-from gramps.gen.constfunc import cuni
+from gramps.gen.constfunc import cuni, win
 
 #-------------------------------------------------------------------------
 #
@@ -187,7 +187,11 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
         # build a thumbnail by scaling the image using GTK's built in 
         # routines.
         try:
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
+            if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) or\
+                    not win(): 
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
+            else:
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file_utf8(src_file)
             width = pixbuf.get_width()
             height = pixbuf.get_height()
 
@@ -216,7 +220,11 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
             
             pixbuf = pixbuf.scale_simple(scaled_width, scaled_height, 
                                          GdkPixbuf.InterpType.BILINEAR)
-            pixbuf.savev(filename, "png", "", "")
+            if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) or \
+                    not win():
+                pixbuf.savev(filename, "png", "", "")
+            else:
+                pixbuf.savev_utf8(filename, "png", "", "")
             return True
         except Exception as err:
             LOG.warn("Error scaling image down: %s", str(err))
@@ -241,9 +249,17 @@ def find_mime_type_pixbuf(mime_type):
                 newicon = "gnome-mime-%s" % icontmp
                 return _icon_theme.load_icon(newicon,48,0)
             except:
-                return GdkPixbuf.Pixbuf.new_from_file(ICON)
+                if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) \
+                        or not win():
+                    return GdkPixbuf.Pixbuf.new_from_file(ICON)
+                else:
+                    return GdkPixbuf.Pixbuf.new_from_file_utf8(ICON)
     except:
-        return GdkPixbuf.Pixbuf.new_from_file(ICON)
+        if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) \
+                or not win(): 
+            return GdkPixbuf.Pixbuf.new_from_file(ICON)
+        else:
+            return GdkPixbuf.Pixbuf.new_from_file_utf8(ICON)
 #-------------------------------------------------------------------------
 #
 # run_thumbnailer
@@ -320,13 +336,21 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     try:
         filename = get_thumbnail_path(src_file, mtype, rectangle, size)
-        return GdkPixbuf.Pixbuf.new_from_file(filename)
+        if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) or \
+                not win(): 
+            return GdkPixbuf.Pixbuf.new_from_file(filename)
+        else:
+            return GdkPixbuf.Pixbuf.new_from_file_utf8(filename)
     except (GObject.GError, OSError):
         if mtype:
             return find_mime_type_pixbuf(mtype)
         else:
             default = os.path.join(IMAGE_DIR, "document.png")
-            return GdkPixbuf.Pixbuf.new_from_file(default)
+            if (GdkPixbuf.PIXBUF_MAJOR, GdkPixbuf.PIXBUF_MINOR) > (2, 26) or \
+                    not win(): 
+                return GdkPixbuf.Pixbuf.new_from_file(default)
+            else:
+                return GdkPixbuf.Pixbuf.new_from_file_utf8(default)
 
 #-------------------------------------------------------------------------
 #
