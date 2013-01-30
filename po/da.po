@@ -6,11 +6,11 @@
 # Ofte vil det lyde mere naturligt at ændre en ordstilling ved at
 # bytte om på hoved- og ledsætning, som f.eks.
 #   
-#   "Før reparationen udføres, forvis dig om at slægtsbogen virkelig
+#   "Før reparationen udføres, forvis dig om at databasen virkelig
 #   "ikke længere kan åbnes"
 # til
 #   
-#   "forvis dig om at slægtsbogen virkelig ikke kan åbnes før du
+#   "forvis dig om at databasen virkelig ikke kan åbnes før du
 #   "udfører reparationen."
 #   
 # Jeg har dog i mange tilfælde valgt at bevare den oprindelige
@@ -21,19 +21,25 @@
 # LDS: SDH (Latter Day Saints -> Sidste Dages Hellige)
 # home person: proband
 # ancestor: ane
-# give name: fornavn
+# given name: fornavn
 # preferences: indstillinger
 # link: forbindelse
-# family tree: slægtsbog
+# family tree: slægtsbog (men se nedenfor)
 # First Communion: Førstekommunion
 # probate: skifte
 # record: optegnelse
+#
+# Anvendt af Lars Kr. Lundin:
+# citation: citering (fremfor f.eks. 'kildehenvisning')
+# database: database (fremfor det tidligere 'slægtsbog')
+# matches: matcher (fremfor det tidligere 'passer med')
+# locale: landestandard (i mangel af bedre)
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.4.3 (SVN 21236)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-30 16:34+0100\n"
-"PO-Revision-Date: 2013-01-28 20:01+0100\n"
+"PO-Revision-Date: 2013-01-29 20:29+0100\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -360,7 +366,7 @@ msgid ""
 msgstr ""
 "En kopi af dine data er blevet gemt. Du kan trykke \"Luk\" for at fortsætte.\n"
 "\n"
-"NB: Den slægtsbog der for øjeblikket er åbnet i dit Gramps-vindue er IKKE den fil du lige har gemt. Redigering af den aktuelt åbnede slægtsbog, vil ikke ændre i den kopi, du har lige har lavet. "
+"NB: Den database der for øjeblikket er åbnet i dit Gramps-vindue er IKKE den fil du lige har gemt. Redigering af den aktuelt åbnede database, vil ikke ændre i den kopi, du har lige har lavet. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:537
@@ -378,9 +384,9 @@ msgid ""
 "\n"
 "Note: your currently opened database is safe. It was only a copy of your data that failed to save."
 msgstr ""
-"Der opstod en fejl mens dine data blev gemt. Du kan prøve et genstarte eksport.\n"
+"Der opstod en fejl mens dine data blev gemt. Du kan prøve at genstarte eksport.\n"
 "\n"
-"NB: Din aktuelt åbnede slægtsbog er uden for problemer, det var kun kopien af dine data der ikke kunne gemmes."
+"NB: Din aktuelt åbnede database er uden for problemer, det var kun kopien af dine data der ikke kunne gemmes."
 
 #: ../src/ExportAssistant.py:568
 msgid ""
@@ -390,11 +396,11 @@ msgid ""
 "\n"
 "If you change your mind during this process, you can safely press the Cancel button at any time and your present database will still be intact."
 msgstr ""
-"Under normale forhold kræver brugen af Gramps ikke at du selv gemmer dine ændringer. Alle ændringer du foretager bliver øjeblikkelig gemt i slægtsbogen.\n"
+"Under normale forhold kræver brugen af Gramps ikke at du selv gemmer dine ændringer. Alle ændringer du foretager bliver øjeblikkelig gemt i databasen.\n"
 "\n"
 "Denne proces hjælper dig med at gemme en kopi af dine data i ethvert af de formater som Gramps understøtter. Dette kan benyttes til at kopiere dine data, til at lave en sikkerhedskopi, eller til at konvertere dine data til et format, så de kan overføres til et andet program.\n"
 "\n"
-"Hvis du fortryder undervejs, kan du til enhver tid roligt trykke på Annullér-knappen, hvorefter din aktuelle slægtsbog stadig vil være intakt."
+"Hvis du fortryder undervejs, kan du til enhver tid roligt trykke på Annullér-knappen, hvorefter din aktuelle database stadig vil være intakt."
 
 #: ../src/ExportOptions.py:52
 msgid "Selecting Preview Data"
@@ -557,11 +563,11 @@ msgstr "Medtag ikke optegnelser som ikke er forbundet med en valgt person"
 
 #: ../src/gramps.py:125
 msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
-msgstr ""
+msgstr "ADVARSEL: Landestandarden kunne ikke ændres. Ret venligst LC_* og/eller LANG variablerne for at undgå denne fejl"
 
 #: ../src/gramps.py:135
 msgid "ERROR: Setting the 'C' locale didn't work either"
-msgstr ""
+msgstr "FEJL: Landestandarden 'C' fungerede heller ikke"
 
 #: ../src/gramps.py:172
 #, python-format
@@ -651,7 +657,7 @@ msgstr "%(west_longitude)s W"
 
 #: ../src/QuestionDialog.py:193
 msgid "Error detected in database"
-msgstr "Stødte på fejl i slægtsbog"
+msgstr "Stødte på fejl i database"
 
 #: ../src/QuestionDialog.py:194
 msgid ""
@@ -660,18 +666,18 @@ msgid ""
 "If this problem continues to exist after running this tool, please file a bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
-"Gramps er stødt på en fejl i slægtsbogen. Dette kan normalt løses ved at køre værktøjet \"Kontrollér og reparér slægtsbog\".\n"
+"Gramps er stødt på en fejl i databasen. Dette kan normalt løses ved at køre værktøjet \"Kontrollér og reparér database\".\n"
 "\n"
 "Hvis dette problem varer ved efter at have brugt ovennævnte værktøj, så indsend venligst en fejlrapport på adressen http://bugs.gramps-project.org\n"
 "\n"
 
 #: ../src/QuestionDialog.py:205 ../src/cli/grampscli.py:93
 msgid "Low level database corruption detected"
-msgstr "Dybtgående ødelæggelse af slægtsbogen er blevet opdaget"
+msgstr "Dybtgående ødelæggelse af databasen er blevet opdaget"
 
 #: ../src/QuestionDialog.py:206 ../src/cli/grampscli.py:95
 msgid "Gramps has detected a problem in the underlying Berkeley database. This can be repaired from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr "Gramps er stødt på et problem i den underliggende Berkeley-slægtsbog. Dette kan repareres fra menuen \"Slægtsbøger\". Vælg slægtsbogen og klik på knappen \"reparér\""
+msgstr "Gramps er stødt på et problem i den underliggende Berkeley-database. Dette kan repareres fra menuen \"Slægtsbogshåndtering\". Vælg slægtsbogen og klik på knappen \"reparér\""
 
 #: ../src/QuestionDialog.py:322 ../src/gui/utils.py:304
 msgid "Attempt to force closing the dialog"
@@ -713,7 +719,7 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Slægtsbogen rækker længere tilbage end det maksimale %d antal generationer\n"
+"Databasen rækker længere tilbage end det maksimale %d antal generationer\n"
 "der søges i. Det er muligt at slægtskaber er blevet udeladt"
 
 #: ../src/Relationship.py:929
@@ -1090,9 +1096,8 @@ msgid "Person ref"
 msgstr "Personhenv."
 
 #: ../src/ScratchPad.py:672
-#, fuzzy
 msgid "Child ref"
-msgstr "Børn"
+msgstr "Barnehenv."
 
 #: ../src/ScratchPad.py:681
 #, python-format
@@ -1566,7 +1571,7 @@ msgstr "efterkommer dødsrelateret dato"
 #: ../src/Utils.py:764
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "Slægtsbog-fejl: %s er angivet som hans eller hendes egen efterkommer"
+msgstr "Database-fejl: %s er angivet som hans eller hendes egen efterkommer"
 
 #: ../src/Utils.py:788 ../src/Utils.py:834
 msgid "ancestor birth date"
@@ -1810,7 +1815,7 @@ msgstr "%s, ..."
 
 #: ../src/Utils.py:1674
 msgid "Unknown, created to replace a missing note object."
-msgstr ""
+msgstr "Ukendt, dannet for at erstatte et manglende noteobjekt."
 
 #. primitive static variable
 #: ../src/Utils.py:1684
@@ -1849,7 +1854,7 @@ msgstr "Ryd"
 
 #: ../src/UndoHistory.py:214
 msgid "Database opened"
-msgstr "Slægtsbog åbnet"
+msgstr "Database åbnet"
 
 #: ../src/UndoHistory.py:216
 msgid "History cleared"
@@ -1861,7 +1866,7 @@ msgid ""
 "Error: Family tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Fejl: Slægtstræ '%s' findes allerede.\n"
+"Fejl: Slægtsbog '%s' findes allerede.\n"
 "Forvalg '-C' kan ikke benyttes."
 
 #: ../src/cli/arghandler.py:227
@@ -1870,7 +1875,7 @@ msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family tree instead."
 msgstr ""
-"Fejl: Slægtsbogen \"%s\" findes ikke.\n"
+"Fejl: Databasen \"%s\" findes ikke.\n"
 "Hvis det er i formatet gedcom, gramps-xml eller grdb, bruges i stedet tilvalget -i for at importere det ind i en slægtsbog."
 
 #: ../src/cli/arghandler.py:243
@@ -1914,7 +1919,7 @@ msgstr "FEJL: Ukendt format på eksportfilen %s"
 
 #: ../src/cli/arghandler.py:402
 msgid "List of known family trees in your database path\n"
-msgstr "Liste over kendte slægtstræer i din databasesti\n"
+msgstr "Liste over kendte slægtsbøger i din databasesti\n"
 
 #: ../src/cli/arghandler.py:406
 #, python-format
@@ -1923,17 +1928,17 @@ msgstr "%(full_DB_path)s med navn \"%(f_t_name)s\""
 
 #: ../src/cli/arghandler.py:412
 msgid "Gramps Family Trees:"
-msgstr "Gramps Slægtstræer"
+msgstr "Gramps Slægtsbøger"
 
 #: ../src/cli/arghandler.py:415 ../src/cli/arghandler.py:417
 #: ../src/cli/arghandler.py:421 ../src/cli/clidbman.py:185
 msgid "Family tree"
-msgstr "Slægtstræ"
+msgstr "Slægtsbog"
 
 #: ../src/cli/arghandler.py:416
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Slægtstræ \"%s\":"
+msgstr "Slægtsbog \"%s\":"
 
 #: ../src/cli/arghandler.py:419 ../src/cli/clidbman.py:186
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
@@ -1989,7 +1994,7 @@ msgstr "Åbning vellykket!"
 
 #: ../src/cli/arghandler.py:524
 msgid "Database is locked, cannot open it!"
-msgstr "Slægtsbogen er låst, kan ikke åbne den!"
+msgstr "Databasen er låst, kan ikke åbne den!"
 
 #: ../src/cli/arghandler.py:525
 #, python-format
@@ -1998,7 +2003,7 @@ msgstr "  Info: %s"
 
 #: ../src/cli/arghandler.py:528
 msgid "Database needs recovery, cannot open it!"
-msgstr "Slægtsbogen skal genoprettes, kan ikke åbne den!"
+msgstr "Databasen skal repareres, kan ikke åbne den!"
 
 #: ../src/cli/arghandler.py:585 ../src/cli/arghandler.py:632
 msgid "Ignoring invalid options string."
@@ -2007,7 +2012,7 @@ msgstr "Ignorerer ugyldig forvalgsstreng."
 #. name exists, but is not in the list of valid report names
 #: ../src/cli/arghandler.py:608
 msgid "Unknown report name."
-msgstr "Ukendt rapport navn"
+msgstr "Ukendt rapport navn."
 
 #: ../src/cli/arghandler.py:610
 #, python-format
@@ -2040,7 +2045,6 @@ msgstr "Ukendt handling: %s."
 # [pyg3t error] Short option -f not found in translation
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../src/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2086,8 +2090,7 @@ msgstr ""
 "  -L                                     Oplist slægtsbøger i detaljer\n"
 "  -u, --force-unlock                     Fjern lås på slægtsbog med tvang\n"
 "  -s, --show                             Vis indstillinger\n"
-"  -c, --config=[config.setting[:value]]  Angiv indstilling og start \n"
-"Gramps\n"
+"  -c, --config=[config.setting[:value]]  Angiv indstilling(er) og start Gramps\n"
 "  -v, --version                          Vis versioner\n"
 
 #: ../src/cli/argparser.py:80
@@ -2139,8 +2142,8 @@ msgstr ""
 "\n"
 "Eksempel på brug af Gramps' kommandolinje-interface\n"
 "\n"
-"1. For at importere fire slægtsbøger (deres formater kan bestemmes ud fra\n"
-"   deres navne) og herefter kontrollere den resulterende slægtsbog for fejl,\n"
+"1. For at importere fire databaser (deres formater kan bestemmes ud fra\n"
+"   deres navne) og herefter kontrollere den resulterende database for fejl,\n"
 "   kan man taste:\n"
 "\n"
 "   gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check.\n"
@@ -2150,7 +2153,7 @@ msgstr ""
 "\n"
 "   gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check.\n"
 "\n"
-"3. For at gemme slægtsbogen der er resultatet af alle importer, angiv -e flaget\n"
+"3. For at gemme databasen der er resultatet af alle importer, angiv -e flaget\n"
 "  (brug -f hvis filnavnet ikke tillader Gramps at gætte formatet):\n"
 "\n"
 "   gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
@@ -2160,17 +2163,17 @@ msgstr ""
 "   \n"
 "   gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile 2>errfile\n"
 "\n"
-"5. For at importere tre slægtsbøger og starte en interaktiv Gramps-session\n"
-"   med den resulterende slægtsbog:\n"
+"5. For at importere tre databaser og starte en interaktiv Gramps-session\n"
+"   med den resulterende database:\n"
 "\n"
 "   gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
-"6. For at åbne en slægtsbog og, baseret på disse data, generere en\n"
+"6. For at åbne en database og, baseret på disse data, generere en\n"
 "   tidslinje-rapport i PDF-format hvor uddata gemmes i filen my_timeline.pdf:\n"
 "\n"
 "   gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,of=my_timeline.pdf\n"
 "\n"
-"7. For at generere en opsummering af en slægtsbog:\n"
+"7. For at generere en opsummering af en database:\n"
 "\n"
 "   gramps -O 'Family Tree 1' -a report -p name=summary\n"
 "\n"
@@ -2182,7 +2185,7 @@ msgstr ""
 "   brug show=option_name , f.eks.. name=timeline,show=off string.\n"
 "   For at finde ud af tilgængelige rapportnavne, brug name=show string.\n"
 "\n"
-"9. For at konvertere en slægtsbog til en .gramps xml-fil:\n"
+"9. For at konvertere en database til en .gramps xml-fil:\n"
 "\n"
 "   gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml\n"
 "\n"
@@ -2211,13 +2214,13 @@ msgstr ""
 "Tast gramps --help for en oversigt over kommandoer, eller læs manualsiderne.."
 
 #: ../src/cli/argparser.py:356
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
-"Fejl ved fortolkning af argumenter: %s \n"
-"Ved brug i kommandolinje-tilstand skal mindst en inddata-fil angives."
+"Fejl ved fortolkning af argumenterne: %s \n"
+"Ved brug på kommandolinjen skal mindst en inddata-fil angives."
 
 #: ../src/cli/clidbman.py:78
 #, python-format
@@ -2281,6 +2284,13 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"FEJL: Forkert databasesti i Rediger Menu->Indstillinger.\n"
+"Åbn indstillinger og angiv den rigtige databasesti.\n"
+"\n"
+"Detaljer: Kunne ikke danne databasemappen:\n"
+"    %s\n"
+"\n"
 
 #: ../src/cli/clidbman.py:450 ../src/gui/configure.py:1070
 msgid "Never"
@@ -2304,7 +2314,7 @@ msgstr "FEJL: %s"
 
 #: ../src/cli/grampscli.py:139 ../src/gui/dbloader.py:285
 msgid "Read only database"
-msgstr "Skrivebeskyttet slægtsbog"
+msgstr "Skrivebeskyttet database"
 
 #: ../src/cli/grampscli.py:140 ../src/gui/dbloader.py:230
 #: ../src/gui/dbloader.py:286
@@ -2315,7 +2325,7 @@ msgstr "Du har ikke skriverettighed til den valgte fil."
 #: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
 #: ../src/gui/dbloader.py:320
 msgid "Cannot open database"
-msgstr "Kan ikke åbne slægtsbog"
+msgstr "Kan ikke åbne database"
 
 #: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
 #: ../src/gui/dbloader.py:324
@@ -2439,21 +2449,21 @@ msgid ""
 "The database version is not supported by this version of Gramps.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
-"Version af slægtsbogen er ikke understøttet af denne version af Gramps.\n"
-"Opgradér venligst til en kompatibel version eller brug XML til at flytte data mellem forskellige versioner af slægtsbøger."
+"Version af databasen er ikke understøttet af denne version af Gramps.\n"
+"Opgradér venligst til en kompatibel version eller brug XML til at flytte data mellem forskellige versioner af databaser."
 
 #: ../src/gen/db/exceptions.py:93
 #, python-format
 msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
-msgstr "Gramps gemmer sine data i en Berkeley-database. Den slægtsbog du forsøgte at indlæse er lavet med %(env_version)s af Berkeley DB. Den version af Gramps som du bruger nu, anvender verson %(bdb_version)s af Berkeley DB. Du prøver derfor at indlæse data som er lavet i et nyere format ind i et ældre program; dette er dømt til at mislykkes. Så prøv at åbne slægtsbogen på computeren med den software som blev brugt til at lave slægtsbogen, eksportér den til XML og indlæs denne XML-version af slægtsbogen ind i den version af Gramps som du vil bruge."
+msgstr "Gramps gemmer sine data i en Berkeley-database. Den slægtsbog du forsøgte at indlæse er lavet med %(env_version)s af Berkeley DB. Den version af Gramps som du bruger nu, anvender verson %(bdb_version)s af Berkeley DB. Du prøver derfor at indlæse data som er lavet i et nyere format ind i et ældre program; dette er dømt til at mislykkes. Så prøv at åbne databasen på computeren med den software som blev brugt til at lave databasen, eksportér den til XML og indlæs denne XML-version af databasen ind i den version af Gramps som du vil bruge."
 
 #: ../src/gen/db/exceptions.py:116
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying Berkeley database used to store this Family Tree. The most likely cause is that the database was created with an old version of the Berkeley database program, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
 msgstr ""
-"Gramps er stødt på et problem med at åbne den underliggende Berkeley-database som indeholder denne slægtsbog. Sandsynligvis er slægtsbogen lavet med en ældre version af Berkeley slægtsbogprogrammet, samtidig med at du bruger en nyere version. Det er meget sandsynligt at din slægtsbog ikke er blevet ændret af Gramps.\n"
-"Om muligt, bør du gå tilbage til din gamle version af Gramps og dens tilhørende software: eksportér din slægtsbog til XML, luk slægtsbogen, foretag en ny opgradering til denne version af Gramps og importér XML-filen ind i en tom slægtsbog. Alternativt er det måske muligt at bruge Berkeley-databasens reparationsværktøjer."
+"Gramps er stødt på et problem med at åbne den underliggende Berkeley-database som indeholder denne slægtsbog. Sandsynligvis er databasen lavet med en ældre version af Berkeley databaseprogrammet, samtidig med at du bruger en nyere version. Det er meget sandsynligt at din database ikke er blevet ændret af Gramps.\n"
+"Om muligt, bør du gå tilbage til din gamle version af Gramps og dens tilhørende software: eksportér din database til XML, luk databasen, foretag en ny opgradering til denne version af Gramps og importér XML-filen ind i en tom slægtsbog. Alternativt er det måske muligt at bruge Berkeley-databasens reparationsværktøjer."
 
 #: ../src/gen/db/exceptions.py:139
 msgid ""
@@ -2461,7 +2471,7 @@ msgid ""
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
 "You might want to make a backup copy first."
 msgstr ""
-"Du kan ikke åbne denne slægtsbog uden først at opgradere den.\n"
+"Du kan ikke åbne denne database uden først at opgradere den.\n"
 "Hvis du opgraderer, kan du ikke bruge tidligere versioner af Gramps.\n"
 "Du bør lave en sikkerhedskopi først."
 
@@ -2481,32 +2491,32 @@ msgstr "_Omgør %s"
 #: ../src/gen/db/upgrade.py:83
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Personer      opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:84
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Familier      opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:85
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Hændelser     opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:86
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Medieobjekter opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:87
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Stednavne     opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:88
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
-msgstr ""
+msgstr "%6d  Arkiver       opgraderet med %6d citeringer på %6d sekunder\n"
 
 #: ../src/gen/db/upgrade.py:416
 msgid "Number of new objects upgraded:\n"
@@ -2521,6 +2531,12 @@ msgid ""
 "in order to merge citations that contain similar\n"
 "information"
 msgstr ""
+"\n"
+"\n"
+"You kan udføre\n"
+"Værktøjer -> Slægtsbogshåndtering -> Sammenflet\n"
+"for at sammenflette citeringer der indeholder ens\n"
+"information"
 
 #: ../src/gen/db/upgrade.py:426
 msgid "Upgrade Statistics"
@@ -4238,7 +4254,7 @@ msgstr "PERSON"
 #: ../src/gen/plug/report/utils.py:267 ../src/plugins/BookReport.py:161
 #: ../src/plugins/tool/EventCmp.py:156
 msgid "Entire Database"
-msgstr "Hele slægtsbogen"
+msgstr "Hele databasen"
 
 #: ../src/gen/proxy/private.py:807 ../src/gui/grampsgui.py:147
 #: ../src/glade/editperson.glade.h:24 ../src/glade/editsource.glade.h:8
@@ -4710,7 +4726,7 @@ msgstr "Kontrollér nu"
 
 #: ../src/gui/configure.py:1124
 msgid "Family Tree Database path"
-msgstr "Søgesti til slægtsbøger"
+msgstr "Søgesti til databaser"
 
 #: ../src/gui/configure.py:1132
 msgid "Automatically load last family tree"
@@ -4736,7 +4752,7 @@ msgid ""
 msgstr ""
 "Hvis du fortsætter med at importere, vil fortryd-historikken blive slettet i denne session. Du vil især ikke være i stand til at fortryde importen eller nogen ændringer som blev foretaget før denne.\n"
 "\n"
-"Hvis du skønner at du ønsker at fortryde importen, så stop venligst her og tag en sikkerhedskopi af din slægtsbog."
+"Hvis du skønner at du ønsker at fortryde importen, så stop venligst her og tag en sikkerhedskopi af din database."
 
 #: ../src/gui/dbloader.py:123
 msgid "_Proceed with import"
@@ -4748,7 +4764,7 @@ msgstr "_Stop"
 
 #: ../src/gui/dbloader.py:130
 msgid "Gramps: Import database"
-msgstr "Gramps: Importér slægtsbog"
+msgstr "Gramps: Importér database"
 
 #: ../src/gui/dbloader.py:189
 #, python-format
@@ -4758,7 +4774,7 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and others."
 msgstr ""
 "Gramps genkender ikke filtypen \"%s\".\n"
-"Gyldige filtyper er: Gramps-slægtsbog, Gramps XML, Gramps-pakke, GEDCOM og andre."
+"Gyldige filtyper er: Gramps-database, Gramps XML, Gramps-pakke, GEDCOM og andre."
 
 #: ../src/gui/dbloader.py:213 ../src/gui/dbloader.py:219
 msgid "Cannot open file"
@@ -4787,7 +4803,7 @@ msgstr "Denne fil giver ukorrekte oplysninger om sit tegnsæt, så den kan ikke 
 
 #: ../src/gui/dbloader.py:303
 msgid "Need to upgrade database!"
-msgstr "Opgradering af slægtsbogen er nødvendig!"
+msgstr "Opgradering af databasen er nødvendig!"
 
 #: ../src/gui/dbloader.py:305
 msgid "Upgrade now"
@@ -4821,7 +4837,7 @@ msgstr "_Arkivér"
 
 #: ../src/gui/dbman.py:271
 msgid "Family tree name"
-msgstr "Slægtsbogens navn"
+msgstr "Databasens navn"
 
 #: ../src/gui/dbman.py:281
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
@@ -4835,11 +4851,11 @@ msgstr "Status"
 #: ../src/gui/dbman.py:369
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "Fjern lås på slægtsbogen \"%s\"?"
+msgstr "Fjern lås på databasen \"%s\"?"
 
 #: ../src/gui/dbman.py:370
 msgid "Gramps believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr "Det ser ud til at en anden person er i gang med at redigere i denne slægtsbog. Du kan ikke redigere denne slægtsbog, så længe den er låst. Hvis der ikke er andre der er i gang med at redigere den, kan du blot fjerne låsen. Hvis du imidlertid fjerner låsen, mens en anden er i gang med at redigere i slægtsbogen, risikerer du at ødelægge denne."
+msgstr "Det ser ud til at en anden person er i gang med at redigere i denne database. Du kan ikke redigere denne database, så længe den er låst. Hvis der ikke er andre der er i gang med at redigere den, kan du blot fjerne låsen. Hvis du imidlertid fjerner låsen, mens en anden er i gang med at redigere i databasen, risikerer du at ødelægge denne."
 
 #: ../src/gui/dbman.py:376
 msgid "Break lock"
@@ -4862,11 +4878,11 @@ msgstr ""
 
 #: ../src/gui/dbman.py:468
 msgid "Could not rename the Family Tree."
-msgstr "Kunne ikke omdøbe slægtsbogen."
+msgstr "Kunne ikke omdøbe databasen."
 
 #: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Slægtsbogen findes allerede, vælg et entydigt navn."
+msgstr "Databasen findes allerede, vælg et entydigt navn."
 
 #: ../src/gui/dbman.py:507
 msgid "Extracting archive..."
@@ -4879,7 +4895,7 @@ msgstr "Importerer arkiv ..."
 #: ../src/gui/dbman.py:528
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "Fjern slægtsbogen \"%s\"?"
+msgstr "Fjern databasen \"%s\"?"
 
 #: ../src/gui/dbman.py:529
 msgid "Removing this family tree will permanently destroy the data."
@@ -4937,14 +4953,14 @@ msgid ""
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Before doing a repair, try to open the family tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file <i>need_recover</i> in the family tree directory."
 msgstr ""
-"Hvis du klikker På <b>Fortsæt</b>, vil Gramps forsøge at genoprette din slægtsbog ud fra den sidst fungerende sikkerhedskopi. Dette kan give uønskede virkninger på flere måder, så <b>sikkerhedskopiér</b> slægtsbogen først.\n"
+"Hvis du klikker På <b>Fortsæt</b>, vil Gramps forsøge at genoprette din slægtsbog ud fra den sidst fungerende sikkerhedskopi. Dette kan give uønskede virkninger på flere måder, så <b>sikkerhedskopiér</b> databasen først.\n"
 "Den valgte slægtsbog er gemt i %s.\n"
 "\n"
-"Før reparationen udføres, forvis dig om at slægtsbogen virkelig ikke længere kan åbnes, idet den underliggende slægtsbog i visse tilfælde kan reparere sig selv automatisk.\n"
+"Før reparationen udføres, forvis dig om at databasen virkelig ikke længere kan åbnes, idet den underliggende database i visse tilfælde kan reparere sig selv automatisk.\n"
 "\n"
-"<b>Detaljer:</b> Ved reparationen af en slægtsbog, bruges den seneste sikkerhedskopi af slægtsbogen som Gramps gemte i den seneste session. Hvis du har arbejdet i flere timer/dage uden at lukke Gramps, så vil al den information du har lagt ind i dette tidsrum går tabt! Hvis reparationen mislykkes, vil den originale slægtsbog være tabt for altid. Det er derfor at det er nødvendigt med en sikkerhedskopi. Hvis reparationen mislykkes eller for meget information går tabt, kan du reparere den originale slægtsbog manuelt. For yderligere detaljer, se websiden\n"
+"<b>Detaljer:</b> Ved reparationen af en slægtsbog, bruges den seneste sikkerhedskopi af databasen som Gramps gemte i den seneste session. Hvis du har arbejdet i flere timer/dage uden at lukke Gramps, så vil al den information du har lagt ind i dette tidsrum går tabt! Hvis reparationen mislykkes, vil den originale slægtsbog være tabt for altid. Det er derfor at det er nødvendigt med en sikkerhedskopi. Hvis reparationen mislykkes eller for meget information går tabt, kan du reparere den originale slægtsbog manuelt. For yderligere detaljer, se websiden\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
-"Før du udfører reparationen, prøv at åbne slægtsbogen på normal vis. Adskillige fejl som aktiverer reparationsknappen kan reparares automatisk. Hvis dette er tilfældet, kan du deaktivere reparationsknappen ved at fjerne filen <i>need_recover</i> i mappen med slægtsbøger."
+"Før du udfører reparationen, prøv at åbne databasen på normal vis. Adskillige fejl som aktiverer reparationsknappen kan reparares automatisk. Hvis dette er tilfældet, kan du deaktivere reparationsknappen ved at fjerne filen <i>need_recover</i> i mappen med slægtsbøger."
 
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
@@ -4956,7 +4972,7 @@ msgstr "Stop"
 
 #: ../src/gui/dbman.py:670
 msgid "Rebuilding database from backup files"
-msgstr "Genopbygger slægtsbogen fra sikkerhedskopier"
+msgstr "Genopbygger databasen fra sikkerhedskopier"
 
 #: ../src/gui/dbman.py:675
 msgid "Error restoring backup data"
@@ -5048,9 +5064,8 @@ msgid "Note Filters"
 msgstr "Note-filtre"
 
 #: ../src/gui/filtereditor.py:89
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Positions-filtre"
+msgstr "Citerings-filtre"
 
 #: ../src/gui/filtereditor.py:93 ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
@@ -5406,11 +5421,11 @@ msgstr "Genopret forvalg?"
 
 #: ../src/gui/grampsbar.py:482
 msgid "The Grampsbar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr ""
+msgstr "Gramps-panelet vil blive gendannet til at indeholde de forvalgte-grampletterne. Denne aktion kan ikke omgøres."
 
 #: ../src/gui/grampsbar.py:484 ../src/gui/plug/_windows.py:491
 msgid "OK"
-msgstr "O.k."
+msgstr "OK"
 
 #: ../src/gui/grampsgui.py:102
 msgid "Family Trees"
@@ -5704,9 +5719,8 @@ msgstr "Tilpas side"
 #: ../src/plugins/gramplet/bottombar.gpr.py:455
 #: ../src/plugins/gramplet/bottombar.gpr.py:469
 #: ../src/plugins/view/view.gpr.py:227
-#, fuzzy
 msgid "Citations"
-msgstr "Citering"
+msgstr "Citeringer"
 
 #: ../src/gui/grampsgui.py:159
 msgid "Export"
@@ -5746,7 +5760,7 @@ msgstr ""
 "4) Ødelægge dine data.\n"
 "5) Gemme dine data i et format som er uforeneligt med den officielle udgave.\n"
 "\n"
-"<b>SIKKERHEDSKOPIÉR</b> dine eksisterende slægtsbøger før du åbner dem med denne version og sørg for at eksportere dine data til XML i ny og næ."
+"<b>SIKKERHEDSKOPIÉR</b> dine eksisterende databaser før du åbner dem med denne version og sørg for at eksportere dine data til XML fra tid til anden."
 
 #: ../src/gui/grampsgui.py:246
 msgid "Error parsing arguments"
@@ -5794,13 +5808,12 @@ msgid "New"
 msgstr "Ny"
 
 #: ../src/gui/viewmanager.py:429
-#, fuzzy
 msgid "Checking Addons Failed"
 msgstr "Kontrol af tilføjelsesprogrammer fejlede"
 
 #: ../src/gui/viewmanager.py:430
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr ""
+msgstr "Arkivet med tilføjelsesprogrammer ser ud til at være utilgængeligt. Prøv venligst igen senere."
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -5859,7 +5872,7 @@ msgstr "Ingen tilføjelsesprogrammer blev installeret."
 
 #: ../src/gui/viewmanager.py:728
 msgid "Connect to a recent database"
-msgstr "Opret forbindelse til en nyligt anvendt slægtsbog"
+msgstr "Opret forbindelse til en nyligt anvendt database"
 
 #: ../src/gui/viewmanager.py:746
 msgid "_Family Trees"
@@ -5871,7 +5884,7 @@ msgstr "Arbejd med _slægtsbøger ..."
 
 #: ../src/gui/viewmanager.py:748
 msgid "Manage databases"
-msgstr "Arbejd med slægtsbøger"
+msgstr "Arbejd med databaser"
 
 #: ../src/gui/viewmanager.py:749
 msgid "Open _Recent"
@@ -5879,7 +5892,7 @@ msgstr "Åbn se_neste"
 
 #: ../src/gui/viewmanager.py:750
 msgid "Open an existing database"
-msgstr "Åbn en eksisterende slægtsbog"
+msgstr "Åbn en eksisterende database"
 
 #: ../src/gui/viewmanager.py:751
 msgid "_Quit"
@@ -5947,7 +5960,7 @@ msgstr "Tag sikkerhedskopi ..."
 
 #: ../src/gui/viewmanager.py:782
 msgid "Make a Gramps XML backup of the database"
-msgstr "Tag en Gramps XML-sikkerhedskopi af slægtsbogen"
+msgstr "Tag en Gramps XML-sikkerhedskopi af databasen"
 
 #: ../src/gui/viewmanager.py:784
 msgid "_Abandon Changes and Quit"
@@ -6058,7 +6071,7 @@ msgstr "Fortryd ændringer?"
 
 #: ../src/gui/viewmanager.py:1043
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
-msgstr "Ved at fortryde ændringerne, vil slægtsbogen returnere til den tilstand den var i, før du startede denne redigeringssession."
+msgstr "Ved at fortryde ændringerne, vil databasen returnere til den tilstand den var i, før du startede denne redigeringssession."
 
 #: ../src/gui/viewmanager.py:1045
 msgid "Abort changes"
@@ -6175,6 +6188,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this plugin again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Udvidelsesmodulet %(name)s kunne ikke indlæses og gav en fejlmeddelelse.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Hvis du ikke kan løse problemet selv så kan du indberette en fejl på http://bugs.gramps-project.org eller kontakte udvidelsesmodulets forfatter (%(firstauthoremail)s).\n"
+"\n"
+"Hvis du ikke ønsker at Gramps skal forsøge at indlæse dette modul senere, så kan du gemme det ved at benytte Håndtering af Udvidelsesmoduler i Hjælp-menuen."
 
 #: ../src/gui/viewmanager.py:1932
 msgid "Failed Loading View"
@@ -6191,6 +6211,13 @@ msgid ""
 "\n"
 "If you do not want Gramps to try and load this view again, you can hide it by using the Plugin Manager on the Help menu."
 msgstr ""
+"Oversigten %(name)s kunne ikke indlæses og gav en fejlmeddelelse.\n"
+"\n"
+"%(error_msg)s\n"
+"\n"
+"Hvis du ikke kan løse problemet selv så kan du indberette en fejl på http://bugs.gramps-project.org eller kontakte udvidelsesmodulets forfatter (%(firstauthoremail)s).\n"
+"\n"
+"Hvis du ikke ønsker at Gramps skal forsøge at indlæse denne oversigt senere, så kan du gemme det ved at benytte Håndtering af Udvidelsesmoduler i Hjælp-menuen."
 
 #: ../src/gui/editors/addmedia.py:95
 msgid "Select a media object"
@@ -6335,14 +6362,12 @@ msgstr "Barnehenvisning"
 
 #: ../src/gui/editors/editcitation.py:149
 #: ../src/gui/editors/editcitation.py:155
-#, fuzzy
 msgid "New Citation"
-msgstr "Citering"
+msgstr "Ny Citering"
 
 #: ../src/gui/editors/editcitation.py:386
-#, fuzzy
 msgid "Edit Citation"
-msgstr "Citering"
+msgstr "Rediger Citering"
 
 #: ../src/gui/editors/editcitation.py:392 ../src/gui/editors/editsource.py:181
 msgid "Cannot save source"
@@ -6353,9 +6378,8 @@ msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "Der findes ingen data til denne kilde. Indtast data eller annullér redigering."
 
 #: ../src/gui/editors/editcitation.py:402
-#, fuzzy
 msgid "Cannot save citation. ID already exists."
-msgstr "Kan ikke gemme person. Id'en findes allerede."
+msgstr "Kan ikke gemme Citering. Id'et findes allerede."
 
 #: ../src/gui/editors/editcitation.py:403
 #: ../src/gui/editors/editcitation.py:417
@@ -6378,19 +6402,19 @@ msgid "Edit Source (%s)"
 msgstr "Redigér kilde (%s)"
 
 #: ../src/gui/editors/editcitation.py:443
-#, fuzzy, python-format
+#, python-format
 msgid "Add Citation (%s)"
-msgstr "Tilføj mærkat (%s)"
+msgstr "Tilføj Citering (%s)"
 
 #: ../src/gui/editors/editcitation.py:449
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Citation (%s)"
-msgstr "Redigér mærkat (%s)"
+msgstr "Redigér Citering (%s)"
 
 #: ../src/gui/editors/editcitation.py:532
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Citation (%s)"
-msgstr "Slet mærkat (%s)"
+msgstr "Slet Citering (%s)"
 
 #: ../src/gui/editors/editevent.py:64
 msgid "manual|Editing_Information_About_Events"
@@ -6656,7 +6680,7 @@ msgstr "Dublet-familie"
 
 #: ../src/gui/editors/editfamily.py:826
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
-msgstr "Der findes allerede en familie med disse forældre i slægtsbogen. Hvis du gemmer den, vil du derved oprette en dublet-familie. Det anbefales at du afbryder redigeringen i dette vindue og vælger en eksisterende familie"
+msgstr "Der findes allerede en familie med disse forældre i databasen. Hvis du gemmer den, vil du derved oprette en dublet-familie. Det anbefales at du afbryder redigeringen i dette vindue og vælger en eksisterende familie"
 
 #: ../src/gui/editors/editfamily.py:874 ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
@@ -7206,11 +7230,13 @@ msgid ""
 "\n"
 "To edit the citation, close the source editor and open an editor for the citation alone"
 msgstr ""
+"Kan ikke åbne citeringsredigeringen lige nu. Enten bliver citeringen eller dens tilhørende kilde allerede redigeret, og åbning af en citeringsredigering (som også tillader redigering af kilden), ville føre til uklarhed ved at tillade dobbel redigering af den samme kilde.\n"
+"\n"
+"Luk kilderedigeringen og åben citeringsredigeringen for at redigere citeringen"
 
 #: ../src/gui/editors/displaytabs/backreflist.py:182
-#, fuzzy
 msgid "Cannot open new citation editor"
-msgstr "Kan ikke sammenflette noter."
+msgstr "Kan ikke åbne en ny citeringsredigering"
 
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
@@ -7250,35 +7276,29 @@ msgid "Move Down"
 msgstr "Flyt ned"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:71
-#, fuzzy
 msgid "Create and add a new citation and new source"
-msgstr "Opret og tilføj en ny kilde"
+msgstr "Opret og tilføj en ny citering og en ny kilde"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:72
-#, fuzzy
 msgid "Remove the existing citation"
-msgstr "Fjern den eksisterende forbindelse"
+msgstr "Fjern den eksisterende citering"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:73
 #: ../src/plugins/view/citationlistview.py:121
-#, fuzzy
 msgid "Edit the selected citation"
-msgstr "Redigér den valgte forbindelse"
+msgstr "Redigér den valgte citering"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:74
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "Tilføj en eksisterende kilde"
+msgstr "Tilføj en eksisterende citering eller kilde"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:75
-#, fuzzy
 msgid "Move the selected citation upwards"
-msgstr "Ryk den valgte forbindelse op"
+msgstr "Ryk den valgte citering op"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:76
-#, fuzzy
 msgid "Move the selected citation downwards"
-msgstr "Ryk den valgte forbindelse ned"
+msgstr "Ryk den valgte citering ned"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
 #: ../src/plugins/gramplet/Citations.py:49
@@ -7295,9 +7315,8 @@ msgid "Page"
 msgstr "Side"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:92
-#, fuzzy
 msgid "_Source Citations"
-msgstr "Kildehenvisninger"
+msgstr "Kildeciteringer"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:172
 #: ../src/gui/editors/displaytabs/citationembedlist.py:182
@@ -7312,15 +7331,14 @@ msgstr "Kan ikke dele denne henvisning"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:191
 #: ../src/plugins/view/citationtreeview.py:504
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Denne kildehenvisning kan ikke redigeres nu. Den tilknyttede kilde er enten allerede under redigering, eller også er en anden kildehenvisning der er knyttet til samme kilde under redigering.\n"
+"Denne citering kan ikke dannes lige nu. Det tilknyttede kildeobjekt er enten allerede under redigering, eller også er en anden citering der er knyttet til samme kilde under redigering.\n"
 "\n"
-"For at redigere denne kildehenvisning, skal du lukke kilden."
+"For at redigere denne citering, skal du lukke kildeobjektet."
 
 #: ../src/gui/editors/displaytabs/dataembedlist.py:49
 msgid "Create and add a new data entry"
@@ -8252,7 +8270,7 @@ msgid ""
 msgstr ""
 "Ved at fortsætte med dette værktøj, vil du slette fortryd-historikken i denne session. Du vil især ikke kunne omgøre ændringer lavet med dette værktøj eller nogen ændringer der blev foretaget før brugen af det.\n"
 "\n"
-"Hvis du mener at du kunne få brug for at omgøre dine ændringer, så stop hellere her og tag en sikkerhedskopi af din slægtsbog."
+"Hvis du mener at du kunne få brug for at omgøre dine ændringer, så stop hellere her og tag en sikkerhedskopi af din database."
 
 #: ../src/gui/plug/tool.py:117
 msgid "_Proceed with the tool"
@@ -8263,9 +8281,8 @@ msgid "You must select an active person for this tool to work properly."
 msgstr "Du skal vælge en aktiv person hvis dette værktøj skal fungere korrekt."
 
 #: ../src/gui/selectors/selectcitation.py:59
-#, fuzzy
 msgid "Select Source or Citation"
-msgstr "Vælg kilde"
+msgstr "Vælg Kilde eller Citering"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
@@ -8362,11 +8379,11 @@ msgstr "Mere end et element er blevet valgt til sletning. Bekræft sletning af h
 
 #: ../src/gui/views/listview.py:512
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
-msgstr "Dette element er i brug nu. Sletning af det vil fjerne det fra slægtsbogen, og fra alle andre elementer der henviser til det."
+msgstr "Dette element er i brug nu. Sletning af det vil fjerne det fra databasen, og fra alle andre elementer der henviser til det."
 
 #: ../src/gui/views/listview.py:516 ../src/plugins/view/familyview.py:256
 msgid "Deleting item will remove it from the database."
-msgstr "Sletning af elementet vil fjerne det fra slægtsbogen."
+msgstr "Sletning af elementet vil fjerne det fra databasen."
 
 #: ../src/gui/views/listview.py:523 ../src/plugins/lib/libpersonview.py:298
 #: ../src/plugins/view/familyview.py:258
@@ -8457,14 +8474,12 @@ msgid "Set _Home Person"
 msgstr "Gør til _proband"
 
 #: ../src/gui/views/navigationview.py:335
-#, fuzzy
 msgid "No Home Person"
-msgstr "Proband er ikke angivet."
+msgstr "Proband er ikke angivet"
 
 #: ../src/gui/views/navigationview.py:336
-#, fuzzy
 msgid "You need to set a 'default person' to go to."
-msgstr "Gå til proband"
+msgstr "Sæt en proband du kan gå til."
 
 #: ../src/gui/views/navigationview.py:342
 #: ../src/gui/views/navigationview.py:346
@@ -8549,7 +8564,7 @@ msgstr "Fjern mærkat \"%s\"?"
 
 #: ../src/gui/views/tags.py:476
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
-msgstr "Mærkatdefinitionen vil blive fjernet. Mærkatet vil også blive fjernet fra alle objekter i slægtsbogen."
+msgstr "Mærkatdefinitionen vil blive fjernet. Mærkatet vil også blive fjernet fra alle objekter i databasen."
 
 #: ../src/gui/views/tags.py:505
 msgid "Removing Tags"
@@ -8830,9 +8845,8 @@ msgid "Private Record"
 msgstr "Privat optegnelse"
 
 #: ../src/Merge/mergecitation.py:50
-#, fuzzy
 msgid "manual|Merge_Citations"
-msgstr "Sammenflet_noter"
+msgstr "Sammenflet_citeringer"
 
 #: ../src/Merge/mergecitation.py:72 ../src/plugins/tool/tools.gpr.py:529
 msgid "Merge Citations"
@@ -9149,7 +9163,7 @@ msgstr "Fortsæt"
 
 #: ../src/plugins/BookReport.py:705
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Bogens navn. OBLIGATORISK"
 
 #: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1196
 #: ../src/plugins/BookReport.py:1214 ../src/plugins/bookreport.gpr.py:31
@@ -9183,7 +9197,7 @@ msgstr "Udvælgelsesliste til bøger"
 
 #: ../src/plugins/BookReport.py:836
 msgid "Different database"
-msgstr "En anden slægtsbog"
+msgstr "En anden database"
 
 #: ../src/plugins/BookReport.py:837
 #, python-format
@@ -9194,11 +9208,11 @@ msgid ""
 "\n"
 "Therefore, the central person for each item is being set to the active person of the currently opened database."
 msgstr ""
-"Denne bog blev dannet med henvisninger til slægtsbogen %s.\n"
+"Denne bog blev dannet med henvisninger til databasen %s.\n"
 "\n"
 "Dette gør henvisningerne til den centrale person gemt i bogen ugyldige.\n"
 "\n"
-"Derfor sættes den centrale person for hvert element til den aktive person i den aktuelt åbne slægtsbog."
+"Derfor sættes den centrale person for hvert element til den aktive person i den aktuelt åbne database."
 
 #: ../src/plugins/BookReport.py:996
 msgid "Setup"
@@ -9245,7 +9259,7 @@ msgstr "Anfør venligst et navn til bogen"
 #: ../src/plugins/BookReport.py:1281
 #, python-format
 msgid "No such book '%s'"
-msgstr ""
+msgstr "Ingen bog '%s'"
 
 #: ../src/plugins/bookreport.gpr.py:32
 msgid "Produces a book containing several reports."
@@ -9940,7 +9954,7 @@ msgstr "Den grundlæggende stil til titelvisning."
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:82
 #, python-format
 msgid "Person %s is not in the Database"
-msgstr "Personen %s findes ikke i slægtsbogen"
+msgstr "Personen %s findes ikke i databasen"
 
 #. generate the report:
 #: ../src/plugins/drawreport/Calendar.py:166
@@ -9964,7 +9978,7 @@ msgstr "Anvender filter ..."
 #: ../src/plugins/textreport/BirthdayReport.py:224
 #: ../src/plugins/webreport/WebCal.py:1071
 msgid "Reading database..."
-msgstr "Læser slægtsbog ..."
+msgstr "Læser database ..."
 
 #: ../src/plugins/drawreport/Calendar.py:313
 #: ../src/plugins/textreport/BirthdayReport.py:276
@@ -10268,7 +10282,7 @@ msgstr "Fætter-/Kusinetavle for "
 #: ../src/plugins/drawreport/DescendTree.py:735
 #, python-format
 msgid "Family %s is not in the Database"
-msgstr "Familien %s findes ikke i slægtsbogen"
+msgstr "Familien %s findes ikke i databasen"
 
 #. if self.name == "familial_descend_tree":
 #: ../src/plugins/drawreport/DescendTree.py:1455
@@ -10460,7 +10474,7 @@ msgstr "Statistik-diagrammer"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:193
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr "Danner statistiske søjle- og lagkagediagrammer over personerne i slægtsbogen"
+msgstr "Danner statistiske søjle- og lagkagediagrammer over personerne i databasen"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:216
 msgid "Timeline Chart"
@@ -10963,7 +10977,7 @@ msgstr "Gramps _XML (slægtsbog)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid "Gramps XML export is a complete archived XML backup of a Gramps family tree without the media object files. Suitable for backup purposes."
-msgstr "Gramps' XML-eksport er et komplet sikkerhedskopieret arkiv af Gramps-slægtsbogen uden medieobjektfiler. Velegnet som sikkerhedskopiering."
+msgstr "Gramps' XML-eksport er et komplet sikkerhedskopieret arkiv af Gramps-databasen uden medieobjektfiler. Velegnet som sikkerhedskopiering."
 
 #: ../src/plugins/export/export.gpr.py:150
 msgid "Gramps XML export options"
@@ -11086,23 +11100,23 @@ msgstr "Hustru"
 
 #: ../src/plugins/export/ExportGedcom.py:414
 msgid "Writing individuals"
-msgstr "Skriver personer ind i slægtsbogen"
+msgstr "Skriver personer ind i databasen"
 
 #: ../src/plugins/export/ExportGedcom.py:773
 msgid "Writing families"
-msgstr "Skriver familier ind i slægtsbogen"
+msgstr "Skriver familier ind i databasen"
 
 #: ../src/plugins/export/ExportGedcom.py:932
 msgid "Writing sources"
-msgstr "Skriver kilder ind i slægtsbogen"
+msgstr "Skriver kilder ind i databasen"
 
 #: ../src/plugins/export/ExportGedcom.py:967
 msgid "Writing notes"
-msgstr "Skriver noter ind i slægtsbogen"
+msgstr "Skriver noter ind i databasen"
 
 #: ../src/plugins/export/ExportGedcom.py:1005
 msgid "Writing repositories"
-msgstr "Skriver arkiver ind i slægtsbogen"
+msgstr "Skriver arkiver ind i databasen"
 
 #: ../src/plugins/export/ExportGedcom.py:1450
 msgid "Export failed"
@@ -11151,11 +11165,11 @@ msgstr "Bryllupsdag: %s"
 
 #: ../src/plugins/export/ExportXml.py:138
 msgid "The database cannot be saved because you do not have permission to write to the directory. Please make sure you have write access to the directory and try again."
-msgstr "Slægtsbogen kan ikke gemmes, fordi du ikke har skriverettighed til mappen.Sørg venligst for at få skriverettighed til mappen og prøv igen."
+msgstr "Databasen kan ikke gemmes, fordi du ikke har skriverettighed til mappen.Sørg venligst for at få skriverettighed til mappen og prøv igen."
 
 #: ../src/plugins/export/ExportXml.py:148
 msgid "The database cannot be saved because you do not have permission to write to the file. Please make sure you have write access to the file and try again."
-msgstr "Slægtsbogen kunne ikke gemmes, fordi du ikke har skriverettighed til filen. Sørg venligst for at få skriverettighed til filen og prøv igen."
+msgstr "Databasen kunne ikke gemmes, fordi du ikke har skriverettighed til filen. Sørg venligst for at få skriverettighed til filen og prøv igen."
 
 #. GUI setup:
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:59
@@ -11377,14 +11391,12 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet der viser medieobjekter for en kilde"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:223
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Persongalleri"
+msgstr "Citeringsgalleri"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:224
-#, fuzzy
 msgid "Gramplet showing media objects for a citation"
-msgstr "Gramplet der viser medieobjekter for en person"
+msgstr "Gramplet der viser medieobjekter for en citering"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:237
 msgid "Person Attributes"
@@ -11475,14 +11487,12 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet der viser en kildes noter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:363
-#, fuzzy
 msgid "Citation Notes"
-msgstr "Forbindelse"
+msgstr "Citeringsnoter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:364
-#, fuzzy
 msgid "Gramplet showing the notes for a citation"
-msgstr "Gramplet der viser en persons noter"
+msgstr "Gramplet der viser en citerings noter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:377
 msgid "Repository Notes"
@@ -11501,54 +11511,44 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet der viser medieobjekters noter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:405
-#, fuzzy
 msgid "Person Citations"
-msgstr "Persondetaljer"
+msgstr "Personciteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:406
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet der viser henvisninger for en person"
+msgstr "Gramplet der viser en persons citeringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:419
-#, fuzzy
 msgid "Event Citations"
-msgstr "Citering"
+msgstr "Hændelsesciteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:420
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet der viser henvisninger for en hændelse"
+msgstr "Gramplet der viser citeringer for en hændelse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
-#, fuzzy
 msgid "Family Citations"
-msgstr "Familiehenvisninger"
+msgstr "Familieciteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet der viser henvisninger for en familie"
+msgstr "Gramplet der viser citeringer for en familie"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
-#, fuzzy
 msgid "Place Citations"
-msgstr "Indstillinger for kort over steder"
+msgstr "Stednavneciteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet der viser henvisninger for et sted"
+msgstr "Gramplet der viser et stednavns citeringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
-#, fuzzy
 msgid "Media Citations"
-msgstr "Citering"
+msgstr "Medieciteringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet der viser henvisninger for et medieobjekt"
+msgstr "Gramplet der viser citeringerne for et medieobjekt"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
 msgid "Person Children"
@@ -11636,14 +11636,12 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet der viser henvisninger for en kilde"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:573
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Mediehenvisninger"
+msgstr "Citeringshenvisninger"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:574
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet der viser henvisninger for en person"
+msgstr "Gramplet der viser henvisninger til en citering"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:587
 msgid "Repository Backlinks"
@@ -11702,14 +11700,12 @@ msgid "Gramplet providing a source filter"
 msgstr "Gramplet der leverer et kildefilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Filter for nulevende personer"
+msgstr "Filter til citeringer"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
-#, fuzzy
 msgid "Gramplet providing a citation filter"
-msgstr "Gramplet der leverer et mediefilter"
+msgstr "Gramplet der leverer et citeringsfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
 msgid "Place Filter"
@@ -11717,7 +11713,7 @@ msgstr "Stedfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:700
 msgid "Gramplet providing a place filter"
-msgstr "Gramplet der leverer et kildefilter"
+msgstr "Gramplet der leverer et stedfilter"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:713
 msgid "Media Filter"
@@ -11753,23 +11749,20 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Dobbeltklik på en række for at redigere det valgte barn."
 
 #: ../src/plugins/gramplet/Citations.py:44
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dobbeltklik på en række for at redigere den valgte kilde."
+msgstr "Dobbeltklik på en række for at redigere den valgte kilde/citering."
 
 #: ../src/plugins/gramplet/Citations.py:48
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Citering"
+msgstr "Kilde/Citering"
 
 #: ../src/plugins/gramplet/Citations.py:50
 msgid "Publisher"
 msgstr "Udgiver"
 
 #: ../src/plugins/gramplet/Citations.py:121
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Citering"
+msgstr "<Ingen Citering>"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
@@ -11801,11 +11794,11 @@ msgstr "   æf. "
 #. but they are not usable in exiv2/ pyexiv2
 #: ../src/plugins/gramplet/EditExifMetadata.py:147
 msgid "<-- Image Types -->"
-msgstr ""
+msgstr "<-- Billedtyper -->"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:170
 msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
-msgstr ""
+msgstr "Advarsel:  Ændring af dette vil opdatere medieobjektets titelfelt i Gramps ikke Exiv2 metadata."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Provide a short descripion for this image."
@@ -11844,7 +11837,6 @@ msgstr ""
 "Eksampel: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:189
-#, fuzzy
 msgid ""
 "Enter the Longitude GPS coordinates for this image,\n"
 "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
@@ -11854,7 +11846,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:192
 msgid "This is the measurement of Above or Below Sea Level.  It is measured in meters.Example: 200.558, -200.558"
-msgstr ""
+msgstr "Dette er målingen af højden over eller under havets niveau. Den måles i meter.Eksempel: 200.558, -200.558"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:201
 msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
@@ -11870,24 +11862,23 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:208
 msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
-msgstr ""
+msgstr "Vil åbne et vindue med et miniature-billed-oversigtsområde"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:210
 msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
-msgstr ""
+msgstr "Vælg fra en rulle-menu billed-filtypen du vil konvertere dit non-Exiv2 kompatible medieobjekt til."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:213
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
-msgstr ""
+msgstr "Hvis dit billede ikke er af en type der kan have Exif metadata læst/ skrevet til/fra, skal det så konverteres til en type der kan?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:216
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 msgstr "ADVARSEL! Dette vil slette alle Exif-metadata fuldstændig fra dette billede! Er du sikker på at du vil gøre dette?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:314
-#, fuzzy
 msgid "Thumbnail"
-msgstr "Placering af miniature-billeder"
+msgstr "Miniature-billede"
 
 #. set Message Ares to Select
 #: ../src/plugins/gramplet/EditExifMetadata.py:396
@@ -11895,13 +11886,12 @@ msgid "Select an image to begin..."
 msgstr "Vælg et billede for at begynde ..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:418
-#, fuzzy
 msgid ""
 "Image is NOT readable,\n"
 "Please choose a different image..."
 msgstr ""
 "Billede kan IKKE læses,\n"
-"vælg et andet billede ..."
+"Vælg venligst et andet billede..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:434
 msgid ""
@@ -11913,9 +11903,8 @@ msgstr ""
 
 #. Convert message
 #: ../src/plugins/gramplet/EditExifMetadata.py:446
-#, fuzzy
 msgid "Please convert this image to an Exiv2- compatible image type..."
-msgstr "Hvis dit billede ikke er exiv2-kompatibelt, vil du så konvertere det?"
+msgstr "Konverter venligst dette billede til en Exiv2-kompatibel billedtype..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
@@ -11928,11 +11917,11 @@ msgstr "Viser Exif-metadata..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
-msgstr ""
+msgstr "Tryk Luk for at lukke dette miniature-billed oversigtsområde."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
 msgid "Thumbnail View Area"
-msgstr ""
+msgstr "Oversigtsområde til miniature-billeder"
 
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
@@ -11942,7 +11931,6 @@ msgid "Edit Image Exif Metadata"
 msgstr "Redigér billedets Exif-metadata"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
-#, fuzzy
 msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
 msgstr "ADVARSEL: Du er ved at konvertere dette billede til et .jpeg-billede.  Er du sikker på at du vil gøre dette?"
 
@@ -11956,52 +11944,48 @@ msgstr "Konvertér"
 
 #. notify user about the convert, delete, and new filepath
 #: ../src/plugins/gramplet/EditExifMetadata.py:840
-#, fuzzy
 msgid "Your image has been converted and the original file has been deleted, and the full path has been updated!"
-msgstr "Dit billede er blevet konverteret og den originale fil er blevet slettet ..."
+msgstr "Dit billede er blevet konverteret og den originale fil er blevet slettet, og den komplette sti er blevet opdateret!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:844
 msgid "There has been an error, Please check your source and destination file paths..."
-msgstr ""
+msgstr "Der er opstået en fejl, kontroller venligst dine start- og slut-stier..."
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:847
 msgid "There was an error in deleting the original file.  You will need to delete it yourself!"
-msgstr ""
+msgstr "Der skete en fejl ved sletningen af den originale fil. Du bliver nødt til at slette den selv!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:864
-#, fuzzy
 msgid "There was an error in converting your image file."
-msgstr "Der opstod en fejl ved sletning af Exif-metadata fra dette billede ..."
+msgstr "Der opstod en fejl ved konvertering af din billed-fil."
 
 #. begin database tranaction to save media object new path
 #: ../src/plugins/gramplet/EditExifMetadata.py:875
-#, fuzzy
 msgid "Media Path Update"
-msgstr "dødsdato"
+msgstr "Opdatering af mediesti"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
-#, fuzzy
 msgid "There has been an error in updating the image file's path!"
-msgstr "Der opstod en fejl ved sletning af Exif-metadata fra dette billede ..."
+msgstr "Der opstod en fejl ved opdatering af billed-filens sti!"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:915
 msgid "Click the close button when you are finished modifying this image's Exif metadata."
-msgstr ""
+msgstr "Tryk på Luk-knappen når du er færdig med at redigere dette billedes Exif metadata."
 
 #. Add the Save button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:953
 msgid "Saves a copy of the data fields into the image's Exif metadata."
-msgstr ""
+msgstr "Gemmer en kopi af data-felterne i billedets Exif metadata."
 
 #. Re- display the data fields button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:956
 msgid "Re -display the data fields that were cleared from the Edit Area."
-msgstr ""
+msgstr "Gen-vis data-felterne der blev renset fra Redigeringsområdet."
 
 #. Add the Clear button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:959
 msgid "This button will clear all of the data fields shown here."
-msgstr ""
+msgstr "Denne knap renser alle de her viste data-felter."
 
 #. Add the Close button...
 #: ../src/plugins/gramplet/EditExifMetadata.py:962
@@ -12009,6 +11993,8 @@ msgid ""
 "Closes this popup Edit window.\n"
 "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
 msgstr ""
+"Lukker redigeringsvinduet.\n"
+"ADVARSEL: Dette vil ikke gemme nogen rettelser/ ændringer af dette billedes Exif metadata."
 
 #. Media Title Frame...
 #. 574 on a screen width of 1024
@@ -12054,7 +12040,7 @@ msgstr "Ændret: "
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr ""
+msgstr "Breddegrad/ Længdegrad/ Højde GPS koordinat"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
 msgid "Latitude :"
@@ -12077,9 +12063,8 @@ msgid "WARNING!  You are about to completely delete the Exif metadata from this 
 msgstr "ADVARSEL! Du er ved at slette alle Exif-metadata fra dette billede?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
-#, fuzzy
 msgid "Media Title Update"
-msgstr "Mediefilter"
+msgstr "Opdatering af Medietitel"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
 msgid "Media Object Date Created"
@@ -12211,9 +12196,8 @@ msgid " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F
 msgstr " 10. <a wiki='%s_-_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>Hvordan kan jeg lave et websted med Gramps og min slægtsbog?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:65
-#, fuzzy
 msgid " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>How do I record one's occupation?</a>\n"
-msgstr " 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-ts21786114.html#a21786114'>Hvordan noterer jeg ens beskæftigelse?</a>\n"
+msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=21487967'>Hvordan noterer jeg ens beskæftigelse?</a>\n"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:66
 #, python-format
@@ -12832,7 +12816,7 @@ msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your family tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"Som det første skal der oprettes en ny slægtsbog. For at oprette en ny slægtsbog (kaldes sommetider for \"slægtsbog\"), vælges \"Slægtsbøger fra menuen, derefter \"Arbejd med slægtsbøger\", tryk på \"Ny\" og giv din slægtsbog et navn. Læs venligst informationen i ovennævnte links for yderligere detaljer\n"
+"Som det første skal der oprettes en ny slægtsbog. For at oprette en ny slægtsbog (kaldes sommetider for \"database\"), vælges \"Slægtsbøger fra menuen, derefter \"Arbejd med slægtsbøger\", tryk på \"Ny\" og giv din slægtsbog et navn. Læs venligst informationen i ovennævnte links for yderligere detaljer\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
@@ -13251,11 +13235,11 @@ msgstr "Vælg om familier, navne og datoer der er markeret private, skal medtage
 
 #: ../src/plugins/graph/GVFamilyLines.py:341
 msgid "Empty report"
-msgstr ""
+msgstr "Tom rapport"
 
 #: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "Du angav ikke nogen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
@@ -13411,15 +13395,15 @@ msgstr "Gramps XML-slægtsbog"
 
 #: ../src/plugins/import/import.gpr.py:108
 msgid "The Gramps XML format is a text version of a family tree. It is read-write compatible with the present Gramps database format."
-msgstr "Gramps XML-slægtsbogen er en tekstversion af slægtsbogen. Den er kompatibel med det nuværende Gramps slægtsbogformat."
+msgstr "Gramps XML-databasen er en tekstversion af databasen. Den er kompatibel med det nuværende Gramps databaseformat."
 
 #: ../src/plugins/import/import.gpr.py:128
 msgid "Gramps 2.x database"
-msgstr "Gramps 2.x-slægtsbog"
+msgstr "Gramps 2.x-database"
 
 #: ../src/plugins/import/import.gpr.py:129
 msgid "Import data from Gramps 2.x database files"
-msgstr "Importér data fra Gramps 2.x-slægtsbøger"
+msgstr "Importér data fra Gramps 2.x-databaser"
 
 #: ../src/plugins/import/import.gpr.py:146
 msgid "Pro-Gen"
@@ -13646,7 +13630,7 @@ msgstr "%s kunne ikke åbnes"
 
 #: ../src/plugins/import/ImportGrdb.py:67
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (family tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
-msgstr ""
+msgstr "Databaseversionen er ikke understøttet af denne version af Gramps.Du bør anvende en ældre udgave af Gramps med version 3.0.x og importere din database ind i den version. Du kan herefter eksportere en kopi af dine data til Gramps XML (slægtstræ). Herefter kan du opgradere til den seneste version af Gramps (for eksempel denne version), danne en ny database og importere dine Gramps XML-data ind i den version. Læs venligst mere her:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -13787,7 +13771,7 @@ msgstr "Fejl ved læsning af %s"
 
 #: ../src/plugins/import/ImportXml.py:141
 msgid "The file is probably either corrupt or not a valid Gramps database."
-msgstr "Filen er sandsynligvis enten ødelagt eller er ikke en gyldig Gramps-slægtsbog."
+msgstr "Filen er sandsynligvis enten ødelagt eller er ikke en gyldig Gramps-database."
 
 #: ../src/plugins/import/ImportXml.py:254
 #, python-format
@@ -13830,9 +13814,9 @@ msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Note %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:283
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Familie %(id)s med %(id2)s\n"
+msgstr "  Citering %(id)s med %(id2)s\n"
 
 #: ../src/plugins/import/ImportXml.py:291
 #, python-format
@@ -13899,6 +13883,13 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unkown' objects are referenced by note %s.\n"
 msgstr ""
+"\n"
+"Den importerede fil var ikke komplet.\n"
+"For at rette op på det blev %d objekter dannet\n"
+"og deres type sat til 'Ukendt'.\n"
+"Den kategorivise opdeling ses af numrene i\n"
+"parenteser. De steder det var muligt blev disse\n"
+"'Ukendte' objekter henvist til fra note %s.\n"
 
 #: ../src/plugins/import/ImportXml.py:319
 msgid ""
@@ -14065,16 +14056,22 @@ msgstr "Vidne-kommentar: %s"
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
 msgstr ""
+"Fejl: Familie '%(family)s' fader '%(father)s' refererer ikke tilbage til familien. Tilføjer referencen.\n"
+"Fejl: Familie "
 
 #: ../src/plugins/import/ImportXml.py:3012
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
 msgstr ""
+"Fejl: Familie '%(family)s' moder '%(mother)s' refererer ikke tilbage til familien. Tilføjer referencen.\n"
+"Fejl: Familie "
 
 #: ../src/plugins/import/ImportXml.py:3034
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
 msgstr ""
+"Fejl: Familie '%(family)s' barn '%(child)s' refererer ikke tilbage til familien. Tilføjer referencen.\n"
+"Fejl: Familie "
 
 #: ../src/plugins/lib/libgedcom.py:1721
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -14091,16 +14088,16 @@ msgstr "GEDCOM import"
 
 #: ../src/plugins/lib/libgedcom.py:2573
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "GEDCOM import rapport: Ingen fejl fundet"
 
 #: ../src/plugins/lib/libgedcom.py:2575
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "GEDCOM import rapport: %s fejl fundet"
 
 #: ../src/plugins/lib/libgedcom.py:2827
 msgid "Tag recognised but not supported"
-msgstr ""
+msgstr "Mærkat genkendt, men ikke understøttet"
 
 #: ../src/plugins/lib/libgedcom.py:2838
 msgid "Line ignored as not understood"
@@ -14112,22 +14109,22 @@ msgstr "Sprang over underordnet linje"
 
 #: ../src/plugins/lib/libgedcom.py:2895
 msgid "Records not imported into "
-msgstr "Optegnelser ikke importeret til"
+msgstr "Optegnelser ikke importeret til "
 
 #: ../src/plugins/lib/libgedcom.py:2930
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
-msgstr ""
+msgstr "Fejl: %(msg)s  '%(gramps_id)s' (indlæst som @%(xref)s@) ikke i indlæst GEDCOM. Optegnelse dannet"
 
 #: ../src/plugins/lib/libgedcom.py:2939
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
-msgstr ""
+msgstr "Fejl: %(msg)s '%(gramps_id)s' (indlæst som @%(xref)s@) ikke i indlæst GEDCOM. Optegnelse med type 'Ukendt' dannet"
 
 #: ../src/plugins/lib/libgedcom.py:2978
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
-msgstr ""
+msgstr "Fejl: familie '%(family)s' (indlæst som @%(orig_family)s@) person %(person)s (indlæst som %(orig_person)s) er ikke et medlem af den refererede familie. Familie referencen fjernet fra personen"
 
 #: ../src/plugins/lib/libgedcom.py:3056
 #, python-format
@@ -14139,6 +14136,12 @@ msgid ""
 "Where possible these 'Unkown' objects are \n"
 "referenced by note %s.\n"
 msgstr ""
+"\n"
+"Den importerede fil var ikke komplet.\n"
+"For at rette op på det blev %d objekter dannet\n"
+"og deres type sat til 'Ukendt'.\n"
+"De steder det var muligt blev disse 'Ukendte' objekter\n"
+"henvist til fra note %s.\n"
 
 #: ../src/plugins/lib/libgedcom.py:3074
 msgid "TRLR (trailer)"
@@ -14165,7 +14168,7 @@ msgstr "Øverste niveau"
 #: ../src/plugins/lib/libgedcom.py:3283
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
-msgstr ""
+msgstr "INDI (individ) Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:3477 ../src/plugins/lib/libgedcom.py:4778
 #: ../src/plugins/lib/libgedcom.py:4987 ../src/plugins/lib/libgedcom.py:5124
@@ -14177,12 +14180,12 @@ msgstr "Filnavn udeladt"
 #: ../src/plugins/lib/libgedcom.py:4989 ../src/plugins/lib/libgedcom.py:5126
 #: ../src/plugins/lib/libgedcom.py:5757 ../src/plugins/lib/libgedcom.py:5900
 msgid "Form omitted"
-msgstr ""
+msgstr "Formular udeladt"
 
 #: ../src/plugins/lib/libgedcom.py:4544
 #, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "FAM (familje) Gramps ID %s"
+msgstr "FAM (familie) Gramps ID %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
@@ -14192,16 +14195,16 @@ msgstr "Hændelsesnote uden indhold blev ignoreret"
 
 #: ../src/plugins/lib/libgedcom.py:5592 ../src/plugins/lib/libgedcom.py:6415
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Advarsel: ADDR overskrevet"
 
 #: ../src/plugins/lib/libgedcom.py:5769 ../src/plugins/lib/libgedcom.py:6157
 msgid "REFN ignored"
-msgstr ""
+msgstr "REFN ignoreret"
 
 #: ../src/plugins/lib/libgedcom.py:5861
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Ingen titel - ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:5866
 #, python-format
@@ -14211,7 +14214,7 @@ msgstr "SOUR (kilder) Gramps ID %s"
 #: ../src/plugins/lib/libgedcom.py:6083
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (multi-medie objekt) Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:6111 ../src/plugins/lib/libgedcom.py:7105
 #, python-format
@@ -14220,15 +14223,15 @@ msgstr "Kunne ikke importere %s"
 
 #: ../src/plugins/lib/libgedcom.py:6147
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignoreret"
 
 #: ../src/plugins/lib/libgedcom.py:6167
 msgid "Multimedia REFN:TYPE ignored"
-msgstr ""
+msgstr "Multimedie REFN:TYPE ignoreret"
 
 #: ../src/plugins/lib/libgedcom.py:6177
 msgid "Mutimedia RIN ignored"
-msgstr ""
+msgstr "Mutimedie RIN ignoreret"
 
 #: ../src/plugins/lib/libgedcom.py:6264
 #, python-format
@@ -14236,9 +14239,8 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (arkiv) Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:6540
-#, fuzzy
 msgid "Head (header)"
-msgstr "Brugertilpasset HTML-sidehoved"
+msgstr "Head (hoved)"
 
 #: ../src/plugins/lib/libgedcom.py:6556
 msgid "Approved system identification"
@@ -14291,7 +14293,7 @@ msgstr "GEDCOM-tekstens sprog"
 #: ../src/plugins/lib/libgedcom.py:6744
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
-msgstr "Import af GEDCOM-fil %s med DEST=%s, kan forårsage fejl i den resulterende slægtsbog!"
+msgstr "Import af GEDCOM-fil %s med DEST=%s, kan forårsage fejl i den resulterende database!"
 
 #: ../src/plugins/lib/libgedcom.py:6747
 msgid "Look for nameless events."
@@ -17233,7 +17235,7 @@ msgstr "Sammenflet de valgte personer"
 
 #: ../src/plugins/lib/libpersonview.py:295
 msgid "Deleting the person will remove the person from the database."
-msgstr "Sletning af personen vil fjerne personen fra slægtsbogen."
+msgstr "Sletning af personen vil fjerne personen fra databasen."
 
 #: ../src/plugins/lib/libpersonview.py:300
 msgid "_Delete Person"
@@ -17832,12 +17834,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
-"Stednavnenes titel er:\n"
+"Stednavnenes titel er :\n"
 "<b>%(title)s</b>\n"
 "De følgende stednavne ligner hinanden : %(gid)s\n"
 "Du kan enten omdøbe dem eller sammenflette dem.\n"
 "\n"
-"<b>Jeg kan ikke behandle din </b>.\n"
+"<b>Jeg kan ikke behandle din anmodning</b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:1100
 msgid "Nothing for this view."
@@ -18459,9 +18461,8 @@ msgstr "Vis hændelser på en bestemt dag"
 
 #: ../src/plugins/quickview/quickview.gpr.py:208
 #: ../src/plugins/quickview/References.py:91
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Medtag kildeoplysninger"
+msgstr "Kilde eller Citering"
 
 #: ../src/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -18536,7 +18537,7 @@ msgstr "Link-validering"
 
 #: ../src/plugins/quickview/LinkReferences.py:57
 msgid "Ok"
-msgstr "O.k."
+msgstr "Ok"
 
 #: ../src/plugins/quickview/LinkReferences.py:60
 msgid "Failed: missing object"
@@ -18566,7 +18567,7 @@ msgstr "Personer med ufuldstændige efternavne"
 
 #: ../src/plugins/quickview/SameSurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr "Passer med personer som mangler efternavn"
+msgstr "Matcher personer som mangler efternavn"
 
 #: ../src/plugins/quickview/SameSurnames.py:41
 #: ../src/plugins/quickview/SameSurnames.py:53
@@ -18646,7 +18647,7 @@ msgstr "Personer der passer med <efternavn>"
 
 #: ../src/plugins/quickview/SameSurnames.py:52
 msgid "Matches people with same lastname"
-msgstr "Passer med personer med samme efternavn"
+msgstr "Matcher personer med samme efternavn"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "People matching the <given>"
@@ -18654,7 +18655,7 @@ msgstr "Personer der matcher <fornavnet>"
 
 #: ../src/plugins/quickview/SameSurnames.py:65
 msgid "Matches people with same given name"
-msgstr "Passer med personer med samme fornavn"
+msgstr "Matcher personer med samme fornavn"
 
 #: ../src/plugins/quickview/SameSurnames.py:81
 msgid "People with incomplete given names"
@@ -18662,7 +18663,7 @@ msgstr "Personer med et ufuldstændige fornavne"
 
 #: ../src/plugins/quickview/SameSurnames.py:82
 msgid "Matches people with firstname missing"
-msgstr "Passer med personer som mangler fornavn"
+msgstr "Matcher personer som mangler fornavn"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:106
@@ -19334,7 +19335,7 @@ msgstr "Efterkommerrapport for %(person_name)s"
 #: ../src/plugins/textreport/DetDescendantReport.py:576
 #, python-format
 msgid "Ref: %s. %s"
-msgstr ""
+msgstr "Ref: %s. %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:669
 #, python-format
@@ -19888,7 +19889,7 @@ msgstr "Stilen, der bruges til undertitlen."
 #: ../src/plugins/textreport/Summary.py:80
 #: ../src/plugins/textreport/textplugins.gpr.py:342
 msgid "Database Summary Report"
-msgstr "Opsummeringsrapport over slægtsbog"
+msgstr "Opsummeringsrapport over database"
 
 #: ../src/plugins/textreport/Summary.py:149
 #, python-format
@@ -19951,19 +19952,16 @@ msgid "Total size of media objects: %s MB"
 msgstr "Samlet størrelse af medieobjekter: %s MB"
 
 #: ../src/plugins/textreport/TableOfContents.py:105
-#, fuzzy
 msgid "The style used for first level headings."
-msgstr "Stilen der bruges til overskrifter."
+msgstr "Stilen der bruges til overskrifter på første niveau."
 
 #: ../src/plugins/textreport/TableOfContents.py:111
-#, fuzzy
 msgid "The style used for second level headings."
-msgstr "Stilen der bruges til overskrifter."
+msgstr "Stilen der bruges til overskrifter på andet niveau."
 
 #: ../src/plugins/textreport/TableOfContents.py:117
-#, fuzzy
 msgid "The style used for third level headings."
-msgstr "Stilen der bruges til overskrifter."
+msgstr "Stilen der bruges til overskrifter på tredje niveau."
 
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
@@ -20094,11 +20092,11 @@ msgstr "Laver en forside til bograpporter."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:343
 msgid "Provides a summary of the current database"
-msgstr "Leverer en opsummering af den aktuelle slægtsbog"
+msgstr "Leverer en opsummering af den aktuelle database"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:365
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Indholdsfortegnelse"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
 msgid "Produces a table of contents for book reports."
@@ -20180,12 +20178,11 @@ msgstr[1] "%d hændelsesoptegnelser blev ændret."
 
 #: ../src/plugins/tool/Check.py:97 ../src/plugins/tool/Check.py:227
 msgid "Checking Database"
-msgstr "Undersøger slægtsbog"
+msgstr "Undersøger database"
 
 #: ../src/plugins/tool/Check.py:98
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Leder efter dublerede ægtefæller"
+msgstr "Leder efter krydstabeldubletter"
 
 #: ../src/plugins/tool/Check.py:143
 msgid ""
@@ -20208,7 +20205,7 @@ msgstr "Undersøger integritet"
 #: ../src/plugins/tool/Check.py:228
 #, python-format
 msgid "Objects referenced by this note were referenced but missing so that is why they have been created when you ran Check and Repair on %s."
-msgstr ""
+msgstr "Denne note henviser til objekter som mangler, derfor blev de dannet da du kørte 'Kontroller og Reparer' %s."
 
 #: ../src/plugins/tool/Check.py:250
 msgid "Looking for invalid name format references"
@@ -20247,7 +20244,7 @@ msgid ""
 msgstr ""
 "Filen:\n"
 " %(file_name)s \n"
-"har en henvisning i slægtsbogen, men findes ikke længere. Filen kan være slettet eller flyttet. Du kan vælge at enten fjerne slægtsbogens henvisning, beholde henvisningen til den manglende fil, eller vælge en ny fil."
+"har en henvisning i databasen, men findes ikke længere. Filen kan være slettet eller flyttet. Du kan vælge at enten fjerne databasens henvisning, beholde henvisningen til den manglende fil, eller vælge en ny fil."
 
 #: ../src/plugins/tool/Check.py:774
 msgid "Looking for empty people records"
@@ -20266,9 +20263,8 @@ msgid "Looking for empty source records"
 msgstr "Leder efter tomme kildeoptegnelser"
 
 #: ../src/plugins/tool/Check.py:806
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Leder efter tomme medieoptegnelser"
+msgstr "Leder efter tomme citeringsoptegnelser"
 
 #: ../src/plugins/tool/Check.py:814
 msgid "Looking for empty place records"
@@ -20315,9 +20311,8 @@ msgid "Looking for place reference problems"
 msgstr "Leder efter problemer med stedhenvisninger"
 
 #: ../src/plugins/tool/Check.py:1285
-#, fuzzy
 msgid "Looking for citation reference problems"
-msgstr "Leder efter problemer med mærkathenvisninger"
+msgstr "Leder efter problemer med citeringsreferencer"
 
 #: ../src/plugins/tool/Check.py:1414
 msgid "Looking for source reference problems"
@@ -20341,7 +20336,7 @@ msgstr "Ingen fejl blev fundet"
 
 #: ../src/plugins/tool/Check.py:1935
 msgid "The database has passed internal checks"
-msgstr "Slægtsbogen har bestået den interne kontrol"
+msgstr "Databasen har bestået den interne kontrol"
 
 #: ../src/plugins/tool/Check.py:1944
 #, python-format
@@ -20483,11 +20478,11 @@ msgstr[0] "Der blev henvist til %(quantity)d stednavn som ikke kunne findes\n"
 msgstr[1] "Der blev henvist til %(quantity)d stednavne som ikke kunne findes\n"
 
 #: ../src/plugins/tool/Check.py:2112
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "Der blev henvist til %(quantity)d stednavn som ikke kunne findes\n"
-msgstr[1] "Der blev henvist til %(quantity)d stednavne som ikke kunne findes\n"
+msgstr[0] "Der blev henvist til %(quantity)d citering som ikke kunne findes\n"
+msgstr[1] "Der blev henvist til %(quantity)d citeringer som ikke kunne findes\n"
 
 #: ../src/plugins/tool/Check.py:2119
 #, python-format
@@ -20795,9 +20790,9 @@ msgstr ""
 "\n"
 "Et medieobjekt i Gramps er en samling af data om den tilknyttede fil: dens filnavn og/eller sti, dens beskrivelse, dens id, noter, kildehenvisninger, etc. Disse data <b>omfatter ikke filen selv</b>.\n"
 "\n"
-"Filerne der indeholder billed, lyd, video, etc., ligger for sig selv på din harddisk. Disse filer håndteres ikke af Gramps og er ikke inkluderet i Gramps-slægtsbogen. I Gramps-slægtsbogen er kun gemt oplysninger om stier og filnavne.\n"
+"Filerne der indeholder billed, lyd, video, etc., ligger for sig selv på din harddisk. Disse filer håndteres ikke af Gramps og er ikke inkluderet i Gramps-databasen. I Gramps-databasen er kun gemt oplysninger om stier og filnavne.\n"
 "\n"
-"Dette værktøj lader dig kun ændre poster inden i din Gramps-slægtsbog. Hvis du vil flytte eller omdøbe filerne, skal du gøre på egen hånd udenfor Gramps. Derefter kan du tilrette stierne ved at bruge dette værktøj, således at medieobjekterne indeholder de korrekte filplaceringer."
+"Dette værktøj lader dig kun ændre poster inden i din Gramps-database. Hvis du vil flytte eller omdøbe filerne, skal du gøre på egen hånd udenfor Gramps. Derefter kan du tilrette stierne ved at bruge dette værktøj, således at medieobjekterne indeholder de korrekte filplaceringer."
 
 #: ../src/plugins/tool/MediaManager.py:259
 msgid "Affected path"
@@ -20887,19 +20882,19 @@ msgstr "Dette værktøj konverterer absolutte søgestier til mediefiler til rela
 
 #: ../src/plugins/tool/MediaManager.py:551
 msgid "Add images not included in database"
-msgstr "Tilføj billeder som ikke findes i slægtsbogen"
+msgstr "Tilføj billeder som ikke findes i databasen"
 
 #: ../src/plugins/tool/MediaManager.py:552
 msgid "Check directories for images not included in database"
-msgstr "Kig i mapper efter billeder som ikke findes i slægtsbogen"
+msgstr "Kig i mapper efter billeder som ikke findes i databasen"
 
 #: ../src/plugins/tool/MediaManager.py:553
 msgid "This tool adds images in directories that are referenced by existing images in the database."
-msgstr "Dette værktøj tilføjer billeder til mapper der henvises til fra eksisterende billeder i slægtsbogen."
+msgstr "Dette værktøj tilføjer billeder til mapper der henvises til fra eksisterende billeder i databasen."
 
 #: ../src/plugins/tool/MergeCitations.py:75
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Matcher Side/Bind, Dato og Troværdighed"
 
 #: ../src/plugins/tool/MergeCitations.py:76
 msgid "Ignore Date"
@@ -20914,28 +20909,24 @@ msgid "Ignore Date and Confidence"
 msgstr "Ignorer Dato og Troværdighed"
 
 #: ../src/plugins/tool/MergeCitations.py:82
-#, fuzzy
 msgid "manual|Merge citations..."
-msgstr "Sammenflet familier"
+msgstr "Sammenflet citeringer..."
 
 #: ../src/plugins/tool/MergeCitations.py:129
-#, fuzzy
 msgid "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Noter, medieobjekter, dataelementer og arkivhenvisninger for begge kilder vil blive kombineret."
+msgstr "Noter, medieobjekter og dataelementer med matchende citeringer vil blive kombineret."
 
 #: ../src/plugins/tool/MergeCitations.py:159
-#, fuzzy
 msgid "Merge citations tool"
-msgstr "Kandidater til sammenfletning"
+msgstr "Værktøj til sammenfletning af citeringer"
 
 #: ../src/plugins/tool/MergeCitations.py:180
 msgid "Checking Sources"
 msgstr "Kontrollerer Kilder"
 
 #: ../src/plugins/tool/MergeCitations.py:181
-#, fuzzy
 msgid "Looking for citation fields"
-msgstr "Leder efter stedfelter"
+msgstr "Leder efter citeringsfelter"
 
 #: ../src/plugins/tool/MergeCitations.py:225
 msgid "Number of merges done"
@@ -20945,8 +20936,8 @@ msgstr "Antal udførte sammenfletninger"
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d citering sammenflettet"
+msgstr[1] "%(num)d citeringer sammenflettede"
 
 #: ../src/plugins/tool/NotRelated.py:67
 msgid "manual|Not_Related..."
@@ -20970,7 +20961,7 @@ msgstr "Starter"
 #: ../src/plugins/tool/NotRelated.py:177
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Alle i slægtsbogen er beslægtet med %s"
+msgstr "Alle i databasen er beslægtet med %s"
 
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../src/plugins/tool/NotRelated.py:263
@@ -21003,15 +20994,15 @@ msgstr[1] "Slår navn op for %d personer"
 
 #: ../src/plugins/tool/OwnerEditor.py:57
 msgid "manual|Edit_Database_Owner_Information..."
-msgstr "Redigér_oplysninger_om_slægtsbogens_ejer ..."
+msgstr "Redigér_oplysninger_om_databasens_ejer ..."
 
 #: ../src/plugins/tool/OwnerEditor.py:102
 msgid "Database Owner Editor"
-msgstr "Redigering af slægtsbogens ejer"
+msgstr "Redigering af databasens ejer"
 
 #: ../src/plugins/tool/OwnerEditor.py:162
 msgid "Edit database owner information"
-msgstr "Redigér oplysninger om slægtsbogens ejer"
+msgstr "Redigér oplysninger om databasens ejer"
 
 #: ../src/plugins/tool/PatchNames.py:64
 msgid "manual|Extract_Information_from_Names"
@@ -21235,7 +21226,7 @@ msgstr "Bring skrivning af slægtsnavne med versaler i orden"
 
 #: ../src/plugins/tool/tools.gpr.py:36
 msgid "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "Gennemsøger hele slægtsbogen og forsøger at bringe skrivning af navn med versaler i orden."
+msgstr "Gennemsøger hele databasen og forsøger at bringe skrivning af navn med versaler i orden."
 
 #: ../src/plugins/tool/tools.gpr.py:58
 msgid "Rename Event Types"
@@ -21247,11 +21238,11 @@ msgstr "Tillader alle hændelser med et bestemt navn at få et nyt navn."
 
 #: ../src/plugins/tool/tools.gpr.py:81
 msgid "Check and Repair Database"
-msgstr "Undersøg og reparér slægtsbog"
+msgstr "Undersøg og reparér database"
 
 #: ../src/plugins/tool/tools.gpr.py:82
 msgid "Checks the database for integrity problems, fixing the problems that it can"
-msgstr "Undersøger slægtsbogen for integritetsproblemer og retter det den kan"
+msgstr "Undersøger databasen for integritetsproblemer og retter det den kan"
 
 #: ../src/plugins/tool/tools.gpr.py:104
 msgid "Interactive Descendant Browser"
@@ -21267,7 +21258,7 @@ msgstr "Sammenlign individuelle hændelser"
 
 #: ../src/plugins/tool/tools.gpr.py:150
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
-msgstr "Hjælper ved analyse af data ved at tillade udviklingen af egne filtre, der kan bruges på slægtsbogen til at finde lignende hændelser"
+msgstr "Hjælper ved analyse af data ved at tillade udviklingen af egne filtre, der kan bruges på databasen til at finde lignende hændelser"
 
 #: ../src/plugins/tool/tools.gpr.py:173
 msgid "Extract Event Description"
@@ -21288,7 +21279,7 @@ msgstr "Forsøger at udtrække by og stat/region fra stedtitlen"
 
 #: ../src/plugins/tool/tools.gpr.py:219
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
-msgstr "Gennemsøger hele slægtsbogen for at se efter personregistreringer, der muligvis repræsenterer den samme person."
+msgstr "Gennemsøger hele databasen for at se efter personregistreringer, der muligvis repræsenterer den samme person."
 
 #: ../src/plugins/tool/tools.gpr.py:264
 msgid "Manages batch operations on media files"
@@ -21304,11 +21295,11 @@ msgstr "Find personer som ikke på nogen måde er beslægtede med den valgte per
 
 #: ../src/plugins/tool/tools.gpr.py:308
 msgid "Edit Database Owner Information"
-msgstr "Redigér oplysninger om slægtsbogens ejer"
+msgstr "Redigér oplysninger om databasens ejer"
 
 #: ../src/plugins/tool/tools.gpr.py:309
 msgid "Allow editing database owner information."
-msgstr "Tillad redigering af oplysninger om slægtsbogens ejer."
+msgstr "Tillad redigering af oplysninger om databasens ejer."
 
 #: ../src/plugins/tool/tools.gpr.py:330
 msgid "Extract Information from Names"
@@ -21348,7 +21339,7 @@ msgstr "Fjern ubrugte objekter"
 
 #: ../src/plugins/tool/tools.gpr.py:419
 msgid "Removes unused objects from the database"
-msgstr "Fjern ubrugte objekter fra slægtsbogen"
+msgstr "Fjern ubrugte objekter fra databasen"
 
 #: ../src/plugins/tool/tools.gpr.py:441
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -21375,9 +21366,8 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Efterprøver data mod brugerdefinerede tests"
 
 #: ../src/plugins/tool/tools.gpr.py:530
-#, fuzzy
 msgid "Searches the entire database, looking for citations that have the same Volume/Page, Date and Confidence."
-msgstr "Gennemsøger hele slægtsbogen for at se efter personregistreringer, der muligvis repræsenterer den samme person."
+msgstr "Gennemsøger hele databasen efter citeringer, der har samme Bind/Side, Dato og Troværdighed."
 
 #: ../src/plugins/tool/Verify.py:74
 msgid "manual|Verify_the_Data..."
@@ -21385,11 +21375,11 @@ msgstr "Verificér_data ..."
 
 #: ../src/plugins/tool/Verify.py:247
 msgid "Database Verify tool"
-msgstr "Værktøj til kontrol af slægtsbog"
+msgstr "Værktøj til kontrol af database"
 
 #: ../src/plugins/tool/Verify.py:440
 msgid "Database Verification Results"
-msgstr "Resultat af verificering af slægtsbog"
+msgstr "Resultat af verificering af database"
 
 #. Add column with the warning text
 #: ../src/plugins/tool/Verify.py:503
@@ -21572,9 +21562,8 @@ msgstr "Kilde: Udgivelsesoplysninger"
 
 #: ../src/plugins/view/citationtreeview.py:118
 #: ../src/plugins/view/citationlistview.py:118
-#, fuzzy
 msgid "Add a new citation and a new source"
-msgstr "Opret og tilføj en ny kilde"
+msgstr "Opret og tilføj en ny citering og en ny kilde"
 
 #: ../src/plugins/view/citationtreeview.py:119
 #: ../src/plugins/view/citationlistview.py:119
@@ -21584,45 +21573,38 @@ msgstr "Tilføj en ny kilde"
 
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Tilføj en eksisterende kilde"
+msgstr "Tilføj en ny citering til en eksisterende kilde"
 
 #: ../src/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Edit the selected citation or source"
-msgstr "Redigér den valgte kilde"
+msgstr "Redigér den valgte citering eller kilde"
 
 #: ../src/plugins/view/citationtreeview.py:122
-#, fuzzy
 msgid "Delete the selected citation or source"
-msgstr "Slet den valgte kilde"
+msgstr "Slet den valgte citering eller kilde"
 
 #: ../src/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Merge the selected citations or selected sources"
-msgstr "Sammenflet de valgte kilder"
+msgstr "Sammenflet de valgte kilder eller valgte citeringer"
 
 #: ../src/plugins/view/citationtreeview.py:141
 #: ../src/plugins/view/view.gpr.py:234
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Oversigt over personer vist i træstruktur"
+msgstr "Oversigt over citeringer vist i træstruktur"
 
 #: ../src/plugins/view/citationtreeview.py:279
 msgid "Add source..."
 msgstr "Tilføj kilde..."
 
 #: ../src/plugins/view/citationtreeview.py:284
-#, fuzzy
 msgid "Add citation..."
-msgstr "Tilføj samlever ..."
+msgstr "Tilføj citering..."
 
 #: ../src/plugins/view/citationtreeview.py:292
 #: ../src/plugins/view/citationlistview.py:180
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Redigering af tilpassede filtre"
+msgstr "Redigering af citeringsfiltre"
 
 #: ../src/plugins/view/citationtreeview.py:301
 #: ../src/plugins/view/persontreeview.py:82
@@ -21637,43 +21619,39 @@ msgid "Collapse all Nodes"
 msgstr "Sammenfold alle knudepunkter"
 
 #: ../src/plugins/view/citationtreeview.py:445
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "Kan ikke gemme mærkat"
+msgstr "Kan ikke tilføje citering."
 
 #: ../src/plugins/view/citationtreeview.py:446
 msgid "In order to add a citation to an existing source,  you must select a source."
-msgstr ""
+msgstr "For at tilføje en citering til en eksisterende kilder skal du vælge en kilde."
 
 #: ../src/plugins/view/citationtreeview.py:514
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Denne kildehenvisning kan ikke redigeres nu. Den tilknyttede kilde er enten allerede under redigering, eller også er en anden kildehenvisning der er knyttet til samme kilde under redigering.\n"
+"Denne kilde kan ikke redigeres lige nu. Det tilknyttede kildeobjekt er enten allerede under redigering, eller også er en citering af kilden under redigering.\n"
 "\n"
-"For at redigere denne kildehenvisning, skal du lukke kilden."
+"For at redigere denne kilde, skal du lukke citeringen."
 
 #: ../src/plugins/view/citationtreeview.py:527
 #: ../src/plugins/view/citationtreeview.py:547
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
-#, fuzzy
 msgid "Cannot merge citations."
-msgstr "Kan ikke sammenflette noter."
+msgstr "Kan ikke sammenflette citeringer."
 
 #: ../src/plugins/view/citationtreeview.py:528
 #: ../src/plugins/view/citationlistview.py:322
-#, fuzzy
 msgid "Exactly two citations must be selected to perform a merge. A second citation can be selected by holding down the control key while clicking on the desired citation."
-msgstr "Præcis to noter skal vælges for at sammenflette dem. Den anden note kan vælges ved at holde ctrl-tasten nede og samtidig klikke på den ønskede note."
+msgstr "Præcis to citeringer skal vælges for at sammenflette dem. Den anden citering kan vælges ved at holde ctrl-tasten nede og samtidig klikke på den ønskede citering."
 
 #: ../src/plugins/view/citationtreeview.py:548
 #: ../src/plugins/view/citationlistview.py:333
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
-msgstr ""
+msgstr "De to valgte citeringer skal have samme kilder for at kunne sammenflettes. Hvis du vil sammenflette disse to citeringer så skal du først sammenflette kilderne."
 
 #: ../src/plugins/view/citationtreeview.py:562
 msgid "Cannot perform merge."
@@ -21681,7 +21659,7 @@ msgstr "Kan ikke udføre sammenfletning."
 
 #: ../src/plugins/view/citationtreeview.py:563
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr ""
+msgstr "Begge objekter skal være af den samme type, enten kilder eller citeringer."
 
 #: ../src/plugins/view/citationlistview.py:95
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
@@ -21701,31 +21679,27 @@ msgid "Source: Last Changed"
 msgstr "Kilde: Senest Ændret"
 
 #: ../src/plugins/view/citationlistview.py:122
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Slet den valgte familie"
+msgstr "Slet den valgte citering"
 
 #: ../src/plugins/view/citationlistview.py:123
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Sammenflet de valgte personer"
+msgstr "Sammenflet de valgte citeringer"
 
 #: ../src/plugins/view/citationlistview.py:137
 #: ../src/plugins/view/view.gpr.py:219
-#, fuzzy
 msgid "Citation View"
-msgstr "Citering"
+msgstr "Citeringsoversigt"
 
 #: ../src/plugins/view/citationlistview.py:308
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation is already being edited or another object that is associated with the same citation is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Denne mediehenvisning kan ikke redigeres nu. Det tilknyttede medieobjekt er enten allerede under redigering, eller også er en anden mediehenvisning der er knyttet til samme hændelse under redigering.\n"
+"Denne citering kan ikke redigeres lige nu. Den tilknyttede citering er enten allerede under redigering, eller også er et andet objekt, der er knyttet til samme citering, under redigering.\n"
 "\n"
-"For at redigere denne mediehenvisning, skal du lukke medieobjektet."
+"For at redigere denne citering, skal du lukke objektet."
 
 #: ../src/plugins/view/eventview.py:98
 msgid "Add a new event"
@@ -22293,7 +22267,7 @@ msgstr "Ufuldstændig familie fundet"
 
 #: ../src/plugins/view/relview.py:1305
 msgid "Please run the Check and Repair Database tool"
-msgstr "Kør venligst værktøjet, \"Kontrollér og reparér slægtsbog\""
+msgstr "Kør venligst værktøjet, \"Kontrollér og reparér database\""
 
 #: ../src/plugins/view/relview.py:1326 ../src/plugins/view/relview.py:1373
 #, python-format
@@ -22454,15 +22428,15 @@ msgstr "Oversigt over personer vist i træstruktur"
 
 #: ../src/plugins/view/view.gpr.py:140
 msgid "The view showing all people in the family tree"
-msgstr "Oversigten der viser alle personer i slægtsbogen"
+msgstr "Oversigten der viser alle personer i databasen"
 
 #: ../src/plugins/view/view.gpr.py:156
 msgid "The view showing all people in the family tree in a flat list"
-msgstr "Oversigten der viser alle personer i slægtsbogen i en flad liste"
+msgstr "Oversigten der viser alle personer i databasen i en flad liste"
 
 #: ../src/plugins/view/view.gpr.py:173
 msgid "The view showing all the places of the family tree"
-msgstr "Oversigten der viser alle steder i slægtsbogen"
+msgstr "Oversigten der viser alle steder i databasen"
 
 #: ../src/plugins/view/view.gpr.py:188
 msgid "Repository View"
@@ -22481,14 +22455,12 @@ msgid "The view showing all the sources"
 msgstr "Oversigten der viser alle kilder"
 
 #: ../src/plugins/view/view.gpr.py:220
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "Oversigten der viser alle noter"
+msgstr "Oversigten der viser alle citeringer"
 
 #: ../src/plugins/view/view.gpr.py:235
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "En oversigt der viser steder i en træstruktur."
+msgstr "En oversigt der viser citeringer og kilder i en træstruktur."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:364
 msgid "Gramps&nbsp;ID"
@@ -22508,7 +22480,7 @@ msgstr "Alternative stedsangivelser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:385
 msgid "<absent>"
-msgstr ""
+msgstr "<fraværende>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1291
 msgid "Data Map"
@@ -22626,7 +22598,7 @@ msgstr "Familiekort"
 #: ../src/plugins/webreport/NarrativeWeb.py:2874
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Denne side indeholder et indeks over alle personer i slægtsbogen med efternavnet %s. Ved at vælge en persons navn, vil siden for denne person blive åbnet."
+msgstr "Denne side indeholder et indeks over alle personer i databasen med efternavnet %s. Ved at vælge en persons navn, vil siden for denne person blive åbnet."
 
 #. Name Column
 #: ../src/plugins/webreport/NarrativeWeb.py:2889
@@ -22653,15 +22625,13 @@ msgid "Narrated Web Site Report"
 msgstr "Webbaseret udgave af slægtsbog med noter"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3034
-#, fuzzy
 msgid "Creating family pages..."
-msgstr "Opretter familjesider..."
+msgstr "Opretter familiesider..."
 
 #. Families list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3056
-#, fuzzy
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr "Denne side indeholder et indeks over alle familierne/ forholdene i databasen, sorteret efter deres familke-/ efternavn. Ved at klikke på en persons navn, vil siden for personens familjer/ forhold blive åbnet."
+msgstr "Denne side indeholder et indeks over alle familierne/ forholdene i databasen, sorteret efter deres familke-/ efternavn. Ved at klikke på en persons navn, vil siden for personens familier/ forhold blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3098
 #: ../src/plugins/webreport/NarrativeWeb.py:3359
@@ -22677,7 +22647,7 @@ msgstr "Opretter sider med steder"
 #. place list page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3334
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
-msgstr "Denne side indeholder et indeks over alle stederne i slægtsbogen, sorteret efter deres titel. Ved at klikke på et steds titel, vil siden for dette sted blive åbnet."
+msgstr "Denne side indeholder et indeks over alle stederne i databasen, sorteret efter deres titel. Ved at klikke på et steds titel, vil siden for dette sted blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3360
 msgid "Place Name | Name"
@@ -22699,7 +22669,7 @@ msgstr "Opretter sider med hændelser"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3618
 msgid "This page contains an index of all the events in the database, sorted by their type and date (if one is present). Clicking on an event&#8217;s Gramps ID will open a page for that event."
-msgstr "Denne side indeholder et indeks over alle hændelserne i slægtsbogen, sorteret efter deres type og dato (hvis en sådan findes). Ved at klikke på en hændelses Gramps-id, vil siden for denne hændelse blive åbnet."
+msgstr "Denne side indeholder et indeks over alle hændelserne i databasen, sorteret efter deres type og dato (hvis en sådan findes). Ved at klikke på en hændelses Gramps-id, vil siden for denne hændelse blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3696
 msgid "Event types beginning with letter "
@@ -22712,7 +22682,7 @@ msgstr "Antal personer med efternavn"
 #. page message
 #: ../src/plugins/webreport/NarrativeWeb.py:3903
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
-msgstr "Denne side indeholder et indeks over alle efternavne i slægtsbogen.  Ved at vælge et link, vil en oversigt over alle personer i slægtsbogen med dette efternavn blive vist."
+msgstr "Denne side indeholder et indeks over alle efternavne i databasen.  Ved at vælge et link, vil en oversigt over alle personer i databasen med dette efternavn blive vist."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3945
 msgid "Number of People"
@@ -22724,7 +22694,7 @@ msgstr "Opretter sider med kilder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4171
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
-msgstr "Denne side indeholder et indeks over alle kilderne i slægtsbogen, sorteret efter deres titel. Ved at klikke på en kildes titel, vil siden for denne kilde blive åbnet."
+msgstr "Denne side indeholder et indeks over alle kilderne i databasen, sorteret efter deres titel. Ved at klikke på en kildes titel, vil siden for denne kilde blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4187
 msgid "Source Name|Name"
@@ -22740,7 +22710,7 @@ msgstr "Opretter sider med medier"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4383
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size dimensions above an image, click on the image to see the full sized version.  "
-msgstr "Denne side indeholder et indeks over alle medieobjekter i slægtsbogen, sorteret efter deres titel. Ved at klikke på titlen, vil siden for medieobjektet blive åbnet. Hvis du ser angivelser af størrelsen på medieobjektet ovenover billedet, kan du klikke på dette for at se det i sin fulde størrelse. "
+msgstr "Denne side indeholder et indeks over alle medieobjekter i databasen, sorteret efter deres titel. Ved at klikke på titlen, vil siden for medieobjektet blive åbnet. Hvis du ser angivelser af størrelsen på medieobjektet ovenover billedet, kan du klikke på dette for at se det i sin fulde størrelse. "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4405
 msgid "Media | Name"
@@ -22777,14 +22747,12 @@ msgid "Missing media object:"
 msgstr "Manglende medieobjekt:"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4785
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr "Denne side indeholder et indeks over alle stederne i slægtsbogen, sorteret efter deres titel. Ved at klikke på et steds titel, vil siden for dette sted blive åbnet."
+msgstr "Denne side indeholder et indeks over alle medieobjekterne i databasen, sorteret efter deres titel. Ved at klikke på et steds titel, vil siden for dette sted blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4801
-#, fuzzy
 msgid "Thumbnail Preview"
-msgstr "Placering af miniature-billeder"
+msgstr "Forhåndsvisning af miniature-billeder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4960
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
@@ -22805,25 +22773,24 @@ msgstr "Opretter individuelle sider"
 #. Individual List page message
 #: ../src/plugins/webreport/NarrativeWeb.py:5178
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Denne side indeholder et indeks over alle personerne i slægtsbogen, sorteret efter deres efternavne. Ved at vælge en persons navn, vil siden for denne person blive åbnet."
+msgstr "Denne side indeholder et indeks over alle personerne i databasen, sorteret efter deres efternavne. Ved at vælge en persons navn, vil siden for denne person blive åbnet."
 
 #. add page title
 #: ../src/plugins/webreport/NarrativeWeb.py:5656
-#, fuzzy, python-format
+#, python-format
 msgid "Tracking %s"
-msgstr "Mærkat: %s"
+msgstr "Følger %s"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5660
 msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr ""
+msgstr "Denne kort-side viser personen og dennes efterkommere med alle deres hændelser/ steder. Hvis du placerer musen over markøren så vil den vise stednavnet.  Markørerne og referencelisten er om muligt sorteret kronologisk.  Et klik på et stednavn i referencesektionen vil bringe dig til det steds side."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5712
 msgid "Drop Markers"
 msgstr "Udelad markører"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5732
-#, fuzzy
 msgid "Place Title"
 msgstr "Stedtitel"
 
@@ -22869,7 +22836,7 @@ msgstr "Slægtskab med proband"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6382
 msgid "Relation within this family (if not by birth)"
-msgstr "Relation til familjen (hvis den ikke er biologisk)"
+msgstr "Relation til familien (hvis den ikke er biologisk)"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6506
 msgid "Creating repository pages"
@@ -22877,7 +22844,7 @@ msgstr "Opretter sider med arkiver"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6539
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Denne side indeholder et indeks over alle arkiverne i slægtsbogen, sorteret efter deres titel. Ved at klikke på et arkivs titel, vil siden for dette arkiv blive åbnet."
+msgstr "Denne side indeholder et indeks over alle arkiverne i databasen, sorteret efter deres titel. Ved at klikke på et arkivs titel, vil siden for dette arkiv blive åbnet."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6554
 msgid "Repository |Name"
@@ -22886,7 +22853,7 @@ msgstr "Navn"
 #. Address Book Page message
 #: ../src/plugins/webreport/NarrativeWeb.py:6672
 msgid "This page contains an index of all the individuals in the database, sorted by their surname, with one of the following: Address, Residence, or Web Links. Selecting the person&#8217;s name will take you to their individual Address Book page."
-msgstr "Denne side indeholder et indeks over alle personerne i slægtsbogen, sorteret efter deres efternavne med links til en af følgende: Adresse, bopæl eller weblinks. Ved at vælge en persons navn, vil du blive ført til deres individuelle adressekartotek."
+msgstr "Denne side indeholder et indeks over alle personerne i databasen, sorteret efter deres efternavne med links til en af følgende: Adresse, bopæl eller weblinks. Ved at vælge en persons navn, vil du blive ført til deres individuelle adressekartotek."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:6693
 msgid "Full Name"
@@ -22952,9 +22919,8 @@ msgid "Creating surname pages"
 msgstr "Opretter sider med efternavne"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7603
-#, fuzzy
 msgid "Creating thumbnail preview page..."
-msgstr "Opretter sider med efternavne"
+msgstr "Opretter side til forhåndsvisning af miniature-billeder..."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7645
 msgid "Creating address book pages ..."
@@ -23025,21 +22991,20 @@ msgid "The stylesheet to be used for the web pages"
 msgstr "Stilarket der skal anvendes til websiderne"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7995
-#, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Vandret - ingen ændring"
+msgstr "Vandret - Forvalgt"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7996
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Lodret     -- Venstre Side"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7997
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Falme      -- Kun WebKit Browsere"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7998
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Drop-Down  -- Kun WebKit Browsere"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8000
 msgid "Navigation Menu Layout"
@@ -23155,11 +23120,11 @@ msgstr "Vælg om et galleri af medieobjekter skal medtages"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8070
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Dan og anvend kun billeder i miniature-størrelse"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8071
 msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr ""
+msgstr "Dette forvalg giver dig muligheden for at undgå dannelse af billeder i fuld-størrelse som på mediasiden, og istedet kun billeder i miniature-størrelse. Dette vil give dig en langt mindre størrelse af de data som skal lægges op på din web-side."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8077
 msgid "Max width of initial image"
@@ -23237,7 +23202,7 @@ msgstr "Medtag download-side"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8138
 msgid "Whether to include a database download option"
-msgstr "Vælg om en mulighed for download af slægtsbog skal medtages"
+msgstr "Vælg om en mulighed for download af database skal medtages"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8142
 #: ../src/plugins/webreport/NarrativeWeb.py:8151
@@ -23247,7 +23212,7 @@ msgstr "Download-filnavn"
 #: ../src/plugins/webreport/NarrativeWeb.py:8144
 #: ../src/plugins/webreport/NarrativeWeb.py:8153
 msgid "File to be used for downloading of database"
-msgstr "Filen som slægtsbogen skal downloades til"
+msgstr "Filen som databasen skal downloades til"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8147
 #: ../src/plugins/webreport/NarrativeWeb.py:8156
@@ -23323,9 +23288,8 @@ msgid "Whether to include a parents column"
 msgstr "Vælg om der skal medtages en kolonne til forældre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8197
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Medtag en kolonne til forældre på indeks-siderne"
+msgstr "Medtag halv- og stedsøskende på de individuelle sider"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8199
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
@@ -23360,9 +23324,8 @@ msgid "Include repository pages"
 msgstr "Medtag arkivsider"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8216
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Vælg om arkivsider skal medtages?"
+msgstr "Hvorvidt arkivsiderne skal medtages."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8219
 msgid "Include GENDEX file (/gendex.txt)"
@@ -23377,9 +23340,8 @@ msgid "Include address book pages"
 msgstr "Medtag sider til adressekartotek"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8224
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Vælg om sider til adressekartotek skal tilføjes eller ej? Disse kan indeholde e-post- og webadresser, personlige adresser og hændelser knyttet til bopæl."
+msgstr "Hvorvidt sider til adressekartotek, som kan indeholde e-post- og webadresser, personlige adresser og hændelser knyttet til bopæl, skal tilføjes."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8234
 msgid "Place Map Options"
@@ -23419,7 +23381,7 @@ msgstr "Familiehenvisninger"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8265
 msgid "Drop"
-msgstr ""
+msgstr "Drop"
 
 # mærke?
 #: ../src/plugins/webreport/NarrativeWeb.py:8266
@@ -23437,7 +23399,7 @@ msgstr "Vælg indstillingen for Google Maps-kortet over familiehændelser ..."
 #: ../src/plugins/webreport/NarrativeWeb.py:8590
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Alfabet-menu: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -23473,9 +23435,8 @@ msgstr "Året i oversigtsform"
 
 # FIXME Better translation?
 #: ../src/plugins/webreport/WebCal.py:555
-#, fuzzy
 msgid "NarrativeWeb Home"
-msgstr "Webbaseret udgave af slægtsbog med noter"
+msgstr "Hjem for fortællende webrapport"
 
 #: ../src/plugins/webreport/WebCal.py:557
 msgid "Full year at a Glance"
@@ -23872,23 +23833,21 @@ msgid "but before:"
 msgstr "men før:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:51
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Hændelser der er ændret efter <dato klokkeslet>"
+msgstr "Objekter der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:52
-#, fuzzy
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given."
-msgstr "Matcher hændelsesoptegnelser som er ændret efter et angivet dato/tidspunkt (år- mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher objektoptegnelser som er ændret efter et angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:81
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Forkert format for dato-tidspunkt"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:82
 #, python-format
 msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-msgstr ""
+msgstr "Kun dato-tidspunkter i ISO-formatet yyyy-mm-dd hh hh:mm:ss, hvor tidspunktet kan udelades, accepteres. %s passer ikke."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -23896,7 +23855,7 @@ msgstr "Alle objekter"
 
 #: ../src/Filters/Rules/_Everything.py:47
 msgid "Matches every object in the database"
-msgstr "Passer med alle objekter i slægtsbogen"
+msgstr "Matcher alle objekter i databasen"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
 msgid "Object with <Id>"
@@ -23904,7 +23863,7 @@ msgstr "Objekt med <id>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:48
 msgid "Matches objects with a specified Gramps ID"
-msgstr "Passer med objekter med en angivet Gramps-id"
+msgstr "Matcher objekter med en angivet Gramps-id"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
@@ -23936,22 +23895,20 @@ msgstr "Objekt med <kilden>"
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:53
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:48
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:48
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Positions-filtre"
+msgstr "Citerings/kilde-filtre"
 
 #: ../src/Filters/Rules/_HasSourceOfBase.py:49
-#, fuzzy
 msgid "Matches objects who have a particular source"
-msgstr "Matcher personer med en bestemt kilde"
+msgstr "Matcher objekter med en bestemt kilde"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:47
 msgid "Persons changed after <date time>"
-msgstr "Personer der er ændret efter <dato klokkeslet>"
+msgstr "Personer der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:48
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher personoptegnelser som er ændret efter et angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher personoptegnelser som er ændret efter et angivet dato/tidspunkt (yyyy-mm-dd hh:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:50
 msgid "Preparing sub-filter"
@@ -23974,7 +23931,7 @@ msgstr "Slægtskabsfiltre"
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:126
 msgid "Searches over the database starting from a specified person and returns everyone between that person and a set of target people specified with a filter.  This produces a set of relationship paths (including by marriage) between the specified person and the target people.  Each path is not necessarily the shortest path."
-msgstr "Gennemsøger slægtsbogen ved at starte fra en angivet person for at vise alle personer mellem den angivne person og en gruppe af målpersoner som er specificeret i et filter. Herved skabes et sæt af slægtslinjer (medtager også ægteskab) mellem den angivne person og målpersonerne. Hver linje er ikke nødvendigvis den korteste."
+msgstr "Gennemsøger databasen ved at starte fra en angivet person for at vise alle personer mellem den angivne person og en gruppe af målpersoner som er specificeret i et filter. Herved skabes et sæt af slægtslinjer (medtager også ægteskab) mellem den angivne person og målpersonerne. Hver linje er ikke nødvendigvis den korteste."
 
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:136
 msgid "Finding relationship paths"
@@ -23990,7 +23947,7 @@ msgstr "Slægtsløse personer"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
 msgid "Matches people that have no family relationships to any other person in the database"
-msgstr "Matcher personer der ikke er beslægtet med nogen anden person i slægtsbogen"
+msgstr "Matcher personer der ikke er beslægtet med nogen anden person i databasen"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -23998,7 +23955,7 @@ msgstr "Alle"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:47
 msgid "Matches everyone in the database"
-msgstr "Matcher alle i slægtsbogen"
+msgstr "Matcher alle i databasen"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:43
 msgid "Families with incomplete events"
@@ -24031,7 +23988,7 @@ msgstr "Personer med et alternativt navn"
 
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:47
 msgid "Matches people with an alternate name"
-msgstr "Passer med personer der har et alternativt navn"
+msgstr "Matcher personer der har et alternativt navn"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:50
 msgid "People with <count> associations"
@@ -24103,14 +24060,12 @@ msgid "Volume/Page:"
 msgstr "Bind/Side:"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:51
-#, fuzzy
 msgid "People with the <citation>"
-msgstr "Personer med <mærkat>"
+msgstr "Personer med <citering>"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:52
-#, fuzzy
 msgid "Matches people with a citation of a particular value"
-msgstr "Matcher personer med en bestemt fødselsdato"
+msgstr "Matcher personer med en citering af en bestemt værdi"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
@@ -24253,7 +24208,7 @@ msgstr "Personer med <efternavn af oprindelsestype>"
 
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:49
 msgid "Matches people with a surname origin"
-msgstr "Passer med personer som har et efternavn af oprindelsestypen"
+msgstr "Matcher personer som har et efternavn af oprindelsestypen"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:48
 msgid "People with the <Name type>"
@@ -24261,7 +24216,7 @@ msgstr "Personer med <navnetype>"
 
 #: ../src/Filters/Rules/Person/_HasNameType.py:49
 msgid "Matches people with a type of name"
-msgstr "Passer med personer med en bestemt type navn"
+msgstr "Matcher personer med en bestemt type navn"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:46
 msgid "People with a nickname"
@@ -24269,7 +24224,7 @@ msgstr "Personer med et tilnavn"
 
 #: ../src/Filters/Rules/Person/_HasNickname.py:47
 msgid "Matches people with a nickname"
-msgstr "Passer med personer der har et tilnavn"
+msgstr "Matcher personer der har et tilnavn"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
@@ -24634,7 +24589,7 @@ msgstr "Personer med ukendt dødsdato"
 
 #: ../src/Filters/Rules/Person/_NoDeathdate.py:44
 msgid "Matches people without a known deathdate"
-msgstr "Passer med personer med en ukendt dødsdato"
+msgstr "Matcher personer med en ukendt dødsdato"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
@@ -24710,15 +24665,15 @@ msgstr "Alle familier"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
 msgid "Matches every family in the database"
-msgstr "Matcher alle familier i slægtsbogen"
+msgstr "Matcher alle familier i databasen"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:47
 msgid "Families changed after <date time>"
-msgstr "Familier der er ændret efter <dato klokkeslet>"
+msgstr "Familier der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:48
 msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher familieoptegnelser som er ændret efter et angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher familieoptegnelser som er ændret efter et angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -24790,14 +24745,12 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "Matcher familier med familieattributten sat til en bestemt værdi"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
-#, fuzzy
 msgid "Family with the <citation>"
-msgstr "Familier med <mærkatet>"
+msgstr "Familier med <citering>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "Matcher familier med en bestemt hændelse"
+msgstr "Matcher familier med en citering af en bestemt værdi"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:53
 msgid "Families with the <event>"
@@ -24997,15 +24950,15 @@ msgstr "Alle hændelser"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
-msgstr "Matcher alle hændelser i slægtsbogen"
+msgstr "Matcher alle hændelser i databasen"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:47
 msgid "Events changed after <date time>"
-msgstr "Hændelser der er ændret efter <dato klokkeslet>"
+msgstr "Hændelser der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:48
 msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Matcher hændelsesoptegnelser som er ændret efter et angivet dato/tidspunkt (år- mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher hændelsesoptegnelser som er ændret efter et angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -25024,14 +24977,12 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Matcher hændelser med en hændelsesattribut af en bestemt værdi"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-#, fuzzy
 msgid "Event with the <citation>"
-msgstr "Hændelser med <data>"
+msgstr "Hændelse med <citering>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
-#, fuzzy
 msgid "Matches events with a citation of a particular value"
-msgstr "Matcher hændelser der indeholder data med en bestemt værdi"
+msgstr "Matcher hændelser med en citering der har bestemt værdi"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
 msgid "Events with <data>"
@@ -25151,15 +25102,15 @@ msgstr "Alle steder"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
-msgstr "Matcher alle steder i slægtsbogen"
+msgstr "Matcher alle steder i databasen"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:47
 msgid "Places changed after <date time>"
-msgstr "Steder der er ændret efter <dato klokkeslet>"
+msgstr "Steder der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:48
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher stedsoptegnelser som er ændret efter en angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher stedsoptegnelser som er ændret efter en angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:46
 msgid "Places with <count> media"
@@ -25244,7 +25195,7 @@ msgstr "Steder der matcher parametre"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Matches places with particular parameters"
-msgstr "Passer med steder med bestemte parametre"
+msgstr "Matcher steder med bestemte parametre"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
 msgid "Places with a reference count of <count>"
@@ -25302,7 +25253,7 @@ msgstr "Steder der er markeret private"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:44
 msgid "Matches places that are indicated as private"
-msgstr "Passer med steder der er markeret private"
+msgstr "Matcher steder der er markeret private"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
 msgid "Places with <Id> matching regular expression"
@@ -25310,7 +25261,7 @@ msgstr "Steder med <id> der passer med regulært udtryk"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "Passer med steder hvis Gramps-id matcher det regulære udtryk"
+msgstr "Matcher steder hvis Gramps-id matcher det regulære udtryk"
 
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:47
 msgid "Places with the <source>"
@@ -25337,14 +25288,12 @@ msgid "Matches places with a certain number of sources connected to it"
 msgstr "Matcher steder med et vist antal tilknyttede kilder"
 
 #: ../src/Filters/Rules/Place/_HasCitation.py:52
-#, fuzzy
 msgid "Place with the <citation>"
-msgstr "Personer med <mærkat>"
+msgstr "Sted med <citering>"
 
 #: ../src/Filters/Rules/Place/_HasCitation.py:53
-#, fuzzy
 msgid "Matches places with a citation of a particular value"
-msgstr "Matcher personer med en bestemt fødselsdato"
+msgstr "Matcher steder med en citering der har bestemt værdi"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:45
 msgid "Every source"
@@ -25352,15 +25301,15 @@ msgstr "Alle kilder"
 
 #: ../src/Filters/Rules/Source/_AllSources.py:46
 msgid "Matches every source in the database"
-msgstr "Passer med alle kilder i slægtsbogen"
+msgstr "Matcher alle kilder i databasen"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:47
 msgid "Sources changed after <date time>"
-msgstr "Kilder som er ændret efter <dato klokkeslet>"
+msgstr "Kilder som er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:48
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher kildeoptegnelser som er ændret efter en angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher kildeoptegnelser som er ændret efter en angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:46
 msgid "Sources with <count> media"
@@ -25376,7 +25325,7 @@ msgstr "Kilde med <id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Passer med en kilde med en angivet Gramps-id"
+msgstr "Matcher en kilde med en angivet Gramps-id"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
@@ -25392,7 +25341,7 @@ msgstr "Kilder med noter der indeholder <regulært udtryk>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Passer med kilder med noter der indeholder regulært udtryk"
+msgstr "Matcher kilder med noter der indeholder regulært udtryk"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
@@ -25400,7 +25349,7 @@ msgstr "Kilder med noter der passer med <delstreng>"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Passer med kilder med noter der indeholder en delstreng"
+msgstr "Matcher kilder med noter der indeholder en delstreng"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 msgid "Sources with a reference count of <count>"
@@ -25436,7 +25385,7 @@ msgstr "Kilder der passer med <filteret>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
-msgstr "Passer med kilder som passer med det angivne filternavn"
+msgstr "Matcher kilder som passer med det angivne filternavn"
 
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:45
 msgid "Sources with repository reference matching the <repository filter>"
@@ -25462,7 +25411,7 @@ msgstr "Kilder der er markeret private"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:44
 msgid "Matches sources that are indicated as private"
-msgstr "Passer med kilder der er markeret private"
+msgstr "Matcher kilder der er markeret private"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
 msgid "Sources with <Id> matching regular expression"
@@ -25470,107 +25419,87 @@ msgstr "Kilder med <id> der passer med regulært udtryk"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr "Passer med kilder hvis Gramps-id matcher det regulære udtryk"
+msgstr "Matcher kilder hvis Gramps-id matcher det regulære udtryk"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:46
-#, fuzzy
 msgid "Every citation"
-msgstr "Citering"
+msgstr "Enhver citering"
 
 #: ../src/Filters/Rules/Citation/_AllCitations.py:47
-#, fuzzy
 msgid "Matches every citation in the database"
-msgstr "Matcher alle i slægtsbogen"
+msgstr "Matcher enhver citering i databasen"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:47
-#, fuzzy
 msgid "Citations changed after <date time>"
-msgstr "Personer der er ændret efter <dato klokkeslet>"
+msgstr "Citeringer der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Citation/_ChangedSince.py:48
-#, fuzzy
 msgid "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher personoptegnelser som er ændret efter et angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher citeringer som er ændret efter et angivet dato/tidspunkt (yyyy-mm-dd hh:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:44
-#, fuzzy
 msgid "Citations marked private"
-msgstr "Noter der er markeret private"
+msgstr "Citeringer der er markeret private"
 
 #: ../src/Filters/Rules/Citation/_CitationPrivate.py:45
-#, fuzzy
 msgid "Matches citations that are indicated as private"
-msgstr "Matcher objekter der er markeret private"
+msgstr "Matcher citeringer der er markeret private"
 
 #: ../src/Filters/Rules/Citation/_HasCitation.py:52
-#, fuzzy
 msgid "Citations matching parameters"
-msgstr "Noter der passer med parametre"
+msgstr "Citeringer der passer med parametre"
 
 #: ../src/Filters/Rules/Citation/_HasCitation.py:54
-#, fuzzy
 msgid "Matches citations with particular parameters"
-msgstr "Passer med noter med bestemte parametre"
+msgstr "Matcher citeringer med bestemte parametre"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:46
-#, fuzzy
 msgid "Citations with <count> media"
-msgstr "Familier med <antal> medieobjekter"
+msgstr "Citeringer med <antal> medier"
 
 #: ../src/Filters/Rules/Citation/_HasGallery.py:47
-#, fuzzy
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Matcher familier med et bestemt antal elementer i galleriet"
+msgstr "Matcher citeringer med et bestemt antal elementer i galleriet"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:46
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Person med <id>"
+msgstr "Citering med <Id>"
 
 #: ../src/Filters/Rules/Citation/_HasIdOf.py:47
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Matcher en familie med en angivet Gramps-id"
+msgstr "Matcher en citering med et angivet Gramps-ID"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:47
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Familier med <antal> noter"
+msgstr "Citeringer med <antal> noter"
 
 #: ../src/Filters/Rules/Citation/_HasNote.py:48
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "Matcher hændelser med et bestemt antal noter"
+msgstr "Matcher citeringer med et bestemt antal noter"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Familier med noter der indeholder <delstreng>"
+msgstr "Citeringer med noter der indeholder <delstreng>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "Matcher familier hvis noter indeholder tekst der matcher en delstreng"
+msgstr "Matcher citeringer hvis noter indeholder tekst der matcher en delstreng"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Familier med noter der indeholder <regulært udtryk>"
+msgstr "Citeringer med noter der indeholder <regulært udtryk>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a regular expression"
-msgstr "Matcher familier med noter der indeholder regulært udtryk"
+msgstr "Matcher citeringer med noter der indeholder tekst der matcher et regulært udtryk"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Noter med et antal henvisninger på <antal>"
+msgstr "Citeringer med et antal henvisninger på <antal>"
 
 #: ../src/Filters/Rules/Citation/_HasReferenceCountOf.py:45
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "Matcher noter med et bestemt antal henvisninger"
+msgstr "Matcher citeringer med et bestemt antal henvisninger"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:49
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -25600,64 +25529,52 @@ msgid "Sources matching parameters"
 msgstr "Kilder der passer med parametre"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:54
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "Matcher familier med en bestemt hændelse"
+msgstr "Matcher citeringer med en bestemt kilder der har en bestemt værdi"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:56
-#, fuzzy
 msgid "Source filters"
 msgstr "Kildefiltre"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Noter der matcher <filteret>"
+msgstr "Citeringer der matcher <filter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:47
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "Matcher noter som passer med det angivne filternavn"
+msgstr "Matcher citeringer som matcher det angivne filternavn"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Arkivnavn der indeholder <delstreng>"
+msgstr "Citering Bind/Side indeholder <delstreng>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "Matcher arkiver med et navn der indeholder en bestemt delstreng"
+msgstr "Matcher citeringer med et Bind/Side der indeholder en bestemt delstreng"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Noter med <id> der matcher regulært udtryk"
+msgstr "Citeringer med <Id> der matcher regulært udtryk"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Matcher noter hvis Gramps-id matcher det regulære udtryk"
+msgstr "Matcher citeringer hvis Gramps-ID matcher det regulære udtryk"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
-#, fuzzy
 msgid "Citations with a source with a repository reference matching the <repository filter>"
-msgstr "Kilder med en arkivhenvisning der matcher <arkivfilter>"
+msgstr "Citeringer med en kilde med en arkivhenvisning der matcher <arkivfilter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:49
-#, fuzzy
 msgid "Matches citations with sources with a repository reference that match a certain repository filter"
-msgstr "Matcher kilder med en arkivhenvisning der matcher et bestemt arkivfilter"
+msgstr "Matcher citeringer af kilder en arkivhenvisning der matcher et bestemt arkivfilter"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Hændelser med en kilde der matcher <kildefilter>"
+msgstr "Citeringer med en kilde der matcher <kildefilter>"
 
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:51
-#, fuzzy
 msgid "Matches citations with sources that match the specified source filter name"
-msgstr "Matcher hændelser der har kilder som passer med det angivne navn på kildefilter"
+msgstr "Matcher citeringer af kilder som passer med det angivne navn på kildefilter"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -25665,15 +25582,15 @@ msgstr "Alle medieobjekter"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Passer med alle medieobjekter i slægtsbogen"
+msgstr "Matcher alle medieobjekter i databasen"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:47
 msgid "Media objects changed after <date time>"
-msgstr "Medieobjekter der er ændret efter <dato klokkeslet>"
+msgstr "Medieobjekter der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:48
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
-msgstr "Matcher medieobjektoptegnelser som er ændret efter en angivet dato/tidspunkt(år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher medieobjektoptegnelser som er ændret efter en angivet dato/tidspunkt(åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
 msgid "Media objects with the attribute <attribute>"
@@ -25689,7 +25606,7 @@ msgstr "Medieobjekt med <id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Passer med medieobjekter med en angivet Gramps-id"
+msgstr "Matcher medieobjekter med en angivet Gramps-id"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -25763,44 +25680,36 @@ msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr "Matcher medieobjekter hvis Gramps-id indeholder et regulært udtryk"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:46
-#, fuzzy
 msgid "Media with <count> sources"
-msgstr "Personer med <antal> kilder"
+msgstr "Medier med <antal> kilder"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceCount.py:47
-#, fuzzy
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Matcher familier med et bestemt antal tilknyttede kilder"
+msgstr "Matcher medier med et bestemt antal tilknyttede kilder"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:51
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "Hændelser med <data>"
+msgstr "Medie med <citering>"
 
 #: ../src/Filters/Rules/MediaObject/_HasCitation.py:52
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "Matcher familier med en bestemt hændelse"
+msgstr "Matcher medier med en citering der har en bestemt værdi"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:47
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "Personer med <kilden>"
+msgstr "Medier med <kilde>"
 
 #: ../src/Filters/Rules/MediaObject/_HasSourceOf.py:49
-#, fuzzy
 msgid "Matches media who have a particular source"
-msgstr "Matcher personer med en bestemt kilde"
+msgstr "Matcher medier med en bestemt kilde"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:45
-#, fuzzy
 msgid "Media with at least one direct source >= <confidence level>"
-msgstr "Hændelser med mindst en direkte kilde >= <troværdighedsniveau>"
+msgstr "Medier med mindst en direkte kilde >= <troværdighedsniveau>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesSourceConfidence.py:46
-#, fuzzy
 msgid "Matches media with at least one direct source with confidence level(s)"
-msgstr "Matcher familier der har mindst en direkte kilde med troværdighedsniveau(er)"
+msgstr "Matcher medier med mindst en direkte kilde med troværdighedsniveau(er)"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -25808,15 +25717,15 @@ msgstr "Alle arkiver"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
-msgstr "Matcher alle arkiver i slægtsbogen"
+msgstr "Matcher alle arkiver i databasen"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:47
 msgid "Repositories changed after <date time>"
-msgstr "Arkiver der er ændret efter <dato klokkeslet>"
+msgstr "Arkiver der er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:48
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Matcher arkivoptegnelser som er ændret efter en angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher arkivoptegnelser som er ændret efter en angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -25848,7 +25757,7 @@ msgstr "Arkiver med et henvisningsantal af <antal>"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Passer med arkiver med et bestemt antal henvisninger"
+msgstr "Matcher arkiver med et bestemt antal henvisninger"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 #: ../src/plugins/tool/phpgedview.glade.h:5
@@ -25861,7 +25770,7 @@ msgstr "Arkiver der passer med disse parametre"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr "Passer med arkiver med bestemte parametre"
+msgstr "Matcher arkiver med bestemte parametre"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
@@ -25901,15 +25810,15 @@ msgstr "Alle noter"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:46
 msgid "Matches every note in the database"
-msgstr "Passer med alle noter i slægtsbogen"
+msgstr "Matcher alle noter i databasen"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:47
 msgid "Notes changed after <date time>"
-msgstr "Noter som er ændret efter <dato klokkeslet>"
+msgstr "Noter som er ændret efter <dato tidspunkt>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:48
 msgid "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Matcher noteoptegnelser som er ændret efter en angivet dato/tidspunkt (år-mdr-dag time:min:sek), eller indenfor et tidsinterval hvis en supplerende dato/tidspunkt er angivet."
+msgstr "Matcher noteoptegnelser som er ændret efter en angivet dato/tidspunkt (åååå-mm-dd tt:mm:ss), eller indenfor et tidsinterval hvis endnu en dato/tidspunkt er angivet."
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
@@ -25917,7 +25826,7 @@ msgstr "Note med <id>"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Passer med en note med en angivet Gramps-id"
+msgstr "Matcher en note med en angivet Gramps-id"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
@@ -25949,7 +25858,7 @@ msgstr "Noter der passer med parametre"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
-msgstr "Passer med noter med bestemte parametre"
+msgstr "Matcher noter med bestemte parametre"
 
 #: ../src/Filters/Rules/Note/_HasTag.py:49
 msgid "Notes with the <tag>"
@@ -26016,13 +25925,12 @@ msgid "Custom filter"
 msgstr "Tilpasset filter"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
-#, fuzzy
 msgid "Participants"
-msgstr "Primære deltagere"
+msgstr "Deltagere"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:90
 msgid "any"
-msgstr "alle"
+msgstr "enhver"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
@@ -26242,21 +26150,20 @@ msgstr "Klik for at udfolde/sammenfolde"
 
 #: ../src/glade/grampletpane.glade.h:3
 msgid "Close"
-msgstr ""
+msgstr "Luk"
 
+# FIXME Better translation of this non-word?
 #: ../src/glade/grampletpane.glade.h:4
-#, fuzzy
 msgid "Config"
-msgstr "Konfigurér"
+msgstr "Konfig"
 
 #: ../src/glade/grampletpane.glade.h:5
 msgid "Delete"
 msgstr "Slet"
 
 #: ../src/glade/grampletpane.glade.h:6
-#, fuzzy
 msgid "Detach"
-msgstr "Detaljer"
+msgstr "Frigør"
 
 #: ../src/glade/grampletpane.glade.h:7
 msgid "Drag to move; click to detach"
@@ -26276,31 +26183,27 @@ msgstr "<b>Forældre-slægtskaber</b>"
 
 #: ../src/glade/reorder.glade.h:3
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Pil bund"
 
 #: ../src/glade/reorder.glade.h:4
 msgid "Arrow top"
-msgstr ""
+msgstr "Pil top"
 
 #: ../src/glade/reorder.glade.h:5
-#, fuzzy
 msgid "Move family down"
-msgstr "Fjern slægtsbog"
+msgstr "Ryk familie ned"
 
 #: ../src/glade/reorder.glade.h:6
-#, fuzzy
 msgid "Move family up"
-msgstr "Alle familier"
+msgstr "Ryk familie op"
 
 #: ../src/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move parent down"
-msgstr "Fandt ingen forældre"
+msgstr "Ryk forælder ned"
 
 #: ../src/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move parent up"
-msgstr "Fandt ingen forældre"
+msgstr "Ryk forælder op"
 
 #: ../src/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -26347,7 +26250,7 @@ msgstr "Behold henvisning til den manglende fil"
 
 #: ../src/glade/questiondialog.glade.h:6
 msgid "Remove object and all references to it from the database"
-msgstr "Fjern objekt og alle henvisninger til det fra slægtsbogen"
+msgstr "Fjern objekt og alle henvisninger til det fra databasen"
 
 #: ../src/glade/questiondialog.glade.h:7
 msgid "Select replacement for the missing file"
@@ -26569,9 +26472,8 @@ msgid "Abo_ve:"
 msgstr "_Over:"
 
 #: ../src/glade/styleeditor.glade.h:15
-#, fuzzy
 msgid "Add a new style"
-msgstr "Tilføj en ny note"
+msgstr "Tilføj en ny stil"
 
 #: ../src/glade/styleeditor.glade.h:16
 msgid "Belo_w:"
@@ -26582,20 +26484,17 @@ msgid "Cen_ter"
 msgstr "_Centrér"
 
 #: ../src/glade/styleeditor.glade.h:18
-#, fuzzy
 msgid "Delete the selected style"
-msgstr "Slet den valgte note"
+msgstr "Slet den valgte stil"
 
 #: ../src/glade/styleeditor.glade.h:20
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Redigér den valgte note"
+msgstr "Redigér den valgte stil"
 
 #: ../src/glade/styleeditor.glade.h:21 ../src/glade/editfamily.glade.h:12
 #: ../src/glade/editchildref.glade.h:3 ../src/glade/rule.glade.h:20
-#, fuzzy
 msgid "Edition"
-msgstr "Uddannelse"
+msgstr "Udgave"
 
 #: ../src/glade/styleeditor.glade.h:22
 msgid "First li_ne:"
@@ -26626,9 +26525,8 @@ msgid "Style n_ame:"
 msgstr "Stil_navn:"
 
 #: ../src/glade/styleeditor.glade.h:30
-#, fuzzy
 msgid "Style name"
-msgstr "Stilnavn:"
+msgstr "Stilnavn"
 
 #: ../src/glade/styleeditor.glade.h:31
 msgid "_Bold"
@@ -26699,14 +26597,12 @@ msgid "_Rename"
 msgstr "_Omdøb"
 
 #: ../src/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Slægtskabsinformation</b>"
+msgstr "<b>Citeringsinformation</b>"
 
 #: ../src/glade/editcitation.glade.h:3
-#, fuzzy
 msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
-msgstr "<b>NB:</b> Alle ændringer i oplysninger om delte arkiver, vil afspejles i selve arkivet og gælde for alle elementer der har reference til arkivet."
+msgstr "<b>NB:</b> Alle ændringer i de delte oplysninger om citeringer vil afspejles i selve citeringen og gælde for alle elementer der referer til citeringen."
 
 #: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:2
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
@@ -26717,9 +26613,8 @@ msgid "<b>Shared source information</b>"
 msgstr "<b>Delte kildeoplysninger</b>"
 
 #: ../src/glade/editcitation.glade.h:6
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "En entydig id til at identificere hændelsen"
+msgstr "Et entydigt id til at identificere hændelsen"
 
 #: ../src/glade/editcitation.glade.h:10 ../src/glade/editsourceref.glade.h:8
 msgid "Con_fidence:"
@@ -26859,9 +26754,8 @@ msgstr "Vælg en person der har en tilknytning til den redigerede person."
 #: ../src/glade/editpersonref.glade.h:9 ../src/glade/editlink.glade.h:5
 #: ../src/glade/editfamily.glade.h:19 ../src/glade/editldsord.glade.h:9
 #: ../src/glade/editevent.glade.h:12
-#, fuzzy
 msgid "Selector"
-msgstr "Vælg"
+msgstr "Vælger"
 
 #: ../src/glade/editpersonref.glade.h:10
 msgid "Use the select button to choose a person that has an association to the edited person."
@@ -26952,7 +26846,6 @@ msgid "Internet Address:"
 msgstr "Internetadresse:"
 
 #: ../src/glade/editlink.glade.h:6
-#, fuzzy
 msgid "_Link Type:"
 msgstr "Link-type:"
 
@@ -27085,12 +26978,11 @@ msgstr "Beskrivende titel for dette medieobjekt."
 
 #: ../src/glade/editmedia.glade.h:6 ../src/glade/editmediaref.glade.h:9
 msgid "Folder"
-msgstr ""
+msgstr "Mappe"
 
 #: ../src/glade/editmedia.glade.h:7
-#, fuzzy
 msgid "Image preview"
-msgstr "Billedstørrelse"
+msgstr "Forhåndsvisning af billede"
 
 #: ../src/glade/editmedia.glade.h:9
 msgid "Open File Browser to select a media file on your computer."
@@ -27157,12 +27049,10 @@ msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Type af medieobjekt som antydet af computeren, f.eks. billede, video, ..."
 
 #: ../src/glade/editmediaref.glade.h:27
-#, fuzzy
 msgid "_Corner 1:  X"
 msgstr "Hjørne 1:  X"
 
 #: ../src/glade/editmediaref.glade.h:28
-#, fuzzy
 msgid "_Corner 2:  X"
 msgstr "Hjørne 2:  X"
 
@@ -27200,7 +27090,6 @@ msgid "Ordinance:"
 msgstr "Ordination:"
 
 #: ../src/glade/editldsord.glade.h:11
-#, fuzzy
 msgid "_Family:"
 msgstr "Familie:"
 
@@ -27221,9 +27110,8 @@ msgid "A unique ID to identify the note."
 msgstr "En entydig id til at identificere noten."
 
 #: ../src/glade/editnote.glade.h:6
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Redigering af stil"
+msgstr "Stilet tekstredigering"
 
 #: ../src/glade/editnote.glade.h:8
 msgid ""
@@ -27422,7 +27310,6 @@ msgid "<b>Source 2</b>"
 msgstr "<b>Kilde 2</b>"
 
 #: ../src/glade/mergecitation.glade.h:3
-#, fuzzy
 msgid "Confidence:"
 msgstr "Troværdighed:"
 
@@ -27443,18 +27330,16 @@ msgid "Gramps ID:"
 msgstr "Gramps-id:"
 
 #: ../src/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "Noter, medieobjekter, dataelementer og arkivhenvisninger for begge kilder vil blive kombineret."
+msgstr "Noter, medieobjekter og dataelementer for begge citeringer vil blive kombineret."
 
 #: ../src/glade/mergecitation.glade.h:8
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Vælg den person, der vil levere de\n"
-"primære data for den sammenflettede person."
+"Vælg den citering, der vil levere de\n"
+"primære data for den sammenflettede citering."
 
 #: ../src/glade/mergedata.glade.h:3
 msgid "<b>Title selection</b>"
@@ -27769,32 +27654,26 @@ msgid "Size:"
 msgstr "Størrelse:"
 
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "_Bottom:"
-msgstr "_Bund"
+msgstr "_Bund:"
 
 #: ../src/glade/papermenu.glade.h:8
-#, fuzzy
 msgid "_Height:"
-msgstr "Højde:"
+msgstr "_Højde:"
 
 #: ../src/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
-msgstr "Vens_tre"
+msgstr "Vens_tre:"
 
 #: ../src/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
-msgstr "H_øjre"
+msgstr "H_øjre:"
 
 #: ../src/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
-msgstr "_Top"
+msgstr "_Top:"
 
 #: ../src/glade/papermenu.glade.h:12
-#, fuzzy
 msgid "_Width:"
 msgstr "Bredde:"
 
@@ -27940,35 +27819,29 @@ msgstr "Brug soundex-koder"
 
 #: ../src/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "Sammenflet ikke, hvis citeringen har noter"
 
 #: ../src/plugins/tool/ownereditor.glade.h:1
-#, fuzzy
 msgid "_City:"
 msgstr "By:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "_Country:"
 msgstr "Land:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "_Email:"
 msgstr "E-post:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "_Phone:"
 msgstr "Telefon:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:8
-#, fuzzy
 msgid "_Street:"
-msgstr "Gade:"
+msgstr "Gade/vej:"
 
 #: ../src/plugins/tool/ownereditor.glade.h:9
-#, fuzzy
 msgid "_ZIP/Postal Code:"
 msgstr "Postnummer:"
 
@@ -27983,7 +27856,7 @@ msgid ""
 "\n"
 "Run this tool several times to correct names that have multiple information that can be extracted."
 msgstr ""
-"Nedenfor er en liste over de tilnavne, titler, forstavelser og sammensatte efternavne som Gramps kan udtrække fra slægtsbogen.\n"
+"Nedenfor er en liste over de tilnavne, titler, forstavelser og sammensatte efternavne som Gramps kan udtrække fra databasen.\n"
 "Hvis du godkender ændringerne, vil Gramps ændre de poster som er blevet udvalgt.\n"
 "\n"
 "Sammensatte efternavne bliver vist som lister af [forstavelse, efternavn, bindeled].\n"
@@ -28145,9 +28018,8 @@ msgid "Mi_nimum age to marry"
 msgstr "M_indste alder hvor man kan gifte sig"
 
 #: ../src/plugins/tool/verify.glade.h:21
-#, fuzzy
 msgid "_Estimate missing or inexact dates"
-msgstr "_Anslå manglende datoer"
+msgstr "_Anslå manglende eller upræcise datoer"
 
 #: ../src/plugins/tool/verify.glade.h:23
 msgid "_Identify invalid dates"
@@ -28227,11 +28099,11 @@ msgstr "Arbejd med slægtsoplysninger, udfør slægtsforskning og analyser"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
 msgid "Gramps XML database"
-msgstr "Gramps XML-slægtsbog"
+msgstr "Gramps XML-database"
 
 #: ../data/gramps.keys.in.h:4 ../data/gramps.xml.in.h:4
 msgid "Gramps database"
-msgstr "Gramps-slægtsbog"
+msgstr "Gramps-database"
 
 #: ../data/gramps.keys.in.h:5 ../data/gramps.xml.in.h:5
 msgid "Gramps package"
@@ -28243,11 +28115,11 @@ msgstr "GeneWeb-kildefil"
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr "<b>Tilføje børn</b><br/>For at tilføje børn i Gramps, er der to muligheder. Du kan finde en af dets forældre i oversigten \"Familier\" og åbne denne familie, og herefter vælge at oprette en ny person eller tilføje en eksisterende person. Du kan også tilføje børn (eller søskende) inde fra familieredigeringsdialogen."
+msgstr "<b>Tilføje børn</b><br/>For at tilføje børn i Gramps, er der to muligheder. Du kan finde en af dets forældre i oversigten 'Familier' og åbne denne familie, og herefter vælge at oprette en ny person eller tilføje en eksisterende person. Du kan også tilføje børn (eller søskende) inde fra familieredigeringsdialogen."
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Adding Images</b><br/>An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser. Actually you can add any type of file like this, useful for scans of documents and other digital sources."
-msgstr "<b>Tilføje billeder</b><br/>Et billede kan føjes til ethvert galleri eller i oversigten \"Medier\" ved at trække og slippe det fra et filstyringsprogram eller fra en web-browser. Faktisk kan du tilføje alle filtyper på denne måde. Dette kan være nyttigt for skannede dokumenter eller andre digitale kilder."
+msgstr "<b>Tilføje billeder</b><br/>Et billede kan føjes til ethvert galleri eller i oversigten 'Medier' ved at trække og slippe det fra et filstyringsprogram eller fra en web-browser. Faktisk kan du tilføje alle filtyper på denne måde. Dette kan være nyttigt for skannede dokumenter eller andre digitale kilder."
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options."
@@ -28259,7 +28131,7 @@ msgstr "<b>Bograpporter</b><br/>Menupunktet &quot;Rapporter &gt; Bøger &gt; Bog
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
-msgstr "<b>Sætte bogmærke for personer</b><br/>I menupunktet \"Bogmærker\" øverst i vinduet, kan man bekvemt gemme navnene på personer man ofte arbejder med. Ved at vælge et bogmærke, vil denne person blive den aktive person. For at sætte et bogmærke for en person, gøres denne til den aktive person, herefter klikkes på &quot;Bogmærker &gt; Tilføj bogmærke&quot; eller tast ctrl-d. Du kan også sætte et bogmærke for de fleste andre objekter."
+msgstr "<b>Sætte bogmærke for personer</b><br/>I menupunktet 'Bogmærker' øverst i vinduet, kan man bekvemt gemme navnene på personer man ofte arbejder med. Ved at vælge et bogmærke, vil denne person blive den aktive person. For at sætte et bogmærke for en person, gøres denne til den aktive person, herefter klikkes på &quot;Bogmærker &gt; Tilføj bogmærke&quot; eller tast ctrl-d. Du kan også sætte et bogmærke for de fleste andre objekter."
 
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported."
@@ -28267,7 +28139,7 @@ msgstr "<b>Beregning af slægtskaber</b><br/>Dette værktøj under &quot;Værkt�
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
-msgstr "<br>Ændre den aktive person</br><br/>At ændre den aktive person i oversigterne er let. I oversigten Slægtsforhold, kan man man blot klikke på enhver person. I oversigten Aner, kan man dobbeltklikke på personen eller højreklikke for at vælge enhver af dennes ægtefæller, søskende, børn eller forældre."
+msgstr "<b>Ændre den aktive person</b><br/>At ændre den aktive person i oversigterne er let. I oversigten Slægtsforhold, kan man blot klikke på enhver af personerne. I oversigten Aner, kan man dobbeltklikke på personen eller højreklikke for at vælge enhver af dennes ægtefæller, søskende, børn eller forældre."
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write programs? Not a problem! A project as large as Gramps requires people with a wide variety of skills. Contributions can be anything from writing documentation to testing development versions and helping with the web site. Start by subscribing to the Gramps developers mailing list, gramps-devel, and introducing yourself. Subscription information can be found at &quot;Help &gt; Gramps Mailing Lists&quot;"
@@ -28278,13 +28150,12 @@ msgid "<b>Directing Your Research</b><br/>Go from what you know to what you do n
 msgstr "<b>Retning i din slægtsforskning</b><br/>Arbejd ud fra det du ved og henimod det du ikke ved. Registrér altid alle fakta, før du gætter. De forhåndenværende fakta vil ofte lede til andre muligheder for udforskning. Lad være med at spilde tid på at pløje gennem tusindvis af optegnelser, i håb om at komme på sporet af noget, når du har andre uudforskede spor."
 
 #: ../src/data/tips.xml.in.h:10
-#, fuzzy
 msgid "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps."
-msgstr "<b>No Speaka de English?</b><br/>Gramps er blevet oversat til mere end 20 sprog. Hvis Gramps er oversat til dit sprog uden at dette bliver vist, så angiv dit sprog som standardsproget på din maskine og genstart Gramps."
+msgstr "<b>Forstår du ikke dansk?</b><br/>Gramps er blevet oversat til mere end 20 sprog. Hvis Gramps er oversat til dit sprog uden at dette bliver vist, så angiv dit sprog som standardsproget på din maskine og genstart Gramps."
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find Possible Duplicate People...&quot; allows you to locate (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Dublerede personer</b><br/> &quot;Værktøjer &gt; Slægtsbogsbehandling &gt; Find muligt dublerede personer ...&quot; hjælper dig med at finde frem til (og sammenflette) poster over den samme person som er føjet til slægtsbogen mere end en gang."
+msgstr "<b>Dublerede personer</b><br/> &quot;Værktøjer &gt; Databasebehandling &gt; Find muligt dublerede personer ...&quot; hjælper dig med at finde frem til (og sammenflette) poster over den samme person som er føjet til databasen mere end en gang."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
@@ -28320,7 +28191,7 @@ msgstr "<b>Gramps Rapporter</b><br/>Gramps tilbyder en bred vifte af rapporter. 
 
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow you to undertake operations such as checking the database for errors and consistency. There are research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and many others. All tools can be accessed through the &quot;Tools&quot; menu."
-msgstr "<b>Gramps værktøjer</b><br/>Med Gramps følger en rigt udbud af værktøjer som lader dig udføre operationer som f.eks. at kontrollere slægtsbogen for fejl og integritet, finde dublerede personer, sammenligne hændelser, interaktivt gennemsyn af efterkommere m.v. Alle værktøjer kan findes under menupunktet &quot;Værktøjer&quot;."
+msgstr "<b>Gramps værktøjer</b><br/>Med Gramps følger en rigt udbud af værktøjer som lader dig udføre operationer som f.eks. at kontrollere databasen for fejl og integritet, finde dublerede personer, sammenligne hændelser, interaktivt gennemsyn af efterkommere m.v. Alle værktøjer kan findes under menupunktet &quot;Værktøjer&quot;."
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
@@ -28336,7 +28207,7 @@ msgstr "<b>Hej, привет eller 喂</b><br/>Uanset hvilket skript du bruger h
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists."
-msgstr "<b>Forbedring af Gramps</b><br/>Brugere opfordres til at anmode om forbedringer af Gramps. Man kan anmode om en forbedring gennem postlisterne gramps-users eller gramps-devel. Man kan også oprette en ønskeforespørgsel (\"feature request\") på http://bugs.gramps-project.org. Anmodning gennem en ønskeforespørgsel foretrækkes, men det kan være fornuftigt at diskutere dine ideer på e-postlisterne."
+msgstr "<b>Forbedring af Gramps</b><br/>Brugere opfordres til at anmode om forbedringer af Gramps. Man kan anmode om en forbedring gennem postlisterne gramps-users eller gramps-devel. Man kan også oprette en ønskeforespørgsel ('feature request') på http://bugs.gramps-project.org. Anmodning gennem en ønskeforespørgsel foretrækkes, men det kan være fornuftigt at diskutere dine ideer på e-postlisterne."
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;."
@@ -28344,11 +28215,11 @@ msgstr "<b>Ugyldige datoer</b><br/>Alle kommer sommetider til at angive datoer i
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
-msgstr "<b>Omvendt filtrering</b><br/>Filtre kan let gives den modsatte virkning ved at bruge \"invertér\"-funktionen. F.eks. ved at invertere filteret \"Personer med børn\", kan du vælge alle personer uden børn."
+msgstr "<b>Omvendt filtrering</b><br/>Filtre kan let gives den modsatte virkning ved at bruge 'invertér'-funktionen. F.eks. ved at invertere filteret 'Personer med børn', kan du vælge alle personer uden børn."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr "<b>Kvalitet i optegnelserne</b><br/>Vær omhyggelig når du registrerer genealogisk information. Lad være med at gøre antagelser når du registrerer primær information; skriv det præcis som du ser det og brug kantparanteser til at angive dine egne tilføjelser, udeladelser eller kommentarer. Det anbefales at bruge det latinske ord \"sic\" til at angive at en oplysning i originalkilden forekommer at være ukorrekt."
+msgstr "<b>Kvalitet i optegnelserne</b><br/>Vær omhyggelig når du registrerer genealogisk information. Lad være med at gøre antagelser når du registrerer primær information; skriv det præcis som du ser det og brug kantparanteser til at angive dine egne tilføjelser, udeladelser eller kommentarer. Det anbefales at bruge det latinske ord 'sic' til at angive at en oplysning i originalkilden forekommer at være ukorrekt."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
@@ -28364,7 +28235,7 @@ msgstr "<b>At finde personer</b><br/>Som standard vises hvert efternavn i oversi
 
 #: ../src/data/tips.xml.in.h:31
 msgid "<b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web. The Gramps project provides free hosting of websites made with Gramps."
-msgstr "<b>Lave et genealogisk websted</b><br/>Du kan let eksportere din slægtsbog til en webside. Vælg hele slægtsbogen, slægtslinjer eller udvalgte personer som mål for websiden der herefter er klar til at blive uploadet til World Wide Web. Gramps-projektet tilbyder gratis værtskab for websteder der er lavet med Gramps."
+msgstr "<b>Lave et genealogisk websted</b><br/>Du kan let eksportere din slægtsbog til en webside. Vælg hele databasen, slægtslinjer eller udvalgte personer som mål for websiden der herefter er klar til at blive uploadet til World Wide Web. Gramps-projektet tilbyder gratis værtskab for websteder der er lavet med Gramps."
 
 #: ../src/data/tips.xml.in.h:32
 msgid "<b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the prefered name by dragging it to the Prefered Name section."
@@ -28372,7 +28243,7 @@ msgstr "<b>Navnestyring</b><br/>Det er nemt at holde styr på personer med flere
 
 #: ../src/data/tips.xml.in.h:33
 msgid "<b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr "<b>Oversigten Steder</b><br/>Oversigten Steder viser en liste over alle steder i slægtsbogen. Denne liste kan sorteres efter en række forskellige kriterier som by, amt eller stat."
+msgstr "<b>Oversigten Steder</b><br/>Oversigten Steder viser en liste over alle steder i databasen. Denne liste kan sorteres efter en række forskellige kriterier som by, amt eller stat."
 
 #: ../src/data/tips.xml.in.h:34
 msgid "<b>Managing Sources</b><br/>The Sources View shows a list of all sources in a single window. From here you can edit your sources, merge duplicates and see which individuals reference each source. You can use filters to group your sources."
@@ -28380,11 +28251,11 @@ msgstr "<b>Kildestyring</b><br/>Oversigten Kilder viser en liste over alle kilde
 
 #: ../src/data/tips.xml.in.h:35
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr "<b>Oversigten Medier</b><br/>Oversigten Medier viser en liste over alle medier i slægtsbogen. Disse kan være digitale billeder, videoer, lydfragmenter, regneark, dokumenter, mv."
+msgstr "<b>Oversigten Medier</b><br/>Oversigten Medier viser en liste over alle medier i databasen. Disse kan være digitale billeder, videoer, lydfragmenter, regneark, dokumenter, mv."
 
 #: ../src/data/tips.xml.in.h:36
 msgid "<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge...&quot; allows you to combine separately listed people into one. Select the second entry by holding the Control key as you click. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual. This also works for the Places, Sources and Repositories views."
-msgstr "<b>Sammenflette personer</b><br/>Funktionen &quot;Redigér &gt; Sammenflet&quot; lader dig forene separat opførte personer. Vælg den anden person ved at trykke på ctrl-tasten samtidig med at du klikker. Dette er meget nyttigt når to slægtsbøger med fælles personer skal kombineres, eller når en person fejlagtigt optræder flere gange under forskellige navne. Dette fungerer også for oversigterne Steder, Kilder og Arkiver."
+msgstr "<b>Sammenflette personer</b><br/>Funktionen &quot;Redigér &gt; Sammenflet&quot; lader dig forene separat opførte personer. Vælg den anden person ved at trykke på ctrl-tasten samtidig med at du klikker. Dette er meget nyttigt når to databaser med fælles personer skal kombineres, eller når en person fejlagtigt optræder flere gange under forskellige navne. Dette fungerer også for oversigterne Steder, Kilder og Arkiver."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
@@ -28424,19 +28295,19 @@ msgstr "<b>Angiv dine indstillinger</b><br/>Menupunktet &quot;Redigér &gt; Inds
 
 #: ../src/data/tips.xml.in.h:46
 msgid "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton."
-msgstr "<b>Trykknappen &quot;Vis alle&quot;</b><br/>Når en ægtefælle eller et barn tilføjes, bliver listen over viste personer filtreret til kun at vise de personer der realistisk vil have mulighed for at opfylde den ønskede slægtsrelation (baseret på datoer i slægtsbogen). Hvis Gramps filtrerer forkert, kan du sætte filteret ud af kraft ved at aktivere trykknappen &quot;Vis alle&quot;."
+msgstr "<b>Trykknappen &quot;Vis alle&quot;</b><br/>Når en ægtefælle eller et barn tilføjes, bliver listen over viste personer filtreret til kun at vise de personer der realistisk vil have mulighed for at opfylde den ønskede slægtsrelation (baseret på datoer i databasen). Hvis Gramps filtrerer forkert, kan du sætte filteret ud af kraft ved at aktivere trykknappen &quot;Vis alle&quot;."
 
 #: ../src/data/tips.xml.in.h:47
 msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
-msgstr "<b>Hvad betyder et navn?</b><br/>Ordet Gramps er et akronym og står for \"the Genealogical Research and Analysis Management Program System\". Det er et fuldt udrustet slægtsforskningsprogram som lader dig lagre og redigere genealogiske data. Databasen der ligger bag Gramps er så robust at nogle brugere håndterer hundredtusindvis af personer i den."
+msgstr "<b>Hvad betyder et navn?</b><br/>Ordet Gramps er et akronym og står for 'the Genealogical Research and Analysis Management Program System'. Det er et fuldt udrustet slægtsforskningsprogram som lader dig lagre og redigere genealogiske data. Databasen der ligger bag Gramps er så robust at nogle brugere håndterer hundredtusindvis af personer i den."
 
 #: ../src/data/tips.xml.in.h:48
 msgid "<b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;."
-msgstr "<b>SoundEx hjælper med din slægtsforskning</b><br/>SoundEx løser et gammelt problem i slægtsforskning, nemlig hvordan man håndterer forskellige staveformer. SoundEx-værktøjet er i stand til at danne en forenklet form af et efternavn som ligner efternavne der udtales på samme måde. At kende SoundEx-koden for et efternavn er vældig nyttigt i forbindelse med udforskning af folketællings-datafiler (mikrokort) på et bibliotek eller et andet forskningssted. For at danne SoundEx-koder for efternavne i din slægtsbog, gå til menupunktet &quot;Værktøjer &gt; Redskaber &gt; Generér SoundEx-koder&quot;."
+msgstr "<b>SoundEx hjælper med din slægtsforskning</b><br/>SoundEx løser et gammelt problem i slægtsforskning, nemlig hvordan man håndterer forskellige staveformer. SoundEx-værktøjet er i stand til at danne en forenklet form af et efternavn som ligner efternavne der udtales på samme måde. At kende SoundEx-koden for et efternavn er vældig nyttigt i forbindelse med udforskning af folketællings-datafiler (mikrokort) på et bibliotek eller et andet forskningssted. For at danne SoundEx-koder for efternavne i din database, gå til menupunktet &quot;Værktøjer &gt; Redskaber &gt; Generér SoundEx-koder&quot;."
 
 #: ../src/data/tips.xml.in.h:49
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
-msgstr "<b>Påbegynde en ny slægtsbog</b><br/>En god måde at påbegynde en ny slægtsbog på er at føje alle familiemedlemmerne til slægtsbogen ved at bruge oversigten Personer (brug &quot;Redigér &gt; Tilføj ...&quot;, eller klik på knappen &quot;Tilføj en ny person&quot; i oversigen Personer). Herefter skiftes til oversigten Slægtsforhold hvor slægtskaberne mellem personerne angives."
+msgstr "<b>Påbegynde en ny slægtsbog</b><br/>En god måde at påbegynde en ny slægtsbog på er at føje alle familiemedlemmerne til databasen ved at bruge oversigten Personer (brug &quot;Redigér &gt; Tilføj ...&quot;, eller klik på knappen &quot;Tilføj en ny person&quot; i oversigen Personer). Herefter skiftes til oversigten Slægtsforhold hvor slægtskaberne mellem personerne angives."
 
 #: ../src/data/tips.xml.in.h:50
 msgid "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
@@ -28444,7 +28315,7 @@ msgstr "<b>Tal med dine slægtninge, før det er for sent</b><br/>Dine ældste s
 
 #: ../src/data/tips.xml.in.h:51
 msgid "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about dates and names. It is about people. Be descriptive. Include why things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
-msgstr "<b>Din slægtsforsknings \"hvordan\" og \"hvorfor\"</b><br/>Slægtsforskning handler ikke kun om datoer og navne. Det handler om mennesker. Vær beskrivende: medtag så vidt muligt oplysninger om <b>hvorfor</b> ting skete som de skete, og om hvordan slægtninge kan være blevet formet af de begivenheder som de gennemgik. Fortællinger er vigtige bidrag til at gøre din families historie levende."
+msgstr "<b>Din slægtsforsknings 'hvordan' og 'hvorfor'</b><br/>Slægtsforskning handler ikke kun om datoer og navne. Det handler om mennesker. Vær beskrivende: medtag så vidt muligt oplysninger om <b>hvorfor</b> ting skete som de skete, og om hvordan slægtninge kan være blevet formet af de begivenheder som de gennemgik. Fortællinger er vigtige bidrag til at gøre din families historie levende."
 
 #: ../src/data/tips.xml.in.h:52
 msgid "<b>The Family View</b><br/>The Family View is used to display a typical family unit as two parents and their children."
@@ -28468,11 +28339,11 @@ msgstr "<b>Softwarelicensen til Gramps</b><br/>Du kan frit bruge og dele Gramps 
 
 #: ../src/data/tips.xml.in.h:57
 msgid "<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gramps XML Package. This is a compressed file containing your family tree data and all the media files connected to the database (images for example). This file is completely portable so is useful for backups or sharing with other Gramps users. This format has the key advantage over GEDCOM that no information is ever lost when exporting and importing."
-msgstr "<b>Gramps XML-pakke</b><br/>Du kan eksportere din slægtsbog til en Gramps XML--pakke. Dette er en komprimeret fil som indeholder data for dit slægtstræ og som indeholder alle de filer der bruges i slægtsbogen, som f.eks. billeder. Denne fil er fuldstændig flytbar og er derfor nyttig som sikkerhedskopi, eller til at blive delt med andre brugere af Gramps. Dette format har den fordel i forhold til GEDCOM, at ingen information nogensinde går tabt ved eksport og import."
+msgstr "<b>Gramps XML-pakke</b><br/>Du kan eksportere din slægtsbog til en Gramps XML--pakke. Dette er en komprimeret fil som indeholder data for din slægtsbog og som indeholder alle de filer der bruges i databasen, som f.eks. billeder. Denne fil er fuldstændig flytbar og er derfor nyttig som sikkerhedskopi, eller til at blive delt med andre brugere af Gramps. Dette format har den fordel i forhold til GEDCOM, at ingen information nogensinde går tabt ved eksport og import."
 
 #: ../src/data/tips.xml.in.h:58
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "<b>Proband</b><br/>Enhver kan vælges som proband i Gramps. Vælg&quot;Redigér &gt; Gør til proband&quot; i oversigten Personer. Proband er personen der er den aktive person når slægtsbogen åbnes, eller når ikonknappen der forestiller et hus bliver trykket."
+msgstr "<b>Proband</b><br/>Enhver kan vælges som proband i Gramps. Vælg&quot;Redigér &gt; Gør til proband&quot; i oversigten Personer. Proband er personen der er den aktive person når databasen åbnes, eller når ikonknappen der forestiller et hus bliver trykket."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event occurred, Gramps allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in Gramps. Click the Date button next to the date field and see the Gramps Manual to learn more."
@@ -28480,7 +28351,7 @@ msgstr "<b>Usikker på en dato?</b><br/>Hvis du er usikker på datoen for en hæ
 
 #: ../src/data/tips.xml.in.h:60
 msgid "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr "<b>Web Family Tree Format</b><br/>Gramps kan eksportere data til Web Family Tree-formatet (WFT). Med dette format kan man vise et slægtstræ online ved at bruge en enkelt HTML-fil, i stedet for mange HTML-filer."
+msgstr "<b>Web Family Tree Format</b><br/>Gramps kan eksportere data til Web Family Tree-formatet (WFT). Med dette format kan man vise en slægtsbog online ved at bruge en enkelt HTML-fil, i stedet for mange HTML-filer."
 
 #: ../src/data/tips.xml.in.h:61
 msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
@@ -28488,21 +28359,21 @@ msgstr "<b>Hvad er dette til?</b><br/>Hvis du er usikker på hvad denne knap bru
 
 #: ../src/data/tips.xml.in.h:62
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
-msgstr "<b>Hvem blev født hvornår</b><br/>Under menupunktet &quot;Værktøjer &gt; Analyse og udforskning &gt; Sammenlign indviduelle hændelser ...&quot; kan du sammenligne data for personer i din slægtsbog. Dette er nyttigt hvis du f.eks. ønsker at opliste fødselsdatoerne på alle personer i din slægtsbog. Du kan bruge et tilpasset filter for at indsnævre resultaterne."
+msgstr "<b>Hvem blev født hvornår</b><br/>Under menupunktet &quot;Værktøjer &gt; Analyse og udforskning &gt; Sammenlign indviduelle hændelser ...&quot; kan du sammenligne data for personer i din database. Dette er nyttigt hvis du f.eks. ønsker at opliste fødselsdatoerne på alle personer i din database. Du kan bruge et tilpasset filter for at indsnævre resultaterne."
 
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Arbejde med datoer</b><br/>Et datointerval kan angives ved at bruge formatet &quot;between January 4, 2000 and March 20, 2003&quot;. Du kan også indikere troværdighedsniveauet i en dato og sågar vælge mellem syv forskellige kalendere. Prøv knappen ved siden af datofeltet i hændelsesredigeringdialogen."
 
 #~ msgid "Could not make database directory: "
-#~ msgstr "Kunne ikke oprette mappen til slægtsbøgerne: "
+#~ msgstr "Kunne ikke oprette mappen til databaserne: "
 
 #~ msgid "Gramplet showing available third-party plugins (addons)"
 #~ msgstr "Gramplet der viser tilgængelige tredjeparts-udvidelsesmoduler (tilføjelsesprogrammer)"
 
 #, fuzzy
 #~ msgid "Partner 1"
-#~ msgstr "Samlever"
+#~ msgstr "Samlever 1"
 
 #, fuzzy
 #~ msgid "Partner 2"
@@ -28721,13 +28592,13 @@ msgstr "<b>Arbejde med datoer</b><br/>Et datointerval kan angives ved at bruge f
 #~ msgstr "Gendan indeks over henvisninger"
 
 #~ msgid "The Database version is not supported by this version of Gramps."
-#~ msgstr "Slægtsbog-versionen er ikke understøttet af denne version af Gramps."
+#~ msgstr "Database-versionen er ikke understøttet af denne version af Gramps."
 
 #~ msgid "Your family tree groups name %(key)s together with %(present)s, did not change this grouping to %(value)s"
 #~ msgstr "Din slægtsbog grupperer %(key)s sammen med %(present)s, jeg undlod at ændre denne gruppering til %(value)s"
 
 #~ msgid "Import database"
-#~ msgstr "Importér slægtsbog"
+#~ msgstr "Importér database"
 
 #~ msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 #~ msgstr "%(unknown_gender_name)s døde d. %(death_date)s i %(death_place)s i en alder af %(age)d år."
@@ -29083,7 +28954,7 @@ msgstr "<b>Arbejde med datoer</b><br/>Et datointerval kan angives ved at bruge f
 #~ msgstr "Hovedmenu-element til navigering: %s"
 
 #~ msgid "Matches sources with particular parameters"
-#~ msgstr "Passer med kilder med bestemte parametre"
+#~ msgstr "Matcher kilder med bestemte parametre"
 
 #~ msgid "Tags:"
 #~ msgstr "Mærkater:"
