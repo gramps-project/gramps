@@ -327,7 +327,7 @@ class GrampletBar(Gtk.Notebook):
         """
         tab_label = Gtk.Label(label=_('Gramplet Bar'))
         tab_label.show()
-        msg = _('Click on the right of the bar to add a gramplet.')
+        msg = _('Select the down arrow on the right corner for adding, removing or restoring gramplets.')
         content = Gtk.Label(label=msg)
         content.set_alignment(0, 0)
         content.set_line_wrap(True)
