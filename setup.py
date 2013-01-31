@@ -209,35 +209,6 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
                     out_file)
             raise SystemExit(msg)
 
-def install_template(install_cmd):
-    '''
-    Pre-install hook to populate template files.
-    '''
-    build_scripts = os.path.join(install_cmd.build_base, 'scripts')
-    if not(os.path.isdir(build_scripts) or os.path.islink(build_scripts)):
-        os.makedirs(build_scripts)
-    data_files = install_cmd.distribution.data_files
-    write_gramps_script(install_cmd, build_scripts)
-    data_files.append(('bin', [install_cmd.build_base + '/scripts/gramps']))
-    write_const_py(install_cmd)
-
-def write_gramps_script(install_cmd, build_scripts):
-    '''
-    Write the build/scripts/gramps file.
-    '''
-    filename = os.path.join(build_scripts, 'gramps')
-    f_out = open(filename, 'w')
-    f_out.write('#!/usr/bin/env python\n')
-    f_out.write('import gramps.grampsapp as app\n')
-    f_out.write('app.main()\n')
-    f_out.close()
-
-    if os.name == 'posix':
-        # set read and execute bits
-        mode = ((os.stat(filename).st_mode) | 0o555) & 0o7777
-        log.info('changing mode of %s to %o', filename, mode)
-        os.chmod(filename, mode)
-
 def write_const_py(command):
     '''
     Write the const.py file.
@@ -309,7 +280,7 @@ class install(_install):
         self.enable_packager_mode = False
 
     def run(self):
-        install_template(self)
+        write_const_py(self)
         _install.run(self)
         if self.enable_packager_mode:
             log.warn('WARNING: Packager mode enabled.  Post-installation mime '
@@ -508,5 +479,6 @@ setup(name = 'gramps',
       cmdclass = {'build': build, 'install': install},
       packages = packages,
       package_data = {'gramps': package_data},
-      data_files = data_files
+      data_files = data_files,
+      scripts = ['scripts/gramps']
 )

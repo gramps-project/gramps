@@ -1,0 +1,3 @@
+#!/usr/bin/env python
+import gramps.grampsapp as app
+app.main()
