@@ -95,12 +95,6 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
-# system paths
-#
-#-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
-#-------------------------------------------------------------------------
-#
 # Platforms
 # Never test on LINUX, handle Linux in the else statement as default
 #
