@@ -241,7 +241,7 @@ def write_const_py(command):
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
-def update_posix():
+def update_posix(command):
     '''
     post-hook to update Linux systems after install
 
@@ -251,14 +251,9 @@ def update_posix():
     if os.name != 'posix':
         return
     # these commands will be ran on a Unix/ Linux system after install only...
-    for cmd, options in (
-            ('ldconfig',                ''),
-            ('update-desktop-database', '&> /dev/null'),
-            ('update-mime-database',    '/usr/share/mime &> /dev/null'),
-            ('gtk-update-icon-cache',   '--quiet /usr/share/icons/hicolor')):
-        sys_cmd = ('%(command)s %(opts)s') % {
-                    'command' : cmd, 'opts' : options}
-        os.system(sys_cmd)
+    os.system('update-desktop-database &> /dev/null')
+    mime_dir = command.install_data + '/share/mime'
+    os.system('update-mime-database ' + mime_dir + ' &> /dev/null')
 
 class build(_build):
     """Custom build command."""
@@ -283,10 +278,10 @@ class install(_install):
         write_const_py(self)
         _install.run(self)
         if self.enable_packager_mode:
-            log.warn('WARNING: Packager mode enabled.  Post-installation mime '
-                            'type processing was not run.')
+            log.warn('WARNING: Packager mode enabled.  Post-installation '
+                     'scripts were not run.')
         else:
-            update_posix()
+            update_posix(self)
             
 #-------------------------------------------------------------------------
 #
