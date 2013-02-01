@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -200,4 +200,4 @@ class FamilyModel(FlatBaseModel):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[13]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

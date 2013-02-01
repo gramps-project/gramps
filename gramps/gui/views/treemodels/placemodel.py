@@ -33,7 +33,6 @@ Place Model.
 import cgi
 import logging
 _LOG = logging.getLogger(".gui.views.treemodels.placemodel")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -264,7 +263,7 @@ class PlaceBaseModel(object):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[12]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
 #-------------------------------------------------------------------------
 #

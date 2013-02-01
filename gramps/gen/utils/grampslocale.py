@@ -32,6 +32,13 @@ import os
 import locale
 import logging
 LOG = logging.getLogger("gramps.gen.util.grampslocale")
+LOG.addHandler(logging.StreamHandler())
+HAVE_ICU = False
+try:
+    from icu import Locale, Collator
+    HAVE_ICU = True
+except ImportError as err:
+    LOG.warning("ICU is not installed because %s, localization will be impaired", str(err))
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -239,6 +246,19 @@ class GrampsLocale(object):
             if len(self.language) == 0:
                 self.language = self._GrampsLocale__first_instance.language
 
+        self.icu_locales = {}
+        self.collator = None
+        if HAVE_ICU:
+            self.icu_locales["default"] = Locale.createFromName(self.lang)
+            if self.collation != self.lang:
+                self.icu_locales["collation"] = Locale.createFromName(self.collation)
+            else:
+                self.icu_locales["collation"] = self.icu_locales["default"]
+            try:
+                self.collator = Collator.createInstance(self.icu_locales["collation"])
+            except ICUError as err:
+                LOG.warning("Unable to create collator: %s", str(err))
+                self.collator = None
 
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
@@ -512,6 +532,36 @@ class GrampsLocale(object):
             return encoding
 
         return "utf-8"
+
+    def sort_key(self, string):
+        """
+        Return a value suitable to pass to the "key" parameter of sorted()
+        """
+
+        if HAVE_ICU and self.collator:
+            #ICU can digest strings and unicode
+            return self.collator.getCollationKey(string).getByteArray()
+        else:
+            base_locale = locale.getlocale(locale.LC_COLLATE)
+            locale.setlocale(locale.LC_COLLATE, self.collation)
+            #locale in Python2 can't.
+            if sys.version_info[0] < 3 and isinstance(string, unicode):
+                key = locale.strxfrm(string.encode("utf-8", "replace"))
+            else:
+                key = locale.strxfrm(string)
+
+            locale.setlocale(locale.LC_COLLATE, base_locale)
+            return key
+
+    def strcoll(self, string1, string2):
+        """
+        Given two localized strings, compare them and return -1 if
+        string1 would sort first, 1 if string2 would, and 0 if
+        they are the same.
+        """
+        key1 = self.sort_key(string1)
+        key2 = self.sort_key(string2)
+        return (-1 if key1 < key2 else (1 if key1 > key2 else 0))
 
 #-------------------------------------------------------------------------
 #

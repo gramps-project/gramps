@@ -79,7 +79,6 @@ try:
 except ImportError:
     from md5 import md5
 import time, datetime
-import locale
 import shutil
 import io
 import codecs
@@ -122,12 +121,11 @@ from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
 from gramps.gen.plug.report import ( Report, Bibliography)
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-                        
+
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.string import confidence
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.db import get_source_and_citation_referents
-from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
@@ -2415,7 +2413,7 @@ class BasePage(object):
 
             ordered = Html("ol")
             section += ordered 
-            sortlist = sorted(handlelist, key=lambda x:locale.strxfrm(x[1]))
+            sortlist = sorted(handlelist, key=lambda x:glocale.sort_key(x[1]))
         
             for (path, name, gid) in sortlist:
                 list = Html("li")
@@ -3966,7 +3964,7 @@ class SurnameListPage(BasePage):
                             temp_list[index_val] = (surname, data_list)
 
                         ppl_handle_list = (temp_list[key]
-                            for key in sorted(temp_list, key = locale.strxfrm))
+                            for key in sorted(temp_list, key = glocale.sort_key))
 
                     last_letter = ''
                     last_surname = ''
@@ -4175,7 +4173,7 @@ class SourcePages(BasePage):
                     key = source.get_title() + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
             
-            keys = sorted(source_dict, key=locale.strxfrm)
+            keys = sorted(source_dict, key=glocale.sort_key)
 
             msg = _("This page contains an index of all the sources in the "
                     "database, sorted by their title. Clicking on a source&#8217;s "
@@ -6523,7 +6521,7 @@ class RepositoryPages(BasePage):
             key = repository.get_name() + str(repository.get_gramps_id())
             repos_dict[key] = (repository, repository_handle)
             
-        keys = sorted(repos_dict, key = locale.strxfrm)
+        keys = sorted(repos_dict, key = glocale.sort_key)
 
         # RepositoryListPage Class
         self.RepositoryListPage(self.report, title, repos_dict, keys)
@@ -8482,14 +8480,14 @@ def sort_people(dbase, handle_list):
 
     sorted_lists = []
     # According to the comment in flatbasemodel:         This list is sorted
-    # ascending, via localized string sort. conv_unicode_tosrtkey which
+    # ascending, via localized string sort. glocale.sort_key which
     # uses strxfrm, which is apparently broken in Win ?? --> they should fix
     # base lib, we need strxfrm, fix it in the Utils module.
-    temp_list = sorted(sname_sub, key=conv_unicode_tosrtkey)
+    temp_list = sorted(sname_sub, key=glocale.sort_key)
     
     for name in temp_list:
         slist = sorted(((sortnames[x], x) for x in sname_sub[name]), 
-                    key=lambda x:conv_unicode_tosrtkey(x[0]))
+                    key=lambda x:glocale.sort_key(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
@@ -8622,7 +8620,7 @@ def alphabet_navigation(menu_set):
         sorted_set[menu_item] += 1
 
     # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)
+    sorted_alpha_index = sorted(sorted_set, key = glocale.sort_key)
 
     # if no letters, return None to its callers
     if not sorted_alpha_index:

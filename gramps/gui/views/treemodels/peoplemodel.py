@@ -33,7 +33,6 @@ TreeModel for the GRAMPS Person tree.
 #
 #-------------------------------------------------------------------------
 import cgi
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +64,7 @@ from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -460,7 +460,7 @@ class PeopleBaseModel(object):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """

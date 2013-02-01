@@ -301,7 +301,7 @@ class AncestorOptions(MenuReportOptions):
                                       Translator.DEFAULT_TRANSLATION_STR)
         trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
         languages = glocale.get_language_dict()
-        for language in sorted(languages):
+        for language in sorted(languages, key=glocale.sort_key):
             trans.add_item(languages[language], language)
         trans.set_help(_("The translation to be used for the report."))
         menu.add_option(category_name, "trans", trans)

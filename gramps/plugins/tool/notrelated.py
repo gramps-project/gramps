@@ -27,13 +27,6 @@
 
 #------------------------------------------------------------------------
 #
-# Python modules
-#
-#------------------------------------------------------------------------
-import locale
-
-#------------------------------------------------------------------------
-#
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
@@ -472,7 +465,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         for handle in person.get_tag_list():
             tag = self.db.get_tag_from_handle(handle)
             tags.append(tag.get_name())
-        tags.sort(key=locale.strxfrm)
+        tags.sort(key=glocale.sort_key)
         return ', '.join(tags)
 
 #------------------------------------------------------------------------
