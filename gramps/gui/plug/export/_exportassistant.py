@@ -316,7 +316,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         filename = filechooser.get_filename()
         folder = filechooser.get_current_folder()
         #the file must be valid, not a folder, and folder must be valid
-        if filename and filename.strip and find_folder(filename) == '' \
+        if filename and os.path.basename(filename.strip()) \
+                    and find_folder(filename) == '' \
                     and folder and find_folder(folder): 
             #this page of the assistant is complete
             self.set_page_complete(filechooser, True)            
