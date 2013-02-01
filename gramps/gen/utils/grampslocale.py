@@ -151,7 +151,7 @@ class GrampsLocale(object):
 
         if mac():
             from . import maclocale
-            (self.lang, self.language) = maclocale.mac_setup_localization(self, lang, language)
+            maclocale.mac_setup_localization(self, lang, language)
         else:
             self.__init_from_environment(lang, language)
 
