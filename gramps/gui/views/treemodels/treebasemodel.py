@@ -57,7 +57,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 import gramps.gui.widgets.progressdialog as progressdlg
 from gramps.gen.constfunc import cuni, UNITYPE
 from .lru import LRU
@@ -91,17 +91,9 @@ class Node(object):
 
     def __init__(self, ref, parent, sortkey, handle, secondary):
         if sortkey:
-            if isinstance(sortkey, UNITYPE):
-                self.name = sortkey
-                #sortkey must be localized sort, so 
-                self.sortkey = conv_unicode_tosrtkey(sortkey)
-            else:
-                self.name = sortkey.decode('utf-8')
-                #sortkey must be localized sort, so
-                if sys.version_info[0] < 3:
-                    self.sortkey = conv_str_tosrtkey(sortkey)
-                else:
-                    self.sortkey = conv_unicode_tosrtkey(self.name)
+            self.name = sortkey
+            #sortkey must be localized sort, so 
+            self.sortkey = glocale.sort_key(sortkey)
         else:
             self.name = ''
             self.sortkey = ''

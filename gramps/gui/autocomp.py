@@ -31,8 +31,6 @@ Provide autocompletion functionality.
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-import locale
-
 #-------------------------------------------------------------------------
 #
 # GNOME modules
@@ -41,8 +39,8 @@ import locale
 from gi.repository import Gtk
 from gi.repository import GObject
 
-
 from gramps.gen.constfunc import STRTYPE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 def fill_combo(combo, data_list):
     """
@@ -194,7 +192,7 @@ class StandardCustomSelector(object):
         """
         Method for sorting keys based on the values.
         """
-        return locale.strxfrm(self.mapping[val])
+        return glocale.sort_key(self.mapping[val])
 
     def get_values(self):
         """

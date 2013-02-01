@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger(".gui.notemodel")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.lib import (Note, NoteType, StyledText)
 
@@ -161,4 +161,4 @@ class NoteModel(FlatBaseModel):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

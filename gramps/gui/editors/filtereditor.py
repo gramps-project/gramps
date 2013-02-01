@@ -30,7 +30,6 @@ Custom Filter Editor tool.
 # Python modules
 #
 #-------------------------------------------------------------------------
-import locale
 
 #------------------------------------------------------------------------
 #
@@ -903,7 +902,7 @@ class ShowResults(ManagedWindow):
 
         new_list = sorted(
                         (self.sort_val_from_handle(h) for h in handle_list),
-                        key=lambda x: locale.strxfrm(x[0])
+                        key=lambda x: glocale.sort_key(x[0])
                         )
 
         for s_, handle in new_list:

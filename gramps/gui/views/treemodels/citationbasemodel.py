@@ -33,7 +33,6 @@ import cgi
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +44,7 @@ from gramps.gen.lib import Citation
 from gramps.gen.utils.string import confidence
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -130,7 +130,7 @@ class CitationBaseModel(object):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
     def citation_tag_color(self, data):
         """
@@ -213,7 +213,7 @@ class CitationBaseModel(object):
         try:
             source = self.db.get_source_from_handle(source_handle)
             tag_list = list(map(self.get_tag_name, source.get_tag_list()))
-            return ', '.join(sorted(tag_list, key=locale.strxfrm))
+            return ', '.join(sorted(tag_list, key=glocale.sort_key))
         except:
             return ''
 
@@ -254,7 +254,7 @@ class CitationBaseModel(object):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN2_TAGS]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
     def source_src_tag_color(self, data):
         """
