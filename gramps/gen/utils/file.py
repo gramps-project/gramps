@@ -70,7 +70,10 @@ def find_file( filename):
             if os.path.isfile(fname):
                 return fname
         except UnicodeError:
-            return ''
+            pass
+ 
+    # not found
+    return ''
 
 def find_folder( filename):
     # try the filename we got
@@ -84,7 +87,10 @@ def find_folder( filename):
             if os.path.isdir(fname):
                 return fname
         except UnicodeError:
-            return ''
+            pass
+        
+    # not found
+    return ''
 
 def get_unicode_path_from_file_chooser(path):
     """
