@@ -27,7 +27,7 @@ if sys.version_info[0] < 3:
     cuni = unicode
 else:
     def to_utf8(s):
-        return s.decode("utf-8")
+        return s.decode("utf-8", errors = 'replace')
     cuni = to_utf8
 
 def get_svn_revision(path=""):
