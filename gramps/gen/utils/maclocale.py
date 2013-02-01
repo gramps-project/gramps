@@ -228,21 +228,11 @@ def mac_setup_localization(glocale, lang, language):
 # The action starts here
 
     (loc, currency, calendar)  = mac_get_locale()
-    collation = mac_get_collation()
     translations = mac_language_list()
-
-    if currency and "LC_MONETARY" not in os.environ:
-        os.environ["LC_MONETARY"] = currency
-
-    if calendar and "LC_TIME" not in os.environ:
-        os.environ["LC_TIME"] = calendar
-
-    if currency and "LC_MONETARY" not in os.environ:
-        os.environ["LC_MONETARY"] = currency
-
-
-    if calendar and "LC_TIME" not in os.environ:
-        os.environ["LC_TIME"] = calendar
+    if "LC_COLLATE" in os.environ:
+        collation = os.environ["LC_COLLATE"]
+    else:
+        collation = mac_get_collation()
 
     if not lang:
         if "LANG" in os.environ:
@@ -252,12 +242,9 @@ def mac_setup_localization(glocale, lang, language):
             loc = mac_resolve_locale(loc)
             if loc != None:
                 lang = loc
-                collation = mac_resolve_locale(collation)
-                if "LC_COLLATE" not in os.environ and collation != None:
-                    os.environ["LC_COLLATE"] = collation
+            if not lang and collation != None:
+                lang = mac_resolve_locale(collation)
 
-                elif len(collation) > 0:
-                    lang = mac_resolve_locale(collation)
     glocale.lang = lang
 
     if not language or len(language) == 0:
@@ -277,3 +264,29 @@ def mac_setup_localization(glocale, lang, language):
                 language = [collation]
 
     glocale.language = language
+
+    if currency and "LC_MONETARY" not in os.environ:
+        glocale.currency = currency
+        os.environ["LC_MONETARY"] = currency
+    elif "LC_MONETARY" in os.environ:
+        glocale.currency = os.environ[LC_MONETARY]
+    else:
+        glocale.currency = lang
+
+    if calendar and "LC_TIME" not in os.environ:
+        glocale.calendar = calendar
+        os.environ["LC_TIME"] = calendar
+    elif "LC_TIME" in os.environ:
+        glocale.calendar = os.environ["LC_TIME"]
+    else:
+        glocale.calendar = lang
+
+    if collation and "LC_COLLATION" not in os.environ:
+        glocale.collation = collation
+        os.environ["LC_COLLATION"] = calendar
+    elif "LC_COLLATION" in os.environ:
+        glocale.collation = os.environ["LC_COLLATION"]
+    else:
+        glocale.collation = lang
+
+

@@ -113,6 +113,22 @@ class GrampsLocale(object):
             else:
                 self.language = ["en"]
 
+            if "LC_MONETARY" not in os.environ:
+                self.currency = lang
+            else:
+                self.currency = os.environ[LC_MONETARY]
+
+            if "LC_TIME" not in os.environ:
+                self.calendar = lang
+            else:
+                self.calendar = os.environ["LC_TIME"]
+
+            if "LC_COLLATE" not in os.environ:
+                self.collation = lang
+            else:
+                self.collation = os.environ["LC_COLLATE"]
+
+
     def __init_first_instance(self, localedir=None, lang=None,
                               domain=None, language=None):
 
