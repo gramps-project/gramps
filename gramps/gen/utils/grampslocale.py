@@ -31,8 +31,10 @@ import sys
 import os
 import locale
 import logging
-LOG = logging.getLogger("gramps.gen.util.grampslocale")
-LOG.addHandler(logging.StreamHandler())
+LOG = logging.getLogger("grampslocale")
+_hdlr = logging.StreamHandler()
+_hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
+LOG.addHandler(_hdlr)
 HAVE_ICU = False
 try:
     from icu import Locale, Collator
