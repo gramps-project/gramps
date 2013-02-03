@@ -30,6 +30,9 @@ Classes for relationships.
 from __future__ import print_function
 
 import os
+import logging
+LOG = logging.getLogger("gen.relationship")
+LOG.addHandler(logging.StreamHandler())
 
 #-------------------------------------------------------------------------
 #
@@ -1796,7 +1799,7 @@ def get_relationship_calculator(reinit=False):
         # If lang not set default to English relationship calulator
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
-        if lang == "en":
+        if lang.startswith("en"):
             return __RELCALC_CLASS()
         # set correct non English relationship calculator based on lang
         relation_translation_found = False
@@ -1811,8 +1814,8 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            print((("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % lang))
+            LOG.debug(_("No translation available for language '%s'. " +
+                    "Using 'english' instead.") % lang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
