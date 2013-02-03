@@ -252,6 +252,13 @@ class GrampsLocale(object):
             if len(self.language) == 0:
                 self.language = self._GrampsLocale__first_instance.language
 
+            if lang:
+                self.lang = lang
+            else:
+                self.lang = self._GrampsLocale__first_instance.lang
+
+        self.collation = self.currency = self.calendar = self.lang
+
         self.icu_locales = {}
         self.collator = None
         if HAVE_ICU:
