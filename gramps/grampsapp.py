@@ -68,7 +68,9 @@ from .gen.constfunc import win
 """Setup basic logging support."""
 
 # Setup a formatter
-form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
+                             "%(filename)s: line %(lineno)d: %(message)s",
+                         datefmt='%Y-%m-%d %H:%M:%S')
 
 # Create the log handlers
 if win():
