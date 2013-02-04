@@ -16,10 +16,12 @@
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -31,11 +33,13 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label">gtk-ok</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -47,10 +51,12 @@
             <child>
               <object class="GtkButton" id="help">
                 <property name="label">gtk-help</property>
+                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -92,7 +98,7 @@
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -109,7 +115,7 @@
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -128,7 +134,7 @@
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -141,7 +147,7 @@
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">5</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -157,7 +163,7 @@
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -174,7 +180,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -191,7 +197,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="right_attach">4</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
-                    <property name="y_options"/>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -250,9 +256,11 @@ You can set these values via the Geography View by searching the place, or via a
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="private">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                     <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                     <child internal-child="accessible">
@@ -278,15 +286,17 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="right_attach">5</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
-                    <property name="x_options"/>
-                    <property name="y_options"/>
+                    <property name="x_options"></property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkButton" id="tag_button">
+                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="use_action_appearance">False</property>
                     <property name="use_stock">True</property>
                   </object>
                   <packing>
@@ -294,8 +304,8 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="right_attach">5</property>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
-                    <property name="x_options"/>
-                    <property name="y_options"/>
+                    <property name="x_options"></property>
+                    <property name="y_options"></property>
                   </packing>
                 </child>
               </object>
@@ -332,7 +342,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -347,7 +357,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -361,7 +371,7 @@ Use Alternate Locations tab to store the current name.</property>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="right_attach">4</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -377,7 +387,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">2</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -392,7 +402,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">4</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -411,7 +421,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -428,7 +438,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -443,7 +453,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">2</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -462,7 +472,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -477,7 +487,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">4</property>
                         <property name="top_attach">2</property>
                         <property name="bottom_attach">3</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -494,7 +504,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -510,7 +520,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">2</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -529,7 +539,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -543,7 +553,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">4</property>
                         <property name="top_attach">3</property>
                         <property name="bottom_attach">4</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -561,7 +571,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -575,7 +585,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">4</property>
                         <property name="top_attach">4</property>
                         <property name="bottom_attach">5</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -591,7 +601,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
                         <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -607,7 +617,7 @@ Use Alternate Locations tab to store the current name.</property>
                         <property name="right_attach">2</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
-                        <property name="y_options"/>
+                        <property name="y_options"></property>
                       </packing>
                     </child>
                   </object>
@@ -633,9 +643,11 @@ Use Alternate Locations tab to store the current name.</property>
                       <object class="GtkLabel" id="label252">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Location&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">Location</property>
                         <property name="justify">center</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="expand">False</property>

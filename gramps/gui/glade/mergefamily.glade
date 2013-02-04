@@ -190,8 +190,10 @@ primary data for the merged family.</property>
                           <object class="GtkLabel" id="label4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Family 1&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Family 1</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="x_options">GTK_FILL</property>
@@ -202,8 +204,10 @@ primary data for the merged family.</property>
                           <object class="GtkLabel" id="label5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Family 2&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Family 2</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="left_attach">2</property>

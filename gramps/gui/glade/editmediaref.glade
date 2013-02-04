@@ -165,8 +165,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="xalign">0</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Referenced Region&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">Referenced Region</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="right_attach">5</property>
@@ -240,8 +242,10 @@ Select a region with clicking and holding the mouse button on the top left corne
                           <object class="GtkLabel" id="label707">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Preview</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                         </child>
                       </object>
@@ -353,6 +357,9 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                       <placeholder/>
                     </child>
                     <child>
+                      <placeholder/>
+                    </child>
+                    <child>
                       <object class="GtkHBox" id="hbox1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -430,6 +437,9 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">General</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                   <packing>
                     <property name="tab_fill">False</property>
@@ -613,8 +623,10 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkLabel" id="label175">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Preview&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label" translatable="yes">Preview</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
                               </object>
                             </child>
                           </object>
@@ -884,8 +896,10 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                       <object class="GtkLabel" id="label617">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;General&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">General</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="tab_fill">False</property>
@@ -897,8 +911,10 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                   <object class="GtkLabel" id="label616">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Shared Information&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
+                    <property name="label" translatable="yes">Shared Information</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
                   </object>
                 </child>
               </object>
