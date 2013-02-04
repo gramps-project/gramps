@@ -592,6 +592,10 @@ gramps/plugins/quickview/reporef.py
 gramps/plugins/quickview/samesurnames.py
 gramps/plugins/quickview/siblings.py
 gramps/plugins/rel/relplugins.gpr.py
+gramps/plugins/sidebar/categorysidebar.py
+gramps/plugins/sidebar/dropdownsidebar.py
+gramps/plugins/sidebar/expandersidebar.py
+gramps/plugins/sidebar/sidebar.gpr.py
 gramps/plugins/textreport/alphabeticalindex.py
 gramps/plugins/textreport/ancestorreport.py
 gramps/plugins/textreport/birthdayreport.py
