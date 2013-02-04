@@ -277,6 +277,8 @@ def encodingdefs():
     
     conv_unicode_tosrtkey_ongtk:  convert a unicode object to sortkey usable 
     string when gtk is loaded or utf-8 is default python encoding
+    
+    COLLATE_LANG: Language and sub-locale used for collation
     """
     pass
 
@@ -288,21 +290,21 @@ try:
         collation = os.environ["LANG"]
     language_and_country = collation.rsplit('.', 1)[0]
     if language_and_country in PyICU.Collator.getAvailableLocales().keys():
-        loc = language_and_country
+        COLLATE_LANG = language_and_country
     else:
         language = collation.rsplit('_', 1)[0]
         if language in PyICU.Collator.getAvailableLocales().keys():
             LOG.warn(_("Language and country %s not supported by ICU: "
                        "but language %s is supported and will be used" %
                        (language_and_country, language)))
-            loc = language
+            COLLATE_LANG = language
         else:
             LOG.warn(_("Neither Language and country %s nor language %s "
                        "supported by ICU: using en_GB" % 
                        (language_and_country, language)))
-            loc = "en_GB"
+            COLLATE_LANG = "en_GB"
     
-    collator = PyICU.Collator.createInstance(PyICU.Locale(loc))
+    collator = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
     # on ICU, the functions need to receive unicode
     conv_utf8_tosrtkey = lambda x: collator.getCollationKey(
                                         x.decode("UTF-8")).getByteArray()
@@ -314,6 +316,7 @@ try:
                                     x).getByteArray()
 except:
     LOG.warn(_("PyICU not available: sorting may be incorrect"))
+    COLLATE_LANG = locale.getlocale()[0]
     if constfunc.win():
         # python encoding is ascii, but C functions need to receive the 
         # windows codeset, so convert over to it
