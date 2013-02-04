@@ -40,6 +40,7 @@ import collections
 from ._filterparser import FilterParser
 from ..plug import BasePluginManager
 from ..constfunc import STRTYPE
+from ..const import GRAMPS_LOCALE as glocale
 
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
