@@ -238,8 +238,10 @@
                       <object class="GtkLabel" id="label25">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Description&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">Description</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="tab_fill">False</property>
@@ -285,9 +287,11 @@
                             <property name="xalign">0</property>
                             <property name="yalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Type face&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Type face</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">4</property>
@@ -344,9 +348,11 @@
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Size&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Size</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">4</property>
@@ -396,9 +402,11 @@
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Color&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Color</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">4</property>
@@ -415,9 +423,11 @@
                             <property name="xalign">0</property>
                             <property name="yalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Options&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Options</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">4</property>
@@ -532,8 +542,10 @@
                       <object class="GtkLabel" id="label22">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Font options&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">Font options</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="position">1</property>
@@ -676,9 +688,11 @@
                             <property name="xalign">0</property>
                             <property name="yalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Alignment&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Alignment</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">5</property>
@@ -692,9 +706,11 @@
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Background color&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Background color</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">5</property>
@@ -819,9 +835,11 @@
                             <property name="xalign">0</property>
                             <property name="yalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Spacing&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Spacing</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">5</property>
@@ -910,9 +928,11 @@
                             <property name="xalign">0</property>
                             <property name="yalign">0</property>
                             <property name="ypad">3</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Borders&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Borders</property>
                             <property name="justify">center</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">5</property>
@@ -1165,8 +1185,10 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">&lt;b&gt;Indentation&lt;/b&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="label" translatable="yes">Indentation</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="right_attach">5</property>
@@ -1202,8 +1224,10 @@
                       <object class="GtkLabel" id="label23">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Paragraph options&lt;/b&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="label" translatable="yes">Paragraph options</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="position">2</property>
