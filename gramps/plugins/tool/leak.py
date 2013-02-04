@@ -100,7 +100,10 @@ class Leak(tool.Tool, ManagedWindow):
         self.list.append_column(column)
         self.selection = self.list.get_selection()
         
-        gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
+        flags = gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_SAVEALL
+        if hasattr(gc, "DEBUG_OBJECTS"):
+            flags = flags | gc.DEBUG_OBJECTS
+        gc.set_debug(flags)
 
         self.set_window(self.window, self.glade.get_object('title'),
                         self.title)
@@ -131,7 +134,10 @@ class Leak(tool.Tool, ManagedWindow):
             referrers = gc.get_referrers(self.modeldata[count])
             text = ""
             for referrer in referrers:
-                text += str(referrer) + '\n'
+                try:
+                    text += str(referrer) + '\n'
+                except ReferenceError:
+                    pass
             InfoDialog(_('Referrers of %d') % count, text, 
                         parent=self.window)
 
@@ -142,7 +148,10 @@ class Leak(tool.Tool, ManagedWindow):
             referents = gc.get_referents(self.modeldata[count])
             text = ""
             for referent in referents:
-                text += str(referent) + '\n'
+                try:
+                    text += str(referent) + '\n'
+                except ReferenceError:
+                    pass
             InfoDialog(_('%d refers to') % count, text, 
                         parent=self.window)
 
@@ -158,6 +167,8 @@ class Leak(tool.Tool, ManagedWindow):
                 except DBError:
                     self.modeldata.append(each)
                     self.model.append((count, 'db.DB instance at %s' % id(each)))
+                except ReferenceError:
+                    pass
                 count += 1
         self.glade.get_object('label2').set_text(_('Uncollected Objects: %s') % str(len(gc.garbage)))
 
