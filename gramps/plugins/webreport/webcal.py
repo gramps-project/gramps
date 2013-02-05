@@ -53,6 +53,7 @@ from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
 from gramps.gen.constfunc import win
+from gramps.gen.config import config
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -250,6 +251,8 @@ class WebCalReport(Report):
                   "a different directory to store your generated "
                   "web pages."))
             self.warn_dir = False
+        config.set('paths.website-directory',
+                   os.path.dirname(self.html_dir) + os.sep)
 
     def add_day_item(self, text, year, month, day, event):
         """
@@ -1302,8 +1305,11 @@ class WebCalOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
 
+        dbname = self.__db.get_dbname()
+        default_dir = dbname + "_WEBCAL"
         target = DestinationOption( _("Destination"),
-                                    os.path.join(USER_HOME, "WEBCAL"))
+                        os.path.join(config.get('paths.website-directory'),
+                                     default_dir))
         target.set_help( _("The destination directory for the web files"))
         target.set_directory_entry(True)
         menu.add_option(category_name, "target", target)
@@ -1421,7 +1427,9 @@ class WebCalOptions(MenuReportOptions):
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow)
 
-        home_link = StringOption(_('Home link'), '../../NAVWEB/index.html')
+        dbname = self.__db.get_dbname()
+        default_link = '../../' + dbname + "_NAVWEB/index.html"
+        home_link = StringOption(_('Home link'), default_link)
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
@@ -1522,7 +1530,9 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'link_to_narweb', self.__links)  
         self.__links.connect('value-changed', self.__links_changed)
 
-        self.__prefix = StringOption(_('Link prefix'), "../../NAVWEB/")
+        dbname = self.__db.get_dbname()
+        default_prefix = '../../' + dbname + "_NAVWEB/"
+        self.__prefix = StringOption(_('Link prefix'), default_prefix)
         self.__prefix.set_help(_("A Prefix on the links to take you to "
                                  "Narrated Web Report"))
         menu.add_option(category_name, "prefix", self.__prefix)
