@@ -120,7 +120,7 @@ class ProbablyAlive(object):
                     ev = self.db.get_event_from_handle(ev_ref.ref)
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
-                        if death_date.get_start_date().is_valid():
+                        if death_date.is_valid():
                             explain = _("death-related evidence")
                         else:
                             death_date = Today() # before today
