@@ -9,7 +9,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
-# Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>    
+# Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Serge Noiraud
@@ -67,7 +67,6 @@ Classes for producing the web pages:
 # python modules
 #------------------------------------------------
 from __future__ import print_function, division
-
 from functools import partial
 import gc
 import os
@@ -79,7 +78,6 @@ try:
 except ImportError:
     from md5 import md5
 import time, datetime
-import locale
 import shutil
 import codecs
 import tarfile
@@ -87,7 +85,7 @@ import tempfile
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
-    from io import StringIO
+    from io import StringIO, BytesIO, TextIOWrapper
 from textwrap import TextWrapper
 from unicodedata import normalize
 from collections import defaultdict
@@ -112,7 +110,7 @@ from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             EventRoleType, Family, Event, Place, Source,
                             Citation, MediaObject, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
-from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, VERSION
 from gramps.gen.sort import Sort
 from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
@@ -120,13 +118,15 @@ from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
 from gramps.gen.plug.report import ( Report, Bibliography)
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-                        
+
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.string import confidence
 from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
+from gramps.gen.config import config
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
@@ -142,11 +142,22 @@ from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 
 from gramps.plugins.lib.libgedcom import make_gedcom_date
-from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.pluginmanager import GuiPluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
+
+# FIXME: This could be glocale.get_translation().language(), except that at the
+# moment, (1) that gives an empty string when LANG is set to something like
+# "sk_SK.UTF-8", and (2) it should be a language specific to collation, not just
+# the language for translation.
+import locale
+COLLATE_LANG = locale.getlocale()[0]
+SORT_KEY = conv_unicode_tosrtkey
+#------------------------------------------------
+# Everything below this point is identical for gramps34 (post 3.4.2), gramps40 and trunk
+#------------------------------------------------
+
 #------------------------------------------------
 # constants
 #------------------------------------------------
@@ -333,8 +344,8 @@ osm_markers = """
 
     var wms = new OpenLayers.Layer.WMS(
       "OpenLayers WMS",
-      "http://maps.opengeo.org/geowebcache/service/wms",
-      {'layers':"openstreetmap", 'format': "image/png"});
+      "http://vmap0.tiles.osgeo.org/wms/vmap0",
+      {'layers':'basic'});
     map.addLayer(wms);
 
     map.setCenter(new OpenLayers.LonLat(%s, %s), %d);
@@ -2413,7 +2424,7 @@ class BasePage(object):
 
             ordered = Html("ol")
             section += ordered 
-            sortlist = sorted(handlelist, key=lambda x:locale.strxfrm(x[1]))
+            sortlist = sorted(handlelist, key=lambda x:SORT_KEY(x[1]))
         
             for (path, name, gid) in sortlist:
                 list = Html("li")
@@ -2477,7 +2488,6 @@ class BasePage(object):
         tcell += self.new_person_link(partner.get_handle(), uplink=True,
                                       person=partner)
         return trow
-
 
     def display_child_link(self, chandle):
         """
@@ -3306,9 +3316,12 @@ class PlacePages(BasePage):
         self.place_dict = defaultdict(set)
     
     def display_pages(self, title):
-        # FIXME: Most of the parameters should be removed. report is passed to
-        # __init__, title appears not to be used and place_list, source_list and
-        # db_place_handles violate modularity and should be removed.
+        """
+        Generate and output the pages under the Place tab, namely the place
+        index and the individual place pages.
+        
+        @param: title -- the web site title
+        """
         log.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
             log.debug("    %s" % str(item))
@@ -3964,7 +3977,7 @@ class SurnameListPage(BasePage):
                             temp_list[index_val] = (surname, data_list)
 
                         ppl_handle_list = (temp_list[key]
-                            for key in sorted(temp_list, key = locale.strxfrm))
+                            for key in sorted(temp_list, key = SORT_KEY))
 
                     last_letter = ''
                     last_surname = ''
@@ -4127,21 +4140,20 @@ class SourcePages(BasePage):
         Generate and output the pages under the Sources tab, namely the sources
         index and the individual sources pages.
         
-        @param: report -- the instance of the main report class for this report
         @param: title -- the web site title
         """
-        # FIXME: Perhaps report and title should just be passed in to the class
         log.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
             log.debug("    %s" % str(item))
         self.report.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
-                                 len(self.source_dict) + 1)
-        self.SourceListPage(self.report, title, self.report.obj_dict[Source].keys())
+                                 len(self.report.obj_dict[Source]) + 1)
+        self.SourceListPage(self.report, title,
+                            self.report.obj_dict[Source].keys())
 
-        for item in self.report.obj_dict[Source].items():
+        for source_handle in self.report.obj_dict[Source]:
             self.report.user.step_progress()
-            self.SourcePage(self.report, title, item[0])
+            self.SourcePage(self.report, title, source_handle)
 
         self.report.user.end_progress()
     
@@ -4173,7 +4185,7 @@ class SourcePages(BasePage):
                     key = source.get_title() + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
             
-            keys = sorted(source_dict, key=locale.strxfrm)
+            keys = sorted(source_dict, key=SORT_KEY)
 
             msg = _("This page contains an index of all the sources in the "
                     "database, sorted by their title. Clicking on a source&#8217;s "
@@ -4343,7 +4355,6 @@ class MediaPages(BasePage):
         Generate and output the pages under the Media tab, namely the media
         index and the individual media pages.
         
-        @param: report -- the instance of the main report class for this report
         @param: title -- the web site title
         """
         log.debug("obj_dict[Media]")
@@ -4429,7 +4440,7 @@ class MediaPages(BasePage):
 
                         trow = Html("tr")
                         tbody += trow
-                    
+
                         media_data_row = [
                             [index,                                    "ColumnRowLabel"],
                             [self.media_ref_link(media_handle, title), "ColumnName"],
@@ -6521,7 +6532,7 @@ class RepositoryPages(BasePage):
             key = repository.get_name() + str(repository.get_gramps_id())
             repos_dict[key] = (repository, repository_handle)
             
-        keys = sorted(repos_dict, key = locale.strxfrm)
+        keys = sorted(repos_dict, key = SORT_KEY)
 
         # RepositoryListPage Class
         self.RepositoryListPage(self.report, title, repos_dict, keys)
@@ -6978,6 +6989,8 @@ class NavWebReport(Report):
                 self.user.notify_error(_("Could not create %s") % self.target_path,
                             str(value))
                 return
+        config.set('paths.website-directory',
+                   os.path.dirname(self.target_path) + os.sep)
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -7519,20 +7532,6 @@ class NavWebReport(Report):
                 fname = CSS["DropDown-Menus"]["filename"]
             self.copy_file(fname, "narrative-menus.css", "css")
 
-        # copy Animated Citations Drop Down Layout if being used, copy its style sheet
-        # and its associated javascript file?
-        if (self.css == _("Basic-Blue") or self.css == _("Visually Impaired")):
-            if self.citationreferents == "DropDown":
-                fname = CSS["Animated DropDown"]["javascript"]
-                self.copy_file(fname, "jquery-1.7.1.min.js", "scripts")
-
-        if self.citationreferents == "DropDown":
-            fname = CSS["Animated DropDown"]["filename"]
-        else:
-            fname = CSS["Outline"]["filename"]
-        self.copy_file(fname, "narrative-citations.css", "css")  
-
-
         # copy narrative-maps Style Sheet if Place or Family Map pages are being created?
         if (self.placemappages or self.familymappages):
             fname = CSS["NarrativeMaps"]["filename"] 
@@ -7827,13 +7826,14 @@ class NavWebReport(Report):
         else:
             self.cur_fname = fname + ext
         if self.archive:
-            string_io = StringIO()
             if sys.version_info[0] < 3:
-                of = open(fname, "w")
+                string_io = StringIO()
+                of = codecs.EncodedFile(string_io, 'utf-8', self.encoding,
+                                        'xmlcharrefreplace')
             else:
-                of = open(fname, "w", encoding='utf-8')
-#            of = codecs.EncodedFile(string_io, 'utf-8',
-#                                    self.encoding, 'xmlcharrefreplace')
+                string_io = BytesIO()
+                of = TextIOWrapper(string_io, encoding=self.encoding,
+                                   errors='xmlcharrefreplace')
         else:
             string_io = None
             if subdir:
@@ -7842,11 +7842,21 @@ class NavWebReport(Report):
                     os.makedirs(subdir)
             fname = os.path.join(self.html_dir, self.cur_fname)
             if sys.version_info[0] < 3:
-                of = open(fname, "w")
+                # In python 2.x, the data written by of.write() is genarally of
+                # type 'str' (i.e. 8-bit strings), except for cases where (at
+                # least) one of the objects being converted by a '%' operator is
+                # unicode (e.g. the "Generated by" line or the _META3 line), in
+                # which case the data being written is of type 'unicode' (See
+                # http://docs.python.org/2/library/stdtypes.html#string-
+                # formatting). The data written to the file is encoded according
+                # to self.encoding
+                of = codecs.EncodedFile(open(fname, 'w'), 'utf-8',
+                                        self.encoding, 'xmlcharrefreplace')
             else:
-                of = open(fname, "w", encoding='utf-8')
-#            of = codecs.EncodedFile(string_io, 'utf-8',
-#                                    self.encoding, 'xmlcharrefreplace')
+                # In python 3, the data that is written by of.write() is always
+                # of type 'str' (i.e. unicode text).
+                of = open(fname, 'w', encoding=self.encoding,
+                          errors='xmlcharrefreplace')
         return (of, string_io)
 
     def close_file(self, of, string_io):
@@ -7855,6 +7865,8 @@ class NavWebReport(Report):
         """
 
         if self.archive:
+            if sys.version_info[0] >= 3:
+                of.flush()
             tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(string_io.getvalue())
             tarinfo.mtime = time.time()
@@ -7965,8 +7977,11 @@ class NavWebOptions(MenuReportOptions):
         addopt( "archive", self.__archive )
         self.__archive.connect('value-changed', self.__archive_changed)
 
+        dbname = self.__db.get_dbname()
+        default_dir = dbname + "_" + "NAVWEB"
         self.__target = DestinationOption(_("Destination"),
-                                    os.path.join(USER_HOME, "NAVWEB"))
+                            os.path.join(config.get('paths.website-directory'),
+                                         default_dir))
         self.__target.set_help( _("The destination directory for the web "
                                   "files"))
         addopt( "target", self.__target )
@@ -8187,7 +8202,7 @@ class NavWebOptions(MenuReportOptions):
         self.__incdownload.connect('value-changed', self.__download_changed)
 
         self.__down_fname1 = DestinationOption(_("Download Filename"),
-            os.path.join(USER_HOME, ""))
+            os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname1.set_help(_("File to be used for downloading of database"))
         addopt( "down_fname1", self.__down_fname1 )
 
@@ -8196,7 +8211,7 @@ class NavWebOptions(MenuReportOptions):
         addopt( "dl_descr1", self.__dl_descr1 )
 
         self.__down_fname2 = DestinationOption(_("Download Filename"),
-            os.path.join(USER_HOME, ""))
+            os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname2.set_help(_("File to be used for downloading of database"))
         addopt( "down_fname2", self.__down_fname2 )
 
@@ -8467,14 +8482,12 @@ def sort_people(dbase, handle_list):
 
     sorted_lists = []
     # According to the comment in flatbasemodel:         This list is sorted
-    # ascending, via localized string sort. conv_unicode_tosrtkey which
-    # uses strxfrm, which is apparently broken in Win ?? --> they should fix
-    # base lib, we need strxfrm, fix it in the Utils module.
-    temp_list = sorted(sname_sub, key=conv_unicode_tosrtkey)
+    # ascending, via localized string sort. SORT_KEY
+    temp_list = sorted(sname_sub, key=SORT_KEY)
     
     for name in temp_list:
         slist = sorted(((sortnames[x], x) for x in sname_sub[name]), 
-                    key=lambda x:conv_unicode_tosrtkey(x[0]))
+                    key=lambda x:SORT_KEY(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
@@ -8501,7 +8514,7 @@ def sort_event_types(dbase, event_types, event_handle_list):
             sort_value = event.get_date_object().get_sort_value()
             event_dict[event_type].append((sort_value, event_handle))
 
-    for tup_list in list(event_dict.values()):
+    for tup_list in event_dict.values():
         tup_list.sort()
 
     # return a list of sorted tuples, one per event
@@ -8538,20 +8551,19 @@ def first_letter(string):
     else:
         letter = cuni(' ')
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
-    (lang_country, modifier ) = locale.getlocale()
-    if lang_country == "sv_SE" and (letter == cuni('W') or letter == cuni('V')):
-        letter = 'V,W'
+    if COLLATE_LANG == "sv_SE" and (letter == cuni('W') or letter == cuni('V')):
+        letter = cuni('V,W')
     # See : http://www.gramps-project.org/bugs/view.php?id = 4423
-    elif (lang_country == "cs_CZ" or lang_country == "sk_SK") and letter == cuni('C') and len(string) > 1:
-        second_letter = normalize('NFKC', str(string))[1].upper()
+    elif (COLLATE_LANG == "cs_CZ" or COLLATE_LANG == "sk_SK") and letter == cuni('C') and len(string) > 1:
+        second_letter = normalize('NFKC', cuni(string))[1].upper()
         if second_letter == cuni('H'):
             letter += cuni('h')
-    elif lang_country == "sk_SK" and letter == cuni('D') and len(string) > 1:
+    elif COLLATE_LANG == "sk_SK" and letter == cuni('D') and len(string) > 1:
         second_letter = normalize('NFKC', cuni(string))[1].upper()
         if second_letter == cuni('Z'):
             letter += cuni('z')
-        elif second_letter == cuni('‚Äö√Ñ√∂‚àö√ë‚àö‚àÇ‚Äö√†√∂¬¨¬¢‚Äö√†√∂‚Äö√Ñ‚Ä†‚Äö√¢√†‚àö‚â†¬¨¬®¬¨¬©'):
-            letter += cuni('‚Äö√Ñ√∂‚àö√ë‚àö‚àÇ‚Äö√†√∂¬¨¬¢‚Äö√†√∂‚Äö√Ñ‚Ä†‚Äö√Ñ√∂‚àö‚Ä†‚àö‚àÇ¬¨¬®‚Äö√†√á')
+        elif second_letter == cuni('Ž'):
+            letter += cuni('ž')
     return letter
 
 def get_first_letters(dbase, menu_set, key):
@@ -8601,13 +8613,12 @@ def alphabet_navigation(menu_set):
     #
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
-    (lang_country, modifier) = locale.getlocale()
 
     for menu_item in menu_set:
         sorted_set[menu_item] += 1
 
     # remove the number of each occurance of each letter
-    sorted_alpha_index = sorted(sorted_set, key = locale.strxfrm)
+    sorted_alpha_index = sorted(sorted_set, key = SORT_KEY)
 
     # if no letters, return None to its callers
     if not sorted_alpha_index:
@@ -8628,7 +8639,7 @@ def alphabet_navigation(menu_set):
             while (cols <= num_of_cols and index < num_ltrs):
                 menu_item = sorted_alpha_index[index]
 
-                if lang_country == "sv_SE" and menu_item == cuni('V'):
+                if COLLATE_LANG == "sv_SE" and menu_item == cuni('V'):
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
                     # adding title to hyperlink menu for screen readers and braille writers
