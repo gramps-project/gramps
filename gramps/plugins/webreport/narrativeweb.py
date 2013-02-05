@@ -111,7 +111,7 @@ from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             EventRoleType, Family, Event, Place, Source,
                             Citation, MediaObject, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
-from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME, VERSION
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, VERSION
 from gramps.gen.sort import Sort
 from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
@@ -126,6 +126,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
+from gramps.gen.config import config
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
@@ -6988,6 +6989,8 @@ class NavWebReport(Report):
                 self.user.notify_error(_("Could not create %s") % self.target_path,
                             str(value))
                 return
+        config.set('paths.website-directory',
+                   os.path.dirname(self.target_path) + os.sep)
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -7974,8 +7977,11 @@ class NavWebOptions(MenuReportOptions):
         addopt( "archive", self.__archive )
         self.__archive.connect('value-changed', self.__archive_changed)
 
+        dbname = self.__db.get_dbname()
+        default_dir = dbname + "_" + "NAVWEB"
         self.__target = DestinationOption(_("Destination"),
-                                    os.path.join(USER_HOME, "NAVWEB"))
+                            os.path.join(config.get('paths.website-directory'),
+                                         default_dir))
         self.__target.set_help( _("The destination directory for the web "
                                   "files"))
         addopt( "target", self.__target )
@@ -8196,7 +8202,7 @@ class NavWebOptions(MenuReportOptions):
         self.__incdownload.connect('value-changed', self.__download_changed)
 
         self.__down_fname1 = DestinationOption(_("Download Filename"),
-            os.path.join(USER_HOME, ""))
+            os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname1.set_help(_("File to be used for downloading of database"))
         addopt( "down_fname1", self.__down_fname1 )
 
@@ -8205,7 +8211,7 @@ class NavWebOptions(MenuReportOptions):
         addopt( "dl_descr1", self.__dl_descr1 )
 
         self.__down_fname2 = DestinationOption(_("Download Filename"),
-            os.path.join(USER_HOME, ""))
+            os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname2.set_help(_("File to be used for downloading of database"))
         addopt( "down_fname2", self.__down_fname2 )
 
