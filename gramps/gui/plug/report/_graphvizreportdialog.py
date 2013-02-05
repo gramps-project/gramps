@@ -116,6 +116,7 @@ class GraphvizReportDialog(ReportDialog):
         more information."""
         self.category = CATEGORY_GRAPHVIZ
         self.__gvoptions = graphdoc.GVOptions()
+        self.dbname = dbstate.db.get_dbname()
         ReportDialog.__init__(self, dbstate, uistate, opt,
                               name, translated_name)
         
@@ -165,10 +166,9 @@ class GraphvizReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            if self.options.get_output():
-                base = os.path.basename(self.options.get_output())
-            else:
-                base = "%s%s" % (self.report_name, ext)
+            default_name = self.dbname + "_" + \
+                        "".join(x[0].upper() for x in self.raw_name.split("_"))
+            base = "%s%s" % (default_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 
