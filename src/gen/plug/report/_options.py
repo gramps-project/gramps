@@ -571,13 +571,14 @@ class OptionHandler(_options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
-    def __init__(self, module_name, options_dict):
+    def __init__(self, module_name, options_dict, filename):
+        self.default_filename = filename
         _options.OptionHandler.__init__(self, module_name, options_dict, None)
 
     def init_subclass(self):
         self.collection_class = OptionListCollection
         self.list_class = OptionList
-        self.filename = const.REPORT_OPTIONS
+        self.filename = self.default_filename
 
     def init_common(self):
         """
@@ -742,9 +743,12 @@ class ReportOptions(_options.Options):
         self.options_dict = {}
         self.options_help = {}
         self.handler = None
+        self.default_report_options_file = os.path.join(dbase.full_name,
+                                                        "report_options.xml")
         
     def load_previous_values(self):
-        self.handler = OptionHandler(self.name, self.options_dict)
+        self.handler = OptionHandler(self.name, self.options_dict,
+                                     self.default_report_options_file)
 
     def make_default_style(self, default_style):
         """
