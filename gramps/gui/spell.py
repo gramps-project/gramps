@@ -56,15 +56,15 @@ HAVE_GTKSPELL = False
 # Attempting to import gtkspell gives an error dialog if gtkspell is not
 # available so test first and log just a warning to the console instead.
 repository = Repository.get_default()
-if repository.enumerate_versions("Gtkspell"):
+if repository.enumerate_versions("GtkSpell"):
     try:
-        from gi.repository import Gtkspell
+        from gi.repository import GtkSpell as Gtkspell
         HAVE_GTKSPELL = True
     except:
         pass
-elif repository.enumerate_versions("GtkSpell"):
+elif repository.enumerate_versions("Gtkspell"):
     try:
-        from gi.repository import GtkSpell as Gtkspell
+        from gi.repository import Gtkspell
         HAVE_GTKSPELL = True
     except:
         pass
