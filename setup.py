@@ -62,7 +62,10 @@ def intltool_version():
     '''
     Return the version of intltool as a tuple.
     '''
-    cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
+    if not sys.platform == 'win32':
+        cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
+    else:
+        cmd = "perl -e 'print `intltool-update --version 2>&1` =~ m/(\d+.\d+.\d+)/;'"
     if sys.version_info[0] < 3:
         retcode, version_str = commands.getstatusoutput(cmd)
     else:
@@ -198,7 +201,15 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
         option += ' -c ' + cache_file
 
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
+        if sys.platform == 'win32':
+            cmd = (('set LC_ALL=C && intltool-merge %(opt)s %(po_dir)s %(in_file)s '
+                '%(out_file)s') % 
+              {'opt' : option, 
+               'po_dir' : po_dir,
+               'in_file' : in_file, 
+               'out_file' : out_file})
+        else:
+            cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
                 '%(out_file)s') % 
               {'opt' : option, 
                'po_dir' : po_dir,
@@ -264,7 +275,8 @@ class build(_build):
     """Custom build command."""
     def run(self):
         build_trans(self)
-        build_man(self)
+        if not sys.platform == 'win32':
+            build_man(self)
         build_intl(self)
         write_const_py(self)
         _build.run(self)
