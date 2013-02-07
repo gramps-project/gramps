@@ -4588,7 +4588,7 @@ class MediaPages(BasePage):
                                     os.close(filed)
                                     self.report.archive.add(dest, initial_image_path)
                                 else:
-                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'w')
+                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'wb')
                                     filed.write(initial_image_data)
                                     filed.close()
                             else:
