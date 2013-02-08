@@ -163,7 +163,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.geo_altmap = cairo.ImageSurface.create_from_png(pathu)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP,
-              constants.OPENSTREETMAP_RENDERER
+              constants.MAPS_FOR_FREE,
+              constants.OPENCYCLEMAP,
+              constants.OSM_PUBLIC_TRANSPORT,
              )):
             default_image = self.geo_mainmap
         else:
