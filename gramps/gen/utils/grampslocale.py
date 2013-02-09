@@ -118,11 +118,12 @@ class GrampsLocale(object):
 
         if not language or len(language) == 0:
             if "LANGUAGE" in os.environ:
+                avail =  self.get_available_translations()
                 language = [l for l in os.environ["LANGUAGE"].split(":")
-                            if l in self.get_available_translations()]
+                            if l[:5] in avail or l[:2] in avail]
                 self.language = language
             elif not lang == "C.UTF-8":
-                self.language = [lang[0:2]]
+                self.language = [lang]
             else:
                 self.language = ["en"]
 
