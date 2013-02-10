@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-07 15:04+0100\n"
-"PO-Revision-Date: 2013-02-07 15:24+0100\n"
+"PO-Revision-Date: 2013-02-10 20:28+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -5880,7 +5880,7 @@ msgstr "Gebeurtenissen"
 #: ../src/plugins/gramplet/gramplet.gpr.py:115
 #: ../src/plugins/view/fanchartview.py:571
 msgid "Fan Chart"
-msgstr "Waaiergrafiek"
+msgstr "Waaier"
 
 #: ../src/gui/grampsgui.py:115
 msgid "Font"
@@ -9842,7 +9842,7 @@ msgstr "Boeknaam. VERPLICHT"
 #: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1196
 #: ../src/plugins/BookReport.py:1214 ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
-msgstr "Boekverslag"
+msgstr "Boeken"
 
 #: ../src/plugins/BookReport.py:765
 msgid "New Book"
@@ -10941,13 +10941,13 @@ msgstr "Rand"
 #: ../src/plugins/drawreport/DescendTree.py:159
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr "Afstammelingenverslag voor %(person)s en %(father1)s, %(mother1)s"
+msgstr "Afstammelingen van %(person)s en %(father1)s, %(mother1)s"
 
 #. Should be 2 items in names list
 #: ../src/plugins/drawreport/DescendTree.py:166
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr "Afstammelingenverslag voor %(person)s, %(father1)s en %(mother1)s"
+msgstr "Afstammelingen van %(person)s, %(father1)s en %(mother1)s"
 
 #. Should be 2 items in both names and names2 lists
 #: ../src/plugins/drawreport/DescendTree.py:173
@@ -10955,19 +10955,18 @@ msgstr "Afstammelingenverslag voor %(person)s, %(father1)s en %(mother1)s"
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
 msgstr ""
-"Afstammelingenverslag voor %(father1)s, %(father2)s en %(mother1)s, "
-"%(mother2)s"
+"Afstammelingen van %(father1)s, %(father2)s en %(mother1)s, %(mother2)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s"
-msgstr "Afstammelingenverslag voor %(person)s"
+msgstr "Afstammelingen van %(person)s"
 
 #. Should be two items in names list
 #: ../src/plugins/drawreport/DescendTree.py:185
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "Afstammelingenverslag voor %(father)s en %(mother)s"
+msgstr "Afstammelingen van %(father)s en %(mother)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:322
 #, python-format
@@ -11099,7 +11098,7 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/drawreport/DescendTree.py:1634
 msgid "Descendant Chart for [selected person(s)]"
-msgstr "Afstammelingenverslag voor [geselecteerde perso(o)n(en)]"
+msgstr "Afstammelingen van [geselecteerde perso(o)n(en)]"
 
 #: ../src/plugins/drawreport/DescendTree.py:1595
 msgid "Whether to include page numbers on each page."
@@ -11173,7 +11172,7 @@ msgstr "Een grafische afstammelingenstamboom rond een familie wordt aangemaakt"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
-msgstr "Waaiergrafieken aanmaken"
+msgstr "Waaier aanmaken"
 
 #. extract requested items from the database and count them
 #: ../src/plugins/drawreport/drawplugins.gpr.py:192
@@ -11191,16 +11190,16 @@ msgstr ""
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:216
 msgid "Timeline Chart"
-msgstr "Tijdlijngrafiek"
+msgstr "Tijdlijn"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:217
 msgid "Produces a timeline chart."
-msgstr "Een tijdlijngrafiek aanmaken."
+msgstr "Een tijdlijn aanmaken."
 
 #: ../src/plugins/drawreport/FanChart.py:250
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "%(generations)d generatiewaaiergrafiek voor %(person)s"
+msgstr "%(generations)d generatiewaaier voor %(person)s"
 
 #: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:283
@@ -11566,7 +11565,7 @@ msgstr "Gesorteerd op %s"
 #: ../src/plugins/drawreport/TimeLine.py:248
 #, python-format
 msgid "Timeline Graph for %s"
-msgstr "Tijdlijngrafiek voor %s"
+msgstr "Tijdlijn voor %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:275
 msgid "No Date Information"
@@ -13164,7 +13163,7 @@ msgstr "Afstammelingen"
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr ""
 "Gramplet toont de rechtstreekse afstammelingen van de actieve persoon in een "
-"waaiergrafiek"
+"waaier"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:123
 #: ../src/plugins/gramplet/gramplet.gpr.py:129
@@ -13908,7 +13907,7 @@ msgstr ": %s\n"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:31
 msgid "Family Lines Graph"
-msgstr "Familielijnengrafiek"
+msgstr "Familielijnen"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:32
 msgid "Produces family line graphs using GraphViz."
@@ -13916,11 +13915,11 @@ msgstr "Maakt een familielijngrafiek aan met \"GraphViz\"."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
-msgstr "Zandlopergrafiek"
+msgstr "Zandloper"
 
 #: ../src/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Maakt een zandlopergrafiek aan met \"Graphviz\"."
+msgstr "Een zandlopergrafiek met \"Graphviz\" aanmaken."
 
 #: ../src/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
@@ -20527,7 +20526,7 @@ msgstr "De gebruikte stijl voor de indexelementen."
 #: ../src/plugins/textreport/AncestorReport.py:191
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "'Ahnentafel'-verslag voor %s"
+msgstr "Ahnentafel voor %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:286
 #: ../src/plugins/textreport/DetAncestralReport.py:746
@@ -21054,7 +21053,7 @@ msgstr "De gebruikte stijl voor de algemene detailgegevens."
 #: ../src/plugins/textreport/DetDescendantReport.py:290
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "Afstammelingenverslag voor %(person_name)s"
+msgstr "Afstammelingen van %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:576
 #, python-format
@@ -21131,7 +21130,7 @@ msgstr "De gebruikte stijl voor de sectiekop van \"meer over\"."
 #: ../src/plugins/textreport/EndOfLineReport.py:150
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Eindelijnsverslag voor %s"
+msgstr "Eindelijn voor %s"
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/EndOfLineReport.py:157
@@ -21638,7 +21637,7 @@ msgstr "De gebruikte stijl voor de ondertitel."
 #: ../src/plugins/textreport/Summary.py:80
 #: ../src/plugins/textreport/textplugins.gpr.py:342
 msgid "Database Summary Report"
-msgstr "'Overzicht gegevensbestand'-verslag"
+msgstr "Overzicht gegevensbestand"
 
 #: ../src/plugins/textreport/Summary.py:149
 #, python-format
@@ -21746,7 +21745,7 @@ msgstr "De gebruikte basisstijl voor de tabelhoofdingen."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:31
 msgid "Ahnentafel Report"
-msgstr "'Ahnentafel'-verslag"
+msgstr "Ahnentafel"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:32
 msgid "Produces a textual ancestral report"
@@ -21762,11 +21761,11 @@ msgstr "Eigen tekst"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:76
 msgid "Add custom text to the book report"
-msgstr "Een eigen tekst toevoegen aan het boekverslag"
+msgstr "Een eigen tekst toevoegen aan het boek"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:97
 msgid "Descendant Report"
-msgstr "Afstammelingenverslag"
+msgstr "Afstammelingen"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:98
 msgid "Produces a list of descendants of the active person"
@@ -21782,19 +21781,19 @@ msgstr "Levert een gedetailleerd vooroudersverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:141
 msgid "Detailed Descendant Report"
-msgstr "Gedetailleerd afstammelingenverslag"
+msgstr "Afstammelingen details"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:142
 msgid "Produces a detailed descendant report"
-msgstr "Levert een gedetailleerd afstammelingenverslag"
+msgstr "Levert details van de afstammelingen"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:163
 msgid "End of Line Report"
-msgstr "Eindelijnsverslag"
+msgstr "Eindelijn"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:164
 msgid "Produces a textual end of line report"
-msgstr "Levert een eindelijnsverslag in tekstvorm"
+msgstr "Een eindelijn in tekstvorm aanmaken"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:186
 msgid ""
@@ -21827,7 +21826,7 @@ msgstr "Een lijst van personen met een bepaalde tag aanmaken"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:275
 msgid "Number of Ancestors Report"
-msgstr "'Aantal voorouders'-verslag"
+msgstr "Aantal voorouders"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:276
 msgid "Counts number of ancestors of selected person"
@@ -21843,7 +21842,7 @@ msgstr "Titelpagina"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:321
 msgid "Produces a title page for book reports."
-msgstr "Een titelpagina voor het boekverslagen aanmaken."
+msgstr "Een titelpagina voor het boek aanmaken."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:343
 msgid "Provides a summary of the current database"
@@ -21855,7 +21854,7 @@ msgstr "Inhoudstafel"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:366
 msgid "Produces a table of contents for book reports."
-msgstr "Een inhoudstafel voor boekverslagen aanmaken."
+msgstr "Een inhoudstafel voor het boek aanmaken."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:387
 msgid "Alphabetical Index"
@@ -21863,7 +21862,7 @@ msgstr "Alfabetische index"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:388
 msgid "Produces an alphabetical index for book reports."
-msgstr "Een alfabetische index van alle boekverslagen aanmaken."
+msgstr "Een alfabetische index van alle boeken aanmaken."
 
 #: ../src/plugins/tool/ChangeNames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -23717,7 +23716,7 @@ msgstr ""
 
 #: ../src/plugins/view/fanchartview.gpr.py:26
 msgid "Fan Chart View"
-msgstr "Waaiergrafiekscherm"
+msgstr "Waaierscherm"
 
 #: ../src/plugins/view/fanchartview.gpr.py:27
 #: ../src/plugins/view/view.gpr.py:131
@@ -23726,7 +23725,7 @@ msgstr "Voorouders"
 
 #: ../src/plugins/view/fanchartview.gpr.py:28
 msgid "The view showing relations through a fanchart"
-msgstr "Het scherm toont de relaties op een waaiergrafiek"
+msgstr "Het scherm toont de relaties op een waaier"
 
 #: ../src/plugins/view/geography.gpr.py:36
 #, python-format
@@ -31110,7 +31109,7 @@ msgstr ""
 "<b>Gramps-verslagen</b><br/>Gramps biedt een brede waaier van mogelijke "
 "verslagen. De tekstverslagen zijn zeer handig indien u de resultaten van uw "
 "familiestamboom naar uw familieleden wilt sturen via e-mail. De grafische "
-"versalgen kunnen eenvoudig complexe relaties weergeven. Wenst u van uw "
+"verslagen kunnen eenvoudig complexe relaties weergeven. Wenst u van uw "
 "familiestamboom een website maken, dan is daar een speciaal verslag voor om "
 "dit te doen."
 
@@ -31564,10 +31563,10 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>Boekverslag</b><br/>Het boekverslag onder &quot;Verslagen &gt; Boeken "
-"&gt; Boekverslag...&quot;, laat gebruikers toe om verscheidene verslagen te "
-"bundelen in één document. Dit document is eenvoudiger te verdelen dan "
-"verschillende aparte documenten, zeker wanneer deze afgedrukt worden."
+"<b>Boek</b><br/>Een boek onder &quot;Verslagen &gt; Boeken &gt; Boeken..."
+"&quot;, laat gebruikers toe om verscheidene verslagen te bundelen in één "
+"document. Dit document is eenvoudiger te verdelen dan verschillende aparte "
+"documenten, zeker wanneer deze afgedrukt worden."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
