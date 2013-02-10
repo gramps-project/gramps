@@ -62,18 +62,28 @@ def intltool_version():
     '''
     Return the version of intltool as a tuple.
     '''
-    if not sys.platform == 'win32':
+    if sys.platform == 'win32':
+        cmd = ["perl", "-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
+        try: 
+            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE).communicate()
+            if sys.version_info[0] > 2:
+                ver = ver.decode("utf-8")
+            if ver > "":
+                version_str = ver
+            else:
+                return (0,0,0)
+        except:
+            return (0,0,0)
+    else:
         cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
-    else:
-        cmd = "perl -e 'print `intltool-update --version 2>&1` =~ m/(\d+.\d+.\d+)/;'"
-    if sys.version_info[0] < 3:
-        retcode, version_str = commands.getstatusoutput(cmd)
-    else:
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-    if retcode != 0:
-        return None
-    else:
-        return tuple([int(num) for num in version_str.split('.')])
+        if sys.version_info[0] < 3:
+            retcode, version_str = commands.getstatusoutput(cmd)
+        else:
+            retcode, version_str = subprocess.getstatusoutput(cmd)
+        if retcode != 0:
+            return None
+    return tuple([int(num) for num in version_str.split('.')])
 
 def substitute_variables(filename_in, filename_out, subst_vars):
     '''
