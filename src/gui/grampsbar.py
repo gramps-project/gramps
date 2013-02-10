@@ -126,7 +126,10 @@ class GrampsBar(gtk.Notebook):
         filename = self.configfile
         if filename and os.path.exists(filename):
             cp = ConfigParser.ConfigParser()
-            cp.read(filename)
+            try:
+                cp.read(filename)
+            except:
+                pass
             for sec in cp.sections():
                 if sec == "Bar Options":
                     if "visible" in cp.options(sec):
