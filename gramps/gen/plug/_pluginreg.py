@@ -46,7 +46,7 @@ from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..utils.trans import get_addon_translator
 from ..ggettext import gettext as _
-from ..constfunc import STRTYPE
+from ..constfunc import STRTYPE, win
 
 #-------------------------------------------------------------------------
 #
@@ -1093,10 +1093,14 @@ class PluginRegister(object):
                 full_filename = full_filename.encode(sys.getfilesystemencoding())
             local_gettext = get_addon_translator(full_filename).gettext
             try:
-                #execfile(full_filename,
-                exec(compile(open(full_filename).read(), full_filename, 'exec'),
-                         make_environment(_=local_gettext),
-                         {})
+                if win() and not sys.version_info[0] < 3:
+                    exec(compile(open(full_filename, encoding='utf-8').read(),
+                        full_filename, 'exec'), make_environment(_=local_gettext),
+                        {})
+                else:
+                    #execfile(full_filename,
+                    exec(compile(open(full_filename).read(), full_filename,
+                            'exec'), make_environment(_=local_gettext), {})
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename})

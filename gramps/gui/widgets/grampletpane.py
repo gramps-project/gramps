@@ -39,6 +39,7 @@ from gi.repository import Pango
 import time
 import os
 from gramps.gen.ggettext import gettext as _
+from gramps.gen.constfunc import win
 import sys
 if sys.version_info[0] < 3:
     import ConfigParser as configparser
@@ -1168,7 +1169,10 @@ class GrampletPane(Gtk.ScrolledWindow):
             return # something is the matter
         filename = self.configfile
         try:
-            fp = open(filename, "w")
+            if win() and not sys.version_info[0] < 3:
+                fp = open(filename, "w", encoding='utf-8')
+            else:
+                fp = open(filename, "w")
         except IOError:
             print("Failed writing '%s'; gramplets not saved" % filename)
             return

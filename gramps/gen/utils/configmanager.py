@@ -43,7 +43,7 @@ import errno
 import copy
 import logging
 
-from ..constfunc import STRTYPE
+from ..constfunc import STRTYPE, win
 
 def safe_eval(exp):
     # restrict eval to empty environment
@@ -255,7 +255,10 @@ class ConfigManager(object):
         if filename and os.path.exists(filename):
             parser = configparser.RawConfigParser()
             try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
-                parser.read(filename)
+                if win() and not sys.version_info[0] < 3:
+                    parser.read(filename, encoding='utf8')
+                else:
+                    parser.read(filename)
             except:
                 msg1 = _("WARNING: could not parse file, recreating it:\n%s")
                 print(msg1 % filename, file=sys.stderr)
@@ -334,7 +337,10 @@ class ConfigManager(object):
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
-            key_file = open(filename, "w")
+            if win() and not sys.version_info[0] < 3:
+                key_file = open(filename, "w", encoding='utf-8')
+            else:
+                key_file = open(filename, "w")
             key_file.write(";; Gramps key file\n")
             key_file.write((";; Automatically created at %s" % 
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
