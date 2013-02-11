@@ -41,7 +41,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-07 15:04+0100\n"
-"PO-Revision-Date: 2013-02-10 20:28+0100\n"
+"PO-Revision-Date: 2013-02-11 21:00+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -9945,15 +9945,15 @@ msgstr "Maakt een boek aan met verschillende verslagen."
 
 #: ../src/plugins/records.gpr.py:32
 msgid "Records Report"
-msgstr "Recordsverslag"
+msgstr "Records"
 
 #: ../src/plugins/records.gpr.py:33 ../src/plugins/records.gpr.py:49
 msgid "Shows some interesting records about people and families"
-msgstr "Toont interessante records van personen en families"
+msgstr "Interessante records van personen en families tonen"
 
 #: ../src/plugins/records.gpr.py:48
 msgid "Records Gramplet"
-msgstr "Records-gramplet"
+msgstr "Records"
 
 # rapportages
 #: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
@@ -10789,7 +10789,7 @@ msgstr "Kies de eerste dag van de week voor de kalender"
 #: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1411
 msgid "Birthday surname"
-msgstr "Geboortedatum achternaam"
+msgstr "Verjaardag achternaam"
 
 #: ../src/plugins/drawreport/Calendar.py:454
 #: ../src/plugins/textreport/BirthdayReport.py:409
@@ -12666,7 +12666,7 @@ msgid ""
 "WARNING:  This will completely erase all Exif metadata from this image!  Are "
 "you sure that you want to do this?"
 msgstr ""
-"WAARSCHUWING: dit zal al uw Exif-metagegevens van dit beeld voledig wissen! "
+"WAARSCHUWING: dit zal al uw Exif-metagegevens van dit beeld volledig wissen! "
 "Bent u zeker dat u dit wilt doen?"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:314
@@ -13803,7 +13803,7 @@ msgstr "Tag om aan te duiden dat een familie volledig is"
 #: ../src/plugins/gramplet/WhatsNext.py:90
 msgid "Tag to indicate that a person or family should be ignored"
 msgstr ""
-"Tag om aan de duiden dat een persson of een familie genegeerd moet worden"
+"Tag om aan de duiden dat een persoon of een familie genegeerd moet worden"
 
 #: ../src/plugins/gramplet/WhatsNext.py:164
 msgid "No Home Person set."
@@ -19875,7 +19875,7 @@ msgstr "personen met onvolledige namen"
 # met onbekende geboortedatum
 #: ../src/plugins/quickview/FilterByName.py:65
 msgid "Filtering_on|people with missing birth dates"
-msgstr "personen met onbekende geboortedatum"
+msgstr "personen met onbekende geboortedatums"
 
 # zonder relatie, ongebonden personen
 #: ../src/plugins/quickview/FilterByName.py:66
@@ -20572,7 +20572,7 @@ msgstr "Getoonde verwantschappen van %s"
 #: ../src/plugins/textreport/BirthdayReport.py:435
 #: ../src/plugins/textreport/textplugins.gpr.py:53
 msgid "Birthday and Anniversary Report"
-msgstr "Geboortedatum- en verjaardagsverslag"
+msgstr "Geboortedatum- en verjaardagen"
 
 #: ../src/plugins/textreport/BirthdayReport.py:427
 msgid "Include relationships to center person"
@@ -21179,13 +21179,13 @@ msgstr "%dU"
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Genereert familiegroepsverslag %d"
+msgstr "Familiegroep - Generatie %d"
 
 #: ../src/plugins/textreport/FamilyGroup.py:558
 #: ../src/plugins/textreport/FamilyGroup.py:607
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
-msgstr "Familiegroepsverslag"
+msgstr "Familiegroepen"
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:630
@@ -21453,7 +21453,7 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:124
 #: ../src/plugins/textreport/textplugins.gpr.py:297
 msgid "Place Report"
-msgstr "Locatieverslag"
+msgstr "Locaties"
 
 #: ../src/plugins/textreport/PlaceReport.py:125
 msgid "Generating report"
@@ -21667,7 +21667,7 @@ msgstr "Personen met onvolledige namen: %d"
 #: ../src/plugins/textreport/Summary.py:170
 #, python-format
 msgid "Individuals missing birth dates: %d"
-msgstr "Personen zonder geboortedatum: %d"
+msgstr "Personen zonder geboortedatums: %d"
 
 #: ../src/plugins/textreport/Summary.py:175
 #, python-format
@@ -21714,7 +21714,7 @@ msgstr "De gebruikte stijl voor de hoofding 'derde niveau'."
 #: ../src/plugins/textreport/TagReport.py:79
 #: ../src/plugins/textreport/textplugins.gpr.py:252
 msgid "Tag Report"
-msgstr "Tagverslag"
+msgstr "Tags"
 
 #: ../src/plugins/textreport/TagReport.py:80
 msgid "You must first create a tag before running this report."
@@ -21753,7 +21753,7 @@ msgstr "Levert een tekstueel vooroudersverslag"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:54
 msgid "Produces a report of birthdays and anniversaries"
-msgstr "Levert een verslag met geboortedatums en verjaardagen"
+msgstr "Een verslag met geboortedatums en verjaardagen aanmaken"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:75
 msgid "Custom Text"
@@ -21773,11 +21773,11 @@ msgstr "Genereert een lijst met afstammelingen van de actieve persoon"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:119
 msgid "Detailed Ancestral Report"
-msgstr "Gedetailleerd vooroudersverslag"
+msgstr "Voorouders details"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:120
 msgid "Produces a detailed ancestral report"
-msgstr "Levert een gedetailleerd vooroudersverslag"
+msgstr "Een gedetailleerd vooroudersverslag aanmaken"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:141
 msgid "Detailed Descendant Report"
@@ -21800,7 +21800,7 @@ msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Familiegroepsverslag met informatie over een stel ouders en hun kinderen "
+"Een familiegroepsverslag met informatie over een stel ouders en hun kinderen "
 "aanmaken."
 
 #: ../src/plugins/textreport/textplugins.gpr.py:208
@@ -21834,7 +21834,7 @@ msgstr "Telt het aantal voorouders van de geselecteerde persoon"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:298
 msgid "Produces a textual place report"
-msgstr "Levert een locatieverslag in tekstvorm"
+msgstr "Locatieverslag in tekstvorm aanmaken"
 
 #: ../src/plugins/textreport/textplugins.gpr.py:320
 msgid "Title Page"
@@ -22453,7 +22453,7 @@ msgstr "Nakijken locatienamen"
 
 #: ../src/plugins/tool/ExtractCity.py:433
 msgid "Looking for place fields"
-msgstr "Zoeken naar locatievelden"
+msgstr "Naar locatievelden zoeken"
 
 #: ../src/plugins/tool/ExtractCity.py:511
 msgid "No place information could be extracted."
@@ -26267,7 +26267,7 @@ msgstr "Personen met <geboortedatum>"
 # Bepaalde geboortedatum misschien?
 #: ../src/Filters/Rules/Person/_HasBirth.py:49
 msgid "Matches people with birth data of a particular value"
-msgstr "Vindt personen met een bepaalde geboortedatum"
+msgstr "Personen met een bepaalde geboortedatum"
 
 #: ../src/Filters/Rules/Person/_HasCitation.py:48
 #: ../src/Filters/Rules/Family/_HasCitation.py:49
@@ -26865,7 +26865,7 @@ msgstr "Personen met onbekende geboortedatum"
 
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:44
 msgid "Matches people without a known birthdate"
-msgstr "Vindt personen zonder geboortedatum"
+msgstr "Personen zonder geboortedatum"
 
 # zonder een bekende/zonder
 # met onbekende geboortedatum
@@ -30026,7 +30026,7 @@ msgstr ""
 #: ../src/glade/mergeplace.glade.h:11 ../src/glade/mergerepository.glade.h:9
 #: ../src/glade/mergesource.glade.h:11
 msgid "Detailed Selection"
-msgstr "Gedetailleerde selectie"
+msgstr "Detailselectie"
 
 # tablabel voor de beginletters van de namen (de overige dan)
 #: ../src/glade/mergedata.glade.h:1
@@ -30118,8 +30118,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Gebeurtenissen, lds_ord, media-objecten, kenmerken, opmerkingen, bronnen en "
-"tags van beide families zullen samengevoegd worden."
+"Gebeurtenissen, 'lds_ord', media-objecten, kenmerken, opmerkingen, bronnen "
+"en tags van beide families zullen samengevoegd worden."
 
 #: ../src/glade/mergemedia.glade.h:1
 msgid ""
@@ -30187,8 +30187,8 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Gebeurtenissen, media-objecten, adressen, urls, opmerkingen, bronnen en tags "
-"van de beide personen worden gecombineerd."
+"Gebeurtenissen, media-objecten, adressen, 'url's, opmerkingen, bronnen en "
+"tags van de beide personen worden gecombineerd."
 
 #: ../src/glade/mergeperson.glade.h:10
 msgid "Context Information"
