@@ -40,7 +40,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-25 16:24+0100\n"
-"PO-Revision-Date: 2013-02-10 20:28+0100\n"
+"PO-Revision-Date: 2013-02-11 20:58+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "Language: \n"
@@ -2448,7 +2448,7 @@ msgstr "Personen met <geboortedatum>"
 # Bepaalde geboortedatum misschien?
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:50
 msgid "Matches people with birth data of a particular value"
-msgstr "Vindt personen met een bepaalde geboortedatum"
+msgstr "Personen met een bepaalde geboortedatum"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "People with the <citation>"
@@ -2737,7 +2737,7 @@ msgstr "Personen waarvan de gegevens de <deeltekenreeks> bevatten"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:51
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Vindt personen van wie de archief-kaart tekst bevat die met deeltekenreeks overeenkomt"
+msgstr "Personen van wie de archief-kaart tekst bevat die met deeltekenreeks overeenkomt"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:46
 msgid "People with unknown gender"
@@ -3059,7 +3059,7 @@ msgstr "Personen met onbekende geboortedatum"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:44
 msgid "Matches people without a known birthdate"
-msgstr "Vindt personen zonder geboortedatum"
+msgstr "Personen zonder geboortedatum"
 
 # zonder een bekende/zonder
 # met onbekende geboortedatum
@@ -3165,7 +3165,7 @@ msgstr "Locaties veranderd na <datum tijdstip>"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:48
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Vindt locaties die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
+msgstr "Locaties die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Place with the <citation>"
@@ -3393,7 +3393,7 @@ msgstr "Bibliotheken veranderd na <datum/tijdstip>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Vindt bibliotheken die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
+msgstr "Bibliotheken die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Repository with <Id>"
@@ -3490,7 +3490,7 @@ msgstr "Bronnen veranderd na <datum/tijdstip>"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:48
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Vindt bronnen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
+msgstr "Bronnen die veranderd zijn sinds een bepaalde datum/tijdstip (jjjj-mm-dd uu:mm:ss) of in een periode indien een tweede datum/tijdstip opgegeven is."
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:46
 msgid "Sources with <count> media"
@@ -12725,7 +12725,7 @@ msgstr "Kies de eerste weekdag voor de kalender"
 #: ../gramps/plugins/textreport/birthdayreport.py:409
 #: ../gramps/plugins/webreport/webcal.py:1408
 msgid "Birthday surname"
-msgstr "Geboortedatum achternaam"
+msgstr "Verjaardag achternaam"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:464
 #: ../gramps/plugins/textreport/birthdayreport.py:410
@@ -13930,7 +13930,7 @@ msgstr "Via een uitvalsmenu kunt u het bestandstype kiezen dat u kunt te gebruik
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:213
 msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
-msgstr "Indien uw beeld geen formaat heeft dat 'Exiv2'-metagegevens kan opslaan, wenst u dit beeld dan om te zetten naaar een formaat dat wel geschikt is?"
+msgstr "Indien uw beeld geen formaat heeft dat 'Exiv2'-metagegevens kan opslaan, wenst u dit beeld dan om te zetten naar een formaat dat wel geschikt is?"
 
 #: ../gramps/plugins/gramplet/editexifmetadata.py:216
 msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
@@ -14901,7 +14901,7 @@ msgstr "Records"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1067
 #: ../gramps/plugins/textreport/textplugins.gpr.py:411
 msgid "Shows some interesting records about people and families"
-msgstr "Toont interessante records van personen en families"
+msgstr "Interessante records van personen en families tonen"
 
 # rapportages
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
@@ -15237,7 +15237,7 @@ msgstr "Onvolledige namen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:165
 msgid "Individuals missing birth dates"
-msgstr "Personen zonder geboortedatum"
+msgstr "Personen zonder geboortedatums"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:169
 msgid "Disconnected individuals"
@@ -15442,7 +15442,7 @@ msgstr "Tag om aan te duiden dat een familie volledig is"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:90
 msgid "Tag to indicate that a person or family should be ignored"
-msgstr "Tag om aan de duiden dat een persson of een familie genegeerd moet worden"
+msgstr "Tag om aan de duiden dat een persoon of een familie genegeerd moet worden"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:164
 msgid "No Home Person set."
@@ -20690,7 +20690,7 @@ msgstr "Onvolledige namen"
 # met onbekende geboortedatum
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|people with missing birth dates"
-msgstr "personen met onbekende geboortedatum"
+msgstr "personen met onbekende geboortedatums"
 
 # zonder relatie, ongebonden personen
 #: ../gramps/plugins/quickview/filterbyname.py:67
@@ -21299,7 +21299,7 @@ msgstr "Getoonde verwantschappen van %s"
 #: ../gramps/plugins/textreport/birthdayreport.py:436
 #: ../gramps/plugins/textreport/textplugins.gpr.py:54
 msgid "Birthday and Anniversary Report"
-msgstr "Geboortedatum- en verjaardagsverslag"
+msgstr "Geboortedatum- en verjaardagen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:363
 #: ../gramps/plugins/textreport/birthdayreport.py:365
@@ -21344,7 +21344,7 @@ msgstr "Titel van het verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:440
 msgid "My Birthday Report"
-msgstr "Mijn geboortedatumverslag"
+msgstr "Mijn verjaardagsverslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:441
 msgid "First line of text at bottom of report"
@@ -21934,13 +21934,13 @@ msgstr "%dU"
 #: ../gramps/plugins/textreport/familygroup.py:556
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Genereert familiegroepsverslag %d"
+msgstr "Familiegroep - Generatie %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:558
 #: ../gramps/plugins/textreport/familygroup.py:607
 #: ../gramps/plugins/textreport/textplugins.gpr.py:186
 msgid "Family Group Report"
-msgstr "Familiegroepsverslag"
+msgstr "Familiegroepen"
 
 #: ../gramps/plugins/textreport/familygroup.py:630
 msgid "Center Family"
@@ -22191,7 +22191,7 @@ msgstr "Totaal aantal voorouders in de generaties %(second_generation)d tot   %(
 #: ../gramps/plugins/textreport/placereport.py:124
 #: ../gramps/plugins/textreport/textplugins.gpr.py:298
 msgid "Place Report"
-msgstr "Locatieverslag"
+msgstr "Locaties"
 
 #: ../gramps/plugins/textreport/placereport.py:125
 msgid "Generating report"
@@ -22465,7 +22465,7 @@ msgstr "Onvolledige namen: %d"
 #: ../gramps/plugins/textreport/summary.py:177
 #, python-format
 msgid "Individuals missing birth dates: %d"
-msgstr "Personen zonder geboortedatum: %d"
+msgstr "Personen zonder geboortedatums: %d"
 
 #: ../gramps/plugins/textreport/summary.py:182
 #, python-format
@@ -22517,7 +22517,7 @@ msgstr "De gebruikte stijl voor de derde hoofding."
 #: ../gramps/plugins/textreport/tagreport.py:79
 #: ../gramps/plugins/textreport/textplugins.gpr.py:253
 msgid "Tag Report"
-msgstr "Tagverslag"
+msgstr "Tags"
 
 #: ../gramps/plugins/textreport/tagreport.py:80
 msgid "You must first create a tag before running this report."
@@ -22554,7 +22554,7 @@ msgstr "Levert een tekstueel vooroudersverslag"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:55
 msgid "Produces a report of birthdays and anniversaries"
-msgstr "Levert een verslag met geboortedatums en verjaardagen"
+msgstr "Een verslag met geboortedatums en verjaardagen aanmaken"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:77
 msgid "Add custom text to the book report"
@@ -22570,11 +22570,11 @@ msgstr "Lijst met de afstammelingen van de actieve persoon"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:120
 msgid "Detailed Ancestral Report"
-msgstr "Gedetailleerd vooroudersverslag"
+msgstr "Voorouders details"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:121
 msgid "Produces a detailed ancestral report"
-msgstr "Levert een gedetailleerd vooroudersverslag"
+msgstr "Een gedetailleerd vooroudersverslag aanmaken"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:142
 msgid "Detailed Descendant Report"
@@ -22594,7 +22594,7 @@ msgstr "Een eindelijn in tekstvorm aanmaken"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:187
 msgid "Produces a family group report showing information on a set of parents and their children."
-msgstr "Maakt een familiegroepsverslag met informatie over een stel ouders en hun kinderen."
+msgstr "Een familiegroepsverslag met informatie over een stel ouders en hun kinderen aanmaken."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:209
 msgid "Complete Individual Report"
@@ -22651,7 +22651,7 @@ msgstr "Een alfabetische index voor alle  boeken aanmaken."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:410
 msgid "Records Report"
-msgstr "Recordsverslag"
+msgstr "Records"
 
 #: ../gramps/plugins/tool/changenames.py:65
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -22711,7 +22711,7 @@ msgstr "Analyseren van gebeurtenissen"
 
 #: ../gramps/plugins/tool/changetypes.py:136
 msgid "No event record was modified."
-msgstr "Geen gebeurtenis-archief is aangepast."
+msgstr "Er werd geen gebeurtenisgegeven aangepast."
 
 #: ../gramps/plugins/tool/changetypes.py:138
 #, python-format
@@ -22797,19 +22797,19 @@ msgstr "Er wordt naar %(file_name)s verwezen in het gegevensbestand, maar deze b
 
 #: ../gramps/plugins/tool/check.py:782
 msgid "Looking for empty people records"
-msgstr "Zoeken naar lege persoonsgegevens"
+msgstr "Naar lege persoonsgegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:790
 msgid "Looking for empty family records"
-msgstr "Zoeken naar lege familiegegevens"
+msgstr "Naar lege familiegegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:798
 msgid "Looking for empty event records"
-msgstr "Zoeken naar lege gebeurtenissengegevens"
+msgstr "Naar lege gebeurtenissengegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:806
 msgid "Looking for empty source records"
-msgstr "Zoeken naar lege bronnengegevens"
+msgstr "Naar lege bronnengegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:814
 msgid "Looking for empty citation records"
@@ -22817,23 +22817,23 @@ msgstr "Naar lege citaten zoeken"
 
 #: ../gramps/plugins/tool/check.py:822
 msgid "Looking for empty place records"
-msgstr "Zoeken naar lege locatiegegevens"
+msgstr "Naar lege locatiegegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:830
 msgid "Looking for empty media records"
-msgstr "Zoeken naar lege mediagegevens"
+msgstr "Naar lege mediagegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:838
 msgid "Looking for empty repository records"
-msgstr "Zoeken naar lege bibliothekengegevens"
+msgstr "Naar lege bibliothekengegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:846
 msgid "Looking for empty note records"
-msgstr "Zoeken naar lege opmerkingengegevens"
+msgstr "Naar lege opmerkingengegevens zoeken"
 
 #: ../gramps/plugins/tool/check.py:892
 msgid "Looking for empty families"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Naar onvolledige families zoeken"
 
 #: ../gramps/plugins/tool/check.py:927
 msgid "Looking for broken parent relationships"
@@ -22841,7 +22841,7 @@ msgstr "Naar gebroken ouderrelaties zoeken"
 
 #: ../gramps/plugins/tool/check.py:964
 msgid "Looking for event problems"
-msgstr "Zoeken naar gebeurtenissen problemen"
+msgstr "Naar gebeurtenissenproblemen zoeken"
 
 #: ../gramps/plugins/tool/check.py:1128
 msgid "Looking for person reference problems"
@@ -23231,7 +23231,7 @@ msgstr "Nakijken locatienamen"
 
 #: ../gramps/plugins/tool/extractcity.py:434
 msgid "Looking for place fields"
-msgstr "Zoeken naar locatievelden"
+msgstr "Naar locatievelden zoeken"
 
 #: ../gramps/plugins/tool/extractcity.py:512
 msgid "No place information could be extracted."
@@ -28080,7 +28080,7 @@ msgstr "Opmerkingen, media-objecten en gegevens van beide citaten worden gecombi
 #: ../gramps/gui/glade/mergerepository.glade:452
 #: ../gramps/gui/glade/mergesource.glade:590
 msgid "Detailed Selection"
-msgstr "Gedetailleerde selectie"
+msgstr "Detailselectie"
 
 #: ../gramps/gui/glade/mergedata.glade:41
 msgid "Merge and _edit"
@@ -28231,7 +28231,7 @@ msgstr "Geslacht:"
 
 #: ../gramps/gui/glade/mergeperson.glade:447
 msgid "Events, media objects, addresses, attributes, urls, notes, sources and tags of both persons will be combined."
-msgstr "Gebeurtenissen, media-objecten, adressen, urls, opmerkingen, bronnen en tags van de beide personen worden gecombineerd."
+msgstr "Gebeurtenissen, media-objecten, adressen, 'url's, opmerkingen, bronnen en tags van de beide personen worden gecombineerd."
 
 #: ../gramps/gui/glade/mergeperson.glade:534
 msgid "Context Information"
