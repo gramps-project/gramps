@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-04 18:35+0100\n"
-"PO-Revision-Date: 2013-02-04 18:50+0100\n"
+"PO-Revision-Date: 2013-02-12 16:42+0100\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -2492,7 +2492,7 @@ msgstr "Personer med <citering>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:53
 msgid "Matches people with a citation of a particular value"
-msgstr "Matchar personer med an citering av visst värde"
+msgstr "Matchar personer med en citering av visst värde"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
@@ -3267,7 +3267,7 @@ msgstr "Plats med <citering>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:54
 msgid "Matches places with a citation of a particular value"
-msgstr "Matchar platser med an citering av visst värde"
+msgstr "Matchar platser med en citering av visst värde"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
