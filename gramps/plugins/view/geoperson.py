@@ -40,6 +40,7 @@ KEY_TAB = Gdk.KEY_Tab
 import socket
 from gi.repository import Gtk
 from gi.repository import GObject
+import glib
 
 #-------------------------------------------------------------------------
 #
@@ -275,7 +276,7 @@ class GeoPerson(GeoGraphyView):
         # in this case, stepyear is >= 9000
         # large move means longitude or latitude differences greater than geography.maximum_lon_lat
         # degrees.
-        GObject.timeout_add(self._config.get("geography.speed"), self.animate,
+        glib.timeout_add(self._config.get("geography.speed"), self.animate,
                          menu, marks, i, stepyear)
         return False
 

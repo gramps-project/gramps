@@ -38,6 +38,7 @@ from gi.repository import GObject
 import time
 import threading
 from math import *
+import glib
 
 #-------------------------------------------------------------------------
 #
@@ -464,7 +465,7 @@ class GeoMoves(GeoGraphyView):
                 return
         self.message_layer.add_message(_("All descendance for %s" % _nd.display(person)))
         color = Gdk.color_parse(self._config.get('geography.color_base'))
-        GObject.timeout_add(int(self._config.get("geography.generation_interval")),
+        glib.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
 
     def animate_moves(self, index, person, color):
@@ -532,7 +533,7 @@ class GeoMoves(GeoGraphyView):
                 time_to_wait = int(self._config.get("geography.generation_interval"))
                 self._create_markers()
                 # process next generation in a few milliseconds
-                GObject.timeout_add(time_to_wait, self.animate_moves,
+                glib.timeout_add(time_to_wait, self.animate_moves,
                                                   index+1, person, color)
             else:
                 self.started = False
