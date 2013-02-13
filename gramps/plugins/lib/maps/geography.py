@@ -33,7 +33,7 @@ import sys
 import re
 from gi.repository import GObject
 import time
-import glib
+from gi.repository import GLib
 from math import pi
 
 #-------------------------------------------------------------------------
@@ -599,10 +599,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl < 18 ):
             lvl += 1
             self.osm.set_zoom(lvl)
-            glib.timeout_add(50, self._autozoom_in, lvl,
+            GLib.timeout_add(int(50), self._autozoom_in, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
-            glib.timeout_add(50, self._autozoom_out, lvl,
+            GLib.timeout_add(int(50), self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
 
     def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
@@ -614,7 +614,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl > 1 ):
             lvl -= 1
             self.osm.set_zoom(lvl)
-            glib.timeout_add(50, self._autozoom_out, lvl,
+            GLib.timeout_add(int(50), self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
             layer = self.get_selection_layer()
@@ -641,7 +641,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         p2lat = self.end_selection.rlat
         p2lon = self.end_selection.rlon
         # We zoom in until at least one marker missing.
-        glib.timeout_add(50, self._autozoom_in, level_start,
+        GLib.timeout_add(int(50), self._autozoom_in, level_start,
                             p1lat, p1lon, p2lat, p2lon)
 
     def _set_center_and_zoom(self):
