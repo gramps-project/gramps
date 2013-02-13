@@ -807,9 +807,8 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         available_reports = []
         for pdata in regbi:
-            if not pdata.supported:
-                category = _UNSUPPORTED
-            else:
+            category = _UNSUPPORTED
+            if pdata.supported and pdata.category in book_categories:
                 category = book_categories[pdata.category]
             available_reports.append([ pdata.name, category, pdata.id ])
         for data in sorted(available_reports):
