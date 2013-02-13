@@ -4,7 +4,8 @@
 # Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2012       Nick Hall
+# Copyright (C) 2011-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -420,9 +421,8 @@ class BookSelector(ManagedWindow):
 
         available_reports = []
         for pdata in regbi:
-            if not pdata.supported:
-                category = _UNSUPPORTED
-            else:
+            category = _UNSUPPORTED
+            if pdata.supported and pdata.category in book_categories:
                 category = book_categories[pdata.category]
             available_reports.append([ pdata.name, category, pdata.id ])
         for data in sorted(available_reports):
