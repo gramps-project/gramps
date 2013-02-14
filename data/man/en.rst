@@ -1,7 +1,7 @@
 English
 =======
 
-gramps(1)                4.0.0               gramps(1)
+gramps(1)                @VERSION@               gramps(1)
 
 
 
@@ -262,11 +262,14 @@ gramps(1)                4.0.0               gramps(1)
 
 
 **KNOWN BUGS AND LIMITATIONS**
-**FILES**
 
+**FILES**
+       
        *${PREFIX}/bin/gramps*
        
-       *${PREFIX}/share/gramps*
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
        
        *${HOME}/.gramps*
 
@@ -293,4 +296,4 @@ gramps(1)                4.0.0               gramps(1)
 
 
 
-January 2013                 4.0.0               gramps(1)
+gramps(1)                 @VERSION@               gramps(1)

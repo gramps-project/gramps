@@ -30,7 +30,6 @@ Custom Filter Editor tool.
 # Python modules
 #
 #-------------------------------------------------------------------------
-import locale
 
 #------------------------------------------------------------------------
 #
@@ -63,7 +62,8 @@ from ..dialog import QuestionDialog
 from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from ..display import display_help
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.lib import AttributeType, EventType, FamilyRelType, NameOriginType, NameType, NoteType
 from gramps.gen.filters import rules
 from ..autocomp import StandardCustomSelector, fill_entry
@@ -923,7 +923,7 @@ class ShowResults(ManagedWindow):
 
         new_list = sorted(
                         (self.sort_val_from_handle(h) for h in handle_list),
-                        key=lambda x: locale.strxfrm(x[0])
+                        key=lambda x: glocale.sort_key(x[0])
                         )
 
         for s_, handle in new_list:

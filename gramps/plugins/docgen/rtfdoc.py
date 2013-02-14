@@ -31,7 +31,8 @@
 #------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 LOG = logging.getLogger(".rtfdoc")
 
@@ -295,7 +296,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.text += '}'
 
     def start_superscript(self):
-        self.text += '{{\*\updnprop5801}\up10 '
+        self.text += '{{\\*\\updnprop5801}\\up10 '
 
     def end_superscript(self):
         self.text += '}'

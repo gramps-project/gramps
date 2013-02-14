@@ -32,6 +32,7 @@ Each object can be operated on with the following actions:
 
 import os
 import sys
+import time
 if sys.version_info[0] < 3:
     import cPickle as pickle
 else:
@@ -58,14 +59,15 @@ from django.utils import simplejson
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import VERSION
+
+# Gramps-connect imports:
 import gramps.webapp
 from gramps.webapp.utils import _, build_args
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.view import *
 from gramps.webapp.dbdjango import DbDjango
-from gramps.cli.user import User
-from gramps.gen.const import VERSION_TUPLE
-from gramps.gen.utils.svn import get_svn_revision
+import gramps.cli.user
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
 MENU = [
@@ -100,7 +102,7 @@ def context_processor(request):
     else:
         context["css_theme"] = "Web_Mainz.css"
     # Other things for all environments:
-    context["gramps_version"] = ".".join([str(v) for v in VERSION_TUPLE]) + " " + get_svn_revision()
+    context["gramps_version"] = VERSION
     context["views"] = VIEWS
     context["menu"] = MENU
     context["None"] = None
@@ -171,6 +173,12 @@ def user_page(request, username=None):
     else:
         raise Http404(_("Requested page is not accessible."))
 
+def timestamp():
+    """
+    Construct a string of current time for filenames.
+    """
+    return time.strftime("%Y-%m-%d:%H:%M:%S")
+
 def send_file(request, filename, mimetype):
     """                                                                         
     Send a file through Django without loading the whole file into              
@@ -189,6 +197,8 @@ def process_report_run(request, handle):
     """
     Run a report or export.
     """
+    # can also use URL with %0A as newline and "=" is "=":
+    # http://localhost:8000/report/ex_gpkg/run?options=off=gpkg%0Ax=10
     from gramps.webapp.reports import import_file, export_file, download
     from gramps.cli.plug import run_report
     import traceback
@@ -215,30 +225,31 @@ def process_report_run(request, handle):
                             args[key] = value
         #############################################################################
         if report.report_type == "report":
-            filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
+            filename = "/tmp/%s-%s-%s.%s" % (str(profile.user.username), str(handle), timestamp(), args["off"])
             run_report(db, handle, of=filename, **args)
             mimetype = 'application/%s' % args["off"]
         elif report.report_type == "export":
-            filename = "/tmp/%s-%s.%s" % (str(profile.user.username), str(handle), args["off"])
-            export_file(db, filename, User()) # callback
+            filename = "/tmp/%s-%s-%s.%s" % (str(profile.user.username), str(handle), timestamp(), args["off"])
+            export_file(db, filename, gramps.cli.user.User()) # callback
             mimetype = 'text/plain'
         elif report.report_type == "import":
-            filename = download(args["i"], "/tmp/%s-%s.%s" % (str(profile.user.username), 
-                                                              str(handle),
-                                                              args["iff"]))
+            filename = download(args["i"], "/tmp/%s-%s-%s.%s" % (str(profile.user.username), 
+                                                                 str(handle),
+                                                                 timestamp(),
+                                                                 args["iff"]))
             if filename is not None:
                 if True: # run in background, with error handling
                     import threading
                     def background():
                         try:
-                            import_file(db, filename, User()) # callback
+                            import_file(db, filename, gramps.cli.user.User()) # callback
                         except:
                             make_message(request, "import_file failed: " + traceback.format_exc())
                     threading.Thread(target=background).start()
                     make_message(request, "Your data is now being imported...")
                     return redirect("/report/")
                 else:
-                    success = import_file(db, filename, User()) # callback
+                    success = import_file(db, filename, gramps.cli.user.User()) # callback
                     if not success:
                         make_message(request, "Failed to load imported.")
                     return redirect("/report/")
@@ -248,16 +259,20 @@ def process_report_run(request, handle):
         else:
             make_message(request, "Invalid report type '%s'" % report.report_type)
             return redirect("/report/")
-        if os.path.exists(filename):
-            return send_file(request, filename, mimetype)
-        else:
-            context = RequestContext(request)
-            make_message(request, "Failed: '%s' is not found" % filename)
-            return redirect("/report/")
+        # need to wait for the file to exist:
+        start = time.time()
+        while not os.path.exists(filename):
+            # but let's not wait forever:
+            if time.time() - start > 10: # after 10 seconds, give up!
+                context = RequestContext(request)
+                make_message(request, "Failed: '%s' is not found" % filename)
+                return redirect("/report/")
+            time.sleep(1)
+        return send_file(request, filename, mimetype)
     # If failure, just fail for now:
     context = RequestContext(request)
-    context["message"] = "You need to be logged in."
-    return render_to_response("process_action.html", context)
+    context["message"] = "You need to be logged in to run reports."
+    return render_to_response("main_page.html", context)
 
 def view_list(request, view):
     """
@@ -1365,6 +1380,7 @@ def process_list_item(request, view, handle, act, item, index):
         "eventref":       "#tab-events", 
         "citationref":    "#tab-citations", 
         "repositoryref":  "#tab-repositories", 
+        "noteref":        "#tab-notes", 
         "attribute":      "#tab-attributes", 
         "media":          "#tab-media", 
         "lds":            "#tab-lds",
@@ -1394,6 +1410,9 @@ def process_list_item(request, view, handle, act, item, index):
     elif item == "repositoryref":
         refs = dji.RepositoryRef.filter(object_id=obj.id,
                                         object_type=obj_type).order_by("order")
+    elif item == "noteref":
+        refs = dji.NoteRef.filter(object_id=obj.id,
+                                  object_type=obj_type).order_by("order")
     elif item == "parentfamily":
         refs = dji.MyParentFamilies.filter(person=obj).order_by("order")
     elif item == "family":

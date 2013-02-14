@@ -33,15 +33,17 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
 import os
 import time
+import io
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.lib import AttributeType, ChildRefType, Citation, Date, EventRoleType, EventType, LdsOrd, NameType, NoteType, Person, UrlType
 from gramps.gen.const import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
@@ -234,7 +236,7 @@ class GedcomWriter(UpdateCallback):
         """
 
         self.dirname = os.path.dirname (filename)
-        self.gedcom_file = open(filename, "w")
+        self.gedcom_file = io.open(filename, "w", encoding='utf-8')
         self._header(filename)
         self._submitter()
         self._individuals()

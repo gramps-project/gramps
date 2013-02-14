@@ -39,7 +39,8 @@ Module responsible for handling the command line arguments for GRAMPS.
 from __future__ import print_function
 import sys
 import getopt
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 
 #-------------------------------------------------------------------------
@@ -292,7 +293,7 @@ class ArgParser(object):
                 self.list_more = True
             elif option in ('-s','--show'):
                 print ("Gramps config settings from %s:" % \
-                       config.filename.encode(sys.getfilesystemencoding()))
+                       config.filename.encode(sys.stdout.encoding, 'backslashreplace'))
                 for section in config.data:
                     for setting in config.data[section]:
                         print ("%s.%s=%s" % (
@@ -402,7 +403,7 @@ class ArgParser(object):
         """
         if self.help:
             # Convert Help messages to file system encoding before printing
-            print (_HELP.encode(sys.getfilesystemencoding()))
+            print (_HELP.encode(sys.stdout.encoding, 'backslashreplace'))
             sys.exit(0)
             
     def print_usage(self):
@@ -411,5 +412,5 @@ class ArgParser(object):
         """
         if self.usage:
             # Convert Help messages to file system encoding before printing
-            print (_USAGE.encode(sys.getfilesystemencoding()))
+            print (_USAGE.encode(sys.stdout.encoding, 'backslashreplace'))
             sys.exit(0)

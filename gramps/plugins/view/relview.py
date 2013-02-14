@@ -30,8 +30,9 @@ from __future__ import unicode_literals
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
+ngettext = glocale.get_translation().ngettext
 import cgi
 
 #-------------------------------------------------------------------------
@@ -148,7 +149,6 @@ class RelationshipView(NavigationView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Relationships'),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)        
 
@@ -454,7 +454,6 @@ class RelationshipView(NavigationView):
             list(map(self.vbox.remove, self.vbox.get_children()))
             list(map(self.header.remove, self.header.get_children()))
             self.child = None
-        self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
                 self.bookmarks.redraw()
         self.redraw()

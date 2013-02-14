@@ -33,7 +33,8 @@ import os
 import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import re
 import logging
 import collections
@@ -67,6 +68,7 @@ from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    CITATION_KEY)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.const import VERSION
+from gramps.gen.config import config
 #import gramps.plugins.lib.libgrampsxml
 from gramps.plugins.lib import libgrampsxml
 
@@ -123,7 +125,12 @@ def importData(database, filename, user):
             change = time.time()
         else:
             change = os.path.getmtime(filename)
-        parser = GrampsParser(database, user, change)
+        if database.get_feature("skip-import-additions"): # don't add source or tags
+            parser = GrampsParser(database, user, change, None)
+        else:
+            parser = GrampsParser(database, user, change,
+                                  (config.get('preferences.tag-on-import-format') if 
+                                   config.get('preferences.tag-on-import') else None))
 
         if filename != '-':
             linecounter = LineParser(filename)
@@ -368,7 +375,21 @@ class LineParser(object):
 
         try:
             if use_gzip:
-                ofile = gzip.open(filename, "rb")
+                if sys.version_info[0] == 2:
+                    ofile = gzip.open(filename, "rb")
+                else:
+                    import io
+                    # Bug 6255. TextIOWrapper is required for python3 to
+                    #           present file contents as text, otherwise they
+                    #           are read as binary. However due to a missing
+                    #           method (read1) in early python3 versions this
+                    #           try block will fail.
+                    #           Gramps will still import XML files using python
+                    #           versions < 3.3.0 but the file progress meter
+                    #           will not work properly, going immediately to
+                    #           100%.
+                    #           It should work correctly from version 3.3.
+                    ofile = io.TextIOWrapper(gzip.open(filename, "rb"))
             else:
                 ofile = open(filename, "r")
 
@@ -376,11 +397,12 @@ class LineParser(object):
                 self.count += 1
                 if PERSON_RE.match(line):
                     self.person_count += 1
-
-            ofile.close()
         except:
             self.count = 0
             self.person_count = 0
+        finally:
+            # Ensure the file handle is always closed
+            ofile.close()
 
     def get_count(self):
         return self.count
@@ -457,7 +479,7 @@ class ImportOpenFileContextManager:
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, user, change):
+    def __init__(self, database, user, change, default_tag_format=None):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
         self.__gramps_version = 'unknown'
@@ -563,6 +585,17 @@ class GrampsParser(UpdateCallback):
         self.nidswap = {}
         self.eidswap = {}
         self.import_handles = {}
+
+        if default_tag_format:
+            name = time.strftime(default_tag_format)
+            tag = self.db.get_tag_from_name(name)
+            if tag:
+                self.default_tag = tag
+            else:
+                self.default_tag = Tag()
+                self.default_tag.set_name(name)
+        else:
+            self.default_tag = None
 
         self.func_map = {
             #name part
@@ -895,6 +928,9 @@ class GrampsParser(UpdateCallback):
 
             self.db.disable_signals()
 
+            if self.default_tag and self.default_tag.handle is None:
+                self.db.add_tag(self.default_tag, self.trans)
+
             self.p = ParserCreate()
             self.p.StartElementHandler = self.startElement
             self.p.EndElementHandler = self.endElement
@@ -934,6 +970,7 @@ class GrampsParser(UpdateCallback):
             del self.func_map
             del self.func_list
             del self.p
+            del self.update
         self.db.enable_signals()
         self.db.request_rebuild()
         return self.info
@@ -1384,6 +1421,8 @@ class GrampsParser(UpdateCallback):
         self.person.change = int(attrs.get('change', self.change))
         self.info.add('new-object', PERSON_KEY, self.person)
         self.convert_marker(attrs, self.person)
+        if self.default_tag: 
+            self.person.add_tag(self.default_tag.handle)
         return self.person
 
     def start_people(self, attrs):
@@ -1520,6 +1559,8 @@ class GrampsParser(UpdateCallback):
         if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
         self.convert_marker(attrs, self.family)
+        if self.default_tag: 
+            self.family.add_tag(self.default_tag.handle)
         return self.family
 
     def start_rel(self, attrs):
@@ -1720,7 +1761,22 @@ class GrampsParser(UpdateCallback):
 
         if self.note:
             self.note.add_tag(handle)
-    
+
+        if self.event:
+            self.event.add_tag(handle)
+
+        if self.placeobj:
+            self.placeobj.add_tag(handle)
+
+        if self.repo:
+            self.repo.add_tag(handle)
+
+        if self.source:
+            self.source.add_tag(handle)
+
+        if self.citation:
+            self.citation.add_tag(handle)
+
     def start_range(self, attrs):
         self.note_tags[-1].ranges.append((int(attrs['start']),
                                           int(attrs['end'])))
@@ -1833,6 +1889,8 @@ class GrampsParser(UpdateCallback):
             #set correct change time
             self.db.commit_note(self.note, self.trans, self.change)
             self.info.add('new-object', NOTE_KEY, self.note)
+        if self.default_tag: 
+            self.note.add_tag(self.default_tag.handle)
         return self.note
 
     def start_noteref(self, attrs):
@@ -2088,6 +2146,8 @@ class GrampsParser(UpdateCallback):
         src = attrs.get("src", '')
         if src:
             self.object.path = src
+        if self.default_tag: 
+            self.object.add_tag(self.default_tag.handle)
         return self.object
 
     def start_repo(self, attrs):

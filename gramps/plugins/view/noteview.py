@@ -29,7 +29,8 @@ Note View.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 _LOG = logging.getLogger(".plugins.noteview")
 
@@ -45,7 +46,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import NoteModel
 from gramps.gen.utils.db import get_note_referents
 from gramps.gen.errors import WindowActiveError
@@ -71,21 +72,25 @@ class NoteView(ListView):
     COL_PREVIEW = 0
     COL_ID = 1
     COL_TYPE = 2
-    COL_TAGS = 3
-    COL_CHAN = 4
+    COL_PRIV = 3
+    COL_TAGS = 4
+    COL_CHAN = 5
     
-    COLUMN_NAMES = [
-        _('Preview'),
-        _('ID'),
-        _('Type'),
-        _('Tags'),
-        _('Last Changed')
+    # column definitions
+    COLUMNS = [
+        (_('Preview'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
-        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [350, 75, 100, 100, 100]))
+        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS, 
+                          COL_CHAN]),
+        ('columns.size', [350, 75, 100, 40, 100, 100]))
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
@@ -101,13 +106,11 @@ class NoteView(ListView):
             'note-update'  : self.row_update,
             'note-delete'  : self.row_delete,
             'note-rebuild' : self.object_build,
-            'tag-update'   : self.tag_updated
         }
 
         ListView.__init__(
-            self, _('Notes'), pdata, dbstate, uistate, NoteView.COLUMN_NAMES,
-            len(NoteView.COLUMN_NAMES), NoteModel, signal_map,
-            dbstate.db.get_note_bookmarks(),
+            self, _('Notes'), pdata, dbstate, uistate,
+            NoteModel, signal_map,
             NoteBookmarks, nav_group,
             filter_class=NoteSidebarFilter,
             multiple=True)
@@ -121,12 +124,6 @@ class NoteView(ListView):
 
     def navigation_type(self):
         return 'Note'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_note_bookmarks()
 
     def drag_info(self):
         """
@@ -204,20 +201,6 @@ class NoteView(ListView):
         self._add_action('FilterEdit', None, _('Note Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_note_from_gramps_id(gid)

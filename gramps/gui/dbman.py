@@ -50,7 +50,7 @@ else:
 import logging
 LOG = logging.getLogger(".DbManager")
 
-from gramps.gen.constfunc import win
+from gramps.gen.constfunc import win, UNITYPE
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -73,7 +73,8 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gramps.gen.db import DbBsddb
@@ -798,6 +799,9 @@ def find_revisions(name):
     get_next = False
     if os.path.isfile(name):
         for line in proc.stdout:
+            if sys.version_info[0] >= 3 and not isinstance(line, UNITYPE):
+                # we assume utf-8 ...
+                line = line.decode('utf-8')
             match = rev.match(line)
             if match:
                 rev_str = copy.copy(match.groups()[0])

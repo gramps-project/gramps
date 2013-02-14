@@ -52,7 +52,8 @@ from gi.repository import GObject
 from ..managedwindow import ManagedWindow
 from gramps.gen.errors import UnavailableError, WindowActiveError
 from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
 from . import tool
@@ -483,7 +484,8 @@ class PluginStatus(ManagedWindow):
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
                     i[0], str(i[1][1]), i[1], pdata.id, hiddenstr])
 
-        success_list = sorted(self.__pmgr.get_success_list())
+        success_list = sorted(self.__pmgr.get_success_list(),
+                              key=lambda x: (x[0], x[2]._get_name()))
         for i in success_list:
             # i = (filename, module, pdata)
             pdata = i[2]

@@ -53,8 +53,11 @@ Specific symbols for parts of a name are defined:
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 import re
+import logging
+LOG = logging.getLogger(".gramps.gen")
 
 #-------------------------------------------------------------------------
 #
@@ -1047,8 +1050,17 @@ def fn(%s):
         else:
             return p + str + s
     return cleanup_name("%s" %% (%s))""" % (args, new_fmt, ",".join(param))
-        exec(s)
-
-        return locals()['fn']
+        try:
+            exec(s) in globals(), locals()
+            return locals()['fn']
+        except:
+            LOG.error("\n" + 'Wrong name format string %s' % new_fmt
+                       +"\n" + ("ERROR, Edit Name format in Preferences->Display to correct")
+                       +"\n" + _('Wrong name format string %s') % new_fmt
+                       +"\n" + ("ERROR, Edit Name format in Preferences->Display to correct")
+                     )
+            def errfn(*arg):
+                return _("ERROR, Edit Name format in Preferences")
+            return errfn
 
 displayer = NameDisplay()

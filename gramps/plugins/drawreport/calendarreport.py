@@ -26,8 +26,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from functools import partial
 import datetime
 import time
@@ -255,10 +255,9 @@ class Calendar(Report):
             last_edge = 0
         font_height = pt2cm(1.5 * ptext1style.get_font().get_size())
         x = last_edge + (width - last_edge)/2
-        y = height - font_height
-        self.doc.center_text("CAL-Text1style", self.text1, x, y * 3) 
-        self.doc.center_text("CAL-Text2style", self.text2, x, y * 2) 
-        self.doc.center_text("CAL-Text3style", self.text3, x, y * 1) 
+        self.doc.center_text("CAL-Text1style", self.text1, x, height - font_height * 3) 
+        self.doc.center_text("CAL-Text2style", self.text2, x, height - font_height * 2) 
+        self.doc.center_text("CAL-Text3style", self.text3, x, height - font_height * 1) 
         self.doc.end_page()
 
     def collect_data(self):
@@ -323,7 +322,7 @@ class Calendar(Report):
                             'person' : short_name,
                             'relation' : ""}
                     else:
-                        text = (ngettext('%(person)s, %(age)d%(relation)s',
+                        text = (glocale.get_translation().ngettext('%(person)s, %(age)d%(relation)s',
                                           '%(person)s, %(age)d%(relation)s', nyears)
                                  % {'person'   : short_name,
                                     'age'      : nyears,  
@@ -383,7 +382,7 @@ class Calendar(Report):
                                                      'person' : short_name, 
                                                     }
                                         else:
-                                            text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
+                                            text = (glocale.get_translation().ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
                                                              "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
                                                     % {'spouse' : spouse_name, 
                                                        'person' : short_name, 

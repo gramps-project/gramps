@@ -38,7 +38,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gui.views.treemodels.peoplemodel import PersonTreeModel
 from gramps.gen.lib import Name, Person, Surname
@@ -51,7 +51,8 @@ from gramps.gen.utils.db import preset_name
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -66,12 +67,6 @@ class PersonTreeView(BasePersonView):
         BasePersonView.__init__(self, pdata, dbstate, uistate,
                                _('People Tree View'), PersonTreeModel,
                                nav_group=nav_group)
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
 
     def get_viewtype_stock(self):
         """
@@ -175,9 +170,8 @@ class PersonTreeView(BasePersonView):
             pathids = path.get_indices()
             if len(pathids) == 1:
                 path = Gtk.TreePath((pathids[0], 0))
-            nodeiter = model.do_get_iter(path)[1]
-            node = model.get_node_from_iter(nodeiter)
-            handle = model.get_handle(node)
+            iter_ = model.get_iter(path)
+            handle = model.get_handle_from_iter(iter_)
             basepers = self.dbstate.db.get_person_from_handle(handle)
         if basepers:
             preset_name(basepers, name)

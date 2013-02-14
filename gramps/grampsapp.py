@@ -39,8 +39,7 @@ if sys.version_info[0] < 3:
 ##
 import os
 import signal
-import gettext
-_ = gettext.gettext
+
 import locale
 import logging
 
@@ -55,6 +54,7 @@ from subprocess import Popen, PIPE
 #-------------------------------------------------------------------------
 from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
 from .gen.constfunc import win
+
 #-------------------------------------------------------------------------
 #
 # Setup logging
@@ -68,7 +68,9 @@ from .gen.constfunc import win
 """Setup basic logging support."""
 
 # Setup a formatter
-form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
+form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
+                             "%(filename)s: line %(lineno)d: %(message)s",
+                         datefmt='%Y-%m-%d %H:%M:%S')
 
 # Create the log handlers
 if win():
@@ -87,7 +89,7 @@ if win():
             pass # ok
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
-        sys.stdout = sys.stderr = open(logfile, "w")
+        sys.stdout = sys.stderr = io.open(logfile, "w", encoding='utf-8')
 stderrh = logging.StreamHandler(sys.stderr)
 stderrh.setFormatter(form)
 stderrh.setLevel(logging.DEBUG)
@@ -113,62 +115,15 @@ def exc_hook(type, value, tb):
 sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
-from .gen.utils.trans import LOCALEDOMAIN, LOCALEDIR, setup_windows_gettext
+
 #-------------------------------------------------------------------------
 #
-# Load internationalization setup
+# Instantiate Localization
 #
 #-------------------------------------------------------------------------
 
-#the order in which bindtextdomain on gettext and on locale is called
-#appears important, so we refrain from doing first all gettext.
-#
-#setup_gettext()
-gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-try:
-    locale.setlocale(locale.LC_ALL,'')
-except:
-    logging.warning(_("WARNING: Setting locale failed. Please fix the "
-        "LC_* and/or the LANG environment variables to prevent this error"))
-    try:
-        # It is probably not necessary to set the locale to 'C'
-        # because the locale will just stay at whatever it was,
-        # which at startup is "C".
-        # however this is done here just to make sure that the locale
-        # functions are working 
-        locale.setlocale(locale.LC_ALL,'C')
-    except:
-        logging.warning(_("ERROR: Setting the 'C' locale didn't work either"))
-        # FIXME: This should propagate the exception,
-        # if that doesn't break Gramps under Windows
-        # raise
-
-gettext.textdomain(LOCALEDOMAIN)
-if sys.version_info[0] < 3:
-    gettext.install(LOCALEDOMAIN, localedir=None, unicode=1) #None is sys default locale
-else:
-    gettext.install(LOCALEDOMAIN, localedir=None) #None is sys default locale
-
-if hasattr(os, "uname"):
-    operating_system = os.uname()[0]
-else:
-    operating_system = sys.platform
-
-if win(): # Windows
-    setup_windows_gettext()
-elif operating_system == 'FreeBSD':
-    try:
-        gettext.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-    except locale.Error:
-        logging.warning('No translation in some Gtk.Builder strings, ')
-elif operating_system == 'OpenBSD':
-    pass
-else: # normal case
-    try:
-        locale.bindtextdomain(LOCALEDOMAIN, LOCALEDIR)
-        #locale.textdomain(LOCALEDOMAIN)
-    except locale.Error:
-        logging.warning('No translation in some Gtk.Builder strings, ')
+from .gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -187,6 +142,16 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
              'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
+if sys.version_info[0] >= 3:
+    #check if bsddb3 is installed
+    try:
+        import bsddb3
+    except ImportError:
+        logging.warning(_("\nYou don't have the python bsddb3 package installed."
+            " This package is needed to start Gramps.\n\n"
+             "Gramps will terminate now."))
+        sys.exit(1)
+    
 #-------------------------------------------------------------------------
 #
 # gramps libraries
@@ -229,21 +194,34 @@ def show_settings():
     try:
         from gi.repository import GObject
         try:
-            gobjectver_str = '%d.%d.%d' % GObject.pygobject_version
+            pygobjectver_str = '%d.%d.%d' % GObject.pygobject_version
         except :# any failure to 'get' the version
-            gobjectver_str = 'unknown version'
+            pygobjectver_str = 'unknown version'
 
     except ImportError:
-        gobjectver_str = 'not found'
+        pygobjectver_str = 'not found'
+
+    try:
+        from gi.repository import Pango
+        try:
+            pangover_str = Pango.version_string()
+        except :# any failure to 'get' the version
+            pangover_str = 'unknown version'
+
+    except ImportError:
+        pangover_str = 'not found'
 
     try:
         import cairo
         try:
-            cairover_str = '%d.%d.%d' % cairo.version_info 
+            pycairover_str = '%d.%d.%d' % cairo.version_info 
+            cairover_str = cairo.cairo_version_string()
         except :# any failure to 'get' the version
+            pycairover_str = 'unknown version'
             cairover_str = 'unknown version'
 
     except ImportError:
+        pycairover_str = 'not found'
         cairover_str = 'not found'
 
     try:
@@ -279,7 +257,8 @@ def show_settings():
         else:
             import bsddb
         bsddb_str = bsddb.__version__
-        bsddb_db_str = str(bsddb.db.version())
+        bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
+                                        .replace('(', '').replace(')', '')
     except:
         bsddb_str = 'not found'
         bsddb_db_str = 'not found'
@@ -303,8 +282,10 @@ def show_settings():
 
     try:
         dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        if isinstance(dotversion_str, bytes):
+            dotversion_str = dotversion_str.decode(sys.stdin.encoding)
         if dotversion_str:
-            dotversion_str = dotversion_str.replace('\n','')
+            dotversion_str = dotversion_str.replace('\n','')[23:27]
     except:
         dotversion_str = 'Graphviz not in system PATH'
 
@@ -313,6 +294,8 @@ def show_settings():
             gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
         else:
             gsversion_str = Popen(['gs', '--version'], stdout=PIPE).communicate(input=None)[0]
+        if isinstance(gsversion_str, bytes):
+            gsversion_str = gsversion_str.decode(sys.stdin.encoding)
         if gsversion_str:
             gsversion_str = gsversion_str.replace('\n', '')
     except:
@@ -326,7 +309,8 @@ def show_settings():
     print (' python    : %s' % py_str)
     print (' gramps    : %s' % gramps_str)
     print (' gtk++     : %s' % gtkver_str)
-    print (' gobject   : %s' % gobjectver_str)
+    print (' pygobject : %s' % pygobjectver_str)
+    print (' pango     : %s' % pangover_str)
     if usebsddb3:
         print (' Using bsddb3')
     else:
@@ -334,9 +318,10 @@ def show_settings():
     print (' bsddb     : %s' % bsddb_str)
     print (' bsddb.db  : %s' % bsddb_db_str)
     print (' cairo     : %s' % cairover_str)
+    print (' pycairo   : %s' % pycairover_str)
     print (' osmgpsmap : %s' % osmgpsmap_str)
     print (' pyexiv2   : %s' % pyexiv2_str)
-    print (' o.s.      : %s' % operating_system)
+    print (' o.s.      : %s' % sys.platform)
     if kernel:
         print (' kernel    : %s' % kernel)
     print ('')

@@ -35,7 +35,8 @@ Reports/Text Reports/Descendant Report.
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -334,7 +335,7 @@ class DescendantReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
         
         sort = Sort(self.database)
-        self.by_birthdate = sort.by_birthdate
+        self.by_birthdate = sort.by_birthdate_key
     
         #Initialize the Printinfo class    
         self._showdups = menu.get_option_by_name('dups').get_value()

@@ -37,15 +37,15 @@ except RuntimeError:
     # already configured; ignore
     pass
 
-from .grampsdb.models import *
-from .grampsdb.forms import *
-from .dbdjango import DbDjango
-from .reports import import_file
-from .libdjango import DjangoInterface, totime, todate
+from gramps.webapp.grampsdb.models import *
+from gramps.webapp.grampsdb.forms import *
+from gramps.webapp.dbdjango import DbDjango
+from gramps.webapp.reports import import_file
+from gramps.webapp.libdjango import DjangoInterface, totime, todate
 from gramps.gen.datehandler import displayer, parser
-from .utils import StyledNoteFormatter, parse_styled_text
+from gramps.webapp.utils import StyledNoteFormatter, parse_styled_text
 from gramps.gen.lib import StyledText
-from gramps.cli.user import User
+#from gramps.cli.user import User
 
 db = DbDjango()
 dji = DjangoInterface()

@@ -35,7 +35,8 @@
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import traceback
 import os
 import sys
@@ -570,11 +571,11 @@ class CommandLineReport(object):
                     # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
                 else:
                     optmsg = "      %s%s%s" % (key, tabs,
                                                _('(no help available)'))
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
             print((_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
                    {'donottranslate' : "show=option"}))
@@ -587,10 +588,10 @@ class CommandLineReport(object):
             if isinstance(vals, (list, tuple)):
                 for val in vals:
                     optmsg = "      %s" % val
-                    print(optmsg.encode(sys.getfilesystemencoding()))
+                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
             else:
                 optmsg = "      %s" % opt[2]
-                print(optmsg.encode(sys.getfilesystemencoding()))
+                print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
 
         else:
             #there was a show option given, but the option is invalid
@@ -726,6 +727,7 @@ def cl_book(database, name, book, options_str_dict):
                                 clr.marginr, clr.margint, clr.marginb))
     user = User()
     rptlist = []
+    global_style = None
     for item in book.get_item_list():
 
         # The option values were loaded magically by the book parser.
@@ -743,6 +745,12 @@ def cl_book(database, name, book, options_str_dict):
                               report_class, item.option_class, user)
         style_sheet = create_style_sheet(item)
         rptlist.append((obj, style_sheet))
+        if ( item.name == 'table_of_contents' or
+             item.name == 'alphabetical_index' ): # ugly hack: FIXME
+            if global_style is None:
+                global_style = style_sheet
+            else:
+                global_style = create_style_sheet(item, global_style)
 
     doc.open(clr.option_class.get_output())
     doc.init()
@@ -754,6 +762,8 @@ def cl_book(database, name, book, options_str_dict):
         newpage = 1
         rpt.begin_report()
         rpt.write_report()
+    if global_style:
+        doc.set_style_sheet(global_style)
     doc.close()
 
 #------------------------------------------------------------------------

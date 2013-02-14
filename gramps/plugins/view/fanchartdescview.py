@@ -35,7 +35,8 @@
 from gi.repository import Gdk
 from gi.repository import Gtk
 import cairo
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +73,6 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
         NavigationView.__init__(self, _('Descendant Fan Chart'),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
         fanchartdesc.FanChartDescGrampsGUI.__init__(self, self.on_childmenu_changed)
@@ -200,7 +200,6 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     
     def change_db(self, db):
         self._change_db(db)
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
         self.update()

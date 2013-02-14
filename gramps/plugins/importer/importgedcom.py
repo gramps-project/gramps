@@ -29,7 +29,6 @@
 #
 #------------------------------------------------------------------------
 import sys
-from gramps.gen.ggettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -44,6 +43,8 @@ LOG = logging.getLogger(".GedcomImport")
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
@@ -114,9 +115,15 @@ def importData(database, filename, user):
         if code_set:
             stage_one.set_encoding(code_set)
         ifile.seek(0)
-        gedparse = libgedcom.GedcomParser(
-                            database, ifile, filename, user, stage_one, 
-                            config.get('preferences.default-source'))
+        if database.get_feature("skip-import-additions"): # don't add source or tags
+            gedparse = libgedcom.GedcomParser(
+                database, ifile, filename, user, stage_one, None, None)
+        else:
+            gedparse = libgedcom.GedcomParser(
+                database, ifile, filename, user, stage_one, 
+                config.get('preferences.default-source'),
+                (config.get('preferences.tag-on-import-format') if 
+                 config.get('preferences.tag-on-import') else None))
     except IOError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return

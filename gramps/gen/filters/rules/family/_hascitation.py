@@ -29,7 +29,8 @@ Filter rule to match family with a particular citation.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ....ggettext import gettext as _
+from ....const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

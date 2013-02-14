@@ -35,7 +35,8 @@ from __future__ import division
 #-------------------------------------------------------------------------
 import time
 import collections
-
+import logging
+_LOG = logging.getLogger(".gen")
 #-------------------------------------------------------------------------
 #
 # Callback updater
@@ -71,6 +72,9 @@ class UpdateCallback(object):
 
     def set_total(self, total):
         self.total = total
+        if self.total == 0:
+            _LOG.warning('UpdateCallback with total == 0 created')
+            self.total = 1
 
     def update_empty(self, count=None):
         pass

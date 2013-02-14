@@ -40,7 +40,6 @@ else:
     import pickle
 import time
 import random
-import locale
 import os
 from sys import maxsize
 
@@ -49,7 +48,8 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import re
 
 import logging
@@ -81,6 +81,7 @@ from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
 from ..constfunc import UNITYPE, STRTYPE, cuni
+from ..const import GRAMPS_LOCALE as glocale
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -103,6 +104,17 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 # Helper functions
 #
 #-------------------------------------------------------------------------  
+def find_byte_surname(key, data):
+    """
+    Creating a surname from raw data of a person, to use for sort and index
+    returns a byte string
+    """
+    surn = __index_surname(data[3][5])
+    # in python 3 we work with unicode internally, but need byte function sometimes
+    if isinstance(surn, UNITYPE):
+        return surn.encode('utf-8')
+    return surn
+
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
@@ -128,7 +140,10 @@ def __index_surname(surn_list):
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
         surn = ""
-    return surn.encode('utf-8')
+    if sys.version_info[0] < 3:
+        return surn.encode('utf-8')
+    else:
+        return surn
     
 
 #-------------------------------------------------------------------------
@@ -792,6 +807,8 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_from_handle(handle, Location, self.location_map)
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
+        if isinstance(tbl, dict): 
+            return None ## trying to get object too early        
         if isinstance(val, UNITYPE):
             val = val.encode('utf-8')
         try:
@@ -1577,6 +1594,8 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper method for get_raw_<object>_data methods
         """
+        if table is None:
+            return None ## trying to get object too early
         if isinstance(handle, UNITYPE):
             handle = handle.encode('utf-8')
         try:
@@ -1699,7 +1718,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def __sortbyperson_key(self, handle):
         if isinstance(handle, UNITYPE):
             handle = handle.encode('utf-8')
-        return locale.strxfrm(find_surname(handle, 
+        return glocale.sort_key(find_surname(handle, 
                                            self.person_map.get(handle)))
 
     def __sortbyplace(self, first, second):
@@ -1707,13 +1726,13 @@ class DbBsddbRead(DbReadBase, Callback):
             first = first.encode('utf-8')
         if isinstance(second, UNITYPE):
             second = second.encode('utf-8')
-        return locale.strcoll(self.place_map.get(first)[2], 
+        return glocale.strcoll(self.place_map.get(first)[2], 
                               self.place_map.get(second)[2])
 
     def __sortbyplace_key(self, place):
         if isinstance(place, UNITYPE):
             place = place.encode('utf-8')
-        return locale.strxfrm(self.place_map.get(place)[2])
+        return glocale.sort_key(self.place_map.get(place)[2])
 
     def __sortbysource(self, first, second):
         if isinstance(first, UNITYPE):
@@ -1722,13 +1741,13 @@ class DbBsddbRead(DbReadBase, Callback):
             second = second.encode('utf-8')
         source1 = cuni(self.source_map[first][2])
         source2 = cuni(self.source_map[second][2])
-        return locale.strcoll(source1, source2)
+        return glocale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         source = cuni(self.source_map[key][2])
-        return locale.strxfrm(source)
+        return glocale.sort_key(source)
 
     def __sortbycitation(self, first, second):
         if isinstance(first, UNITYPE):
@@ -1737,13 +1756,13 @@ class DbBsddbRead(DbReadBase, Callback):
             second = second.encode('utf-8')
         citation1 = cuni(self.citation_map[first][3])
         citation2 = cuni(self.citation_map[second][3])
-        return locale.strcoll(citation1, citation2)
+        return glocale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         citation = cuni(self.citation_map[key][3])
-        return locale.strxfrm(citation)
+        return glocale.sort_key(citation)
 
     def __sortbymedia(self, first, second):
         if isinstance(first, UNITYPE):
@@ -1752,13 +1771,13 @@ class DbBsddbRead(DbReadBase, Callback):
             second = second.encode('utf-8')
         media1 = self.media_map[first][4]
         media2 = self.media_map[second][4]
-        return locale.strcoll(media1, media2)
+        return glocale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         media = self.media_map[key][4]
-        return locale.strxfrm(media)
+        return glocale.sort_key(media)
 
     def __sortbytag(self, first, second):
         if isinstance(first, UNITYPE):
@@ -1767,13 +1786,13 @@ class DbBsddbRead(DbReadBase, Callback):
             second = second.encode('utf-8')
         tag1 = self.tag_map[first][1]
         tag2 = self.tag_map[second][1]
-        return locale.strcoll(tag1, tag2)
+        return glocale.strcoll(tag1, tag2)
 
     def __sortbytag_key(self, key):
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         tag = self.tag_map[key][1]
-        return locale.strxfrm(tag)
+        return glocale.sort_key(tag)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""

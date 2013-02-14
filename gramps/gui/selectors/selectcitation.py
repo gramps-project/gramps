@@ -31,7 +31,8 @@ SelectCitation class for GRAMPS.
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -72,6 +73,3 @@ class SelectCitation(BaseSelector):
         
     def get_from_handle_func2(self):
         return self.db.get_citation_from_handle
-        
-    def get_handle_column(self):
-        return 8

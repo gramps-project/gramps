@@ -26,7 +26,8 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +65,3 @@ class SelectSource(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_source_from_handle
-        
-    def get_handle_column(self):
-        return 6

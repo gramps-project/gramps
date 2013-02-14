@@ -39,7 +39,8 @@ Module responsible for handling the command line arguments for GRAMPS.
 from __future__ import print_function
 import os
 import sys
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -185,9 +186,9 @@ class ArgHandler(object):
         else:
             # Need to convert to system file encoding before printing
             # For non latin characters in path/file/user names
-            print(msg1.encode(sys.getfilesystemencoding()), file=sys.stderr)
+            print(msg1.encode(sys.stdout.encoding, 'backslashreplace'), file=sys.stderr)
             if msg2 is not None:
-                print(msg2.encode(sys.getfilesystemencoding()), file=sys.stderr)
+                print(msg2.encode(sys.stdout.encoding, 'backslashreplace'), file=sys.stderr)
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -294,7 +295,7 @@ class ArgHandler(object):
                         else:
                             ask = input
                         ans = ask(_('OK to overwrite? (yes/no) ') \
-                                         .encode(sys.getfilesystemencoding()))
+                                         .encode(sys.stdout.encoding, 'backslashreplace'))
                     except EOFError:
                         print()
                         sys.exit(0)
@@ -408,26 +409,26 @@ class ArgHandler(object):
 
         if self.list:
             print(_('List of known family trees in your database path\n').\
-                    encode(sys.getfilesystemencoding()))
+                    encode(sys.stdout.encoding, 'backslashreplace'))
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
                 
                 print((_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
                         {'full_DB_path' : dirname,
-                         'f_t_name' : name}).encode(sys.getfilesystemencoding()))
+                         'f_t_name' : name}).encode(sys.stdout.encoding, 'backslashreplace'))
             sys.exit(0)
             
         if self.list_more:
-            print(_('Gramps Family Trees:').encode(sys.getfilesystemencoding()))
+            print(_('Gramps Family Trees:').encode(sys.stdout.encoding, 'backslashreplace'))
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
                                   key=lambda sum: sum["Family tree"].lower()):
                 print(_("Family Tree \"%s\":").\
-                        encode(sys.getfilesystemencoding()) % summary["Family tree"])
+                        encode(sys.stdout.encoding, 'backslashreplace') % summary["Family tree"])
                 for item in sorted(summary):
                     if item != "Family tree":
                         print(("   %s: %s" % (item, summary[item])).\
-                               encode(sys.getfilesystemencoding()))
+                               encode(sys.stdout.encoding, 'backslashreplace'))
             sys.exit(0)
            
         self.__open_action()
@@ -442,7 +443,7 @@ class ArgHandler(object):
         for expt in self.exports:
             # Need to convert path/filename to str before printing
             # For non latin characters in Windows path/file/user names
-            fn = expt[0].encode(sys.getfilesystemencoding())
+            fn = expt[0].encode(sys.stdout.encoding, 'backslashreplace')
             fmt = str(expt[1])
             print(_("Exporting: file %(filename)s, "
                                    "format %(format)s.") % \
@@ -480,7 +481,7 @@ class ArgHandler(object):
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir") \
-					                      .encode(sys.getfilesystemencoding())
+					                      .encode(sys.stdout.encoding, 'backslashreplace')
                     newdb = DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
@@ -494,7 +495,7 @@ class ArgHandler(object):
                     sys.exit(0)
 
             for imp in self.imports:
-                fn = imp[0].encode(sys.getfilesystemencoding())
+                fn = imp[0].encode(sys.stdout.encoding, 'backslashreplace')
                 fmt = str(imp[1])
                 msg = _("Importing: file %(filename)s, format %(format)s.") % \
                         {'filename' : fn, 'format' : fmt}
@@ -623,10 +624,10 @@ class ArgHandler(object):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
+                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
                 else:
                     print("   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
+                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
 
         elif action == "tool":
             from gramps.gui.plug import tool
@@ -664,10 +665,10 @@ class ArgHandler(object):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
                     print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
+                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
                 else:
                     print("   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.getfilesystemencoding())), file=sys.stderr)
+                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
 
         elif action == "book":
             try:

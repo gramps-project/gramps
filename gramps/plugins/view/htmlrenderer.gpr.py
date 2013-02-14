@@ -68,7 +68,7 @@ if not (TOOLKIT == NOWEB):
     name  = _("Html View"),
     description =  _("A view showing html pages embedded in Gramps"),
     version = '1.0',
-    gramps_target_version = '4.0',
+    gramps_target_version = '4.1',
     status = STABLE,
     fname = 'htmlrenderer.py',
     authors = ["The Gramps project"],

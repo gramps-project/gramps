@@ -41,7 +41,7 @@ _LOG = logging.getLogger(".plugins.locationview")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Location
 from gramps.gen.db import DbTxn
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import LocationTreeModel
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
@@ -49,7 +49,6 @@ from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditLocation
 from gramps.gen.plug import CATEGORY_QR_PLACE
-from gramps.gui.views.listview import LISTTREE
 
 #-------------------------------------------------------------------------
 #
@@ -66,16 +65,14 @@ class LocationView(ListView):
     COL_LAT = 2
     COL_LON = 3
     COL_CHAN = 4
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Name'),
-        _('Type'),
-        _('Latitude'),
-        _('Longitude'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Name'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Latitude'), TEXT, None),
+        (_('Longitude'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    #MARKUP_COLS = [COL_DATE]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_TYPE]),
@@ -102,9 +99,8 @@ class LocationView(ListView):
 
         ListView.__init__(
             self, _('Locations'), pdata, dbstate, uistate,
-            LocationView.COLUMN_NAMES, len(LocationView.COLUMN_NAMES), 
             LocationTreeModel,
-            signal_map, dbstate.db.get_place_bookmarks(),
+            signal_map,
             PlaceBookmarks, nav_group,
             multiple=True)
             
@@ -114,12 +110,6 @@ class LocationView(ListView):
             })
 
         self.additional_uis.append(self.additional_ui())
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
 
     def navigation_type(self):
         return 'Place'
@@ -278,6 +268,12 @@ class LocationView(ListView):
         """ For the xml UI definition of popup to work, the submenu 
             Quick Report must have an entry in the xml
             As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
+
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
         """
         pass
 

@@ -26,7 +26,8 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -61,9 +62,6 @@ class SelectRepository(BaseSelector):
             (_('Title'), 350, BaseSelector.TEXT, 0),
             (_('ID'),     75, BaseSelector.TEXT, 1)
             ]
-
-    def get_handle_column(self):
-        return 13
 
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle

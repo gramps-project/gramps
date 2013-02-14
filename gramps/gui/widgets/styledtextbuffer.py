@@ -30,7 +30,8 @@ __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import re
 
 import logging

@@ -32,7 +32,8 @@ Can use the Webkit or Gecko ( Mozilla ) library
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 import sys
 import locale

@@ -101,7 +101,8 @@ from gramps.gen.errors import ReportError
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 _apptype = 'application/vnd.oasis.opendocument.text'
 
@@ -1017,7 +1018,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             return
         
         not_extension, extension = os.path.splitext(file_name)
-        odf_name = md5(file_name).hexdigest() + extension
+        file_name_hash = file_name
+        if sys.version_info[0] >= 3:
+            file_name_hash = file_name_hash.encode('utf-8')
+        odf_name = md5(file_name_hash).hexdigest() + extension
 
         media_list_item = (file_name, odf_name)
         if not media_list_item in self.media_list:
@@ -1180,7 +1184,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         Add a zip file to an archive
         """
-        zipinfo = zipfile.ZipInfo(name.encode('utf-8'))
+        if sys.version_info[0] < 3:
+            name = name.encode('utf-8')
+        zipinfo = zipfile.ZipInfo(name)
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED
         zipinfo.external_attr = 0o644 << 16

@@ -37,6 +37,13 @@ dji = DjangoInterface()
 db = DbDjango()
 snf = StyledNoteFormatter(db)
 
+# add a note to a person:
+# /note/add/person/c51759195496de06da3ca5ba2c1
+
+def process_note_on_name(request, action, handle, order):
+    # add, edit, delete
+    raise Exception("testing")
+
 def process_note(request, context, handle, act, add_to=None): # view, edit, save
     """
     Process act on person. Can return a redirect.

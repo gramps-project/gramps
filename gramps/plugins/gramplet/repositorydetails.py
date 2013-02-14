@@ -21,7 +21,8 @@
 
 from gramps.gen.lib import UrlType
 from gramps.gen.plug import Gramplet
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gi.repository import Gtk
 from gi.repository import Pango
 

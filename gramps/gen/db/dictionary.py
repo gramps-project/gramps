@@ -195,6 +195,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
             }
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
+        self.set_feature("skip-import-additions", True)
         self.readonly = False
         self.db_is_open = True
         self.name_formats = []
@@ -254,6 +255,20 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.modified   = 0
         self.txn = DictionaryTxn("DbDictionary Transaction", self)
         self.transaction = None
+
+    def version_supported(self):
+        """Return True when the file has a supported version."""
+        return True
+
+    def get_table_names(self):
+        """Return a list of valid table names."""
+        return list(self._tables.keys())
+
+    def get_table_metadata(self, table_name):
+        """Return the metadata for a valid table name."""
+        if table_name in self._tables:
+            return self._tables[table_name]
+        return None
 
     def transaction_commit(self, txn):
         pass

@@ -38,7 +38,8 @@ from gi.repository import Gtk
 from gi.repository import Pango
 import time
 import os
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import sys
 if sys.version_info[0] < 3:
     import ConfigParser as configparser
@@ -716,11 +717,7 @@ class GuiGramplet(object):
         if isinstance(self.pane, Gtk.Notebook):
             if self.pane.get_tab_label(self):
                 label = self.pane.get_tab_label(self)
-                if value:
-                    label.set_text("<b>%s</b>" % self.title)
-                    label.set_use_markup(True)
-                else:
-                    label.set_text(self.title)
+                label.set_has_data(value)
 
 class GridGramplet(GuiGramplet):
     """

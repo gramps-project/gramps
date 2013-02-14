@@ -42,6 +42,7 @@ from ._matchespagesubstringof import MatchesPageSubstringOf
 from ._matchesrepositoryfilter import MatchesRepositoryFilter
 from ._matchessourcefilter import MatchesSourceFilter
 from ._regexpidof import RegExpIdOf
+from ._hastag import HasTag
 
 editor_rule_list = [
     HasCitation,
@@ -59,5 +60,6 @@ editor_rule_list = [
     MatchesPageSubstringOf,
     MatchesRepositoryFilter,
     MatchesSourceFilter, 
-    RegExpIdOf
+    RegExpIdOf,
+    HasTag
 ]

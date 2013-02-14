@@ -908,7 +908,7 @@ class DocOptionHandler(_options.OptionHandler):
         # First we set options_dict values based on the saved options
         options = self.saved_option_list.get_options()
         docgen_names = self.option_list_collection.docgen_names
-        for option_name, option_data in options.iteritems():
+        for option_name, option_data in options.items():
             if ( option_name in self.options_dict and
                  isinstance(option_data, list) and
                  option_data and 

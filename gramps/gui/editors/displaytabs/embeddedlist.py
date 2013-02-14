@@ -26,7 +26,8 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle
@@ -81,6 +82,7 @@ class EmbeddedList(ButtonTab):
         self.build_model = build_model
 
         # handle the selection
+        self.tree.set_hover_selection(True)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self._selection_changed)
         self.track_ref_for_deletion("selection")
@@ -104,13 +106,24 @@ class EmbeddedList(ButtonTab):
         Handle button press, not double-click, that is done in init_interface
         """
         if is_right_click(event):
-            ref = self.get_selected()
-            if ref:
-                self.right_click(obj, event)
+            #ref = self.get_selected()
+            #if ref:
+            self.right_click(obj, event)
+            return True
         elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 2:
             fun = self.get_middle_click()
             if fun:
                 fun()
+                return True
+        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
+            if self.tree.get_hover_selection():
+                self.tree.set_hover_selection(False)
+                return True
+            else:
+                self.tree.set_hover_selection(True)
+                #let code for single click still select the current row:
+                return False
+        return False
 
     def get_popup_menu_items(self):
         """
@@ -146,20 +159,18 @@ class EmbeddedList(ButtonTab):
         On right click show a popup menu.
         This is populated with get_popup_menu_items
         """
-        menu = Gtk.Menu()
+        self.__store_menu = Gtk.Menu() #need to keep reference or menu disappears
+        menu = self.__store_menu
         for (needs_write_access, image, title, func) in self.get_popup_menu_items():
             if image:
                 if isinstance(title, tuple):
                     img_stock, txt = title
-                    item = Gtk.ImageMenuItem(txt)
+                    item = Gtk.ImageMenuItem.new_with_label(txt)
                     img = Gtk.Image()
                     img.set_from_stock(img_stock, Gtk.IconSize.MENU)
                     item.set_image(img)
                 else:
-                    item = Gtk.ImageMenuItem('')
-                    img = Gtk.Image()
-                    img.set_from_stock(title, Gtk.IconSize.MENU)
-                    item.set_image(img)
+                    item = Gtk.ImageMenuItem.new_from_stock(title, None)
             else:
                 item = Gtk.MenuItem(label=title)
             item.connect('activate', func)

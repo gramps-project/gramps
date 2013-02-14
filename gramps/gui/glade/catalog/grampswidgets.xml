@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glade-catalog name="grampswidgets" library="gladepython"
-                domain="glade" depends="gtk+">
+                domain="glade-3" depends="gtk+">
   <init-function>glade_python_init</init-function>
   <glade-widget-classes>
     <glade-widget-class 

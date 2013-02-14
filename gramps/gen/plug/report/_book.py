@@ -31,7 +31,8 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -448,11 +449,11 @@ class BookParser(handler.ContentHandler):
 # Functions
 #
 #-------------------------------------------------------------------------
-def create_style_sheet(item):
+def create_style_sheet(item, previous_style=None):
     """
-    Create a style sheet for a book item.
+    Create a style sheet for a book item, appending any previous_style.
     """
-    selected_style = StyleSheet()
+    selected_style = StyleSheet(previous_style)
 
     handler = item.option_class.handler
 

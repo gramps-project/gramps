@@ -29,7 +29,8 @@ Provide merge capabilities for families.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help

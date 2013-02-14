@@ -41,7 +41,8 @@ import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 
 #------------------------------------------------------------------------
@@ -121,7 +122,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.status = None
 
-    def write(self,filename):
+    def write(self, filename):
         """
         Write the database to the specified file.
         """
@@ -180,7 +181,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if self.compress and _gzip_ok:
             try:
-                g = gzip.GzipFile(mode="wb",fileobj=handle)
+                g = gzip.GzipFile(mode="wb", fileobj=handle)
             except:
                 g = handle
         else:
@@ -583,6 +584,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_media_list(citation.get_media_list(), index+1)
         self.write_data_map(citation.get_data_map())
         self.write_ref("sourceref", citation.get_reference_handle(), index+1)
+
+        for tag_handle in citation.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</citation>\n" % sp)
 
     def write_source(self,source,index=1):
@@ -596,6 +601,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_media_list(source.get_media_list(),index+1)
         self.write_data_map(source.get_data_map())
         self.write_reporef_list(source.get_reporef_list(),index+1)
+
+        for tag_handle in source.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</source>\n" % sp)
 
     def write_repository(self,repo,index=1):
@@ -611,6 +620,10 @@ class GrampsXmlWriter(UpdateCallback):
         # url list
         self.write_url_list(repo.get_url_list(),index+1)
         self.write_note_list(repo.get_note_list(),index+1)
+
+        for tag_handle in repo.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</repository>\n" % sp)
 
     def write_address_list(self, obj,index=1):
@@ -721,6 +734,10 @@ class GrampsXmlWriter(UpdateCallback):
         for citation_handle in event.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
         self.write_media_list(event.get_media_list(),index+1)
+
+        for tag_handle in event.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</event>\n" % sp)
 
     def dump_ordinance(self, ord,index=1):
@@ -1186,6 +1203,10 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_note_list(place.get_note_list(), index+1)
         for citation_handle in place.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
+
+        for tag_handle in place.get_tag_list():
+            self.write_ref("tagref", tag_handle, index+1)
+
         self.g.write("%s</placeobj>\n" % ("  "*index))
 
     def write_object(self, obj, index=1):

@@ -32,8 +32,8 @@
 import sys
 import re
 import time
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -228,7 +228,7 @@ class VCardParser(object):
         self.database.enable_signals()
         self.database.request_rebuild()
         tym = time.time() - tym
-        msg = ngettext('Import Complete: %d second', 
+        msg = glocale.get_translation().ngettext('Import Complete: %d second', 
                        'Import Complete: %d seconds', tym ) % tym
         LOG.debug(msg)
 

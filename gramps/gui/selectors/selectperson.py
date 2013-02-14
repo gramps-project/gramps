@@ -26,7 +26,8 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -80,15 +81,12 @@ class SelectPerson(BaseSelector):
             (_('Death Date'),   150, BaseSelector.MARKUP, 5),
             (_('Death Place'),  150, BaseSelector.MARKUP, 6),
             (_('Spouse'),       150, BaseSelector.TEXT,   7),
-            (_('Last Change'),  150, BaseSelector.TEXT,   8)
+            (_('Last Change'),  150, BaseSelector.TEXT,   10)
             ]
 
     def get_from_handle_func(self):
         return self.db.get_person_from_handle
         
-    def get_handle_column(self):
-        return PeopleBaseModel.COLUMN_INT_ID
-
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search

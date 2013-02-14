@@ -23,7 +23,8 @@ from gramps.gen.lib import EventType, EventRoleType
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.file import media_path_full
 from gi.repository import Gtk

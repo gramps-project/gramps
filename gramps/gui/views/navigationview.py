@@ -48,7 +48,8 @@ from gi.repository import Gtk
 #
 #----------------------------------------------------------------
 from .pageview import PageView
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
 
@@ -80,10 +81,9 @@ class NavigationView(PageView):
     should derive from this class.
     """
     
-    def __init__(self, title, pdata, state, uistate, bookmarks, bm_type, nav_group):
+    def __init__(self, title, pdata, state, uistate, bm_type, nav_group):
         PageView.__init__(self, title, pdata, state, uistate)
-        self.bookmarks = bm_type(self.dbstate, self.uistate, bookmarks,
-                                 self.goto_handle)
+        self.bookmarks = bm_type(self.dbstate, self.uistate, self.goto_handle)
 
         self.fwd_action = None
         self.back_action = None
@@ -334,7 +334,11 @@ class NavigationView(PageView):
         else:
             from ..dialog import WarningDialog
             WarningDialog(_("No Home Person"), 
-                          _("You need to set a 'default person' to go to."))
+                _("You need to set a 'default person' to go to. "
+                  "Select the People View, select the person you want as "
+                  "'Home Person', then confirm your choice "
+                  "via the menu Edit ->Set Home Person."), 
+                parent=self.uistate.window)
 
     def jump(self):
         """

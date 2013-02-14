@@ -35,7 +35,7 @@ import os
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
-    from io import StringIO
+    from io import StringIO, BytesIO
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +45,8 @@ else:
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS, VERSION_TUPLE
 from ..utils.file import get_unicode_path_from_file_chooser
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -219,7 +220,11 @@ def load_addon_file(path, callback=None):
                 callback(_("Unable to open '%s'") % path)
             return
     try:
-        buffer = StringIO(fp.read())
+        content = fp.read()
+        if sys.version_info[0] < 3:
+            buffer = StringIO(content)
+        else:
+            buffer = BytesIO(content)
     except:
         if callback:
             callback(_("Error in reading '%s'") % path)

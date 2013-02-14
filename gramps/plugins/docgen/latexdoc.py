@@ -37,9 +37,12 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from bisect import bisect
 import re, os, sys
+import logging
+_LOG = logging.getLogger(".latexdoc")
 
 #----------------------------------------------------------------------- -
 #
@@ -48,7 +51,14 @@ import re, os, sys
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
 from gramps.gen.plug.docbackend import DocBackend
-import Image
+HAVE_PIL = False
+try:
+    from PIL import Image
+    HAVE_PIL = True
+except:
+    _LOG.warning(
+        _('No PIL Image installed for your python version, cannot produce jpg '
+          'images from non-jpg images in LaTex Documents'))
 
 _CLICKABLE = r'''\url{\1}'''
 
@@ -1203,7 +1213,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
         outfile = os.path.splitext(infile)[0]
         pictname = latexescape(os.path.split(outfile)[1])
         outfile = ''.join((outfile, '.jpg'))
-        if infile != outfile:
+        outfile2 = ''.join((outfile, '.jpeg'))
+        outfile3 = ''.join((outfile, '.png'))
+        if HAVE_PIL and infile not in [outfile, outfile2, outfile3] :
             try:
                 curr_img = Image.open(infile)
                 curr_img.save(outfile)
@@ -1214,6 +1226,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.emit(''.join(('%\n *** Error: cannot convert ', infile,
                                     '\n ***                    to ', outfile,
                                     '%\n')))
+        elif not HAVE_PIL:
+                self.emit(''.join(('%\n *** Error: cannot convert ', infile,
+                                    '\n ***                    to ', outfile,
+                                    'PIL not installed %\n')))
+            
         if self.in_table:
             self.pict_in_table = True
 
@@ -1221,7 +1238,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
             repr(y), '}{', pictname, '}%\n')))
         self.pict_width = x
         self.pict_height = y
-
 
     def write_text(self,text,mark=None,links=False):
         """Write the text to the file"""

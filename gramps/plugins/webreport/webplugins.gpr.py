@@ -32,7 +32,7 @@ plg.name  = _("Narrated Web Site")
 plg.description =  _("Produces web (HTML) pages for individuals, or a set of "
                      "individuals")
 plg.version = '1.0'
-plg.gramps_target_version = '4.0'
+plg.gramps_target_version = '4.1'
 plg.status = STABLE
 plg.fname = 'narrativeweb.py'
 plg.ptype = REPORT
@@ -55,7 +55,7 @@ plg.id    = 'WebCal'
 plg.name  = _("Web Calendar")
 plg.description =  _("Produces web (HTML) calendars.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.0'
+plg.gramps_target_version = '4.1'
 plg.status = STABLE
 plg.fname = 'webcal.py'
 plg.ptype = REPORT

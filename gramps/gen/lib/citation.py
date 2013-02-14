@@ -43,7 +43,9 @@ from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
 from .notebase import NoteBase
 from .datebase import DateBase
+from .tagbase import TagBase
 from ..constfunc import cuni
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +92,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
                 MediaBase.serialize(self),             #  7
                 self.datamap,                          #  8
                 self.change,                           #  9
-                self.private)                          # 10
+                TagBase.serialize(self),               # 10
+                self.private)                          # 11
 
     def to_struct(self):
         """
@@ -112,17 +115,18 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle,                           #  0
+        return {"handle": Handle("Citation", self.handle),       #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
                 "page": cuni(self.page),                         #  3
                 "confidence": self.confidence,                   #  4
-                "source_handle": self.source_handle,             #  5
+                "source_handle": Handle("Source", self.source_handle), #  5
                 "note_list": NoteBase.to_struct(self),           #  6
                 "media_list": MediaBase.to_struct(self),         #  7
                 "datamap": self.datamap,                         #  8
                 "change": self.change,                           #  9
-                "private": self.private}                         # 10
+                "tag_list": TagBase.to_struct(self),             # 10
+                "private": self.private}                         # 11
 
     def unserialize(self, data):
         """
@@ -139,12 +143,14 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
          media_list,                                   #  7
          self.datamap,                                 #  8
          self.change,                                  #  9
-         self.private                                  # 10
+         tag_list,                                     # 10
+         self.private                                  # 11
          ) = data
 
         DateBase.unserialize(self, date)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
+        TagBase.unserialize(self, tag_list)
         return self
         
     def _has_handle_reference(self, classname, handle):
@@ -243,7 +249,8 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        ret = self.get_referenced_note_handles()
+        ret = (self.get_referenced_note_handles() +
+               self.get_referenced_tag_handles())
         if self.get_reference_handle():
             ret += [('Source', self.get_reference_handle())]
         return ret
@@ -258,6 +265,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)
         self._merge_media_list(acquisition)
+        self._merge_tag_list(acquisition)
         # merge confidence
         level_priority = [0, 4, 1, 3, 2]
         idx = min(level_priority.index(self.confidence),

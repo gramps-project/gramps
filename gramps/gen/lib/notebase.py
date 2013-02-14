@@ -25,6 +25,8 @@
 NoteBase class for GRAMPS.
 """
 
+from .handle import Handle
+
 #-------------------------------------------------------------------------
 #
 # NoteBase class
@@ -73,7 +75,7 @@ class NoteBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: list
         """
-        return self.note_list
+        return [Handle("Note", n) for n in self.note_list]
 
     def unserialize(self, data):
         """

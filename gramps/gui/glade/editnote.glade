@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkDialog" id="editnote">
     <property name="can_focus">False</property>
@@ -346,6 +345,15 @@ Use monospace font to keep preformatting.</property>
                     <child>
                       <placeholder/>
                     </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -359,8 +367,10 @@ Use monospace font to keep preformatting.</property>
               <object class="GtkLabel" id="label715">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="label" translatable="yes">Note</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
               </object>
               <packing>
                 <property name="tab_fill">False</property>

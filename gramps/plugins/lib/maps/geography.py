@@ -27,12 +27,14 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 import os
 import sys
 import re
 from gi.repository import GObject
 import time
+from gi.repository import GLib
 from math import pi
 
 #-------------------------------------------------------------------------
@@ -54,7 +56,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import HOME_DIR, ROOT_DIR
+from gramps.gen.const import HOME_DIR, IMAGE_DIR
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
@@ -62,7 +64,7 @@ from gramps.gui.selectors.selectplace import SelectPlace
 
 from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
-from .osmGps import OsmGps
+from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 
@@ -124,9 +126,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         )
 
     def __init__(self, title, pdata, dbstate, uistate,
-                 get_bookmarks, bm_type, nav_group):
+                 bm_type, nav_group):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
-                              get_bookmarks, bm_type, nav_group)
+                                bm_type, nav_group)
 
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
@@ -148,21 +150,23 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = None
-        path = os.path.join(ROOT_DIR, "images", "48x48",
+        path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-mainmap' + '.png' ))
         pathu = path
         if sys.version_info[0] < 3:
-            pathu = path.encode(sys.getfilesystemencoding())
+            pathu = path.encode(glocale.getfilesystemencoding())
         self.geo_mainmap = cairo.ImageSurface.create_from_png(pathu)
-        path = os.path.join(ROOT_DIR, "images", "48x48",
+        path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-altmap' + '.png' ))
         pathu = path
         if sys.version_info[0] < 3:
-            pathu = path.encode(sys.getfilesystemencoding())
+            pathu = path.encode(glocale.getfilesystemencoding())
         self.geo_altmap = cairo.ImageSurface.create_from_png(pathu)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP,
-              constants.OPENSTREETMAP_RENDERER
+              constants.MAPS_FOR_FREE,
+              constants.OPENCYCLEMAP,
+              constants.OSM_PUBLIC_TRANSPORT,
              )):
             default_image = self.geo_mainmap
         else:
@@ -171,11 +175,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( EventType.BIRTH,
                     EventType.DEATH,
                     EventType.MARRIAGE ):
-            path = os.path.join(ROOT_DIR, "images", "48x48",
+            path = os.path.join(IMAGE_DIR, "48x48",
                                 (constants.ICONS.get(int(ident), default_image) + '.png' ))
             pathu = path
             if sys.version_info[0] < 3:
-                pathu = path.encode(sys.getfilesystemencoding())
+                pathu = path.encode(glocale.getfilesystemencoding())
             self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(pathu)
 
     def change_page(self):
@@ -224,7 +228,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
 
@@ -597,10 +600,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl < 18 ):
             lvl += 1
             self.osm.set_zoom(lvl)
-            GObject.timeout_add(50, self._autozoom_in, lvl,
+            GLib.timeout_add(int(50), self._autozoom_in, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
-            GObject.timeout_add(50, self._autozoom_out, lvl,
+            GLib.timeout_add(int(50), self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
 
     def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
@@ -612,7 +615,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 and lvl > 1 ):
             lvl -= 1
             self.osm.set_zoom(lvl)
-            GObject.timeout_add(50, self._autozoom_out, lvl,
+            GLib.timeout_add(int(50), self._autozoom_out, lvl,
                                 p1lat, p1lon, p2lat, p2lon)
         else:
             layer = self.get_selection_layer()
@@ -639,7 +642,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         p2lat = self.end_selection.rlat
         p2lon = self.end_selection.rlon
         # We zoom in until at least one marker missing.
-        GObject.timeout_add(50, self._autozoom_in, level_start,
+        GLib.timeout_add(int(50), self._autozoom_in, level_start,
                             p1lat, p1lon, p2lat, p2lon)
 
     def _set_center_and_zoom(self):

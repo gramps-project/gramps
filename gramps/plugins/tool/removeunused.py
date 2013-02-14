@@ -31,7 +31,8 @@
 #
 #-------------------------------------------------------------------------
 from __future__ import with_statement
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -302,7 +303,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def selection_toggled(self, cell, path_string):
         sort_path = tuple(map(int, path_string.split(':')))
-        real_path = self.sort_model.convert_path_to_child_path(sort_path)
+        real_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
         row = self.real_model[real_path]
         row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
         self.real_model.row_changed(real_path, row.iter)

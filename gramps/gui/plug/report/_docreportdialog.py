@@ -28,7 +28,8 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -66,6 +67,7 @@ class DocReportDialog(ReportDialog):
         self.style_name = "default"
         self.firstpage_added = False
         self.CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
+        self.dbname = dbstate.db.get_dbname()
         ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
 
@@ -183,10 +185,12 @@ class DocReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
+            default_name = self.dbname + "_" + \
+                        "".join(x[0].upper() for x in self.raw_name.split("_"))
             if self.options.get_output():
                 base = os.path.basename(self.options.get_output())
             else:
-                base = "%s.%s" % (self.report_name, ext)
+                base = "%s.%s" % (default_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 

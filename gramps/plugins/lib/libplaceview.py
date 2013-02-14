@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.widgets.menuitem import add_menuitem
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
@@ -65,7 +65,8 @@ from gramps.gen.plug import CATEGORY_QR_PLACE
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 
 #-------------------------------------------------------------------------
@@ -79,21 +80,24 @@ class PlaceBaseView(ListView):
     COL_NAME = 0
     COL_ID = 1
     COL_LOCATION = 2
-    COL_CHAN = 3
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Place Name'),
-        _('ID'),
-        _('Location'),
-        _('Last Changed'),
+    COL_PRIV = 3
+    COL_TAGS = 4
+    COL_CHAN = 5
+    # column definitions
+    COLUMNS = [
+        (_('Place Name'), MARKUP, None),
+        (_('ID'), TEXT, None),
+        (_('Location'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_NAME]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_LOCATION]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_LOCATION, COL_CHAN]),
-        ('columns.size', [250, 75, 350, 100])
+        ('columns.rank', [COL_NAME, COL_ID, COL_LOCATION, COL_PRIV, COL_TAGS,
+                          COL_CHAN]),
+        ('columns.size', [250, 75, 350, 40, 100, 100])
         )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -102,8 +106,7 @@ class PlaceBaseView(ListView):
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 
-    def __init__(self, pdata, dbstate, uistate, title, model, nav_group,
-                 markup=None):
+    def __init__(self, pdata, dbstate, uistate, title, model, nav_group):
 
         signal_map = {
             'place-add'     : self.row_add,
@@ -117,12 +120,10 @@ class PlaceBaseView(ListView):
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            self.COLUMN_NAMES, 5, 
             model, signal_map,
-            dbstate.db.get_place_bookmarks(),
             PlaceBookmarks, nav_group,
             multiple=True,
-            filter_class=PlaceSidebarFilter, markup=markup)
+            filter_class=PlaceSidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
@@ -134,11 +135,13 @@ class PlaceBaseView(ListView):
     def navigation_type(self):
         return 'Place'
     
-    def get_bookmarks(self):
-        return self.dbstate.db.get_place_bookmarks()
-
     def define_actions(self):
         ListView.define_actions(self)
+        self._add_toolmenu_action('MapsList', _('Loading...'),
+                        _("Attempt to see selected locations with a Map "
+                                "Service (OpenstreetMap, Google Maps, ...)"),
+                        self.gotomap,
+                        _('Select a Map Service'))
         self._add_action('GotoMap', Gtk.STOCK_JUMP_TO, 
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
@@ -154,6 +157,7 @@ class PlaceBaseView(ListView):
         """
         tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
         tb.remove(self.maptoolbtn)
+        ListView.set_inactive(self)
         
     def change_page(self):
         """
@@ -329,6 +333,7 @@ class PlaceBaseView(ListView):
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
               <separator/>
+              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -405,6 +410,26 @@ class PlaceBaseView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                    include_classes='Place')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, place_handle, tag_handle):
+        """
+        Add the given tag to the given place.
+        """
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        place.add_tag(tag_handle)
+        self.dbstate.db.commit_place(place, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

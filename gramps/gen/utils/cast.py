@@ -31,9 +31,11 @@ Utility functions to cast types
 # Python modules
 #
 #-------------------------------------------------------------------------
+import os
 import locale
 import sys
-
+import logging
+LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -41,27 +43,6 @@ import sys
 #-------------------------------------------------------------------------
 from ..datehandler import codeset
 from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYPE
-
-"""
-strxfrm needs it's unicode argument correctly cast before used.
-"""
-if sys.version_info[0] < 3:
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset, 'replace'))
-else:
-    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x)
-
-if codeset == 'UTF-8':
-    conv_str_tosrtkey = lambda x: locale.strxfrm(x)
-else:
-    conv_str_tosrtkey = lambda x: locale.strxfrm(
-                        conv_to_unicode(x,'UTF-8').encode(codeset, 'replace'))
-
-def conv_tosrtkey(value):
-    if isinstance(value, UNITYPE):
-        return conv_unicode_tosrtkey(value)
-    elif not isinstance(value, STRTYPE):
-        return conv_str_tosrtkey(str(value))
-    return conv_str_tosrtkey(value)
 
 #strings in database are utf-8
 conv_dbstr_to_unicode = lambda x: conv_to_unicode(x, 'UTF-8')

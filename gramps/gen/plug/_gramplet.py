@@ -30,7 +30,8 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
 else:
     import bsddb
 import types
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 import logging
 LOG = logging.getLogger(".Gramplets")
@@ -368,7 +369,7 @@ class Gramplet(object):
         """
         from gi.repository import GObject
         self._pause = True
-        if self._idle_id == 0:
+        if self._idle_id != 0:
             GObject.source_remove(self._idle_id)
             self._idle_id = 0
 

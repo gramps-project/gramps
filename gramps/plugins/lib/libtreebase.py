@@ -27,7 +27,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 from gramps.gen.plug.report import utils as ReportUtils
 
@@ -403,7 +404,7 @@ class Canvas(Page):
             
             #Calculate my (x) page
             #fix soon.  should not use .level
-            x_page = box.level[0] / colsperpage
+            x_page = box.level[0] // colsperpage
             
             self.__add_box_to_page(x_page, self.y_pages-1,
                                    x_page_offsets[x_page],

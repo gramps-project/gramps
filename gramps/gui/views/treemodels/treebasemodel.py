@@ -38,7 +38,8 @@ This module provides the model that is used for all hierarchical treeviews.
 import time
 import locale
 import sys
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -56,7 +57,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.cast import conv_str_tosrtkey, conv_unicode_tosrtkey
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 import gramps.gui.widgets.progressdialog as progressdlg
 from gramps.gen.constfunc import cuni, UNITYPE
 from .lru import LRU
@@ -90,17 +91,9 @@ class Node(object):
 
     def __init__(self, ref, parent, sortkey, handle, secondary):
         if sortkey:
-            if isinstance(sortkey, UNITYPE):
-                self.name = sortkey
-                #sortkey must be localized sort, so 
-                self.sortkey = conv_unicode_tosrtkey(sortkey)
-            else:
-                self.name = sortkey.decode('utf-8')
-                #sortkey must be localized sort, so
-                if sys.version_info[0] < 3:
-                    self.sortkey = conv_str_tosrtkey(sortkey)
-                else:
-                    self.sortkey = conv_unicode_tosrtkey(self.name)
+            self.name = sortkey
+            #sortkey must be localized sort, so 
+            self.sortkey = glocale.sort_key(sortkey)
         else:
             self.name = ''
             self.sortkey = ''
@@ -267,7 +260,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
     
     Creation:
     db      :   the database
-    tooltip_column :  column number of tooltip
     search         :  the search that must be shown
     skip           :  values not to show
     scol           :  column on which to sort
@@ -290,7 +282,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
     # LRU cache size
     _CACHE_SIZE = 250
    
-    def __init__(self, db, tooltip_column,
+    def __init__(self, db,
                     search=None, skip=set(),
                     scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
                     nrgroups = 1,
@@ -346,8 +338,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         self._in_build = False
         
         self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
-
-        self._tooltip_column = tooltip_column
 
         self.__total = 0
         self.__displayed = 0
@@ -413,12 +403,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         Return the total number of rows without a filter or search condition.
         """
         return self.__total
-
-    def tooltip_column(self):
-        """
-        Return the tooltip column.
-        """
-        return self._tooltip_column
 
     def color_column(self):
         """
@@ -536,6 +520,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         pmon.add_op(status)
         with gen_cursor() as cursor:
             for handle, data in cursor:
+                # for python3 this returns a byte object, so conversion needed
+                if not isinstance(handle, UNITYPE):
+                    handle = handle.decode('utf-8')
                 status.heartbeat()
                 if status.should_cancel():
                     break
@@ -581,6 +568,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
         def beat(key):
             status_ppl.heartbeat()
+            # for python3 this returns a byte object, so conversion needed
+            if not isinstance(key, UNITYPE):
+                key = key.decode('utf-8')
             return key
         
         with gen_cursor() as cursor:
@@ -646,7 +636,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
             if not self._in_build:
                 # emit row_inserted signal
-                iternode = self.get_iter(child_node)
+                iternode = self._get_iter(child_node)
                 path = self.do_get_path(iternode)
                 self.row_inserted(path, iternode)
                 if handle:
@@ -683,7 +673,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             self.__displayed -= 1
             self.__total -= 1
         elif node.parent: # don't remove the hidden root node
-            iternode = self.get_iter(node)
+            iternode = self._get_iter(node)
             path = self.do_get_path(iternode)
             self.nodemap.node(node.parent).remove_child(node, self.nodemap)
             del self.tree[node.ref]
@@ -699,10 +689,11 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         
     def reverse_order(self):
         """
-        Reverse the order of the map. This does not signal rows_reordered,
-        so to propagate the change to the view, you need to reattach the
-        model to the view. 
+        Reverse the order of the map. Only for Gtk 3.9+ does this signal
+        rows_reordered, so to propagate the change to the view, you need to
+        reattach the model to the view. 
         """
+        self.GTK38PLUS = (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3,8)
         self.__reverse = not self.__reverse
         top_node = self.tree[None]
         self._reverse_level(top_node)
@@ -720,10 +711,13 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if node.parent is None:
                 path = iter = None
             else:
-                iternode = self.get_iter(node)
+                iternode = self._get_iter(node)
                 path = self.do_get_path(iternode)
-            ##TODO GTK3: rows_reordered is not exposed in gi
-            #self.rows_reordered(path, iter, rows)
+            # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
+            # is resolved
+            if False and self.GTK38PLUS:
+                ##rows_reordered is only exposed in gi starting GTK 3.8
+                self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
                 for child in node.children:
                     self._reverse_level(self.nodemap.node(child[1]))
@@ -745,7 +739,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Add a row to the model.
         """
-        if self.get_node(handle) is not None:
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
+        if self._get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
         if not self.search or \
@@ -766,8 +762,10 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Delete a row from the model.
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         cput = time.clock()
-        node = self.get_node(handle)
+        node = self._get_node(handle)
         if node is None:
             return # row not currently displayed
 
@@ -780,7 +778,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             if not parent.children:
                 if parent.handle:
                     # emit row_has_child_toggled signal
-                    iternode = self.get_iter(parent)
+                    iternode = self._get_iter(parent)
                     path = self.do_get_path(iternode)
                     self.row_has_child_toggled(path, iternode)
                 else:
@@ -796,7 +794,9 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Update a row in the model.
         """
-        if self.get_node(handle) is None:
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
+        if self._get_node(handle) is None:
             return # row not currently displayed
 
         self.delete_row_by_handle(handle)
@@ -805,7 +805,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         # If the node hasn't moved, all we need is to call row_changed.
         #self.row_changed(path, node)
 
-    def new_iter(self, nodeid):
+    def _new_iter(self, nodeid):
         """
         Return a new iter containing the nodeid in the nodemap
         """
@@ -816,7 +816,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         iter.user_data = nodeid
         return iter
 
-    def get_iter(self, node):
+    def _get_iter(self, node):
         """
         Return an iter from the node.
         iters are always created afresh
@@ -827,31 +827,31 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         :param path: node as it appears in the treeview
         :type path: Node
         """
-        iter = self.new_iter(id(node))
+        iter = self._new_iter(id(node))
         return iter
 
-    def get_handle(self, node):
-        """
-        Get the gramps handle for a node.  Return None if the node does
-        not correspond to a gramps object.
-        """
-        handle = node.handle
-        if handle and not isinstance(handle, UNITYPE):
-            handle = handle.decode('utf-8')
-        return handle
-
-    def get_node(self, handle):
+    def _get_node(self, handle):
         """
         Get the node for a handle.
         """
         return self.handle2node.get(handle)
 
-    def handle2path(self, handle):
+    def get_iter_from_handle(self, handle):
         """
-        Obtain from a handle, a path.
-        Part of common api with flat/treebasemodel
+        Get the iter for a gramps handle.
         """
-        return self.do_get_path(self.get_iter(self.get_node(handle)))
+        return self._get_iter(self._get_node(handle))
+        
+    def get_handle_from_iter(self, iter):
+        """
+        Get the gramps handle for an iter.  Return None if the iter does
+        not correspond to a gramps object.
+        """
+        node = self.get_node_from_iter(iter)
+        handle = node.handle
+        if handle and not isinstance(handle, UNITYPE):
+            handle = handle.decode('utf-8')
+        return handle
 
     # The following implement the public interface of Gtk.TreeModel
 
@@ -872,8 +872,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         See Gtk.TreeModel
         """
-        if index == self._tooltip_column:
-            return object
         return str
 
     def do_get_value(self, iter, col):
@@ -899,7 +897,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
             # according to column_defs table
             val = self._get_value(node.handle, col, node.secondary)
         #GTK 3 should convert unicode objects automatically, but this
-        # gives wrong column values, so we convert, so we convert for python 2.7
+        # gives wrong column values, so convert for python 2.7
         if not isinstance(val, str):
             return val.encode('utf-8')
         else:
@@ -934,11 +932,14 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if not self.tree or not self.tree[None].children:
             return False, Gtk.TreeIter()
         node = self.tree[None]
-        pathlist = path.get_indices()
+        if isinstance(path, tuple):
+            pathlist = path
+        else:
+            pathlist = path.get_indices()
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
             node = self.nodemap.node(node.children[_index][1])
-        return True, self.get_iter(node)
+        return True, self._get_iter(node)
 
     def get_node_from_iter(self, iter):
         if iter and iter.user_data:
@@ -998,7 +999,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
                 nodeid = nodeparent.children[-1 if self.__reverse else 0][1]
             else:
                 return False, None
-        return True, self.new_iter(nodeid)
+        return True, self._new_iter(nodeid)
         
     def do_iter_has_child(self, iter):
         """
@@ -1028,7 +1029,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         if node.children:
             if len(node.children) > index:
                 _index = (-index - 1) if self.__reverse else index
-                return True, self.new_iter(node.children[_index][1])
+                return True, self._new_iter(node.children[_index][1])
             else:
                 return False, None
         else:
@@ -1040,6 +1041,6 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         """
         node = self.get_node_from_iter(iterchild)
         if node.parent:
-            return True, self.new_iter(node.parent)
+            return True, self._new_iter(node.parent)
         else:
             return False, None

@@ -49,7 +49,8 @@ from gi.repository import Gtk
 # -----------------------------------------------------------------------------
 from gramps.gui.display import display_help
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.datehandler import parser as _dp

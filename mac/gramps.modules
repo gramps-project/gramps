@@ -14,7 +14,7 @@
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
   <repository type="svn" name="gramps"
-	      href="https://gramps.svn.sourceforge.net/svnroot/"/>
+	      href="http://svn.code.sf.net/p/gramps/code/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
   <repository type="tarball" name="oracle"
@@ -23,8 +23,8 @@
 	      href="http://pypi.python.org/packages/source/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
-  <repository type="git" name="snoiraud"
-	      href="git://github.com/SNoiraud"/>
+  <repository type="git" name="github"
+	      href="git://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="launchpad"
@@ -33,7 +33,8 @@
 	      href="http://exiv2.org/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
-
+  <repository type='tarball' name='icu'
+	      href='http://download.icu-project.org/files/'/>
 <!--
 Special instructions:
 Gramps uses BerkeleyDB (BDB) via Python. BDB is normally included in Linux systems, but Apple prefers other mechanisms for data storage, so it isn't included on Macs.
@@ -62,12 +63,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-
-
   <distutils id="gramps-svn" >
-    <branch module="code" repo="gramps"/>
+    <branch module="trunk" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="goocanvas"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
@@ -75,6 +75,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="pil"/>
+      <dep package='pyicu'/>
     </dependencies>
     <after>
       <dep package="pyexiv2"/>
@@ -86,6 +87,16 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="gramps-addons"/>
     <dependencies>
       <dep package="gramps-svn"/>
+    </dependencies>
+  </distutils>
+
+  <distutils id="pybsddb">
+    <branch module="b/bsddb3/bsddb3-5.3.0.tar.gz"
+	    hash="md5:d5aa4f293c4ea755e84383537f74be82" repo="pymodules"
+	    version="5.3.0"/>
+    <dependencies>
+      <dep package="python3"/>
+      <dep package="berkeleydb"/>
     </dependencies>
   </distutils>
 
@@ -115,7 +126,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  </autotools>
 
   <autotools id="osmgpsmap">
-    <branch module="osm-gps-map" revision="gtk3" repo="snoiraud"/>
+    <branch module="SNoiraud/osm-gps-map" revision="gtk3" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
@@ -127,18 +138,31 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    version="0.7.3"/>
     <dependencies>
       <dep package="osmgpsmap"/>
-       <dep package="pygtk"/>
-       <dep package="pycairo-python2.6"/>
-      <dep package="pygobject"/>
   </dependencies>
+  <after>
+    <dep package="pygtk"/>
+    <dep package="pygobject"/>
+    <dep package="pygobject3"/>
+    <dep package="pycairo-python2.6"/>
+    <dep package="pycairo-python3"/>
+  </after>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo=yes --with-freetype2=no --with-fontconfig=no --with-included-ltdl=yes">
+  <autotools id="goocanvas" autogen-sh="configure">
+    <branch module="goocanvas/2.0/goocanvas-2.0.1.tar.bz2" version="2.0.1"
+	    repo="ftp.gnome.org" hash="sha256:e7491c30325318d4f5fe2683eb63e6195b484b2f330c3f07c96bbb9213027773"/>
+    <dependencies>
+      <dep package="gtk+-3.0"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="graphviz" autogen-sh="configure"
+	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
+      <dep package='pango'/>
       <dep package="meta-gtk-osx-freetype"/>
-      <dep package="pango"/>
-      <dep package="zlib"/>
+      <dep package="librsvg"/>
     </dependencies>
   </autotools>
 
@@ -147,8 +171,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <autotools id="boost">
-    <branch module="boost/boost_1_46_1.tar.bz2" repo="sourceforge"
-	    version="1.46.1"/>
+    <branch module="boost/boost_1_52_0.tar.bz2" repo="sourceforge"
+	    version="1.52.0"/>
   </autotools>
 
   <distutils id="scons">
@@ -168,7 +192,22 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <distutils id="pil">
-    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+    <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/-->
+    <branch module="sloonz/pil-py3k.git" repo="github"/>
+  </distutils>
+
+  <autotools id='icu' autogen-sh='source/configure'
+	     makeargs='CFLAGS="$CFLAGS -DU_CHARSET_IS_UTF8=1 -DU_USING_ICU_NAMESPACE=0"'>
+    <branch repo='icu' version='50.1.2' checkoutdir='icu'
+	    module='icu4c/50.1.2/icu4c-50_1_2-src.tgz'/>
+  </autotools>
+
+  <distutils id='pyicu'>
+    <branch version='1.5' repo='pymodules'
+	    module='P/PyICU/PyICU-1.5.tar.gz'/>
+    <dependencies>
+      <dep package='icu'/>
+    </dependencies>
   </distutils>
 
 </moduleset>

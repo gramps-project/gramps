@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Module that implements the sidebar and bottombar fuctionality.
+Module that implements the gramplet bar fuctionality.
 """
 #-------------------------------------------------------------------------
 #
@@ -31,7 +31,8 @@ Module that implements the sidebar and bottombar fuctionality.
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import time
 import os
 import sys
@@ -54,18 +55,19 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from .managedwindow import ManagedWindow
-from .display import display_help, display_url
-from .widgets.grampletpane import (AVAILABLE_GRAMPLETS,
-                                      GET_AVAILABLE_GRAMPLETS,
-                                      GET_GRAMPLET_LIST,
-                                      get_gramplet_opts,
-                                      get_gramplet_options_by_name,
-                                      make_requested_gramplet,
-                                      GuiGramplet)
-from .widgets.undoablebuffer import UndoableBuffer
-from .utils import is_right_click
-from .dialog import QuestionDialog
+from gramps.gen.config import config
+from ..managedwindow import ManagedWindow
+from ..display import display_help, display_url
+from .grampletpane import (AVAILABLE_GRAMPLETS, 
+                           GET_AVAILABLE_GRAMPLETS, 
+                           GET_GRAMPLET_LIST, 
+                           get_gramplet_opts, 
+                           get_gramplet_options_by_name, 
+                           make_requested_gramplet, 
+                           GuiGramplet)
+from .undoablebuffer import UndoableBuffer
+from ..utils import is_right_click
+from ..dialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -77,12 +79,12 @@ NL = "\n"
 
 #-------------------------------------------------------------------------
 #
-# GrampsBar class
+# GrampletBar class
 #
 #-------------------------------------------------------------------------
-class GrampsBar(Gtk.Notebook):
+class GrampletBar(Gtk.Notebook):
     """
-    A class which defines the graphical representation of the GrampsBar.
+    A class which defines the graphical representation of the GrampletBar.
     """
     def __init__(self, dbstate, uistate, pageview, configfile, defaults):
         GObject.GObject.__init__(self)
@@ -94,15 +96,28 @@ class GrampsBar(Gtk.Notebook):
         self.defaults = defaults
         self.detached_gramplets = []
         self.empty = False
+        self.close_buttons = []
 
-        self.set_group_name("grampsbar")
+        self.set_group_name("grampletbar")
         self.set_show_border(False)
         self.set_scrollable(True)
+
+        book_button = Gtk.Button()
+        box = Gtk.VBox() # Arrow is too small unless in a Vbox
+        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+        arrow.show()
+        box.add(arrow)
+        box.show()
+        book_button.add(box)
+        book_button.set_relief(Gtk.ReliefStyle.NONE)
+        book_button.connect('clicked', self.__button_clicked)
+        book_button.show()
+        self.set_action_widget(book_button, Gtk.PackType.END)
+
         self.connect('switch-page', self.__switch_page)
         self.connect('page-added', self.__page_added)
         self.connect('page-removed', self.__page_removed)
         self.connect('create-window', self.__create_window)
-        self.connect('button-press-event', self.__button_press)
 
         config_settings, opts_list = self.__load(defaults)
 
@@ -123,6 +138,8 @@ class GrampsBar(Gtk.Notebook):
             self.show()
         self.set_current_page(config_settings[1])
 
+        uistate.connect('grampletbar-close-changed', self.cb_close_changed)
+
     def __load(self, defaults):
         """
         Load the gramplets from the configuration file.
@@ -133,7 +150,10 @@ class GrampsBar(Gtk.Notebook):
         filename = self.configfile
         if filename and os.path.exists(filename):
             cp = configparser.ConfigParser()
-            cp.read(filename)
+            try:
+                cp.read(filename)
+            except:
+                pass
             for sec in cp.sections():
                 if sec == "Bar Options":
                     if "visible" in cp.options(sec):
@@ -175,7 +195,7 @@ class GrampsBar(Gtk.Notebook):
         except IOError:
             print("Failed writing '%s'; gramplets not saved" % filename)
             return
-        fp.write(";; Gramps bar configuration file" + NL)
+        fp.write(";; Gramplet bar configuration file" + NL)
         fp.write((";; Automatically created at %s" %
                                  time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
         fp.write("[Bar Options]" + NL)
@@ -283,13 +303,13 @@ class GrampsBar(Gtk.Notebook):
 
     def has_gramplet(self, gname):
         """
-        Return True if the GrampsBar contains the gramplet, else False.
+        Return True if the GrampletBar contains the gramplet, else False.
         """
         return gname in self.all_gramplets()
 
     def all_gramplets(self):
         """
-        Return a list of names of all the gramplets in the GrampsBar.
+        Return a list of names of all the gramplets in the GrampletBar.
         """
         if self.empty:
             return self.detached_gramplets
@@ -299,7 +319,7 @@ class GrampsBar(Gtk.Notebook):
 
     def restore(self):
         """
-        Restore the GrampsBar to its default gramplets.
+        Restore the GrampletBar to its default gramplets.
         """
         list(map(self.remove_gramplet, self.all_gramplets()))
         list(map(self.add_gramplet, self.defaults))
@@ -307,12 +327,15 @@ class GrampsBar(Gtk.Notebook):
 
     def __create_empty_tab(self):
         """
-        Create an empty tab to be displayed when the GrampsBar is empty.
+        Create an empty tab to be displayed when the GrampletBar is empty.
         """
-        tab_label = Gtk.Label(label=_('Gramps Bar'))
+        tab_label = Gtk.Label(label=_('Gramplet Bar'))
         tab_label.show()
-        msg = _('Right-click to the right of the tab to add a gramplet.')
+        msg = _('Select the down arrow on the right corner for adding, removing or restoring gramplets.')
         content = Gtk.Label(label=msg)
+        content.set_alignment(0, 0)
+        content.set_line_wrap(True)
+        content.set_size_request(150, -1)
         content.show()
         self.append_page(content, tab_label)
         return content
@@ -330,21 +353,29 @@ class GrampsBar(Gtk.Notebook):
 
     def __create_tab_label(self, gramplet):
         """
-        Create a tab label.
+        Create a tab label consisting of a label and a close button.
         """
-        label = Gtk.Label()
+        tablabel = TabLabel(gramplet, self.__delete_clicked)
+
         if hasattr(gramplet.pui, "has_data"):
-            if gramplet.pui.has_data:
-                label.set_text("<b>%s</b>" % gramplet.title)
-            else:
-                label.set_text(gramplet.title)
+            tablabel.set_has_data(gramplet.pui.has_data)
         else: # just a function; always show yes it has data
-            label.set_text("<b>%s</b>" % gramplet.title)
-            
-        label.set_use_markup(True)
-        label.set_tooltip_text(gramplet.tname)
-        label.show_all()
-        return label
+            tablabel.set_has_data(True)
+
+        if config.get('interface.grampletbar-close'):
+            tablabel.use_close(True)
+        else:
+            tablabel.use_close(False)
+
+        return tablabel
+
+    def cb_close_changed(self):
+        """
+        Close button preference changed.
+        """
+        for gramplet in self.get_children():
+            tablabel = self.get_tab_label(gramplet)
+            tablabel.use_close(config.get('interface.grampletbar-close'))
 
     def __delete_clicked(self, button, gramplet):
         """
@@ -355,7 +386,7 @@ class GrampsBar(Gtk.Notebook):
 
     def __switch_page(self, notebook, unused, new_page):
         """
-        Called when the user has switched to a new GrampsBar page.
+        Called when the user has switched to a new GrampletBar page.
         """
         old_page = notebook.get_current_page()
         if old_page >= 0:
@@ -372,7 +403,7 @@ class GrampsBar(Gtk.Notebook):
 
     def __page_added(self, notebook, unused, new_page):
         """
-        Called when a new page is added to the GrampsBar.
+        Called when a new page is added to the GrampletBar.
         """
         gramplet = self.get_nth_page(new_page)
         if self.empty:
@@ -395,19 +426,19 @@ class GrampsBar(Gtk.Notebook):
 
     def __page_removed(self, notebook, unused, page_num):
         """
-        Called when a page is removed to the GrampsBar.
+        Called when a page is removed to the GrampletBar.
         """
         if self.get_n_pages() == 0:
             self.empty = True
             self.__create_empty_tab()
         
-    def __create_window(self, grampsbar, gramplet, x_pos, y_pos):
+    def __create_window(self, grampletbar, gramplet, x_pos, y_pos):
         """
-        Called when the user has switched to a new GrampsBar page.
+        Called when the user has switched to a new GrampletBar page.
         """
         gramplet.page = self.page_num(gramplet)
         self.detached_gramplets.append(gramplet)
-        win = DetachedWindow(grampsbar, gramplet, x_pos, y_pos)
+        win = DetachedWindow(grampletbar, gramplet, x_pos, y_pos)
         gramplet.detached_window = win
         return win.get_notebook()
 
@@ -418,47 +449,39 @@ class GrampsBar(Gtk.Notebook):
         gramplet.detached_window.close()
         gramplet.detached_window = None
 
-    def __button_press(self, widget, event):
+    def __button_clicked(self, button):
         """
-        Called when a button is pressed in the tabs section of the GrampsBar.
+        Called when the drop-down button is clicked.
         """
-        if is_right_click(event):
-            menu = Gtk.Menu()
+        menu = Gtk.Menu()
 
-            ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
-            nav_type = self.pageview.navigation_type()
-            skip = self.all_gramplets()
-            gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
+        ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
+        nav_type = self.pageview.navigation_type()
+        skip = self.all_gramplets()
+        gramplet_list = GET_GRAMPLET_LIST(nav_type, skip)
+        gramplet_list.sort()
+        self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
+        ag_menu.show()
+        menu.append(ag_menu)
+
+        if not (self.empty or config.get('interface.grampletbar-close')):
+            rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
+            gramplet_list = [(gramplet.title, gramplet.gname)
+                             for gramplet in self.get_children() +
+                                             self.detached_gramplets]
             gramplet_list.sort()
-            self.__create_submenu(ag_menu, gramplet_list, self.__add_clicked)
-            ag_menu.show()
-            menu.append(ag_menu)
+            self.__create_submenu(rg_menu, gramplet_list,
+                                  self.__remove_clicked)
+            rg_menu.show()
+            menu.append(rg_menu)
 
-            if not self.empty:
-                rg_menu = Gtk.MenuItem(label=_('Remove a gramplet'))
-                gramplet_list = [(gramplet.title, gramplet.gname)
-                                 for gramplet in self.get_children() +
-                                                 self.detached_gramplets]
-                gramplet_list.sort()
-                self.__create_submenu(rg_menu, gramplet_list,
-                                      self.__remove_clicked)
-                rg_menu.show()
-                menu.append(rg_menu)
+        rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
+        rd_menu.connect("activate", self.__restore_clicked)
+        rd_menu.show()
+        menu.append(rd_menu)
 
-            rd_menu = Gtk.MenuItem(label=_('Restore default gramplets'))
-            rd_menu.connect("activate", self.__restore_clicked)
-            rd_menu.show()
-            menu.append(rd_menu)
-
-            menu.show_all()
-            #GTK3 does not show the popup, workaround: pass position function
-            menu.popup(None, None, 
-                       lambda menu, data: (event.get_root_coords()[0],
-                                          event.get_root_coords()[1], True),
-                       None, event.button, event.time)
-            return True
-
-        return False
+        menu.show_all()
+        menu.popup(None, None, cb_menu_position, button, 0, 0)
 
     def __create_submenu(self, main_menu, gramplet_list, callback_func):
         """
@@ -491,7 +514,7 @@ class GrampsBar(Gtk.Notebook):
         Called when restore defaults is clicked from the context menu.
         """
         QuestionDialog(_("Restore to defaults?"),
-            _("The Grampsbar will be restored to contain its default "
+            _("The gramplet bar will be restored to contain its default "
               "gramplets.  This action cannot be undone."),
             _("OK"),
             self.restore)
@@ -567,12 +590,12 @@ class DetachedWindow(ManagedWindow):
     """
     Class for showing a detached gramplet.
     """
-    def __init__(self, grampsbar, gramplet, x_pos, y_pos):
+    def __init__(self, grampletbar, gramplet, x_pos, y_pos):
         """
         Construct the window.
         """
         self.title = gramplet.title + " " + _("Gramplet")
-        self.grampsbar = grampsbar
+        self.grampletbar = grampletbar
         self.gramplet = gramplet
 
         ManagedWindow.__init__(self, gramplet.uistate, [],
@@ -591,9 +614,17 @@ class DetachedWindow(ManagedWindow):
         self.notebook = Gtk.Notebook()
         self.notebook.set_show_tabs(False)
         self.notebook.set_show_border(False)
+        self.notebook.connect('page-added', self.page_added)
         self.notebook.show()
-        self.window.vbox.add(self.notebook)
+        self.window.vbox.pack_start(self.notebook, True, True, 0)
         self.show()
+
+    def page_added(self, notebook, gramplet, page_num):
+        """
+        Called when the gramplet is added to the notebook.  This takes the
+        focus from the help button (bug #6306).
+        """
+        gramplet.grab_focus()
 
     def handle_response(self, object, response):
         """
@@ -632,11 +663,69 @@ class DetachedWindow(ManagedWindow):
 
     def close(self, *args):
         """
-        Dock the detached gramplet back in the GrampsBar from where it came.
+        Dock the detached gramplet back in the GrampletBar from where it came.
         """
         size = self.window.get_size()
         self.gramplet.detached_width = size[0]
         self.gramplet.detached_height = size[1]
         self.gramplet.detached_window = None
-        self.gramplet.reparent(self.grampsbar)
+        self.gramplet.reparent(self.grampletbar)
         ManagedWindow.close(self, *args)
+
+#-------------------------------------------------------------------------
+#
+# TabLabel class
+#
+#-------------------------------------------------------------------------
+class TabLabel(Gtk.HBox):
+    """
+    Create a tab label consisting of a label and a close button.
+    """
+    def __init__(self, gramplet, callback):
+        Gtk.HBox.__init__(self)
+        
+        self.text = gramplet.title
+        self.set_spacing(4)
+
+        self.label = Gtk.Label()
+        self.label.set_tooltip_text(gramplet.tname)
+        self.label.show()
+
+        self.closebtn = Gtk.Button()
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_CLOSE, Gtk.IconSize.MENU)
+        self.closebtn.connect("clicked", callback, gramplet)
+        self.closebtn.set_image(image)
+        self.closebtn.set_relief(Gtk.ReliefStyle.NONE)
+
+        self.pack_start(self.label, True, True, 0)
+        self.pack_end(self.closebtn, False, False, 0)
+
+    def set_has_data(self, has_data):
+        """
+        Set the label to indicate if the gramplet has data.
+        """
+        if has_data:
+            self.label.set_text("<b>%s</b>" % self.text)
+            self.label.set_use_markup(True)
+        else:
+            self.label.set_text(self.text)
+
+    def use_close(self, use_close):
+        """
+        Display the cose button according to user preference.
+        """
+        if use_close:
+            self.closebtn.show()
+        else:
+            self.closebtn.hide()
+
+def cb_menu_position(menu, button):
+    """
+    Determine the position of the popup menu.
+    """
+    ret_val, x_pos, y_pos = button.get_window().get_origin()
+    x_pos += button.get_allocation().x
+    y_pos += button.get_allocation().y + button.get_allocation().height
+    
+    return (x_pos, y_pos, False)

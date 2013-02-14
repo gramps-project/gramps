@@ -4,7 +4,8 @@
 # Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2012       Nick Hall
+# Copyright (C) 2011-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +34,8 @@
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -419,9 +421,8 @@ class BookSelector(ManagedWindow):
 
         available_reports = []
         for pdata in regbi:
-            if not pdata.supported:
-                category = _UNSUPPORTED
-            else:
+            category = _UNSUPPORTED
+            if pdata.supported and pdata.category in book_categories:
                 category = book_categories[pdata.category]
             available_reports.append([ pdata.name, category, pdata.id ])
         for data in sorted(available_reports):
@@ -892,6 +893,7 @@ class BookDialog(DocReportDialog):
         self.doc = self.format(None, pstyle)
         user = User()
         self.rptlist = []
+        self.global_style = None
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
@@ -899,6 +901,13 @@ class BookDialog(DocReportDialog):
                                   item.option_class, user)
             style_sheet = create_style_sheet(item)
             self.rptlist.append((obj, style_sheet))
+            if ( item.name == 'table_of_contents' or
+                 item.name == 'alphabetical_index' ): # ugly hack: FIXME
+                if self.global_style is None:
+                    self.global_style = style_sheet
+                else:
+                    self.global_style = create_style_sheet(item,
+                                                           self.global_style)
         self.doc.open(self.target_path)
 
     def make_book(self):
@@ -915,6 +924,8 @@ class BookDialog(DocReportDialog):
             if rpt:
                 rpt.begin_report()
                 rpt.write_report()
+        if self.global_style:
+            self.doc.set_style_sheet(self.global_style)
         self.doc.close()
         
         if self.open_with_app.get_active():

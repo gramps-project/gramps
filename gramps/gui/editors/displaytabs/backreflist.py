@@ -27,7 +27,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -178,7 +179,7 @@ class BackRefList(EmbeddedList):
                                  "editor and open an editor for the citation "
                                  "alone")
                 
-                from QuestionDialog import WarningDialog
+                from gramps.gui.dialog import WarningDialog
                 WarningDialog(_("Cannot open new citation editor"),
                               blocked_text)
         elif reftype == 'Place':

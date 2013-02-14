@@ -40,13 +40,11 @@ else:
     import pickle
 import os
 import time
-import locale
 import bisect
 from functools import wraps
 import logging
 from sys import maxsize
 
-from ..ggettext import gettext as _
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import dbshelve, db
@@ -75,18 +73,20 @@ from ..lib.researcher import Researcher
 from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_surname_name, DbUndoBSDDB as DbUndo)
+                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
 from .dbconst import *
 from ..utils.callback import Callback
-from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
+from ..utils.cast import conv_dbstr_to_unicode
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import win, conv_to_unicode, cuni, UNITYPE
+from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
 _MINVERSION = 9
-_DBVERSION = 17
+_DBVERSION = 18
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -170,7 +170,7 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
 # Helper functions
 #
 #-------------------------------------------------------------------------
-
+    
 def find_idmap(key, data):
     """ return id for association of secondary index.
     returns a byte string
@@ -756,7 +756,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if not self.readonly:
 
             assoc = [
-                (self.person_map, self.surnames,  find_surname),
+                (self.person_map, self.surnames,  find_byte_surname),
                 (self.person_map, self.id_trans,  find_idmap),
                 (self.family_map, self.fid_trans, find_idmap),
                 (self.event_map,  self.eid_trans, find_idmap),
@@ -953,6 +953,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
         """
         Remove all references to the primary object from the reference_map.
+        handle should be utf-8
         """
         primary_cur = self.get_reference_map_primary_cursor()
 
@@ -971,8 +972,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             
             # so we need the second tuple give us a reference that we can
             # combine with the primary_handle to get the main key.
-
-            main_key = (handle, pickle.loads(data)[1][1])
+            if sys.version_info[0] < 3:
+                #handle should be in python 2 str
+                main_key = (handle, pickle.loads(data)[1][1])
+            else:
+                #python 3 work internally with unicode
+                main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
             
             # The trick is not to remove while inside the cursor,
             # but collect them all and remove after the cursor is closed
@@ -1046,7 +1051,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         the passed transaction.
         """
         if isinstance(key, tuple):
-            #create a string key
+            #create a byte string key, first validity check in python 3!
+            for val in key:
+                if sys.version_info[0] >= 3 and isinstance(val, bytes):
+                    raise DbError(_('An attempt is made to safe a reference key '
+                        'which is partly bytecode, this is not allowed.\n'
+                        'Key is %s') % str(key))
             key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
@@ -1604,7 +1614,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=conv_unicode_tosrtkey)
+        self.surname_list.sort(key=glocale.sort_key)
 
     @catch_db_error
     def build_surname_list(self):
@@ -1616,7 +1626,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         #TODO GTK3: Why double conversion? Convert to a list of str objects!
         self.surname_list = sorted(
                         map(conv_dbstr_to_unicode, set(self.surnames.keys())), 
-                        key=conv_unicode_tosrtkey)
+                        key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
         """
@@ -2019,10 +2029,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if (obj_type, trans_type) in transaction:
             if trans_type == TXNDEL:
-                handles = [handle for handle, data in
+                handles = [handle2internal(handle) for handle, data in
                             transaction[(obj_type, trans_type)]]
             else:
-                handles = [handle for handle, data in
+                handles = [handle2internal(handle) for handle, data in
                             transaction[(obj_type, trans_type)]
                             if (handle, None) not in transaction[(obj_type,
                                                                   TXNDEL)]]
@@ -2120,6 +2130,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_16(self)
         if version < 17:
             upgrade.gramps_upgrade_17(self)
+        if version < 18:
+            upgrade.gramps_upgrade_18(self)
             
             self.reset()
             self.set_total(6)

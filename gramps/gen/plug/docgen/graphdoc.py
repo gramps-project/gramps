@@ -37,7 +37,7 @@ import sys
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
-    from io import StringIO
+    from io import BytesIO
 import tempfile
 from subprocess import Popen, PIPE
 import sys
@@ -47,7 +47,8 @@ import sys
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ...utils.file import search_for
 from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, \
@@ -369,7 +370,10 @@ class GVDocBase(BaseDoc, GVDoc):
         BaseDoc.__init__(self, None, paper_style)
 
         self._filename      = None
-        self._dot           = StringIO()
+        if sys.version_info[0] < 3:
+            self._dot = StringIO()
+        else:
+            self._dot = BytesIO()
         self._paper         = paper_style
         
         get_option_by_name = options.menu.get_option_by_name
@@ -595,7 +599,10 @@ class GVDotDoc(GVDocBase):
         if self._filename[-3:] != ".gv":
             self._filename += ".gv"
 
-        dotfile = open(self._filename, "w")
+        if sys.version_info[0] < 3:
+            dotfile = open(self._filename, "w")
+        else:
+            dotfile = open(self._filename, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
 
@@ -630,7 +637,10 @@ class GVPsDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         
@@ -647,10 +657,13 @@ class GVPsDoc(GVDocBase):
         # See bug tracker issue 2815
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
-        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
         # result.
@@ -685,11 +698,17 @@ class GVSvgDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
 
         # Generate the SVG file.
         os.system( 'dot -Tsvg -o"%s" "%s"' % (fname, tmp_dot) )
@@ -722,11 +741,17 @@ class GVSvgzDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         
         # Generate the SVGZ file.
         os.system( 'dot -Tsvgz -o"%s" "%s"' % (fname, tmp_dot) )
@@ -759,11 +784,17 @@ class GVPngDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         
         # Generate the PNG file.
         os.system( 'dot -Tpng -o"%s" "%s"' % (fname, tmp_dot) )
@@ -796,11 +827,17 @@ class GVJpegDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         
         # Generate the JPEG file.
         os.system( 'dot -Tjpg -o"%s" "%s"' % (fname, tmp_dot) )
@@ -833,11 +870,17 @@ class GVGifDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         
         # Generate the GIF file.
         os.system( 'dot -Tgif -o"%s" "%s"' % (fname, tmp_dot) )
@@ -873,11 +916,17 @@ class GVPdfGvDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        # Convert filename to str using file system encoding.
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         
         # Generate the PDF file.
         os.system( 'dot -Tpdf -o"%s" "%s"' % (fname, tmp_dot) )
@@ -908,7 +957,10 @@ class GVPdfGsDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        dotfile = os.fdopen(handle,"w")
+        if sys.version_info[0] < 3:
+            dotfile = os.fdopen(handle, "w")
+        else:
+            dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         
@@ -922,7 +974,7 @@ class GVPdfGsDoc(GVDocBase):
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
-        dotversion = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
+        dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out 
         # of memory". If the :cairo is skipped for these cases it gives 
         # acceptable result.
@@ -936,7 +988,10 @@ class GVPdfGsDoc(GVDocBase):
         height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
         
         # Convert to PDF using ghostscript
-        fname = self._filename.encode(sys.getfilesystemencoding())
+        if sys.version_info[0] < 3:
+            fname = self._filename.encode(glocale.getfilesystemencoding())
+        else:
+            fname = self._filename
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
                   ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
                   % ( _GS_CMD, width_pt, height_pt, fname, tmp_ps )

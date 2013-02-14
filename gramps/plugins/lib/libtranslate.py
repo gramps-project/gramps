@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -29,155 +29,76 @@ Translator class for use by plugins.
 # python modules
 #
 #------------------------------------------------------------------------
-import gettext
-_ = gettext.gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.utils.trans import get_localedomain
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.datehandler import displayer, LANG_TO_DISPLAY
 from gramps.gen.config import config
 from gramps.gen.lib.grampstype import GrampsType
 from gramps.gen.constfunc import cuni
 
-#------------------------------------------------------------------------
-#
-# Private Constants
-#
-#------------------------------------------------------------------------
-_LANG_MAP = {
-    "bg" : _("Bulgarian"),
-    "ca" : _("Catalan"),
-    "cs" : _("Czech"),
-    "da" : _("Danish"),
-    "de" : _("German"),
-    "el" : _("Greek"),
-    "en" : _("English"),
-    "eo" : _("Esperanto"),
-    "es" : _("Spanish"),
-    "fi" : _("Finnish"),
-    "fr" : _("French"),
-    "he" : _("Hebrew"),
-    "hr" : _("Croatian"),
-    "hu" : _("Hungarian"),
-    "it" : _("Italian"),
-    "ja" : _("Japanese"),
-    "lt" : _("Lithuanian"),
-    "mk" : _("Macedonian"),
-    "nb" : _("Norwegian Bokmal"),
-    "nl" : _("Dutch"),
-    "nn" : _("Norwegian Nynorsk"),
-    "pl" : _("Polish"),
-    "pt" : _("Portuguese"),
-    "ro" : _("Romanian"),
-    "ru" : _("Russian"),
-    "sk" : _("Slovak"),
-    "sl" : _("Slovenian"),
-    "sq" : _("Albanian"),
-    "sv" : _("Swedish"),
-    "tr" : _("Turkish"),
-    "uk" : _("Ukrainian"),
-    "vi" : _("Vietnamese"),
-    "zh" : _("Chinese")
-}
-
-_COUNTRY_MAP = {
-    "BR" : _("Brazil"),
-    "CN" : _("China"),
-    "PT" : _("Portugal")
-}
-
-#------------------------------------------------------------------------
-#
-# Public Functions
-#
-#------------------------------------------------------------------------
-def get_language_string(lang_code):
-    """
-    Given a language code of the form "lang_region", return a text string 
-    representing that language.
-    """
-    code_parts = lang_code.rsplit("_")
-    
-    lang = code_parts[0]
-    if lang in _LANG_MAP:
-        lang = _LANG_MAP[lang]
-    
-    if len(code_parts) > 1:
-        country = code_parts[1]
-        if country in _COUNTRY_MAP:
-            country = _COUNTRY_MAP[country]
-        retstr = _("%(language)s (%(country)s)") % \
-                { 'language' : lang, 'country'  : country  }
-    else:
-        retstr = lang
-        
-    return retstr
 
 #-------------------------------------------------------------------------
 #
 # Translator
 #
 #-------------------------------------------------------------------------
-class Translator:
+class Translator(object):
     """
     This class provides translated strings for the configured language.
     """
     DEFAULT_TRANSLATION_STR = "default"
-    
+
     def __init__(self, lang=DEFAULT_TRANSLATION_STR):
         """
-        :param lang: The language to translate to. 
+        :param lang: The language to translate to.
             The language can be:
                * The name of any installed .mo file
                * "en" to use the message strings in the code
                * "default" to use the default translation being used by gettext.
         :type lang: string
         :return: nothing
-        
+
         """
         if lang == Translator.DEFAULT_TRANSLATION_STR:
-            self.__trans = None
+            self.__trans = glocale.get_translation()
             self.__dd = displayer
         else:
-            # fallback=True will cause the translator to use English if 
-            # lang = "en" or if something goes wrong.
-            self.__trans = gettext.translation(get_localedomain(), 
-                                               languages=[lang], 
-                                               fallback=True)
+            # If lang isn't supported, this will fallback to the
+            # current global language
+            self.__trans = glocale.get_translation(languages=[lang])
             val = config.get('preferences.date-format')
             if lang in LANG_TO_DISPLAY:
                 self.__dd = LANG_TO_DISPLAY[lang](val)
             else:
                 self.__dd = displayer
-            
+
     def gettext(self, message):
         """
         Return the unicode translated string.
-        
+
         :param message: The message to be translated.
         :type message: string
         :returns: The translated message
         :rtype: unicode
-        
+
         """
-        if self.__trans is None:
-            return cuni(gettext.gettext(message))
-        else:
-            return self.__trans.ugettext(message)
-        
+        return self.__trans.gettext(message)
+
     def ngettext(self, singular, plural, n):
         """
         Return the unicode translated singular/plural string.
-        
+
         The translation of singular/plural is returned unless the translation is
         not available and the singular contains the separator. In that case,
         the returned value is the portion of singular following the last
         separator. Default separator is '|'.
-    
+
         :param singular: The singular form of the string to be translated.
                           may contain a context separator
         :type singular: unicode
@@ -187,53 +108,49 @@ class Translator:
         :type n: int
         :returns: The translated singular/plural message
         :rtype: unicode
-    
+
         """
-        if self.__trans is None:
-            return cuni(gettext.ngettext(singular, plural, n))
-        else:
-            return self.__trans.ungettext(singular, plural, n)
-        
+        return self.__trans.ngettext(singular, plural, n)
+
     def sgettext(self, msgid, sep='|'):
         """
         Strip the context used for resolving translation ambiguities.
-        
+
         The translation of msgid is returned unless the translation is
         not available and the msgid contains the separator. In that case,
         the returned value is the portion of msgid following the last
         separator. Default separator is '|'.
-    
+
         :param msgid: The string to translated.
         :type msgid: unicode
         :param sep: The separator marking the context.
         :type sep: unicode
         :returns: Translation or the original with context stripped.
         :rtype: unicode
-    
+
         """
-        msgval = self.gettext(msgid)
-        if msgval == msgid:
-            sep_idx = msgid.rfind(sep)
-            msgval = msgid[sep_idx+1:]
-        return cuni(msgval)
-        
+        try:
+            return self.__trans.sgettext(msgid)
+        except AttributeError:
+            return self.__trans.gettext(msgid)
+
     def get_date(self, date):
         """
         Return a string representing the date appropriate for the language being
         translated.
-        
+
         :param date: The date to be represented.
         :type date: :class:`~gen.lib.date.Date`
         :returns: The date as text in the proper language.
         :rtype: unicode
         """
         return self.__dd.display(date)
-    
+
     def get_type(self, name):
         """
         Return a string representing the name appropriate for the language being
         translated.
-        
+
         :param name: The name type to be represented.
         :returns: The name as text in the proper language.
         :rtype: unicode

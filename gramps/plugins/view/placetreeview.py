@@ -30,7 +30,7 @@ from __future__ import unicode_literals
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import LISTTREE
+from gramps.gui.views.listview import TEXT, MARKUP, ICON
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceTreeModel, COUNTRYLEVELS
 from gramps.gen.lib import Place
@@ -42,7 +42,8 @@ from gramps.gui.editors import EditPlace
 # Internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -65,24 +66,28 @@ class PlaceTreeView(PlaceBaseView):
     COL_PARISH = 9
     COL_LAT = 10
     COL_LON = 11
-    COL_CHAN = 12
-    COL_NAME = 13
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Place'),
-        _('ID'),
-        _('Street'),
-        _('Locality'),
-        _('City'),
-        _('County'),
-        _('State'),
-        _('Country'),
-        _('ZIP/Postal Code'),
-        _('Church Parish'),
-        _('Latitude'),
-        _('Longitude'),
-        _('Last Changed'),
-        _('Place Name'),
+    COL_PRIV = 12
+    COL_TAGS = 13
+    COL_CHAN = 14
+    COL_NAME = 15
+    # column definitions
+    COLUMNS = [
+        (_('Place'), MARKUP, None),
+        (_('ID'), TEXT, None),
+        (_('Street'), TEXT, None),
+        (_('Locality'), TEXT, None),
+        (_('City'), TEXT, None),
+        (_('County'), TEXT, None),
+        (_('State'), TEXT, None),
+        (_('Country'), TEXT, None),
+        (_('ZIP/Postal Code'), TEXT, None),
+        (_('Church Parish'), TEXT, None),
+        (_('Latitude'), TEXT, None),
+        (_('Longitude'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
+        (_('Place Name'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -90,21 +95,16 @@ class PlaceTreeView(PlaceBaseView):
                              COL_CITY, COL_COUNTY, COL_STATE]),
         ('columns.rank', [COL_PLACE, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
                            COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
-                           COL_PARISH, COL_LAT, COL_LON, COL_CHAN, COL_NAME]),
+                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_TAGS, 
+                           COL_CHAN, COL_NAME]),
         ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 100, 150])
+                             100, 150, 150, 40, 100, 100, 150])
         )    
 
     def __init__(self, pdata, dbstate, uistate):
         PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place Tree View'), PlaceTreeModel,
-                               nav_group=0, markup=PlaceBaseView.MARKUP_COLS)
-
-    def type_list(self):
-        """
-        set the listtype, this governs eg keybinding
-        """
-        return LISTTREE
+                               nav_group=0)
 
     def get_viewtype_stock(self):
         """
@@ -203,34 +203,27 @@ class PlaceTreeView(PlaceBaseView):
         level1 = level2 = level3 = ""
         if len(pathlist) == 1:
             path = pathlist[0]
-            suc, node = model.do_get_iter(path)
-            if suc:
-                noden = model.get_node_from_iter(node)
+            iter_ = model.get_iter(path)
+            if iter_:
                 if len(path) == 1:
-                    level[0] = noden.name
+                    level[0] = model.get_node_from_iter(iter_).name
                 elif len(path) == 2:
-                    level[1] = noden.name
-                    suc, parent = model.do_iter_parent(node)
-                    parentn = model.get_node_from_iter(parent)
-                    level[0] = parentn.name
+                    level[1] = model.get_node_from_iter(iter_).name
+                    parent = model.iter_parent(iter_)
+                    level[0] = model.get_node_from_iter(parent).name
                 elif len(path) == 3:
-                    level[2] = noden.name
-                    suc, parent = model.do_iter_parent(node)
-                    parentn = model.get_node_from_iter(parent)
-                    level[1] = parentn.name
-                    suc, parent = model.do_iter_parent(parent)
-                    parentn = model.get_node_from_iter(parent)
-                    level[0] = parentn.name
+                    level[2] = model.get_node_from_iter(iter_).name
+                    parent = model.iter_parent(iter_)
+                    level[1] = model.get_node_from_iter(parent).name
+                    parent = model.iter_parent(parent)
+                    level[0] = model.get_node_from_iter(parent).name
                 else:
-                    suc, parent = model.do_iter_parent(node)
-                    parentn = model.get_node_from_iter(parent)
-                    level[2] = parentn.name
-                    suc, parent = model.do_iter_parent(parent)
-                    parentn = model.get_node_from_iter(parent)
-                    level[1] = parentn.name
-                    suc, parent = model.do_iter_parent(parent)
-                    parentn = model.get_node_from_iter(parent)
-                    level[0] = parentn.name
+                    parent = model.iter_parent(iter_)
+                    level[2] = model.get_node_from_iter(parent).name
+                    parent = model.iter_parent(parent)
+                    level[1] = model.get_node_from_iter(parent).name
+                    parent = model.iter_parent(parent)
+                    level[0] = model.get_node_from_iter(parent).name
 
         for ind in [0, 1, 2]: 
             if level[ind] and level[ind] == COUNTRYLEVELS['default'][ind+1]:

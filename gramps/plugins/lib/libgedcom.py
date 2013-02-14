@@ -96,7 +96,6 @@ import sys
 import re
 import time
 import codecs
-from gramps.gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 if sys.version_info[0] < 3:
@@ -121,13 +120,15 @@ LOG = logging.getLogger(".libgedcom")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
         ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
         EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
-        RepoRef, Repository, RepositoryType, Researcher, Source,
+        RepoRef, Repository, RepositoryType, Researcher, Source, Tag,
         SourceMediaType, Surname, Url, UrlType)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
@@ -760,6 +761,15 @@ class Lexer(object):
                 func(data)
             else:
                 self.current_list.insert(0, data)
+
+    def clean_up(self):
+        """
+        Break circular references to parsing methods stored in dictionaries
+        to aid garbage collection
+        """
+        for key in (self.func_map.keys()):
+            del self.func_map[key]
+        del self.func_map
 
 #-----------------------------------------------------------------------
 #
@@ -1807,7 +1817,7 @@ class GedcomParser(UpdateCallback):
         return name
 
     def __init__(self, dbase, ifile, filename, user, stage_one, 
-                 default_source):
+                 default_source, default_tag_format=None):
         UpdateCallback.__init__(self, user.callback)
         self.user = user
         self.set_total(stage_one.get_line_count())
@@ -1831,10 +1841,21 @@ class GedcomParser(UpdateCallback):
         self.gedmap = GedcomInfoDB()
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.use_def_src = default_source
+        self.func_list = []
         if self.use_def_src:
             self.def_src = Source()
             fname = os.path.basename(filename).split('\\')[-1]
             self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
+        if default_tag_format:
+            name = time.strftime(default_tag_format)
+            tag = self.dbase.get_tag_from_name(name)
+            if tag:
+                self.default_tag = tag
+            else:
+                self.default_tag = Tag()
+                self.default_tag.set_name(name)
+        else:
+            self.default_tag = None
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
         self.groups = None
@@ -1900,6 +1921,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<CHANGE_DATE>>
             TOKEN_CHAN   : self.__repo_chan,
             }
+        self.func_list.append(self.subm_parse_tbl)
 
         #
         # Parse table for <<INDIVIDUAL_RECORD>> below the level 0  INDI tag
@@ -1992,6 +2014,7 @@ class GedcomParser(UpdateCallback):
             TOKEN__TODO : self.__skip_record, 
             TOKEN_TITL  : self.__person_titl, 
             }
+        self.func_list.append(self.indi_parse_tbl)
 
         self.name_parse_tbl = {
             # +1 NPFX <NAME_PIECE_PREFIX> {0:1}
@@ -2027,6 +2050,7 @@ class GedcomParser(UpdateCallback):
             # found in Brother's keeper.
             TOKEN__ADPN   : self.__name_adpn,
             }
+        self.func_list.append(self.name_parse_tbl)
 
         #
         # Parse table for <<REPOSITORY_RECORD>> below the level 0 REPO tag
@@ -2051,6 +2075,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_EMAIL  : self.__repo_email, 
             TOKEN_WWW    : self.__repo_www, 
             }
+        self.func_list.append(self.repo_parse_tbl)
 
         self.event_parse_tbl = {
             # n TYPE <EVENT_DESCRIPTOR> {0:1}
@@ -2100,6 +2125,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_EMAIL  : self.__event_email,  # FTB for RESI events
             TOKEN_WWW    : self.__event_www,    # FTB for RESI events
             }
+        self.func_list.append(self.event_parse_tbl)
 
         self.adopt_parse_tbl = {
             TOKEN_TYPE   : self.__event_type, 
@@ -2129,6 +2155,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_CHAN   : self.__ignore, 
             TOKEN_QUAY   : self.__ignore, 
             }
+        self.func_list.append(self.adopt_parse_tbl)
 
         self.famc_parse_tbl = {
             # n FAMC @<XREF:FAM>@ {1:1}
@@ -2143,6 +2170,7 @@ class GedcomParser(UpdateCallback):
             # GEDit
             TOKEN_STAT   : self.__ignore, 
             }
+        self.func_list.append(self.famc_parse_tbl)
 
         self.person_fact_parse_tbl = {
             TOKEN_TYPE   : self.__person_fact_type, 
@@ -2150,6 +2178,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__person_attr_note, 
             TOKEN_RNOTE  : self.__person_attr_note, 
             }
+        self.func_list.append(self.person_fact_parse_tbl)
 
         self.person_attr_parse_tbl = {
             TOKEN_TYPE   : self.__person_attr_type, 
@@ -2166,6 +2195,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__person_attr_note, 
             TOKEN_RNOTE  : self.__person_attr_note, 
             }
+        self.func_list.append(self.person_attr_parse_tbl)
 
         self.lds_parse_tbl = {
             TOKEN_TEMP   : self.__lds_temple, 
@@ -2178,6 +2208,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__lds_note, 
             TOKEN_STAT   : self.__lds_stat, 
             }
+        self.func_list.append(self.lds_parse_tbl)
 
         self.asso_parse_tbl = {
             TOKEN_RELA   : self.__person_asso_rela, 
@@ -2185,6 +2216,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__person_asso_note, 
             TOKEN_RNOTE  : self.__person_asso_note, 
             }
+        self.func_list.append(self.asso_parse_tbl)
 
         self.citation_parse_tbl = {
             TOKEN_PAGE   : self.__citation_page, 
@@ -2200,6 +2232,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__citation_note, 
             TOKEN_TEXT   : self.__citation_data_text, 
             }
+        self.func_list.append(self.citation_parse_tbl)
 
         self.object_parse_tbl = {
             TOKEN_FORM   : self.__object_ref_form, 
@@ -2209,6 +2242,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__object_ref_note, 
             TOKEN_IGNORE : self.__ignore, 
         }
+        self.func_list.append(self.object_parse_tbl)
 
         self.parse_loc_tbl = {
             TOKEN_ADDR   : self.__location_addr, 
@@ -2226,6 +2260,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PHON   : self.__ignore, 
             TOKEN_IGNORE : self.__ignore, 
             }
+        self.func_list.append(self.parse_loc_tbl)
         
         #
         # Parse table for <<FAM_RECORD>> below the level 0 FAM tag
@@ -2281,6 +2316,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_SUBM   : self.__ignore, 
             TOKEN_ATTR   : self.__family_attr, 
             }
+        self.func_list.append(self.family_func)
 
         self.family_rel_tbl = {
             TOKEN__FREL  : self.__family_frel, 
@@ -2288,6 +2324,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_ADOP   : self.__family_adopt, 
             TOKEN__STAT  : self.__family_stat, 
             }
+        self.func_list.append(self.family_rel_tbl)
 
         #
         # Parse table for <<SOURCE_RECORD>> below the level 0 SOUR tag
@@ -2341,6 +2378,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_DATE   : self.__ignore,  
             TOKEN_IGNORE : self.__ignore, 
         }
+        self.func_list.append(self.source_func)
 
         #
         # Parse table for <<MULTIMEDIA_RECORD>> below the level 0 OBJE tag
@@ -2369,6 +2407,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN    : self.__obje_rin, 
             TOKEN_CHAN   : self.__obje_chan, 
             }
+        self.func_list.append(self.obje_func)
 
         self.parse_addr_tbl = {
             TOKEN_DATE   : self.__address_date, 
@@ -2388,10 +2427,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_TYPE   : self.__ignore, 
             TOKEN_CAUS   : self.__ignore, 
             }
+        self.func_list.append(self.parse_addr_tbl)
 
         self.event_cause_tbl = {
             TOKEN_SOUR   : self.__event_cause_source, 
             }
+        self.func_list.append(self.event_cause_tbl)
 
         self.event_place_map = {
             TOKEN_NOTE   : self.__event_place_note, 
@@ -2405,11 +2446,13 @@ class GedcomParser(UpdateCallback):
             # Not legal,  but generated by Ultimate Family Tree
             TOKEN_QUAY   : self.__ignore, 
             }
+        self.func_list.append(self.event_place_map)
 
         self.place_map_tbl = {
             TOKEN_LATI   : self.__place_lati, 
             TOKEN_LONG   : self.__place_long, 
             }
+        self.func_list.append(self.place_map_tbl)
 
         self.repo_ref_tbl = {
             TOKEN_CALN   : self.__repo_ref_call, 
@@ -2418,15 +2461,18 @@ class GedcomParser(UpdateCallback):
             TOKEN_MEDI   : self.__repo_ref_medi, 
             TOKEN_IGNORE : self.__ignore, 
             }
+        self.func_list.append(self.repo_ref_tbl)
 
         self.parse_person_adopt = {
             TOKEN_ADOP   : self.__person_adopt_famc_adopt, 
             }
+        self.func_list.append(self.parse_person_adopt)
 
         self.opt_note_tbl = {
             TOKEN_RNOTE  : self.__optional_note, 
             TOKEN_NOTE   : self.__optional_note, 
             }
+        self.func_list.append(self.opt_note_tbl)
 
         self.citation_data_tbl = {
             TOKEN_DATE   : self.__citation_data_date, 
@@ -2434,10 +2480,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__citation_data_note, 
             TOKEN_NOTE   : self.__citation_data_note, 
             }
+        self.func_list.append(self.citation_data_tbl)
 
         self.citation_even_tbl = {
             TOKEN_ROLE   : self.__citation_even_role,
             }
+        self.func_list.append(self.citation_even_tbl)
         
         #
         # Parse table for <<HEADER>> record below the level 0 HEAD tag
@@ -2493,6 +2541,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_DATE   : self.__header_date, 
             TOKEN_NOTE   : self.__header_note, 
             }
+        self.func_list.append(self.head_parse_tbl)
 
         self.header_sour_parse_tbl = {
             TOKEN_VERS   : self.__header_sour_vers,
@@ -2500,24 +2549,29 @@ class GedcomParser(UpdateCallback):
             TOKEN_CORP   : self.__header_sour_corp,
             TOKEN_DATA   : self.__header_sour_data,
             }
+        self.func_list.append(self.header_sour_parse_tbl)
 
         self.header_sour_data = {
             TOKEN_DATE   : self.__header_sour_date, 
             TOKEN_COPR   : self.__header_sour_copr, 
             }
+        self.func_list.append(self.header_sour_data)
 
         self.header_corp_addr = {
             TOKEN_ADDR   : self.__repo_addr, 
             TOKEN_PHON   : self.__repo_phon, 
             }
+        self.func_list.append(self.header_corp_addr)
 
         self.header_subm = {
             TOKEN_NAME   : self.__header_subm_name, 
             }
+        self.func_list.append(self.header_subm)
 
         self.place_form = {
             TOKEN_FORM   : self.__place_form, 
             }
+        self.func_list.append(self.place_form)
 
         #
         # Parse table for <<NOTE_RECORD>> below the level 0 NOTE tag
@@ -2536,6 +2590,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN    : self.__ignore, 
             TOKEN_CHAN   : self.__note_chan, 
             }
+        self.func_list.append(self.note_parse_tbl)
 
         # look for existing place titles, build a map 
         self.place_names = {}
@@ -2594,6 +2649,8 @@ class GedcomParser(UpdateCallback):
             self.want_parse_warnings = True
             if self.use_def_src:
                 self.dbase.add_source(self.def_src, self.trans)
+            if self.default_tag and self.default_tag.handle is None:
+                self.dbase.add_tag(self.default_tag, self.trans)
             self.__parse_record()
             self.__parse_trailer()
             for title, handle in self.inline_srcs.items():
@@ -2601,6 +2658,7 @@ class GedcomParser(UpdateCallback):
                 src.set_handle(handle)
                 src.set_title(title)
                 self.dbase.add_source(src, self.trans)
+            self.__clean_up()
             
         if not self.dbase.get_feature("skip-check-xref"):
             self.__check_xref()
@@ -2612,6 +2670,19 @@ class GedcomParser(UpdateCallback):
             message = _("GEDCOM import report: %s errors detected") % \
                 self.number_of_errors
         self.user.info(message, "".join(self.errors), monospaced=True)
+
+    def __clean_up(self):
+        """
+        Break circular references to parsing methods stored in dictionaries
+        to aid garbage collection
+        """
+        for func_map in self.func_list:
+            for key in func_map.keys():
+                del func_map[key]
+            del func_map
+        del self.func_list
+        del self.update
+        self.lexer.clean_up()
         
     def __find_person_handle(self, gramps_id):
         """
@@ -3317,6 +3388,9 @@ class GedcomParser(UpdateCallback):
 
         # Add the default reference if no source has found
         self.__add_default_source(person)
+
+        # Add a default tag if provided
+        self.__add_default_tag(person)
 
         self.__check_msgs(_("INDI (individual) Gramps ID %s") % 
                           person.get_gramps_id(), state, person)
@@ -4578,6 +4652,9 @@ class GedcomParser(UpdateCallback):
 
         # add default reference if no reference exists
         self.__add_default_source(family)
+
+        # Add a default tag if provided
+        self.__add_default_tag(family)
 
         self.__check_msgs(_("FAM (family) Gramps ID %s") % family.get_gramps_id(), 
                           state, family)
@@ -6118,6 +6195,9 @@ class GedcomParser(UpdateCallback):
         # Add the default reference if no source has found
         self.__add_default_source(media)
 
+        # Add a default tag if provided
+        self.__add_default_tag(media)
+
         self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") % 
                           media.get_gramps_id(), state, media)
         # commit the person to the database
@@ -6931,6 +7011,9 @@ class GedcomParser(UpdateCallback):
                                    self.__undefined)
                 state.msg += sub_state.msg
 
+                # Add a default tag if provided
+                self.__add_default_tag(new_note)
+
                 self.dbase.commit_note(new_note, self.trans, new_note.change)
                 obj.add_note(new_note.get_handle())
 
@@ -7254,6 +7337,13 @@ class GedcomParser(UpdateCallback):
             citation.set_reference_handle(self.def_src.handle)
             self.dbase.add_citation(citation, self.trans)
             obj.add_citation(citation.handle)
+
+    def __add_default_tag(self, obj):
+        """
+        Add the default tag to the object.
+        """
+        if self.default_tag:
+            obj.add_tag(self.default_tag.handle)
 
     def __subm_name(self, line, state):
         """

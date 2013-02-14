@@ -42,7 +42,7 @@ import uuid
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .ggettext import sgettext as _
+from .svn_revision import get_svn_revision
 
 #-------------------------------------------------------------------------
 #
@@ -50,11 +50,20 @@ from .ggettext import sgettext as _
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-if "@VERSIONSTRING@" == "@" + "VERSIONSTRING" + "@":
-    VERSION        = "4.0.0"
-else:
-    VERSION        = "@VERSIONSTRING@"
-VERSION_TUPLE  = (4, 0, 0)
+VERSION        = "@VERSIONSTRING@"
+if VERSION == "@" + "VERSIONSTRING" + "@":
+    raise Exception("Please run 'python setup.py build'")
+def get_version_tuple(v):
+    """ Get the numeric-dotted part of version number"""
+    retval = ""
+    for c in v:
+        if c.isdigit() or (c == "." and retval.count(".") <= 1):
+            retval += c
+        else:
+            break
+    return tuple(map(int, retval.split(".")))
+VERSION_TUPLE  = get_version_tuple(VERSION)
+major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
 
 #-------------------------------------------------------------------------
 #
@@ -65,11 +74,11 @@ URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
-URL_MANUAL_PAGE = "Gramps_4.0_Wiki_Manual"
+URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 WIKI_FAQ = "FAQ"
-WIKI_KEYBINDINGS = "Gramps_4.0_Wiki_Manual_-_Keybindings"
-WIKI_EXTRAPLUGINS= "4.0_Addons"
-WIKI_EXTRAPLUGINS_RAWDATA = "Plugins4.0&action=raw"
+WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
+WIKI_EXTRAPLUGINS= "%s_Addons" % major_version
+WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 
 #-------------------------------------------------------------------------
 #
@@ -83,25 +92,6 @@ APP_GEDCOM      = "application/x-gedcom"
 APP_GRAMPS_PKG  = "application/x-gramps-package"
 APP_GENEWEB     = "application/x-geneweb"
 APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
-
-#-------------------------------------------------------------------------
-#
-# system paths
-#
-#-------------------------------------------------------------------------
-if sys.platform == "win32":
-    if sys.prefix == os.path.dirname(os.getcwd()):
-        PREFIXDIR = sys.prefix
-        SYSCONFDIR = os.path.join(sys.prefix, "etc")
-    else:
-        PREFIXDIR = os.path.join(os.path.dirname(__file__), os.pardir)
-        SYSCONFDIR = os.path.join(PREFIXDIR, "etc")
-elif  sys.platform == "darwin" and sys.prefix != sys.exec_prefix:
-    PREFIXDIR = sys.prefix
-    SYSCONFDIR = os.path.join(sys.prefix, "etc")
-else:
-    PREFIXDIR = "@prefix@"
-    SYSCONFDIR = "@sysconfdir@"
 
 #-------------------------------------------------------------------------
 #
@@ -145,24 +135,6 @@ if sys.version_info[0] < 3:
 else:
     pass
 
-#-------------------------------------------------------------------------
-#
-# Paths to files - assumes that files reside in the same directory as
-# this one, and that the plugins directory is in a directory below this.
-#
-#-------------------------------------------------------------------------
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            __file__), os.pardir))
-if sys.version_info[0] < 3:
-    # test for sys.frozen to detect a py2exe executable on Windows
-    if hasattr(sys, "frozen"):
-        ROOT_DIR = os.path.abspath(os.path.dirname(
-            unicode(sys.executable, sys.getfilesystemencoding())))
-    else:
-        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
-
-IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 VERSION_DIR    = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
@@ -180,15 +152,28 @@ USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
-ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
-LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
-SPLASH         = os.path.join(ROOT_DIR, "images", "splash.jpg")
-LICENSE_FILE   = os.path.join(ROOT_DIR, "COPYING")
+#-------------------------------------------------------------------------
+#
+# Paths to python modules - assumes that the root directory is one level 
+# above this one, and that the plugins directory is below the root directory.
+#
+#-------------------------------------------------------------------------
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            __file__), os.pardir))
+if sys.version_info[0] < 3:
+    # test for sys.frozen to detect a py2exe executable on Windows
+    if hasattr(sys, "frozen"):
+        ROOT_DIR = os.path.abspath(os.path.dirname(
+            unicode(sys.executable, sys.getfilesystemencoding())))
+    else:
+        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
+
+VERSION += get_svn_revision(ROOT_DIR)
 
 #
 # Glade files
 #
-
 GLADE_DIR      = os.path.join(ROOT_DIR, "gui", "glade")
 GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
 PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
@@ -198,16 +183,11 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
 PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
-DATA_DIR           = os.path.join(ROOT_DIR, "data")
 WEB_DIR            = os.path.join(ROOT_DIR, 'webapp')
-#SYSTEM_FILTERS    = os.path.join(DATA_DIR, "system_filters.xml")
-TIP_DATA           = os.path.join(DATA_DIR, "tips.xml")
 WEBSTUFF_DIR       = os.path.join(PLUGINS_DIR, "webstuff")
 WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
-PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
-
-USE_TIPS       = False
+USE_TIPS = False
 
 if os.sys.platform in WINDOWS:
     USE_THUMBNAILER = False
@@ -216,11 +196,38 @@ else:
 
 #-------------------------------------------------------------------------
 #
+# Paths to data files.
+#
+#-------------------------------------------------------------------------
+LOCALE_DIR = "@LOCALE_DIR@"
+DATA_DIR = "@DATA_DIR@"
+IMAGE_DIR = "@IMAGE_DIR@"
+DOC_DIR = "@DOC_DIR@"
+
+TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
+PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
+
+ICON = os.path.join(IMAGE_DIR, "gramps.png")
+LOGO = os.path.join(IMAGE_DIR, "logo.png")
+SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
+
+LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
+#-------------------------------------------------------------------------
+#
+# Init Localization
+#
+#-------------------------------------------------------------------------
+from .utils.grampslocale import GrampsLocale
+GRAMPS_LOCALE = GrampsLocale()
+_ = GRAMPS_LOCALE.get_translation().sgettext
+
+#-------------------------------------------------------------------------
+#
 # About box information
 #
 #-------------------------------------------------------------------------
 COPYRIGHT_MSG  = "© 2001-2006 Donald N. Allingham\n" \
-                 "© 2007-2012 The Gramps Developers"
+                 "© 2007-2013 The Gramps Developers"
 COMMENTS       = _("Gramps (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
@@ -325,3 +332,29 @@ LONGOPTS = [
 SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
+
+def need_to_update_const():
+    """ Check to see if this file is older than 
+        setup.py or const.py.in """
+    this_file = os.path.join(ROOT_DIR, "gen", "const.py")
+    in_file = os.path.join(ROOT_DIR, "gen", "const.py.in")
+    setup_file = os.path.join(ROOT_DIR, "..", "setup.py")
+
+    if (os.path.exists(this_file) and 
+        os.path.exists(in_file) and 
+        os.path.exists(setup_file)):
+
+        this_file_time = os.path.getmtime(this_file)
+        in_file_time = os.path.getmtime(in_file)
+        setup_file_time = os.path.getmtime(setup_file)
+
+        # Is this file older than others? If so,
+        # need to run setup
+        return (this_file_time < in_file_time or
+                this_file_time < setup_file_time)
+    else:
+        # Can't tell because can't find the files
+        return False
+
+if need_to_update_const():
+    print("Outdated gramps.gen.const; please run 'python setup.py build'")

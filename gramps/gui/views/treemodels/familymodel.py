@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +47,7 @@ from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -68,11 +68,10 @@ class FamilyModel(FlatBaseModel):
             self.column_mother, 
             self.column_type, 
             self.column_marriage, 
+            self.column_private,
             self.column_tags,
             self.column_change, 
-            self.column_handle, 
             self.column_tag_color,
-            self.column_tooltip,
             ]
         self.smap = [
             self.column_id, 
@@ -80,14 +79,13 @@ class FamilyModel(FlatBaseModel):
             self.sort_mother, 
             self.column_type, 
             self.sort_marriage, 
+            self.column_private,
             self.column_tags,
             self.sort_change, 
-            self.column_handle, 
             self.column_tag_color,
-            self.column_tooltip,
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9, 
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -108,9 +106,6 @@ class FamilyModel(FlatBaseModel):
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
-
-    def column_handle(self, data):
-        return cuni(data[0])
 
     def column_father(self, data):
         if data[2]:
@@ -167,14 +162,18 @@ class FamilyModel(FlatBaseModel):
     def column_id(self, data):
         return cuni(data[1])
 
+    def column_private(self, data):
+        if data[14]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+
     def sort_change(self, data):
         return "%012x" % data[12]
     
     def column_change(self, data):
         return format_time(data[12])
-
-    def column_tooltip(self, data):
-        return cuni('Family tooltip')
 
     def get_tag_name(self, tag_handle):
         """
@@ -201,4 +200,4 @@ class FamilyModel(FlatBaseModel):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[13]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

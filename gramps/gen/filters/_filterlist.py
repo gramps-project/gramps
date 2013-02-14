@@ -40,6 +40,7 @@ import collections
 from ._filterparser import FilterParser
 from ..plug import BasePluginManager
 from ..constfunc import STRTYPE
+from ..const import GRAMPS_LOCALE as glocale
 
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
@@ -111,6 +112,7 @@ class FilterList(object):
                 parser.parse(the_file)
                 the_file.close()
         except (IOError, OSError):
+            print("IO/OSError in _filterlist.py")
             pass
         except SAXParseException:
             print("Parser error")
@@ -123,7 +125,7 @@ class FilterList(object):
         return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file.encode(sys.getfilesystemencoding()), 'w')
+        f = open(self.file.encode(glocale.getfilesystemencoding()), 'w')
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
         for namespace in self.filter_namespaces:

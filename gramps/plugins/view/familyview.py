@@ -30,7 +30,8 @@ Family View.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 #-------------------------------------------------------------------------
@@ -46,7 +47,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Family
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import FamilyModel
 from gramps.gui.editors import EditFamily
 from gramps.gui.views.bookmarks import FamilyBookmarks
@@ -72,26 +73,27 @@ class FamilyView(ListView):
     COL_MOTHER = 2
     COL_REL = 3
     COL_MARDATE = 4
-    COL_TAGS = 5
-    COL_CHAN = 6
-    # name of the columns
-    MARKUP_COLS = [COL_MARDATE]
-    COLUMN_NAMES = [
-        _('ID'),
-        _('Father'),
-        _('Mother'),
-        _('Relationship'),
-        _('Marriage Date'),
-        _('Tags'),
-        _('Last Changed'),
+    COL_PRIV = 5
+    COL_TAGS = 6
+    COL_CHAN = 7
+    # column definitions
+    COLUMNS = [
+        (_('ID'), TEXT, None),
+        (_('Father'), TEXT, None),
+        (_('Mother'), TEXT, None),
+        (_('Relationship'), TEXT, None),
+        (_('Marriage Date'), MARKUP, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     #default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
                              COL_MARDATE]),
         ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
-                           COL_MARDATE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [75, 200, 200, 100, 100, 100, 100])
+                           COL_MARDATE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [75, 200, 200, 100, 100, 40, 100, 100])
         )    
 
     ADD_MSG     = _("Add a new family")
@@ -108,18 +110,15 @@ class FamilyView(ListView):
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
             'family-rebuild' : self.object_build,
-            'tag-update'     : self.tag_updated
             }
 
         ListView.__init__(
             self, _('Families'), pdata, dbstate, uistate,
-            FamilyView.COLUMN_NAMES, len(FamilyView.COLUMN_NAMES), 
             FamilyModel,
-            signal_map, dbstate.db.get_family_bookmarks(),
+            signal_map,
             FamilyBookmarks, nav_group,
             multiple=True,
-            filter_class=FamilySidebarFilter,
-            markup=FamilyView.MARKUP_COLS)
+            filter_class=FamilySidebarFilter)
 
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
@@ -212,23 +211,6 @@ class FamilyView(ListView):
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ])
         self._add_action_group(self.all_action)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_family_bookmarks()
 
     def add_bookmark(self, obj):
         mlist = self.selected_handles()

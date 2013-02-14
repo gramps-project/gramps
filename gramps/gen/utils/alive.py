@@ -43,7 +43,8 @@ LOG = logging.getLogger(".gen.utils.alive")
 from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..errors import DatabaseError
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -101,13 +102,16 @@ class ProbablyAlive(object):
         death_date = None
         birth_date = None
         explain = ""
-        # If the recorded death year is before current year then
-        # things are simple.
+
         if death_ref and death_ref.get_role().is_primary():
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
-                if death and death.get_date_object().get_start_date() != Date.EMPTY:
+                if death and death.get_date_object().is_valid():
                     death_date = death.get_date_object()
+                elif death: # has a death event, but it is no valid:
+                    death_date = Today() # before today
+                    death_date.set_modifier(Date.MOD_BEFORE)
+                    explain = _("death event without date")
 
         # Look for Cause Of Death, Burial or Cremation events.
         # These are fairly good indications that someone's not alive.
@@ -117,7 +121,12 @@ class ProbablyAlive(object):
                     ev = self.db.get_event_from_handle(ev_ref.ref)
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
-                        explain = _("death-related evidence")
+                        if death_date.is_valid():
+                            explain = _("death-related evidence")
+                        else:
+                            death_date = Today() # before today
+                            death_date.set_modifier(Date.MOD_BEFORE)
+                            explain = _("death-related evidence without date")
 
         # If they were born within X years before current year then
         # assume they are alive (we already know they are not dead).
@@ -226,13 +235,25 @@ class ProbablyAlive(object):
                     if mother_handle == person.handle and father_handle:
                         father = self.db.get_person_from_handle(father_handle)
                         date1, date2, explain, other = self.probably_alive_range(father, is_spouse=True)
-                        if date1 and date2:
-                            return date1, date2, _("a spouse, ") + explain, other
+                        if date1 and date1.get_year() != 0:
+                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
+                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
+                                    _("a spouse's birth-related date, ") + explain, other)
+                        elif date2 and date2.get_year() != 0:
+                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
+                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
+                                    _("a spouse's death-related date, ") + explain, other)
                     elif father_handle == person.handle and mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
                         date1, date2, explain, other = self.probably_alive_range(mother, is_spouse=True)
-                        if date1 and date2:
-                            return date1, date2, _("a spouse, ") + explain, other
+                        if date1 and date1.get_year() != 0:
+                            return (Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP),
+                                    Date().copy_ymd(date1.get_year() - self.AVG_GENERATION_GAP + self.MAX_AGE_PROB_ALIVE),
+                                    _("a spouse's birth-related date, ") + explain, other)
+                        elif date2 and date2.get_year() != 0:
+                            return (Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP - self.MAX_AGE_PROB_ALIVE),
+                                    Date().copy_ymd(date2.get_year() + self.AVG_GENERATION_GAP),
+                                    _("a spouse's death-related date, ") + explain, other)
                     # Let's check the family events and see if we find something
                     for ref in family.get_event_ref_list():
                         if ref:
@@ -483,7 +504,7 @@ def probably_alive(person, db,
         death += limit # add these years to death
     # Finally, check to see if current_date is between dates
     result = (current_date.match(birth, ">=") and 
-              current_date.match(death, "<="))
+              current_date.match(death, "<<"))
     if return_range:
         return (result, birth, death, explain, relative)
     else:

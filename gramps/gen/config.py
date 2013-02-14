@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Gary Burton 
-# Copyright (C) 2009       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2009-2012  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -41,7 +41,8 @@ import logging
 # Gramps imports
 #
 #---------------------------------------------------------------
-from .ggettext import gettext as _
+from .const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from .const import HOME_DIR, USER_HOME, VERSION_DIR
 from .utils.configmanager import ConfigManager
 
@@ -151,6 +152,7 @@ register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
+register('behavior.addons-url', "http://svn.code.sf.net/p/gramps-addons/code/trunk/")
 
 register('export.proxy-order', [
         ["privacy", 0], 
@@ -187,7 +189,7 @@ register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.view-categories',
-         ["Gramplets", "People", "Relationships", "Families", 
+         ["Dashboard", "People", "Relationships", "Families", 
           "Ancestry", "Events", "Places", "Geography", "Sources",
           "Citations", "Repositories", "Media", "Notes"])
 register('interface.edit-filter-width', 500)
@@ -208,6 +210,7 @@ register('interface.filter', False)
 register('interface.filter-editor-width', 400)
 register('interface.filter-editor-height', 350)
 register('interface.fullscreen', False)
+register('interface.grampletbar-close', False)
 register('interface.height', 500)
 register('interface.lds-height', 450)
 register('interface.lds-width', 600)
@@ -278,6 +281,8 @@ register('preferences.date-format', 0)
 register('preferences.calendar-format-report', 0)
 register('preferences.cprefix', 'C%04d')
 register('preferences.default-source', False)
+register('preferences.tag-on-import', False)
+register('preferences.tag-on-import-format', _("Imported %Y/%m/%d %H:%M:%S"))
 register('preferences.eprefix', 'E%04d')
 register('preferences.family-warn', True)
 register('preferences.fprefix', 'F%04d')

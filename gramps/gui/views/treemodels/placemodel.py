@@ -57,7 +57,8 @@ from .treebasemodel import TreeBaseModel
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -76,8 +77,6 @@ COUNTRYLEVELS = {
 #-------------------------------------------------------------------------
 class PlaceBaseModel(object):
 
-    HANDLE_COL = 5
-
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data
@@ -85,18 +84,21 @@ class PlaceBaseModel(object):
             self.column_name,
             self.column_id,
             self.column_location,
+            self.column_private,
+            self.column_tags,
             self.column_change,
             self.column_place_name,
-            self.column_handle,
-            self.column_tooltip
+            self.column_tag_color
             ]
         self.smap = [
             self.column_name,
             self.column_id,
             self.column_location,
+            self.column_private,
+            self.column_tags,
             self.sort_change,
             self.column_place_name,
-            self.column_handle,
+            self.column_tag_color
             ]
 
     def destroy(self):
@@ -109,11 +111,14 @@ class PlaceBaseModel(object):
         self.fmap = None
         self.smap = None
 
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 7
+
     def do_get_n_columns(self):
         return len(self.fmap)+1
-
-    def column_handle(self, data):
-        return cuni(data[0])
 
     def column_place_name(self, data):
         return cuni(data[2])
@@ -132,14 +137,46 @@ class PlaceBaseModel(object):
         except:
             return u''
 
+    def column_private(self, data):
+        if data[11]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+    
     def sort_change(self, data):
         return "%012x" % data[9]
     
     def column_change(self, data):
         return format_time(data[9])
 
-    def column_tooltip(self, data):
-        return u'Place tooltip'
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
+    def column_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[10]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
+
+    def column_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[10]))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
 #-------------------------------------------------------------------------
 #
@@ -154,8 +191,8 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
                  skip=set(), sort_map=None):
 
         PlaceBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=15,
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -181,10 +218,9 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
 
         PlaceBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=15,
-                                search=search, skip=skip, sort_map=sort_map,
-                                nrgroups = 3,
-                                group_can_have_handle = True)
+                               search=search, skip=skip, sort_map=sort_map,
+                               nrgroups=3,
+                               group_can_have_handle=True)
 
     def destroy(self):
         """
@@ -274,7 +310,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         if node.name:
             return '<i>%s</i>' % cgi.escape(node.name)
         else:
-            level = len(self.do_get_path(self.get_iter(node)).get_indices())
+            level = len(self.do_get_path(self._get_iter(node)).get_indices())
             heading = '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
             # This causes a problem with Gtk3 unless we cast to str.
             return str(heading)

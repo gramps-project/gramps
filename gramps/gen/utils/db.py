@@ -39,7 +39,8 @@ LOG = logging.getLogger(".gui.utils.db")
 from ..lib.nameorigintype import NameOriginType
 from ..lib.surname import Surname
 from ..display.name import displayer as name_displayer
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
@@ -558,7 +559,6 @@ def get_referents(handle, db, primary_objects):
     for primary in primary_objects:
         primary_list = [item[1] for item in object_list if item[0] == primary]
         the_lists = the_lists + (primary_list, )
-
     return the_lists
 
 def get_source_referents(source_handle, db):

@@ -31,7 +31,8 @@
 #-------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -79,7 +80,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             uistate.push_message(dbstate, _("Rebuilding secondary indexes..."))
             
             UpdateCallback.__init__(self, self.callback)
-            self.set_total(11)
+            self.set_total(12)
             self.db.rebuild_secondary(self.update)
             self.reset()
             

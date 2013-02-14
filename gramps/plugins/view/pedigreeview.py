@@ -31,8 +31,8 @@
 #-------------------------------------------------------------------------
 from __future__ import unicode_literals, division
 
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from cgi import escape
 import math
 import sys
@@ -209,7 +209,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if image:
             image_path = self.get_image(dbstate, person)
             if sys.version_info[0] < 3 and isinstance(image_path, STRTYPE):
-                image_path = image_path.encode(sys.getfilesystemencoding())
+                image_path = image_path.encode(glocale.getfilesystemencoding())
             if image_path and os.path.exists(image_path):
                 self.img_surf = cairo.ImageSurface.create_from_png(image_path)
 
@@ -520,9 +520,7 @@ class PedigreeView(NavigationView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
-                                      PersonBookmarks,
-                                      nav_group)
+                                PersonBookmarks, nav_group)
 
         self.func_list.update({
             'F2' : self.kb_goto_home,
@@ -715,7 +713,6 @@ class PedigreeView(NavigationView):
         from self.state.db
         """
         self._change_db(db)
-        self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()

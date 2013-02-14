@@ -6,6 +6,9 @@
     <destination overwrite="yes">${env:HOME}/Desktop</destination>
     <run-install-name-tool/>
     <launcher-script>${project}/gramps.launcher</launcher-script >
+    <!-- Indicate the active gtk version to use. This is needed only
+	 for gtk+-3.0 projects. -->
+    <gtk>gtk+-3.0</gtk>
   </meta>
 
   <plist>${project}/Info.plist</plist>
@@ -27,23 +30,18 @@
   <binary>
     ${prefix}/lib/gdk-pixbuf-2.0/${pkg:gdk-pixbuf-2.0:gdk_pixbuf_binary_version}/
   </binary>
-<!-- Copy in the theme engines. -->
+<!-- Copy in the input methods. Dunno if they actually work with OSX. -->
   <binary>
-    ${prefix}/lib/gtk-2.0/${pkg:gtk+-2.0:gtk_binary_version}/engines/*.so
+    ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/immodules/*.so
   </binary>
 
 <!-- And the print backends -->
   <binary>
-    ${prefix}/lib/gtk-2.0/${pkg:gtk+-2.0:gtk_binary_version}/printbackends/*.so
+    ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/printbackends/*.so
   </binary>
 
   <binary>
-    ${prefix}/lib/pango/${pkg:pango:pango_module_version}/modules/pango-basic-fc.so
-  </binary>
-
-  <!-- Copy in libpyglib, which will pull in other dependencies we need -->
-  <binary>
-    ${prefix}/lib/libpyglib-2.0-python.0.dylib
+    ${prefix}/lib/pango/${pkg:pango:pango_module_version}/modules/*.so
   </binary>
 
   <binary recurse="True">
@@ -59,15 +57,7 @@
   </binary-->
 
   <binary>
-    ${prefix}/lib/libgoocanvas.3.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libgtkmacintegration.0.dylib
-  </binary>
-
-  <binary>
-    ${prefix}/lib/libart_lgpl_2.2.dylib
+    ${prefix}/lib/libgtkmacintegration.2.dylib
   </binary>
 
   <binary>
@@ -87,7 +77,7 @@
   </binary>
 
   <binary>
-     ${prefix}/lib/libosmgpsmap.2.dylib
+     ${prefix}/lib/libosmgpsmap.3.dylib
   </binary>
 
   <binary>
@@ -110,7 +100,27 @@
        want to copy in to the bundle. The "dest" attribute is
        optional, as usual. Bundler will find all translations of that
        library/program under the indicated directory and copy them.-->
-  <translations name="gtk20">
+  <translations name="gtk30">
+    ${prefix}/share/locale
+  </translations>
+
+  <translations name="gtk30-properties">
+    ${prefix}/share/locale
+  </translations>
+
+  <translations name="glib20">
+    ${prefix}/share/locale
+  </translations>
+
+   <translations name="gdk-pixbuf">
+    ${prefix}/share/locale
+  </translations>
+
+  <translations name="atk10">
+    ${prefix}/share/locale
+  </translations>
+
+  <translations name="gtkspell3">
     ${prefix}/share/locale
   </translations>
 
@@ -121,7 +131,11 @@
 
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
-  <data recurse="True">
+   <data>
+    ${prefix}/share/glib-2.0/schemas
+  </data>
+
+ <data recurse="True">
     ${prefix}/lib/python2.7/*.py
   </data>
 
@@ -134,7 +148,7 @@
   </data>
 
   <data>
-    ${prefix}/share/gramps/
+    ${prefix}/lib/girepository-1.0/
   </data>
 
   <!--data>
@@ -147,6 +161,18 @@
 
   <data>
     ${prefix}/share/mime/
+  </data>
+
+  <data recurse="True">
+    ${prefix}/lib/python2.7/site-packages/gramps/*.glade
+  </data>
+
+  <data>
+    ${prefix}/lib/python2.7/site-packages/gramps/data/
+  </data>
+
+  <data recurse="True">
+    ${prefix}/lib/python2.7/site-packages/gramps/images/*.png
   </data>
 
   <data>
@@ -171,15 +197,7 @@
     ${project}/gramps.icns
   </data>
 
-  <!-- This is where theme commands go. You can copy them in from your
-       theme of choice if they provide and example, or you can just
-       change the source path. -->
-
-  <data dest="${bundle}/Contents/Resources/etc/gtk-2.0/gtkrc">
-    ${project}/gtkrc
-  </data>
-
-  <data dest="${bundle}/Contents/Resources/share/gramps/data/gramps.accel">
+  <data dest="${bundle}/Contents/Resources/lib/python2.7/site-packages/gramps/data/gramps.accel">
     ${project}/gramps.accel
   </data>
 

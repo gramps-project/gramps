@@ -27,7 +27,7 @@
 #
 #------------------------------------------------------------------------
 
-MODULE_VERSION="4.0" 
+MODULE_VERSION="4.1" 
 
 from gi import Repository
 

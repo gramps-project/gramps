@@ -43,6 +43,7 @@ from ._hasrepository import HasRepository
 from ._matchestitlesubstringof import MatchesTitleSubstringOf
 from ._hasrepositorycallnumberref import HasRepositoryCallNumberRef
 from ._matchesrepositoryfilter import MatchesRepositoryFilter
+from ._hastag import HasTag
 
 editor_rule_list = [
     AllSources,
@@ -59,5 +60,6 @@ editor_rule_list = [
     HasRepository,
     MatchesTitleSubstringOf,
     HasRepositoryCallNumberRef,
-    MatchesRepositoryFilter
+    MatchesRepositoryFilter,
+    HasTag
 ]

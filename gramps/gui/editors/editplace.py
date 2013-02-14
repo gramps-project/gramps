@@ -28,7 +28,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 log = logging.getLogger(".")
 
@@ -48,8 +49,11 @@ from gramps.gen.lib import NoteType, Place, Location
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
-                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from ..widgets import MonitoredEntry, PrivacyButton, LocationEntry
+                         GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
+from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList, 
+                       LocationEntry)
+from gramps.gen.errors import ValidationError
+from gramps.gen.utils.place import conv_lat_lon
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -159,6 +163,14 @@ class EditPlace(EditPrimary):
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
         
+        self.tags = MonitoredTagList(self.top.get_object("tag_label"), 
+                                     self.top.get_object("tag_button"), 
+                                     self.obj.set_tag_list, 
+                                     self.obj.get_tag_list,
+                                     self.db,
+                                     self.uistate, self.track,
+                                     self.db.readonly)
+
         self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
 

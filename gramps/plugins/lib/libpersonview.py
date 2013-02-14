@@ -49,7 +49,7 @@ _LOG = logging.getLogger(".gui.personview")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Person, Surname
 from gramps.gen.db import DbTxn
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.dialog import ErrorDialog, QuestionDialog
@@ -67,7 +67,8 @@ from gramps.gen.plug import CATEGORY_QR_PERSON
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -86,30 +87,30 @@ class BasePersonView(ListView):
     COL_DDAT = 5
     COL_DPLAC = 6
     COL_SPOUSE = 7
-    COL_TAGS = 8
-    COL_CHAN = 9
-    #name of the columns
-    COLUMN_NAMES = [
-        _('Name'),
-        _('ID'),
-        _('Gender'),
-        _('Birth Date'),
-        _('Birth Place'),
-        _('Death Date'),
-        _('Death Place'),
-        _('Spouse'),
-        _('Tags'),
-        _('Last Changed'),
+    COL_PRIV = 8
+    COL_TAGS = 9
+    COL_CHAN = 10
+    # column definitions
+    COLUMNS = [
+        (_('Name'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Gender'), TEXT, None),
+        (_('Birth Date'), MARKUP, None),
+        (_('Birth Place'), MARKUP, None),
+        (_('Death Date'), MARKUP, None),
+        (_('Death Place'), MARKUP, None),
+        (_('Spouse'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
-    # columns that contain markup
-    MARKUP_COLS = [COL_BDAT, COL_BPLAC, COL_DDAT, COL_DPLAC]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
         ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
-                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_TAGS,
+                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_PRIV, COL_TAGS,
                            COL_CHAN]),
-        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 100, 100])
+        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 40, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
@@ -128,18 +129,15 @@ class BasePersonView(ListView):
             'person-delete'  : self.row_delete,
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
-            'tag-update' : self.tag_updated,
             'no-database': self.no_database,
             }
  
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
-            BasePersonView.COLUMN_NAMES, len(BasePersonView.COLUMN_NAMES), 
-            model, signal_map, dbstate.db.get_bookmarks(),
+            model, signal_map,
             PersonBookmarks, nav_group,
             multiple=True,
-            filter_class=PersonSidebarFilter,
-            markup=BasePersonView.MARKUP_COLS)
+            filter_class=PersonSidebarFilter)
             
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
@@ -155,12 +153,6 @@ class BasePersonView(ListView):
         Return the navigation type of the view.
         """
         return 'Person'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
 
     def drag_info(self):
         """
@@ -381,20 +373,6 @@ class BasePersonView(ListView):
 
         self.all_action.set_visible(False)
         self.edit_action.set_visible(False)
-
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
 
     def merge(self, obj):
         """

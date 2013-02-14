@@ -30,7 +30,7 @@ id    = 'categorysidebar',
 name  = _("Category Sidebar"),
 description =  _("A sidebar to allow the selection of view categories"),
 version = '1.0',
-gramps_target_version = '4.0',
+gramps_target_version = '4.1',
 status = STABLE,
 fname = 'categorysidebar.py',
 authors = ["Nick Hall"],
@@ -38,4 +38,34 @@ authors_email = ["nick__hall@hotmail.com"],
 sidebarclass = 'CategorySidebar',
 menu_label = _('Category'),
 order = START
+)
+
+register(SIDEBAR, 
+id    = 'dropdownsidebar',
+name  = _("Drop-down Sidebar"),
+description =  _("Selection of categories and views from drop-down lists"),
+version = '1.0',
+gramps_target_version = '4.1',
+status = STABLE,
+fname = 'dropdownsidebar.py',
+authors = ["Nick Hall"],
+authors_email = ["nick__hall@hotmail.com"],
+sidebarclass = 'DropdownSidebar',
+menu_label = _('Drop-Down'),
+order = END
+)
+
+register(SIDEBAR, 
+id    = 'expandersidebar',
+name  = _("Expander Sidebar"),
+description =  _("Selection of views from lists with expanders"),
+version = '1.0',
+gramps_target_version = '4.1',
+status = STABLE,
+fname = 'expandersidebar.py',
+authors = ["Nick Hall"],
+authors_email = ["nick__hall@hotmail.com"],
+sidebarclass = 'ExpanderSidebar',
+menu_label = _('Expander'),
+order = END
 )

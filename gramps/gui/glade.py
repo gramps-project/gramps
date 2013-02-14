@@ -48,8 +48,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GLADE_DIR
-from gramps.gen.utils.trans import LOCALEDOMAIN
+from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.constfunc import STRTYPE
 
 #------------------------------------------------------------------------
@@ -82,7 +81,7 @@ class Glade(Gtk.Builder):
         :returns:  reference to the newly-created Glade instance
         """
         GObject.GObject.__init__(self)
-        self.set_translation_domain(LOCALEDOMAIN)
+        self.set_translation_domain(glocale.get_localedomain())
 
         filename_given = filename is not None
         dirname_given = dirname is not None

@@ -26,8 +26,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
-import locale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -115,7 +115,7 @@ class SurnameTab(EmbeddedList):
         self.cmborig = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
         self.cmborigmap = no.get_map().copy()
         #sort the keys based on the value
-        keys = sorted(self.cmborigmap, key=lambda x: locale.strxfrm(self.cmborigmap[x]))
+        keys = sorted(self.cmborigmap, key=lambda x: glocale.sort_key(self.cmborigmap[x]))
         for key in keys:
             if key != no.get_custom():
                 self.cmborig.append(row=[key, self.cmborigmap[key]])
@@ -161,7 +161,7 @@ class SurnameTab(EmbeddedList):
 ##        """
 ##        fvalue = self.cmborigmap[first]
 ##        svalue = self.cmborigmap[second]
-##        return locale.strcoll(fvalue, svalue)
+##        return glocale.strcoll(fvalue, svalue)
 
     def get_data(self):
         return self.obj.get_surname_list()

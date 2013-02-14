@@ -109,7 +109,8 @@ class Bibliography(object):
     MODE_PAGE = 2**1
     MODE_CONF = 2**2
     MODE_NOTE = 2**3
-    MODE_ALL = MODE_DATE | MODE_PAGE | MODE_CONF | MODE_NOTE
+    MODE_MEDIA = 2**4
+    MODE_ALL = MODE_DATE | MODE_PAGE | MODE_CONF | MODE_NOTE | MODE_MEDIA
 
     def __init__(self, mode=MODE_ALL):
         """
@@ -123,6 +124,7 @@ class Bibliography(object):
             MODE_PAGE
             MODE_CONF
             MODE_NOTE
+            MODE_MEDIA
             MODE_ALL
         
         If you only care about pages, set "mode=MODE_PAGE".
@@ -218,6 +220,9 @@ class Bibliography(object):
         if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
             if len(source_ref.get_note_list()) != 0:
                 return True
+        if ( self.mode & self.MODE_MEDIA ) == self.MODE_MEDIA:
+            if len(source_ref.get_media_list()) != 0:
+                return True
         # Can't find anything interesting.
         return False
         
@@ -257,6 +262,14 @@ class Bibliography(object):
                 return False
             for notehandle in nl1:
                 if notehandle not in nl2:
+                    return False
+        if ( self.mode & self.MODE_MEDIA ) == self.MODE_MEDIA:
+            nl1 = source_ref1.get_media_list()
+            nl2 = source_ref2.get_media_list()
+            if len(nl1) != len(nl2):
+                return False
+            for mediahandle in nl1:
+                if mediahandle not in nl2:
                     return False
         # Can't find anything different. They must be equal.
         return True

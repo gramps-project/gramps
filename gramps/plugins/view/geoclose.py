@@ -30,7 +30,8 @@ Geography for two persons
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import operator
 from gi.repository import Gtk
 from math import *
@@ -130,7 +131,6 @@ class GeoClose(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have they been able to meet?"),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -188,12 +188,6 @@ class GeoClose(GeoGraphyView):
         """
         return 'Person'
 
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
-
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given person handle as the root.
@@ -216,12 +210,17 @@ class GeoClose(GeoGraphyView):
             self._createmap(p1, color, self.place_list_active, False)
         if self.refperson:
             color = self._config.get('geography.color1')
-            self.message_layer.add_message(_("Reference : %(name)s ( %(birth)s - %(death)s )") % {'name': _nd.display(self.refperson),
-                                                                              'birth': self.birth(self.refperson),
-                                                                              'death': self.death(self.refperson)})
-            self.message_layer.add_message(_("The other : %(name)s ( %(birth)s - %(death)s )") % {'name': _nd.display(p1),
-                                                                              'birth': self.birth(p1),
-                                                                              'death': self.death(p1)})
+            self.message_layer.add_message(_("Reference : %(name)s ( %(birth)s - %(death)s )") % {
+                                                           'name': _nd.display(self.refperson),
+                                                           'birth': self.birth(self.refperson),
+                                                           'death': self.death(self.refperson)})
+            if p1:
+                self.message_layer.add_message(_("The other : %(name)s ( %(birth)s - %(death)s )") % {
+                                                               'name': _nd.display(p1),
+                                                               'birth': self.birth(p1),
+                                                               'death': self.death(p1)})
+            else:
+                self.message_layer.add_message(_("The other person is unknown"))
             self._createmap(self.refperson, color, self.place_list_ref, True)
         else:
             self.message_layer.add_message(_("You must choose one reference person."))
@@ -301,7 +300,10 @@ class GeoClose(GeoGraphyView):
         active = self.get_active()
         person = self.dbstate.db.get_person_from_handle(active)
         self.lifeway_layer.clear_ways()
-        self.goto_handle(handle=person)
+        if person is None:
+            self.goto_handle(None)
+        else:
+            self.goto_handle(handle=person)
 
     def draw(self, menu, marks, color, reference):
         """

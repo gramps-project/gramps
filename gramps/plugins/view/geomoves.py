@@ -30,7 +30,8 @@ Geography for one person and all his descendant
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import operator
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -38,6 +39,7 @@ from gi.repository import GObject
 import time
 import threading
 from math import *
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -131,7 +133,6 @@ class GeoMoves(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Descendance of the active person."),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -188,12 +189,6 @@ class GeoMoves(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Person'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
 
     def goto_handle(self, handle=None):
         """
@@ -471,7 +466,7 @@ class GeoMoves(GeoGraphyView):
                 return
         self.message_layer.add_message(_("All descendance for %s" % _nd.display(person)))
         color = Gdk.color_parse(self._config.get('geography.color_base'))
-        GObject.timeout_add(int(self._config.get("geography.generation_interval")),
+        GLib.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
 
     def animate_moves(self, index, person, color):
@@ -539,7 +534,7 @@ class GeoMoves(GeoGraphyView):
                 time_to_wait = int(self._config.get("geography.generation_interval"))
                 self._create_markers()
                 # process next generation in a few milliseconds
-                GObject.timeout_add(time_to_wait, self.animate_moves,
+                GLib.timeout_add(int(time_to_wait), self.animate_moves,
                                                   index+1, person, color)
             else:
                 self.started = False

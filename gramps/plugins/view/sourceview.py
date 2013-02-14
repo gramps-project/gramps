@@ -41,7 +41,7 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Source
 from gramps.gen.config import config
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import SourceModel
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gui.views.bookmarks import SourceBookmarks
@@ -58,7 +58,8 @@ from gramps.gen.plug import CATEGORY_QR_SOURCE
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 
 #-------------------------------------------------------------------------
@@ -74,22 +75,27 @@ class SourceView(ListView):
     COL_AUTH = 2
     COL_ABBR = 3
     COL_PINFO = 4
-    COL_CHAN = 5
-    # name of the columns
-    COLUMN_NAMES = [
-        _('Title'),
-        _('ID'),
-        _('Author'),
-        _('Abbreviation'),
-        _('Publication Information'),
-        _('Last Changed'),
+    COL_PRIV = 5
+    COL_TAGS = 6
+    COL_CHAN = 7
+    
+    # column definitions
+    COLUMNS = [
+        (_('Title'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Author'), TEXT, None),
+        (_('Abbreviation'), TEXT, None),
+        (_('Publication Information'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
-                           COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 100])
+                          COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 150, 100, 150, 40, 100, 100])
         )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
@@ -109,9 +115,7 @@ class SourceView(ListView):
 
         ListView.__init__(
             self, _('Sources'), pdata, dbstate, uistate, 
-            SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
             SourceModel, signal_map,
-            dbstate.db.get_source_bookmarks(),
             SourceBookmarks, nav_group,
             multiple=True,
             filter_class=SourceSidebarFilter)
@@ -125,9 +129,6 @@ class SourceView(ListView):
 
     def navigation_type(self):
         return 'Source'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_source_bookmarks()
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK
@@ -242,6 +243,26 @@ class SourceView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='Source')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, source_handle, tag_handle):
+        """
+        Add the given tag to the given source.
+        """
+        source = self.dbstate.db.get_source_from_handle(source_handle)
+        source.add_tag(tag_handle)
+        self.dbstate.db.commit_source(source, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

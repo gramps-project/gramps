@@ -44,6 +44,7 @@ from gramps.gen.lib import Citation
 from gramps.gen.utils.string import confidence
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +60,8 @@ COLUMN_PAGE        = 3
 COLUMN_CONFIDENCE  = 4
 COLUMN_SOURCE      = 5
 COLUMN_CHANGE      = 9
+COLUMN_TAGS        = 10
+COLUMN_PRIV        = 11
 
 # Data for the Source object
 COLUMN2_HANDLE     = 0
@@ -68,6 +71,8 @@ COLUMN2_AUTHOR     = 3
 COLUMN2_PUBINFO    = 4
 COLUMN2_ABBREV     = 7
 COLUMN2_CHANGE     = 8
+COLUMN2_TAGS       = 11
+COLUMN2_PRIV       = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -113,8 +118,34 @@ class CitationBaseModel(object):
     def citation_confidence(self, data):
         return cuni(confidence[data[COLUMN_CONFIDENCE]])
 
-    def citation_handle(self, data):
-        return cuni(data[COLUMN_HANDLE])
+    def citation_private(self, data):
+        if data[COLUMN_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+
+    def citation_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+
+    def citation_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[COLUMN_TAGS]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
 
     def citation_change(self, data):
         return format_time(data[COLUMN_CHANGE])
@@ -165,6 +196,27 @@ class CitationBaseModel(object):
         except:
             return ''
 
+    def citation_src_private(self, data):
+        source_handle = data[COLUMN_SOURCE]
+        try:
+            source = self.db.get_source_from_handle(source_handle)
+            if source.get_privacy():
+                return 'gramps-lock'
+            else:
+                # There is a problem returning None here.
+                return ''
+        except:
+            return ''
+
+    def citation_src_tags(self, data):
+        source_handle = data[COLUMN_SOURCE]
+        try:
+            source = self.db.get_source_from_handle(source_handle)
+            tag_list = list(map(self.get_tag_name, source.get_tag_list()))
+            return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        except:
+            return ''
+
     def citation_src_chan(self, data):
         source_handle = data[COLUMN_SOURCE]
         try:
@@ -173,13 +225,7 @@ class CitationBaseModel(object):
         except:
             return ''
 
-    def citation_tooltip(self, data):
-        return cuni('Citation tooltip')
-
 # Fields access when 'data' is a Source
-
-    def source_handle(self, data):
-        return cuni(data[COLUMN2_HANDLE])
 
     def source_src_title(self, data):
         return cuni(data[COLUMN2_TITLE])
@@ -196,16 +242,47 @@ class CitationBaseModel(object):
     def source_src_pinfo(self, data):
         return cuni(data[COLUMN2_PUBINFO])
 
+    def source_src_private(self, data):
+        if data[COLUMN2_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+
+    def source_src_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[COLUMN2_TAGS]))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+
+    def source_src_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[COLUMN2_TAGS]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
+
     def source_src_chan(self, data):
         return format_time(data[COLUMN2_CHANGE])
 
     def source_sort2_change(self, data):
         return "%012x" % data[COLUMN2_CHANGE]
 
-    def source_tooltip(self, data):
-        return cuni('Source tooltip')
-
     def dummy_sort_key(self, data):
         # dummy sort key for columns that don't have data
         return None
-    
+
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()

@@ -46,7 +46,8 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import ICON
 from gramps.gen.config import config
 from .glade import Glade
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.constfunc import cuni
 
 try:
@@ -181,10 +182,10 @@ class ErrorDialog(Gtk.MessageDialog):
                                    flags=Gtk.DialogFlags.MODAL,
                                    type=Gtk.MessageType.ERROR,
                                    buttons=Gtk.ButtonsType.CLOSE)
-        self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
+        self.set_markup('<span weight="bold" size="larger">%s</span>' % str(msg1))
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
-        self.set_title("%s - Gramps" % msg1)
+        self.set_title("%s - Gramps" % str(msg1))
         self.show()
         self.run()
         self.destroy()
@@ -192,7 +193,7 @@ class ErrorDialog(Gtk.MessageDialog):
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
         if sys.version_info[0] < 3:
-            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+            msg = cuni(str(msg).decode(glocale.getfilesystemencoding()))
         else:
             msg = str(msg)
         ErrorDialog.__init__(
@@ -207,7 +208,7 @@ class RunDatabaseRepair(ErrorDialog):
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
         if sys.version_info[0] < 3:
-            msg = cuni(str(msg).decode(sys.getfilesystemencoding()))
+            msg = cuni(str(msg).decode(glocale.getfilesystemencoding()))
         else:
             msg = str(msg)
         ErrorDialog.__init__(

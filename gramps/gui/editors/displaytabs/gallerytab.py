@@ -26,7 +26,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 import sys
 if sys.version_info[0] < 3:
@@ -219,7 +220,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.set_selection_mode(Gtk.SelectionMode.SINGLE)
         
         # connect the signals
-        self.iconlist.connect('selection-changed', self._selection_changed)
+        self.__id_connect_sel = self.iconlist.connect('selection-changed', self._selection_changed)
         self.iconlist.connect('button_press_event', self.double_click)
         self.iconlist.connect('key_press_event', self.key_pressed)
         self._connect_icon_model()
@@ -519,7 +520,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     if protocol == "file":
                         name = fix_encoding(mfile)
                         name = cuni(url2pathname(
-                                    name.encode(sys.getfilesystemencoding())))
+                                    name.encode(glocale.getfilesystemencoding())))
                         mime = get_type(name)
                         if not is_valid_type(mime):
                             return
@@ -563,3 +564,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         returns the index of the object within the associated data
         """
         return self.get_data().index(obj)
+
+    def clean_up(self):
+        self.iconlist.disconnect(self.__id_connect_sel)
+        super(ButtonTab, self).clean_up()

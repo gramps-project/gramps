@@ -47,7 +47,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.config import config
 from gramps.gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
 from ...utils import open_file_with_default_application
@@ -205,7 +206,7 @@ class ReportDialog(ManagedWindow):
     def get_title(self):
         """The window title for this dialog"""
         name = self.report_name
-        category = standalone_categories[self.category]
+        category = standalone_categories[self.category][1]
         return "%s - %s - Gramps" % (name, category)
     
     #------------------------------------------------------------------------
@@ -644,7 +645,6 @@ def report(dbstate, uistate, person, report_class, options_class,
     task be in the format of task that takes a database and a person as
     its arguments.
     """
-
     if require_active and not person:
         ErrorDialog(
             _('Active person has not been set'),

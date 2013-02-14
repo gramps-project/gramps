@@ -73,8 +73,6 @@ LOCATIONTYPES = [_('Country'), _('State'), _('County'), _('City'),
 #-------------------------------------------------------------------------
 class LocationBaseModel(object):
 
-    HANDLE_COL = 5
-
     def __init__(self, db):
         self.gen_cursor = db.get_location_cursor
         self.map = db.get_raw_location_data
@@ -178,11 +176,10 @@ class LocationTreeModel(LocationBaseModel, TreeBaseModel):
 
         LocationBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, scol=scol, order=order,
-                                tooltip_column=15,
-                                search=search, skip=skip, sort_map=sort_map,
-                                nrgroups = 3,
-                                group_can_have_handle = True,
-                                has_secondary=False)
+                               search=search, skip=skip, sort_map=sort_map,
+                               nrgroups = 3,
+                               group_can_have_handle = True,
+                               has_secondary=False)
 
     def destroy(self):
         """
@@ -232,7 +229,7 @@ class LocationTreeModel(LocationBaseModel, TreeBaseModel):
 
         # Add the node as a root node if the parent is not in the tree.  This
         # will happen when the view is filtered.
-        if not self.get_node(parent):
+        if not self._get_node(parent):
             parent = None
 
         self.add_node(parent, handle, sort_key, handle, add_parent=False)
@@ -247,6 +244,6 @@ class LocationTreeModel(LocationBaseModel, TreeBaseModel):
         sort_key = self.sort_func2(data)
         parent = data[5]
         
-        if self.get_node(parent):
+        if self._get_node(parent):
             self.add_node(parent, handle, sort_key, handle, add_parent=False,
                           secondary=True)

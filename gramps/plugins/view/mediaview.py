@@ -31,7 +31,8 @@ Media View.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 import sys
 if sys.version_info[0] < 3:
@@ -57,7 +58,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.utils import open_file_with_default_application
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.constfunc import win, cuni
 from gramps.gen.config import config
@@ -94,25 +95,28 @@ class MediaView(ListView):
     COL_TYPE = 2
     COL_PATH = 3
     COL_DATE = 4
-    COL_TAGS = 5
-    COL_CHAN = 6
-    #name of the columns
-    COLUMN_NAMES = [
-        _('Title'), 
-        _('ID'), 
-        _('Type'), 
-        _('Path'), 
-        _('Date'), 
-        _('Tags'), 
-        _('Last Changed'), 
+    COL_PRIV = 5
+    COL_TAGS = 6
+    COL_CHAN = 7
+    
+    # column definitions
+    COLUMNS = [
+        (_('Title'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Path'), TEXT, None),
+        (_('Date'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                              COL_DATE]),
         ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
-                           COL_DATE, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 100, 200, 150, 100, 150])
+                           COL_DATE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 100, 200, 150, 40, 100, 150])
         )    
     
     ADD_MSG     = _("Add a new media object")
@@ -129,14 +133,12 @@ class MediaView(ListView):
             'media-update'  : self.row_update, 
             'media-delete'  : self.row_delete, 
             'media-rebuild' : self.object_build,
-            'tag-update'    : self.tag_updated
             }
 
         ListView.__init__(
             self, _('Media'), pdata, dbstate, uistate, 
-            MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             MediaModel, 
-            signal_map, dbstate.db.get_media_bookmarks(), 
+            signal_map,
             MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
             multiple=True)
@@ -192,7 +194,7 @@ class MediaView(ListView):
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
                 name = cuni(url2pathname(
-                                mfile.encode(sys.getfilesystemencoding())))
+                                mfile.encode(glocale.getfilesystemencoding())))
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
@@ -209,12 +211,6 @@ class MediaView(ListView):
                     self.dbstate.db.add_object(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
                 
-    def get_bookmarks(self):
-        """
-        Return the bookmarks associated with this view
-        """
-        return self.dbstate.db.get_media_bookmarks()
-
     def define_actions(self):
         """
         Defines the UIManager actions specific to Media View. We need to make
@@ -235,20 +231,6 @@ class MediaView(ListView):
 
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
                         
-    def set_active(self):
-        """
-        Called when the page is displayed.
-        """
-        ListView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
-
-    def set_inactive(self):
-        """
-        Called when the page is no longer displayed.
-        """
-        ListView.set_inactive(self)
-        self.uistate.viewmanager.tags.tag_disable()
-
     def view_media(self, obj):
         """
         Launch external viewers for the selected objects.

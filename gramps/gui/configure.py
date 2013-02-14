@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2010       Benny Malengier
 # Copyright (C) 2010       Nick Hall
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +32,8 @@
 from __future__ import print_function
 
 import random
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 from xml.sax.saxutils import escape
 import collections
@@ -278,7 +280,7 @@ class ConfigureDialog(ManagedWindow):
                      config=None):
         if not config:
             config = self.__config
-        radiobox = Gtk.RadioButton(group,label)
+        radiobox = Gtk.RadioButton.new_with_mnemonic_from_widget(group, label)
         if config.get(constant) == True:
             radiobox.set_active(True)
         radiobox.connect('toggled', self.update_radiobox, constant)
@@ -321,18 +323,23 @@ class ConfigureDialog(ManagedWindow):
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
     def add_entry(self, table, label, index, constant, callback=None,
-                  config=None):
+                  config=None, col_attach=0):
         if not config:
             config = self.__config
         if not callback:
             callback = self.update_entry
-        lwidget = BasicLabel("%s: " % label)
+        if label:
+            lwidget = BasicLabel("%s: " % label)
         entry = Gtk.Entry()
         entry.set_text(config.get(constant))
         entry.connect('changed', callback, constant)
-        table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
-                     xoptions=Gtk.AttachOptions.FILL)
-        table.attach(entry, 1, 2, index, index+1, yoptions=0)
+        if label:
+            table.attach(lwidget, col_attach, col_attach+1, index, index+1, yoptions=0, 
+                         xoptions=Gtk.AttachOptions.FILL)
+            table.attach(entry, col_attach+1, col_attach+2, index, index+1, yoptions=0)
+        else:
+            table.attach(entry, col_attach, col_attach+1, index, index+1, yoptions=0)
+        return entry
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
                           config=None, col_attach=1):
@@ -887,6 +894,12 @@ class GrampsPreferences(ConfigureDialog):
         self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                            only_active=False)
 
+    def cb_grampletbar_close(self, obj):
+        """
+        Gramplet bar close button preference callback
+        """
+        self.uistate.emit('grampletbar-close-changed')
+
     def add_formats_panel(self, configdialog):
         row = 0
         table = Gtk.Table(4, 4)
@@ -1052,6 +1065,13 @@ class GrampsPreferences(ConfigureDialog):
                           _("Show text in sidebar buttons (requires restart)"), 
                           row, 'interface.sidebar-text', stop=3)
         row += 1
+
+        # Gramplet bar close buttons:
+        self.add_checkbox(table, 
+                          _("Show close button in gramplet bar tabs"), 
+                          row, 'interface.grampletbar-close', stop=3,
+                          extra_callback=self.cb_grampletbar_close)
+        row += 1
         return _('Display'), table
 
     def add_text_panel(self, configdialog):
@@ -1100,6 +1120,11 @@ class GrampsPreferences(ConfigureDialog):
         config.set('behavior.do-not-show-previously-seen-updates',  
                    bool(active))
 
+    def toggle_tag_on_import(self, obj):
+        active = obj.get_active()
+        config.set('preferences.tag-on-import', bool(active))
+        self.tag_format_entry.set_sensitive(bool(active))
+
     def check_for_updates_changed(self, obj):
         active = obj.get_active()
         config.set('behavior.check-for-updates', active)
@@ -1147,32 +1172,54 @@ class GrampsPreferences(ConfigureDialog):
         return _('Dates'), table
         
     def add_behavior_panel(self, configdialog):
-        table = Gtk.Table(3, 6)
+        table = Gtk.Table(2, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
+        current_line = 0
         self.add_checkbox(table, 
-                _('Add default source on import'), 
-                0, 'preferences.default-source')
+                _('Add default source on GEDCOM import'), 
+                current_line, 'preferences.default-source')
+
+        current_line += 1
+        checkbutton = Gtk.CheckButton(_("Add tag on import"))
+        checkbutton.set_active(config.get('preferences.tag-on-import'))
+        checkbutton.connect("toggled", self.toggle_tag_on_import)
+        table.attach(checkbutton, 1, 2, current_line, current_line+1, yoptions=0)
+        self.tag_format_entry = self.add_entry(table, None, current_line, 
+                                               'preferences.tag-on-import-format', 
+                                               col_attach=2)
+        self.tag_format_entry.set_sensitive(config.get('preferences.tag-on-import'))
+
+        current_line += 1
         self.add_checkbox(table, 
                 _('Enable spelling checker'), 
-                1, 'behavior.spellcheck')
+                current_line, 'behavior.spellcheck')
+
+        current_line += 1
         self.add_checkbox(table, 
                 _('Display Tip of the Day'), 
-                2, 'behavior.use-tips')
+                current_line, 'behavior.use-tips')
+
+        current_line += 1
         self.add_checkbox(table, 
                 _('Remember last view displayed'), 
-                3, 'preferences.use-last-view')
+                current_line, 'preferences.use-last-view')
+
+        current_line += 1
         self.add_spinner(table, 
                 _('Max generations for relationships'),
-                4, 'behavior.generation-depth', (5, 50), self.update_gendepth)
+                current_line, 'behavior.generation-depth', (5, 50), self.update_gendepth)
+
+        current_line += 1
         self.path_entry = Gtk.Entry()
         self.add_path_box(table, 
                 _('Base path for relative media paths'),
-                5, self.path_entry, self.dbstate.db.get_mediapath(),
+                current_line, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
 
+        current_line += 1
         # Check for updates:
         obox = Gtk.ComboBoxText()
         formats = [_("Never"), 
@@ -1185,9 +1232,10 @@ class GrampsPreferences(ConfigureDialog):
         obox.set_active(active)
         obox.connect('changed', self.check_for_updates_changed)
         lwidget = BasicLabel("%s: " % _('Check for updates'))
-        table.attach(lwidget, 1, 2, 6, 7, yoptions=0)
-        table.attach(obox,    2, 3, 6, 7, yoptions=0)
+        table.attach(lwidget, 1, 2, current_line, current_line+1, yoptions=0)
+        table.attach(obox,    2, 3, current_line, current_line+1, yoptions=0)
 
+        current_line += 1
         self.whattype_box = Gtk.ComboBoxText()
         formats = [_("Updated addons only"), 
                    _("New addons only"), 
@@ -1202,19 +1250,23 @@ class GrampsPreferences(ConfigureDialog):
             self.whattype_box.set_active(0)
         self.whattype_box.connect('changed', self.check_for_type_changed)
         lwidget = BasicLabel("%s: " % _('What to check'))
-        table.attach(lwidget, 1, 2, 7, 8, yoptions=0)
-        table.attach(self.whattype_box, 2, 3, 7, 8, yoptions=0)
+        table.attach(lwidget, 1, 2, current_line, current_line+1, yoptions=0)
+        table.attach(self.whattype_box, 2, 3, current_line, current_line+1, yoptions=0)
 
+        current_line += 1
+        self.add_entry(table, _('Where to check'), current_line, 'behavior.addons-url', col_attach=1)
+
+        current_line += 1
         checkbutton = Gtk.CheckButton(
             _("Do not ask about previously notified addons"))
         checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
-        table.attach(checkbutton, 0, 3, 8, 9, yoptions=0)
+        table.attach(checkbutton, 0, 3, current_line, current_line+1, yoptions=0)
         button = Gtk.Button(_("Check now"))
         button.connect("clicked", lambda obj: \
                   self.uistate.viewmanager.check_for_updates(force=True))
-        table.attach(button, 3, 4, 8, 9, yoptions=0)
+        table.attach(button, 3, 4, current_line, current_line+1, yoptions=0)
 
         return _('General'), table
 

@@ -35,13 +35,15 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import EventType, FamilyRelType, Person, NoteType
@@ -54,8 +56,7 @@ from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.gen.utils.trans import get_available_translations
-from gramps.plugins.lib.libtranslate import Translator, get_language_string
+from gramps.plugins.lib.libtranslate import Translator
 
 #------------------------------------------------------------------------
 #
@@ -753,8 +754,9 @@ class DetAncestorOptions(MenuReportOptions):
         trans = EnumeratedListOption(_("Translation"),
                                       Translator.DEFAULT_TRANSLATION_STR)
         trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
-        for language in get_available_translations():
-            trans.add_item(language, get_language_string(language))
+        languages = glocale.get_language_dict()
+        for language in sorted(languages, key=glocale.sort_key):
+            trans.add_item(languages[language], language)
         trans.set_help(_("The translation to be used for the report."))
         addopt("trans", trans)
 

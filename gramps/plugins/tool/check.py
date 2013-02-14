@@ -41,8 +41,9 @@ else:
     from io import StringIO
 import time
 
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+ngettext = glocale.get_translation().ngettext
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -345,7 +346,7 @@ class CheckIntegrity(object):
                     logging.warning('    FAIL: encoding error on media object '
                                     '"%(gid)s" path "%(path)s"' %
                                     {'gid' : obj.gramps_id, 'path' : obj.path})
-                if not isinstance(data[2], UNITYPE):
+                if not isinstance(data[4], UNITYPE):
                     logging.warning('    FAIL: encoding error on media object ' 
                                     '"%(gid)s" description "%(desc)s"' %
                                     {'gid' : obj.gramps_id, 'desc' : obj.desc})
@@ -689,8 +690,8 @@ class CheckIntegrity(object):
             photo_desc = obj.get_description()
             if photo_name is not None and photo_name != "" and not find_file(photo_name):
                 if cl:
-                    # Convert to file system encoding before prining
-                    fn = os.path.basename(photo_name).encode(sys.getfilesystemencoding())
+                    # Convert to stdout encoding before prining
+                    fn = os.path.basename(photo_name).encode(sys.stdout.encoding, 'backslashreplace')
                     logging.warning("    FAIL: media file %s was not found." %
                                     fn)
                     self.bad_photo.append(ObjectId)
@@ -2194,8 +2195,7 @@ class Report(ManagedWindow):
     
     def __init__(self, uistate, text, cl=0):
         if cl:
-            # Convert to file system encoding before printing
-            print (text.encode(sys.getfilesystemencoding()))
+            print (text.encode(sys.stdout.encoding, 'backslashreplace'))
             return
 
         ManagedWindow.__init__(self, uistate, [], self)

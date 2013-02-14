@@ -35,7 +35,8 @@ on a particular date.
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.datehandler import parser
 from gramps.gui.plug.quick import run_quick_report_by_name
 

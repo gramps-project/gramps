@@ -60,6 +60,7 @@ SECRET_KEY = 'zd@%vslj5sqhx94_8)0hsx*rk9tj3^ly$x+^*tq4bggr&uh$ac'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader', # 1.4
+    'django.template.loaders.app_directories.Loader', # 1.4
    #'django.template.loaders.filesystem.load_template_source',
    #'django.template.loaders.app_directories.load_template_source',
 )
@@ -69,10 +70,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 #   'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'gramps.webapp.urls'
+STATIC_URL = '/static/' # 1.4
 
 TEMPLATE_DIRS = (
     # Use absolute paths, not relative paths.
@@ -81,6 +84,7 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth", # 1.4
+    "django.contrib.messages.context_processors.messages", # 1.4
 #   "django.core.context_processors.auth",
 #   "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
@@ -93,6 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.messages', # 1.4
     'django.contrib.sites',
     'django.contrib.admin',
     'gramps.webapp.grampsdb',

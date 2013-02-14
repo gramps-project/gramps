@@ -53,7 +53,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, 
                               THUMBSCALE, THUMBSCALE_LARGE, USE_THUMBNAILER)
-from gramps.gen.constfunc import cuni
+from gramps.gen.constfunc import cuni, win
 
 #-------------------------------------------------------------------------
 #

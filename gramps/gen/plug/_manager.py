@@ -41,7 +41,8 @@ from __future__ import print_function
 import os
 import sys
 import re
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +232,7 @@ class BasePluginManager(object):
             return _module
         except:
             import traceback
-            print(traceback.print_exc())
+            traceback.print_exc()
             self.__failmsg_list.append((filename, sys.exc_info(), pdata))
 
         return None
@@ -314,11 +315,13 @@ class BasePluginManager(object):
         Reloads modules that might not be in the path.
         """
         try:
-            if sys.version_info[0] < 3:
-                reload(module)
-            else:
-                import imp
-                imp.reload(module)
+            import imp
+            fp, pathname, description = imp.find_module(pdata.mod_name, [pdata.fpath])
+            try:
+                module = imp.load_module(pdata.mod_name, fp, pathname,description)
+            finally:
+                if fp:
+                    fp.close()
         except:
             if pdata.mod_name in sys.modules:
                 del sys.modules[pdata.mod_name]

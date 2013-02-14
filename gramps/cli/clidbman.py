@@ -44,7 +44,6 @@ else:
     from urllib.parse import urlparse
     from urllib.request import urlopen, url2pathname
 import tempfile
-from gramps.gen.ggettext import gettext as _
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -58,6 +57,8 @@ LOG = logging.getLogger(".clidbman")
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
@@ -158,6 +159,7 @@ class CLIDbManager(object):
         try:
             dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
         except:
+            env.close()
             return "Unknown", "Unknown"
         version = dbmap1.get('version', default=None)
         dbmap1.close()
@@ -191,7 +193,7 @@ class CLIDbManager(object):
                 retval["Locked?"] = "no"
             retval["DB version"] = version
             if sys.version_info[0] < 3:
-                retval["Family tree"] = name.encode(sys.getfilesystemencoding())
+                retval["Family tree"] = name.encode(glocale.getfilesystemencoding())
             else:
                 retval["Family tree"] = name
             retval["Path"] = dirpath
@@ -206,7 +208,7 @@ class CLIDbManager(object):
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(sys.getfilesystemencoding())
+            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -217,6 +219,7 @@ class CLIDbManager(object):
                 if os.path.isfile(path_name):
                     file = open(path_name)
                     name = file.readline().strip()
+                    file.close()
 
                     (tval, last) = time_val(dirpath)
                     (enable, stock_id) = self.icon_values(dirpath, self.active, 
@@ -413,7 +416,7 @@ def make_dbdir(dbdir):
         if not os.path.isdir(dbdir):
             os.makedirs(dbdir)
     except (IOError, OSError) as msg:
-        msg = conv_to_unicode(str(msg), sys.getfilesystemencoding())
+        msg = conv_to_unicode(str(msg), glocale.getfilesystemencoding())
         LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
                     "Open preferences and set correct database path.\n\n"
                     "Details: Could not make database directory:\n    %s\n\n") % msg)
@@ -442,7 +445,7 @@ def find_next_db_dir():
         base = "%x" % int(time.time())
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(sys.getfilesystemencoding())
+            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break
@@ -485,7 +488,7 @@ def find_locker_name(dirpath):
         # Convert username to unicode according to system encoding
         # Otherwise problems with non ASCII characters in
         # username in Windows
-        username = conv_to_unicode(username, sys.getfilesystemencoding())
+        username = conv_to_unicode(username, glocale.getfilesystemencoding())
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()

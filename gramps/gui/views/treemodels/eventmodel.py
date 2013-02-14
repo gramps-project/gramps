@@ -46,6 +46,7 @@ from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +60,8 @@ COLUMN_DATE        = 3
 COLUMN_DESCRIPTION = 4
 COLUMN_PLACE       = 5
 COLUMN_CHANGE      = 10
+COLUMN_TAGS        = 11
+COLUMN_PRIV        = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -80,10 +83,11 @@ class EventModel(FlatBaseModel):
             self.column_type,
             self.column_date,
             self.column_place,
+            self.column_private,
+            self.column_tags,
             self.column_change,
             self.column_participant,
-            self.column_handle,
-            self.column_tooltip,
+            self.column_tag_color
             ]
         self.smap = [
             self.column_description,
@@ -91,13 +95,14 @@ class EventModel(FlatBaseModel):
             self.column_type,
             self.sort_date,
             self.column_place,
+            self.column_private,
+            self.column_tags,
             self.sort_change,
             self.column_participant,
-            self.column_handle,
-            self.column_tooltip,
-            ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=8,
-                           search=search, skip=skip, sort_map=sort_map)
+            self.column_tag_color
+           ]
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -109,6 +114,12 @@ class EventModel(FlatBaseModel):
         self.fmap = None
         self.smap = None
         FlatBaseModel.destroy(self)
+
+    def color_column(self):
+        """
+        Return the color column.
+        """
+        return 9
 
     def do_get_n_columns(self):
         return len(self.fmap)+1
@@ -156,14 +167,43 @@ class EventModel(FlatBaseModel):
             
         return ''
 
-    def column_handle(self,data):
-        return cuni(data[COLUMN_HANDLE])
-
+    def column_private(self, data):
+        if data[COLUMN_PRIV]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+    
     def sort_change(self,data):
         return "%012x" % data[COLUMN_CHANGE]
 
     def column_change(self,data):
         return format_time(data[COLUMN_CHANGE])
 
-    def column_tooltip(self,data):
-        return cuni('Event tooltip')
+    def get_tag_name(self, tag_handle):
+        """
+        Return the tag name from the given tag handle.
+        """
+        return self.db.get_tag_from_handle(tag_handle).get_name()
+        
+    def column_tag_color(self, data):
+        """
+        Return the tag color.
+        """
+        tag_color = "#000000000000"
+        tag_priority = None
+        for handle in data[COLUMN_TAGS]:
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+        return tag_color
+
+    def column_tags(self, data):
+        """
+        Return the sorted list of tags.
+        """
+        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

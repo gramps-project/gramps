@@ -52,6 +52,7 @@ import os
 import sys
 from argparse import ArgumentParser
 
+# Windows OS
 
 if sys.platform == 'win32':          
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
@@ -61,15 +62,28 @@ if sys.platform == 'win32':
     msgattribCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgattrib.exe')
     xgettextCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'xgettext.exe')
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
-elif sys.platform == 'linux2' or os.name == 'darwin':
+
+# Others OS
+
+elif sys.platform in ['linux2', 'darwin', 'cygwin']:
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
     msgattribCmd = 'msgattrib'
     xgettextCmd = 'xgettext'
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
 else:
-    print ("ERROR: unknown system, don't know msgmerge, ... commands")
+    print("Found platform %s, OS %s" % (sys.platform, os.name))
+    print ("Update PO ERROR: unknown system, don't know msgmerge, ... commands")
     sys.exit(0)
+
+# List of available languages, useful for grouped actions
+
+# need files with po extension
+LANG = [file for file in os.listdir('.') if file.endswith('.po')]
+# add a special 'all' argument (for 'check' and 'merge' arguments)
+LANG.append("all")
+# visual polish on the languages list
+LANG.sort()
 
 def tests():
     """
@@ -112,7 +126,7 @@ def tests():
     except:
         print ('Please, install python')
         
-# See also 'get_string' from Gramps 2.0 (sample with SAX)
+
 def TipsParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'tips.xml'.
@@ -151,7 +165,7 @@ def TipsParse(filename, mark):
     "Editor."
     '''
     
-    tips = open('../gramps/data/tips.xml.in.h', 'w')
+    tips = open('../data/tips.xml.in.h', 'w')
     marklist = root.iter(mark)
     for key in marklist:
         tip = ElementTree.tostring(key, encoding="UTF-8")
@@ -164,7 +178,7 @@ def TipsParse(filename, mark):
         tip = tip.replace('"', '&quot;')
         tips.write('char *s = N_("%s");\n' % tip)
     tips.close()
-    print ('Wrote ../gramps/data/tips.xml.in.h')
+    print ('Wrote ../data/tips.xml.in.h')
     root.clear()
     
 def HolidaysParse(filename, mark):
@@ -201,6 +215,7 @@ def HolidaysParse(filename, mark):
         if key.attrib.get(mark):
             line = key.attrib
             string = line.items
+            # mapping via the line dict (_name is the key)
             name = 'char *s = N_("%(_name)s");\n' % line
             holidays.write(name)
     holidays.close()
@@ -294,19 +309,19 @@ def KeyParse(filename, mark):
     
     '''
     application/x-gramps-xml:
-		_description=Gramps XML database
-		default_action_type=application
-		short_list_application_ids=gramps
-		short_list_application_ids_for_novice_user_level=gramps
-		short_list_application_ids_for_intermediate_user_level=gramps
-		short_list_application_ids_for_advanced_user_level=gramps
-		category=Documents/Genealogy
-		icon-filename=/usr/share/gramps/gramps.png
-		open=gramps %f
+    _description=Gramps XML database
+    default_action_type=application
+    short_list_application_ids=gramps
+    short_list_application_ids_for_novice_user_level=gramps
+    short_list_application_ids_for_intermediate_user_level=gramps
+    short_list_application_ids_for_advanced_user_level=gramps
+    category=Documents/Genealogy
+    icon-filename=/usr/share/gramps/gramps.png
+    open=gramps %f
 
     application/x-gedcom:
-		_description=GEDCOM
-		default_action_type=application
+    _description=GEDCOM
+    default_action_type=application
     
     msgid "Gramps XML database"
     msgid "GEDCOM"
@@ -367,30 +382,29 @@ def main():
     # need at least one argument (sv.po, de.po, etc ...)
 
     # lang.po files maintenance                          
-    update.add_argument("-m", "--merge", dest="merge",
-            choices=[file for file in os.listdir('.') if file.endswith('.po')],
+    update.add_argument("-m", dest="merge",
+            choices=LANG,
             help="merge lang.po files with last catalog")
               
-    update.add_argument("-k", "--check", dest="check",
-            choices=[file for file in os.listdir('.') if file.endswith('.po')],
+    update.add_argument("-k", dest="check",
+            choices=LANG,
             help="check lang.po files")
         
      # testing stage
     trans = parser.add_argument_group('Translation', 'Display content of translations file')
        
     # need one argument (eg, de.po)
-              
-    trans.add_argument("-u", "--untranslated", dest="untranslated", 
+    
+    trans.add_argument("-u", dest="untranslated", 
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list untranslated messages")
-    trans.add_argument("-f", "--fuzzy", dest="fuzzy",
+    trans.add_argument("-f", dest="fuzzy",
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list fuzzy messages")
     
     
     args = parser.parse_args()
     namespace, extra = parser.parse_known_args()
-    #print(args, '\n\t\t###\n', vars(args), '\n\t\t###\n', sys.argv[2:])
 
     if args.test:
         tests()
@@ -411,9 +425,15 @@ def main():
         clean()
         
     if args.merge:
+        #retrieve() windows os?
+        if sys.argv[2:] == ['all']:
+            sys.argv[2:] = LANG
         merge(sys.argv[2:])
         
     if args.check:
+        #retrieve() windows os?
+        if sys.argv[2:] == ['all']:
+            sys.argv[2:] = LANG
         check(sys.argv[2:])
         
     if args.untranslated:
@@ -500,8 +520,8 @@ def headers():
     headers = []
 
     # in.h; extract_xml
-    if os.path.isfile('''../gramps/data/tips.xml.in.h'''):
-        headers.append('''../gramps/data/tips.xml.in.h''')
+    if os.path.isfile('''../data/tips.xml.in.h'''):
+        headers.append('''../data/tips.xml.in.h''')
     if os.path.isfile('''../gramps/plugins/lib/holidays.xml.in.h'''):
         headers.append('''../gramps/plugins/lib/holidays.xml.in.h''')
     if os.path.isfile('''../data/gramps.xml.in.h'''):
@@ -519,8 +539,8 @@ def extract_xml():
     files. Own XML files parsing and custom translation marks.
     """
   
-    TipsParse('../gramps/data/tips.xml.in', '_tip')
     HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
+    TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
     DesktopParse('../data/gramps.desktop.in')
     KeyParse('../data/gramps.keys.in', '_description')
@@ -595,49 +615,47 @@ def clean():
         os.unlink('tmpfiles')
         print ("Remove 'tmpfiles'")
 
-def merge(arg):
+def merge(args):
     """
     Merge messages with 'gramps.pot'
     """
     
-    arg = arg[0]
-    
-    print ('Merge %(lang)s with current template' % {'lang': arg})
-    os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
-                % {'msgmerge': msgmergeCmd, 'lang': arg})
-    print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
+    for arg in args:
+        if arg == 'all':
+            continue  
+        print ('Merge %(lang)s with current template' % {'lang': arg})
+        os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
+                    % {'msgmerge': msgmergeCmd, 'lang': arg})
+        print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
 
-def check(arg):
+def check(args):
     """
     Check the translation file
     """
     
-    arg = arg[0]
-    
-    print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
-                % {'lang.po': arg, 'txt': arg[:-3]})
-    os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
-                % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
-    os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
-                        % {'msgfmt': msgfmtCmd, 'lang.po': arg})
+    for arg in args:
+        if arg == 'all':
+            continue
+        print ("Checked file: '%(lang.po)s'. See '%(txt)s.txt'." \
+                    % {'lang.po': arg, 'txt': arg[:-3]})
+        os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
+                    % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
+        os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
+                    % {'msgfmt': msgfmtCmd, 'lang.po': arg})
 
 def untranslated(arg):
     """
     List untranslated messages
     """
-    
-    arg = arg[0]
-    
-    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+        
+    os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 def fuzzy(arg):
     """
     List fuzzy messages
     """
-
-    arg = arg[0]
-    
-    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg})
+   
+    os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 if __name__ == "__main__":
 	main()

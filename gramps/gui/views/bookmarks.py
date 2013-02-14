@@ -58,7 +58,8 @@ from ..display import display_help
 from ..listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -82,7 +83,7 @@ DISABLED = -1
 class Bookmarks :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, callback=None):
+    def __init__(self, dbstate, uistate, callback=None):
         """
         Create the bookmark editor.
 
@@ -92,7 +93,8 @@ class Bookmarks :
         """
         self.dbstate = dbstate
         self.uistate = uistate
-        self.bookmarks = bookmarks
+        self.bookmarks = None
+        self.update_bookmarks()
         self.active = DISABLED
         self.action_group = Gtk.ActionGroup('Bookmarks')
         self.connect_signals()
@@ -103,6 +105,7 @@ class Bookmarks :
         Reconnect the signals on a database changed.
         """
         self.connect_signals()
+        self.update_bookmarks()
 
     def connect_signals(self):
         """
@@ -110,11 +113,17 @@ class Bookmarks :
         """
         raise NotImplementedError
 
-    def update_bookmarks(self, bookmarks):
+    def get_bookmarks(self):
+        """
+        Retrieve bookmarks from the database.
+        """
+        raise NotImplementedError
+
+    def update_bookmarks(self):
         """
         Assign bookmarks 
         """
-        self.bookmarks = bookmarks
+        self.bookmarks = self.get_bookmarks()
 
     def display(self):
         """
@@ -306,9 +315,9 @@ class Bookmarks :
 
 class ListBookmarks(Bookmarks):
 
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
+    def __init__(self, dbstate, uistate, goto_handle):
         self.goto_handle = goto_handle
-        Bookmarks.__init__(self, dbstate, uistate, bookmarks)
+        Bookmarks.__init__(self, dbstate, uistate)
     
     def callback(self, handle):
         return make_callback(handle, self.do_callback)
@@ -319,9 +328,8 @@ class ListBookmarks(Bookmarks):
 class PersonBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Person', handle)
@@ -329,12 +337,14 @@ class PersonBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('person-delete', self.remove_handles)
         
+    def get_bookmarks(self):
+        return self.dbstate.db.get_bookmarks()
+        
 class FamilyBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Family', handle)
@@ -342,12 +352,14 @@ class FamilyBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('family-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_family_bookmarks()
+        
 class EventBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Event', handle)
@@ -355,11 +367,14 @@ class EventBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('event-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_event_bookmarks()
+        
 class SourceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Source', handle)
@@ -367,11 +382,14 @@ class SourceBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('source-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_source_bookmarks()
+        
 class CitationBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Citation', handle)
@@ -379,12 +397,14 @@ class CitationBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('citation-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_citation_bookmarks()
+        
 class MediaBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Media', handle)
@@ -392,12 +412,14 @@ class MediaBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('media-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_media_bookmarks()
+        
 class RepoBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Repository', handle)
@@ -405,12 +427,14 @@ class RepoBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('repository-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_repo_bookmarks()
+        
 class PlaceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Place', handle)
@@ -418,12 +442,14 @@ class PlaceBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('place-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_place_bookmarks()
+        
 class NoteBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
     
-    def __init__(self, dbstate, uistate, bookmarks, goto_handle):
-        ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
-                               goto_handle)
+    def __init__(self, dbstate, uistate, goto_handle):
+        ListBookmarks.__init__(self, dbstate, uistate, goto_handle)
         
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Note', handle)
@@ -431,6 +457,9 @@ class NoteBookmarks(ListBookmarks) :
     def connect_signals(self):
         self.dbstate.db.connect('note-delete', self.remove_handles)
 
+    def get_bookmarks(self):
+        return self.dbstate.db.get_note_bookmarks()
+        
 def make_callback(handle, function):
     """
     Build a unique call to the function with the associated handle.

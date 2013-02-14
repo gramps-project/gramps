@@ -40,7 +40,8 @@ if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
     from io import StringIO
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -63,7 +64,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
-from exportxml import XmlWriter
+from gramps.plugins.export.exportxml import XmlWriter
 from gramps.gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
 from gramps.gen.constfunc import win
 
@@ -214,7 +215,10 @@ class PackageWriter(object):
 #                     select_clicked()
         
         # Write XML now
-        g = StringIO()
+        if sys.version_info[0] < 3:
+            g = StringIO()
+        else:
+            g = io.BytesIO()
         gfile = XmlWriter(self.db, self.user, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')

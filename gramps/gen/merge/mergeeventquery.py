@@ -31,7 +31,8 @@ Provide merge capabilities for events.
 #-------------------------------------------------------------------------
 from ..lib import Person, Family
 from ..db import DbTxn
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------

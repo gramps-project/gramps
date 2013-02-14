@@ -29,7 +29,8 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 
 #-------------------------------------------------------------------------
@@ -43,14 +44,13 @@ from .. import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,
                 CATEGORY_BOOK, CATEGORY_GRAPHVIZ)
 
 standalone_categories = {
-    CATEGORY_TEXT     : _("Text Reports"),
-    CATEGORY_DRAW     : _("Graphical Reports"),
-    CATEGORY_CODE     : _("Code Generators"),
-    CATEGORY_WEB      : _("Web Pages"),
-    CATEGORY_BOOK     : _("Books"),
-    CATEGORY_GRAPHVIZ : _("Graphs"),
+    CATEGORY_TEXT     : ("RepText", _("Text Reports")),
+    CATEGORY_DRAW     : ("RepGraph", _("Graphical Reports")),
+    CATEGORY_CODE     : ("RepCode", _("Code Generators")),
+    CATEGORY_WEB      : ("RepWeb", _("Web Pages")),
+    CATEGORY_BOOK     : ("RepBook", _("Books")),
+    CATEGORY_GRAPHVIZ : ("Graphs", _("Graphs")),
 }
-
 book_categories = {
     CATEGORY_TEXT : _("Text"),
     CATEGORY_DRAW : _("Graphics"),

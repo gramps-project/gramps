@@ -36,6 +36,13 @@ LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from .handle import Handle
+
+#-------------------------------------------------------------------------
+#
 # CitationBase class
 #
 #-------------------------------------------------------------------------
@@ -89,7 +96,7 @@ class CitationBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: list
         """
-        return self.citation_list
+        return [Handle("Citation", c) for c in self.citation_list]
 
     def unserialize(self, data):
         """

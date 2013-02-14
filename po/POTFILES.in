@@ -95,6 +95,7 @@ gramps/gen/filters/rules/family/_hasreltype.py
 gramps/gen/filters/rules/family/_hassourcecount.py
 gramps/gen/filters/rules/family/_hassourceof.py
 gramps/gen/filters/rules/family/_hastag.py
+gramps/gen/filters/rules/family/_hastwins.py
 gramps/gen/filters/rules/family/_isbookmarked.py
 gramps/gen/filters/rules/family/_matchesfilter.py
 gramps/gen/filters/rules/family/_matchessourceconfidence.py
@@ -129,6 +130,7 @@ gramps/gen/filters/rules/note/_hasidof.py
 gramps/gen/filters/rules/note/_hasnote.py
 gramps/gen/filters/rules/note/_hasreferencecountof.py
 gramps/gen/filters/rules/note/_hastag.py
+gramps/gen/filters/rules/note/_hastype.py
 gramps/gen/filters/rules/note/_matchesfilter.py
 gramps/gen/filters/rules/note/_matchesregexpof.py
 gramps/gen/filters/rules/note/_matchessubstringof.py
@@ -283,7 +285,6 @@ gramps/gen/merge/mergepersonquery.py
 gramps/gen/merge/mergeplacequery.py
 gramps/gen/merge/mergerepositoryquery.py
 gramps/gen/merge/mergesourcequery.py
-gramps/gen/mime/_gnomemime.py
 gramps/gen/mime/_pythonmime.py
 gramps/gen/mime/_winmime.py
 gramps/gen/plug/_gramplet.py
@@ -305,7 +306,7 @@ gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
-gramps/gen/utils/trans.py
+gramps/gen/utils/grampslocale.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -425,7 +426,6 @@ gramps/gui/glade/rule.glade
 gramps/gui/glade/styleeditor.glade
 gramps/gui/glade/tipofday.glade
 gramps/gui/glade/updateaddons.glade
-gramps/gui/grampsbar.py
 gramps/gui/grampsgui.py
 gramps/gui/logger/_errorreportassistant.py
 gramps/gui/logger/_errorview.py
@@ -481,6 +481,7 @@ gramps/gui/views/treemodels/placemodel.py
 gramps/gui/views/treemodels/treebasemodel.py
 gramps/gui/widgets/buttons.py
 gramps/gui/widgets/expandcollapsearrow.py
+gramps/gui/widgets/grampletbar.py
 gramps/gui/widgets/grampletpane.py
 gramps/gui/widgets/labels.py
 gramps/gui/widgets/monitoredwidgets.py
@@ -571,8 +572,9 @@ gramps/plugins/lib/libplaceview.py
 gramps/plugins/lib/libplugins.gpr.py
 gramps/plugins/lib/librecords.py
 gramps/plugins/lib/libtranslate.py
+gramps/plugins/lib/libtreebase.py
 gramps/plugins/lib/maps/geography.py
-gramps/plugins/lib/maps/osmGps.py
+gramps/plugins/lib/maps/osmgps.py
 gramps/plugins/lib/maps/placeselection.py
 gramps/plugins/mapservices/eniroswedenmap.py
 gramps/plugins/mapservices/mapservice.gpr.py
@@ -590,6 +592,10 @@ gramps/plugins/quickview/reporef.py
 gramps/plugins/quickview/samesurnames.py
 gramps/plugins/quickview/siblings.py
 gramps/plugins/rel/relplugins.gpr.py
+gramps/plugins/sidebar/categorysidebar.py
+gramps/plugins/sidebar/dropdownsidebar.py
+gramps/plugins/sidebar/expandersidebar.py
+gramps/plugins/sidebar/sidebar.gpr.py
 gramps/plugins/textreport/alphabeticalindex.py
 gramps/plugins/textreport/ancestorreport.py
 gramps/plugins/textreport/birthdayreport.py
@@ -651,6 +657,7 @@ gramps/plugins/tool/verify.glade
 gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py
 gramps/plugins/view/citationtreeview.py
+gramps/plugins/view/dashboardview.py
 gramps/plugins/view/eventview.py
 gramps/plugins/view/familyview.py
 gramps/plugins/view/fanchartdescview.py
@@ -663,7 +670,6 @@ gramps/plugins/view/geography.gpr.py
 gramps/plugins/view/geomoves.py
 gramps/plugins/view/geoperson.py
 gramps/plugins/view/geoplaces.py
-gramps/plugins/view/grampletview.py
 gramps/plugins/view/htmlrenderer.gpr.py
 gramps/plugins/view/htmlrenderer.py
 gramps/plugins/view/mediaview.py
@@ -699,4 +705,4 @@ gramps/webapp/grampsdb/views.py
 data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in
-gramps/data/tips.xml.in
+data/tips.xml.in

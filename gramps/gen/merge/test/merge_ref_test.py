@@ -39,7 +39,8 @@ import libxslt
 from libgrampsxml import GRAMPS_XML_VERSION
 from ...const import ROOT_DIR, VERSION, USER_PLUGINS
 from ...lib import Name, Surname
-from ...ggettext import sgettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 class CopiedDoc(object):
     """Context manager that creates a deep copy of an libxml-xml document."""

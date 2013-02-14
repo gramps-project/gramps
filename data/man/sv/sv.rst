@@ -5,12 +5,12 @@ Gramps(1)			     3.4.0			     Gramps(1)
 
 
 
-NAMN
+**NAMN**
        Gramps - Genealogical Research and Analysis Management Programming Sys‐
        tem.
 
 
-SAMMANFATTNING
+**SAMMANFATTNING**
        Gramps  [-?|--help]  [--usage]  [--version]  [-l]   [-u|--force-unlock]
        [-O|--open= DATABAS [-f|--format= FORMAT]] [-i|--import= FIL [-f|--for‐
        mat= FORMAT]] [-i|--import= ...]  [-e|--export= FIL [-f|--format=  FOR‐
@@ -18,7 +18,7 @@ SAMMANFATTNING
        [--version]
 
 
-BESKRIVNING
+**BESKRIVNING**
        Gramps är ett Free/OpenSource släktforskningsprogram. Det är skrivet  i
        Python, med hjälp av GTK+/GNOME gränssnittet.  Gramps bör kännas bekant
        för de flesta, som har använt  andra  släktforskningsprogram  tidigare,
@@ -27,9 +27,9 @@ BESKRIVNING
        används över hela världen av nästan all släktforskningsprogramvara.
 
 
-ALTERNATIV
-       Gramps FIL
-	      När  FIL	ges  (utan  några flaggor) som namn på ett familjeträd
+**ALTERNATIV**
+       **Gramps** *FIL*
+	      När *FIL* ges  (utan  några flaggor) som namn på ett familjeträd
 	      eller som en mapp med familjeträd, så öppnas detta och en inter‐
 	      aktiv session startas.  Om FIL är en fil, vars format förstås av
 	      Gramps, skapas ett tomt famljeträd, vars namn är grundat på nam‐
@@ -40,7 +40,7 @@ ALTERNATIV
 	      Gramps, se nedan.
 
 
-       -f,--format= FORMAT
+       **-f** , **--format=** *FORMAT*
 	      Uttryckligen  specificera  format  på FIL givet av föregående -i
 	      eller -e-alternativ. Om -f-alternativet inte ges för någon  FIL,
 	      gissas  filformat  för  den  filen utgående från dess filändelse
@@ -60,21 +60,22 @@ ALTERNATIV
 	      (gissas aldrig, specificeras alltid med -f-alternativ).
 
 
-       -l     Listar alla databaser/familjeträd.
+       **-l**     
+          Listar alla databaser/familjeträd.
 
 
-       -u,--force-unlock
+       **-u** , **--force-unlock**
 	      Tvingar upplåsning av databas.
 
 
-       -O,--open= DATABAS
-	      Öppnar DATABAS, som måste vara en befitlig databasmapp eller ett
+       **-O** , **--open=** *DATABAS*
+	      Öppnar *DATABAS* , som måste vara en befitlig databasmapp eller ett
 	      befintligt familjeträd.  Om ingen åtgärd, import	eller  export-
 	      alternativ  anges på kommandoraden så startas en interaktiv ses‐
 	      sion med den angivna databasen.
 
 
-       -i,--import= FIL
+       **-i** , **--import=** *FIL*
 	      Importera data från FIL. Om du inte har specificerat en databas,
 	      skapas en temporär sådan, som tas bort när Gramps avslutas.
 
@@ -84,25 +85,25 @@ ALTERNATIV
 	      resulterande databasen.
 
 
-       -e,--export= FIL
-	      Exporterar data till FIL. För iso-format, är FIL i själva verket
+       **-e** , **--export=** *FIL*
+	      Exporterar data till *FIL* . För iso-format, är *FIL* i själva verket
 	      namnet  på den mapp, som Gramps databas kommer att skrivas till.
-	      För Gramps-xml, gedcom, wft, Gramps-pkg och geneweb, är FIL nam‐
+	      För Gramps-xml, gedcom, wft, Gramps-pkg och geneweb, är *FIL* nam‐
 	      net på resultatfilen.
 
 	      Om  mer  är  en  utdatafil  anges, måste varje föregås av en -e-
 	      flagga.  Filerna skrivs en efter en i den givna ordningen.
 
 
-       -a,--action= ÅTGÄRD
+       **-a** , **--action=** *ÅTGÄRD*
 	      Utför ÅTGÄRD på importerade  data.  Detta  görs  efter  att  all
 	      import har avslutats felfritt. F. n. är följand åtgärder möjliga
 	      summary	(samma	  som	 Rapporter->Visa->Sammanfattning    av
 	      databasen) ,  check  (samma  som Verktyg->Reparera databas ->Kon‐
-	      trollera och reparera) samt report ( skapar report, kräver en 
-          ALTERNATIVSTRÄNG lämnad via **-p** flaggan ) .
+	      trollera och reparera) samt report ( skapar report, kräver
+	      en *ALTERNATIVSTRÄNG* lämnad via **-p** flaggan ) .
 
-	      ALTERNATIVSTRÄNG-en måste uppfylla följand villkor:
+	      *ALTERNATIVSTRÄNG* -en måste uppfylla följand villkor:
 	      Får ej innehålla några mellanslag.  Om  några  argument  behöver
 	      inbegripa  mellanslag,  måste  strängen  omslutas  av  anföring‐
 	      stecken.	Alternativsträngen är en lista med  par  av  namn  och
@@ -112,17 +113,17 @@ ALTERNATIV
 	      De flesta rapportalternativ är unika  för  varje	rapport  eller
 	      verktyg. Emellertid finns det gemensamm alternativ.
 
-	      name=rapportnamn
+	      **name=rapportnamn**
 	      Detta  är  obligatoriskt	och bestämmer vilken rapport som skall
 	      skapas.  Om det givna namn inte motsvarar någon  möjlig  rapport
 	      eller verktyg, kommer ett felmeddelande att skrivas ut, följt av
 	      möjliga namn på rapporter eller verktyg.
 
-	      show=all
+	      **show=all**
 	      Detta ger en lista med namn på alla möjliga  alternativ  för  en
 	      bestämd rapport eller verktyg.
 
-	      show=optionname
+	      **show=optionname**
 	      Detta  skriver  ut beskrivningen av den funktion, som optionname
 	      innebär, likväl vad som är godkända typer och värden  för  detta
 	      alternativ.
@@ -135,15 +136,15 @@ ALTERNATIV
        Åtgärderna utförs en och en i den givna turordningen.
 
 
-       -d,--debug= LOGGER_NAME
+       **-d** , **--debug=** *LOGGER_NAME*
 	      Kopplar  på avlusningshjälpmedel för utveckling och tester.  För
 	      detaljer hänvisas till källkoder
 
-       --version
+       **--version**
 	      Skriver ur Gramps versionsnummer och avslutar
 
 
-Operation
+**Operation**
        Om första argumentet på kommandoraden inte inledds med ett  minustecken
        (d.  v. s. ingen flagga), kommer Gramps att försöka öppna den fil, vars
        namn givits av det första argumentet samt påbörja en interaktiv session
@@ -184,7 +185,7 @@ Operation
        fel i filer.
 
 
-EXAMPEL
+**EXAMPEL**
        För  att öppna ett befintligt familjeträd och importera en xml-fil till
        det, kan man skriva:
        
@@ -230,7 +231,7 @@ EXAMPEL
 	      Gramps
 
 
-BEGREPP
+**BEGREPP**
        Stöder ett python-baserat system för tilläggsprogram, som möjliggör att
        import- och export-funktioner, rapportgeneratorer,  verktyg  samt  vis‐
        ningsfilter, kan komplettera Gramps utan ändringar i huvudprogrammet.
@@ -240,17 +241,19 @@ BEGREPP
        användaren kan tillåtas att ändra format för att passa behoven.
 
 
-KÄNDA FEL OCH BEGRÄNSNINGAR
-FILER
+**KÄNDA FEL OCH BEGRÄNSNINGAR**
+**FILER**
 
        *${PREFIX}/bin/gramps*
        
-       *${PREFIX}/share/gramps*
+       *${PREFIX}/lib/python/dist-packages/gramps/*
+       
+       *${PREFIX}/share/*
        
        *${HOME}/.gramps*
 
 
-FÖRFATTARE
+**FÖRFATTARE**
        Donald Allingham <don@gramps-project.org>
        http://gramps-project.org/
 
@@ -265,7 +268,7 @@ FÖRFATTARE
        Peter Landgren <peter.talken@telia.com>
 
 
-DOCUMENTATION
+**DOCUMENTATION**
        Användardokumentationen	är  tillgänglig  genom GNOME's standard hjälp-
        bläddrare i form av Gramps-handboken. Handboken finns även i XML-format
        som  gramps-manual.xml  under  doc/gramps-manual/$LANG i den officiella
@@ -275,4 +278,4 @@ DOCUMENTATION
        http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
 
 
-Januari 2008			     3.4.0			     Gramps(1)
+Januari 2013			     4.0.0			     Gramps(1)

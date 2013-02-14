@@ -47,25 +47,43 @@ if sys.version_info[0] < 3:
     import commands
 from stat import ST_MODE
 
-VERSION = '4.0.0'
+VERSION = '4.1.0'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
-INTLTOOL_FILES = ('gramps/data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+
+server = False
+if '--server' in sys.argv:
+    sys.argv.remove('--server')
+    server = True
 
 def intltool_version():
     '''
     Return the version of intltool as a tuple.
     '''
-    cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
-    if sys.version_info[0] < 3:
-        retcode, version_str = commands.getstatusoutput(cmd)
+    if sys.platform == 'win32':
+        cmd = ["perl", "-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
+        try: 
+            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE, 
+                stderr=subprocess.PIPE).communicate()
+            if sys.version_info[0] > 2:
+                ver = ver.decode("utf-8")
+            if ver > "":
+                version_str = ver
+            else:
+                return (0,0,0)
+        except:
+            return (0,0,0)
     else:
-        retcode, version_str = subprocess.getstatusoutput(cmd)
-    if retcode != 0:
-        return None
-    else:
-        return tuple([int(num) for num in version_str.split('.')])
+        cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
+        if sys.version_info[0] < 3:
+            retcode, version_str = commands.getstatusoutput(cmd)
+        else:
+            retcode, version_str = subprocess.getstatusoutput(cmd)
+        if retcode != 0:
+            return None
+    return tuple([int(num) for num in version_str.split('.')])
 
 def substitute_variables(filename_in, filename_out, subst_vars):
     '''
@@ -87,8 +105,10 @@ def build_trans(build_cmd):
     data_files = build_cmd.distribution.data_files
     for lang in ALL_LINGUAS:
         po_file = os.path.join('po', lang + '.po')
-        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'gramps.mo')
-        mo_file_unix = build_cmd.build_base + '/mo/' + lang + '/gramps.mo'
+        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES', 
+                               'gramps.mo')
+        mo_file_unix = (build_cmd.build_base + '/mo/' + lang + 
+                        '/LC_MESSAGES/gramps.mo')
         mo_dir = os.path.dirname(mo_file)
         if not(os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
             os.makedirs(mo_dir)
@@ -96,8 +116,15 @@ def build_trans(build_cmd):
         if newer(po_file, mo_file):
             cmd = 'msgfmt %s -o %s' % (po_file, mo_file)
             if os.system(cmd) != 0:
+                os.remove(mo_file)
                 msg = 'ERROR: Building language translation files failed.'
-                raise SystemExit(msg)
+                ask = msg + '\n Continue building y/n [n] '
+                if sys.version_info[0] < 3:
+                    reply = raw_input(ask)
+                else:
+                    reply = input(ask)
+                if reply in ['n', 'N']:
+                    raise SystemExit(msg)
 
         #linux specific piece:
         target = 'share/locale/' + lang + '/LC_MESSAGES'
@@ -184,7 +211,15 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
         option += ' -c ' + cache_file
 
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
-        cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
+        if sys.platform == 'win32':
+            cmd = (('set LC_ALL=C && intltool-merge %(opt)s %(po_dir)s %(in_file)s '
+                '%(out_file)s') % 
+              {'opt' : option, 
+               'po_dir' : po_dir,
+               'in_file' : in_file, 
+               'out_file' : out_file})
+        else:
+            cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
                 '%(out_file)s') % 
               {'opt' : option, 
                'po_dir' : po_dir,
@@ -195,57 +230,39 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
                     out_file)
             raise SystemExit(msg)
 
-def install_template(install_cmd):
-    '''
-    Pre-install hook to populate template files.
-    '''
-    build_scripts = os.path.join(install_cmd.build_base, 'scripts')
-    if not(os.path.isdir(build_scripts) or os.path.islink(build_scripts)):
-        os.makedirs(build_scripts)
-    data_files = install_cmd.distribution.data_files
-    write_gramps_script(install_cmd, build_scripts)
-    data_files.append(('bin', [install_cmd.build_base + '/scripts/gramps']))
-    write_const_py(install_cmd)
-
-def write_gramps_script(install_cmd, build_scripts):
-    '''
-    Write the build/scripts/gramps file.
-    '''
-    filename = os.path.join(build_scripts, 'gramps')
-    f_out = open(filename, 'w')
-    f_out.write('#!/usr/bin/env python\n')
-    f_out.write('import gramps.grampsapp as app\n')
-    f_out.write('app.main()\n')
-    f_out.close()
-
-    if os.name == 'posix':
-        # set read and execute bits
-        mode = ((os.stat(filename).st_mode) | 0o555) & 0o7777
-        log.info('changing mode of %s to %o', filename, mode)
-        os.chmod(filename, mode)
-
-def write_const_py(install_cmd):
+def write_const_py(command):
     '''
     Write the const.py file.
     '''
     const_py_in = os.path.join('gramps', 'gen', 'const.py.in')
     const_py = os.path.join('gramps', 'gen', 'const.py')
-    if hasattr(install_cmd, 'install_data'):
+    if hasattr(command, 'install_data'):
         #during install
-        prefix = "'%s'" % install_cmd.install_data
-        sysconfdir = "'%s'" % os.path.join(install_cmd.install_data, 'etc') # Is this correct?
+        share_dir = os.path.join(command.install_data, 'share')
+        locale_dir = os.path.join(share_dir, 'locale')
+        data_dir = os.path.join(share_dir, 'gramps')
+        image_dir = os.path.join(share_dir, 'gramps', 'icons', 'hicolor')
+        doc_dir = os.path.join(share_dir, 'doc', 'gramps')
     else:
         #in build
-        prefix = 'os.path.join(os.path.dirname(__file__), os.pardir)'
-        sysconfdir = prefix + ' + "' + os.sep + 'etc"'  # Is this correct?
+        if 'install' in command.distribution.command_obj:
+            # Prevent overwriting version created during install
+            return
+        base_dir = os.path.abspath(os.path.dirname(__file__))
+        locale_dir = os.path.abspath(os.path.join(command.build_base, 'mo'))
+        data_dir = os.path.join(base_dir, 'data')
+        image_dir = os.path.join(base_dir, 'images')
+        doc_dir = base_dir
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
-                  ('"@prefix@"', prefix),
-                  ('"@sysconfdir@"', sysconfdir))
+                  ('@LOCALE_DIR@', locale_dir),
+                  ('@DATA_DIR@', data_dir),
+                  ('@IMAGE_DIR@', image_dir),
+                  ('@DOC_DIR@', doc_dir),)
                   
     substitute_variables(const_py_in, const_py, subst_vars)
 
-def update_posix():
+def update_posix(command):
     '''
     post-hook to update Linux systems after install
 
@@ -255,20 +272,16 @@ def update_posix():
     if os.name != 'posix':
         return
     # these commands will be ran on a Unix/ Linux system after install only...
-    for cmd, options in (
-            ('ldconfig',                ''),
-            ('update-desktop-database', '&> /dev/null'),
-            ('update-mime-database',    '/usr/share/mime &> /dev/null'),
-            ('gtk-update-icon-cache',   '--quiet /usr/share/icons/hicolor')):
-        sys_cmd = ('%(command)s %(opts)s') % {
-                    'command' : cmd, 'opts' : options}
-        os.system(sys_cmd)
+    os.system('update-desktop-database &> /dev/null')
+    mime_dir = command.install_data + '/share/mime'
+    os.system('update-mime-database ' + mime_dir + ' &> /dev/null')
 
 class build(_build):
     """Custom build command."""
     def run(self):
         build_trans(self)
-        build_man(self)
+        if not sys.platform == 'win32':
+            build_man(self)
         build_intl(self)
         write_const_py(self)
         _build.run(self)
@@ -284,36 +297,104 @@ class install(_install):
         self.enable_packager_mode = False
 
     def run(self):
-        install_template(self)
+        write_const_py(self)
         _install.run(self)
         if self.enable_packager_mode:
-            log.warn('WARNING: Packager mode enabled.  Post-installation mime '
-                            'type processing was not run.')
+            log.warn('WARNING: Packager mode enabled.  Post-installation '
+                     'scripts were not run.')
         else:
-            update_posix()
+            update_posix(self)
+            
+#-------------------------------------------------------------------------
+#
+# Packages
+#
+#-------------------------------------------------------------------------
+package_core = ['gramps',
+                'gramps.cli',
+                'gramps.cli.plug',
+                'gramps.gen.utils.docgen',
+                'gramps.gen',
+                'gramps.gen.datehandler',
+                'gramps.gen.db',
+                'gramps.gen.display',
+                'gramps.gen.filters',
+                'gramps.gen.filters.rules',
+                'gramps.gen.filters.rules.citation',
+                'gramps.gen.filters.rules.event',
+                'gramps.gen.filters.rules.family',
+                'gramps.gen.filters.rules.media',
+                'gramps.gen.filters.rules.note',
+                'gramps.gen.filters.rules.person',
+                'gramps.gen.filters.rules.place',
+                'gramps.gen.filters.rules.repository',
+                'gramps.gen.filters.rules.source',
+                'gramps.gen.lib',
+                'gramps.gen.merge',
+                'gramps.gen.mime',
+                'gramps.gen.plug',
+                'gramps.gen.plug.docbackend',
+                'gramps.gen.plug.docgen',
+                'gramps.gen.plug.menu',
+                'gramps.gen.plug.report',
+                'gramps.gen.proxy',
+                'gramps.gen.simple',
+                'gramps.gen.utils',
+                'gramps.gen.utils.docgen',
+                'gramps.test',
+                'gramps.plugins', 
+                'gramps.plugins.docgen', 
+                'gramps.plugins.drawreport', 
+                'gramps.plugins.export', 
+                'gramps.plugins.gramplet', 
+                'gramps.plugins.graph',
+                'gramps.plugins.importer', 
+                'gramps.plugins.lib', 
+                'gramps.plugins.lib.maps', 
+                'gramps.plugins.mapservices', 
+                'gramps.plugins.quickview', 
+                'gramps.plugins.rel', 
+                'gramps.plugins.sidebar', 
+                'gramps.plugins.textreport',
+                'gramps.plugins.tool', 
+                'gramps.plugins.view', 
+                'gramps.plugins.webreport', 
+                'gramps.plugins.webstuff',
+                ]
+package_gui = ['gramps.gui',
+               'gramps.gui.editors',
+               'gramps.gui.editors.displaytabs',
+               'gramps.gui.filters',
+               'gramps.gui.filters.sidebar',
+               'gramps.gui.logger',
+               'gramps.gui.merge',
+               'gramps.gui.plug',
+               'gramps.gui.plug.export',
+               'gramps.gui.plug.quick',
+               'gramps.gui.plug.report',
+               'gramps.gui.selectors',
+               'gramps.gui.views',
+               'gramps.gui.views.treemodels',
+               'gramps.gui.widgets',
+               ]
+package_webapp = ['gramps.webapp',
+                  'gramps.webapp.grampsdb',
+                  'gramps.webapp.grampsdb.templatetags',
+                  'gramps.webapp.grampsdb.view',
+                  ]
+if server:
+    packages = package_core + package_webapp
+else:
+    packages = package_core + package_gui
 
-DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'LICENSE', 'NEWS',
-             'README', 'TODO']
-GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
-GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
-PNG_FILES = glob.glob(os.path.join('data', '*.png'))
-SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
-
-data_list = [
-            'data/*.txt', 
-            'data/*.xml',
-            'gui/glade/*.glade', 
-            'images/*.ico', 
-            'images/*.png',
-            'images/splash.jpg', 
-            'images/*.svg', 
-            'images/16x16/*.png', 
-            'images/22x22/*.png', 
-            'images/48x48/*.png', 
-            'images/scalable/*.svg'
-            ]
+#-------------------------------------------------------------------------
+#
+# Package data
+#
+#-------------------------------------------------------------------------
 
 # add all subdirs of plugin with glade:
+package_data_core = []
 basedir = os.path.join('gramps', 'plugins')
 for (dirpath, dirnames, filenames) in os.walk(basedir):
     root, subdir = os.path.split(dirpath)
@@ -325,16 +406,78 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         if dirname.startswith("."):
             dirnames.remove(dirname)
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.glade')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.xml')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.png')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.svg')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.css')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.html')
-        data_list.append(dirpath[7:] + '/' + dirname + '/*.js')
-data_list.append('plugins/webstuff/images/*.gif')
-data_list.append('plugins/webstuff/images/*.ico')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.glade')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.png')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.svg')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.css')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.html')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.js')
+package_data_core.append('plugins/webstuff/images/*.gif')
+package_data_core.append('plugins/webstuff/images/*.ico')
 
+package_data_gui = ['gui/glade/*.glade']
+
+package_data_webapp = ['webapp/*.sql', 'webapp/grampsdb/sql/*.sql']
+
+if server:
+    package_data = package_data_core + package_data_webapp
+else:
+    package_data = package_data_core + package_data_gui
+
+#-------------------------------------------------------------------------
+#
+# Resources
+#
+#-------------------------------------------------------------------------
+data_files_core = [('share/mime-info', ['data/gramps.mime']),
+                   ('share/icons', ['images/gramps.png'])]
+DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'LICENSE', 'NEWS',
+             'README', 'TODO']
+GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
+GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
+data_files_core.append(('share/doc/gramps', DOC_FILES))
+data_files_core.append(('share/doc/gramps/example/gedcom', GEDCOM_FILES))
+data_files_core.append(('share/doc/gramps/example/gramps', GRAMPS_FILES)) 
+
+PNG_FILES = glob.glob(os.path.join('data', '*.png'))
+SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
+data_files_core.append(('share/icons/gnome/48x48/mimetypes', PNG_FILES))
+data_files_core.append(('share/icons/gnome/scalable/mimetypes', SVG_FILES))
+
+XML_FILES = glob.glob(os.path.join('data', '*.xml'))
+data_files_core.append(('share/gramps', XML_FILES))
+
+data_files_gui = []
+IMAGE_FILES = glob.glob(os.path.join('images', '*.*'))
+IMAGE_16 = glob.glob(os.path.join('images', '16x16', '*.png'))
+IMAGE_22 = glob.glob(os.path.join('images', '22x22', '*.png'))
+IMAGE_48 = glob.glob(os.path.join('images', '48x48', '*.png'))
+IMAGE_SC = glob.glob(os.path.join('images', 'scalable', '*.svg'))
+data_files_gui.append(('share/gramps/icons/hicolor', IMAGE_FILES))
+data_files_gui.append(('share/gramps/icons/hicolor/16x16', IMAGE_16))
+data_files_gui.append(('share/gramps/icons/hicolor/22x22', IMAGE_22))
+data_files_gui.append(('share/gramps/icons/hicolor/48x48', IMAGE_48))
+data_files_gui.append(('share/gramps/icons/hicolor/scalable', IMAGE_SC))
+
+data_files_webapp = []
+TEMPLATE_FILES = glob.glob(os.path.join('data/templates', '*.html'))
+data_files_webapp.append(('share/gramps/templates', TEMPLATE_FILES))
+ADMIN_FILES = glob.glob(os.path.join('data/templates/admin', '*.html'))
+data_files_webapp.append(('share/gramps/templates/admin', ADMIN_FILES))
+REG_FILES = glob.glob(os.path.join('data/templates/registration', '*.html'))
+data_files_webapp.append(('share/gramps/templates/registration', REG_FILES))
+
+if server:
+    data_files = data_files_core + data_files_webapp
+else:
+    data_files = data_files_core + data_files_gui
+
+#-------------------------------------------------------------------------
+#
+# Setup
+#
+#-------------------------------------------------------------------------
 setup(name = 'gramps', 
       description = ('Gramps (Genealogical Research and Analysis Management '
                      'Programming System)'), 
@@ -351,78 +494,8 @@ setup(name = 'gramps',
       license = 'GPL v2 or greater', 
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
       cmdclass = {'build': build, 'install': install},
-      packages = ['gramps',
-            'gramps.cli',
-            'gramps.cli.plug',
-            'gramps.gen.utils.docgen',
-            'gramps.gen',
-            'gramps.gen.datehandler',
-            'gramps.gen.db',
-            'gramps.gen.display',
-            'gramps.gen.filters',
-            'gramps.gen.filters.rules',
-            'gramps.gen.filters.rules.citation',
-            'gramps.gen.filters.rules.event',
-            'gramps.gen.filters.rules.family',
-            'gramps.gen.filters.rules.media',
-            'gramps.gen.filters.rules.note',
-            'gramps.gen.filters.rules.person',
-            'gramps.gen.filters.rules.place',
-            'gramps.gen.filters.rules.repository',
-            'gramps.gen.filters.rules.source',
-            'gramps.gen.lib',
-            'gramps.gen.merge',
-            'gramps.gen.mime',
-            'gramps.gen.plug',
-            'gramps.gen.plug.docbackend',
-            'gramps.gen.plug.docgen',
-            'gramps.gen.plug.menu',
-            'gramps.gen.plug.report',
-            'gramps.gen.proxy',
-            'gramps.gen.simple',
-            'gramps.gen.utils',
-            'gramps.gen.utils.docgen',
-            'gramps.gui',
-            'gramps.gui.editors',
-            'gramps.gui.editors.displaytabs',
-            'gramps.gui.filters',
-            'gramps.gui.filters.sidebar',
-            'gramps.gui.logger',
-            'gramps.gui.merge',
-            'gramps.gui.plug',
-            'gramps.gui.plug.export',
-            'gramps.gui.plug.quick',
-            'gramps.gui.plug.report',
-            'gramps.gui.selectors',
-            'gramps.gui.views',
-            'gramps.gui.views.treemodels',
-            'gramps.gui.widgets',
-            'gramps.test',
-            'gramps.plugins', 
-            'gramps.plugins.docgen', 
-            'gramps.plugins.drawreport', 
-            'gramps.plugins.export', 
-            'gramps.plugins.gramplet', 
-            'gramps.plugins.graph',
-            'gramps.plugins.importer', 
-            'gramps.plugins.lib', 
-            'gramps.plugins.lib.maps', 
-            'gramps.plugins.mapservices', 
-            'gramps.plugins.quickview', 
-            'gramps.plugins.rel', 
-            'gramps.plugins.sidebar', 
-            'gramps.plugins.textreport',
-            'gramps.plugins.tool', 
-            'gramps.plugins.view', 
-            'gramps.plugins.webreport', 
-            'gramps.plugins.webstuff',
-            ],
-      package_data={'gramps': data_list},
-      data_files=[('share/mime-info', ['data/gramps.mime']),
-                  ('share/icons/gnome/48x48/mimetypes', PNG_FILES), 
-                  ('share/icons/gnome/scalable/mimetypes', SVG_FILES), 
-                  ('share/icons', ['gramps/images/gramps.png']), 
-                  ('share/doc/gramps/example/gedcom', GEDCOM_FILES), 
-                  ('share/doc/gramps/example/gramps', GRAMPS_FILES), 
-                  ('share/doc/gramps', DOC_FILES)]
+      packages = packages,
+      package_data = {'gramps': package_data},
+      data_files = data_files,
+      scripts = ['scripts/gramps']
 )

@@ -22,12 +22,9 @@
 #
 
 try:
-    from ._gnomemime import get_description, get_type, mime_type_is_defined
+    from ._winmime import get_description, get_type, mime_type_is_defined
 except:
-    try:
-        from ._winmime import get_description, get_type, mime_type_is_defined
-    except:
-        from ._pythonmime import get_description, get_type, mime_type_is_defined
+    from ._pythonmime import get_description, get_type, mime_type_is_defined
 
 def base_type(val):
     return val.split('/')[0]

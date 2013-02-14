@@ -36,6 +36,7 @@ import os
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR
 from django.conf.urls.defaults import *
 from django.contrib import admin
+
 admin.autodiscover()
 
 from gramps.webapp.grampsdb.views import * 
@@ -95,6 +96,8 @@ urlpatterns += patterns('',
     (r'^family/(?P<handle>(\w+))/(?P<act>(\w+))/child/(?P<child>(\w+))$', process_child),
     (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))/(?P<item>(\w+))/(?P<index>(\w+))$', 
      process_list_item),
+    (r'^note/(?P<action>(\w+))/person/(?P<handle>(\w+))/name/(?P<order>(\w+))$',
+     process_note_on_name),
 )
 
 # In urls:

@@ -39,7 +39,8 @@ Create a relationship graph using Graphviz
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -47,6 +48,7 @@ from functools import partial
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
                           PersonOption, ColorOption)
 from gramps.gen.plug.report import Report
@@ -172,7 +174,8 @@ class RelGraphReport(Report):
         children
         """
         # Hash people in a dictionary for faster inclusion checking
-        person_dict = dict([handle, 1] for handle in self.person_handles)
+        person_dict = dict([conv_to_unicode(handle, 'utf-8'), 1]
+                                for handle in self.person_handles)
             
         for person_handle in self.person_handles:
             person = self.database.get_person_from_handle(person_handle)
@@ -182,7 +185,7 @@ class RelGraphReport(Report):
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
                 for child_ref in family.get_child_ref_list():
-                    if child_ref.ref == person_handle:
+                    if child_ref.ref == conv_to_unicode(person_handle, 'utf-8'):
                         frel = child_ref.frel
                         mrel = child_ref.mrel
                         break
@@ -241,7 +244,7 @@ class RelGraphReport(Report):
             (shape, style, color, fill) = self.get_gender_style(person)
             url = ""
             if self.includeurl:
-                h = person_handle
+                h = conv_to_unicode(person_handle, 'utf-8')
                 dirpath = "ppl/%s/%s" % (h[-1], h[-2])
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
@@ -400,8 +403,15 @@ class RelGraphReport(Report):
             label += " (%s)" % p_id
         if self.includedates:
             birth, death = self.get_date_strings(person)
-            label = label + '%s(%s - %s)' % (lineDelimiter, birth, death)
-            
+            if birth or death:
+                label += ' %s(' % lineDelimiter
+                if birth:
+                    label += '%s' % birth
+                label += ' - '
+                if death:
+                    label += '%s' % death
+                label += ')'
+
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
             label += '</TD></TR></TABLE>'

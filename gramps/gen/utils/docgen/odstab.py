@@ -28,14 +28,15 @@
 import os
 import tempfile
 import zipfile
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .TabbedDoc import *
+from .tabbeddoc import *
 from ...const import PROGRAM_NAME, VERSION
 from ...errors import ReportError
 from ...constfunc import cuni

@@ -29,7 +29,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import sys
 
 #------------------------------------------------------------------------
@@ -86,14 +87,17 @@ class PdfDoc(libcairodoc.CairoDoc):
         top_margin = self.paper.get_top_margin() * DPI / 2.54
 
         # create cairo context and pango layout
-        filename = self._backend.filename.encode(sys.getfilesystemencoding())
+        filename = self._backend.filename
+        if sys.version_info[0] < 3:
+            filename = self._backend.filename.encode(glocale.getfilesystemencoding())
         try:
             surface = cairo.PDFSurface(filename, paper_width, paper_height)
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
             raise ReportError(errmsg)
-        except:
-            raise ReportError(_("Could not create %s") % filename)
+        except Exception as err:
+            errmsg = "%s\n%s" % (_("Could not create %s") % filename, err)
+            raise ReportError(errmsg)
         surface.set_fallback_resolution(300, 300)
         cr = cairo.Context(surface)
         fontmap = PangoCairo.font_map_new()

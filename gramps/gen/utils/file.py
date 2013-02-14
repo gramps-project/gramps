@@ -62,32 +62,16 @@ def find_file( filename):
     # try the filename we got
     try:
         fname = filename
-        if os.path.isfile( filename):
-            return( filename)
-    except:
-        pass
-    
-    # Build list of alternate encodings
-    encodings = set()
-    #Darwin returns "mac roman" for preferredencoding, but since it
-    #returns "UTF-8" for filesystemencoding, and that's first, this
-    #works.
-    for enc in [sys.getfilesystemencoding, locale.getpreferredencoding]:
+        if os.path.isfile(filename):
+            return(filename)
+    except UnicodeError:
         try:
-            encodings.add(enc)
-        except:
-            pass
-    encodings.add('UTF-8')
-    encodings.add('ISO-8859-1')
-
-    for enc in encodings:
-        try:
-            fname = filename.encode(enc)
-            if os.path.isfile( fname):
+            fname = filename.encode(glocale.getfilesystemencoding())
+            if os.path.isfile(fname):
                 return fname
-        except:
+        except UnicodeError:
             pass
-
+ 
     # not found
     return ''
 
@@ -95,27 +79,16 @@ def find_folder( filename):
     # try the filename we got
     try:
         fname = filename
-        if os.path.isdir( filename):
-            return( filename)
-    except:
-        pass
-    
-    # Build list of alternate encodings
-    try:
-        encodings = [sys.getfilesystemencoding(), 
-                     locale.getpreferredencoding(), 
-                     'UTF-8', 'ISO-8859-1']
-    except:
-        encodings = [sys.getfilesystemencoding(), 'UTF-8', 'ISO-8859-1']
-    encodings = list(set(encodings))
-    for enc in encodings:
+        if os.path.isdir(filename):
+            return(filename)
+    except UnicodeError:
         try:
-            fname = filename.encode(enc)
-            if os.path.isdir( fname):
+            fname = filename.encode(glocale.getfilesystemencoding())
+            if os.path.isdir(fname):
                 return fname
-        except:
+        except UnicodeError:
             pass
-
+        
     # not found
     return ''
 
@@ -170,7 +143,7 @@ def get_unicode_path_from_env_var(path):
     """
     # make only unicode of path of type 'str'
     if not (isinstance(path,  str)):
-        return path
+        raise TypeError("path %s isn't a str" % str(path))
 
     if win():
         # In Windows path/filename returned from a environment variable is in filesystemencoding
@@ -312,10 +285,7 @@ def fix_encoding(value, errors='strict'):
             return cuni(value)
         except:
             try:
-                if mac():
-                    codeset = locale.getlocale()[1]
-                else:
-                    codeset = locale.getpreferredencoding()
+                info = glocale.get_translation().info()["charset"]
             except:
                 codeset = "UTF-8"
             if sys.version_info[0] < 3:

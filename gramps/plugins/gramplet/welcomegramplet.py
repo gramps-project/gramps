@@ -35,7 +35,8 @@ from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
 from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #------------------------------------------------------------------------
 #
@@ -111,7 +112,7 @@ class WelcomeGramplet(Gramplet):
         welcome += linkst(_('Start with Genealogy and Gramps'), 
             _('http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy')) + '\n'
         welcome += linkst(_('Gramps online manual'), 
-            _('http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual')) + '\n'
+            _('http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual')) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
              _('http://gramps-project.org/contact/')) + '\n\n'
         
@@ -128,9 +129,9 @@ class WelcomeGramplet(Gramplet):
         '"Family Trees" from the menu, pick "Manage Family Trees", press '
         '"New" and name your family tree. For more details, please read the '
         'information at the links above\n\n')
-        welcome += boldst(_('Gramplet View')) + '\n\n' + _(
-        'You are currently reading from the "Gramplets" page, where you can'
-        ' add your own gramplets. You can also add Gramplets to any view by'
+        welcome += boldst(_('Dashboard View')) + '\n\n' + _(
+        'You are currently reading from the "Dashboard" view, where you can'
+        ' add your own gramplets. You can also add gramplets to any view by'
         ' adding a sidebar and/or bottombar, and right-clicking to the right'
         ' of the tab.\n\n'
         'You can click the configuration icon in the toolbar to add additional'

@@ -34,7 +34,6 @@ __all__ = ["MonitoredCheckbox", "MonitoredEntry",
 #-------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
-import locale
 import sys
 
 #-------------------------------------------------------------------------
@@ -52,7 +51,8 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear
@@ -455,7 +455,7 @@ class MonitoredDataType(object):
             
         map = get_val().get_map().copy()
         if ignore_values :
-            for key in map.keys():
+            for key in list(map.keys()):
                 if key in ignore_values and key not in (None, default):
                     del map[key]
 
@@ -748,13 +748,13 @@ class MonitoredComboSelectedEntry(object):
         """
         fvalue = self.mapping[first]
         svalue = self.mapping[second]
-        return locale.strcoll(fvalue, svalue)
+        return glocale.strcoll(fvalue, svalue)
 
     def __by_value_key(self, first):
         """
         Method for sorting keys based on the values.
         """
-        return locale.strxfrm(self.mapping[first])
+        return glocale.sort_key(self.mapping[first])
 
     def on_combochange(self, obj):
         """

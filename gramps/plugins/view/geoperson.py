@@ -30,7 +30,8 @@ Geography for one person
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 import sys
 import operator
@@ -40,6 +41,7 @@ KEY_TAB = Gdk.KEY_Tab
 import socket
 from gi.repository import Gtk
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -140,7 +142,6 @@ class GeoPerson(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Person places map"),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -188,12 +189,6 @@ class GeoPerson(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Person'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
 
     def goto_handle(self, handle=None):
         """
@@ -282,7 +277,7 @@ class GeoPerson(GeoGraphyView):
         # in this case, stepyear is >= 9000
         # large move means longitude or latitude differences greater than geography.maximum_lon_lat
         # degrees.
-        GObject.timeout_add(self._config.get("geography.speed"), self.animate,
+        GLib.timeout_add(int(self._config.get("geography.speed")), self.animate,
                          menu, marks, i, stepyear)
         return False
 

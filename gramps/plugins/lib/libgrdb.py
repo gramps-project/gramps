@@ -37,7 +37,6 @@ else:
     import pickle
 import time
 import random
-import locale
 import os
 from sys import maxsize
 from gramps.gen.config import config
@@ -45,7 +44,8 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 import logging
 LOG = logging.getLogger(".Db")
@@ -59,6 +59,7 @@ from gramps.gen.lib import (MediaObject, Person, Family, Source, Event, Place,
                      Repository, Note, GenderStats, Researcher)
 from gramps.gen.utils.callback import Callback
 from gramps.gen.constfunc import STRTYPE, cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -1887,7 +1888,7 @@ class DbGrdb(Callback):
         raise NotImplementedError
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=locale.strxfrm)
+        self.surname_list.sort(key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
         if batch_transaction:
@@ -2266,29 +2267,29 @@ class DbGrdb(Callback):
         return str(handle) in self.note_map
 
     def __sortbyplace(self, first, second):
-        return locale.strcoll(self.place_map.get(str(first))[2], 
+        return glocale.strcoll(self.place_map.get(str(first))[2], 
                               self.place_map.get(str(second))[2])
 
     def __sortbyplace_key(self, place):
-        return locale.strxfrm(self.place_map.get(str(place))[2])
+        return glocale.sort_key(self.place_map.get(str(place))[2])
 
     def __sortbysource(self, first, second):
         source1 = cuni(self.source_map[str(first)][2])
         source2 = cuni(self.source_map[str(second)][2])
-        return locale.strcoll(source1, source2)
+        return glocale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
         source = cuni(self.source_map[str(key)][2])
-        return locale.strxfrm(source)
+        return glocale.sort_key(source)
 
     def __sortbymedia(self, first, second):
         media1 = self.media_map[str(first)][4]
         media2 = self.media_map[str(second)][4]
-        return locale.strcoll(media1, media2)
+        return glocale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
         media = self.media_map[str(key)][4]
-        return locale.strxfrm(media)
+        return glocale.sort_key(media)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""

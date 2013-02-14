@@ -30,7 +30,8 @@ from __future__ import print_function
 #
 #-------------------------------------------------------------------------
 import time
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 log = logging.getLogger("gen.progressdialog")
 
@@ -432,12 +433,12 @@ class _GtkProgressBar(Gtk.VBox):
             self._cancel.connect("clicked", 
                                  lambda x: long_op_status.cancel())
             self._cancel.show()
-            self._hbox.pack_end(self._cancel, expand=False, fill=True, padding=0)
+            self._hbox.pack_end(self._cancel, False, True, 0)
         
         self._hbox.pack_start(self._pbar, True, True, 0)
         
-        self.pack_start(self._lbl, expand=False, fill=False)
-        self.pack_start(self._hbox, expand=False, fill=False)
+        self.pack_start(self._lbl, False, False, 0)
+        self.pack_start(self._hbox, False, False, 0)
         
             
         self._pbar_max = (long_op_status.get_total_steps()/
@@ -483,7 +484,18 @@ class GtkProgressDialog(Gtk.Dialog):
         """:param title: The title to display on the top of the window.
            :type title: string
         """
-        GObject.GObject.__init__(self, *window_params)
+        #GObject.GObject.__init__(self, *window_params)
+        GObject.GObject.__init__(self)
+        if len(window_params) >= 2:
+            self.set_transient_for(window_params[1])
+        if len(window_params) >= 3:
+            flags = window_params[2]
+            if Gtk.DialogFlags.MODAL & flags:
+                self.set_modal(True)
+            if Gtk.DialogFlags.DESTROY_WITH_PARENT & flags:
+                self.set_destroy_with_parent(True)
+        if len(window_params) >= 4:
+            self.add_buttons(window_params[3:])
         self.connect('delete_event', self._warn)
         self.set_title(title)
         #self.set_resize_mode(Gtk.RESIZE_IMMEDIATE)
@@ -502,7 +514,7 @@ class GtkProgressDialog(Gtk.Dialog):
         """
         pbar = _GtkProgressBar(long_op_status)
         
-        self.vbox.pack_start(pbar, expand=False, fill=False)
+        self.vbox.pack_start(pbar, False, False, 0)
         
         pbar.show()
         # this seems to cause an infinite loop:

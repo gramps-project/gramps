@@ -75,8 +75,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
-from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni, UNITYPE, conv_to_unicode, handle2internal
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -112,8 +112,8 @@ class FlatNodeMap(object):
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
     
-    ..Note: If a string sortkey is used, apply conv_unicode_tosrtkey
-            on it , so as to have localized sort
+    ..Note: glocale.sort_key is applied to the underlying sort key,
+            so as to have localized sort
     """
 
     def __init__(self):
@@ -456,10 +456,12 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
+    ..Note: glocale.sort_key is applied to the underlying sort key,
+            so as to have localized sort
     """
 
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING,
-                 tooltip_column=None, search=None, skip=set(),
+                 search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()
         GObject.GObject.__init__(self)
@@ -478,9 +480,9 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             self.sort_map = [ f for f in sort_map if f[0]]
             #we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
-            self.sort_func = self.smap[col]
         else:
-            self.sort_func = self.smap[scol]
+            col = scol
+        self.sort_func = lambda x: glocale.sort_key(self.smap[col](x))
         self.sort_col = scol
         self.skip = skip
         self._in_build = False
@@ -489,7 +491,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         self.set_search(search)
             
         self._reverse = (order == Gtk.SortType.DESCENDING)
-        self._tooltip_column = tooltip_column
 
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
@@ -527,7 +528,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
                     col = search[1][0]
                     text = search[1][1]
                     inv = search[1][2]
-                    func = lambda x: self.get_value_from_handle(x, col) or UEMPTY
+                    func = lambda x: self._get_value(x, col) or UEMPTY
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                     else:
@@ -558,12 +559,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         self._reverse = not self._reverse
         self.node_map.reverse_order()
 
-    def tooltip_column(self):
-        """
-        Return the column for tooltips.
-        """
-        return self._tooltip_column
-        
     def color_column(self):
         """
         Return the color column.
@@ -584,14 +579,11 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
         This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey which uses strxfrm
         """
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
-            #loop over database and store the sort field, and the handle, and
-            #allow for a third iter
-            return sorted((list(map(conv_tosrtkey,
-                           self.sort_func(data))), key) for key, data in cursor)
+            #loop over database and store the sort field, and the handle
+            return sorted((self.sort_func(data), key) for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -657,11 +649,12 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
-        insert_val = (list(map(conv_tosrtkey, self.sort_func(data))),
-                            handle)
+        insert_val = (self.sort_func(data), handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -677,6 +670,8 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Delete a row, called after the object with handle is deleted
         """
+        if sys.version_info[0] >= 3:
+            assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)
@@ -694,8 +689,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = list(map(conv_tosrtkey, self.sort_func(self.map(
-                            handle))))
+        newsortkey = self.sort_func(self.map(handle))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
             #or the order of the object must change. 
@@ -707,12 +701,22 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             node = self.do_get_iter(path)[1]
             self.row_changed(path, node)
 
-    def handle2path(self, handle):
+    def get_iter_from_handle(self, handle):
         """
-        Obtain from a handle, a path.
-        Part of common api with flat/treebasemodel
+        Get the iter for a gramps handle.
         """
-        return self.on_get_path_from_handle(handle)
+        if self.node_map.get_path_from_handle(handle) is None:
+            return None
+        return self.node_map.new_iter(handle)
+
+    def get_handle_from_iter(self, iter):
+        """
+        Get the gramps handle for an iter.
+        """
+        index = self.node_map.real_index(iter.user_data)
+        return self.node_map.get_handle(index)
+
+    # The following implement the public interface of Gtk.TreeModel
 
     def do_get_flags(self):
         """
@@ -744,8 +748,6 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_get_col_type'
-        if index == self._tooltip_column:
-            return object
         return str
 
     def do_get_iter_first(self):
@@ -764,7 +766,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         except IndexError:
             return False, Gtk.TreeIter()
 
-    def get_value_from_handle(self, handle, col):
+    def _get_value(self, handle, col):
         """
         Given handle and column, return unicode value in the column
         We need this to search in the column in the GUI
@@ -785,17 +787,15 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         #print 'do_get_val', iter, iter.user_data, col
         handle = self.node_map._index2hndl[iter.user_data][1]
-        val = self.get_value_from_handle(handle, col)
+        val = self._get_value(handle, col)
         #print 'val is', val, type(val)
-        if col == self._tooltip_column:
-            return val
+
+        #GTK 3 should convert unicode objects automatically, but this
+        # gives wrong column values, so we convert for python 2.7
+        if not isinstance(val, str):
+            return val.encode('utf-8')
         else:
-            #GTK 3 should convert unicode objects automatically, but this
-            # gives wrong column values, so we convert for python 2.7
-            if not isinstance(val, str):
-                return val.encode('utf-8')
-            else:
-                return val
+            return val
 
     def do_iter_previous(self, iter):
         #print 'do_iter_previous'

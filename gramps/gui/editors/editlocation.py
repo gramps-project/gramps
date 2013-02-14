@@ -33,7 +33,8 @@ from ..glade import Glade
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
 from ..widgets import MonitoredEntry, LocationEntry
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..selectors import SelectorFactory
 from ..dialog import ErrorDialog
 

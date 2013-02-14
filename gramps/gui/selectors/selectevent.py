@@ -26,7 +26,8 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -61,13 +62,10 @@ class SelectEvent(BaseSelector):
             (_('Description'),       250, BaseSelector.TEXT, 0),
             (_('ID'),                75,  BaseSelector.TEXT, 1),
             (_('Type'),              75,  BaseSelector.TEXT, 2),
-            (_('Main Participants'), 250, BaseSelector.TEXT, 6),
+            (_('Main Participants'), 250, BaseSelector.TEXT, 7),
             (_('Date'),              150, BaseSelector.TEXT, 3),
             (_('Place'),             150, BaseSelector.TEXT, 4)
             ]
 
     def get_from_handle_func(self):
         return self.db.get_event_from_handle
-        
-    def get_handle_column(self):
-        return 7

@@ -31,7 +31,8 @@ LDS Ordinance class for GRAMPS.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from warnings import warn
 
 #-------------------------------------------------------------------------

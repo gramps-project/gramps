@@ -30,13 +30,15 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-
+import io
+import sys
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gramps.gen.errors import ReportError
@@ -155,12 +157,12 @@ class AsciiDoc(BaseDoc,TextDoc):
             self.filename = filename
 
         try:
-            self.f = open(self.filename,"w")
-        except IOError as msg:
+            self.f = io.open(self.filename,"w",
+                             encoding='ascii',
+                             errors = 'backslashreplace')
+        except Exception as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
-        except:
-            raise ReportError(_("Could not create %s") % self.filename)
 
         self.in_cell = 0
         self.text = ""

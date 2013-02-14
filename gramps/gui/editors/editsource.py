@@ -27,7 +27,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
@@ -49,8 +50,8 @@ from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 
 from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
-                         CitationBackRefList, RepoEmbedList)
-from ..widgets import MonitoredEntry, PrivacyButton
+                          CitationBackRefList, RepoEmbedList)
+from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -114,6 +115,14 @@ class EditSource(EditPrimary):
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
+
+        self.tags = MonitoredTagList(self.glade.get_object("tag_label"), 
+                                     self.glade.get_object("tag_button"), 
+                                     self.obj.set_tag_list, 
+                                     self.obj.get_tag_list,
+                                     self.db,
+                                     self.uistate, self.track,
+                                     self.db.readonly)
 
         self.priv = PrivacyButton(self.glade.get_object("private"), self.obj, 
                                   self.db.readonly)

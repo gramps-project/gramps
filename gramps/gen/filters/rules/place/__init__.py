@@ -44,6 +44,7 @@ from ._inlatlonneighborhood import InLatLonNeighborhood
 from ._matcheseventfilter import MatchesEventFilter
 from ._matchessourceconfidence import MatchesSourceConfidence
 from ._changedsince import ChangedSince
+from ._hastag import HasTag
 
 editor_rule_list = [
     AllPlaces,
@@ -65,4 +66,5 @@ editor_rule_list = [
     InLatLonNeighborhood,
     MatchesEventFilter,
     ChangedSince,
+    HasTag
 ]

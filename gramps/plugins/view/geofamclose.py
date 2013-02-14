@@ -30,7 +30,8 @@ Geography for two families
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import operator
 from gi.repository import Gtk
 from math import *
@@ -128,7 +129,6 @@ class GeoFamClose(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have these two families been able to meet?"),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_bookmarks(), 
                                       FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -186,12 +186,6 @@ class GeoFamClose(GeoGraphyView):
         """
         return 'Family'
 
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_bookmarks()
-
     def family_label(self,family):
         if family is None:
             return "Unknown"
@@ -247,7 +241,10 @@ class GeoFamClose(GeoGraphyView):
             color = self._config.get('geography.color1')
             self._createmap(self.reffamily, color, self.place_list_ref, True)
             self.message_layer.add_message(_("Family reference : %s" % self.family_label(self.reffamily)))
-            self.message_layer.add_message(_("The other family : %s" % self.family_label(f1)))
+            if f1:
+                self.message_layer.add_message(_("The other family : %s" % self.family_label(f1)))
+            else:
+                self.message_layer.add_message(_("The other family : %s" % _("Unknown")))
         else:
             self.message_layer.add_message(_("You must choose one reference family."))
             self.message_layer.add_message(_("Go to the family view and select "

@@ -31,7 +31,8 @@ Provide merge capabilities for repositories.
 #-------------------------------------------------------------------------
 from ..lib import Source
 from ..db import DbTxn
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------

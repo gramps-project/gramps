@@ -25,10 +25,10 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 log = logging.getLogger(".")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +45,7 @@ from gi.repository import Gtk
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
 from gramps.gen.constfunc import cuni, conv_to_unicode, UNITYPE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -65,11 +66,10 @@ class MediaModel(FlatBaseModel):
             self.column_mime,
             self.column_path,
             self.column_date,
+            self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_handle,
             self.column_tag_color,
-            self.column_tooltip
             ]
         
         self.smap = [
@@ -78,14 +78,13 @@ class MediaModel(FlatBaseModel):
             self.column_mime,
             self.column_path,
             self.sort_date,
+            self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_handle,
             self.column_tag_color,
-            self.column_tooltip
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9,
-                           search=search, skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -156,6 +155,13 @@ class MediaModel(FlatBaseModel):
     def column_handle(self,data):
         return cuni(data[0])
 
+    def column_private(self, data):
+        if data[11]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+
     def sort_change(self,data):
         return "%012x" % data[8]
 
@@ -190,4 +196,4 @@ class MediaModel(FlatBaseModel):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[10]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

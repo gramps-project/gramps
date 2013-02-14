@@ -46,13 +46,15 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..constfunc import conv_to_unicode, handle2internal
 from .dbconst import *
 from . import BSDDBTxn
 from ..errors import DbError
@@ -67,6 +69,7 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                
 _SIGBASE = ('person', 'family', 'source', 'event', 'media', 'place',
             'location', 'repository', 'reference', 'note', 'tag', 'citation')
+
 #-------------------------------------------------------------------------
 #
 # DbUndo class
@@ -316,7 +319,7 @@ class DbUndo(object):
         """
         try:
             if data is None:
-                emit(signal_root + '-delete', ([handle],))
+                emit(signal_root + '-delete', ([handle2internal(handle)],))
                 db_map.delete(handle, txn=self.txn)
             else:
                 ex_data = db_map.get(handle, txn=self.txn)
@@ -325,7 +328,7 @@ class DbUndo(object):
                 else:
                     signal = signal_root + '-add'
                 db_map.put(handle, data, txn=self.txn)
-                emit(signal, ([handle],))
+                emit(signal, ([handle2internal(handle)],))
 
         except DBERRS as msg:
             self.db._log_error()

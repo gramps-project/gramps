@@ -32,8 +32,6 @@ present, we default to no spell checking.
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -51,20 +49,23 @@ LOG = logging.getLogger(".Spell")
 from gi.repository import Gtk
 from gi import Repository
 
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+
 HAVE_GTKSPELL = False
 
 # Attempting to import gtkspell gives an error dialog if gtkspell is not
 # available so test first and log just a warning to the console instead.
 repository = Repository.get_default()
-if repository.enumerate_versions("Gtkspell"):
+if repository.enumerate_versions("GtkSpell"):
     try:
-        from gi.repository import Gtkspell
+        from gi.repository import GtkSpell as Gtkspell
         HAVE_GTKSPELL = True
     except:
         pass
-elif repository.enumerate_versions("GtkSpell"):
+elif repository.enumerate_versions("Gtkspell"):
     try:
-        from gi.repository import GtkSpell as Gtkspell
+        from gi.repository import Gtkspell
         HAVE_GTKSPELL = True
     except:
         pass

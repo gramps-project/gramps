@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger(".gui.notemodel")
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.lib import (Note, NoteType, StyledText)
 
@@ -63,22 +63,22 @@ class NoteModel(FlatBaseModel):
             self.column_preview,
             self.column_id,
             self.column_type,
+            self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_handle,
             self.column_tag_color
         ]
         self.smap = [
             self.column_preview,
             self.column_id,
             self.column_type,
+            self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_handle,
             self.column_tag_color
         ]
-        FlatBaseModel.__init__(self, db, scol, order, search=search,
-                           skip=skip, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
+                               sort_map=sort_map)
 
     def destroy(self):
         """
@@ -101,10 +101,6 @@ class NoteModel(FlatBaseModel):
         """Return the column number of the Note tab."""
         return len(self.fmap) + 1
 
-    def column_handle(self, data):
-        """Return the handle of the Note."""
-        return data[Note.POS_HANDLE]
-
     def column_id(self, data):
         """Return the id of the Note."""
         return cuni(data[Note.POS_ID])
@@ -126,6 +122,13 @@ class NoteModel(FlatBaseModel):
         else:
             return note
 
+    def column_private(self, data):
+        if data[Note.POS_PRIVATE]:
+            return 'gramps-lock'
+        else:
+            # There is a problem returning None here.
+            return ''
+
     def sort_change(self, data):
         return "%012x" % data[Note.POS_CHANGE]
     
@@ -146,10 +149,11 @@ class NoteModel(FlatBaseModel):
         tag_priority = None
         for handle in data[Note.POS_TAGS]:
             tag = self.db.get_tag_from_handle(handle)
-            this_priority = tag.get_priority()
-            if tag_priority is None or this_priority < tag_priority:
-                tag_color = tag.get_color()
-                tag_priority = this_priority
+            if tag:
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
         return tag_color
 
     def column_tags(self, data):
@@ -157,4 +161,4 @@ class NoteModel(FlatBaseModel):
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[Note.POS_TAGS]))
-        return ', '.join(sorted(tag_list, key=locale.strxfrm))
+        return ', '.join(sorted(tag_list, key=glocale.sort_key))

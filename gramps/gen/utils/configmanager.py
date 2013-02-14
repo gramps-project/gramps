@@ -42,9 +42,11 @@ else:
 import errno
 import copy
 import logging
+import io
 
 from ..constfunc import STRTYPE
-
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 def safe_eval(exp):
     # restrict eval to empty environment
     return eval(exp, {})
@@ -302,11 +304,20 @@ class ConfigManager(object):
                     ####################### Now, let's test and set:
                     if (name in self.default and 
                         setting in self.default[name]):
+                        if isinstance(self.default[name][setting], bool):
+                            #make sure 0 and 1 are False and True
+                            if value == 0:
+                                value = False
+                            elif value == 1:
+                                value = True
                         if self.check_type(self.default[name][setting], value):
                             self.data[name][setting] = value
                         else:
                             logging.warning("WARNING: ignoring key with wrong type "
-                                   "'%s.%s'" % (name, setting))
+                                   "'%s.%s' %s needed instead of %s" % 
+                                           (name, setting,
+                                            type(self.data[name][setting]),
+                                            type(value)))
                     else:
                         # this could be a third-party setting; add it:
                         self.data[name][setting] = value
@@ -325,7 +336,7 @@ class ConfigManager(object):
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
-            key_file = open(filename, "w")
+            key_file = io.open(filename, "w", encoding = "utf-8")
             key_file.write(";; Gramps key file\n")
             key_file.write((";; Automatically created at %s" % 
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")

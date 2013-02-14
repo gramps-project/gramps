@@ -36,13 +36,14 @@ from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
 from ..constfunc import cuni
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
 # Class for notes used throughout the majority of GRAMPS objects
 #
 #-------------------------------------------------------------------------
-class Note(BasicPrimaryObject, TagBase):
+class Note(BasicPrimaryObject):
     """Define a text note.
     
     Starting from GRAMPS 3.1 Note object stores the text in :class:`gen.lib.styledtext.StyledText`
@@ -82,7 +83,6 @@ class Note(BasicPrimaryObject, TagBase):
     def __init__(self, text=""):
         """Create a new Note object, initializing from the passed string."""
         BasicPrimaryObject.__init__(self)
-        TagBase.__init__(self)
         self.text = StyledText(text)
         self.format = Note.FLOWED
         self.type = NoteType()
@@ -118,7 +118,7 @@ class Note(BasicPrimaryObject, TagBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Note", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "text": self.text.to_struct(), 
                 "format": self.format,

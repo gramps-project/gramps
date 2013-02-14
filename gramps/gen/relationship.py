@@ -30,6 +30,9 @@ Classes for relationships.
 from __future__ import print_function
 
 import os
+import logging
+LOG = logging.getLogger("gen.relationship")
+LOG.addHandler(logging.StreamHandler())
 
 #-------------------------------------------------------------------------
 #
@@ -41,9 +44,9 @@ from .lib import Person, ChildRefType, EventType, FamilyRelType
 MALE = Person.MALE
 FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
-from .ggettext import sgettext as _
+from .const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from .plug import PluginRegister, BasePluginManager
-
 #-------------------------------------------------------------------------
 #
 #
@@ -1015,7 +1018,7 @@ class RelationshipCalculator(object):
                                 pmap, depth, stoprecursemap)
         except:
             import traceback
-            print(traceback.print_exc())
+            traceback.print_exc()
             return
 
     def collapse_relations(self, relations):
@@ -1791,49 +1794,15 @@ def get_relationship_calculator(reinit=False):
     global __RELCALC_CLASS
     
     if __RELCALC_CLASS is None or reinit:
-        lang = ' '
-        try:
-            lang = os.environ["LANG"]
-            lang_set = True
-        except:
-            # if LANG is not set
-            import locale
-            lang = locale.getlocale()[0]
-            if not lang:
-                # if lang is empty/None
-                lang = locale.getdefaultlocale()[0]
-            lang_set = False
+        lang = glocale.get_translation().language()
         __RELCALC_CLASS = RelationshipCalculator
         # If lang not set default to English relationship calulator
-        if not lang:
-            return __RELCALC_CLASS()
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
-        enlang = lang.split('_')[0].lower()
-        if enlang in ('en', 'english', 'c'):
+        if lang.startswith("en"):
             return __RELCALC_CLASS()
-        # set correct non English relationship calculator based on LANG
-        # or on locale.getlocale() or if that fails locale.getdeafultlocale()
+        # set correct non English relationship calculator based on lang
         relation_translation_found = False
-        for plugin in PluginRegister.get_instance().relcalc_plugins():
-            if lang in plugin.lang_list:
-                pmgr = BasePluginManager.get_instance()
-                # the loaded module is put in variable mod
-                mod = pmgr.load_plugin(plugin)
-                if mod:
-                    __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
-                    relation_translation_found = True
-                    break
-        if not relation_translation_found:
-            # LANG set but with non recognizable language info. Try getlocale
-            import locale
-            lang = locale.getlocale()[0]
-            if not lang:
-                # if lang is empty/None
-                try:
-                    lang = locale.getdefaultlocale()[0]
-                except:
-                    pass
         for plugin in PluginRegister.get_instance().relcalc_plugins():
             if lang in plugin.lang_list:
                 pmgr = BasePluginManager.get_instance()
@@ -1845,8 +1814,8 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            print((("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % enlang))
+            LOG.debug(_("No translation available for language '%s'. " +
+                    "Using 'english' instead.") % lang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------

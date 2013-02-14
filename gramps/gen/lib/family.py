@@ -52,6 +52,7 @@ from .tagbase import TagBase
 from .childref import ChildRef
 from .familyreltype import FamilyRelType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +60,7 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 #
 #-------------------------------------------------------------------------
 class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
-             TagBase, PrimaryObject):
+             PrimaryObject):
     """
     The Family record is the GRAMPS in-memory representation of the
     relationships between people. It contains all the information
@@ -90,7 +91,6 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         MediaBase.__init__(self)
         AttributeBase.__init__(self)
         LdsOrdBase.__init__(self)
-        TagBase.__init__(self)
         self.father_handle = None
         self.mother_handle = None
         self.child_ref_list = []
@@ -148,10 +148,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": self.handle, 
+        return {"handle": Handle("Family", self.handle), 
                 "gramps_id": self.gramps_id, 
-                "father_handle": self.father_handle,
-                "mother_handle": self.mother_handle,
+                "father_handle": Handle("Person", self.father_handle),
+                "mother_handle": Handle("Person", self.mother_handle),
                 "child_ref_list": [cr.to_struct() for cr in self.child_ref_list],
                 "type": self.type.to_struct(),
                 "event_ref_list": [er.to_struct() for er in self.event_ref_list],

@@ -37,7 +37,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Repository
-from gramps.gui.views.listview import ListView
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import RepositoryModel
 from gramps.gui.views.bookmarks import RepoBookmarks
 from gramps.gen.errors import WindowActiveError
@@ -54,7 +54,8 @@ from gramps.gen.plug import CATEGORY_QR_REPOSITORY
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 
 #-------------------------------------------------------------------------
@@ -77,22 +78,27 @@ class RepositoryView(ListView):
     COL_ZIP = 9
     COL_EMAIL = 10
     COL_SURL = 11
-    COL_CHAN = 12
+    COL_PRIV = 12
+    COL_TAGS = 13
+    COL_CHAN = 14
 
-    COLUMN_NAMES = [
-        _('Name'),
-        _('ID'),
-        _('Type'),
-        _('Home URL'),
-        _('Street'),
-        _('Locality'),
-        _('City'),
-        _('State/County'),
-        _('Country'),
-        _('ZIP/Postal Code'),
-        _('Email'),
-        _('Search URL'),
-        _('Last Changed'),
+    # column definitions
+    COLUMNS = [
+        (_('Name'), TEXT, None),
+        (_('ID'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Home URL'), TEXT, None),
+        (_('Street'), TEXT, None),
+        (_('Locality'), TEXT, None),
+        (_('City'), TEXT, None),
+        (_('State/County'), TEXT, None),
+        (_('Country'), TEXT, None),
+        (_('ZIP/Postal Code'), TEXT, None),
+        (_('Email'), TEXT, None),
+        (_('Search URL'), TEXT, None),
+        (_('Private'), ICON, 'gramps-lock'),
+        (_('Tags'), TEXT, None),
+        (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
@@ -100,9 +106,10 @@ class RepositoryView(ListView):
                              ]),
         ('columns.rank', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                           COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
-                          COL_ZIP, COL_EMAIL, COL_SURL, COL_CHAN]),
+                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_TAGS, 
+                          COL_CHAN]),
         ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
-                             100, 100, 100, 100])
+                             100, 100, 100, 40, 100, 100])
         )    
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
@@ -122,9 +129,7 @@ class RepositoryView(ListView):
         
         ListView.__init__(
             self, _('Repositories'), pdata, dbstate, uistate,
-            RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             RepositoryModel, signal_map,
-            dbstate.db.get_repo_bookmarks(),
             RepoBookmarks, nav_group,
             multiple=True,
             filter_class=RepoSidebarFilter)
@@ -138,9 +143,6 @@ class RepositoryView(ListView):
 
     def navigation_type(self):
         return 'Repository'
-
-    def get_bookmarks(self):
-        return self.dbstate.db.get_repo_bookmarks()
 
     def drag_info(self):
         return DdTargets.REPO_LINK
@@ -258,6 +260,26 @@ class RepositoryView(ListView):
         else:
             return None
 
+    def tag_updated(self, handle_list):
+        """
+        Update tagged rows when a tag color changes.
+        """
+        all_links = set([])
+        for tag_handle in handle_list:
+            links = set([link[1] for link in
+                         self.dbstate.db.find_backlink_handles(tag_handle,
+                                                include_classes='Repository')])
+            all_links = all_links.union(links)
+        self.row_update(list(all_links))
+
+    def add_tag(self, transaction, repo_handle, tag_handle):
+        """
+        Add the given tag to the given repository.
+        """
+        repo = self.dbstate.db.get_repository_from_handle(repo_handle)
+        repo.add_tag(tag_handle)
+        self.dbstate.db.commit_repository(repo, transaction)
+        
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

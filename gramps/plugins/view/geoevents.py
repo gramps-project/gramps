@@ -30,7 +30,8 @@ Geography for events
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import os
 import sys
 import operator
@@ -111,7 +112,6 @@ class GeoEvents(GeoGraphyView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Events places map'),
                                       pdata, dbstate, uistate, 
-                                      dbstate.db.get_event_bookmarks(), 
                                       EventBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -160,12 +160,6 @@ class GeoEvents(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Event'
-
-    def get_bookmarks(self):
-        """
-        Return the bookmark object
-        """
-        return self.dbstate.db.get_event_bookmarks()
 
     def goto_handle(self, handle=None):
         """

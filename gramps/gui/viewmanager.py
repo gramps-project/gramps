@@ -7,6 +7,7 @@
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,8 +42,6 @@ import os
 import sys
 import time
 import datetime
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
@@ -69,6 +68,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.cli.grampscli import CLIManager
 from .user import User
 from .plug import tool
@@ -119,7 +120,7 @@ if is_quartz():
 else:
     _GTKOSXAPPLICATION = False
 
-_UNSUPPORTED = _("Unsupported")
+_UNSUPPORTED = ("Unsupported", _("Unsupported"))
 
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
@@ -237,7 +238,6 @@ UIDEFAULT = '''<ui>
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
-ADDONS_URL = "http://gramps-addons.svn.sourceforge.net/viewvc/gramps-addons/trunk"
 
 #-------------------------------------------------------------------------
 #
@@ -250,7 +250,7 @@ def update_rows(model, path, iter, user_data):
     """
     #path: (8,)   iter: <GtkTreeIter at 0xbfa89fa0>
     #path: (8, 0) iter: <GtkTreeIter at 0xbfa89f60>
-    if len(path) == 2:
+    if len(path.get_indices()) == 2:
         row = model[path]
         row[0] = user_data
         model.row_changed(path, iter)
@@ -372,21 +372,15 @@ class ViewManager(CLIManager):
                 from urllib.request import urlopen
             import locale
             LOG.debug("Checking for updated addons...")
-            langs = []
-            lang = locale.getlocale()[0] # not None
-            if lang:
-                langs.append(lang)
-                if "_" in lang:
-                    lang, variation = lang.split("_", 1)
-                    langs.append(lang)
+            langs = glocale.get_language_list()
             langs.append("en")
             # now we have a list of languages to try:
             fp = None
             for lang in langs:
-                URL = "%s/listings/addons-%s.txt" % (ADDONS_URL, lang)
+                URL = "%s/listings/addons-%s.txt" % (config.get("behavior.addons-url"), lang)
                 LOG.debug("   trying: %s" % URL)
                 try:
-                    fp = urlopen(URL)
+                    fp = urlopen(URL, timeout=10) # abort after 10 seconds
                 except: # some error
                     LOG.debug("   IOError!")
                     fp = None
@@ -397,13 +391,15 @@ class ViewManager(CLIManager):
                 lines = list(fp.readlines())
                 count = 0
                 for line in lines:
+                    if sys.version_info[0] >= 3:
+                        line = line.decode('utf-8').replace(": u'", ": '")
                     try:
                         plugin_dict = safe_eval(line)
                         if type(plugin_dict) != type({}):
                             raise TypeError("Line with addon metadata is not "
                                             "a dictionary")
                     except:
-                        LOG.debug("Skipped a line in the addon listing: " +
+                        LOG.warning("Skipped a line in the addon listing: " +
                                  str(line))
                         continue
                     id = plugin_dict["i"]
@@ -420,7 +416,7 @@ class ViewManager(CLIManager):
                                      plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                     addon_update_list.append((_("Updated"),
                                                               "%s/download/%s" %
-                                                              (ADDONS_URL,
+                                                              (config.get("behavior.addons-url"),
                                                                plugin_dict["z"]),
                                                               plugin_dict))
                         else:
@@ -432,14 +428,22 @@ class ViewManager(CLIManager):
                                  plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
                                 addon_update_list.append((_("New"),
                                                           "%s/download/%s" %
-                                                          (ADDONS_URL,
+                                                          (config.get("behavior.addons-url"),
                                                            plugin_dict["z"]),
                                                           plugin_dict))
                 config.set("behavior.last-check-for-updates",
                            datetime.date.today().strftime("%Y/%m/%d"))
                 count += 1
-            if fp:
-                fp.close()
+                if fp:
+                    fp.close()
+            else:
+                from .dialog import OkDialog
+                OkDialog(_("Checking Addons Failed"),
+                         _("The addon repository appears to be unavailable. Please try again later."),
+                         self.window)
+                if fp:
+                    fp.close()
+                return
             LOG.debug("Done checking!")
             # List of translated strings used here
             # Dead code for l10n
@@ -579,7 +583,7 @@ class ViewManager(CLIManager):
         if count:
             self.do_reg_plugins(self.dbstate, self.uistate)
             OkDialog(_("Done downloading and installing addons"),
-                     "%s %s" % (ngettext("%d addon was installed.",
+                     "%s %s" % (glocale.get_translation().ngettext("%d addon was installed.",
                                          "%d addons were installed.",
                                          count) % count,
                                 _("You need to restart Gramps to see new views.")),
@@ -676,21 +680,6 @@ class ViewManager(CLIManager):
         # ArgHandler can work without it always shown
         # But we need to realize it here to have Gdk.window handy
         self.window.realize()
-
-    def __load_sidebar_plugins(self):
-        """
-        Load the sidebar plugins.
-        """
-        for pdata in self._pmgr.get_reg_sidebars():
-            module = self._pmgr.load_plugin(pdata)
-            if not module:
-                print("Error loading sidebar '%s': skipping content"
-                      % pdata.name)
-                continue
-
-            sidebar_class = getattr(module, pdata.sidebarclass)
-            sidebar_page = sidebar_class(self.dbstate, self.uistate)
-            self.navigator.add(pdata.menu_label, sidebar_page, pdata.order)
 
     def __setup_statusbar(self):
         """
@@ -872,7 +861,10 @@ class ViewManager(CLIManager):
         """
         Run a book.
         """
-        BookSelector(self.dbstate, self.uistate)
+        try:
+            BookSelector(self.dbstate, self.uistate)
+        except WindowActiveError:
+            return
 
     def __keypress(self, action):
         """
@@ -946,7 +938,7 @@ class ViewManager(CLIManager):
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
 
-        self.__load_sidebar_plugins()
+        self.navigator.load_plugins(self.dbstate, self.uistate)
 
         self.goto_page(defaults[0], defaults[1])
 
@@ -1373,7 +1365,7 @@ class ViewManager(CLIManager):
         if value:
             (filename, title) = value
             if sys.version_info[0] < 3:
-                filename = filename.encode(sys.getfilesystemencoding())
+                filename = filename.encode(glocale.getfilesystemencoding())
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1562,7 +1554,7 @@ class ViewManager(CLIManager):
         hbox.pack_start(label, False, True, 0)
         include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
                                                         mbytes, _("Megabyte|MB")))
-        exclude = Gtk.RadioButton(include, _("Exclude"))
+        exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, False, True, 0)
         hbox.pack_end(exclude, False, True, 0)
@@ -1575,7 +1567,7 @@ class ViewManager(CLIManager):
             basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
             filename = os.path.join(path_entry.get_text(), basefile)
-            filename = filename.encode(sys.getfilesystemencoding())
+            filename = filename.encode(glocale.getfilesystemencoding())
             if os.path.exists(filename):
                 sfilename = get_unicode_path_from_env_var(filename)
                 question = QuestionDialog2(
@@ -1591,13 +1583,13 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
-                from exportpkg import PackageWriter
+                from gramps.plugins.export.exportpkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
                                        User(error=ErrorDialog,
                                             callback=self.pulse_progressbar))
                 writer.export()
             else:
-                from exportxml import XmlWriter
+                from gramps.plugins.export.exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
                                    User(error=ErrorDialog,
                                         callback=self.pulse_progressbar),
@@ -1796,9 +1788,9 @@ class ViewManager(CLIManager):
                    if item != _UNSUPPORTED)
 
         for key in catlist:
-            new_key = key.replace(' ', '-')
+            new_key = key[0].replace(' ', '-')
             ofile.write('<menu action="%s">' % new_key)
-            actions.append((new_key, None, key))
+            actions.append((new_key, None, key[1]))
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
@@ -1813,8 +1805,8 @@ class ViewManager(CLIManager):
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
             ofile.write('<separator/>')
-            ofile.write('<menu action="%s">' % _UNSUPPORTED)
-            actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
+            ofile.write('<menu action="%s">' % _UNSUPPORTED[0])
+            actions.append((_UNSUPPORTED[0], None, _UNSUPPORTED[1]))
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:

@@ -72,7 +72,8 @@ def _get_empty_endnote_numbers(obj):
     return ""
 
 # avoid normal translation!
-##from gramps.gen.ggettext import gettext as _
+##from gramps.gen.const import GRAMPS_LOCALE as glocale
+##_ = glocale.get_translation().gettext
 def _(message): return message
 
 #------------------------------------------------------------------------

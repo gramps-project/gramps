@@ -49,8 +49,10 @@ from .attrtype import AttributeType
 from .eventroletype import EventRoleType
 from .attribute import Attribute
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ..constfunc import STRTYPE
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +60,7 @@ from ..constfunc import STRTYPE
 #
 #-------------------------------------------------------------------------
 class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
-             AddressBase, UrlBase, LdsOrdBase, TagBase, PrimaryObject):
+             AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
     """
     The Person record is the GRAMPS in-memory representation of an
     individual person. It contains all the information related to
@@ -96,7 +98,6 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         AddressBase.__init__(self)
         UrlBase.__init__(self)
         LdsOrdBase.__init__(self)
-        TagBase.__init__(self)
         self.primary_name = Name()
         self.event_ref_list = []
         self.family_list = []
@@ -182,7 +183,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :rtype: dict
         """
         return {
-            "handle": self.handle,                               #  0
+            "handle":  Handle("Person", self.handle),            #  0
             "gramps_id": self.gramps_id,                         #  1
             "gender": self.gender,                               #  2
             "primary_name": self.primary_name.to_struct(),       #  3
@@ -192,8 +193,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             "birth_ref_index": self.birth_ref_index,             #  6
             "event_ref_list": [er.to_struct() 
                                for er in self.event_ref_list],   #  7
-            "family_list": self.family_list,                     #  8
-            "parent_family_list": self.parent_family_list,       #  9
+            "family_list": [Handle("Family", f) for f in 
+                            self.family_list],                   #  8
+            "parent_family_list": [Handle("Family", f) for f in 
+                                   self.parent_family_list],     #  9
             "media_list": MediaBase.to_struct(self),             # 10
             "address_list": AddressBase.to_struct(self),         # 11
             "attribute_list": AttributeBase.to_struct(self),     # 12
@@ -439,7 +442,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                  self.address_list +
                  self.attribute_list +
                  self.lds_ord_list +
-                 self.person_ref_list
+                 self.person_ref_list +
+                 self.event_ref_list
                 )
 
     def get_note_child_list(self):
