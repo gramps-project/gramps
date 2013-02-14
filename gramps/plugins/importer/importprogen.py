@@ -115,8 +115,8 @@ def _read_mem(bname):
         fname = bname + '.mem'
     f = open(fname, "rb")
     recfmt = "i28s"
-    reclen = struct.calcsize( recfmt )
-    #print "# reclen = %d" % reclen
+    reclen = struct.calcsize( str(recfmt) )
+    print "# reclen = %d" % reclen
 
     mems = []
     while 1:
@@ -137,7 +137,7 @@ def _read_recs(table, bname):
     f = open(fname, "rb")
     recfmt = table.recfmt
     log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
-    reclen = struct.calcsize( recfmt )
+    reclen = struct.calcsize(str(recfmt))
     log.info("# %s - reclen = %d" % (table['name1'], reclen))
 
     recs = []
@@ -435,7 +435,8 @@ class PG30_Def_Table:
             # Just grab a field
             f = self.flds[1]
             txt += '"%s"\n' % f
-            txt += 'recfmt = %s (length=%d)' % (self.recfmt, struct.calcsize(self.recfmt))
+            txt += 'recfmt = %s (length=%d)' % (self.recfmt,
+                                                struct.calcsize(str(self.recfmt)))
         return txt
 
 
@@ -459,9 +460,10 @@ class PG30_Def:
             raise ProgenError(_("Cannot find DEF file: %(deffname)s") % locals())
 
         # This can throw a IOError
-        lines = open(fname).readlines()
+        import io
+        lines = io.open(fname, buffering=1, encoding='cp437', errors='strict').readlines()
         lines = [l.strip() for l in lines]
-        content = '\n'.join(lines)
+        content = '\n'.join(lines).encode('utf-8')
         parts = re.split(r'\n(?=\[)', content)
         self.parts = {}
         self.tables = {}
