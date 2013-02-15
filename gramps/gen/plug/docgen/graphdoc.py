@@ -86,9 +86,9 @@ _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Left, bottom"),                  'value' :"LB" },
              { 'name' : _("Left, top"),                     'value' :"LT" } ]
 
-_RATIO = [ { 'name' : _("Minimal size"),                'value': "compress" },
-           { 'name' : _("Fill the given area"),         'value': "fill"      },
-           { 'name' : _("Use optimal number of pages"), 'value': "expand"    } ]
+_RATIO = [ { 'name' : _("Compress to minimal size"),    'value': "compress" },
+           { 'name' : _("Fill the given area"),         'value': "fill"     },
+           { 'name' : _("Expand uniformly"),            'value': "expand"   } ]
 
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
@@ -199,8 +199,20 @@ class GVOptions():
         aspect_ratio = EnumeratedListOption(_("Aspect ratio"), "fill")
         for item in _RATIO:
             aspect_ratio.add_item(item["value"], item["name"])
-        aspect_ratio.set_help(_("Affects greatly how the graph is laid out "
-                                "on the page."))
+        help_text = _('Affects node spacing and scaling of the graph.\n'
+            'If the graph is smaller than the print area:\n'
+            '  Compress will not change the node spacing. \n'
+            '  Fill will increase the node spacing to fit the print area in '
+            'both width and height.\n'
+            '  Expand will increase the node spacing uniformly to preserve '
+            'the aspect ratio.\n'
+            'If the graph is larger than the print area:\n'
+            '  Compress will shrink the graph to achieve tight packing at the '
+            'expense of symmetry.\n'
+            '  Fill will shrink the graph to fit the print area after first '
+            'increasing the node spacing.\n'
+            '  Expand will shrink the graph uniformly to fit the print area.')
+        aspect_ratio.set_help(help_text)
         menu.add_option(category, "ratio", aspect_ratio)
 
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
