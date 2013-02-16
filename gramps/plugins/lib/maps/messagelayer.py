@@ -47,6 +47,7 @@ _LOG = logging.getLogger("maps.messagelayer")
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
 import cairo
+from gi.repository import Pango, PangoCairo
 
 #-------------------------------------------------------------------------
 #
@@ -76,23 +77,22 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         GObject.GObject.__init__(self)
         self.message = []
         self.color = "black"
-        self.font = "Arial"
-        self.size = 18
-        #families = font_map.list_families()
+        self.font = "Sans"
+        self.size = 13
 
     def clear_messages(self):
         """
         reset the layer attributes.
         """
-        self.message = []
+        self.message = ""
 
     def clear_font_attributes(self):
         """
         reset the font attributes.
         """
         self.color = "black"
-        self.font = "Arial"
-        self.size = 18
+        self.font = "Sans"
+        self.size = 13
 
     def set_font_attributes(self, font, size, color):
         """
@@ -109,43 +109,36 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Add a message
         """
-        self.message.append(message)
+        self.message += "\n%s" % message if self.message is not "" else message
 
     def do_draw(self, gpsmap, ctx):
         """
-        Draw the two extreme dates
+        Draw all the messages
         """
-        ctx.select_font_face(self.font,
-                             cairo.FONT_SLANT_NORMAL,
-                             cairo.FONT_WEIGHT_NORMAL)
-        ctx.set_font_size(int(self.size))
+        ctx.save()
+        font_size = "%s %d" % (self.font, self.size)
+        font = Pango.FontDescription(font_size)
+        descr = Pango.font_description_from_string(self.font)
+        descr.set_size(self.size * Pango.SCALE)
         color = Gdk.color_parse(self.color)
         ctx.set_source_rgba(float(color.red / 65535.0),
                             float(color.green / 65535.0),
                             float(color.blue / 65535.0),
                             0.9) # transparency
-        coord_x = 100
-        coord_y = int(self.size) # Show the first line under the zoom button
         d_width = gpsmap.get_allocation().width
-        gpsmap.set_size_request(300,400)
         d_width -= 100
-        for line in self.message:
-            line_to_print = line
-            (x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents(line_to_print)
-            while ( width > d_width ):
-                line_length = len(line_to_print)
-                character_length = int(width/line_length) + 1
-                max_length = int(d_width / character_length) - 1
-                while line_to_print[max_length] != ' ':
-                    max_length -= 1 # cut the line at a new word
-                ctx.move_to(coord_x, coord_y)
-                ctx.show_text(line_to_print[:max_length])
-                line_to_print = line_to_print[max_length:]
-                (x_bearing, y_bearing, width, height, x_advance, y_advance) = ctx.text_extents(line_to_print)
-                coord_y += int(self.size) # calculate the next line position
-            ctx.move_to(coord_x, coord_y)
-            ctx.show_text(line_to_print)
-            coord_y += int(self.size) # calculate the next line position
+        ctx.save()
+        ctx.move_to(100, 5)
+        layout = PangoCairo.create_layout(ctx)
+        layout.set_font_description(descr)
+        layout.set_indent(Pango.SCALE * 0)
+        layout.set_alignment(Pango.Alignment.LEFT)
+        layout.set_wrap(Pango.WrapMode.WORD_CHAR)
+        layout.set_spacing(Pango.SCALE * 3)
+        layout.set_width(d_width * Pango.SCALE)
+        layout.set_text(self.message, -1)
+        PangoCairo.show_layout(ctx, layout)
+        ctx.restore()
         ctx.stroke()
 
     def do_render(self, gpsmap):
