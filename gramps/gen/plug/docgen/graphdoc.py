@@ -123,6 +123,7 @@ class GVOptions():
         self.h_pages    = None
         self.v_pages    = None
         self.page_dir   = None
+        self.dpi = None
 
     def add_menu_options(self, menu):
         """
@@ -217,9 +218,10 @@ class GVOptions():
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
         dpi.set_help(_( "Dots per inch.  When creating images such as "
                         ".gif or .png files for the web, try numbers "
-                        "such as 100 or 300 DPI.  When creating PostScript "
-                        "or PDF files, use 72 DPI."))
+                        "such as 100 or 300 DPI.  PostScript and PDF files "
+                        "always use 72 DPI."))
         menu.add_option(category, "dpi", dpi)
+        self.dpi = dpi
 
         nodesep = NumberOption(_("Node spacing"), 0.20, 0.01, 5.00, 0.01)
         nodesep.set_help(_( "The minimum amount of free space, in inches, "
