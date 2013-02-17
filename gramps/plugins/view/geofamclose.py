@@ -233,7 +233,6 @@ class GeoFamClose(GeoGraphyView):
         f1 = None
         if active:
             f1 = self.dbstate.db.get_family_from_handle(active)
-            self.change_active(active)
             color = self._config.get('geography.color2')
             self._createmap(f1, color, self.place_list_active, False)
         if self.reffamily:

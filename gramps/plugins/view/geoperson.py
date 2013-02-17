@@ -194,11 +194,10 @@ class GeoPerson(GeoGraphyView):
         Rebuild the tree with the given person handle as the root.
         """
         self.places_found = []
-        if handle:
-            self.change_active(handle)
-            self._createmap(handle)
         active = self.get_active()
-        if active:
+        if handle:
+            self._createmap(handle)
+        elif active:
             p1 = self.dbstate.db.get_person_from_handle(active)
             self._createmap(p1)
         self.uistate.modify_statusbar(self.dbstate)

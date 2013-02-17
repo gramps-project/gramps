@@ -75,7 +75,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         Initialize the layer
         """
         GObject.GObject.__init__(self)
-        self.message = []
+        self.message = ""
         self.color = "black"
         self.font = "Sans"
         self.size = 13
