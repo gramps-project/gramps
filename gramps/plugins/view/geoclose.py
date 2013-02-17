@@ -205,7 +205,6 @@ class GeoClose(GeoGraphyView):
         active = self.get_active()
         if active:
             p1 = self.dbstate.db.get_person_from_handle(active)
-            self.change_active(active)
             color = self._config.get('geography.color2')
             self._createmap(p1, color, self.place_list_active, False)
         if self.refperson:

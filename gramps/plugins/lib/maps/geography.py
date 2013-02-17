@@ -406,13 +406,6 @@ class GeoGraphyView(OsmGps, NavigationView):
                 found = True
         if found:
             self.bubble_message(event, lat, lon, mark_selected)
-            # add the first place found to history
-            hobj = self.uistate.get_history(self.navigation_type(),
-                                            self.navigation_group())
-            place = self.dbstate.db.get_place_from_gramps_id(mark_selected[0][9])
-            handle = place.get_handle()
-            if handle and not hobj.lock and not (handle == hobj.present()):
-                hobj.push(handle)
         self.uistate.set_busy_cursor(False)
 
     def bubble_message(self, event, lat, lon, mark):
