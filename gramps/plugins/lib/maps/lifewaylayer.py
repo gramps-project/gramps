@@ -132,7 +132,6 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 coy = coy if coy > 1.2 else 1.2
                 coz = abs( 1.0 / float(cox) * float(coy) )
                 coz = coz if coz > 1.2 else 1.2
-                print coz, cox, coy
                 ctx.save()
                 ctx.scale(1.0,coz)
                 ctx.move_to(coord_x1, coord_y1)
