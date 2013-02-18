@@ -128,10 +128,11 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0], point[1]+rds)
                 coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
                 cox = abs(coord_x2-coord_x1)
-                cox = cox if cox > 0.001 else 0.001
-                coy = coy if coy > 0.001 else 0.001
+                cox = cox if cox > 1.2 else 1.2
+                coy = coy if coy > 1.2 else 1.2
                 coz = abs( 1.0 / float(cox) * float(coy) )
-                coz = coz if coz > 0.001 else 0.001
+                coz = coz if coz > 1.2 else 1.2
+                print coz, cox, coy
                 ctx.save()
                 ctx.scale(1.0,coz)
                 ctx.move_to(coord_x1, coord_y1)
