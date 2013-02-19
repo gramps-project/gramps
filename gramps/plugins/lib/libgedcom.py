@@ -767,7 +767,7 @@ class Lexer(object):
         Break circular references to parsing methods stored in dictionaries
         to aid garbage collection
         """
-        for key in (self.func_map.keys()):
+        for key in list(self.func_map.keys()):
             del self.func_map[key]
         del self.func_map
 
@@ -2677,7 +2677,7 @@ class GedcomParser(UpdateCallback):
         to aid garbage collection
         """
         for func_map in self.func_list:
-            for key in func_map.keys():
+            for key in list(func_map.keys()):
                 del func_map[key]
             del func_map
         del self.func_list
