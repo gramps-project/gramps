@@ -269,15 +269,15 @@ class GedcomWriter(UpdateCallback):
                 # make it unicode so that breakup below does the right thin.
                 text = cuni(text)
                 if limit:
-                    prefix = "\n%d CONC " % (level + 1)
+                    prefix = cuni("\n%d CONC " % (level + 1))
                     txt = prefix.join(breakup(text, limit))
                 else:
                     txt = text
-                self.gedcom_file.write("%d %s %s\n" % (token_level, token, txt))
+                self.gedcom_file.write(cuni("%d %s %s\n" % (token_level, token, txt)))
                 token_level = level + 1
                 token = "CONT"
         else:
-            self.gedcom_file.write("%d %s\n" % (level, token))
+            self.gedcom_file.write(cuni("%d %s\n" % (level, token)))
     
     def _header(self, filename):
         """
