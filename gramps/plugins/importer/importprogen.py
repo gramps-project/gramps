@@ -117,7 +117,7 @@ def _read_mem(bname):
     f = open(fname, "rb")
     recfmt = "i28s"
     reclen = struct.calcsize( str(recfmt) )
-    print "# reclen = %d" % reclen
+    #print("# reclen = %d" % reclen)
 
     mems = []
     while 1:
