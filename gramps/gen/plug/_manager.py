@@ -562,7 +562,7 @@ class BasePluginManager(object):
             hiddenplugins = config.get("plugin.hiddenplugins")
             for pdata in self.get_reg_docgens():
                 if pdata.id not in hiddenplugins:
-                    self.__docgen_names.append(pdata.basedocclass)
+                    self.__docgen_names.append(pdata.docclass)
         return self.__docgen_names
 
     def register_option(self, option, guioption):
