@@ -377,7 +377,6 @@ class PluginData(object):
         self._toolclass = None
         self._tool_modes = [TOOL_MODE_GUI]
         #DOCGEN attr
-        self._basedocclass = None
         self._paper = True
         self._style = True  
         self._extension = ''
@@ -679,14 +678,6 @@ class PluginData(object):
     tool_modes = property(_get_tool_modes, _set_tool_modes)
 
     #DOCGEN attributes
-    def _set_basedocclass(self, basedocclass):
-        if not self._ptype == DOCGEN:
-            raise ValueError('basedocclass may only be set for DOCGEN plugins')
-        self._basedocclass = basedocclass
-    
-    def _get_basedocclass(self):
-        return self._basedocclass
-    
     def _set_paper(self, paper):
         if not self._ptype == DOCGEN:
             raise ValueError('paper may only be set for DOCGEN plugins')
@@ -717,7 +708,6 @@ class PluginData(object):
     def _get_extension(self):
         return self._extension
     
-    basedocclass = property(_get_basedocclass, _set_basedocclass)
     paper = property(_get_paper, _set_paper)
     style = property(_get_style, _set_style)    
     extension = property(_get_extension, _set_extension)
