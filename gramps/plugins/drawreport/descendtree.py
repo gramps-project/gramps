@@ -974,7 +974,7 @@ class MakeReport(object):
         """Move me and everyone below me in this column only down"""
         while box:
             box.y_cm += amount
-            box = box.__next__
+            box = box.next
         
     def __move_next_cols_from_here_down(self, box, amount):
         """Move me, everyone below me in this column,
@@ -986,7 +986,7 @@ class MakeReport(object):
             
             col[0].y_cm += amount
             
-            col[0] = col[0].__next__
+            col[0] = col[0].next
             if col[0] is None:
                 col.pop(0)
     
@@ -1004,27 +1004,27 @@ class MakeReport(object):
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.next
             
             if box and box.level[1] != 0 and self.inlc_marr:
                 #add/start with the marriage box
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.next
             
             if box and box.level[1] != 0 and self.max_spouses > 0:
                 #add/start with the spousal box
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.next
 
             if line:
                 if len(line.start) > 1 and line.start[-1].level[1] == 0:
                     #a dad and mom family from RecurseDown.add_family. add mom
                     left_group.append(line.start[-1])
-                    box = box.__next__
+                    box = box.next
 
                 #we now have everyone we want
                 return left_group, line.end
@@ -1044,7 +1044,7 @@ class MakeReport(object):
                     box = None #we found the end of this col
                 else:
                     yield left_group, right_group
-                    box = left_group[-1].__next__
+                    box = left_group[-1].next
     
     def __calc_movements(self, left_group, right_group):
         """ for a family group, see if parents or children need to be
