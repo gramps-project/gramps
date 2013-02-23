@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +47,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.errors import ReportError
+from gramps.gen.plug.menu import EnumeratedListOption
+from gramps.gen.plug.report import DocOptions
 
 #-------------------------------------------------------------------------
 #
@@ -54,13 +57,20 @@ from gramps.gen.errors import ReportError
 #-------------------------------------------------------------------------
 class SvgDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self, styles, type):
+    def __init__(self, styles, type, options=None):
         BaseDoc.__init__(self, styles, type)
         self.f = None
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
         self.page = 0
+
+        self._bg = 'none' # SVG background, in case options are ignored
+        if options:
+            menu = options.menu
+            self._bg = menu.get_option_by_name('svg_background').get_value()
+            if self._bg == 'transparent':
+                self._bg = 'none'
 
     def open(self, filename):
         if filename[-4:] != ".svg":
@@ -87,14 +97,18 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         
         self.t = StringIO()
             
+        width = self.paper.get_size().get_width()
+        height = self.paper.get_size().get_height()
+
         self.f.write(
-            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' +
-            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ' +
-            '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n' +
+            '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+            '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
+            '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
             '<svg width="%5.2fcm" height="%5.2fcm" '
-                % (self.paper.get_size().get_width(),
-                        self.paper.get_size().get_height()) +
             'xmlns="http://www.w3.org/2000/svg">\n'
+            '<rect width="%5.2fcm" height="%5.2fcm" '
+            'style="fill: %s;"/>\n'
+                % (width, height, width, height, self._bg)
             )
 
     def rotate_text(self, style, text, x, y, angle, mark=None):
@@ -306,3 +320,36 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
 def units(val):
     return (val[0]*35.433, val[1]*35.433)
+
+#------------------------------------------------------------------------
+#
+# SvgDrawDocOptions class
+#
+#------------------------------------------------------------------------
+class SvgDrawDocOptions(DocOptions):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self, name, dbase):
+        DocOptions.__init__(self, name)
+        
+    def add_menu_options(self, menu):
+        """
+        Add options to the document menu for the docgen.
+        """
+        category_name = 'Document Options' # internal name: don't translate
+
+        background = EnumeratedListOption(_('SVG background color'),
+                                            'transparent')
+        background.set_items([('transparent', _('transparent background')),
+                              ('white', _('white')),
+                              ('black', _('black')),
+                              ('red', _('red')),
+                              ('green', _('green')),
+                              ('blue', _('blue')),
+                              ('cyan', _('cyan')),
+                              ('magenta', _('magenta')),
+                              ('yellow', _('yellow')) ])
+        background.set_help(_('The color, if any, of the SVG background'))
+        menu.add_option(category_name, 'svg_background', background)
