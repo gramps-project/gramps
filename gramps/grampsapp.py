@@ -287,14 +287,13 @@ def show_settings():
         osmgpsmap_str = 'not found'
 
     try:
-        import pyexiv2
+        from gi.repository import GExiv2
         try:
-            pyexiv2_str = '%d.%d.%d' % pyexiv2.version_info 
-        except :# any failure to 'get' the version
-            pyexiv2_str = 'unknown version'
-
+            gexiv2_str = GExiv2._version
+        except: # any failure to 'get' the version
+            gexiv2_str = 'unknown version'
     except ImportError:
-        pyexiv2_str = 'not found'
+        gexiv2_str = 'not found'
 
     from .gen.config import config
     usebsddb3 = config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3
@@ -367,7 +366,7 @@ def show_settings():
     print (' cairo     : %s' % cairover_str)
     print (' pycairo   : %s' % pycairover_str)
     print (' osmgpsmap : %s' % osmgpsmap_str)
-    print (' pyexiv2   : %s' % pyexiv2_str)
+    print (' GExiv2    : %s' % gexiv2_str)
     print (' o.s.      : %s' % operating_system)
     if kernel:
         print (' kernel    : %s' % kernel)
