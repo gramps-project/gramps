@@ -238,6 +238,8 @@ class MetadataView(Gtk.TreeView):
 
                 label = tag.label
                 node = self.__add_section(section)
+                if not human_value:
+                    human_value = ''
                 self.model.add((tag.label, human_value), node=node)
                 
         self.model.tree.expand_all()
