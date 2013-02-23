@@ -26,8 +26,8 @@
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GExiv2
 
 #-------------------------------------------------------------------------
 #
@@ -42,56 +42,48 @@ from gramps.gen.utils.place import conv_lat_lon
 from fractions import Fraction
 from gramps.gen.lib import Date
 from gramps.gen.datehandler import displayer
-import datetime
-import pyexiv2
+from datetime import datetime
 
-# v0.1 has a different API to v0.2 and above
-if hasattr(pyexiv2, 'version_info'):
-    OLD_API = False
-else:
-    # version_info attribute does not exist prior to v0.2.0
-    OLD_API = True
-
-def format_datetime(exif_dt):
+def format_datetime(datestring):
     """
-    Convert a python datetime object into a string for display, using the
+    Convert an exif timestamp into a string for display, using the
     standard Gramps date format.
     """
-    if type(exif_dt) != datetime.datetime:
+    try:
+        timestamp = datetime.strptime(datestring, '%Y:%m:%d %H:%M:%S')
+    except ValueError:
         return _('Invalid format')
     date_part = Date()
-    date_part.set_yr_mon_day(exif_dt.year, exif_dt.month, exif_dt.day)
+    date_part.set_yr_mon_day(timestamp.year, timestamp.month, timestamp.day)
     date_str = displayer.display(date_part)
-    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': exif_dt.hour,
-                                                    'min': exif_dt.minute,
-                                                    'sec': exif_dt.second}
+    time_str = _('%(hr)02d:%(min)02d:%(sec)02d') % {'hr': timestamp.hour,
+                                                    'min': timestamp.minute,
+                                                    'sec': timestamp.second}
     return _('%(date)s %(time)s') % {'date': date_str, 'time': time_str}
 
-def format_gps(dms_list, nsew_ref):
+def format_gps(raw_dms, nsew):
     """
-    Convert a [degrees, minutes, seconds] list of Fractions and a direction
+    Convert raw degrees, minutes, seconds and a direction
     reference into a string for display.
     """
-    try:
-        degs, mins, secs = dms_list
-    except (TypeError, ValueError):
-        return _('Invalid format')
+    value = 0.0
+    divisor = 1.0
+    for val in raw_dms.split(' '):
+        try:
+            num = float(val.split('/')[0]) / float(val.split('/')[1])
+        except ValueError, IndexError:
+            value = None
+            break
+        value += num / divisor
+        divisor *= 60
 
-    if not isinstance(degs, Fraction):
-        # Old API uses pyexiv2.Rational
-        degs = Fraction(str(degs))
-        mins = Fraction(str(mins))
-        secs = Fraction(str(secs))
-
-    value = float(degs) + float(mins) / 60 + float(secs) / 3600
-
-    if nsew_ref == 'N':
+    if nsew == 'N':
         result = conv_lat_lon(str(value), '0', 'DEG')[0]
-    elif nsew_ref == 'S':
+    elif nsew == 'S':
         result = conv_lat_lon('-' + str(value), '0', 'DEG')[0]
-    elif nsew_ref == 'E':
+    elif nsew == 'E':
         result = conv_lat_lon('0', str(value), 'DEG')[1]
-    elif nsew_ref == 'W':
+    elif nsew == 'W':
         result = conv_lat_lon('0', '-' + str(value), 'DEG')[1]
     else:
         result = None
@@ -168,81 +160,49 @@ TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
 class MetadataView(Gtk.TreeView):
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.TreeView.__init__(self)
         self.sections = {}
         titles = [(_('Key'), 1, 235), 
-          (_('Value'), 2, 325)]
+                  (_('Value'), 2, 325)]
         self.model = ListModel(self, titles, list_mode="tree")
 
     def display_exif_tags(self, full_path):
         """
         Display the exif tags.
         """
-        # pylint: disable=E1101
         self.sections = {}
         self.model.clear()
-        if OLD_API: # prior to v0.2.0
-            try:
-                metadata = pyexiv2.Image(full_path)
-            except IOError:
-                return False
-            metadata.readMetadata()
-            for section, key, key2, func in TAGS:
-                if key not in metadata.exifKeys():
-                    continue
 
-                if func is not None:
-                    if key2 is None:
-                        human_value = func(metadata[key])
+        try:
+            metadata = GExiv2.Metadata(full_path)
+        except:
+            return False
+
+        get_human = metadata.get_exif_tag_interpreted_string
+
+        for section, key, key2, func in TAGS:
+            if not key in metadata.get_exif_tags():
+                continue
+
+            if func is not None:
+                if key2 is None:
+                    human_value = func(metadata[key])
+                else:
+                    if key2 in metadata.get_exif_tags():
+                        human_value = func(metadata[key], metadata[key2])
                     else:
-                        if key2 in metadata.exifKeys():
-                            human_value = func(metadata[key], metadata[key2])
-                        else:
-                            human_value = func(metadata[key], None)
-                else:
-                    human_value = metadata.interpretedExifValue(key)
-                    if key2 is not None and key2 in metadata.exifKeys():
-                        human_value += ' ' + metadata.interpretedExifValue(key2)
+                        human_value = func(metadata[key], None)
+            else:
+                human_value = get_human(key)
+                if key2 in metadata.get_exif_tags():
+                    human_value += ' ' + get_human(key2)
 
-                label = metadata.tagDetails(key)[0]
-                node = self.__add_section(section)
-                self.model.add((label, human_value), node=node)
+            label = metadata.get_exif_tag_label(key)
+            node = self.__add_section(section)
+            if human_value is None:
+                human_value = ''
+            self.model.add((label, human_value), node=node)
 
-        else: # v0.2.0 and above
-            metadata = pyexiv2.ImageMetadata(full_path)
-            try:
-                metadata.read()
-            except IOError:
-                return False
-            for section, key, key2, func in TAGS:
-                if key not in metadata.exif_keys:
-                    continue
-
-                tag = metadata.get(key)
-                if key2 is not None and key2 in metadata.exif_keys:
-                    tag2 = metadata.get(key2)
-                else:
-                    tag2 = None
-
-                if func is not None:
-                    if key2 is None:
-                        human_value = func(tag.value)
-                    else:
-                        if tag2 is None:
-                            human_value = func(tag.value, None)
-                        else:
-                            human_value = func(tag.value, tag2.value)
-                else:
-                    human_value = tag.human_value
-                    if tag2 is not None:
-                        human_value += ' ' + tag2.human_value
-
-                label = tag.label
-                node = self.__add_section(section)
-                if not human_value:
-                    human_value = ''
-                self.model.add((tag.label, human_value), node=node)
-                
         self.model.tree.expand_all()
         return self.model.count > 0
 
@@ -261,25 +221,12 @@ class MetadataView(Gtk.TreeView):
         """
         Return True if the gramplet has data, else return False.
         """
-        # pylint: disable=E1101
-        if OLD_API: # prior to v0.2.0
-            try:
-                metadata = pyexiv2.Image(full_path)
-            except IOError:
-                return False
-            metadata.readMetadata()
-            for tag in TAGS:
-                if tag[1] in metadata.exifKeys():
-                    return True
+        try:
+            metadata = GExiv2.Metadata(full_path)
+        except:
+            return False
 
-        else: # v0.2.0 and above
-            metadata = pyexiv2.ImageMetadata(full_path)
-            try:
-                metadata.read()
-            except IOError:
-                return False
-            for tag in TAGS:
-                if tag[1] in metadata.exif_keys:
-                    return True
-
+        for tag in TAGS:
+            if tag in metadata.get_exif_tags():
+                return True
         return False
