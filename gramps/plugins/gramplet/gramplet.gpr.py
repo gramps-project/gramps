@@ -312,29 +312,6 @@ register(GRAMPLET,
          )
 
 #------------------------------------------------------------------------
-# Edit Image Exif Metadata class
-#------------------------------------------------------------------------
-register(GRAMPLET, 
-         id                    = "Edit Image Exif Metadata", 
-         name                  = _("Edit Image Exif Metadata"), 
-         description           = _("Gramplet to view, edit, and save image Exif metadata"),
-         height                = 450,
-         expand                = False,
-         gramplet              = 'EditExifMetadata',
-         gramplet_title        = _("Edit Exif Metadata"),
-         detached_width        = 510,
-         detached_height       = 550,
-         version               = '1.5.0',
-         gramps_target_version = '4.0',
-         status                = STABLE,
-         fname                 = "editexifmetadata.py",
-         help_url              = "Edit Image Exif Metadata",
-         authors               = ['Rob G. Healey'],
-         authors_email         = ['robhealey1@gmail.com'],
-         navtypes              = ["Media"],
-    )
-
-#------------------------------------------------------------------------
 # Bottombar
 #------------------------------------------------------------------------
 register(GRAMPLET, 
@@ -394,11 +371,11 @@ register(GRAMPLET,
          )
 
 try:
-    import pyexiv2
+    from gi.repository import GExiv2
     available = True
 except:
     import logging
-    logging.warning(_("WARNING: pyexiv2 module not loaded.  "
+    logging.warning(_("WARNING: GExiv2 module not loaded.  "
                       "Image metadata functionality will not be available."))
     available = False
 
