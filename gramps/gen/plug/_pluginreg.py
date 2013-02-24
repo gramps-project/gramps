@@ -42,9 +42,8 @@ import traceback
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE
+from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE, GRAMPS_LOCALE as glocale
 from ..const import IMAGE_DIR
-from ..utils.grampslocale import get_addon_translator
 from ..ggettext import gettext as _
 from ..constfunc import STRTYPE, win
 
@@ -836,8 +835,9 @@ class PluginData(object):
     def _set_gramplet_title(self, gramplet_title):
         if not self._ptype == GRAMPLET:
             raise ValueError('gramplet_title may only be set for GRAMPLET plugins')
-        if not isinstance(gramplet_title, str):
-            raise ValueError('Plugin must have a string as gramplet_title')
+        if not (sys.version_info[0] < 3 and isinstance(gramplet_title, unicode)
+                or isinstance(gramplet_title, str)):
+            raise ValueError('gramplet_title is type %s, string or unicode required' % type(gramplet_title))
         self._gramplet_title = gramplet_title
     
     def _get_gramplet_title(self):
@@ -1091,7 +1091,7 @@ class PluginRegister(object):
             full_filename = os.path.join(dir, filename)
             if sys.version_info[0] < 3:
                 full_filename = full_filename.encode(sys.getfilesystemencoding())
-            local_gettext = get_addon_translator(full_filename).gettext
+            local_gettext = glocale.get_addon_translator(full_filename).gettext
             try:
                 if win() and not sys.version_info[0] < 3:
                     exec(compile(open(full_filename, encoding='utf-8').read(),
