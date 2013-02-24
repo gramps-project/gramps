@@ -130,7 +130,7 @@ class GrampsLocale(object):
             if "LC_MONETARY" not in os.environ:
                 self.currency = lang
             else:
-                self.currency = os.environ[LC_MONETARY]
+                self.currency = os.environ["LC_MONETARY"]
 
             if "LC_TIME" not in os.environ:
                 self.calendar = lang
