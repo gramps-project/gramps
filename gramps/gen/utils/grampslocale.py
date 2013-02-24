@@ -47,54 +47,110 @@ from ..constfunc import mac, win, UNITYPE
 #------------------------------------------------------------------------
 class GrampsLocale(object):
     """
-    Encapsulate a locale
+    Encapsulate a locale.  This class is a sort-of-singleton: The
+    first instance created will query the environment and OSX defaults
+    for missing parameters (precedence is parameters passed to the
+    constructor, environment variables LANG, LC_COLLATE, LC_TIME,
+    etc., and LANGUAGE, OSX defaults settings when that's the
+    platform).  Subsequent calls to the constructor with no or
+    identical parameters will return the same Grampslocale
+    object. Construction with different parameters will result in a
+    new GrampsLocale instance with the specified parameters, but any
+    parameters left out will be filled in from the first instance.
+
+    @localedir: The full path to the top level directory containing
+                the translation files. Defaults to sys.prefix/share/locale.
+
+    @lang:      A single locale value which is used for unset locale.LC_FOO
+                settings.
+
+    @domain:    The name of the applicable translation file. The default is
+                "gramps", indicating files in LC_MESSAGES named gramps.mo.
+
+    @languages: A list of two or five character codes corresponding to
+                subidrectries in the localedir, e.g. "fr" or "zh_CN".
     """
-    def __init__(self):
-        self.localedir = None
-        self.lang = None
-        self.language = []
-        if ("GRAMPSI18N" in os.environ
-            and os.path.exists(os.environ["GRAMPSI18N"])):
-            self.localedir = os.environ["GRAMPSI18N"]
-        elif os.path.exists(LOCALE_DIR):
-            self.localedir = LOCALE_DIR
-        elif os.path.exists(os.path.join(sys.prefix, "share", "locale")):
-            self.localedir = os.path.join(sys.prefix, "share", "locale")
+    __first_instance = None
+    def __new__(cls, localedir=None, lang=None, domain=None, languages=None):
+        if not GrampsLocale.__first_instance:
+            cls.__first_instance = super(GrampsLocale, cls).__new__(cls)
+            cls.__first_instance.initialized = False
+            return cls.__first_instance
+
+        if not cls.__first_instance.initialized:
+            raise RuntimeError("Second GrampsLocale created before first one was initialized")
+        if ((lang is None or lang == cls.__first_instance.lang)
+            and (localedir is None or localedir == cls.__first_instance.localedir)
+            and (domain is None or domain == cls.__first_instance.localedomain)
+            and (languages is None or len(languages) == 0 or
+                 languages == cls.__first_instance.languages)):
+            return cls.__first_instance
+
+        return super(GrampsLocale, cls).__new__(cls)
+
+    def __init_first_instance(self, localedir=None, lang=None,
+                              domain=None, language=None):
+
+        if localedir and os.path.exists(localedir):
+            self.localedir = localedir
         else:
-            lang = os.environ.get('LANG', 'en')
-            if lang and lang[:2] == 'en':
-                pass # No need to display warning, we're in English
+            if ("GRAMPSI18N" in os.environ
+                and os.path.exists(os.environ["GRAMPSI18N"])):
+                self.localedir = os.environ["GRAMPSI18N"]
+            elif os.path.exists(LOCALE_DIR):
+                self.localedir = LOCALE_DIR
+            elif os.path.exists(os.path.join(sys.prefix, "share", "locale")):
+                self.localedir = os.path.join(sys.prefix, "share", "locale")
             else:
-                logging.warning('Locale dir does not exist at %s', LOCALE_DIR)
-                logging.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
+                if not lang:
+                    lang = os.environ.get('LANG', 'en')
+                if lang and lang[:2] == 'en':
+                    pass # No need to display warning, we're in English
+                else:
+                    logging.warning('Locale dir does not exist at %s', LOCALE_DIR)
+                    logging.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
 
         if not self.localedir:
 #No localization files, no point in continuing
             return
-        self.localedomain = 'gramps'
+        if domain:
+            self.localedomain = domain
+        else:
+            self.localedomain = 'gramps'
+
+        if not language or not isinstance(language, list):
+            language = []
+        else:
+            language = [l for l in languages
+                        if l in get_available_translations()]
 
         if mac():
             from . import maclocale
-            (self.lang, self.language) = maclocale.mac_setup_localization(self)
+            (self.lang, self.language) = maclocale.mac_setup_localization(self, lang, language)
         else:
-            self.lang = ' '
-            try:
-                self.lang = os.environ["LANG"]
-            except KeyError:
-                self.lang = locale.getlocale()[0]
-            if not self.lang:
+            if not lang:
+                lang = ' '
                 try:
-                    self.lang = locale.getdefaultlocale()[0] + '.UTF-8'
-                except TypeError:
-                    logging.warning('Unable to determine your Locale, using English')
-                    self.lang = 'C.UTF-8'
+                    lang = os.environ["LANG"]
+                except KeyError:
+                    lang = locale.getlocale()[0]
+                    if not lang:
+                        try:
+                            lang = locale.getdefaultlocale()[0] + '.UTF-8'
+                        except TypeError:
+                            logging.warning('Unable to determine your Locale, using English')
+                            lang = 'C.UTF-8'
+            self.lang = lang
 
-            if "LANGUAGE" in os.environ:
-                language = [l for l in os.environ["LANGUAGE"].split(":")
-                            if l in self.get_available_translations()]
-                self.language = language
-            else:
-                self.language = [self.lang[0:2]]
+            if not language or len(language) == 0:
+                if "LANGUAGE" in os.environ:
+                    language = [l for l in os.environ["LANGUAGE"].split(":")
+                                if l in get_available_translations()]
+                    self.language = language
+                elif not lang == "C.UTF-8":
+                    self.language = [lang[0:2]]
+                else:
+                    self.language = ["en"]
 
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
@@ -105,55 +161,71 @@ class GrampsLocale(object):
             self.lang = '.'.join((check_lang[0], 'UTF-8'))
             os.environ["LANG"] = self.lang
         # Set Gramps's translations
-        self.translation = self._get_translation(self.localedomain, self.localedir, self.language)
-        # Now set the locale for everything besides translations.
-
         try:
             # First try the environment to preserve individual variables
             locale.setlocale(locale.LC_ALL, '')
             try:
-                #Then set LC_MESSAGES to self.lang
-                locale.setlocale(locale.LC_MESSAGES, self.lang)
+                #Then set LC_MESSAGES to lang
+                locale.setlocale(locale.LC_MESSAGES, lang)
             except locale.Error:
-                logging.warning("Unable to set translations to %s, locale not found.", self.lang)
+                logging.warning("Unable to set translations to %s, locale not found.", lang)
         except locale.Error:
             # That's not a valid locale -- on Linux, probably not installed.
             try:
-                # First fallback is self.lang
+                # First fallback is lang
                 locale.setlocale(locale.LC_ALL, self.lang)
-                logging.warning("Setting locale to individual LC_ variables failed, falling back to %s.", self.lang)
+                logging.warning("Setting locale to individual LC_ variables failed, falling back to %s.", lang)
 
             except locale.Error:
                 # No good, set the default encoding to C.UTF-8. Don't
                 # mess with anything else.
                 locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-                logging.error("Failed to set locale %s, falling back to English",  self.lang)
+                logging.error("Failed to set locale %s, falling back to English",  lang)
         # $LANGUAGE is what sets the Gtk+ translations
         os.environ["LANGUAGE"] = ':'.join(self.language)
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext.
         locale.bindtextdomain(self.localedomain, self.localedir)
 
-#-------------------------------------------------------------------------
-#
-# Public Functions
-#
-#-------------------------------------------------------------------------
+        self.initialized = True
 
-    def get_localedomain(self):
-        """
-        Get the LOCALEDOMAIN used for the Gramps application.
-        Required by gui/glade.py to pass to Gtk.Builder
-        """
-        return self.localedomain
 
-    def get_language_list(self):
+    def __init__(self, lang=None, localedir=None, domain=None, languages=None):
         """
-        Return the list of configured languages.  Used by
-        ViewManager.check_for_updates to select the language for the
-        addons descriptions.
+        Init a GrampsLocale. Run __init_first_instance() to set up the
+        environement if this is the first run. Return __first_instance
+        otherwise if called without arguments.
         """
-        return self.language
+        if self == self._GrampsLocale__first_instance:
+            if not self.initialized:
+                self._GrampsLocale__init_first_instance(lang, localedir,
+                                                        domain, languages)
+            else:
+                return
+
+        else:
+            if domain:
+                self.localedomain = domain
+            else:
+                self.localedomain = self._GrampsLocale__first_instance.localedomain
+            if localedir:
+                self.localedir = localedir
+            else:
+                self.localedir = self._GrampsLocale__first_instance.localedir
+
+            self.language = []
+            if languages and len(languages) > 0:
+                self.language = [l for l in languages
+                                 if l in get_available_translations()]
+            if len(self.language) == 0:
+                self.language = self._GrampsLocale__first_instance.language
+
+
+        self.translation = self._get_translation(self.localedomain,
+                                                 self.localedir, self.language)
+
+
+
 
     def _get_translation(self, domain = None,
                          localedir = None,

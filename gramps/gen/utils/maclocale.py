@@ -73,7 +73,7 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 import os, subprocess
 
-def mac_setup_localization(glocale):
+def mac_setup_localization(glocale, lang, language):
     """
     Set up the localization parameters from OSX's "defaults" system,
     permitting environment variables to override the settings.
@@ -241,33 +241,35 @@ def mac_setup_localization(glocale):
     if calendar and "LC_TIME" not in os.environ:
         os.environ["LC_TIME"] = calendar
 
-    if "LANG" in os.environ:
-        lang = os.environ["LANG"]
-    else:
-        lang = "en_US"
-        loc = mac_resolve_locale(loc)
-        if loc != None:
-            lang = loc
-            collation = mac_resolve_locale(collation)
-            if "LC_COLLATE" not in os.environ and collation != None:
-                os.environ["LC_COLLATE"] = collation
+    if not lang:
+        if "LANG" in os.environ:
+            lang = os.environ["LANG"]
+        else:
+            lang = "en_US"
+            loc = mac_resolve_locale(loc)
+            if loc != None:
+                lang = loc
+                collation = mac_resolve_locale(collation)
+                if "LC_COLLATE" not in os.environ and collation != None:
+                    os.environ["LC_COLLATE"] = collation
 
-        elif len(collation) > 0:
-            lang = mac_resolve_locale(collation)
+                elif len(collation) > 0:
+                    lang = mac_resolve_locale(collation)
 
-    if "LANGUAGE" in os.environ:
-        language =  [l for l in os.environ["LANGUAGE"].split(":")
-                     if l in available]
-    elif "LANG" in os.environ:
-        language = [lang[0:2]]
-    else:
-        if len(translations) > 0:
-            language = translations
-        elif (len(loc) > 0 and loc in available
-              and not loc.startswith("en")):
-            language = [loc]
-        elif (len(collation) > 0 and collation in available
-              and not collation.startswith("en")):
-            language = [collation]
+    if not language or len(language) == 0:
+        if "LANGUAGE" in os.environ:
+            language =  [l for l in os.environ["LANGUAGE"].split(":")
+                         if l in available]
+        elif lang != "en_US":
+            language = [lang[0:2]]
+        else:
+            if len(translations) > 0:
+                language = translations
+            elif (len(loc) > 0 and loc in available
+                  and not loc.startswith("en")):
+                language = [loc]
+            elif (len(collation) > 0 and collation in available
+                  and not collation.startswith("en")):
+                language = [collation]
 
     return (lang, language)
