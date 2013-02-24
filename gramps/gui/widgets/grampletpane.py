@@ -38,6 +38,8 @@ from gi.repository import Gtk
 from gi.repository import Pango
 import time
 import os
+import io
+from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 import sys
@@ -1169,20 +1171,17 @@ class GrampletPane(Gtk.ScrolledWindow):
             return # something is the matter
         filename = self.configfile
         try:
-            if win() and not sys.version_info[0] < 3:
-                fp = open(filename, "w", encoding='utf-8')
-            else:
-                fp = open(filename, "w")
+                fp = io.open(filename, "w", encoding='utf-8')
         except IOError:
             print("Failed writing '%s'; gramplets not saved" % filename)
             return
-        fp.write(";; Gramps gramplets file" + NL)
-        fp.write((";; Automatically created at %s" %
-                                 time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
-        fp.write("[Gramplet View Options]" + NL)
-        fp.write(("column_count=%d" + NL) % self.column_count)
-        fp.write(("pane_position=%d" + NL) % self.pane_position)
-        fp.write(("pane_orientation=%s" + NL) % self.pane_orientation)
+        fp.write(cuni(";; Gramps gramplets file" + NL))
+        fp.write(cuni((";; Automatically created at %s" %
+                                 time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL))
+        fp.write(cuni("[Gramplet View Options]" + NL))
+        fp.write(cuni(("column_count=%d" + NL) % self.column_count))
+        fp.write(cuni(("pane_position=%d" + NL) % self.pane_position))
+        fp.write(cuni(("pane_orientation=%s" + NL) % self.pane_orientation))
         fp.write(NL) 
         # showing gramplets:
         for col in range(self.column_count):
