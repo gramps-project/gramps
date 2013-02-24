@@ -75,9 +75,9 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
-from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 from gramps.gen.constfunc import cuni, UNITYPE, conv_to_unicode, handle2internal
-    
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
 #-------------------------------------------------------------------------
 #
 # FlatNodeMap
@@ -112,7 +112,7 @@ class FlatNodeMap(object):
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
     
-    ..Note: conv_unicode_tosrtkey is applied to the underlying sort key,
+    ..Note: glocale.sort_key is applied to the underlying sort key,
             so as to have localized sort
     """
 
@@ -456,7 +456,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
-    ..Note: conv_unicode_tosrtkey is applied to the underlying sort key,
+    ..Note: glocale.sort_key is applied to the underlying sort key,
             so as to have localized sort
     """
 
@@ -482,7 +482,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
             col = self.sort_map[scol][1]
         else:
             col = scol
-        self.sort_func = lambda x: conv_unicode_tosrtkey(self.smap[col](x))
+        self.sort_func = lambda x: glocale.sort_key(self.smap[col](x))
         self.sort_col = scol
         self.skip = skip
         self._in_build = False

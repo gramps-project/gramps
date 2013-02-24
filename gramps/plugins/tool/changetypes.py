@@ -31,16 +31,14 @@
 #------------------------------------------------------------------------
 from __future__ import print_function
 
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
-
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 from gramps.gui.utils import ProgressMeter
-import locale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.lib import EventType
@@ -80,7 +78,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         # Need to display localized event names
         etype = EventType()
-        event_names = sorted(etype.get_standard_names(), key=locale.strxfrm)
+        event_names = sorted(etype.get_standard_names(), key=glocale.sort_key)
         
         fill_combo(self.auto1,event_names)
         fill_combo(self.auto2,event_names)

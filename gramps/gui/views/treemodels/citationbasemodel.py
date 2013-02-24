@@ -44,6 +44,7 @@ from gramps.gen.lib import Citation
 from gramps.gen.utils.string import confidence
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #

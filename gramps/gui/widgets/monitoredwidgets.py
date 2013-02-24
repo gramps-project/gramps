@@ -34,7 +34,6 @@ __all__ = ["MonitoredCheckbox", "MonitoredEntry",
 #-------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
-import locale
 import sys
 
 #-------------------------------------------------------------------------
@@ -749,13 +748,13 @@ class MonitoredComboSelectedEntry(object):
         """
         fvalue = self.mapping[first]
         svalue = self.mapping[second]
-        return locale.strcoll(fvalue, svalue)
+        return glocale.strcoll(fvalue, svalue)
 
     def __by_value_key(self, first):
         """
         Method for sorting keys based on the values.
         """
-        return locale.strxfrm(self.mapping[first])
+        return glocale.sort_key(self.mapping[first])
 
     def on_combochange(self, obj):
         """

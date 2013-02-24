@@ -40,14 +40,11 @@ else:
     import pickle
 import os
 import time
-import locale
 import bisect
 from functools import wraps
 import logging
 from sys import maxsize
 
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import dbshelve, db
@@ -78,10 +75,12 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
                     find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
 from .dbconst import *
 from ..utils.callback import Callback
-from ..utils.cast import (conv_unicode_tosrtkey, conv_dbstr_to_unicode)
+from ..utils.cast import conv_dbstr_to_unicode
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
 from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -1499,7 +1498,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     def sort_surname_list(self):
-        self.surname_list.sort(key=conv_unicode_tosrtkey)
+        self.surname_list.sort(key=glocale.sort_key)
 
     @catch_db_error
     def build_surname_list(self):
@@ -1511,7 +1510,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         #TODO GTK3: Why double conversion? Convert to a list of str objects!
         self.surname_list = sorted(
                         map(conv_dbstr_to_unicode, set(self.surnames.keys())), 
-                        key=conv_unicode_tosrtkey)
+                        key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
         """

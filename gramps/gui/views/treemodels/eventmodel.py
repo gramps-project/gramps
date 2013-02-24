@@ -46,6 +46,7 @@ from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #

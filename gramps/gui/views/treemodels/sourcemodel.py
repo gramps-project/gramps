@@ -42,6 +42,7 @@ from gi.repository import Gtk
 from gramps.gen.datehandler import format_time
 from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #

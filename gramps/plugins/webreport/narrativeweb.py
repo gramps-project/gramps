@@ -125,7 +125,6 @@ from gramps.gen.utils.string import confidence
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
-from gramps.gen.utils.cast import conv_unicode_tosrtkey, conv_tosrtkey
 from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
 from gramps.gen.config import config
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
@@ -154,7 +153,7 @@ from gramps.gen.relationship import get_relationship_calculator
 # the language for translation.
 import locale
 COLLATE_LANG = locale.getlocale()[0]
-SORT_KEY = conv_unicode_tosrtkey
+SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # Everything below this point is identical for gramps34 (post 3.4.2), gramps40 and trunk
 #------------------------------------------------
@@ -8464,8 +8463,6 @@ def sort_people(dbase, handle_list):
         sname_sub[surname].append(person_handle)
 
     sorted_lists = []
-    # According to the comment in flatbasemodel:         This list is sorted
-    # ascending, via localized string sort. SORT_KEY
     temp_list = sorted(sname_sub, key=SORT_KEY)
     
     for name in temp_list:
