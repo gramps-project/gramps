@@ -200,6 +200,9 @@ class GrampsLocale(object):
             try:
                 #Then set LC_MESSAGES to lang
                 locale.setlocale(locale.LC_MESSAGES, lang)
+            except AttributeError:
+                LOG.warning("Forcing single locale %s" % lang)
+                locale.setlocale(locale.LC_ALL, lang)
             except locale.Error:
                 LOG.warning("Unable to set translations to %s, locale not found.", lang)
         except locale.Error:
