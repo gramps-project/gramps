@@ -71,7 +71,7 @@ def format_gps(raw_dms, nsew):
     for val in raw_dms.split(' '):
         try:
             num = float(val.split('/')[0]) / float(val.split('/')[1])
-        except ValueError, IndexError:
+        except (ValueError, IndexError):
             value = None
             break
         value += num / divisor
