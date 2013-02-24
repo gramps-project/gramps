@@ -166,9 +166,8 @@ class GraphvizReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            default_name = self.dbname + "_" + \
-                        "".join(x[0].upper() for x in self.raw_name.split("_"))
-            base = "%s%s" % (default_name, ext)
+            default_name = self.dbname + "_" + self.raw_name
+            base = "%s%s" % (default_name, ext) # "ext" already has a dot
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 
