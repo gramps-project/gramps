@@ -89,7 +89,7 @@ if win():
             pass # ok
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
-        sys.stdout = sys.stderr = open(logfile, "w")
+        sys.stdout = sys.stderr = io.open(logfile, "w", encoding='utf-8')
 stderrh = logging.StreamHandler(sys.stderr)
 stderrh.setFormatter(form)
 stderrh.setLevel(logging.DEBUG)

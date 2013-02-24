@@ -90,8 +90,7 @@ class CalendarWriter(object):
             self.oldval = newval
 
     def writeln(self, text):
-        #self.g.write('%s\n' % (text.encode('iso-8859-1')))
-        self.g.write('%s\n' % (text.encode(sys.getfilesystemencoding())))
+        self.g.write('%s\n' % text.encode('ascii', 'backslashreplace'))
 
     def export_data(self, filename):
 

@@ -157,12 +157,12 @@ class AsciiDoc(BaseDoc,TextDoc):
             self.filename = filename
 
         try:
-            self.f = open(self.filename,"w")
-        except IOError as msg:
+            self.f = io.open(self.filename,"w",
+                             encoding='ascii',
+                             errors = 'backslashreplace')
+        except Exception as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
-        except:
-            raise ReportError(_("Could not create %s") % self.filename)
 
         self.in_cell = 0
         self.text = ""
