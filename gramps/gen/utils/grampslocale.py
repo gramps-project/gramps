@@ -205,8 +205,12 @@ class GrampsLocale(object):
             except locale.Error:
                 # No good, set the default encoding to C.UTF-8. Don't
                 # mess with anything else.
-                locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-                LOG.error("Failed to set locale %s, falling back to English",  lang)
+                try:
+                    locale.setlocale(locale.LC_ALL, 'C.UTF-8')
+                except locale.Error:
+                    locale.setlocale(locale.LC_ALL, "C")
+                    LOG.warning("C.UTF-8 not available, GtkBuilder may have problems")
+                LOG.debug("Failed to set locale %s, falling back to English",  lang)
         # $LANGUAGE is what sets the Gtk+ translations
         os.environ["LANGUAGE"] = ':'.join(self.language)
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
