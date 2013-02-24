@@ -335,7 +335,6 @@ class DescendantReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
         
         sort = Sort(self.database)
-        self.by_birthdate = sort.by_birthdate_key
     
         #Initialize the Printinfo class    
         self._showdups = menu.get_option_by_name('dups').get_value()

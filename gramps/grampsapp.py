@@ -320,7 +320,7 @@ def show_settings():
     print (' pycairo   : %s' % pycairover_str)
     print (' osmgpsmap : %s' % osmgpsmap_str)
     print (' GExiv2    : %s' % gexiv2_str)
-    print (' o.s.      : %s' % operating_system)
+    print (' o.s.      : %s' % sys.platform)
     if kernel:
         print (' kernel    : %s' % kernel)
     print ('')
