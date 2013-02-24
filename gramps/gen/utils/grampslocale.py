@@ -88,6 +88,31 @@ class GrampsLocale(object):
 
         return super(GrampsLocale, cls).__new__(cls)
 
+    def __init_from_environment(self, lang=None, language=None):
+        if not lang:
+            lang = ' '
+            try:
+                lang = os.environ["LANG"]
+            except KeyError:
+                lang = locale.getlocale()[0]
+                if not lang:
+                    try:
+                        lang = locale.getdefaultlocale()[0] + '.UTF-8'
+                    except TypeError:
+                        LOG.warning('Unable to determine your Locale, using English')
+                        lang = 'C.UTF-8'
+            self.lang = lang
+
+        if not language or len(language) == 0:
+            if "LANGUAGE" in os.environ:
+                language = [l for l in os.environ["LANGUAGE"].split(":")
+                            if l in self.get_available_translations()]
+                self.language = language
+            elif not lang == "C.UTF-8":
+                self.language = [lang[0:2]]
+            else:
+                self.language = ["en"]
+
     def __init_first_instance(self, localedir=None, lang=None,
                               domain=None, language=None):
 
@@ -128,29 +153,7 @@ class GrampsLocale(object):
             from . import maclocale
             (self.lang, self.language) = maclocale.mac_setup_localization(self, lang, language)
         else:
-            if not lang:
-                lang = ' '
-                try:
-                    lang = os.environ["LANG"]
-                except KeyError:
-                    lang = locale.getlocale()[0]
-                    if not lang:
-                        try:
-                            lang = locale.getdefaultlocale()[0] + '.UTF-8'
-                        except TypeError:
-                            LOG.warning('Unable to determine your Locale, using English')
-                            lang = 'C.UTF-8'
-            self.lang = lang
-
-            if not language or len(language) == 0:
-                if "LANGUAGE" in os.environ:
-                    language = [l for l in os.environ["LANGUAGE"].split(":")
-                                if l in get_available_translations()]
-                    self.language = language
-                elif not lang == "C.UTF-8":
-                    self.language = [lang[0:2]]
-                else:
-                    self.language = ["en"]
+            self.__init_from_environment(lang, language)
 
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
