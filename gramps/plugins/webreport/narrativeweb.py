@@ -8534,14 +8534,15 @@ def first_letter(string):
     else:
         letter = cuni(' ')
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
-    if COLLATE_LANG == "sv_SE" and (letter == cuni('W') or letter == cuni('V')):
-        letter = cuni('V,W')
+    lang_country = glocale.get_translation().language()
+    if lang_country == "sv" and (letter == cuni('W') or letter == cuni('V')):
+        letter = 'V,W'
     # See : http://www.gramps-project.org/bugs/view.php?id = 4423
-    elif (COLLATE_LANG == "cs_CZ" or COLLATE_LANG == "sk_SK") and letter == cuni('C') and len(string) > 1:
-        second_letter = normalize('NFKC', cuni(string))[1].upper()
+    elif (lang_country == "cs" or lang_country == "sk") and letter == cuni('C') and len(string) > 1:
+        second_letter = normalize('NFKC', str(string))[1].upper()
         if second_letter == cuni('H'):
             letter += cuni('h')
-    elif COLLATE_LANG == "sk_SK" and letter == cuni('D') and len(string) > 1:
+    elif lang_country == "sk" and letter == cuni('D') and len(string) > 1:
         second_letter = normalize('NFKC', cuni(string))[1].upper()
         if second_letter == cuni('Z'):
             letter += cuni('z')
@@ -8596,6 +8597,7 @@ def alphabet_navigation(menu_set):
     #
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
+    lang_country = glocale.get_translation().language()
 
     for menu_item in menu_set:
         sorted_set[menu_item] += 1
@@ -8622,7 +8624,7 @@ def alphabet_navigation(menu_set):
             while (cols <= num_of_cols and index < num_ltrs):
                 menu_item = sorted_alpha_index[index]
 
-                if COLLATE_LANG == "sv_SE" and menu_item == cuni('V'):
+                if lang_country == "sv" and menu_item == cuni('V'):
                     hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
                 else:
                     # adding title to hyperlink menu for screen readers and braille writers
