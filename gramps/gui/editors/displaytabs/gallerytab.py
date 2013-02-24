@@ -520,7 +520,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     if protocol == "file":
                         name = fix_encoding(mfile)
                         name = cuni(url2pathname(
-                                    name.encode(sys.getfilesystemencoding())))
+                                    name.encode(glocale.getfilesystemencoding())))
                         mime = get_type(name)
                         if not is_valid_type(mime):
                             return

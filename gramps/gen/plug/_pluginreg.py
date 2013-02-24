@@ -1091,7 +1091,7 @@ class PluginRegister(object):
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
             if sys.version_info[0] < 3:
-                full_filename = full_filename.encode(sys.getfilesystemencoding())
+                full_filename = full_filename.encode(glocale.getfilesystemencoding())
             local_gettext = glocale.get_addon_translator(full_filename).gettext
             try:
                 if win() and not sys.version_info[0] < 3:

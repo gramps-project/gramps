@@ -297,10 +297,10 @@ def startcli(errors, argparser):
         #already errors encountered. Show first one on terminal and exit
         # Convert error message to file system encoding before print
         errmsg = _('Error encountered: %s') % errors[0][0]
-        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        errmsg = errmsg.encode(sys.stdout.encoding, 'backslashreplace')
         print(errmsg)
         errmsg = _('  Details: %s') % errors[0][1]
-        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        errmsg = errmsg.encode(sys.stdout.encoding, 'backslashreplace')
         print(errmsg)
         sys.exit(1)
     
@@ -308,10 +308,10 @@ def startcli(errors, argparser):
         # Convert error message to file system encoding before print
         errmsg = _('Error encountered in argument parsing: %s') \
                                                     % argparser.errors[0][0]
-        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        errmsg = errmsg.encode(sys.stdout.encoding, 'backslashreplace')
         print(errmsg)
         errmsg = _('  Details: %s') % argparser.errors[0][1]
-        errmsg = errmsg.encode(sys.getfilesystemencoding())
+        errmsg = errmsg.encode(sys.stdout.encoding, 'backslashreplace')
         print(errmsg)
         sys.exit(1)
     
