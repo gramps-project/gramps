@@ -39,8 +39,12 @@ HAVE_ICU = False
 try:
     from icu import Locale, Collator
     HAVE_ICU = True
-except ImportError as err:
-    LOG.warning("ICU is not installed because %s, localization will be impaired", str(err))
+except ImportError:
+    try:
+        from PyICU import Locale, Collator
+        HAVE_ICU = True
+    except ImportError as err:
+        LOG.warning("ICU is not installed because %s, localization will be impaired", str(err))
 #-------------------------------------------------------------------------
 #
 # gramps modules
