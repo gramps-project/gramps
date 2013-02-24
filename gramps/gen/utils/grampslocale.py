@@ -31,7 +31,7 @@ import sys
 import os
 import locale
 import logging
-
+LOG = logging.getLogger("gramps.gen.util.grampslocale")
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -107,8 +107,8 @@ class GrampsLocale(object):
                 if lang and lang[:2] == 'en':
                     pass # No need to display warning, we're in English
                 else:
-                    logging.warning('Locale dir does not exist at %s', LOCALE_DIR)
-                    logging.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
+                    LOG.warning('Locale dir does not exist at %s', LOCALE_DIR)
+                    LOG.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
 
         if not self.localedir:
 #No localization files, no point in continuing
@@ -138,7 +138,7 @@ class GrampsLocale(object):
                         try:
                             lang = locale.getdefaultlocale()[0] + '.UTF-8'
                         except TypeError:
-                            logging.warning('Unable to determine your Locale, using English')
+                            LOG.warning('Unable to determine your Locale, using English')
                             lang = 'C.UTF-8'
             self.lang = lang
 
@@ -168,19 +168,19 @@ class GrampsLocale(object):
                 #Then set LC_MESSAGES to lang
                 locale.setlocale(locale.LC_MESSAGES, lang)
             except locale.Error:
-                logging.warning("Unable to set translations to %s, locale not found.", lang)
+                LOG.warning("Unable to set translations to %s, locale not found.", lang)
         except locale.Error:
             # That's not a valid locale -- on Linux, probably not installed.
             try:
                 # First fallback is lang
                 locale.setlocale(locale.LC_ALL, self.lang)
-                logging.warning("Setting locale to individual LC_ variables failed, falling back to %s.", lang)
+                LOG.warning("Setting locale to individual LC_ variables failed, falling back to %s.", lang)
 
             except locale.Error:
                 # No good, set the default encoding to C.UTF-8. Don't
                 # mess with anything else.
                 locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-                logging.error("Failed to set locale %s, falling back to English",  lang)
+                LOG.error("Failed to set locale %s, falling back to English",  lang)
         # $LANGUAGE is what sets the Gtk+ translations
         os.environ["LANGUAGE"] = ':'.join(self.language)
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
@@ -246,8 +246,9 @@ class GrampsLocale(object):
                                        languages,
                                        class_ = GrampsTranslations)
         else:
-            logging.debug("Unable to find translations for %s and %s in %s"
-                             , domain, languages, localedir)
+            if not languages == ["en"]:
+                LOG.debug("Unable to find translations for %s and %s in %s",
+                          domain, languages, localedir)
             return GrampsNullTranslations()
 
 #-------------------------------------------------------------------------
@@ -297,7 +298,7 @@ class GrampsLocale(object):
                                            class_ = GrampsTranslations,
                                            fallback = fallback)
             except IOError:
-                logging.warning("None of the requested languages (%s) were available, using %s instead", ', '.join(languages), self.lang)
+                LOG.warning("None of the requested languages (%s) were available, using %s instead", ', '.join(languages), self.lang)
                 return self.translation
         else:
             return self.translation
