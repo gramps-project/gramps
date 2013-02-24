@@ -1182,7 +1182,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         fp.write(cuni(("column_count=%d" + NL) % self.column_count))
         fp.write(cuni(("pane_position=%d" + NL) % self.pane_position))
         fp.write(cuni(("pane_orientation=%s" + NL) % self.pane_orientation))
-        fp.write(NL) 
+        fp.write(cuni(NL))
         # showing gramplets:
         for col in range(self.column_count):
             row = 0
