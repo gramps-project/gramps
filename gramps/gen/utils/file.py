@@ -279,10 +279,7 @@ def fix_encoding(value, errors='strict'):
             return cuni(value)
         except:
             try:
-                if mac():
-                    codeset = locale.getlocale()[1]
-                else:
-                    codeset = locale.getpreferredencoding()
+                info = glocale.get_translation().info()["charset"]
             except:
                 codeset = "UTF-8"
             if sys.version_info[0] < 3:
