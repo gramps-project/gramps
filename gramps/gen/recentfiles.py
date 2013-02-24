@@ -219,6 +219,7 @@ class RecentParser(object):
         self.recent_files = []
 
 #Python3's expat wants bytes, Python2's wants a string.
+        xml_file = None
         try:
             if sys.version_info[0] < 3:
                 xml_file = open(os.path.expanduser(GRAMPS_FILENAME), "r")
@@ -237,6 +238,9 @@ class RecentParser(object):
             if use_lock:
                 fcntl.lockf(xml_file,fcntl.LOCK_UN)
             xml_file.close()
+        except IOError as err:
+            logging.warning("Unable to open recent file %s because %s",
+                          os.path.expanduser(GRAMPS_FILENAME), str(err))
         except Exception as err:
             logging.error("Recent file parse error %s", str(err))
             if xml_file:
