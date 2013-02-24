@@ -25,7 +25,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ....ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -34,6 +33,8 @@ from ....ggettext import gettext as _
 #-------------------------------------------------------------------------
 from ....lib.notetype import NoteType
 from .. import Rule
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

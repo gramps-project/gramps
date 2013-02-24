@@ -24,7 +24,8 @@ from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
 from gramps.gen.lib import StyledText, Note, NoteType
 from gramps.gen.db import DbTxn
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gi.repository import Gtk
 
 class ToDo(Gramplet):
