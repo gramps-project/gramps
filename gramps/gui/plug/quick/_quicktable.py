@@ -54,7 +54,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.ggettext import sgettext as _
 from gramps.gen.simple import SimpleTable
-from gramps.gen.utils.trans import trans_objclass
+from gramps.gen.utils.grampslocale import trans_objclass
 from gramps.gen.errors import WindowActiveError
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets

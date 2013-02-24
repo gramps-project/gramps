@@ -44,7 +44,7 @@ import traceback
 #-------------------------------------------------------------------------
 from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
-from ..utils.trans import get_addon_translator
+from ..utils.grampslocale import get_addon_translator
 from ..ggettext import gettext as _
 from ..constfunc import STRTYPE, win
 

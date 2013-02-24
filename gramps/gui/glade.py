@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR
-from gramps.gen.utils.trans import LOCALEDOMAIN
+from gramps.gen.utils.grampslocale import LOCALEDOMAIN
 from gramps.gen.constfunc import STRTYPE
 
 #------------------------------------------------------------------------
