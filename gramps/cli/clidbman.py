@@ -159,6 +159,7 @@ class CLIDbManager(object):
         try:
             dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
         except:
+            env.close()
             return "Unknown", "Unknown"
         version = dbmap1.get('version', default=None)
         dbmap1.close()
@@ -218,6 +219,7 @@ class CLIDbManager(object):
                 if os.path.isfile(path_name):
                     file = open(path_name)
                     name = file.readline().strip()
+                    file.close()
 
                     (tval, last) = time_val(dirpath)
                     (enable, stock_id) = self.icon_values(dirpath, self.active, 
