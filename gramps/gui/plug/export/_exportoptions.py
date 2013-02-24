@@ -35,8 +35,9 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+ngettext = glocale.get_translation().ngettext
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules

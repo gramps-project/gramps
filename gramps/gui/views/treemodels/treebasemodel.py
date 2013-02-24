@@ -38,7 +38,8 @@ This module provides the model that is used for all hierarchical treeviews.
 import time
 import locale
 import sys
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")

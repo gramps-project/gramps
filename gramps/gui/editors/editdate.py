@@ -61,7 +61,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.lib.date import Date
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_PAGE

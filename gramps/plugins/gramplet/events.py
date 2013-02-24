@@ -22,7 +22,8 @@
 from gramps.gui.editors import EditEvent
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_marriage_or_fallback

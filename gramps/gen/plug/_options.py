@@ -58,7 +58,8 @@ from ..utils.cast import get_type_converter
 from .menu import Menu
 from ..plug import BasePluginManager
 PLUGMAN = BasePluginManager.get_instance()
-
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 #-------------------------------------------------------------------------
 #
 # List of options for a single module

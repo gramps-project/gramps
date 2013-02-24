@@ -32,11 +32,12 @@ PostScript document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-        
+
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gramps.gen.plug.utils import gformat

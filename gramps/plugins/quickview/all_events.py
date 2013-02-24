@@ -28,7 +28,8 @@ Display a person's events, both personal and family
 
 from gramps.gen.simple import SimpleAccess, by_date, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 def run(database, document, person):
     """

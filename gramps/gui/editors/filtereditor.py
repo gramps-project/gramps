@@ -63,7 +63,8 @@ from ..dialog import QuestionDialog
 from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from ..display import display_help
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.lib import AttributeType, EventType, FamilyRelType, NameOriginType, NameType, NoteType
 from gramps.gen.filters import rules
 from ..autocomp import StandardCustomSelector, fill_entry

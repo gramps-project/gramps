@@ -31,7 +31,8 @@ import posixpath
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Person

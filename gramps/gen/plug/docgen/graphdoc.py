@@ -47,7 +47,8 @@ import sys
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-from ...ggettext import gettext as _
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from ...utils.file import search_for
 from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, \

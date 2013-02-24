@@ -25,7 +25,8 @@ from .editors import EditFilter
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
                                 reload_custom_filters)
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 import collections
 
 def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):

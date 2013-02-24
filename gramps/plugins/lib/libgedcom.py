@@ -96,7 +96,6 @@ import sys
 import re
 import time
 import codecs
-from gramps.gen.ggettext import gettext as _
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 if sys.version_info[0] < 3:
@@ -121,6 +120,8 @@ LOG = logging.getLogger(".libgedcom")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 

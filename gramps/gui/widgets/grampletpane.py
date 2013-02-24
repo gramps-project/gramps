@@ -38,8 +38,8 @@ from gi.repository import Gtk
 from gi.repository import Pango
 import time
 import os
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.constfunc import win
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import sys
 if sys.version_info[0] < 3:
     import ConfigParser as configparser

@@ -32,8 +32,8 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 import locale
 import math
 
@@ -120,7 +120,7 @@ class NumberOfAncestorsReport(Report):
                 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
-                text = ngettext(
+                text = glocale.get_translation().ngettext(
                     "Generation %(generation)d has %(count)d individual. %(percent)s",
                     "Generation %(generation)d has %(count)d individuals. %(percent)s",
                     thisgensize) % {'generation': gen, 'count': thisgensize, 'percent': percent}

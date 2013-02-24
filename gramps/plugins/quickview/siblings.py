@@ -29,7 +29,8 @@ Display a person's siblings in a report window
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 def run(database, document, person):
     """

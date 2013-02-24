@@ -31,7 +31,6 @@ from __future__ import unicode_literals
 #
 #-------------------------------------------------------------------------
 import re
-from gramps.gen.ggettext import gettext as _
 import os
 import struct
 
@@ -48,6 +47,8 @@ log = logging.getLogger('.ImportProGen')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event, 

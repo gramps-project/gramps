@@ -46,14 +46,15 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.ggettext import ngettext
 from gramps.gui.plug import tool
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
+ngettext = glocale.get_translation().ngettext
 from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
@@ -302,7 +303,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
         #TRANS: No singular form is needed.
         self.progress.set_pass(
-            ngettext("Finding relationships between %d person",
+           ngettext("Finding relationships between %d person",
                      "Finding relationships between %d people",
                      self.numberOfPeopleInDatabase) %
                         self.numberOfPeopleInDatabase,
@@ -372,7 +373,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             # we have at least 1 "unrelated" person to find
 
             self.progress.set_pass(
-                    ngettext("Looking for %d person", "Looking for %d people",
+                   ngettext("Looking for %d person", "Looking for %d people",
                     self.numberOfUnrelatedPeople) %
                         self.numberOfUnrelatedPeople,
                     self.numberOfPeopleInDatabase) 
@@ -398,7 +399,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
     def populateModel(self) :
 
         self.progress.set_pass(
-                ngettext("Looking up the name of %d person",
+               ngettext("Looking up the name of %d person",
                          "Looking up the names of %d people",
                          self.numberOfUnrelatedPeople) %
                             self.numberOfUnrelatedPeople,

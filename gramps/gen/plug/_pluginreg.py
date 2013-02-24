@@ -42,10 +42,11 @@ import traceback
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE, GRAMPS_LOCALE as glocale
+from ..const import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
-from ..ggettext import gettext as _
-from ..constfunc import STRTYPE, win
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #

@@ -33,8 +33,8 @@ from __future__ import print_function
 import re
 import time
 import sys
-from gramps.gen.ggettext import gettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -187,7 +187,7 @@ class GeneWebParser(object):
                 self.errmsg(str(err))
                 
             t = time.time() - t
-            msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
+            msg = glocale.get_translation().ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
     
         self.db.enable_signals()
         self.db.request_rebuild()

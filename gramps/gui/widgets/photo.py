@@ -35,7 +35,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from ..thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
 from ..utils import open_file_with_default_application
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

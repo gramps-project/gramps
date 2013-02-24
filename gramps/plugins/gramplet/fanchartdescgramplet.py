@@ -42,7 +42,8 @@ except ImportError:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.plug import Gramplet
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPerson

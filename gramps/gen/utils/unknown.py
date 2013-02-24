@@ -45,7 +45,8 @@ from ..lib import (Person, Surname, Name, NameType, Family, FamilyRelType,
                    ChildRef, ChildRefType)
 from .id import create_id
 from ..const import IMAGE_DIR
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 #-------------------------------------------------------------------------
 #

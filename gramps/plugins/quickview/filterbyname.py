@@ -36,8 +36,8 @@ from gramps.gen.datehandler import get_date
 
 import posixpath
 from collections import defaultdict
-from gramps.gen.ggettext import sgettext as _
-from gramps.gen.ggettext import ngettext
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 
 fname_map = {'all': _('Filtering_on|all'),
              'Inverse Person': _('Filtering_on|Inverse Person'),
@@ -392,7 +392,7 @@ def run(database, document, filter_name, *args, **kwargs):
 
     else:
         raise AttributeError("invalid filter name: '%s'" % filter_name)
-    sdoc.paragraph(ngettext("Filter matched %d record."
+    sdoc.paragraph(glocale.get_translation().ngettext("Filter matched %d record."
                    ,
                    "Filter matched %d records.", matches) % matches)
     sdoc.paragraph("")

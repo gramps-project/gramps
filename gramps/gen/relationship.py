@@ -41,7 +41,8 @@ from .lib import Person, ChildRefType, EventType, FamilyRelType
 MALE = Person.MALE
 FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
-from .ggettext import sgettext as _
+from .const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from .plug import PluginRegister, BasePluginManager
 
 #-------------------------------------------------------------------------

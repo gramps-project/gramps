@@ -45,7 +45,8 @@ else:
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS, VERSION_TUPLE
 from ..utils.file import get_unicode_path_from_file_chooser
-from ..ggettext import gettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #

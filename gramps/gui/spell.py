@@ -32,8 +32,6 @@ present, we default to no spell checking.
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +48,9 @@ LOG = logging.getLogger(".Spell")
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi import Repository
+
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 HAVE_GTKSPELL = False
 

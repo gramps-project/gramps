@@ -53,7 +53,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.ggettext import sgettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from gramps.gen.simple import SimpleTable
 from gramps.gen.errors import WindowActiveError
 from ...widgets.multitreeview import MultiTreeView

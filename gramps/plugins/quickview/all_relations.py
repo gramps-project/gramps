@@ -32,7 +32,8 @@ Display a person's relations to the home person
 #-------------------------------------------------------------------------
 
 from gramps.gen.simple import SimpleAccess, SimpleDoc
-from gramps.gen.ggettext import gettext as _
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.relationship import get_relationship_calculator
 
 # define the formatting string once as a constant. Since this is reused

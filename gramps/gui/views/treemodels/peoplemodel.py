@@ -32,7 +32,6 @@ TreeModel for the GRAMPS Person tree.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
 import cgi
 import locale
 
@@ -56,6 +55,8 @@ _LOG = logging.getLogger(".")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.lib import Name, EventRef, EventType, EventRoleType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid

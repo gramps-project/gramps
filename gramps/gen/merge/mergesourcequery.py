@@ -34,7 +34,8 @@ Provide merge capabilities for sources.
 from ..lib import (Person, Family, Event, Place, Source, Repository,
                    MediaObject, Citation)
 from ..db import DbTxn
-from ..ggettext import sgettext as _
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------
