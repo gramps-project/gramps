@@ -200,7 +200,7 @@ def mac_setup_localization(glocale, lang, language):
         if len(loc) > 2:
             loc = loc[:2]
     # First see if it matches lang
-        if (lang.startswith(loc)
+        if (lang and lang.startswith(loc)
             and os.path.exists(os.path.join(locale_dir, lang[:5]))):
             return lang[:5]
         else:
@@ -255,6 +255,7 @@ def mac_setup_localization(glocale, lang, language):
 
                 elif len(collation) > 0:
                     lang = mac_resolve_locale(collation)
+    glocale.lang = lang
 
     if not language or len(language) == 0:
         if "LANGUAGE" in os.environ:
@@ -272,4 +273,4 @@ def mac_setup_localization(glocale, lang, language):
                   and not collation.startswith("en")):
                 language = [collation]
 
-    return (lang, language)
+    glocale.language = language
