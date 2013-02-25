@@ -303,10 +303,11 @@ gramps/gen/simple/_simpleaccess.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/db.py
 gramps/gen/utils/keyword.py
+gramps/gen/utils/grampslocale.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
-gramps/gen/utils/trans.py
+#gramps/gen/utils/trans.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -524,7 +525,7 @@ gramps/plugins/gramplet/calendargramplet.py
 gramps/plugins/gramplet/children.py
 gramps/plugins/gramplet/citations.py
 gramps/plugins/gramplet/descendgramplet.py
-gramps/plugins/gramplet/editexifmetadata.py
+#gramps/plugins/gramplet/editexifmetadata.py
 gramps/plugins/gramplet/events.py
 gramps/plugins/gramplet/fanchartdescgramplet.py
 gramps/plugins/gramplet/fanchartgramplet.py
@@ -543,6 +544,7 @@ gramps/plugins/gramplet/repositorydetails.py
 gramps/plugins/gramplet/sessionloggramplet.py
 gramps/plugins/gramplet/statsgramplet.py
 gramps/plugins/gramplet/surnamecloudgramplet.py
+gramps/plugins/gramplet/todo.py
 gramps/plugins/gramplet/todogramplet.py
 gramps/plugins/gramplet/topsurnamesgramplet.py
 gramps/plugins/gramplet/welcomegramplet.py
