@@ -72,10 +72,9 @@ if not PYGOBJ_ERR:
         PYGOBJ_ERR = True
 
 if PYGOBJ_ERR:
-    print((_("Your pygobject version does not meet the "
-             "requirements. At least pygobject "
-             "%(major)d.%(feature)d.%(minor)d is needed to"
-             " start Gramps with a GUI.\n\n"
+    print((_("Your pygobject version does not meet the requirements.\n"
+             "At least pygobject %(major)d.%(feature)d.%(minor)d "
+             "is needed to start Gramps with a GUI.\n\n"
              "Gramps will terminate now.") % 
             {'major':MIN_PYGOBJECT_VERSION[0], 
             'feature':MIN_PYGOBJECT_VERSION[1],
