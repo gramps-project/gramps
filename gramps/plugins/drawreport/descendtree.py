@@ -80,7 +80,7 @@ class DescendantBoxBase(BoxBase):
     def __init__(self, boxstr):
         BoxBase.__init__(self)
         self.boxstr = boxstr
-        self.next = None
+        self.__next__ = None
         self.father = None
 
     def calc_text(self, database, person, family):
@@ -124,7 +124,7 @@ class PlaceHolderBox(BoxBase):
         self.boxstr = "None"
         self.level = level
         self.line_to = None
-        self.next = None
+        self.__next__ = None
     
     def calc_text(self, database, person, family):
         """ move along.  Nothing to see here """
@@ -390,7 +390,7 @@ class RecurseDown:
     def add_to_col(self, box):
         """
         Add the box to a column on the canvas.  we will do these things:
-          set the .next attrib for the boxs in this col
+          set the .__next__ attrib for the boxs in this col
           get the height and width of this box and set it no the column
           also we set the .x_cm to any s_level (indentation) here
             we will calculate the real .x_cm later (with indentation)
@@ -404,7 +404,7 @@ class RecurseDown:
 
         if self.cols[level]:  #if (not the first box in this column)
             last_box = self.cols[level]
-            last_box.next = box
+            last_box.__next__ = box
             
             #calculate the .y_cm for this box.
             box.y_cm = last_box.y_cm
