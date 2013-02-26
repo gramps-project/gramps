@@ -48,6 +48,10 @@ if sys.version_info[0] < 3:
 else:
     import configparser
 
+import logging
+
+LOG = logging.getLogger(".")
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -141,7 +145,7 @@ def get_gramplet_opts(name, opts):
         my_data.update(opts)
         return my_data
     else:
-        print(("Unknown gramplet name: '%s'" % name))
+        LOG.warn("Unknown gramplet name: '%s'", name)
         return {}
 
 def get_gramplet_options_by_name(name):
@@ -151,7 +155,7 @@ def get_gramplet_options_by_name(name):
     if name in AVAILABLE_GRAMPLETS():
         return GET_AVAILABLE_GRAMPLETS(name).copy()
     else:
-        print(("Unknown gramplet name: '%s'" % name))
+        LOG.warn("Unknown gramplet name: '%s'", name)
         return None
 
 def get_gramplet_options_by_tname(name):
@@ -161,7 +165,7 @@ def get_gramplet_options_by_tname(name):
     for key in AVAILABLE_GRAMPLETS():
         if GET_AVAILABLE_GRAMPLETS(key)["tname"] == name:
             return GET_AVAILABLE_GRAMPLETS(key).copy()
-    print(("Unknown gramplet name: '%s'" % name))
+    LOG.warn("Unknown gramplet name: '%s'",name)
     return None
 
 def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
@@ -178,10 +182,11 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
                 if module:
                     getattr(module, opts["content"])(gui)
                 else:
-                    print("Error loading gramplet '%s': skipping content" % name)
+                    LOG.warn("Error loading gramplet '%s': skipping content",
+                             name)
             return gui
     else:
-        print("Error loading gramplet: unknown name")
+        LOG.warn("Error loading gramplet: unknown name")
     return None
 
 def logical_true(value):
@@ -507,7 +512,7 @@ class GuiGramplet(object):
                     url = attributes["wiki"]
                     self.link_region(start, stop, "WIKI", url) # tooltip?
                 else:
-                    print("warning: no url on link: '%s'" % text[start, stop])
+                    LOG.warn("warning: no url on link: '%s'", text[start, stop])
 
     def link_region(self, start, stop, link_type, url):
         link_data = (LinkTag(self.buffer), link_type, url, url)
@@ -1043,7 +1048,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 self.gramplet_map[unique] = g
                 self.frame_map[str(g.mainframe)] = g
             else:
-                print("Can't make gramplet of type '%s'." % name)
+                LOG.warn("Can't make gramplet of type '%s'.", name)
         self.place_gramplets()
 
     def show_all(self):
@@ -1172,8 +1177,9 @@ class GrampletPane(Gtk.ScrolledWindow):
         filename = self.configfile
         try:
                 fp = io.open(filename, "w", encoding='utf-8')
-        except IOError:
-            print("Failed writing '%s'; gramplets not saved" % filename)
+        except IOError as err:
+            LOG.warn("Failed to open %s because $s; gramplets not saved",
+                     filename, str(err))
             return
         fp.write(";; Gramps gramplets file\n")
         fp.write(";; Automatically created at %s" %
@@ -1344,7 +1350,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     self.gramplet_map[opts["title"]] = g
                     self.frame_map[str(g.mainframe)] = g
                 else:
-                    print("Can't make gramplet of type '%s'." % name)
+                    LOG.warn("Can't make gramplet of type '%s'.", name)
         if g:
             gramplet = g
             gramplet.gstate = "maximized"
@@ -1368,7 +1374,8 @@ class GrampletPane(Gtk.ScrolledWindow):
         all_opts = get_gramplet_options_by_tname(tname)
         name = all_opts["name"]
         if all_opts is None:
-            print("Unknown gramplet type: '%s'; bad gramplets.ini file?" % name)
+            LOG.warn("Unknown gramplet type: '%s'; bad gramplets.ini file?",
+                     name)
             return
         if "title" not in all_opts:
             all_opts["title"] = "Untitled Gramplet"
@@ -1404,7 +1411,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 gramplet.pui.active = True
                 gramplet.pui.update()
         else:
-            print("Can't make gramplet of type '%s'." % name)
+            LOG.warn("Can't make gramplet of type '%s'.", name)
 
     def _button_press(self, obj, event):
         if is_right_click(event):
