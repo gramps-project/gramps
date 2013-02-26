@@ -377,13 +377,19 @@ class ViewManager(CLIManager):
             # now we have a list of languages to try:
             fp = None
             for lang in langs:
-                URL = "%s/listings/addons-%s.txt" % (config.get("behavior.addons-url"), lang)
+                URL = ("%s/listings/addons-%s.txt" %
+                       (config.get("behavior.addons-url"), lang))
                 LOG.debug("   trying: %s" % URL)
                 try:
                     fp = urlopen(URL, timeout=10) # abort after 10 seconds
-                except: # some error
-                    LOG.debug("   IOError!")
-                    fp = None
+                except:
+                    try:
+                        URL = ("%s/listings/addons-%s.txt" %
+                               (config.get("behavior.addons-url"), lang[:2]))
+                        fp = urlopen(URL, timeout=10)
+                    except Exception as err: # some error
+                        LOG.warn("Failed to open %s: %s" (lang, str(err)))
+                        fp = None
                 if fp and fp.getcode() == 200: # ok
                     break
             addon_update_list = []
