@@ -29,7 +29,6 @@
 #------------------------------------------------------------------------
 from __future__ import division
 
-
 #------------------------------------------------------------------------
 #
 # gramps modules
@@ -386,7 +385,7 @@ class Canvas(Page):
         x_page_offsets = {0:0}  #change me to [] ???
         for box in self.boxes:
             x_index = box.level[0]
-            x_page = x_index / colsperpage
+            x_page = x_index // colsperpage
             if x_page not in x_page_offsets and x_index % colsperpage == 0:
                 x_page_offsets[x_page] = box.x_cm - liloffset
                 if x_page >= self.x_pages:
@@ -504,7 +503,7 @@ class Canvas(Page):
                     list_title[-1] += " "
                 list_title[-1] += title_list.pop(0)
 
-            start_page = (len(x_page_offsets) - len(list_title)) / 2
+            start_page = int((len(x_page_offsets) - len(list_title)) / 2)
             for tmp in range(start_page):
                 list_title.insert(0, "")
                 list_title.append("")
