@@ -240,11 +240,17 @@ def show_settings():
         osmgpsmap_str = 'not found'
 
     try:
-        from gi.repository import GExiv2
-        try:
-            gexiv2_str = GExiv2._version
-        except: # any failure to 'get' the version
-            gexiv2_str = 'unknown version'
+        from gi import Repository
+        repository = Repository.get_default()
+        if repository.enumerate_versions("GExiv2"):
+            from gi.repository import GExiv2
+            try:
+                gexiv2_str = GExiv2._version
+            except: # any failure to 'get' the version
+                gexiv2_str = 'unknown version'
+        else:
+            gexiv2_str = 'not found'
+
     except ImportError:
         gexiv2_str = 'not found'
 
