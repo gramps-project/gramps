@@ -423,8 +423,8 @@ class ArgHandler(object):
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
                                   key=lambda sum: sum["Family tree"].lower()):
-                print(_("Family Tree \"%s\":").\
-                        encode(sys.stdout.encoding, 'backslashreplace') % summary["Family tree"])
+                print(_("Family Tree \"%s\":") % summary["Family tree"].\
+                        encode(sys.stdout.encoding, 'backslashreplace'))
                 for item in sorted(summary):
                     if item != "Family tree":
                         print(("   %s: %s" % (item, summary[item])).\
