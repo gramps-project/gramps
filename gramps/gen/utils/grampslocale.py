@@ -193,39 +193,7 @@ class GrampsLocale(object):
         if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
             self.lang = '.'.join((check_lang[0], 'UTF-8'))
             os.environ["LANG"] = self.lang
-        # Set Gramps's translations
-        try:
-            # First try the environment to preserve individual variables
-            locale.setlocale(locale.LC_ALL, '')
-            try:
-                #Then set LC_MESSAGES to lang
-                locale.setlocale(locale.LC_MESSAGES, lang)
-            except AttributeError:
-                LOG.warning("Forcing single locale %s" % lang)
-                locale.setlocale(locale.LC_ALL, lang)
-            except locale.Error:
-                LOG.warning("Unable to set translations to %s, locale not found.", lang)
-        except locale.Error:
-            # That's not a valid locale -- on Linux, probably not installed.
-            try:
-                # First fallback is lang
-                locale.setlocale(locale.LC_ALL, self.lang)
-                LOG.warning("Setting locale to individual LC_ variables failed, falling back to %s.", lang)
-
-            except locale.Error:
-                # No good, set the default encoding to C.UTF-8. Don't
-                # mess with anything else.
-                try:
-                    locale.setlocale(locale.LC_ALL, 'C.UTF-8')
-                except locale.Error:
-                    locale.setlocale(locale.LC_ALL, "C")
-                    LOG.warning("C.UTF-8 not available, GtkBuilder may have problems")
-                LOG.debug("Failed to set locale %s, falling back to English",  lang)
-        # $LANGUAGE is what sets the Gtk+ translations
         os.environ["LANGUAGE"] = ':'.join(self.language)
-        # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
-        # with locale instead of gettext.
-        locale.bindtextdomain(self.localedomain, self.localedir)
 
         self.initialized = True
 
