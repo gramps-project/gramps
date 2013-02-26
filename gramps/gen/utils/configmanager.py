@@ -257,10 +257,13 @@ class ConfigManager(object):
         if filename and os.path.exists(filename):
             parser = configparser.RawConfigParser()
             try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
-                parser.read(filename)
-            except:
-                msg1 = _("WARNING: could not parse file, recreating it:\n%s")
-                print(msg1 % filename, file=sys.stderr)
+                if sys.version_info[0] >= 3 :
+                    parser.read(filename, encoding='utf8')
+                else:
+                    parser.readfp(io.open(filename, encoding="utf-8"))
+            except Exception as err:
+                msg1 = _("WARNING: could not parse file %s because %s, recreating it:\n")
+                logging.warn(msg1 % (filename, str(err)))
                 return
             for sec in parser.sections():
                 name = sec.lower()
@@ -336,7 +339,13 @@ class ConfigManager(object):
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
-            key_file = io.open(filename, "w", encoding = "utf-8")
+            try:
+                key_file = io.open(filename, "w", encoding="utf-8")
+            except IOError as err:
+                logging.warn("Failed to open %s because %s",
+                             filename, str(err))
+                return;
+
             key_file.write(";; Gramps key file\n")
             key_file.write((";; Automatically created at %s" % 
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
