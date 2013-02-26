@@ -371,12 +371,14 @@ register(GRAMPLET,
          )
 
 try:
-    from gi.repository import GExiv2
-    available = True
-except:
-    import logging
-    logging.warning(_("WARNING: GExiv2 module not loaded.  "
-                      "Image metadata functionality will not be available."))
+    from gi import Repository
+    repository = Repository.get_default()
+    if repository.enumerate_versions("GExiv2"):
+        from gi.repository import GExiv2
+        available = True
+    else:
+        available = False
+except ImportError:
     available = False
 
 if available:
