@@ -146,31 +146,13 @@ class CLIDbManager(object):
         else:
             from bsddb import dbshelve, db
         from gramps.gen.db import META, PERSON_TBL
-        from  gramps.gen.db.dbconst import BDBVERSFN
-
-        bdbversion_name = os.path.join(file_name, BDBVERSFN)
-        if os.path.isfile(bdbversion_name):
-            vers_file = open(bdbversion_name)
-            bsddbversion = vers_file.readline().strip()
-        else:
-            bsddbversion = "Unknown"
-        current_bsddbversion = str(db.version())
-        
-        if bsddbversion != current_bsddbversion:
-            return "Unknown", "Unknown"
-        
-        print("trying to find version")
         env = db.DBEnv()
         flags = db.DB_CREATE | db.DB_PRIVATE |\
             db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
             db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
         try:
-            print(file_name, type(file_name))
             env.open(file_name, flags)
         except:
-            import traceback
-            traceback.print_exc()
-            env.close()
             return "Unknown", "Unknown"
         dbmap1 = dbshelve.DBShelf(env)
         fname = os.path.join(file_name, META + ".db")
@@ -178,8 +160,6 @@ class CLIDbManager(object):
             dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
         except:
             env.close()
-            import traceback
-            traceback.print_exc()
             return "Unknown", "Unknown"
         version = dbmap1.get(b'version', default=None)
         dbmap1.close()
@@ -188,8 +168,6 @@ class CLIDbManager(object):
         try:
             dbmap2.open(fname, PERSON_TBL, db.DB_HASH, db.DB_RDONLY)
         except:
-            import traceback
-            traceback.print_exc()
             env.close()
             return "Unknown", "Unknown"
         count = len(dbmap2)
@@ -204,12 +182,8 @@ class CLIDbManager(object):
         # make the default directory if it does not exist
         list = []
         for item in self.current_names:
-            if __debug__:
-                (name, dirpath, path_name, last, 
-                 tval, enable, stock_id, version) = item
-            else:
-                (name, dirpath, path_name, last, 
-                 tval, enable, stock_id) = item
+            (name, dirpath, path_name, last, 
+             tval, enable, stock_id) = item
             count, version = self.get_dbdir_summary(dirpath)
             retval = {}
             retval["Number of people"] = count
@@ -254,29 +228,11 @@ class CLIDbManager(object):
                     if (stock_id == 'gramps-lock'):
                         last = find_locker_name(dirpath)
 
-                    if __debug__:
-                        count, version = self.get_dbdir_summary(dirpath)
-                        if version == "Unknown":
-                            version = "0"
-                        else:
-                            version = str(version)
-                        from  gramps.gen.db.dbconst import BDBVERSFN
-                        bdbversion_name = os.path.join(dirpath, BDBVERSFN)
-                        if os.path.isfile(bdbversion_name):
-                            vers_file = open(bdbversion_name)
-                            version += " " + vers_file.readline().strip()
-                        self.current_names.append(
-                            (name, os.path.join(dbdir, dpath), path_name,
-                             last, tval, enable, stock_id, version))
-                    else:
-                        self.current_names.append(
-                            (name, os.path.join(dbdir, dpath), path_name,
-                             last, tval, enable, stock_id))
+                    self.current_names.append(
+                        (name, os.path.join(dbdir, dpath), path_name,
+                         last, tval, enable, stock_id))
 
-        if __debug__:
-            self.current_names.sort(key=lambda x: x[4], reverse=True)
-        else:
-            self.current_names.sort()
+        self.current_names.sort()
 
     def get_family_tree_path(self, name):
         """
