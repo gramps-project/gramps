@@ -161,7 +161,7 @@ class CLIDbManager(object):
         except:
             env.close()
             return "Unknown", "Unknown"
-        version = dbmap1.get('version', default=None)
+        version = dbmap1.get(b'version', default=None)
         dbmap1.close()
         dbmap2 = dbshelve.DBShelf(env)
         fname = os.path.join(file_name, PERSON_TBL + ".db")
