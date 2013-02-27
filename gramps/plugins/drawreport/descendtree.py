@@ -80,7 +80,7 @@ class DescendantBoxBase(BoxBase):
     def __init__(self, boxstr):
         BoxBase.__init__(self)
         self.boxstr = boxstr
-        self.__next__ = None
+        self.linked_box = None
         self.father = None
 
     def calc_text(self, database, person, family):
@@ -124,7 +124,7 @@ class PlaceHolderBox(BoxBase):
         self.boxstr = "None"
         self.level = level
         self.line_to = None
-        self.__next__ = None
+        self.linked_box = None
     
     def calc_text(self, database, person, family):
         """ move along.  Nothing to see here """
@@ -390,7 +390,7 @@ class RecurseDown:
     def add_to_col(self, box):
         """
         Add the box to a column on the canvas.  we will do these things:
-          set the .__next__ attrib for the boxs in this col
+          set the .linked_box attrib for the boxs in this col
           get the height and width of this box and set it no the column
           also we set the .x_cm to any s_level (indentation) here
             we will calculate the real .x_cm later (with indentation)
@@ -404,7 +404,7 @@ class RecurseDown:
 
         if self.cols[level]:  #if (not the first box in this column)
             last_box = self.cols[level]
-            last_box.__next__ = box
+            last_box.linked_box = box
             
             #calculate the .y_cm for this box.
             box.y_cm = last_box.y_cm
@@ -974,7 +974,7 @@ class MakeReport(object):
         """Move me and everyone below me in this column only down"""
         while box:
             box.y_cm += amount
-            box = box.__next__
+            box = box.linked_box
         
     def __move_next_cols_from_here_down(self, box, amount):
         """Move me, everyone below me in this column,
@@ -986,7 +986,7 @@ class MakeReport(object):
             
             col[0].y_cm += amount
             
-            col[0] = col[0].__next__
+            col[0] = col[0].linked_box
             if col[0] is None:
                 col.pop(0)
     
@@ -1004,27 +1004,27 @@ class MakeReport(object):
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.linked_box
             
             if box and box.level[1] != 0 and self.inlc_marr:
                 #add/start with the marriage box
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.linked_box
             
             if box and box.level[1] != 0 and self.max_spouses > 0:
                 #add/start with the spousal box
                 left_group.append(box)
                 if box.line_to:
                     line = box.line_to
-                box = box.__next__
+                box = box.linked_box
 
             if line:
                 if len(line.start) > 1 and line.start[-1].level[1] == 0:
                     #a dad and mom family from RecurseDown.add_family. add mom
                     left_group.append(line.start[-1])
-                    box = box.__next__
+                    box = box.linked_box
 
                 #we now have everyone we want
                 return left_group, line.end
@@ -1044,7 +1044,7 @@ class MakeReport(object):
                     box = None #we found the end of this col
                 else:
                     yield left_group, right_group
-                    box = left_group[-1].__next__
+                    box = left_group[-1].linked_box
     
     def __calc_movements(self, left_group, right_group):
         """ for a family group, see if parents or children need to be
