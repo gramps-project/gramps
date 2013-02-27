@@ -5677,10 +5677,10 @@ class PersonPages(BasePage):
                                   self.get_name(person)), inline=True)
 
             # page description
-            msg = _("This map page represents the person and their descendants with "
-                    "all of their event/ places.  If you place your mouse over "
-                    "the marker it will display the place name.  The markers and the Reference "
-                    "list are sorted in date order (if any?).  Clicking on a place&#8217;s "
+            msg = _("This map page represents that person and any descendants with "
+                    "all of their event/ places. If you place your mouse over "
+                    "the marker it will display the place name. The markers and the Reference "
+                    "list are sorted in date order (if any?). Clicking on a place&#8217;s "
                     "name in the Reference section will take you to that place&#8217;s page.") 
             mapdetail += Html("p", msg, id = "description")
 
@@ -8112,8 +8112,8 @@ class NavWebOptions(MenuReportOptions):
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
         self.__create_thumbs_only = BooleanOption(_("Create and only use thumbnail- sized images"), False)
-        self.__create_thumbs_only.set_help(_("This option allows you the choice to not create any full- sized "
-            "images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much "
+        self.__create_thumbs_only.set_help(_("This option allows you to create only thumbnail images "
+            "instead of the full-sized images on the Media Page. This will allow you to have a much "
             "smaller total upload size to your web hosting site."))
         addopt("create_thumbs_only", self.__create_thumbs_only)
         self.__create_thumbs_only.connect("value-changed", self.__gallery_changed)
