@@ -31,6 +31,7 @@ Image manipulation routines.
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 import tempfile
 
 #-------------------------------------------------------------------------
@@ -78,7 +79,10 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
         end_x = int((crop[2]/100.0)*img.get_width())
         end_y = int((crop[3]/100.0)*img.get_height())
 
-        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        if sys.version_info[0] < 3:
+            img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        else:
+            img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
@@ -209,8 +213,11 @@ def resize_to_buffer(source, size, crop=None):
         end_x = int((crop[2]/100.0)*img.get_width())
         end_y = int((crop[3]/100.0)*img.get_height())
 
-        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
-
+        if sys.version_info[0] < 3:
+            img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        else:
+            img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+            
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
     (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
@@ -249,7 +256,10 @@ def resize_to_jpeg_buffer(source, size, crop=None):
         end_x = int((crop[2]/100.0)*img.get_width())
         end_y = int((crop[3]/100.0)*img.get_height())
 
-        img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        if sys.version_info[0] < 3:
+            img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        else:
+            img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
@@ -267,4 +277,3 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     except:
         pass
     return data
-
