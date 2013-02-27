@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 14:29+0100\n"
-"PO-Revision-Date: 2013-02-27 14:37+0100\n"
+"POT-Creation-Date: 2013-02-27 15:30+0100\n"
+"PO-Revision-Date: 2013-02-27 15:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -7970,7 +7970,7 @@ msgstr "Éditer la référence"
 # trunk
 #: ../gramps/gui/editors/displaytabs/backreflist.py:170
 msgid ""
-"Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editor on the same source. \n"
+"Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editors on the same source. \n"
 "\n"
 "To edit the citation, close the source editor and open an editor for the citation alone"
 msgstr ""
@@ -26507,7 +26507,7 @@ msgstr "Suivi de %s"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:5680
-msgid "This map page represents the person and their descendants with all of their event/ places.  If you place your mouse over the marker it will display the place name.  The markers and the Reference list are sorted in date order (if any?).  Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
+msgid "This map page represents that person and any descendants with all of their event/ places. If you place your mouse over the marker it will display the place name. The markers and the Reference list are sorted in date order (if any?). Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
 msgstr "Cette page carte représente l'individu et ses descendants avec leurs événements / lieux. Si vous passez le curseur de votre souris au-dessus du marqueur vous obtiendrez le nom du lieu. Les marqueurs et la liste de référence sont triés par date (si elle existe). Cliquez sur le nom du lieu dans la section référence pour accéder la page du lieu."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5732
@@ -26885,8 +26885,8 @@ msgstr "Créer et utiliser uniquement les aperçus des images"
 
 # trunk
 #: ../gramps/plugins/webreport/narrativeweb.py:8115
-msgid "This option allows you the choice to not create any full- sized images as in the Media Page, and only a thumb- sized images.  This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr "Cette option vous permet de choisir de créer des images en taille réelle dans la page Media, ou uniquement des aperçus de ces images. Ceci vous permettra d'obtenir une archive plus petite à envoyer sur votre site internet hébergé."
+msgid "This option allows you to create only thumbnail images instead of the full-sized images on the Media Page. This will allow you to have a much smaller total upload size to your web hosting site."
+msgstr "Cette option vous permet de choisir de créer uniquement un aperçu de l'image plutôt qu'en taille réelle dans la page Media. Ceci vous permettra d'obtenir une archive plus petite à envoyer sur votre site internet hébergé."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8121
 msgid "Max width of initial image"
