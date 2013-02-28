@@ -408,7 +408,7 @@ class GrampsLocale(object):
         Get a translator for an addon.
 
         filename - filename of a file in directory with full path, or
-                   None to get from running code
+                   None to get from self.
         domain   - the name of the .mo file under the LANG/LC_MESSAGES dir
         languages - a list of languages to force
         returns  - a gettext.translation object
@@ -420,20 +420,11 @@ class GrampsLocale(object):
         Assumes path/filename
             path/locale/LANG/LC_MESSAGES/addon.mo.
         """
-        path = self.localedir
-        # If get the path of the calling module's uncompiled file. This seems a remarkably bad idea.
-#        if filename is None:
-#            filename = sys._getframe(1).f_code.co_filename
-
         gramps_translator = self._get_translation()
 
-        path = os.path.dirname(os.path.abspath(filename))
-    # Check if path is of type str. Do import and conversion if so.
-    # The import cannot be done at the top as that will conflict with the translation system.
-
-        if not isinstance(path, UNITYPE) == str:
-            from .file import get_unicode_path_from_env_var
-        path = get_unicode_path_from_env_var(path)
+        path = self.localedir
+        if filename:
+            path = os.path.join(os.path.dirname(os.path.abspath(filename)), "locale")
         if languages:
             addon_translator = self._get_translation(domain,
                                                      path,
