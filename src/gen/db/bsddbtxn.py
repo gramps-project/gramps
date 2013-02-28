@@ -197,8 +197,8 @@ if __name__ == "__main__":
     x = db.DBEnv()
     print "3"
     x.open('/tmp', db.DB_CREATE | db.DB_PRIVATE |\
-                         db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
-                         db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD)
+                         db.DB_INIT_MPOOL |\
+                         db.DB_INIT_LOG | db.DB_INIT_TXN)
     print "4"
     d = dbshelve.DBShelf(x)
     print "5"

@@ -185,8 +185,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow.ManagedWindow):
         
         db.disable_signals()
         num_merges = 0
-        with DbTxn(_("Merge Citation"), db) as trans:
-            for handle in db.iter_source_handles():
+        for handle in db.iter_source_handles():
+            with DbTxn(_("Merge Citation"), db) as trans:
                 dict = {}
                 citation_handle_list = list(db.find_backlink_handles(handle))
                 for (class_name, citation_handle) in citation_handle_list:

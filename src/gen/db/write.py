@@ -452,8 +452,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
-                    db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
-                    db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+                    db.DB_INIT_MPOOL |\
+                    db.DB_INIT_LOG | db.DB_INIT_TXN
 
         # As opposed to before, we always try recovery on databases
         env_flags |= db.DB_RECOVER
@@ -1072,11 +1072,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.txn:
             self.transaction_abort(self.transaction)
         self.env.txn_checkpoint()
-
-        lockstats = self.env.lock_stat()
-        _LOG.debug("lock occupancy: %d%%, locked object occupancy: %d%%" % (
-                round(lockstats['maxnlocks']*100/lockstats['maxlocks']),
-                round(lockstats['maxnobjects']*100/lockstats['maxobjects'])))
 
         self.__close_metadata()
         self.name_group.close()
@@ -1964,8 +1959,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
-                    db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
-                    db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+                    db.DB_INIT_MPOOL |\
+                    db.DB_INIT_LOG | db.DB_INIT_TXN
 
         # As opposed to before, we always try recovery on databases
         env_flags |= db.DB_RECOVER
