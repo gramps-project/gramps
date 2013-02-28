@@ -186,7 +186,8 @@ def mac_setup_localization(glocale, lang, language):
                     stdout = subprocess.PIPE).communicate()[0]
             except OSError:
                 pass
-
+        if collation == "root":
+            return None
         return collation
 
     def mac_resolve_locale(loc):
