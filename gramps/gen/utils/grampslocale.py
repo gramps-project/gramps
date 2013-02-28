@@ -233,7 +233,7 @@ class GrampsLocale(object):
             else:
                 self.lang = self._GrampsLocale__first_instance.lang
 
-        self.collation = self.currency = self.calendar = self.lang
+            self.collation = self.currency = self.calendar = self.lang
 
         self.icu_locales = {}
         self.collator = None
