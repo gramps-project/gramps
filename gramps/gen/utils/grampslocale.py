@@ -195,6 +195,11 @@ class GrampsLocale(object):
             os.environ["LANG"] = self.lang
         os.environ["LANGUAGE"] = ':'.join(self.language)
 
+        # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
+        # with locale instead of gettext. Win32 doesn't support bindtextdomain.
+        if not win():
+            locale.bindtextdomain(self.localedomain, self.localedir)
+
         self.initialized = True
 
 
