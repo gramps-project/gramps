@@ -217,7 +217,7 @@ LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
 # Init Localization
 #
 #-------------------------------------------------------------------------
-from .utils.grampslocale import GrampsLocale
+from gramps.gen.utils.grampslocale import GrampsLocale
 GRAMPS_LOCALE = GrampsLocale()
 _ = GRAMPS_LOCALE.get_translation().sgettext
 
