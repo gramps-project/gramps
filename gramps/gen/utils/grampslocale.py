@@ -527,15 +527,21 @@ class GrampsLocale(object):
             #ICU can digest strings and unicode
             return self.collator.getCollationKey(string).getByteArray()
         else:
-            base_locale = locale.getlocale(locale.LC_COLLATE)
-            locale.setlocale(locale.LC_COLLATE, self.collation)
+            try:
+                base_locale = locale.getlocale(locale.LC_COLLATE)
+                locale.setlocale(locale.LC_COLLATE, self.collation)
             #locale in Python2 can't.
-            if sys.version_info[0] < 3 and isinstance(string, unicode):
-                key = locale.strxfrm(string.encode("utf-8", "replace"))
-            else:
-                key = locale.strxfrm(string)
+                if sys.version_info[0] < 3 and isinstance(string, unicode):
+                    key = locale.strxfrm(string.encode("utf-8", "replace"))
+                else:
+                    key = locale.strxfrm(string)
 
-            locale.setlocale(locale.LC_COLLATE, base_locale)
+                locale.setlocale(locale.LC_COLLATE, base_locale)
+            except Exception as err:
+                LOG.warn("Failed to obtain key for %s because %s",
+                         self.collation, str(err))
+                return string
+
             return key
 
     def strcoll(self, string1, string2):
