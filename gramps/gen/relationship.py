@@ -1814,8 +1814,7 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            LOG.debug(_("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % lang)
+            LOG.warning(_("Family relationship translator not available for language '%s'. Using 'english' instead.") % lang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
