@@ -148,8 +148,8 @@ class CLIDbManager(object):
         from gramps.gen.db import META, PERSON_TBL
         env = db.DBEnv()
         flags = db.DB_CREATE | db.DB_PRIVATE |\
-            db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
-            db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+            db.DB_INIT_MPOOL |\
+            db.DB_INIT_LOG | db.DB_INIT_TXN
         try:
             env.open(file_name, flags)
         except:
