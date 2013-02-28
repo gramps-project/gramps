@@ -395,6 +395,10 @@ if available:
             gramplet_title = _("Image Metadata"),
             navtypes=["Media"],
             )
+else:
+    import logging
+    logging.warning(_("WARNING: GExiv2 module not loaded.  "
+                      "Image metadata functionality will not be available."))    
 
 register(GRAMPLET, 
          id="Person Residence", 
