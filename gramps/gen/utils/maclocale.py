@@ -262,7 +262,8 @@ def mac_setup_localization(glocale, lang, language):
 
     glocale.language = language
 
-    if currency and "LC_MONETARY" not in os.environ:
+    if (currency and "LC_MONETARY" not in os.environ
+        and "LANG" not in os.environment):
         glocale.currency = currency
         os.environ["LC_MONETARY"] = currency
     elif "LC_MONETARY" in os.environ:
@@ -270,7 +271,8 @@ def mac_setup_localization(glocale, lang, language):
     else:
         glocale.currency = lang
 
-    if calendar and "LC_TIME" not in os.environ:
+    if (calendar and "LC_TIME" not in os.environ
+        and "LANG" not in os.environ):
         glocale.calendar = calendar
         os.environ["LC_TIME"] = calendar
     elif "LC_TIME" in os.environ:
@@ -278,7 +280,8 @@ def mac_setup_localization(glocale, lang, language):
     else:
         glocale.calendar = lang
 
-    if collation and "LC_COLLATION" not in os.environ:
+    if (collation and "LC_COLLATION" not in os.environ
+        and "LANG" not in os.environ):
         glocale.collation = collation
         os.environ["LC_COLLATION"] = calendar
     elif "LC_COLLATION" in os.environ:
