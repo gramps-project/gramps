@@ -1136,7 +1136,9 @@ class GrampletPane(Gtk.ScrolledWindow):
             cp = configparser.ConfigParser()
             try:
                 cp.read(filename)
-            except:
+            except Exception as err:
+                LOG.warning("Failed to load gramplets from %s because %s",
+                            filename, str(err))
                 return [None]
             for sec in cp.sections():
                 if sec == "Gramplet View Options":
@@ -1184,7 +1186,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         fp.write(";; Gramps gramplets file\n")
         fp.write(";; Automatically created at %s" %
                                  time.strftime("%Y/%m/%d %H:%M:%S\n\n"))
-        fp.write("[Gramplet View Options\n]")
+        fp.write("[Gramplet View Options]\n")
         fp.write("column_count=%d\n" % self.column_count)
         fp.write("pane_position=%d\n" % self.pane_position)
         fp.write("pane_orientation=%s\n\n" % self.pane_orientation)
