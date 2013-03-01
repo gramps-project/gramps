@@ -24,8 +24,15 @@
 Class handling language-specific selection for date parser and displayer.
 """
 
-from __future__ import print_function
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
 
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
 # import prerequisites for localized handlers
 from ._datehandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
                           register_datehandler)
@@ -59,7 +66,7 @@ try:
     else:
         parser = LANG_TO_PARSER[LANG_SHORT]()
 except:
-    print("Date parser for", LANG, "not available, using default")
+    logging.warning(_("Date parser for '%s' not available, using default") % LANG)
     parser = LANG_TO_PARSER["C"]()
 
 # Initialize global displayer
@@ -75,7 +82,7 @@ try:
     else:
         displayer = LANG_TO_DISPLAY[LANG_SHORT](val)
 except:
-    print("Date displayer for", LANG, "not available, using default")
+    logging.warning(_("Date displayer for '%s' not available, using default") % LANG)
     displayer = LANG_TO_DISPLAY["C"](val)
 
 
