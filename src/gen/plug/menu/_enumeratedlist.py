@@ -33,6 +33,13 @@ from gen.plug.menu import Option
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+
+#-------------------------------------------------------------------------
+#
 # EnumeratedListOption class
 #
 #-------------------------------------------------------------------------
@@ -113,5 +120,5 @@ class EnumeratedListOption(Option):
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)
         else:
-            print "Value '%s' not found for option '%s'" % (str(value),
-                                                            self.get_label())
+            logging.warning(_("Value '%(val)s' not found for option '%(opt)s'") %
+                             {'val' : str(value), 'opt' : self.get_label()})

@@ -23,6 +23,12 @@
 """
 Class handling language-specific selection for date parser and displayer.
 """
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
 
 # import prerequisites for localized handlers
 from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
@@ -57,7 +63,7 @@ try:
     else:
         parser = LANG_TO_PARSER[LANG_SHORT]()
 except:
-    print "Date parser for", LANG, "not available, using default"
+    logging.warning(_("Date parser for '%s' not available, using default") % LANG)
     parser = LANG_TO_PARSER["C"]()
 
 # Initialize global displayer
@@ -73,7 +79,7 @@ try:
     else:
         displayer = LANG_TO_DISPLAY[LANG_SHORT](val)
 except:
-    print "Date displayer for", LANG, "not available, using default"
+    logging.warning(_("Date displayer for '%s' not available, using default") % LANG)
     displayer = LANG_TO_DISPLAY["C"](val)
 
 
