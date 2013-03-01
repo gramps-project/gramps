@@ -32,6 +32,15 @@ Option class representing an enumerated list of possible values.
 from __future__ import print_function
 
 from . import Option
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().sgettext
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -115,5 +124,5 @@ class EnumeratedListOption(Option):
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)
         else:
-            print("Value '%s' not found for option '%s'" % (str(value),
-                                                            self.get_label()))
+            logging.warning(_("Value '%(val)s' not found for option '%(opt)s'") %
+                             {'val' : str(value), 'opt' : self.get_label()})
