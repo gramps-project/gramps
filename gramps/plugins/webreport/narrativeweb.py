@@ -79,7 +79,7 @@ except ImportError:
     from md5 import md5
 import time, datetime
 import shutil
-import io
+import codecs
 import tarfile
 import tempfile
 if sys.version_info[0] < 3:
@@ -147,12 +147,7 @@ from gramps.gui.pluginmanager import GuiPluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
 
-# FIXME: This could be glocale.get_translation().language(), except that at the
-# moment, (1) that gives an empty string when LANG is set to something like
-# "sk_SK.UTF-8", and (2) it should be a language specific to collation, not just
-# the language for translation.
-import locale
-COLLATE_LANG = locale.getlocale()[0]
+COLLATE_LANG = glocale.collation
 SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # Everything below this point is identical for gramps34 (post 3.4.2), gramps40 and trunk
@@ -3093,12 +3088,11 @@ class FamilyPages(BasePage):
                         pers_fam_dict[spouse_handle].append(family)
             
             # add alphabet navigation
-            menu_set = get_first_letters(self.dbase_, pers_fam_dict.keys(),
-                                         _KEYPERSON) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            index_list = get_first_letters(self.dbase_, pers_fam_dict.keys(),
+                                           _KEYPERSON) 
+            alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
                 relationlist += alpha_nav
-            ltrs_displayed = {}
 
             # begin families table and table head
             with Html("table", class_ ="infolist relationships") as table:
@@ -3127,10 +3121,11 @@ class FamilyPages(BasePage):
 
                 # begin displaying index list
                 ppl_handle_list = sort_people(self.dbase_, pers_fam_dict.keys())
+                first = True
                 for (surname, handle_list) in ppl_handle_list:
 
-                    if surname:      
-                        letter = first_letter(surname)
+                    if surname and not surname.isspace():      
+                        letter = get_index_letter(first_letter(surname), index_list)
                     else:
                         letter ='&nbsp;'
 
@@ -3147,11 +3142,12 @@ class FamilyPages(BasePage):
                                 tcell = Html("td", class_="ColumnRowLabel")
                                 trow += tcell
                                 
-                                if letter not in ltrs_displayed:
-                                    trow.attr = 'class="BginLetter"'
+                                if first or primary_difference(letter, prev_letter):
+                                    first = False
+                                    prev_letter = letter
+                                    trow.attr = 'class="BeginLetter"'
                                     tcell += Html("a", letter, name=letter,
-                                                  title ="Families beginning with letter " + letter, inline =True)
-                                    ltrs_displayed[letter] = True
+                                                  title =_("Families beginning with letter ") + letter, inline =True)
                                 else:
                                     tcell += '&nbsp;'
                                 
@@ -3356,8 +3352,8 @@ class PlacePages(BasePage):
             placelist += Html("p", msg, id = "description")
 
             # begin alphabet navigation
-            menu_set = get_first_letters(self.dbase_, place_handles, _KEYPLACE) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            index_list = get_first_letters(self.dbase_, place_handles, _KEYPLACE) 
+            alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
                 placelist += alpha_nav
 
@@ -3383,9 +3379,9 @@ class PlacePages(BasePage):
                         [_("Longitude"),         "ColumnLongitude"] ]
                 )
 
-                sort = Sort(self.dbase_)
-                handle_list = sorted(place_handles, key = sort.by_place_title_key)
-                last_letter = ''
+                handle_list = sorted(place_handles,
+                                     key=lambda x: SORT_KEY(self.dbase_.get_place_from_handle(x).title))
+                first = True
 
                 # begin table body
                 tbody = Html("tbody")
@@ -3397,8 +3393,9 @@ class PlacePages(BasePage):
                         place_title = place.get_title()
                         ml = place.get_main_location()
 
-                        if place_title:  
-                            letter = first_letter(place_title)
+                        if place_title and not place_title.isspace():  
+                            letter = get_index_letter(first_letter(place_title),
+                                                      index_list)
                         else:
                             letter = '&nbsp;' 
 
@@ -3407,12 +3404,14 @@ class PlacePages(BasePage):
 
                         tcell = Html("td", class_ = "ColumnLetter", inline = True)
                         trow += tcell
-                        if letter != last_letter:
-                            last_letter = letter
+                        if first or primary_difference(letter, prev_letter):
+                            first = False
+                            prev_letter = letter
                             trow.attr = 'class = "BeginLetter"'
 
-                            tcell += Html("a", last_letter, name =last_letter, 
-                                title = _("Places with letter %s" % last_letter))
+                            tcell += Html(
+                                "a", letter, name =letter, 
+                                title = _("Places beginning with letter %s") % letter)
                         else:
                             tcell += "&nbsp;"
 
@@ -3641,8 +3640,8 @@ class EventPages(BasePage):
             eventlist += Html("p", msg, id = "description")
 
             # get alphabet navigation...
-            menu_set = get_first_letters(self.dbase_, event_types, _ALPHAEVENT)
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            index_list = get_first_letters(self.dbase_, event_types, _ALPHAEVENT)
+            alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
                 eventlist += alpha_nav
 
@@ -3670,10 +3669,9 @@ class EventPages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                prev_letter = ""
                 # separate events by their type and then thier event handles
                 for (evt_type, data_list) in sort_event_types(self.dbase_, event_types, event_handle_list):
-                    first_letter = True
+                    first = True
                     _EVENT_DISPLAYED = []
 
                     # sort datalist by date of event and by event handle...
@@ -3704,16 +3702,20 @@ class EventPages(BasePage):
                                 tcell = Html("td", class_ = "ColumnLetter", inline = True)
                                 trow += tcell
 
-                                if evt_type:
-                                    ltr = cuni(evt_type)[0].capitalize()
+                                if evt_type and not evt_type.isspace():
+                                    letter = get_index_letter(
+                                            cuni(evt_type)[0].capitalize(),
+                                            index_list)
                                 else:
-                                    ltr = "&nbsp;"
+                                    letter = "&nbsp;"
 
-                                if ltr != prev_letter:
+                                if first or primary_difference(letter, prev_letter):
+                                    first = False
+                                    prev_letter = letter
                                     trow.attr = 'class = "BeginLetter BeginType"'
-                                    tcell += Html("a", ltr, name = ltr, id_ = ltr,
-                                        title = _("Event types beginning with letter " + ltr), inline = True)
-                                    prev_letter = ltr
+                                    tcell += Html(
+                                        "a", letter, name = letter, id_ = letter,
+                                        title = _("Event types beginning with letter %s") % letter, inline = True)
                                 else:
                                     tcell += "&nbsp;" 
   
@@ -3928,8 +3930,8 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                menu_set = get_first_letters(self.dbase_, ppl_handle_list, _KEYPERSON)
-                alpha_nav, menu_set = alphabet_navigation(menu_set)
+                index_list = get_first_letters(self.dbase_, ppl_handle_list, _KEYPERSON)
+                alpha_nav = alphabet_navigation(index_list)
                 if alpha_nav is not None:
                     surnamelist += alpha_nav
 
@@ -3979,14 +3981,18 @@ class SurnameListPage(BasePage):
                         ppl_handle_list = (temp_list[key]
                             for key in sorted(temp_list, key = SORT_KEY))
 
-                    last_letter = ''
-                    last_surname = ''
+                    first = True
+                    first_surname = True
 
                     for (surname, data_list) in ppl_handle_list:
-                        letter = first_letter(surname)
-                        if letter == ' ':
-                            # if surname is an empty string, then first_letter
-                            # returns a space
+                        
+                        if surname and not surname.isspace():
+                            letter = first_letter(surname)
+                            if order_by == self.ORDER_BY_NAME:
+                                # There will only be an alphabetic index list if
+                                # the ORDER_BY_NAME page is being generated
+                                letter = get_index_letter(letter, index_list)
+                        else:
                             letter = '&nbsp;'
                             surname = _ABSENT
 
@@ -3996,19 +4002,18 @@ class SurnameListPage(BasePage):
                         tcell = Html("td", class_ = "ColumnLetter", inline = True)
                         trow += tcell
 
-                        if letter != last_letter:
-                            last_letter = letter
+                        if first or primary_difference(letter, prev_letter):
+                            first = False
+                            prev_letter = letter
                             trow.attr = 'class = "BeginLetter"'
-
-                            hyper = Html("a", last_letter, name = last_letter, 
-                                    title = "Surnames with letter " + last_letter, inline = True)
+                            hyper = Html(
+                                    "a", letter, name = letter, 
+                                    title = _("Surnames beginning with letter %s") % letter, inline = True)
                             tcell += hyper
-
-                        elif surname != last_surname:
+                        elif first_surname or surname != prev_surname:
+                            first_surname = False
                             tcell += "&nbsp;"
-
-                                
-                            last_surname = surname
+                            prev_surname = surname
 
                         trow += Html("td", self.surname_link(name_to_md5(surname), html_escape(surname)), 
                                     class_ = "ColumnSurname", inline = True)
@@ -4364,9 +4369,8 @@ class MediaPages(BasePage):
                                   _("Creating media pages"), 
                                   len(self.report.obj_dict[MediaObject]) + 1)
         
-        sort = Sort(self.report.database)
         sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
-                                      key=sort.by_media_title_key)
+                                      key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
         self.MediaListPage(self.report, title, sorted_media_handles)
 
         prev = None
@@ -4588,7 +4592,7 @@ class MediaPages(BasePage):
                                     os.close(filed)
                                     self.report.archive.add(dest, initial_image_path)
                                 else:
-                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'wb')
+                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'w')
                                     filed.write(initial_image_data)
                                     filed.close()
                             else:
@@ -4775,9 +4779,8 @@ class ThumbnailPreviewPage(BasePage):
         BasePage.__init__(self, report, title)
         self.create_thumbs_only = report.options['create_thumbs_only']
 
-        sort = Sort(self.dbase_)
         self.photo_keys = sorted(self.report.obj_dict[MediaObject],
-                                 key=sort.by_media_title_key)
+                                 key=lambda x: SORT_KEY(self.dbase_.get_object_from_handle(x).desc))
         if not self.photo_keys:
             return
 
@@ -4793,7 +4796,7 @@ class ThumbnailPreviewPage(BasePage):
 
         if not media_list:
             return
-        media_list.sort()
+        media_list.sort(key=lambda x: SORT_KEY(x[0]))
 
         # reate thumbnail preview page...
         of, sio = self.report.create_file("thumbnails")
@@ -5201,8 +5204,8 @@ class PersonPages(BasePage):
             individuallist += Html("p", msg, id = "description")
 
             # add alphabet navigation
-            menu_set = get_first_letters(self.dbase_, ppl_handle_list, _KEYPERSON) 
-            alpha_nav, menu_set = alphabet_navigation(menu_set)
+            index_list = get_first_letters(self.dbase_, ppl_handle_list, _KEYPERSON) 
+            alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
                 individuallist += alpha_nav
 
@@ -5235,16 +5238,16 @@ class PersonPages(BasePage):
             table += tbody
 
             ppl_handle_list = sort_people(self.dbase_, ppl_handle_list)
-            letter = "!"
+            first = True
             for (surname, handle_list) in ppl_handle_list:
-                first = True
-                prev_letter = letter
-                letter = first_letter(surname)
-                if letter == ' ':
-                    # if surname is an empty string, then first_letter
-                    # returns a space
-                    letter = '&nbsp;'
+                
+                if surname and not surname.isspace():
+                    letter = get_index_letter(first_letter(surname), index_list)
+                else:
+                    letter = '&nbsp'
                     surname = _ABSENT
+                
+                first_surname = True
                 for person_handle in handle_list:
                     person = self.dbase_.get_person_from_handle(person_handle)
 
@@ -5253,22 +5256,24 @@ class PersonPages(BasePage):
                     tbody += trow
                     tcell = Html("td", class_ = "ColumnSurname", inline = True)
                     trow += tcell
-                    if first:
+                    
+                    if first or primary_difference(letter, prev_letter):
+                        first = False
+                        first_surname = False
+                        prev_letter = letter
                         trow.attr = 'class = "BeginSurname"'
-                        if surname:
-                            if letter != prev_letter:
-                                tcell += Html("a", html_escape(surname), name = letter,
-                                    id_ = letter,
-                                    title = "Surname with letter " + letter)
-                            else:
-                                tcell += Html("a", html_escape(surname),
-                                    title = "Surname with letter " + letter)
-                        else:
-                            tcell += "&nbsp;"
+                        tcell += Html(
+                            "a", html_escape(surname), name = letter,
+                            id_ = letter,
+                            title = _("Surnames %(surname)s beginning with letter %(letter)s") %
+                                    {'surname' : surname, 'letter' : letter})
+                    elif first_surname:
+                        first_surname = False 
+                        tcell += Html("a", html_escape(surname),
+                                      title = "Surnames " + surname)
                     else:
                         tcell += "&nbsp;"
-                    first = False
-
+                            
                     # firstname column
                     link = self.new_person_link(person_handle, person=person,
                                                  name_style=_NAME_STYLE_FIRST)
@@ -7826,9 +7831,14 @@ class NavWebReport(Report):
         else:
             self.cur_fname = fname + ext
         if self.archive:
-            string_io = StringIO()
-            of = io.open(fname, "w", encoding = self.encoding,
-                         errors = 'xmlcharrefreplace')
+            if sys.version_info[0] < 3:
+                string_io = StringIO()
+                of = codecs.EncodedFile(string_io, 'utf-8', self.encoding,
+                                        'xmlcharrefreplace')
+            else:
+                string_io = BytesIO()
+                of = TextIOWrapper(string_io, encoding=self.encoding,
+                                   errors='xmlcharrefreplace')
         else:
             string_io = None
             if subdir:
@@ -7836,9 +7846,22 @@ class NavWebReport(Report):
                 if not os.path.isdir(subdir):
                     os.makedirs(subdir)
             fname = os.path.join(self.html_dir, self.cur_fname)
-            of = io.open(fname, "w", encoding = self.encoding,
-                         errors = 'xmlcharrefreplace')
-
+            if sys.version_info[0] < 3:
+                # In python 2.x, the data written by of.write() is genarally of
+                # type 'str' (i.e. 8-bit strings), except for cases where (at
+                # least) one of the objects being converted by a '%' operator is
+                # unicode (e.g. the "Generated by" line or the _META3 line), in
+                # which case the data being written is of type 'unicode' (See
+                # http://docs.python.org/2/library/stdtypes.html#string-
+                # formatting). The data written to the file is encoded according
+                # to self.encoding
+                of = codecs.EncodedFile(open(fname, 'w'), 'utf-8',
+                                        self.encoding, 'xmlcharrefreplace')
+            else:
+                # In python 3, the data that is written by of.write() is always
+                # of type 'str' (i.e. unicode text).
+                of = open(fname, 'w', encoding=self.encoding,
+                          errors='xmlcharrefreplace')
         return (of, string_io)
 
     def close_file(self, of, string_io):
@@ -8459,6 +8482,10 @@ def sort_people(dbase, handle_list):
             surname = dbase.get_name_group_mapping(
                             _nd.primary_surname(primary_name))
 
+        # Treat people who have no name with those whose name is just
+        # 'whitespace'
+        if surname is None or surname.isspace():
+            surname = ''
         sortnames[person_handle] = _nd.sort_string(primary_name)
         sname_sub[surname].append(person_handle)
 
@@ -8522,66 +8549,86 @@ def __get_place_keyname(dbase, handle):
 
     return ReportUtils.place_name(dbase, handle)  
 
-def first_letter(string):
-    """
-    recieves a string and returns the first letter
-    """
-    if string:
-        letter = normalize('NFKC', cuni(string))[0].upper()
-    else:
-        letter = cuni(' ')
-    # See : http://www.gramps-project.org/bugs/view.php?id = 2933
-    lang_country = glocale.get_translation().language()
-    if lang_country == "sv" and (letter == cuni('W') or letter == cuni('V')):
-        letter = 'V,W'
-    # See : http://www.gramps-project.org/bugs/view.php?id = 4423
-    elif (lang_country == "cs" or lang_country == "sk") and letter == cuni('C') and len(string) > 1:
-        second_letter = normalize('NFKC', str(string))[1].upper()
-        if second_letter == cuni('H'):
-            letter += cuni('h')
-    elif lang_country == "sk" and letter == cuni('D') and len(string) > 1:
-        second_letter = normalize('NFKC', cuni(string))[1].upper()
-        if second_letter == cuni('Z'):
-            letter += cuni('z')
-        elif second_letter == cuni('Ž'):
-            letter += cuni('ž')
-    return letter
+# See : http://www.gramps-project.org/bugs/view.php?id = 4423
 
-def get_first_letters(dbase, menu_set, key):
-    """
-    get the first letters of the menu_set
+# Contraction data taken from CLDR 22.1. Only the default variant is considered.
+# The languages included below are, by no means, all the langauges that have
+# contractions - just a sample of langauges that have been supported
 
-    @param: menu_set = one of a handle list for either person or place handles 
-        or an evt types list
-    @param: key = either a person, place, or event type
-    """
- 
-    first_letters = []
+# At the time of writing (Feb 2013), the following langauges have greater that
+# 50% coverage of translation of Gramps: bg Bulgarian, ca Catalan, cs Czech, da
+# Danish, de German, el Greek, en_GB, es Spanish, fi Finish, fr French, he
+# Hebrew, hr Croation, hu Hungarian, it Italian, ja Japanese, lt Lithuanian, nb
+# Noregian Bokmål, nn Norwegian Nynorsk, nl Dutch, pl Polish, pt_BR Portuguese
+# (Brazil), pt_P Portugeuse (Portugal), ru Russian, sk Slovak, sl Slovenian, sv
+# Swedish, vi Vietnamese, zh_CN Chinese.
 
-    for menu_item in menu_set:
-        if key == _KEYPERSON:
-            keyname = __get_person_keyname(dbase, menu_item)
+# Key is the language (or language and country), Value is a list of
+# contractions. Each contraction consists of a tuple. First element of the
+# tuple is the list of characters, second element is the string to use as the
+# index entry.
 
-        elif key == _KEYPLACE:
-            keyname = __get_place_keyname(dbase, menu_item)
+# The DUCET contractions (e.g. LATIN CAPIAL LETTER L, MIDDLE DOT) are ignored,
+# as are the supresscontractions in some locales.
 
-        else:
-            keyname = menu_item
-        ltr = first_letter(keyname)
+contractions_dict = {
+    # bg Bulgarian validSubLocales="bg_BG" no contractions
+    # ca Catalan validSubLocales="ca_AD ca_ES"
+    "ca" : [((cuni("l·"), cuni("L·")), cuni("L"))],
+    # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
+    "cs" : [((cuni("ch"), cuni("cH"), cuni("Ch"), cuni("CH")), cuni("Ch"))],
+    # Danish validSubLocales="da_DK" Danish_Denmark
+    "da" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
+    # contractions in standard collation.
+    # el Greek validSubLocales="el_CY el_GR" no contractions.
+    # es Spanish validSubLocales="es_419 es_AR es_BO es_CL es_CO es_CR es_CU
+    # es_DO es_EA es_EC es_ES es_GQ es_GT es_HN es_IC es_MX es_NI es_PA es_PE
+    # es_PH es_PR es_PY es_SV es_US es_UY es_VE" no contractions in standard
+    # collation.
+    # fi Finish validSubLocales="fi_FI" no contractions in default (phonebook)
+    # collation.
+    # fr French no collation data.
+    # he Hebrew validSubLocales="he_IL" no contractions
+    # hr Croation validSubLocales="hr_BA hr_HR"
+    "hr" : [((cuni("dž"), cuni("Dž")), cuni("dž")),
+            ((cuni("lj"), cuni("Lj"), cuni('LJ')), cuni("Ǉ")),
+            ((cuni("Nj"), cuni("NJ"), cuni("nj")), cuni("Ǌ"))],
+    # Hungarian hu_HU for two and three character contractions.
+    "hu" : [((cuni("cs"), cuni("Cs"), cuni("CS")), cuni("CS")),
+            ((cuni("dzs"), cuni("Dzs"), cuni("DZS")), cuni("DZS")), # order is important
+            ((cuni("dz"), cuni("Dz"), cuni("DZ")), cuni("DZ")),
+            ((cuni("gy"), cuni("Gy"), cuni("GY")), cuni("GY")),
+            ((cuni("ly"), cuni("Ly"), cuni("LY")), cuni("LY")),
+            ((cuni("ny"), cuni("Ny"), cuni("NY")), cuni("NY")),
+            ((cuni("sz"), cuni("Sz"), cuni("SZ")), cuni("SZ")),
+            ((cuni("ty"), cuni("Ty"), cuni("TY")), cuni("TY")),
+            ((cuni("zs"), cuni("Zs"), cuni("ZS")), cuni("ZS"))
+           ],
+    # it Italian no collation data.
+    # ja Japanese unable to process the data as it is too complex.
+    # lt Lithuanian no contractions.
+    # Norwegian Bokmål
+    "nb" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    # nn Norwegian Nynorsk validSubLocales="nn_NO"
+    "nn" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    # nl Dutch no collation data.
+    # pl Polish validSubLocales="pl_PL" no contractions
+    # pt Portuguese no collation data.
+    # ru Russian validSubLocales="ru_BY ru_KG ru_KZ ru_MD ru_RU ru_UA" no
+    # contractions
+    # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
+    # having DZ in Slovak as a contraction was rejected in
+    # http://unicode.org/cldr/trac/ticket/2968
+    "sk" : [((cuni("ch"), cuni("cH"), cuni("Ch"), cuni("CH")), cuni("Ch"))],
+    # sl Slovenian validSubLocales="sl_SI" no contractions
+    # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
+    # "reformed" no contractions.
+    # vi Vietnamese validSubLocales="vi_VN" no contractions.
+    # zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
+    # in Latin characters the others are too complex.
+                    }
 
-        first_letters.append(ltr)
-
-    # return menu set letters for alphabet_navigation
-    return first_letters
-
-def alphabet_navigation(menu_set):
-    """
-    Will create the alphabet navigation bar for classes IndividualListPage,
-    SurnameListPage, PlaceListPage, and EventList
-
-    @param: menu_set -- a dictionary of either letters or words
-    """
-    sorted_set = defaultdict(int)
     # The comment below from the glibc locale sv_SE in
     # localedata/locales/sv_SE :
     #
@@ -8594,9 +8641,133 @@ def alphabet_navigation(menu_set):
     #
     # See : http://www.gramps-project.org/bugs/view.php?id = 2933
     #
-    lang_country = glocale.get_translation().language()
 
-    for menu_item in menu_set:
+# HOWEVER: the characters V and W in Swedish are not considered as a special
+# case for several reasons. (1) The default collation for Swedish (called the
+# 'reformed' collation type) regards the difference between 'v' and 'w' as a
+# primary difference. (2) 'v' and 'w' in the 'standard' (non-default) collation
+# type are not a contraction, just a case where the difference is secondary
+# rather than primary. (3) There are plenty of other languages where a
+# difference that is primary in other languages is secondary, and those are not
+# specially handled.
+
+def first_letter(string):
+    """
+    recieves a string and returns the first letter
+    """
+    if string is None or len(string) < 1:
+        return cuni(' ')
+    
+    norm_unicode = normalize('NFKC', cuni(string))
+    contractions = contractions_dict.get(COLLATE_LANG)
+    if contractions == None:
+        contractions = contractions_dict.get(COLLATE_LANG.split("_")[0])
+        
+    if contractions is not None:
+        for contraction in contractions:
+            count = len(contraction[0][0])
+            if len(norm_unicode) >= count and \
+               norm_unicode[:count] in contraction[0]:
+                return contraction[1]
+
+    # no special case
+    return norm_unicode[0].upper()
+
+try:
+    import PyICU
+    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
+    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
+    
+    def primary_difference(prev_key, new_key):
+        return PRIM_COLL.compare(prev_key, new_key) != 0
+        
+except:
+    def primary_difference(prev_key, new_key):
+        # Returns true if there is a primary difference between the two parameters.
+        # See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
+        # letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
+        # true then the letters should be grouped together
+        
+        # The test characters here must not be any that are used in contractions.
+        
+        return SORT_KEY(prev_key + cuni("e")) >= SORT_KEY(new_key + cuni("f")) or\
+            SORT_KEY(new_key + cuni("e")) >= SORT_KEY(prev_key + cuni("f"))
+
+def get_first_letters(dbase, handle_list, key):
+    """
+    get the first letters of the handle_list
+
+    @param: handle_list = one of a handle list for either person or place handles 
+        or an evt types list
+    @param: key = either a person, place, or event type
+    
+    The first letter (or letters if there is a contraction) are extracted from
+    all the objects in the handle list. There may be duplicates, and there may
+    be letters where there is only a secondary or tertiary difference, not a
+    primary difference. The list is sorted in collation order. For each group
+    with secondary or tertiary differences, the first in collation sequence is
+    retained. For example, assume the default collation sequence (DUCET) and
+    names Ånström and Apple. These will sort in the order shown. Å and A have a
+    secondary difference. If the first letter from these names was chosen then
+    the inex entry would be Å. This is not desirable. Instead, the initial
+    letters are extracted (Å and A). These are sorted, which gives A and Å. Then
+    the first of these is used for the index entry.
+    """
+ 
+    index_list = []
+
+    for handle in handle_list:
+        if key == _KEYPERSON:
+            keyname = __get_person_keyname(dbase, handle)
+
+        elif key == _KEYPLACE:
+            keyname = __get_place_keyname(dbase, handle)
+
+        else:
+            keyname = handle
+        ltr = first_letter(keyname)
+
+        index_list.append(ltr)
+
+    # Now remove letters where there is not a primary difference
+    index_list.sort(key=SORT_KEY)
+    first = True
+    for key in index_list[:]:   #iterate over a slice copy of the list
+        if first or primary_difference(prev_index, key):
+            first = False
+            prev_index = key
+        else:
+            index_list.remove(key)
+    
+    # return menu set letters for alphabet_navigation
+    return index_list
+
+def get_index_letter(letter, index_list):
+    """
+    This finds the letter in the index_list that has no primary difference from
+    the letter provided. See the discussion in get_first_letters above.
+    Continuing the example, if letter is Å and index_list is A, then this would
+    return A.
+    """
+    for index in index_list:
+        if not primary_difference(letter, index):
+            return index
+    
+    log.warning("Initial letter '%s' not found in alphabetic navigation list" %
+                letter)
+    log.debug("filtered sorted index list %s" % index_list)
+    return letter
+
+def alphabet_navigation(index_list):
+    """
+    Will create the alphabet navigation bar for classes IndividualListPage,
+    SurnameListPage, PlaceListPage, and EventList
+
+    @param: index_list -- a dictionary of either letters or words
+    """
+    sorted_set = defaultdict(int)
+
+    for menu_item in index_list:
         sorted_set[menu_item] += 1
 
     # remove the number of each occurance of each letter
@@ -8604,7 +8775,7 @@ def alphabet_navigation(menu_set):
 
     # if no letters, return None to its callers
     if not sorted_alpha_index:
-        return None, []
+        return None
 
     num_ltrs = len(sorted_alpha_index)
     num_of_cols = 26
@@ -8620,26 +8791,20 @@ def alphabet_navigation(menu_set):
             cols = 0
             while (cols <= num_of_cols and index < num_ltrs):
                 menu_item = sorted_alpha_index[index]
-
-                if lang_country == "sv" and menu_item == cuni('V'):
-                    hyper = Html("a", "V,W", href = "#V,W", title = "V,W")
-                else:
-                    # adding title to hyperlink menu for screen readers and braille writers
-                    if menu_item == ' ':
-                        menu_item = '&nbsp;'
-                    title_str = _("Alphabet Menu: %s") % menu_item
-                    hyper = Html("a", menu_item, title = title_str, href = "#%s" % menu_item)
-                unordered.extend(
-                    Html("li", hyper, inline = True)
-                )
+                if menu_item == ' ':
+                    menu_item = '&nbsp;'
+                # adding title to hyperlink menu for screen readers and braille writers
+                title_str = _("Alphabet Menu: %s") % menu_item
+                hyper = Html("a", menu_item, title = title_str, href = "#%s" % menu_item)
+                unordered.extend(Html("li", hyper, inline = True))
 
                 index += 1
                 cols += 1
             num_of_rows -= 1
 
             alphabetnavigation += unordered
-    # EventListPage will reuse sorted_alpha_index
-    return alphabetnavigation, sorted_alpha_index
+    
+    return alphabetnavigation
 
 def _has_webpage_extension(url):
     """
