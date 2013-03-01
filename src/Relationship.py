@@ -31,6 +31,13 @@ import os
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -1843,8 +1850,7 @@ def get_relationship_calculator(reinit=False):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            print (("No translation available for language '%s'. " +
-                    "Using 'english' instead.") % enlang)
+            logging.warning(_("Family relationship translator not available for language '%s'. Using 'english' instead.") % enlang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
