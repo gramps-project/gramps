@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-25 16:24+0100\n"
-"PO-Revision-Date: 2013-02-15 09:46+0100\n"
+"PO-Revision-Date: 2013-03-02 14:45+0100\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -24091,12 +24091,12 @@ msgstr "Resultat av händelsejämförelse"
 #: ../gramps/plugins/tool/eventcmp.py:253
 #, python-format
 msgid "%(event_name)s Date"
-msgstr "%(event_name)s datum"
+msgstr "%(event_name)s: datum"
 
 #: ../gramps/plugins/tool/eventcmp.py:257
 #, python-format
 msgid "%(event_name)s Place"
-msgstr "%(event_name)s plats"
+msgstr "%(event_name)s: plats"
 
 #: ../gramps/plugins/tool/eventcmp.py:309
 msgid "Comparing Events"
