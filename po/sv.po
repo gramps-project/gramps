@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-07 15:04+0100\n"
-"PO-Revision-Date: 2013-02-12 16:39+0100\n"
+"PO-Revision-Date: 2013-03-02 14:30+0100\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -21968,13 +21968,13 @@ msgstr "Resultat av händelsejämförelse"
 #: ../src/plugins/tool/EventCmp.py:252
 #, python-format
 msgid "%(event_name)s Date"
-msgstr "%(event_name)s datum"
+msgstr "%(event_name)s: datum"
 
 #. This won't be shown in a tree
 #: ../src/plugins/tool/EventCmp.py:256
 #, python-format
 msgid "%(event_name)s Place"
-msgstr "%(event_name)s plats"
+msgstr "%(event_name)s: plats"
 
 #: ../src/plugins/tool/EventCmp.py:308
 msgid "Comparing Events"
