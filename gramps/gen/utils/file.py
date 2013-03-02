@@ -44,7 +44,7 @@ LOG = logging.getLogger(".gen.utils.file")
 #
 #-------------------------------------------------------------------------
 from ..constfunc import win, mac, cuni, conv_to_unicode, UNITYPE
-from ..const import TEMP_DIR, USER_HOME
+from ..const import TEMP_DIR, USER_HOME, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
