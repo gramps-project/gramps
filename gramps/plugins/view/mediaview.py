@@ -184,17 +184,17 @@ class MediaView(ListView):
         if not sel_data:
             return
         #modern file managers provide URI_LIST. For Windows split sel_data.data
-        if win():
-            files = sel_data.data.split('\n')
-        else:
-            files =  sel_data.get_uris()
+        files = sel_data.get_uris()
         for file in files:
             clean_string = fix_encoding(
                             file.replace('\0',' ').replace("\r", " ").strip())
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
-                name = cuni(url2pathname(
+                if sys.version_info[0] < 3:
+                    name = cuni(url2pathname(
                                 mfile.encode(glocale.getfilesystemencoding())))
+                else:
+                    name = cuni(url2pathname(mfile))
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
