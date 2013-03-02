@@ -143,8 +143,20 @@ class FilterProxyDb(ProxyDbBase):
         """
         source = self.db.get_source_from_handle(handle)
         # Filter notes out
-
         self.sanitize_notebase(source)
+        
+        media_ref_list = source.get_media_list()
+        for media_ref in media_ref_list:
+            self.sanitize_notebase(media_ref)
+            attributes = media_ref.get_attribute_list()
+            for attribute in attributes:
+                self.sanitize_notebase(attribute)
+        
+        repo_ref_list = source.get_reporef_list()
+        for repo_ref in repo_ref_list:
+            self.sanitize_notebase(repo_ref)
+        
+
         return source
 
     def get_citation_from_handle(self, handle):
@@ -166,6 +178,11 @@ class FilterProxyDb(ProxyDbBase):
         media = self.db.get_object_from_handle(handle)
         # Filter notes out
         self.sanitize_notebase(media)
+        
+        attributes = media.get_attribute_list()
+        for attr in attributes:
+            self.sanitize_notebase(attr)
+
         return media
 
     def get_place_from_handle(self, handle):
@@ -176,6 +193,14 @@ class FilterProxyDb(ProxyDbBase):
         place = self.db.get_place_from_handle(handle)
         # Filter notes out
         self.sanitize_notebase(place)
+        
+        media_ref_list = place.get_media_list()
+        for media_ref in media_ref_list:
+            self.sanitize_notebase(media_ref)
+            attributes = media_ref.get_attribute_list()
+            for attribute in attributes:
+                self.sanitize_notebase(attribute)
+
         return place
 
     def get_event_from_handle(self, handle):
@@ -215,7 +240,33 @@ class FilterProxyDb(ProxyDbBase):
             family.set_child_ref_list(clist)
             
             # Filter notes out
+            for cref in clist:
+                self.sanitize_notebase(cref)
+            
             self.sanitize_notebase(family)
+            
+            attributes = family.get_attribute_list()
+            for attr in attributes:
+                self.sanitize_notebase(attr)
+
+            event_ref_list = family.get_event_ref_list()
+            for event_ref in event_ref_list:
+                self.sanitize_notebase(event_ref)
+                attributes = event_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+                
+            media_ref_list = family.get_media_list()
+            for media_ref in media_ref_list:
+                self.sanitize_notebase(media_ref)
+                attributes = media_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+
+            lds_ord_list = family.get_lds_ord_list()
+            for lds_ord in lds_ord_list:
+                self.sanitize_notebase(lds_ord)
+
             return family
         else:
             return None
@@ -503,3 +554,29 @@ class FilterProxyDb(ProxyDbBase):
                 self.sanitize_notebase(name)
 
             self.sanitize_addressbase(person)
+
+            attributes = person.get_attribute_list()
+            for attr in attributes:
+                self.sanitize_notebase(attr)
+
+            event_ref_list = person.get_event_ref_list()
+            for event_ref in event_ref_list:
+                self.sanitize_notebase(event_ref)
+                attributes = event_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+
+            media_ref_list = person.get_media_list()
+            for media_ref in media_ref_list:
+                self.sanitize_notebase(media_ref)
+                attributes = media_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+
+            lds_ord_list = person.get_lds_ord_list()
+            for lds_ord in lds_ord_list:
+                self.sanitize_notebase(lds_ord)
+
+            person_ref_list = person.get_person_ref_list()
+            for person_ref in person_ref_list:
+                self.sanitize_notebase(person_ref)
