@@ -275,10 +275,14 @@ class GrampsLocale(object):
         if not localedir:
             localedir = self.localedir
 
-        if gettext.find(domain, localedir, languages):
-            return gettext.translation(domain, localedir,
-                                       languages,
-                                       class_ = GrampsTranslations)
+        lang = gettext.find(domain, localedir, languages)
+        if lang:
+            translator = gettext.translation(domain, localedir,
+                                             languages,
+                                             class_ = GrampsTranslations)
+            translator._language = os.path.basename(os.path.dirname(os.path.dirname(lang))).split('.')[0]
+            return translator
+
         else:
             if not languages == ["en"]:
                 LOG.debug("Unable to find translations for %s and %s in %s",
@@ -568,7 +572,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         """
         Return the target languge of this translations object.
         """
-        return self.info()["language"]
+        return self._language
 
     def gettext(self, msgid):
         """
