@@ -278,10 +278,7 @@ def fix_encoding(value, errors='strict'):
         try:
             return cuni(value)
         except:
-            try:
-                info = glocale.get_translation().info()["charset"]
-            except:
-                codeset = "UTF-8"
+            codeset = glocale.encoding
             if sys.version_info[0] < 3:
                 return unicode(value, codeset, errors)
             else:

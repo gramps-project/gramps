@@ -42,13 +42,7 @@ if sys.version_info[0] < 3:
 else:
     #locale returns unicode in python 3
     to_uni = lambda x, y: x
-try:
-    codeset = glocale.get_translation().info()["charset"]
-except KeyError:
-    if win():
-        codeset = locale.getlocale()[1] 
-    else:
-        codeset = "UTF-8"
+codeset = glocale.encoding
 
 try:
 
