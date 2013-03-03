@@ -102,6 +102,9 @@ class GrampsLocale(object):
         return super(GrampsLocale, cls).__new__(cls)
 
     def __init_from_environment(self, lang=None, language=None):
+#First, globally set the locale to what's in the environment:
+        locale.setlocale(locale.LC_ALL, '')
+
         if not lang:
             lang = ' '
             try:
@@ -184,6 +187,20 @@ class GrampsLocale(object):
             maclocale.mac_setup_localization(self, lang, language)
         else:
             self.__init_from_environment(lang, language)
+#A variety of useful functions use the current locale for
+#formatting. Pending global replacement of those functions with ICU
+#equivalents, we need to use setlocale to our chosen default. This
+#unfortunately doesn't work in Windows because it uses different
+#values until VS2012 (which only works on Win8), so while we can set
+#translations and date formats with lang, we can't affect currency or
+#numeric format. Those are fixed by the user's system settings.
+
+        if not win():
+            locale.setlocale(locale.LC_COLLATE, self.collation)
+            locale.setlocale(locale.LC_TIME, self.calendar)
+            locale.setlocale(locale.LC_MONETARY, self.currency)
+#Next, we need to know what is the encoding from the native environment:
+        self.encoding = locale.getlocale()[1]
 
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
