@@ -243,6 +243,11 @@ def write_const_py(command):
         data_dir = os.path.join(share_dir, 'gramps')
         image_dir = os.path.join(share_dir, 'gramps', 'icons', 'hicolor')
         doc_dir = os.path.join(share_dir, 'doc', 'gramps')
+        if sys.platform == 'win32':
+            (share_dir, locale_dir, data_dir, image_dir, doc_dir) = \
+                [path.replace('\\', '\\\\')  for path in 
+                 (share_dir, locale_dir, data_dir, image_dir, doc_dir)]
+
     else:
         #in build
         if 'install' in command.distribution.command_obj:
@@ -253,6 +258,10 @@ def write_const_py(command):
         data_dir = os.path.join(base_dir, 'data')
         image_dir = os.path.join(base_dir, 'images')
         doc_dir = base_dir
+        if sys.platform == 'win32':
+            (locale_dir, data_dir, image_dir, doc_dir) = \
+                [path.replace('\\', '\\\\')  for path in 
+                 (locale_dir, data_dir, image_dir, doc_dir)]
     
     subst_vars = (('@VERSIONSTRING@', VERSION), 
                   ('@LOCALE_DIR@', locale_dir),
