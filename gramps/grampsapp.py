@@ -254,6 +254,19 @@ def show_settings():
     except ImportError:
         gexiv2_str = 'not found'
 
+    try:
+        import PyICU
+        try:
+            pyicu_str = PyICU.VERSION
+            icu_str = PyICU.ICU_VERSION
+        except: # any failure to 'get' the version
+            pyicu_str = 'unknown version'
+            icu_str = 'unknown version'
+
+    except ImportError:
+        pyicu_str = 'not found'
+        icu_str = 'not found'
+
     from .gen.config import config
     usebsddb3 = config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3
     try:
@@ -326,6 +339,8 @@ def show_settings():
     print (' pycairo   : %s' % pycairover_str)
     print (' osmgpsmap : %s' % osmgpsmap_str)
     print (' GExiv2    : %s' % gexiv2_str)
+    print (' ICU       : %s' % icu_str)
+    print (' PyICU     : %s' % pyicu_str)
     print (' o.s.      : %s' % sys.platform)
     if kernel:
         print (' kernel    : %s' % kernel)
