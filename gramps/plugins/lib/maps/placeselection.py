@@ -218,7 +218,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         # circle (rds)
         self.hide_the_region()
         self.selection_layer = self.add_selection_layer()
-        self.selection_layer.add_circle(rds, self.lat, self.lon)
+        self.selection_layer.add_circle(rds/2.0, self.lat, self.lon)
 
     def get_location(self, place):
         """
