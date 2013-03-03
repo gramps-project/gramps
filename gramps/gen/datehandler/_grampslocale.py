@@ -45,7 +45,10 @@ else:
 try:
     codeset = glocale.get_translation().info()["charset"]
 except KeyError:
-    codeset = "UTF-8"
+    if win():
+        codeset = locale.getlocale()[1] 
+    else:
+        codeset = "UTF-8"
 
 try:
 
