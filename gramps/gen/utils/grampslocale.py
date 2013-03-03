@@ -145,6 +145,22 @@ class GrampsLocale(object):
             else:
                 self.collation = os.environ["LC_COLLATE"]
 
+    def _win_bindtextdomain(self, localedomain, localedir):
+        """
+        Help routine for loading and setting up libintl attributes
+        Returns libintl
+        """
+        from ctypes import cdll
+        try:
+            libintl = cdll.LoadLibrary('libintl-8')
+            libintl.bindtextdomain(localedomain,
+                                   localedir.encode(sys.getfilesystemencoding()))
+            libintl.textdomain(localedomain)
+            libintl.bind_textdomain_codeset(localedomain, "UTF-8")
+            print("Set domain %s in %s" % (localedomain, localedir))
+        except WindowsError:
+            LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
+
 
     def __init_first_instance(self, localedir=None, lang=None,
                               domain=None, language=None):
@@ -216,6 +232,8 @@ class GrampsLocale(object):
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if not win():
             locale.bindtextdomain(self.localedomain, self.localedir)
+        else:
+            self._win_bindtextdomain(self.localedomain, self.localedir)
 
         self.initialized = True
 
