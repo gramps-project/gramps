@@ -39,18 +39,12 @@ def get_svn_revision(path=""):
     except:
         return "" # subprocess failed
     # subprocess worked
-    if stdout: # has output
+    if stdout and len(stdout) > 0: # has output
         stdout = cuni(stdout) # get a proper string
-        if (" " in stdout) or (stdout == "exported"): 
-            # one of svnversion's 1.7 non-version responses:
-            # 'Unversioned directory'
-            # 'Unversioned file'
-            # 'Uncommitted local addition, copy or move'
-            # svnversion's 1.6 non-version response:
-            # 'exported'
-            return ""
-        else:
+        if stdout[0].isdigit():
             return "-r" + stdout
+        else:
+            return ""
     else: # no output from svnversion
         return ""
 
