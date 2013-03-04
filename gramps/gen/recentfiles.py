@@ -218,8 +218,11 @@ class RecentParser(object):
     def __init__(self):
         self.recent_files = []
 
-#Python3's expat wants bytes, Python2's wants a string.
+        if not os.path.exists(os.path.expanduser(GRAMPS_FILENAME)):
+            return # it's the first time gramps has ever been run
+
         xml_file = None
+        # Python3's expat wants bytes, Python2's wants a string.
         try:
             if sys.version_info[0] < 3:
                 xml_file = open(os.path.expanduser(GRAMPS_FILENAME), "r")
