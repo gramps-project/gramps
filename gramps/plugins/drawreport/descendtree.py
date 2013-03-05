@@ -1511,7 +1511,7 @@ class DescendTreeOptions(MenuReportOptions):
         disp = TextOption(_("Descendant\nDisplay Format"),
                            ["$n",
                             "%s $b" %_BORN,
-                            "{%s $d}" %_DIED])
+                            "-{%s $d}" %_DIED])
         disp.set_help(_("Display format for a descendant."))
         menu.add_option(category_name, "descend_disp", disp)
 
@@ -1536,7 +1536,7 @@ class DescendTreeOptions(MenuReportOptions):
         sdisp = TextOption(_("Spousal\nDisplay Format"),
                            ["$n",
                             "%s $b" %_BORN,
-                            "{%s $d}" %_DIED])
+                            "-{%s $d}" %_DIED])
         sdisp.set_help(_("Display format for a spouse."))
         menu.add_option(category_name, "spouse_disp", sdisp)
 

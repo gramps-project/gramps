@@ -935,7 +935,7 @@ class AncestorTreeOptions(MenuReportOptions):
         disp = TextOption(_("Father\nDisplay Format"), 
                            ["$n",
                             "%s $b" %_BORN,
-                            "{%s $d}" %_DIED] )
+                            "-{%s $d}" %_DIED] )
         disp.set_help(_("Display format for the fathers box."))
         menu.add_option(category_name, "father_disp", disp)
         
@@ -953,7 +953,7 @@ class AncestorTreeOptions(MenuReportOptions):
                                ["$n",
                                 "%s $b" %_BORN,
                                 "%s $m" %_MARR,
-                                "{%s $d}" %_DIED]
+                                "-{%s $d}" %_DIED]
                             )
         dispMom.set_help(_("Display format for the mothers box."))
         menu.add_option(category_name, "mother_disp", dispMom)
