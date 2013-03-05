@@ -23,11 +23,19 @@
 #
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import sys
+
+#-------------------------------------------------------------------------
+#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GExiv2
+from gramps.gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -172,30 +180,46 @@ class MetadataView(Gtk.TreeView):
         """
         self.sections = {}
         self.model.clear()
-
-        try:
-            metadata = GExiv2.Metadata(full_path)
-        except:
-            return False
+        if (sys.version_info[0] < 3) and win():
+            #May be it's also necessary for lin and sys.version_info[0] < 3
+            #if so, remove 'and win()'
+            #currently it's tested for Win only
+            metadata = GExiv2.Metadata.new()
+            try: 
+                if not metadata.open_path(full_path):
+                    return False
+            except:
+                # may be wrong file name
+                return False
+        else:
+            try:
+                metadata = GExiv2.Metadata(full_path)
+            except:
+                return False
 
         get_human = metadata.get_exif_tag_interpreted_string
 
         for section, key, key2, func in TAGS:
-            if not key in metadata.get_exif_tags():
-                continue
-
-            if func is not None:
-                if key2 is None:
-                    human_value = func(metadata[key])
-                else:
-                    if key2 in metadata.get_exif_tags():
-                        human_value = func(metadata[key], metadata[key2])
-                    else:
-                        human_value = func(metadata[key], None)
-            else:
+            if (sys.version_info[0] < 3) and win():
+                #May be it's also necessary for lin and sys.version_info[0] < 3
+                #if so, remove 'and win()'
+                #currently it's tested for Win only
                 human_value = get_human(key)
-                if key2 in metadata.get_exif_tags():
-                    human_value += ' ' + get_human(key2)
+            else: 
+                if not key in metadata.get_exif_tags():
+                     continue
+                if func is not None:
+                    if key2 is None:
+                        human_value = func(metadata[key])
+                    else:
+                        if key2 in metadata.get_exif_tags():
+                            human_value = func(metadata[key], metadata[key2])
+                        else:
+                            human_value = func(metadata[key], None)
+                else:
+                    human_value = get_human(key)
+                    if key2 in metadata.get_exif_tags():
+                        human_value += ' ' + get_human(key2)
 
             label = metadata.get_exif_tag_label(key)
             node = self.__add_section(section)
