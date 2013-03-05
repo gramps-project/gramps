@@ -272,7 +272,7 @@ plg.require_active = False
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'number_of_ancestors_report'
+plg.id    = 'number_of_ancestors'
 plg.name  = _("Number of Ancestors Report")
 plg.description =  _("Counts number of ancestors of selected person")
 plg.version = '1.0'
