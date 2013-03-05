@@ -102,9 +102,6 @@ class GrampsLocale(object):
         return super(GrampsLocale, cls).__new__(cls)
 
     def __init_from_environment(self, lang=None, language=None):
-#First, globally set the locale to what's in the environment:
-        locale.setlocale(locale.LC_ALL, '')
-
         if not lang:
             lang = ' '
             try:
@@ -165,6 +162,9 @@ class GrampsLocale(object):
     def __init_first_instance(self, localedir=None, lang=None,
                               domain=None, language=None):
 
+#First, globally set the locale to what's in the environment:
+        locale.setlocale(locale.LC_ALL, '')
+
         if localedir and os.path.exists(localedir):
             self.localedir = localedir
         else:
@@ -217,7 +217,6 @@ class GrampsLocale(object):
             locale.setlocale(locale.LC_MONETARY, self.currency)
 #Next, we need to know what is the encoding from the native environment:
         self.encoding = locale.getlocale()[1]
-
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
 #affect locale.getpreferredencoding() or sys.getfilesystemencoding()
