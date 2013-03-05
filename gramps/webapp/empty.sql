@@ -1316,7 +1316,7 @@ INSERT INTO "grampsdb_report" VALUES(8,'R0008','family_group','family_group','re
 INSERT INTO "grampsdb_report" VALUES(9,'R0009','indiv_complete','indiv_complete','report',NULL);
 INSERT INTO "grampsdb_report" VALUES(10,'R0010','kinship_report','kinship_report','report',NULL);
 INSERT INTO "grampsdb_report" VALUES(11,'R0011','tag_report','tag_report','report',NULL);
-INSERT INTO "grampsdb_report" VALUES(12,'R0012','number_of_ancestors_report','number_of_ancestors_report','report',NULL);
+INSERT INTO "grampsdb_report" VALUES(12,'R0012','number_of_ancestors','number_of_ancestors','report',NULL);
 INSERT INTO "grampsdb_report" VALUES(13,'R0013','place_report','place_report','report',NULL);
 INSERT INTO "grampsdb_report" VALUES(14,'R0014','simple_book_title','simple_book_title','report',NULL);
 INSERT INTO "grampsdb_report" VALUES(15,'R0015','summary','summary','report',NULL);

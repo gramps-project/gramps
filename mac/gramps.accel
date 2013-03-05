@@ -47,7 +47,7 @@
  (gtk_accel_path "<Actions>/AllMainWindow/<CONTROL>Delete" "<Meta>Delete")
 ; (gtk_accel_path "<Actions>/FileWindow/Toolbar" "")
  (gtk_accel_path "<Actions>/Place Tree View/ChangeOrder/Add" "<Mod5><Meta>i")
-; (gtk_accel_path "<Actions>/ReportWindow/number_of_ancestors_report" "")
+; (gtk_accel_path "<Actions>/ReportWindow/number_of_ancestors" "")
  (gtk_accel_path "<Actions>/Families/ChangeOrder/Add" "<Mod5><Meta>i")
  (gtk_accel_path "<Actions>/Person View/Bookmark/EditBook" "<Shift><Meta>b")
  (gtk_accel_path "<Actions>/Relationships/Bookmark/AddBook" "<Meta>d")
