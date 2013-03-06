@@ -332,7 +332,6 @@ class HtmlView(NavigationView):
 
     def __init__(self, pdata, dbstate, uistate, title=_('HtmlView')):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
-                                dbstate.db.get_bookmarks(), 
                                 PersonBookmarks,
                                 nav_group=0
                                )
