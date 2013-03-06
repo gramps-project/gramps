@@ -141,6 +141,10 @@ def get_unicode_path_from_env_var(path):
     :rtype:      unicode
     :returns:    The Unicode version of path.
     """
+    #No need to do anything if it's already unicode
+    if isinstance(path, UNITYPE):
+        return path
+
     # make only unicode of path of type 'str'
     if not (isinstance(path,  str)):
         raise TypeError("path %s isn't a str" % str(path))
