@@ -6041,14 +6041,47 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
+            # This deals with the standard GEDCOM
+            # SOURCE_REPOSITORY_CITATION: =
+            #   n  REPO @<XREF:REPO>@                {1:1}
+            #     +1 <<NOTE_STRUCTURE>>              {0:M}
+            #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
+            #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
             gid = self.rid_map[line.data]
             repo = self.__find_or_create_repository(gid)
+        elif line.data == '':
+            # This deals with the non-standard GEDCOM format found in Family
+            # Tree Maker for Windows, Broderbund Software, Banner Blue
+            # Division:
+            # SOURCE_REPOSITORY_CITATION: =
+            #   n  REPO                              {1:1}
+            #     +1 <<NOTE_STRUCTURE>>              {0:M}
+            #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
+            #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
+            #
+            # This format has no repository name. See http://west-
+            # penwith.org.uk/misc/ftmged.htm which points out this is
+            # incorrect
+            gid = self.dbase.find_next_repository_gramps_id()
+            repo = self.__find_or_create_repository(gid)
+            self.dbase.commit_repository(repo, self.trans)
         else:
+            # This deals with the non-standard GEDCOM
+            # SOURCE_REPOSITORY_CITATION: =
+            #   n  REPO <NAME_OF_REPOSITORY>         {1:1}
+            #     +1 <<NOTE_STRUCTURE>>              {0:M}
+            #     +1 CALN <SOURCE_CALL_NUMBER>       {0:M}
+            #        +2 MEDI <SOURCE_MEDIA_TYPE>     {0:1}
+            # This seems to be used by Heredis 8 PC. Heredis is notorious for
+            # non-standard GEDCOM.
             gid = self.repo2id.get(line.data)
+            if gid is None:
+                gid = self.dbase.find_next_repository_gramps_id()
             repo = self.__find_or_create_repository(gid)
             self.repo2id[line.data] = repo.get_gramps_id()
             repo.set_name(line.data)
             self.dbase.commit_repository(repo, self.trans)
+        
         repo_ref = RepoRef()
         repo_ref.set_reference_handle(repo.handle)
 
