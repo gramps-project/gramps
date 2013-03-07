@@ -65,6 +65,7 @@ from gramps.gen.constfunc import cuni
 from ...pluginmanager import GuiPluginManager
 from ...dialog import WarningDialog, ErrorDialog
 from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
+from gramps.gen.plug.docgen import StyleSheet
 from ...managedwindow import ManagedWindow, set_titles
 from ...glade import Glade
 from ...utils import is_right_click, open_file_with_default_application
@@ -72,7 +73,7 @@ from ...user import User
 from .. import make_gui_option
 
 # Import from specific modules in ReportBase
-from gramps.gen.plug.report import BookList, Book, BookItem, create_style_sheet
+from gramps.gen.plug.report import BookList, Book, BookItem, append_styles
 from gramps.gen.plug.report import CATEGORY_BOOK, book_categories
 from gramps.gen.plug.report._options import ReportOptions
 from ._reportdialog import ReportDialog
@@ -889,25 +890,22 @@ class BookDialog(DocReportDialog):
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(None, pstyle)
         user = User()
         self.rptlist = []
-        self.global_style = None
+        selected_style = StyleSheet()
+
+        pstyle = self.paper_frame.get_paper_style()
+        self.doc = self.format(None, pstyle)
+
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
             obj = write_book_item(self.database, report_class, 
                                   item.option_class, user)
-            style_sheet = create_style_sheet(item)
-            self.rptlist.append((obj, style_sheet))
-            if ( item.name == 'table_of_contents' or
-                 item.name == 'alphabetical_index' ): # ugly hack: FIXME
-                if self.global_style is None:
-                    self.global_style = style_sheet
-                else:
-                    self.global_style = create_style_sheet(item,
-                                                           self.global_style)
+            self.rptlist.append(obj)
+            append_styles(selected_style, item)
+
+        self.doc.set_style_sheet(selected_style)
         self.doc.open(self.target_path)
 
     def make_book(self):
@@ -916,16 +914,13 @@ class BookDialog(DocReportDialog):
 
         self.doc.init()
         newpage = 0
-        for rpt, style_sheet in self.rptlist:
-            self.doc.set_style_sheet(style_sheet)
+        for rpt in self.rptlist:
             if newpage:
                 self.doc.page_break()
             newpage = 1
             if rpt:
                 rpt.begin_report()
                 rpt.write_report()
-        if self.global_style:
-            self.doc.set_style_sheet(self.global_style)
         self.doc.close()
         
         if self.open_with_app.get_active():
