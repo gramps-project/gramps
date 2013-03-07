@@ -449,12 +449,10 @@ class BookParser(handler.ContentHandler):
 # Functions
 #
 #-------------------------------------------------------------------------
-def create_style_sheet(item, previous_style=None):
+def append_styles(selected_style, item):
     """
-    Create a style sheet for a book item, appending any previous_style.
+    Append the styles for a book item to the stylesheet.
     """
-    selected_style = StyleSheet(previous_style)
-
     handler = item.option_class.handler
 
     # Set up default style
@@ -490,5 +488,3 @@ def create_style_sheet(item, previous_style=None):
         selected_style.add_cell_style(
                 this_style_name,
                 style_sheet.get_cell_style(this_style_name))
-
-    return selected_style

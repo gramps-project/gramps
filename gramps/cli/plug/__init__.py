@@ -60,7 +60,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import ReportError, FilterError
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                                     CATEGORY_GRAPHVIZ, CATEGORY_CODE, 
-                                    ReportOptions, create_style_sheet)
+                                    ReportOptions, append_styles)
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
@@ -727,7 +727,7 @@ def cl_book(database, name, book, options_str_dict):
                                 clr.marginr, clr.margint, clr.marginb))
     user = User()
     rptlist = []
-    global_style = None
+    selected_style = StyleSheet()
     for item in book.get_item_list():
 
         # The option values were loaded magically by the book parser.
@@ -743,27 +743,19 @@ def cl_book(database, name, book, options_str_dict):
         report_class = item.get_write_item()
         obj = write_book_item(database,
                               report_class, item.option_class, user)
-        style_sheet = create_style_sheet(item)
-        rptlist.append((obj, style_sheet))
-        if ( item.name == 'table_of_contents' or
-             item.name == 'alphabetical_index' ): # ugly hack: FIXME
-            if global_style is None:
-                global_style = style_sheet
-            else:
-                global_style = create_style_sheet(item, global_style)
+        append_styles(selected_style, item)
+        rptlist.append(obj)
 
+    doc.set_style_sheet(selected_style)
     doc.open(clr.option_class.get_output())
     doc.init()
     newpage = 0
-    for rpt, style_sheet in rptlist:
-        doc.set_style_sheet(style_sheet)
+    for rpt in rptlist:
         if newpage:
             doc.page_break()
         newpage = 1
         rpt.begin_report()
         rpt.write_report()
-    if global_style:
-        doc.set_style_sheet(global_style)
     doc.close()
 
 #------------------------------------------------------------------------
