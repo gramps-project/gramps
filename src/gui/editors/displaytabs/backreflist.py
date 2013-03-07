@@ -172,7 +172,7 @@ class BackRefList(EmbeddedList):
                                  "edited, and opening a citation editor "
                                  "(which also allows the source "
                                  "to be edited), would create ambiguity "
-                                 "by opening two editor on the same source. "
+                                 "by opening two editors on the same source. "
                                  "\n\n"
                                  "To edit the citation, close the source "
                                  "editor and open an editor for the citation "
