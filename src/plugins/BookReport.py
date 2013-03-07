@@ -1223,25 +1223,22 @@ class BookReportDialog(DocReportDialog):
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        pstyle = self.paper_frame.get_paper_style()
-        self.doc = self.format(None, pstyle)
         user = gui.user.User()
         self.rptlist = []
-        self.global_style = None
+        selected_style = StyleSheet()
+
+        pstyle = self.paper_frame.get_paper_style()
+        self.doc = self.format(None, pstyle)
+
         for item in self.book.get_item_list():
-            style_sheet = create_style_sheet(item)
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
             obj = write_book_item(self.database, report_class, 
                                   item.option_class, user)
-            self.rptlist.append((obj, style_sheet))
-            if ( item.name == 'table_of_contents' or
-                 item.name == 'alphabetical_index' ): # ugly hack: FIXME
-                if self.global_style is None:
-                    self.global_style = style_sheet
-                else:
-                    self.global_style = create_style_sheet(item,
-                                                           self.global_style)
+            self.rptlist.append(obj)
+            append_styles(selected_style, item)
+
+        self.doc.set_style_sheet(selected_style)
         self.doc.open(self.target_path)
 
     def make_report(self):
@@ -1250,16 +1247,13 @@ class BookReportDialog(DocReportDialog):
 
         self.doc.init()
         newpage = 0
-        for item, style_sheet in self.rptlist:
-            self.doc.set_style_sheet(style_sheet)
+        for rpt in self.rptlist:
             if newpage:
                 self.doc.page_break()
             newpage = 1
-            if item:
-                item.begin_report()
-                item.write_report()
-        if self.global_style:
-            self.doc.set_style_sheet(self.global_style)
+            if rpt:
+                rpt.begin_report()
+                rpt.write_report()
         self.doc.close()
         
         if self.open_with_app.get_active():
@@ -1300,10 +1294,9 @@ def cl_report(database, name, category, options_str_dict):
                                 clr.marginr, clr.margint, clr.marginb))
     user = cli.user.User()
     rptlist = []
-    global_style = None
+    selected_style = StyleSheet()
     for item in book.get_item_list():
-        style_sheet = create_style_sheet(item)
-        
+
         # The option values were loaded magically by the book parser.
         # But they still need to be applied to the menu options.
         opt_dict = item.option_class.options_dict
@@ -1311,40 +1304,31 @@ def cl_report(database, name, category, options_str_dict):
         for optname in opt_dict:
             menu_option = menu.get_option_by_name(optname)
             if menu_option:
-                menu_option.set_value(opt_dict[optname])        
-        
+                menu_option.set_value(opt_dict[optname])
+
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
         obj = write_book_item(database,
                               report_class, item.option_class, user)
-        rptlist.append((obj, style_sheet))
-        if ( item.name == 'table_of_contents' or
-             item.name == 'alphabetical_index' ): # ugly hack: FIXME
-            if global_style is None:
-                global_style = style_sheet
-            else:
-                global_style = create_style_sheet(item, global_style)
+        append_styles(selected_style, item)
+        rptlist.append(obj)
 
+    doc.set_style_sheet(selected_style)
     doc.open(clr.option_class.get_output())
     doc.init()
     newpage = 0
-    for item, style_sheet in rptlist:
-        doc.set_style_sheet(style_sheet)
+    for rpt in rptlist:
         if newpage:
             doc.page_break()
         newpage = 1
-        item.begin_report()
-        item.write_report()
-    if global_style:
-        doc.set_style_sheet(global_style)
+        rpt.begin_report()
+        rpt.write_report()
     doc.close()
 
-def create_style_sheet(item, previous_style=None):
+def append_styles(selected_style, item):
     """
-    Create a style sheet for a book item, appending any previous_style.
+    Append the styles for a book item to the stylesheet.
     """
-    selected_style = StyleSheet(previous_style)
-
     # Set up default style
     default_style = StyleSheet()
     make_default_style = item.option_class.make_default_style
