@@ -300,7 +300,7 @@ def show_settings():
 
     try:
         dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
-        if isinstance(dotversion_str, bytes):
+        if isinstance(dotversion_str, bytes) and sys.stdin.encoding:
             dotversion_str = dotversion_str.decode(sys.stdin.encoding)
         if dotversion_str:
             dotversion_str = dotversion_str.replace('\n','')[23:27]
@@ -312,7 +312,7 @@ def show_settings():
             gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
         else:
             gsversion_str = Popen(['gs', '--version'], stdout=PIPE).communicate(input=None)[0]
-        if isinstance(gsversion_str, bytes):
+        if isinstance(gsversion_str, bytes) and sys.stdin.encoding:
             gsversion_str = gsversion_str.decode(sys.stdin.encoding)
         if gsversion_str:
             gsversion_str = gsversion_str.replace('\n', '')
