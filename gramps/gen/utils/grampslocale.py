@@ -212,9 +212,12 @@ class GrampsLocale(object):
 #numeric format. Those are fixed by the user's system settings.
 
         if not win():
-            locale.setlocale(locale.LC_COLLATE, self.collation)
-            locale.setlocale(locale.LC_TIME, self.calendar)
-            locale.setlocale(locale.LC_MONETARY, self.currency)
+            try:
+                locale.setlocale(locale.LC_COLLATE, self.collation)
+                locale.setlocale(locale.LC_TIME, self.calendar)
+                locale.setlocale(locale.LC_MONETARY, self.currency)
+            except locale.Error:
+                pass
 #Next, we need to know what is the encoding from the native environment:
         self.encoding = locale.getlocale()[1]
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
