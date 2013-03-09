@@ -1,3 +1,5 @@
+$Id$
+
 Please read the COPYING file first.
 If building from source, also read the INSTALL file (at least through the
 "SUPER-SHORT VERSION") before going further.
@@ -5,7 +7,7 @@ If building from source, also read the INSTALL file (at least through the
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.7 or greater, Python 3.2 or greater (python version cannot be mixed)
+   Python 2.7 or greater, Python 3.2 or greater (or both python versions)
    GTK 3.0 or greater
    pygobject 3.3.2 or greater
    cairo, pango, pangocairo with instrospection bindings (the gi packages)
@@ -44,8 +46,9 @@ The following packages are optional
                     http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
                     Only rcs is needed, NO python bindings are required
 
-   PIL              Python Image Library is needed to convert non jpg images to
-                    jpg so as to include them in LaTeX output
+   PIL              Python Image Library is needed to crop
+                    images and also to convert non jpg images to
+                    jpg so as to include them in LaTeX output.
 
    ttf-freefont     More font support in the reports
 
