@@ -15,11 +15,12 @@ version by deleting the installed directories (for example,
         /usr/lib/pythonx.x/site-packages/gramps
         /usr/lib/pythonx.x/dist-packages/gramps
     where pythonx.x is python2.7 or whatever version you installed gramps with.
-Also remove the gramps .egg files that are installed along the gramps directory.
+Also remove the gramps .egg files that are installed along with the gramps
+directory.
 
-If you don't know the list of all files that Gramps installed, you can reinstall
-it with the --record option, and take a look at the list this produces (so
-python setup.py install --record grampsfiles.txt
+If you don't know the list of all files that Gramps installed, you can
+reinstall it with the --record option, and take a look at the list this
+produces (so python setup.py install --record grampsfiles.txt
 
 GRAMPS is a python application, so loading happens on reading the
 files, meaning that files of a previous version that are no longer
