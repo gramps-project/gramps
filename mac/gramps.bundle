@@ -186,7 +186,7 @@
   <data>
     ${prefix}/share/mime-info/
   </data>
-
+<!-- Note that you must run `dot -c` to create this file -->
   <data>
     ${prefix}/lib/graphviz/config6
   </data>
