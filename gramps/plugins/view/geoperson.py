@@ -299,7 +299,7 @@ class GeoPerson(GeoGraphyView):
         person = dbstate.db.get_person_from_handle(person_handle)
         if person is not None:
             # For each event, if we have a place, set a marker.
-            self.message_layer.add_message(_("Person places for %s" % _nd.display(person)))
+            self.message_layer.add_message(_("Person places for %s") % _nd.display(person))
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
