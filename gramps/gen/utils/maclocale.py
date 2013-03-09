@@ -115,9 +115,6 @@ def mac_setup_localization(glocale, lang, language):
             if lang == "cn_Hans": #Simplified; Gettext uses cn_CN
                 lang = "cn_CN"
 
-            if lang.startswith("en"): # Gramps doesn't have explicit
-                usable.append("C")    # English translation, use C
-                continue
             if lang in available or lang[:2] in available:
                 usable.append(lang)
 
@@ -167,7 +164,7 @@ def mac_setup_localization(glocale, lang, language):
         """
         Extract the collation (sort order) locale from the defaults string.
         """
-        collation = ""
+        collation = None
         try:
             collation = subprocess.Popen(
                 [defaults, "read", "-app", "Gramps", "AppleCollationOrder"],
@@ -183,7 +180,7 @@ def mac_setup_localization(glocale, lang, language):
                     stdout = subprocess.PIPE).communicate()[0]
             except OSError:
                 pass
-        if collation == "root":
+        if collation.startswith("root"):
             return None
         return collation
 
@@ -247,10 +244,10 @@ def mac_setup_localization(glocale, lang, language):
 
     if not language or len(language) == 0:
         if "LANGUAGE" in os.environ:
-            language =  [l for l in os.environ["LANGUAGE"].split(":")
+            language =  [l[:5] for l in os.environ["LANGUAGE"].split(":")
                          if l[:5] in available or l[:2] in available]
-        elif lang != "en_US":
-            language = [lang]
+        elif "LANG" in os.environ and not lang.startswith("en_US"):
+            language = [lang[:5]]
         else:
             if len(translations) > 0:
                 language = translations
