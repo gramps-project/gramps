@@ -225,7 +225,7 @@ class GrampsLocale(object):
         if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
             self.lang = '.'.join((check_lang[0], 'UTF-8'))
             os.environ["LANG"] = self.lang
-        os.environ["LANGUAGE"] = ':'.join(self.language)
+        os.environ["LANGUAGE"] = ':'.join(['C' if l.startswith('en') else l for l in self.language])
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
@@ -309,19 +309,18 @@ class GrampsLocale(object):
         if not localedir:
             localedir = self.localedir
 
-        lang = gettext.find(domain, localedir, languages)
-        if lang:
-            translator = gettext.translation(domain, localedir,
-                                             languages,
-                                             class_ = GrampsTranslations)
-            translator._language = os.path.basename(os.path.dirname(os.path.dirname(lang))).split('.')[0]
-            return translator
+        for lang in languages:
+            if gettext.find(domain, localedir, [lang]):
+                translator = gettext.translation(domain, localedir,
+                                                 [lang],
+                                                 class_ = GrampsTranslations)
+                translator._language = lang
+                return translator
 
-        else:
-            if not languages == ["en"]:
-                LOG.debug("Unable to find translations for %s and %s in %s",
-                          domain, languages, localedir)
-            return GrampsNullTranslations()
+            elif lang.startswith("en") or lang.startswith("C"):
+                translator = GrampsNullTranslations()
+                translator._language = "en"
+                return translator
 
     def _set_dictionaries(self):
         """
