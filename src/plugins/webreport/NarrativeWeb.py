@@ -2810,7 +2810,7 @@ class BasePage(object):
                             depth+1)
             else:
                 url = self.report.build_url_fname(path, up=self.up)
-                if gid != "":
+                if (not self.noid and gid != ""):
                     gid_html = Html("span", " [%s]" % gid,
                                      class_ = "grampsid", inline = True)
                 else:
