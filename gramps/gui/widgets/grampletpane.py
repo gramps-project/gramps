@@ -1178,7 +1178,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             return # something is the matter
         filename = self.configfile
         try:
-                fp = io.open(filename, "w", encoding='utf-8')
+            fp = io.open(filename, "w", encoding='utf-8')
         except IOError as err:
             LOG.warn("Failed to open %s because $s; gramplets not saved",
                      filename, str(err))

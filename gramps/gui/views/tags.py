@@ -266,7 +266,7 @@ class Tags(DbGUIElement):
         # Make the dialog modal so that the user can't start another
         # database transaction while the one setting tags is still running.
         pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
-                     ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
+                ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
                                           total_steps=len(selected),
                                           interval=len(selected)//20)
