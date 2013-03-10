@@ -48,7 +48,7 @@ import re, os, sys
 #------------------------------------------------------------------------
 from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
 from gen.plug.docbackend import DocBackend
-import Image
+from PIL import Image
 import Errors
 import Utils
 
