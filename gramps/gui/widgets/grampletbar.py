@@ -56,6 +56,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.config import config
+from gramps.gen.constfunc import win
 from ..managedwindow import ManagedWindow
 from ..display import display_help, display_url
 from .grampletpane import (AVAILABLE_GRAMPLETS, 
@@ -191,7 +192,10 @@ class GrampletBar(Gtk.Notebook):
         """
         filename = self.configfile
         try:
-            fp = open(filename, "w")
+            if win() and not sys.version_info[0] < 3:
+                fp = open(filename, "w", encoding='utf-8')
+            else:
+                fp = open(filename, "w")
         except IOError:
             print("Failed writing '%s'; gramplets not saved" % filename)
             return

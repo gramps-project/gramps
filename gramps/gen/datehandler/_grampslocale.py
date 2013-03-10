@@ -43,6 +43,7 @@ else:
     #locale returns unicode in python 3
     to_uni = lambda x, y: x
 codeset = glocale.encoding
+
 try:
 
     month_to_int = {

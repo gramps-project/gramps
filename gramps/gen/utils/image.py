@@ -277,4 +277,3 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     except:
         pass
     return data
-

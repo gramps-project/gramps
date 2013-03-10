@@ -36,6 +36,7 @@ import locale
 import sys
 import logging
 LOG = logging.getLogger(".")
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
