@@ -356,39 +356,19 @@ class GedcomWriter(UpdateCallback):
         """
         owner = self.dbase.get_researcher()
         name = owner.get_name()
-        addr = owner.get_address()
-        adr2 = owner.get_locality()
-        city = owner.get_city()
-        state = owner.get_state()
-        ctry = owner.get_country()
-        post = owner.get_postal_code()
         phon = owner.get_phone()
         mail = owner.get_email()
 
-        if not name : 
-            name = cuni('Not Provided')
-        if not addr : 
-            addr = cuni('Not Provided')
-        
         self._writeln(0, "@SUBM@", "SUBM")
         self._writeln(1, "NAME", name)
-        self._writeln(1, "ADDR", addr)
-        if city and state and post:
-            self._writeln(2, "CONT", "%s, %s %s" % (city, state, post))
-        else:
-            self._writeln(2, "CONT", cuni("Not Provided"))
-        if addr:
-            self._writeln(2, "ADR1", addr)
-        if adr2:
-            self._writeln(2, "ADR2", adr2)
-        if city:
-            self._writeln(2, "CITY", city)
-        if state:
-            self._writeln(2, "STAE", state)
-        if post:
-            self._writeln(2, "POST", post)
-        if ctry:
-            self._writeln(2, "CTRY", ctry)
+        
+        # Researcher is a sub-type of LocationBase, so get_city etc. which are
+        # used in __write_addr work fine. However, the database owner street is
+        # stored in address, so we need to temporarily copy it into street so
+        # __write_addr works properly
+        owner.set_street(owner.get_address())
+        self.__write_addr(1, owner)
+        
         if phon:
             self._writeln(1, "PHON", phon)
         if mail:
@@ -683,20 +663,8 @@ class GedcomWriter(UpdateCallback):
         """
         for addr in person.get_address_list():
             self._writeln(1, 'RESI')
-            self._date(2, addr.get_date_object())
-            self._writeln(2, "ADDR", addr.get_street())
-            if addr.get_street():
-                self._writeln(3, 'ADR1', addr.get_street())
-            if addr.get_locality():
-                self._writeln(3, 'ADR2', addr.get_locality())
-            if addr.get_city():
-                self._writeln(3, 'CITY', addr.get_city())
-            if addr.get_state():
-                self._writeln(3, 'STAE', addr.get_state())
-            if addr.get_postal_code():
-                self._writeln(3, 'POST', addr.get_postal_code())
-            if addr.get_country():
-                self._writeln(3, 'CTRY', addr.get_country())
+            self.__date(2, addr.get_date_object())
+            self._write_addr(2, addr)
             if addr.get_phone():
                 self._writeln(2, 'PHON', addr.get_phone())
 
@@ -1019,19 +987,7 @@ class GedcomWriter(UpdateCallback):
             if repo.get_name():
                 self._writeln(1, 'NAME', repo.get_name())
             for addr in repo.get_address_list():
-                self._writeln(1, "ADDR", addr.get_street())
-                if addr.get_street():
-                    self._writeln(2, 'ADR1', addr.get_street())
-                if addr.get_locality():
-                    self._writeln(2, 'ADR2', addr.get_locality())
-                if addr.get_city():
-                    self._writeln(2, 'CITY', addr.get_city())
-                if addr.get_state():
-                    self._writeln(2, 'STAE', addr.get_state())
-                if addr.get_postal_code():
-                    self._writeln(2, 'POST', addr.get_postal_code())
-                if addr.get_country():
-                    self._writeln(2, 'CTRY', addr.get_country())
+                self.__write_addr(1, addr)
                 if addr.get_phone():
                     self._writeln(1, 'PHON', addr.get_phone())
             for url in repo.get_url_list():
@@ -1431,6 +1387,58 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(level, 'PHON', location.get_phone())
 
         self._note_references(place.get_note_list(), level+1)
+
+    def __write_addr(self, level, addr):
+        """
+        n ADDR <ADDRESS_LINE> {0:1} 
+        +1 CONT <ADDRESS_LINE> {0:M}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
+        +1 ADR2 <ADDRESS_LINE2> {0:1}  (Locality)
+        +1 CITY <ADDRESS_CITY> {0:1}
+        +1 STAE <ADDRESS_STATE> {0:1}
+        +1 POST <ADDRESS_POSTAL_CODE> {0:1}
+        +1 CTRY <ADDRESS_COUNTRY> {0:1}
+
+        This is done along the lines suggested by Tamura Jones in
+        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        "GEDCOM writers should always use the structured address format,
+        and it use it for all addresses, including the submitter address and
+        their own corporate address." "Vendors that want their product to pass
+        even the strictest GEDCOM validation, should include export to the old
+        free-form format..." [This goes on to say the free-form should be an
+        option, but we have not made it an option in Gramps].
+
+        @param level: The level number for the ADDR tag
+        @type level: Integer
+        @param addr: The location or address
+        @type addr: [a super-type of] LocationBase
+        """
+        if addr.get_street() or addr.get_locality() or addr.get_city() or \
+           addr.get_state() or addr.get_postal_code or addr.get_country():
+            self._writeln(level, 'ADDR', addr.get_street())
+            if addr.get_locality():
+                self._writeln(level + 1, 'CONT', addr.get_locality())
+            if addr.get_city():
+                self._writeln(level + 1, 'CONT', addr.get_city())
+            if addr.get_state():
+                self._writeln(level + 1, 'CONT', addr.get_state())
+            if addr.get_postal_code():
+                self._writeln(level + 1, 'CONT', addr.get_postal_code())
+            if addr.get_country():
+                self._writeln(level + 1, 'CONT', addr.get_country())
+            
+            if addr.get_street():
+                self._writeln(level + 1, 'ADR1', addr.get_street())
+            if addr.get_locality():
+                self._writeln(level + 1, 'ADR2', addr.get_locality())
+            if addr.get_city():
+                self._writeln(level + 1, 'CITY', addr.get_city())
+            if addr.get_state():
+                self._writeln(level + 1, 'STAE', addr.get_state())
+            if addr.get_postal_code():
+                self._writeln(level + 1, 'POST', addr.get_postal_code())
+            if addr.get_country():
+                self._writeln(level + 1, 'CTRY', addr.get_country())
 
 #-------------------------------------------------------------------------
 #

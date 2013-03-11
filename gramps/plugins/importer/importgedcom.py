@@ -49,7 +49,12 @@ from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
 from gramps.plugins.lib import libgedcom
-module = __import__("gramps.plugins.lib.libgedcom")   # why o why ??
+# The following code is necessary to ensure that when Help->Plugin
+# Manager->Reload is executed, not only is the top-level exportgedcom file
+# reloaded, but also the dependent libgedcom. This ensures that testing can have
+# a quick turnround, without having to restart Gramps.
+module = __import__("gramps.plugins.lib.libgedcom",
+                    fromlist=["gramps.plugins.lib"])   # why o why ?? as above!
 if sys.version_info[0] < 3:
     reload (module)
 else:
