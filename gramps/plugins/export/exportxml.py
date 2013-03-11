@@ -61,7 +61,7 @@ LOG = logging.getLogger(".WriteXML")
 from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
-from gramps.gen.const import VERSION
+from gramps.version import VERSION
 from gramps.gen.constfunc import win
 from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml

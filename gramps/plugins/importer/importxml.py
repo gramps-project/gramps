@@ -67,7 +67,7 @@ from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    REPOSITORY_KEY, NOTE_KEY, TAG_KEY, 
                                    CITATION_KEY)
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.const import VERSION
+from gramps.version import VERSION
 from gramps.gen.config import config
 #import gramps.plugins.lib.libgrampsxml
 from gramps.plugins.lib import libgrampsxml

@@ -52,7 +52,8 @@ from subprocess import Popen, PIPE
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, VERSION_TUPLE
+from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
+from .version import VERSION_TUPLE
 from .gen.constfunc import win
 
 #-------------------------------------------------------------------------
@@ -282,7 +283,7 @@ def show_settings():
         bsddb_db_str = 'not found'
 
     try: 
-        from .gen.const import VERSION
+        from .version import VERSION
         gramps_str = VERSION
     except:
         gramps_str = 'not found'

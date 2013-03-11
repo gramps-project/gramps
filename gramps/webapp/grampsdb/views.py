@@ -59,7 +59,7 @@ from django.utils import simplejson
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import VERSION
+from gramps.version import VERSION
 
 # Gramps-connect imports:
 import gramps.webapp

@@ -46,7 +46,8 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import VERSION, ICON, SPLASH
+from gramps.gen.const import ICON, SPLASH
+from gramps.version import VERSION
 from ..display import display_help, display_url
 
 #-------------------------------------------------------------------------

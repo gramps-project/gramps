@@ -48,7 +48,8 @@ import time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 from gramps.gen.utils.image import resize_to_jpeg
-from gramps.gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE, VERSION
+from gramps.gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
+from gramps.version import VERSION
 from gramps.gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.plugins.lib.libhtml import Html

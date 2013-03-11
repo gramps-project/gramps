@@ -91,7 +91,8 @@ from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
 from gramps.gen.plug.docgen.fontscale import string_width
 from gramps.plugins.lib.libodfbackend import OdfBackend
-from gramps.gen.const import PROGRAM_NAME, VERSION
+from gramps.gen.const import PROGRAM_NAME
+from gramps.version import VERSION
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.utils.image import image_size, image_dpi, image_actual_size
 from gramps.gen.errors import ReportError
