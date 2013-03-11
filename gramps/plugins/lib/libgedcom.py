@@ -98,6 +98,7 @@ import time
 import codecs
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
+import string
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
 else:
@@ -646,9 +647,6 @@ DATE_QUALITY = {
 # regular expressions
 #
 #-------------------------------------------------------------------------
-ADDR_RE  = re.compile('(.+)([\n\r]+)(.+)\s*, (.+)\s+(\d+)\s*(.*)')
-ADDR2_RE = re.compile('(.+)([\n\r]+)(.+)\s*, (.+)\s+(\d+)')
-ADDR3_RE = re.compile('(.+)([\n\r]+)(.+)\s*, (.+)')
 NOTE_RE    = re.compile(r"\s*\d+\s+\@(\S+)\@\s+NOTE(.*)$")
 CONT_RE    = re.compile(r"\s*\d+\s+CONT\s?(.*)$")
 CONC_RE    = re.compile(r"\s*\d+\s+CONC\s?(.*)$")
@@ -2134,6 +2132,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_SOUR   : self.__event_source, 
             TOKEN_PLAC   : self.__event_place, 
             TOKEN_ADDR   : self.__event_addr, 
+            TOKEN_PHON   : self.__event_phon,
             TOKEN_CAUS   : self.__event_cause, 
             TOKEN_AGNC   : self.__event_agnc, 
             TOKEN_AGE    : self.__event_age, 
@@ -2245,14 +2244,15 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.object_parse_tbl)
 
         self.parse_loc_tbl = {
-            TOKEN_ADDR   : self.__location_addr, 
             TOKEN_ADR1   : self.__location_adr1, 
             TOKEN_ADR2   : self.__location_adr2, 
-            TOKEN_DATE   : self.__location_date, 
             TOKEN_CITY   : self.__location_city, 
             TOKEN_STAE   : self.__location_stae, 
             TOKEN_POST   : self.__location_post, 
             TOKEN_CTRY   : self.__location_ctry, 
+            # Not legal GEDCOM - not clear why these are included at this level 
+            TOKEN_ADDR   : self.__ignore, 
+            TOKEN_DATE   : self.__location_date, 
             TOKEN_NOTE   : self.__location_note, 
             TOKEN_RNOTE  : self.__location_note, 
             TOKEN__LOC   : self.__ignore, 
@@ -2310,8 +2310,7 @@ class GedcomParser(UpdateCallback):
             # +1 <<CHANGE_DATE>>  {0:1}
             TOKEN_CHAN   : self.__family_chan, 
             TOKEN_ENDL   : self.__ignore, 
-
-            TOKEN_ADDR   : self.__family_addr, 
+            TOKEN_ADDR   : self.__ignore, 
             TOKEN_RIN    : self.__family_cust_attr, 
             TOKEN_SUBM   : self.__ignore, 
             TOKEN_ATTR   : self.__family_attr, 
@@ -3171,6 +3170,69 @@ class GedcomParser(UpdateCallback):
             self.__add_msg(txt)
             self.number_of_errors -= 1
             
+    def __merge_address(self, free_form_address, addr, line, state):
+        """
+        Merge freeform and structured addrssses.
+        n ADDR <ADDRESS_LINE> {0:1} 
+        +1 CONT <ADDRESS_LINE> {0:M}
+        +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
+        +1 ADR2 <ADDRESS_LINE2> {0:1}  (Locality)
+        +1 CITY <ADDRESS_CITY> {0:1}
+        +1 STAE <ADDRESS_STATE> {0:1}
+        +1 POST <ADDRESS_POSTAL_CODE> {0:1}
+        +1 CTRY <ADDRESS_COUNTRY> {0:1}
+        
+        This is done along the lines suggested by Tamura Jones in
+        http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
+        "When a GEDCOM reader encounters a double address, it should read the
+        structured address. ... A GEDCOM reader that does verify that the
+        addresses are the same should issue an error if they are not".
+        
+        This is called for SUBMitter addresses (__subm_addr), INDIvidual
+        addresses (__person_addr), REPO addresses and HEADer corp address
+        (__repo_address) and EVENt addresses (__event_adr).
+        
+        The structured address (if any) will have been accumulated into an
+        object of type LocationBase, which will either be a Location, or an
+        Address object.
+        
+        If ADDR is provided, but none of ADR1, ADR2, CITY, STAE, or POST (not
+        CTRY), then Street is set to the freeform address. N.B. this is a change
+        for Repository addresses and HEADer Corp address where previously the
+        free-form address was deconstrucated into different structured
+        components. N.B. PAF provides a free-form address and a country, so this
+        allows for that case.
+        
+        If both forms of address are provided, then the structured address is
+        used, and if the ADDR/CONT contains anything not in the structured
+        address, a warning is issued.
+        
+        If just ADR1, ADR2, CITY, STAE, POST or CTRY are provided (this is not
+        actually legal GEDCOM symtax, but may be possible by GEDCOM extensions)
+        then just the structrued address is used.
+        """
+        if not (addr.get_street() or addr.get_locality() or
+                addr.get_city() or addr.get_state() or
+                addr.get_postal_code()):
+            
+            addr.set_street(free_form_address)
+        else:
+            # structured address provided
+            addr_list = free_form_address.split("\n")
+            str_list = []
+            for func in (addr.get_street(), addr.get_locality(),
+                         addr.get_city(), addr.get_state(),
+                         addr.get_postal_code(), addr.get_country()):
+                str_list += [i.strip(',' + string.whitespace) for i in func.split("\n")]
+            for elmn in addr_list:
+                if elmn.strip(',' + string.whitespace) not in str_list:
+                    # message means that the element %s was ignored, but
+                    # expressed the wrong way round because the message is
+                    # truncated for output
+                    self.__add_msg(_("ADDR element ignored '%s'"
+                                     % elmn), line, state)
+            # The free-form address ADDR is discarded
+
     def __parse_trailer(self):
         """
         Looks for the expected TRLR token
@@ -3810,7 +3872,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_addr(self, line, state):
         """
-        Parses the Address structure
+        Parses the INDIvidual <ADDRESS_STRUCTURE>
 
         n ADDR <ADDRESS_LINE> {0:1} 
         +1 CONT <ADDRESS_LINE> {0:M}
@@ -3827,13 +3889,16 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        sub_state = CurrentState()
-        sub_state.level = state.level+1
+        free_form = line.data
+        
+        sub_state = CurrentState(level=state.level + 1)
         sub_state.addr = Address()
-        sub_state.addr.set_street(line.data)
-        state.person.add_address(sub_state.addr)
+        
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
         state.msg += sub_state.msg
+        
+        self.__merge_address(free_form, sub_state.addr, line, state)
+        state.person.add_address(sub_state.addr)
 
     def __person_phon(self, line, state):
         """
@@ -4928,17 +4993,6 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_change(line, state.family, state.level+1, state)
 
-    def __family_addr(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr = Address()
-        state.addr.set_street(line.data)
-        self.__parse_level(state, self.parse_addr_tbl, self.__ignore)
-
     def __family_attr(self, line, state): 
         """
         @param line: The current line in GedLine format
@@ -5294,14 +5348,17 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        free_form = line.data
+        
         sub_state = CurrentState(level=state.level+1)
         sub_state.location = Location()
-        sub_state.location.set_street(line.data)
         sub_state.note = []
         sub_state.event = state.event
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
+
+        self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
         note_list = sub_state.note
@@ -5703,6 +5760,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         # The ADDR may already have been parsed by the level above
+        assert state.addr.get_street() == ""
         if state.addr.get_street() != "":
             self.__add_msg(_("Warn: ADDR overwritten"), line, state)
         state.addr.set_street(line.data)
@@ -5973,6 +6031,7 @@ class GedcomParser(UpdateCallback):
 
         state = CurrentState()
         state.source = self.__find_or_create_source(self.sid_map[name]) 
+        # SOURce with the given gramps_id had no title
         state.source.set_title(_("No title - ID %s") % 
                                state.source.get_gramps_id())
         state.level = level
@@ -6436,6 +6495,8 @@ class GedcomParser(UpdateCallback):
 
     def __repo_addr(self, line, state):
         """
+        Parses the REPOsitory and HEADer COPR <ADDRESS_STRUCTURE>
+        
         n ADDR <ADDRESS_LINE> {0:1} 
         +1 CONT <ADDRESS_LINE> {0:M}
         +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
@@ -6450,46 +6511,16 @@ class GedcomParser(UpdateCallback):
         instead they put everything on a single line. Try to determine
         if this happened, and try to fix it.
         """
+        free_form = line.data
 
-        addr = Address()
-        addr.set_street(line.data)
-
-        sub_state = CurrentState()
-        sub_state.level = state.level+1
-        sub_state.addr = addr
+        sub_state = CurrentState(level=state.level + 1)
+        sub_state.addr = Address()
 
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
         state.msg += sub_state.msg
-
-        text = addr.get_street()
-        if not (addr.get_city() or addr.get_state() or
-                addr.get_postal_code() or addr.get_country()):
         
-            match = ADDR_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-                addr.set_postal_code(groups[4].strip())
-                addr.set_country(groups[5].strip())
-            
-            match = ADDR2_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-                addr.set_postal_code(groups[4].strip())
-
-            match = ADDR3_RE.match(text)
-            if match:
-                groups = match.groups()
-                addr.set_street(groups[0].strip())
-                addr.set_city(groups[2].strip())
-                addr.set_state(groups[3].strip())
-
-        state.repo.add_address(addr)
+        self.__merge_address(free_form, sub_state.addr, line, state)
+        state.repo.add_address(sub_state.addr)
 
     def __repo_phon(self, line, state):
         """
@@ -6525,22 +6556,6 @@ class GedcomParser(UpdateCallback):
         url.set_path(line.data)
         url.set_type(UrlType(UrlType.EMAIL))
         state.repo.add_url(url)
-
-    def __location_addr(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        val = state.location.get_street()
-        if val:
-            val = "%s, %s" % (val, line.data.strip())
-        else:
-            val = line.data.strip()
-        state.location.set_street(val.replace('\n', ' '))
 
     def __location_date(self, line, state):
         """
@@ -7394,20 +7409,20 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        free_form = line.data
+        
         sub_state = CurrentState(level=state.level + 1)
-        sub_state.location = Location()
-        sub_state.location.set_street(line.data)
+        sub_state.location = state.res
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        location = sub_state.location
-        state.res.set_address(location.get_street())
-        state.res.set_locality(location.get_locality())
-        state.res.set_city(location.get_city())
-        state.res.set_state(location.get_state())
-        state.res.set_country(location.get_country())
-        state.res.set_postal_code(location.get_postal_code())
+        self.__merge_address(free_form, state.res, line, state)
+        # Researcher is a sub-type of LocationBase, so get_street and set_street
+        # which are used in routines called from self.parse_loc_tbl work fine.
+        # Unfortunately, Researcher also has get_address and set_address, so we
+        # need to copy the street into that.
+        state.res.set_address(state.res.get_street())
 
     def __subm_phon(self, line, state):
         """
