@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2012       Doug Blank
+# Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,21 +51,7 @@ from .svn_revision import get_svn_revision
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-VERSION        = "@VERSIONSTRING@"
-if VERSION == "@" + "VERSIONSTRING" + "@":
-    raise Exception("Please run 'python setup.py build'")
-def get_version_tuple(v):
-    """ Get the numeric-dotted part of version number"""
-    retval = ""
-    for c in v:
-        if c.isdigit() or (c == "." and retval.count(".") <= 1):
-            retval += c
-        else:
-            break
-    return tuple(map(int, retval.split(".")))
-VERSION_TUPLE  = get_version_tuple(VERSION)
-major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
-
+from gramps.version import VERSION, VERSION_TUPLE, major_version
 #-------------------------------------------------------------------------
 #
 # Standard GRAMPS Websites
@@ -135,8 +122,7 @@ if sys.version_info[0] < 3:
 else:
     pass
 
-VERSION_DIR    = os.path.join(
-    HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
+VERSION_DIR    = os.path.join(HOME_DIR, "gramps%s" % major_version)
 
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
@@ -199,10 +185,11 @@ else:
 # Paths to data files.
 #
 #-------------------------------------------------------------------------
-LOCALE_DIR = "@LOCALE_DIR@"
-DATA_DIR = "@DATA_DIR@"
-IMAGE_DIR = "@IMAGE_DIR@"
-DOC_DIR = "@DOC_DIR@"
+from gramps.gen.utils.resourcepath import ResourcePath
+_resources = ResourcePath()
+LOCALE_DIR = _resources.locale_dir
+DATA_DIR = _resources.data_dir
+IMAGE_DIR = _resources.image_dir
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
 PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
@@ -211,7 +198,7 @@ ICON = os.path.join(IMAGE_DIR, "gramps.png")
 LOGO = os.path.join(IMAGE_DIR, "logo.png")
 SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
 
-LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
+LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 #-------------------------------------------------------------------------
 #
 # Init Localization
@@ -238,9 +225,10 @@ AUTHORS        = [
     "Donald A. Peterson", 
     "Donald N. Allingham", 
     "David Hampton",  
-    "Martin Hawlisch", 
+    "Martin Hawlisch",
     "Richard Taylor", 
-    "Tim Waugh", 
+    "Tim Waugh",
+    "John Ralls"
     ]
     
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
