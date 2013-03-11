@@ -46,8 +46,9 @@ import subprocess
 if sys.version_info[0] < 3:
     import commands
 from stat import ST_MODE
+import io
+from gramps.version import VERSION
 
-VERSION = '4.0.0-alpha5'
 ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
                'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
@@ -158,11 +159,10 @@ def build_man(build_cmd):
                     os.remove(newfile)
 
             if filename:
-                f_in = open(newfile, 'rb')
-                f_out = gzip.open(man_file_gz, 'wb')
-                f_out.writelines(f_in)
-                f_out.close()
-                f_in.close()
+                #Binary io, so open is OK
+                with open(newfile, 'rb') as f_in,\
+                        gzip.open(man_file_gz, 'wb') as f_out:
+                    f_out.writelines(f_in)
 
                 os.remove(newfile)
                 filename = False
@@ -230,47 +230,7 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
                     out_file)
             raise SystemExit(msg)
 
-def write_const_py(command):
-    '''
-    Write the const.py file.
-    '''
-    const_py_in = os.path.join('gramps', 'gen', 'const.py.in')
-    const_py = os.path.join('gramps', 'gen', 'const.py')
-    if hasattr(command, 'install_data'):
-        #during install
-        share_dir = os.path.join(command.install_data, 'share')
-        locale_dir = os.path.join(share_dir, 'locale')
-        data_dir = os.path.join(share_dir, 'gramps')
-        image_dir = os.path.join(share_dir, 'gramps', 'icons', 'hicolor')
-        doc_dir = os.path.join(share_dir, 'doc', 'gramps')
-        if sys.platform == 'win32':
-            (share_dir, locale_dir, data_dir, image_dir, doc_dir) = \
-                [path.replace('\\', '\\\\')  for path in
-                 (share_dir, locale_dir, data_dir, image_dir, doc_dir)]
-    else:
-        #in build
-        if 'install' in command.distribution.command_obj:
-            # Prevent overwriting version created during install
-            return
-        base_dir = os.path.abspath(os.path.dirname(__file__))
-        locale_dir = os.path.abspath(os.path.join(command.build_base, 'mo'))
-        data_dir = os.path.join(base_dir, 'data')
-        image_dir = os.path.join(base_dir, 'images')
-        doc_dir = base_dir
-        if sys.platform == 'win32':
-            (locale_dir, data_dir, image_dir, doc_dir) = \
-                [path.replace('\\', '\\\\')  for path in
-                 (locale_dir, data_dir, image_dir, doc_dir)]
-
-    subst_vars = (('@VERSIONSTRING@', VERSION), 
-                  ('@LOCALE_DIR@', locale_dir),
-                  ('@DATA_DIR@', data_dir),
-                  ('@IMAGE_DIR@', image_dir),
-                  ('@DOC_DIR@', doc_dir),)
-                  
-    substitute_variables(const_py_in, const_py, subst_vars)
-
-def update_posix():
+def update_posix(command):
     '''
     post-hook to update Linux systems after install
 
@@ -296,12 +256,11 @@ class build(_build):
         if not sys.platform == 'win32':
             build_man(self)
         build_intl(self)
-        write_const_py(self)
         _build.run(self)
 
 class install(_install):
     """Custom install command."""
-    _install.user_options.append(('enable-packager-mode', None, 
+    _install.user_options.append(('enable-packager-mode', None,
                          'disable post-installation mime type processing'))
     _install.boolean_options.append('enable-packager-mode')
 
@@ -310,14 +269,24 @@ class install(_install):
         self.enable_packager_mode = False
 
     def run(self):
-        write_const_py(self)
+        resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
+                                     'utils', 'resource-path')
+        with io.open(resource_file, 'w', encoding='utf-8',
+                     errors='strict') as fp:
+            path = os.path.abspath(os.path.join(self.install_data, 'share'))
+            if sys.version_info[0] < 3:
+                path = unicode(path)
+            fp.write(path)
+
         _install.run(self)
         if self.enable_packager_mode:
             log.warn('WARNING: Packager mode enabled.  Post-installation mime '
                             'type processing was not run.')
         else:
-            update_posix()
-            
+            update_posix(self)
+
+        os.remove(resource_file)
+
 #-------------------------------------------------------------------------
 #
 # Packages
@@ -428,6 +397,7 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.js')
 package_data_core.append('plugins/webstuff/images/*.gif')
 package_data_core.append('plugins/webstuff/images/*.ico')
+package_data_core.append('gen/utils/resource-path')
 
 package_data_gui = ['gui/glade/*.glade']
 

@@ -8,6 +8,5 @@ dist/
 
 # Gramps
 data/tips.xml
-gramps/gen/const.py
 gramps/plugins/lib/holidays.xml
 po/.intltool-merge-cache
