@@ -223,6 +223,11 @@ class GrampsLocale(object):
                 pass
 #Next, we need to know what is the encoding from the native environment:
         self.encoding = locale.getlocale()[1]
+        if not self.encoding:
+            self.encoding = locale.getpreferredencoding()
+        if not self.encoding:
+            self.encoding = 'utf-8'
+
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
 #affect locale.getpreferredencoding() or sys.getfilesystemencoding()
