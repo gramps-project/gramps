@@ -111,7 +111,8 @@ from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             EventRoleType, Family, Event, Place, Source,
                             Citation, MediaObject, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
-from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, VERSION
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
+from gramps.version import VERSION
 from gramps.gen.sort import Sort
 from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \

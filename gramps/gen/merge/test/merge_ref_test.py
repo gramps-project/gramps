@@ -37,7 +37,8 @@ import libxml2
 import libxslt
 
 from libgrampsxml import GRAMPS_XML_VERSION
-from ...const import ROOT_DIR, VERSION, USER_PLUGINS
+from ...const import ROOT_DIR, USER_PLUGINS
+from ....version import VERSION
 from ...lib import Name, Surname
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().sgettext

@@ -40,7 +40,7 @@ import subprocess
 import libxml2
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
-from gramps.gen.const import VERSION
+from gramps.version import VERSION
 import exportvcard
 
 class VCardCheck(unittest.TestCase):

@@ -50,7 +50,8 @@ log = logging.getLogger(".ExportVCard")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 from gramps.gui.plug.export import WriterOptionBox
-from gramps.gen.const import PROGRAM_NAME, VERSION
+from gramps.gen.const import PROGRAM_NAME
+from gramps.version import VERSION
 from gramps.gen.lib import Date
 from gramps.gen.lib.urltype import UrlType
 from gramps.gen.lib.eventtype import EventType
