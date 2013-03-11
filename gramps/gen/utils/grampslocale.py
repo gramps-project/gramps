@@ -163,7 +163,10 @@ class GrampsLocale(object):
                               domain=None, language=None):
 
 #First, globally set the locale to what's in the environment:
-        locale.setlocale(locale.LC_ALL, '')
+        try:
+            locale.setlocale(locale.LC_ALL, '')
+        except locale.Error:
+            pass
 
         if localedir and os.path.exists(localedir):
             self.localedir = localedir
