@@ -333,6 +333,14 @@ class GrampsLocale(object):
                 translator._language = "en"
                 return translator
 
+        if not languages or len(languages) == 0:
+            LOG.warning("No language provided, using US English")
+        else:
+            LOG.warning("No usable languages found in list, using US English")
+        translator = GrampsNullTranslations()
+        translator._language = "en"
+        return translator
+
     def _set_dictionaries(self):
         """
         Create a dictionary of language names localized to the
