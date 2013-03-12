@@ -230,25 +230,6 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
                     out_file)
             raise SystemExit(msg)
 
-def update_posix(command):
-    '''
-    post-hook to update Linux systems after install
-
-    these commands are not system stoppers, so there is no reason for
-            system exit on failure to run.
-    '''
-    if os.name != 'posix':
-        return
-    # these commands will be ran on a Unix/ Linux system after install only...
-    for cmd, options in (
-            ('ldconfig',                ''),
-            ('update-desktop-database', '&> /dev/null'),
-            ('update-mime-database',    '/usr/share/mime &> /dev/null'),
-            ('gtk-update-icon-cache',   '--quiet /usr/share/icons/hicolor')):
-        sys_cmd = ('%(command)s %(opts)s') % {
-                    'command' : cmd, 'opts' : options}
-        os.system(sys_cmd)
-
 class build(_build):
     """Custom build command."""
     def run(self):
@@ -260,14 +241,6 @@ class build(_build):
 
 class install(_install):
     """Custom install command."""
-    _install.user_options.append(('enable-packager-mode', None,
-                         'disable post-installation mime type processing'))
-    _install.boolean_options.append('enable-packager-mode')
-
-    def initialize_options(self):
-        _install.initialize_options(self)
-        self.enable_packager_mode = False
-
     def run(self):
         resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
                                      'utils', 'resource-path')
@@ -279,11 +252,6 @@ class install(_install):
             fp.write(path)
 
         _install.run(self)
-        if self.enable_packager_mode:
-            log.warn('WARNING: Packager mode enabled.  Post-installation mime '
-                            'type processing was not run.')
-        else:
-            update_posix(self)
 
         os.remove(resource_file)
 
