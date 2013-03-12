@@ -86,30 +86,34 @@ def mac_setup_localization(glocale, lang, language):
     else:
         available = ['en']
 
+    def _mac_get_gramps_defaults(pref):
+        try:
+            answer = subprocess.Popen(
+                [defaults,  "read", "-app", "Gramps", pref],
+                stderr=open("/dev/null"),
+                stdout=subprocess.PIPE).communicate()[0]
+            if not answer:
+                answer = subprocess.Popen(
+                    [defaults, "read", "-g", pref],
+                stderr=open("/dev/null"),
+                stdout=subprocess.PIPE).communicate()[0]
+                if not answer:
+                    return None
+            if not sys.version_info[0] < 3:
+                answer = answer.decode("utf-8")
+            return answer
+        except OSError:
+            return None
+
     def mac_language_list():
         """
         Extract the languages list from defaults.
         """
-        languages = []
-        try:
-            languages = subprocess.Popen(
-                [defaults,  "read", "-app", "Gramps", "AppleLanguages"],
-                stderr=open("/dev/null"),
-                stdout=subprocess.PIPE).communicate()[0]
-            if not sys.version_info[0] < 3:
-                languages = languages.decode("utf-8")
-            languages.strip("()\n").split(",\n")
-        except OSError:
-            pass
-
-        if len(languages) == 0 or (len(languages) == 1 and languages[0] == ""):
-            languages = subprocess.Popen(
-                [defaults, "read", "-g", "AppleLanguages"],
-                stderr=open("/dev/null"),
-                stdout=subprocess.PIPE).communicate()[0]
-            if not sys.version_info[0] < 3:
-                languages = languages.decode("utf-8")
-            languages.strip("()\n").split(",\n")
+        languages = _mac_get_gramps_defaults("AppleLanguages")
+        if not languages:
+            return []
+        languages = map(lambda x: x.strip(),
+                        languages.strip("()\n").split(",\n"))
         usable = []
         for lang in languages:
             lang = lang.strip().strip('"').replace("-", "_", 1)
@@ -130,24 +134,11 @@ def mac_setup_localization(glocale, lang, language):
         locale = ""
         calendar = ""
         currency = ""
-        default_locale = ""
-        try:
-            default_locale = subprocess.Popen(
-                [defaults, "read", "-app", "Gramps", "AppleLocale"],
-                stderr = open("/dev/null"),
-                stdout = subprocess.PIPE).communicate()[0]
-        except OSError:
-            pass
-        if not default_locale:
-            try:
-                default_locale = subprocess.Popen(
-                    [defaults, "read", "-g", "AppleLocale"],
-                    stderr = open("/dev/null"),
-                    stdout = subprocess.PIPE).communicate()[0]
-            except OSError:
-                return (locale, calendar, currency)
+        default_locale = _mac_get_gramps_defaults("AppleLocale")
+        if not locale:
+            return (locale, calendar, currency)
 
-        div = default_locale.split(b"@")
+        div = default_locale.strip().split(b"@")
         locale = div[0]
         if len(div) > 1:
             div = div[1].split(";")
@@ -167,22 +158,8 @@ def mac_setup_localization(glocale, lang, language):
         """
         Extract the collation (sort order) locale from the defaults string.
         """
-        collation = None
-        try:
-            collation = subprocess.Popen(
-                [defaults, "read", "-app", "Gramps", "AppleCollationOrder"],
-                stderr = open("/dev/null"),
-                stdout = subprocess.PIPE).communicate()[0]
-        except OSError:
-            pass
-        if not collation:
-            try:
-                collation = subprocess.Popen(
-                    [defaults, "read", "-g", "AppleCollationOrder"],
-                    stderr = open("/dev/null"),
-                    stdout = subprocess.PIPE).communicate()[0]
-            except OSError:
-                pass
+        collation = _mac_get_gramps_defaults("AppleCollationOrder")
+        collation = collation.strip()
         if collation.startswith("root"):
             return None
         return collation
@@ -257,10 +234,9 @@ def mac_setup_localization(glocale, lang, language):
             elif (len(loc) > 0 and loc in available
                   and not loc.startswith("en")):
                 language = [loc]
-            elif (len(collation) > 0 and collation in available
+            elif (collation and len(collation) > 0 and collation in available
                   and not collation.startswith("en")):
                 language = [collation]
-
     glocale.language = language
 
     if (currency and "LC_MONETARY" not in os.environ
