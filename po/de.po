@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-03 13:06+0100\n"
-"PO-Revision-Date: 2013-03-03 13:10+0100\n"
+"POT-Creation-Date: 2013-03-12 11:58+0100\n"
+"PO-Revision-Date: 2013-03-12 12:09+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -855,8 +855,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Kein Familienbeziehungenübersetzer  verfügbar für die Sprache '%s' verfügbar. "
-"Verwende stattdessen Englisch."
+"Kein Familienbeziehungenübersetzer  verfügbar für die Sprache '%s' "
+"verfügbar. Verwende stattdessen Englisch."
 
 #. The parent may not be birth father in ths family, because it
 #. may be a step family. However, it will be odd to display the
@@ -3956,7 +3956,7 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:301
 #: ../src/plugins/export/ExportCsv.py:305
-#: ../src/plugins/export/ExportGedcom.py:1447
+#: ../src/plugins/export/ExportGedcom.py:1443
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
@@ -7610,7 +7610,7 @@ msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
 "a citation editor (which also allows the source to be edited), would create "
-"ambiguity by opening two editor on the same source. \n"
+"ambiguity by opening two editors on the same source. \n"
 "\n"
 "To edit the citation, close the source editor and open an editor for the "
 "citation alone"
@@ -9794,11 +9794,11 @@ msgstr ""
 msgid "Gramps Book"
 msgstr "Gramps Buch"
 
-#: ../src/plugins/BookReport.py:1283 ../src/plugins/BookReport.py:1294
+#: ../src/plugins/BookReport.py:1277 ../src/plugins/BookReport.py:1288
 msgid "Please specify a book name"
 msgstr "Bitte gib einen Buchnamen an"
 
-#: ../src/plugins/BookReport.py:1290
+#: ../src/plugins/BookReport.py:1284
 #, python-format
 msgid "No such book '%s'"
 msgstr "Kein solches Buch '%s'"
@@ -11684,27 +11684,27 @@ msgstr "Ehemann"
 msgid "Wife"
 msgstr "Ehefrau"
 
-#: ../src/plugins/export/ExportGedcom.py:414
+#: ../src/plugins/export/ExportGedcom.py:394
 msgid "Writing individuals"
 msgstr "Schreibe Personen"
 
-#: ../src/plugins/export/ExportGedcom.py:773
+#: ../src/plugins/export/ExportGedcom.py:741
 msgid "Writing families"
 msgstr "Schreibe Familien"
 
-#: ../src/plugins/export/ExportGedcom.py:932
+#: ../src/plugins/export/ExportGedcom.py:900
 msgid "Writing sources"
 msgstr "Schreibe Quellen"
 
-#: ../src/plugins/export/ExportGedcom.py:967
+#: ../src/plugins/export/ExportGedcom.py:935
 msgid "Writing notes"
 msgstr "Schreibe Notizen"
 
-#: ../src/plugins/export/ExportGedcom.py:1005
+#: ../src/plugins/export/ExportGedcom.py:973
 msgid "Writing repositories"
 msgstr "Schreibe Aufbewahrungsorte"
 
-#: ../src/plugins/export/ExportGedcom.py:1450
+#: ../src/plugins/export/ExportGedcom.py:1446
 msgid "Export failed"
 msgstr "Export fehlgeschlagen"
 
@@ -14985,46 +14985,46 @@ msgstr ""
 "Fehler: Familie '%(family)s' Kind '%(child)s' verweist nicht zurück auf die "
 "Familie.Referenz hinzugefügt."
 
-#: ../src/plugins/lib/libgedcom.py:1730
+#: ../src/plugins/lib/libgedcom.py:1728
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 "Deine GEDCOM-Datei ist beschädigt. Vermutlich ist die Datei unvollständig."
 
-#: ../src/plugins/lib/libgedcom.py:1811
+#: ../src/plugins/lib/libgedcom.py:1809
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2595 ../src/plugins/lib/libgedcom.py:2962
+#: ../src/plugins/lib/libgedcom.py:2594 ../src/plugins/lib/libgedcom.py:2961
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/plugins/lib/libgedcom.py:2618
+#: ../src/plugins/lib/libgedcom.py:2617
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2620
+#: ../src/plugins/lib/libgedcom.py:2619
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
-#: ../src/plugins/lib/libgedcom.py:2885
+#: ../src/plugins/lib/libgedcom.py:2884
 msgid "Tag recognised but not supported"
 msgstr "Tag erkannt aber nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:2896
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Line ignored as not understood"
 msgstr "Zeile wurde ignoriert da sie nicht verstanden wurde"
 
-#: ../src/plugins/lib/libgedcom.py:2921
+#: ../src/plugins/lib/libgedcom.py:2920
 msgid "Skipped subordinate line"
 msgstr "Untergeordnete Zeile übersprungen"
 
-#: ../src/plugins/lib/libgedcom.py:2953
+#: ../src/plugins/lib/libgedcom.py:2952
 msgid "Records not imported into "
 msgstr "Datensätze nicht importiert nach "
 
-#: ../src/plugins/lib/libgedcom.py:2988
+#: ../src/plugins/lib/libgedcom.py:2987
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -15033,7 +15033,7 @@ msgstr ""
 "Fehler: %(msg)s  '%(gramps_id)s' (eingelesen als @%(xref)s@) nicht im "
 "eingelesenen GEDCOM. Datensatz synthetisiert"
 
-#: ../src/plugins/lib/libgedcom.py:2997
+#: ../src/plugins/lib/libgedcom.py:2996
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -15043,7 +15043,7 @@ msgstr ""
 "eingelesenen GEDCOM. Datensatz mit versinnbildlichenden Attribut 'Unbekannt' "
 "erstellt"
 
-#: ../src/plugins/lib/libgedcom.py:3036
+#: ../src/plugins/lib/libgedcom.py:3035
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -15054,7 +15054,7 @@ msgstr ""
 "%(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
 "der Familie. Familienreferenz wurde von der Person entfernt"
 
-#: ../src/plugins/lib/libgedcom.py:3114
+#: ../src/plugins/lib/libgedcom.py:3113
 #, python-format
 msgid ""
 "\n"
@@ -15071,154 +15071,163 @@ msgstr ""
 "gesetzt. Wo es möglich ist, werden diese 'Unbekannten' Objekte\n"
 "durch Notiz %s referenziert.\n"
 
-#: ../src/plugins/lib/libgedcom.py:3132
+#. message means that the element %s was ignored, but
+#. expressed the wrong way round because the message is
+#. truncated for output
+#: ../src/plugins/lib/libgedcom.py:3181
+#, python-format
+msgid "ADDR element ignored '%s'"
+msgstr "ADDR Element ignoriert '%s'"
+
+#: ../src/plugins/lib/libgedcom.py:3194
 msgid "TRLR (trailer)"
 msgstr "TRLR (Anhang)"
 
-#: ../src/plugins/lib/libgedcom.py:3161
+#: ../src/plugins/lib/libgedcom.py:3223
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Ersteller): @%s@"
 
-#: ../src/plugins/lib/libgedcom.py:3185 ../src/plugins/lib/libgedcom.py:6670
+#: ../src/plugins/lib/libgedcom.py:3247 ../src/plugins/lib/libgedcom.py:6728
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../src/plugins/lib/libgedcom.py:3231
+#: ../src/plugins/lib/libgedcom.py:3293
 msgid "Unknown tag"
 msgstr "Unbekannter Tag"
 
-#: ../src/plugins/lib/libgedcom.py:3233 ../src/plugins/lib/libgedcom.py:3247
-#: ../src/plugins/lib/libgedcom.py:3251 ../src/plugins/lib/libgedcom.py:3272
+#: ../src/plugins/lib/libgedcom.py:3295 ../src/plugins/lib/libgedcom.py:3309
+#: ../src/plugins/lib/libgedcom.py:3313 ../src/plugins/lib/libgedcom.py:3334
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../src/plugins/lib/libgedcom.py:3341
+#: ../src/plugins/lib/libgedcom.py:3403
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3535 ../src/plugins/lib/libgedcom.py:4836
-#: ../src/plugins/lib/libgedcom.py:5045 ../src/plugins/lib/libgedcom.py:5182
-#: ../src/plugins/lib/libgedcom.py:5813 ../src/plugins/lib/libgedcom.py:5956
+#: ../src/plugins/lib/libgedcom.py:3597 ../src/plugins/lib/libgedcom.py:4900
+#: ../src/plugins/lib/libgedcom.py:5098 ../src/plugins/lib/libgedcom.py:5235
+#: ../src/plugins/lib/libgedcom.py:5881 ../src/plugins/lib/libgedcom.py:6025
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:3537 ../src/plugins/lib/libgedcom.py:4838
-#: ../src/plugins/lib/libgedcom.py:5047 ../src/plugins/lib/libgedcom.py:5184
-#: ../src/plugins/lib/libgedcom.py:5815 ../src/plugins/lib/libgedcom.py:5958
+#: ../src/plugins/lib/libgedcom.py:3599 ../src/plugins/lib/libgedcom.py:4902
+#: ../src/plugins/lib/libgedcom.py:5100 ../src/plugins/lib/libgedcom.py:5237
+#: ../src/plugins/lib/libgedcom.py:5883 ../src/plugins/lib/libgedcom.py:6027
 msgid "Form omitted"
 msgstr "Formular ausgelassen"
 
-#: ../src/plugins/lib/libgedcom.py:4602
+#: ../src/plugins/lib/libgedcom.py:4666
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5333
+#: ../src/plugins/lib/libgedcom.py:5400
 msgid "Empty event note ignored"
 msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5650 ../src/plugins/lib/libgedcom.py:6473
+#: ../src/plugins/lib/libgedcom.py:5718 ../src/plugins/lib/libgedcom.py:6531
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../src/plugins/lib/libgedcom.py:5827 ../src/plugins/lib/libgedcom.py:6215
+#: ../src/plugins/lib/libgedcom.py:5895 ../src/plugins/lib/libgedcom.py:6317
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:5919
+#. SOURce with the given gramps_id had no title
+#: ../src/plugins/lib/libgedcom.py:5988
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:5924
+#: ../src/plugins/lib/libgedcom.py:5993
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6141
+#: ../src/plugins/lib/libgedcom.py:6243
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6169 ../src/plugins/lib/libgedcom.py:7163
+#: ../src/plugins/lib/libgedcom.py:6271 ../src/plugins/lib/libgedcom.py:7221
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6205
+#: ../src/plugins/lib/libgedcom.py:6307
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6225
+#: ../src/plugins/lib/libgedcom.py:6327
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6235
+#: ../src/plugins/lib/libgedcom.py:6337
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6322
+#: ../src/plugins/lib/libgedcom.py:6424
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6598
+#: ../src/plugins/lib/libgedcom.py:6656
 msgid "Head (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../src/plugins/lib/libgedcom.py:6614
+#: ../src/plugins/lib/libgedcom.py:6672
 msgid "Approved system identification"
 msgstr "Anerkannte Systemidentifikation"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6624
+#: ../src/plugins/lib/libgedcom.py:6682
 msgid "Generated by"
 msgstr "Erstellt von"
 
-#: ../src/plugins/lib/libgedcom.py:6638
+#: ../src/plugins/lib/libgedcom.py:6696
 msgid "Name of software product"
 msgstr "Name der Software"
 
-#: ../src/plugins/lib/libgedcom.py:6650
+#: ../src/plugins/lib/libgedcom.py:6708
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../src/plugins/lib/libgedcom.py:6667
+#: ../src/plugins/lib/libgedcom.py:6725
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../src/plugins/lib/libgedcom.py:6688
+#: ../src/plugins/lib/libgedcom.py:6746
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6702
+#: ../src/plugins/lib/libgedcom.py:6760
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../src/plugins/lib/libgedcom.py:6716
+#: ../src/plugins/lib/libgedcom.py:6774
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6729
+#: ../src/plugins/lib/libgedcom.py:6787
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/plugins/lib/libgedcom.py:6767
+#: ../src/plugins/lib/libgedcom.py:6825
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../src/plugins/lib/libgedcom.py:6778
+#: ../src/plugins/lib/libgedcom.py:6836
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../src/plugins/lib/libgedcom.py:6802
+#: ../src/plugins/lib/libgedcom.py:6860
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
@@ -15227,82 +15236,82 @@ msgstr ""
 "Import der GEDCOM Datei %s mit dem ZIEL=%s kann Fehler in der resultierenden "
 "Datenbank verursachen!"
 
-#: ../src/plugins/lib/libgedcom.py:6805
+#: ../src/plugins/lib/libgedcom.py:6863
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../src/plugins/lib/libgedcom.py:6828
+#: ../src/plugins/lib/libgedcom.py:6886
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../src/plugins/lib/libgedcom.py:6830
+#: ../src/plugins/lib/libgedcom.py:6888
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../src/plugins/lib/libgedcom.py:6846
+#: ../src/plugins/lib/libgedcom.py:6904
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6849
+#: ../src/plugins/lib/libgedcom.py:6907
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../src/plugins/lib/libgedcom.py:6852
+#: ../src/plugins/lib/libgedcom.py:6910
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../src/plugins/lib/libgedcom.py:6854
+#: ../src/plugins/lib/libgedcom.py:6912
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../src/plugins/lib/libgedcom.py:6900
+#: ../src/plugins/lib/libgedcom.py:6958
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6904
+#: ../src/plugins/lib/libgedcom.py:6962
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6941 ../src/plugins/lib/libgedcom.py:6978
+#: ../src/plugins/lib/libgedcom.py:6999 ../src/plugins/lib/libgedcom.py:7036
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
-#: ../src/plugins/lib/libgedcom.py:6993
+#: ../src/plugins/lib/libgedcom.py:7051
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s"
 
-#: ../src/plugins/lib/libgedcom.py:7043
+#: ../src/plugins/lib/libgedcom.py:7101
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../src/plugins/lib/libgedcom.py:7045
+#: ../src/plugins/lib/libgedcom.py:7103
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../src/plugins/lib/libgedcom.py:7047
+#: ../src/plugins/lib/libgedcom.py:7105
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:7049
+#: ../src/plugins/lib/libgedcom.py:7107
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../src/plugins/lib/libgedcom.py:7051
+#: ../src/plugins/lib/libgedcom.py:7109
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../src/plugins/lib/libgedcom.py:7053
+#: ../src/plugins/lib/libgedcom.py:7111
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7265
+#: ../src/plugins/lib/libgedcom.py:7323
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../src/plugins/lib/libgedcom.py:7346
+#: ../src/plugins/lib/libgedcom.py:7415
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -15310,11 +15319,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../src/plugins/lib/libgedcom.py:7349
+#: ../src/plugins/lib/libgedcom.py:7418
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../src/plugins/lib/libgedcom.py:7412
+#: ../src/plugins/lib/libgedcom.py:7481
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -24594,18 +24603,19 @@ msgstr "Verfolge %s"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5682
+#, fuzzy
 msgid ""
-"This map page represents the person and their descendants with all of their "
-"event/ places.  If you place your mouse over the marker it will display the "
-"place name.  The markers and the Reference list are sorted in date order (if "
-"any?).  Clicking on a place&#8217;s name in the Reference section will take "
+"This map page represents the person and any descendants with all of their "
+"event/ places. If you place your mouse over the marker it will display the "
+"place name. The markers and the Reference list are sorted in date order (if "
+"any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
 "Diese Kartenseite stellt die Person mit ihren Nachkommen und all ihren "
 "Ereignissen/Orten dar. Wenn du die Maus über einer Markierung platzierst, "
-"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind "
-"nach Datum sortiert (wenn vorhanden). Klicken auf einen Ort im "
-"Referenzbereich bringt dich auf die Ortsseite."
+"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind nach "
+"Datum sortiert (wenn vorhanden). Klicken auf einen Ort im Referenzbereich "
+"bringt dich auf die Ortsseite."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5734
 msgid "Drop Markers"
@@ -24975,12 +24985,12 @@ msgstr "Erstelle und verwende nur Miniaturbilder"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8135
 msgid ""
-"This option allows you the choice to not create any full- sized images as in "
-"the Media Page, and only a thumb- sized images.  This will allow you to have "
-"a much smaller total upload size to your web hosting site."
+"This option allows you to create only thumbnail images instead of the full-"
+"sized images on the Media Page. This will allow you to have a much smaller "
+"total upload size to your web hosting site."
 msgstr ""
-"Diese Option gibt dir die Möglichkeit, keine vollauflösenden Bilder wie auf "
-"der Medienseite sondern nur Bilder in Vorschaugröße zu erstellen. Dadurch "
+"Diese Option gibt dir die Möglichkeit nur Bilder in Vorschaugröße anstatt "
+"Bildern in voller Auflösung wie auf der Medienseite zu erstellen. Dadurch "
 "ist die Datenmenge, die du zu deinen Website Anbieter hoch laden musst "
 "erheblich kleiner."
 
