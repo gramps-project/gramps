@@ -51,7 +51,7 @@ from .svn_revision import get_svn_revision
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-from gramps.version import VERSION, VERSION_TUPLE, major_version
+from ..version import VERSION, VERSION_TUPLE, major_version
 #-------------------------------------------------------------------------
 #
 # Standard GRAMPS Websites
@@ -320,29 +320,3 @@ LONGOPTS = [
 SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
-
-def need_to_update_const():
-    """ Check to see if this file is older than 
-        setup.py or const.py.in """
-    this_file = os.path.join(ROOT_DIR, "gen", "const.py")
-    in_file = os.path.join(ROOT_DIR, "gen", "const.py.in")
-    setup_file = os.path.join(ROOT_DIR, "..", "setup.py")
-
-    if (os.path.exists(this_file) and 
-        os.path.exists(in_file) and 
-        os.path.exists(setup_file)):
-
-        this_file_time = os.path.getmtime(this_file)
-        in_file_time = os.path.getmtime(in_file)
-        setup_file_time = os.path.getmtime(setup_file)
-
-        # Is this file older than others? If so,
-        # need to run setup
-        return (this_file_time < in_file_time or
-                this_file_time < setup_file_time)
-    else:
-        # Can't tell because can't find the files
-        return False
-
-if need_to_update_const():
-    print("Outdated gramps.gen.const; please run 'python setup.py build'")
