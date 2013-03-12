@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-12 11:58+0100\n"
-"PO-Revision-Date: 2013-03-12 12:09+0100\n"
+"PO-Revision-Date: 2013-03-12 12:18+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -24603,7 +24603,6 @@ msgstr "Verfolge %s"
 
 #. page description
 #: ../src/plugins/webreport/NarrativeWeb.py:5682
-#, fuzzy
 msgid ""
 "This map page represents the person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
