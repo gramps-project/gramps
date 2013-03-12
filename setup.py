@@ -230,20 +230,6 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
                     out_file)
             raise SystemExit(msg)
 
-def update_posix(command):
-    '''
-    post-hook to update Linux systems after install
-
-    these commands are not system stoppers, so there is no reason for
-            system exit on failure to run.
-    '''
-    if os.name != 'posix':
-        return
-    # these commands will be ran on a Unix/ Linux system after install only...
-    os.system('update-desktop-database &> /dev/null')
-    mime_dir = command.install_data + '/share/mime'
-    os.system('update-mime-database ' + mime_dir + ' &> /dev/null')
-
 class build(_build):
     """Custom build command."""
     def run(self):
@@ -255,14 +241,6 @@ class build(_build):
 
 class install(_install):
     """Custom install command."""
-    _install.user_options.append(('enable-packager-mode', None,
-                         'disable post-installation mime type processing'))
-    _install.boolean_options.append('enable-packager-mode')
-
-    def initialize_options(self):
-        _install.initialize_options(self)
-        self.enable_packager_mode = False
-
     def run(self):
         resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
                                      'utils', 'resource-path')
@@ -274,11 +252,6 @@ class install(_install):
             fp.write(path)
 
         _install.run(self)
-        if self.enable_packager_mode:
-            log.warn('WARNING: Packager mode enabled.  Post-installation '
-                     'scripts were not run.')
-        else:
-            update_posix(self)
 
         os.remove(resource_file)
 
