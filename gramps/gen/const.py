@@ -122,7 +122,8 @@ if sys.version_info[0] < 3:
 else:
     pass
 
-VERSION_DIR    = os.path.join(HOME_DIR, "gramps%s" % major_version)
+VERSION_DIR    = os.path.join(
+    HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
