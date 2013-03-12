@@ -71,7 +71,7 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 """
 
-import os, subprocess
+import sys, os, subprocess
 
 def mac_setup_localization(glocale, lang, language):
     """
@@ -95,18 +95,21 @@ def mac_setup_localization(glocale, lang, language):
             languages = subprocess.Popen(
                 [defaults,  "read", "-app", "Gramps", "AppleLanguages"],
                 stderr=open("/dev/null"),
-                stdout=subprocess.PIPE).communicate()[0].strip("()\n").split(",\n")
+                stdout=subprocess.PIPE).communicate()[0]
+            if not sys.version_info[0] < 3:
+                languages = languages.decode("utf-8")
+            languages.strip("()\n").split(",\n")
         except OSError:
             pass
 
         if len(languages) == 0 or (len(languages) == 1 and languages[0] == ""):
-#            try:
             languages = subprocess.Popen(
-                    [defaults, "read", "-g", "AppleLanguages"],
-                    stderr=open("/dev/null"),
-                    stdout=subprocess.PIPE).communicate()[0].strip("()\n").split(",\n")
-#            except OSError:
-#                pass
+                [defaults, "read", "-g", "AppleLanguages"],
+                stderr=open("/dev/null"),
+                stdout=subprocess.PIPE).communicate()[0]
+            if not sys.version_info[0] < 3:
+                languages = languages.decode("utf-8")
+            languages.strip("()\n").split(",\n")
         usable = []
         for lang in languages:
             lang = lang.strip().strip('"').replace("-", "_", 1)
@@ -144,7 +147,7 @@ def mac_setup_localization(glocale, lang, language):
             except OSError:
                 return (locale, calendar, currency)
 
-        div = default_locale.split("@")
+        div = default_locale.split(b"@")
         locale = div[0]
         if len(div) > 1:
             div = div[1].split(";")

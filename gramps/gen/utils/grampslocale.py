@@ -199,7 +199,7 @@ class GrampsLocale(object):
             language = []
         else:
             language = [l for l in languages
-                        if l in get_available_translations()]
+                        if l in self.get_available_translations()]
 
         if mac():
             from . import maclocale
@@ -274,7 +274,7 @@ class GrampsLocale(object):
             self.language = []
             if languages and len(languages) > 0:
                 self.language = [l for l in languages
-                                 if l in get_available_translations()]
+                                 if l in self.get_available_translations()]
             if len(self.language) == 0:
                 self.language = self._GrampsLocale__first_instance.language
 
