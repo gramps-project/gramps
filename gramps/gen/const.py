@@ -165,7 +165,7 @@ WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
 USE_TIPS = False
 
-if os.sys.platform in WINDOWS:
+if sys.platform == 'win32':
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
@@ -194,7 +194,7 @@ LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.grampslocale import GrampsLocale
-GRAMPS_LOCALE = GrampsLocale(localedir=resources.locale_dir)
+GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
 _ = GRAMPS_LOCALE.get_translation().sgettext
 
 #-------------------------------------------------------------------------
