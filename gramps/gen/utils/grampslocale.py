@@ -50,7 +50,6 @@ except ImportError:
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ..const import LOCALE_DIR
 from ..constfunc import mac, win, UNITYPE
 
 #------------------------------------------------------------------------
@@ -114,7 +113,7 @@ class GrampsLocale(object):
                     except TypeError:
                         LOG.warning('Unable to determine your Locale, using English')
                         lang = 'C.UTF-8'
-            self.lang = lang
+        self.lang = lang
 
         if not language or len(language) == 0:
             if "LANGUAGE" in os.environ:
@@ -159,7 +158,7 @@ class GrampsLocale(object):
             LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
 
 
-    def __init_first_instance(self, localedir=None, lang=None,
+    def __init_first_instance(self, localedir, lang=None,
                               domain=None, language=None):
 
 #First, globally set the locale to what's in the environment:
@@ -171,21 +170,13 @@ class GrampsLocale(object):
         if localedir and os.path.exists(localedir):
             self.localedir = localedir
         else:
-            if ("GRAMPSI18N" in os.environ
-                and os.path.exists(os.environ["GRAMPSI18N"])):
-                self.localedir = os.environ["GRAMPSI18N"]
-            elif os.path.exists(LOCALE_DIR):
-                self.localedir = LOCALE_DIR
-            elif os.path.exists(os.path.join(sys.prefix, "share", "locale")):
-                self.localedir = os.path.join(sys.prefix, "share", "locale")
+            if not lang:
+                lang = os.environ.get('LANG', 'en')
+            if lang and lang[:2] == 'en':
+                pass # No need to display warning, we're in English
             else:
-                if not lang:
-                    lang = os.environ.get('LANG', 'en')
-                if lang and lang[:2] == 'en':
-                    pass # No need to display warning, we're in English
-                else:
-                    LOG.warning('Locale dir does not exist at %s', LOCALE_DIR)
-                    LOG.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
+                LOG.warning('Locale dir does not exist at %s', localedir)
+                LOG.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
 
         if not self.localedir:
 #No localization files, no point in continuing
@@ -248,7 +239,7 @@ class GrampsLocale(object):
         self.initialized = True
 
 
-    def __init__(self, lang=None, localedir=None, domain=None, languages=None):
+    def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """
         Init a GrampsLocale. Run __init_first_instance() to set up the
         environement if this is the first run. Return __first_instance
@@ -256,7 +247,7 @@ class GrampsLocale(object):
         """
         if self == self._GrampsLocale__first_instance:
             if not self.initialized:
-                self._GrampsLocale__init_first_instance(lang, localedir,
+                self._GrampsLocale__init_first_instance(localedir, lang,
                                                         domain, languages)
             else:
                 return

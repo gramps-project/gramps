@@ -37,10 +37,13 @@ import sys
 
 #-------------------------------------------------------------------------
 #
-# Gramps modules
+# Platforms
+# Never test on LINUX, handle Linux in the else statement as default
 #
 #-------------------------------------------------------------------------
-from .const import WINDOWS, MACOS, LINUX
+LINUX = ["Linux", "linux", "linux2"]
+MACOS = ["Darwin", "darwin"]
+WINDOWS = ["Windows", "win32"]
 
 #-------------------------------------------------------------------------
 #
