@@ -82,17 +82,6 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
-# Platforms
-# Never test on LINUX, handle Linux in the else statement as default
-#
-#-------------------------------------------------------------------------
-LINUX = ["Linux", "linux", "linux2"]
-MACOS = ["Darwin", "darwin"]
-WINDOWS = ["Windows", "win32"]
-
-
-#-------------------------------------------------------------------------
-#
 # Determine the home directory. According to Wikipedia, most UNIX like
 # systems use HOME. I'm assuming that this would apply to OS X as well.
 # Windows apparently uses USERPROFILE
@@ -176,7 +165,7 @@ WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
 USE_TIPS = False
 
-if os.sys.platform in WINDOWS:
+if sys.platform == 'win32':
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
@@ -188,7 +177,6 @@ else:
 #-------------------------------------------------------------------------
 from gramps.gen.utils.resourcepath import ResourcePath
 _resources = ResourcePath()
-LOCALE_DIR = _resources.locale_dir
 DATA_DIR = _resources.data_dir
 IMAGE_DIR = _resources.image_dir
 
@@ -206,7 +194,7 @@ LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.grampslocale import GrampsLocale
-GRAMPS_LOCALE = GrampsLocale()
+GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
 _ = GRAMPS_LOCALE.get_translation().sgettext
 
 #-------------------------------------------------------------------------
