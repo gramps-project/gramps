@@ -98,12 +98,12 @@ class GrampsLocale(object):
 
         return super(GrampsLocale, cls).__new__(cls)
 
-    def __init_from_environment(self, lang=None, language=None):
-        if not lang:
+    def __init_from_environment(self):
+        if not (hasattr(self, 'lang') and self.lang):
             lang = ' '
-            try:
+            if 'LANG' in os.environ:
                 lang = os.environ["LANG"]
-            except KeyError:
+            else:
                 lang = locale.getlocale()[0]
                 if not lang:
                     try:
@@ -113,29 +113,36 @@ class GrampsLocale(object):
                         lang = 'C.UTF-8'
         self.lang = lang
 
-        if not language or len(language) == 0:
+        if not self.language:
             if "LANGUAGE" in os.environ:
-                avail =  self.get_available_translations()
-                language = [l for l in os.environ["LANGUAGE"].split(":")
-                            if l[:5] in avail or l[:2] in avail]
+                language = [x for x in [self.check_available_translations(l)
+                                        for l in os.environ["LANGUAGE"].split(":")]
+                            if x]
+
                 self.language = language
-            elif not lang == "C.UTF-8":
-                self.language = [lang]
+            elif 'LC_MESSAGES' in os.environ:
+                lang = self.check_available_translations(os.environ['LC_MESSAGES'])
+                if lang:
+                    self.language = [lang]
+            elif not self.lang == "C.UTF-8":
+                l = self.check_available_translations(lang)
+                if l:
+                    self.language = [l]
             else:
                 self.language = ["en"]
 
             if "LC_MONETARY" not in os.environ:
-                self.currency = lang
+                self.currency = self.lang
             else:
                 self.currency = os.environ["LC_MONETARY"]
 
             if "LC_TIME" not in os.environ:
-                self.calendar = lang
+                self.calendar = self.lang
             else:
                 self.calendar = os.environ["LC_TIME"]
 
             if "LC_COLLATE" not in os.environ:
-                self.collation = lang
+                self.collation = self.lang
             else:
                 self.collation = os.environ["LC_COLLATE"]
 
@@ -155,9 +162,7 @@ class GrampsLocale(object):
         except WindowsError:
             LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
 
-
-    def __init_first_instance(self, localedir, lang=None,
-                              domain=None, language=None):
+    def __init_first_instance(self, localedir):
         global _hdlr
         _hdlr = logging.StreamHandler()
         _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
@@ -169,36 +174,23 @@ class GrampsLocale(object):
         except locale.Error:
             pass
 
-        if localedir and os.path.exists(localedir):
-            self.localedir = localedir
-        else:
-            if not lang:
-                lang = os.environ.get('LANG', 'en')
-            if lang and lang[:2] == 'en':
-                pass # No need to display warning, we're in English
+        if not (hasattr(self, 'lang') and self.lang
+                and hasattr(self, 'language') and self.language):
+            if mac():
+                from . import maclocale
+                maclocale.mac_setup_localization(self)
             else:
-                LOG.warning('Locale dir does not exist at %s', localedir)
-                LOG.warning('Running python setup.py install --prefix=YourPrefixDir might fix the problem')
-
-        if not self.localedir:
-#No localization files, no point in continuing
-            return
-        if domain:
-            self.localedomain = domain
+                self.__init_from_environment()
         else:
-            self.localedomain = 'gramps'
+            self.currency = self.calendar = self.collation = self.lang
 
-        if not language or not isinstance(language, list):
-            language = []
-        else:
-            language = [l for l in languages
-                        if l in self.get_available_translations()]
+        if not self.lang:
+            self.lang = 'en_US.UTF-8'
+        if not self.language:
+            self.language.append('en')
+        if not self.have_localedir and not self.lang.startswith('en'):
+            LOG.warning("No translations for %s were found, setting localization to U.S. English", self.localedomain)
 
-        if mac():
-            from . import maclocale
-            maclocale.mac_setup_localization(self, lang, language)
-        else:
-            self.__init_from_environment(lang, language)
 #A variety of useful functions use the current locale for
 #formatting. Pending global replacement of those functions with ICU
 #equivalents, we need to use setlocale to our chosen default. This
@@ -238,7 +230,6 @@ class GrampsLocale(object):
         else:
             self._win_bindtextdomain(self.localedomain, self.localedir)
 
-        self.initialized = True
 
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """
@@ -247,36 +238,49 @@ class GrampsLocale(object):
         otherwise if called without arguments.
         """
         global _hdlr
-        if self == self._GrampsLocale__first_instance:
-            if not self.initialized:
-                self._GrampsLocale__init_first_instance(localedir, lang,
-                                                        domain, languages)
-            else:
-                return
 
+        if hasattr(self, 'initialized') and self.initialized:
+            return
+
+        _first = self._GrampsLocale__first_instance
+        self.have_localedir = True
+
+        if domain:
+            self.localedomain = domain
+        elif hasattr(_first, 'localedomain'):
+            self.localedomain = _first.localedomain
         else:
-            if domain:
-                self.localedomain = domain
-            else:
-                self.localedomain = self._GrampsLocale__first_instance.localedomain
-            if localedir:
-                self.localedir = localedir
-            else:
-                self.localedir = self._GrampsLocale__first_instance.localedir
+            self.localedomain = "gramps"
+        if localedir and os.path.exists(localedir):
+            self.localedir = localedir
+        elif hasattr(_first, 'localedir'):
+            self.localedir = _first.localedir
+        else:
+            self.have_localedir = False
 
-            self.language = []
-            if languages and len(languages) > 0:
-                self.language = [l for l in languages
-                                 if l in self.get_available_translations()]
-            if len(self.language) == 0:
-                self.language = self._GrampsLocale__first_instance.language
+        if lang:
+            self.lang = lang
+        elif hasattr(_first, 'lang'):
+            self.lang = _first.lang
 
-            if lang:
-                self.lang = lang
-            else:
-                self.lang = self._GrampsLocale__first_instance.lang
+        self.language = []
+        if languages:
+            self.language = [x for x in [self.check_available_translations(l)
+                                         for l in languages]
+                             if x]
+        elif hasattr(self, 'lang') and self.lang:
+            trans = self.check_available_translations(lang)
+            if trans:
+                self.language.append(trans)
 
-            self.collation = self.currency = self.calendar = self.lang
+        if not self.language and hasattr(_first, 'language'):
+            self.language = _first.language
+
+        if self == _first:
+            self._GrampsLocale__init_first_instance(localedir)
+        else:
+            self.currency = self.calendar = self.collation = self.lang
+
 
         self.icu_locales = {}
         self.collator = None
@@ -294,9 +298,10 @@ class GrampsLocale(object):
 
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
-        self._set_dictionaries()
         if _hdlr:
             LOG.removeHandler(_hdlr)
+
+        self.initialized = True
 
     def _get_translation(self, domain = None,
                          localedir = None,
@@ -390,6 +395,9 @@ class GrampsLocale(object):
         code_parts = lang_code.rsplit("_")
 
         lang = code_parts[0]
+        if not hasattr(self, 'lang_map'):
+            self._set_dictionaries()
+
         if lang in self.lang_map:
             lang = self.lang_map[lang]
 
@@ -487,7 +495,7 @@ class GrampsLocale(object):
         gramps_translator.add_fallback(addon_translator)
         return gramps_translator # with a language fallback
 
-    def get_available_translations(self):
+    def get_available_translations(self, localedir = None, localedomain = None):
         """
         Get a list of available translations.
 
@@ -497,19 +505,42 @@ class GrampsLocale(object):
         """
         languages = ["en"]
 
-        if self.localedir is None:
+        if not localedir and hasattr(self, 'localedir'):
+            localedir = self.localedir
+
+        if localedir is None:
             return languages
 
+        if not localedomain and hasattr(self, 'localedomain'):
+            localedomain = self.localedomain
+
         for langdir in os.listdir(self.localedir):
-            mofilename = os.path.join(self.localedir, langdir,
+            mofilename = os.path.join(localedir, langdir,
                                       "LC_MESSAGES",
-                                      "%s.mo" % self.localedomain )
+                                      "%s.mo" % localedomain )
             if os.path.exists(mofilename):
                 languages.append(langdir)
 
         languages.sort()
 
         return languages
+
+    def check_available_translations(self, locale):
+        """
+        Test a locale for having a translation available
+        locale -- string with standard language code, locale code, or name
+        """
+        if not self.have_localedir:
+            return None
+        if not hasattr(self, 'languages'):
+            self.languages = self.get_available_translations()
+
+        if locale[:2] in self.languages:
+            return locale[:2]
+        if locale[:5] in self.languages:
+            return locale[:5]
+
+        return None
 
     def get_language_dict(self):
         '''

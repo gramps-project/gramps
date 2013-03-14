@@ -73,7 +73,7 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 import sys, os, subprocess
 
-def mac_setup_localization(glocale, lang, language):
+def mac_setup_localization(glocale):
     """
     Set up the localization parameters from OSX's "defaults" system,
     permitting environment variables to override the settings.
@@ -81,10 +81,6 @@ def mac_setup_localization(glocale, lang, language):
     defaults = "/usr/bin/defaults"
     find = "/usr/bin/find"
     locale_dir = "/usr/share/locale"
-    if glocale:
-        available = glocale.get_available_translations()
-    else:
-        available = ['en']
 
     def _mac_get_gramps_defaults(pref):
         try:
@@ -121,8 +117,8 @@ def mac_setup_localization(glocale, lang, language):
                 lang = "cn_TW"
             if lang == "cn_Hans": #Simplified; Gettext uses cn_CN
                 lang = "cn_CN"
-
-            if lang in available or lang[:2] in available:
+            lang = glocale.check_available_translations(lang)
+            if lang:
                 usable.append(lang)
 
         return usable
@@ -203,13 +199,12 @@ def mac_setup_localization(glocale, lang, language):
 # The action starts here
 
     (loc, currency, calendar)  = mac_get_locale()
-    translations = mac_language_list()
     if "LC_COLLATE" in os.environ:
         collation = os.environ["LC_COLLATE"]
     else:
         collation = mac_get_collation()
 
-    if not lang:
+    if not (hasattr(glocale, 'lang') and glocale.lang):
         if "LANG" in os.environ:
             lang = os.environ["LANG"]
         else:
@@ -220,24 +215,35 @@ def mac_setup_localization(glocale, lang, language):
             if not lang and collation != None:
                 lang = mac_resolve_locale(collation)
 
-    glocale.lang = lang
+        glocale.lang = lang
 
-    if not language or len(language) == 0:
+    if not glocale.language:
         if "LANGUAGE" in os.environ:
-            language =  [l[:5] for l in os.environ["LANGUAGE"].split(":")
-                         if l[:5] in available or l[:2] in available]
-        elif "LANG" in os.environ and not lang.startswith("en_US"):
-            language = [lang[:5]]
+            language =  [x for x in [glocale.check_available_translations(l)
+                                     for l in os.environ["LANGUAGE"].split(":")]
+                         if x]
+        elif ("LANG" in os.environ
+              and not os.environ['LANG'].startswith("en_US")):
+            lang = glocale.check_available_translations(os.environ['LANG'])
+            if lang:
+                language = [lang]
+
         else:
+            translations = mac_language_list()
             if len(translations) > 0:
                 language = translations
             elif (len(loc) > 0 and loc in available
                   and not loc.startswith("en")):
-                language = [loc]
+                lang = glocale.check_available_translations(loc)
+                if lang:
+                    language = [lang]
             elif (collation and len(collation) > 0 and collation in available
                   and not collation.startswith("en")):
-                language = [collation]
-    glocale.language = language
+                lang = glocale.check_available_translations(collation)
+                if lang:
+                    language = [lang]
+
+        glocale.language = language
 
     if (currency and "LC_MONETARY" not in os.environ
         and "LANG" not in os.environment):
@@ -246,7 +252,7 @@ def mac_setup_localization(glocale, lang, language):
     elif "LC_MONETARY" in os.environ:
         glocale.currency = os.environ[LC_MONETARY]
     else:
-        glocale.currency = lang
+        glocale.currency = glocale.lang
 
     if (calendar and "LC_TIME" not in os.environ
         and "LANG" not in os.environ):
@@ -255,7 +261,7 @@ def mac_setup_localization(glocale, lang, language):
     elif "LC_TIME" in os.environ:
         glocale.calendar = os.environ["LC_TIME"]
     else:
-        glocale.calendar = lang
+        glocale.calendar = glocale.lang
 
     if (collation and "LC_COLLATION" not in os.environ
         and "LANG" not in os.environ):
@@ -264,6 +270,6 @@ def mac_setup_localization(glocale, lang, language):
     elif "LC_COLLATION" in os.environ:
         glocale.collation = os.environ["LC_COLLATION"]
     else:
-        glocale.collation = lang
+        glocale.collation = glocale.lang
 
 
