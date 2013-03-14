@@ -1088,7 +1088,11 @@ class PluginRegister(object):
                 fd = io.open(full_filename, 'r', encoding = 'utf-8')
             stream = fd.read()
             fd.close()
-            local_gettext = glocale.get_addon_translator(full_filename).gettext
+            if os.path.exists(os.path.join(os.path.dirname(full_filename),
+                                           'locale')):
+                local_gettext = glocale.get_addon_translator(full_filename).gettext
+            else:
+                local_gettext = glocale.get_translation().gettext
             try:
                 #execfile(full_filename,
                 exec (compile(stream, full_filename, 'exec'),
