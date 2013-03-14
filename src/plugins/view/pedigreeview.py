@@ -71,14 +71,7 @@ import gui.utils
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.is_quartz():
-    CAIRO_AVAILABLE = False
-else:
-    try:
-        import cairo
-        CAIRO_AVAILABLE = True
-    except ImportError:
-        CAIRO_AVAILABLE = False
+CAIRO_AVAILABLE = False
 
 _PERSON = "p"
 _BORN = _('short for born|b.')
