@@ -32,10 +32,8 @@ import os
 import locale
 import logging
 LOG = logging.getLogger("grampslocale")
-_hdlr = logging.StreamHandler()
-_hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
-LOG.addHandler(_hdlr)
 HAVE_ICU = False
+_hdlr = None
 try:
     from icu import Locale, Collator
     HAVE_ICU = True
@@ -160,6 +158,10 @@ class GrampsLocale(object):
 
     def __init_first_instance(self, localedir, lang=None,
                               domain=None, language=None):
+        global _hdlr
+        _hdlr = logging.StreamHandler()
+        _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
+        LOG.addHandler(_hdlr)
 
 #First, globally set the locale to what's in the environment:
         try:
@@ -238,13 +240,13 @@ class GrampsLocale(object):
 
         self.initialized = True
 
-
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """
         Init a GrampsLocale. Run __init_first_instance() to set up the
         environement if this is the first run. Return __first_instance
         otherwise if called without arguments.
         """
+        global _hdlr
         if self == self._GrampsLocale__first_instance:
             if not self.initialized:
                 self._GrampsLocale__init_first_instance(localedir, lang,
@@ -293,9 +295,8 @@ class GrampsLocale(object):
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
         self._set_dictionaries()
-
-
-
+        if _hdlr:
+            LOG.removeHandler(_hdlr)
 
     def _get_translation(self, domain = None,
                          localedir = None,
