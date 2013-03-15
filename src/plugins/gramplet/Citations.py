@@ -23,11 +23,17 @@
 from gui.editors import EditSource, EditCitation
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
+from gui.dbguielement import DbGUIElement
 from gen.ggettext import gettext as _
 import Errors
 import gtk
 
-class Citations(Gramplet):
+class Citations(Gramplet, DbGUIElement):
+
+    def __init__(self, gui, nav_group=0):
+        Gramplet.__init__(self, gui, nav_group)
+        DbGUIElement.__init__(self, self.dbstate.db)
+
     """
     Displays the citations for an object.
     """
@@ -36,6 +42,19 @@ class Citations(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
         self.gui.WIDGET.show()
+
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        self.callman.register_callbacks({'citation-update': self.changed})
+        self.callman.connect_all(keys=['citation'])
+    
+    def changed(self, handle):
+        """
+        Called when a registered citation is updated.
+        """
+        self.update()
 
     def build_gui(self):
         """
@@ -115,6 +134,7 @@ class Citations(Gramplet):
         """
         Add a citation to the model.
         """
+        self.callman.register_handles({'citation': [citation_handle]})
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         page = citation.get_page()
         if not page:
@@ -255,9 +275,6 @@ class PersonCitations(Citations):
     """
     Displays the citations for a person.
     """
-    def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
-
     def active_changed(self, handle):
         self.update()
 
@@ -271,6 +288,8 @@ class PersonCitations(Citations):
         active = self.dbstate.db.get_person_from_handle(active_handle)
             
         self.model.clear()
+        self.callman.unregister_all()
+        self.callman.register_obj(active)
         if active:
             self.display_citations(active)
         else:
@@ -329,7 +348,6 @@ class EventCitations(Citations):
     Displays the citations for an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -342,6 +360,8 @@ class EventCitations(Citations):
         active = self.dbstate.db.get_event_from_handle(active_handle)
             
         self.model.clear()
+        self.callman.unregister_all()
+        self.callman.register_obj(active)
         if active:
             self.display_citations(active)
         else:
@@ -371,7 +391,6 @@ class FamilyCitations(Citations):
     Displays the citations for a family.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -384,6 +403,8 @@ class FamilyCitations(Citations):
         active = self.dbstate.db.get_family_from_handle(active_handle)
             
         self.model.clear()
+        self.callman.unregister_all()
+        self.callman.register_obj(active)
         if active:
             self.display_citations(active)
         else:
@@ -426,7 +447,6 @@ class PlaceCitations(Citations):
     Displays the citations for a place.
     """
     def db_changed(self):
-        self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):
@@ -439,6 +459,8 @@ class PlaceCitations(Citations):
         active = self.dbstate.db.get_place_from_handle(active_handle)
             
         self.model.clear()
+        self.callman.unregister_all()
+        self.callman.register_obj(active)
         if active:
             self.display_citations(active)
         else:
@@ -468,7 +490,6 @@ class MediaCitations(Citations):
     Displays the citations for a media object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
 
     def update_has_data(self):
@@ -481,6 +502,8 @@ class MediaCitations(Citations):
         active = self.dbstate.db.get_object_from_handle(active_handle)
             
         self.model.clear()
+        self.callman.unregister_all()
+        self.callman.register_obj(active)
         if active:
             self.display_citations(active)
         else:
