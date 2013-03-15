@@ -751,7 +751,8 @@ class MonitoredTagList(object):
         self.tag_list = []
         for handle in get_list():
             tag = self.db.get_tag_from_handle(handle)
-            self.tag_list.append((handle, tag.get_name()))
+            if tag:
+                self.tag_list.append((handle, tag.get_name()))
 
         self.all_tags = []
         for tag in self.db.iter_tags():
