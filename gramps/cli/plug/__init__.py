@@ -743,8 +743,9 @@ def cl_book(database, name, book, options_str_dict):
         report_class = item.get_write_item()
         obj = write_book_item(database,
                               report_class, item.option_class, user)
-        append_styles(selected_style, item)
-        rptlist.append(obj)
+        if obj:
+            append_styles(selected_style, item)
+            rptlist.append(obj)
 
     doc.set_style_sheet(selected_style)
     doc.open(clr.option_class.get_output())
