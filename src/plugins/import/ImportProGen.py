@@ -593,11 +593,11 @@ class ProgenParser(object):
             self.db.add_source(source, self.trans)
             self.db.commit_source(source, self.trans)
             self.skeys[source_name] = source.get_handle()
-        sref = gen.lib.SourceRef()
+        sref = gen.lib.Citation()
         sref.set_reference_handle(source.get_handle())
         return sref
 
-    def __create_event_and_ref(self, type_, desc=None, date=None, place=None, source=None):
+    def __create_event_and_ref(self, type_, desc=None, date=None, place=None, citation=None):
         event = gen.lib.Event()
         event.set_type(gen.lib.EventType(type_))
         if desc:
@@ -606,8 +606,8 @@ class ProgenParser(object):
             event.set_date_object(date)
         if place:
             event.set_place_handle(place.get_handle())
-        if source:
-            event.add_source_reference(source)
+        if citation:
+            event.add_citation(citation.handle)
         self.db.add_event(event, self.trans)
         self.db.commit_event(event, self.trans)
         event_ref = gen.lib.EventRef()
