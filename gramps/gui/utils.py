@@ -118,7 +118,7 @@ class ProgressMeter(object):
     MODE_ACTIVITY = 1
 
     def __init__(self, title, header='', can_cancel=False,
-                 cancel_callback=None, message_area=False):
+                 cancel_callback=None, message_area=False, parent=None):
         """
         Specify the title and the current pass header.
         """
@@ -147,6 +147,9 @@ class ProgressMeter(object):
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
+        if parent:
+            self.__dialog.set_transient_for(parent)
+            self.__dialog.set_modal(True)
 
         tlbl = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % title)
         tlbl.set_use_markup(True)
