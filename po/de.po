@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-12 11:58+0100\n"
-"PO-Revision-Date: 2013-03-12 12:18+0100\n"
+"POT-Creation-Date: 2013-03-16 11:22+0100\n"
+"PO-Revision-Date: 2013-03-16 13:16+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -726,7 +726,7 @@ msgstr "Webverbindung"
 msgid "Quick View"
 msgstr "Schnellansicht"
 
-#: ../src/Relationship.py:807 ../src/plugins/view/pedigreeview.py:1679
+#: ../src/Relationship.py:807 ../src/plugins/view/pedigreeview.py:1672
 msgid "Relationship loop detected"
 msgstr "Verwandtschaftsschleife entdeckt"
 
@@ -995,7 +995,7 @@ msgstr "Ort"
 #. ###############################
 #. 3
 #: ../src/ScratchPad.py:384 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229 ../src/gui/configure.py:464
+#: ../src/gen/plug/docgen/graphdoc.py:243 ../src/gui/configure.py:464
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
@@ -4059,22 +4059,22 @@ msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2200
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Vertical (top to bottom)"
 msgstr "Vertikal (von oben nach unten)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2201
+#: ../src/plugins/view/pedigreeview.py:2194
 msgid "Vertical (bottom to top)"
 msgstr "Vertikal (von unten nach oben)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2202
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Horizontal (left to right)"
 msgstr "Horizontal (links nach rechts)"
 
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2203
+#: ../src/plugins/view/pedigreeview.py:2196
 msgid "Horizontal (right to left)"
 msgstr "Horizontal (von rechts nach links)"
 
@@ -4111,16 +4111,16 @@ msgid "Left, top"
 msgstr "Links, oben"
 
 #: ../src/gen/plug/docgen/graphdoc.py:81
-msgid "Minimal size"
-msgstr "Minimale Größe"
+msgid "Compress to minimal size"
+msgstr "Auf minimale Größe komprimieren"
 
 #: ../src/gen/plug/docgen/graphdoc.py:82
 msgid "Fill the given area"
 msgstr "Gegebenen Bereich füllen"
 
 #: ../src/gen/plug/docgen/graphdoc.py:83
-msgid "Use optimal number of pages"
-msgstr "Benutze optimale Seitenzahl"
+msgid "Expand uniformly"
+msgstr "Gleichmäßig ausdehnen"
 
 #: ../src/gen/plug/docgen/graphdoc.py:85
 msgid "Top"
@@ -4131,17 +4131,17 @@ msgid "Bottom"
 msgstr "Unten"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:129
+#: ../src/gen/plug/docgen/graphdoc.py:130
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:131
+#: ../src/gen/plug/docgen/graphdoc.py:132
 #: ../src/gui/widgets/styledtexteditor.py:476
 msgid "Font family"
 msgstr "Schriftfamilie"
 
-#: ../src/gen/plug/docgen/graphdoc.py:134
+#: ../src/gen/plug/docgen/graphdoc.py:135
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -4150,28 +4150,28 @@ msgstr ""
 "werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: http://"
 "www.nongnu.org/freefont/"
 
-#: ../src/gen/plug/docgen/graphdoc.py:140
+#: ../src/gen/plug/docgen/graphdoc.py:141
 #: ../src/gui/widgets/styledtexteditor.py:488
 msgid "Font size"
 msgstr "Schriftgröße"
 
-#: ../src/gen/plug/docgen/graphdoc.py:141
+#: ../src/gen/plug/docgen/graphdoc.py:142
 msgid "The font size, in points."
 msgstr "Die Schriftgröße in Punkten."
 
-#: ../src/gen/plug/docgen/graphdoc.py:144
+#: ../src/gen/plug/docgen/graphdoc.py:145
 msgid "Graph Direction"
 msgstr "Ausrichtung der Grafik"
 
-#: ../src/gen/plug/docgen/graphdoc.py:147
+#: ../src/gen/plug/docgen/graphdoc.py:148
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Ob der Graph von oben nach unten oder von links nach rechts geht."
 
-#: ../src/gen/plug/docgen/graphdoc.py:151
+#: ../src/gen/plug/docgen/graphdoc.py:152
 msgid "Number of Horizontal Pages"
 msgstr "Horizontale Seitenzahl"
 
-#: ../src/gen/plug/docgen/graphdoc.py:152
+#: ../src/gen/plug/docgen/graphdoc.py:153
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -4182,11 +4182,11 @@ msgstr ""
 "horizontale Anzahl an Seiten vor. Nur gültig für DOT und PDF über "
 "Ghostscript."
 
-#: ../src/gen/plug/docgen/graphdoc.py:159
+#: ../src/gen/plug/docgen/graphdoc.py:160
 msgid "Number of Vertical Pages"
 msgstr "Vertikale Seitenzahl"
 
-#: ../src/gen/plug/docgen/graphdoc.py:160
+#: ../src/gen/plug/docgen/graphdoc.py:161
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -4196,11 +4196,11 @@ msgstr ""
 "rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
 "vertikale Anzahl an Seiten vor. Nur gültig für DOT und PDF über Ghostscript."
 
-#: ../src/gen/plug/docgen/graphdoc.py:167
+#: ../src/gen/plug/docgen/graphdoc.py:168
 msgid "Paging Direction"
 msgstr "Seitenwechsel Richtung"
 
-#: ../src/gen/plug/docgen/graphdoc.py:170
+#: ../src/gen/plug/docgen/graphdoc.py:171
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -4209,37 +4209,66 @@ msgstr ""
 "wirkt nur wenn die horizontale oder vertikale Seitenzahl größer 1 ist."
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:188
+#: ../src/gen/plug/docgen/graphdoc.py:189
 msgid "GraphViz Options"
 msgstr "Optionen für GraphViz"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:191
+#: ../src/gen/plug/docgen/graphdoc.py:192
 msgid "Aspect ratio"
 msgstr "Streckung"
 
-#: ../src/gen/plug/docgen/graphdoc.py:194
-msgid "Affects greatly how the graph is layed out on the page."
-msgstr "Bestimmt hauptsächlich wie das Diagramm auf der Seite angeordnet ist."
+#: ../src/gen/plug/docgen/graphdoc.py:195
+msgid ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width "
+"and height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect "
+"ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of "
+"symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing "
+"the node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
+msgstr ""
+"Beeinflusst die Knotenabstände und Skalierung der Grafik.\n"
+"Wenn die Grafik kleiner ist als der Druckbereich:\n"
+"  Komprimieren ändert nicht die Knotenabstände. \n"
+"  Füllen vergrößert die Knotenabstände damit der Druckbereich in Höhe und "
+"Breite gefüllt wird.\n"
+"  Ausdehnen vergrößert die Knotenabstände gleichmäßig um das Seitenverhältnis "
+"beizubehalten.\n"
+"Wenn die Grafik größer ist als der Druckbereich:\n"
+"  Komprimieren verkleinert die Grafik um die Kompaktheit auf Kosten der "
+"Symmetrie zu erhalten.\n"
+"  Füllen verkleinert die Grafik nach vergrößern der Knotenabstände so das der "
+"Druckbereich ausgefüllt wird.\n"
+"  Ausdehnen verkleinert die Grafik gleichmäßig damit sie in den Druckbereich "
+"passt."
 
-#: ../src/gen/plug/docgen/graphdoc.py:198
+#: ../src/gen/plug/docgen/graphdoc.py:211
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/gen/plug/docgen/graphdoc.py:199
+#: ../src/gen/plug/docgen/graphdoc.py:212
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
-"try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
-"use 72 DPI."
+"try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
+"DPI."
 msgstr ""
-"Punkte pro Zoll. Wenn du .gif oder .png Dateien fürs Web erstellst, versuche "
-"Werte wie 100 oder 300 DPI. Für PostScript oder PDF Dateien verwende 72 DPI."
+"Punkte pro Zoll. Wenn du Bilder wie .gif oder .png Dateien fürs Web "
+"erstellst, versuche "
+"Werte wie 100 oder 300 DPI. Für PostScript und PDF Dateien verwende immer 72 "
+"DPI."
 
-#: ../src/gen/plug/docgen/graphdoc.py:205
+#: ../src/gen/plug/docgen/graphdoc.py:219
 msgid "Node spacing"
 msgstr "Knotenabstand"
 
-#: ../src/gen/plug/docgen/graphdoc.py:206
+#: ../src/gen/plug/docgen/graphdoc.py:220
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -4249,11 +4278,11 @@ msgstr ""
 "Grafen entspricht das dem Abstand zwischen den Spalten. Für waagerechte "
 "Grafen entspricht das dem Abstand zwischen Zeilen."
 
-#: ../src/gen/plug/docgen/graphdoc.py:213
+#: ../src/gen/plug/docgen/graphdoc.py:227
 msgid "Rank spacing"
 msgstr "Ebenenabstand"
 
-#: ../src/gen/plug/docgen/graphdoc.py:214
+#: ../src/gen/plug/docgen/graphdoc.py:228
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -4263,11 +4292,11 @@ msgstr ""
 "entspricht dies dem Abstand zwischen Zeilen. Für waagerechte Grafen "
 "entspricht das dem Abstand zwischen Spalten."
 
-#: ../src/gen/plug/docgen/graphdoc.py:221
+#: ../src/gen/plug/docgen/graphdoc.py:235
 msgid "Use subgraphs"
 msgstr "Benutze Unterdiagramme"
 
-#: ../src/gen/plug/docgen/graphdoc.py:222
+#: ../src/gen/plug/docgen/graphdoc.py:236
 msgid ""
 "Subgraphs can help GraphViz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
@@ -4277,64 +4306,64 @@ msgstr ""
 "größeren Diagrammen führen."
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:232
+#: ../src/gen/plug/docgen/graphdoc.py:246
 msgid "Note to add to the graph"
 msgstr "Notizen zu Grafik hinzufügen"
 
-#: ../src/gen/plug/docgen/graphdoc.py:234
+#: ../src/gen/plug/docgen/graphdoc.py:248
 msgid "This text will be added to the graph."
 msgstr "Dieser Text wird der Grafik hinzugefügt."
 
-#: ../src/gen/plug/docgen/graphdoc.py:237
+#: ../src/gen/plug/docgen/graphdoc.py:251
 msgid "Note location"
 msgstr "Position der Notiz"
 
-#: ../src/gen/plug/docgen/graphdoc.py:240
+#: ../src/gen/plug/docgen/graphdoc.py:254
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Ob Notiz oben oder unten auf der Seite erscheint."
 
-#: ../src/gen/plug/docgen/graphdoc.py:244
+#: ../src/gen/plug/docgen/graphdoc.py:258
 msgid "Note size"
 msgstr "Notizgröße"
 
-#: ../src/gen/plug/docgen/graphdoc.py:245
+#: ../src/gen/plug/docgen/graphdoc.py:259
 msgid "The size of note text, in points."
 msgstr "Die Größe des Notizentext, in Punkten."
 
-#: ../src/gen/plug/docgen/graphdoc.py:953
+#: ../src/gen/plug/docgen/graphdoc.py:967
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:959
+#: ../src/gen/plug/docgen/graphdoc.py:973
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:965
+#: ../src/gen/plug/docgen/graphdoc.py:979
 #: ../src/plugins/docgen/docgen.gpr.py:152
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/gen/plug/docgen/graphdoc.py:971
+#: ../src/gen/plug/docgen/graphdoc.py:985
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Strukturierte Vektor Grafiken (SVG)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:977
+#: ../src/gen/plug/docgen/graphdoc.py:991
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Komprimierte SVG-Grafik (SVGZ)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:983
+#: ../src/gen/plug/docgen/graphdoc.py:997
 msgid "JPEG image"
 msgstr "JPEG-Grafik"
 
-#: ../src/gen/plug/docgen/graphdoc.py:989
+#: ../src/gen/plug/docgen/graphdoc.py:1003
 msgid "GIF image"
 msgstr "GIF-Grafik"
 
-#: ../src/gen/plug/docgen/graphdoc.py:995
+#: ../src/gen/plug/docgen/graphdoc.py:1009
 msgid "PNG image"
 msgstr "PNG-Grafik"
 
-#: ../src/gen/plug/docgen/graphdoc.py:1001
+#: ../src/gen/plug/docgen/graphdoc.py:1015
 msgid "Graphviz File"
 msgstr "Graphviz Datei"
 
@@ -5853,7 +5882,7 @@ msgstr "Notizen"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:906
-#: ../src/plugins/view/pedigreeview.py:1959 ../src/plugins/view/relview.py:511
+#: ../src/plugins/view/pedigreeview.py:1952 ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848 ../src/plugins/view/relview.py:882
 #: ../src/plugins/webreport/NarrativeWeb.py:380
 #: ../src/plugins/webreport/NarrativeWeb.py:2912
@@ -5872,7 +5901,7 @@ msgstr "Eltern wählen"
 
 #: ../src/gui/grampsgui.py:133 ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
-#: ../src/plugins/view/pedigreeview.py:692
+#: ../src/plugins/view/pedigreeview.py:685
 #: ../src/plugins/webreport/NarrativeWeb.py:6071
 msgid "Pedigree"
 msgstr "Ahnentafel"
@@ -7690,7 +7719,7 @@ msgid "Move the selected citation downwards"
 msgstr "Gewählte Fundstelle nach unten verschieben"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
-#: ../src/plugins/gramplet/Citations.py:49
+#: ../src/plugins/gramplet/Citations.py:68
 #: ../src/plugins/view/sourceview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:4289
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -9148,7 +9177,7 @@ msgstr ""
 "Zum bearbeiten Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
 "aktivieren)"
 
-#: ../src/gui/widgets/monitoredwidgets.py:766
+#: ../src/gui/widgets/monitoredwidgets.py:767
 #: ../src/glade/editfamily.glade.h:21
 msgid "Edit the tag list"
 msgstr "Die Markierungenliste bearbeiten"
@@ -9386,7 +9415,7 @@ msgstr "Keine Eltern gefunden"
 #: ../src/plugins/gramplet/FanChartGramplet.py:724
 #: ../src/plugins/textreport/KinshipReport.py:125
 #: ../src/plugins/view/fanchartview.py:792
-#: ../src/plugins/view/pedigreeview.py:1839
+#: ../src/plugins/view/pedigreeview.py:1832
 msgid "Spouses"
 msgstr "(Ehe-)Partner"
 
@@ -10137,13 +10166,13 @@ msgstr "Index"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/drawreport/AncestorTree.py:72
 #: ../src/plugins/drawreport/DescendTree.py:59
-#: ../src/plugins/view/pedigreeview.py:84
+#: ../src/plugins/view/pedigreeview.py:77
 msgid "short for born|b."
 msgstr "*"
 
 #: ../src/plugins/drawreport/AncestorTree.py:73
 #: ../src/plugins/drawreport/DescendTree.py:60
-#: ../src/plugins/view/pedigreeview.py:85
+#: ../src/plugins/view/pedigreeview.py:78
 msgid "short for died|d."
 msgstr "†"
 
@@ -12177,7 +12206,7 @@ msgstr "Gramplet zeigt die Kinder einer Person"
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/view/fanchartview.py:869
-#: ../src/plugins/view/pedigreeview.py:1919
+#: ../src/plugins/view/pedigreeview.py:1912
 #: ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:756
 msgid "Children"
@@ -12360,20 +12389,20 @@ msgstr "Eine Tag doppelt klicken für Details"
 msgid "Double-click on a row to edit the selected child."
 msgstr "Doppelklick auf eine Zeile um das gewählte Kind zu bearbeiten."
 
-#: ../src/plugins/gramplet/Citations.py:44
+#: ../src/plugins/gramplet/Citations.py:63
 msgid "Double-click on a row to edit the selected source/citation."
 msgstr ""
 "Doppelklick auf eine Zeile um die gewählte Quelle/Fundstelle zu bearbeiten."
 
-#: ../src/plugins/gramplet/Citations.py:48
+#: ../src/plugins/gramplet/Citations.py:67
 msgid "Source/Citation"
 msgstr "Quelle/Fundstelle"
 
-#: ../src/plugins/gramplet/Citations.py:50
+#: ../src/plugins/gramplet/Citations.py:69
 msgid "Publisher"
 msgstr "Herausgeber"
 
-#: ../src/plugins/gramplet/Citations.py:121
+#: ../src/plugins/gramplet/Citations.py:141
 msgid "<No Citation>"
 msgstr "<Keine Fundstelle>"
 
@@ -12771,8 +12800,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:696
 #: ../src/plugins/view/fanchartview.py:764
-#: ../src/plugins/view/pedigreeview.py:1783
-#: ../src/plugins/view/pedigreeview.py:1809
+#: ../src/plugins/view/pedigreeview.py:1776
+#: ../src/plugins/view/pedigreeview.py:1802
 msgid "People Menu"
 msgstr "Personenmenü"
 
@@ -12780,14 +12809,14 @@ msgstr "Personenmenü"
 #: ../src/plugins/gramplet/FanChartGramplet.py:758
 #: ../src/plugins/quickview/quickview.gpr.py:316
 #: ../src/plugins/view/fanchartview.py:826
-#: ../src/plugins/view/pedigreeview.py:1874 ../src/plugins/view/relview.py:898
+#: ../src/plugins/view/pedigreeview.py:1867 ../src/plugins/view/relview.py:898
 msgid "Siblings"
 msgstr "Geschwister"
 
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:875
 #: ../src/plugins/view/fanchartview.py:943
-#: ../src/plugins/view/pedigreeview.py:2007
+#: ../src/plugins/view/pedigreeview.py:2000
 msgid "Related"
 msgstr "Verknüpft"
 
@@ -18726,7 +18755,7 @@ msgid "Delete Person (%s)"
 msgstr "Person (%s) löschen"
 
 #: ../src/plugins/lib/libpersonview.py:352
-#: ../src/plugins/view/pedigreeview.py:838 ../src/plugins/view/relview.py:412
+#: ../src/plugins/view/pedigreeview.py:831 ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Filtereditor für Personen"
 
@@ -23719,103 +23748,103 @@ msgstr ""
 "durchzuführen. Eine zweite Notiz kann durch Anklicken bei gehaltener Strg-"
 "Taste gewählt werden."
 
-#: ../src/plugins/view/pedigreeview.py:86
+#: ../src/plugins/view/pedigreeview.py:79
 msgid "short for baptized|bap."
 msgstr "~"
 
-#: ../src/plugins/view/pedigreeview.py:87
+#: ../src/plugins/view/pedigreeview.py:80
 msgid "short for christened|chr."
 msgstr "~"
 
-#: ../src/plugins/view/pedigreeview.py:88
+#: ../src/plugins/view/pedigreeview.py:81
 msgid "short for buried|bur."
 msgstr "▭"
 
-#: ../src/plugins/view/pedigreeview.py:89
+#: ../src/plugins/view/pedigreeview.py:82
 msgid "short for cremated|crem."
 msgstr "⚱"
 
-#: ../src/plugins/view/pedigreeview.py:1291
+#: ../src/plugins/view/pedigreeview.py:1284
 msgid "Jump to child..."
 msgstr "Springe zu Kind..."
 
-#: ../src/plugins/view/pedigreeview.py:1304
+#: ../src/plugins/view/pedigreeview.py:1297
 msgid "Jump to father"
 msgstr "Springe zum Vater"
 
-#: ../src/plugins/view/pedigreeview.py:1317
+#: ../src/plugins/view/pedigreeview.py:1310
 msgid "Jump to mother"
 msgstr "Springe zur Mutter"
 
-#: ../src/plugins/view/pedigreeview.py:1680
+#: ../src/plugins/view/pedigreeview.py:1673
 msgid "A person was found to be his/her own ancestor."
 msgstr "Es wurde eine Person gefunden, die ihr eigener Vorfahre ist."
 
-#: ../src/plugins/view/pedigreeview.py:1727
-#: ../src/plugins/view/pedigreeview.py:1733
+#: ../src/plugins/view/pedigreeview.py:1720
+#: ../src/plugins/view/pedigreeview.py:1726
 #: ../src/plugins/webreport/NarrativeWeb.py:4077
 #: ../src/plugins/webreport/WebCal.py:519
 msgid "Home"
 msgstr "Anfang"
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1753
+#: ../src/plugins/view/pedigreeview.py:1746
 msgid "Mouse scroll direction"
 msgstr "Maus scroll Richtung"
 
-#: ../src/plugins/view/pedigreeview.py:1761
+#: ../src/plugins/view/pedigreeview.py:1754
 msgid "Top <-> Bottom"
 msgstr "Oben <-> Unten"
 
-#: ../src/plugins/view/pedigreeview.py:1768
+#: ../src/plugins/view/pedigreeview.py:1761
 msgid "Left <-> Right"
 msgstr "Links <-> Rechts"
 
-#: ../src/plugins/view/pedigreeview.py:1996 ../src/plugins/view/relview.py:401
+#: ../src/plugins/view/pedigreeview.py:1989 ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Neue Eltern hinzufügen..."
 
-#: ../src/plugins/view/pedigreeview.py:2056
+#: ../src/plugins/view/pedigreeview.py:2049
 msgid "Family Menu"
 msgstr "Familienmenü"
 
-#: ../src/plugins/view/pedigreeview.py:2182
+#: ../src/plugins/view/pedigreeview.py:2175
 msgid "Show images"
 msgstr "Bilder anzeigen"
 
-#: ../src/plugins/view/pedigreeview.py:2185
+#: ../src/plugins/view/pedigreeview.py:2178
 msgid "Show marriage data"
 msgstr "Heiratsdaten anzeigen"
 
-#: ../src/plugins/view/pedigreeview.py:2188
+#: ../src/plugins/view/pedigreeview.py:2181
 msgid "Show unknown people"
 msgstr "Zeige unbekannte Personen"
 
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2184
 msgid "Tree style"
 msgstr "Baumstil"
 
-#: ../src/plugins/view/pedigreeview.py:2193
+#: ../src/plugins/view/pedigreeview.py:2186
 msgid "Standard"
 msgstr "Standard"
 
-#: ../src/plugins/view/pedigreeview.py:2194
+#: ../src/plugins/view/pedigreeview.py:2187
 msgid "Compact"
 msgstr "Kompakt"
 
-#: ../src/plugins/view/pedigreeview.py:2195
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Expanded"
 msgstr "Erweitert"
 
-#: ../src/plugins/view/pedigreeview.py:2198
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Tree direction"
 msgstr "Baumausrichtung"
 
-#: ../src/plugins/view/pedigreeview.py:2205
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Tree size"
 msgstr "Baumgröße"
 
-#: ../src/plugins/view/pedigreeview.py:2209
+#: ../src/plugins/view/pedigreeview.py:2202
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "Layout"
@@ -24612,9 +24641,9 @@ msgid ""
 msgstr ""
 "Diese Kartenseite stellt die Person mit ihren Nachkommen und all ihren "
 "Ereignissen/Orten dar. Wenn du die Maus über einer Markierung platzierst, "
-"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind nach "
-"Datum sortiert (wenn vorhanden). Klicken auf einen Ort im Referenzbereich "
-"bringt dich auf die Ortsseite."
+"wird der Name des Ort angezeigt. Die Markierungen und Referenzliste sind "
+"nach Datum sortiert (wenn vorhanden). Klicken auf einen Ort im "
+"Referenzbereich bringt dich auf die Ortsseite."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5734
 msgid "Drop Markers"
@@ -31403,6 +31432,13 @@ msgstr ""
 "<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps egal "
 "welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
 "Bibliotheken installiert sind, läuft es hervorragend."
+
+#~ msgid "Use optimal number of pages"
+#~ msgstr "Benutze optimale Seitenzahl"
+
+#~ msgid "Affects greatly how the graph is layed out on the page."
+#~ msgstr ""
+#~ "Bestimmt hauptsächlich wie das Diagramm auf der Seite angeordnet ist."
 
 #~ msgid "Partner 1"
 #~ msgstr "Partner 1"
