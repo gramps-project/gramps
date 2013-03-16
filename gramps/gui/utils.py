@@ -86,6 +86,10 @@ class CLIDialog:
         pass
     def set_size_request(self, width, height):
         pass
+    def set_transient_for(self, window):
+        pass
+    def set_modal(self, flag):
+        pass
     def show_all(self):
         pass
     def destroy(self):
