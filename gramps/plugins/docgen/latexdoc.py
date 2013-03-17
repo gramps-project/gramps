@@ -56,10 +56,11 @@ try:
     from PIL import Image
     HAVE_PIL = True
 except:
-    _LOG.warning(
-        _('No PIL Image installed for your python version, cannot produce jpg '
-          'images from non-jpg images in LaTex Documents'))
-
+    _LOG.warning(_("PIL (Python Imaging Library) not loaded. "
+                   "Production of jpg images from non-jpg images "
+                   "in LaTex documents will not be available. "
+                   "Use your package manager to install python-imaging"))
+        
 _CLICKABLE = r'''\url{\1}'''
 
 #------------------------------------------------------------------------

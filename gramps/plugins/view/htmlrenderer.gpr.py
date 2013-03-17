@@ -59,7 +59,9 @@ if repository.enumerate_versions("WebKit"):
     except:
         pass
 else:
-    _LOG.warning("Webkit is not installed");
+    _LOG.warning("Webkit module not loaded. "
+                 "Embedded web page viewing will not be available. "
+                 "Use your package manager to install gir1.2-webkit-3.0");
 
 #no interfaces present, we do not register these plugins
 if not (TOOLKIT == NOWEB):
