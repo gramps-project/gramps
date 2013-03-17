@@ -71,7 +71,11 @@ elif repository.enumerate_versions("Gtkspell"):
         pass
 
 if not HAVE_GTKSPELL:
-    LOG.warn(_("Spelling checker is not installed"))
+    LOG.warning(_("GtkSpell not loaded. "
+                  "Spell checking will not be available.\n"
+                  "To build it for Gramps see http://www.gramps-project.org/"
+                  "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_"
+                  "Conversion#Spell_Check_Install"))
 
 #-------------------------------------------------------------------------
 #

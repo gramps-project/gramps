@@ -39,29 +39,32 @@ from gi import Repository
 import logging
 _LOG = logging.getLogger("Geography")
 
-OSMGPSMAP = False
-
 # Attempting to import OsmGpsMap gives an error dialog if OsmGpsMap is not
 # available so test first and log just a warning to the console instead.
+OSMGPSMAP = False
 repository = Repository.get_default()
 if repository.enumerate_versions("OsmGpsMap"):
     try :
         # current osmgpsmap support GTK3
         from gi.repository import OsmGpsMap as osmgpsmap
-        OSMGPSMAP = True
         if osmgpsmap._version < '0.8':
-            OSMGPSMAP = False
-            _LOG.warning( _("WARNING: osmgpsmap module not loaded. "
-                               "osmgpsmap must be >= 0.8. yours is %s") %
+            _LOG.warning( _("OsmGpsMap module not loaded. "
+                               "OsmGpsMap must be >= 0.8. yours is %s") %
                             osmgpsmap._version)
         else:
+            OSMGPSMAP = True
             _LOG.info("OsmGpsMap loaded, version : " +  osmgpsmap._version)
     except:
-        OSMGPSMAP = False
-        _LOG.warning(_("WARNING: osmgpsmap module not loaded. "
-                          "Geography functionality will not be available."))
+        pass
 
-if OSMGPSMAP:
+if not OSMGPSMAP:
+    _LOG.warning(_("OsmGpsMap module not loaded. "
+                   "Geography functionality will not be available.\n"
+                   "To build it for Gramps see http://www.gramps-project.org"
+                   "/wiki/index.php?"
+                   "title=GEPS_029:_GTK3-GObject_introspection_Conversion"
+                   "#OsmGpsMap_for_Geography"))
+else:
     # Load the view only if osmgpsmap library is present.
     register(VIEW, 
              id    = 'geo1',

@@ -4,7 +4,6 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2012       Doug Blank
-# Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +50,21 @@ from .svn_revision import get_svn_revision
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-from ..version import VERSION, VERSION_TUPLE, major_version
+VERSION        = "4.1.0"
+if VERSION == "@" + "VERSIONSTRING" + "@":
+    raise Exception("Please run 'python setup.py build'")
+def get_version_tuple(v):
+    """ Get the numeric-dotted part of version number"""
+    retval = ""
+    for c in v:
+        if c.isdigit() or (c == "." and retval.count(".") <= 1):
+            retval += c
+        else:
+            break
+    return tuple(map(int, retval.split(".")))
+VERSION_TUPLE  = get_version_tuple(VERSION)
+major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
+
 #-------------------------------------------------------------------------
 #
 # Standard GRAMPS Websites
@@ -79,6 +92,23 @@ APP_GEDCOM      = "application/x-gedcom"
 APP_GRAMPS_PKG  = "application/x-gramps-package"
 APP_GENEWEB     = "application/x-geneweb"
 APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
+
+#-------------------------------------------------------------------------
+#
+# system paths
+#
+#-------------------------------------------------------------------------
+LOCALE_DIR = "/Users/tim/gramps/trunk/build/mo"
+#-------------------------------------------------------------------------
+#
+# Platforms
+# Never test on LINUX, handle Linux in the else statement as default
+#
+#-------------------------------------------------------------------------
+LINUX = ["Linux", "linux", "linux2"]
+MACOS = ["Darwin", "darwin"]
+WINDOWS = ["Windows", "win32"]
+
 
 #-------------------------------------------------------------------------
 #
@@ -165,7 +195,7 @@ WEBSTUFF_IMAGE_DIR = os.path.join(WEBSTUFF_DIR, "images")
 
 USE_TIPS = False
 
-if sys.platform == 'win32':
+if os.sys.platform in WINDOWS:
     USE_THUMBNAILER = False
 else:
     USE_THUMBNAILER = True
@@ -175,10 +205,10 @@ else:
 # Paths to data files.
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.resourcepath import ResourcePath
-_resources = ResourcePath()
-DATA_DIR = _resources.data_dir
-IMAGE_DIR = _resources.image_dir
+LOCALE_DIR = "/Users/tim/gramps/trunk/build/mo"
+DATA_DIR = "/Users/tim/gramps/trunk/data"
+IMAGE_DIR = "/Users/tim/gramps/trunk/images"
+DOC_DIR = "/Users/tim/gramps/trunk"
 
 TIP_DATA = os.path.join(DATA_DIR, "tips.xml")
 PAPERSIZE = os.path.join(DATA_DIR, "papersize.xml")
@@ -187,14 +217,14 @@ ICON = os.path.join(IMAGE_DIR, "gramps.png")
 LOGO = os.path.join(IMAGE_DIR, "logo.png")
 SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
 
-LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
+LICENSE_FILE = os.path.join(DOC_DIR, 'COPYING')
 #-------------------------------------------------------------------------
 #
 # Init Localization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.grampslocale import GrampsLocale
-GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
+from .utils.grampslocale import GrampsLocale
+GRAMPS_LOCALE = GrampsLocale()
 _ = GRAMPS_LOCALE.get_translation().sgettext
 
 #-------------------------------------------------------------------------
@@ -214,10 +244,9 @@ AUTHORS        = [
     "Donald A. Peterson", 
     "Donald N. Allingham", 
     "David Hampton",  
-    "Martin Hawlisch",
+    "Martin Hawlisch", 
     "Richard Taylor", 
-    "Tim Waugh",
-    "John Ralls"
+    "Tim Waugh", 
     ]
     
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
@@ -309,3 +338,29 @@ LONGOPTS = [
 SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
+
+def need_to_update_const():
+    """ Check to see if this file is older than 
+        setup.py or const.py.in """
+    this_file = os.path.join(ROOT_DIR, "gen", "const.py")
+    in_file = os.path.join(ROOT_DIR, "gen", "const.py.in")
+    setup_file = os.path.join(ROOT_DIR, "..", "setup.py")
+
+    if (os.path.exists(this_file) and 
+        os.path.exists(in_file) and 
+        os.path.exists(setup_file)):
+
+        this_file_time = os.path.getmtime(this_file)
+        in_file_time = os.path.getmtime(in_file)
+        setup_file_time = os.path.getmtime(setup_file)
+
+        # Is this file older than others? If so,
+        # need to run setup
+        return (this_file_time < in_file_time or
+                this_file_time < setup_file_time)
+    else:
+        # Can't tell because can't find the files
+        return False
+
+if need_to_update_const():
+    print("Outdated gramps.gen.const; please run 'python setup.py build'")
