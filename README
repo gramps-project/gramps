@@ -30,7 +30,15 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     Obtain it from: http://www.graphviz.org
    pyexiv2          Enables Gramps to manage Exif metadata embedded in your
                     media. Gramps needs version 0.1.3 or greater.
-                    Obtain it from: http://tilloy.net/dev/pyexiv2/download.html  
+                    Obtain it from: http://tilloy.net/dev/pyexiv2/download.html
+   PyICU            Improves localised sorting in Gramps. In particular, this
+                    applies to sorting in the various views and in the Narrative
+                    Web output. It is particularly helpful for non-Latin
+                    characters, for non-English locales and on MS Windows and
+                    Mac OS X platforms. If it is not available, sorting is done
+                    through built-in libraries. PyICU is fairly widely available
+                    through the package managers of distributions. The home page
+                    is http://pyicu.osafoundation.org/
 
 The following packages are optional
    python gtkspell  Enable spell checking in the notes, gtkspell contains the
