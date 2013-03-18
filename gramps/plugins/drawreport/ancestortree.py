@@ -667,6 +667,7 @@ class AncestorTree(Report):
         self.database = database
         self._user = user
 
+    def begin_report(self):
         """
         This report needs the following parameters (class variables)
         that come in the options class.

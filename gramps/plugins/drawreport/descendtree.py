@@ -1269,6 +1269,7 @@ class DescendTree(Report):
         self.options = options
         self.database = database
         
+    def begin_report(self):
         """ make the report in its full size and pages to print on
         scale one or both as needed/desired.
         """
