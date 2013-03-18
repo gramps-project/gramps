@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-07 09:18+0100\n"
-"PO-Revision-Date: 2013-03-07 09:25+0100\n"
+"POT-Creation-Date: 2013-03-18 17:52+0100\n"
+"PO-Revision-Date: 2013-03-18 18:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -745,7 +745,7 @@ msgid "Gramps has detected a problem in the underlying Berkeley database. This c
 msgstr "Gramps a détecté un problème dans la base de données Berkeley sous-jacente. Ceci peut être réparé depuis le gestionnaire d'arbres familiaux. Sélectionnez la base de données et cliquez sur le bouton Réparer."
 
 #: ../src/QuestionDialog.py:322
-#: ../src/gui/utils.py:304
+#: ../src/gui/utils.py:311
 msgid "Attempt to force closing the dialog"
 msgstr "Tentative de fermeture forcée de la fenêtre"
 
@@ -781,7 +781,7 @@ msgid "Quick View"
 msgstr "Rapport express"
 
 #: ../src/Relationship.py:807
-#: ../src/plugins/view/pedigreeview.py:1679
+#: ../src/plugins/view/pedigreeview.py:1672
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -1080,7 +1080,7 @@ msgstr "Lieu "
 #. 3
 #: ../src/ScratchPad.py:384
 #: ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:229
+#: ../src/gen/plug/docgen/graphdoc.py:243
 #: ../src/gui/configure.py:464
 #: ../src/gui/filtereditor.py:297
 #: ../src/gui/editors/editlink.py:84
@@ -4249,7 +4249,7 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le d'abord."
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:301
 #: ../src/plugins/export/ExportCsv.py:305
-#: ../src/plugins/export/ExportGedcom.py:1447
+#: ../src/plugins/export/ExportGedcom.py:1443
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
@@ -4356,25 +4356,25 @@ msgstr "TrueType / FreeSans"
 
 # TODO : à ajouter au code pour l'interface
 #: ../src/gen/plug/docgen/graphdoc.py:67
-#: ../src/plugins/view/pedigreeview.py:2200
+#: ../src/plugins/view/pedigreeview.py:2193
 msgid "Vertical (top to bottom)"
 msgstr "Vertical (↓)"
 
 # TODO : à ajouter au code pour l'interface
 #: ../src/gen/plug/docgen/graphdoc.py:68
-#: ../src/plugins/view/pedigreeview.py:2201
+#: ../src/plugins/view/pedigreeview.py:2194
 msgid "Vertical (bottom to top)"
 msgstr "Vertical (↑)"
 
 # TODO : à ajouter au code pour l'interface
 #: ../src/gen/plug/docgen/graphdoc.py:69
-#: ../src/plugins/view/pedigreeview.py:2202
+#: ../src/plugins/view/pedigreeview.py:2195
 msgid "Horizontal (left to right)"
 msgstr "Horizontal (→)"
 
 # TODO : à ajouter au code pour l'interface
 #: ../src/gen/plug/docgen/graphdoc.py:70
-#: ../src/plugins/view/pedigreeview.py:2203
+#: ../src/plugins/view/pedigreeview.py:2196
 msgid "Horizontal (right to left)"
 msgstr "Horizontal (←)"
 
@@ -4411,16 +4411,16 @@ msgid "Left, top"
 msgstr "Gauche, en haut"
 
 #: ../src/gen/plug/docgen/graphdoc.py:81
-msgid "Minimal size"
-msgstr "Taille minimale"
+msgid "Compress to minimal size"
+msgstr "Compresser à la taille minimale"
 
 #: ../src/gen/plug/docgen/graphdoc.py:82
 msgid "Fill the given area"
 msgstr "Remplir la zone donnée"
 
 #: ../src/gen/plug/docgen/graphdoc.py:83
-msgid "Use optimal number of pages"
-msgstr "Utiliser un nombre de page optimal"
+msgid "Expand uniformly"
+msgstr "Étendre uniformément"
 
 #: ../src/gen/plug/docgen/graphdoc.py:85
 msgid "Top"
@@ -4431,166 +4431,184 @@ msgid "Bottom"
 msgstr "Bas"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:129
+#: ../src/gen/plug/docgen/graphdoc.py:130
 msgid "GraphViz Layout"
 msgstr "Mise en page GraphViz"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:131
+#: ../src/gen/plug/docgen/graphdoc.py:132
 #: ../src/gui/widgets/styledtexteditor.py:476
 msgid "Font family"
 msgstr "Famille de police"
 
-#: ../src/gen/plug/docgen/graphdoc.py:134
+#: ../src/gen/plug/docgen/graphdoc.py:135
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
 
-#: ../src/gen/plug/docgen/graphdoc.py:140
+#: ../src/gen/plug/docgen/graphdoc.py:141
 #: ../src/gui/widgets/styledtexteditor.py:488
 msgid "Font size"
 msgstr "Taille de la police"
 
-#: ../src/gen/plug/docgen/graphdoc.py:141
+#: ../src/gen/plug/docgen/graphdoc.py:142
 msgid "The font size, in points."
 msgstr "La taille de la police de caractères, en points (pt)."
 
-#: ../src/gen/plug/docgen/graphdoc.py:144
+#: ../src/gen/plug/docgen/graphdoc.py:145
 msgid "Graph Direction"
 msgstr "Orientation du graphique"
 
-#: ../src/gen/plug/docgen/graphdoc.py:147
+#: ../src/gen/plug/docgen/graphdoc.py:148
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Précise si le graphique doit aller de haut en bas ou de gauche à droite."
 
-#: ../src/gen/plug/docgen/graphdoc.py:151
+#: ../src/gen/plug/docgen/graphdoc.py:152
 msgid "Number of Horizontal Pages"
 msgstr "Nombre de pages horizontales"
 
-#: ../src/gen/plug/docgen/graphdoc.py:152
+#: ../src/gen/plug/docgen/graphdoc.py:153
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale. Seulement valide pour le format dot et pdf via Ghostscript."
 
-#: ../src/gen/plug/docgen/graphdoc.py:159
+#: ../src/gen/plug/docgen/graphdoc.py:160
 msgid "Number of Vertical Pages"
 msgstr "Nombre de pages verticales"
 
-#: ../src/gen/plug/docgen/graphdoc.py:160
+#: ../src/gen/plug/docgen/graphdoc.py:161
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale. Seulement valide pour le format dot et pdf via Ghostscript."
 
-#: ../src/gen/plug/docgen/graphdoc.py:167
+#: ../src/gen/plug/docgen/graphdoc.py:168
 msgid "Paging Direction"
 msgstr "Sens des pages"
 
-#: ../src/gen/plug/docgen/graphdoc.py:170
+#: ../src/gen/plug/docgen/graphdoc.py:171
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que quand il y a plusieurs pages horizontales ou verticales."
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:188
+#: ../src/gen/plug/docgen/graphdoc.py:189
 msgid "GraphViz Options"
 msgstr "Options GraphViz"
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:191
+#: ../src/gen/plug/docgen/graphdoc.py:192
 msgid "Aspect ratio"
 msgstr "Ratio d'aspect"
 
-#: ../src/gen/plug/docgen/graphdoc.py:194
-msgid "Affects greatly how the graph is layed out on the page."
-msgstr "Affecte grandement l'affichage du graphique sur la page."
+#: ../src/gen/plug/docgen/graphdoc.py:195
+msgid ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width and height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing the node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
+msgstr ""
+"Affecte l'espacement des nœuds la taille du graphique.\n"
+"Si le graphique est plus petit que l'aire d'impression :\n"
+"  Compresser ne changera pas l'espacement des nœuds.\n"
+"  Remplir va augmenter l'espacement des nœuds pour correspondre à l'aire d'impression que se soit en largeur et en hauteur.\n"
+"  Étendre va augmenter l'espacement des nœuds uniformément pour préserver le rendu.\n"
+"Si le graphique est plus grand que l'aire d'impression :\n"
+"  Compresser va essayer de conserver une certaine symétrie.\n"
+"  Remplir va correspondre à l'aire d'impression après une augmentation de l'espacement des nœuds.\n"
+"  Étendre va correspondre à l'aire d'impression."
 
-#: ../src/gen/plug/docgen/graphdoc.py:198
+#: ../src/gen/plug/docgen/graphdoc.py:211
 msgid "DPI"
 msgstr "Résolution"
 
-#: ../src/gen/plug/docgen/graphdoc.py:199
-msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
+#: ../src/gen/plug/docgen/graphdoc.py:212
+msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 DPI."
 msgstr "Points par pouce (DPI). Pour les images pour internet, comme des .gif ou .png, utiliser des valeurs comme 100 ou 300 DPI. Pour les fichiers PostScript ou PDF utiliser 72 DPI."
 
-#: ../src/gen/plug/docgen/graphdoc.py:205
+#: ../src/gen/plug/docgen/graphdoc.py:219
 msgid "Node spacing"
 msgstr "Espacement de nœud"
 
-#: ../src/gen/plug/docgen/graphdoc.py:206
+#: ../src/gen/plug/docgen/graphdoc.py:220
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
 msgstr "La quantité minimum d'espace libre, en pouces, entre les nœuds. Pour les graphiques verticaux cela correspond à l'espace entre les colonnes. Pour les graphiques horizontaux c'est celui entre les lignes."
 
-#: ../src/gen/plug/docgen/graphdoc.py:213
+#: ../src/gen/plug/docgen/graphdoc.py:227
 msgid "Rank spacing"
 msgstr "Espacement de rang"
 
-#: ../src/gen/plug/docgen/graphdoc.py:214
+#: ../src/gen/plug/docgen/graphdoc.py:228
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
 msgstr "La quantité minimum d'espace libre, en pouces, entre les rangs. Pour les graphiques verticaux cela correspond à l'espace entre les lignes. Pour les graphiques horizontaux c'est celui entre les colonnes."
 
-#: ../src/gen/plug/docgen/graphdoc.py:221
+#: ../src/gen/plug/docgen/graphdoc.py:235
 msgid "Use subgraphs"
 msgstr "Utiliser les sous-graphiques"
 
-#: ../src/gen/plug/docgen/graphdoc.py:222
+#: ../src/gen/plug/docgen/graphdoc.py:236
 msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
 msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints ensemble, mais avec les graphiques compliqués cela créera des lignes plus longues et des graphiques plus larges."
 
 #. ###############################
-#: ../src/gen/plug/docgen/graphdoc.py:232
+#: ../src/gen/plug/docgen/graphdoc.py:246
 msgid "Note to add to the graph"
 msgstr "Note à ajouter au graphique"
 
-#: ../src/gen/plug/docgen/graphdoc.py:234
+#: ../src/gen/plug/docgen/graphdoc.py:248
 msgid "This text will be added to the graph."
 msgstr "Ce texte sera ajouté au graphique."
 
-#: ../src/gen/plug/docgen/graphdoc.py:237
+#: ../src/gen/plug/docgen/graphdoc.py:251
 msgid "Note location"
 msgstr "Position de la note"
 
-#: ../src/gen/plug/docgen/graphdoc.py:240
+#: ../src/gen/plug/docgen/graphdoc.py:254
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Choisir d'afficher la note en haut ou en bas de la page."
 
-#: ../src/gen/plug/docgen/graphdoc.py:244
+#: ../src/gen/plug/docgen/graphdoc.py:258
 msgid "Note size"
 msgstr "Taille de la note"
 
-#: ../src/gen/plug/docgen/graphdoc.py:245
+#: ../src/gen/plug/docgen/graphdoc.py:259
 msgid "The size of note text, in points."
 msgstr "La taille du texte de la note, en points."
 
-#: ../src/gen/plug/docgen/graphdoc.py:953
+#: ../src/gen/plug/docgen/graphdoc.py:967
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:959
+#: ../src/gen/plug/docgen/graphdoc.py:973
 msgid "PDF (Graphviz)"
 msgstr "PDF (GraphViz)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:965
+#: ../src/gen/plug/docgen/graphdoc.py:979
 #: ../src/plugins/docgen/docgen.gpr.py:152
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/gen/plug/docgen/graphdoc.py:971
+#: ../src/gen/plug/docgen/graphdoc.py:985
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:977
+#: ../src/gen/plug/docgen/graphdoc.py:991
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "SVG compressé (SVGZ)"
 
-#: ../src/gen/plug/docgen/graphdoc.py:983
+#: ../src/gen/plug/docgen/graphdoc.py:997
 msgid "JPEG image"
 msgstr "Image JPEG"
 
-#: ../src/gen/plug/docgen/graphdoc.py:989
+#: ../src/gen/plug/docgen/graphdoc.py:1003
 msgid "GIF image"
 msgstr "Image GIF"
 
-#: ../src/gen/plug/docgen/graphdoc.py:995
+#: ../src/gen/plug/docgen/graphdoc.py:1009
 msgid "PNG image"
 msgstr "Image PNG"
 
-#: ../src/gen/plug/docgen/graphdoc.py:1001
+#: ../src/gen/plug/docgen/graphdoc.py:1015
 msgid "Graphviz File"
 msgstr "Fichier GraphViz"
 
@@ -4660,7 +4678,7 @@ msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ../src/gen/plug/report/utils.py:143
-#: ../src/gui/utils.py:335
+#: ../src/gui/utils.py:342
 #: ../src/plugins/textreport/IndivComplete.py:631
 msgid "File does not exist"
 msgstr "Fichier inexistant"
@@ -6135,7 +6153,7 @@ msgstr "Notes"
 #: ../src/plugins/quickview/all_relations.py:306
 #: ../src/plugins/tool/NotRelated.py:132
 #: ../src/plugins/view/fanchartview.py:906
-#: ../src/plugins/view/pedigreeview.py:1959
+#: ../src/plugins/view/pedigreeview.py:1952
 #: ../src/plugins/view/relview.py:511
 #: ../src/plugins/view/relview.py:848
 #: ../src/plugins/view/relview.py:882
@@ -6157,7 +6175,7 @@ msgstr "Sélectionner les parents"
 #: ../src/gui/grampsgui.py:133
 #: ../src/plugins/gramplet/gramplet.gpr.py:150
 #: ../src/plugins/gramplet/gramplet.gpr.py:156
-#: ../src/plugins/view/pedigreeview.py:692
+#: ../src/plugins/view/pedigreeview.py:685
 #: ../src/plugins/webreport/NarrativeWeb.py:6071
 msgid "Pedigree"
 msgstr "Arbre généalogique"
@@ -6342,17 +6360,17 @@ msgid "Created on %4d/%02d/%02d"
 msgstr "Créé le %4d/%02d/%02d"
 
 # Substantif (GNOME fr)
-#: ../src/gui/utils.py:225
+#: ../src/gui/utils.py:232
 msgid "Cancelling..."
 msgstr "Annulation..."
 
-#: ../src/gui/utils.py:305
+#: ../src/gui/utils.py:312
 msgid "Please do not force closing this important dialog."
 msgstr "Veuillez ne pas fermer cette fenêtre."
 
 # Substantif (GNOME fr)
-#: ../src/gui/utils.py:335
 #: ../src/gui/utils.py:342
+#: ../src/gui/utils.py:349
 msgid "Error Opening File"
 msgstr "Erreur à l'ouverture du fichier"
 
@@ -7973,7 +7991,7 @@ msgid "Move the selected citation downwards"
 msgstr "Déplacer la citation vers le bas"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
-#: ../src/plugins/gramplet/Citations.py:49
+#: ../src/plugins/gramplet/Citations.py:68
 #: ../src/plugins/view/sourceview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:4289
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -9468,7 +9486,7 @@ msgstr ""
 "Cliquez sur l'icône Édition (activé dans le dialogue\n"
 "de configuration) pour éditer"
 
-#: ../src/gui/widgets/monitoredwidgets.py:766
+#: ../src/gui/widgets/monitoredwidgets.py:767
 #: ../src/glade/editfamily.glade.h:11
 msgid "Edit the tag list"
 msgstr "Éditer la liste d'étiquette"
@@ -9714,7 +9732,7 @@ msgstr "Aucun parent"
 #: ../src/plugins/gramplet/FanChartGramplet.py:724
 #: ../src/plugins/textreport/KinshipReport.py:125
 #: ../src/plugins/view/fanchartview.py:792
-#: ../src/plugins/view/pedigreeview.py:1839
+#: ../src/plugins/view/pedigreeview.py:1832
 msgid "Spouses"
 msgstr "Conjoints"
 
@@ -10033,13 +10051,13 @@ msgstr "Vous êtes en train d'enregistrer un livre avec un nom existant."
 msgid "Gramps Book"
 msgstr "Livre Gramps"
 
-#: ../src/plugins/BookReport.py:1283
-#: ../src/plugins/BookReport.py:1294
+#: ../src/plugins/BookReport.py:1277
+#: ../src/plugins/BookReport.py:1288
 msgid "Please specify a book name"
 msgstr "S'il vous plaît, définissez un nom au livre."
 
 # trunk
-#: ../src/plugins/BookReport.py:1290
+#: ../src/plugins/BookReport.py:1284
 #, python-format
 msgid "No such book '%s'"
 msgstr "Aucun livre '%s'"
@@ -10384,13 +10402,13 @@ msgstr "Index"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/drawreport/AncestorTree.py:72
 #: ../src/plugins/drawreport/DescendTree.py:59
-#: ../src/plugins/view/pedigreeview.py:84
+#: ../src/plugins/view/pedigreeview.py:77
 msgid "short for born|b."
 msgstr "n."
 
 #: ../src/plugins/drawreport/AncestorTree.py:73
 #: ../src/plugins/drawreport/DescendTree.py:60
-#: ../src/plugins/view/pedigreeview.py:85
+#: ../src/plugins/view/pedigreeview.py:78
 msgid "short for died|d."
 msgstr "d."
 
@@ -11938,31 +11956,31 @@ msgid "Wife"
 msgstr "Femme"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/export/ExportGedcom.py:414
+#: ../src/plugins/export/ExportGedcom.py:394
 msgid "Writing individuals"
 msgstr "Écriture des individus"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/export/ExportGedcom.py:773
+#: ../src/plugins/export/ExportGedcom.py:741
 msgid "Writing families"
 msgstr "Écriture des familles"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/export/ExportGedcom.py:932
+#: ../src/plugins/export/ExportGedcom.py:900
 msgid "Writing sources"
 msgstr "Écriture des sources"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/export/ExportGedcom.py:967
+#: ../src/plugins/export/ExportGedcom.py:935
 msgid "Writing notes"
 msgstr "Écriture des notes"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/export/ExportGedcom.py:1005
+#: ../src/plugins/export/ExportGedcom.py:973
 msgid "Writing repositories"
 msgstr "Écriture des dépôts"
 
-#: ../src/plugins/export/ExportGedcom.py:1450
+#: ../src/plugins/export/ExportGedcom.py:1446
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
@@ -12416,7 +12434,7 @@ msgstr "Gramplet affichant les enfants d'un individu"
 #: ../src/plugins/textreport/FamilyGroup.py:584
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/view/fanchartview.py:869
-#: ../src/plugins/view/pedigreeview.py:1919
+#: ../src/plugins/view/pedigreeview.py:1912
 #: ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:756
 msgid "Children"
@@ -12599,19 +12617,19 @@ msgstr "Double cliquez sur le jour pour les détails"
 msgid "Double-click on a row to edit the selected child."
 msgstr "Double-cliquez sur une ligne pour éditer l'enfant sélectionné."
 
-#: ../src/plugins/gramplet/Citations.py:44
+#: ../src/plugins/gramplet/Citations.py:63
 msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Double-cliquez sur une ligne pour éditer la source/citation sélectionnée."
 
-#: ../src/plugins/gramplet/Citations.py:48
+#: ../src/plugins/gramplet/Citations.py:67
 msgid "Source/Citation"
 msgstr "Source/Citation"
 
-#: ../src/plugins/gramplet/Citations.py:50
+#: ../src/plugins/gramplet/Citations.py:69
 msgid "Publisher"
 msgstr "Publieur"
 
-#: ../src/plugins/gramplet/Citations.py:121
+#: ../src/plugins/gramplet/Citations.py:141
 msgid "<No Citation>"
 msgstr "<Pas de citation>"
 
@@ -12960,8 +12978,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:696
 #: ../src/plugins/view/fanchartview.py:764
-#: ../src/plugins/view/pedigreeview.py:1783
-#: ../src/plugins/view/pedigreeview.py:1809
+#: ../src/plugins/view/pedigreeview.py:1776
+#: ../src/plugins/view/pedigreeview.py:1802
 msgid "People Menu"
 msgstr "Menu Individus"
 
@@ -12970,7 +12988,7 @@ msgstr "Menu Individus"
 #: ../src/plugins/gramplet/FanChartGramplet.py:758
 #: ../src/plugins/quickview/quickview.gpr.py:316
 #: ../src/plugins/view/fanchartview.py:826
-#: ../src/plugins/view/pedigreeview.py:1874
+#: ../src/plugins/view/pedigreeview.py:1867
 #: ../src/plugins/view/relview.py:898
 msgid "Siblings"
 msgstr "Frères et sœurs "
@@ -12978,7 +12996,7 @@ msgstr "Frères et sœurs "
 #. Go over parents and build their menu
 #: ../src/plugins/gramplet/FanChartGramplet.py:875
 #: ../src/plugins/view/fanchartview.py:943
-#: ../src/plugins/view/pedigreeview.py:2007
+#: ../src/plugins/view/pedigreeview.py:2000
 msgid "Related"
 msgstr "en relation avec"
 
@@ -14951,68 +14969,68 @@ msgstr "Erreur : la référence famille '%(family)s' mère '%(mother)s' est manq
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' enfant '%(child)s' est manquante. Cette référence a été ajoutée."
 
-#: ../src/plugins/lib/libgedcom.py:1730
+#: ../src/plugins/lib/libgedcom.py:1728
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 
-#: ../src/plugins/lib/libgedcom.py:1811
+#: ../src/plugins/lib/libgedcom.py:1809
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2595
-#: ../src/plugins/lib/libgedcom.py:2962
+#: ../src/plugins/lib/libgedcom.py:2594
+#: ../src/plugins/lib/libgedcom.py:2961
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2618
+#: ../src/plugins/lib/libgedcom.py:2617
 msgid "GEDCOM import report: No errors detected"
 msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2620
+#: ../src/plugins/lib/libgedcom.py:2619
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
 # limite à 32 caractères !
-#: ../src/plugins/lib/libgedcom.py:2885
+#: ../src/plugins/lib/libgedcom.py:2884
 msgid "Tag recognised but not supported"
 msgstr "Reconnu mais non-supporté (TAG)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2896
+#: ../src/plugins/lib/libgedcom.py:2895
 msgid "Line ignored as not understood"
 msgstr "Ligne ignorée car non-comprise"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2921
+#: ../src/plugins/lib/libgedcom.py:2920
 msgid "Skipped subordinate line"
 msgstr "Ligne suivante ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2953
+#: ../src/plugins/lib/libgedcom.py:2952
 msgid "Records not imported into "
 msgstr "Enregistrements non-importés dans "
 
-#: ../src/plugins/lib/libgedcom.py:2988
+#: ../src/plugins/lib/libgedcom.py:2987
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
 msgstr "Erreur : %(msg)s  '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement synthétisé"
 
-#: ../src/plugins/lib/libgedcom.py:2997
+#: ../src/plugins/lib/libgedcom.py:2996
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
 msgstr "Erreur : %(msg)s '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement avec le type d'attribut 'Inconnu' créé"
 
-#: ../src/plugins/lib/libgedcom.py:3036
+#: ../src/plugins/lib/libgedcom.py:3035
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Erreur: famille '%(family)s' (saisie comme @%(orig_family)s@) individu %(person)s (saisi comme %(orig_person)s) n'est pas un membre d'une famille référencée. La référence de la famille a été enlevée pour cet individu"
 
-#: ../src/plugins/lib/libgedcom.py:3114
+#: ../src/plugins/lib/libgedcom.py:3113
 #, python-format
 msgid ""
 "\n"
@@ -15029,64 +15047,72 @@ msgstr ""
 "Où ces objets 'Inconnu' ont été référencés\n"
 "par la note %s.\n"
 
+#. message means that the element %s was ignored, but
+#. expressed the wrong way round because the message is
+#. truncated for output
+#: ../src/plugins/lib/libgedcom.py:3181
+#, python-format
+msgid "ADDR element ignored '%s'"
+msgstr "'%s' ignoré par ADDR"
+
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3132
+#: ../src/plugins/lib/libgedcom.py:3194
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer-piste)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3161
+#: ../src/plugins/lib/libgedcom.py:3223
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Soumetteur) : @%s@"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3185
-#: ../src/plugins/lib/libgedcom.py:6703
+#: ../src/plugins/lib/libgedcom.py:3247
+#: ../src/plugins/lib/libgedcom.py:6728
 msgid "GEDCOM data"
 msgstr "Donnée GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3231
+#: ../src/plugins/lib/libgedcom.py:3293
 msgid "Unknown tag"
 msgstr "Balise inconnue"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3233
-#: ../src/plugins/lib/libgedcom.py:3247
-#: ../src/plugins/lib/libgedcom.py:3251
-#: ../src/plugins/lib/libgedcom.py:3272
+#: ../src/plugins/lib/libgedcom.py:3295
+#: ../src/plugins/lib/libgedcom.py:3309
+#: ../src/plugins/lib/libgedcom.py:3313
+#: ../src/plugins/lib/libgedcom.py:3334
 msgid "Top Level"
 msgstr "Niveau supérieur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3341
+#: ../src/plugins/lib/libgedcom.py:3403
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (individu) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3535
-#: ../src/plugins/lib/libgedcom.py:4836
-#: ../src/plugins/lib/libgedcom.py:5045
-#: ../src/plugins/lib/libgedcom.py:5182
-#: ../src/plugins/lib/libgedcom.py:5813
-#: ../src/plugins/lib/libgedcom.py:5956
+#: ../src/plugins/lib/libgedcom.py:3597
+#: ../src/plugins/lib/libgedcom.py:4900
+#: ../src/plugins/lib/libgedcom.py:5098
+#: ../src/plugins/lib/libgedcom.py:5235
+#: ../src/plugins/lib/libgedcom.py:5881
+#: ../src/plugins/lib/libgedcom.py:6025
 msgid "Filename omitted"
 msgstr "Nom de fichier ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3537
-#: ../src/plugins/lib/libgedcom.py:4838
-#: ../src/plugins/lib/libgedcom.py:5047
-#: ../src/plugins/lib/libgedcom.py:5184
-#: ../src/plugins/lib/libgedcom.py:5815
-#: ../src/plugins/lib/libgedcom.py:5958
+#: ../src/plugins/lib/libgedcom.py:3599
+#: ../src/plugins/lib/libgedcom.py:4902
+#: ../src/plugins/lib/libgedcom.py:5100
+#: ../src/plugins/lib/libgedcom.py:5237
+#: ../src/plugins/lib/libgedcom.py:5883
+#: ../src/plugins/lib/libgedcom.py:6027
 msgid "Form omitted"
 msgstr "Forme ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:4602
+#: ../src/plugins/lib/libgedcom.py:4666
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (famille) Gramps ID %s"
@@ -15095,239 +15121,240 @@ msgstr "FAM (famille) Gramps ID %s"
 # limite à 32 caractères !
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5333
+#: ../src/plugins/lib/libgedcom.py:5400
 msgid "Empty event note ignored"
 msgstr "Note vide ignorée (événement)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5650
-#: ../src/plugins/lib/libgedcom.py:6506
+#: ../src/plugins/lib/libgedcom.py:5718
+#: ../src/plugins/lib/libgedcom.py:6531
 msgid "Warn: ADDR overwritten"
 msgstr "Attention : ADDR réécrite"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5827
-#: ../src/plugins/lib/libgedcom.py:6248
+#: ../src/plugins/lib/libgedcom.py:5895
+#: ../src/plugins/lib/libgedcom.py:6317
 msgid "REFN ignored"
 msgstr "REFN ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5919
+#. SOURce with the given gramps_id had no title
+#: ../src/plugins/lib/libgedcom.py:5988
 #, python-format
 msgid "No title - ID %s"
 msgstr "Aucun titre - ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5924
+#: ../src/plugins/lib/libgedcom.py:5993
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6174
+#: ../src/plugins/lib/libgedcom.py:6243
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (objet multimédia) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6202
-#: ../src/plugins/lib/libgedcom.py:7196
+#: ../src/plugins/lib/libgedcom.py:6271
+#: ../src/plugins/lib/libgedcom.py:7221
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6238
+#: ../src/plugins/lib/libgedcom.py:6307
 msgid "BLOB ignored"
 msgstr "BLOB ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6258
+#: ../src/plugins/lib/libgedcom.py:6327
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6268
+#: ../src/plugins/lib/libgedcom.py:6337
 msgid "Mutimedia RIN ignored"
 msgstr "RIN multimedia ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6355
+#: ../src/plugins/lib/libgedcom.py:6424
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (dépôt) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6631
+#: ../src/plugins/lib/libgedcom.py:6656
 msgid "Head (header)"
 msgstr "En-tête (header)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6647
+#: ../src/plugins/lib/libgedcom.py:6672
 msgid "Approved system identification"
 msgstr "Système d'identification approuvé"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6657
+#: ../src/plugins/lib/libgedcom.py:6682
 msgid "Generated by"
 msgstr "Généré par"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6671
+#: ../src/plugins/lib/libgedcom.py:6696
 msgid "Name of software product"
 msgstr "Nom du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6683
+#: ../src/plugins/lib/libgedcom.py:6708
 msgid "Version number of software product"
 msgstr "Numéro de version du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6700
+#: ../src/plugins/lib/libgedcom.py:6725
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Entreprise produisant : %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6721
+#: ../src/plugins/lib/libgedcom.py:6746
 msgid "Name of source data"
 msgstr "Nom de la source des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6735
+#: ../src/plugins/lib/libgedcom.py:6760
 msgid "Copyright of source data"
 msgstr "Droit à la copie des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6749
+#: ../src/plugins/lib/libgedcom.py:6774
 msgid "Publication date of source data"
 msgstr "Date de publication des données"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6762
+#: ../src/plugins/lib/libgedcom.py:6787
 #, python-format
 msgid "Import from %s"
 msgstr "Importé depuis %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6800
+#: ../src/plugins/lib/libgedcom.py:6825
 msgid "Submission record identifier"
 msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6811
+#: ../src/plugins/lib/libgedcom.py:6836
 msgid "Language of GEDCOM text"
 msgstr "Language du texte GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6835
+#: ../src/plugins/lib/libgedcom.py:6860
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libgedcom.py:6838
+#: ../src/plugins/lib/libgedcom.py:6863
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6861
+#: ../src/plugins/lib/libgedcom.py:6886
 msgid "Character set"
 msgstr "Encodage du caractère"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6863
+#: ../src/plugins/lib/libgedcom.py:6888
 msgid "Character set and version"
 msgstr "Encodage du caractère et la version"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6879
+#: ../src/plugins/lib/libgedcom.py:6904
 msgid "GEDCOM version not supported"
 msgstr "Version du GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6882
+#: ../src/plugins/lib/libgedcom.py:6907
 msgid "GEDCOM version"
 msgstr "Version du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6885
+#: ../src/plugins/lib/libgedcom.py:6910
 msgid "GEDCOM form not supported"
 msgstr "Forme de GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6887
+#: ../src/plugins/lib/libgedcom.py:6912
 msgid "GEDCOM form"
 msgstr "Forme de GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6933
+#: ../src/plugins/lib/libgedcom.py:6958
 msgid "Creation date of GEDCOM"
 msgstr "Date de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6937
+#: ../src/plugins/lib/libgedcom.py:6962
 msgid "Creation date and time of GEDCOM"
 msgstr "Date et heure de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6974
-#: ../src/plugins/lib/libgedcom.py:7011
+#: ../src/plugins/lib/libgedcom.py:6999
+#: ../src/plugins/lib/libgedcom.py:7036
 msgid "Empty note ignored"
 msgstr "Note vide ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7026
+#: ../src/plugins/lib/libgedcom.py:7051
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7076
+#: ../src/plugins/lib/libgedcom.py:7101
 msgid "Submission: Submitter"
 msgstr "Soumission : soumetteur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7078
+#: ../src/plugins/lib/libgedcom.py:7103
 msgid "Submission: Family file"
 msgstr "Soumission : fichier de famille"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7080
+#: ../src/plugins/lib/libgedcom.py:7105
 msgid "Submission: Temple code"
 msgstr "Soumission : code du temple (LDS)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7082
+#: ../src/plugins/lib/libgedcom.py:7107
 msgid "Submission: Generations of ancestors"
 msgstr "Soumission : générations d'ascendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7084
+#: ../src/plugins/lib/libgedcom.py:7109
 msgid "Submission: Generations of descendants"
 msgstr "Soumission : générations de descendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7086
+#: ../src/plugins/lib/libgedcom.py:7111
 msgid "Submission: Ordinance process flag"
 msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7298
+#: ../src/plugins/lib/libgedcom.py:7323
 msgid "Invalid temple code"
 msgstr "Code de temple invalide"
 
-#: ../src/plugins/lib/libgedcom.py:7379
+#: ../src/plugins/lib/libgedcom.py:7415
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:7382
+#: ../src/plugins/lib/libgedcom.py:7418
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:7445
+#: ../src/plugins/lib/libgedcom.py:7481
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -18331,7 +18358,7 @@ msgid "Delete Person (%s)"
 msgstr "Suppression de l'individu (%s)"
 
 #: ../src/plugins/lib/libpersonview.py:352
-#: ../src/plugins/view/pedigreeview.py:838
+#: ../src/plugins/view/pedigreeview.py:831
 #: ../src/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur l'individu"
@@ -23304,105 +23331,105 @@ msgstr "Impossible de fusionner les notes."
 msgid "Exactly two notes must be selected to perform a merge. A second note can be selected by holding down the control key while clicking on the desired note."
 msgstr "Exactement deux notes doivent être sélectionnées pour accomplir une fusion. La deuxième note peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la note désirée."
 
-#: ../src/plugins/view/pedigreeview.py:86
+#: ../src/plugins/view/pedigreeview.py:79
 msgid "short for baptized|bap."
 msgstr "bap."
 
-#: ../src/plugins/view/pedigreeview.py:87
+#: ../src/plugins/view/pedigreeview.py:80
 msgid "short for christened|chr."
 msgstr "bap."
 
-#: ../src/plugins/view/pedigreeview.py:88
+#: ../src/plugins/view/pedigreeview.py:81
 msgid "short for buried|bur."
 msgstr "inh."
 
-#: ../src/plugins/view/pedigreeview.py:89
+#: ../src/plugins/view/pedigreeview.py:82
 msgid "short for cremated|crem."
 msgstr "inci."
 
-#: ../src/plugins/view/pedigreeview.py:1291
+#: ../src/plugins/view/pedigreeview.py:1284
 msgid "Jump to child..."
 msgstr "Aller à l'enfant..."
 
-#: ../src/plugins/view/pedigreeview.py:1304
+#: ../src/plugins/view/pedigreeview.py:1297
 msgid "Jump to father"
 msgstr "Aller au père"
 
-#: ../src/plugins/view/pedigreeview.py:1317
+#: ../src/plugins/view/pedigreeview.py:1310
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
-#: ../src/plugins/view/pedigreeview.py:1680
+#: ../src/plugins/view/pedigreeview.py:1673
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
 
-#: ../src/plugins/view/pedigreeview.py:1727
-#: ../src/plugins/view/pedigreeview.py:1733
+#: ../src/plugins/view/pedigreeview.py:1720
+#: ../src/plugins/view/pedigreeview.py:1726
 #: ../src/plugins/webreport/NarrativeWeb.py:4077
 #: ../src/plugins/webreport/WebCal.py:519
 msgid "Home"
 msgstr "Souche"
 
 #. Mouse scroll direction setting.
-#: ../src/plugins/view/pedigreeview.py:1753
+#: ../src/plugins/view/pedigreeview.py:1746
 msgid "Mouse scroll direction"
 msgstr "Direction de la souris"
 
-#: ../src/plugins/view/pedigreeview.py:1761
+#: ../src/plugins/view/pedigreeview.py:1754
 msgid "Top <-> Bottom"
 msgstr "Haut <-> Bas"
 
-#: ../src/plugins/view/pedigreeview.py:1768
+#: ../src/plugins/view/pedigreeview.py:1761
 msgid "Left <-> Right"
 msgstr "Gauche <-> Droite"
 
-#: ../src/plugins/view/pedigreeview.py:1996
+#: ../src/plugins/view/pedigreeview.py:1989
 #: ../src/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Ajouter des nouveaux parents..."
 
-#: ../src/plugins/view/pedigreeview.py:2056
+#: ../src/plugins/view/pedigreeview.py:2049
 msgid "Family Menu"
 msgstr "Menu Famille"
 
-#: ../src/plugins/view/pedigreeview.py:2182
+#: ../src/plugins/view/pedigreeview.py:2175
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/plugins/view/pedigreeview.py:2185
+#: ../src/plugins/view/pedigreeview.py:2178
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
 # non-connu
-#: ../src/plugins/view/pedigreeview.py:2188
+#: ../src/plugins/view/pedigreeview.py:2181
 msgid "Show unknown people"
 msgstr "Afficher les individus non-connus"
 
-#: ../src/plugins/view/pedigreeview.py:2191
+#: ../src/plugins/view/pedigreeview.py:2184
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:2193
+#: ../src/plugins/view/pedigreeview.py:2186
 msgid "Standard"
 msgstr "Standard"
 
-#: ../src/plugins/view/pedigreeview.py:2194
+#: ../src/plugins/view/pedigreeview.py:2187
 msgid "Compact"
 msgstr "Compact"
 
-#: ../src/plugins/view/pedigreeview.py:2195
+#: ../src/plugins/view/pedigreeview.py:2188
 msgid "Expanded"
 msgstr "Étendu"
 
-#: ../src/plugins/view/pedigreeview.py:2198
+#: ../src/plugins/view/pedigreeview.py:2191
 msgid "Tree direction"
 msgstr "Sens de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:2205
+#: ../src/plugins/view/pedigreeview.py:2198
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/plugins/view/pedigreeview.py:2209
+#: ../src/plugins/view/pedigreeview.py:2202
 #: ../src/plugins/view/relview.py:1652
 msgid "Layout"
 msgstr "Mise en page"
@@ -30287,4 +30314,9 @@ msgstr "<b>Qui est né quand</b><br/>La comparaison des événements individuels
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
 msgstr "<b>Travail sur les dates</b><br/>Une période peut être définie en utilisant le format &quot;entre 4/01/2000 et 20/03/2003&quot;. Vous pouvez également indiquer le niveau de confiance dans la date et toujours choisir entre 7 calendriers différents. Essayez le bouton à côté du champ date dans l'éditeur d'événements."
+
+#~ msgid "Use optimal number of pages"
+#~ msgstr "Utiliser un nombre de page optimal"
+#~ msgid "Affects greatly how the graph is layed out on the page."
+#~ msgstr "Affecte grandement l'affichage du graphique sur la page."
 
