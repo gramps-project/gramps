@@ -34,7 +34,6 @@ This module provides the model that is used for all hierarchical treeviews.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-
 import time
 import locale
 import sys
@@ -94,6 +93,8 @@ class Node(object):
             self.name = sortkey
             #sortkey must be localized sort, so 
             self.sortkey = glocale.sort_key(sortkey)
+            if not self.sortkey:
+                self.sortkey = ''
         else:
             self.name = ''
             self.sortkey = ''
