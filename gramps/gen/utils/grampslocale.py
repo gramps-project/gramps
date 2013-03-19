@@ -26,9 +26,11 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
 import gettext
 import sys
 import os
+import codecs
 import locale
 import logging
 LOG = logging.getLogger("grampslocale")
@@ -210,11 +212,18 @@ class GrampsLocale(object):
             except locale.Error:
                 pass
 #Next, we need to know what is the encoding from the native environment:
-        self.encoding = locale.getlocale()[1]
-        if not self.encoding:
-            self.encoding = locale.getpreferredencoding()
-        if not self.encoding:
-            self.encoding = 'utf-8'
+        self.encoding = sys.stdout.encoding or sys.getdefaultencoding()
+
+#Ensure that output is encoded correctly to stdout and stderr. This is
+#much less cumbersome and error-prone than encoding individual outputs
+#and better handles the differences between Python 2 and Python 3:
+        if sys.version_info[0] < 3:
+            sys.stdout = codecs.getwriter(self.encoding)(sys.stdout, 'backslashreplace')
+            sys.stderr = codecs.getwriter(self.encoding)(sys.stderr, 'backslashreplace')
+        else:
+            sys.stdout = codecs.getwriter(self.encoding)(sys.stdout.detach(), 'backslashreplace')
+            sys.stderr = codecs.getwriter(self.encoding)(sys.stderr.detach(), 'backslashreplace')
+
 
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
 #doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*

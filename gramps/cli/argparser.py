@@ -39,8 +39,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 from __future__ import print_function
 import sys
 import getopt
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 import logging
 
 #-------------------------------------------------------------------------
@@ -52,6 +50,8 @@ from gramps.gen.const import LONGOPTS, SHORTOPTS
 from gramps.gen.config import config
 from gramps.gen.utils.configmanager import safe_eval
 from gramps.gen.utils.file import get_unicode_path_from_env_var
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 # Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""
@@ -242,7 +242,8 @@ class ArgParser(object):
             # if there were an argument without option,
             # use it as a file to open and return
             self.open_gui = leftargs[0]
-            print ("Trying to open: %s ..." % leftargs[0], file=sys.stderr)
+            print(_("Trying to open: %s ...") % leftargs[0],
+                          file=sys.stderr)
             #see if force open is on
             for opt_ix in range(len(options)):
                 option, value = options[opt_ix]
@@ -275,7 +276,8 @@ class ArgParser(object):
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ('report', 'tool', 'book'):
-                    print ("Unknown action: %s. Ignoring." % action, file=sys.stderr)
+                    print(_("Unknown action: %s. Ignoring.") % action,
+                                  file=sys.stderr)
                     continue
                 options_str = ""
                 if opt_ix < len(options)-1 \
@@ -283,7 +285,7 @@ class ArgParser(object):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ('-d', '--debug'):
-                print ('setup debugging', value, file=sys.stderr)
+                print(_('setup debugging'), value, file=sys.stderr)
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
                 cleandbg += [opt_ix]
@@ -292,14 +294,14 @@ class ArgParser(object):
             elif option in ('-L'):
                 self.list_more = True
             elif option in ('-s','--show'):
-                print ("Gramps config settings from %s:" % \
-                       config.filename.encode(sys.stdout.encoding, 'backslashreplace'))
+                print(_("Gramps config settings from %s:")
+                              % config.filename)
                 for section in config.data:
                     for setting in config.data[section]:
-                        print ("%s.%s=%s" % (
-                            section, setting, 
-                            repr(config.data[section][setting])))
-                    print ('')
+                        print ("%s.%s=%s"
+                               % (section, setting,
+                                  repr(config.data[section][setting])))
+                    print ()
                 sys.exit(0)
             elif option in ('-c', '--config'):
                 setting_name = value
@@ -310,24 +312,24 @@ class ArgParser(object):
                         set_value = True
                     if config.has_default(setting_name):
                         setting_value = config.get(setting_name)
-                        print ("Current Gramps config setting: " \
-                            "%s:%s" % (setting_name, repr(setting_value)), file=sys.stderr)
+                        print(_("Current Gramps config setting: %s:%s")
+                                      % (setting_name, repr(setting_value)),
+                                      file=sys.stderr)
                         if set_value:
                             if new_value == "DEFAULT":
                                 new_value = config.get_default(setting_name)
                             else:
                                 new_value = safe_eval(new_value)
                             config.set(setting_name, new_value)
-                            print ("    New Gramps config " \
-                                    "setting: %s:%s" % (
-                                                setting_name,
-                                                repr(config.get(setting_name))
-                                                ), file=sys.stderr)
+                            print(_("    New Gramps config setting: %s:%s")
+                                          % (setting_name,
+                                             repr(config.get(setting_name))),
+                                          file=sys.stderr)
                         else:
                             need_to_quit = True
                     else:
-                        print ("Gramps: no such config setting:" \
-                                    " '%s'" % setting_name, file=sys.stderr)
+                        print(_("Gramps: no such config setting: %s")
+                                      % setting_name, file=sys.stderr)
                         need_to_quit = True
                 cleandbg += [opt_ix]
             elif option in ('-h', '-?', '--help'):
@@ -403,14 +405,14 @@ class ArgParser(object):
         """
         if self.help:
             # Convert Help messages to file system encoding before printing
-            print (_HELP.encode(sys.stdout.encoding, 'backslashreplace'))
+            print (_HELP)
             sys.exit(0)
-            
+
     def print_usage(self):
         """
         If the user gives the --usage print the output to terminal.
         """
         if self.usage:
             # Convert Help messages to file system encoding before printing
-            print (_USAGE.encode(sys.stdout.encoding, 'backslashreplace'))
+            print(_USAGE)
             sys.exit(0)

@@ -34,9 +34,6 @@
 #
 #-------------------------------------------------------------------------
 from __future__ import print_function
-
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 import traceback
 import os
 import sys
@@ -67,6 +64,8 @@ from gramps.gen.dbstate import DbState
 from gramps.gen.constfunc import STRTYPE, conv_to_unicode_direct
 from ..grampscli import CLIManager
 from ..user import User
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -473,12 +472,12 @@ class CommandLineReport(object):
             self.format = None
         if _chosen_format and _format_str:
             print((_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
-                     "and using '%(notranslate1)s=%(notranslate3)s'.") %
-                   {'notranslate1' : "off",
-                    'notranslate2' : self.options_dict['off'],
-                    'notranslate3' : _chosen_format}))
+                             "and using '%(notranslate1)s=%(notranslate3)s'.") %
+                           {'notranslate1' : "off",
+                            'notranslate2' : self.options_dict['off'],
+                            'notranslate3' : _chosen_format}))
             print((_("Use '%(notranslate)s' to see valid values.") %
-                   {'notranslate' : "show=off"}))
+                           {'notranslate' : "show=off"}))
 
         self.do_doc_options()
 
@@ -571,14 +570,14 @@ class CommandLineReport(object):
                     # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
-                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
+                    print(optmsg)
                 else:
                     optmsg = "      %s%s%s" % (key, tabs,
                                                _('(no help available)'))
-                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
-            print((_("   Use '%(donottranslate)s' to see description "
+                    print(optmsg)
+                    print(_("   Use '%(donottranslate)s' to see description "
                      "and acceptable values") %
-                   {'donottranslate' : "show=option"}))
+                   {'donottranslate' : "show=option"})
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
@@ -588,16 +587,17 @@ class CommandLineReport(object):
             if isinstance(vals, (list, tuple)):
                 for val in vals:
                     optmsg = "      %s" % val
-                    print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
+                    print(optmsg)
             else:
                 optmsg = "      %s" % opt[2]
-                print(optmsg.encode(sys.stdout.encoding, 'backslashreplace'))
+                print(optmsg)
 
         else:
             #there was a show option given, but the option is invalid
-            print((_("option '%(optionname)s' not valid. "
-                     "Use '%(donottranslate)s' to see all valid options.") %
-                   {'optionname' : self.show, 'donottranslate' : "show=all"}))
+            print(_("option '%(optionname)s' not valid. "
+            "Use '%(donottranslate)s' to see all valid options.")
+                          % {'optionname' : self.show,
+                             'donottranslate' : "show=all"})
 
 #------------------------------------------------------------------------
 #

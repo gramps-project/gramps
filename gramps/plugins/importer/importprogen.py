@@ -24,7 +24,7 @@
 
 "Import from Pro-Gen"
 
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -221,7 +221,7 @@ def _get_mem_text(mems, i):
     # Strip leading/trailing whitespace
     text = text.strip()
 
-    #print text.encode('utf-8')
+    #print(text)
     return text
 
 month_values = {
@@ -306,7 +306,7 @@ class PG30_Def_Table:
         #f02=Persoon gewijzigd   ,32,10,10, 1,68,"","INDI CHAN DATE"
         line_pat = re.compile(r'(\w+) = (.*)', re.VERBOSE)
         for l in lines:
-            #print l
+            #print(l)
             m = line_pat.match(l)
             if m:
                 # TODO. Catch duplicates?
@@ -325,12 +325,12 @@ class PG30_Def_Table:
             self.recflds = []                          # list of fields that use up space in a record
             j = 0
             for i, f in enumerate(self.flds):
-                #print "# field %s" % f
+                #print("# field %s" % f)
                 nam = f.name
                 self.nam2fld[nam] = f
                 if f.size != 0:
                     self.nam2idx[nam] = j
-                    #print "#       %s <= %d" % (f.fieldname, j)
+                    #print("#       %s <= %d" % (f.fieldname, j))
                     self.recflds.append(f)
                     j = j + 1
 
@@ -398,7 +398,7 @@ class PG30_Def_Table:
                 # Convert to unicode
                 fld = fld.decode('cp850')
                 flds.append(fld)
-        #print ', '.join([f.encode('utf-8') for f in flds])
+        #print(', '.join(flds))
         return flds
 
     def get_field_names(self):
