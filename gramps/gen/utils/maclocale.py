@@ -218,6 +218,7 @@ def mac_setup_localization(glocale):
         glocale.lang = lang
 
     if not glocale.language:
+        language = ['en_US']
         if "LANGUAGE" in os.environ:
             language =  [x for x in [glocale.check_available_translations(l)
                                      for l in os.environ["LANGUAGE"].split(":")]
