@@ -39,8 +39,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 from __future__ import print_function
 import os
 import sys
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +55,8 @@ from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
 from .user import User
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -186,9 +186,9 @@ class ArgHandler(object):
         else:
             # Need to convert to system file encoding before printing
             # For non latin characters in path/file/user names
-            print(msg1.encode(sys.stdout.encoding, 'backslashreplace'), file=sys.stderr)
+            print(msg1, file=sys.stderr)
             if msg2 is not None:
-                print(msg2.encode(sys.stdout.encoding, 'backslashreplace'), file=sys.stderr)
+                print(msg2, file=sys.stderr)
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -294,8 +294,7 @@ class ArgHandler(object):
                             ask = raw_input
                         else:
                             ask = input
-                        ans = ask(_('OK to overwrite? (yes/no) ') \
-                                         .encode(sys.stdout.encoding, 'backslashreplace'))
+                        ans = ask(_('OK to overwrite? (yes/no) '))
                     except EOFError:
                         print()
                         sys.exit(0)
@@ -408,27 +407,24 @@ class ArgHandler(object):
         """
 
         if self.list:
-            print(_('List of known family trees in your database path\n').\
-                    encode(sys.stdout.encoding, 'backslashreplace'))
+            print(_('List of known family trees in your database path\n'))
+
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
-                
-                print((_("%(full_DB_path)s with name \"%(f_t_name)s\"") % \
-                        {'full_DB_path' : dirname,
-                         'f_t_name' : name}).encode(sys.stdout.encoding, 'backslashreplace'))
+
+                print(_("%(full_DB_path)s with name \"%(f_t_name)s\"")
+                              % {'full_DB_path' : dirname, 'f_t_name' : name})
             sys.exit(0)
-            
+
         if self.list_more:
-            print(_('Gramps Family Trees:').encode(sys.stdout.encoding, 'backslashreplace'))
+            print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
                                   key=lambda sum: sum["Family tree"].lower()):
-                print(_("Family Tree \"%s\":") % summary["Family tree"].\
-                        encode(sys.stdout.encoding, 'backslashreplace'))
+                print(_("Family Tree \"%s\":") % summary["Family tree"])
                 for item in sorted(summary):
                     if item != "Family tree":
-                        print(("   %s: %s" % (item, summary[item])).\
-                               encode(sys.stdout.encoding, 'backslashreplace'))
+                        print("   %s: %s" % (item, summary[item]))
             sys.exit(0)
            
         self.__open_action()
@@ -441,13 +437,9 @@ class ArgHandler(object):
             self.cl_action(action, op_string)
 
         for expt in self.exports:
-            # Need to convert path/filename to str before printing
-            # For non latin characters in Windows path/file/user names
-            fn = expt[0].encode(sys.stdout.encoding, 'backslashreplace')
-            fmt = str(expt[1])
             print(_("Exporting: file %(filename)s, "
-                                   "format %(format)s.") % \
-                                   {'filename' : fn,
+                            "format %(format)s.") % \
+                              {'filename' : fn,
                                     'format' : fmt}, file=sys.stderr)
             self.cl_export(expt[0], expt[1])
 
@@ -481,21 +473,21 @@ class ArgHandler(object):
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir") \
-					                      .encode(sys.stdout.encoding, 'backslashreplace')
+					                      .encode(sys.filesystem.encoding, 'backslashreplace')
                     newdb = DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
                     msg = _("Created empty family tree successfully")
-                    print(msg, file=sys.stderr)
+                    gloclale.print(msg, file=sys.stderr)
                 except:
                     print(_("Error opening the file."), file=sys.stderr)
                     print(_("Exiting..."), file=sys.stderr)
                     sys.exit(0)
 
             for imp in self.imports:
-                fn = imp[0].encode(sys.stdout.encoding, 'backslashreplace')
+                fn = imp[0]
                 fmt = str(imp[1])
                 msg = _("Importing: file %(filename)s, format %(format)s.") % \
                         {'filename' : fn, 'format' : fmt}
@@ -590,7 +582,8 @@ class ArgHandler(object):
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."), file=sys.stderr)
+                print(_("Ignoring invalid options string."),
+                              file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -618,16 +611,17 @@ class ArgHandler(object):
                 msg = _("Report name not given. "
                         "Please use one of %(donottranslate)s=reportname") % \
                         {'donottranslate' : '[-p|--options] name'}
-            
-            print(_("%s\n Available names are:") % msg, file=sys.stderr)
+
+            glcoale.print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
+                    glocle.print("   %s%s- %s"
+                                 % ( pdata.id, " " * (26 - len(pdata.id)),
+                                     pdata.name), file=sys.stderr)
                 else:
-                    print("   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
+                    print("   %s\t- %s"
+                                  % (pdata.id, pdata.name), file=sys.stderr)
 
         elif action == "tool":
             from gramps.gui.plug import tool
@@ -636,7 +630,8 @@ class ArgHandler(object):
                                            chunk in options_str.split(',') ] )
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."), file=sys.stderr)
+                print(_("Ignoring invalid options string."),
+                              file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
@@ -658,24 +653,26 @@ class ArgHandler(object):
                 msg = _("Tool name not given. "
                         "Please use one of %(donottranslate)s=toolname.") % \
                         {'donottranslate' : '[-p|--options] name'}
-            
-            print(_("%s\n Available names are:") % msg, file=sys.stderr)
+
+            glcoale.print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cli_tool_list,
                                 key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s" % ( pdata.id, " " * (26 - len(pdata.id)),
-                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
+                    print("   %s%s- %s"
+                                  % ( pdata.id, " " * (26 - len(pdata.id)),
+                                      pdata.name), file=sys.stderr)
                 else:
-                    print("   %s\t- %s" % (pdata.id,
-                                 pdata.name.encode(sys.stdout.encoding, 'backslashreplace')), file=sys.stderr)
+                    print("   %s\t- %s"
+                                  % (pdata.id, pdata.name), file=sys.stderr)
 
         elif action == "book":
             try:
                 options_str_dict = _split_options(options_str)
             except:
                 options_str_dict = {}
-                print(_("Ignoring invalid options string."), file=sys.stderr)
+                print(_("Ignoring invalid options string."),
+                              file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             book_list = BookList('books.xml', self.dbstate.db)

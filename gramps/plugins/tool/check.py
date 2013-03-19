@@ -31,8 +31,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-
+from __future__ import print_function
 import os
 import sys
 if sys.version_info[0] < 3:
@@ -40,10 +39,6 @@ if sys.version_info[0] < 3:
 else:
     from io import StringIO
 import time
-
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
-ngettext = glocale.get_translation().ngettext
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -81,6 +76,9 @@ from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
 from gramps.gen.constfunc import UNITYPE, cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
+ngettext = glocale.get_translation().ngettext
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -690,8 +688,7 @@ class CheckIntegrity(object):
             photo_desc = obj.get_description()
             if photo_name is not None and photo_name != "" and not find_file(photo_name):
                 if cl:
-                    # Convert to stdout encoding before prining
-                    fn = os.path.basename(photo_name).encode(sys.stdout.encoding, 'backslashreplace')
+                    fn = os.path.basename(photo_name)
                     logging.warning("    FAIL: media file %s was not found." %
                                     fn)
                     self.bad_photo.append(ObjectId)
@@ -1944,7 +1941,7 @@ class CheckIntegrity(object):
                          _('The database has passed internal checks'),
                          parent=uistate.window)
             else:
-                print("No errors were found: the database has passed internal checks.")
+                print(_("No errors were found: the database has passed internal checks.")
             return 0
 
         self.text = StringIO()
@@ -2192,14 +2189,13 @@ class CheckIntegrity(object):
 #
 #-------------------------------------------------------------------------
 class Report(ManagedWindow):
-    
+
     def __init__(self, uistate, text, cl=0):
         if cl:
-            print (text.encode(sys.stdout.encoding, 'backslashreplace'))
-            return
+            print (text)
 
         ManagedWindow.__init__(self, uistate, [], self)
-        
+
         topDialog = Glade()
         topDialog.get_object("close").connect('clicked', self.close)
         window = topDialog.toplevel
