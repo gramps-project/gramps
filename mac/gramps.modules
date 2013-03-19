@@ -31,6 +31,8 @@
 	      href="http://exiv2.org/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
+  <repository type='tarball' name='icu'
+	      href='http://download.icu-project.org/files/'/>
 
 <!--
 Special instructions:
@@ -75,7 +77,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="pygtk-extras"/>
       <dep package="osmgpsmap-py"/>
       <dep package="graphviz"/>
-      <dep package="pyexiv2"/>
+      <dep package="pyicu"/>
     </dependencies>
    <after>
       <dep package="pyexiv2"/>
@@ -203,6 +205,20 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
   <distutils id="pil">
     <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+  </distutils>
+
+ <autotools id='icu' autogen-sh='source/configure'
+	     makeargs='CFLAGS="$CFLAGS -DU_CHARSET_IS_UTF8=1 -DU_USING_ICU_NAMESPACE=0"'>
+    <branch repo='icu' version='50.1.2' checkoutdir='icu'
+	    module='icu4c/50.1.2/icu4c-50_1_2-src.tgz'/>
+  </autotools>
+
+  <distutils id='pyicu'>
+    <branch version='1.5' repo='pymodules'
+	    module='P/PyICU/PyICU-1.5.tar.gz'/>
+    <dependencies>
+      <dep package='icu'/>
+    </dependencies>
   </distutils>
 
 </moduleset>
