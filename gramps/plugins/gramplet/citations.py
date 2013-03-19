@@ -290,8 +290,8 @@ class PersonCitations(Citations):
             
         self.model.clear()
         self.callman.unregister_all()
-        self.callman.register_obj(active)
         if active:
+            self.callman.register_obj(active)
             self.display_citations(active)
         else:
             self.set_has_data(False)
@@ -362,8 +362,8 @@ class EventCitations(Citations):
             
         self.model.clear()
         self.callman.unregister_all()
-        self.callman.register_obj(active)
         if active:
+            self.callman.register_obj(active)
             self.display_citations(active)
         else:
             self.set_has_data(False)
@@ -405,8 +405,8 @@ class FamilyCitations(Citations):
             
         self.model.clear()
         self.callman.unregister_all()
-        self.callman.register_obj(active)
         if active:
+            self.callman.register_obj(active)
             self.display_citations(active)
         else:
             self.set_has_data(False)
@@ -461,8 +461,8 @@ class PlaceCitations(Citations):
             
         self.model.clear()
         self.callman.unregister_all()
-        self.callman.register_obj(active)
         if active:
+            self.callman.register_obj(active)
             self.display_citations(active)
         else:
             self.set_has_data(False)
@@ -504,8 +504,8 @@ class MediaCitations(Citations):
             
         self.model.clear()
         self.callman.unregister_all()
-        self.callman.register_obj(active)
         if active:
+            self.callman.register_obj(active)
             self.display_citations(active)
         else:
             self.set_has_data(False)
