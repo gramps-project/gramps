@@ -12,6 +12,7 @@ Recommends: python-webkit
   Enable html rendering for Geographic view and Web view. If both
   are installed webkit will be used. python-gtkmozembed may be more
   stable.
+Recommends: python-pyicu
 Suggests: ttf-freefont
   Allows more fonts in reports
 Suggests: python-gtkspell python-enchant
