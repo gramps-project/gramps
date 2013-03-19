@@ -191,6 +191,8 @@ class GrampsLocale(object):
             self.language.append('en')
         if not self.have_localedir and not self.lang.startswith('en'):
             LOG.warning("No translations for %s were found, setting localization to U.S. English", self.localedomain)
+            self.lang = 'en_US.UTF-8'
+            self.language = ['en']
 
 #A variety of useful functions use the current locale for
 #formatting. Pending global replacement of those functions with ICU
@@ -226,10 +228,11 @@ class GrampsLocale(object):
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
-        if not win():
-            locale.bindtextdomain(self.localedomain, self.localedir)
-        else:
-            self._win_bindtextdomain(self.localedomain, self.localedir)
+        if self.have_localedir:
+            if not win():
+                locale.bindtextdomain(self.localedomain, self.localedir)
+            else:
+                self._win_bindtextdomain(self.localedomain, self.localedir)
 
 
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
@@ -257,6 +260,11 @@ class GrampsLocale(object):
         elif hasattr(_first, 'localedir'):
             self.localedir = _first.localedir
         else:
+            self.localedir = None
+            if localedir:
+                LOG.warning("Localedir %s doesn't exist, unable to set localization", localedir);
+            else:
+                LOG.warning("No Localedir provided, unable to set localization")
             self.have_localedir = False
 
         if lang:
