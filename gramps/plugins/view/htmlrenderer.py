@@ -32,11 +32,8 @@ Can use the Webkit or Gecko ( Mozilla ) library
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 import os
 import sys
-import locale
 if sys.version_info[0] < 3:
     from urlparse import urlunsplit
 else:
@@ -68,6 +65,8 @@ from gramps.gen.utils.file import get_empty_tempdir
 from gramps.gen.constfunc import lin, mac, win
 from gramps.gen.config import config
 from gramps.gen.const import TEMP_DIR
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -84,9 +83,7 @@ def get_identity():
         platform = "Macintosh"
     else:
         platform = "Unknown"
-    (lang_country, modifier ) = locale.getlocale()
-    lang = lang_country.replace('_','-')
-    #lang += ", " + lang_country.split('_')[0]
+    lang = glocale.lang[:5].replace('_','-')
     return "Mozilla/5.0 (%s; U; %s) Gramps/3.2" % ( platform, lang)
 
 #-------------------------------------------------------------------------

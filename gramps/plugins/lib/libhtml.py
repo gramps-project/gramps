@@ -34,7 +34,6 @@ from __future__ import print_function
 # Python modules
 #------------------------------------------------------------------------
 import re
-import locale
 
 from gramps.gen.constfunc import STRTYPE, cuni
 """
@@ -51,7 +50,7 @@ __all__ = ['Html']
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 #------------------------------------------------------------------------
 #
 # Constants
@@ -581,11 +580,7 @@ class Html(list):
 #
 #------------------------------------------------------------------------
 def xml_lang():
-    loc = locale.getlocale()
-    if loc[0] is None:
-        return ""
-    else:
-        return loc[0].replace('_', '-')
+    return glocale.lang[:5].replace('_', '-')
 
 #-------------------------------------------
 #
