@@ -337,7 +337,7 @@ class GedcomWriter(UpdateCallback):
         # write the language string if the current LANG variable 
         # matches something we know about.
 
-        lang = os.getenv('LANG')
+        lang = glocale.language[0]
         if lang and len(lang) >= 2:
             lang_code = LANGUAGES.get(lang[0:2])
             if lang_code:

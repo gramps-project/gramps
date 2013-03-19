@@ -40,7 +40,7 @@ MANUALS = {
 }
 
 #first, determine language code, so nl_BE --> wiki /nl
-lang = glocale.get_translation().language()
+lang = glocale.language[0]
 if lang in MANUALS:
     EXTENSION = MANUALS[lang]
 else:

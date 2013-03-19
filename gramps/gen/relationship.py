@@ -1794,7 +1794,7 @@ def get_relationship_calculator(reinit=False):
     global __RELCALC_CLASS
     
     if __RELCALC_CLASS is None or reinit:
-        lang = glocale.get_translation().language()
+        lang = glocale.language[0]
         __RELCALC_CLASS = RelationshipCalculator
         # If lang not set default to English relationship calulator
         # See if lang begins with en_, English_ or english_
