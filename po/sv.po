@@ -24406,7 +24406,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:5265
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
-msgstr "Efternamn %(surname)s börjande på bokstav %letter)s"
+msgstr "Efternamn %(surname)s börjande på bokstav %(letter)s"
 
 #. add page title
 #: ../src/plugins/webreport/NarrativeWeb.py:5678
