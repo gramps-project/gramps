@@ -120,7 +120,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_repository_from_handle(handle)
             if obj:
                 self.process_repository(obj)
-        elif class_name == "MediaObject":
+        # bug6493 temp workaround for note tag ('Media' class name?) 
+        elif class_name == "MediaObject" or class_name == "Media":
             obj = self.db.get_object_from_handle(handle)
             if obj:
                 self.process_media(obj)
