@@ -295,23 +295,17 @@ def startcli(errors, argparser):
     """
     if errors:
         #already errors encountered. Show first one on terminal and exit
-        # Convert error message to file system encoding before print
         errmsg = _('Error encountered: %s') % errors[0][0]
-        errmsg = errmsg
         print(errmsg)
         errmsg = _('  Details: %s') % errors[0][1]
-        errmsg = errmsg
         print(errmsg)
         sys.exit(1)
     
     if argparser.errors: 
-        # Convert error message to file system encoding before print
         errmsg = _('Error encountered in argument parsing: %s') \
                                                     % argparser.errors[0][0]
-        errmsg = errmsg
         print(errmsg)
         errmsg = _('  Details: %s') % argparser.errors[0][1]
-        errmsg = errmsg
         print(errmsg)
         sys.exit(1)
     

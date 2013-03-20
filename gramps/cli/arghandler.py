@@ -184,8 +184,6 @@ class ArgHandler(object):
         if self.errorfunc:
             self.errorfunc(msg1)
         else:
-            # Need to convert to system file encoding before printing
-            # For non latin characters in path/file/user names
             print(msg1, file=sys.stderr)
             if msg2 is not None:
                 print(msg2, file=sys.stderr)
@@ -299,8 +297,8 @@ class ArgHandler(object):
                         print()
                         sys.exit(0)
                     if ans.upper() in ('Y', 'YES', _('YES').upper()):
-                        self.__error( _("Will overwrite the existing file: %s") 
-                                      % fullpath)
+                        self.__error(_("Will overwrite the existing file: %s") 
+                                          % fullpath)
                         answer = "ok"
                     else:
                         sys.exit(0)
@@ -433,14 +431,14 @@ class ArgHandler(object):
         for (action, op_string) in self.actions:
             print(_("Performing action: %s.") % action, file=sys.stderr)
             if op_string:
-                print(_("Using options string: %s") % op_string, file=sys.stderr)
+                print(_("Using options string: %s")
+                        % op_string, file=sys.stderr)
             self.cl_action(action, op_string)
 
         for expt in self.exports:
-            print(_("Exporting: file %(filename)s, "
-                            "format %(format)s.") % \
-                              {'filename' : fn,
-                                    'format' : fmt}, file=sys.stderr)
+            print(_("Exporting: file %(filename)s, format %(format)s.")
+                    % {'filename' : expt[0],
+                       'format' : expt[1]}, file=sys.stderr)
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
@@ -472,25 +470,22 @@ class ArgHandler(object):
                 if self.gui:
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
-                    self.imp_db_path = get_empty_tempdir("import_dbdir") \
-					                      .encode(sys.filesystem.encoding, 'backslashreplace')
+                    self.imp_db_path = get_empty_tempdir("import_dbdir")
                     newdb = DbBsddb()
                     newdb.write_version(self.imp_db_path)
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
                     msg = _("Created empty family tree successfully")
-                    gloclale.print(msg, file=sys.stderr)
+                    print(msg, file=sys.stderr)
                 except:
                     print(_("Error opening the file."), file=sys.stderr)
                     print(_("Exiting..."), file=sys.stderr)
                     sys.exit(0)
 
             for imp in self.imports:
-                fn = imp[0]
-                fmt = str(imp[1])
                 msg = _("Importing: file %(filename)s, format %(format)s.") % \
-                        {'filename' : fn, 'format' : fmt}
+                        {'filename' : imp[0], 'format' : imp[1]}
                 print(msg, file=sys.stderr)
                 self.cl_import(imp[0], imp[1])
 
@@ -612,11 +607,11 @@ class ArgHandler(object):
                         "Please use one of %(donottranslate)s=reportname") % \
                         {'donottranslate' : '[-p|--options] name'}
 
-            glcoale.print(_("%s\n Available names are:") % msg, file=sys.stderr)
+            print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    glocle.print("   %s%s- %s"
+                    print("   %s%s- %s"
                                  % ( pdata.id, " " * (26 - len(pdata.id)),
                                      pdata.name), file=sys.stderr)
                 else:
@@ -654,7 +649,7 @@ class ArgHandler(object):
                         "Please use one of %(donottranslate)s=toolname.") % \
                         {'donottranslate' : '[-p|--options] name'}
 
-            glcoale.print(_("%s\n Available names are:") % msg, file=sys.stderr)
+            print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cli_tool_list,
                                 key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
