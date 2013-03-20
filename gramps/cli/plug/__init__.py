@@ -419,9 +419,9 @@ class CommandLineReport(object):
                 print(_("Unknown option: %s") % option)
                 print(_("   Valid options are:"),
                       ", ".join(list(self.options_dict.keys())))
-                print((_("   Use '%(donottranslate)s' to see description "
-                         "and acceptable values") %
-                       {'donottranslate' : "show=option"}))
+                print(_("   Use '%(donottranslate)s' to see description "
+                        "and acceptable values")
+                               % {'donottranslate' : "show=option"})
                 
     def parse_options(self):
         """
@@ -471,13 +471,13 @@ class CommandLineReport(object):
         else:
             self.format = None
         if _chosen_format and _format_str:
-            print((_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
-                             "and using '%(notranslate1)s=%(notranslate3)s'.") %
-                           {'notranslate1' : "off",
-                            'notranslate2' : self.options_dict['off'],
-                            'notranslate3' : _chosen_format}))
-            print((_("Use '%(notranslate)s' to see valid values.") %
-                           {'notranslate' : "show=off"}))
+            print(_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
+                    "and using '%(notranslate1)s=%(notranslate3)s'.")
+                           % {'notranslate1' : "off",
+                              'notranslate2' : self.options_dict['off'],
+                              'notranslate3' : _chosen_format})
+            print(_("Use '%(notranslate)s' to see valid values.")
+                           % {'notranslate' : "show=off"})
 
         self.do_doc_options()
 
@@ -570,14 +570,13 @@ class CommandLineReport(object):
                     # Make the output nicer to read, assume a tab has 8 spaces
                     tabs = '\t\t' if len(key) < 10 else '\t'
                     optmsg = "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
-                    print(optmsg)
                 else:
                     optmsg = "      %s%s%s" % (key, tabs,
                                                _('(no help available)'))
-                    print(optmsg)
-                    print(_("   Use '%(donottranslate)s' to see description "
-                     "and acceptable values") %
-                   {'donottranslate' : "show=option"})
+                print(optmsg)
+            print(_("   Use '%(donottranslate)s' to see description "
+                    "and acceptable values")
+                           % {'donottranslate' : "show=option"})
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
@@ -586,18 +585,16 @@ class CommandLineReport(object):
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
-                    optmsg = "      %s" % val
-                    print(optmsg)
+                    print("      %s" % val)
             else:
-                optmsg = "      %s" % opt[2]
-                print(optmsg)
+                print("      %s" % opt[2])
 
         else:
             #there was a show option given, but the option is invalid
             print(_("option '%(optionname)s' not valid. "
-            "Use '%(donottranslate)s' to see all valid options.")
-                          % {'optionname' : self.show,
-                             'donottranslate' : "show=all"})
+                    "Use '%(donottranslate)s' to see all valid options.")
+                                  % {'optionname' : self.show,
+                                     'donottranslate' : "show=all"})
 
 #------------------------------------------------------------------------
 #

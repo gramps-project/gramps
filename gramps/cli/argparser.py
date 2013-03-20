@@ -298,10 +298,10 @@ class ArgParser(object):
                               % config.filename)
                 for section in config.data:
                     for setting in config.data[section]:
-                        print ("%s.%s=%s"
+                        print("%s.%s=%s"
                                % (section, setting,
                                   repr(config.data[section][setting])))
-                    print ()
+                    print()
                 sys.exit(0)
             elif option in ('-c', '--config'):
                 setting_name = value
@@ -328,7 +328,7 @@ class ArgParser(object):
                         else:
                             need_to_quit = True
                     else:
-                        print(_("Gramps: no such config setting: %s")
+                        print(_("Gramps: no such config setting: '%s'")
                                       % setting_name, file=sys.stderr)
                         need_to_quit = True
                 cleandbg += [opt_ix]
@@ -404,8 +404,7 @@ class ArgParser(object):
         If the user gives the --help or -h option, print the output to terminal.
         """
         if self.help:
-            # Convert Help messages to file system encoding before printing
-            print (_HELP)
+            print(_HELP)
             sys.exit(0)
 
     def print_usage(self):
@@ -413,6 +412,5 @@ class ArgParser(object):
         If the user gives the --usage print the output to terminal.
         """
         if self.usage:
-            # Convert Help messages to file system encoding before printing
             print(_USAGE)
             sys.exit(0)
