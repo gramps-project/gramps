@@ -717,7 +717,7 @@ class GuiGramplet(object):
                                                      handle)
                     return True
                 else: # overzealous l10n while setting the link?
-                    logging.warning( "Unknown link type " + link_type, RuntimeWarning, 2)
+                    logging.warning( "Unknown link type %s, %s" % (link_type, RuntimeWarning))
         return False # did not handle event
 
     def set_has_data(self, value):
