@@ -34,7 +34,7 @@ import gtk
 import pango
 import time
 import os
-from gen.ggettext import gettext as _
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -52,6 +52,7 @@ import GrampsDisplay
 from glade import Glade
 from gui.pluginmanager import GuiPluginManager
 from gui.widgets.undoablebuffer import UndoableBuffer
+from gen.ggettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -691,7 +692,7 @@ class GuiGramplet(object):
                                                      handle)
                     return True
                 else: # overzealous l10n while setting the link?
-                    warn( "Unknown link type " + link_type, RuntimeWarning, 2)
+                    logging.warning( "Unknown link type " + link_type, RuntimeWarning, 2)
         return False # did not handle event
 
     def set_has_data(self, value):
