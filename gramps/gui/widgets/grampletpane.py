@@ -39,9 +39,6 @@ from gi.repository import Pango
 import time
 import os
 import io
-from gramps.gen.constfunc import cuni
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 import sys
 if sys.version_info[0] < 3:
     import ConfigParser as configparser
@@ -68,6 +65,9 @@ from ..display import display_help, display_url
 from ..glade import Glade
 from ..pluginmanager import GuiPluginManager
 from .undoablebuffer import UndoableBuffer
+from gramps.gen.constfunc import cuni
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
@@ -717,7 +717,7 @@ class GuiGramplet(object):
                                                      handle)
                     return True
                 else: # overzealous l10n while setting the link?
-                    warn( "Unknown link type " + link_type, RuntimeWarning, 2)
+                    logging.warning( "Unknown link type " + link_type, RuntimeWarning, 2)
         return False # did not handle event
 
     def set_has_data(self, value):
