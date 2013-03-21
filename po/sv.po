@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-23 16:19+0100\n"
-"PO-Revision-Date: 2013-03-02 14:46+0100\n"
+"PO-Revision-Date: 2013-03-21 10:35+0100\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -113,7 +113,7 @@ msgstr "FEL: Okänt format på exportfilen %s"
 
 #: ../gramps/cli/arghandler.py:411
 msgid "List of known family trees in your database path\n"
-msgstr "Lista på kända släktträd i din databas sökväg\n"
+msgstr "Lista på kända släktträd i din databassökväg\n"
 
 #: ../gramps/cli/arghandler.py:416
 #, python-format
@@ -14777,9 +14777,8 @@ msgstr "Index"
 
 #. internal name: don't translate
 #: ../gramps/plugins/docgen/svgdrawdoc.py:343
-#, fuzzy
 msgid "SVG background color"
-msgstr "Välj bakgrundsfärg"
+msgstr "SVG-bakgrundsfärg"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:345
 msgid "transparent background"
@@ -14795,14 +14794,12 @@ msgid "black"
 msgstr "svart"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:348
-#, fuzzy
 msgid "red"
-msgstr "Gift"
+msgstr "röd"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:349
-#, fuzzy
 msgid "green"
-msgstr "Examen - utbildningsnivå"
+msgstr "grön"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "blue"
@@ -14813,9 +14810,8 @@ msgid "cyan"
 msgstr "cyan"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:352
-#, fuzzy
 msgid "magenta"
-msgstr "Bild"
+msgstr "magenta"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "yellow"
@@ -24252,7 +24248,7 @@ msgstr "personer med okänt kön"
 
 #: ../gramps/plugins/quickview/filterbyname.py:64
 msgid "Filtering_on|incomplete names"
-msgstr ""
+msgstr "ej komplette namn"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|people with missing birth dates"
