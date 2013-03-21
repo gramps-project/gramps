@@ -329,9 +329,10 @@ class BookList(object):
                 f.write('  <item name="%s" trans_name="%s">\n' % 
                             (item.get_name(),item.get_translated_name() ) )
                 options = item.option_class.handler.options_dict
-                for option_name, option_value in options.items():
+                for option_name in sorted(options.keys()): # enable a diff
+                    option_value = options[option_name]
                     if isinstance(option_value, (list, tuple)):
-                        f.write('  <option name="%s" value="" '
+                        f.write('    <option name="%s" value="" '
                                 'length="%d">\n' % (
                                     escape(option_name),
                                     len(options[option_name]) ) )
@@ -339,21 +340,21 @@ class BookList(object):
                             option_type = type_name(option_value[list_index])
                             value = escape(cuni(option_value[list_index]))
                             value = value.replace('"', '&quot;')
-                            f.write('    <listitem number="%d" type="%s" '
+                            f.write('      <listitem number="%d" type="%s" '
                                     'value="%s"/>\n' % (
-                                    list_index,
-                                    option_type,
-                                    value ) )
-                        f.write('  </option>\n')
+                                        list_index,
+                                        option_type,
+                                        value ) )
+                        f.write('    </option>\n')
                     else:
                         option_type = type_name(option_value)
                         value = escape(cuni(option_value))
                         value = value.replace('"', '&quot;')
-                        f.write('  <option name="%s" type="%s" '
+                        f.write('    <option name="%s" type="%s" '
                                 'value="%s"/>\n' % (
-                                escape(option_name),
-                                option_type,
-                                value) )
+                                    escape(option_name),
+                                    option_type,
+                                    value) )
 
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
