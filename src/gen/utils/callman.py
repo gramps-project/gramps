@@ -48,6 +48,7 @@ SOURCEKEY = 'source'
 CITATIONKEY = 'citation'
 REPOKEY = 'repository'
 NOTEKEY = 'note'
+TAGKEY = 'tag'
 
 ADD = '-add'
 UPDATE = '-update'
@@ -55,7 +56,7 @@ DELETE = '-delete'
 REBUILD = '-rebuild'
 
 KEYS = [PERSONKEY, FAMILYKEY, EVENTKEY, PLACEKEY, MEDIAKEY, SOURCEKEY,
-        CITATIONKEY, REPOKEY, NOTEKEY]
+        CITATIONKEY, REPOKEY, NOTEKEY, TAGKEY]
 
 METHODS = [ADD, UPDATE, DELETE, REBUILD]
 METHODS_LIST = [ADD, UPDATE, DELETE]
@@ -70,6 +71,7 @@ SOURCECLASS = 'Source'
 CITATIONCLASS = 'Citation'
 REPOCLASS = 'Repository'
 NOTECLASS = 'Note'
+TAGCLASS = 'Tag'
 
 CLASS2KEY = {
             PERSONCLASS: PERSONKEY,
@@ -80,7 +82,8 @@ CLASS2KEY = {
             SOURCECLASS: SOURCEKEY,
             CITATIONCLASS: CITATIONKEY,
             REPOCLASS: REPOKEY,
-            NOTECLASS: NOTEKEY
+            NOTECLASS: NOTEKEY,
+            TAGCLASS: TAGKEY
             }
 
 def _return(*args):
@@ -123,6 +126,7 @@ class CallbackManager(object):
                 CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
+                TAGKEY: [],
                 }
         #no custom callbacks to do
         self.custom_signal_keys = []
@@ -206,6 +210,7 @@ class CallbackManager(object):
                 CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
+                TAGKEY: [],
                 }
     
     def register_callbacks(self, callbackdict):
@@ -343,6 +348,7 @@ def directhandledict(baseobj):
                 CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
+                TAGKEY: [],
                 }
     for classn, handle in baseobj.get_referenced_handles():
         handles[CLASS2KEY[classn]].append(handle)
@@ -363,6 +369,7 @@ def handledict(baseobj):
                 CITATIONKEY: [],
                 REPOKEY: [],
                 NOTEKEY: [],
+                TAGKEY: [],
                 }
     for classn, handle in baseobj.get_referenced_handles_recursively():
         handles[CLASS2KEY[classn]].append(handle)
