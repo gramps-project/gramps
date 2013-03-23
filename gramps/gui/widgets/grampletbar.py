@@ -40,6 +40,7 @@ if sys.version_info[0] < 3:
     import ConfigParser as configparser
 else:
     import configparser
+import io
 
 #-------------------------------------------------------------------------
 #
@@ -192,10 +193,7 @@ class GrampletBar(Gtk.Notebook):
         """
         filename = self.configfile
         try:
-            if win() and not sys.version_info[0] < 3:
-                fp = open(filename, "w", encoding='utf-8')
-            else:
-                fp = open(filename, "w")
+            fp = io.open(filename, "w", encoding='utf-8')
         except IOError:
             print("Failed writing '%s'; gramplets not saved" % filename)
             return
