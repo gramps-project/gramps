@@ -31,7 +31,6 @@
 #-------------------------------------------------------------------------
 import os
 from xml.sax.saxutils import escape
-import io
 
 def escxml(string):
     """
@@ -149,7 +148,7 @@ class StyleSheetList(object):
         """
         Saves the current StyleSheet definitions to the associated file.
         """
-        xml_file = io.open(self.__file, "w", encoding='utf-8')
+        xml_file = open(self.__file, "w")
         xml_file.write("<?xml version=\"1.0\"?>\n")
         xml_file.write('<stylelist>\n')
         
@@ -212,7 +211,7 @@ class StyleSheetList(object):
             if os.path.isfile(self.__file):
                 parser = make_parser()
                 parser.setContentHandler(SheetParser(self))
-                the_file = io.open(self.__file, encoding='utf-8')
+                the_file = open(self.__file)
                 parser.parse(the_file)
                 the_file.close()
         except (IOError, OSError, SAXParseException):

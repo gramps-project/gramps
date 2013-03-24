@@ -31,8 +31,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import os
-import io
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 
@@ -43,6 +41,7 @@ _ = glocale.get_translation().gettext
 #------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".Book")
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -319,7 +318,7 @@ class BookList(object):
         """
         Saves the current BookList to the associated file.
         """
-        f = io.open(self.file, "w", encoding='utf-8')
+        f = open(self.file, "w")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<booklist>\n')
         for name in sorted(self.bookmap): # enable a diff of archived copies
@@ -371,7 +370,7 @@ class BookList(object):
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self, self.dbase))
-            the_file = io.open(self.file, encoding='utf-8')
+            the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
         except (IOError, OSError, ValueError, SAXParseException, KeyError,
