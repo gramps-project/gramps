@@ -1083,7 +1083,7 @@ class PluginRegister(object):
             full_filename = os.path.join(dir, filename)
             if sys.version_info[0] < 3:
                 full_filename = full_filename.encode(glocale.getfilesystemencoding())
-                fd = io.open(full_filename, 'r')
+                fd = open(full_filename, 'r')
             else:
                 fd = io.open(full_filename, 'r', encoding = 'utf-8')
             stream = fd.read()
