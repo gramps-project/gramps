@@ -135,7 +135,7 @@ class EditMediaRef(EditReference):
         if not self.source.get_mime_type():
             self.mimetext.set_text(_('Note'))
 
-    def draw_preview(self):
+    def draw_preview(self, onlysub=False):
         """
         Draw the two preview images. This method can be called on eg change of
         the path.
@@ -143,14 +143,16 @@ class EditMediaRef(EditReference):
         mtype = self.source.get_mime_type()
         if mtype:
             fullpath = media_path_full(self.db, self.source.get_path())
-            pb = get_thumbnail_image(fullpath, mtype)
-            self.pixmap.set_from_pixbuf(pb)
+            if not onlysub:
+                pb = get_thumbnail_image(fullpath, mtype)
+                self.pixmap.set_from_pixbuf(pb)
             subpix = get_thumbnail_image(fullpath, mtype,
                                                     self.rectangle)
             self.subpixmap.set_from_pixbuf(subpix)
         else:
             pb = find_mime_type_pixbuf('text/plain')
-            self.pixmap.set_from_pixbuf(pb)
+            if not onlysub:
+                self.pixmap.set_from_pixbuf(pb)
             self.subpixmap.set_from_pixbuf(pb)
 
     def _setup_fields(self):
@@ -391,37 +393,7 @@ class EditMediaRef(EditReference):
         """
         Updates the thumbnail of the specified subsection
         """
-        
-        path = self.source.get_path()
-        if path is None:
-            self.subpixmap.hide()
-        else:
-            try:
-                fullpath = media_path_full(self.db, path)
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(fullpath)
-                width = pixbuf.get_width()
-                height = pixbuf.get_height()
-                upper_x = min(self.rectangle[0], self.rectangle[2])/100.
-                lower_x = max(self.rectangle[0], self.rectangle[2])/100.
-                upper_y = min(self.rectangle[1], self.rectangle[3])/100.
-                lower_y = max(self.rectangle[1], self.rectangle[3])/100.
-                sub_x = int(upper_x * width)
-                sub_y = int(upper_y * height)
-                sub_width = int((lower_x - upper_x) * width)
-                sub_height = int((lower_y - upper_y) * height)
-                if sub_width > 0 and sub_height > 0:
-                    pixbuf = pixbuf.subpixbuf(sub_x, sub_y, sub_width, sub_height)
-                    width = sub_width
-                    height = sub_height
-                ratio = float(max(height, width))
-                scale = THUMBSCALE / ratio
-                x = int(scale * width)
-                y = int(scale * height)
-                pixbuf = pixbuf.scale_simple(x, y, GdkPixbuf.InterpType.BILINEAR)
-                self.subpixmap.set_from_pixbuf(pixbuf)
-                self.subpixmap.show()
-            except:
-                self.subpixmap.hide()
+        self.draw_preview(onlysub=True)
 
     def build_menu_names(self, person):
         """
@@ -448,25 +420,20 @@ class EditMediaRef(EditReference):
         """
         self.button_press_coords = (event.x, event.y)
         # prepare drawing of a feedback rectangle
-        self.rect_pixbuf = self.subpixmap.get_pixbuf()
-        w,h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
-        self.rect_pixbuf_render = GdkPixbuf.Pixbuf(GdkPixbuf.Colorspace.RGB, False, 8, w, h)
-        cm = Gdk.colormap_get_system()
-        color = cm.alloc_color(Gdk.Color("blue"))
-        self.rect_pixmap = Gdk.Pixmap(None, w, h, cm.get_visual().depth)
-        self.rect_pixmap.set_colormap(cm)
-        self.rect_gc = self.rect_pixmap.new_gc()
-        self.rect_gc.set_foreground(color)
+        self.orig_subpixbuf = self.subpixmap.get_pixbuf()
+        gtkimg_win = self.subpixmap.get_window()
+        self.rect_pixbuf = Gdk.pixbuf_get_from_window(
+                gtkimg_win, 0, 0, 
+                gtkimg_win.get_width(), 
+                gtkimg_win.get_height())
  
     def motion_notify_event_ref(self, widget, event):
         # get the image size and calculate the X and Y offsets
         # (image is centered *horizontally* when smaller than THUMBSCALE)
-        w, h = self.rect_pixbuf.get_width(), self.rect_pixbuf.get_height()
+        w, h = self.orig_subpixbuf.get_width(), self.orig_subpixbuf.get_height()
         offset_x = (THUMBSCALE - w) / 2
         offset_y = 0
 
-        self.rect_pixmap.draw_pixbuf(self.rect_gc, self.rect_pixbuf, 0, 0, 0, 0)
-        
         # get coordinates of the rectangle, so that x1 < x2 and y1 < y2
         x1 = min(self.button_press_coords[0], event.x)
         x2 = max(self.button_press_coords[0], event.x)
@@ -478,13 +445,18 @@ class EditMediaRef(EditReference):
         x1 = int(x1 - offset_x)
         y1 = int(y1 - offset_y)
         
-        self.rect_pixmap.draw_rectangle(self.rect_gc, False,
-                    x1, y1, width, height)
-                    
-        self.rect_pixbuf_render.get_from_drawable(self.rect_pixmap,
-                                Gdk.colormap_get_system(),
-                                0,0,0,0, w, h)
-        self.subpixmap.set_from_pixbuf(self.rect_pixbuf_render)
+        cr_pixbuf = self.subpixmap.get_window().cairo_create()
+        cr_pixbuf.reset_clip()
+        #reset the pixbuf
+        Gdk.cairo_set_source_pixbuf(cr_pixbuf, self.rect_pixbuf, 0, 0)
+        cr_pixbuf.paint()
+        cr_pixbuf.set_source_rgba(0, 0, 1, 0.5) #blue transparant
+        cr_pixbuf.move_to(x1,y1)
+        cr_pixbuf.line_to(x1+width, y1)
+        cr_pixbuf.line_to(x1+width, y1+height)
+        cr_pixbuf.line_to(x1, y1+height)
+        cr_pixbuf.close_path()
+        cr_pixbuf.fill()
 
     def button_release_event_ref(self, widget, event):
         """
@@ -501,9 +473,9 @@ class EditMediaRef(EditReference):
             self.corner2_y_spinbutton.set_value(100)
 
         else:
-            if (self.rect_pixbuf == None):
+            if (self.orig_subpixbuf == None):
                 return
-            self.subpixmap.set_from_pixbuf(self.rect_pixbuf)
+            self.subpixmap.set_from_pixbuf(self.orig_subpixbuf)
 
             # ensure the clicks happened at least 5 pixels away from each other
             new_x1 = min(self.button_press_coords[0], event.x)
@@ -515,8 +487,8 @@ class EditMediaRef(EditReference):
 
                 # get the image size and calculate the X and Y offsets
                 # (image is centered *horizontally* when smaller than THUMBSCALE)
-                w = self.rect_pixbuf.get_width()
-                h = self.rect_pixbuf.get_height()
+                w = self.orig_subpixbuf.get_width()
+                h = self.orig_subpixbuf.get_height()
                 x = (THUMBSCALE - w) / 2
                 y = 0
 
@@ -568,7 +540,9 @@ class EditMediaRef(EditReference):
                 self.corner2_y_spinbutton.set_value(new_y2)
 
                 # Free the pixbuf as it is not needed anymore
+                self.orig_subpixbuf = None
                 self.rect_pixbuf = None
+        self.draw_preview()
 
     def _update_addmedia(self, obj):
         """
