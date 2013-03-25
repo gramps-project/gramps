@@ -24,13 +24,21 @@
 """
 Module that implements the gramplet bar fuctionality.
 """
+from __future__ import unicode_literals
+
+#-------------------------------------------------------------------------
+#
+# Set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger('.grampletbar')
+
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
 import time
@@ -195,7 +203,7 @@ class GrampletBar(Gtk.Notebook):
         try:
             fp = io.open(filename, "w", encoding='utf-8')
         except IOError:
-            print("Failed writing '%s'; gramplets not saved" % filename)
+            LOG.warning("Failed writing '%s'; gramplets not saved" % filename)
             return
         fp.write(";; Gramplet bar configuration file" + NL)
         fp.write((";; Automatically created at %s" %
@@ -281,7 +289,7 @@ class GrampletBar(Gtk.Notebook):
         gramplet = make_requested_gramplet(TabGramplet, self, all_opts,
                                            self.dbstate, self.uistate)
         if not gramplet:
-            print("Problem creating ", gname)
+            LOG.warning("Problem creating ", gname)
             return
 
         page_num = self.__add_tab(gramplet)
