@@ -289,7 +289,7 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         FlatBaseModel.destroy(self)
 
     def column_name(self, data):
-        return cuni(data[2])
+        return cgi.escape(cuni(data[2]))
 
 #-------------------------------------------------------------------------
 #
