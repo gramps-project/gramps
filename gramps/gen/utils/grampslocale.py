@@ -211,18 +211,24 @@ class GrampsLocale(object):
                 locale.setlocale(locale.LC_MONETARY, self.currency)
             except locale.Error:
                 pass
-#Next, we need to know what is the encoding from the native environment:
-        self.encoding = sys.stdout.encoding or sys.getdefaultencoding()
-
+#Next, we need to know what is the encoding from the native
+#environment. This is used by python standard library funcions which
+#localize their output, e.g. time.strftime():
+        self.encoding = locale.getpreferredencoding() or sys.getdefaultencoding()
 #Ensure that output is encoded correctly to stdout and stderr. This is
 #much less cumbersome and error-prone than encoding individual outputs
 #and better handles the differences between Python 2 and Python 3:
+        _encoding = sys.stdout.encoding or sys.getdefaultencoding()
         if sys.version_info[0] < 3:
-            sys.stdout = codecs.getwriter(self.encoding)(sys.stdout, 'backslashreplace')
-            sys.stderr = codecs.getwriter(self.encoding)(sys.stderr, 'backslashreplace')
+            sys.stdout = codecs.getwriter(_encoding)(sys.stdout,
+                                                     'backslashreplace')
+            sys.stderr = codecs.getwriter(_encoding)(sys.stderr,
+                                                     'backslashreplace')
         else:
-            sys.stdout = codecs.getwriter(self.encoding)(sys.stdout.detach(), 'backslashreplace')
-            sys.stderr = codecs.getwriter(self.encoding)(sys.stderr.detach(), 'backslashreplace')
+            sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
+                                                     'backslashreplace')
+            sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
+                                                     'backslashreplace')
 
 
 #GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
