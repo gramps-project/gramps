@@ -283,7 +283,7 @@ def show_settings():
         bsddb_db_str = 'not found'
 
     try: 
-        from .version import VERSION
+        from .gen.const import VERSION
         gramps_str = VERSION
     except:
         gramps_str = 'not found'
