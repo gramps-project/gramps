@@ -168,7 +168,8 @@ def _validate_options(options, dbase):
                         phandle = None
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
-                        print(_("ERROR: Please specify a person"))
+                        print(_("ERROR: Please specify a person"),
+                                  file=sys.stderr)
             if person:
                 option.set_value(person.get_gramps_id())
             
@@ -192,7 +193,7 @@ def _validate_options(options, dbase):
                     family = dbase.get_family_from_handle(family_handle)
                     option.set_value(family.get_gramps_id())
                 else:
-                    print(_("ERROR: Please specify a family"))
+                    print(_("ERROR: Please specify a family"), file=sys.stderr)
 
 #------------------------------------------------------------------------
 #
@@ -264,17 +265,21 @@ class CommandLineReport(object):
             }
 
         self.options_help = {
-            'of'        : ["=filename", "Output file name. MANDATORY", ""],
-            'off'       : ["=format", "Output file format.", []],
-            'style'     : ["=name", "Style name.", ""],
-            'papers'    : ["=name", "Paper size name.", ""],
-            'papero'    : ["=num", "Paper orientation number.", ""],
-            'paperml'   : ["=num", "Left paper margin", "Size in cm"],
-            'papermr'   : ["=num", "Right paper margin", "Size in cm"],
-            'papermt'   : ["=num", "Top paper margin", "Size in cm"],
-            'papermb'   : ["=num", "Bottom paper margin", "Size in cm"],
-            'css'       : ["=css filename", "CSS filename to use, html format"
-                            " only", ""],
+            'of'        : [_("=filename"), _("Output file name. MANDATORY"),""],
+            'off'       : [_("=format"), _("Output file format."), []],
+            'style'     : [_("=name"), _("Style name."), ""],
+            'papers'    : [_("=name"), _("Paper size name."), ""],
+            'papero'    : [_("=number"), _("Paper orientation number."), ""],
+            'paperml'   : [_("=number"), _("Left paper margin"),
+                                             _("Size in cm")],
+            'papermr'   : [_("=number"), _("Right paper margin"),
+                                             _("Size in cm")],
+            'papermt'   : [_("=number"), _("Top paper margin"),
+                                             _("Size in cm")],
+            'papermb'   : [_("=number"), _("Bottom paper margin"),
+                                             _("Size in cm")],
+            'css'       : [_("=css filename"), _("CSS filename to use, "
+                                                 "html format only"), ""],
             }
 
         if noopt:
@@ -416,12 +421,14 @@ class CommandLineReport(object):
             elif isinstance(option, Option):
                 self.options_help[name].append(option.get_help())
             else:
-                print(_("Unknown option: %s") % option)
+                print(_("Unknown option: %s") % option, file=sys.stderr)
                 print(_("   Valid options are:"),
-                      ", ".join(list(self.options_dict.keys())))
+                      ", ".join(list(self.options_dict.keys())),
+                                                        file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
                         "and acceptable values")
-                               % {'donottranslate' : "show=option"})
+                               % {'donottranslate' : "show=option"},
+                                                        file=sys.stderr)
                 
     def parse_options(self):
         """
@@ -475,9 +482,10 @@ class CommandLineReport(object):
                     "and using '%(notranslate1)s=%(notranslate3)s'.")
                            % {'notranslate1' : "off",
                               'notranslate2' : self.options_dict['off'],
-                              'notranslate3' : _chosen_format})
+                              'notranslate3' : _chosen_format},
+                                                           file=sys.stderr)
             print(_("Use '%(notranslate)s' to see valid values.")
-                           % {'notranslate' : "show=off"})
+                           % {'notranslate' : "show=off"}, file=sys.stderr)
 
         self.do_doc_options()
 
@@ -495,12 +503,13 @@ class CommandLineReport(object):
                     option.set_value(self.options_dict[opt])
                 
             else:
-                print(_("Ignoring unknown option: %s") % opt )
+                print(_("Ignoring unknown option: %s") % opt, file=sys.stderr)
                 print(_("   Valid options are:"),
-                      ", ".join(list(self.options_dict.keys())))
+                      ", ".join(list(self.options_dict.keys())),
+                                                              file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
-                       {'donottranslate' : "show=option"})
+                       {'donottranslate' : "show=option"}, file=sys.stderr)
         
         self.option_class.handler.output = self.options_dict['of']
 
@@ -594,7 +603,8 @@ class CommandLineReport(object):
             print(_("option '%(optionname)s' not valid. "
                     "Use '%(donottranslate)s' to see all valid options.")
                                   % {'optionname' : self.show,
-                                     'donottranslate' : "show=all"})
+                                     'donottranslate' : "show=all"},
+                                                           file=sys.stderr)
 
 #------------------------------------------------------------------------
 #
@@ -642,10 +652,10 @@ def cl_report(database, name, category, report_class, options_class,
         return clr
     except ReportError as msg:
         (m1, m2) = msg.messages()
-        print(err_msg)
-        print(m1)
+        print(err_msg, file=sys.stderr)
+        print(m1, file=sys.stderr)
         if m2:
-            print(m2)
+            print(m2, file=sys.stderr)
     except:
         if len(log.handlers) > 0:
             log.error(err_msg, exc_info=True)
@@ -768,10 +778,10 @@ def write_book_item(database, report_class, options, user):
         return report_class(database, options, user)
     except ReportError as msg:
         (m1, m2) = msg.messages()
-        print("ReportError", m1, m2)
+        print("ReportError", m1, m2, file=sys.stderr)
     except FilterError as msg:
         (m1, m2) = msg.messages()
-        print("FilterError", m1, m2)
+        print("FilterError", m1, m2, file=sys.stderr)
     except:
         log.error("Failed to write book item.", exc_info=True)
     return None
