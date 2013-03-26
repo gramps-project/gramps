@@ -77,14 +77,14 @@ class CLIDbLoader(object):
         """
         Issue a warning message. Inherit for GUI action
         """
-        print(_('WARNING: %s') % warnmessage)
+        print(_('WARNING: %s') % warnmessage, file=sys.stderr)
     
     def _errordialog(self, title, errormessage):
         """
         Show the error. A title for the error and an errormessage
         Inherit for GUI action
         """
-        print(_('ERROR: %s') % errormessage)
+        print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
     
     def _dberrordialog(self, msg):
@@ -208,7 +208,7 @@ class CLIManager(object):
         """
         Show the error. A title for the error and an errormessage
         """
-        print(_('ERROR: %s') % errormessage)
+        print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
         
     def _read_recent_file(self, filename):
@@ -296,17 +296,17 @@ def startcli(errors, argparser):
     if errors:
         #already errors encountered. Show first one on terminal and exit
         errmsg = _('Error encountered: %s') % errors[0][0]
-        print(errmsg)
+        print(errmsg, file=sys.stderr)
         errmsg = _('  Details: %s') % errors[0][1]
-        print(errmsg)
+        print(errmsg, file=sys.stderr)
         sys.exit(1)
     
     if argparser.errors: 
         errmsg = _('Error encountered in argument parsing: %s') \
                                                     % argparser.errors[0][0]
-        print(errmsg)
+        print(errmsg, file=sys.stderr)
         errmsg = _('  Details: %s') % argparser.errors[0][1]
-        print(errmsg)
+        print(errmsg, file=sys.stderr)
         sys.exit(1)
     
     #we need to keep track of the db state
