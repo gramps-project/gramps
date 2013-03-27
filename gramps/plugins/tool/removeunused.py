@@ -33,6 +33,7 @@
 from __future__ import with_statement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.get_translation().gettext
+from gramps.gen.constfunc import handle2internal
 
 #------------------------------------------------------------------------
 #
@@ -277,7 +278,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
-                        self.add_results((the_type, handle, data))
+                        self.add_results((the_type, handle2internal(handle), 
+                                          data))
                     self.update()
             self.reset()
 
