@@ -513,6 +513,7 @@ class CommandLineReport(object):
         
         self.option_class.handler.output = self.options_dict['of']
 
+        self.paper = paper_sizes[0] # make sure one exists
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
