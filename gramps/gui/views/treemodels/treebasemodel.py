@@ -828,6 +828,8 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         :param path: node as it appears in the treeview
         :type path: Node
         """
+        if node is None:
+            raise Exception, 'Not allowed to add None as node'
         iter = self._new_iter(id(node))
         return iter
 
@@ -839,9 +841,13 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
 
     def get_iter_from_handle(self, handle):
         """
-        Get the iter for a gramps handle.
+        Get the iter for a gramps handle. Should return None if iter not 
+        visible
         """
-        return self._get_iter(self._get_node(handle))
+        node = self._get_node(handle)
+        if node is None:
+            return None
+        return self._get_iter(node)
         
     def get_handle_from_iter(self, iter):
         """
