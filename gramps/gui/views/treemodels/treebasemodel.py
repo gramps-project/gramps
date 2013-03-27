@@ -829,7 +829,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         :type path: Node
         """
         if node is None:
-            raise Exception, 'Not allowed to add None as node'
+            raise Exception('Not allowed to add None as node')
         iter = self._new_iter(id(node))
         return iter
 
