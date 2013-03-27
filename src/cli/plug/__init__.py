@@ -486,6 +486,7 @@ class CommandLineReport(object):
             print (_("Use '%(notranslate)s' to see valid values.") %
                    {'notranslate' : "show=off"}).encode(sys.getfilesystemencoding())
 
+        self.paper = paper_sizes[0] # make sure one exists
         for paper in paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
