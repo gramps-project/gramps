@@ -376,7 +376,7 @@ def run(database, document, filter_name, *args, **kwargs):
             fullname = media_path_full(database, photo.get_path())
             try:
                 bytes = posixpath.getsize(fullname)
-                stab.row(fullname, bytes)
+                stab.row(fullname, str(bytes))
                 matches += 1
             except:
                 pass

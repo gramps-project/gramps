@@ -408,8 +408,12 @@ class QuickTable(SimpleTable):
                 col += 1
             try:
                 model.append(row=([count] + list(rowdata) + [col[count] for col in sort_data]))
-            except:
-                print("error in row %d: data: %s, sort data: %d" % (count, rowdata, len(sort_data[0])))
+            except KeyError as msg:
+                print (msg)
+                if sort_data:
+                    print("Quicktable: error in row %d: data: %s, sort data: %d" % (count, rowdata, len(sort_data[0])))
+                else:
+                    print("Quicktable: error in row %d: data: %s" % (count, rowdata))
             count += 1
         text_view.show_all()
         self.simpledoc.paragraph("")
