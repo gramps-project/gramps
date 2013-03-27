@@ -3,10 +3,10 @@ Maintainer: Gramps Development Team <benny.malengier@gmail.com>
 Section: python
 Priority: optional
 Build-Depends-Indep: libxml-parser-perl, gettext, intltool
-Build-Depends: debhelper (>= 7), python-support (>= 0.8.4), python-gobject-dev (>= 3.3.2)
+Build-Depends: debhelper (>= 7), python-support (>= 0.8.4)
 Standards-Version: 3.8.4
 Homepage: http://www.gramps-project.org/
-XS-Python-Version: >=2.7
+XS-Python-Version: current
 
 Package: python-gramps
 Architecture: all
