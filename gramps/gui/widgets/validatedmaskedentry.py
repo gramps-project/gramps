@@ -1051,7 +1051,7 @@ class MaskedEntry(UndoableEntry):
             self.override_symbolic_color('base_color', rgba)
             self.override_symbolic_color('theme_bg_color', rgba)
             self.override_symbolic_color('theme_base_color', rgba)
-            self.get_window().set_background_rgba(rgba)
+            ##self.get_window().set_background_rgba(rgba)
             pango_context = self.get_layout().get_context()
             font_description = pango_context.get_font_description()
             if unset:
