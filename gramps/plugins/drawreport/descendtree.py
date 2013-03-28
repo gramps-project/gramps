@@ -1501,7 +1501,7 @@ class DescendTreeOptions(MenuReportOptions):
                               "Spouses of the spouse, etc"))
         menu.add_option(category_name, "maxspouse", max_spouse)
 
-        compresst = BooleanOption(_('Co_mpress tree'), False)
+        compresst = BooleanOption(_('Compress tree'), False)
         compresst.set_help(_("Whether to move people up, where possible, "
         "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
