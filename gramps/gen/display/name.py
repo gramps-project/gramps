@@ -1018,6 +1018,14 @@ class NameDisplay(object):
         # flag that works in standard python format strings.
         new_fmt = re.sub("|".join(patterns), "%s", new_fmt)
 
+        # replace special meaning codes we need to have verbatim in output
+        if (len(new_fmt) > 2 and new_fmt[0] == new_fmt[-1] == '"'):
+            new_fmt = new_fmt.replace('\\', r'\\') 
+            new_fmt = new_fmt[1:-1].replace('"', r'\"')
+        else:
+            new_fmt = new_fmt.replace('\\', r'\\')
+            new_fmt = new_fmt.replace('"', '\\\"')
+
         # find each format flag in the original format string
         # for each one we find the variable name that is needed to 
         # replace it and add this to a list. This list will be used to
