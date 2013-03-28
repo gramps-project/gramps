@@ -160,7 +160,7 @@ class WriterOptionBox(object):
 
         widget.pack_start(full_database_row, False, True, 0)
         
-        self.private_check = Gtk.CheckButton(
+        self.private_check = Gtk.CheckButton.new_with_mnemonic(
             _('_Do not include records marked private'))
         self.private_check.connect("clicked", self.mark_dirty)
         self.private_check.set_active(self.get_proxy_value("privacy"))
