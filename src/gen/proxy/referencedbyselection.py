@@ -120,8 +120,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_repository_from_handle(handle)
             if obj:
                 self.process_repository(obj)
-        # bug6493 temp workaround for note tag ('Media' class name?) 
-        elif class_name == "MediaObject" or class_name == "Media":
+        elif class_name == "MediaObject":
             obj = self.db.get_object_from_handle(handle)
             if obj:
                 self.process_media(obj)
@@ -326,6 +325,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                         if tag.name == 'Link':
                             if tag.value.startswith("gramps://"):
                                 obj_class, prop, value = tag.value[9:].split("/")
+                                if obj_class == "Media":         # bug6493
+                                    obj_class = "MediaObject"
                                 if prop == "handle":
                                     self.process_object(obj_class, value)
 
