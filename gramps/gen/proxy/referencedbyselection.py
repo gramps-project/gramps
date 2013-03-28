@@ -325,6 +325,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                         if tag.name == 'Link':
                             if tag.value.startswith("gramps://"):
                                 obj_class, prop, value = tag.value[9:].split("/")
+                                if obj_class == "Media":         # bug6493
+                                    obj_class = "MediaObject"
                                 if prop == "handle":
                                     self.process_object(obj_class, value)
 
