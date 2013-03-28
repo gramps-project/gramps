@@ -75,24 +75,6 @@ authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 #load_on_reg = True
   )
-  
-#------------------------------------------------------------------------
-#
-# libgrdb
-#
-#------------------------------------------------------------------------
-register(GENERAL, 
-id    = 'libgrdb',
-name  = "grdb lib",
-description =  _("Base class for ImportGrdb") ,
-version = '1.0',
-gramps_target_version = '4.0',
-status = STABLE,
-fname = 'libgrdb.py',
-authors = ["The Gramps project"],
-authors_email = ["http://gramps-project.org"],
-#load_on_reg = True
-  )
 
 #------------------------------------------------------------------------
 #
