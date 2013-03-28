@@ -1941,7 +1941,7 @@ class CheckIntegrity(object):
                          _('The database has passed internal checks'),
                          parent=uistate.window)
             else:
-                print(_("No errors were found: the database has passed internal checks.")
+                print(_("No errors were found: the database has passed internal checks."))
             return 0
 
         self.text = StringIO()
