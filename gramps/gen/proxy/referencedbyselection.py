@@ -232,13 +232,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_attributes(event)
 
         place_handle = event.get_place_handle()
-        try:
+        if place_handle:
             place = self.db.get_place_from_handle(place_handle)
             if place:
                 self.process_place(place)
-        except AttributeError:
-            import logging
-            logging.warning('Event:%s; Handle:%s' % (event, event.handle))
     
     def process_place(self, place):
         """
@@ -402,9 +399,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             self.process_family(fam)
 
         place_handle = lds_ord.get_place_handle()
-        place = self.db.get_place_from_handle(place_handle)
-        if place:
-            self.process_place(place)
+        if place_handle:
+            place = self.db.get_place_from_handle(place_handle)
+            if place:
+                self.process_place(place)
 
         self.process_citation_ref_list(lds_ord)
         self.process_notes(lds_ord)
