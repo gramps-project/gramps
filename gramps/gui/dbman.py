@@ -415,7 +415,7 @@ class DbManager(CLIDbManager):
 
     def __start_edit(self, *args):
         """
-        Do no allow to click Load while changing name, to force users to finish
+        Do not allow to click Load while changing name, to force users to finish
         the action of renaming. Hack around the fact that clicking button
         sends a 'editing-canceled' signal loosing the new name
         """
@@ -473,6 +473,10 @@ class DbManager(CLIDbManager):
                 )
         else:
             self.model.set_value(node, NAME_COL, new_text)
+            #scroll to new position
+            store, node = self.selection.get_selected()
+            tree_path = store.get_path(node)
+            self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
 
     def __rename_database(self, path, new_text):
         """
@@ -489,6 +493,10 @@ class DbManager(CLIDbManager):
         if not (old_text is None):
             rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
+        #scroll to new position
+        store, node = self.selection.get_selected()
+        tree_path = store.get_path(node)
+        self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
 
     def __rcs(self, obj):
         """
