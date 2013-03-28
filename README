@@ -13,6 +13,7 @@ The following packages *MUST* be installed in order for Gramps to work:
    cairo, pango, pangocairo with instrospection bindings (the gi packages)
    librsvg2 (svg icon view)
    xdg-utils
+   bsddb3 is required for Python 3.3 (not python 2.7)
 
 The following package is needed for full translation of the interface
 to your language:
@@ -32,9 +33,6 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
    GraphViz         Enable creation of graphs using GraphViz engine.
                     Without this no beautiful graphs can be created.
                     Obtain it from: http://www.graphviz.org
-   pyexiv2          Enables Gramps to manage Exif metadata embedded in your
-                    media. Gramps needs version 0.1.3 or greater.
-                    Obtain it from: http://tilloy.net/dev/pyexiv2/download.html  
    PyICU            Improves localised sorting in Gramps. In particular, this
                     applies to sorting in the various views and in the Narrative
                     Web output. It is particularly helpful for non-Latin
@@ -57,6 +55,10 @@ The following packages are optional
    PIL              Python Image Library is needed to crop
                     images and also to convert non jpg images to
                     jpg so as to include them in LaTeX output.
+
+   GExiv2           Enables Gramps to manage Exif metadata embedded in your
+                    media. Gramps needs version 0.5 or greater.
+                    See http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata
 
    ttf-freefont     More font support in the reports
 
