@@ -308,24 +308,29 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_attributes(media)
         self.process_notes(media)
 
-    def process_notes(self, original_obj):
+    def process_note(self, note):
         """
         Follow the note object and find all of the primary objects
         that it references.
         """
+        if note is None or note.handle in self.referenced["Note"]:
+            return
+        self.referenced["Note"].add(note.handle)
+        for tag in note.text.get_tags():
+            if tag.name == 'Link':
+                if tag.value.startswith("gramps://"):
+                    obj_class, prop, value = tag.value[9:].split("/")
+                    if obj_class == "Media":         # bug6493
+                        obj_class = "MediaObject"
+                    if prop == "handle":
+                        self.process_object(obj_class, value)
+
+    def process_notes(self, original_obj):
+        """ Find all of the primary objects referred to """
         for note_handle in original_obj.get_note_list():
-            if note_handle and note_handle not in self.referenced["Note"]:
+            if note_handle:
                 note = self.db.get_note_from_handle(note_handle)
-                if note:
-                    self.referenced["Note"].add(note_handle)
-                    for tag in note.text.get_tags():
-                        if tag.name == 'Link':
-                            if tag.value.startswith("gramps://"):
-                                obj_class, prop, value = tag.value[9:].split("/")
-                                if obj_class == "Media":         # bug6493
-                                    obj_class = "MediaObject"
-                                if prop == "handle":
-                                    self.process_object(obj_class, value)
+                self.process_note(note)
 
     # --------------------------------------------
 
