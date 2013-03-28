@@ -111,7 +111,11 @@ class BsddbBaseCursor(object):
                         _flags | flags | (db.DB_RMW if self._update else 0),
                         **kwargs)
 
-            return (data[0], loads(data[1])) if data else None
+            try:
+                return (data[0], loads(data[1])) if data else None
+            except UnicodeDecodeError:
+                #we need to assume we opened data in python3 saved in python2
+                return (data[0], loads(data[1], encoding='utf-8')) if data else None
 
         return get
 

@@ -648,7 +648,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             pass
         
         # bookmarks
-        meta = lambda meta: self.metadata.get(meta, default=[])
+        def meta(key):
+            try:
+                return self.metadata.get(key, default=[])
+            except UnicodeDecodeError:
+                #we need to assume we opened data in python3 saved in python2
+                raw = self.metadata.db.get(key, default=[])
+                return pickle.loads(raw, encoding='utf-8') if raw else raw
         
         self.bookmarks.set(meta(b'bookmarks'))
         self.family_bookmarks.set(meta(b'family_bookmarks'))
@@ -1800,6 +1806,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             handle = handle.encode('utf-8')
         try:
             data = data_map.get(handle, txn=self.txn)
+        except UnicodeDecodeError:
+            #we need to assume we opened data in python3 saved in python2
+            raw = data_map.db.get(handle, txn=self.txn)
+            data = pickle.loads(raw, encoding='utf-8')
         except:
             data = None
             # under certain circumstances during a database reload,
