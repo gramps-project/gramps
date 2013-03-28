@@ -1536,6 +1536,10 @@ class DbBsddbRead(DbReadBase, Callback):
             handle = handle.encode('utf-8')
         try:
             return table.get(handle, txn=self.txn)
+        except UnicodeDecodeError:
+            #we need to assume we opened data in python3 saved in python2
+            raw = table.db.get(handle, txn=self.txn)
+            return pickle.loads(raw, encoding='utf-8')
         except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
