@@ -209,6 +209,10 @@ class ClipWrapper(object):
         return self._dbname
 
     def pack(self):
+        """
+        Return a byte string that can be packed in a GtkSelectionData
+        structure
+        """
         if not self.is_valid():
             data = list(pickle.loads(self._pickle))
             data[2] = {
@@ -224,11 +228,18 @@ class ClipWrapper(object):
                 }
             return pickle.dumps(data)
         else:
-            return str(self._obj)
+            if sys.version_info[0] < 3:
+                return str(self._obj)
+            else:
+                if isinstance(self._obj, bytes):
+                    return self._obj
+                else:
+                    ## don't know if this happens in Gramps, theoretically possible
+                    asuni = str(self._obj)
+                    return asuni.encode('utf-8')
 
     def is_valid(self):
         return True
-
 
 class ClipHandleWrapper(ClipWrapper):
         
