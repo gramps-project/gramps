@@ -127,7 +127,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         elif class_name == "Note":
             obj = self.db.get_note_from_handle(handle)
             if obj:
-                self.process_note(obj)
+                self.process_notes(obj)
         else:
             raise AttributeError("unknown class: '%s'" % class_name)
 
