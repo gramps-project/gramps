@@ -142,20 +142,21 @@ class FilterProxyDb(ProxyDbBase):
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
-        # Filter notes out
-        self.sanitize_notebase(source)
-        
-        media_ref_list = source.get_media_list()
-        for media_ref in media_ref_list:
-            self.sanitize_notebase(media_ref)
-            attributes = media_ref.get_attribute_list()
-            for attribute in attributes:
-                self.sanitize_notebase(attribute)
-        
-        repo_ref_list = source.get_reporef_list()
-        for repo_ref in repo_ref_list:
-            self.sanitize_notebase(repo_ref)
-        
+
+        if source:
+            # Filter notes out
+            self.sanitize_notebase(source)
+            
+            media_ref_list = source.get_media_list()
+            for media_ref in media_ref_list:
+                self.sanitize_notebase(media_ref)
+                attributes = media_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
+            
+            repo_ref_list = source.get_reporef_list()
+            for repo_ref in repo_ref_list:
+                self.sanitize_notebase(repo_ref)
 
         return source
 
@@ -166,7 +167,6 @@ class FilterProxyDb(ProxyDbBase):
         """
         citation = self.db.get_citation_from_handle(handle)
         # Filter notes out
-
         self.sanitize_notebase(citation)
         return citation
 
@@ -176,12 +176,14 @@ class FilterProxyDb(ProxyDbBase):
         If no such Object exists, None is returned.
         """
         media = self.db.get_object_from_handle(handle)
-        # Filter notes out
-        self.sanitize_notebase(media)
-        
-        attributes = media.get_attribute_list()
-        for attr in attributes:
-            self.sanitize_notebase(attr)
+
+        if media:
+            # Filter notes out
+            self.sanitize_notebase(media)
+            
+            attributes = media.get_attribute_list()
+            for attr in attributes:
+                self.sanitize_notebase(attr)
 
         return media
 
@@ -191,15 +193,17 @@ class FilterProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
-        # Filter notes out
-        self.sanitize_notebase(place)
         
-        media_ref_list = place.get_media_list()
-        for media_ref in media_ref_list:
-            self.sanitize_notebase(media_ref)
-            attributes = media_ref.get_attribute_list()
-            for attribute in attributes:
-                self.sanitize_notebase(attribute)
+        if place:
+            # Filter notes out
+            self.sanitize_notebase(place)
+            
+            media_ref_list = place.get_media_list()
+            for media_ref in media_ref_list:
+                self.sanitize_notebase(media_ref)
+                attributes = media_ref.get_attribute_list()
+                for attribute in attributes:
+                    self.sanitize_notebase(attribute)
 
         return place
 
@@ -300,6 +304,8 @@ class FilterProxyDb(ProxyDbBase):
         person = self.db.get_person_from_gramps_id(val)
         if person:
             return self.get_person_from_handle(person.get_handle())
+        else:
+            return None
 
     def get_family_from_gramps_id(self, val):
         """
@@ -309,6 +315,8 @@ class FilterProxyDb(ProxyDbBase):
         family = self.db.get_family_from_gramps_id(val)
         if family:
             return self.get_family_from_handle(family.get_handle())
+        else:
+            return None
 
     def get_event_from_gramps_id(self, val):
         """
@@ -318,6 +326,8 @@ class FilterProxyDb(ProxyDbBase):
         event = self.db.get_event_from_gramps_id(val)
         if event:
             return self.get_event_from_handle(event.get_handle())
+        else:
+            return None
 
     def get_place_from_gramps_id(self, val):
         """
@@ -327,6 +337,8 @@ class FilterProxyDb(ProxyDbBase):
         place = self.db.get_place_from_gramps_id(val)
         if place:
             return self.get_place_from_handle(place.get_handle())
+        else:
+            return None
 
     def get_source_from_gramps_id(self, val):
         """
@@ -336,6 +348,8 @@ class FilterProxyDb(ProxyDbBase):
         source = self.db.get_source_from_gramps_id(val)
         if source:
             return self.get_source_from_handle(source.get_handle())
+        else:
+            return None
 
     def get_citation_from_gramps_id(self, val):
         """
@@ -345,6 +359,8 @@ class FilterProxyDb(ProxyDbBase):
         citation = self.db.get_citation_from_gramps_id(val)
         if citation:
             return self.get_citation_from_handle(citation.get_handle())
+        else:
+            return None
 
     def get_object_from_gramps_id(self, val):
         """
@@ -354,6 +370,8 @@ class FilterProxyDb(ProxyDbBase):
         media = self.db.get_object_from_gramps_id(val)
         if media:
             return self.get_object_from_handle(media.get_handle())
+        else:
+            return None
 
     def get_repository_from_gramps_id(self, val):
         """
@@ -363,6 +381,8 @@ class FilterProxyDb(ProxyDbBase):
         repository = self.db.get_repository_from_gramps_id(val)
         if repository:
             return self.get_repository_from_handle(repository.get_handle())
+        else:
+            return None
 
     def get_note_from_gramps_id(self, val):
         """
@@ -372,6 +392,8 @@ class FilterProxyDb(ProxyDbBase):
         note = self.db.get_note_from_gramps_id(val)
         if note:
             return self.get_note_from_handle(note.get_handle())
+        else:
+            return None
 
     def get_person_handles(self, sort_handles=False):
         """
