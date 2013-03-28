@@ -315,15 +315,20 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         show=True
         """
         filename = filechooser.get_filename()
-        folder = filechooser.get_current_folder()
-        #the file must be valid, not a folder, and folder must be valid
-        if filename and os.path.basename(filename.strip()) \
-                    and find_folder(filename) == '' \
-                    and folder and find_folder(folder): 
-            #this page of the assistant is complete
-            self.set_page_complete(filechooser, True)            
-        else :
+        if not filename:
             self.set_page_complete(filechooser, False)
+        else:
+            folder = filechooser.get_current_folder()
+            if not folder:
+                folder = find_folder(filename)
+            else:
+                folder = find_folder(folder)
+            #the file must be valid, not a folder, and folder must be valid
+            if (filename and os.path.basename(filename.strip()) and folder): 
+                #this page of the assistant is complete
+                self.set_page_complete(filechooser, True)            
+            else :
+                self.set_page_complete(filechooser, False)
         
     def create_page_confirm(self):
         # Construct confirm page
