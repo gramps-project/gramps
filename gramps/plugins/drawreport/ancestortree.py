@@ -908,7 +908,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.max_gen.connect('value-changed', self.__fillout_vals)
         self.__fillout_vals()
 
-        compress = BooleanOption(_('Co_mpress tree'), True)
+        compress = BooleanOption(_('Compress tree'), True)
         compress.set_help(_("Whether to remove any extra blank spaces set "
             "aside for people that are unknown"))
         menu.add_option(category_name, "compress_tree", compress)
