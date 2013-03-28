@@ -253,24 +253,30 @@ class EmbeddedList(ButtonTab):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.get_data():
-            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+            data = pickle.loads(sel_data.get_data())
+            if isinstance(data, list):
+                data = [pickle.loads(x) for x in data]
+            else: 
+                data = [data]
+            for value in data:
+                (mytype, selfid, obj, row_from) = value
 
-            # make sure this is the correct DND type for this object
-            if mytype == self._DND_TYPE.drag_type:
-                
-                # determine the destination row
-                row = self._find_row(x, y)
+                # make sure this is the correct DND type for this object
+                if mytype == self._DND_TYPE.drag_type:
+                    
+                    # determine the destination row
+                    row = self._find_row(x, y)
 
-                # if the is same object, we have a move, otherwise,
-                # it is a standard drag-n-drop
-                
-                if id(self) == selfid and self.get_selected() is not None:
-                    self._move(row_from, row, obj)
-                else:
-                    self._handle_drag(row, obj)
-                self.rebuild()
-            elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
-                self.handle_extra_type(mytype, obj)
+                    # if the is same object, we have a move, otherwise,
+                    # it is a standard drag-n-drop
+                    
+                    if id(self) == selfid and self.get_selected() is not None:
+                        self._move(row_from, row, obj)
+                    else:
+                        self._handle_drag(row, obj)
+                elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
+                    self.handle_extra_type(mytype, obj)
+            self.rebuild()
 
     def tree_drag_motion(self, *args):
         """
