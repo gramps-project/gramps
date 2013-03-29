@@ -1965,7 +1965,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 self.surnames = self.__open_db(self.full_name, SURNAMES,
                                     db.DB_BTREE, db.DB_DUP | db.DB_DUPSORT)
 
-                self.person_map.associate(self.surnames, find_surname,
+                self.person_map.associate(self.surnames, find_byte_surname,
                                           DBFLAGS_O)
 
                 self.reference_map_referenced_map = self.__open_db(self.full_name,
