@@ -636,6 +636,8 @@ class TitleNoDisplay(BoxBase):
         BoxBase.__init__(self)
         self.doc = doc
         self.boxstr = boxstr
+        #if text in TOC needs to be different from text, set mark_text
+        self.mark_text = None
         
     def set_box_height_width(self):
         self.width = self.height = 0
@@ -643,10 +645,11 @@ class TitleNoDisplay(BoxBase):
     def display(self):
         """ display the title box.  """
         #Set up the Table of Contents here
-        
         from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC) # interim, here
-        mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
-                              
+        if self.mark_text is None:
+            mark = IndexMark(self.text, INDEX_TYPE_TOC, 1)
+        else:
+            mark = IndexMark(self.mark_text, INDEX_TYPE_TOC, 1)
         self.doc.center_text(self.boxstr, '', 0, -100, mark)
 
 class TitleBox(BoxBase):

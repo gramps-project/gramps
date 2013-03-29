@@ -210,7 +210,9 @@ class TitleNone(TitleNoDisplay):
         
     def calc_title(self, persons):
         """Calculate the title of the report"""
-        self.text = 'Descendant Graph'
+        #we want no text, but need a text for the TOC in a book!
+        self.mark_text = 'Descendant Graph'
+        self.text = ''
 
 class TitleDPY(DescendantTitleBase):
     """Descendant (Person yes start with parents) Chart 
