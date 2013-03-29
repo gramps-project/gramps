@@ -79,7 +79,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import UNITYPE, STRTYPE, cuni
+from ..constfunc import UNITYPE, STRTYPE, cuni, handle2internal
 from ..const import GRAMPS_LOCALE as glocale
 
 LOG = logging.getLogger(DBLOGNAME)
@@ -1098,7 +1098,7 @@ class DbBsddbRead(DbReadBase, Callback):
         def g(self):
             with curs_(self) as cursor:
                 for key, data in cursor:
-                    yield key
+                    yield handle2internal(key)
         return g
 
     # Use closure to define iterators for each primary object type
