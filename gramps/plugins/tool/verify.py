@@ -62,6 +62,7 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.constfunc import UNITYPE
 from gramps.gen.lib import (ChildRefType, EventRoleType, EventType,
                             FamilyRelType, NameType, Person)
 from gramps.gen.lib.date import Today
@@ -360,7 +361,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         
         for option, value in \
           self.options.handler.options_dict.items():
-            exec('%s = %s' % (option, value))
+            exec('%s = %s' % (option, value), globals())
 
         if self.vr:
             self.vr.real_model.clear()
@@ -369,25 +370,25 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                        self.db.get_number_of_families())
 
         for person_handle in person_handles:
-            person = find_person(self.db,person_handle)
+            person = find_person(self.db, person_handle)
 
             rule_list = [
-                BirthAfterBapt(self.db,person),
-                DeathBeforeBapt(self.db,person),
-                BirthAfterBury(self.db,person),
-                DeathAfterBury(self.db,person),
-                BirthAfterDeath(self.db,person),
-                BaptAfterBury(self.db,person),
-                OldAge(self.db,person, oldage,estimate_age),
-                OldAgeButNoDeath(self.db,person, oldage,estimate_age),
-                UnknownGender(self.db,person),
-                MultipleParents(self.db,person),
-                MarriedOften(self.db,person,wedder),
-                OldUnmarried(self.db,person, oldunm,estimate_age),
-                TooManyChildren(self.db,person,mxchilddad,mxchildmom),
-                Disconnected(self.db,person),
-                InvalidBirthDate(self.db,person,invdate),
-                InvalidDeathDate(self.db,person,invdate),
+                BirthAfterBapt(self.db, person),
+                DeathBeforeBapt(self.db, person),
+                BirthAfterBury(self.db, person),
+                DeathAfterBury(self.db, person),
+                BirthAfterDeath(self.db, person),
+                BaptAfterBury(self.db, person),
+                OldAge(self.db, person, oldage, estimate_age),
+                OldAgeButNoDeath(self.db, person, oldage, estimate_age),
+                UnknownGender(self.db, person),
+                MultipleParents(self.db, person),
+                MarriedOften(self.db, person, wedder),
+                OldUnmarried(self.db, person, oldunm, estimate_age),
+                TooManyChildren(self.db, person, mxchilddad, mxchildmom),
+                Disconnected(self.db, person),
+                InvalidBirthDate(self.db, person, invdate),
+                InvalidDeathDate(self.db, person, invdate),
                 ]
 
             for rule in rule_list:
@@ -539,20 +540,29 @@ class VerifyResults(ManagedWindow):
         """
         pass
 
-    def load_ignored(self,db_filename):
+    def load_ignored(self, db_filename):
+        if sys.version_info[0] >= 3 and isinstance(db_filename, UNITYPE):
+            db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
+        ## a new Gramps major version means recreating the .vfm file. 
+        ## User can copy over old one, with name of new one, but no guarantee
+        ## that will work.
         self.ignores_filename = os.path.join(
-            VERSION_DIR,md5sum.hexdigest() + os.path.extsep + 'vfm')
+            VERSION_DIR, md5sum.hexdigest() + os.path.extsep + 'vfm')
         if not self._load_ignored(self.ignores_filename):
             self.ignores = {}
 
-    def _load_ignored(self,filename):
+    def _load_ignored(self, filename):
         try:
-            f = open(filename)
+            try:
+                f = open(filename, 'rb')
+            except IOError:
+                return False
             self.ignores = pickle.load(f)
             f.close()
             return True
-        except IOError:
+        except (IOError, EOFError):
+            f.close()
             return False
 
     def save_ignored(self, new_ignores):
@@ -561,8 +571,8 @@ class VerifyResults(ManagedWindow):
 
     def _save_ignored(self,filename):
         try:
-            f = open(filename,'w')
-            pickle.dump(self.ignores,f,1)
+            f = open(filename,'wb')
+            pickle.dump(self.ignores, f, 1)
             f.close()
             return True
         except IOError:
@@ -703,8 +713,8 @@ class VerifyOptions(tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
@@ -853,10 +863,9 @@ class BirthAfterBapt(PersonRule):
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
-        birth_ok = birth_date > 0
-        bapt_ok = bapt_date > 0
-        birth_after_death = birth_date > bapt_date
-        return (birth_ok and bapt_ok and birth_after_death)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        bapt_ok = bapt_date > 0 if bapt_date is not None else False
+        return (birth_ok and bapt_ok and birth_date > bapt_date)
 
     def get_message(self):
         return _("Baptism before birth")
@@ -867,10 +876,9 @@ class DeathBeforeBapt(PersonRule):
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bapt_date = get_bapt_date(self.db,self.obj)
-        bapt_ok = bapt_date > 0
-        death_ok = death_date > 0
-        death_before_bapt = bapt_date > death_date
-        return (death_ok and bapt_ok and death_before_bapt)
+        bapt_ok = bapt_date > 0 if bapt_date is not None else False
+        death_ok = death_date > 0 if death_date is not None else False
+        return (death_ok and bapt_ok and bapt_date > death_date)
 
     def get_message(self):
         return _("Death before baptism")
@@ -879,12 +887,11 @@ class BirthAfterBury(PersonRule):
     ID = 3
     SEVERITY = Rule.ERROR
     def broken(self):
-        birth_date = get_birth_date(self.db,self.obj)
-        bury_date = get_bury_date(self.db,self.obj)
-        birth_ok = birth_date > 0
-        bury_ok = bury_date > 0
-        birth_after_bury = birth_date > bury_date
-        return (birth_ok and bury_ok and birth_after_bury)
+        birth_date = get_birth_date(self.db, self.obj)
+        bury_date = get_bury_date(self.db, self.obj)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        bury_ok = bury_date > 0 if bury_date is not None else False
+        return (birth_ok and bury_ok and birth_date > bury_date)
 
     def get_message(self):
         return _("Burial before birth")
@@ -895,10 +902,9 @@ class DeathAfterBury(PersonRule):
     def broken(self):
         death_date = get_death_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
-        death_ok = death_date > 0
-        bury_ok = bury_date > 0
-        death_after_bury = death_date > bury_date
-        return (death_ok and bury_ok and death_after_bury)
+        death_ok = death_date > 0 if death_date is not None else False
+        bury_ok = bury_date > 0 if bury_date is not None else False
+        return (death_ok and bury_ok and death_date > bury_date)
 
     def get_message(self):
         return _("Burial before death")
@@ -909,10 +915,9 @@ class BirthAfterDeath(PersonRule):
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj)
         death_date = get_death_date(self.db,self.obj)
-        birth_ok = birth_date > 0
-        death_ok = death_date > 0
-        birth_after_death = birth_date > death_date
-        return (birth_ok and death_ok and birth_after_death)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        death_ok = death_date > 0 if death_date is not None else False
+        return (birth_ok and death_ok and birth_date > death_date)
 
     def get_message(self):
         return _("Death before birth")
@@ -923,10 +928,9 @@ class BaptAfterBury(PersonRule):
     def broken(self):
         bapt_date = get_bapt_date(self.db,self.obj)
         bury_date = get_bury_date(self.db,self.obj)
-        bapt_ok = bapt_date > 0
-        bury_ok = bury_date > 0
-        bapt_after_bury = bapt_date > bury_date
-        return (bapt_ok and bury_ok and bapt_after_bury)
+        bapt_ok = bapt_date > 0 if bapt_date is not None else False
+        bury_ok = bury_date > 0 if bury_date is not None else False
+        return (bapt_ok and bury_ok and bapt_date > bury_date)
 
     def get_message(self):
         return _("Burial before baptism")
