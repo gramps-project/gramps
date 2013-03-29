@@ -579,19 +579,25 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         Depending on the success status, set the text for the final page.
         
         """
-        if (self.option_box_instance and 
-            hasattr(self.option_box_instance, "no_fileselect")):
-            filename = ""
-        else:
-            filename = get_unicode_path_from_file_chooser(self.chooser.get_filename())
-            config.set('paths.recent-export-dir', os.path.split(filename)[0])
-        ix = self.get_selected_format_index()
-        config.set('behavior.recent-export-type', ix)
-        export_function = self.map_exporters[ix].get_export_function()
-        success = export_function(self.dbstate.db,
-                                  filename,
-                                  User(error=ErrorDialog, callback=self.callback),
-                                  self.option_box_instance)
+        success = False
+        try:
+            if (self.option_box_instance and 
+                hasattr(self.option_box_instance, "no_fileselect")):
+                filename = ""
+            else:
+                filename = get_unicode_path_from_file_chooser(self.chooser.get_filename())
+                config.set('paths.recent-export-dir', os.path.split(filename)[0])
+            ix = self.get_selected_format_index()
+            config.set('behavior.recent-export-type', ix)
+            export_function = self.map_exporters[ix].get_export_function()
+            success = export_function(self.dbstate.db,
+                            filename,
+                            User(error=ErrorDialog, callback=self.callback),
+                            self.option_box_instance)
+        except:
+            #an error not catched in the export_function itself
+            success = False
+            log.error(_("Error exporting your family tree"), exc_info=True)
         return success
     
     def pre_save(self,page):
