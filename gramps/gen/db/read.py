@@ -968,6 +968,11 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_number_of_records(self.tag_map)
 
     def all_handles(self, table):
+        """ return all the keys of a database table
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
+        """
         return table.keys(txn=self.txn)
         
     def get_person_handles(self, sort_handles=False):
@@ -976,6 +981,10 @@ class DbBsddbRead(DbReadBase, Callback):
         the database. 
         
         If sort_handles is True, the list is sorted by surnames.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.person_map)
@@ -990,6 +999,10 @@ class DbBsddbRead(DbReadBase, Callback):
         the database. 
         
         If sort_handles is True, the list is sorted by Place title.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
 
         if self.db_is_open:
@@ -1004,7 +1017,11 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Source in
         the database.
         
-         If sort_handles is True, the list is sorted by Source title.
+        If sort_handles is True, the list is sorted by Source title.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.source_map)
@@ -1018,7 +1035,11 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Citation in
         the database.
         
-         If sort_handles is True, the list is sorted by Citation Volume/Page.
+        If sort_handles is True, the list is sorted by Citation Volume/Page.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.citation_map)
@@ -1033,6 +1054,10 @@ class DbBsddbRead(DbReadBase, Callback):
         the database. 
         
         If sort_handles is True, the list is sorted by title.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.media_map)
@@ -1045,6 +1070,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Event in the 
         database. 
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.event_map)
@@ -1054,6 +1083,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Family in
         the database.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.family_map)
@@ -1063,6 +1096,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Repository in
         the database.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.repository_map)
@@ -1072,6 +1109,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Note in the 
         database.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.note_map)
@@ -1082,7 +1123,11 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Tag in
         the database.
         
-         If sort_handles is True, the list is sorted by Tag name.
+        If sort_handles is True, the list is sorted by Tag name.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.tag_map)
