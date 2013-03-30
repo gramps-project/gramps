@@ -487,6 +487,10 @@ class Canvas(Page):
             return
         #x_page_offsets[page] tells me the widths I can use
         if len(x_page_offsets) > 1:
+            if self.title.mark_text and not self.title.text:
+                self.title.width = self.doc.get_usable_width()
+                self.__pages[0, 0].add_box(self.title)
+                return
             title_list = self.title.text.split(" ")
             title_font = self.__get_font(self.title)
             #space_width = PT2CM(self.doc.string_width(title_font," "))
@@ -586,6 +590,8 @@ class BoxBase(object):
         self.width = 0.0
         self.height = 0.0
         self.line_to = None
+        #if text in TOC needs to be different from text, set mark_text
+        self.mark_text = None
         
     def scale(self, scale_amount):
         """ Scale the amounts """
@@ -634,8 +640,6 @@ class TitleNoDisplay(BoxBase):
         BoxBase.__init__(self)
         self.doc = doc
         self.boxstr = boxstr
-        #if text in TOC needs to be different from text, set mark_text
-        self.mark_text = None
         
     def set_box_height_width(self):
         self.width = self.height = 0
