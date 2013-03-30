@@ -131,12 +131,15 @@ class FamilyBox(AncestorBoxBase):
 #------------------------------------------------------------------------
 class TitleN(TitleNoDisplay):
     """No Title class for the report """
+
     def __init__(self, doc):
         TitleNoDisplay.__init__(self, doc, "AC2-Title")
         
     def calc_title(self, center):
         """Calculate the title of the report"""
-        self.text = _("Ancestor Graph")
+        #we want no text, but need a text for the TOC in a book!
+        self.mark_text = _("Ancestor Graph")
+        self.text = ''
 
 class TitleA(TitleBox):
     """Title class for the report """
