@@ -203,7 +203,7 @@ class DescendantTitleBase(TitleBox):
         return parents
 
 class TitleNone(TitleNoDisplay):
-    """Family Chart Title class for the report """
+    """No Title class for the report """
     
     def __init__(self, dbase, doc):
         TitleNoDisplay.__init__(self, doc, "CG2-Title")
@@ -211,7 +211,7 @@ class TitleNone(TitleNoDisplay):
     def calc_title(self, persons):
         """Calculate the title of the report"""
         #we want no text, but need a text for the TOC in a book!
-        self.mark_text = 'Descendant Graph'
+        self.mark_text = _('Descendant Graph')
         self.text = ''
 
 class TitleDPY(DescendantTitleBase):
