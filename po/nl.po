@@ -4,7 +4,8 @@
 #
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012.
+# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012, 2013.
+# Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013. 
 #
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
@@ -4511,7 +4512,7 @@ msgstr "Locatie"
 # roepnaam is hier beter
 #: ../gramps/gen/lib/nametype.py:56
 msgid "Also Known As"
-msgstr "Roepnaam"
+msgstr "Alias"
 
 #: ../gramps/gen/lib/nametype.py:57
 msgid "Birth Name"
