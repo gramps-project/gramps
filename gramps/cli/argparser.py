@@ -73,6 +73,7 @@ Application options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
+  -t                                     List Family Trees in tabular (tab delimited) form
   -u, --force-unlock                     Force unlock of family tree
   -s, --show                             Show config settings
   -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
@@ -176,6 +177,7 @@ class ArgParser(object):
         self.imp_db_path = None
         self.list = False
         self.list_more = False
+        self.list_table = False
         self.help = False
         self.usage = False
         self.force_unlock = False
@@ -293,6 +295,8 @@ class ArgParser(object):
                 self.list = True
             elif option in ('-L'):
                 self.list_more = True
+            elif option in ('-t'):
+                self.list_table = True
             elif option in ('-s','--show'):
                 print(_("Gramps config settings from %s:")
                               % config.filename)
@@ -347,7 +351,8 @@ class ArgParser(object):
             del options[ind]
         
         if len(options) > 0 and self.open is None and self.imports == [] \
-                and not (self.list or self.list_more or self.help or self.runqml):
+                and not (self.list or self.list_more or self.list_table or
+                         self.help or self.runqml):
             # Extract and convert to unicode the arguments in the list.
             # The % operator replaces the list elements with repr() of
             # the list elements, which is OK for latin characters
@@ -374,7 +379,7 @@ class ArgParser(object):
             #errors in argument parsing ==> give cli error, no gui needed
             return False
         
-        if self.list or self.list_more or self.help:
+        if self.list or self.list_more or self.list_table or self.help:
             return False
 
         if self.open_gui:

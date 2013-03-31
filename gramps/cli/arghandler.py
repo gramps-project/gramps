@@ -166,6 +166,7 @@ class ArgHandler(object):
             self.actions = parser.actions
             self.list = parser.list
             self.list_more = parser.list_more
+            self.list_table = parser.list_table
         self.open_gui = parser.open_gui
         self.imp_db_path = None
         self.dbman = CLIDbManager(self.dbstate)
@@ -425,6 +426,25 @@ class ArgHandler(object):
                         print("   %s: %s" % (item, summary[item]))
             sys.exit(0)
            
+        if self.list_table:
+            print(_('Gramps Family Trees:'))
+            summary_list = self.dbman.family_tree_summary()
+            print(_("Family Tree"), end="")
+            for key in sorted(summary_list[0]):
+                if key !=  "Family tree":
+                    print("\t ", end="")
+                    print(key, end="")
+            print()
+            for summary in sorted(summary_list,
+                                  key=lambda sum: sum[_("Family tree")].lower()):
+                print('"%s"' % summary["Family tree"], end="")
+                for item in sorted(summary):
+                    if item != _("Family tree"):
+                        print("\t ", end="")
+                        print('"%s"' % summary[item], end="")
+                print()
+            sys.exit(0)
+
         self.__open_action()
         self.__import_action()
             
