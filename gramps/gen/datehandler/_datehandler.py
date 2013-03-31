@@ -49,16 +49,13 @@ log = logging.getLogger(".gen.datehandler")
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
 from ..constfunc import win, cuni
-
+from ..const import GRAMPS_LOCALE as glocale
 #-------------------------------------------------------------------------
 #
 # Constants 
 #
 #-------------------------------------------------------------------------
-if not win():
-    LANG = locale.getlocale(locale.LC_TIME)[0]
-else:
-    LANG = locale.getdefaultlocale(locale.LC_TIME)[0]
+LANG = glocale.calendar
 
 # If LANG contains ".UTF-8" use only the part to the left of "."
 # Otherwise some date handler will not load. 
