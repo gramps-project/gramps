@@ -1,20 +1,15 @@
 Source: gramps
-Maintainer: Gramps Development Team <benny.malengier@gmail.com>
+Maintainer: Gramps Development Team
 Section: python
 Priority: optional
 Build-Depends-Indep: libxml-parser-perl, gettext, intltool
-Build-Depends: debhelper (>= 7), python-support (>= 0.8.4)
-Standards-Version: 3.8.4
+Build-Depends: python-all (>= 2.7.0), debhelper (>= 7.4.3)
+Standards-Version: 3.9.1
 Homepage: http://www.gramps-project.org/
-XS-Python-Version: current
 
-Package: python-gramps
+Package: gramps
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-gobject (>= 3.3.2)
-Recommends: python-pyicu, python-osmgpsmap,  graphviz, xdg-utils
-Suggests: ttf-freefont, python-enchant, python-gtkspell, gexiv2
-XB-Python-Version: ${python:Versions}
-Provides: ${python:Provides}
-Description: Gramps (Genealogical Research and Analysis Management 
+Description: Gramps (Genealogical Research and Analysis Management
  Programming System) is a full featured genealogy program supporting
  a Python based plugin system.
