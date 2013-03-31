@@ -46,12 +46,72 @@ except ImportError:
     except ImportError as err:
         LOG.warning("ICU not loaded because %s. Localization will be impaired. "
                     "Use your package manager to install PyICU", str(err))
-#-------------------------------------------------------------------------
-#
-# gramps modules
-#
-#-------------------------------------------------------------------------
-from ..constfunc import mac, win, UNITYPE
+ICU_LOCALES = None
+if HAVE_ICU:
+    ICU_LOCALES = Locale.getAvailableLocales()
+
+        #Map our translated language codes to Microsoft Locale Names
+        #Important: Maintain this list with new translations or they
+        #won't work under MS Windows!
+mslocales = {
+    'ar': ('Arabic_Saudi Arabia', '1256'),
+    'bg': ('Bulgrian_Bulgaria', '1251'),
+    'br': None, #Windows has no translation for Breton
+    'ca': ('Catalang_Spain', '1252'),
+    'cs': ('Czech_Czech Republic', '1250'),
+    'da': ('Danish_Denmark', '1252'),
+    'de': ('German_Germany', '1252'),
+    'en_GB': ('English_United Kingdom', '1252'),
+    'eo': None, #Windows has no translation for Esperanto
+    'es': ('Spanish_Spain', '1252'),
+    'fi': ('Finnish_Finland', '1252'),
+    'fr': ('French_France', '1252'),
+    'ga': None, #Windows has no translation for Gaelic
+    'he': ('Hebrew_Israel', '1255'),
+    'hr': ('Croatian_Croatia', '1250'),
+    'hu': ('Hungarian_Hungary', '1250'),
+    'it': ('Italian_Italy', '1252'),
+    'ja': ('Japanese_Japan', '932'),
+    'lt': ('Lithuanian_Lithuania', '1252'),
+    'mk': None, #Windows has no translation for Macedonian
+    'nb': ('Norwegian_Norway', '1252'),
+    'nl': ('Dutch_Netherlands', '1252'),
+    'nn': ('Norwegian-Nynorsk_Norway', '1252'),
+    'pl': ('Polish_Poland', '1250'),
+    'pt_BR': ('Portuguese_Brazil', '1252'),
+    'pt_PT': ('Portuguese_Portugal', '1252'),
+    'ro': ('Romanian_Romania', '1250'),
+    'ru': ('Russian_Russia', '1251'),
+    'sk': ('Slovak_Slovakia', '1250'),
+    'sl': ('Slovenian_Slovenia', '1250'),
+    'sq': ('Albanian_Albania', '1250'),
+    'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251'),
+    'sv': ('Swedish_Sweden', '1252'),
+    'tr': ('Turkish_Turkey', '1254'),
+    'uk': ('Ukrainian_Ukraine', '1251'),
+    'vi': ('Vietnamese_Viet Nam', '1258'),
+    'zh_CN': ('Chinese_China', '936'),
+    }
+
+def _check_mswin_locale(locale):
+    msloc = None
+    try:
+        msloc = mslocales[locale[:5]]
+        locale = locale[:5]
+    except KeyError:
+        try:
+            msloc = mslocales[locale[:2]]
+            locale = locale[:2]
+        except KeyError:
+            return None
+    return (locale, msloc)
+
+def _check_mswin_locale_reverse(locale):
+    for (loc, msloc) in mslocales.items():
+        if locale == msloc[0]:
+            return (loc, msloc[1])
+
+    return None
 
 #------------------------------------------------------------------------
 #
@@ -101,53 +161,117 @@ class GrampsLocale(object):
 
         return super(GrampsLocale, cls).__new__(cls)
 
-    def __init_from_environment(self):
-        if not (hasattr(self, 'lang') and self.lang):
-            lang = ' '
-            if 'LANG' in os.environ:
-                lang = os.environ["LANG"]
-            else:
-                lang = locale.getlocale()[0]
-                if not lang:
-                    try:
-                        lang = locale.getdefaultlocale()[0] + '.UTF-8'
-                    except TypeError:
-                        LOG.warning('Unable to determine your Locale, using English')
-                        lang = 'C.UTF-8'
-        self.lang = lang
+    def _win_init_environment(self):
+        """
+        The Windows implementation of Python ignores environment
+        variables when setting the locale; it only pays attention to
+        the control panel language settings -- which for practical
+        purposes limits one to the language for which one purchased
+        Windows. This function enables using alternative
+        localizations.
+        """
 
-        if not self.language:
-            if "LANGUAGE" in os.environ:
+        if not (hasattr(self, 'lang') and self.lang):
+            self.lang = None
+            if 'LANG' in os.environ:
+                lang = os.environ['LANG']
+                (lang, loc) = _check_mswin_locale(lang)
+                if loc:
+                    locale.setlocale(locale.LC_ALL, '.'.join(loc))
+                    self.lang = lang
+                    self.language = [self.lang]
+                    self.encoding = loc[1]
+
+            if not self.lang:
+                locale.setlocale(locale.LC_ALL, '')
+                (lang, encoding) = locale.getlocale()
+                loc = _check_mswin_locale_reverse(lang)
+                if loc:
+                    self.lang = loc[0]
+                    self.languages = [loc[0]]
+                    self.encoding = loc[1]
+
+            if not self.lang:
+                self.lang = 'C'
+                self.language = ['en']
+                self.encoding = 'cp1252'
+
+        if not (hasattr(self, 'language') and self.language):
+            if 'LC_MESSAGES' in os.environ:
+                lang = self.check_available_translations(os.environ['LC_MESSAGES'])
+                if lang:
+                    self.language = [lang]
+            if 'LANGUAGE' in os.environ:
                 language = [x for x in [self.check_available_translations(l)
                                         for l in os.environ["LANGUAGE"].split(":")]
                             if x]
 
                 self.language = language
-            elif 'LC_MESSAGES' in os.environ:
-                lang = self.check_available_translations(os.environ['LC_MESSAGES'])
-                if lang:
-                    self.language = [lang]
-            elif not self.lang == "C.UTF-8":
-                l = self.check_available_translations(lang)
-                if l:
-                    self.language = [l]
-            else:
-                self.language = ["en"]
+        if not (hasattr(self, 'language') and self.language):
+            self.language = [self.lang]
 
-            if "LC_MONETARY" not in os.environ:
-                self.currency = self.lang
+        if 'LC_COLLATE' in os.environ:
+            coll = os.environ['LC_COLLATE']
+            if HAVE_ICU:
+                if coll[:5] in ICU_LOCALES:
+                    self.collation = coll
+                else:
+                    self.collation = self.lang
             else:
-                self.currency = os.environ["LC_MONETARY"]
+                (coll, loc) = _check_mswin_locale(coll)
+                if loc:
+                    locale.setlocale(locale.LC_COLLATE, '.'.join(loc))
+                    self.collation = coll
+                else: #can't set the collation locale if MS doesn't support it
+                    self.collation = self.lang
 
-            if "LC_TIME" not in os.environ:
-                self.calendar = self.lang
-            else:
-                self.calendar = os.environ["LC_TIME"]
+        else:
+            self.collation = self.lang
 
-            if "LC_COLLATE" not in os.environ:
-                self.collation = self.lang
+# We can't import datahandler stuff or we'll get a circular
+# dependency, so we rely on the available translations list
+        if 'LC_TIME' in os.environ:
+            self.calendar = self.check_available_translations(os.environ['LC_TIME']) or self.lang
+        else:
+            self.calendar = self.lang
+
+    def _init_from_environment(self):
+        try:
+            locale.setlocale(locale.LC_ALL, '')
+        except locale.Error as err:
+            LOG.warning("Locale error %s, localization will be US English.",
+                        err);
+            self.lang = self.calendar = self.collate = 'C'
+            self.encoding = 'ascii'
+            self.language = ['en']
+            return
+
+        if not (hasattr(self, 'lang') and self.lang):
+            (lang, encoding) = locale.getlocale()
+            if self.check_available_translations(lang):
+                self.lang = lang
+                self.encoding = encoding
             else:
-                self.collation = os.environ["LC_COLLATE"]
+                lang = '.'.join(locale.getlocale(locale.LC_MESSAGES))
+                if not lang:
+                    try:
+                        lang = locale.getdefaultlocale()[0] + '.UTF-8'
+                    except TypeError:
+                        LOG.warning('Unable to determine your Locale, using English')
+                        lang = 'C'
+
+                self.lang = lang
+
+        if not (hasattr(self, 'language') and self.language):
+            if "LANGUAGE" in os.environ:
+                language = [x for x in [self.check_available_translations(l)
+                                        for l in os.environ["LANGUAGE"].split(":")]
+                            if x]
+            else:
+                language = [self.lang[:5]]
+            self.language = language
+        self.calendar = locale.getlocale(locale.LC_TIME)[0]
+        self.collation = locale.getlocale(locale.LC_COLLATE)[0]
 
     def _win_bindtextdomain(self, localedomain, localedir):
         """
@@ -161,7 +285,7 @@ class GrampsLocale(object):
                                    localedir.encode(sys.getfilesystemencoding()))
             libintl.textdomain(localedomain)
             libintl.bind_textdomain_codeset(localedomain, "UTF-8")
-            print("Set domain %s in %s" % (localedomain, localedir))
+
         except WindowsError:
             LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
 
@@ -172,18 +296,16 @@ class GrampsLocale(object):
         LOG.addHandler(_hdlr)
 
 #First, globally set the locale to what's in the environment:
-        try:
-            locale.setlocale(locale.LC_ALL, '')
-        except locale.Error:
-            pass
 
         if not (hasattr(self, 'lang') and self.lang
                 and hasattr(self, 'language') and self.language):
-            if mac():
+            if sys.platform == 'darwin':
                 from . import maclocale
                 maclocale.mac_setup_localization(self)
+            elif sys.platform == 'win32':
+                self._win_init_environment()
             else:
-                self.__init_from_environment()
+                self._init_from_environment()
         else:
             self.currency = self.calendar = self.collation = self.lang
 
@@ -204,11 +326,10 @@ class GrampsLocale(object):
 #translations and date formats with lang, we can't affect currency or
 #numeric format. Those are fixed by the user's system settings.
 
-        if not win():
+        if not sys.platform == 'win32':
             try:
                 locale.setlocale(locale.LC_COLLATE, self.collation)
                 locale.setlocale(locale.LC_TIME, self.calendar)
-                locale.setlocale(locale.LC_MONETARY, self.currency)
             except locale.Error:
                 pass
 #Next, we need to know what is the encoding from the native
@@ -244,7 +365,7 @@ class GrampsLocale(object):
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.have_localedir:
-            if not win():
+            if not sys.platform == 'win32':
                 locale.bindtextdomain(self.localedomain, self.localedir)
             else:
                 self._win_bindtextdomain(self.localedomain, self.localedir)
@@ -558,6 +679,9 @@ class GrampsLocale(object):
             return None
         if not hasattr(self, 'languages'):
             self.languages = self.get_available_translations()
+
+        if not locale:
+            return None
 
         if locale[:2] in self.languages:
             return locale[:2]
