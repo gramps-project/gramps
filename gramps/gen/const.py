@@ -306,6 +306,6 @@ LONGOPTS = [
     "qml",
 ]
 
-SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLhuv?s"
+SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLthuv?s"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')

@@ -136,62 +136,85 @@ class CLIDbManager(object):
         """
         pass
 
-    def get_dbdir_summary(self, file_name):
+    def get_dbdir_summary(self, dirpath, name):
         """
-        Returns (people_count, version_number) of current DB.
-        Returns ("Unknown", "Unknown") if invalid DB or other error.
+        Returns (people_count, bsddb_version, schema_version) of
+        current DB.
+        Returns ("Unknown", "Unknown", "Unknown") if invalid DB or other error.
         """
         if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
             from bsddb3 import dbshelve, db
         else:
             from bsddb import dbshelve, db
+
         from gramps.gen.db import META, PERSON_TBL
+        from  gramps.gen.db.dbconst import BDBVERSFN
+
+        bdbversion_file = os.path.join(dirpath, BDBVERSFN)
+        if os.path.isfile(bdbversion_file):
+            vers_file = open(bdbversion_file)
+            bsddb_version = vers_file.readline().strip()
+        else:
+            return "Unknown", "Unknown", "Unknown"
+        
+        current_bsddb_version = str(db.version())
+        if bsddb_version != current_bsddb_version:
+            return "Unknown", bsddb_version, "Unknown"
+        
         env = db.DBEnv()
         flags = db.DB_CREATE | db.DB_PRIVATE |\
             db.DB_INIT_MPOOL |\
             db.DB_INIT_LOG | db.DB_INIT_TXN
         try:
-            env.open(file_name, flags)
-        except:
-            return "Unknown", "Unknown"
+            env.open(dirpath, flags)
+        except Exception as msg:
+            LOG.warning("Error opening db environment for '%s': %s" %
+                        (name, str(msg)))
+            try:
+                env.close()
+            except Exception as msg:
+                LOG.warning("Error closing db environment for '%s': %s" %
+                        (name, str(msg)))
+            return "Unknown", bsddb_version, "Unknown"
         dbmap1 = dbshelve.DBShelf(env)
-        fname = os.path.join(file_name, META + ".db")
+        fname = os.path.join(dirpath, META + ".db")
         try:
             dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
         except:
             env.close()
-            return "Unknown", "Unknown"
-        version = dbmap1.get(b'version', default=None)
+            return "Unknown", bsddb_version, "Unknown"
+        schema_version = dbmap1.get(b'version', default=None)
         dbmap1.close()
         dbmap2 = dbshelve.DBShelf(env)
-        fname = os.path.join(file_name, PERSON_TBL + ".db")
+        fname = os.path.join(dirpath, PERSON_TBL + ".db")
         try:
             dbmap2.open(fname, PERSON_TBL, db.DB_HASH, db.DB_RDONLY)
         except:
             env.close()
-            return "Unknown", "Unknown"
+            return "Unknown", bsddb_version, schema_version
         count = len(dbmap2)
         dbmap2.close()
         env.close()
-        return (count, version)
+        return (count, bsddb_version, schema_version)
 
     def family_tree_summary(self):
         """
         Return a list of dictionaries of the known family trees.
         """
         # make the default directory if it does not exist
-        list = []
+        summary_list = []
         for item in self.current_names:
             (name, dirpath, path_name, last, 
              tval, enable, stock_id) = item
-            count, version = self.get_dbdir_summary(dirpath)
+            count, bsddb_version, schema_version = self.get_dbdir_summary(dirpath, name)
             retval = {}
             retval["Number of people"] = count
             if enable:
                 retval["Locked?"] = "yes"
             else:
                 retval["Locked?"] = "no"
-            retval["DB version"] = version
+            retval["Bsddb version"] = bsddb_version
+            retval["Schema version"] = schema_version
             if sys.version_info[0] < 3:
                 retval["Family tree"] = name.encode(glocale.getfilesystemencoding())
             else:
@@ -199,8 +222,8 @@ class CLIDbManager(object):
             retval["Path"] = dirpath
             retval["Last accessed"] = time.strftime('%x %X', 
                                                     time.localtime(tval))
-            list.append( retval )
-        return list
+            summary_list.append( retval )
+        return summary_list
 
     def _populate_cli(self):
         """ Get the list of current names in the database dir
