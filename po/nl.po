@@ -10803,19 +10803,19 @@ msgstr "Kies het naamformaat"
 #: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Country for holidays"
-msgstr "Land voor de vakanties"
+msgstr "Land voor feestdagen"
 
 #: ../src/plugins/drawreport/Calendar.py:443
 #: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
-msgstr "Kies een land om de overeenkomstige verlofdagen te zien"
+msgstr "Kies een land om de overeenkomstige feestdagen te zien"
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:446
 #: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1421
 msgid "First day of week"
-msgstr "eerste dag van de week"
+msgstr "Eerste weekdag"
 
 #: ../src/plugins/drawreport/Calendar.py:450
 #: ../src/plugins/textreport/BirthdayReport.py:405
@@ -10951,16 +10951,16 @@ msgstr "Dagtekstweergave"
 
 #: ../src/plugins/drawreport/Calendar.py:547
 msgid "Holiday text display"
-msgstr "Vakantiedagentekstweergave"
+msgstr "Tekstweergave feestdagen"
 
 #: ../src/plugins/drawreport/Calendar.py:550
 msgid "Days of the week text"
-msgstr "Tekst dagen van de week"
+msgstr "Tekst weekdagen"
 
 #: ../src/plugins/drawreport/Calendar.py:554
 #: ../src/plugins/textreport/BirthdayReport.py:512
 msgid "Text at bottom, line 1"
-msgstr "Tekst oneraan, lijn 1"
+msgstr "Tekst onderaan, lijn 1"
 
 #: ../src/plugins/drawreport/Calendar.py:556
 #: ../src/plugins/textreport/BirthdayReport.py:514
@@ -19078,7 +19078,7 @@ msgstr "Basisklasse voor 'ImportGrdb'"
 
 #: ../src/plugins/lib/libplugins.gpr.py:123
 msgid "Provides holiday information for different countries."
-msgstr "Verlofinformatie van verscheidene landen."
+msgstr "Levert informatie over feestdagen van verscheidene landen."
 
 #: ../src/plugins/lib/libplugins.gpr.py:141
 msgid "Manages a HTML file implementing DocBackend."
@@ -19468,7 +19468,7 @@ msgstr "Sukot"
 
 #: ../src/plugins/lib/holidays.xml.in.h:40
 msgid "Sweden - Holidays"
-msgstr "Zweden - vakantiedagen"
+msgstr "Zweden - feestdagen"
 
 #: ../src/plugins/lib/holidays.xml.in.h:41
 #: ../src/plugins/tool/ExtractCity.py:62
