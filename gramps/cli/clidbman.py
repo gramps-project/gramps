@@ -208,19 +208,19 @@ class CLIDbManager(object):
              tval, enable, stock_id) = item
             count, bsddb_version, schema_version = self.get_dbdir_summary(dirpath, name)
             retval = {}
-            retval["Number of people"] = count
+            retval[_("Number of people")] = count
             if enable:
-                retval["Locked?"] = "yes"
+                retval[_("Locked?")] = _("yes")
             else:
-                retval["Locked?"] = "no"
-            retval["Bsddb version"] = bsddb_version
-            retval["Schema version"] = schema_version
+                retval[_("Locked?")] = _("no")
+            retval[_("Bsddb version")] = bsddb_version
+            retval[_("Schema version")] = schema_version
             if sys.version_info[0] < 3:
-                retval["Family tree"] = name.encode(glocale.getfilesystemencoding())
+                retval[_("Family tree")] = name.encode(glocale.getfilesystemencoding())
             else:
-                retval["Family tree"] = name
-            retval["Path"] = dirpath
-            retval["Last accessed"] = time.strftime('%x %X', 
+                retval[_("Family tree")] = name
+            retval[_("Path")] = dirpath
+            retval[_("Last accessed")] = time.strftime('%x %X', 
                                                     time.localtime(tval))
             summary_list.append( retval )
         return summary_list
