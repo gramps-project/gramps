@@ -4,7 +4,7 @@
 #
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012, 2013.
+# Erik De Richter <frederik.de.richter@gmail.com>, 2006, 2007, 2008, 2009, 2010 , 2011, 2012, 2013.
 # Harmen Huizinga <harmenhuizinga@sigmo.nl>, 2013. 
 #
 # --------------------------------------------------
@@ -14958,12 +14958,12 @@ msgstr "Naamformaat kiezen"
 #: ../gramps/plugins/textreport/birthdayreport.py:389
 #: ../gramps/plugins/webreport/webcal.py:1392
 msgid "Country for holidays"
-msgstr "Land voor de vakanties"
+msgstr "Land voor feestdagen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:453
 #: ../gramps/plugins/textreport/birthdayreport.py:400
 msgid "Select the country to see associated holidays"
-msgstr "Kies een land om de overeenkomstige verlofdagen te zien"
+msgstr "Kies een land om de overeenkomstige feestdagen te zien"
 
 #. Default selection ????
 #: ../gramps/plugins/drawreport/calendarreport.py:456
@@ -15096,16 +15096,16 @@ msgstr "Dagtekstweergave"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
 msgid "Holiday text display"
-msgstr "Vakantiedagentekstweergave"
+msgstr "Tekstweergave feestdagen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:560
 msgid "Days of the week text"
-msgstr "Tekst dagen van de week"
+msgstr "Tekst weekdagen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:564
 #: ../gramps/plugins/textreport/birthdayreport.py:514
 msgid "Text at bottom, line 1"
-msgstr "Tekst oneraan, lijn 1"
+msgstr "Tekst onderaan, lijn 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:566
 #: ../gramps/plugins/textreport/birthdayreport.py:516
@@ -19084,7 +19084,7 @@ msgstr "Japan"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
 msgid "Sweden - Holidays"
-msgstr "Zweden - vakantiedagen"
+msgstr "Zweden - feestdagen"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
 #: ../gramps/plugins/tool/extractcity.py:64
