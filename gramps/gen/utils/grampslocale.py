@@ -108,7 +108,7 @@ def _check_mswin_locale(locale):
 
 def _check_mswin_locale_reverse(locale):
     for (loc, msloc) in mslocales.items():
-        if locale == msloc[0]:
+        if msloc and locale == msloc[0]:
             return (loc, msloc[1])
 
     return None
