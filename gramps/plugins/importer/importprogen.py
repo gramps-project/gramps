@@ -463,7 +463,8 @@ class PG30_Def:
         # This can throw a IOError
         import io
         lines = None
-        with f = io.open(fname, buffering=1, encoding='cp437', errors='strict'):
+        with io.open(fname, buffering=1,
+                     encoding='cp437', errors='strict') as f:
             lines = f.readlines()
         lines = [l.strip() for l in lines]
         content = '\n'.join(lines).encode('utf-8')
