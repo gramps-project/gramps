@@ -295,20 +295,38 @@ class DbLoader(CLIDbLoader):
 
         self._begin_progress()
         
+        force_schema_upgrade = False
+        force_bsddb_upgrade = False
         try:
-            try:
-                self.dbstate.db.load(filename, self._pulse_progress, 
-                                     mode, upgrade=False)
-            except gen.db.exceptions.DbUpgradeRequiredError, msg:
-                if QuestionDialog2(_("Need to upgrade database!"), 
-                                   str(msg), 
-                                   _("Upgrade now"), 
-                                   _("Cancel")).run():
+            while True:
+                try:
                     self.dbstate.db.load(filename, self._pulse_progress, 
-                                         mode, upgrade=True)
+                                         mode, force_schema_upgrade,
+                                         force_bsddb_upgrade)
                     self.dbstate.db.set_save_path(filename)
-                else:
-                    self.dbstate.no_database()
+                    break
+                except gen.db.exceptions.DbUpgradeRequiredError, msg:
+                    if QuestionDialog2(_("Need to upgrade database!"), 
+                                       str(msg), 
+                                       _("Upgrade now"), 
+                                       _("Cancel")).run():
+                        force_schema_upgrade = True
+                        force_bsddb_upgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except gen.db.exceptions.BsddbUpgradeRequiredError, msg:
+                    if QuestionDialog2(_("Need to upgrade BSDDB database!"), 
+                                       str(msg), 
+                                       _("I have made a backup, "
+                                         "please upgrade my tree"), 
+                                       _("Cancel")).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = True
+                    else:
+                        self.dbstate.no_database()
+                        break
+        # Get here is there is an exception the while loop does not handle
         except gen.db.exceptions.BsddbDowngradeError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))

@@ -287,7 +287,7 @@ class DbGrdb(Callback):
         """Return True when the file has a supported version."""
         return True
 
-    def need_upgrade(self):
+    def need_scema_upgrade(self):
         return False
 
     def gramps_upgrade(self):

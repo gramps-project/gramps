@@ -211,7 +211,7 @@ class DbTest(object):
         "commit_source",
         "commit_tag",
         "delete_primary_from_reference_map",
-        "need_upgrade",
+        "need_schema_upgrade",
         "rebuild_secondary",
         "reindex_reference_map",
         "remove_event",

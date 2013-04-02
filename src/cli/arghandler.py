@@ -370,12 +370,8 @@ class ArgHandler(object):
                 if not self.check_db(db_path, self.force_unlock):
                     sys.exit(0)
                 # Add the file to the recent items
-                path = os.path.join(db_path, "name.txt")
-                try:
-                    ifile = open(path)
-                    title = ifile.readline().strip()
-                    ifile.close()
-                except:
+                title = self.dbstate.db.get_dbname()
+                if not title:
                     title = db_path
                 RecentFiles.recent_files(db_path, title)
                 self.open = db_path

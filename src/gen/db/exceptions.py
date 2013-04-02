@@ -71,13 +71,23 @@ class DbVersionError(Exception):
     Error used to report that a file could not be read because it is written 
     in an unsupported version of the file format.
     """
-    def __init__(self):
+    def __init__(self, tree_vers, min_vers, max_vers):
         Exception.__init__(self)
+        self.tree_vers = tree_vers
+        self.min_vers = min_vers
+        self.max_vers = max_vers
 
     def __str__(self):
-        return _("The database version is not supported by this version of "
-                 "Gramps.\nPlease upgrade to the corresponding version or use "
-                 "XML for porting data between different database versions.")
+        return _("The schema version is not supported by this version of "
+                 "Gramps.\n\n"
+                 "This Family tree is schema version %(tree_vers)s, and this "
+                 "version of Gramps supports versions %(min_vers)s to "
+                 "%(max_vers)s\n\n"
+                 "Please upgrade to the corresponding version or use "
+                 "XML for porting data between different database versions.") %\
+                 {'tree_vers': self.tree_vers,
+                  'min_vers': self.min_vers,
+                  'max_vers': self.max_vers}
     
 class BsddbDowngradeError(Exception):
     """
@@ -102,6 +112,30 @@ class BsddbDowngradeError(Exception):
                  'to XML and load that XML into the version of Gramps you '
                  'intend to use.') % {'env_version': self.env_version,
                  'bdb_version': self.bdb_version}
+
+class BsddbUpgradeRequiredError(Exception):
+    """
+    Error used to report that the Berkeley database used to create the family
+    tree is of a version that is too new to be supported by the current version.
+    """
+    def __init__(self, env_version, bsddb_version):
+        Exception.__init__(self)
+        self.env_version = str(env_version)
+        self.bsddb_version = str(bsddb_version)
+
+    def __str__(self):
+        return _('The BSDDB version of the Family Tree you are trying to open '
+              'needs to be upgraded from %(env_version)s to %(bdb_version)s.\n\n'
+              'This probably means that the Family Tree was created with '
+              'an old version of Gramps. Opening the tree with this version '
+              'of Gramps may irretrievably corrupt your tree. You are '
+              'strongly advised to backup your tree before proceeding, '
+              'see: \n'
+              'http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n\n'
+              'If you have made a backup, then you can get Gramps to try '
+              'to open the tree and upgrade it') % \
+              {'env_version': self.env_version,
+               'bdb_version': self.bsddb_version}
 
 class DbEnvironmentError(Exception):
     """

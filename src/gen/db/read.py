@@ -1752,7 +1752,7 @@ class DbBsddbRead(DbReadBase, Callback):
         filepath = os.path.join(self.path, "name.txt")
         try:
             name_file = open(filepath, "r")
-            name = name_file.read()
+            name = name_file.readline().strip()
             name_file.close()
         except (OSError, IOError), msg:
             self.__log_error()
