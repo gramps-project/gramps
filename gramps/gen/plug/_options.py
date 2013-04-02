@@ -379,10 +379,11 @@ class OptionHandler(object):
             if not ( isinstance(option_data, list) and
                      option_data and 
                      option_data[0] in docgen_names ):
-                print( _("Option '%(opt_name)s' is present in %(file)s\n"
-                        "  but is not known to the module.  Ignoring...") % \
+                print(_("Option '%(opt_name)s' is present in %(file)s\n"
+                        "  but is not known to the module.  Ignoring...") %
                             { 'opt_name' : option_name,
-                              'file' : self.option_list_collection.filename } )
+                              'file' : self.option_list_collection.filename },
+                      file=sys.stderr )
             options.pop(option_name)
 
         # Then we set common options from whatever was found
