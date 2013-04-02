@@ -83,6 +83,7 @@ LANG_TO_PARSER = {
 LANG_TO_DISPLAY = {
     'C'                     : DateDisplayEn,
     'en'                    : DateDisplayEn,
+    'en_GB'                 : DateDisplayEn,
     'English_United States' : DateDisplayEn,
     'zh_CN'                 : DateDisplay,
     'zh_TW'                 : DateDisplay,
