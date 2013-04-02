@@ -158,6 +158,15 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
+        except gen.db.exceptions.DbEnvironmentError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except gen.db.exceptions.BsddbUpgradeRequiredError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except gen.db.exceptions.BsddbDowngradeError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.DbUpgradeRequiredError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))

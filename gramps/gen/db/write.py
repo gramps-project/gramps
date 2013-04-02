@@ -43,7 +43,7 @@ import time
 import bisect
 from functools import wraps
 import logging
-from sys import maxsize
+from sys import getfilesystemencoding
 
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
@@ -72,7 +72,8 @@ from ..lib.researcher import Researcher
 from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
+                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo,
+                    exceptions)
 from .dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import conv_dbstr_to_unicode
@@ -397,29 +398,67 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put(b'mediapath', path)            
 
-    def __check_bdb_version(self, name):
+    def __make_zip_backup(self, dirname):
+        import zipfile
+        title = self.get_dbname()
+        
+        if not os.access(dirname, os.W_OK):
+            _LOG.warning("Can't write technical DB backup for %s" % title)
+            return
+        (grampsdb_path, db_code) = os.path.split(dirname)
+        dotgramps_path = os.path.dirname(grampsdb_path)
+        zipname = title + time.strftime("%Y-%m-%d %H-%M-%S") + ".zip"
+        if sys.version_info[0] < 3:
+            zipname = zipname.encode(glocale.getfilesystemencoding())
+        zippath = os.path.join(dotgramps_path, zipname)
+        myzip = zipfile.ZipFile(zippath, 'w')
+        for filename in os.listdir(dirname):
+            pathname = os.path.join(dirname, filename)
+            myzip.write(pathname, os.path.join(db_code, filename))
+        myzip.close()
+        _LOG.warning("If upgrade and loading the Family Tree works, you can "
+                     "delete the zip file at %s" %
+                     zippath)
+    
+    def __check_bdb_version(self, name, force_bsddb_upgrade=False):
         """Older version of Berkeley DB can't read data created by a newer
         version."""
         bdb_version = db.version()
-        env_version = (0, 0, 0)
         versionpath = os.path.join(self.path, BDBVERSFN)
-        try:
+        # Compare the current version of the database (bsddb_version) with the
+        # version of the database code (env_version). If it is a downgrade,
+        # raise an exception because we can't do anything. If they are the same,
+        # return. If it is an upgrade, raise an exception unless  the user has
+        # already told us we can upgrade.
+        if os.path.isfile(versionpath):
             with open(versionpath, "r") as version_file:
-                env_version = version_file.read().strip()
-                env_version = tuple(map(int, env_version[1:-1].split(', ')))
-        except:
-            # Just assume that the Berkeley DB version is OK.
-            pass
-        if not env_version:
-            #empty file, assume it is ok to open
-            env_version = (0, 0, 0)
-        if (env_version[0] > bdb_version[0]) or \
-            (env_version[0] == bdb_version[0] and
-             env_version[1] > bdb_version[1]):
-            clear_lock_file(name)
-            raise BsddbDowngradeError(env_version, bdb_version)
-        elif env_version != bdb_version and not self.readonly:
+                bsddb_version = version_file.read().strip()
+                env_version = tuple(map(int, bsddb_version[1:-1].split(', ')))
+            if (env_version[0] > bdb_version[0]) or \
+                (env_version[0] == bdb_version[0] and
+                 env_version[1] > bdb_version[1]):
+                clear_lock_file(name)
+                raise BsddbDowngradeError(env_version, bdb_version)
+            elif env_version == bdb_version:
+                return
+        else:
+            # bsddb version is unknown
+            bsddb_version = "Unknown"
+
+        # An upgrade is needed, raise an exception unless the user has allowed
+        # an upgrade
+        if not force_bsddb_upgrade:
+            _LOG.debug("Bsddb upgrade required from %s to %s" %
+                       (bsddb_version, str(bdb_version)))
+            raise exceptions.BsddbUpgradeRequiredError(bsddb_version,
+                                                       str(bdb_version))
+        
+        if not self.readonly:
+            _LOG.warning("Bsddb upgrade requested from %s to %s" %
+                         (bsddb_version, str(bdb_version)))
             self.update_env_version = True
+        # Make a backup of the database files anyway 
+        self.__make_zip_backup(name)   
 
     @catch_db_error
     def version_supported(self):
@@ -427,7 +466,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
 
     @catch_db_error
-    def need_upgrade(self):
+    def need_schema_upgrade(self):
         dbversion = self.metadata.get(b'version', default=0)
         return not self.readonly and dbversion < _DBVERSION
 
@@ -453,7 +492,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return False
 
     @catch_db_error
-    def load(self, name, callback, mode=DBMODE_W, upgrade=False):
+    def load(self, name, callback, mode=DBMODE_W, force_schema_upgrade=False,
+             force_bsddb_upgrade=False):
 
         if self.__check_readonly(name):
             mode = DBMODE_R
@@ -473,7 +513,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
 
-        self.__check_bdb_version(name)
+        self.__check_bdb_version(name, force_bsddb_upgrade)
 
         # Set up database environment
         self.env = db.DBEnv()
@@ -525,9 +565,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # If we cannot work with this DB version,
         # it makes no sense to go further
         if not self.version_supported():
+            tree_vers = self.metadata.get(b'version', default=0)
             self.__close_early()
-            raise DbVersionError()
-
+            raise DbVersionError(tree_vers, _MINVERSION, _DBVERSION)
+        
         self.__load_metadata()
         gstats = self.metadata.get(b'gender_stats', default=None)
 
@@ -573,12 +614,27 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.name_group = self.__open_db(self.full_name, NAME_GROUP,
                               db.DB_HASH, db.DB_DUP)
 
+        # We have now successfully opened the database, so if the BSDDB version
+        # has changed, we update the DBSDB version file. 
+        
+        if self.update_env_version:
+            versionpath = os.path.join(name, BDBVERSFN)
+            with open(versionpath, "w") as version_file:
+                version = str(db.version())
+                if sys.version_info[0] < 3:
+                    if isinstance(version, UNITYPE):
+                        version = version.encode('utf-8')
+                version_file.write(version)
+            _LOG.debug("Updated BDBVERSFN file to %s" % str(db.version()))
+
         # Here we take care of any changes in the tables related to new code.
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
-        if self.need_upgrade():
-            if upgrade == True:
+        if self.need_schema_upgrade():
+            _LOG.debug("Schema upgrade required from %s to %s" %
+                       (self.metadata.get('version', default=0), _DBVERSION))
+            if force_schema_upgrade == True or force_bsddb_upgrade == True:
                 self.gramps_upgrade(callback)
             else:
                 self.__close_early()
@@ -1209,20 +1265,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.redo_callback = None
         self.undo_history_callback = None
         self.undodb = None
-
-        if self.update_env_version:
-            versionpath = os.path.join(self.path, BDBVERSFN)
-            try:
-                with open(versionpath, "w") as version_file:
-                    version = str(db.version())
-                    if sys.version_info[0] < 3:
-                        if isinstance(version, UNITYPE):
-                            version = version.encode('utf-8')
-                    version_file.write(version)
-            except:
-                # Storing the version of Berkeley Db is not really vital.
-                print ("Error storing berkeley db version")
-                pass
 
         try:
             clear_lock_file(self.get_save_path())
@@ -2076,9 +2118,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         self.metadata  = self.__open_shelf(full_name, META)
         
+        _LOG.debug("Write schema version %s" % _DBVERSION)
         with BSDDBTxn(self.env, self.metadata) as txn:
             txn.put(b'version', _DBVERSION)
         
+        versionpath = os.path.join(name, BDBVERSFN)
+        version = str(db.version())
+        if sys.version_info[0] < 3:
+            if isinstance(version, UNITYPE):
+                version = version.encode('utf-8')
+        _LOG.debug("Write bsddb version %s" % version)
+        with open(versionpath, "w") as version_file:
+            version_file.write(version)
+
         self.metadata.close()
         self.env.close()
   

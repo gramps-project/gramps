@@ -61,7 +61,8 @@ from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
-                                      DbEnvironmentError)
+                                      DbEnvironmentError,
+                                      BsddbUpgradeRequiredError)
 from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from .pluginmanager import GuiPluginManager
@@ -304,24 +305,39 @@ class DbLoader(CLIDbLoader):
 
         self._begin_progress()
         
+        force_schema_upgrade = False
+        force_bsddb_upgrade = False
         try:
-            try:
-                db.load(filename, self._pulse_progress, 
-                                     mode, upgrade=False)
-                self.dbstate.change_database(db)
-            except DbUpgradeRequiredError as msg:
-                if QuestionDialog2(_("Need to upgrade database!"), 
-                                   str(msg), 
-                                   _("Upgrade now"), 
-                                   _("Cancel")).run():
-                    db = DbBsddb()
-                    db.disable_signals()
+            while True:
+                try:
                     db.load(filename, self._pulse_progress, 
-                                         mode, upgrade=True)
+                            mode, force_schema_upgrade,
+                            force_bsddb_upgrade)
                     db.set_save_path(filename)
                     self.dbstate.change_database(db)
-                else:
-                    self.dbstate.no_database()
+                    break
+                except DbUpgradeRequiredError as msg:
+                    if QuestionDialog2(_("Need to upgrade database!"), 
+                                       str(msg), 
+                                       _("Upgrade now"), 
+                                       _("Cancel")).run():
+                        force_schema_upgrade = True
+                        force_bsddb_upgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except BsddbUpgradeRequiredError as msg:
+                    if QuestionDialog2(_("Need to upgrade BSDDB database!"), 
+                                       str(msg), 
+                                       _("I have made a backup, "
+                                         "please upgrade my tree"), 
+                                       _("Cancel")).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = True
+                    else:
+                        self.dbstate.no_database()
+                        break
+        # Get here is there is an exception the while loop does not handle
         except BsddbDowngradeError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
