@@ -478,7 +478,7 @@ class GrampsLocale(object):
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            LOG.warning("No usable languages found in list, using US English")
+            LOG.warning("No usable languages found in list for %s, using US English", os.path.basename(os.path.dirname(localedir)))
         translator = GrampsNullTranslations()
         translator._language = "en"
         return translator
