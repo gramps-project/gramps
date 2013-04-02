@@ -174,8 +174,7 @@ class GrampsLocale(object):
         if not (hasattr(self, 'lang') and self.lang):
             self.lang = None
             if 'LANG' in os.environ:
-                lang = os.environ['LANG']
-                (lang, loc) = _check_mswin_locale(lang)
+                (lang, loc) = _check_mswin_locale(os.environ['LANG'])
                 if loc:
                     locale.setlocale(locale.LC_ALL, '.'.join(loc))
                     self.lang = lang
@@ -189,6 +188,10 @@ class GrampsLocale(object):
                 if loc:
                     self.lang = loc[0]
                     self.languages = [loc[0]]
+                    self.encoding = loc[1]
+                elif ((lang, loc) = _check_mswin_locale(lang)):
+                    self.lang = lang
+                    self.language = [self.lang]
                     self.encoding = loc[1]
 
             if not self.lang:
