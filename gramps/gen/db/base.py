@@ -1030,7 +1030,8 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def load(self, name, callback, mode=None, upgrade=False):
+    def load(self, name, callback, mode=None, force_schema_upgrade=False,
+             force_bsddb_upgrade=False):
         """
         Open the specified database.
         """
@@ -1415,7 +1416,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def need_upgrade(self):
+    def need_schema_upgrade(self):
         """
         Return True if database needs to be upgraded
         """

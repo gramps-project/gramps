@@ -51,6 +51,8 @@ import tempfile
 #-------------------------------------------------------------------------
 import logging
 LOG = logging.getLogger(".clidbman")
+from gramps.gen.db.dbconst import DBLOGNAME
+_LOG = logging.getLogger(DBLOGNAME)
 
 #-------------------------------------------------------------------------
 #
@@ -350,6 +352,11 @@ class CLIDbManager(object):
                 # write locally:
                 temp_fp.write(data)
                 url_fp.close()
+                from  gen.db.dbconst import BDBVERSFN
+                versionpath = os.path.join(name, BDBVERSFN)
+                _LOG.debug("Write bsddb version %s" % str(dbase.version()))
+                with open(versionpath, "w") as version_file:
+                    version_file.write(str(dbase.version()))
                 temp_fp.close()
 
         (name, ext) = os.path.splitext(os.path.basename(filename))
