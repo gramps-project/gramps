@@ -9,9 +9,9 @@ Homepage: http://www.gramps-project.org/
 
 Package: gramps
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-gobject (>= 3.3.2)
+Depends: ${misc:Depends}, ${python:Depends}, python-gobject (>= 3.3.2), librsvg2
 Recommends: python-pyicu, python-osmgpsmap,  graphviz, xdg-utils
-Suggests: ttf-freefont, python-enchant, python-gtkspell, gexiv2
+Suggests: ttf-freefont, python-gtkspell, gexiv2, rcs, python-imaging, python-pygoocanvas
 Description: Gramps (Genealogical Research and Analysis Management
  Programming System) is a full featured genealogy program supporting
  a Python based plugin system.
