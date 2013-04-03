@@ -298,7 +298,7 @@ class GeoFamily(GeoGraphyView):
         Create all markers for one family : all event's places with a lat/lon.
         """
         dbstate = self.dbstate
-        self.message_layer.add_message(_("Family places for %s" % self.family_label(family)))
+        self.message_layer.add_message(_("Family places for %s") % self.family_label(family))
         try:
             person = dbstate.db.get_person_from_handle(family.get_father_handle())
         except:
