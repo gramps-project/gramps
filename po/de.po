@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-02 02:11+0200\n"
-"PO-Revision-Date: 2013-04-02 02:17+0200\n"
+"POT-Creation-Date: 2013-04-03 19:31+0200\n"
+"PO-Revision-Date: 2013-04-03 20:30+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -609,7 +609,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1717 ../src/Utils.py:1719 ../src/Utils.py:1723
-#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:499
+#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:506
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1302,8 +1302,8 @@ msgstr "Wert"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:430
-#: ../src/cli/clidbman.py:65 ../src/gui/configure.py:1135
+#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
+#: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1135
 msgid "Family Tree"
 msgstr "Stammbaum"
 
@@ -1978,32 +1978,32 @@ msgstr "Überschreibt die bestehende Datei: %s"
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "FEHLER: Nicht erkanntes Format für Exportdatei %s"
 
-#: ../src/cli/arghandler.py:403
+#: ../src/cli/arghandler.py:399
 msgid "List of known family trees in your database path\n"
 msgstr "Liste bekannter Stammbäume in deinem Datenbankpfad\n"
 
-#: ../src/cli/arghandler.py:407
+#: ../src/cli/arghandler.py:403
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s mit Name \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:413 ../src/cli/arghandler.py:428
+#: ../src/cli/arghandler.py:409 ../src/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
 msgstr "Gramps Stammbäume:"
 
-#: ../src/cli/arghandler.py:416 ../src/cli/arghandler.py:418
-#: ../src/cli/arghandler.py:422 ../src/cli/arghandler.py:432
-#: ../src/cli/arghandler.py:437 ../src/cli/arghandler.py:439
-#: ../src/cli/arghandler.py:441 ../src/cli/clidbman.py:209
+#: ../src/cli/arghandler.py:412 ../src/cli/arghandler.py:414
+#: ../src/cli/arghandler.py:418 ../src/cli/arghandler.py:428
+#: ../src/cli/arghandler.py:433 ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:437 ../src/cli/clidbman.py:211
 msgid "Family tree"
 msgstr "Stammbaum"
 
-#: ../src/cli/arghandler.py:417
+#: ../src/cli/arghandler.py:413
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Stammbaum \"%s\":"
 
-#: ../src/cli/arghandler.py:420 ../src/cli/clidbman.py:210
+#: ../src/cli/arghandler.py:416 ../src/cli/clidbman.py:212
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/plugins/view/mediaview.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
@@ -2011,80 +2011,80 @@ msgstr "Stammbaum \"%s\":"
 msgid "Path"
 msgstr "Pfad"
 
-#: ../src/cli/arghandler.py:452
+#: ../src/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr "Ausführen von Aktion: %s."
 
-#: ../src/cli/arghandler.py:454
+#: ../src/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr "Verwende Optionstext: %s"
 
-#: ../src/cli/arghandler.py:462
+#: ../src/cli/arghandler.py:458
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:470
+#: ../src/cli/arghandler.py:466
 msgid "Exiting."
 msgstr "Beenden."
 
-#: ../src/cli/arghandler.py:474
+#: ../src/cli/arghandler.py:470
 msgid "Cleaning up."
 msgstr "Räume auf."
 
-#: ../src/cli/arghandler.py:504
+#: ../src/cli/arghandler.py:500
 msgid "Created empty family tree successfully"
 msgstr "Leerer Stammbaum erfolgreich erstellt"
 
-#: ../src/cli/arghandler.py:507 ../src/cli/arghandler.py:534
+#: ../src/cli/arghandler.py:503 ../src/cli/arghandler.py:530
 msgid "Error opening the file."
 msgstr "Fehler beim Öffnen der Datei."
 
-#: ../src/cli/arghandler.py:508 ../src/cli/arghandler.py:535
+#: ../src/cli/arghandler.py:504 ../src/cli/arghandler.py:531
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: ../src/cli/arghandler.py:514
+#: ../src/cli/arghandler.py:510
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:532
+#: ../src/cli/arghandler.py:528
 msgid "Opened successfully!"
 msgstr "Erfolgreich geöffnet!"
 
-#: ../src/cli/arghandler.py:546
+#: ../src/cli/arghandler.py:542
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank ist gesperrt, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:547
+#: ../src/cli/arghandler.py:543
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/cli/arghandler.py:550
+#: ../src/cli/arghandler.py:546
 msgid "Database needs recovery, cannot open it!"
 msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
-#: ../src/cli/arghandler.py:607 ../src/cli/arghandler.py:654
+#: ../src/cli/arghandler.py:603 ../src/cli/arghandler.py:650
 msgid "Ignoring invalid options string."
 msgstr "Ignoriere ungültigen Optionstext."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:630
+#: ../src/cli/arghandler.py:626
 msgid "Unknown report name."
 msgstr "Unbekannter Berichtname."
 
-#: ../src/cli/arghandler.py:632
+#: ../src/cli/arghandler.py:628
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Berichtname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=reportname"
 
-#: ../src/cli/arghandler.py:636 ../src/cli/arghandler.py:677
+#: ../src/cli/arghandler.py:632 ../src/cli/arghandler.py:673
 #, python-format
 msgid ""
 "%s\n"
@@ -2093,18 +2093,18 @@ msgstr ""
 "%s\n"
 " Verfügbare Namen sind:"
 
-#: ../src/cli/arghandler.py:671
+#: ../src/cli/arghandler.py:667
 msgid "Unknown tool name."
 msgstr "Unbekannter Werkzeugname."
 
-#: ../src/cli/arghandler.py:673
+#: ../src/cli/arghandler.py:669
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Werkzeugname nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:689
+#: ../src/cli/arghandler.py:685
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
@@ -2309,7 +2309,7 @@ msgstr ""
 "Für die Verwendung im Kommandozeilenmodus gib mindestens eine Eingabedatei "
 "zum bearbeiten an."
 
-#: ../src/cli/clidbman.py:78
+#: ../src/cli/clidbman.py:80
 #, python-format
 msgid ""
 "ERROR: %s \n"
@@ -2318,53 +2318,53 @@ msgstr ""
 "FEHLER: %s \n"
 "       %s"
 
-#: ../src/cli/clidbman.py:202
+#: ../src/cli/clidbman.py:204
 msgid "Number of people"
 msgstr "Personenzahl"
 
-#: ../src/cli/clidbman.py:204 ../src/cli/clidbman.py:206
+#: ../src/cli/clidbman.py:206 ../src/cli/clidbman.py:208
 msgid "Locked?"
 msgstr "Gesperrt?"
 
-#: ../src/cli/clidbman.py:204
+#: ../src/cli/clidbman.py:206
 msgid "yes"
 msgstr "ja"
 
-#: ../src/cli/clidbman.py:206
+#: ../src/cli/clidbman.py:208
 msgid "no"
 msgstr "nein"
 
-#: ../src/cli/clidbman.py:207
+#: ../src/cli/clidbman.py:209
 msgid "Bsddb version"
 msgstr "Bsddb Version"
 
-#: ../src/cli/clidbman.py:208
+#: ../src/cli/clidbman.py:210
 msgid "Schema version"
 msgstr "Schema Version"
 
-#: ../src/cli/clidbman.py:211 ../src/gui/dbman.py:287
+#: ../src/cli/clidbman.py:213 ../src/gui/dbman.py:287
 msgid "Last accessed"
 msgstr "Letzter Zugriff"
 
-#: ../src/cli/clidbman.py:267
+#: ../src/cli/clidbman.py:269
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Starte Import, %s"
 
-#: ../src/cli/clidbman.py:273
+#: ../src/cli/clidbman.py:275
 msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:345 ../src/plugins/import/ImportCsv.py:311
+#: ../src/cli/clidbman.py:347 ../src/plugins/import/ImportCsv.py:311
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../src/cli/clidbman.py:389
+#: ../src/cli/clidbman.py:396
 msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../src/cli/clidbman.py:424
+#: ../src/cli/clidbman.py:431
 #, python-format
 msgid ""
 "\n"
@@ -2383,12 +2383,12 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:476 ../src/gui/configure.py:1070
+#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1070
 msgid "Never"
 msgstr "Nie"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:496
+#: ../src/cli/clidbman.py:503
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -2398,7 +2398,7 @@ msgstr "Gesperrt durch %s"
 msgid "WARNING: %s"
 msgstr "ACHTUNG: %s"
 
-#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:207
+#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:216
 #, python-format
 msgid "ERROR: %s"
 msgstr "FEHLER: %s"
@@ -2413,39 +2413,40 @@ msgid "You do not have write access to the selected file."
 msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
-#: ../src/gui/dbloader.py:320
+#: ../src/cli/grampscli.py:165 ../src/cli/grampscli.py:168
+#: ../src/cli/grampscli.py:171 ../src/gui/dbloader.py:332
+#: ../src/gui/dbloader.py:335 ../src/gui/dbloader.py:338
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
-#: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:324
+#: ../src/cli/grampscli.py:175 ../src/gui/dbloader.py:188
+#: ../src/gui/dbloader.py:342
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
 
-#: ../src/cli/grampscli.py:219
+#: ../src/cli/grampscli.py:228
 msgid "Could not load a recent Family Tree."
 msgstr "Kann letzten Stammbaum nicht laden."
 
-#: ../src/cli/grampscli.py:220
+#: ../src/cli/grampscli.py:229
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Stammbaum existiert nicht, weil er gelöscht wurde."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:296
+#: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Fehler gefunden: %s"
 
-#: ../src/cli/grampscli.py:299 ../src/cli/grampscli.py:310
+#: ../src/cli/grampscli.py:308 ../src/cli/grampscli.py:319
 #, python-format
 msgid "  Details: %s"
 msgstr "  Details: %s"
 
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:306
+#: ../src/cli/grampscli.py:315
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Fehler gefunden in Argumentanalyse: %s"
@@ -2525,37 +2526,46 @@ msgstr ""
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
-#: ../src/gen/db/base.py:1600
+#: ../src/gen/db/base.py:1601
 msgid "Add child to family"
 msgstr "Kind zur Familie hinzufügen"
 
-#: ../src/gen/db/base.py:1613 ../src/gen/db/base.py:1618
+#: ../src/gen/db/base.py:1614 ../src/gen/db/base.py:1619
 msgid "Remove child from family"
 msgstr "Entferne Kind aus der Familie"
 
-#: ../src/gen/db/base.py:1693 ../src/gen/db/base.py:1697
+#: ../src/gen/db/base.py:1694 ../src/gen/db/base.py:1698
 msgid "Remove Family"
 msgstr "Entferne Familie"
 
-#: ../src/gen/db/base.py:1738
+#: ../src/gen/db/base.py:1739
 msgid "Remove father from family"
 msgstr "Entferne Vater aus der Familie"
 
-#: ../src/gen/db/base.py:1740
+#: ../src/gen/db/base.py:1741
 msgid "Remove mother from family"
 msgstr "Entferne Mutter aus der Familie"
 
-#: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:60
+#: ../src/gen/db/exceptions.py:81
+#, python-format
 msgid ""
-"The database version is not supported by this version of Gramps.\n"
+"The schema version is not supported by this version of Gramps.\n"
+"\n"
+"This Family tree is schema version %(tree_vers)s, and this version of Gramps "
+"supports versions %(min_vers)s to %(max_vers)s\n"
+"\n"
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"Die Version der Datenbank wird nicht von dieser Gramps Version unterstützt.\n"
+"Die Schema Version wird nicht von dieser Gramps Version unterstützt.\n"
+"\n"
+"Dieser Stammbaum ist Schema Version %(tree_vers)s und diese Gramps Version "
+"unterstützt Versionen %(min_vers)s bis %(max_vers)s\n"
+"\n"
 "Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
 "zwischen verschiedenen Datenbankversionen zu portieren."
 
-#: ../src/gen/db/exceptions.py:93
+#: ../src/gen/db/exceptions.py:103
 #, python-format
 msgid ""
 "Gramps stores its data in a Berkeley Database. The family tree you try to "
@@ -2577,7 +2587,34 @@ msgstr ""
 "erstellt hast, exportiere ihn nach XML und lade diese XML Datei in die "
 "Version von Gramps, die du verwenden möchtest."
 
-#: ../src/gen/db/exceptions.py:116
+#: ../src/gen/db/exceptions.py:127
+#, python-format
+msgid ""
+"The BSDDB version of the Family Tree you are trying to open needs to be "
+"upgraded from %(env_version)s to %(bdb_version)s.\n"
+"\n"
+"This probably means that the Family Tree was created with an old version of "
+"Gramps. Opening the tree with this version of Gramps may irretrievably "
+"corrupt your tree. You are strongly advised to backup your tree before "
+"proceeding, see: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"If you have made a backup, then you can get Gramps to try to open the tree "
+"and upgrade it"
+msgstr ""
+"Die BSDDB Version des Stammbaum den du versuchst zu öffnen, muss aktualisiert "
+"werden von %(env_version)s auf %(bdb_version)s.\n"
+"\n"
+"Dies bedeutet wahrscheinlich, das der Stammbaum mit einer älteren Gramps "
+"Version erstellt wurde. Das Öffnen des Baums mit dieser Gramps Version könnte "
+"ihn irreparabel beschädigen. Es wird dir dringend empfohlen den Stammbaum zu "
+"sichern, bevor du fortfährst. siehe:\n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_mnake_a_backup\n"
+"\n"
+"Wenn du eine Sicherung erstellt hast, dann kannst du versuchen den Stammbaum "
+"mit Gramps zu öffnen und zu aktualisieren"
+
+#: ../src/gen/db/exceptions.py:150
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2601,7 +2638,7 @@ msgstr ""
 "importiere die XML Datei. Alternative, es kann möglich sein deine Datenbank "
 "zu aktualisieren."
 
-#: ../src/gen/db/exceptions.py:139
+#: ../src/gen/db/exceptions.py:173
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -5048,29 +5085,37 @@ msgstr ""
 "Diese Datei gibt ihren Zeichensatz falsch an, daher kann sie nicht korrekt "
 "importiert werden. Bitte korrigiere den Zeichensatz und importiere sie erneut"
 
-#: ../src/gui/dbloader.py:303
+#: ../src/gui/dbloader.py:309
 msgid "Need to upgrade database!"
 msgstr "Datenbank muss aktualisiert werden!"
 
-#: ../src/gui/dbloader.py:305
+#: ../src/gui/dbloader.py:311
 msgid "Upgrade now"
 msgstr "Jetzt aktualisieren"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1046
-#: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1067
-#: ../src/plugins/view/familyview.py:259
+#: ../src/gui/dbloader.py:312 ../src/gui/dbloader.py:323
+#: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:677
+#: ../src/plugins/BookReport.py:1067 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/gui/dbloader.py:365
+#: ../src/gui/dbloader.py:319
+msgid "Need to upgrade BSDDB database!"
+msgstr "BSDDB Datenbank muss aktualisiert werden!"
+
+#: ../src/gui/dbloader.py:321
+msgid "I have made a backup, please upgrade my tree"
+msgstr "Ich habe eine Sicherung erstellt, bitte aktualisiere meinen Baum"
+
+#: ../src/gui/dbloader.py:383
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/gui/dbloader.py:406
+#: ../src/gui/dbloader.py:424
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/gui/dbloader.py:415
+#: ../src/gui/dbloader.py:433
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -14487,6 +14532,16 @@ msgstr "Fehler beim Lesen der GEDCOM-Datei"
 #: ../src/plugins/import/ImportGeneWeb.py:116
 msgid "GeneWeb import"
 msgstr "GeneWeb importieren"
+
+#: ../src/plugins/import/ImportGrdb.py:60
+msgid ""
+"The database version is not supported by this version of Gramps.\n"
+"Please upgrade to the corresponding version or use XML for porting data "
+"between different database versions."
+msgstr ""
+"Die Version der Datenbank wird nicht von dieser Gramps Version unterstützt.\n"
+"Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
+"zwischen verschiedenen Datenbankversionen zu portieren."
 
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
