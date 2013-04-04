@@ -103,7 +103,7 @@ def _check_mswin_locale(locale):
             msloc = mslocales[locale[:2]]
             locale = locale[:2]
         except KeyError:
-            return None
+            return (None, None)
     return (locale, msloc)
 
 def _check_mswin_locale_reverse(locale):
@@ -111,7 +111,7 @@ def _check_mswin_locale_reverse(locale):
         if msloc and locale == msloc[0]:
             return (loc, msloc[1])
 
-    return None
+    return (None, None)
 
 #------------------------------------------------------------------------
 #
@@ -224,14 +224,20 @@ class GrampsLocale(object):
                     self.collation = self.lang
             else:
                 (coll, loc) = _check_mswin_locale(coll)
-                if loc:
-                    locale.setlocale(locale.LC_COLLATE, '.'.join(loc))
-                    self.collation = coll
-                else: #can't set the collation locale if MS doesn't support it
-                    self.collation = self.lang
-
+                if not loc:
+                    (coll, loc) = _check_mswin_locale(self.lang)
+                    self.collation = '.'.join(loc)
+                    locale.setlocale(locale.LC_COLLATE, self.collation )
         else:
-            self.collation = self.lang
+            if HAVE_ICU:
+                self.collation = self.lang
+            else:
+                (coll, loc) = _check_mswin_locale(self.lang)
+                if loc:
+                    self.collation = '.'.join(loc)
+                else:
+                    self.collation = 'C'
+                locale.setlocale(locale.LC_COLLATE, self.collation )
 
 # We can't import datahandler stuff or we'll get a circular
 # dependency, so we rely on the available translations list
@@ -764,14 +770,6 @@ class GrampsLocale(object):
             return self.collator.getCollationKey(string).getByteArray()
         else:
             try:
-                base_locale = locale.getlocale(locale.LC_COLLATE)
-                locale.setlocale(locale.LC_COLLATE, self.collation)
-            except Exception as err:
-                LOG.warn("Failed to set temporary locale with %s: %s",
-                         self.lang, err)
-                return string
-            #locale in Python2 can't.
-            try:
                 if sys.version_info[0] < 3 and isinstance(string, unicode):
                     key = locale.strxfrm(string.encode("utf-8", "replace"))
                 else:
@@ -781,11 +779,6 @@ class GrampsLocale(object):
                 LOG.warn("Failed to obtain key for %s because %s",
                          self.collation, str(err))
                 return string
-            try:
-                locale.setlocale(locale.LC_COLLATE, base_locale)
-            except Exception as err:
-                LOG.warn("Failed to restore locale %s", err)
-                return key
             return key
 
     def strcoll(self, string1, string2):
