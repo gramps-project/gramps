@@ -171,7 +171,13 @@ class DbUpgradeRequiredError(Exception):
         Exception.__init__(self)
 
     def __str__(self):
-        return _("You cannot open this database without upgrading it.\n"
-                 "If you upgrade then you won't be able to use previous "
-                 "versions of Gramps.\n"
-                 "You might want to make a backup copy first.")
+        return _("The Family Tree structure has changed since the version of"
+            " Gramps you used to create this tree.\n\n"
+            "Therefore, you cannot open this Family Tree without upgrading the"
+            " definition of the structure.\n"
+            "If you upgrade then you won't be able to use previous "
+            "versions of Gramps!\n\n"
+            "Upgrading is a difficult task that may not be interrupted, or "
+            "Gramps will irretrievably corrupt your tree. Therefore, create "
+            "a backup copy first. See: \n"
+            "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup")

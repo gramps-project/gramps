@@ -633,7 +633,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # self.secondary_connected flag should be set accordingly.
         if self.need_schema_upgrade():
             _LOG.debug("Schema upgrade required from %s to %s" %
-                       (self.metadata.get('version', default=0), _DBVERSION))
+                       (self.metadata.get(b'version', default=0), _DBVERSION))
             if force_schema_upgrade == True or force_bsddb_upgrade == True:
                 self.gramps_upgrade(callback)
             else:
