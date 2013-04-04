@@ -919,7 +919,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :type family_handle: str
         """
         if not isinstance(family_handle, STRTYPE):
-            raise ValueError("expecting handle")
+            raise ValueError("Expecting handle, obtained %s" % str(family_handle))
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)
 
