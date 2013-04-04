@@ -98,7 +98,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
             #first line finished, discard first
             real_left = left
             line = ''
-    if just==CENTER:
+    if just == CENTER:
         if right_pad:
             return '\n'.join(
                 [' '*(left+first) + ln.center(right-left-first)
@@ -112,7 +112,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
                 [' '*left + ln.center(right-left).rstrip()
                  for ln in lines[1:] ]
                 )
-    elif just==RIGHT:
+    elif just == RIGHT:
         if right_pad:
             return '\n'.join([line.rjust(right) for line in lines])
         else:
@@ -135,7 +135,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
 # Ascii
 #
 #------------------------------------------------------------------------
-class AsciiDoc(BaseDoc,TextDoc):
+class AsciiDoc(BaseDoc, TextDoc):
 
     def __init__(self, styles, type, options=None):
         BaseDoc.__init__(self, styles, type)
@@ -151,7 +151,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     # Opens the file, resets the text buffer.
     #
     #--------------------------------------------------------------------
-    def open(self,filename):
+    def open(self, filename):
         if filename[-4:] != ".txt":
             self.filename = filename + ".txt"
         else:
@@ -203,7 +203,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     # Starts a paragraph. 
     #
     #--------------------------------------------------------------------
-    def start_paragraph(self,style_name,leader=None):
+    def start_paragraph(self, style_name, leader=None):
         styles = self.get_style_sheet()
         self.p = styles.get_paragraph_style(style_name)
         self.leader = leader
@@ -238,7 +238,7 @@ class AsciiDoc(BaseDoc,TextDoc):
 
         if self.in_cell and self.cellnum < self.ncols - 1:
             right_pad = 1
-            the_pad = ' '*right
+            the_pad = ' ' * right
         else:
             right_pad = 0
             the_pad = ''
@@ -251,10 +251,10 @@ class AsciiDoc(BaseDoc,TextDoc):
             # Do not reformat if preformatted notes
             if not self.__note_format:
                 self.leader += ' '
-                start_at = regular_indent + min(len(self.leader)+first_indent,0)
-                this_text = reformat_para(self.text,regular_indent,right,fmt,
+                start_at = regular_indent + min(len(self.leader)+first_indent, 0)
+                this_text = reformat_para(self.text, regular_indent, right, fmt,
                                           right_pad)
-                this_text = (' '*(regular_indent+first_indent) +
+                this_text = (' ' * (regular_indent+first_indent) +
                              self.leader +
                              this_text[start_at:]
                             )
@@ -265,10 +265,10 @@ class AsciiDoc(BaseDoc,TextDoc):
             # line indent, as specified by style.
             # Do not reformat if preformatted notes
             if not self.__note_format:
-                this_text = reformat_para(self.text,regular_indent,right,fmt,
-                                      right_pad,first_indent)
+                this_text = reformat_para(self.text, regular_indent, right,fmt,
+                                          right_pad, first_indent)
             else:
-                this_text = ' '*(regular_indent+first_indent) + self.text
+                this_text = ' ' * (regular_indent + first_indent) + self.text
 
         if self.__note_format:
             # don't add an extra LF before the_pad if preformatted notes.
@@ -290,7 +290,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     # Start a table. Grab the table style, and store it. 
     #
     #--------------------------------------------------------------------
-    def start_table(self, name,style_name):
+    def start_table(self, name, style_name):
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()
@@ -349,7 +349,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     # Start a cell. Set the self.in_cell flag, increment the curren cell number.
     #
     #--------------------------------------------------------------------
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         self.in_cell = 1
         self.cellnum = self.cellnum + span
         span -= 1
@@ -373,7 +373,8 @@ class AsciiDoc(BaseDoc,TextDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
-    def add_media_object(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media_object(self, name, align, w_cm, h_cm, alt='',
+                         style_name=None, crop=None):
         this_text = '(photo)'
         if self.in_cell:
             self.cellpars[self.cellnum] += this_text
@@ -419,7 +420,7 @@ class AsciiDoc(BaseDoc,TextDoc):
     #
     # Writes text. 
     #--------------------------------------------------------------------
-    def write_text(self,text,mark=None,links=False):
+    def write_text(self, text, mark=None, links=False):
         self.text = self.text + text
 
 #------------------------------------------------------------------------
