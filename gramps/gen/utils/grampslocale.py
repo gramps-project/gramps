@@ -246,10 +246,9 @@ class GrampsLocale(object):
         except locale.Error as err:
             LOG.warning("Locale error %s, localization will be US English.",
                         err);
-            self.lang = self.calendar = self.collate = 'C'
+            self.lang = 'C'
             self.encoding = 'ascii'
             self.language = ['en']
-            return
 
         if not (hasattr(self, 'lang') and self.lang):
             (lang, encoding) = locale.getlocale()
@@ -257,26 +256,27 @@ class GrampsLocale(object):
                 self.lang = lang
                 self.encoding = encoding
             else:
-                lang = '.'.join(locale.getlocale(locale.LC_MESSAGES))
-                if not lang:
-                    try:
-                        lang = locale.getdefaultlocale()[0] + '.UTF-8'
-                    except TypeError:
-                        LOG.warning('Unable to determine your Locale, using English')
-                        lang = 'C'
+                loc = (locale.getlocale(locale.LC_MESSAGES) or
+                       locale.getdefaultlocale())
+                if loc and self.check_available_translations(loc[0]):
+                    self.lang = loc[0]
+                    self.encoding = loc[1]
+                    self.language = ['en']
+                else:
+                    self.lang = 'C'
+                    self.encoding = 'ascii'
+                    self.language = ['en']
 
-                self.lang = lang
-
-        if not (hasattr(self, 'language') and self.language):
-            if "LANGUAGE" in os.environ:
-                language = [x for x in [self.check_available_translations(l)
-                                        for l in os.environ["LANGUAGE"].split(":")]
+        # $LANGUAGE overrides $LANG, $LC_MESSAGES
+        if not self.lang.startswith('C.') and "LANGUAGE" in os.environ:
+            language = [x for x in [self.check_available_translations(l)
+                                    for l in os.environ["LANGUAGE"].split(":")]
                             if x]
-            else:
-                language = [self.lang[:5]]
-            self.language = language
-        self.calendar = locale.getlocale(locale.LC_TIME)[0]
-        self.collation = locale.getlocale(locale.LC_COLLATE)[0]
+            if language:
+                self.language = language
+
+        self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang
+        self.collation = locale.getlocale(locale.LC_COLLATE)[0] or self.lang
 
     def _win_bindtextdomain(self, localedomain, localedir):
         """
@@ -323,24 +323,12 @@ class GrampsLocale(object):
             self.lang = 'en_US.UTF-8'
             self.language = ['en']
 
-#A variety of useful functions use the current locale for
-#formatting. Pending global replacement of those functions with ICU
-#equivalents, we need to use setlocale to our chosen default. This
-#unfortunately doesn't work in Windows because it uses different
-#values until VS2012 (which only works on Win8), so while we can set
-#translations and date formats with lang, we can't affect currency or
-#numeric format. Those are fixed by the user's system settings.
-
-        if not sys.platform == 'win32':
-            try:
-                locale.setlocale(locale.LC_COLLATE, self.collation)
-                locale.setlocale(locale.LC_TIME, self.calendar)
-            except locale.Error:
-                pass
 #Next, we need to know what is the encoding from the native
 #environment. This is used by python standard library funcions which
 #localize their output, e.g. time.strftime():
-        self.encoding = locale.getpreferredencoding() or sys.getdefaultencoding()
+        if not self.encoding:
+            self.encoding = (locale.getpreferredencoding()
+                             or sys.getdefaultencoding())
 #Ensure that output is encoded correctly to stdout and stderr. This is
 #much less cumbersome and error-prone than encoding individual outputs
 #and better handles the differences between Python 2 and Python 3:
@@ -364,7 +352,10 @@ class GrampsLocale(object):
         check_lang = self.lang.split('.')
         if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
             self.lang = '.'.join((check_lang[0], 'UTF-8'))
-            os.environ["LANG"] = self.lang
+            if self.lang == 'C.UTF-8':
+                os.environ["LANG"] = 'C'
+            else:
+                os.environ["LANG"] = self.lang
         os.environ["LANGUAGE"] = ':'.join(['C' if l.startswith('en') else l for l in self.language])
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
@@ -429,14 +420,14 @@ class GrampsLocale(object):
         if self == _first:
             self._GrampsLocale__init_first_instance(localedir)
         else:
-            self.currency = self.calendar = self.collation = self.lang
+            self.calendar = self.collation = self.lang
 
 
         self.icu_locales = {}
         self.collator = None
         if HAVE_ICU:
             self.icu_locales["default"] = Locale.createFromName(self.lang)
-            if self.collation != self.lang:
+            if self.collation and self.collation != self.lang:
                 self.icu_locales["collation"] = Locale.createFromName(self.collation)
             else:
                 self.icu_locales["collation"] = self.icu_locales["default"]
