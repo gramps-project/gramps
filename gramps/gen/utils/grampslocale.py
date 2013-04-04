@@ -275,8 +275,21 @@ class GrampsLocale(object):
             if language:
                 self.language = language
 
-        self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang
-        self.collation = locale.getlocale(locale.LC_COLLATE)[0] or self.lang
+        if HAVE_ICU:
+            self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang[:5]
+            self.collation = locale.getlocale(locale.LC_COLLATE)[0] or self.lang[:5]
+        else:
+            loc = locale.getlocale(locale.LC_TIME)
+            if loc and loc[0]:
+                self.calendar = '.'.join(loc)
+            else:
+                self.calendar = self.lang
+
+            loc = locale.getlocale(locale.LC_COLLATE)
+            if loc and loc[0]:
+                self.collation = '.'.join(loc)
+            else:
+                self.collation = self.lang
 
     def _win_bindtextdomain(self, localedomain, localedir):
         """
@@ -753,18 +766,26 @@ class GrampsLocale(object):
             try:
                 base_locale = locale.getlocale(locale.LC_COLLATE)
                 locale.setlocale(locale.LC_COLLATE, self.collation)
+            except Exception as err:
+                LOG.warn("Failed to set temporary locale with %s: %s",
+                         self.lang, err)
+                return string
             #locale in Python2 can't.
+            try:
                 if sys.version_info[0] < 3 and isinstance(string, unicode):
                     key = locale.strxfrm(string.encode("utf-8", "replace"))
                 else:
                     key = locale.strxfrm(string)
 
-                locale.setlocale(locale.LC_COLLATE, base_locale)
             except Exception as err:
                 LOG.warn("Failed to obtain key for %s because %s",
                          self.collation, str(err))
                 return string
-
+            try:
+                locale.setlocale(locale.LC_COLLATE, base_locale)
+            except Exception as err:
+                LOG.warn("Failed to restore locale %s", err)
+                return key
             return key
 
     def strcoll(self, string1, string2):
