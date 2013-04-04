@@ -342,7 +342,7 @@ def run(database, document, filter_name, *args, **kwargs):
         for person in database.iter_people():
             length = len(person.get_media_list())
             if length > 0:
-                stab.row(person, length)
+                stab.row(person, str(length))
                 matches += 1
 
     elif (filter_name == 'media references'):
