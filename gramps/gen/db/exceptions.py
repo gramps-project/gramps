@@ -176,7 +176,7 @@ class DbUpgradeRequiredError(Exception):
             "Therefore, you cannot open this Family Tree without upgrading the"
             " definition of the structure.\n"
             "If you upgrade then you won't be able to use previous "
-            "versions of Gramps!\n\n"
+            "versions of Gramps, also not with the .gramps xml export!\n\n"
             "Upgrading is a difficult task that may not be interrupted, or "
             "Gramps will irretrievably corrupt your tree. Therefore, create "
             "a backup copy first. See: \n"
