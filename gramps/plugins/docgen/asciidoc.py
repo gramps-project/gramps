@@ -30,6 +30,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import unicode_literals
 import io
 import sys
 #------------------------------------------------------------------------
@@ -50,7 +51,7 @@ from gramps.gen.plug.report import DocOptions
 # Constants
 #
 #------------------------------------------------------------------------
-LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
+LEFT, RIGHT, CENTER = 'LEFT', 'RIGHT', 'CENTER'
 
 #------------------------------------------------------------------------
 #
@@ -63,7 +64,7 @@ LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 #                   _relative_ to the "left" margin. It can be negative!
 #
 #------------------------------------------------------------------------
-def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
+def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
     if not para.strip():
         return "\n"
     
@@ -158,7 +159,6 @@ class AsciiDoc(BaseDoc,TextDoc):
 
         try:
             self.f = io.open(self.filename,"w",
-                             encoding='ascii',
                              errors = 'backslashreplace')
         except Exception as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
