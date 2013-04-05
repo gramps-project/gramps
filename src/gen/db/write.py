@@ -593,7 +593,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.need_schema_upgrade():
             _LOG.debug("Schema upgrade required from %s to %s" %
                        (self.metadata.get('version', default=0), _DBVERSION))
-            if force_schema_upgrade == True or force_bsddb_upgrade == True:
+            if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
             else:
                 self.__close_early()
