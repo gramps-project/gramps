@@ -18,31 +18,36 @@ The following packages *MUST* be installed in order for Gramps to work:
 The following package is needed for full translation of the interface
 to your language:
    language-pack-gnome-xx 
-                    Translation of GTK elements to your language, with             
-                    xx your language code eg for Dutch you need
+                    Translation of GTK elements to your language, with
+                    xx your language code; e.g. for Dutch you need
                     language-pack-gnome-nl. The translation of the
                     Gramps strings is included with the source code.
 
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
+
    osmgpsmap        Used to show maps in the geography view. 
                     Without this the GeoView will not be active, see
                     http://gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Main_Window#Geography_Category
                     The package is named osmgpsmap, osm-gps-map
-                    or python-osmgpsmap. Or obtain it from: http://nzjrs.github.com/osm-gps-map/
+                    or python-osmgpsmap.
+                    Or obtain it from: http://nzjrs.github.com/osm-gps-map/
+
    GraphViz         Enable creation of graphs using GraphViz engine.
                     Without this no beautiful graphs can be created.
                     Obtain it from: http://www.graphviz.org
+
    PyICU            Improves localised sorting in Gramps. In particular, this
-                    applies to sorting in the various views and in the Narrative
-                    Web output. It is particularly helpful for non-Latin
-                    characters, for non-English locales and on MS Windows and
-                    Mac OS X platforms. If it is not available, sorting is done
-                    through built-in libraries. PyICU is fairly widely available
-                    through the package managers of distributions. The home page
-                    is http://pyicu.osafoundation.org/
+                    applies to sorting in the various views and in the
+                    Narrative Web output. It is particularly helpful for
+                    non-Latin characters, for non-English locales and on MS
+                    Windows and Mac OS X platforms. If it is not available,
+                    sorting is done through built-in libraries. PyICU is
+                    fairly widely available through the package managers of
+                    distributions. See http://pyicu.osafoundation.org/
 
 The following packages are optional
+
    gtkspell         Enable spell checking in the notes. Gtkspell depends on 
                     enchant. A version of gtkspell with gobject introspection
                     is needed, so minimally version 3.0.0
@@ -53,8 +58,8 @@ The following packages are optional
                     Only rcs is needed, NO python bindings are required
 
    PIL              Python Image Library is needed to crop
-                    images and also to convert non jpg images to
-                    jpg so as to include them in LaTeX output.
+                    images and also to convert non-JPG images to
+                    JPG so as to include them in LaTeX output.
 
    GExiv2           Enables Gramps to manage Exif metadata embedded in your
                     media. Gramps needs version 0.5 or greater.
@@ -63,9 +68,10 @@ The following packages are optional
    ttf-freefont     More font support in the reports
 
    gir-webkit       GObject introspection data of WebKit is required for the
-                    hidden view 'Htmlview', which allows websites to be opened in
-                    Gramps. Users can unhide the view in the plugin manager. 
-                    A html renderer must be installed to use the view.
+                    hidden view 'Htmlview', which allows websites to be
+                    opened in Gramps. Users can unhide the view in the
+                    plugin manager.  A html renderer must be installed to
+                    use the view.
                     !! PACKAGERS, Test if on your distribution
                     webkit and Gramps is stable. If you obtain crashes, patch 
                     src/plugins/view/htmlrenderer.py and
@@ -73,10 +79,10 @@ The following packages are optional
                        from gi.repository import WebKit as webkit
 
    goocanvas2:
-                    Required for the Graphview plugin
+                    Required for the (optional) Graphview plugin
 
 No longer needed in 4.0:
-   pygoocanvas, pygtk
+   pygoocanvas, pygtk, pyexiv2
 No longer needed in 3.3:
    python-enchant Enchant
 No longer needed in 3.2:
