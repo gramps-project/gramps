@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-18 17:52+0100\n"
-"PO-Revision-Date: 2013-03-19 10:20+0100\n"
+"POT-Creation-Date: 2013-04-04 08:58+0200\n"
+"PO-Revision-Date: 2013-04-05 17:04+0200\n"
 "Last-Translator: Peter Landgren\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -617,7 +617,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1717 ../src/Utils.py:1719 ../src/Utils.py:1723
-#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:473
+#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:506
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1284,7 +1284,7 @@ msgstr "Typ"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1500
+#: ../src/gui/widgets/grampletpane.py:1501
 #: ../src/plugins/gramplet/PersonDetails.py:124
 #: ../src/plugins/textreport/TagReport.py:457
 #: ../src/plugins/view/citationtreeview.py:165
@@ -1310,8 +1310,8 @@ msgstr "Värde"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1135
+#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
+#: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1135
 msgid "Family Tree"
 msgstr "Släktträd"
 
@@ -1918,7 +1918,7 @@ msgstr "Databas öppnad"
 msgid "History cleared"
 msgstr "Historik rensad"
 
-#: ../src/cli/arghandler.py:218
+#: ../src/cli/arghandler.py:219
 #, python-format
 msgid ""
 "Error: Family tree '%s' already exists.\n"
@@ -1927,7 +1927,7 @@ msgstr ""
 "Fel: Släktträdet '%s' finns redan.\n"
 "C-alternativet kan ej användas."
 
-#: ../src/cli/arghandler.py:227
+#: ../src/cli/arghandler.py:228
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -1938,17 +1938,17 @@ msgstr ""
 "Om GEDCOM, Gramps-xml eller grdb, använd -i alternativet för att importera "
 "till ett släktträd i stället. "
 
-#: ../src/cli/arghandler.py:243
+#: ../src/cli/arghandler.py:244
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Fel: importfil %s saknas."
 
-#: ../src/cli/arghandler.py:261
+#: ../src/cli/arghandler.py:262
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Fel: okänd typ: \"%(format)s\" för filimport: %(filename)s"
 
-#: ../src/cli/arghandler.py:283
+#: ../src/cli/arghandler.py:284
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -1959,48 +1959,50 @@ msgstr ""
 "VARNING: Den kommer att skrivas över:\n"
 "   %s"
 
-#: ../src/cli/arghandler.py:289
+#: ../src/cli/arghandler.py:290
 msgid "OK to overwrite? (yes/no) "
 msgstr "Är det OK att skriva över? (Ja/Nej) "
 
-#: ../src/cli/arghandler.py:294
+#: ../src/cli/arghandler.py:295
 msgid "YES"
 msgstr "Ja"
 
-#: ../src/cli/arghandler.py:295
+#: ../src/cli/arghandler.py:296
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Kommer att skriva över den befintliga filen: %s"
 
-#: ../src/cli/arghandler.py:315
+#: ../src/cli/arghandler.py:316
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "FEL: Okänt format på exportfilen %s"
 
-#: ../src/cli/arghandler.py:402
+#: ../src/cli/arghandler.py:399
 msgid "List of known family trees in your database path\n"
 msgstr "Lista på kända släktträd i din databas sökväg\n"
 
-#: ../src/cli/arghandler.py:406
+#: ../src/cli/arghandler.py:403
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s med namnet \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:412
+#: ../src/cli/arghandler.py:409 ../src/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
 msgstr "Gramps släktträd:"
 
-#: ../src/cli/arghandler.py:415 ../src/cli/arghandler.py:417
-#: ../src/cli/arghandler.py:421 ../src/cli/clidbman.py:185
+#: ../src/cli/arghandler.py:412 ../src/cli/arghandler.py:414
+#: ../src/cli/arghandler.py:418 ../src/cli/arghandler.py:428
+#: ../src/cli/arghandler.py:433 ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:437 ../src/cli/clidbman.py:211
 msgid "Family tree"
 msgstr "Släktträd"
 
-#: ../src/cli/arghandler.py:416
+#: ../src/cli/arghandler.py:413
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Släktträd \"%s\":"
 
-#: ../src/cli/arghandler.py:419 ../src/cli/clidbman.py:186
+#: ../src/cli/arghandler.py:416 ../src/cli/clidbman.py:212
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/plugins/view/mediaview.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
@@ -2008,78 +2010,78 @@ msgstr "Släktträd \"%s\":"
 msgid "Path"
 msgstr "Sökväg"
 
-#: ../src/cli/arghandler.py:430
+#: ../src/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr "Utför åtgärd: %s."
 
-#: ../src/cli/arghandler.py:432
+#: ../src/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr "Använder alternativsträng: %s"
 
-#: ../src/cli/arghandler.py:440
+#: ../src/cli/arghandler.py:458
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exporterar: fil %(filename)s, format %(format)s."
 
-#: ../src/cli/arghandler.py:448
+#: ../src/cli/arghandler.py:466
 msgid "Exiting."
 msgstr "Avslutar."
 
-#: ../src/cli/arghandler.py:452
+#: ../src/cli/arghandler.py:470
 msgid "Cleaning up."
 msgstr "Städar upp."
 
-#: ../src/cli/arghandler.py:482
+#: ../src/cli/arghandler.py:500
 msgid "Created empty family tree successfully"
 msgstr "Skapade med framgång ett tomt släktträd"
 
-#: ../src/cli/arghandler.py:485 ../src/cli/arghandler.py:512
+#: ../src/cli/arghandler.py:503 ../src/cli/arghandler.py:530
 msgid "Error opening the file."
 msgstr "Fel vid filöppning."
 
-#: ../src/cli/arghandler.py:486 ../src/cli/arghandler.py:513
+#: ../src/cli/arghandler.py:504 ../src/cli/arghandler.py:531
 msgid "Exiting..."
 msgstr "Avslutar..."
 
-#: ../src/cli/arghandler.py:492
+#: ../src/cli/arghandler.py:510
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importerar: fil %(filename)s, format %(format)s."
 
-#: ../src/cli/arghandler.py:510
+#: ../src/cli/arghandler.py:528
 msgid "Opened successfully!"
 msgstr "Öppnades framgångsrikt!"
 
-#: ../src/cli/arghandler.py:524
+#: ../src/cli/arghandler.py:542
 msgid "Database is locked, cannot open it!"
 msgstr "Databasen är låst, kan inte öppna den!"
 
-#: ../src/cli/arghandler.py:525
+#: ../src/cli/arghandler.py:543
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/cli/arghandler.py:528
+#: ../src/cli/arghandler.py:546
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databasen behöver återhämtas, kan ej öppna den!"
 
-#: ../src/cli/arghandler.py:585 ../src/cli/arghandler.py:632
+#: ../src/cli/arghandler.py:603 ../src/cli/arghandler.py:650
 msgid "Ignoring invalid options string."
 msgstr "Struntar ogiltig alternativsträng."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:608
+#: ../src/cli/arghandler.py:626
 msgid "Unknown report name."
 msgstr "Okänt rapportnamn."
 
-#: ../src/cli/arghandler.py:610
+#: ../src/cli/arghandler.py:628
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr "Rappportnamn ej angivet. Använd en av %(donottranslate)s=rapportnamn"
 
-#: ../src/cli/arghandler.py:614 ../src/cli/arghandler.py:655
+#: ../src/cli/arghandler.py:632 ../src/cli/arghandler.py:673
 #, python-format
 msgid ""
 "%s\n"
@@ -2088,17 +2090,17 @@ msgstr ""
 "%s\n"
 "  Tillgängliga namn är:"
 
-#: ../src/cli/arghandler.py:649
+#: ../src/cli/arghandler.py:667
 msgid "Unknown tool name."
 msgstr "Okänt namn på verktyg."
 
-#: ../src/cli/arghandler.py:651
+#: ../src/cli/arghandler.py:669
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Verktygsnamn ej angivet. Använd ett av %(donottranslate)s=vefrktygsnamn."
 
-#: ../src/cli/arghandler.py:667
+#: ../src/cli/arghandler.py:685
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Okänd åtgärd: %s"
@@ -2125,6 +2127,8 @@ msgid ""
 "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
 "  -l                                     List Family Trees\n"
 "  -L                                     List Family Trees in Detail\n"
+"  -t                                     List Family Trees in tabular (tab "
+"delimited) form\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 "  -s, --show                             Show config settings\n"
 "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
@@ -2141,7 +2145,8 @@ msgstr ""
 "\n"
 "Tillämpningsalternativ\n"
 "  -O, --open=FAMILY_TREE                 Öppna släktträd\n"
-"  -C, --create=FAMILY_TREE            Skapa vid öppning ett nytt släktträd\n"
+"  -C, --create=FAMILY_TREE               Skapa vid öppning ett nytt "
+"släktträd\n"
 "  -i, --import=FILENAME                  Importera fil\n"
 "  -e, --export=FILENAME                  Exportera fil\n"
 "  -f, --format=FORMAT                    Specificera släkträdsformat\n"
@@ -2150,6 +2155,8 @@ msgstr ""
 "  -d, --debug=LOGGER_NAME                Tillåt avlusningsloggar\n"
 "  -l                                     Lista släktträd\n"
 "  -L                                     Lista släktträd med detaljer\n"
+"  -t                                     Lista släktträd i tabellform (med "
+"tab)"
 "  -u, --force-unlock                     Tvinga frisläppning av låst "
 "släktträd\n"
 "  -s, --show                             Visar alla "
@@ -2158,7 +2165,7 @@ msgstr ""
 "konfigurationsparameter\n"
 "  -v, --version                          Visar versioner\n"
 
-#: ../src/cli/argparser.py:80
+#: ../src/cli/argparser.py:81
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -2273,11 +2280,11 @@ msgstr ""
 "Notera: Dessa exempel gäller för bash-skalet.\n"
 "Syntaxen kan vara annorlunda för andra skal och i Windows.\n"
 
-#: ../src/cli/argparser.py:232 ../src/cli/argparser.py:355
+#: ../src/cli/argparser.py:234 ../src/cli/argparser.py:360
 msgid "Error parsing the arguments"
 msgstr "Fel vid avsyning av argumenten"
 
-#: ../src/cli/argparser.py:234
+#: ../src/cli/argparser.py:236
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2286,7 +2293,7 @@ msgstr ""
 "Fel vid avsyning av argument: %s\n"
 "Skriv gramps --help så får du en översikt av kommandon eller läs manualen."
 
-#: ../src/cli/argparser.py:356
+#: ../src/cli/argparser.py:361
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2296,7 +2303,7 @@ msgstr ""
 "För att använda kommandoradsläge så måste åtminstone en indatafil för "
 "behandling anges."
 
-#: ../src/cli/clidbman.py:78
+#: ../src/cli/clidbman.py:80
 #, python-format
 msgid ""
 "ERROR: %s \n"
@@ -2305,49 +2312,53 @@ msgstr ""
 "FEL: %s \n"
 "       %s"
 
-#: ../src/cli/clidbman.py:179
+#: ../src/cli/clidbman.py:204
 msgid "Number of people"
 msgstr "Antal personer"
 
-#: ../src/cli/clidbman.py:181 ../src/cli/clidbman.py:183
+#: ../src/cli/clidbman.py:206 ../src/cli/clidbman.py:208
 msgid "Locked?"
 msgstr "Låst?"
 
-#: ../src/cli/clidbman.py:181
+#: ../src/cli/clidbman.py:206
 msgid "yes"
 msgstr "ja"
 
-#: ../src/cli/clidbman.py:183
+#: ../src/cli/clidbman.py:208
 msgid "no"
 msgstr "nej"
 
-#: ../src/cli/clidbman.py:184
-msgid "DB version"
-msgstr "DB version"
+#: ../src/cli/clidbman.py:209
+msgid "Bsddb version"
+msgstr "Bsddb version"
 
-#: ../src/cli/clidbman.py:187 ../src/gui/dbman.py:287
+#: ../src/cli/clidbman.py:210
+msgid "Schema version"
+msgstr "Schemaversion"
+
+#: ../src/cli/clidbman.py:213 ../src/gui/dbman.py:287
 msgid "Last accessed"
 msgstr "Använd senast"
 
-#: ../src/cli/clidbman.py:241
+#: ../src/cli/clidbman.py:269
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Påbörjar importer, %s"
 
-#: ../src/cli/clidbman.py:247
+#: ../src/cli/clidbman.py:275
 msgid "Import finished..."
 msgstr "Import avslutat..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:319 ../src/plugins/import/ImportCsv.py:311
+#: ../src/cli/clidbman.py:347 ../src/plugins/import/ImportCsv.py:311
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/cli/clidbman.py:363
+#: ../src/cli/clidbman.py:396
 msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
-#: ../src/cli/clidbman.py:398
+#: ../src/cli/clidbman.py:431
 #, python-format
 msgid ""
 "\n"
@@ -2366,12 +2377,12 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:450 ../src/gui/configure.py:1070
+#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1070
 msgid "Never"
 msgstr "Aldrig"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:470
+#: ../src/cli/clidbman.py:503
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -2381,7 +2392,7 @@ msgstr "Låst av %s"
 msgid "WARNING: %s"
 msgstr "VARNING: %s"
 
-#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:207
+#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:216
 #, python-format
 msgid "ERROR: %s"
 msgstr "FEL: %s"
@@ -2396,39 +2407,40 @@ msgid "You do not have write access to the selected file."
 msgstr "Du har inte skrivåtkomst till den valda filen."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
-#: ../src/gui/dbloader.py:320
+#: ../src/cli/grampscli.py:165 ../src/cli/grampscli.py:168
+#: ../src/cli/grampscli.py:171 ../src/gui/dbloader.py:332
+#: ../src/gui/dbloader.py:335 ../src/gui/dbloader.py:338
 msgid "Cannot open database"
 msgstr "Kan inte öppna databas"
 
-#: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:324
+#: ../src/cli/grampscli.py:175 ../src/gui/dbloader.py:188
+#: ../src/gui/dbloader.py:342
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kunde inte öppna fil: %s"
 
-#: ../src/cli/grampscli.py:219
+#: ../src/cli/grampscli.py:228
 msgid "Could not load a recent Family Tree."
 msgstr "Kunde inte ladda ett nyligen använt släktträd."
 
-#: ../src/cli/grampscli.py:220
+#: ../src/cli/grampscli.py:229
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Släktträdet saknas, då det har raderats."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:296
+#: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Fel påträffat: %s"
 
-#: ../src/cli/grampscli.py:299 ../src/cli/grampscli.py:310
+#: ../src/cli/grampscli.py:308 ../src/cli/grampscli.py:319
 #, python-format
 msgid "  Details: %s"
 msgstr "  Detaljer: %s"
 
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:306
+#: ../src/cli/grampscli.py:315
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Fel påträffat vid avsyning av argument: %s"
@@ -2460,7 +2472,7 @@ msgid "   Valid options are:"
 msgstr "   Giltiga alternativ är:"
 
 #: ../src/cli/plug/__init__.py:406 ../src/cli/plug/__init__.py:436
-#: ../src/cli/plug/__init__.py:531
+#: ../src/cli/plug/__init__.py:532
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
@@ -2485,16 +2497,16 @@ msgstr ""
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Använd '%(notranslate)s' för att få se giltiga värden."
 
-#: ../src/cli/plug/__init__.py:520
+#: ../src/cli/plug/__init__.py:521
 msgid "   Available options:"
 msgstr "   Tillängliga alternativ:"
 
-#: ../src/cli/plug/__init__.py:538
+#: ../src/cli/plug/__init__.py:539
 msgid "   Available values are:"
 msgstr "   Tillgängliga värden är:"
 
 #. there was a show option given, but the option is invalid
-#: ../src/cli/plug/__init__.py:550
+#: ../src/cli/plug/__init__.py:551
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -2503,41 +2515,50 @@ msgstr ""
 "val '%(optionname)s' ej giltigt. Använd '%(donottranslate)s' för att få se "
 "alla giltiga val."
 
-#: ../src/cli/plug/__init__.py:562
+#: ../src/cli/plug/__init__.py:563
 msgid "Failed to write report. "
 msgstr "Misslyckades med att skriva rapport. "
 
-#: ../src/gen/db/base.py:1600
+#: ../src/gen/db/base.py:1601
 msgid "Add child to family"
 msgstr "Lägg till barn till familjen"
 
-#: ../src/gen/db/base.py:1613 ../src/gen/db/base.py:1618
+#: ../src/gen/db/base.py:1614 ../src/gen/db/base.py:1619
 msgid "Remove child from family"
 msgstr "Ta bort barn från familj"
 
-#: ../src/gen/db/base.py:1693 ../src/gen/db/base.py:1697
+#: ../src/gen/db/base.py:1694 ../src/gen/db/base.py:1698
 msgid "Remove Family"
 msgstr "Ta bort familj"
 
-#: ../src/gen/db/base.py:1738
+#: ../src/gen/db/base.py:1739
 msgid "Remove father from family"
 msgstr "Ta bort fader från familj"
 
-#: ../src/gen/db/base.py:1740
+#: ../src/gen/db/base.py:1741
 msgid "Remove mother from family"
 msgstr "Ta bort moder från familj"
 
-#: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:60
+#: ../src/gen/db/exceptions.py:81
+#, python-format
 msgid ""
-"The database version is not supported by this version of Gramps.\n"
+"The schema version is not supported by this version of Gramps.\n"
+"\n"
+"This Family tree is schema version %(tree_vers)s, and this version of Gramps "
+"supports versions %(min_vers)s to %(max_vers)s\n"
+"\n"
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"Databasversionen stöds inte av denna version av Gramps.\n"
+"Schemaversionen stöds ej av denna version av Gramps.\n"
+"\n"
+"Detta släktträd har schemaversion %(tree_vers)s medan denna version av Gramps "
+"stöder version %(min_vers)s till %(max_vers)s.\n"
+"\n"
 "Uppgradera till motsvarande version eller använd XML för att flytta data "
-"mellan olika databasversioner."
+"mellan olika databasversioner. "
 
-#: ../src/gen/db/exceptions.py:93
+#: ../src/gen/db/exceptions.py:103
 #, python-format
 msgid ""
 "Gramps stores its data in a Berkeley Database. The family tree you try to "
@@ -2558,7 +2579,35 @@ msgstr ""
 "trädet skapades med, exportera till XML och ladda denna XML till den version "
 "av Gramps du tänker använda."
 
-#: ../src/gen/db/exceptions.py:116
+#: ../src/gen/db/exceptions.py:127
+#, python-format
+msgid ""
+"The BSDDB version of the Family Tree you are trying to open needs to be "
+"upgraded from %(env_version)s to %(bdb_version)s.\n"
+"\n"
+"This probably means that the Family Tree was created with an old version of "
+"Gramps. Opening the tree with this version of Gramps may irretrievably "
+"corrupt your tree. You are strongly advised to backup your tree before "
+"proceeding, see: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"If you have made a backup, then you can get Gramps to try to open the tree "
+"and upgrade it"
+msgstr ""
+"BSDDB-versionen, för det Släktträd du försöker öppna, behöver "
+"uppgraderas från %(env_version)s till /(bdb_version)s.\n"
+"\n"
+"Detta innebär sannolikt att Släktträdet skapats med en gammal version "
+"av Gramps. Genom att öppna trädet med denna version av Gramps kan "
+"oåterkalleligt förstöra ditt släktträd. Du råds på det bestämdaste att ta en "
+"säkerhetskopia "
+"av ditt träd innan du fortsätter, se: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"Om du har gjort en säkerhetskopia så kan du låta Gramps försöka öppna trädet "
+"och uppgradera det."
+
+#: ../src/gen/db/exceptions.py:150
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2582,7 +2631,7 @@ msgstr ""
 "ett tomt släkträd. Alternativt är det möjligt att använda "
 "återhämtningsverktyg för Berkeley-databasen."
 
-#: ../src/gen/db/exceptions.py:139
+#: ../src/gen/db/exceptions.py:173
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3876,8 +3925,8 @@ msgid "Relationships"
 msgstr "Släktskap"
 
 #: ../src/gen/plug/_pluginreg.py:86 ../src/gen/plug/_pluginreg.py:396
-#: ../src/gui/grampsbar.py:565 ../src/gui/widgets/grampletpane.py:205
-#: ../src/gui/widgets/grampletpane.py:930 ../src/glade/grampletpane.glade.h:8
+#: ../src/gui/grampsbar.py:565 ../src/gui/widgets/grampletpane.py:206
+#: ../src/gui/widgets/grampletpane.py:931 ../src/glade/grampletpane.glade.h:8
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -4227,8 +4276,8 @@ msgstr ""
 "Påverkar avstånd mellan noder och diagrammets skalning.\n"
 "Om diagrammet är mindre än utskriftsytan:\n"
 "  Komprimering ändrar ej nodavstånd.\n"
-"  Ifyllning kommer att öka nodavstånd för att passa till utskriftsytan i både "
-"bredd och höjd.\n"
+"  Ifyllning kommer att öka nodavstånd för att passa till utskriftsytan i "
+"både bredd och höjd.\n"
 "  Expandera ökar nodavstånd likformigt för att behålla aspektförhållandet.\n"
 "Om diagrammet är större än utskriftsytan:\n"
 "  Komprimering kommer att krympa diagrammet för att åstadkomma tät packning "
@@ -5023,29 +5072,37 @@ msgstr ""
 "Denna fil identifierar sin teckenuppsättning felaktigt, så den kan ej "
 "importeras korrekt. Justera teckenkodningen och importera igen."
 
-#: ../src/gui/dbloader.py:303
+#: ../src/gui/dbloader.py:309
 msgid "Need to upgrade database!"
 msgstr "Databasen behöver uppgraderas!"
 
-#: ../src/gui/dbloader.py:305
+#: ../src/gui/dbloader.py:311
 msgid "Upgrade now"
 msgstr "Uppgadera nu"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1046
-#: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1067
-#: ../src/plugins/view/familyview.py:259
+#: ../src/gui/dbloader.py:312 ../src/gui/dbloader.py:323
+#: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:677
+#: ../src/plugins/BookReport.py:1067 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/gui/dbloader.py:365
+#: ../src/gui/dbloader.py:319
+msgid "Need to upgrade BSDDB database!"
+msgstr "Databasen BSDDB behöver uppgraderas!"
+
+#: ../src/gui/dbloader.py:321
+msgid "I have made a backup, please upgrade my tree"
+msgstr "Jag har gjort en säkerhetskopia. Uppgradera mitt träd"
+
+#: ../src/gui/dbloader.py:383
 msgid "All files"
 msgstr "Alla filer"
 
-#: ../src/gui/dbloader.py:406
+#: ../src/gui/dbloader.py:424
 msgid "Automatically detected"
 msgstr "Avgörs automatiskt"
 
-#: ../src/gui/dbloader.py:415
+#: ../src/gui/dbloader.py:433
 msgid "Select file _type:"
 msgstr "Välj fil_typ:"
 
@@ -5658,7 +5715,7 @@ msgstr ""
 msgid "Delete Filter"
 msgstr "Radera filter"
 
-#: ../src/gui/grampsbar.py:155 ../src/gui/widgets/grampletpane.py:1130
+#: ../src/gui/grampsbar.py:155 ../src/gui/widgets/grampletpane.py:1131
 msgid "Unnamed Gramplet"
 msgstr "Gramplet utan namn"
 
@@ -9078,40 +9135,40 @@ msgid "Collapse this section"
 msgstr "Komprimera denna del"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:762
+#: ../src/gui/widgets/grampletpane.py:763
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Drag egenskapsknappen för att flytta och klicka på den för inställning"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:958
+#: ../src/gui/widgets/grampletpane.py:959
 msgid "Right click to add gramplets"
 msgstr "Högerklicka för att få fler Gramplets"
 
-#: ../src/gui/widgets/grampletpane.py:997
+#: ../src/gui/widgets/grampletpane.py:998
 msgid "Untitled Gramplet"
 msgstr "Gramplet utan namn"
 
-#: ../src/gui/widgets/grampletpane.py:1472
+#: ../src/gui/widgets/grampletpane.py:1473
 msgid "Number of Columns"
 msgstr "Antal kolumner"
 
-#: ../src/gui/widgets/grampletpane.py:1477
+#: ../src/gui/widgets/grampletpane.py:1478
 msgid "Gramplet Layout"
 msgstr "Gramplet layout"
 
-#: ../src/gui/widgets/grampletpane.py:1507
+#: ../src/gui/widgets/grampletpane.py:1508
 msgid "Use maximum height available"
 msgstr "Använd maximalt tillgänglig höjd"
 
-#: ../src/gui/widgets/grampletpane.py:1513
+#: ../src/gui/widgets/grampletpane.py:1514
 msgid "Height if not maximized"
 msgstr "Höjd om ej maximerad"
 
-#: ../src/gui/widgets/grampletpane.py:1520
+#: ../src/gui/widgets/grampletpane.py:1521
 msgid "Detached width"
 msgstr "Bredd, frikopplad"
 
-#: ../src/gui/widgets/grampletpane.py:1527
+#: ../src/gui/widgets/grampletpane.py:1528
 msgid "Detached height"
 msgstr "Höjd, frikopplad"
 
@@ -14375,6 +14432,16 @@ msgstr "Fel vid läsning av GEDCOM-fil"
 #: ../src/plugins/import/ImportGeneWeb.py:116
 msgid "GeneWeb import"
 msgstr "GeneWeb-import"
+
+#: ../src/plugins/import/ImportGrdb.py:60
+msgid ""
+"The database version is not supported by this version of Gramps.\n"
+"Please upgrade to the corresponding version or use XML for porting data "
+"between different database versions."
+msgstr ""
+"Databasversionen stöds inte av denna version av Gramps.\n"
+"Uppgradera till motsvarande version eller använd XML för att flytta data "
+"mellan olika databasversioner."
 
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
