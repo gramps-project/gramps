@@ -247,31 +247,33 @@ class GrampsLocale(object):
             self.calendar = self.lang
 
     def _init_from_environment(self):
+
+        def _check_locale(locale):
+            if not locale[0]:
+                return False
+            lang = self.check_available_translations(locale[0])
+            if not lang:
+                return False
+            self.lang = locale[0]
+            self.encoding = locale[1]
+            self.language = [lang]
+            return True
+
         try:
             locale.setlocale(locale.LC_ALL, '')
+            if not _check_locale(locale.getlocale()):
+                if not _check_locale(locale.getlocale(locale.LC_MESSAGES)):
+                    if not _check_locale(locale.getdefaultlocale()):
+                        self.lang = 'C'
+                        self.encoding = 'ascii'
+                        self.language = ['en']
+
         except locale.Error as err:
             LOG.warning("Locale error %s, localization will be US English.",
                         err);
             self.lang = 'C'
             self.encoding = 'ascii'
             self.language = ['en']
-
-        if not (hasattr(self, 'lang') and self.lang):
-            (lang, encoding) = locale.getlocale()
-            if self.check_available_translations(lang):
-                self.lang = lang
-                self.encoding = encoding
-            else:
-                loc = (locale.getlocale(locale.LC_MESSAGES) or
-                       locale.getdefaultlocale())
-                if loc and self.check_available_translations(loc[0]):
-                    self.lang = loc[0]
-                    self.encoding = loc[1]
-                    self.language = ['en']
-                else:
-                    self.lang = 'C'
-                    self.encoding = 'ascii'
-                    self.language = ['en']
 
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
         if not self.lang.startswith('C.') and "LANGUAGE" in os.environ:
