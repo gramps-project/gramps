@@ -71,7 +71,7 @@ Application options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
-  -t                                     List Family Trees in tabular (tab delimited) form
+  -t                                     List Family Trees, tab delimited
   -u, --force-unlock                     Force unlock of family tree
   -s, --show                             Show config settings
   -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
