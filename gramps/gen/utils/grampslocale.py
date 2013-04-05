@@ -347,7 +347,7 @@ class GrampsLocale(object):
 #Next, we need to know what is the encoding from the native
 #environment. This is used by python standard library funcions which
 #localize their output, e.g. time.strftime():
-        if not self.encoding:
+        if not (hasattr(self, 'encoding') and self.encoding):
             self.encoding = (locale.getpreferredencoding()
                              or sys.getdefaultencoding())
 #Ensure that output is encoded correctly to stdout and stderr. This is
