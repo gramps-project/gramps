@@ -43,7 +43,7 @@ import time
 import bisect
 from functools import wraps
 import logging
-from sys import getfilesystemencoding
+from sys import maxsize, getfilesystemencoding
 
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
