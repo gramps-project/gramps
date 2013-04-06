@@ -21,5 +21,5 @@
 # $Id$
 
 VERSION_TUPLE = (4, 0, 0)
-VERSION        = '.'.join(map(str,VERSION_TUPLE)) + 'alpha5'
+VERSION        = '.'.join(map(str,VERSION_TUPLE)) + 'beta'
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])

@@ -1,8 +1,6 @@
-"UNSTABLE Gramps 4.0.0 Alpha5 release.
+"UNSTABLE Gramps 4.0.0 beta release.
 
-This is a technology preview to allow plugin writers and packagers-installer 
-writers to update their plugins and scripts. This release is not production 
-ready, so use for testing!"
+This is a preview, so use for testing!"
 
 It is recommended to use Gramps 4.0.0 with python 3.2 so as to be ready 
 for the future (python 2.7 works though). 
