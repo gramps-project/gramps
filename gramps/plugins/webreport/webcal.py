@@ -51,7 +51,7 @@ log = logging.getLogger(".WebPage")
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME
-from gramps.versioin import VERSION
+from gramps.version import VERSION
 from gramps.gen.constfunc import win
 from gramps.gen.config import config
 from gramps.gen.plug.report import Report
