@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-05 15:00+0200\n"
+"POT-Creation-Date: 2013-04-06 09:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5386,188 +5386,188 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:509
+#: ../gramps/gen/utils/grampslocale.py:511
 msgid "Bulgarian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:510
+#: ../gramps/gen/utils/grampslocale.py:512
 msgid "Catalan"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:511
+#: ../gramps/gen/utils/grampslocale.py:513
 msgid "Czech"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:512
+#: ../gramps/gen/utils/grampslocale.py:514
 msgid "Danish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:513
+#: ../gramps/gen/utils/grampslocale.py:515
 msgid "German"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:514
+#: ../gramps/gen/utils/grampslocale.py:516
 msgid "Greek"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:515
+#: ../gramps/gen/utils/grampslocale.py:517
 msgid "English"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:516
+#: ../gramps/gen/utils/grampslocale.py:518
 msgid "Esperanto"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:517
+#: ../gramps/gen/utils/grampslocale.py:519
 msgid "Spanish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:518
+#: ../gramps/gen/utils/grampslocale.py:520
 msgid "Finnish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:519
+#: ../gramps/gen/utils/grampslocale.py:521
 msgid "French"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:520
+#: ../gramps/gen/utils/grampslocale.py:522
 msgid "Hebrew"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:521
+#: ../gramps/gen/utils/grampslocale.py:523
 msgid "Croatian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:522
+#: ../gramps/gen/utils/grampslocale.py:524
 msgid "Hungarian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:523
+#: ../gramps/gen/utils/grampslocale.py:525
 msgid "Italian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:524
+#: ../gramps/gen/utils/grampslocale.py:526
 msgid "Japanese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:525
+#: ../gramps/gen/utils/grampslocale.py:527
 msgid "Lithuanian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:526
+#: ../gramps/gen/utils/grampslocale.py:528
 msgid "Macedonian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:527
+#: ../gramps/gen/utils/grampslocale.py:529
 msgid "Norwegian Bokmal"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:528
+#: ../gramps/gen/utils/grampslocale.py:530
 msgid "Dutch"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:529
+#: ../gramps/gen/utils/grampslocale.py:531
 msgid "Norwegian Nynorsk"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:530
+#: ../gramps/gen/utils/grampslocale.py:532
 msgid "Polish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:531
+#: ../gramps/gen/utils/grampslocale.py:533
 msgid "Portuguese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:532
+#: ../gramps/gen/utils/grampslocale.py:534
 msgid "Romanian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:533
+#: ../gramps/gen/utils/grampslocale.py:535
 msgid "Russian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:534
+#: ../gramps/gen/utils/grampslocale.py:536
 msgid "Slovak"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:535
+#: ../gramps/gen/utils/grampslocale.py:537
 msgid "Slovenian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:536
+#: ../gramps/gen/utils/grampslocale.py:538
 msgid "Albanian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:537
+#: ../gramps/gen/utils/grampslocale.py:539
 msgid "Swedish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:538
+#: ../gramps/gen/utils/grampslocale.py:540
 msgid "Turkish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:539
+#: ../gramps/gen/utils/grampslocale.py:541
 msgid "Ukrainian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:540
+#: ../gramps/gen/utils/grampslocale.py:542
 msgid "Vietnamese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:541
+#: ../gramps/gen/utils/grampslocale.py:543
 msgid "Chinese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:545
+#: ../gramps/gen/utils/grampslocale.py:547
 msgid "Brazil"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:546
+#: ../gramps/gen/utils/grampslocale.py:548
 #: ../gramps/plugins/lib/holidays.xml.in.h:5
 msgid "China"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:547
+#: ../gramps/gen/utils/grampslocale.py:549
 msgid "Portugal"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:728
+#: ../gramps/gen/utils/grampslocale.py:730
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:730
+#: ../gramps/gen/utils/grampslocale.py:732
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:732
+#: ../gramps/gen/utils/grampslocale.py:734
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:734
+#: ../gramps/gen/utils/grampslocale.py:736
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:736
+#: ../gramps/gen/utils/grampslocale.py:738
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:738
+#: ../gramps/gen/utils/grampslocale.py:740
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:740
+#: ../gramps/gen/utils/grampslocale.py:742
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:742
+#: ../gramps/gen/utils/grampslocale.py:744
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:744
+#: ../gramps/gen/utils/grampslocale.py:746
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:746
+#: ../gramps/gen/utils/grampslocale.py:748
 msgid "See details"
 msgstr ""
 
