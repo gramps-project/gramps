@@ -1,11 +1,14 @@
-"UNSTABLE Gramps 4.0.0 Alpha1 release.
+$Id$
 
-This is a technology preview to allow plugin writers and packagers-installer 
-writers to update their plugins and scripts. This release is not production 
-ready, so use for testing!"
+UNSTABLE Gramps 4.0.0 Beta2 release.
 
-It is recommended to use Gramps 4.0.0 with python 3.2 so as to be ready 
-for the future (python 2.7 works though). 
+This is a technology preview to allow distribution packagers (and plugin
+writers) to update their scripts (and plugins). This release is not
+production ready, so only use it for testing!
+
+It is recommended that Gramps 4.0.0 be used with python 2.7 since many
+dependent packages do not yet have python 3 versions.  A determined person
+can probably download their sources and build them, however.
 
 The dependencies for Gramps 4.0.0 are _completely_ different than 3.4 due 
 to the switch to GObject introspection, and the removal of autotools. So 
