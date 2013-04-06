@@ -1,6 +1,7 @@
 $Id$
 
 Please read the COPYING file first.
+
 If building from source, also read the INSTALL file (at least through the
 "SUPER-SHORT VERSION") before going further.
 
@@ -10,10 +11,10 @@ The following packages *MUST* be installed in order for Gramps to work:
    Python 2.7 or greater, Python 3.2 or greater (or both python versions)
    GTK 3.0 or greater
    pygobject 3.3.2 or greater
-   cairo, pango, pangocairo with instrospection bindings (the gi packages)
+   cairo, pango, pangocairo with introspection bindings (the gi packages)
    librsvg2 (svg icon view)
    xdg-utils
-   bsddb3 is required for Python 3.3 (not python 2.7)
+   bsddb3 is required for Python 3.2 (not python 2.7)
 
 The following package is needed for full translation of the interface
 to your language:
@@ -21,20 +22,27 @@ to your language:
                     Translation of GTK elements to your language, with
                     xx your language code; e.g. for Dutch you need
                     language-pack-gnome-nl. The translation of the
-                    Gramps strings is included with the source code.
+                    Gramps strings is included with the gramps source.
 
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
 
    osmgpsmap        Used to show maps in the geography view. 
+                    It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
+                    but the Python bindings for this must also be present.
                     Without this the GeoView will not be active, see
                     http://gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Main_Window#Geography_Category
-                    The package is named osmgpsmap, osm-gps-map
-                    or python-osmgpsmap.
-                    Or obtain it from: http://nzjrs.github.com/osm-gps-map/
+                    !! PACKAGERS: unfortunately, at the moment (March 2013),
+                    the patches which gramps 4.0 needs osm-gps-map to have
+                    are not yet released (as a new osm-gps-map version). The
+                    osm-gps-map sources must be dated 6 February 2013 (or
+                    later) to have the necessary patches.  You may obtain
+                    it from: http://nzjrs.github.com/osm-gps-map/ or else
+                    http://sourceforge.net/projects/gramps/files/Dependencies
+                    (The necessary version seems to be 0.8 -- or later.)
 
    GraphViz         Enable creation of graphs using GraphViz engine.
-                    Without this no beautiful graphs can be created.
+                    Without this, three reports cannot be run.
                     Obtain it from: http://www.graphviz.org
 
    PyICU            Improves localised sorting in Gramps. In particular, this
@@ -45,6 +53,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     sorting is done through built-in libraries. PyICU is
                     fairly widely available through the package managers of
                     distributions. See http://pyicu.osafoundation.org/
+                    (These are Python bindings for the ICU package.)
 
 The following packages are optional
 
@@ -60,6 +69,7 @@ The following packages are optional
    PIL              Python Image Library is needed to crop
                     images and also to convert non-JPG images to
                     JPG so as to include them in LaTeX output.
+                    (For Python3 a different source may be needed.)
 
    GExiv2           Enables Gramps to manage Exif metadata embedded in your
                     media. Gramps needs version 0.5 or greater.
@@ -79,7 +89,7 @@ The following packages are optional
                        from gi.repository import WebKit as webkit
 
    goocanvas2:
-                    Required for the (optional) Graphview plugin
+                    Required for the (user-downloadable) Graphview plugin
 
 No longer needed in 4.0:
    pygoocanvas, pygtk, pyexiv2
