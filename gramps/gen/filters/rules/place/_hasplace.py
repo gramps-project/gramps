@@ -36,6 +36,7 @@ _ = glocale.get_translation().gettext
 #
 #-------------------------------------------------------------------------
 from .. import Rule
+from ....lib import Location
 
 #-------------------------------------------------------------------------
 #
@@ -77,9 +78,9 @@ class HasPlace(Rule):
         return False
 
     def apply_location(self, loc):
-        # Empty locaiton does not match anything
         if not loc:
-            return False
+            # Allow regular expressions to match empty fields
+            loc = Location()
 
         if not self.match_substring(1, loc.get_street()):
             return False
