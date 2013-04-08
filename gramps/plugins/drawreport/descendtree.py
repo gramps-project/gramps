@@ -378,6 +378,7 @@ class RecurseDown:
         self.inlc_marr = gui.get_val("inc_marr")
         if not self.max_spouses:
             self.inlc_marr = False
+        self.spouse_indent = gui.get_val('ind_spouse')
         
         #is the option even available?
         self.bold_direct = gui.get_val('bolddirect')
@@ -431,7 +432,10 @@ class RecurseDown:
         if box.level[1] == 0:
             self.__last_direct[level] = box
             
-        box.x_cm = self.canvas.report_opts.spouse_offset * box.level[1]
+        if self.spouse_indent:
+            box.x_cm = self.canvas.report_opts.spouse_offset * box.level[1]
+        else:
+            box.x_cm = 0.0
         
         self.canvas.set_box_height_width(box)
         
