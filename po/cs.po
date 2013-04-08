@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-26 11:13+0200\n"
-"PO-Revision-Date: 2012-09-26 11:17+0100\n"
+"PO-Revision-Date: 2013-04-08 14:27+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -6428,38 +6428,35 @@ msgstr "Nastavit barvu použitou pro pole v grafických pohledech"
 
 #: ../src/gui/configure.py:520
 msgid "Gender Male Alive"
-msgstr ""
+msgstr "Pohlaví muž naživu"
 
 #: ../src/gui/configure.py:522
-#, fuzzy
 msgid "Border Male Alive"
-msgstr "Přeskupit rodiny"
+msgstr "Ohraničit  muže naživu"
 
 #: ../src/gui/configure.py:524
-#, fuzzy
 msgid "Gender Male Death"
-msgstr "Age at Death"
+msgstr "Pohlaví muž zesnulý"
 
 #: ../src/gui/configure.py:526
-#, fuzzy
 msgid "Border Male Death"
-msgstr "Age at Death"
+msgstr "Ohraničit zesnulé mužě"
 
 #: ../src/gui/configure.py:528
 msgid "Gender Female Alive"
-msgstr ""
+msgstr "Pohlaví žena naživu"
 
 #: ../src/gui/configure.py:530
 msgid "Border Female Alive"
-msgstr ""
+msgstr "Ohraničit ženy naživu"
 
 #: ../src/gui/configure.py:532
 msgid "Gender Female Death"
-msgstr ""
+msgstr "Pohlaví žena zesnulá"
 
 #: ../src/gui/configure.py:534
 msgid "Border Female Death"
-msgstr ""
+msgstr "Ohraničit zesnulé ženy"
 
 #. #        self.add_color(table, _('Gender Other Alive'), 5,
 #. #                        'preferences.color-gender-other-alive')
@@ -6470,23 +6467,20 @@ msgstr ""
 #. #        self.add_color(table, _('Border Other Death'), 8,
 #. #                        'preferences.bordercolor-gender-other-death')
 #: ../src/gui/configure.py:544
-#, fuzzy
 msgid "Gender Unknown Alive"
-msgstr "Pohlaví neznámé"
+msgstr "Pohlaví neznámé naživu"
 
 #: ../src/gui/configure.py:546
 msgid "Border Unknown Alive"
-msgstr ""
+msgstr "Ohraničit neznámé naživu"
 
 #: ../src/gui/configure.py:548
-#, fuzzy
 msgid "Gender Unknown Death"
-msgstr "Pohlaví neznámé"
+msgstr "Pohlaví neznámé zesnulé"
 
 #: ../src/gui/configure.py:550
-#, fuzzy
 msgid "Border Unknown Death"
-msgstr "Neznámý otec"
+msgstr "Ohraničit neznámé zesnulé"
 
 #: ../src/gui/configure.py:552
 msgid "Colors"
@@ -7625,6 +7619,12 @@ msgid ""
 "You can also change manually the startup view in the gramps.ini file \n"
 "by changing the last-view parameter.\n"
 msgstr ""
+"\n"
+"Nebylo možné spustit Gramps. Oznamte prosím tuto chybu.\n"
+"Selhání mohlo být způsobeno díky chybě v Pohledu (od třetí strany) při startu.\n"
+"Použijte jiný pohled, nenahrávejte rodokmen, změňte pohled, poté nahrajte svůj rodokmen.\n"
+"Změnou parametru last-view v  souboru gramps.ini můžete ručně nastavit \n"
+"výchozí pohled spouštěný při startu Gramps.\n"
 
 #: ../src/gui/makefilter.py:41
 #, python-format
@@ -9499,9 +9499,8 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/backreflist.py:182
-#, fuzzy
 msgid "Cannot open new citation editor"
-msgstr "Citace nelze sloučit."
+msgstr "Nelze otevřít nový editor citací"
 
 #: ../src/gui/editors/displaytabs/backrefmodel.py:49
 #, python-format
@@ -16811,17 +16810,17 @@ msgstr "Poznámka svědka: %s"
 #: ../src/plugins/import/importxml.py:2996
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Chyba: otec %(father)s'  rodiny '%(family)s' neodkazuje zpět na rodinu. Odkaz přidán."
 
 #: ../src/plugins/import/importxml.py:3012
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Chyba: matka %(mother)s'  rodiny '%(family)s' neodkazuje zpět na rodinu. Odkaz přidán."
 
 #: ../src/plugins/import/importxml.py:3034
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Chyba: pootomek %(child)s'  rodiny '%(family)s' neodkazuje zpět na rodinu. Odkaz přidán."
 
 #: ../src/plugins/lib/libgedcom.py:1722
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -20587,6 +20586,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
+"Název míst je: \n"
+"<b>%(title)s</b>\n"
+"Tato místa mohou být podobná: %(gid)s\n"
+"Proveďte buď sloučení míst, nebo je přejmenujte.\n"
+"\n"
+"<b>Požadavek nemůže být vykonán</b>.\n"
 
 #: ../src/plugins/lib/maps/geography.py:964
 msgid "Nothing for this view."
@@ -20601,14 +20606,13 @@ msgid "Where to save the tiles for offline mode."
 msgstr "Kde budou uloženy dlaždice pro offline režim."
 
 #: ../src/plugins/lib/maps/geography.py:987
-#, fuzzy
 msgid ""
 "If you have no more space in your file system. You can remove all tiles placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 "Pokud vám dochází místo na disku\n"
 "můžete odstranit všechny dlaždice umístěné v cestě výše.\n"
-"Buďte opatrní! Pokud nemáte přístup k Internetu, nebudete mítm žádnou mapu."
+"Buďte opatrní! Pokud nemáte přístup k Internetu, nebudete mít žádnou mapu."
 
 #: ../src/plugins/lib/maps/geography.py:992
 msgid "Zoom used when centering"
@@ -23879,16 +23883,15 @@ msgstr "Všechny mapy odkazů byly přegenerovány."
 
 #: ../src/plugins/tool/rebuildgenderstat.py:82
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Generují se statistiky pohlaví pro hádání jmen založeném na pohlaví..."
 
 #: ../src/plugins/tool/rebuildgenderstat.py:95
 msgid "Gender statistics rebuilt"
 msgstr "Statistiky pohlaví byly přepočítány"
 
 #: ../src/plugins/tool/rebuildgenderstat.py:96
-#, fuzzy
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr "Všechny sekundární indexy byly přegenerovány."
+msgstr "Statistiky pohlaví pro hádání jmen založeném na pohlaví byly přegenerovány."
 
 #: ../src/plugins/tool/relcalc.py:106
 #, python-format
@@ -24145,7 +24148,7 @@ msgstr "Přepočítat statistiky pohlaví"
 
 #: ../src/plugins/tool/tools.gpr.py:397
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Přegeneruje statistiky pohlaví pro hádání jmen založeném na pohlaví..."
 
 #: ../src/plugins/tool/tools.gpr.py:418
 msgid "Relationship Calculator"
@@ -24697,18 +24700,16 @@ msgstr "Barva pro duplicity"
 
 #. algo for the fan angle distribution
 #: ../src/plugins/view/fanchartdescview.py:323
-#, fuzzy
 msgid "Fan chart distribution"
-msgstr "Rozložení věkového rozpětí"
+msgstr "Rozložení vějířového grafu"
 
 #: ../src/plugins/view/fanchartdescview.py:326
 msgid "Homogeneous children distribution"
-msgstr ""
+msgstr "Stejnoměrné rozložení potomků"
 
 #: ../src/plugins/view/fanchartdescview.py:328
-#, fuzzy
 msgid "Size  proportional to number of descendants"
-msgstr "Omezit počet potomků"
+msgstr "Velikost proporcionálně k počtu potomků"
 
 #: ../src/plugins/view/geography.gpr.py:54
 #, python-format
@@ -25029,7 +25030,7 @@ msgstr "Pro omezení tohoto počtu použijte filtr prosím."
 
 #: ../src/plugins/view/geoplaces.py:299
 msgid "You can modify this value in the geography option."
-msgstr ""
+msgstr "Tuto hodnotu můžete měnit v geografických předvolbách."
 
 #: ../src/plugins/view/geoplaces.py:301
 msgid "In this case, it may take time to show all markers."
