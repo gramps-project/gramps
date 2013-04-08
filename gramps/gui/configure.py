@@ -481,7 +481,7 @@ class GrampsPreferences(ConfigureDialog):
         table.set_col_spacings(6)
         table.set_row_spacings(6)
         self.add_text(table, _('Enter your information so people can contact you when you'
-                        ' distribute your family tree'), 0, line_wrap=False)
+                        ' distribute your Family Tree'), 0, line_wrap=False)
         self.add_entry(table, _('Name'), 1, 'researcher.researcher-name')
         self.add_entry(table, _('Address'), 2, 'researcher.researcher-addr')
         self.add_entry(table, _('Locality'), 3, 'researcher.researcher-locality')
@@ -1287,7 +1287,7 @@ class GrampsPreferences(ConfigureDialog):
         #        _('Family Tree Database path'), 
         #        0, 'behavior.database-path')
         self.add_checkbox(table, 
-                _('Automatically load last family tree'), 
+                _('Automatically load last Family Tree'), 
                 1, 'behavior.autoload')
                 
         return _('Family Tree'), table

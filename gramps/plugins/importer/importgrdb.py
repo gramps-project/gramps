@@ -61,7 +61,7 @@ def importData(database, filename, user):
                       "You should use an old copy of Gramps at "
                       "version 3.0.x and import your database into "
                       "that version. You should then export a copy "
-                      "of your data to Gramps XML (family tree). "
+                      "of your data to Gramps XML (Family Tree). "
                       "Then you should upgrade to the latest "
                       "version of Gramps (for example this version), "
                       "create a new empty database and import the "

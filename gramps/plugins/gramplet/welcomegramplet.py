@@ -127,7 +127,7 @@ class WelcomeGramplet(Gramplet):
         'The first thing you must do is to create a new Family Tree. To '
         'create a new Family Tree (sometimes called \'database\') select '
         '"Family Trees" from the menu, pick "Manage Family Trees", press '
-        '"New" and name your family tree. For more details, please read the '
+        '"New" and name your Family Tree. For more details, please read the '
         'information at the links above\n\n')
         welcome += boldst(_('Dashboard View')) + '\n\n' + _(
         'You are currently reading from the "Dashboard" view, where you can'

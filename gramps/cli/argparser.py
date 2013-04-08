@@ -63,18 +63,18 @@ Help options
   --usage                                Display brief usage message
 
 Application options
-  -O, --open=FAMILY_TREE                 Open family tree
-  -C, --create=FAMILY_TREE               Create on open if new family tree
+  -O, --open=FAMILY_TREE                 Open Family Tree
+  -C, --create=FAMILY_TREE               Create on open if new Family Tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
-  -f, --format=FORMAT                    Specify family tree format
+  -f, --format=FORMAT                    Specify Family Tree format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
   -t                                     List Family Trees, tab delimited
-  -u, --force-unlock                     Force unlock of family tree
+  -u, --force-unlock                     Force unlock of Family Tree
   -s, --show                             Show config settings
   -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
   -v, --version                          Show versions
@@ -112,7 +112,7 @@ Use the name=timeline,show=all to find out about all available options for the t
 To find out details of a particular option, use show=option_name , e.g. name=timeline,show=off string.
 To learn about available report names, use name=show string.
 
-9. To convert a family tree on the fly to a .gramps xml file:
+9. To convert a Family Tree on the fly to a .gramps xml file:
 gramps -O 'Family Tree 1' -e output.gramps -f gramps-xml
 
 10. To generate a web site into an other locale (in german):

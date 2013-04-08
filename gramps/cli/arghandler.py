@@ -218,7 +218,7 @@ class ArgHandler(object):
             if not self.check_db(db_path, self.force_unlock):
                 sys.exit(0)
             if create:
-                self.__error( _("Error: Family tree '%s' already exists.\n"
+                self.__error( _("Error: Family Tree '%s' already exists.\n"
                                 "The '-C' option cannot be used.") % value)
                 sys.exit(0)
             return db_path
@@ -227,7 +227,7 @@ class ArgHandler(object):
             db_path, title = self.dbman.create_new_db_cli(title=value)
             return db_path
         else:
-            self.__error( _('Error: Input family tree "%s" does not exist.\n'
+            self.__error( _('Error: Input Family Tree "%s" does not exist.\n'
                             "If GEDCOM, Gramps-xml or grdb, use the -i option "
                             "to import into a family tree instead.") % value)
             sys.exit(0)
@@ -402,7 +402,7 @@ class ArgHandler(object):
         """
 
         if self.list:
-            print(_('List of known family trees in your database path\n'))
+            print(_('List of known Family Trees in your database path\n'))
 
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
@@ -415,10 +415,10 @@ class ArgHandler(object):
             print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
             for summary in sorted(summary_list,
-                                  key=lambda sum: sum["Family tree"].lower()):
-                print(_("Family Tree \"%s\":") % summary["Family tree"])
+                                  key=lambda sum: sum[_("Family Tree")].lower()):
+                print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
                 for item in sorted(summary):
-                    if item != "Family tree":
+                    if item != "Family Tree":
                         print("   %s: %s" % (item, summary[item]))
             sys.exit(0)
            
@@ -427,15 +427,15 @@ class ArgHandler(object):
             summary_list = self.dbman.family_tree_summary()
             print(_("Family Tree"), end="")
             for key in sorted(summary_list[0]):
-                if key !=  "Family tree":
+                if key !=  "Family Tree":
                     print("\t ", end="")
                     print(key, end="")
             print()
             for summary in sorted(summary_list,
-                                  key=lambda sum: sum[_("Family tree")].lower()):
-                print('"%s"' % summary["Family tree"], end="")
+                                  key=lambda sum: sum[_("Family Tree")].lower()):
+                print('"%s"' % summary[_("Family Tree")], end="")
                 for item in sorted(summary):
-                    if item != _("Family tree"):
+                    if item != _("Family Tree"):
                         print("\t ", end="")
                         print('"%s"' % summary[item], end="")
                 print()
@@ -492,7 +492,7 @@ class ArgHandler(object):
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
-                    msg = _("Created empty family tree successfully")
+                    msg = _("Created empty Family Tree successfully")
                     print(msg, file=sys.stderr)
                 except:
                     print(_("Error opening the file."), file=sys.stderr)

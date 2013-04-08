@@ -859,7 +859,7 @@ class RelationshipCalculator(object):
                             del common[index]  
         #check for extra messages
         if self.__maxDepthReached :
-            self.__msg += [_('Family tree reaches back more than the maximum '
+            self.__msg += [_('Family Tree reaches back more than the maximum '
                         '%d generations searched.\nIt is possible that '
                         'relationships have been missed') % (self.__max_depth)]
 

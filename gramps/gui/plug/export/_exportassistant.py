@@ -597,7 +597,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         except:
             #an error not catched in the export_function itself
             success = False
-            log.error(_("Error exporting your family tree"), exc_info=True)
+            log.error(_("Error exporting your Family Tree"), exc_info=True)
         return success
     
     def pre_save(self,page):

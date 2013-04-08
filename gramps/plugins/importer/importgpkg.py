@@ -106,7 +106,7 @@ def impData(database, name, user):
         database.set_mediapath(tmpdir_path)
         user.warn(
                 _("Base path for relative media set"),
-                _("The base media path of this family tree has been set to "
+                _("The base media path of this Family Tree has been set to "
                     "%s. Consider taking a simpler path. You can change this "
                     "in the Preferences, while moving your media files to the "
                     "new position, and using the media manager tool, option "
@@ -116,7 +116,7 @@ def impData(database, name, user):
     else:
         user.warn(
                 _("Cannot set base media path"),
-                _("The family tree you imported into already has a base media "
+                _("The Family Tree you imported into already has a base media "
                     "path: %(orig_path)s. The imported media objects however "
                     "are relative from the path %(path)s. You can change the "
                     "media path in the Preferences or you can convert the "
