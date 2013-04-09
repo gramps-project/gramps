@@ -483,7 +483,6 @@ class EditRule(ManagedWindow):
             arglist = class_obj.labels
             vallist = []
             tlist = []
-            self.page.append((class_obj, vallist, tlist))
             pos = 0
             l2 = Gtk.Label(label=class_obj.name)
             l2.set_alignment(0, 0.5)
@@ -558,6 +557,27 @@ class EditRule(ManagedWindow):
                 table.attach(l, 1, 2, pos, pos+1, Gtk.AttachOptions.FILL, 0, 5, 5)
                 table.attach(t, 2, 3, pos, pos+1, Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 5, 5)
                 pos += 1
+
+            use_regex = None
+            if class_obj.allow_regex:
+                use_regex = Gtk.CheckButton(_('Use regular expressions'))
+                tip = _('Interpret the contents of string fields as regular '
+                        'expressions.\n'
+                        'A decimal point will match any character. '
+                        'A question mark will match zero or one occurences '
+                        'of the previous character or group. '
+                        'An asterisk will match zero or more occurences. '
+                        'A plus sign will match one or more occurences. '
+                        'Use parentheses to group expressions. '
+                        'Specify alternatives using a vertical bar. '
+                        'A caret will match the start of a line. '
+                        'A dollar sign will match the end of a line.')
+                use_regex.set_tooltip_text(tip)
+                table.attach(use_regex, 2, 3, pos, pos+1,
+                             Gtk.AttachOptions.FILL, 0, 5, 5)
+
+            self.page.append((class_obj, vallist, tlist, use_regex))
+
             # put the table into a scrollable area:
             scrolled_win = Gtk.ScrolledWindow()
             scrolled_win.add_with_viewport(table)
@@ -613,10 +633,12 @@ class EditRule(ManagedWindow):
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
-            (class_obj, vallist, tlist) = self.page[page]
+            (class_obj, vallist, tlist, use_regex) = self.page[page]
             r = list(self.active_rule.values())
             for i in range(0, min(len(tlist), len(r))):
                 tlist[i].set_text(r[i])
+            if class_obj.allow_regex:
+                use_regex.set_active(self.active_rule.use_regex)
             
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
@@ -700,9 +722,12 @@ class EditRule(ManagedWindow):
 
         try:
             page = self.notebook.get_current_page()
-            (class_obj, vallist, tlist) = self.page[page]
+            (class_obj, vallist, tlist, use_regex) = self.page[page]
             value_list = [cuni(sclass.get_text()) for sclass in tlist]
-            new_rule = class_obj(value_list)
+            if class_obj.allow_regex:
+                new_rule = class_obj(value_list, use_regex.get_active())
+            else:
+                new_rule = class_obj(value_list)
 
             self.update_rule(self.active_rule, new_rule)
             self.close()

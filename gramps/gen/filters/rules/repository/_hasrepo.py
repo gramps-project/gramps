@@ -53,6 +53,7 @@ class HasRepo(Rule):
     name        = _('Repositories matching parameters')
     description = _("Matches Repositories with particular parameters")
     category    = _('General filters')
+    allow_regex = True
 
     def prepare(self, dummy_db):
         if self.list[1]:

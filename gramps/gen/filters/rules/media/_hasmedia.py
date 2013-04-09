@@ -53,6 +53,7 @@ class HasMedia(Rule):
     name        = _('Media objects matching parameters')
     description = _("Matches media objects with particular parameters")
     category    = _('General filters')
+    allow_regex = True
 
     def prepare(self,db):
         self.date = None
