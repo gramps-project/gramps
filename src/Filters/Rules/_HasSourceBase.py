@@ -51,6 +51,7 @@ class HasSourceBase(Rule):
     name        = _('Sources matching parameters')
     description = _("Matches sources with particular parameters")
     category    = _('Citation/source filters')
+    allow_regex = True
 
     def apply(self,db,source):
         if not self.match_substring(0,source.get_title()):

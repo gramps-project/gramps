@@ -59,6 +59,7 @@ class HasPlace(Rule):
     name        = _('Places matching parameters')
     description = _("Matches places with particular parameters")
     category    = _('General filters')
+    allow_regex = True
 
     def apply(self, db, place):
         if not self.match_substring(0, place.get_title()):

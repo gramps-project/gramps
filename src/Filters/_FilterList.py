@@ -135,8 +135,8 @@ class FilterList(object):
                     f.write(' comment="%s"' % self.fix(comment))
                 f.write('>\n')
                 for rule in the_filter.get_rules():
-                    f.write('    <rule class="%s">\n'
-                            % rule.__class__.__name__)
+                    f.write('    <rule class="%s" use_regex="%s">\n'
+                            % (rule.__class__.__name__, rule.use_regex))
                     for value in rule.values():
                         f.write('      <arg value="%s"/>\n' % self.fix(value))
                     f.write('    </rule>\n')

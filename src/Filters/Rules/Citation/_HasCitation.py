@@ -52,6 +52,7 @@ class HasCitation(Rule):
     name        = _('Citations matching parameters')
     category    = _('General filters')
     description = _("Matches citations with particular parameters")
+    allow_regex = True
 
     def prepare(self, db):
         self.date = None

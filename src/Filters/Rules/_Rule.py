@@ -53,6 +53,7 @@ class Rule(object):
     name        = ''
     category    = _('Miscellaneous filters')
     description = _('No description')
+    allow_regex = False
 
     def __init__(self, arg, use_regex=False):
         self.list = []

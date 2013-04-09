@@ -54,6 +54,7 @@ class HasEventBase(Rule):
     name        =  _('Events matching parameters')
     description =  _("Matches events with particular parameters")
     category    = _('Event filters')
+    allow_regex = True
     
     def prepare(self, db):
         self.date = None
