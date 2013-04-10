@@ -1,5 +1,5 @@
 # List of source files which contain translatable strings.
-gramps/gen/const.py.in
+#gramps/gen/const.py.in
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
 gramps/cli/clidbman.py
@@ -524,7 +524,7 @@ gramps/plugins/gramplet/calendargramplet.py
 gramps/plugins/gramplet/children.py
 gramps/plugins/gramplet/citations.py
 gramps/plugins/gramplet/descendgramplet.py
-gramps/plugins/gramplet/editexifmetadata.py
+#gramps/plugins/gramplet/editexifmetadata.py
 gramps/plugins/gramplet/events.py
 gramps/plugins/gramplet/fanchartdescgramplet.py
 gramps/plugins/gramplet/fanchartgramplet.py
@@ -563,7 +563,7 @@ gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
 gramps/plugins/lib/holidays.xml.in
 gramps/plugins/lib/libgedcom.py
-gramps/plugins/lib/libgrdb.py
+#gramps/plugins/lib/libgrdb.py
 gramps/plugins/lib/libhtmlconst.py
 gramps/plugins/lib/libmetadata.py
 gramps/plugins/lib/libnarrate.py

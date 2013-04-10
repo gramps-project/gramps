@@ -12,6 +12,7 @@ gramps/cli/__init__.py
 # gen
 #
 gramps/gen/constfunc.py
+gramps/gen/const.py.in
 gramps/gen/dbstate.py
 gramps/gen/errors.py
 gramps/gen/__init__.py
