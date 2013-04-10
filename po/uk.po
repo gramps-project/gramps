@@ -1,14 +1,14 @@
 # Ukrainian translation for gramps
 # Copyright (c) 2011 Gramps
 # This file is distributed under the same license as the gramps package.
-# Fedir Zinchuk <fedikw@gmail.com>, 2011, 2012.
+# Fedir Zinchuk <fedikw@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-08 15:46+0200\n"
-"PO-Revision-Date: 2013-04-09 21:05+0300\n"
+"POT-Creation-Date: 2013-04-10 14:50+0200\n"
+"PO-Revision-Date: 2013-04-10 21:04+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../gramps/gen/const.py:207
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
@@ -89,9 +89,8 @@ msgid "ERROR: Unrecognized format for export file %s"
 msgstr "ПОМИЛКА: Нерозпізнаний формат для файлу експорту %s"
 
 #: ../gramps/cli/arghandler.py:405
-#, fuzzy
 msgid "List of known Family Trees in your database path\n"
-msgstr "Список невідомих сімейних дерев в шляху розміщення вашої бази даних\n"
+msgstr "Список відомих сімейних дерев в шляху розміщення вашої бази даних\n"
 
 #: ../gramps/cli/arghandler.py:410
 #, python-format
@@ -145,9 +144,8 @@ msgid "Cleaning up."
 msgstr "Очищення"
 
 #: ../gramps/cli/arghandler.py:495
-#, fuzzy
 msgid "Created empty Family Tree successfully"
-msgstr "Пусте сімейне дерево створено успішно."
+msgstr "Пусте сімейне дерево створено успішно"
 
 #: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
 msgid "Error opening the file."
@@ -229,7 +227,6 @@ msgstr "Невідома дія: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../gramps/cli/argparser.py:57
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -277,11 +274,10 @@ msgstr ""
 "  -L                                     Детальний список сімейних дерев\n"
 "  -u, --force-unlock                     Примусово розблокувати сімейне дерево\n"
 "  -s, --show                             Показати налаштування\n"
-"  -c, --config=[config.setting[:value]]  Показати/Встановити параметр конфігурації\n"
-"  -v, --version                          Показати версію та налаштування\n"
+"  -c, --config=[config.setting[:value]]  Встановити параметр конфігурації та запустити Gramps\n"
+"  -v, --version                          Показати версію\n"
 
 #: ../gramps/cli/argparser.py:83
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -331,10 +327,10 @@ msgstr ""
 "Приклад використання GRAMPS з командного рядка\n"
 "\n"
 "1. Щоб імпортувати чотири бази даних (з визначенням формату по розширенню),\n"
-"а потім перевірити результат на наявність помилок, можна обрати:\n"
+"а потім перевірити результат на наявність помилок, можна виконати:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check. \n"
 "\n"
-"2. Щоб напряму вказати формати, на попередньому прикладі, вкажіть формат після імен файлів через  -f:\n"
+"2. Щоб напряму вказати формати, на попередньому прикладі, вкажіть формат після імен файлів через параметр -f:\n"
 "gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check. \n"
 "\n"
 "3. Щоб записати всі результати імпорту до бази даних, вкажіть прапорець -e\n"
@@ -365,7 +361,7 @@ msgstr ""
 "10. Для побудови веб-сайту іншою мовою (напр. Німецькою):\n"
 "LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Family Tree 1' -a report -p name=navwebpage,target=/../de\n"
 "\n"
-"11. Ну і на кінець, для запуску в програми в інтерактивному режимі, просто наберіть:\n"
+"11. Ну і на кінець, для запуску програми в інтерактивному режимі, просто наберіть:\n"
 "gramps\n"
 "\n"
 "Зверніть увагу: Ці приклади вказано для оболонки bash.\n"
@@ -390,9 +386,9 @@ msgid "Trying to open: %s ..."
 msgstr "Намагаюся відкрити: %s ..."
 
 #: ../gramps/cli/argparser.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Невідома дія: %s."
+msgstr "Невідома дія: %s. Ігнорую."
 
 #: ../gramps/cli/argparser.py:290
 msgid "setup debugging"
@@ -437,34 +433,28 @@ msgstr ""
 "       %(message)s"
 
 #: ../gramps/cli/clidbman.py:213
-#, fuzzy
 msgid "Number of people"
 msgstr "Кількість осіб"
 
 #: ../gramps/cli/clidbman.py:215 ../gramps/cli/clidbman.py:217
-#, fuzzy
 msgid "Locked?"
-msgstr "Заблоковано %s"
+msgstr "Заблоковано?"
 
 #: ../gramps/cli/clidbman.py:215
-#, fuzzy
 msgid "yes"
-msgstr "роки"
+msgstr "так"
 
 #: ../gramps/cli/clidbman.py:217
-#, fuzzy
 msgid "no"
-msgstr "немає"
+msgstr "ні"
 
 #: ../gramps/cli/clidbman.py:218
-#, fuzzy
 msgid "Bsddb version"
-msgstr "Версія"
+msgstr "Версія Bsddb"
 
 #: ../gramps/cli/clidbman.py:219
-#, fuzzy
 msgid "Schema version"
-msgstr "Видалити версію"
+msgstr "Версія схеми"
 
 #: ../gramps/cli/clidbman.py:224
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
@@ -494,9 +484,8 @@ msgid "Importing data..."
 msgstr "Імпортую дані..."
 
 #: ../gramps/cli/clidbman.py:415
-#, fuzzy
 msgid "Could not rename Family Tree"
-msgstr "Не вдалось перейменувати Сімейне Дерево."
+msgstr "Не можливо перейменувати Сімейне Дерево"
 
 #: ../gramps/cli/clidbman.py:450
 #, python-format
@@ -647,50 +636,42 @@ msgid "ERROR: Please specify a family"
 msgstr "ПОМИЛКА: Будь ласка, вкажіть сім’ю"
 
 #: ../gramps/cli/plug/__init__.py:268
-#, fuzzy
 msgid "=filename"
-msgstr "Ім'я файлу"
+msgstr "=назва_файлу"
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
 msgstr "Назва для вихідного файлу. ОБОВ'ЯЗКОВА"
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "=format"
-msgstr "Формат"
+msgstr "=формат"
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "Output file format."
-msgstr "Вихідний формат"
+msgstr "Вихідний формат файлу"
 
 #: ../gramps/cli/plug/__init__.py:270 ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "=name"
-msgstr "прізвище"
+msgstr "=назва"
 
 #: ../gramps/cli/plug/__init__.py:270
-#, fuzzy
 msgid "Style name."
-msgstr "Назва стилю"
+msgstr "Назва стилю."
 
 #: ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "Paper size name."
-msgstr "Конфіденційне дане ім'я"
+msgstr "Розмір паперу."
 
 #: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:273
 #: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
 #: ../gramps/cli/plug/__init__.py:279
-#, fuzzy
 msgid "=number"
-msgstr "Кількість"
+msgstr "=число"
 
 #: ../gramps/cli/plug/__init__.py:272
-#, fuzzy
 msgid "Paper orientation number."
-msgstr "Ідентифікаційний номер"
+msgstr "Число орієнтації паперу."
 
 #: ../gramps/cli/plug/__init__.py:273
 msgid "Left paper margin"
@@ -698,9 +679,8 @@ msgstr "Лівий відступ паперу"
 
 #: ../gramps/cli/plug/__init__.py:274 ../gramps/cli/plug/__init__.py:276
 #: ../gramps/cli/plug/__init__.py:278 ../gramps/cli/plug/__init__.py:280
-#, fuzzy
 msgid "Size in cm"
-msgstr "Розмір в байтах"
+msgstr "Розмір в см"
 
 #: ../gramps/cli/plug/__init__.py:275
 msgid "Right paper margin"
@@ -715,9 +695,8 @@ msgid "Bottom paper margin"
 msgstr "Нижній відступ паперу"
 
 #: ../gramps/cli/plug/__init__.py:281
-#, fuzzy
 msgid "=css filename"
-msgstr "Обрати файл"
+msgstr "=файл css"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
@@ -848,7 +827,7 @@ msgstr ""
 #: ../gramps/gen/db/exceptions.py:128
 #, python-format
 msgid ""
-"The BSDDB version of the Family Tree you are trying to open needs to be upgraded from %(env_version)s to %(bdb_version)s.\n"
+"The Bsddb version of the Family Tree you are trying to open needs to be upgraded from %(env_version)s to %(bdb_version)s.\n"
 "\n"
 "This probably means that the Family Tree was created with an old version of Gramps. Opening the tree with this version of Gramps may irretrievably corrupt your tree. You are strongly advised to backup your tree before proceeding, see: \n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
@@ -1090,11 +1069,10 @@ msgid "Wrong name format string %s"
 msgstr ""
 
 #: ../gramps/gen/display/name.py:1071
-#, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
-msgstr "Пошук пошкоджених посилань на формат імен"
+msgstr "ПОМИЛКА, Відредагуйте назву формату в налаштуваннях"
 
-#: ../gramps/gen/filters/_filterparser.py:115
+#: ../gramps/gen/filters/_filterparser.py:120
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -1103,7 +1081,7 @@ msgstr ""
 "ПОПЕРЕДЖЕННЯ: Занадто багато аргументів у фільтрі '%s'!\n"
 "Спробуйте завантажити з меншою кількістю аргументів."
 
-#: ../gramps/gen/filters/_filterparser.py:123
+#: ../gramps/gen/filters/_filterparser.py:128
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -1112,7 +1090,7 @@ msgstr ""
 "ПОПЕРЕДЖЕННЯ: Занадто мало аргументів у фільтрі '%s'!\n"
 "         Спроба завантажити все одно, з надією що це буде виправлено."
 
-#: ../gramps/gen/filters/_filterparser.py:131
+#: ../gramps/gen/filters/_filterparser.py:136
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "ПОМИЛКА: фільтр %s некоректно завантажено. Відредагуйте фільтр!"
@@ -1275,7 +1253,7 @@ msgstr "Фільтр подій"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:511
+#: ../gramps/gui/editors/filtereditor.py:510
 msgid "Number of instances:"
 msgstr "Кількість примірників:"
 
@@ -1286,7 +1264,7 @@ msgstr "Кількість примірників:"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:516
+#: ../gramps/gui/editors/filtereditor.py:515
 msgid "Number must be:"
 msgstr "Число має бути:"
 
@@ -1304,7 +1282,7 @@ msgstr "Число має бути:"
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:47
-#: ../gramps/gui/editors/filtereditor.py:520
+#: ../gramps/gui/editors/filtereditor.py:519
 msgid "ID:"
 msgstr "ID:"
 
@@ -1328,12 +1306,12 @@ msgid "Substring:"
 msgstr "Підрядок:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:514
+#: ../gramps/gui/editors/filtereditor.py:513
 msgid "Reference count must be:"
 msgstr "Кількість посилань має бути:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:510
+#: ../gramps/gui/editors/filtereditor.py:509
 msgid "Reference count:"
 msgstr "Кількість посилань:"
 
@@ -1342,7 +1320,7 @@ msgstr "Кількість посилань:"
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:47
-#: ../gramps/gui/editors/filtereditor.py:523
+#: ../gramps/gui/editors/filtereditor.py:522
 msgid "Source ID:"
 msgstr "ID джерела:"
 
@@ -1356,7 +1334,7 @@ msgstr "ID джерела:"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:48
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:47
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
-#: ../gramps/gui/editors/filtereditor.py:525
+#: ../gramps/gui/editors/filtereditor.py:524
 msgid "Filter name:"
 msgstr "Назва фільтру:"
 
@@ -1369,7 +1347,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
-#: ../gramps/gui/editors/filtereditor.py:533
+#: ../gramps/gui/editors/filtereditor.py:532
 msgid "Source filter name:"
 msgstr "Назва фільтру джерел:"
 
@@ -1445,7 +1423,7 @@ msgstr "Вибирає всі цитати, які помічені як при�
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
-#: ../gramps/gui/editors/filtereditor.py:552
+#: ../gramps/gui/editors/filtereditor.py:551
 msgid "Confidence level:"
 msgstr "Рівень довіри:"
 
@@ -1555,7 +1533,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
-#: ../gramps/gui/editors/filtereditor.py:535
+#: ../gramps/gui/editors/filtereditor.py:534
 msgid "Repository filter name:"
 msgstr "Назва фільтру сховищ"
 
@@ -1649,7 +1627,7 @@ msgstr "Тип події:"
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
-#: ../gramps/gui/editors/filtereditor.py:508
+#: ../gramps/gui/editors/filtereditor.py:507
 #: ../gramps/gui/glade/mergeevent.glade.h:7
 msgid "Place:"
 msgstr "Місце:"
@@ -1746,12 +1724,12 @@ msgstr "Вибирає події, що підпадають під вказан
 
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:529
+#: ../gramps/gui/editors/filtereditor.py:528
 msgid "Person filter name:"
 msgstr "Назва фільтру осіб:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:545
+#: ../gramps/gui/editors/filtereditor.py:544
 msgid "Include Family events:"
 msgstr "Включити сімейну подію:"
 
@@ -1772,9 +1750,8 @@ msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
-#, fuzzy
 msgid "Events with source matching the <source filter>"
-msgstr "Шукати події, що відповідають критеріям"
+msgstr "Події з джерелом, що підпадає під <фільтр джерела>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:52
 msgid "Matches events with sources that match the specified source filter name"
@@ -2007,7 +1984,7 @@ msgstr "Вибирає людей, з певним джерелом"
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
-#: ../gramps/gui/editors/filtereditor.py:548
+#: ../gramps/gui/editors/filtereditor.py:547
 msgid "Tag:"
 msgstr "Мітка:"
 
@@ -2677,7 +2654,7 @@ msgstr "Сімейне прізвисько:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:50
-#: ../gramps/gui/editors/filtereditor.py:543
+#: ../gramps/gui/editors/filtereditor.py:542
 msgid "Regular-Expression matching:"
 msgstr "Регулярний вираз:"
 
@@ -2802,7 +2779,7 @@ msgid "Matches people with the particular tag"
 msgstr "Вибирає людей з певною міткою"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
-#: ../gramps/gui/editors/filtereditor.py:541
+#: ../gramps/gui/editors/filtereditor.py:540
 msgid "Case sensitive:"
 msgstr "Враховувати регістр:"
 
@@ -2849,7 +2826,7 @@ msgstr "Вибирає людей, в яких відсутнє ім'я або �
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:46
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:539
+#: ../gramps/gui/editors/filtereditor.py:538
 msgid "Inclusive:"
 msgstr "Містить:"
 
@@ -2963,7 +2940,7 @@ msgstr "Вибір всіх жінок"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:518
+#: ../gramps/gui/editors/filtereditor.py:517
 msgid "Number of generations:"
 msgstr "Число поколінь:"
 
@@ -3074,7 +3051,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
-#: ../gramps/gui/editors/filtereditor.py:531
+#: ../gramps/gui/editors/filtereditor.py:530
 msgid "Event filter name:"
 msgstr "Назва фільтру подій:"
 
@@ -6179,7 +6156,7 @@ msgstr "Місце"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/views/treemodels/mediamodel.py:134
 #: ../gramps/plugins/drawreport/ancestortree.py:1055
-#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1649
 #: ../gramps/plugins/export/exportcsv.py:345
 #: ../gramps/plugins/export/exportcsv.py:462
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
@@ -6237,8 +6214,8 @@ msgstr "Лінк на подію"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:307
-#: ../gramps/gui/editors/filtereditor.py:742
-#: ../gramps/gui/editors/filtereditor.py:895
+#: ../gramps/gui/editors/filtereditor.py:767
+#: ../gramps/gui/editors/filtereditor.py:920
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:130
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:95
 #: ../gramps/gui/plug/_guioptions.py:1122 ../gramps/gui/plug/_windows.py:120
@@ -6509,7 +6486,7 @@ msgstr "Тягніть та кидайте колонки, щоб змінити
 #. #################
 #: ../gramps/gui/columnorder.py:130 ../gramps/gui/configure.py:1075
 #: ../gramps/plugins/drawreport/ancestortree.py:937
-#: ../gramps/plugins/drawreport/descendtree.py:1512
+#: ../gramps/plugins/drawreport/descendtree.py:1516
 msgid "Display"
 msgstr "Показ"
 
@@ -7101,7 +7078,7 @@ msgstr "Скасувати"
 
 #: ../gramps/gui/dbloader.py:330
 #, fuzzy
-msgid "Need to upgrade BSDDB database!"
+msgid "Need to upgrade Bsddb database!"
 msgstr "Потрібно оновити базу даних!"
 
 #: ../gramps/gui/dbloader.py:332
@@ -7544,7 +7521,7 @@ msgstr "_Атрибути"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:122
-#: ../gramps/gui/editors/filtereditor.py:898
+#: ../gramps/gui/editors/filtereditor.py:923
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:97
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:95
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:116
@@ -9197,54 +9174,73 @@ msgstr "Обрати %s із списку"
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr "Вкажіть, або оберіть ID джерела. Залиште пустим для пошуку об'єкта без джерела."
 
-#: ../gramps/gui/editors/filtereditor.py:540
+#: ../gramps/gui/editors/filtereditor.py:539
 msgid "Include original person"
 msgstr "Включити початкову особу"
 
-#: ../gramps/gui/editors/filtereditor.py:542
+#: ../gramps/gui/editors/filtereditor.py:541
 msgid "Use exact case of letters"
 msgstr "Використовувати точний регістр букв"
 
-#: ../gramps/gui/editors/filtereditor.py:544
+#: ../gramps/gui/editors/filtereditor.py:543
 msgid "Use regular expression"
 msgstr "Використовувати регулярний вираз"
 
-#: ../gramps/gui/editors/filtereditor.py:546
+#: ../gramps/gui/editors/filtereditor.py:545
 msgid "Also family events where person is wife/husband"
 msgstr "Також сімейні події в яких особа приймала участь як чоловік/дружина"
 
-#: ../gramps/gui/editors/filtereditor.py:572
+#: ../gramps/gui/editors/filtereditor.py:563
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:77
+#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:79
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:92
+#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:70
+#: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:74
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:96
+#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:77
+#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:78
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:69
+msgid "Use regular expressions"
+msgstr "Вжити регулярний вираз"
+
+#: ../gramps/gui/editors/filtereditor.py:564
+msgid ""
+"Interpret the contents of string fields as regular expressions.\n"
+"A decimal point will match any character. A question mark will match zero or one occurences of the previous character or group. An asterisk will match zero or more occurences. A plus sign will match one or more occurences. Use parentheses to group expressions. Specify alternatives using a vertical bar. A caret will match the start of a line. A dollar sign will match the end of a line."
+msgstr ""
+
+#: ../gramps/gui/editors/filtereditor.py:592
 msgid "Rule Name"
 msgstr "Назва правила"
 
-#: ../gramps/gui/editors/filtereditor.py:687
-#: ../gramps/gui/editors/filtereditor.py:698
+#: ../gramps/gui/editors/filtereditor.py:709
+#: ../gramps/gui/editors/filtereditor.py:720
 #: ../gramps/gui/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Правило не обрано"
 
-#: ../gramps/gui/editors/filtereditor.py:738
+#: ../gramps/gui/editors/filtereditor.py:763
 msgid "Define filter"
 msgstr "Визначити фільтр"
 
-#: ../gramps/gui/editors/filtereditor.py:742
+#: ../gramps/gui/editors/filtereditor.py:767
 msgid "Values"
 msgstr "Значення"
 
-#: ../gramps/gui/editors/filtereditor.py:840
+#: ../gramps/gui/editors/filtereditor.py:865
 msgid "Add Rule"
 msgstr "Додати правило"
 
-#: ../gramps/gui/editors/filtereditor.py:852
+#: ../gramps/gui/editors/filtereditor.py:877
 msgid "Edit Rule"
 msgstr "Редагувати правило"
 
-#: ../gramps/gui/editors/filtereditor.py:887
+#: ../gramps/gui/editors/filtereditor.py:912
 msgid "Filter Test"
 msgstr "Тестувати фільтр"
 
 #. ###############################
-#: ../gramps/gui/editors/filtereditor.py:1025
+#: ../gramps/gui/editors/filtereditor.py:1050
 #: ../gramps/plugins/drawreport/calendarreport.py:421
 #: ../gramps/plugins/drawreport/statisticschart.py:916
 #: ../gramps/plugins/drawreport/timeline.py:378
@@ -9268,23 +9264,23 @@ msgstr "Тестувати фільтр"
 msgid "Filter"
 msgstr "Фільтр"
 
-#: ../gramps/gui/editors/filtereditor.py:1025
+#: ../gramps/gui/editors/filtereditor.py:1050
 msgid "Comment"
 msgstr "Коментар"
 
-#: ../gramps/gui/editors/filtereditor.py:1033
+#: ../gramps/gui/editors/filtereditor.py:1058
 msgid "Custom Filter Editor"
 msgstr "Редагувати власний фільтр"
 
-#: ../gramps/gui/editors/filtereditor.py:1099
+#: ../gramps/gui/editors/filtereditor.py:1124
 msgid "Delete Filter?"
 msgstr "Видалити фільтр?"
 
-#: ../gramps/gui/editors/filtereditor.py:1100
+#: ../gramps/gui/editors/filtereditor.py:1125
 msgid "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it."
 msgstr "Цей фільтр зараз використовується в якості базового для інших фільтрів. Його видалення призведе до видалення залежних від нього фільтрів."
 
-#: ../gramps/gui/editors/filtereditor.py:1104
+#: ../gramps/gui/editors/filtereditor.py:1129
 msgid "Delete Filter"
 msgstr "Видалити фільтр"
 
@@ -9387,18 +9383,6 @@ msgstr "%s не містить"
 #: ../gramps/gui/views/listview.py:1119 ../gramps/gui/views/listview.py:1139
 msgid "Updating display..."
 msgstr "Оновлення екрану..."
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:77
-#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:79
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:92
-#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:70
-#: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:74
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:77
-#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:78
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:69
-msgid "Use regular expressions"
-msgstr "Вжити регулярний вираз"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:98
 #: ../gramps/plugins/view/citationlistview.py:99
@@ -13332,7 +13316,7 @@ msgstr "Медіа:"
 #. #########################
 #: ../gramps/gui/viewmanager.py:1561
 #: ../gramps/plugins/drawreport/ancestortree.py:1026
-#: ../gramps/plugins/drawreport/descendtree.py:1616
+#: ../gramps/plugins/drawreport/descendtree.py:1620
 #: ../gramps/plugins/textreport/detancestralreport.py:800
 #: ../gramps/plugins/textreport/detdescendantreport.py:974
 #: ../gramps/plugins/textreport/detdescendantreport.py:975
@@ -14139,7 +14123,7 @@ msgstr "Друкую дерево..."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:894
-#: ../gramps/plugins/drawreport/descendtree.py:1477
+#: ../gramps/plugins/drawreport/descendtree.py:1481
 msgid "Tree Options"
 msgstr "Параметри дерева"
 
@@ -14163,7 +14147,7 @@ msgid "The center person for the tree"
 msgstr "Основна особа для побудови дерева"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:900
-#: ../gramps/plugins/drawreport/descendtree.py:1497
+#: ../gramps/plugins/drawreport/descendtree.py:1501
 #: ../gramps/plugins/drawreport/fanchart.py:645
 #: ../gramps/plugins/textreport/ancestorreport.py:287
 #: ../gramps/plugins/textreport/descendreport.py:415
@@ -14173,7 +14157,7 @@ msgid "Generations"
 msgstr "Покоління"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:901
-#: ../gramps/plugins/drawreport/descendtree.py:1498
+#: ../gramps/plugins/drawreport/descendtree.py:1502
 msgid "The number of generations to include in the tree"
 msgstr "Кількість поколінь, що будуть показані на дереві"
 
@@ -14190,7 +14174,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Скільки поколінь показувати на графіку у вигляді пустих блоків"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
-#: ../gramps/plugins/drawreport/descendtree.py:1506
+#: ../gramps/plugins/drawreport/descendtree.py:1510
 #, fuzzy
 msgid "Compress tree"
 msgstr "Стиснути дерево"
@@ -14260,17 +14244,17 @@ msgid "Display format for the mothers box."
 msgstr "Формат показу для блоку з мамою."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:965
-#: ../gramps/plugins/drawreport/descendtree.py:1546
+#: ../gramps/plugins/drawreport/descendtree.py:1550
 msgid "Include Marriage box"
 msgstr "Включити блок шлюбу"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:967
-#: ../gramps/plugins/drawreport/descendtree.py:1548
+#: ../gramps/plugins/drawreport/descendtree.py:1552
 msgid "Whether to include a separate marital box in the report"
 msgstr "Чи включати до звіту окремий блок про шлюб."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
-#: ../gramps/plugins/drawreport/descendtree.py:1551
+#: ../gramps/plugins/drawreport/descendtree.py:1555
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -14279,43 +14263,43 @@ msgstr ""
 "Формат показу"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:971
-#: ../gramps/plugins/drawreport/descendtree.py:1552
+#: ../gramps/plugins/drawreport/descendtree.py:1556
 msgid "Display format for the marital box."
 msgstr "Формат показу для блоку із шлюбом."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1565
+#: ../gramps/plugins/drawreport/descendtree.py:1569
 msgid "Size"
 msgstr "Розмір"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:977
-#: ../gramps/plugins/drawreport/descendtree.py:1567
+#: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Scale tree to fit"
 msgstr "Масштабувати дерево, щоб вмістити"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:978
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1572
 msgid "Do not scale tree"
 msgstr "Не масштабувати дерево"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:979
-#: ../gramps/plugins/drawreport/descendtree.py:1569
+#: ../gramps/plugins/drawreport/descendtree.py:1573
 msgid "Scale tree to fit page width only"
 msgstr "Масштабувати дерево, щоб вмістити його по ширині сторінки"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1570
+#: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Scale tree to fit the size of the page"
 msgstr "Масштабувати дерево до розмірів сторінки"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:982
-#: ../gramps/plugins/drawreport/descendtree.py:1572
+#: ../gramps/plugins/drawreport/descendtree.py:1576
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Чи масштабувати дерево щоб вмістити його у сторінку визначеного розміру"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:988
-#: ../gramps/plugins/drawreport/descendtree.py:1578
+#: ../gramps/plugins/drawreport/descendtree.py:1582
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -14326,7 +14310,7 @@ msgstr ""
 "Замітка:Відкидає налаштування із вкладки \"Параметри паперу\""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:994
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1588
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -14345,34 +14329,34 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1014
-#: ../gramps/plugins/drawreport/descendtree.py:1604
+#: ../gramps/plugins/drawreport/descendtree.py:1608
 msgid "inter-box Y scale factor"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
-#: ../gramps/plugins/drawreport/descendtree.py:1606
+#: ../gramps/plugins/drawreport/descendtree.py:1610
 msgid "Make the inter-box Y bigger or smaller"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
-#: ../gramps/plugins/drawreport/descendtree.py:1609
+#: ../gramps/plugins/drawreport/descendtree.py:1613
 msgid "box shadow scale factor"
 msgstr "Коефіцієнт масштабування тіні для блоку"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
-#: ../gramps/plugins/drawreport/descendtree.py:1611
+#: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Make the box shadow bigger or smaller"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
-#: ../gramps/plugins/drawreport/descendtree.py:1618
+#: ../gramps/plugins/drawreport/descendtree.py:1622
 msgid "Report Title"
 msgstr "Назва звіту"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
-#: ../gramps/plugins/drawreport/descendtree.py:1619
-#: ../gramps/plugins/drawreport/descendtree.py:1668
+#: ../gramps/plugins/drawreport/descendtree.py:1623
+#: ../gramps/plugins/drawreport/descendtree.py:1672
 msgid "Do not include a title"
 msgstr "Не включати заголовок"
 
@@ -14381,22 +14365,22 @@ msgid "Include Report Title"
 msgstr "Додати заголовок звіту"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
-#: ../gramps/plugins/drawreport/descendtree.py:1621
+#: ../gramps/plugins/drawreport/descendtree.py:1625
 msgid "Choose a title for the report"
 msgstr "Оберіть назву для звіту"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1034
-#: ../gramps/plugins/drawreport/descendtree.py:1625
+#: ../gramps/plugins/drawreport/descendtree.py:1629
 msgid "Include a border"
 msgstr "Включити рамку"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1035
-#: ../gramps/plugins/drawreport/descendtree.py:1626
+#: ../gramps/plugins/drawreport/descendtree.py:1630
 msgid "Whether to make a border around the report."
 msgstr "Чи друкувати рамку навколо звіту."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1038
-#: ../gramps/plugins/drawreport/descendtree.py:1629
+#: ../gramps/plugins/drawreport/descendtree.py:1633
 msgid "Include Page Numbers"
 msgstr "Включити номера сторінки"
 
@@ -14405,28 +14389,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Чи друкувати номер сторінки на кожному листку."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1042
-#: ../gramps/plugins/drawreport/descendtree.py:1633
+#: ../gramps/plugins/drawreport/descendtree.py:1637
 msgid "Include Blank Pages"
 msgstr "Включать пусті сторінки"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1043
-#: ../gramps/plugins/drawreport/descendtree.py:1634
+#: ../gramps/plugins/drawreport/descendtree.py:1638
 msgid "Whether to include pages that are blank."
 msgstr "Чи включати пусті сторінки"
 
 #. category_name = _("Notes")
 #: ../gramps/plugins/drawreport/ancestortree.py:1050
-#: ../gramps/plugins/drawreport/descendtree.py:1639
+#: ../gramps/plugins/drawreport/descendtree.py:1643
 msgid "Include a note"
 msgstr "Включить замітку"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1051
-#: ../gramps/plugins/drawreport/descendtree.py:1641
+#: ../gramps/plugins/drawreport/descendtree.py:1645
 msgid "Whether to include a note on the report."
 msgstr "Чи включати замітку до звіту"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1056
-#: ../gramps/plugins/drawreport/descendtree.py:1646
+#: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid ""
 "Add a note\n"
 "\n"
@@ -14437,12 +14421,12 @@ msgstr ""
 "$T додасть поточну дату"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1061
-#: ../gramps/plugins/drawreport/descendtree.py:1651
+#: ../gramps/plugins/drawreport/descendtree.py:1655
 msgid "Note Location"
 msgstr "Розташування замітки"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1064
-#: ../gramps/plugins/drawreport/descendtree.py:1654
+#: ../gramps/plugins/drawreport/descendtree.py:1658
 msgid "Where to place the note."
 msgstr "Де розмістити замітку."
 
@@ -14459,7 +14443,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr "Пусті блоки поколінь для невідомих предків"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1107
-#: ../gramps/plugins/drawreport/descendtree.py:1705
+#: ../gramps/plugins/drawreport/descendtree.py:1709
 #: ../gramps/plugins/textreport/ancestorreport.py:373
 #: ../gramps/plugins/textreport/detancestralreport.py:903
 #: ../gramps/plugins/textreport/detdescendantreport.py:1098
@@ -14476,19 +14460,19 @@ msgid "The basic style used for the text display."
 msgstr "Базовий стиль тексту."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1117
-#: ../gramps/plugins/drawreport/descendtree.py:1727
+#: ../gramps/plugins/drawreport/descendtree.py:1731
 #: ../gramps/plugins/textreport/familygroup.py:745
 #: ../gramps/plugins/textreport/tagreport.py:598
 msgid "The basic style used for the note display."
 msgstr "Базовий стиль для заміток."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1127
-#: ../gramps/plugins/drawreport/descendtree.py:1695
+#: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid "The basic style used for the title display."
 msgstr "Базовий стиль для заголовка."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:99
-#: ../gramps/plugins/drawreport/descendtree.py:674
+#: ../gramps/plugins/drawreport/descendtree.py:678
 #: ../gramps/plugins/drawreport/fanchart.py:180
 #: ../gramps/plugins/graph/gvhourglass.py:103
 #: ../gramps/plugins/textreport/ancestorreport.py:107
@@ -14826,47 +14810,47 @@ msgstr "Сімейна діаграма для %(father1)s та %(mother1)s"
 msgid "Cousin Chart for "
 msgstr "Графік двоюрідних братів та сестер для "
 
-#: ../gramps/plugins/drawreport/descendtree.py:742
+#: ../gramps/plugins/drawreport/descendtree.py:746
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Сім’я %s відсутня в базі даних"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1480
 #: ../gramps/plugins/drawreport/descendtree.py:1484
+#: ../gramps/plugins/drawreport/descendtree.py:1488
 msgid "Report for"
 msgstr "Звіт для"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1481
+#: ../gramps/plugins/drawreport/descendtree.py:1485
 msgid "The main person for the report"
 msgstr "Основна особа для звіту"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1485
+#: ../gramps/plugins/drawreport/descendtree.py:1489
 msgid "The main family for the report"
 msgstr "Головна сім'я для звіту"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1489
+#: ../gramps/plugins/drawreport/descendtree.py:1493
 msgid "Start with the parent(s) of the selected first"
 msgstr "Почати з обраних батьків"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1492
+#: ../gramps/plugins/drawreport/descendtree.py:1496
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Буде показано батьків, братів та сестер обраної особи."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1501
+#: ../gramps/plugins/drawreport/descendtree.py:1505
 msgid "Level of Spouses"
 msgstr "Рівень Чоловіка/Дружини"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1502
+#: ../gramps/plugins/drawreport/descendtree.py:1506
 #, fuzzy
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=без Подружжя, 1=включити Подружжя, 2=включити Подружжя дружини, і т.д."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1507
+#: ../gramps/plugins/drawreport/descendtree.py:1511
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "Чи підсовувати осіб вгору, де це можливо, щоб зменшити розмір дерева"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1514
+#: ../gramps/plugins/drawreport/descendtree.py:1518
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -14874,15 +14858,15 @@ msgstr ""
 "Формат показу\n"
 "Нащадків"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1518
+#: ../gramps/plugins/drawreport/descendtree.py:1522
 msgid "Display format for a descendant."
 msgstr "Формат показу для нащадків."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1521
+#: ../gramps/plugins/drawreport/descendtree.py:1525
 msgid "Bold direct descendants"
 msgstr "Виділити прямих нащадків"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1523
+#: ../gramps/plugins/drawreport/descendtree.py:1527
 msgid "Whether to bold those people that are direct (not step or half) descendants."
 msgstr "Чи виділяти прямих нащадків( не прийомних), товстим"
 
@@ -14892,15 +14876,15 @@ msgstr "Чи виділяти прямих нащадків( не прийомн
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1539
 msgid "Indent Spouses"
 msgstr "Відступ чоловіка/дружину"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1536
+#: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Whether to indent the spouses in the tree."
 msgstr "Чи показувати відступ для подружжя в дереві."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1539
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -14908,16 +14892,16 @@ msgstr ""
 "Подружній\n"
 "Формат показу"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1543
+#: ../gramps/plugins/drawreport/descendtree.py:1547
 msgid "Display format for a spouse."
 msgstr "Формат показу для партнера."
 
 #. #################
-#: ../gramps/plugins/drawreport/descendtree.py:1556
+#: ../gramps/plugins/drawreport/descendtree.py:1560
 msgid "Replace"
 msgstr "Замінити"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1559
+#: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -14925,7 +14909,7 @@ msgstr ""
 "Замінити формат показу:\n"
 "'Замінити це'/' із цим'"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1561
+#: ../gramps/plugins/drawreport/descendtree.py:1565
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -14933,24 +14917,24 @@ msgstr ""
 "ie\n"
 "Сполучені Штати Америки/С.Ш.А."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1620
-#: ../gramps/plugins/drawreport/descendtree.py:1669
+#: ../gramps/plugins/drawreport/descendtree.py:1624
+#: ../gramps/plugins/drawreport/descendtree.py:1673
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Діаграма нащадків для [вибраної особи(осіб)]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1630
+#: ../gramps/plugins/drawreport/descendtree.py:1634
 msgid "Whether to include page numbers on each page."
 msgstr "Чи друкувати номер сторінки на кожному листку."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1673
+#: ../gramps/plugins/drawreport/descendtree.py:1677
 msgid "Family Chart for [names of chosen family]"
 msgstr "Сімейна діаграма для [імен обраної сім’ї]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1677
+#: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Cousin Chart for [names of children]"
 msgstr "Графік двоюрідних братів та сестер для [імен дітей]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1717
+#: ../gramps/plugins/drawreport/descendtree.py:1721
 msgid "The bold style used for the text display."
 msgstr "Товстий стиль показу тексту."
 
@@ -28997,6 +28981,10 @@ msgstr "<b>Ліцензія на програму Gramps</b><br/>Ви может
 #: ../data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Need to upgrade BSDDB database!"
+#~ msgstr "Потрібно оновити базу даних!"
 
 #, fuzzy
 #~ msgid "Family tree"
