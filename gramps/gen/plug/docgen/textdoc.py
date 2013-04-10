@@ -181,7 +181,7 @@ class TextDoc(object):
         """
         raise NotImplementedError
     
-    def write_markup(self, text, s_tags):
+    def write_markup(self, text, s_tags, mark=None):
         """
         Writes the text in the current paragraph.  Should only be used after a
         start_paragraph and before an end_paragraph. Not all backends support
@@ -191,8 +191,9 @@ class TextDoc(object):
         @param text: text to write. The text is assumed to be _not_ escaped
         @param s_tags:  assumed to be list of styledtexttags to apply to the
                         text
+        @param mark:  IndexMark to use for indexing (if supported)
         """
-        self.write_text(text)
+        self.write_text(text, mark=mark)
 
     def write_note(self, text, format, style_name):
         """
