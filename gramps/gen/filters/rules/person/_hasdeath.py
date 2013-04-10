@@ -51,8 +51,8 @@ class HasDeath(Rule):
     description = _("Matches people with death data of a particular value")
     category    = _('Event filters')
     
-    def __init__(self,list):
-        Rule.__init__(self,list)
+    def __init__(self, list, use_regex=False):
+        Rule.__init__(self, list, use_regex)
         if self.list[0]:
             self.date = parser.parse(self.list[0])
         else:

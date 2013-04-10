@@ -51,10 +51,6 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     description = _("Matches people that are descendants "
                     "of anybody matched by a filter")
     
-
-#    def __init__(self,list):
-#        IsDescendantOf.__init__(self,list)
-
     def prepare(self,db):
         self.db = db
         self.map = set()
