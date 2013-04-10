@@ -125,7 +125,7 @@ class BsddbUpgradeRequiredError(Exception):
         self.bsddb_version = str(bsddb_version)
 
     def __str__(self):
-        return _('The BSDDB version of the Family Tree you are trying to open '
+        return _('The Bsddb version of the Family Tree you are trying to open '
               'needs to be upgraded from %(env_version)s to %(bdb_version)s.\n\n'
               'This probably means that the Family Tree was created with '
               'an old version of Gramps. Opening the tree with this version '

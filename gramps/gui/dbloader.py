@@ -327,7 +327,7 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Need to upgrade BSDDB database!"), 
+                    if QuestionDialog2(_("Need to upgrade Bsddb database!"), 
                                        str(msg), 
                                        _("I have made a backup, "
                                          "please upgrade my tree"), 
