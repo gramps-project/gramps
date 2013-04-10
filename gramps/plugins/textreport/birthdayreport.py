@@ -45,7 +45,8 @@ from gramps.gen.lib import NameType, EventType, Name, Date, Person, Surname
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
-                             PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
+                             PARA_ALIGN_LEFT, PARA_ALIGN_CENTER,
+                             IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
                          EnumeratedListOption, FilterOption, PersonOption)
 from gramps.gen.plug.report import Report
@@ -123,11 +124,11 @@ class BirthdayReport(Report):
             name = Name(primary_name)
         return self._name_display.display_name(name)
 
-    def add_day_item(self, text, month, day):
+    def add_day_item(self, text, month, day, person=None):
         """ Add an item to a day. """
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
-        day_list.append(text)
+        day_list.append((text, person))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
@@ -153,7 +154,9 @@ class BirthdayReport(Report):
         self.collect_data()
         # generate the report:
         self.doc.start_paragraph('BIR-Title') 
-        self.doc.write_text(str(self.titletext) + ": " + str(self.year))
+        title = str(self.titletext) + ": " + str(self.year)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         if self.text1.strip() != "":
             self.doc.start_paragraph('BIR-Text1style')
@@ -170,9 +173,11 @@ class BirthdayReport(Report):
         if self.relationships:
             name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
+            mark = ReportUtils.get_person_mark(self.database,
+                                               self.center_person)
             # feature request 2356: avoid genitive form
             self.doc.write_text(_("Relationships shown are to %s") %
-                                self._name_display.display_name(name))
+                                self._name_display.display_name(name), mark)
             self.doc.end_paragraph()
         self._user.begin_progress(_('Birthday and Anniversary Report'), 
                                   _('Formatting months...'), 12)
@@ -194,7 +199,8 @@ class BirthdayReport(Report):
             thisday = current_date.fromordinal(current_ord)
             if thisday.month == month:
                 list = self.calendar.get(month, {}).get(thisday.day, [])
-                for p in list:
+                for p, p_obj in list:
+                    mark = ReportUtils.get_person_mark(self.database, p_obj)
                     p = p.replace("\n", " ")
                     if thisday not in started_day:
                         self.doc.start_paragraph("BIR-Daystyle")
@@ -202,7 +208,7 @@ class BirthdayReport(Report):
                         self.doc.end_paragraph()
                         started_day[thisday] = 1
                     self.doc.start_paragraph("BIR-Datastyle")
-                    self.doc.write_text(p)
+                    self.doc.write_text(p, mark)
                     self.doc.end_paragraph()
             current_ord += 1
 
@@ -285,7 +291,7 @@ class BirthdayReport(Report):
                                    'age'      : nyears,
                                    'relation' : comment})
 
-                    self.add_day_item(text, month, day)
+                    self.add_day_item(text, month, day, person)
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -341,7 +347,7 @@ class BirthdayReport(Report):
                                             alive2 = probably_alive(spouse, self.database,
                                                                     prob_alive_date)
                                             if (self.alive and alive1 and alive2) or not self.alive:
-                                                self.add_day_item(text, month, day)
+                                                self.add_day_item(text, month, day, spouse)
         self._user.end_progress()
 
 #------------------------------------------------------------------------
