@@ -33,8 +33,8 @@ General option handling, including saving and parsing.
 #
 #-------------------------------------------------------------------------
 from __future__ import print_function
-
 import os
+import sys
 
 #-------------------------------------------------------------------------
 #
