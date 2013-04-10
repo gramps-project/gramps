@@ -38,7 +38,7 @@ _ = glocale.get_translation().sgettext
 from gramps.plugins.lib.librecords import (RECORDS, find_records, 
         CALLNAME_DONTUSE, CALLNAME_REPLACE, CALLNAME_UNDERLINE_ADD)
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
-        PARA_ALIGN_CENTER)
+        PARA_ALIGN_CENTER, IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, 
         FilterOption, NumberOption, PersonOption, StringOption)
 from gramps.gen.plug.report import Report
@@ -79,7 +79,9 @@ class RecordsReport(Report):
         records = find_records(self.database, self.filter, self.top_size, self.callname)
 
         self.doc.start_paragraph('REC-Title')
-        self.doc.write_text(_("Records"))
+        title = _("Records")
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph('REC-Subtitle')
