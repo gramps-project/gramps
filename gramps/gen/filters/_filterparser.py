@@ -84,7 +84,7 @@ class FilterParser(handler.ContentHandler):
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":
-            if attrs.has_key('use_regex'):
+            if 'use_regex' in attrs:
                 self.use_regex = attrs['use_regex'] == 'True'
             else:
                 self.use_regex = False
