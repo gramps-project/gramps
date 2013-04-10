@@ -1531,7 +1531,7 @@ links (like ODF) and write PDF from that format.
         """
         self.__write_text(text, mark, links=links)
     
-    def write_markup(self, text, s_tags):
+    def write_markup(self, text, s_tags, mark=None):
         """
         Writes the text in the current paragraph.  Should only be used after a
         start_paragraph and before an end_paragraph. 
@@ -1539,9 +1539,10 @@ links (like ODF) and write PDF from that format.
         @param text: text to write. The text is assumed to be _not_ escaped
         @param s_tags:  assumed to be list of styledtexttags to apply to the
                         text
+        @param mark:  IndexMark to use for indexing
         """
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
-        self.__write_text(markuptext, markup=True)
+        self.__write_text(markuptext, mark=mark, markup=True)
     
     def add_media_object(self, name, pos, x_cm, y_cm, alt='', 
                          style_name=None, crop=None):

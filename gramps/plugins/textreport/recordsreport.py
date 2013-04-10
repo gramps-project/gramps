@@ -99,12 +99,14 @@ class RecordsReport(Report):
             last_value = None
             rank = 0
             for (number, (sort, value, name, handletype, handle)) in enumerate(top):
+                person = self.database.get_person_from_handle(handle)
+                mark = ReportUtils.get_person_mark(self.database, person)
                 if value != last_value:
                     last_value = value
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
                 self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
-                self.doc.write_markup(cuni(name), name.get_tags())
+                self.doc.write_markup(cuni(name), name.get_tags(), mark)
                 self.doc.write_text(_(" (%(value)s)") % {'value': str(value)})
                 self.doc.end_paragraph()
 
