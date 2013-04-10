@@ -279,7 +279,7 @@ class DbManager(CLIDbManager):
         render.connect('edited', self.__change_name)
         render.connect('editing-canceled', self.__stop_edit)
         render.connect('editing-started', self.__start_edit)
-        self.column = Gtk.TreeViewColumn(_('Family tree name'), render, 
+        self.column = Gtk.TreeViewColumn(_('Family Tree name'), render, 
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_sort_indicator(True)
@@ -550,9 +550,9 @@ class DbManager(CLIDbManager):
 
         if len(path.get_indices()) == 1:
             QuestionDialog(
-                _("Remove the '%s' family tree?") % self.data_to_delete[0],
-                _("Removing this family tree will permanently destroy the data."),
-                _("Remove family tree"),
+                _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
+                _("Removing this Family Tree will permanently destroy the data."),
+                _("Remove Family Tree"),
                 self.__really_delete_db)
         else:
             rev = self.data_to_delete[0]
@@ -593,7 +593,7 @@ class DbManager(CLIDbManager):
                     os.unlink(os.path.join(top, filename))
             os.rmdir(self.data_to_delete[1])
         except (IOError, OSError) as msg:
-            DbManager.ERROR(_("Could not delete family tree"),
+            DbManager.ERROR(_("Could not delete Family Tree"),
                                        str(msg))
         # rebuild the display
         self.__populate()
@@ -646,26 +646,26 @@ class DbManager(CLIDbManager):
         
         #First ask user if he is really sure :-)
         yes_no = QuestionDialog2(
-            _("Repair family tree?"),
+            _("Repair Family Tree?"),
             _(
-"If you click <b>Proceed</b>, Gramps will attempt to recover your family tree"
+"If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree"
 " from the last good backup. There are several ways this can cause unwanted"
-" effects, so <b>backup</b> the family tree first.\n"
-"The Family tree you have selected is stored in %s.\n\n"
+" effects, so <b>backup</b> the Family Tree first.\n"
+"The Family Tree you have selected is stored in %s.\n\n"
 "Before doing a repair, verify that the Family Tree can really no longer be "
 " opened, as the database back-end can recover from some errors automatically.\n\n"
 "<b>Details:</b> Repairing a Family Tree actually uses the last backup of"
 " the Family Tree, which Gramps stored on last use. If you have worked for"
 " several hours/days without closing Gramps, then all this information will"
-" be lost! If the repair fails, then the original family tree will be lost"
+" be lost! If the repair fails, then the original Family Tree will be lost"
 " forever, hence a backup is needed. If the repair fails, or too much"
-" information is lost, you can fix the original family tree manually."
+" information is lost, you can fix the original Family Tree manually."
 " For details, see the webpage\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
-"Before doing a repair, try to open the family tree in the normal manner."
+"Before doing a repair, try to open the Family Tree in the normal manner."
 " Several errors that trigger the repair button can be fixed automatically."
 " If this is the case, you can disable the repair button by removing the"
-" file <i>need_recover</i> in the family tree directory."
+" file <i>need_recover</i> in the Family Tree directory."
 ) % dirname,
             _("Proceed, I have taken a backup"),
             _("Stop"))
@@ -731,7 +731,7 @@ class DbManager(CLIDbManager):
         try:
             self._create_new_db()
         except (OSError, IOError) as msg:
-            DbManager.ERROR(_("Could not create family tree"),
+            DbManager.ERROR(_("Could not create Family Tree"),
                                        str(msg))
         self.new.set_sensitive(True)
 

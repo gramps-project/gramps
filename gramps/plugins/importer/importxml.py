@@ -957,7 +957,7 @@ class GrampsParser(UpdateCallback):
                 elif not oldpath == self.mediapath:
                     self.user.notify_error(_("Could not change media path"), 
                         _("The opened file has media path %s, which conflicts with"
-                          " the media path of the family tree you import into. "
+                          " the media path of the Family Tree you import into. "
                           "The original media path has been retained. Copy the "
                           "files to a correct directory or change the media "
                           "path in the Preferences."
@@ -1670,7 +1670,7 @@ class GrampsParser(UpdateCallback):
             if self.db.has_name_group_key(key) :
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _('Your family tree groups name "%(key)s" together'
+                    msg = _('Your Family Tree groups name "%(key)s" together'
                             ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
                     self.user.warn(_("Gramps ignored namemap value"), msg)

@@ -149,11 +149,11 @@ class Check(tool.BatchTool):
         if self.db.__class__.__name__ == 'DbBsddb':
             if cross_table_duplicates(self.db):
                 Report(uistate, _(
-                    "Your family tree contains cross table duplicate handles.\n "
+                    "Your Family Tree contains cross table duplicate handles.\n "
                     "This is bad and can be fixed by making a backup of your\n"
-                    "family tree and importing that backup in an empty family\n"
+                    "Family Tree and importing that backup in an empty family\n"
                     "tree. The rest of the checking is skipped, the Check and\n"
-                    "Repair tool should be run anew on this new family tree."), 
+                    "Repair tool should be run anew on this new Family Tree."), 
                        cli)
                 return
         with DbTxn(_("Check Integrity"), self.db, batch=True) as trans:

@@ -218,9 +218,9 @@ class CLIDbManager(object):
             retval[_("Bsddb version")] = bsddb_version
             retval[_("Schema version")] = schema_version
             if sys.version_info[0] < 3:
-                retval[_("Family tree")] = name.encode(glocale.getfilesystemencoding())
+                retval[_("Family Tree")] = name.encode(glocale.getfilesystemencoding())
             else:
-                retval[_("Family tree")] = name
+                retval[_("Family Tree")] = name
             retval[_("Path")] = dirpath
             retval[_("Last accessed")] = time.strftime('%x %X', 
                                                     time.localtime(tval))
@@ -412,7 +412,7 @@ class CLIDbManager(object):
             name_file.write(new_text)
             name_file.close()
         except (OSError, IOError) as msg:
-            CLIDbManager.ERROR(_("Could not rename family tree"),
+            CLIDbManager.ERROR(_("Could not rename Family Tree"),
                   str(msg))
             return None, None
         return old_text, new_text

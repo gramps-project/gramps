@@ -425,7 +425,7 @@ class DescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "divs", divs)
 
         dups = BooleanOption(_('Show duplicate trees'), True)
-        dups.set_help(_("Whether to show duplicate family trees in the report."))
+        dups.set_help(_("Whether to show duplicate Family Trees in the report."))
         menu.add_option(category_name, "dups", dups)
 
     def make_default_style(self, default_style):

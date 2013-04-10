@@ -81,7 +81,7 @@ class DbVersionError(Exception):
     def __str__(self):
         return _("The schema version is not supported by this version of "
                  "Gramps.\n\n"
-                 "This Family tree is schema version %(tree_vers)s, and this "
+                 "This Family Tree is schema version %(tree_vers)s, and this "
                  "version of Gramps supports versions %(min_vers)s to "
                  "%(max_vers)s\n\n"
                  "Please upgrade to the corresponding version or use "
@@ -102,14 +102,14 @@ class BsddbDowngradeError(Exception):
 
     def __str__(self):
         return _('Gramps stores its data in a Berkeley Database. '
-                 'The family tree you try to load was created with version '
+                 'The family Tree you try to load was created with version '
                  '%(env_version)s of the Berkeley DB. However, the Gramps '
                  'version in use right now employs version %(bdb_version)s '
                  'of the Berkeley DB. So you are trying to load data created '
                  'in a newer format into an older program; this is bound to '
                  'fail. The right approach in this case is to use XML export '
-                 'and import. So try to open the family tree on that computer '
-                 'with that software that created the family tree, export it '
+                 'and import. So try to open the family Tree on that computer '
+                 'with that software that created the Family Tree, export it '
                  'to XML and load that XML into the version of Gramps you '
                  'intend to use.') % {'env_version': self.env_version,
                  'bdb_version': self.bdb_version}

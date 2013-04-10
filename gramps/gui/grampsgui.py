@@ -362,8 +362,8 @@ def __startgramps(errors, argparser):
         LOG.error(_(
     "\nGramps failed to start. Please report a bug about this.\n"
     "This could be because of an error in a (third party) View on startup.\n"
-    "To use another view, don't load a family tree, change view, and then load"
-    " your family tree.\n"
+    "To use another view, don't load a Family Tree, change view, and then load"
+    " your Family Tree.\n"
     "You can also change manually the startup view in the gramps.ini file \n"
     "by changing the last-view parameter.\n"
                    ), exc_info=True)
