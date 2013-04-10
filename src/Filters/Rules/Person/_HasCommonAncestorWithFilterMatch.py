@@ -51,8 +51,8 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                     "with anybody matched by a filter")
     category    = _("Ancestral filters")
 
-    def __init__(self, list):
-        HasCommonAncestorWith.__init__(self, list)
+    def __init__(self, list, use_regex=False):
+        HasCommonAncestorWith.__init__(self, list, use_regex)
         self.ancestor_cache = {}
 
     def prepare(self, db):

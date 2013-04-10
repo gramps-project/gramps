@@ -40,8 +40,8 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     """
     Wrap HasTextMatchingSubstringOf to enable the regex_match parameter.
     """
-    def __init__(self, list):
-        HasTextMatchingSubstringOf.__init__(self, list)
+    def __init__(self, list, use_regex=False):
+        HasTextMatchingSubstringOf.__init__(self, list, use_regex)
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

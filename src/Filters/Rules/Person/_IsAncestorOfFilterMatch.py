@@ -50,10 +50,6 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     description = _("Matches people that are ancestors "
                     "of anybody matched by a filter")
 
-
-    def __init__(self,list):
-        IsAncestorOf.__init__(self,list)
-    
     def prepare(self,db):
         self.db = db
         self.map = set()

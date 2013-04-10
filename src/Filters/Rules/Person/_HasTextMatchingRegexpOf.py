@@ -41,8 +41,8 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     parameter.
     
     """
-    def __init__(self,list):
-        HasTextMatchingSubstringOf.__init__(self,list)
+    def __init__(self, list, use_regex=False):
+        HasTextMatchingSubstringOf.__init__(self, list, use_regex)
 
     def prepare(self,db):
         self.db = db

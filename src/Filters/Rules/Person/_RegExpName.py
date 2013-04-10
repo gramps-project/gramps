@@ -49,8 +49,8 @@ class RegExpName(Rule):
     description = _("Matches people's names with a specified regular expression")
     category    = _('General filters')
 
-    def __init__(self, list):
-        Rule.__init__(self, list)
+    def __init__(self, list, use_regex=False):
+        Rule.__init__(self, list, use_regex)
         
         try:
             self.match = re.compile(list[0],re.I|re.U|re.L)

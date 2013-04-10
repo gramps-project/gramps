@@ -50,8 +50,8 @@ class HasData(Rule):
     description = _("Matches events with data of a particular value")
     category    = _('General filters')
     
-    def __init__(self, list):
-        Rule.__init__(self, list)
+    def __init__(self, list, use_regex=False):
+        Rule.__init__(self, list, use_regex)
 
         self.event_type = self.list[0]
         self.date = self.list[1]

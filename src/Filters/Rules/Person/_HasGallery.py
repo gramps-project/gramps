@@ -43,10 +43,10 @@ class HavePhotos(HasGalleryBase):
     name        = _('People with <count> media')
     description = _("Matches people with a certain number of items in the gallery")
 
-    def __init__(self, arg):
+    def __init__(self, arg, use_regex=False):
         # Upgrade from pre 3.1 HasPhotos filter, use defaults that correspond
         # Previous filter had 0 arguments
         if len(arg) == 0:
-            HasGalleryBase.__init__(self, ["0", 'greater than'])
+            HasGalleryBase.__init__(self, ["0", 'greater than'], use_regex)
         else:
-            HasGalleryBase.__init__(self, arg)
+            HasGalleryBase.__init__(self, arg, use_regex)
