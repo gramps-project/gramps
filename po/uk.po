@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-10 21:04+0300\n"
+"PO-Revision-Date: 2013-04-11 23:00+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../gramps/gen/const.py:207
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
@@ -485,7 +485,7 @@ msgstr "Імпортую дані..."
 
 #: ../gramps/cli/clidbman.py:415
 msgid "Could not rename Family Tree"
-msgstr "Не можливо перейменувати Сімейне Дерево"
+msgstr "Не можу перейменувати Сімейне Дерево"
 
 #: ../gramps/cli/clidbman.py:450
 #, python-format
@@ -808,7 +808,7 @@ msgid "Remove mother from family"
 msgstr "Видалити маму із сім'ї"
 
 #: ../gramps/gen/db/exceptions.py:82
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
 "\n"
@@ -817,6 +817,9 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
 "Версія бази даних, не підтримується поточною версією Gramps.\n"
+"\n"
+"Поточне Сімейне Дерево має версію %(tree_vers)s. Поточна версія Gramps підтримує версії від %(min_vers)s до %(max_vers)s\n"
+"\n"
 "Будь ласка, оновіться до потрібної версії, або використайте формат XML для переносу даних між різними версіями бази."
 
 #: ../gramps/gen/db/exceptions.py:104
@@ -1923,28 +1926,24 @@ msgid "Families having notes containing <substring>"
 msgstr "Сім’ї, замітки яких містять <текст>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:45
-#, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст"
+msgstr "Вибирає сім'ї , замітки яких містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Families having notes containing <regular expression>"
-msgstr "Цитати, замітки яких містять <регулярний вираз>"
+msgstr "Сім’ї, замітки яких містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
+msgstr "Вибирає сім’ї, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Families with a reference count of <count>"
-msgstr "Цитати з кількістю посиланнь <кількість>"
+msgstr "Сім’ї з кількістю посиланнь <кількість>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:45
 msgid "Matches family objects with a certain reference count"
-msgstr ""
+msgstr "Вибирає сім’ї з вказаною кількістю посилань"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
@@ -1953,32 +1952,28 @@ msgid "Relationship type:"
 msgstr "Тип відносин:"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:48
-#, fuzzy
 msgid "Families with the relationship type"
-msgstr "Особи з <Типом імені>"
+msgstr "Сім’ї з типом відносин"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:49
 msgid "Matches families with the relationship type of a particular value"
-msgstr ""
+msgstr "Вибирає сім’ї із вказаним типом відносин"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:47
-#, fuzzy
 msgid "Families with <count> sources"
-msgstr "Особи з <кількістю> джерел"
+msgstr "Сім’ї з <кількістю> джерел"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:48
-#, fuzzy
 msgid "Matches families with a certain number of sources connected to it"
-msgstr "Вибирає людей, які мають вказану кількість підключених джерел"
+msgstr "Вибирає сім’ї, які мають вказану кількість підключених джерел"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
 msgid "Families with the <source>"
 msgstr "Сім'ї з <джерелом>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "Вибирає людей, з певним джерелом"
+msgstr "Вибирає сім’ї з певним джерелом"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
@@ -1997,14 +1992,12 @@ msgid "Matches families with the particular tag"
 msgstr "Вибирає сім'ї з певною міткою"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
-#, fuzzy
 msgid "Families with twins"
-msgstr "Сімї з <подією>"
+msgstr "Сімї з близнюками"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:48
-#, fuzzy
 msgid "Matches families with twins"
-msgstr "Вибирає сім'ї з певною міткою"
+msgstr "Вибирає сім'ї з близнюками"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Bookmarked families"
@@ -2015,14 +2008,12 @@ msgid "Matches the families on the bookmark list"
 msgstr "Вибирає сім'ї із списку закладок"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:46
-#, fuzzy
 msgid "Families matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Сім’ї, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches families matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає сім’ї, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
@@ -2033,13 +2024,12 @@ msgid "Matches families with at least one direct source with confidence level(s)
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
-#, fuzzy
 msgid "Families with mother with the <Id>"
-msgstr "%(father)s та %(mother)s (%(id)s)"
+msgstr "Сім’ї де мати має <Id>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr ""
+msgstr "Вибирає сім’ї де мама має вказане Gramps ID"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:51
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:50
@@ -2049,30 +2039,29 @@ msgid "Mother filters"
 msgstr "Материнські філтри"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:47
-#, fuzzy
 msgid "Families with mother with the <name>"
-msgstr "(особа з невідомим іменем)"
+msgstr "Сім’ї де мати має ім’я <ім’я>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:48
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:48
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr ""
+msgstr "Вибирає сім’ї де мама має вказане(частково) ім’я"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:47
 msgid "Families with child matching the <regex_name>"
-msgstr ""
+msgstr "Сім’ї з дітьми, імена яких підпадають під <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:48
 msgid "Matches families where some child has a name that matches a specified regular expression"
-msgstr ""
+msgstr "Вибирає сім’ї, де ім’я дитини підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:47
 msgid "Families with father matching the <regex_name>"
-msgstr ""
+msgstr "Сім’ї з батьком, ім’я якого підпадає під <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:48
 msgid "Matches families whose father has a name matching a specified regular expression"
-msgstr ""
+msgstr "Вибирає сім’ї де є батько, ім’я якого підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
 #, fuzzy
@@ -3476,9 +3465,8 @@ msgid "Matches repository records changed after a specified date/time (yyyy-mm-d
 msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
-#, fuzzy
 msgid "Repository with <Id>"
-msgstr "  Сховище %(id)s з %(id2)s\n"
+msgstr "Сховище з <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
 #, fuzzy
@@ -4614,7 +4602,7 @@ msgstr "Html код"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1160
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1174
 msgid "To Do"
-msgstr ""
+msgstr "Завдання"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Person Note"
@@ -5045,7 +5033,7 @@ msgstr "Файл %s вже відкриту, спершу закрийте йо�
 #: ../gramps/plugins/webreport/narrativeweb.py:6995
 #, python-format
 msgid "Could not create %s"
-msgstr "не можливо створити %s"
+msgstr "Не можу створити %s"
 
 #. ------------------------------------------------------------------------
 #.
@@ -5453,14 +5441,12 @@ msgid "sibling death-related date"
 msgstr "дата пов'язана із смертю брата/сестри"
 
 #: ../gramps/gen/utils/alive.py:241 ../gramps/gen/utils/alive.py:252
-#, fuzzy
 msgid "a spouse's birth-related date, "
-msgstr "дата пов'язана з народженням предка"
+msgstr "дата пов'язана з народженням чоловіка/друини,"
 
 #: ../gramps/gen/utils/alive.py:245 ../gramps/gen/utils/alive.py:256
-#, fuzzy
 msgid "a spouse's death-related date, "
-msgstr "дата пов'язана із смертю предка"
+msgstr "дата пов'язана із смертю чоловіка/дружини"
 
 #: ../gramps/gen/utils/alive.py:274
 msgid "event with spouse"
@@ -6005,14 +5991,14 @@ msgstr ""
 "Gramps зараз завершить роботу."
 
 #: ../gramps/grampsapp.py:151
-#, fuzzy
 msgid ""
 "\n"
 "You don't have the python bsddb3 package installed. This package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версія Вашого Python не відповідає вимогам. Для роботи Gramps потрібно як мінімум python %(v1)d.%(v2)d.%(v3)d\n"
+"\n"
+"У Вас не встановлено пакунок python bsddb3. Він потрібен для роботи Gramps.\n"
 "\n"
 "Gramps зараз завершить роботу."
 
@@ -6544,7 +6530,7 @@ msgstr "Налаштування"
 
 #: ../gramps/gui/configure.py:483
 msgid "Enter your information so people can contact you when you distribute your Family Tree"
-msgstr ""
+msgstr "Вкажіть інформацію про себе, щоб люди могли зав'язатися з Вами, коли Ви поширите Сімейне Дерево"
 
 #: ../gramps/gui/configure.py:487
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
@@ -6626,39 +6612,39 @@ msgstr "Формат ID"
 
 #: ../gramps/gui/configure.py:529
 msgid "Set the colors used for boxes in the graphical views"
-msgstr ""
+msgstr "Вкажіть кольори, що будуть використані  для блоків на сторінці з графіками"
 
 #: ../gramps/gui/configure.py:531
 msgid "Gender Male Alive"
-msgstr ""
+msgstr "Стать чоловіча, живий"
 
 #: ../gramps/gui/configure.py:533
 msgid "Border Male Alive"
-msgstr ""
+msgstr "Рамка, чоловіча, живий"
 
 #: ../gramps/gui/configure.py:535
 msgid "Gender Male Death"
-msgstr ""
+msgstr "Стать чоловіча, помер"
 
 #: ../gramps/gui/configure.py:537
 msgid "Border Male Death"
-msgstr ""
+msgstr "Рамка, чоловіча, помер"
 
 #: ../gramps/gui/configure.py:539
 msgid "Gender Female Alive"
-msgstr ""
+msgstr "Стать жіноча, жива"
 
 #: ../gramps/gui/configure.py:541
 msgid "Border Female Alive"
-msgstr ""
+msgstr "Рамка, жіноча, жива"
 
 #: ../gramps/gui/configure.py:543
 msgid "Gender Female Death"
-msgstr ""
+msgstr "Стать жіноча, померла"
 
 #: ../gramps/gui/configure.py:545
 msgid "Border Female Death"
-msgstr ""
+msgstr "Рамка, жіноча, померла"
 
 #. #        self.add_color(table, _('Gender Other Alive'), 5,
 #. #                        'preferences.color-gender-other-alive')
@@ -6670,19 +6656,19 @@ msgstr ""
 #. #                        'preferences.bordercolor-gender-other-death')
 #: ../gramps/gui/configure.py:555
 msgid "Gender Unknown Alive"
-msgstr ""
+msgstr "Стать невідомо, живе"
 
 #: ../gramps/gui/configure.py:557
 msgid "Border Unknown Alive"
-msgstr ""
+msgstr "Рамка, невідомо, живе"
 
 #: ../gramps/gui/configure.py:559
 msgid "Gender Unknown Death"
-msgstr ""
+msgstr "Стать невідомо, помер"
 
 #: ../gramps/gui/configure.py:561
 msgid "Border Unknown Death"
-msgstr ""
+msgstr "Рамка, невідомо, помер"
 
 #: ../gramps/gui/configure.py:563
 msgid "Colors"
@@ -6900,14 +6886,12 @@ msgid "Dates"
 msgstr "Дати"
 
 #: ../gramps/gui/configure.py:1182
-#, fuzzy
 msgid "Add default source on GEDCOM import"
-msgstr "Додавати джерело при імпорті"
+msgstr "Додавати стандартне джерело при імпорті GEDCOM"
 
 #: ../gramps/gui/configure.py:1186
-#, fuzzy
 msgid "Add tag on import"
-msgstr "Додавати джерело при імпорті"
+msgstr "Додавати мітку при імпорті"
 
 #: ../gramps/gui/configure.py:1197
 msgid "Enable spelling checker"
@@ -6983,7 +6967,6 @@ msgid "Family Tree Database path"
 msgstr "Шлях до бази сімейного дерева"
 
 #: ../gramps/gui/configure.py:1290
-#, fuzzy
 msgid "Automatically load last Family Tree"
 msgstr "Автоматично завантажувати останнє дерево"
 
@@ -7055,7 +7038,7 @@ msgstr "Неможливо створити файл."
 #: ../gramps/gui/dbloader.py:258
 #, python-format
 msgid "Could not import file: %s"
-msgstr "Неможливо імпортувати файл: %s"
+msgstr "Не можу імпортувати файл: %s"
 
 #: ../gramps/gui/dbloader.py:259
 msgid "This file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
@@ -7151,7 +7134,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:489
 msgid "Could not rename the Family Tree."
-msgstr "Не вдалось перейменувати Сімейне Дерево."
+msgstr "Не можу перейменувати Сімейне Дерево."
 
 #: ../gramps/gui/dbman.py:490
 msgid "Family Tree already exists, choose a unique name."
@@ -7194,9 +7177,8 @@ msgid "Remove version"
 msgstr "Видалити версію"
 
 #: ../gramps/gui/dbman.py:596
-#, fuzzy
 msgid "Could not delete Family Tree"
-msgstr "Не вдалось видалити сімейне дерево"
+msgstr "Не можу вилучити сімейне дерево"
 
 #: ../gramps/gui/dbman.py:621
 msgid "Deletion failed"
@@ -7256,9 +7238,8 @@ msgid "Error restoring backup data"
 msgstr "Помилка відновлення з резервної копії"
 
 #: ../gramps/gui/dbman.py:734
-#, fuzzy
 msgid "Could not create Family Tree"
-msgstr "Помилка при створенні сімейного дерева"
+msgstr "Не можу створити Сімейне Дерево"
 
 #: ../gramps/gui/dbman.py:850
 msgid "Retrieve failed"
@@ -13003,9 +12984,8 @@ msgid "Updated"
 msgstr "Оновлено"
 
 #: ../gramps/gui/viewmanager.py:447
-#, fuzzy
 msgid "Checking Addons Failed"
-msgstr "Перевіряю додаток..."
+msgstr "Перевірити додаток невдалося"
 
 #: ../gramps/gui/viewmanager.py:448
 msgid "The addon repository appears to be unavailable. Please try again later."
@@ -13438,7 +13418,7 @@ msgstr "Активний об'єкт прихований"
 #: ../gramps/gui/views/navigationview.py:256
 #: ../gramps/plugins/view/familyview.py:237
 msgid "Could Not Set a Bookmark"
-msgstr "Помилка встановлення закладки"
+msgstr "Не можу встановити закладку"
 
 #: ../gramps/gui/views/listview.py:438
 msgid "A bookmark could not be set because nothing was selected."
@@ -14056,7 +14036,7 @@ msgstr "Здається, Ви вказали той же каталог, що �
 #: ../gramps/plugins/docgen/htmldoc.py:556
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Неможу створити jpeg версію зображення %(name)s"
+msgstr "Не можу створити jpeg версію зображення %(name)s"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1230
 #, python-format
@@ -14175,7 +14155,6 @@ msgstr "Скільки поколінь показувати на графіку
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1510
-#, fuzzy
 msgid "Compress tree"
 msgstr "Стиснути дерево"
 
@@ -16041,9 +16020,8 @@ msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Грамплет показує всі прізвища у вигляді текстової хмаринки"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
-#, fuzzy
 msgid "Gramplet for displaying a To Do list"
-msgstr "Грамплет показує показує фільтр заміток"
+msgstr "Грамплет показує показує список завдань"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:275
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:281
@@ -16543,84 +16521,68 @@ msgid "Records"
 msgstr "Записи"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
-#, fuzzy
 msgid "Person To Do"
-msgstr "ID особи:"
+msgstr "Завдання до особи"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Грамплет показує всі замітки для особи"
+msgstr "Грамплет показує всі Завдання для особи"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
-#, fuzzy
 msgid "Event To Do"
-msgstr "Тип події"
+msgstr "Завдання до події"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1083
-#, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Грамплет показує замітки до події"
+msgstr "Грамплет показує всі Завдання для події"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1096
-#, fuzzy
 msgid "Family To Do"
-msgstr "Сім’я "
+msgstr "Завдання до сім’ї"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Грамплет показує замітки до сім’ї"
+msgstr "Грамплет показує всі Завдання для сім’ї"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
-#, fuzzy
 msgid "Place To Do"
-msgstr "Дерево місць"
+msgstr "Завдання для місця"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1111
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Грамплет показує замітки до місця"
+msgstr "Грамплет показує всі Завдання для місця"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
-#, fuzzy
 msgid "Source To Do"
-msgstr "ID джерела:"
+msgstr "Завдання для джерела"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Грамплет показує замітки до джерела"
+msgstr "Грамплет показує всі Завдання для джерела"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
-#, fuzzy
 msgid "Citation To Do"
-msgstr "Дерево Цитат"
+msgstr "Завдання до цитат"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1139
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Грамплет показує всі замітки для цитати"
+msgstr "Грамплет показує всі Завдання для цитат"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1152
-#, fuzzy
 msgid "Repository To Do"
-msgstr "Замітка до сховища"
+msgstr "Завдання для сховища"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Грамплет показує замітки до сховища"
+msgstr "Грамплет показує всі Завдання для сховища"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1166
-#, fuzzy
 msgid "Media To Do"
-msgstr "Замітка до медіа"
+msgstr "Завдання для медіа"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1167
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Грамплет показує замітки до медіа об’єкту"
+msgstr "Грамплет показує всі Завдання для медіа об’єкту"
 
 #: ../gramps/plugins/gramplet/notes.py:101
 #: ../gramps/plugins/gramplet/todo.py:126
@@ -16969,24 +16931,22 @@ msgstr "Кількість показаних прізвищ"
 #: ../gramps/plugins/gramplet/todo.py:49
 #: ../gramps/plugins/gramplet/todogramplet.py:52
 msgid "Previous To Do note"
-msgstr ""
+msgstr "Поперерднє завдання"
 
 #: ../gramps/plugins/gramplet/todo.py:53
 #: ../gramps/plugins/gramplet/todogramplet.py:56
 msgid "Next To Do note"
-msgstr ""
+msgstr "Наступне завдання"
 
 #: ../gramps/plugins/gramplet/todo.py:57
 #: ../gramps/plugins/gramplet/todogramplet.py:60
-#, fuzzy
 msgid "Edit the selected To Do note"
-msgstr "Редагувати обрану замітку"
+msgstr "Редагувати обрану замітку до завдання"
 
 #: ../gramps/plugins/gramplet/todo.py:61
 #: ../gramps/plugins/gramplet/todogramplet.py:64
-#, fuzzy
 msgid "Add a new To Do note"
-msgstr "Додати нову замітку"
+msgstr "Додати нову замітку до завдань"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:142
 msgid "Unattached"
@@ -17034,7 +16994,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
-msgstr ""
+msgstr "Задати запитання користувачам gramps в списку поштової розсилки"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "http://gramps-project.org/contact/"
@@ -18595,7 +18555,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3232
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr ""
+msgstr "Елемент ADDR ігноровано '%s'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3245
 msgid "TRLR (trailer)"
@@ -18686,7 +18646,7 @@ msgstr "OBJE (мультимедіа об’єкт) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7274
 #, python-format
 msgid "Could not import %s"
-msgstr "Неможливо імпортувати %s"
+msgstr "Не можу імпортувати %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6357
 msgid "BLOB ignored"
@@ -22775,7 +22735,6 @@ msgstr "Тип медіа"
 
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/narrativeweb.py:2737
-#, fuzzy
 msgid "Call number"
 msgstr "Тел. номер"
 
@@ -26388,7 +26347,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
 msgid "Age (0-100) based gradient"
-msgstr ""
+msgstr "Градієнт в залежності від віку  (0-100)"
 
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:285
