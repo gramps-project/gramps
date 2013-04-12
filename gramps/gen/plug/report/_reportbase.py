@@ -28,6 +28,8 @@
 # Report
 #
 #-------------------------------------------------------------------------
+from gramps.plugins.lib.libtranslate import Translator
+
 class Report(object):
     """
     The Report base class.  This is a base class for generating
@@ -53,7 +55,20 @@ class Report(object):
 
     def begin_report(self):
         pass
-        
+
+    def set_translation(self, language):
+        """
+        Set the translator to one selected with
+        stdoptions.add_localization_option().
+        """
+        if not language:
+            return
+        trans = Translator(lang=language)
+        self._ = trans.gettext
+        self.__get_date = trans.get_date
+        self.__get_type = trans.get_type
+        return trans
+
     def write_report(self):
         pass
 
