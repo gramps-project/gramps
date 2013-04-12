@@ -49,7 +49,7 @@ LOG = logging.getLogger(".ImportCSV")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
@@ -338,7 +338,7 @@ class CSVParser(object):
         self.db.enable_signals()
         self.db.request_rebuild()
         tym = time.time() - tym
-        msg = glocale.get_translation().ngettext('Import Complete: %d second',
+        msg = glocale.translation.ngettext('Import Complete: %d second',
                 'Import Complete: %d seconds', tym ) % tym
         LOG.debug(msg)
         LOG.debug("New Families: %d" % self.fam_count)

@@ -124,7 +124,7 @@ from .gen.mime import mime_type_is_defined
 #-------------------------------------------------------------------------
 
 from .gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

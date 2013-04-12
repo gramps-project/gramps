@@ -44,7 +44,7 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin

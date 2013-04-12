@@ -37,7 +37,7 @@ from functools import partial
 import os, codecs, shutil, re, sys
 import datetime, calendar
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 # Set up logging
@@ -1714,7 +1714,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
                             'couple' : text}
             else: 
-                txt_str = (glocale.get_translation().ngettext(
+                txt_str = (glocale.translation.ngettext(
                         '%(couple)s, <em>%(years)d'
                         '</em> year anniversary',
                         '%(couple)s, <em>%(years)d'

@@ -22,7 +22,7 @@
 # $Id$
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 from gi.repository import Gtk
 from gi.repository import GObject

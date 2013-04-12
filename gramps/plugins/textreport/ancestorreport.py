@@ -39,7 +39,7 @@ import copy
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType

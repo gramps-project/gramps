@@ -29,7 +29,7 @@
 #------------------------------------------------------------------------
 import time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 import os
 
 #------------------------------------------------------------------------

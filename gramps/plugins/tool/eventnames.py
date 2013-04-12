@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 
 #-------------------------------------------------------------------------
@@ -112,7 +112,7 @@ class EventNames(tool.BatchTool, ManagedWindow):
 
         if self.change == True:
             OkDialog(_('Modifications made'), 
-                     glocale.get_translation().ngettext("%s event description has been added", 
+                     glocale.translation.ngettext("%s event description has been added", 
                     "%s event descriptions have been added", counter) % counter)
         else:
             OkDialog(_('No modifications made'), 

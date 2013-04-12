@@ -27,7 +27,7 @@
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from functools import partial
 import datetime
 import time
@@ -322,7 +322,7 @@ class Calendar(Report):
                             'person' : short_name,
                             'relation' : ""}
                     else:
-                        text = (glocale.get_translation().ngettext('%(person)s, %(age)d%(relation)s',
+                        text = (glocale.translation.ngettext('%(person)s, %(age)d%(relation)s',
                                           '%(person)s, %(age)d%(relation)s', nyears)
                                  % {'person'   : short_name,
                                     'age'      : nyears,  
@@ -382,7 +382,7 @@ class Calendar(Report):
                                                      'person' : short_name, 
                                                     }
                                         else:
-                                            text = (glocale.get_translation().ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
+                                            text = (glocale.translation.ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
                                                              "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
                                                     % {'spouse' : spouse_name, 
                                                        'person' : short_name, 

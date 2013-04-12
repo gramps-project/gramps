@@ -36,7 +36,7 @@ from gramps.gen.lib import ChildRefType, Person
 from gramps.gen.simple import SimpleAccess, SimpleDoc
 from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 __FMT     = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"

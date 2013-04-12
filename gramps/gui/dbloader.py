@@ -54,7 +54,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
 from gramps.gen.db import DbBsddb

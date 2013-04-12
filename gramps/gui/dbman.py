@@ -74,7 +74,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gramps.gen.db import DbBsddb

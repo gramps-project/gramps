@@ -38,7 +38,7 @@ from __future__ import division, print_function
 #------------------------------------------------------------------------
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from math import radians
 import re
 

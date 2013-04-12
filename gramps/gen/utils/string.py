@@ -33,7 +33,7 @@ String mappings for constants
 #-------------------------------------------------------------------------
 from ..lib import Person, Citation, FamilyRelType
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #

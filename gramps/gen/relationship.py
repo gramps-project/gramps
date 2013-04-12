@@ -45,7 +45,7 @@ MALE = Person.MALE
 FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
 from .const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from .plug import PluginRegister, BasePluginManager
 #-------------------------------------------------------------------------
 #

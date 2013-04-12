@@ -699,36 +699,6 @@ class GrampsLocale(object):
         """
         return self.language
 
-    def get_translation(self, domain = None, languages = None):
-        """
-        Get a translation object for a particular language.
-        See the gettext documentation for the available functions
-        >>> glocale = GrampsLocale()
-        >>> _ = glocale.get_translation('foo', 'French')
-        >>> _ = tr.gettext
-        """
-
-        if ((domain and not domain == self.localedomain)
-            or (languages and not languages == self.language)):
-            if not domain:
-                domain = self.localedomain
-            if not languages:
-                languages = self.language
-            fallback = False
-            if "en" in languages:
-                fallback = True
-            try:
-                # Don't use _get_translation because we want to fall
-                # back on the singleton rather than a NullTranslation
-                return gettext.translation(domain, self.localedir,
-                                           languages,
-                                           class_ = GrampsTranslations,
-                                           fallback = fallback)
-            except IOError:
-                LOG.warning("None of the requested languages (%s) were available, using %s instead", ', '.join(languages), self.lang)
-                return self.translation
-        else:
-            return self.translation
 
     def get_addon_translator(self, filename, domain="addon",
                              languages=None):

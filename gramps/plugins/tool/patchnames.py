@@ -53,7 +53,7 @@ from gramps.gui.display import display_help
 from gramps.gen.lib import NameOriginType, Surname
 from gramps.gen.db import DbTxn
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------

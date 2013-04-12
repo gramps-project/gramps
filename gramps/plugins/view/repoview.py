@@ -55,7 +55,7 @@ from gramps.gen.plug import CATEGORY_QR_REPOSITORY
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 
 #-------------------------------------------------------------------------

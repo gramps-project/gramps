@@ -29,7 +29,7 @@ Provide utilities for printing endnotes in text reports.
 from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from ...lib import NoteType, Citation
 from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ...utils.string import confidence
 from ...datehandler import displayer
 

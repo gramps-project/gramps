@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gui.plug.quick import run_quick_report_by_name
 from gramps.gen.lib import Date
 

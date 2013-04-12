@@ -46,8 +46,8 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
-ngettext = glocale.get_translation().ngettext
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext
 from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn

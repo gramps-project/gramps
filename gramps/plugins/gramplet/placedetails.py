@@ -22,7 +22,7 @@
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.file import media_path_full
 from gi.repository import Gtk

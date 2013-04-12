@@ -44,7 +44,7 @@ from ..display.name import displayer as name_displayer
 from ..lib.date import Date, Today
 from ..errors import DatabaseError
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #

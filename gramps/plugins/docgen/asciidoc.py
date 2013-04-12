@@ -39,7 +39,7 @@ import sys
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gramps.gen.errors import ReportError

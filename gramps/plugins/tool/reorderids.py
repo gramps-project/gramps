@@ -36,7 +36,7 @@ from __future__ import print_function
 
 import re
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #

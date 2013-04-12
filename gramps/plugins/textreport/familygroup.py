@@ -47,7 +47,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableS
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------

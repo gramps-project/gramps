@@ -50,7 +50,7 @@ from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.dialog import RunDatabaseRepair
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------

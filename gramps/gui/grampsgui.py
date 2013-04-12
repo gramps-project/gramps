@@ -42,7 +42,7 @@ from gramps.gen.config import config
 from gramps.gen.const import DATA_DIR, IMAGE_DIR
 from gramps.gen.constfunc import has_display, win
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

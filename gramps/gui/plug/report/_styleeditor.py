@@ -34,7 +34,7 @@ Paragraph/Font style editor
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 import logging
 log = logging.getLogger(".")
 import re

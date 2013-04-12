@@ -33,7 +33,7 @@ Provide merge capabilities for citations.
 from ..lib import (Person, Family, Event, Place, MediaObject, Repository)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------

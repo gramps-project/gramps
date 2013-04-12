@@ -31,7 +31,7 @@ __all__ = ["LinkLabel", "EditLabel", "BasicLabel", "GenderLabel",
 import os
 import cgi
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import logging
 _LOG = logging.getLogger(".widgets.labels")
 

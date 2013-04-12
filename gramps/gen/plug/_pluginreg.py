@@ -46,7 +46,7 @@ import io
 from ...version import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
@@ -1092,7 +1092,7 @@ class PluginRegister(object):
                                            'locale')):
                 local_gettext = glocale.get_addon_translator(full_filename).gettext
             else:
-                local_gettext = glocale.get_translation().gettext
+                local_gettext = glocale.translation.gettext
             try:
                 #execfile(full_filename,
                 exec (compile(stream, full_filename, 'exec'),

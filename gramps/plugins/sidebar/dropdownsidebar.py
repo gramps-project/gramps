@@ -38,7 +38,7 @@ from gi.repository import Gtk
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
 # DropdownSidebar class

@@ -47,7 +47,7 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
 else:
     from bsddb import db
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

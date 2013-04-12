@@ -43,7 +43,7 @@ import io
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.lib import AttributeType, ChildRefType, Citation, Date, EventRoleType, EventType, LdsOrd, NameType, NoteType, Person, UrlType
 from gramps.version import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom

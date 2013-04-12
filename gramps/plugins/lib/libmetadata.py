@@ -37,7 +37,7 @@ from gi.repository import GExiv2
 
 from gramps.gui.listmodel import ListModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.utils.place import conv_lat_lon
 from fractions import Fraction
 from gramps.gen.lib import Date

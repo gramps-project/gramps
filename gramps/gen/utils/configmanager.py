@@ -46,7 +46,7 @@ import io
 
 from ..constfunc import STRTYPE
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 def safe_eval(exp):
     # restrict eval to empty environment

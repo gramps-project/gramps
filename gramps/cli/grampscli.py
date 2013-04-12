@@ -36,7 +36,7 @@ Provides also two small base classes: CLIDbLoader, CLIManager
 from __future__ import print_function
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import os
 import sys
 

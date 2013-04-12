@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
 
 #------------------------------------------------------------------------

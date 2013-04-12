@@ -44,7 +44,7 @@ else:
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import EnumeratedListOption

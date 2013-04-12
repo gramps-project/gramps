@@ -70,7 +70,7 @@ from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from ..dialog import QuestionDialog, QuestionDialog2
 from ..editors import FilterEditor
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click

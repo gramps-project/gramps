@@ -61,7 +61,7 @@ from .markerlayer import MarkerLayer
 from .datelayer import DateLayer
 from .messagelayer import MessageLayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
 

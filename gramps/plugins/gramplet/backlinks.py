@@ -24,7 +24,7 @@ from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gi.repository import Gtk
 
 class Backlinks(Gramplet):

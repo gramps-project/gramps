@@ -32,7 +32,7 @@
 #-------------------------------------------------------------------------
 from __future__ import with_statement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.constfunc import handle2internal
 
 #------------------------------------------------------------------------

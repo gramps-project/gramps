@@ -31,7 +31,7 @@ Geography for one person and all his descendant
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import operator
 from gi.repository import Gtk
 from gi.repository import Gdk

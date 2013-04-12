@@ -33,7 +33,7 @@
 import os
 import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 import csv
 if sys.version_info[0] < 3:
     from cStringIO import StringIO

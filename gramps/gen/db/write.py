@@ -81,7 +81,7 @@ from ..updatecallback import UpdateCallback
 from ..errors import DbError
 from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")

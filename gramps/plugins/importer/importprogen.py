@@ -48,7 +48,7 @@ log = logging.getLogger('.ImportProGen')
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event, 

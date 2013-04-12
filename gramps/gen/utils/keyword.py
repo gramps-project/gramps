@@ -51,7 +51,7 @@ Keyword translation interface
 #        'g' : familynick = family nick name
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),

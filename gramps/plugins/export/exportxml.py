@@ -42,7 +42,7 @@ import os
 import codecs
 from xml.sax.saxutils import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 
 #------------------------------------------------------------------------

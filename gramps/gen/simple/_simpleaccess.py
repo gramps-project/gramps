@@ -38,7 +38,7 @@ from ..display.name import displayer as name_displayer
 from ..lib import EventType
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------

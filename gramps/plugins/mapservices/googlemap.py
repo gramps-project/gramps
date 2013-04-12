@@ -29,7 +29,7 @@ Google Maps map service plugin. Open place in maps.google.com
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #

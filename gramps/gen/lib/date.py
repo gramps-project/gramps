@@ -51,8 +51,8 @@ log = logging.getLogger(".Date")
 #
 #------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
-ngettext = glocale.get_translation().ngettext
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext
 
 from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                       french_sdn, persian_sdn, islamic_sdn, swedish_sdn,

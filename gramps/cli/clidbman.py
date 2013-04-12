@@ -60,7 +60,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config

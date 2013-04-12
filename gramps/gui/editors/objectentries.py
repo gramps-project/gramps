@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

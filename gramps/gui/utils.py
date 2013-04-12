@@ -34,7 +34,7 @@ from __future__ import print_function, division
 import os
 import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).

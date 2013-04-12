@@ -29,7 +29,7 @@ from collections import defaultdict
 
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.lib import ChildRefType
 
 class AgeStatsGramplet(Gramplet):

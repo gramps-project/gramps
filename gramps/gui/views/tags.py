@@ -43,7 +43,7 @@ from gi.repository import Gdk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
 from ..dbguielement import DbGUIElement

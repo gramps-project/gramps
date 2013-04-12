@@ -35,7 +35,7 @@ A collection of utilities to aid in the generation of reports.
 #-------------------------------------------------------------------------
 import os
 from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #

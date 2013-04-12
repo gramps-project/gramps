@@ -57,7 +57,7 @@ from gramps.gen.datehandler import get_date
 from .display import display_help
 from .managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.constfunc import mac
 from .glade import Glade
 from .ddtargets import DdTargets

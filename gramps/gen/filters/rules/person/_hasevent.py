@@ -29,7 +29,7 @@ Filter rule to match persons with a particular event.
 #
 #-------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

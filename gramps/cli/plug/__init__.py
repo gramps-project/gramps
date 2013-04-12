@@ -65,7 +65,7 @@ from gramps.gen.constfunc import STRTYPE, conv_to_unicode_direct
 from ..grampscli import CLIManager
 from ..user import User
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #

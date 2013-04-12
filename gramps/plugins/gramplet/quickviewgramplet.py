@@ -33,7 +33,7 @@
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gui.plug.quick import run_quick_report_by_name, get_quick_report_list
 from gramps.gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,

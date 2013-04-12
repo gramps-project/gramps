@@ -50,7 +50,7 @@ from .eventroletype import EventRoleType
 from .attribute import Attribute
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..constfunc import STRTYPE
 from .handle import Handle
 

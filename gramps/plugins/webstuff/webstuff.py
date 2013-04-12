@@ -27,7 +27,7 @@
 import os
 from gramps.gen.const import VERSION_DIR
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 def make_css_dict(tup):
     """

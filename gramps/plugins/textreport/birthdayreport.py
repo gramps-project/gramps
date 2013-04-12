@@ -30,8 +30,8 @@
 #------------------------------------------------------------------------
 import copy
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
-ngettext = glocale.get_translation().ngettext
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext
 import datetime, time
 
 #------------------------------------------------------------------------

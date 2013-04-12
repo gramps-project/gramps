@@ -31,7 +31,7 @@ __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import re
 
 import logging
