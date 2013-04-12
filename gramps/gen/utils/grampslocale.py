@@ -145,6 +145,8 @@ class GrampsLocale(object):
     """
     __first_instance = None
     encoding = None
+    _lang_map = None
+    _country_map = None
 
     def __new__(cls, localedir=None, lang=None, domain=None, languages=None):
         if not GrampsLocale.__first_instance:
@@ -490,6 +492,9 @@ class GrampsLocale(object):
 
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
+        self._set_dictionaries()
+
+
         if _hdlr:
             LOG.removeHandler(_hdlr)
 
@@ -533,51 +538,54 @@ class GrampsLocale(object):
     def _set_dictionaries(self):
         """
         Create a dictionary of language names localized to the
-        GrampsLocale's primary language, keyed by language and
-        country code.
+        GrampsLocale's primary language, keyed by language and country
+        code. Note that _lang_map and _country_map are class
+        variables, so this function is no-op in secondary locales.
         """
         _ = self.translation.gettext
-        self.lang_map = {
-            "bg" : _("Bulgarian"),
-            "ca" : _("Catalan"),
-            "cs" : _("Czech"),
-            "da" : _("Danish"),
-            "de" : _("German"),
-            "el" : _("Greek"),
-            "en" : _("English"),
-            "eo" : _("Esperanto"),
-            "es" : _("Spanish"),
-            "fi" : _("Finnish"),
-            "fr" : _("French"),
-            "he" : _("Hebrew"),
-            "hr" : _("Croatian"),
-            "hu" : _("Hungarian"),
-            "it" : _("Italian"),
-            "ja" : _("Japanese"),
-            "lt" : _("Lithuanian"),
-            "mk" : _("Macedonian"),
-            "nb" : _("Norwegian Bokmal"),
-            "nl" : _("Dutch"),
-            "nn" : _("Norwegian Nynorsk"),
-            "pl" : _("Polish"),
-            "pt" : _("Portuguese"),
-            "ro" : _("Romanian"),
-            "ru" : _("Russian"),
-            "sk" : _("Slovak"),
-            "sl" : _("Slovenian"),
-            "sq" : _("Albanian"),
-            "sv" : _("Swedish"),
-            "tr" : _("Turkish"),
-            "uk" : _("Ukrainian"),
-            "vi" : _("Vietnamese"),
-            "zh" : _("Chinese")
+        if not self._lang_map:
+            self._lang_map = {
+                "bg" : _("Bulgarian"),
+                "ca" : _("Catalan"),
+                "cs" : _("Czech"),
+                "da" : _("Danish"),
+                "de" : _("German"),
+                "el" : _("Greek"),
+                "en" : _("English"),
+                "eo" : _("Esperanto"),
+                "es" : _("Spanish"),
+                "fi" : _("Finnish"),
+                "fr" : _("French"),
+                "he" : _("Hebrew"),
+                "hr" : _("Croatian"),
+                "hu" : _("Hungarian"),
+                "it" : _("Italian"),
+                "ja" : _("Japanese"),
+                "lt" : _("Lithuanian"),
+                "mk" : _("Macedonian"),
+                "nb" : _("Norwegian Bokmal"),
+                "nl" : _("Dutch"),
+                "nn" : _("Norwegian Nynorsk"),
+                "pl" : _("Polish"),
+                "pt" : _("Portuguese"),
+                "ro" : _("Romanian"),
+                "ru" : _("Russian"),
+                "sk" : _("Slovak"),
+                "sl" : _("Slovenian"),
+                "sq" : _("Albanian"),
+                "sv" : _("Swedish"),
+                "tr" : _("Turkish"),
+                "uk" : _("Ukrainian"),
+                "vi" : _("Vietnamese"),
+                "zh" : _("Chinese")
             }
 
-        self.country_map = {
-            "BR" : _("Brazil"),
-            "CN" : _("China"),
-            "PT" : _("Portugal")
-            }
+        if not self._country_map:
+            self._country_map = {
+                "BR" : _("Brazil"),
+                "CN" : _("China"),
+                "PT" : _("Portugal")
+                }
 
     def _get_language_string(self, lang_code):
         """
@@ -587,17 +595,15 @@ class GrampsLocale(object):
         code_parts = lang_code.rsplit("_")
 
         lang = code_parts[0]
-        if not hasattr(self, 'lang_map'):
-            self._set_dictionaries()
 
-        if lang in self.lang_map:
-            lang = self.lang_map[lang]
+        if lang in self._lang_map:
+            lang = self._lang_map[lang]
 
         country = None
         if len(code_parts) > 1:
             country = code_parts[1]
-        if country in self.country_map:
-            country = self.country_map[country]
+        if country in self._country_map:
+            country = self._country_map[country]
             lang = "%(language)s (%(country)s)" % \
                 { 'language' : lang, 'country'  : country  }
 
@@ -697,14 +703,15 @@ class GrampsLocale(object):
         """
         languages = ["en"]
 
-        if not localedir and hasattr(self, 'localedir'):
+        if not localedir and self.localedir:
             localedir = self.localedir
-
-        if localedir is None:
+        else:
             return languages
 
-        if not localedomain and hasattr(self, 'localedomain'):
+        if not localedomain and self.localedomain:
             localedomain = self.localedomain
+        else:
+            localedomain = 'gramps'
 
         for langdir in os.listdir(self.localedir):
             mofilename = os.path.join(localedir, langdir,
