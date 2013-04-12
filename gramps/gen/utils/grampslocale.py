@@ -143,6 +143,7 @@ class GrampsLocale(object):
     @languages: A list of two or five character codes corresponding to
                 subidrectries in the localedir, e.g. "fr" or "zh_CN".
     """
+    DEFAULT_TRANSLATION_STR = "default"
     __first_instance = None
     encoding = None
     _lang_map = None
@@ -501,6 +502,8 @@ class GrampsLocale(object):
         if _hdlr:
             LOG.removeHandler(_hdlr)
 
+        self._dd = self._dp = None
+
         self.initialized = True
 
     def _get_translation(self, domain = None,
@@ -611,6 +614,71 @@ class GrampsLocale(object):
                 { 'language' : lang, 'country'  : country  }
 
         return lang
+
+#-------------------------------------------------------------------------
+#
+# Properties
+#
+#-------------------------------------------------------------------------
+    @property
+    def date_displayer(self):
+        """
+        Return the locale's date displayer; if it hasn't already been
+        cached, set it from datehandler.LANG_TO_DISPLAY. If one isn't
+        available for the selected locale, attempt to fall back on the
+        first_instance's locale before settling on the 'C' displayer.
+        NB: This is the getter for the date_displayer property
+        """
+        if self._dd:
+            return self._dd
+
+        from gramps.gen.config import config
+        try:
+            val = config.get('preferences.date-format')
+        except AttributeError:
+            val = 0;
+
+        from gramps.gen.datehandler import LANG_TO_DISPLAY as displayers
+        _first = self._GrampsLocale__first_instance
+        if self.calendar in displayers:
+            self._dd = displayers[self.calendar](val)
+        elif self.calendar[:2] in displayers:
+            self._dd = displayers[self.calendar[:2]](val)
+        elif self != _first and _first.calendar in displayers:
+            self._dd = displayers[_first.calendar](val)
+        elif self != _first and _first.calendar[:2] in displayers:
+            self._dd = displayers[_first.calendar[:2]](val)
+        else:
+            self._dd = displayers['C'](val)
+
+        return self._dd
+
+    @property
+    def date_parser(self):
+        """
+        Return the locale's date parser; if it hasn't already been
+        cached, set it from datehandler.LANG_TO_PARSER. If one isn't
+        available for the selected locale, attempt to fall back on the
+        first_instance's locale before settling on the 'C' parser.
+        NB: This is the getter for the date_parser property
+        """
+        if self._dp:
+            return self._dp
+
+        from gramps.gen.datehandler import LANG_TO_PARSER as parsers
+        _first = self._GrampsLocale__first_instance
+        if self.calendar in parsers:
+            self._dp = parsers[self.calendar]()
+        elif self.calendar[:2] in parsers:
+            self._dp = parsers[self.calendar]()
+        elif self != _first and _first.calendar in parsers:
+            self._dp = parsers[_first.calendar]()
+        elif self != _first and _first.calendar[:2] in parsers:
+            self._dp = parsers[_first.calendar[:2]]()
+        else:
+            self._dp = parsers['C']()
+
+        return self._dp
 
 #-------------------------------------------------------------------------
 #
