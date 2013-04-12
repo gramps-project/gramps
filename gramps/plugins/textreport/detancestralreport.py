@@ -159,10 +159,10 @@ class DetAncestorReport(Report):
             empty_place = ""
 
         lang = menu.get_option_by_name('trans').get_value()
-        translator = self.set_translation(lang)
+        locale = self.set_locale(lang)
         self.__narrator = Narrator(self.database, self.verbose, use_call,
                                    use_fulldate, empty_date, empty_place,
-                                   translator=translator,
+                                   locale=locale,
                                    get_endnote_numbers=self.endnotes)
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
