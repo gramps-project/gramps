@@ -144,6 +144,8 @@ class GrampsLocale(object):
                 subidrectries in the localedir, e.g. "fr" or "zh_CN".
     """
     __first_instance = None
+    encoding = None
+
     def __new__(cls, localedir=None, lang=None, domain=None, languages=None):
         if not GrampsLocale.__first_instance:
             cls.__first_instance = super(GrampsLocale, cls).__new__(cls)
@@ -315,16 +317,21 @@ class GrampsLocale(object):
         except WindowsError:
             LOG.warning("Localization library libintl not on %PATH%, localization will be incomplete")
 
-    def __init_first_instance(self, localedir):
+    def __init_first_instance(self):
+        """
+        Initialize the primary locale from whatever might be
+        available. We only do this once, and the resulting
+        GrampsLocale is returned by default.
+        """
         global _hdlr
         _hdlr = logging.StreamHandler()
         _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
         LOG.addHandler(_hdlr)
 
-#First, globally set the locale to what's in the environment:
-
-        if not (hasattr(self, 'lang') and self.lang
-                and hasattr(self, 'language') and self.language):
+        # Even the first instance can be overridden by passing lang
+        # and languages to the constructor. If it isn't (which is the
+        # expected behavior), do platform-specific setup:
+        if not (self.lang and self.language):
             if sys.platform == 'darwin':
                 from . import maclocale
                 maclocale.mac_setup_localization(self)
@@ -339,15 +346,15 @@ class GrampsLocale(object):
             self.lang = 'en_US.UTF-8'
         if not self.language:
             self.language.append('en')
-        if not self.have_localedir and not self.lang.startswith('en'):
+        if not self.localedir and not self.lang.startswith('en'):
             LOG.warning("No translations for %s were found, setting localization to U.S. English", self.localedomain)
             self.lang = 'en_US.UTF-8'
             self.language = ['en']
 
 #Next, we need to know what is the encoding from the native
 #environment. This is used by python standard library funcions which
-#localize their output, e.g. time.strftime():
-        if not (hasattr(self, 'encoding') and self.encoding):
+#localize their output, e.g. time.strftime(). NB: encoding is a class variable.
+        if not self.encoding:
             self.encoding = (locale.getpreferredencoding()
                              or sys.getdefaultencoding())
 #Ensure that output is encoded correctly to stdout and stderr. This is
@@ -366,27 +373,64 @@ class GrampsLocale(object):
                                                      'backslashreplace')
 
 
-#GtkBuilder depends on reading Glade files as UTF-8 and crashes if it
-#doesn't, so set $LANG to have a UTF-8 locale. NB: This does *not*
-#affect locale.getpreferredencoding() or sys.getfilesystemencoding()
-#which are set by python long before we get here.
-        check_lang = self.lang.split('.')
-        if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
-            self.lang = '.'.join((check_lang[0], 'UTF-8'))
-            if self.lang == 'C.UTF-8':
-                os.environ["LANG"] = 'C'
-            else:
-                os.environ["LANG"] = self.lang
-        os.environ["LANGUAGE"] = ':'.join(['C' if l.startswith('en') else l for l in self.language])
+        # Make sure that self.lang and self.language are reflected
+        # back into the environment for Gtk to use when its
+        # initialized. If self.lang isn't 'C', make sure that it has a
+        # 'UTF-8' suffix, because that's all that GtkBuilder can
+        # digest.
+
+        # Linux note: You'll get unsupported locale errors from Gtk
+        # and untranslated strings if the requisite UTF-8 locale isn't
+        # installed. This is particularly a problem on Debian and
+        # Debian-derived distributions which by default don't install
+        # a lot of locales.
+        if self.lang != 'C':
+            check_lang = self.lang.split('.')
+            if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
+                self.lang = '.'.join((check_lang[0], 'UTF-8'))
+
+        os.environ["LANG"] = self.lang
+        os.environ["LANGUAGE"] = ':'.join(['C' if l in ('en', 'en_US') else l
+                                           for l in self.language])
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
-        if self.have_localedir:
+        if self.localedir:
             if not sys.platform == 'win32':
                 locale.bindtextdomain(self.localedomain, self.localedir)
             else:
                 self._win_bindtextdomain(self.localedomain, self.localedir)
 
+    def _init_secondary_locale(self):
+        """
+        Init a secondary locale. Secondary locales are used to provide
+        an alternate localization to the one used for the UI; for
+        example, some reports offer the option to use a different
+        language.
+        """
+        if not self.localedir:
+            LOG.warning("No Localedir provided, unable to find translations")
+
+        if not self.localedomain:
+            if _firstlocaledomain:
+                self.localedomain = _first.localedomain
+            else:
+                self.localedomain = "gramps"
+
+        _first = self._GrampsLocale__first_instance
+        if not self.lang and _first.lang:
+            self.lang = _first.lang
+
+        if not self.language:
+            if self.lang:
+                trans = self.check_available_translations(self.lang)
+            if trans:
+                self.language = [trans]
+
+        if not self.language and _first.language:
+            self.language = _first.language
+
+        self.calendar = self.collation = self.lang
 
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """
@@ -395,53 +439,39 @@ class GrampsLocale(object):
         otherwise if called without arguments.
         """
         global _hdlr
-
+        #initialized is special, used only for the "first instance",
+        #and created by __new__(). It's used to prevent re-__init__ing
+        #__first_instance when __new__() returns its pointer.
         if hasattr(self, 'initialized') and self.initialized:
             return
-
         _first = self._GrampsLocale__first_instance
-        self.have_localedir = True
 
-        if domain:
-            self.localedomain = domain
-        elif hasattr(_first, 'localedomain'):
-            self.localedomain = _first.localedomain
-        else:
-            self.localedomain = "gramps"
-        if localedir and os.path.exists(localedir):
+        # Everything breaks without localedir, so get that set up
+        # first.  Warnings are logged in _init_first_instance or
+        # _init_secondary_locale if this comes up empty.
+        if localedir and os.path.exists(os.path.abspath(localedir)):
             self.localedir = localedir
-        elif hasattr(_first, 'localedir'):
+        elif _first and _first.localedir:
             self.localedir = _first.localedir
         else:
             self.localedir = None
-            if localedir:
-                LOG.warning("Localedir %s doesn't exist, unable to set localization", localedir);
-            else:
-                LOG.warning("No Localedir provided, unable to set localization")
-            self.have_localedir = False
 
-        if lang:
-            self.lang = lang
-        elif hasattr(_first, 'lang'):
-            self.lang = _first.lang
-
-        self.language = []
+        self.lang = lang
+        self.localedomain = domain or 'gramps'
         if languages:
             self.language = [x for x in [self.check_available_translations(l)
-                                         for l in languages]
+                                         for l in languages.split(":")]
                              if x]
-        elif hasattr(self, 'lang') and self.lang:
-            trans = self.check_available_translations(lang)
-            if trans:
-                self.language.append(trans)
-
-        if not self.language and hasattr(_first, 'language'):
-            self.language = _first.language
-
-        if self == _first:
-            self._GrampsLocale__init_first_instance(localedir)
         else:
-            self.calendar = self.collation = self.lang
+            self.language = None
+
+        _first = self._GrampsLocale__first_instance
+        if self == _first:
+            self._GrampsLocale__init_first_instance()
+        else:
+            self._init_secondary_locale()
+
+
 
 
         self.icu_locales = {}
@@ -692,7 +722,7 @@ class GrampsLocale(object):
         Test a locale for having a translation available
         locale -- string with standard language code, locale code, or name
         """
-        if not self.have_localedir:
+        if not self.localedir:
             return None
         if not hasattr(self, 'languages'):
             self.languages = self.get_available_translations()
