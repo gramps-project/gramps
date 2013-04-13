@@ -180,11 +180,11 @@ class DetDescendantReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        translator = self.set_translation(get_value('trans'))
+        locale = self.set_locale(get_value('trans'))
         self.__narrator = Narrator(self.database, self.verbose,
                                    use_call, use_fulldate, 
                                    empty_date, empty_place,
-                                   translator=translator,
+                                   locale=locale,
                                    get_endnote_numbers=self.endnotes)
 
 

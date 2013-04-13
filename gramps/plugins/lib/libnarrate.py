@@ -42,7 +42,7 @@ from gramps.gen.lib.familyreltype import FamilyRelType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.plugins.lib.libtranslate import Translator
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -1349,7 +1349,7 @@ class Narrator(object):
 
     def __init__(self, dbase, verbose=True, use_call_name=False,use_fulldate=False, 
                  empty_date="", empty_place="",
-                 translator=None,
+                 locale=None,
                  get_endnote_numbers=_get_empty_endnote_numbers):
         """ 
         Initialize the narrator class.
@@ -1386,12 +1386,11 @@ class Narrator(object):
         self.__person = None
         self.__first_name = ""
         self.__first_name_used = False
-        
-        if translator is None:
-            translator = Translator(Translator.DEFAULT_TRANSLATION_STR)
-            
-        self.__translate_text = translator.gettext
-        self.__get_date = translator.get_date
+
+        if locale is None:
+            locale = glocale
+        self.__translate_text = locale.translation.gettext
+        self.__get_date = locale.get_date
 
     def set_subject(self, person):
         """

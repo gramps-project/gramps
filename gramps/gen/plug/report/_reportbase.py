@@ -28,7 +28,7 @@
 # Report
 #
 #-------------------------------------------------------------------------
-from gramps.plugins.lib.libtranslate import Translator
+from gramps.gen.utils.grampslocale import GrampsLocale
 
 class Report(object):
     """
@@ -56,18 +56,18 @@ class Report(object):
     def begin_report(self):
         pass
 
-    def set_translation(self, language):
+    def set_locale(self, language):
         """
         Set the translator to one selected with
         stdoptions.add_localization_option().
         """
-        if not language:
-            return
-        trans = Translator(lang=language)
-        self._ = trans.gettext
-        self.__get_date = trans.get_date
-        self.__get_type = trans.get_type
-        return trans
+        if language == GrampsLocale.DEFAULT_TRANSLATION_STR:
+            language = None
+        locale = GrampsLocale(lang=language)
+        self._ = locale.translation.gettext
+        self.__get_date = locale.get_date
+        self.__get_type = locale.get_type
+        return locale
 
     def write_report(self):
         pass

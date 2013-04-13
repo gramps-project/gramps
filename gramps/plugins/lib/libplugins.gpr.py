@@ -201,23 +201,6 @@ authors_email = ["http://gramps-project.org"],
 
 #------------------------------------------------------------------------
 #
-# libtranslate
-#
-#------------------------------------------------------------------------
-register(GENERAL, 
-id    = 'libtranslate',
-name  = "translation lib",
-description =  _("Provides Textual Translation.") ,
-version = '1.0',
-gramps_target_version = '4.0',
-status = STABLE,
-fname = 'libtranslate.py',
-authors = ["Brian Matherly"],
-authors_email = ["brian@gramps-project.org"],
-)
-
-#------------------------------------------------------------------------
-#
 # libpersonview
 #
 #------------------------------------------------------------------------

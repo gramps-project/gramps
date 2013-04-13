@@ -477,9 +477,6 @@ class GrampsLocale(object):
         else:
             self._init_secondary_locale()
 
-
-
-
         self.icu_locales = {}
         self.collator = None
         if HAVE_ICU:
@@ -496,14 +493,15 @@ class GrampsLocale(object):
 
         self.translation = self._get_translation(self.localedomain,
                                                  self.localedir, self.language)
+        # This is a no-op for secondaries but needs the translation
+        # set, so it needs to be here.
         self._set_dictionaries()
-
 
         if _hdlr:
             LOG.removeHandler(_hdlr)
 
         self._dd = self._dp = None
-
+        #Guards against running twice on the first instance.
         self.initialized = True
 
     def _get_translation(self, domain = None,

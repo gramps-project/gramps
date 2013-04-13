@@ -113,9 +113,9 @@ class AncestorReport(Report):
             self._name_display.set_default_format(name_format)
 
         lang = menu.get_option_by_name('trans').get_value()
-        translator = self.set_translation(lang)
+        locale = self.set_locale(lang)
         self.__narrator = Narrator(self.database,  use_fulldate=True,
-                                   translator=translator)
+                                   locale=locale)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
