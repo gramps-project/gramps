@@ -1,5 +1,5 @@
 # List of source files which contain translatable strings.
-#gramps/gen/const.py.in
+$Id$
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
 gramps/cli/clidbman.py
@@ -7,6 +7,7 @@ gramps/cli/grampscli.py
 gramps/cli/plug/__init__.py
 gramps/cli/user.py
 gramps/gen/config.py
+gramps/gen/const.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/undoredo.py
@@ -295,6 +296,7 @@ gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py
 gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/endnotes.py
+gramps/gen/plug/report/stdoptions.py
 gramps/gen/plug/report/utils.py
 gramps/gen/plug/utils.py
 gramps/gen/proxy/private.py
@@ -302,11 +304,11 @@ gramps/gen/relationship.py
 gramps/gen/simple/_simpleaccess.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/db.py
+gramps/gen/utils/grampslocale.py
 gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
-gramps/gen/utils/grampslocale.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -543,6 +545,7 @@ gramps/plugins/gramplet/repositorydetails.py
 gramps/plugins/gramplet/sessionloggramplet.py
 gramps/plugins/gramplet/statsgramplet.py
 gramps/plugins/gramplet/surnamecloudgramplet.py
+gramps/plugins/gramplet/todo.py
 gramps/plugins/gramplet/todogramplet.py
 gramps/plugins/gramplet/topsurnamesgramplet.py
 gramps/plugins/gramplet/welcomegramplet.py
@@ -563,7 +566,6 @@ gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
 gramps/plugins/lib/holidays.xml.in
 gramps/plugins/lib/libgedcom.py
-#gramps/plugins/lib/libgrdb.py
 gramps/plugins/lib/libhtmlconst.py
 gramps/plugins/lib/libmetadata.py
 gramps/plugins/lib/libnarrate.py
