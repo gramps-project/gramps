@@ -467,6 +467,9 @@ class GrampsLocale(object):
         else:
             self.language = None
 
+         #For alternate collation sequences. Works only with ICU, and
+         #set only on Macs.
+        self.coll_qualifier = None
         _first = self._GrampsLocale__first_instance
         if self == _first:
             self._GrampsLocale__init_first_instance()
