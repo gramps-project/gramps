@@ -25,7 +25,7 @@ from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 

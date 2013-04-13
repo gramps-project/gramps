@@ -52,7 +52,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..autocomp import StandardCustomSelector, fill_entry
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.lib.date import Date, NextYear

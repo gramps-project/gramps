@@ -32,7 +32,7 @@
 from __future__ import unicode_literals, division
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from cgi import escape
 import math
 import sys

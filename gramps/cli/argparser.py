@@ -51,7 +51,7 @@ from gramps.gen.config import config
 from gramps.gen.utils.configmanager import safe_eval
 from gramps.gen.utils.file import get_unicode_path_from_env_var
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 # Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""

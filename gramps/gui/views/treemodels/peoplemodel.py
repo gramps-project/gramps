@@ -55,7 +55,7 @@ _LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.lib import Name, EventRef, EventType, EventRoleType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid

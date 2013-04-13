@@ -34,7 +34,7 @@ import re
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from ..glade import Glade

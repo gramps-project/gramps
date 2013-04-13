@@ -33,7 +33,7 @@ Show uncollected objects in a window.
 #------------------------------------------------------------------------
 import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3.db import DBError

@@ -35,7 +35,7 @@ from ..lib import (Person, Family, Event, Place, Source, Repository,
                    MediaObject, Citation)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------

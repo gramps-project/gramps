@@ -29,7 +29,7 @@ from __future__ import print_function, unicode_literals
 
 from xml.sax import handler
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

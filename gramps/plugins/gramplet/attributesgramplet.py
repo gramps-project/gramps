@@ -22,7 +22,7 @@
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 class AttributesGramplet(Gramplet):
     """

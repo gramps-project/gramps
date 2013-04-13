@@ -29,7 +29,7 @@ Provide the different event roles.
 #
 #------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #

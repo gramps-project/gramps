@@ -30,7 +30,7 @@ URL types
 #
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

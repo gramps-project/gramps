@@ -67,7 +67,7 @@ from ..pluginmanager import GuiPluginManager
 from .undoablebuffer import UndoableBuffer
 from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

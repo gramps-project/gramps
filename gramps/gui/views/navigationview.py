@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #----------------------------------------------------------------
 from .pageview import PageView
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
 

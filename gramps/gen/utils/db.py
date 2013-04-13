@@ -40,7 +40,7 @@ from ..lib.nameorigintype import NameOriginType
 from ..lib.surname import Surname
 from ..display.name import displayer as name_displayer
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..constfunc import cuni
 
 #-------------------------------------------------------------------------

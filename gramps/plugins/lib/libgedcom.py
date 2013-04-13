@@ -122,7 +122,7 @@ LOG = logging.getLogger(".libgedcom")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 

@@ -43,7 +43,7 @@ from gramps.gui.plug import tool
 from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import EditPerson
 

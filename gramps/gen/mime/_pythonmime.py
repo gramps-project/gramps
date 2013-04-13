@@ -23,7 +23,7 @@
 
 import mimetypes
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 _type_map = {
     'application/x-gramps' : 'Gramps database',

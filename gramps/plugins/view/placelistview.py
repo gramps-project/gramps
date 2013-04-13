@@ -37,7 +37,7 @@ from gramps.gui.views.treemodels.placemodel import PlaceListModel
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

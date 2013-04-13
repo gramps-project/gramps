@@ -79,8 +79,8 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
 from gramps.gen.constfunc import UNITYPE, cuni, handle2internal
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
-ngettext = glocale.get_translation().ngettext
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.

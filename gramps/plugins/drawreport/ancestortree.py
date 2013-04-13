@@ -40,7 +40,7 @@ def log2(val):
 X_INDEX = log2
     
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #

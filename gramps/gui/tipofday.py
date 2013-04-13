@@ -32,7 +32,7 @@ Handles the Tip of the Day dialog
 from xml.parsers.expat import ParserCreate, ExpatError
 from random import Random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 import os
 import sys
 

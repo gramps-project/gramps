@@ -25,7 +25,7 @@
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.const import URL_MANUAL_PAGE
 
 #------------------------------------------------------------------------

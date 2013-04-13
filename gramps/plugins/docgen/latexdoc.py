@@ -38,7 +38,7 @@
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from bisect import bisect
 import re, os, sys
 import logging

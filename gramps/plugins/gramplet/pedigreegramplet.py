@@ -36,7 +36,7 @@ import locale
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import EventType
@@ -268,13 +268,13 @@ class PedigreeGramplet(Gramplet):
                 self.link(_("Generation %d") % g, 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation %d") % g)
                 percent = locale.format('%.2f', float(count)/2**(g-1) * 100) + percent_sign
-                self.append_text(glocale.get_translation().ngettext(
+                self.append_text(glocale.translation.ngettext(
                     " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
                     " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
                     2**(g-1)) %  {'count_person': count, 'max_count_person': 2**(g-1), 'percent': percent})
         self.link(_("All generations"), 'PersonList', all,
                   tooltip=_("Double-click to see all generations"))
-        self.append_text(glocale.get_translation().ngettext(
+        self.append_text(glocale.translation.ngettext(
             " have %d individual\n",
             " have %d individuals\n",
             len(all)) % len(all))

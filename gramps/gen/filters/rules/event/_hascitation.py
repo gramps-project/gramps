@@ -30,7 +30,7 @@ Filter rule to match event with a particular citation.
 #
 #-------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

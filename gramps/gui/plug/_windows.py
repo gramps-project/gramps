@@ -53,7 +53,7 @@ from ..managedwindow import ManagedWindow
 from gramps.gen.errors import UnavailableError, WindowActiveError
 from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
 from . import tool

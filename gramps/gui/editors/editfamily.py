@@ -54,7 +54,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from ..ddtargets import DdTargets
 from gi.repository import Gtk
 from gi.repository import Gdk

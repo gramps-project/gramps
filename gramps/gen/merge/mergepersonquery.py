@@ -33,7 +33,7 @@ Provide merge capabilities for persons.
 #-------------------------------------------------------------------------
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..errors import MergeError
 
 #-------------------------------------------------------------------------

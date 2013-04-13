@@ -48,7 +48,7 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.db import family_name
 from gramps.gen.lib import Date, EventType

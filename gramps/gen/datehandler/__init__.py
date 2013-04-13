@@ -32,7 +32,7 @@ Class handling language-specific selection for date parser and displayer.
 import logging
 
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 # import prerequisites for localized handlers
 from ._datehandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
                           register_datehandler)

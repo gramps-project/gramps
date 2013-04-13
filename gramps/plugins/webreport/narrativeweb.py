@@ -105,7 +105,7 @@ log = logging.getLogger(".NarrativeWeb")
 # GRAMPS module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             NameType, Person, UrlType, NoteType,
                             EventRoleType, Family, Event, Place, Source,

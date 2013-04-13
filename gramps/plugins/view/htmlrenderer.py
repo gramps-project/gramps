@@ -66,7 +66,7 @@ from gramps.gen.constfunc import lin, mac, win
 from gramps.gen.config import config
 from gramps.gen.const import TEMP_DIR
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

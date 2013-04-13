@@ -66,7 +66,7 @@ from PySide import QtOpenGL
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.constfunc import cuni, UNITYPE
 
 #-------------------------------------------------------------------------

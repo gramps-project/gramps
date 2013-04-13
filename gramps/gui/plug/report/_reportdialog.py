@@ -48,7 +48,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
+_ = glocale.translation.gettext
 from gramps.gen.config import config
 from gramps.gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
 from ...utils import open_file_with_default_application

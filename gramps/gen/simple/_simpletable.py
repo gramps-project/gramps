@@ -28,7 +28,7 @@ Provide a simplified table creation interface
 
 import cgi
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Repository, MediaObject, Note, Date, Span)
 from ..config import config

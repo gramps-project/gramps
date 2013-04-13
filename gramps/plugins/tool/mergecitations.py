@@ -56,7 +56,7 @@ from gramps.gui.display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 from gramps.gui.glade import Glade
 from gramps.gen.db import DbTxn
@@ -226,7 +226,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         self.progress.close()
         OkDialog(
             _("Number of merges done"),
-            glocale.get_translation().ngettext("%(num)d citation merged",
+            glocale.translation.ngettext("%(num)d citation merged",
             "%(num)d citations merged", num_merges) % {'num': num_merges})
         self.close(obj)
             

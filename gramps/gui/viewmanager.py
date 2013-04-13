@@ -69,7 +69,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 from gramps.cli.grampscli import CLIManager
 from .user import User
 from .plug import tool
@@ -589,7 +589,7 @@ class ViewManager(CLIManager):
         if count:
             self.do_reg_plugins(self.dbstate, self.uistate)
             OkDialog(_("Done downloading and installing addons"),
-                     "%s %s" % (glocale.get_translation().ngettext("%d addon was installed.",
+                     "%s %s" % (glocale.translation.ngettext("%d addon was installed.",
                                          "%d addons were installed.",
                                          count) % count,
                                 _("You need to restart Gramps to see new views.")),

@@ -68,7 +68,7 @@ from gramps.gen.plug import CATEGORY_QR_PERSON
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #

@@ -54,7 +54,7 @@ Specific symbols for parts of a name are defined:
 #
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 import re
 import logging
 LOG = logging.getLogger(".gramps.gen")

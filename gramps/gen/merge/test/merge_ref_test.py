@@ -41,7 +41,7 @@ from ...const import ROOT_DIR, USER_PLUGINS
 from ....version import VERSION
 from ...lib import Name, Surname
 from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().sgettext
+_ = glocale.translation.sgettext
 
 class CopiedDoc(object):
     """Context manager that creates a deep copy of an libxml-xml document."""
