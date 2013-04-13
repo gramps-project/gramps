@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-03 19:31+0200\n"
-"PO-Revision-Date: 2013-04-03 20:30+0200\n"
+"POT-Creation-Date: 2013-04-13 02:05+0200\n"
+"PO-Revision-Date: 2013-04-13 02:06+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
+#: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
 #: ../src/glade/editfamily.glade.h:1 ../src/glade/mergeperson.glade.h:5
 #: ../src/glade/mergerepository.glade.h:5
@@ -34,7 +34,7 @@ msgstr "Name:"
 msgid "Address:"
 msgstr "Adresse:"
 
-#: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:51
+#: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "City:"
 msgstr "Ort:"
 
@@ -42,7 +42,7 @@ msgstr "Ort:"
 msgid "State/Province:"
 msgstr "Bundesland/Provinz:"
 
-#: ../src/Assistant.py:342 ../src/Filters/Rules/Place/_HasPlace.py:54
+#: ../src/Assistant.py:342 ../src/Filters/Rules/Place/_HasPlace.py:55
 msgid "Country:"
 msgstr "Land:"
 
@@ -81,7 +81,7 @@ msgstr "Lesezeichen organisieren"
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
+#: ../src/gui/filtereditor.py:765 ../src/gui/filtereditor.py:918
 #: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -106,7 +106,7 @@ msgstr "Name"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:897
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:921
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -1001,7 +1001,7 @@ msgstr "Ort"
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1018
-#: ../src/plugins/drawreport/DescendTree.py:1610
+#: ../src/plugins/drawreport/DescendTree.py:1614
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
@@ -2131,8 +2131,7 @@ msgid ""
 "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
 "  -l                                     List Family Trees\n"
 "  -L                                     List Family Trees in Detail\n"
-"  -t                                     List Family Trees in tabular (tab "
-"delimited) form\n"
+"  -t                                     List Family Trees, tab delimited\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 "  -s, --show                             Show config settings\n"
 "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
@@ -2159,8 +2158,7 @@ msgstr ""
 " -d, --debug=LOGGER_NAME                Fehlerbehebungslogs einschalten\n"
 " -l                                     Liste Stammbäume\n"
 " -L                                     Liste Stammbäume im Detail\n"
-" -t                                     Liste Stammbäume in tabellarischer "
-"(Tabulator getrennt) Form\n"
+" -t                                     Liste Stammbäume Tabulator getrennt\n"
 " -u, --force-unlock                     Erzwingt Entsperrung des Stammbaums\n"
 " -s, --show                                 Zeigt "
 "Konfigurationseinstellungen\n"
@@ -2602,13 +2600,13 @@ msgid ""
 "If you have made a backup, then you can get Gramps to try to open the tree "
 "and upgrade it"
 msgstr ""
-"Die BSDDB Version des Stammbaum den du versuchst zu öffnen, muss aktualisiert "
-"werden von %(env_version)s auf %(bdb_version)s.\n"
+"Die BSDDB Version des Stammbaum den du versuchst zu öffnen, muss "
+"aktualisiert werden von %(env_version)s auf %(bdb_version)s.\n"
 "\n"
 "Dies bedeutet wahrscheinlich, das der Stammbaum mit einer älteren Gramps "
-"Version erstellt wurde. Das Öffnen des Baums mit dieser Gramps Version könnte "
-"ihn irreparabel beschädigen. Es wird dir dringend empfohlen den Stammbaum zu "
-"sichern, bevor du fortfährst. siehe:\n"
+"Version erstellt wurde. Das Öffnen des Baums mit dieser Gramps Version "
+"könnte ihn irreparabel beschädigen. Es wird dir dringend empfohlen den "
+"Stammbaum zu sichern, bevor du fortfährst. siehe:\n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_mnake_a_backup\n"
 "\n"
 "Wenn du eine Sicherung erstellt hast, dann kannst du versuchen den Stammbaum "
@@ -4557,7 +4555,7 @@ msgstr "Zum ändern der Reihenfolge Spalten an neue Position ziehen"
 #. #################
 #: ../src/gui/columnorder.py:130 ../src/gui/configure.py:947
 #: ../src/plugins/drawreport/AncestorTree.py:911
-#: ../src/plugins/drawreport/DescendTree.py:1487
+#: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
 msgstr "Anzeige"
 
@@ -5493,7 +5491,7 @@ msgstr ""
 "Gib eine Quellen ID ein, wähle eine aus oder lasse sie leer um Objekte ohne "
 "Quelle zu finden."
 
-#: ../src/gui/filtereditor.py:507 ../src/Filters/Rules/Person/_HasBirth.py:47
+#: ../src/gui/filtereditor.py:506 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
@@ -5502,29 +5500,29 @@ msgstr ""
 msgid "Place:"
 msgstr "Ort:"
 
-#: ../src/gui/filtereditor.py:509
+#: ../src/gui/filtereditor.py:508
 msgid "Reference count:"
 msgstr "Anzahl Referenzen:"
 
-#: ../src/gui/filtereditor.py:510
+#: ../src/gui/filtereditor.py:509
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
 msgid "Number of instances:"
 msgstr "Anzahl der Instanzen:"
 
-#: ../src/gui/filtereditor.py:513
+#: ../src/gui/filtereditor.py:512
 msgid "Reference count must be:"
 msgstr "Referenzenanzahl muss sein:"
 
-#: ../src/gui/filtereditor.py:515
+#: ../src/gui/filtereditor.py:514
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
 msgid "Number must be:"
 msgstr "Die Anzahl Muss sein:"
 
-#: ../src/gui/filtereditor.py:517
+#: ../src/gui/filtereditor.py:516
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:52
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:47
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:46
@@ -5534,7 +5532,7 @@ msgstr "Die Anzahl Muss sein:"
 msgid "Number of generations:"
 msgstr "Anzahl der Generationen:"
 
-#: ../src/gui/filtereditor.py:519 ../src/Filters/Rules/_HasGrampsId.py:46
+#: ../src/gui/filtereditor.py:518 ../src/Filters/Rules/_HasGrampsId.py:46
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
@@ -5551,7 +5549,7 @@ msgstr "Anzahl der Generationen:"
 msgid "ID:"
 msgstr "ID:"
 
-#: ../src/gui/filtereditor.py:522 ../src/Filters/Rules/_HasSourceOfBase.py:46
+#: ../src/gui/filtereditor.py:521 ../src/Filters/Rules/_HasSourceOfBase.py:46
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Family/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:46
@@ -5559,7 +5557,7 @@ msgstr "ID:"
 msgid "Source ID:"
 msgstr "Ereignis-ID:"
 
-#: ../src/gui/filtereditor.py:524
+#: ../src/gui/filtereditor.py:523
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
@@ -5572,78 +5570,78 @@ msgid "Filter name:"
 msgstr "Filtername:"
 
 #. filters of another namespace, name may be same as caller!
-#: ../src/gui/filtereditor.py:528
+#: ../src/gui/filtereditor.py:527
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Person filter name:"
 msgstr "Personenfiltername:"
 
-#: ../src/gui/filtereditor.py:530
+#: ../src/gui/filtereditor.py:529
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
 msgid "Event filter name:"
 msgstr "Ereignisfiltername:"
 
-#: ../src/gui/filtereditor.py:532
+#: ../src/gui/filtereditor.py:531
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:49
 msgid "Source filter name:"
 msgstr "Quellenfiltername:"
 
-#: ../src/gui/filtereditor.py:534
+#: ../src/gui/filtereditor.py:533
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:44
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:46
 msgid "Repository filter name:"
 msgstr "Aufbewahrungsortfiltername:"
 
-#: ../src/gui/filtereditor.py:538
+#: ../src/gui/filtereditor.py:537
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 msgid "Inclusive:"
 msgstr "Einschließlich:"
 
-#: ../src/gui/filtereditor.py:539
+#: ../src/gui/filtereditor.py:538
 msgid "Include original person"
 msgstr "Ursprüngliche Person aufnehmen"
 
-#: ../src/gui/filtereditor.py:540
+#: ../src/gui/filtereditor.py:539
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Case sensitive:"
 msgstr "Groß-/Kleinschreibung:"
 
-#: ../src/gui/filtereditor.py:541
+#: ../src/gui/filtereditor.py:540
 msgid "Use exact case of letters"
 msgstr "Exakte Schreibweise der Buchstaben verwenden"
 
-#: ../src/gui/filtereditor.py:542
+#: ../src/gui/filtereditor.py:541
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasNameOf.py:59
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck entsprechend:"
 
-#: ../src/gui/filtereditor.py:543
+#: ../src/gui/filtereditor.py:542
 msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/gui/filtereditor.py:544
+#: ../src/gui/filtereditor.py:543
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Include Family events:"
 msgstr "Familienereignisse aufnehmen:"
 
-#: ../src/gui/filtereditor.py:545
+#: ../src/gui/filtereditor.py:544
 msgid "Also family events where person is wife/husband"
 msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
 
-#: ../src/gui/filtereditor.py:547 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:546 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
 msgid "Tag:"
 msgstr "Markierung:"
 
-#: ../src/gui/filtereditor.py:551
+#: ../src/gui/filtereditor.py:550
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -5658,37 +5656,61 @@ msgstr "Markierung:"
 msgid "Confidence level:"
 msgstr "Vertrauensgrad:"
 
-#: ../src/gui/filtereditor.py:571
+#: ../src/gui/filtereditor.py:562
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:74
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:77
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:66
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:67
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:72
+msgid "Use regular expressions"
+msgstr "Regulären Ausdruck benutzen"
+
+#: ../src/gui/filtereditor.py:563
+msgid ""
+"Interpret the contents of string fields as regular expressions.\n"
+"A decimal point will match any character. A question mark will match zero or "
+"one occurences of the previous character or group. An asterisk will match "
+"zero or more occurences. A plus sign will match one or more occurences. Use "
+"parentheses to group expressions. Specify alternatives using a vertical bar. "
+"A caret will match the start of a line. A dollar sign will match the end of "
+"a line."
+msgstr ""
+
+#: ../src/gui/filtereditor.py:590
 msgid "Rule Name"
 msgstr "Regelname"
 
-#: ../src/gui/filtereditor.py:686 ../src/gui/filtereditor.py:697
+#: ../src/gui/filtereditor.py:707 ../src/gui/filtereditor.py:718
 #: ../src/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
 
-#: ../src/gui/filtereditor.py:737
+#: ../src/gui/filtereditor.py:761
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: ../src/gui/filtereditor.py:741
+#: ../src/gui/filtereditor.py:765
 msgid "Values"
 msgstr "Werte"
 
-#: ../src/gui/filtereditor.py:839
+#: ../src/gui/filtereditor.py:863
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../src/gui/filtereditor.py:851
+#: ../src/gui/filtereditor.py:875
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../src/gui/filtereditor.py:886
+#: ../src/gui/filtereditor.py:910
 msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1024 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1048 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5711,19 +5733,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1024
+#: ../src/gui/filtereditor.py:1048
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../src/gui/filtereditor.py:1032
+#: ../src/gui/filtereditor.py:1056
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../src/gui/filtereditor.py:1098
+#: ../src/gui/filtereditor.py:1122
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../src/gui/filtereditor.py:1099
+#: ../src/gui/filtereditor.py:1123
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -5733,7 +5755,7 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge das alle Filter die von ihm abhängen "
 "auch gelöscht werden."
 
-#: ../src/gui/filtereditor.py:1103
+#: ../src/gui/filtereditor.py:1127
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
@@ -6485,7 +6507,7 @@ msgstr "Medium:"
 #. #########################
 #: ../src/gui/viewmanager.py:1550
 #: ../src/plugins/drawreport/AncestorTree.py:989
-#: ../src/plugins/drawreport/DescendTree.py:1581
+#: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
 #: ../src/plugins/textreport/DetDescendantReport.py:976
@@ -10008,7 +10030,7 @@ msgstr "Der Stil für Überschriften."
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1070
-#: ../src/plugins/drawreport/DescendTree.py:1670
+#: ../src/plugins/drawreport/DescendTree.py:1674
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
@@ -10257,7 +10279,7 @@ msgstr "Drucke den Baum..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:868
-#: ../src/plugins/drawreport/DescendTree.py:1452
+#: ../src/plugins/drawreport/DescendTree.py:1456
 msgid "Tree Options"
 msgstr "Baumoptionen"
 
@@ -10281,7 +10303,7 @@ msgid "The center person for the tree"
 msgstr "Die Hauptperson für den Baum"
 
 #: ../src/plugins/drawreport/AncestorTree.py:874
-#: ../src/plugins/drawreport/DescendTree.py:1472
+#: ../src/plugins/drawreport/DescendTree.py:1476
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
@@ -10291,7 +10313,7 @@ msgid "Generations"
 msgstr "Generationen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
-#: ../src/plugins/drawreport/DescendTree.py:1473
+#: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "The number of generations to include in the tree"
 msgstr "Anzahl der im Baum berücksichtigten Generationen"
 
@@ -10308,7 +10330,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Die Anzahl der Generationen mit leeren Boxen die angezeigt werden"
 
 #: ../src/plugins/drawreport/AncestorTree.py:888
-#: ../src/plugins/drawreport/DescendTree.py:1481
+#: ../src/plugins/drawreport/DescendTree.py:1485
 msgid "Co_mpress tree"
 msgstr "Baum ko_mprimieren"
 
@@ -10381,17 +10403,17 @@ msgid "Display format for the mothers box."
 msgstr "Anzeigeformat für die Mutterbox."
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
-#: ../src/plugins/drawreport/DescendTree.py:1521
+#: ../src/plugins/drawreport/DescendTree.py:1525
 msgid "Include Marriage box"
 msgstr "Heiratsboxen aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:941
-#: ../src/plugins/drawreport/DescendTree.py:1523
+#: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Whether to include a separate marital box in the report"
 msgstr "Ob eine extra Ehebox in dem Bericht enthalten ist"
 
 #: ../src/plugins/drawreport/AncestorTree.py:944
-#: ../src/plugins/drawreport/DescendTree.py:1526
+#: ../src/plugins/drawreport/DescendTree.py:1530
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -10400,43 +10422,43 @@ msgstr ""
 "Anzeigeformat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
-#: ../src/plugins/drawreport/DescendTree.py:1527
+#: ../src/plugins/drawreport/DescendTree.py:1531
 msgid "Display format for the marital box."
 msgstr "Anzeigeformat für die Ehebox."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:949
-#: ../src/plugins/drawreport/DescendTree.py:1540
+#: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Size"
 msgstr "Größe"
 
 #: ../src/plugins/drawreport/AncestorTree.py:951
-#: ../src/plugins/drawreport/DescendTree.py:1542
+#: ../src/plugins/drawreport/DescendTree.py:1546
 msgid "Scale tree to fit"
 msgstr "Baum passend skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:952
-#: ../src/plugins/drawreport/DescendTree.py:1543
+#: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Do not scale tree"
 msgstr "Baum nicht skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:953
-#: ../src/plugins/drawreport/DescendTree.py:1544
+#: ../src/plugins/drawreport/DescendTree.py:1548
 msgid "Scale tree to fit page width only"
 msgstr "Baum nur auf Seitenbreite skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:954
-#: ../src/plugins/drawreport/DescendTree.py:1545
+#: ../src/plugins/drawreport/DescendTree.py:1549
 msgid "Scale tree to fit the size of the page"
 msgstr "Baum auf Seitengröße skalieren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
-#: ../src/plugins/drawreport/DescendTree.py:1547
+#: ../src/plugins/drawreport/DescendTree.py:1551
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Ob der Baum auf eine bestimmte Papiergröße skaliert wird"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
-#: ../src/plugins/drawreport/DescendTree.py:1553
+#: ../src/plugins/drawreport/DescendTree.py:1557
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -10447,7 +10469,7 @@ msgstr ""
 "Beachte: Überschreibt Optionen im Papieroptionen Reiter"
 
 #: ../src/plugins/drawreport/AncestorTree.py:968
-#: ../src/plugins/drawreport/DescendTree.py:1559
+#: ../src/plugins/drawreport/DescendTree.py:1563
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -10480,13 +10502,13 @@ msgstr ""
 "  angepasst das jeder Abstand in der Höhe und Breite entfernt wird"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
-#: ../src/plugins/drawreport/DescendTree.py:1583
+#: ../src/plugins/drawreport/DescendTree.py:1587
 msgid "Report Title"
 msgstr "Berichttitel"
 
 #: ../src/plugins/drawreport/AncestorTree.py:992
-#: ../src/plugins/drawreport/DescendTree.py:1584
-#: ../src/plugins/drawreport/DescendTree.py:1633
+#: ../src/plugins/drawreport/DescendTree.py:1588
+#: ../src/plugins/drawreport/DescendTree.py:1637
 msgid "Do not include a title"
 msgstr "Ohne Titel"
 
@@ -10495,22 +10517,22 @@ msgid "Include Report Title"
 msgstr "Berichttitel aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1586
+#: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Choose a title for the report"
 msgstr "Wähle einen Titel für den Bericht"
 
 #: ../src/plugins/drawreport/AncestorTree.py:997
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include a border"
 msgstr "Mit Rand"
 
 #: ../src/plugins/drawreport/AncestorTree.py:998
-#: ../src/plugins/drawreport/DescendTree.py:1591
+#: ../src/plugins/drawreport/DescendTree.py:1595
 msgid "Whether to make a border around the report."
 msgstr "Ob ein Rand um den Bericht gelegt wird."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
-#: ../src/plugins/drawreport/DescendTree.py:1594
+#: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Page Numbers"
 msgstr "Mit Seitennummern"
 
@@ -10519,28 +10541,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Ob Seitennummern auf jeder Seite des Berichts gedruckt werden."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1005
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/DescendTree.py:1602
 msgid "Include Blank Pages"
 msgstr "Enthält leere Seiten"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1006
-#: ../src/plugins/drawreport/DescendTree.py:1599
+#: ../src/plugins/drawreport/DescendTree.py:1603
 msgid "Whether to include pages that are blank."
 msgstr "Ob leere Seiten enthalten sind."
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1013
-#: ../src/plugins/drawreport/DescendTree.py:1604
+#: ../src/plugins/drawreport/DescendTree.py:1608
 msgid "Include a note"
 msgstr "Eine Notiz aufnehmen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1014
-#: ../src/plugins/drawreport/DescendTree.py:1606
+#: ../src/plugins/drawreport/DescendTree.py:1610
 msgid "Whether to include a note on the report."
 msgstr "Ob eine Notiz auf dem Bericht enthalten ist."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1019
-#: ../src/plugins/drawreport/DescendTree.py:1611
+#: ../src/plugins/drawreport/DescendTree.py:1615
 msgid ""
 "Add a note\n"
 "\n"
@@ -10551,12 +10573,12 @@ msgstr ""
 "$T heutiges Datum einfügen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1024
-#: ../src/plugins/drawreport/DescendTree.py:1616
+#: ../src/plugins/drawreport/DescendTree.py:1620
 msgid "Note Location"
 msgstr "Position der Notiz"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1027
-#: ../src/plugins/drawreport/DescendTree.py:1619
+#: ../src/plugins/drawreport/DescendTree.py:1623
 msgid "Where to place the note."
 msgstr "Wo die Notiz platziert wird."
 
@@ -10573,12 +10595,12 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Generationen leerer Boxen für unbekannte Vorfahren"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1081
-#: ../src/plugins/drawreport/DescendTree.py:1660
+#: ../src/plugins/drawreport/DescendTree.py:1664
 msgid "The basic style used for the title display."
 msgstr "Der Basisstil, der für die Titelanzeige verwendet wird."
 
 #: ../src/plugins/drawreport/Calendar.py:98
-#: ../src/plugins/drawreport/DescendTree.py:667
+#: ../src/plugins/drawreport/DescendTree.py:671
 #: ../src/plugins/drawreport/FanChart.py:165
 #: ../src/plugins/graph/GVHourGlass.py:102
 #: ../src/plugins/textreport/AncestorReport.py:105
@@ -10922,48 +10944,48 @@ msgstr "Familiendiagramm für %(father1)s und %(mother1)s"
 msgid "Cousin Chart for "
 msgstr "Cousinendiagramm für "
 
-#: ../src/plugins/drawreport/DescendTree.py:735
+#: ../src/plugins/drawreport/DescendTree.py:739
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Familie %s ist nicht in der Datenbank"
 
 #. if self.name == "familial_descend_tree":
-#: ../src/plugins/drawreport/DescendTree.py:1455
 #: ../src/plugins/drawreport/DescendTree.py:1459
+#: ../src/plugins/drawreport/DescendTree.py:1463
 msgid "Report for"
 msgstr "Bericht für"
 
-#: ../src/plugins/drawreport/DescendTree.py:1456
+#: ../src/plugins/drawreport/DescendTree.py:1460
 msgid "The main person for the report"
 msgstr "Die Hauptperson für den Bericht"
 
-#: ../src/plugins/drawreport/DescendTree.py:1460
+#: ../src/plugins/drawreport/DescendTree.py:1464
 msgid "The main family for the report"
 msgstr "Die zentrale Familie für den Bericht"
 
-#: ../src/plugins/drawreport/DescendTree.py:1464
+#: ../src/plugins/drawreport/DescendTree.py:1468
 msgid "Start with the parent(s) of the selected first"
 msgstr "Starte mit den Elter(n) des zuerst gewählten"
 
-#: ../src/plugins/drawreport/DescendTree.py:1467
+#: ../src/plugins/drawreport/DescendTree.py:1471
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Zeigt die Eltern, Brüder und Schwestern der gewählten Person."
 
-#: ../src/plugins/drawreport/DescendTree.py:1476
+#: ../src/plugins/drawreport/DescendTree.py:1480
 msgid "Level of Spouses"
 msgstr "Ebene der Partner"
 
-#: ../src/plugins/drawreport/DescendTree.py:1477
+#: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 
-#: ../src/plugins/drawreport/DescendTree.py:1482
+#: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Ob Personen wo möglich nach oben verschoben werden um einen schmaleren Baum "
 "zu erhalten"
 
-#: ../src/plugins/drawreport/DescendTree.py:1489
+#: ../src/plugins/drawreport/DescendTree.py:1493
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -10971,15 +10993,15 @@ msgstr ""
 "Nachkommen\n"
 "Anzeigeformat"
 
-#: ../src/plugins/drawreport/DescendTree.py:1493
+#: ../src/plugins/drawreport/DescendTree.py:1497
 msgid "Display format for a descendant."
 msgstr "Anzeigeformat für einen Nachkommen."
 
-#: ../src/plugins/drawreport/DescendTree.py:1496
+#: ../src/plugins/drawreport/DescendTree.py:1500
 msgid "Bold direct descendants"
 msgstr "Direkte Nachkommen fett gedruckt"
 
-#: ../src/plugins/drawreport/DescendTree.py:1498
+#: ../src/plugins/drawreport/DescendTree.py:1502
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -10992,15 +11014,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../src/plugins/drawreport/DescendTree.py:1510
+#: ../src/plugins/drawreport/DescendTree.py:1514
 msgid "Indent Spouses"
 msgstr "Partner einrücken"
 
-#: ../src/plugins/drawreport/DescendTree.py:1511
+#: ../src/plugins/drawreport/DescendTree.py:1515
 msgid "Whether to indent the spouses in the tree."
 msgstr "Ob Partner im Baum eingerückt werden."
 
-#: ../src/plugins/drawreport/DescendTree.py:1514
+#: ../src/plugins/drawreport/DescendTree.py:1518
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -11008,16 +11030,16 @@ msgstr ""
 "Ehegatten\n"
 "Anzeigeformat"
 
-#: ../src/plugins/drawreport/DescendTree.py:1518
+#: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Display format for a spouse."
 msgstr "Anzeigeformat für eine(n) Partner(in)."
 
 #. #################
-#: ../src/plugins/drawreport/DescendTree.py:1531
+#: ../src/plugins/drawreport/DescendTree.py:1535
 msgid "Replace"
 msgstr "Ersetze"
 
-#: ../src/plugins/drawreport/DescendTree.py:1534
+#: ../src/plugins/drawreport/DescendTree.py:1538
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -11025,7 +11047,7 @@ msgstr ""
 "Anzeigeformat austauschen:\n"
 "'Ersetze dieses'/'Durch dieses'"
 
-#: ../src/plugins/drawreport/DescendTree.py:1536
+#: ../src/plugins/drawreport/DescendTree.py:1540
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -11033,24 +11055,24 @@ msgstr ""
 "z.B.\n"
 "Vereinigte Staaten von Amerika/U.S.A"
 
-#: ../src/plugins/drawreport/DescendTree.py:1585
-#: ../src/plugins/drawreport/DescendTree.py:1634
+#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Nachkommendiagramm für [gewählte Person(en)]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1595
+#: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include page numbers on each page."
 msgstr "Ob Seitennummern auf jeder Seite enthalten sind."
 
-#: ../src/plugins/drawreport/DescendTree.py:1638
+#: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Family Chart for [names of chosen family]"
 msgstr "Familiendiagramm für [Namen der gewählten Familie]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1642
+#: ../src/plugins/drawreport/DescendTree.py:1646
 msgid "Cousin Chart for [names of children]"
 msgstr "Cousinendiagramm für [Namen der Kinder]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1682
+#: ../src/plugins/drawreport/DescendTree.py:1686
 msgid "The bold style used for the text display."
 msgstr "Der Fettdruckstil, der für die Textanzeige verwendet wird."
 
@@ -20224,7 +20246,7 @@ msgstr "Entspricht Personen, bei denen der Familienname fehlt"
 #: ../src/Filters/Rules/Event/_HasData.py:51
 #: ../src/Filters/Rules/Event/_HasType.py:49
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:55
-#: ../src/Filters/Rules/Place/_HasPlace.py:60
+#: ../src/Filters/Rules/Place/_HasPlace.py:61
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:54
 #: ../src/Filters/Rules/Source/_HasRepository.py:50
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:48
@@ -25765,7 +25787,7 @@ msgstr "Unbekannter Vater"
 msgid "Unknown mother"
 msgstr "Unbekannte Mutter"
 
-#: ../src/Filters/_FilterParser.py:114
+#: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -25774,7 +25796,7 @@ msgstr ""
 "WARNUNG: Zu viele Parameter im Filter '%s'!\n"
 "Versuche ihn mit einem Teil der Parameter zu laden."
 
-#: ../src/Filters/_FilterParser.py:122
+#: ../src/Filters/_FilterParser.py:127
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -25784,7 +25806,7 @@ msgstr ""
 "            Versuche ihn trotzdem zu laden in der Hoffnung das diese "
 "erweitert werden."
 
-#: ../src/Filters/_FilterParser.py:130
+#: ../src/Filters/_FilterParser.py:135
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
@@ -27325,35 +27347,35 @@ msgstr ""
 "Liefert Orte, deren Notizen einen Text, entsprechend eines regulären "
 "Ausdrucks enthalten"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:49
+#: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "Street:"
 msgstr "Straße:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:50
+#: ../src/Filters/Rules/Place/_HasPlace.py:51
 msgid "Locality:"
 msgstr "Lokalität:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:52
+#: ../src/Filters/Rules/Place/_HasPlace.py:53
 msgid "County:"
 msgstr "Kreis:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:53
+#: ../src/Filters/Rules/Place/_HasPlace.py:54
 msgid "State:"
 msgstr "Bundesland:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:55
+#: ../src/Filters/Rules/Place/_HasPlace.py:56
 msgid "ZIP/Postal Code:"
 msgstr "PLZ:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:56
+#: ../src/Filters/Rules/Place/_HasPlace.py:57
 msgid "Church Parish:"
 msgstr "Kirchengemeinde:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:58
+#: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Places matching parameters"
 msgstr "Orte mit gegebenen Parametern"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:59
+#: ../src/Filters/Rules/Place/_HasPlace.py:60
 msgid "Matches places with particular parameters"
 msgstr "Liefert Orte mit den gegebenen Parametern"
 
@@ -28148,18 +28170,6 @@ msgstr "Als vertraulich markierte Notizen"
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
 msgstr "Liefert Notizen die als vertraulich markiert sind"
-
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:74
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:77
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:66
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:67
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:72
-msgid "Use regular expressions"
-msgstr "Regulären Ausdruck benutzen"
 
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:100
