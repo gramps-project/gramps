@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-11 23:00+0300\n"
+"PO-Revision-Date: 2013-04-13 16:19+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -793,19 +793,19 @@ msgstr "Додати дитину в сім'ю"
 
 #: ../gramps/gen/db/base.py:1630 ../gramps/gen/db/base.py:1635
 msgid "Remove child from family"
-msgstr "Видалити дитину з сім'ї"
+msgstr "Вилучити дитину з сім'ї"
 
 #: ../gramps/gen/db/base.py:1710 ../gramps/gen/db/base.py:1714
 msgid "Remove Family"
-msgstr "Видалити сім'ю"
+msgstr "Вилучити сім'ю"
 
 #: ../gramps/gen/db/base.py:1755
 msgid "Remove father from family"
-msgstr "Видалити батька із сім'ї"
+msgstr "Вилучити батька із сім'ї"
 
 #: ../gramps/gen/db/base.py:1757
 msgid "Remove mother from family"
-msgstr "Видалити маму із сім'ї"
+msgstr "Вилучити маму із сім'ї"
 
 #: ../gramps/gen/db/exceptions.py:82
 #, python-format
@@ -1012,9 +1012,8 @@ msgid "Name|primary"
 msgstr "Первинне"
 
 #: ../gramps/gen/display/name.py:590 ../gramps/gen/display/name.py:686
-#, fuzzy
 msgid "primary[pre]"
-msgstr "Головне"
+msgstr ""
 
 #: ../gramps/gen/display/name.py:593 ../gramps/gen/display/name.py:688
 msgid "primary[sur]"
@@ -1069,7 +1068,7 @@ msgstr "прізвисько сім'ї "
 #: ../gramps/gen/display/name.py:1067
 #, python-format
 msgid "Wrong name format string %s"
-msgstr ""
+msgstr "Хибний формат імені %s"
 
 #: ../gramps/gen/display/name.py:1071
 msgid "ERROR, Edit Name format in Preferences"
@@ -1177,7 +1176,7 @@ msgstr "Хтбний формат дати і часу"
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
 msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-msgstr ""
+msgstr "Дозволено лише дата-час у  ISO форматі of yyyy-mm-dd hh:mm:ss, де час є необов’язковим. %s не задовольняє вимог."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
@@ -1508,7 +1507,7 @@ msgstr "Публікація:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:54
 msgid "Sources matching parameters"
-msgstr "Збіг параметрів джерела"
+msgstr "Джерела з вказаними параметрами"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:55
 msgid "Matches citations with a source of a particular value"
@@ -1528,7 +1527,7 @@ msgstr "Вибирає цитати, що збігаються з вказани
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:45
 msgid "Citation Volume/Page containing <substring>"
-msgstr ""
+msgstr "Розділ/сторінка цитати, що містить <рядок>"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:46
 msgid "Matches citations whose Volume/Page contains a certain substring"
@@ -1554,7 +1553,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:52
 msgid "Matches citations with sources that match the specified source filter name"
-msgstr ""
+msgstr "Вибирає всі цитати з джерелами, що підпадають мають вказану назву джерела"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
 msgid "Citations with <Id> matching regular expression"
@@ -1738,7 +1737,7 @@ msgstr "Включити сімейну подію:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:53
 msgid "Events of persons matching the <person filter>"
-msgstr ""
+msgstr "Події осіб, що підпадають під <фільтр осіб>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:54
 msgid "Matches events of persons matched by the specified person filter name"
@@ -1796,7 +1795,7 @@ msgstr "Сім’ї з дитиною яка має <Id>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 msgid "Matches families where child has a specified Gramps ID"
-msgstr ""
+msgstr "Вибирає сім’ї де дитина має вказане Gramps ID"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:51
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:50
@@ -1812,7 +1811,7 @@ msgstr "Сім’ї з дитиною на <ім’я>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:48
 msgid "Matches families where child has a specified (partial) name"
-msgstr ""
+msgstr "Вибирає сім’ї, де ім’я дитини має вказане(частково) ім’я"
 
 #: ../gramps/gen/filters/rules/family/_familyprivate.py:44
 msgid "Families marked private"
@@ -1828,7 +1827,7 @@ msgstr "Сім’ї з батьком в якого <Id>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr ""
+msgstr "Вибирає сім’ї де батько має вказане Gramps ID"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:51
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:50
@@ -1844,7 +1843,7 @@ msgstr "Сім’ї з батьком на <ім’я>"
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:48
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:48
 msgid "Matches families whose father has a specified (partial) name"
-msgstr ""
+msgstr "Вибирає сім’ї де батько має вказане(частково) ім’я"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
@@ -1907,11 +1906,11 @@ msgstr "Вибирає сім'ї з вказаним Gramps ID"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:50
 msgid "Families with <count> LDS events"
-msgstr ""
+msgstr "Сім’є з  <кількістю> LDS подій"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:51
 msgid "Matches families with a certain number of LDS events"
-msgstr ""
+msgstr "Вибирає сім’ї з вказаною кількістю  LDS подій"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:47
 msgid "Families having <count> notes"
@@ -2064,45 +2063,40 @@ msgid "Matches families whose father has a name matching a specified regular exp
 msgstr "Вибирає сім’ї де є батько, ім’я якого підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Сім’ї  <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
-#, fuzzy
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає сім’ї які містять Gramps ID, що підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:47
 msgid "Families with mother matching the <regex_name>"
-msgstr ""
+msgstr "Сім’ї з  мамою, ім’я якої підпадає під <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:48
 msgid "Matches families whose mother has a name matching a specified regular expression"
-msgstr ""
+msgstr "Вибирає сім’ї де є мама, ім’я якої підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:47
 msgid "Families with any child matching the <name>"
-msgstr ""
+msgstr "Сім’ї в яких ім’я дитини збігається з <ім’я>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:48
 msgid "Matches families where any child has a specified (partial) name"
-msgstr ""
+msgstr "Вибирає сім’ї, де ім’я будь якої дитини має вказане(частково) ім’я"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:47
-#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr "Знайдено %d осіб з однаковим іменем атрибута.\n"
+msgstr "Сім’ї з батьком, ім’я якого збігається з <ім’я>"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:47
-#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr "Знайдено %d осіб з однаковим іменем атрибута.\n"
+msgstr "Сім’ї з батьком, ім’я якого підпадає під <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:46
-#, fuzzy
 msgid "Every media object"
-msgstr "Додати медіа (%s)"
+msgstr "Всі медіа об’єкти"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:47
 msgid "Matches every media object in the database"
@@ -2110,12 +2104,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:47
 msgid "Media objects changed after <date time>"
-msgstr ""
+msgstr "Медіа об'єкти змінені після <дата час>"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:48
-#, fuzzy
 msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given."
-msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
+msgstr "Вибирає меді об’єкти,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:103
@@ -2123,33 +2116,28 @@ msgid "Media attribute:"
 msgstr "Атрибут медіа:"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:47
-#, fuzzy
 msgid "Media objects with the attribute <attribute>"
-msgstr "Особи з медіа"
+msgstr "Медіа об'єкти з атрибутом <атрибут>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:48
-#, fuzzy
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Вибирає осіб з певним значенням сімейного атрибуту"
+msgstr "Вибирає медіа об'єкти, де один за атрибутів містить вказане значення"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:52
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "Цитата з <Id>"
+msgstr "Медіа об'єкти з <цитатою>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:53
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "Вибирає події з цитатою, частиною значення"
+msgstr "Вибирає медіа об’кти з цитатою, що містить вказане значення"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
-#, fuzzy
 msgid "Media object with <Id>"
-msgstr "  Медіа об'єкт %(id)s з %(id2)s\n"
+msgstr "Медіа об'єкт з <Id>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:47
 msgid "Matches a media object with a specified Gramps ID"
-msgstr ""
+msgstr "Вибирає медіа об’єкт з вказаним Gramps ID"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:49
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
@@ -2166,76 +2154,68 @@ msgid "Path:"
 msgstr "Шлях:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:53
-#, fuzzy
 msgid "Media objects matching parameters"
-msgstr "Неможливо об'єднати медіа."
+msgstr "Медіа об'єкти з вазаними параметрами"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:54
 msgid "Matches media objects with particular parameters"
-msgstr ""
+msgstr "Вибирає медіа об’єкти з вказаними параметрами"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:44
 msgid "Media objects having notes containing <substring>"
-msgstr ""
+msgstr "Медіа об'єкти з замітками, що містять <рядок>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:45
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr ""
+msgstr "Вибирає медіа об’єкти з  замітками які містять текст, що збігається з вказаним рядком"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:43
 msgid "Media objects having notes containing <regular expression>"
-msgstr ""
+msgstr "Медіа об'єкти з замітками, що містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:45
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Вибирає медіа об’єкти з  замітками які містять текст, що підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Media objects with a reference count of <count>"
-msgstr "Вибирає цитати, які мають вказану кількість посилань"
+msgstr "Медіа об'єкти, які мають <кількість> посилань"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
-msgstr ""
+msgstr "Вибирає медіа об’єкти з  вказаною кількістю посилань"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
-#, fuzzy
 msgid "Media with <count> sources"
-msgstr "Особи з <кількістю> джерел"
+msgstr "Медіа об'єкти з <кількістю> джерел"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:48
-#, fuzzy
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Вибирає людей, які мають вказану кількість підключених джерел"
+msgstr "Вибирає медіа об’кти, які мають вказану кількість підключених джерел"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "Особи з <джерелом>"
+msgstr "Медіа об'єкти з <джерелом>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
-#, fuzzy
 msgid "Matches media who have a particular source"
-msgstr "Вибирає людей, з певним джерелом"
+msgstr "Вибирає медіа об’кти, з певним джерелом"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
-#, fuzzy
 msgid "Media objects with the <tag>"
-msgstr "Особи з медіа"
+msgstr "Медіа об'єкти з <міткою>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:51
 msgid "Matches media objects with the particular tag"
-msgstr ""
+msgstr "Вибирає медіа об'єкти з вказаною міткою"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
-#, fuzzy
 msgid "Media objects matching the <filter>"
-msgstr "Грамплет показує фільтр медіа файлів"
+msgstr "Медіа об'єкти за вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:47
 msgid "Matches media objects matched by the specified filter name"
-msgstr ""
+msgstr "Вибирає медіа об’єкти, що підпадають під вказану назву фільтру"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
@@ -2246,22 +2226,20 @@ msgid "Matches media with at least one direct source with confidence level(s)"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:44
-#, fuzzy
 msgid "Media objects marked private"
-msgstr "Додати записи помічені як приватний"
+msgstr "Медіа об'єкти помічені як приватні"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:45
-#, fuzzy
 msgid "Matches Media objects that are indicated as private"
-msgstr "Вибирає всі особи, які не помічені як приватні дані"
+msgstr "Вибирає медіа об’єкти, які не помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
 msgid "Media Objects with <Id> matching regular expression"
-msgstr ""
+msgstr "Медіа об'єкти з <id> яке підпадаю під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
-msgstr ""
+msgstr "Вибирає медіа об’єкти з  Gramps ID яке підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:46
 msgid "Every note"
@@ -2272,14 +2250,12 @@ msgid "Matches every note in the database"
 msgstr "Вибирає всі замітки з бази"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:48
-#, fuzzy
 msgid "Notes changed after <date time>"
-msgstr "Цитати змінені після <дати-часу>"
+msgstr "Замітки змінені після <дати-часу>"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:49
-#, fuzzy
 msgid "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
+msgstr "Вибирає замітки,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:46
 msgid "Note with <Id>"
@@ -2301,92 +2277,76 @@ msgid "Note type:"
 msgstr "Тип замітки:"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:51
-#, fuzzy
 msgid "Notes matching parameters"
-msgstr "Збіг параметрів джерела"
+msgstr "Замітки з певними параметрами"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:52
-#, fuzzy
 msgid "Matches Notes with particular parameters"
-msgstr "Вибирає всі цитати із вкизаними параметрами"
+msgstr "Вибирає замітки із вказаними параметрами"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Notes with a reference count of <count>"
-msgstr "Цитати з кількістю посиланнь <кількість>"
+msgstr "Замітки з кількістю посилань <кількість>"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Matches notes with a certain reference count"
-msgstr "Вибирає цитати, які мають вказану кількість посилань"
+msgstr "Вибирає замітки, які мають вказану кількість посилань"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:50
-#, fuzzy
 msgid "Notes with the <tag>"
-msgstr "Сім'ї з <міткою>"
+msgstr "Замітки з <міткою>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:51
-#, fuzzy
 msgid "Matches notes with the particular tag"
-msgstr "Вибирає сім'ї з певною міткою"
+msgstr "Вибирає замітки з вказаною міткою"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
-#, fuzzy
 msgid "Notes with the particular type"
-msgstr "Вибирає події  певного типу"
+msgstr "Замітки  певного типу"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
-#, fuzzy
 msgid "Matches notes with the particular type "
-msgstr "Вибирає події певного типу"
+msgstr "Вибирає замітки вказаного типу"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
-#, fuzzy
 msgid "Notes matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Замітки, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches notes matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає замітки, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:46
 msgid "Notes containing <regular expression>"
 msgstr "Замітки, що містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
-#, fuzzy
 msgid "Matches notes that contain text which matches a regular expression"
-msgstr "Вибирає замітки вміст яких підпадає під регулярний вираз"
+msgstr "Вибирає замітки, вміст яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
 msgstr "Замітки, що містять запис <substring>"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:47
-#, fuzzy
 msgid "Matches notes that contain text which matches a substring"
 msgstr "Вибирає замітки які містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
-#, fuzzy
 msgid "Notes marked private"
-msgstr "Цитати, помічені як приватні"
+msgstr "Замітки помічені як приватні"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:45
-#, fuzzy
 msgid "Matches notes that are indicated as private"
-msgstr "Вибирає всі цитати, які помічені як приватні дані"
+msgstr "Вибирає замітки, які помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
-#, fuzzy
 msgid "Notes with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Замітки, <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
-#, fuzzy
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає замітки які містять Gramps ID, який підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:48
 msgid "Persons changed after <date time>"
@@ -2589,12 +2549,11 @@ msgstr "Вибирає осіб з вказаним Gramps ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:50
 msgid "People with <count> LDS events"
-msgstr ""
+msgstr "Особи з <кількістю> LDS подій"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:51
-#, fuzzy
 msgid "Matches people with a certain number of LDS events"
-msgstr "Вибирати осіб з вказаною кількістю адрес"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Given name:"
@@ -2832,9 +2791,8 @@ msgid "Ancestors of <filter> match"
 msgstr "Предок збігається з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:51
-#, fuzzy
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "Вибирає осіб, що мають спільного предка вказаного у фільтрі."
+msgstr "Вибирає осіб, що є предками, будь кому, кого відібрано вказаним у фільтром."
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:47
 msgid "Bookmarked people"
@@ -2849,9 +2807,8 @@ msgid "Children of <filter> match"
 msgstr "Діти підпадають під <фільтр>"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:51
-#, fuzzy
 msgid "Matches children of anybody matched by a filter"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає дітей, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 msgid "Default person"
@@ -2880,7 +2837,7 @@ msgstr "Вибирає пару або нащадків вказаної осо�
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid "Descendant family members of <filter> match"
-msgstr ""
+msgstr "Нащадок сім’ї збігається з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:51
 msgid "Matches people that are descendants or the spouse of anybody matched by a filter"
@@ -2899,18 +2856,16 @@ msgid "Descendants of <filter> match"
 msgstr "Нащадки підпадають під <фільтр>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:51
-#, fuzzy
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "Вибирає осіб, що мають спільного предка вказаного у фільтрі."
+msgstr "Вибирає осіб, що є нащадками, будь кого, з тих кого відібрано вказаним у фільтром."
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Duplicated ancestors of <person>"
 msgstr "Дублікат предка <особи>"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:51
-#, fuzzy
 msgid "Matches people that are ancestors twice or more of a specified person"
-msgstr "Вибирає предків вказаної особи, що віддалені від неї не більш як на N поколінь."
+msgstr "Вибирає осіб, що є предками, двічі або більше разів, для вказаної особи"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:47
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
@@ -2994,14 +2949,12 @@ msgid "Matches people that are descendants of a specified person at least N gene
 msgstr "Вибирає нащадків вказаної особи, що віддалені від неї приблизно на N поколінь."
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:49
-#, fuzzy
 msgid "Parents of <filter> match"
-msgstr "Предок збігається з <фільтром>"
+msgstr "Батьки збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:51
-#, fuzzy
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає батьків, де хоть хтось збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "People related to <Person>"
@@ -3012,19 +2965,16 @@ msgid "Matches people related to a specified person"
 msgstr "Вибирає людей, що пов’язані з вказаною особою"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
-#, fuzzy
 msgid "Siblings of <filter> match"
-msgstr "Предок збігається з <фільтром>"
+msgstr "Брати/сестри збігається з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:50
-#, fuzzy
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає братів/сестер, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:49
-#, fuzzy
 msgid "Spouses of <filter> match"
-msgstr "Предок збігається з <фільтром>"
+msgstr "Подружжя збігається з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:50
 msgid "Matches people married to anybody matching a filter"
@@ -3032,11 +2982,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:47
 msgid "Witnesses"
-msgstr ""
+msgstr "Свідки"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:48
 msgid "Matches people who are witnesses in any event"
-msgstr ""
+msgstr "Вибирає осіб, які є свідками будь якої події"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
@@ -3046,21 +2996,19 @@ msgstr "Назва фільтру подій:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:54
 msgid "Persons with events matching the <event filter>"
-msgstr ""
+msgstr "Особи з подіями, що підпадають під вказаний <фільтр подій>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:55
 msgid "Matches persons who have events that match a certain event filter"
-msgstr ""
+msgstr "Вибирає осіб, які мають події, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:46
-#, fuzzy
 msgid "People matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Особи, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches people matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає людей, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:46
 msgid "Persons with at least one direct source >= <confidence level>"
@@ -3071,42 +3019,36 @@ msgid "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:45
-#, fuzzy
 msgid "People missing parents"
-msgstr "Пошук осіб без імені"
+msgstr "Особи без батьків"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:46
 msgid "Matches people that are children in a family with less than two parents or are not children in any family."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:44
-#, fuzzy
 msgid "People with multiple marriage records"
-msgstr "Особи, які містять <запис>"
+msgstr "Особи, з кількома записами про шлюб"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:45
 msgid "Matches people who have more than one spouse"
-msgstr ""
+msgstr "Вибирає осіб, які мають більше як одого партнера (чоловіка/дружину)"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:44
-#, fuzzy
 msgid "People with no marriage records"
-msgstr "Особи, які містять <запис>"
+msgstr "Особи, без записів про шлюб"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:45
-#, fuzzy
 msgid "Matches people who have no spouse"
-msgstr "Вибирає людей, з певним джерелом"
+msgstr "Вибирає осіб, які не мають партнера (чоловіка/дружину)"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:44
-#, fuzzy
 msgid "People without a known birth date"
-msgstr "Особи з відомою датою смерті"
+msgstr "Особи без відомої дати народження"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:45
-#, fuzzy
 msgid "Matches people without a known birthdate"
-msgstr "Вибирає людей, з відомою датою смерті"
+msgstr "Вибирає людей, без відомої датою народження"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:44
 msgid "People without a known death date"
@@ -3117,14 +3059,12 @@ msgid "Matches people without a known deathdate"
 msgstr "Вибирає людей, з відомою датою смерті"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:44
-#, fuzzy
 msgid "People marked private"
-msgstr "Особи, не помічені як приватні"
+msgstr "Особи, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:45
-#, fuzzy
 msgid "Matches people that are indicated as private"
-msgstr "Вибирає всі особи, які не помічені як приватні дані"
+msgstr "Вибирає осіб, які помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
 msgid "People not marked private"
@@ -3135,14 +3075,12 @@ msgid "Matches people that are not indicated as private"
 msgstr "Вибирає всі особи, які не помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
-#, fuzzy
 msgid "People with incomplete events"
-msgstr "Сім'ї з неповними подіями"
+msgstr "Особи з неповними подіями"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:45
-#, fuzzy
 msgid "Matches people with missing date or place in an event"
-msgstr "Вибирати осіб з відсутніми датами, або місцями сімейних подій"
+msgstr "Вибирає осіб з відсутньою датою, або місцем події"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:47
 msgid "On date:"
@@ -3157,32 +3095,28 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Вибирає людей з відсутньою датою смерті та не дуже старих"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
-#, fuzzy
 msgid "People with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Особи <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
-#, fuzzy
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає осіб з Gramps ID, який підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
 msgid "Expression:"
 msgstr "Вираз:"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Особи з альтернативним іменем"
+msgstr "Особи, імена яких підпадають під <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:50
 msgid "Matches people's names with a specified regular expression"
-msgstr ""
+msgstr "Вибирає осіб з іменами, що підпадають під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
-#, fuzzy
 msgid "Relationship path between <persons>"
-msgstr "Обраховує відносини між двома особами"
+msgstr "Шлях відносин між <особами>"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:50
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
@@ -3190,14 +3124,13 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid "Relationship path between bookmarked persons"
-msgstr ""
+msgstr "Шлях відносин між особами в закладці"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:55
 msgid "Matches the ancestors of bookmarked individuals back to common ancestors, producing the relationship path(s) between bookmarked persons."
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
-#, fuzzy
 msgid "People matching the <name>"
 msgstr "Особи з <іменем>"
 
@@ -3210,34 +3143,28 @@ msgid "Matches every place in the database"
 msgstr "Вибирає всі місця з бази"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:48
-#, fuzzy
 msgid "Places changed after <date time>"
-msgstr "Цитати змінені після <дати-часу>"
+msgstr "Місця змінені після <дати-часу>"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:49
-#, fuzzy
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
+msgstr "Вибирає місця, що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:53
-#, fuzzy
 msgid "Place with the <citation>"
-msgstr "Цитата з <Id>"
+msgstr "Місця з <цитатою>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:54
-#, fuzzy
 msgid "Matches places with a citation of a particular value"
-msgstr "Вибирає події з цитатою, частиною значення"
+msgstr "Вибирає місця з цитатою, яка має вказане значення"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
-#, fuzzy
 msgid "Places with <count> media"
-msgstr "Цитати з <кількістю> медіа"
+msgstr "Місця з <кількістю> медіа"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:48
-#, fuzzy
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Вибирає цитати з вказаною кількістю об'єктів в галереї"
+msgstr "Вибирає місця, з вказаною кількістю об'єктів в галереї"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:46
 msgid "Place with <Id>"
@@ -3265,29 +3192,24 @@ msgid "Places having <count> notes"
 msgstr "Міця, що мають <кількість> заміток"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:48
-#, fuzzy
 msgid "Matches places having a certain number of notes"
-msgstr "Відбір місць, що мають певну кількість заміток"
+msgstr "Вибирає місця, що мають певну кількість заміток"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
-#, fuzzy
 msgid "Places having notes containing <substring>"
 msgstr "Місця в замітках яких міститься <частина рядка>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:45
-#, fuzzy
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Відбір місць, в замітках яких міститься збіг з вказаним підрядком"
+msgstr "Вибирає місця, в замітках яких міститься збіг з вказаним рідком"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Places having notes containing <regular expression>"
 msgstr "Місця з замітками, які містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
-#, fuzzy
 msgid "Matches places whose notes contain text matching a regular expression"
-msgstr "Відбір місць, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
+msgstr "Вибирає місця, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:50
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
@@ -3331,44 +3253,36 @@ msgid "Church Parish:"
 msgstr "Парафія:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:60
-#, fuzzy
 msgid "Places matching parameters"
-msgstr "Збіг параметрів джерела"
+msgstr "Місця з певними параметрами"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
-#, fuzzy
 msgid "Matches places with particular parameters"
-msgstr "Вибирає всі цитати із вкизаними параметрами"
+msgstr "Вибирає місця із вказаними параметрами"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Places with a reference count of <count>"
-msgstr "Цитати з кількістю посиланнь <кількість>"
+msgstr "Місця з кількістю посилань <кількість>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Matches places with a certain reference count"
-msgstr "Вибирає цитати, які мають вказану кількість посилань"
+msgstr "Вибирає місця, які мають вказану кількість посилань"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
-#, fuzzy
 msgid "Place with <count> sources"
-msgstr "Особи з <кількістю> джерел"
+msgstr "Місця з <кількістю> джерел"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
-#, fuzzy
 msgid "Matches places with a certain number of sources connected to it"
-msgstr "Вибирає людей, які мають вказану кількість підключених джерел"
+msgstr "Вибирає місця, які мають вказану кількість підключених джерел"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
-#, fuzzy
 msgid "Places with the <source>"
-msgstr "Особи з <джерелом>"
+msgstr "Місця з <джерелом>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
-#, fuzzy
 msgid "Matches places who have a particular source"
-msgstr "Вибирає людей, з певним джерелом"
+msgstr "Вибирає місця, з певним джерелом"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/mergeplace.glade.h:6
@@ -3389,9 +3303,8 @@ msgid "Rectangle width:"
 msgstr "Ширина прямокутника:"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:53
-#, fuzzy
 msgid "Places in neighborhood of given position"
-msgstr "Відкрити у вказаній позиції у файлі закладок"
+msgstr "Місця по сусідству від вказаної позиції"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:54
 msgid "Matches places with latitude or longitude positioned in a rectangle of given height and width (in degrees), and with middlepoint the given latitude and longitude."
@@ -3399,109 +3312,91 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:52
 msgid "Places of events matching the <event filter>"
-msgstr ""
+msgstr "Місця з подіями, що підпадають під вказаний <фільтр подій>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:53
 msgid "Matches places where events happened that match the specified event filter name"
-msgstr ""
+msgstr "Вибирає місця, де трапились події, які обрано вказаним фільтром подій"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:46
-#, fuzzy
 msgid "Places matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Місця, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches places matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає місця, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:47
-#, fuzzy
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr "Пошук місць з відсутньою Довготою або Широтою"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
-#, fuzzy
 msgid "Places marked private"
-msgstr "Цитати, помічені як приватні"
+msgstr "Місця, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:45
-#, fuzzy
 msgid "Matches places that are indicated as private"
-msgstr "Вибирає всі цитати, які помічені як приватні дані"
+msgstr "Вибирає місця, які помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
-#, fuzzy
 msgid "Places with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Місця <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
-#, fuzzy
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає місця, які мають Gramps ID, який підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:46
-#, fuzzy
 msgid "Every repository"
-msgstr "_Додати сховище"
+msgstr "Всі сховища"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
-#, fuzzy
 msgid "Matches every repository in the database"
-msgstr "Збіги кожної цитати в базі даних"
+msgstr "Збіги кожного совища в базі даних"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
-#, fuzzy
 msgid "Repositories changed after <date time>"
-msgstr "Цитати змінені після <дати-часу>"
+msgstr "Сховища змінені після <дати-часу>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:49
-#, fuzzy
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given."
-msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
+msgstr "Вибирає сховища,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:46
 msgid "Repository with <Id>"
 msgstr "Сховище з <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:47
-#, fuzzy
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Вибирає цитату із вказаним Gramps ID"
+msgstr "Вибирає сховище із вказаним Gramps ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:44
-#, fuzzy
 msgid "Repositories having notes containing <substring>"
-msgstr "Цитати, замітки яких містять <текст>"
+msgstr "Сховища, замітки яких містять <текст>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:45
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст"
+msgstr "Вибирає сховища, замітки яких містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Repositories having notes containing <regular expression>"
-msgstr "Цитати, замітки яких містять <регулярний вираз>"
+msgstr "Сховища, замітки яких містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:45
-#, fuzzy
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
+msgstr "Вибирає сховища, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Repositories with a reference count of <count>"
-msgstr "Цитати з кількістю посиланнь <кількість>"
+msgstr "Сховища з кількістю посиланнь <кількість>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Matches repositories with a certain reference count"
-msgstr "Вибирає цитати, які мають вказану кількість посилань"
+msgstr "Вибирає сховища, які мають вказану кількість посилань"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:50
 msgid "Address:"
@@ -3512,24 +3407,20 @@ msgid "URL:"
 msgstr "URL:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
-#, fuzzy
 msgid "Repositories matching parameters"
-msgstr "Збіг параметрів джерела"
+msgstr "Сховища з певними параметрами"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:54
-#, fuzzy
 msgid "Matches Repositories with particular parameters"
-msgstr "Вибирає всі цитати із вкизаними параметрами"
+msgstr "Вибирає сховища із вказаними параметрами"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
-#, fuzzy
 msgid "Repositories matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Сховища, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає сховища, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
 msgid "Repository name containing <substring>"
@@ -3540,24 +3431,20 @@ msgid "Matches repositories whose name contains a certain substring"
 msgstr "Вибирає сховища в назві якихміститься вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
-#, fuzzy
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Сховища <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
-#, fuzzy
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає сховища з Gramps ID, який підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:44
-#, fuzzy
 msgid "Repositories marked private"
-msgstr "Цитати, помічені як приватні"
+msgstr "Сховища, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:45
-#, fuzzy
 msgid "Matches repositories that are indicated as private"
-msgstr "Вибирає всі цитати, які помічені як приватні дані"
+msgstr "Вибирає сховища, які помічені як приватні дані"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:46
 msgid "Every source"
@@ -3568,24 +3455,20 @@ msgid "Matches every source in the database"
 msgstr "Вибирає всі джерела з бази даних"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:48
-#, fuzzy
 msgid "Sources changed after <date time>"
-msgstr "Цитати змінені після <дати-часу>"
+msgstr "Джерела змінені після <дати-часу>"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:49
-#, fuzzy
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Вибирає цитати,що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
+msgstr "Вибирає джерела, що були редаговані після вказаної дати-часу (yyyy-mm-dd hh:mm:ss) або в діапазоні дат, якщо було вказано іншу дату-час."
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:47
-#, fuzzy
 msgid "Sources with <count> media"
-msgstr "Цитати з <кількістю> медіа"
+msgstr "Джерела з <кількістю> медіа"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:48
-#, fuzzy
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Вибирає цитати з вказаною кількістю об'єктів в галереї"
+msgstr "Вибирає джерела з вказаною кількістю об'єктів в галереї"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:46
 msgid "Source with <Id>"
@@ -3596,53 +3479,44 @@ msgid "Matches a source with a specified Gramps ID"
 msgstr "Вибирає джерела з вказаним Gramps ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:47
-#, fuzzy
 msgid "Sources having <count> notes"
-msgstr "Цитати в яких <кількість> заміток"
+msgstr "Джерела в яких <кількість> заміток"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:48
-#, fuzzy
 msgid "Matches sources having a certain number of notes"
-msgstr "Вибирати цитати з вказаною кількістю заміток"
+msgstr "Вибирає джерела з вказаною кількістю заміток"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:44
-#, fuzzy
 msgid "Sources having notes containing <substring>"
-msgstr "Цитати, замітки яких містять <текст>"
+msgstr "Джерела, замітки яких містять <текст>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:45
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст"
+msgstr "Вибирає джерела, замітки яких містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Sources having notes containing <regular expression>"
-msgstr "Цитати, замітки яких містять <регулярний вираз>"
+msgstr "Джерела, замітки яких містять <регулярний вираз>"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
-#, fuzzy
 msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Вибирає цитати, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
+msgstr "Вибирає джерела, замітки яких містять вказаний текст, що підпадає під вказаний регулярний вираз"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:44
-#, fuzzy
 msgid "Sources with a reference count of <count>"
-msgstr "Цитати з кількістю посиланнь <кількість>"
+msgstr "Джерела з кількістю посилання <кількість>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Matches sources with a certain reference count"
-msgstr "Вибирає цитати, які мають вказану кількість посилань"
+msgstr "Вибирає джерела, які мають вказану кількість посилань"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:49
 msgid "Sources with <count> Repository references"
-msgstr ""
+msgstr "Джерела, з <кількістю> підключених сховищ"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:50
-#, fuzzy
 msgid "Matches sources with a certain number of repository references"
-msgstr "Вибирає людей, які мають вказану кількість підключених джерел"
+msgstr "Вибирає джерела, які мають вказану кількість підключених джерел"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
 msgid "Sources with repository reference containing <substring> in \"Call Number\""
@@ -3655,14 +3529,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
-#, fuzzy
 msgid "Sources matching the <filter>"
-msgstr "Цитати, що збігаються з <фільтром>"
+msgstr "Джерела, що збігаються з <фільтром>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:47
-#, fuzzy
 msgid "Matches sources matched by the specified filter name"
-msgstr "Вибирає цитати, що збігаються з вказаним фільтром"
+msgstr "Вибирає джерела, що збігаються з вказаним фільтром"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
@@ -3683,24 +3555,20 @@ msgid "Matches sources whose title contains a certain substring"
 msgstr "Вибирає джерела які містять вказаний текст в назві"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
-#, fuzzy
 msgid "Sources with <Id> matching regular expression"
-msgstr "Цитати <Id> яких підпадає під регулярний вираз"
+msgstr "Джерела <Id> яких підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
-#, fuzzy
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr "Вибирає цитати які містят Gramps ID, який підпадає під регулярний вираз"
+msgstr "Вибирає джерела з Gramps ID, який підпадає під регулярний вираз"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:44
-#, fuzzy
 msgid "Sources marked private"
-msgstr "Цитати, помічені як приватні"
+msgstr "Джерела, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:45
-#, fuzzy
 msgid "Matches sources that are indicated as private"
-msgstr "Вибирає всі цитати, які помічені як приватні дані"
+msgstr "Вибирає джерела, які помічені як приватні дані"
 
 #: ../gramps/gen/lib/attrtype.py:65 ../gramps/gen/lib/childreftype.py:81
 #: ../gramps/gen/lib/eventroletype.py:60 ../gramps/gen/lib/eventtype.py:146
@@ -5264,12 +5132,12 @@ msgid "Relationship loop detected"
 msgstr "Виявлено петлю відносин"
 
 #: ../gramps/gen/relationship.py:862
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Пошук в дереві досяг максимальної кількості поколінь %d.\n"
+"Пошук в Сімейному Дереві досяг максимальної кількості поколінь %d.\n"
 "Можливо деякі відносини були пропущені"
 
 #: ../gramps/gen/relationship.py:934
@@ -5397,18 +5265,16 @@ msgid "Unknown mother"
 msgstr "Мама невідома"
 
 #: ../gramps/gen/utils/alive.py:114
-#, fuzzy
 msgid "death event without date"
-msgstr "подія народження без дати"
+msgstr "подія смерті без дати"
 
 #: ../gramps/gen/utils/alive.py:125
 msgid "death-related evidence"
 msgstr "підтвердження смерті"
 
 #: ../gramps/gen/utils/alive.py:129
-#, fuzzy
 msgid "death-related evidence without date"
-msgstr "підтвердження смерті"
+msgstr "підтвердження смерті без дати"
 
 #: ../gramps/gen/utils/alive.py:146
 msgid "birth-related evidence"
@@ -5595,14 +5461,12 @@ msgid "PRIMARY"
 msgstr "ОСНОВНЕ"
 
 #: ../gramps/gen/utils/keyword.py:64
-#, fuzzy
 msgid "Primary[pre]"
-msgstr "Головне"
+msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:64
-#, fuzzy
 msgid "PRIMARY[PRE]"
-msgstr "Головне"
+msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "Primary[sur]"
@@ -6815,7 +6679,7 @@ msgstr "Показувати текст на кнопках бічної пан�
 
 #: ../gramps/gui/configure.py:1071
 msgid "Show close button in gramplet bar tabs"
-msgstr ""
+msgstr "Показувати кнопку \"закрити\" на панелі грамплет"
 
 #: ../gramps/gui/configure.py:1083
 msgid "Missing surname"
@@ -6950,9 +6814,8 @@ msgid "What to check"
 msgstr "Що перевіряти"
 
 #: ../gramps/gui/configure.py:1257
-#, fuzzy
 msgid "Where to check"
-msgstr "Що перевіряти"
+msgstr "Де перевіряти"
 
 #: ../gramps/gui/configure.py:1261
 msgid "Do not ask about previously notified addons"
@@ -7060,13 +6923,12 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: ../gramps/gui/dbloader.py:330
-#, fuzzy
 msgid "Need to upgrade Bsddb database!"
-msgstr "Потрібно оновити базу даних!"
+msgstr "Потрібно оновити базу даних Bsddb!"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "I have made a backup, please upgrade my tree"
-msgstr ""
+msgstr "Я вже маю резервну копію. Будь ласка, онови моє дерево"
 
 #: ../gramps/gui/dbloader.py:394
 msgid "All files"
@@ -7089,7 +6951,6 @@ msgid "_Archive"
 msgstr "_Архів"
 
 #: ../gramps/gui/dbman.py:282
-#, fuzzy
 msgid "Family Tree name"
 msgstr "Назва сімейного дерева"
 
@@ -7149,32 +7010,30 @@ msgid "Importing archive..."
 msgstr "Імпортую архів..."
 
 #: ../gramps/gui/dbman.py:553
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Видалити сімейне дерево '%s' ?"
+msgstr "Вилучити Сімейне Дерево '%s' ?"
 
 #: ../gramps/gui/dbman.py:554
-#, fuzzy
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "Видалення сімейного дерева назавжди знищить дані."
+msgstr "Вилучення Сімейного Дерева назавжди знищить дані."
 
 #: ../gramps/gui/dbman.py:555
-#, fuzzy
 msgid "Remove Family Tree"
-msgstr "Видалити сімейне дерево"
+msgstr "Вилучити Сімейне Дерево"
 
 #: ../gramps/gui/dbman.py:561
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Видалити '%(revision)s' версію бази '%(database)s'"
+msgstr "Вилучити '%(revision)s' версію бази '%(database)s'"
 
 #: ../gramps/gui/dbman.py:565
 msgid "Removing this version will prevent you from extracting it in the future."
-msgstr "Видалення даної версії бази не дозволить використання її в майбутньому."
+msgstr "Вилучення даної версії бази не дозволить використання її в майбутньому."
 
 #: ../gramps/gui/dbman.py:567
 msgid "Remove version"
-msgstr "Видалити версію"
+msgstr "Вилучити версію"
 
 #: ../gramps/gui/dbman.py:596
 msgid "Could not delete Family Tree"
@@ -7196,12 +7055,11 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dbman.py:649
-#, fuzzy
 msgid "Repair Family Tree?"
-msgstr "Полагодити сімейне дерево?"
+msgstr "Полагодити Сімейне Дерево?"
 
 #: ../gramps/gui/dbman.py:651
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree from the last good backup. There are several ways this can cause unwanted effects, so <b>backup</b> the Family Tree first.\n"
 "The Family Tree you have selected is stored in %s.\n"
@@ -7217,7 +7075,7 @@ msgstr ""
 "\n"
 "Перед тим як розпочати, переконайтесь, що сімейне дерево дійсно не відкривається, так як система керування базою даних, має змогу виправити деякі помилки автоматично.\n"
 "\n"
-"<b>Детальна інформація:</b> При відновленні сімейного дерева використовується остання копія дерева, створена при попередньому закритті програми. Якщо Ви працювали протягом декількох годин/днів без закриття Gramps, тоді всю інформацію буде втрачено! Якщо відновлення провалиться, або зникне надто багато інформації Ви можете спробувати відновити сімейне дерево вручну. Більше інформації на сторінці (Англійською)\n"
+"<b>Детальна інформація:</b> При відновленні сімейного дерева використовується остання копія дерева, створена при попередньому закритті програми. Якщо Ви працювали протягом декількох годин/днів без закриття Gramps, тоді всю інформацію буде втрачено! Ящо відновлення провалиться, тоді оригінальне Сімейне дерево буде втрачено назавжди, отже потрібно зробити додаткову резервну копію. Якщо відновлення провалиться, або зникне надто багато інформації Ви можете спробувати відновити сімейне дерево вручну. Більше інформації на сторінці (Англійською)\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
 "Перед тим як розпочати відновлення, спробуйте відкрити дерево як звичайно. Деякі помилки викликають появу кнопки \"Відновити\", для автоматичного відновлення. Якщо це так, Ви можете відключити кнопку відновлення, прибравши файл <i>need_recover</i> в каталозі сімейного дерева."
 
@@ -7396,7 +7254,7 @@ msgstr "Створити та додати нову адресу"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:64
 msgid "Remove the existing address"
-msgstr "Видалити вже створену адресу"
+msgstr "Вилучити вже створену адресу"
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:65
 msgid "Edit the selected address"
@@ -7476,7 +7334,7 @@ msgstr "Створити та додати новий атрибут"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:55
 msgid "Remove the existing attribute"
-msgstr "Видалити вже створений атрибут"
+msgstr "Вилучити вже створений атрибут"
 
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:56
 msgid "Edit the selected attribute"
@@ -7585,7 +7443,7 @@ msgstr "Додати"
 #: ../gramps/gui/glade/rule.glade.h:16
 #: ../gramps/gui/glade/styleeditor.glade.h:42
 msgid "Remove"
-msgstr "Видалити"
+msgstr "Вилучити"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:75
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:142
@@ -7612,7 +7470,7 @@ msgstr "Створити та додати нову цитату та нове �
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
 msgid "Remove the existing citation"
-msgstr "Видалити вже створену цитату"
+msgstr "Вилучити вже створену цитату"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 #: ../gramps/plugins/view/citationlistview.py:127
@@ -7677,7 +7535,7 @@ msgstr "Створити та додати нові дані"
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:52
 msgid "Remove the existing data entry"
-msgstr "Видалити вже створені дані"
+msgstr "Вилучити вже створені дані"
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:53
 msgid "Edit the selected data entry"
@@ -7721,7 +7579,7 @@ msgstr "Додати нову сімейну подію"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:65
 msgid "Remove the selected family event"
-msgstr "Видалити обрану сімейну подію"
+msgstr "Вилучити обрану сімейну подію"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:66
 msgid "Edit the selected family event or edit person"
@@ -7880,7 +7738,7 @@ msgstr "Створити та додати нове ім'я"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:64
 msgid "Remove the existing name"
-msgstr "Видалити вже створене ім'я"
+msgstr "Вилучити існуюче ім'я"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:65
 msgid "Edit the selected name"
@@ -7944,7 +7802,7 @@ msgstr "Створити та додати нову замітку"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:68
 msgid "Remove the existing note"
-msgstr "Видалити вже створену замітку"
+msgstr "Вилучити вже створену замітку"
 
 #: ../gramps/gui/editors/displaytabs/notetab.py:69
 #: ../gramps/plugins/view/noteview.py:96
@@ -7993,7 +7851,7 @@ msgstr "Додати нову подію особи"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Remove the selected personal event"
-msgstr "Видалити обрану подію особи"
+msgstr "Вилучити обрану подію особи"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
@@ -8021,7 +7879,7 @@ msgstr "Створити та додати новий зв'язок"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:55
 msgid "Remove the existing association"
-msgstr "Видалити вже створений зв'язок"
+msgstr "Вилучити вже створений зв'язок"
 
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:56
 msgid "Edit the selected association"
@@ -8053,7 +7911,7 @@ msgstr "Створити та додати нове сховище"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:58
 msgid "Remove the existing repository"
-msgstr "Видалити вже створене сховище"
+msgstr "Вилучити вже створене сховище"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:59
 #: ../gramps/plugins/view/repoview.py:112
@@ -8096,7 +7954,7 @@ msgstr "Створити та додати нове прізвище"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:67
 msgid "Remove the selected surname"
-msgstr "Видалити обране прізвище"
+msgstr "Вилучити обране прізвище"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:68
 msgid "Edit the selected surname"
@@ -8128,7 +7986,7 @@ msgstr "Створити та додати нову веб адресу"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:56
 msgid "Remove the existing web address"
-msgstr "Видалити вже створену веб адресу"
+msgstr "Вилучити вже створену веб адресу"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:57
 msgid "Edit the selected web address"
@@ -8383,7 +8241,7 @@ msgstr "Створити нову особу та додати її до сім'
 
 #: ../gramps/gui/editors/editfamily.py:112
 msgid "Remove the child from the family"
-msgstr "Видалити дитину з сім'ї"
+msgstr "Вилучити дитину з сім'ї"
 
 #: ../gramps/gui/editors/editfamily.py:113
 msgid "Edit the child reference"
@@ -8540,7 +8398,7 @@ msgstr "Додати нову особу як маму"
 
 #: ../gramps/gui/editors/editfamily.py:534
 msgid "Remove the person as the mother"
-msgstr "Видалити особу, що в якості мами"
+msgstr "Вилучити особу, що в якості мами"
 
 #: ../gramps/gui/editors/editfamily.py:547
 msgid "Select a person as the father"
@@ -8552,7 +8410,7 @@ msgstr "Додати нову особу як батька"
 
 #: ../gramps/gui/editors/editfamily.py:549
 msgid "Remove the person as the father"
-msgstr "Видалити особу, що в якості батька"
+msgstr "Вилучити особу, що в якості батька"
 
 #: ../gramps/gui/editors/editfamily.py:782
 msgid "Select Mother"
@@ -8701,7 +8559,7 @@ msgstr "Редагувати медіа (%s)"
 
 #: ../gramps/gui/editors/editmedia.py:342
 msgid "Remove Media Object"
-msgstr "Видалити медіа"
+msgstr "Вилучити медіа об’єкт"
 
 #: ../gramps/gui/editors/editmediaref.py:86
 #: ../gramps/gui/editors/editmediaref.py:407
@@ -9288,7 +9146,7 @@ msgstr "Додати нове місце"
 
 #: ../gramps/gui/editors/objectentries.py:261
 msgid "Remove place"
-msgstr "Видалити місце"
+msgstr "Вилучити місце"
 
 #: ../gramps/gui/editors/objectentries.py:309
 msgid "To select a media object, use drag-and-drop or use the buttons"
@@ -9315,7 +9173,7 @@ msgstr "Додати новий медіа об'єкт"
 
 #: ../gramps/gui/editors/objectentries.py:315
 msgid "Remove media object"
-msgstr "Видалити медіа об'єкт"
+msgstr "Вилучити медіа об'єкт"
 
 #: ../gramps/gui/editors/objectentries.py:363
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -9338,7 +9196,7 @@ msgstr "Додати нову замітку"
 
 #: ../gramps/gui/editors/objectentries.py:369
 msgid "Remove note"
-msgstr "Видалити замітку"
+msgstr "Вилучити замітку"
 
 #: ../gramps/gui/filters/_searchbar.py:110
 #, python-format
@@ -9556,7 +9414,7 @@ msgstr "Додати елемент до книги"
 
 #: ../gramps/gui/glade/book.glade.h:8
 msgid "Remove currently selected item from the book"
-msgstr "Видалити обрані елементи з книги"
+msgstr "Вилучити обрані елементи з книги"
 
 #: ../gramps/gui/glade/book.glade.h:9
 msgid "Move current selection one step up in the book"
@@ -9645,11 +9503,11 @@ msgstr "Більше не показувати це"
 
 #: ../gramps/gui/glade/dialog.glade.h:2
 msgid "Remove object and all references to it from the database"
-msgstr "Видалить об'єкт та всі пов'язані елементи з бази"
+msgstr "Вилучити об'єкт та всі пов'язані елементи з бази"
 
 #: ../gramps/gui/glade/dialog.glade.h:3
 msgid "_Remove Object"
-msgstr "Видалити об'єкт"
+msgstr "_Вилучити об'єкт"
 
 #: ../gramps/gui/glade/dialog.glade.h:4
 msgid "_Keep Reference"
@@ -9730,7 +9588,7 @@ msgstr "Місто:"
 
 #: ../gramps/gui/glade/editaddress.glade.h:5
 msgid "The town or city of the address"
-msgstr ""
+msgstr "Містечко або місто адреси"
 
 #: ../gramps/gui/glade/editaddress.glade.h:6
 #: ../gramps/plugins/tool/ownereditor.glade.h:4
@@ -10157,9 +10015,8 @@ msgstr "<b>Мама</b>"
 #: ../gramps/gui/glade/editreporef.glade.h:7
 #: ../gramps/gui/glade/editrepository.glade.h:9
 #: ../gramps/gui/glade/editsource.glade.h:13
-#, fuzzy
 msgid "Indicates if the record is private"
-msgstr "Відмічати якщо запис \"особистий\""
+msgstr "Вказує, що запис приватний"
 
 #: ../gramps/gui/glade/editfamily.glade.h:17
 msgid "<b>Relationship Information</b>"
@@ -10682,7 +10539,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editreporef.glade.h:10
 msgid "Id number of the source in the repository."
-msgstr ""
+msgstr "Id номер джерела в сховищі."
 
 #: ../gramps/gui/glade/editreporef.glade.h:12
 #: ../gramps/gui/glade/editrepository.glade.h:3
@@ -10694,7 +10551,7 @@ msgstr "_Ім'я:"
 #: ../gramps/gui/glade/editreporef.glade.h:14
 #: ../gramps/gui/glade/editrepository.glade.h:5
 msgid "Name of the repository (where sources are stored)."
-msgstr ""
+msgstr "Назва сховища (де збережено джерело)"
 
 #: ../gramps/gui/glade/editreporef.glade.h:15
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
@@ -10732,7 +10589,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editurl.glade.h:9
 msgid "Open the web address in the default browser."
-msgstr ""
+msgstr "Відкрийте веб адресу в стандартному веб оглядачі"
 
 #: ../gramps/gui/glade/editurl.glade.h:10
 msgid "A descriptive caption of the Internet location you are storing."
@@ -11160,15 +11017,15 @@ msgstr "<i>Замітка: зміни вступлять в дію лише пі
 
 #: ../gramps/gui/glade/rule.glade.h:7
 msgid "All rules must apply"
-msgstr "Потрібно застосувати всі правила"
+msgstr "Всі правила мають збігатися"
 
 #: ../gramps/gui/glade/rule.glade.h:8
 msgid "At least one rule must apply"
-msgstr "Принаймні, одне правило має бути застосоване"
+msgstr "Принаймні, одне правило має збігатися"
 
 #: ../gramps/gui/glade/rule.glade.h:9
 msgid "Exactly one rule must apply"
-msgstr "Лише одне правило може бути застосоване"
+msgstr "Лише одне правило має збігатися"
 
 #: ../gramps/gui/glade/rule.glade.h:10
 msgid "Add another rule to the filter"
@@ -11203,7 +11060,7 @@ msgstr "Ко_ментар:"
 
 #: ../gramps/gui/glade/rule.glade.h:22
 msgid "Return values that do no_t match the filter rules"
-msgstr "Повертати значення, що не підпадають під правила фільтру(обернути)"
+msgstr "Повертати значення, що не підпадають під правила фільтру (обернуто)"
 
 #: ../gramps/gui/glade/rule.glade.h:23
 msgid "<b>Selected Rule</b>"
@@ -11388,14 +11245,15 @@ msgid "Your version of gi (gnome-instrospection) seems to be too old. You need a
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:75
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
 "At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версія  pygobject не відповідає вимогам. Для роботи потрібно як мінімум pygobject %(major)d.%(feature)d.%(minor)d \n"
+"Версія  pygobject не відповідає вимогам.\n"
+"Для роботи Gramps, в графічному режимі, потрібно як мінімум pygobject %(major)d.%(feature)d.%(minor)d \n"
 "\n"
 "Gramps зараз завершить роботу."
 
@@ -11407,6 +11265,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Gdk, Gtk або Pango typelib не встановлено.\n"
+"Встановіть Gnome Introspection, та pygobject версії 3.3.2 або новіше.\n"
+"Потім встановіть instrospection data для Gdk, Gtk та Pango\n"
+"\n"
+"Gramps зараз закриється."
 
 #: ../gramps/gui/grampsgui.py:101
 msgid ""
@@ -11500,24 +11363,20 @@ msgid "Geography"
 msgstr "Географія"
 
 #: ../gramps/gui/grampsgui.py:165 ../gramps/plugins/view/geoperson.py:164
-#, fuzzy
 msgid "GeoPerson"
-msgstr "Людина"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:166 ../gramps/plugins/view/geofamily.py:134
-#, fuzzy
 msgid "GeoFamily"
-msgstr "Сім'я"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:167 ../gramps/plugins/view/geoevents.py:135
-#, fuzzy
 msgid "GeoEvents"
-msgstr "Події"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:168 ../gramps/plugins/view/geoplaces.py:135
-#, fuzzy
 msgid "GeoPlaces"
-msgstr "Місця"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:169
 msgid "Public"
@@ -12353,9 +12212,8 @@ msgstr ""
 "Якщо Ви передумаєте, Ви завжди можете натиснути Скасувати, при цьому поточна база залишиться без змін."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:600
-#, fuzzy
 msgid "Error exporting your Family Tree"
-msgstr "Полагодити сімейне дерево?"
+msgstr "Помилка експорту Вашого сімейного дерева"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:57
 msgid "Selecting Preview Data"
@@ -12909,9 +12767,8 @@ msgstr "Ввімк."
 #. the language does not exist
 #. and presumably if there is no dictionary
 #: ../gramps/gui/spell.py:132
-#, fuzzy
 msgid "Spelling checker could not be attached to TextView"
-msgstr "Перевірку правопису не можливо виконати в Перегляді Тексту"
+msgstr "Не можливо виконати перевірку правопису"
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:776
@@ -13393,7 +13250,7 @@ msgstr "_Додати..."
 #: ../gramps/gui/views/listview.py:216
 #: ../gramps/plugins/lib/libpersonview.py:349
 msgid "_Remove"
-msgstr "_Видалити"
+msgstr "_Вилучити"
 
 #: ../gramps/gui/views/listview.py:218
 #: ../gramps/plugins/lib/libpersonview.py:351
@@ -13426,7 +13283,7 @@ msgstr "Неможливо встановити закладку тому, що 
 
 #: ../gramps/gui/views/listview.py:529
 msgid "Remove selected items?"
-msgstr "Видалити обраний елемент?"
+msgstr "Вилучити обраний елемент?"
 
 #: ../gramps/gui/views/listview.py:530
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
@@ -13601,7 +13458,7 @@ msgstr "Впорядкувати мітки"
 #: ../gramps/gui/views/tags.py:477
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Видалити мітку '%s'?"
+msgstr "Вилучити мітку '%s'?"
 
 #: ../gramps/gui/views/tags.py:478
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
@@ -13609,7 +13466,7 @@ msgstr "Визначені мітки буде видалено. Також мі
 
 #: ../gramps/gui/views/tags.py:507
 msgid "Removing Tags"
-msgstr "Видалення міток"
+msgstr "Вилучення міток"
 
 #: ../gramps/gui/views/tags.py:512
 #, python-format
@@ -13727,7 +13584,7 @@ msgstr "Додати грамплет"
 
 #: ../gramps/gui/widgets/grampletbar.py:478
 msgid "Remove a gramplet"
-msgstr "Видалити грамплет"
+msgstr "Вилучити грамплет"
 
 #: ../gramps/gui/widgets/grampletbar.py:488
 msgid "Restore default gramplets"
@@ -13738,9 +13595,8 @@ msgid "Restore to defaults?"
 msgstr "Скинути до стандартних?"
 
 #: ../gramps/gui/widgets/grampletbar.py:527
-#, fuzzy
 msgid "The gramplet bar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr "Grampsbar буде відновлено до показу стандартних грамплет.  Цю дію неможливо скасувати."
+msgstr "Панель грамплет буде відновлено до показу стандартних грамплет.  Цю дію неможливо скасувати."
 
 #. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:789
@@ -14315,7 +14171,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
 #: ../gramps/plugins/drawreport/descendtree.py:1610
 msgid "Make the inter-box Y bigger or smaller"
-msgstr ""
+msgstr "Зробити інтервал Y, між блоками, більшим або меншим"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
 #: ../gramps/plugins/drawreport/descendtree.py:1613
@@ -14326,7 +14182,7 @@ msgstr "Коефіцієнт масштабування тіні для блок
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Make the box shadow bigger or smaller"
-msgstr ""
+msgstr "Зробити тінь, для блоку, більшою або меншою"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
 #: ../gramps/plugins/drawreport/descendtree.py:1622
@@ -14771,9 +14627,8 @@ msgstr "Діаграма нащадків для %(father)s та %(mother)s"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:214
-#, fuzzy
 msgid "Descendant Graph"
-msgstr "Грамплет Нащадки"
+msgstr "Діаграма Нащадки"
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -16006,9 +15861,8 @@ msgid "Gramplet showing all activity for this session"
 msgstr "Грамплет показує всі дії здійснені в поточній сесії"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:234
-#, fuzzy
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "Грамплет показує загальну інформацію про поточне сімейне дерево"
+msgstr "Грамплет показує загальну інформацію про Сімейне Дерево"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:254
@@ -16982,7 +16836,7 @@ msgstr "Почніть Генеалогію з Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:114
 msgid "Gramps online manual"
@@ -16990,7 +16844,7 @@ msgstr "Допомога Gramps: в мережі"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
@@ -16998,7 +16852,7 @@ msgstr "Задати запитання користувачам gramps в сп�
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "http://gramps-project.org/contact/"
-msgstr ""
+msgstr "http://gramps-project.org/contact/"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
 msgid "Who makes Gramps?"
@@ -17595,7 +17449,6 @@ msgid "Gramps package (portable XML)"
 msgstr "Пакет Gramps (портативний XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:89
-#, fuzzy
 msgid "Import data from a Gramps package (an archived XML Family Tree together with the media object files.)"
 msgstr "Імпортувати дані з пакунку Gramps (архів сімейного дерева в XML з медіа об'єктами)"
 
@@ -17604,9 +17457,8 @@ msgid "Gramps XML Family Tree"
 msgstr "Сімейне дерево Gramps XML"
 
 #: ../gramps/plugins/importer/import.gpr.py:108
-#, fuzzy
 msgid "The Gramps XML format is a text version of a Family Tree. It is read-write compatible with the present Gramps database format."
-msgstr "Формат Gramps XML є текстовою версією сімейного дерева. Доступний для читання-запису, сумісний з форматом бази даних Gramps."
+msgstr "Формат Gramps XML є текстовою версією Сімейного Дерева. Доступний для читання-запису, сумісний з форматом бази даних Gramps."
 
 #: ../gramps/plugins/importer/import.gpr.py:128
 msgid "Gramps 2.x database"
@@ -17922,18 +17774,18 @@ msgid "Base path for relative media set"
 msgstr "Базовий шлях для медіа встановлено"
 
 #: ../gramps/plugins/importer/importgpkg.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "The base media path of this Family Tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "Базовий шлях для цього сімейного дерева було встановлено як %s. Можливо Ви забажаєте використати каталог з більш зручним іменем. Ви можете змінити його в налаштуваннях, потім перемістити файли до нового місця, і використовуючи інструмент керування медіа, виконати операцію \"Замінити під-рядок в шляху\", щоб вказати вірний шлях до Ваших медіа."
+msgstr "Базовий шлях для цього Сімейного Дерева було встановлено як %s. Можливо Ви забажаєте використати каталог з більш зручним іменем. Ви можете змінити його в налаштуваннях, потім перемістити файли до нового місця, та використовуючи інструмент керування медіа, виконати операцію \"Замінити під-рядок в шляху\", щоб вказати вірний шлях до Ваших медіа об’єктів."
 
 #: ../gramps/plugins/importer/importgpkg.py:118
 msgid "Cannot set base media path"
 msgstr "Не можу встановити базовий каталог для медіа"
 
 #: ../gramps/plugins/importer/importgpkg.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "The Family Tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "Базовий шлях для цього сімейного дерева було встановлено як %s. Можливо Ви забажаєте використати каталог з більш зручним іменем. Ви можете змінити його в налаштуваннях, потім перемістити файли до нового місця, і використовуючи інструмент керування медіа, виконати операцію \"Замінити під-рядок в шляху\", щоб вказати вірний шлях до Ваших медіа."
+msgstr ""
 
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:75
@@ -18281,9 +18133,9 @@ msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Будь яке посилання на особу повинно мати 'hlink' атрибут."
 
 #: ../gramps/plugins/importer/importxml.py:1670
-#, fuzzy, python-format
+#, python-format
 msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
-msgstr "У Вашому сімейному дереві ім’я \"%(key)s\" згруповано з \"%(parent)s\", не міняємо групування на \"%(value)s\"."
+msgstr "У Вашому Сімейному Дереві ім’я \"%(key)s\" згруповано з \"%(parent)s\", не міняємо це групування на \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
 msgid "Gramps ignored namemap value"
@@ -18305,17 +18157,17 @@ msgstr "Коментар про свідка: %s"
 #: ../gramps/plugins/importer/importxml.py:3051
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Помилка: сім’я '%(family)s', батько '%(father)s' не має зворотного посилання на сім’ю. Посилання додано."
 
 #: ../gramps/plugins/importer/importxml.py:3067
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Помилка: сім’я '%(family)s', мама '%(mother)s' не має зворотного посилання на сім’ю. Посилання додано."
 
 #: ../gramps/plugins/importer/importxml.py:3089
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
-msgstr ""
+msgstr "Помилка: сім’я '%(family)s', дитина '%(child)s' не має зворотного посилання на сім’ю. Посилання додано."
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:1
 msgid "Bulgaria"
@@ -18536,7 +18388,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3086
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
-msgstr ""
+msgstr "Помилка: сім’я '%(family)s' (input as @%(orig_family)s@), особа %(person)s (input as %(orig_person)s) не є членом сім’ї, що прив’язана. Сімейний зв’язок цієї особи вилучено"
 
 #: ../gramps/plugins/lib/libgedcom.py:3164
 #, python-format
@@ -18667,7 +18519,7 @@ msgstr "REPO (сховище) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6706
 msgid "Head (header)"
-msgstr ""
+msgstr "Заголовок"
 
 #: ../gramps/plugins/lib/libgedcom.py:6722
 msgid "Approved system identification"
@@ -21661,7 +21513,7 @@ msgstr "Редагувати обрану особу"
 
 #: ../gramps/plugins/lib/libpersonview.py:117
 msgid "Remove the selected person"
-msgstr "Видалити обрану особу"
+msgstr "Вилучити обрану особу"
 
 #: ../gramps/plugins/lib/libpersonview.py:118
 msgid "Merge the selected persons"
@@ -21926,7 +21778,7 @@ msgstr "Меню мапи"
 
 #: ../gramps/plugins/lib/maps/geography.py:277
 msgid "Remove cross hair"
-msgstr "Видалити мітку"
+msgstr "Вилучити мітку"
 
 #: ../gramps/plugins/lib/maps/geography.py:279
 msgid "Add cross hair"
@@ -22716,7 +22568,7 @@ msgstr "Брати та сестри"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:317
 msgid "Display a person's siblings."
-msgstr "Показує братів та систер особи."
+msgstr "Показує братів та сестер особи."
 
 #. display the title
 #: ../gramps/plugins/quickview/references.py:70
@@ -22756,7 +22608,7 @@ msgstr "Пошук осіб з вказаним прізвищем"
 
 #: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "People matching the <given>"
-msgstr "Особи з <given>"
+msgstr "Особи з <даним ім’ям>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:66
 msgid "Matches people with same given name"
@@ -22796,7 +22648,7 @@ msgstr "Особи з даним іменем '%s'"
 #: ../gramps/plugins/quickview/siblings.py:48
 #, python-format
 msgid "Siblings of %s"
-msgstr "Брати/Сестри %s"
+msgstr "Брати/сестри %s"
 
 #: ../gramps/plugins/quickview/siblings.py:50
 msgid "Sibling"
@@ -23100,9 +22952,9 @@ msgid "sp. %(spouse)s"
 msgstr "пара %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr "sp. see  %(reference)s : %(spouse)s"
+msgstr ""
 
 #: ../gramps/plugins/textreport/descendreport.py:291
 #, python-format
@@ -23152,9 +23004,8 @@ msgid "Show duplicate trees"
 msgstr "Показати дубльовані дерева"
 
 #: ../gramps/plugins/textreport/descendreport.py:428
-#, fuzzy
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Чи включати до звіту дублікати сімейних дерев."
+msgstr "Чи включати до звіту дублікати Сімейних Дерев."
 
 #: ../gramps/plugins/textreport/descendreport.py:456
 #, python-format
@@ -23495,7 +23346,7 @@ msgstr "Стиль для додаткової інформації"
 #: ../gramps/plugins/textreport/detdescendantreport.py:288
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "Звіт нащадків для %(person_name)s"
+msgstr "Звіт Нащадки для %(person_name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:574
 #, python-format
@@ -24600,9 +24451,8 @@ msgid "The database has passed internal checks"
 msgstr "База даних успішно пройшла всі внутрішні перевірки"
 
 #: ../gramps/plugins/tool/check.py:1992
-#, fuzzy
 msgid "No errors were found: the database has passed internal checks."
-msgstr "База даних успішно пройшла всі внутрішні перевірки"
+msgstr "Помилок не знайдено: база даних успішно пройшла всі внутрішні перевірки"
 
 #: ../gramps/plugins/tool/check.py:1998
 #, python-format
@@ -25578,7 +25428,7 @@ msgstr "Відмітка"
 
 #: ../gramps/plugins/tool/removeunused.py:287
 msgid "Remove unused objects"
-msgstr "Видалення об'єктів, що не використовуються"
+msgstr "Вилучення об'єктів, що не використовуються"
 
 #: ../gramps/plugins/tool/reorderids.py:70
 msgid "Reordering Gramps IDs"
@@ -25807,11 +25657,11 @@ msgstr "Обраховує відносини між двома особами"
 
 #: ../gramps/plugins/tool/tools.gpr.py:440
 msgid "Remove Unused Objects"
-msgstr "Видалити Об’єкти, що не використовуються"
+msgstr "Вилучити Об’єкти, що не використовуються"
 
 #: ../gramps/plugins/tool/tools.gpr.py:441
 msgid "Removes unused objects from the database"
-msgstr "Видалити з бази об’єкти, що не використовуються"
+msgstr "Вилучити з бази об’єкти, що не використовуються"
 
 #: ../gramps/plugins/tool/tools.gpr.py:463
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
@@ -26108,9 +25958,8 @@ msgid "Source: Publication Information"
 msgstr "Джерело: Інформація про публікацію"
 
 #: ../gramps/plugins/view/citationlistview.py:110
-#, fuzzy
 msgid "Source: Private"
-msgstr "Джерело: Назва"
+msgstr "Джерело: Приватне"
 
 #: ../gramps/plugins/view/citationlistview.py:111
 msgid "Source: Last Changed"
@@ -26342,7 +26191,7 @@ msgstr "Кольори статі"
 #: ../gramps/plugins/view/fanchartdescview.py:284
 #: ../gramps/plugins/view/fanchartview.py:282
 msgid "Generation based gradient"
-msgstr ""
+msgstr "Градієнти в залежності від покоління"
 
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
@@ -26357,7 +26206,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchartdescview.py:288
 #: ../gramps/plugins/view/fanchartview.py:286
 msgid "Time period based gradient"
-msgstr ""
+msgstr "Градієнт на основі часового періоду"
 
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
@@ -26367,12 +26216,12 @@ msgstr "Білий"
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
 msgid "Color scheme classic report"
-msgstr ""
+msgstr "Схема кольорів для класичного звіту"
 
 #: ../gramps/plugins/view/fanchartdescview.py:291
 #: ../gramps/plugins/view/fanchartview.py:289
 msgid "Color scheme classic view"
-msgstr ""
+msgstr "Схема кольорів для класичного показу"
 
 #: ../gramps/plugins/view/fanchartdescview.py:300
 #: ../gramps/plugins/view/fanchartview.py:298
@@ -26413,7 +26262,7 @@ msgstr "Пів кола"
 #: ../gramps/plugins/view/fanchartdescview.py:318
 #: ../gramps/plugins/view/fanchartview.py:312
 msgid "Quadrant"
-msgstr ""
+msgstr "Квадрант"
 
 #. algo for the fan angle distribution
 #: ../gramps/plugins/view/fanchartdescview.py:321
@@ -26422,7 +26271,7 @@ msgstr "Опис діаграми"
 
 #: ../gramps/plugins/view/fanchartdescview.py:324
 msgid "Homogeneous children distribution"
-msgstr ""
+msgstr "Однорідний розподіл дітей"
 
 #: ../gramps/plugins/view/fanchartdescview.py:326
 msgid "Size  proportional to number of descendants"
@@ -26451,12 +26300,11 @@ msgstr "Показати кільце дитини"
 #: ../gramps/plugins/view/geoclose.py:132
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid "Have they been able to meet?"
-msgstr ""
+msgstr "Чи мали вони змогу зустрітися?"
 
 #: ../gramps/plugins/view/geoclose.py:162
-#, fuzzy
 msgid "GeoClose"
-msgstr "Закрити"
+msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:212
 #, python-format
@@ -26469,9 +26317,8 @@ msgid "The other : %(name)s ( %(birth)s - %(death)s )"
 msgstr "Інше : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:222
-#, fuzzy
 msgid "The other person is unknown"
-msgstr "Колір для осіб з невідомою статтю."
+msgstr "Інша особа є невідомою"
 
 #: ../gramps/plugins/view/geoclose.py:225
 msgid "You must choose one reference person."
@@ -26482,9 +26329,8 @@ msgid "Go to the person view and select the people you want to compare. Return t
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:274
-#, fuzzy
 msgid "reference _Person"
-msgstr "Посилання на особу"
+msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:275
 msgid "Select the person which is the reference for life ways"
@@ -26544,12 +26390,11 @@ msgstr "Центрувати на місці"
 #: ../gramps/plugins/view/geofamclose.py:130
 #: ../gramps/plugins/view/geography.gpr.py:124
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "Чи мали, ці дві сім'ї, змогу зустрітися?"
 
 #: ../gramps/plugins/view/geofamclose.py:160
-#, fuzzy
 msgid "GeoFamClose"
-msgstr "Закрити"
+msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:197
 #: ../gramps/plugins/view/geofamily.py:274
@@ -26577,9 +26422,8 @@ msgid "Go to the family view and select the families you want to compare. Return
 msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:264
-#, fuzzy
 msgid "reference _Family"
-msgstr "Невідоме сімейство %1"
+msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:265
 msgid "Select the family which is the reference for life ways"
@@ -26633,15 +26477,17 @@ msgid "Family places for %s"
 msgstr "Сімейні місця для %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "OsmGpsMap module not loaded. OsmGpsMap must be >= 0.8. yours is %s"
-msgstr "ПОПЕРЕДЖЕННЯ: модуль osmgpsmap не завантажено. версія osmgpsmap має бути >= 0.8. у вас %s"
+msgstr "Модуль OsmGpsMap не завантажено. Версія OsmGpsMap має бути >= 0.8. у вас %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:61
 msgid ""
 "OsmGpsMap module not loaded. Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
+"Модуль OsmGpsMap не завантажено. Географічні функції будуть недоступними.\n"
+"Щоб піключити це до Gramps перегляньте http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 
 #: ../gramps/plugins/view/geography.gpr.py:71
 msgid "All known places for one Person"
@@ -26770,7 +26616,7 @@ msgstr "Відсутня деяка інформація."
 
 #: ../gramps/plugins/view/geoplaces.py:291
 msgid "Please, use filtering to reduce this number."
-msgstr ""
+msgstr "Будь ласка, використовуйте фільтрацію, щоб зменшити це число."
 
 #: ../gramps/plugins/view/geoplaces.py:293
 msgid "You can modify this value in the geography option."
@@ -27088,7 +26934,7 @@ msgstr "Сортування батьків"
 
 #: ../gramps/plugins/view/relview.py:823
 msgid "Remove person as child of these parents"
-msgstr "Видалити особу в якості дитини із сім'ї"
+msgstr "Вилучити особу в якості дитини із сім'ї"
 
 #: ../gramps/plugins/view/relview.py:827
 msgid "Edit family"
@@ -27100,7 +26946,7 @@ msgstr "Сортування сімей"
 
 #: ../gramps/plugins/view/relview.py:829
 msgid "Remove person as parent in this family"
-msgstr "Видалити особу, що є батьком/мамою із сім'ї"
+msgstr "Вилучити особу, що є батьком/мамою із сім'ї"
 
 #: ../gramps/plugins/view/relview.py:882 ../gramps/plugins/view/relview.py:938
 #, python-format
@@ -27320,19 +27166,16 @@ msgid "Grouped People"
 msgstr "Згруповані особи"
 
 #: ../gramps/plugins/view/view.gpr.py:172
-#, fuzzy
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr "Цей вигляд показує всіх осіб сімейного дерева згрупованих по прізвищу"
+msgstr "Цей вигляд показує всіх осіб Сімейного Дерева згрупованих по прізвищу"
 
 #: ../gramps/plugins/view/view.gpr.py:189
-#, fuzzy
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr "Цей вигляд показує всіх осіб сімейного дерева як список"
+msgstr "Цей вигляд показує всіх осіб Сімейного Дерева в списку"
 
 #: ../gramps/plugins/view/view.gpr.py:206
-#, fuzzy
 msgid "The view showing all the places of the Family Tree"
-msgstr "Цей вигляд показує місця в сімейному дереві"
+msgstr "Цей вигляд показує місця з Сімейного Дерева"
 
 #: ../gramps/plugins/view/view.gpr.py:221
 msgid "Place Tree"
@@ -27538,9 +27381,8 @@ msgid "Letter"
 msgstr "Буква"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3151
-#, fuzzy
 msgid "Families beginning with letter "
-msgstr "Тип події що починається на букву"
+msgstr "Сім’ї, що починається на букву"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3326
 msgid "Creating place pages"
@@ -27556,7 +27398,7 @@ msgid "Place Name | Name"
 msgstr "Назва"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3415
-#, fuzzy, python-format
+#, python-format
 msgid "Places beginning with letter %s"
 msgstr "Місця на букву %s"
 
@@ -27574,9 +27416,9 @@ msgid "This page contains an index of all the events in the database, sorted by 
 msgstr "Ця сторінка містить список всіх подій з бази, відсортованих по даті(якщо вона вказана). Клік по події&#8217;s Gramps ID переведе Вас на сторінку цієї події."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3719
-#, fuzzy, python-format
+#, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Тип події що починається на букву"
+msgstr "Тип події, що починається на букву %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3918
 msgid "Surnames by person count"
@@ -27592,9 +27434,9 @@ msgid "Number of People"
 msgstr "Кількість осіб"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4012
-#, fuzzy, python-format
+#, python-format
 msgid "Surnames beginning with letter %s"
-msgstr "Тип події що починається на букву"
+msgstr "Прізвища, що починається на букву %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4155
 msgid "Creating source pages"
@@ -27684,9 +27526,9 @@ msgid "This page contains an index of all the individuals in the database, sorte
 msgstr "Ця сторінка містить список осіб з бази даних, із сортуванням по прізвищу. Клік по особі переведе Вас на сторінку цієї особи."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5269
-#, fuzzy, python-format
+#, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
-msgstr "Тип події що починається на букву"
+msgstr "Прізвища %(surname)s починаються на букву %(letter)s"
 
 #. add page title
 #: ../gramps/plugins/webreport/narrativeweb.py:5682
@@ -27756,9 +27598,8 @@ msgid "Creating repository pages"
 msgstr "Створення сторінки сховищ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6565
-#, fuzzy
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Ця сторінка містить список всіх місць з бази даних, відсортованих за назвою. Клік по місцю переведе Вас на сторінку цього місця."
+msgstr "Ця сторінка містить список всіх сховищ з бази даних, відсортованих за назвою. Клік по сховищу&#8217;s переведе Вас на сторінку цього сховища&#8217;s."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6580
 msgid "Repository |Name"
@@ -27809,7 +27650,7 @@ msgstr "Застосовую фільтр осіб..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7156
 msgid "Constructing list of other objects..."
-msgstr ""
+msgstr "Створюю список інших об'єктів..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7364
 #, python-format
