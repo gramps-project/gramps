@@ -32,8 +32,6 @@
 #------------------------------------------------------------------------
 import math
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -41,6 +39,7 @@ _ = glocale.get_translation().gettext
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType
@@ -52,8 +51,8 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.plugins.lib.libtranslate import Translator
 
 #------------------------------------------------------------------------
 #
@@ -105,8 +104,6 @@ class AncestorReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-        language = menu.get_option_by_name('trans').get_value()
-        translator = Translator(language)
 
         # Copy the global NameDisplay so that we don't change application 
         # defaults.
@@ -115,7 +112,8 @@ class AncestorReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        self._ = translator.gettext
+        lang = menu.get_option_by_name('trans').get_value()
+        translator = self.set_translation(lang)
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    translator=translator)
 
@@ -296,15 +294,8 @@ class AncestorOptions(MenuReportOptions):
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
-        
-        trans = EnumeratedListOption(_("Translation"), 
-                                      Translator.DEFAULT_TRANSLATION_STR)
-        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
-        languages = glocale.get_language_dict()
-        for language in sorted(languages, key=glocale.sort_key):
-            trans.add_item(languages[language], language)
-        trans.set_help(_("The translation to be used for the report."))
-        menu.add_option(category_name, "trans", trans)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """

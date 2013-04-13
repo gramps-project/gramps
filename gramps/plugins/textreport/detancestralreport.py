@@ -35,8 +35,6 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.get_translation().gettext
 
 #------------------------------------------------------------------------
 #
@@ -44,6 +42,7 @@ _ = glocale.get_translation().gettext
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import EventType, FamilyRelType, Person, NoteType
@@ -55,8 +54,8 @@ from gramps.gen.plug.report import ( Report, Bibliography )
 from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.plugins.lib.libtranslate import Translator
 
 #------------------------------------------------------------------------
 #
@@ -159,18 +158,12 @@ class DetAncestorReport(Report):
         else:
             empty_place = ""
 
-        language = get_value('trans')
-        translator = Translator(language)
-        self._ = translator.gettext
-
-        self.__narrator = Narrator(self.database, self.verbose, use_call,use_fulldate , 
-                                   empty_date, empty_place,
+        lang = menu.get_option_by_name('trans').get_value()
+        translator = self.set_translation(lang)
+        self.__narrator = Narrator(self.database, self.verbose, use_call,
+                                   use_fulldate, empty_date, empty_place,
                                    translator=translator,
                                    get_endnote_numbers=self.endnotes)
-
-        self.__get_date = translator.get_date
-
-        self.__get_type = translator.get_type
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
@@ -720,8 +713,8 @@ class DetAncestorOptions(MenuReportOptions):
         from functools import partial
 
         # Report Options
-
-        addopt = partial(menu.add_option, _("Report Options"))
+        category = _("Report Options")
+        addopt = partial(menu.add_option, category)
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
@@ -750,15 +743,8 @@ class DetAncestorOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         addopt("pageben", pageben)
-        
-        trans = EnumeratedListOption(_("Translation"),
-                                      Translator.DEFAULT_TRANSLATION_STR)
-        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
-        languages = glocale.get_language_dict()
-        for language in sorted(languages, key=glocale.sort_key):
-            trans.add_item(languages[language], language)
-        trans.set_help(_("The translation to be used for the report."))
-        addopt("trans", trans)
+
+        stdoptions.add_localization_option(menu, category)
 
         # Content options
 

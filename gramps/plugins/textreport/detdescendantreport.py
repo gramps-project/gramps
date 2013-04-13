@@ -59,8 +59,8 @@ from gramps.gen.plug.report import (Report, Bibliography)
 from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.plugins.lib.libtranslate import Translator
 
 #------------------------------------------------------------------------
 #
@@ -172,9 +172,6 @@ class DetDescendantReport(Report):
         else:
             empty_place = ""
 
-        language = get_value('trans')
-        translator = Translator(language)
-        self._ = translator.gettext
 
         # Copy the global NameDisplay so that we don't change application 
         # defaults.
@@ -183,15 +180,13 @@ class DetDescendantReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
+        translator = self.set_translation(get_value('trans'))
         self.__narrator = Narrator(self.database, self.verbose,
                                    use_call, use_fulldate, 
                                    empty_date, empty_place,
                                    translator=translator,
                                    get_endnote_numbers=self.endnotes)
 
-        self.__get_date = translator.get_date
-
-        self.__get_type = translator.get_type
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
@@ -884,8 +879,8 @@ class DetDescendantOptions(MenuReportOptions):
         """
 
         # Report Options
-        
-        add_option = partial(menu.add_option, _("Report Options"))
+        category = _("Report Options")
+        add_option = partial(menu.add_option, category)
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
@@ -926,14 +921,7 @@ class DetDescendantOptions(MenuReportOptions):
                      _("Whether to start a new page before the end notes."))
         add_option("pageben", pageben)
 
-        trans = EnumeratedListOption(_("Translation"),
-                                      Translator.DEFAULT_TRANSLATION_STR)
-        trans.add_item(Translator.DEFAULT_TRANSLATION_STR, _("Default"))
-        languages = glocale.get_language_dict()
-        for language in sorted(languages, key=glocale.sort_key):
-            trans.add_item(languages[language], language)
-        trans.set_help(_("The translation to be used for the report."))
-        add_option("trans", trans)
+        stdoptions.add_localization_option(menu, category)
 
         # Content
         
