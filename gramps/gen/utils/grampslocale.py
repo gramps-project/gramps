@@ -901,6 +901,30 @@ class GrampsLocale(object):
         key2 = self.sort_key(string2)
         return (-1 if key1 < key2 else (1 if key1 > key2 else 0))
 
+
+    def get_date(self, date):
+        """
+        Return a string representing the date appropriate for the language being
+        translated.
+
+        :param date: The date to be represented.
+        :type date: :class:`~gen.lib.date.Date`
+        :returns: The date as text in the proper language.
+        :rtype: unicode
+        """
+        return self.date_displayer.display(date)
+
+    def get_type(self, name):
+        """
+        Return a string representing the name appropriate for the language being
+        translated.
+
+        :param name: The name type to be represented.
+        :returns: The name as text in the proper language.
+        :rtype: unicode
+        """
+        return GrampsType.xml_str(name)
+
 #-------------------------------------------------------------------------
 #
 # Translations Classes
