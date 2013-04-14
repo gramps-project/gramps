@@ -40,8 +40,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-08 15:46+0200\n"
-"PO-Revision-Date: 2013-04-10 15:58+0100\n"
+"POT-Creation-Date: 2013-04-10 14:50+0200\n"
+"PO-Revision-Date: 2013-04-14 12:57+0100\n"
 "Last-Translator: Harmen Huizinga\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -273,7 +273,6 @@ msgstr "Onbekende actie: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../gramps/cli/argparser.py:57
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -320,18 +319,18 @@ msgstr ""
 "  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
 "  -a, --action=ACTIE                    actie opgeven\n"
 "  -p, --options=OPTIETEKST           opties opgeven\n"
-"  -d, --debug=LOG_NAAM                foutmelding activeren\n"
+"  -d, --debug=LOG_NAAM                foutmeldingen rapportage activeren\n"
 "  -l                                     Lijst van familiestambomen\n"
 "  -L                                     Lijst van familiestambomen met "
 "details\n"
-"  -u, --force-unlock                     slot openen van familiestamboom\n"
+"  -u, --force-unlock                     ontgrendelen van familiestamboom "
+"forceren\n"
 "  -s, --show                        instellingen tonen\n"
 "  -c, --config=[config.setting[:waarde]]  instellingen vastleggen en Gramps "
 "starten\n"
 "  -v, --version                          versies tonen\n"
 
 #: ../gramps/cli/argparser.py:83
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -394,8 +393,8 @@ msgstr ""
 "\n"
 "1. Om vier familiestambomen te importeren (waarvan het formaat kan afgeleid "
 "worden uit hun namen)\n"
-"vervolgens de resulterend familiestamboom op fouten te, geeft u volgende "
-"opdracht in:\n"
+"en vervolgens de resulterende familiestamboom op fouten te controleren, "
+"geeft u volgende opdracht in:\n"
 "gramps -i bestand1.ged -i bestand2.gpkg -i ~/db3.gramps -i bestand4.wft -a "
 "tool -p name=check. \n"
 "\n"
@@ -404,26 +403,26 @@ msgstr ""
 "gramps -i bestand1.ged -f gedcom -i bestand2.gpkg -f gramps-pkg -i ~/db3."
 "gramps -f gramps-xml -i bestand4.wft -f wft -a tool -p name=check. \n"
 "\n"
-"3. Om het gegevensbestand dat het resultaat is van al die importen gebruik u "
-"de -e vlag\n"
+"3. Om het resultaat van alle imports op te slaan in een eigen "
+"gegevensbestand, gebruikt u de -e optie\n"
 "(gebruik -f indien Gramps het bestandsformaat niet kan bepalen):\n"
 "gramps -i bestand1.ged -i bestand2.gpkg -e ~/nieuw -f gramps-pkg\n"
 "\n"
-"4. Om foutboodschappen van de bovenstaande voorbeelden in de bestanden "
-"'outfile' en 'errfile' op te slaan:\n"
-"gramps -i bestand1.ged -i bestand2.dpkg -e ~/nieuw -f gramps-pkg >outfile "
-"2>errfile\n"
+"4. Om foutmeldingen van bovenstaand voorbeeld in een uitvoer- en "
+"foutenbestand op te slaan:\n"
+"gramps -i bestand1.ged -i bestand2.dpkg -e ~/nieuw -f gramps-pkg >uitvoer "
+"2>fouten\n"
 "\n"
 "5. Om drie familiestambomen te importeren en een interactieve Gramsp-sessie "
 "te starten:\n"
 "gramps -i bstand1.ged -i bestand2.gpkg -i ~/db3.gramps\n"
 "\n"
-"6. Om een gegevensbestand te openen en gebaseerd op deze gegevens een "
-"tijdlijnverslag in 'PDF'-formaat\n"
+"6. Om een gegevensbestand te openen en op basis van deze gegevens een "
+"tijdlijnverslag in PDF-formaat\n"
 "op te stellen en het resultaat in het bestand mijn_tiijdlijn.pdf op te "
 "slaan:\n"
 "gramps -O 'Familiestamboom1' -a report -p name=timeline,off=pdf,"
-"of=mijn_tijdslijn.pdf\n"
+"of=mijn_tijdlijn.pdf\n"
 "\n"
 "7. Om een samenvatting van het gegevensbestand op te stellen:\n"
 "gramps -O 'Familiestamboom1' -a report -p name=summary\n"
@@ -431,8 +430,8 @@ msgstr ""
 "8. Een lijst van de verslagopties\n"
 "Gebruik de 'name=timeline,show=all' optie om alles over de beschikbare "
 "opties van het tijdlijnverslag te weten te komen.\n"
-"Om de details van een bepaalde optie te zien gebruikt u 'show=option_name' , "
-"bijvoorbeeld 'name=timeline,show=off' tekst.\n"
+"Om de details van een bepaalde optie te zien gebruikt u "
+"'show=naam_van_de_optie' , bijvoorbeeld 'name=timeline,show=off' tekst.\n"
 "Om meer over de beschikbare verslagnamen te leren geeft u 'name=show' tekst "
 "in.\n"
 "\n"
@@ -467,16 +466,16 @@ msgstr ""
 #: ../gramps/cli/argparser.py:247
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Probeer te openen: %s..."
 
 #: ../gramps/cli/argparser.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Onbekende actie: %s."
+msgstr "Onbekende actie %s genegeerd."
 
 #: ../gramps/cli/argparser.py:290
 msgid "setup debugging"
-msgstr ""
+msgstr "foutrappartage instellen"
 
 #: ../gramps/cli/argparser.py:301
 #, python-format
@@ -741,14 +740,12 @@ msgid "=format"
 msgstr "=formaat"
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "Output file format."
 msgstr "Uitvoerformaat"
 
 #: ../gramps/cli/plug/__init__.py:270 ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "=name"
-msgstr "achternaam"
+msgstr "=naam"
 
 #: ../gramps/cli/plug/__init__.py:270
 msgid "Style name."
@@ -756,7 +753,7 @@ msgstr "Stijlnaam"
 
 #: ../gramps/cli/plug/__init__.py:271
 msgid "Paper size name."
-msgstr ""
+msgstr "Papiergroottenaam."
 
 #: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:273
 #: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
@@ -766,7 +763,7 @@ msgstr "=nummer"
 
 #: ../gramps/cli/plug/__init__.py:272
 msgid "Paper orientation number."
-msgstr ""
+msgstr "Papieroriëntatienummer."
 
 #: ../gramps/cli/plug/__init__.py:273
 msgid "Left paper margin"
@@ -795,7 +792,7 @@ msgstr "=css bestandsnaam"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "Te gebruiken CSS bestandsnaam, enkel html-formaat"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
@@ -959,7 +956,7 @@ msgstr ""
 #: ../gramps/gen/db/exceptions.py:128
 #, python-format
 msgid ""
-"The BSDDB version of the Family Tree you are trying to open needs to be "
+"The Bsddb version of the Family Tree you are trying to open needs to be "
 "upgraded from %(env_version)s to %(bdb_version)s.\n"
 "\n"
 "This probably means that the Family Tree was created with an old version of "
@@ -971,6 +968,18 @@ msgid ""
 "If you have made a backup, then you can get Gramps to try to open the tree "
 "and upgrade it"
 msgstr ""
+"De Bsddbversie van de familiestamboom die u probeert te openen dient te "
+"worden bijgewerkt van versie %(env_version)s naar %(bdb_version)s.\n"
+"\n"
+"Dit betekent waarschijnlijk dat de familiestamboom gemaakt is met een oude "
+"versie van Gramps. Het openen van de stamboom met deze versie van Gramps kan "
+"ervoor zorgen dat de boom onherstelbaar beschadigd raakt. Wij adviseren u "
+"uitdrukkelijk een reservekopie te maken van uw stamboom voordat u verder "
+"gaat. Zie: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/nl\n"
+"\n"
+"Wanneer u een backup hebt gemaakt, kunt u Gramps laten proberen de stamboom "
+"te openen en bij te werken."
 
 #: ../gramps/gen/db/exceptions.py:151
 msgid ""
@@ -1013,6 +1022,17 @@ msgid ""
 "See: \n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 msgstr ""
+"De structuur van de familiestamboom is gewijzigd sinds de versie van Gramps "
+"die u hebt gebruikt om deze stamboom aan te maken.\n"
+"\n"
+"U kunt daarom deze stamboom niet openen zonder de structuur bij te werken.\n"
+"Wanneer u de stamboom bijwerkt, kunt u geen gebruik meer maken van oude "
+"versies van Gramps, ook niet met de .gramps xml export!\n"
+"\n"
+"Het bijwerken is een ingewikkelde taak, die niet mag worden onderbroken. De "
+"stamboom zal dan onherstelbaar worden beschadigd. Maak daarom eerst een "
+"backup. Zie: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/nl"
 
 #: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
 #: ../gramps/gen/db/write.py:2026
@@ -1249,7 +1269,7 @@ msgstr "Verkeerd naamformaat %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "FOUT, u dient in voorkeuren het naamformaat aan te passen"
 
-#: ../gramps/gen/filters/_filterparser.py:115
+#: ../gramps/gen/filters/_filterparser.py:120
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -1258,7 +1278,7 @@ msgstr ""
 "LET OP: er zijn teveel argumenten in de filter '%s'!\n"
 "Tracht om met een gedeelte van de argumenten te beginnen."
 
-#: ../gramps/gen/filters/_filterparser.py:123
+#: ../gramps/gen/filters/_filterparser.py:128
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -1267,7 +1287,7 @@ msgstr ""
 "LET OP: er zijn te weinig argumenten in de filter '%s'!\n"
 "      Er wordt toch een poging gedaan in de hoop dat dit lukt."
 
-#: ../gramps/gen/filters/_filterparser.py:131
+#: ../gramps/gen/filters/_filterparser.py:136
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "FOUT: de filter %s kan niet worden geladen. Pas eerst de filter aan!"
@@ -1435,7 +1455,7 @@ msgstr "Gebeurtenissenfilters"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:511
+#: ../gramps/gui/editors/filtereditor.py:510
 msgid "Number of instances:"
 msgstr "Aantal gevallen:"
 
@@ -1446,7 +1466,7 @@ msgstr "Aantal gevallen:"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:516
+#: ../gramps/gui/editors/filtereditor.py:515
 msgid "Number must be:"
 msgstr "Getal moet zijn:"
 
@@ -1464,7 +1484,7 @@ msgstr "Getal moet zijn:"
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:47
-#: ../gramps/gui/editors/filtereditor.py:520
+#: ../gramps/gui/editors/filtereditor.py:519
 msgid "ID:"
 msgstr "ID:"
 
@@ -1490,12 +1510,12 @@ msgstr "Deeltekenreeks:"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:514
+#: ../gramps/gui/editors/filtereditor.py:513
 msgid "Reference count must be:"
 msgstr "Aantal maal waarnaar verwezen wordt moet zijn:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:510
+#: ../gramps/gui/editors/filtereditor.py:509
 msgid "Reference count:"
 msgstr "Aantal verwijzingen:"
 
@@ -1504,7 +1524,7 @@ msgstr "Aantal verwijzingen:"
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:47
-#: ../gramps/gui/editors/filtereditor.py:523
+#: ../gramps/gui/editors/filtereditor.py:522
 msgid "Source ID:"
 msgstr "Bron-ID:"
 
@@ -1519,7 +1539,7 @@ msgstr "Bron-ID:"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:48
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:47
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
-#: ../gramps/gui/editors/filtereditor.py:525
+#: ../gramps/gui/editors/filtereditor.py:524
 msgid "Filter name:"
 msgstr "Filternaam:"
 
@@ -1533,7 +1553,7 @@ msgstr "Filter %s werd niet gevonden in de eigen aangemaakte filters"
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
-#: ../gramps/gui/editors/filtereditor.py:533
+#: ../gramps/gui/editors/filtereditor.py:532
 msgid "Source filter name:"
 msgstr "Bronnenfilternaam:"
 
@@ -1615,7 +1635,7 @@ msgstr "Citaten die als privé zijn aangeduid"
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
-#: ../gramps/gui/editors/filtereditor.py:552
+#: ../gramps/gui/editors/filtereditor.py:551
 msgid "Confidence level:"
 msgstr "Zekerheid:"
 
@@ -1732,7 +1752,7 @@ msgstr "Citaten waarvan volume/agina een bepaalde deeltekenreeks bevat"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
-#: ../gramps/gui/editors/filtereditor.py:535
+#: ../gramps/gui/editors/filtereditor.py:534
 msgid "Repository filter name:"
 msgstr "Bibliotheekfilternaam:"
 
@@ -1842,7 +1862,7 @@ msgstr "Gebeurtenistype:"
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
-#: ../gramps/gui/editors/filtereditor.py:508
+#: ../gramps/gui/editors/filtereditor.py:507
 #: ../gramps/gui/glade/mergeevent.glade.h:7
 msgid "Place:"
 msgstr "Locatie:"
@@ -1948,12 +1968,12 @@ msgstr "Vindt gebeurtenissen met een opgegeven filter"
 # naam filteren of filternaam
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:529
+#: ../gramps/gui/editors/filtereditor.py:528
 msgid "Person filter name:"
 msgstr "Personenfilternaam:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:545
+#: ../gramps/gui/editors/filtereditor.py:544
 msgid "Include Family events:"
 msgstr "Familiegebeurtenissen bijvoegen:"
 
@@ -2223,7 +2243,7 @@ msgstr "Families die met bepaalde bron zoeken"
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
-#: ../gramps/gui/editors/filtereditor.py:548
+#: ../gramps/gui/editors/filtereditor.py:547
 msgid "Tag:"
 msgstr "Tag:"
 
@@ -2927,7 +2947,7 @@ msgstr "Familiebijnaam:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:60
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:50
-#: ../gramps/gui/editors/filtereditor.py:543
+#: ../gramps/gui/editors/filtereditor.py:542
 msgid "Regular-Expression matching:"
 msgstr "Reguliere uitdrukking overeenkomst:"
 
@@ -3057,7 +3077,7 @@ msgid "Matches people with the particular tag"
 msgstr "Personen met een bepaalde tag zoeken"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
-#: ../gramps/gui/editors/filtereditor.py:541
+#: ../gramps/gui/editors/filtereditor.py:540
 msgid "Case sensitive:"
 msgstr "Hoofdlettergevoelig:"
 
@@ -3109,7 +3129,7 @@ msgstr "Vindt personen waarvan de voornaam of achternaam ontbreekt"
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:46
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:539
+#: ../gramps/gui/editors/filtereditor.py:538
 msgid "Inclusive:"
 msgstr "Inclusief:"
 
@@ -3234,7 +3254,7 @@ msgstr "Vindt alle vrouwen"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:518
+#: ../gramps/gui/editors/filtereditor.py:517
 msgid "Number of generations:"
 msgstr "Aantal generaties:"
 
@@ -3367,7 +3387,7 @@ msgstr "Vindt personen die getuigen zijn bij een gebeurtenis"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
-#: ../gramps/gui/editors/filtereditor.py:531
+#: ../gramps/gui/editors/filtereditor.py:530
 msgid "Event filter name:"
 msgstr "Gebeurtenissenfilternaam:"
 
@@ -5094,7 +5114,7 @@ msgstr "Boek"
 
 #: ../gramps/gen/lib/srcmediatype.py:67
 msgid "Card"
-msgstr "Kaart"
+msgstr "Kaart (kaartenbak)"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Electronic"
@@ -5118,7 +5138,7 @@ msgstr "Manuscript"
 
 #: ../gramps/gen/lib/srcmediatype.py:73
 msgid "Map"
-msgstr "Kaart"
+msgstr "Kaart (landkaart)"
 
 #: ../gramps/gen/lib/srcmediatype.py:74
 msgid "Newspaper"
@@ -5331,7 +5351,7 @@ msgstr "Uitbreidingsbib"
 
 #: ../gramps/gen/plug/_pluginreg.py:87
 msgid "Map service"
-msgstr "Kaartsysteem"
+msgstr "Kaartendienst"
 
 #: ../gramps/gen/plug/_pluginreg.py:88
 msgid "Gramps View"
@@ -6567,7 +6587,7 @@ msgstr "Locatie"
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/views/treemodels/mediamodel.py:134
 #: ../gramps/plugins/drawreport/ancestortree.py:1055
-#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1649
 #: ../gramps/plugins/export/exportcsv.py:345
 #: ../gramps/plugins/export/exportcsv.py:462
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
@@ -6625,8 +6645,8 @@ msgstr "Gebeurtenis verwijzing"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:307
-#: ../gramps/gui/editors/filtereditor.py:742
-#: ../gramps/gui/editors/filtereditor.py:895
+#: ../gramps/gui/editors/filtereditor.py:767
+#: ../gramps/gui/editors/filtereditor.py:920
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:130
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:95
 #: ../gramps/gui/plug/_guioptions.py:1122 ../gramps/gui/plug/_windows.py:120
@@ -6900,7 +6920,7 @@ msgstr "Versleep de kolommen om de volgorde te veranderen"
 #. #################
 #: ../gramps/gui/columnorder.py:130 ../gramps/gui/configure.py:1075
 #: ../gramps/plugins/drawreport/ancestortree.py:937
-#: ../gramps/plugins/drawreport/descendtree.py:1512
+#: ../gramps/plugins/drawreport/descendtree.py:1516
 msgid "Display"
 msgstr "Weergave"
 
@@ -7564,13 +7584,12 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 #: ../gramps/gui/dbloader.py:330
-#, fuzzy
-msgid "Need to upgrade BSDDB database!"
-msgstr "Gegevensbestand moet opgewaardeerd worden!"
+msgid "Need to upgrade Bsddb database!"
+msgstr "Gegevensbestand moet bijgewerkt worden!"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "I have made a backup, please upgrade my tree"
-msgstr ""
+msgstr "Ik heb een backup gemaakt, werk de stamboom bij"
 
 #: ../gramps/gui/dbloader.py:394
 msgid "All files"
@@ -7661,7 +7680,7 @@ msgid "Importing archive..."
 msgstr "Importeren van archief..."
 
 #: ../gramps/gui/dbman.py:553
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Het gegevensbestand '%s' verwijderen?"
 
@@ -7714,7 +7733,7 @@ msgid "Repair Family Tree?"
 msgstr "Familiestamboom herstellen?"
 
 #: ../gramps/gui/dbman.py:651
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree "
 "from the last good backup. There are several ways this can cause unwanted "
@@ -7740,31 +7759,31 @@ msgid ""
 "<i>need_recover</i> in the Family Tree directory."
 msgstr ""
 "Indien u op <b>Verder gaan</b> klikt, zal Gramps uw familiestamboom proberen "
-"te herstellen vanuit de laatste goede reservekopie. Er zijn meerdere redenen "
-"dat dit echter ongewenste effecten kan opleveren, dus steeds eerst een "
-"<b>kopie</b>van de stamboom nemen.\n"
+"te herstellen vanuit de laatste goede reservekopie. Omdat er ongewenste "
+"effecten kunnen optreden, kunt u het best eerst een <b>reservekopie</b> van "
+"uw familiestamboom maken.\n"
 "De familiestamboom die u geselecteerd heeft is opgeslagen in %s.\n"
 "\n"
 "Voor u een herstelling uitvoert, dient u zeker te zijn dat de "
-"familiestamboom niet meer kan geopend worden. Het is mogelijk dat het niet-"
-"zichtbare programmadeel van het gegevensbestand van sommige fouten "
+"familiestamboom echt niet meer kan worden geopend. Het is mogelijk dat het "
+"niet-zichtbare programmadeel van het gegevensbestand van sommige fouten "
 "automatisch hersteld.\n"
 "\n"
 "<b>Details:</b> herstellen van een familiestamboom gebruikt de laatste "
-"''backup'' die Gramps opsloeg bij het laatste gebruik. Indien u gedurende "
+"reservekopie die Gramps opsloeg bij het laatste gebruik. Indien u gedurende "
 "uren/dagen gegevens ingevoerd hebt zonder Gramps te sluiten is al deze "
-"informatie dus verloren! Indien het herstel mislukt, dan is de "
-"oorsproonkelijke familiestamboom voor goed verloren. Daarom is dus een "
-"''backup'' nodig. Indien nu het herstel mislukt of er teveel informatie "
-"verloren is, kunt u de oorspronkelijke manueel familiestamboom herstellen. "
-"Voor meer informatie zie de webpagina\n"
+"informatie dus verloren! Indien het herstel mislukt, is de oorspronkelijks "
+"familiestamboom voorgoed verloren. Daarom is dus een reservekopie nodig. "
+"Indien nu het herstel mislukt of er teveel informatie verloren is, kunt u de "
+"oorspronkelijke familiestamboom handmatig herstellen. Voor meer informatie "
+"zie de webpagina\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/"
 "nl  --  Het herstellen van een corrupt gegevensbestand --\n"
-"Voor dat u een herstel uitvoert, dient u de familiestamboom steeds op de "
-"normale manier te openen. Verscheidene fouten die de herstelknop laten "
-"actief worden, kunnen automatisch opgelost worden. Is dit het geval dan kunt "
-"u de herstelknop uitgeschakelen door het bestand <i>need_recover</i> in de "
-"familiestamboommap te verwijderen."
+"Probeer voordat u een herstel uitvoert eerst de familiestamboom op de "
+"normale manier te openen. Diverse fouten die de herstelknop activeren kunnen "
+"automatisch hersteld worden. Wanneer dit het geval is, kunt u de herstelknop "
+"uitschakelen door het bestand <i>need_recover</i> uit de familiestamboommap "
+"te verwijderen."
 
 #: ../gramps/gui/dbman.py:670
 msgid "Proceed, I have taken a backup"
@@ -8064,7 +8083,7 @@ msgstr "_Kenmerken"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:122
-#: ../gramps/gui/editors/filtereditor.py:898
+#: ../gramps/gui/editors/filtereditor.py:923
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:97
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:95
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:116
@@ -9849,56 +9868,89 @@ msgstr ""
 "Geef een bron-ID of selecteer een bron-ID. Laat leeg om alle objecten zonder "
 "bron te vinden."
 
-#: ../gramps/gui/editors/filtereditor.py:540
+#: ../gramps/gui/editors/filtereditor.py:539
 msgid "Include original person"
 msgstr "Oorspronkelijke persoon bijvoegen"
 
-#: ../gramps/gui/editors/filtereditor.py:542
+#: ../gramps/gui/editors/filtereditor.py:541
 msgid "Use exact case of letters"
 msgstr "Exacte schrijfwijze toepassen"
 
-#: ../gramps/gui/editors/filtereditor.py:544
+#: ../gramps/gui/editors/filtereditor.py:543
 msgid "Use regular expression"
 msgstr "Reguliere uitdrukking toepassen"
 
-#: ../gramps/gui/editors/filtereditor.py:546
+#: ../gramps/gui/editors/filtereditor.py:545
 msgid "Also family events where person is wife/husband"
 msgstr ""
 "Ook die familiegebeurtenissen waarin de persoon echtgenoot/echtgenote is"
 
-#: ../gramps/gui/editors/filtereditor.py:572
+#: ../gramps/gui/editors/filtereditor.py:563
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:77
+#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:79
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:92
+#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:70
+#: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:74
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:96
+#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:77
+#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:78
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:69
+msgid "Use regular expressions"
+msgstr "Reguliere uitdrukkingen toepassen"
+
+#: ../gramps/gui/editors/filtereditor.py:564
+msgid ""
+"Interpret the contents of string fields as regular expressions.\n"
+"A decimal point will match any character. A question mark will match zero or "
+"one occurences of the previous character or group. An asterisk will match "
+"zero or more occurences. A plus sign will match one or more occurences. Use "
+"parentheses to group expressions. Specify alternatives using a vertical bar. "
+"A caret will match the start of a line. A dollar sign will match the end of "
+"a line."
+msgstr ""
+"Interpreteer de inhoud van tekstvelden als reguliere expressies.\n"
+"Een decimale punt zal overeenkomen met een willekeurig onbekend karakter. "
+"Een vraagteken komt overeen met nul of een overeenkomsten van het vorige "
+"karakter of groep. Een asterisk komt overeen met nul of meer overeenkomsten. "
+"Een plusteken met een of meer overeenkomsten. Maak gebruik van haakjes om "
+"expressies te groeperen. Alternatieven kunt u doormiddel van een verticaal "
+"streepje aangeven. Een accent circonflexe (dakje)   komt overeen met het "
+"begin van een nieuwe regel. Een dollarteken komt overeen met het eind van "
+"een regel."
+
+#: ../gramps/gui/editors/filtereditor.py:592
 msgid "Rule Name"
 msgstr "Regelnaam"
 
-#: ../gramps/gui/editors/filtereditor.py:687
-#: ../gramps/gui/editors/filtereditor.py:698
+#: ../gramps/gui/editors/filtereditor.py:709
+#: ../gramps/gui/editors/filtereditor.py:720
 #: ../gramps/gui/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Geen regel geselecteerd"
 
-#: ../gramps/gui/editors/filtereditor.py:738
+#: ../gramps/gui/editors/filtereditor.py:763
 msgid "Define filter"
 msgstr "Filter bepalen"
 
-#: ../gramps/gui/editors/filtereditor.py:742
+#: ../gramps/gui/editors/filtereditor.py:767
 msgid "Values"
 msgstr "Waarden"
 
-#: ../gramps/gui/editors/filtereditor.py:840
+#: ../gramps/gui/editors/filtereditor.py:865
 msgid "Add Rule"
 msgstr "Regel toevoegen"
 
-#: ../gramps/gui/editors/filtereditor.py:852
+#: ../gramps/gui/editors/filtereditor.py:877
 msgid "Edit Rule"
 msgstr "Regel bewerken"
 
-#: ../gramps/gui/editors/filtereditor.py:887
+#: ../gramps/gui/editors/filtereditor.py:912
 msgid "Filter Test"
 msgstr "Filtertest"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #. ###############################
-#: ../gramps/gui/editors/filtereditor.py:1025
+#: ../gramps/gui/editors/filtereditor.py:1050
 #: ../gramps/plugins/drawreport/calendarreport.py:421
 #: ../gramps/plugins/drawreport/statisticschart.py:916
 #: ../gramps/plugins/drawreport/timeline.py:378
@@ -9922,19 +9974,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../gramps/gui/editors/filtereditor.py:1025
+#: ../gramps/gui/editors/filtereditor.py:1050
 msgid "Comment"
 msgstr "Opmerking"
 
-#: ../gramps/gui/editors/filtereditor.py:1033
+#: ../gramps/gui/editors/filtereditor.py:1058
 msgid "Custom Filter Editor"
 msgstr "Eigengemaakte filters"
 
-#: ../gramps/gui/editors/filtereditor.py:1099
+#: ../gramps/gui/editors/filtereditor.py:1124
 msgid "Delete Filter?"
 msgstr "Filter verwijderen?"
 
-#: ../gramps/gui/editors/filtereditor.py:1100
+#: ../gramps/gui/editors/filtereditor.py:1125
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -9944,7 +9996,7 @@ msgstr ""
 "deze filter verwijderd wordt, zullen alle onderliggende filters ook "
 "verwijderd worden."
 
-#: ../gramps/gui/editors/filtereditor.py:1104
+#: ../gramps/gui/editors/filtereditor.py:1129
 msgid "Delete Filter"
 msgstr "Filter verwijderen"
 
@@ -10053,18 +10105,6 @@ msgstr "%s bevat niet"
 #: ../gramps/gui/views/listview.py:1119 ../gramps/gui/views/listview.py:1139
 msgid "Updating display..."
 msgstr "Weergave bijwerken..."
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:77
-#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:79
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:92
-#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:70
-#: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:74
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:77
-#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:78
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:69
-msgid "Use regular expressions"
-msgstr "Reguliere uitdrukkingen toepassen"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:98
 #: ../gramps/plugins/view/citationlistview.py:99
@@ -10417,7 +10457,7 @@ msgstr "Gramps"
 #: ../gramps/gui/glade/editsource.glade.h:2
 #: ../gramps/gui/glade/editurl.glade.h:1
 msgid "Accept changes and close window"
-msgstr "Veranderingen accepteren en venster sluiten"
+msgstr "Wijzigingen accepteren en venster sluiten"
 
 #: ../gramps/gui/glade/editaddress.glade.h:2
 #: ../gramps/gui/glade/editcitation.glade.h:2
@@ -12022,11 +12062,11 @@ msgstr ""
 
 #: ../gramps/gui/glade/mergerepository.glade.h:3
 msgid "<b>Repository 1</b>"
-msgstr "Bibliotheek 1"
+msgstr "<b>Bibliotheek 1</b>"
 
 #: ../gramps/gui/glade/mergerepository.glade.h:4
 msgid "<b>Repository 2</b>"
-msgstr "Bibliotheek 2"
+msgstr "<b>Bibliotheek 2</b>"
 
 #: ../gramps/gui/glade/mergerepository.glade.h:8
 msgid "Addresses, urls and notes of both repositories will be combined."
@@ -12411,7 +12451,7 @@ msgstr ""
 "echter deze functionaliteit met bijkomende uitbreidingen aanvullen. Deze "
 "uitbreidingen leveren bijkomende verslagen, lijsten, schermen en "
 "'gramplets'. Hier kunt u een keuze uit de beschikbare bijkomende "
-"uitbreidingen maken. Deze uitbreidingen worden via de Gramps-webstek "
+"uitbreidingen maken. Deze uitbreidingen worden via de Gramps-website "
 "opgehaald via het internet en worden lokaal op uw computer geïnstalleerd. "
 "Indien u nu deze dialoog sluit, kunt u altijd op een later tijdstip via het "
 "menu Bewerken -> Voorkeuren deze uitbreidingen installeren."
@@ -12786,7 +12826,6 @@ msgid "Error parsing arguments"
 msgstr "Fout bij lezen van de argumenten"
 
 #: ../gramps/gui/grampsgui.py:363
-#, fuzzy
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -12797,8 +12836,8 @@ msgid ""
 "by changing the last-view parameter.\n"
 msgstr ""
 "\n"
-"Gramps kon niet opstarten. Gelieve een foutmelding door te geven.\n"
-"Dit kan te wijten zijn aan een fout in een scherm bij de opstart.\n"
+"Gramps kon worden opgestart. Gelieve een foutmelding door te geven.\n"
+"De oorzaak kan een fout in een scherm (van derden) bij het opstarten zijn.\n"
 "Om een ander scherm te gebruiken dient u geen familiestamboom te laden, het "
 "scherm te veranderen en dan uw familiestamboom laden.\n"
 "U kunt bovendien het opstartscherm manueel aanpassen in het ''gramps.ini''-"
@@ -14116,6 +14155,10 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 msgstr ""
+"GtkSpell niet geladen. Spellingcontrole zal niet beschikbaar zijn.\n"
+"Zie http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
+"GObject_introspection_Conversion#Spell_Check_Install om spellingcontrole "
+"voor Gramps in te bouwen."
 
 #: ../gramps/gui/spell.py:96
 msgid "Off"
@@ -14532,7 +14575,7 @@ msgstr "Media:"
 #. #########################
 #: ../gramps/gui/viewmanager.py:1561
 #: ../gramps/plugins/drawreport/ancestortree.py:1026
-#: ../gramps/plugins/drawreport/descendtree.py:1616
+#: ../gramps/plugins/drawreport/descendtree.py:1620
 #: ../gramps/plugins/textreport/detancestralreport.py:800
 #: ../gramps/plugins/textreport/detdescendantreport.py:974
 #: ../gramps/plugins/textreport/detdescendantreport.py:975
@@ -15413,7 +15456,7 @@ msgstr "Stamboom uitdrukken..."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:894
-#: ../gramps/plugins/drawreport/descendtree.py:1477
+#: ../gramps/plugins/drawreport/descendtree.py:1481
 msgid "Tree Options"
 msgstr "Stamboomopties"
 
@@ -15437,7 +15480,7 @@ msgid "The center person for the tree"
 msgstr "De centrale persoon voor de stamboom"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:900
-#: ../gramps/plugins/drawreport/descendtree.py:1497
+#: ../gramps/plugins/drawreport/descendtree.py:1501
 #: ../gramps/plugins/drawreport/fanchart.py:645
 #: ../gramps/plugins/textreport/ancestorreport.py:287
 #: ../gramps/plugins/textreport/descendreport.py:415
@@ -15447,7 +15490,7 @@ msgid "Generations"
 msgstr "Generaties"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:901
-#: ../gramps/plugins/drawreport/descendtree.py:1498
+#: ../gramps/plugins/drawreport/descendtree.py:1502
 msgid "The number of generations to include in the tree"
 msgstr "Het aantal generaties dat in de stamboom wordt voorzien"
 
@@ -15464,7 +15507,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Het aantal generaties met lege rechthoeken dat getoond wordt"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
-#: ../gramps/plugins/drawreport/descendtree.py:1506
+#: ../gramps/plugins/drawreport/descendtree.py:1510
 msgid "Compress tree"
 msgstr "Stamboom comprimeren"
 
@@ -15537,17 +15580,17 @@ msgid "Display format for the mothers box."
 msgstr "Beeldformaat van de moderrechthoek."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:965
-#: ../gramps/plugins/drawreport/descendtree.py:1546
+#: ../gramps/plugins/drawreport/descendtree.py:1550
 msgid "Include Marriage box"
 msgstr "Huwelijkrechthoek bijvoegen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:967
-#: ../gramps/plugins/drawreport/descendtree.py:1548
+#: ../gramps/plugins/drawreport/descendtree.py:1552
 msgid "Whether to include a separate marital box in the report"
 msgstr "Al of niet een aparte huwelijkrechthoek in het verslag voorzien"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
-#: ../gramps/plugins/drawreport/descendtree.py:1551
+#: ../gramps/plugins/drawreport/descendtree.py:1555
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -15556,44 +15599,44 @@ msgstr ""
 "Weergaveformaat"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:971
-#: ../gramps/plugins/drawreport/descendtree.py:1552
+#: ../gramps/plugins/drawreport/descendtree.py:1556
 msgid "Display format for the marital box."
 msgstr "Beeldformaat van de huwelijksrechthoek."
 
 # het gaat hier om papierformaat
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1565
+#: ../gramps/plugins/drawreport/descendtree.py:1569
 msgid "Size"
 msgstr "Grootte"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:977
-#: ../gramps/plugins/drawreport/descendtree.py:1567
+#: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Scale tree to fit"
 msgstr "Boom passend schalen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:978
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1572
 msgid "Do not scale tree"
 msgstr "Boom niet schalen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:979
-#: ../gramps/plugins/drawreport/descendtree.py:1569
+#: ../gramps/plugins/drawreport/descendtree.py:1573
 msgid "Scale tree to fit page width only"
 msgstr "Boom aan paginabreedte aanpassen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1570
+#: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Scale tree to fit the size of the page"
 msgstr "Stamboom schalen zodat hij op één pagina past"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:982
-#: ../gramps/plugins/drawreport/descendtree.py:1572
+#: ../gramps/plugins/drawreport/descendtree.py:1576
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Boom al dan niet naar een specifieke pagina-afmeting schalen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:988
-#: ../gramps/plugins/drawreport/descendtree.py:1578
+#: ../gramps/plugins/drawreport/descendtree.py:1582
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -15605,7 +15648,7 @@ msgstr ""
 "gehouden met de instellingen in de tab 'papieropties'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:994
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1588
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -15641,34 +15684,34 @@ msgstr ""
 "verwijderen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1014
-#: ../gramps/plugins/drawreport/descendtree.py:1604
+#: ../gramps/plugins/drawreport/descendtree.py:1608
 msgid "inter-box Y scale factor"
 msgstr "Schaalfactor Y tussen de rechthoeken"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
-#: ../gramps/plugins/drawreport/descendtree.py:1606
+#: ../gramps/plugins/drawreport/descendtree.py:1610
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "De Y tussen de rechthoeken groter of kleiner maken"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
-#: ../gramps/plugins/drawreport/descendtree.py:1609
+#: ../gramps/plugins/drawreport/descendtree.py:1613
 msgid "box shadow scale factor"
 msgstr "schaalfactor voor de schaduw voor de rechthoek"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
-#: ../gramps/plugins/drawreport/descendtree.py:1611
+#: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Make the box shadow bigger or smaller"
 msgstr "De schaduw rond de rechthoeken groter of kleiner maken"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
-#: ../gramps/plugins/drawreport/descendtree.py:1618
+#: ../gramps/plugins/drawreport/descendtree.py:1622
 msgid "Report Title"
 msgstr "Verslagtitel"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
-#: ../gramps/plugins/drawreport/descendtree.py:1619
-#: ../gramps/plugins/drawreport/descendtree.py:1668
+#: ../gramps/plugins/drawreport/descendtree.py:1623
+#: ../gramps/plugins/drawreport/descendtree.py:1672
 msgid "Do not include a title"
 msgstr "Geen titel toevoegen"
 
@@ -15677,22 +15720,22 @@ msgid "Include Report Title"
 msgstr "Verslagstitel toevoegen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
-#: ../gramps/plugins/drawreport/descendtree.py:1621
+#: ../gramps/plugins/drawreport/descendtree.py:1625
 msgid "Choose a title for the report"
 msgstr "Een titel voor het verslag kiezen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1034
-#: ../gramps/plugins/drawreport/descendtree.py:1625
+#: ../gramps/plugins/drawreport/descendtree.py:1629
 msgid "Include a border"
 msgstr "Rand toevoegen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1035
-#: ../gramps/plugins/drawreport/descendtree.py:1626
+#: ../gramps/plugins/drawreport/descendtree.py:1630
 msgid "Whether to make a border around the report."
 msgstr "Al of niet een rand rond het verslag toevoegen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1038
-#: ../gramps/plugins/drawreport/descendtree.py:1629
+#: ../gramps/plugins/drawreport/descendtree.py:1633
 msgid "Include Page Numbers"
 msgstr "Paginanummers toeveogen"
 
@@ -15701,28 +15744,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Al of niet de paginanummers op elke pagina afdrukken."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1042
-#: ../gramps/plugins/drawreport/descendtree.py:1633
+#: ../gramps/plugins/drawreport/descendtree.py:1637
 msgid "Include Blank Pages"
 msgstr "Lege pagina's bijvoegen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1043
-#: ../gramps/plugins/drawreport/descendtree.py:1634
+#: ../gramps/plugins/drawreport/descendtree.py:1638
 msgid "Whether to include pages that are blank."
 msgstr "Met/zonder blanco pagina's."
 
 #. category_name = _("Notes")
 #: ../gramps/plugins/drawreport/ancestortree.py:1050
-#: ../gramps/plugins/drawreport/descendtree.py:1639
+#: ../gramps/plugins/drawreport/descendtree.py:1643
 msgid "Include a note"
 msgstr "Opmerking bijvoegen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1051
-#: ../gramps/plugins/drawreport/descendtree.py:1641
+#: ../gramps/plugins/drawreport/descendtree.py:1645
 msgid "Whether to include a note on the report."
 msgstr "Al of niet een opmerking toevoegen aan het verslag."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1056
-#: ../gramps/plugins/drawreport/descendtree.py:1646
+#: ../gramps/plugins/drawreport/descendtree.py:1650
 msgid ""
 "Add a note\n"
 "\n"
@@ -15733,12 +15776,12 @@ msgstr ""
 "$T voegt de datum van vandaag toe"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1061
-#: ../gramps/plugins/drawreport/descendtree.py:1651
+#: ../gramps/plugins/drawreport/descendtree.py:1655
 msgid "Note Location"
 msgstr "Opmerking locatie"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1064
-#: ../gramps/plugins/drawreport/descendtree.py:1654
+#: ../gramps/plugins/drawreport/descendtree.py:1658
 msgid "Where to place the note."
 msgstr "Waar de opmerking moet geplaatst worden."
 
@@ -15755,7 +15798,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Aantal generaties met lege rechthoeken voor onbekende voorouders"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1107
-#: ../gramps/plugins/drawreport/descendtree.py:1705
+#: ../gramps/plugins/drawreport/descendtree.py:1709
 #: ../gramps/plugins/textreport/ancestorreport.py:373
 #: ../gramps/plugins/textreport/detancestralreport.py:903
 #: ../gramps/plugins/textreport/detdescendantreport.py:1098
@@ -15772,19 +15815,19 @@ msgid "The basic style used for the text display."
 msgstr "De gebruikte basisstijl voor de tekstweergave."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1117
-#: ../gramps/plugins/drawreport/descendtree.py:1727
+#: ../gramps/plugins/drawreport/descendtree.py:1731
 #: ../gramps/plugins/textreport/familygroup.py:745
 #: ../gramps/plugins/textreport/tagreport.py:598
 msgid "The basic style used for the note display."
 msgstr "De gebruikte basisstijl voor de weergave van opmerkingen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1127
-#: ../gramps/plugins/drawreport/descendtree.py:1695
+#: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid "The basic style used for the title display."
 msgstr "De gebruikte basisstijl voor de titelweergave."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:99
-#: ../gramps/plugins/drawreport/descendtree.py:674
+#: ../gramps/plugins/drawreport/descendtree.py:678
 #: ../gramps/plugins/drawreport/fanchart.py:180
 #: ../gramps/plugins/graph/gvhourglass.py:103
 #: ../gramps/plugins/textreport/ancestorreport.py:107
@@ -16123,50 +16166,50 @@ msgstr "Familiekaart voor %(father1)s en %(mother1)s"
 msgid "Cousin Chart for "
 msgstr "Neven en nichten grafiek voor "
 
-#: ../gramps/plugins/drawreport/descendtree.py:742
+#: ../gramps/plugins/drawreport/descendtree.py:746
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "De familie %s is niet te vinden in het gegevensbestand"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1480
 #: ../gramps/plugins/drawreport/descendtree.py:1484
+#: ../gramps/plugins/drawreport/descendtree.py:1488
 msgid "Report for"
 msgstr "Verslag voor"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1481
+#: ../gramps/plugins/drawreport/descendtree.py:1485
 msgid "The main person for the report"
 msgstr "De hoofdpersoon voor dit verslag"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1485
+#: ../gramps/plugins/drawreport/descendtree.py:1489
 msgid "The main family for the report"
 msgstr "De centrale familie voor dit verslag"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1489
+#: ../gramps/plugins/drawreport/descendtree.py:1493
 msgid "Start with the parent(s) of the selected first"
 msgstr "Met de ouder(s) van de geselecteerde persoon beginnen"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1492
+#: ../gramps/plugins/drawreport/descendtree.py:1496
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr ""
 "De ouders, broers en zusters van de geselecteerde persoon worden getoond."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1501
+#: ../gramps/plugins/drawreport/descendtree.py:1505
 msgid "Level of Spouses"
 msgstr "Niveau voor de echtgenoten"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1502
+#: ../gramps/plugins/drawreport/descendtree.py:1506
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 "0=geen echtgenoten, 1=echtgenoten toevoegen, 2=partners van de echtgenoten, "
 "enz"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1507
+#: ../gramps/plugins/drawreport/descendtree.py:1511
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Al of niet personen naar boven verschuiven om een kleinere boom te verkrijgen"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1514
+#: ../gramps/plugins/drawreport/descendtree.py:1518
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -16174,15 +16217,15 @@ msgstr ""
 "Afstammeling\n"
 "Weergaveformaat"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1518
+#: ../gramps/plugins/drawreport/descendtree.py:1522
 msgid "Display format for a descendant."
 msgstr "Weergaveformaat voor een afstammeling."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1521
+#: ../gramps/plugins/drawreport/descendtree.py:1525
 msgid "Bold direct descendants"
 msgstr "Rechtstreekse afstammelingen: vet"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1523
+#: ../gramps/plugins/drawreport/descendtree.py:1527
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -16195,15 +16238,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1539
 msgid "Indent Spouses"
 msgstr "Echtgenoten laten inspringen"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1536
+#: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Whether to indent the spouses in the tree."
 msgstr "De echtgenoten al of niet laten inspringen in de stamboom."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1539
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -16211,16 +16254,16 @@ msgstr ""
 "Weergaveformaat\n"
 "partner"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1543
+#: ../gramps/plugins/drawreport/descendtree.py:1547
 msgid "Display format for a spouse."
 msgstr "Weergaveformaat voor een echtgenoot."
 
 #. #################
-#: ../gramps/plugins/drawreport/descendtree.py:1556
+#: ../gramps/plugins/drawreport/descendtree.py:1560
 msgid "Replace"
 msgstr "Vervang"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1559
+#: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -16228,7 +16271,7 @@ msgstr ""
 "Weergaveformaat vervangen:\n"
 "'Vervan dit'/' door dit'"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1561
+#: ../gramps/plugins/drawreport/descendtree.py:1565
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -16236,24 +16279,24 @@ msgstr ""
 "v.b. \n"
 "Verenigde Staten van Amerika/V.S"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1620
-#: ../gramps/plugins/drawreport/descendtree.py:1669
+#: ../gramps/plugins/drawreport/descendtree.py:1624
+#: ../gramps/plugins/drawreport/descendtree.py:1673
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Afstammelingen van [geselecteerde perso(o)n(en)]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1630
+#: ../gramps/plugins/drawreport/descendtree.py:1634
 msgid "Whether to include page numbers on each page."
 msgstr "Al of niet de paginanummers op elke pagina toevoegen."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1673
+#: ../gramps/plugins/drawreport/descendtree.py:1677
 msgid "Family Chart for [names of chosen family]"
 msgstr "Familiekaart voor [namen van de gekozen families]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1677
+#: ../gramps/plugins/drawreport/descendtree.py:1681
 msgid "Cousin Chart for [names of children]"
 msgstr "Neven en nichten grafiek voor [namen van de kinderen]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1717
+#: ../gramps/plugins/drawreport/descendtree.py:1721
 msgid "The bold style used for the text display."
 msgstr "De gebruikte stijl voor de tekstweergave van vetgedrukte tekst."
 
@@ -17555,6 +17598,11 @@ msgid ""
 "title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
+"Module GExiv2 niet geladen. Functionaliteit om afbeeldingsmetadata uit te "
+"lezen is niet beschikbaar.\n"
+"Zie http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
+"GObject_introspection_Conversion#GExiv2_for_Image_metadata om deze "
+"functionaliteit in te bouwen."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:408
 msgid "Person Residence"
@@ -18496,7 +18544,6 @@ msgid "Getting Started"
 msgstr "Hoe starten"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
-#, fuzzy
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new "
 "Family Tree (sometimes called 'database') select \"Family Trees\" from the "
@@ -18507,9 +18554,8 @@ msgstr ""
 "Het allereerste dat u dient te doen is een nieuwe familiestamboom aanmaken. "
 "Om een nieuwe familiestamboom (soms 'gegevensbestand' genoemd) aan te maken, "
 "selecteert u  \"Familiestambomen\" in het menu, kiest u  \"Familiestambomen "
-"beheren...\", drukt u op  \"Nieuw\" en benoemt u uw familiestamboom. Voor "
-"verdere details kunt u de informatie lezen die bij de bovenstaande links "
-"staat\n"
+"beheren...\", drukt u op  \"Nieuw\" en benoemt u uw familiestamboom. Meer "
+"informatie hierover kunt u lezen onder bovenstaande links.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
@@ -19164,7 +19210,6 @@ msgid "Gramps package (portable XML)"
 msgstr "Gram_ps pakket (omzetbaar XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:89
-#, fuzzy
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
@@ -19177,13 +19222,12 @@ msgid "Gramps XML Family Tree"
 msgstr "Gramps XML familiestamboom"
 
 #: ../gramps/plugins/importer/import.gpr.py:108
-#, fuzzy
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Het Gramps XML-gegevensbestand is een tekstversie van een familiestamboom. "
-"Het is compatibel (zowel lezen als schrijven) met het huidige "
+"Het Gramps XML-formaat is een tekstversie van een familiestamboom. Het is "
+"compatibel (zowel lezen als schrijven) met het huidige "
 "gegevensbestandsformaat van Gramps."
 
 #: ../gramps/plugins/importer/import.gpr.py:128
@@ -19514,24 +19558,25 @@ msgid "Base path for relative media set"
 msgstr "Standaardpad voor relatieve media ingesteld"
 
 #: ../gramps/plugins/importer/importgpkg.py:109
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
 "a simpler path. You can change this in the Preferences, while moving your "
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Het standaard ingestelde mediapad voor deze familiestamboom is %s. Overweeg "
-"om een eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gebruik "
-"te maken van het mediamanager hulpmiddel. U kunt ook bepaalde "
-"deeltekenreeksen vervangen."
+"De standaardlocatie voor mediabestanden van deze stamboom is ingesteld op "
+"%s. Neem een eenvoudigere locatie in overweging. U kunt de standaardlocatie "
+"in de instellingen wijzigen, terwijl u de bestanden naar de nieuwe locatie "
+"verplaatst. Gebruik vervolgens de optie deeltekenreeksen in het mediamanaer "
+"hulpmiddel om de juiste locatie van uw mediabestanden in te stellen."
 
 #: ../gramps/plugins/importer/importgpkg.py:118
 msgid "Cannot set base media path"
 msgstr "Mediafolder kon niet worden ingesteld"
 
 #: ../gramps/plugins/importer/importgpkg.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
 "%(orig_path)s. The imported media objects however are relative from the path "
@@ -19541,12 +19586,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"De familiestamboom die u importeerde, heeft al een standaard mediapad: "
-"%(orig_path)s. De geïmporteerde media-objecten zijn afhankelijk van pad "
-"%(path)s. U kunt het mediapad veranderen in 'Voorkeuren' of u kunt de "
-"geïmporteerde bestanden aanpassen aan het bestaand e mediapad. U kunt dit "
-"doen door het hulpmiddel mediamanager te gebruiken. U kunt zo "
-"deeltekenreeksen eenvoudiger vervangen om het pad juist in te stellen."
+"De stamboom die u importeerde, heeft al een standaardlocatie voor "
+"mediabestanden: %(orig_path)s. De geïmporteerde mediabestanden zijn "
+"afhankelijk van de locatie %(path)s. U kunt de bestandslocatie wijzigen "
+"onder 'Voorkeuren' of u kunt de geïmporteerde bestanden aanpassen aan de "
+"bestaande bestandslocatie. U kunt dit doen door het hulpmiddel mediamanager "
+"te gebruiken. U kunt zo deeltekenreeksen eenvoudiger vervangen om het pad "
+"juist in te stellen."
 
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:75
@@ -19799,7 +19845,7 @@ msgid ""
 "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 "\n"
-" Het geïmporteerd bestand was niet volledig.\n"
+" Het geïmporteerde bestand was niet volledig.\n"
 "Om dit te corrigeren werden %(new)d nieuwe objecten aangemaakt en\n"
 "hun typekenmerk werd als 'Onbekend' opgeslagen.\n"
 "De verdeling per categorie wordt hier weergegeven\n"
@@ -19854,16 +19900,16 @@ msgid "Could not change media path"
 msgstr "Kon mediapad niet veranderen"
 
 #: ../gramps/plugins/importer/importxml.py:956
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
 "the Family Tree you import into. The original media path has been retained. "
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"Het geopende bestand heeft een mediapad %s. Maar dit geeft een conflict met "
-"het mediapad van de familiestamboom. Het oorspronkelijke mediapad werd "
-"behouden. Kopieër de bestanden naar een correcte map of verander het "
+"Het geopende bestand heeft een bestandslocatie %s. Dit conflicteert echter "
+"met het mediapad van de stamboom. De oorspronkelijke medialocatie werd "
+"behouden. Kopieer de bestanden naar een correcte map of verander het "
 "mediapad in het menu 'voorkeuren'."
 
 #: ../gramps/plugins/importer/importxml.py:1014
@@ -19979,13 +20025,13 @@ msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle persoonsverwijzingen moeten een 'hlink' kenmerk hebben."
 
 #: ../gramps/plugins/importer/importxml.py:1670
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Uw familiestambomengroepnaam \"%(key)s\" samen met \"%(parent)s\", werd niet "
-"veranderd naar \"%(value)s\"."
+"Uw familiestambomengroepsnaam \"%(key)s\" samen met \"%(parent)s\", werd "
+"niet veranderd naar \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
 msgid "Gramps ignored namemap value"
@@ -20293,7 +20339,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3232
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr ""
+msgstr "ADDR element genegeerd '%s'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3245
 msgid "TRLR (trailer)"
@@ -20481,7 +20527,7 @@ msgstr "Tekenset codering en versie"
 
 #: ../gramps/plugins/lib/libgedcom.py:6954
 msgid "GEDCOM version not supported"
-msgstr "GEDCOM versie wordt niet ondersteund"
+msgstr "GEDCOM-versie wordt niet ondersteund"
 
 #: ../gramps/plugins/lib/libgedcom.py:6957
 msgid "GEDCOM version"
@@ -24027,25 +24073,25 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Poging om de gekozen locaties te tonen met een kaartsysteem (\"OpenstreetMap"
-"\", \"Google Maps\", ...)"
+"Poging om de gekozen locaties te tonen met een kaartendienst (OpenstreetMap, "
+"Google Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:163
 #: ../gramps/plugins/lib/libplaceview.py:215
 msgid "Select a Map Service"
-msgstr "Kaartsysteem kiezen"
+msgstr "Kaartendienst kiezen"
 
 #: ../gramps/plugins/lib/libplaceview.py:165
 msgid "_Look up with Map Service"
-msgstr "Opzoeken met kaartsysteem"
+msgstr "Opzoeken met kaartendienst"
 
 #: ../gramps/plugins/lib/libplaceview.py:167
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Poging om deze locatie te tonen met een kaartsysteem (\"OpenstreetMap\", "
-"\"Google Maps\", ...)"
+"Poging om deze locatie te tonen met een kaartendienst (OpenstreetMap, Google "
+"Maps, ...)"
 
 #: ../gramps/plugins/lib/libplaceview.py:169
 msgid "Place Filter Editor"
@@ -24053,7 +24099,7 @@ msgstr "Aanpassen locatiefilter"
 
 #: ../gramps/plugins/lib/libplaceview.py:277
 msgid "No map service is available."
-msgstr "Geen kaartsysteem beschikbaar."
+msgstr "Geen kaartendienst beschikbaar."
 
 #: ../gramps/plugins/lib/libplaceview.py:278
 msgid "Check your installation."
@@ -25289,7 +25335,7 @@ msgstr "De gebruikte stijl voor de items in de index."
 #: ../gramps/plugins/textreport/ancestorreport.py:193
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel voor %s"
+msgstr "Kwartierstaat voor %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:281
 #: ../gramps/plugins/textreport/ancestorreport.py:302
@@ -25414,7 +25460,7 @@ msgstr "Derde tekstlijn onderaan het verslag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:504
 msgid "Title text style"
-msgstr "Stijl titel"
+msgstr "Opmaak titel"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:507
 msgid "Data text display"
@@ -25422,11 +25468,11 @@ msgstr "Gegevens tekstweergave"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:509
 msgid "Day text style"
-msgstr "Dagtekststijl"
+msgstr "Opmaak dag"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
 msgid "Month text style"
-msgstr "Maandtekststijl"
+msgstr "Opmaak maand"
 
 #: ../gramps/plugins/textreport/custombooktext.py:85
 #: ../gramps/plugins/textreport/custombooktext.py:87
@@ -25462,15 +25508,15 @@ msgstr "Tekst die als laatste wordt weergegeven."
 
 #: ../gramps/plugins/textreport/custombooktext.py:149
 msgid "The style used for the first portion of the custom text."
-msgstr "De gebruikte stijl voor het eerste deel van de eigen tekst."
+msgstr "De gebruikte opmaak voor het eerste deel van de eigen tekst."
 
 #: ../gramps/plugins/textreport/custombooktext.py:158
 msgid "The style used for the middle portion of the custom text."
-msgstr "De gebruikte stijl voor het middendeel van de eigen tekst."
+msgstr "De gebruikte opmaak voor het middendeel van de eigen tekst."
 
 #: ../gramps/plugins/textreport/custombooktext.py:167
 msgid "The style used for the last portion of the custom text."
-msgstr "De gebruikte stijl voor het laatste deel van de eigen tekst."
+msgstr "De gebruikte opmaak voor het laatste deel van de eigen tekst."
 
 #: ../gramps/plugins/textreport/descendreport.py:221
 #: ../gramps/plugins/textreport/descendreport.py:226
@@ -26192,7 +26238,7 @@ msgstr "De gebeurtenissen al of niet in chronologische volgorde sorteren."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:716
 msgid "Include Source Information"
-msgstr "Bron-informatie bijvoegen"
+msgstr "Broninformatie bijvoegen"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:717
 msgid "Whether to cite sources."
@@ -26250,13 +26296,14 @@ msgstr "Neven bijvoegen"
 msgid "Whether to include cousins"
 msgstr "Neven bijvoegen"
 
+# nonkel is spreektaal in België, http://www.vrt.be/taal/taalmail-326-350
 #: ../gramps/plugins/textreport/kinshipreport.py:371
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Meenemen van tantes/nonkels/neven/nichten"
+msgstr "Meenemen van tantes/ooms/neven/nichten"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:372
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Al of niet tantes/nonkels/neven/nichten toevoegen"
+msgstr "Al of niet tantes/ooms/neven/nichten toevoegen"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:397
 #: ../gramps/plugins/textreport/summary.py:293
@@ -26655,7 +26702,7 @@ msgstr "De gebruikte basisstijl voor de tabelhoofdingen."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:32
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel"
+msgstr "Kwartierstaat"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:33
 msgid "Produces a textual ancestral report"
@@ -26778,7 +26825,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/changenames.glade.h:4
 msgid "_Accept changes and close"
-msgstr "Aanpassingen _accepteren en venster sluiten"
+msgstr "Wijzigingen _accepteren en sluiten"
 
 #: ../gramps/plugins/tool/changenames.py:66
 msgid "manual|Fix_Capitalization_of_Family_Names..."
@@ -26874,7 +26921,6 @@ msgid "Looking for cross table duplicates"
 msgstr "Mogelijke dubbele kruistabellen zoeken"
 
 #: ../gramps/plugins/tool/check.py:152
-#, fuzzy
 msgid ""
 "Your Family Tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -26884,8 +26930,8 @@ msgid ""
 msgstr ""
 "Uw familiestamboom bevat dubbele verwijzingen in de kruistabellen.\n"
 " Dit is niet goed en kan verholpen worden door een reservekopie van uw\n"
-"familiestamboom te maken en deze reservekopie opnieuw te importeren\n"
-"in een lege familiestamboom. Het vervolg van het controleproces wordt\n"
+"stamboom te maken en deze reservekopie opnieuw te importeren in\n"
+"een lege familiestamboom. Het vervolg van het controleproces wordt\n"
 "overgeslagen. U doet er goed aan om het hulpmiddel 'controle en herstellen'\n"
 "opnieuw uit te voeren op deze nieuwe familiestamboom."
 
@@ -27927,7 +27973,6 @@ msgid "_Accept and close"
 msgstr "_Accepteren en sluiten"
 
 #: ../gramps/plugins/tool/patchnames.glade.h:2
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames, titles, prefixes and compound surnames "
 "that Gramps can extract from the Family Tree.\n"
@@ -27945,7 +27990,7 @@ msgstr ""
 "In onderstaande lijst worden de bijnamen, titels, voorvoegsel en "
 "samengestelde achternamen die Gramps uit de familiestamboom kon halen, "
 "getoond.\n"
-"Indien u de aanpassingen aanvaard, zal Gramps de geselecteerde gegevens "
+"Indien u de aanpassingen aanvaardt, zal Gramps de geselecteerde gegevens "
 "veranderen.\n"
 "\n"
 "Samengestelde achternamen worden als een lijst [voorvoegsel, achternaam, "
@@ -27954,8 +27999,8 @@ msgstr ""
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre] getoond\n"
 "\n"
 "U kunt dit hulpmiddel verscheidene keren gebruiken om telkens samengestelde "
-"namen te corrigeren zodat de juiste informatie uit deze namen kan gehaald "
-"worden."
+"namen te corrigeren zodat de juiste informatie uit deze namen kan worden "
+"gehaald."
 
 #: ../gramps/plugins/tool/patchnames.py:65
 msgid "manual|Extract_Information_from_Names"
@@ -30054,22 +30099,18 @@ msgid "Grouped People"
 msgstr "Gegroepeerde personen"
 
 #: ../gramps/plugins/view/view.gpr.py:172
-#, fuzzy
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr ""
-"Een scherm dat alle personen in de familiestamboom gegroepeerd per "
+"Het scherm dat alle personen in de familiestamboom gegroepeerd per "
 "familienaam toont"
 
 #: ../gramps/plugins/view/view.gpr.py:189
-#, fuzzy
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr ""
-"Het scherm toont alle personen in de familiestamboom in een vlakke lijst"
+msgstr "Het scherm dat alle personen in de familiestamboom in een lijst toont"
 
 #: ../gramps/plugins/view/view.gpr.py:206
-#, fuzzy
 msgid "The view showing all the places of the Family Tree"
-msgstr "Het scherm toont alle locaties van de familiestamboom"
+msgstr "Het scherm dat alle locaties van de familiestamboom toont"
 
 # Plaatsnaam
 #: ../gramps/plugins/view/view.gpr.py:221
@@ -30268,7 +30309,7 @@ msgstr "Voornaam"
 #: ../gramps/plugins/webreport/narrativeweb.py:7635
 #: ../gramps/plugins/webreport/narrativeweb.py:7677
 msgid "Narrated Web Site Report"
-msgstr "Webstekverslag"
+msgstr "Websiteverslag"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3049
 msgid "Creating family pages..."
@@ -30713,13 +30754,13 @@ msgstr "Mijn familiestamboom"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7998
 msgid "The title of the web site"
-msgstr "De titel voor de webstek"
+msgstr "De titel voor de website"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8003
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
-"webstek"
+"website"
 
 # Bestandsuitgang/extensie
 #: ../gramps/plugins/webreport/narrativeweb.py:8030
@@ -30815,7 +30856,7 @@ msgstr "Pagina genereren"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8095
 msgid "Home page note"
-msgstr "Opmerking Home Page webstek"
+msgstr "Opmerking Home Page website"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8096
 msgid "A note to be used on the home page"
@@ -31151,12 +31192,12 @@ msgstr "Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8308
 msgid "Map Service"
-msgstr "Kaartsysteem"
+msgstr "Kaartendienst"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8311
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
-"Welk kaartsysteem wenst u te gebruiken voor de pagina's van de "
+"Welke kaartendienst wenst u te gebruiken voor de pagina's van de "
 "locatiekaarten."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8316
@@ -31352,7 +31393,7 @@ msgstr "Home link"
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
-"Een verwijzing om de gebruiker naar de hoofdpagina van de webstek te sturen, "
+"Een verwijzing om de gebruiker naar de hoofdpagina van de website te sturen, "
 "wordt toegevoegd"
 
 #: ../gramps/plugins/webreport/webcal.py:1468
@@ -31479,7 +31520,7 @@ msgstr "Al of niet daggebeurtenissenpagina's toevoegen"
 # webstek
 #: ../gramps/plugins/webreport/webcal.py:1543
 msgid "Link to Narrated Web Report"
-msgstr "Verbinding naar het webstekverslag"
+msgstr "Link naar het websiteverslag"
 
 #: ../gramps/plugins/webreport/webcal.py:1544
 msgid "Whether to link data to web report or not"
@@ -32440,6 +32481,10 @@ msgstr ""
 "<b>Gramps voor Gnome of KDE?</b><br/>Voor de Linux-gebruikers, Gramps werkt "
 "met beide bureaubladomgevingen. Zolang de vereiste GTK-bibliotheken zijn "
 "geïnstalleerd, zal er geen probleem zijn."
+
+#, fuzzy
+#~ msgid "Need to upgrade BSDDB database!"
+#~ msgstr "Gegevensbestand moet opgewaardeerd worden!"
 
 #~ msgid ""
 #~ "You cannot open this database without upgrading it.\n"
