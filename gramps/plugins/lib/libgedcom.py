@@ -1237,7 +1237,7 @@ class UTF8Reader(BaseReader):
     def reset(self):
         self.ifile.seek(0)
         data = self.ifile.read(3)
-        if data != "\xef\xbb\xbf":
+        if data != b"\xef\xbb\xbf":
             self.ifile.seek(0)
 
     def readline(self):
@@ -7490,17 +7490,17 @@ class GedcomStageOne(object):
         package.
         """
         line = input_file.read(2)
-        if line == "\xef\xbb":
+        if line == b"\xef\xbb":
             input_file.read(1)
             self.enc = "UTF8"
             return input_file
-        elif line == "\xff\xfe":
+        elif line == b"\xff\xfe":
             self.enc = "UTF16"
             input_file.seek(0)
             return codecs.EncodedFile(input_file, 'utf8', 'utf16')
         elif not line :
             raise GedcomError(self.__EMPTY_GED)
-        elif line[0] == "\x00" or line[1] == "\x00":
+        elif line[0] == b"\x00" or line[1] == b"\x00":
             raise GedcomError(self.__BAD_UTF16)
         else:
             input_file.seek(0)
