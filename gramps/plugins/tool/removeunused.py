@@ -346,7 +346,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             editor_str = 'from gramps.gui.editors import %s as editor' % (
                             self.tables[the_type]['editor']
                             )
-            exec(editor_str)            
+            exec(editor_str, globals())            
             editor(self.dbstate, self.uistate, [], obj)
         except WindowActiveError:
             pass
