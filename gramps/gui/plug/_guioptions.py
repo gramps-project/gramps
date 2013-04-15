@@ -499,6 +499,8 @@ class GuiEnumeratedListOption(Gtk.HBox):
         evtBox = Gtk.EventBox()
         self.__option = option
         self.__combo = Gtk.ComboBoxText()
+        self.__combo.set_popup_fixed_width(False)
+        self.__combo.set_wrap_width(3)
         evtBox.add(self.__combo)
         self.pack_start(evtBox, True, True, 0)
         
@@ -542,7 +544,8 @@ class GuiEnumeratedListOption(Gtk.HBox):
         """
         Handle the change of the available options.
         """
-        self.__combo.get_model().clear()
+        self.__combo.remove_all()
+        #self.__combo.get_model().clear()
         cur_val = self.__option.get_value()
         active_index = 0
         current_index = 0
