@@ -499,8 +499,9 @@ class GuiEnumeratedListOption(Gtk.HBox):
         evtBox = Gtk.EventBox()
         self.__option = option
         self.__combo = Gtk.ComboBoxText()
-        self.__combo.set_popup_fixed_width(False)
-        self.__combo.set_wrap_width(3)
+        if len(option.get_items()) > 18:
+            self.__combo.set_popup_fixed_width(False)
+            self.__combo.set_wrap_width(3)
         evtBox.add(self.__combo)
         self.pack_start(evtBox, True, True, 0)
         
