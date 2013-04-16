@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-13 02:05+0200\n"
-"PO-Revision-Date: 2013-04-13 02:06+0200\n"
+"POT-Creation-Date: 2013-04-16 19:34+0200\n"
+"PO-Revision-Date: 2013-04-16 19:33+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5679,6 +5679,13 @@ msgid ""
 "A caret will match the start of a line. A dollar sign will match the end of "
 "a line."
 msgstr ""
+"Interpretiert den Inhalt von Zeichenkettenfeldern als Regulären Ausdruck \n"
+"Ein Punkt passt auf jedes Zeichen. Ein Fragezeichen passt auf Null oder ein "
+"Auftreten des vorherigen Zeichen oder Gruppe. Ein Asterisk passt auf Null "
+"oder mehrfaches Auftreten. Ein Pluszeichen passt auf ein oder mehrfaches "
+"Auftreten. Verwende Klammern um Ausdrücke zu gruppieren. Bestimme "
+"Alternativen durch Verwendung eines senkrechten Strich. Ein Caret ^ passt "
+"auf den Beginn einer Zeile. Ein Dollarzeichen passt auf das Ende einer Zeile."
 
 #: ../src/gui/filtereditor.py:590
 msgid "Rule Name"
@@ -15778,7 +15785,7 @@ msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s in %(death_place)s im alter "
+"%(unknown_gender_name)s starb am %(death_date)s in %(death_place)s im Alter "
 "von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:190
@@ -15792,7 +15799,7 @@ msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s starb am %(death_date)s in %(death_place)s im alter von "
+"%(male_name)s starb am %(death_date)s in %(death_place)s im Alter von "
 "%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:194
@@ -15806,7 +15813,7 @@ msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s starb am %(death_date)s in %(death_place)s im alter von "
+"%(female_name)s starb am %(death_date)s in %(death_place)s im Alter von "
 "%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:199
@@ -15819,7 +15826,7 @@ msgstr "Diese Person starb am %(death_date)s in %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"Die Person starb am %(death_date)s in %(death_place)s im alter von %(age)s."
+"Die Person starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:203
 #, python-format
@@ -15829,7 +15836,7 @@ msgstr "Er starb am %(death_date)s in %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:204
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Er starb am %(death_date)s in %(death_place)s im alter von %(age)s."
+msgstr "Er starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:207
 #, python-format
@@ -15839,7 +15846,7 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 #: ../src/plugins/lib/libnarrate.py:208
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Sie starb am %(death_date)s in %(death_place)s im alter von %(age)s."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:212 ../src/plugins/lib/libnarrate.py:245
 #, python-format
@@ -15862,7 +15869,7 @@ msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(unknown_gender_name)s starb am %(death_date)s in %(death_place)s im alter "
+"%(unknown_gender_name)s starb am %(death_date)s in %(death_place)s im Alter "
 "von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:223
