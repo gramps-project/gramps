@@ -886,15 +886,7 @@ class DetDescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         add_option("pid", pid)
         
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        add_option("name_format", name_format)
+        stdoptions.add_name_format_option(menu, category)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([

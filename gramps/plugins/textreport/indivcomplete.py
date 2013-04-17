@@ -43,17 +43,19 @@ from collections import defaultdict
 #
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType, Person, NoteType
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
-                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                             PARA_ALIGN_CENTER)
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                                    TableStyle, TableCellStyle,
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
 from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
-                           BooleanListOption, EnumeratedListOption)
+                                  BooleanListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import endnotes as Endnotes
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.utils.file import media_path_full
 
@@ -691,16 +693,7 @@ class IndivCompleteOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
-
+        stdoptions.add_name_format_option(menu, category_name)
         
         self.__update_filters()
         
