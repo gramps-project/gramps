@@ -52,6 +52,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import get_date
 from gramps.gen.sort import Sort
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
@@ -394,15 +395,7 @@ class DescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        stdoptions.add_name_format_option(menu, category_name)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([

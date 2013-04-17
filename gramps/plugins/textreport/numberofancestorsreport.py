@@ -44,13 +44,14 @@ import math
 #------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
-from gramps.gen.plug.menu import PersonOption, EnumeratedListOption
+from gramps.gen.plug.menu import PersonOption
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                             INDEX_TYPE_TOC)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 
 #------------------------------------------------------------------------
 #
@@ -187,7 +188,7 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         """
-        Add options to the menu for the kinship report.
+        Add options to the menu for the Number of Ancestors report.
         """
         category_name = _("Report Options")
         
@@ -195,15 +196,7 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)    
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        stdoptions.add_name_format_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Number of Ancestors Report."""

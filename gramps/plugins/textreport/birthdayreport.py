@@ -52,6 +52,7 @@ from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as _dd, long_days
 
@@ -384,13 +385,7 @@ class BirthdayOptions(MenuReportOptions):
         
         self.__update_filters()
 
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name, "name_format", name_format)
+        stdoptions.add_name_format_option(menu, category_name)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()

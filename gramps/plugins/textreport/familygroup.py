@@ -38,13 +38,15 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
-from gramps.gen.plug.menu import (BooleanOption, FamilyOption, EnumeratedListOption)
+from gramps.gen.plug.menu import (BooleanOption, FamilyOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
-                            TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
-                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                                    TableStyle, TableCellStyle,
+                                    FONT_SANS_SERIF, FONT_SERIF, 
+                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -625,23 +627,15 @@ class FamilyGroupOptions(MenuReportOptions):
     def add_menu_options(self, menu):
         
         ##########################
-        add_option = partial(menu.add_option, _("Report Options"))
+        category_name = _("Report Options")
+        add_option = partial(menu.add_option, category_name)
         ##########################
         
         family_id = FamilyOption(_("Center Family"))
         family_id.set_help(_("The center family for the report"))
         add_option("family_id", family_id)
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        add_option("name_format", name_format)
-
+        stdoptions.add_name_format_option(menu, category_name)
         
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "

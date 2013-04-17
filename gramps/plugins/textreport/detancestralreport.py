@@ -49,7 +49,7 @@ from gramps.gen.lib import EventType, FamilyRelType, Person, NoteType
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.plug.menu import BooleanOption, NumberOption, PersonOption, EnumeratedListOption
+from gramps.gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from gramps.gen.plug.report import ( Report, Bibliography )
 from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
@@ -720,15 +720,7 @@ class DetAncestorOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         addopt("pid", pid)
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = global_name_display.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), 0)
-        name_format.add_item(0, _("Default"))
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        addopt("name_format", name_format)
+        stdoptions.add_name_format_option(menu, category)
         
         gen = NumberOption(_("Generations"),10,1,100)
         gen.set_help(_("The number of generations to include in the report"))

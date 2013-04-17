@@ -50,6 +50,7 @@ from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as _dd, long_days
 from gramps.gen.lib import Date, EventRoleType, EventType, Name, NameType, Person, Surname
@@ -412,7 +413,12 @@ class CalendarOptions(MenuReportOptions):
     
     def add_menu_options(self, menu):
         """ Add the options for the graphical calendar """
-        add_option = partial(menu.add_option, _("Report Options"))
+
+        ##########################
+        category_name = _("Report Options")
+        add_option = partial(menu.add_option, category_name)
+        ##########################
+
         year = NumberOption(_("Year of calendar"), time.localtime()[0], 
                             1000, 3000)
         year.set_help(_("Year of calendar"))
@@ -430,14 +436,7 @@ class CalendarOptions(MenuReportOptions):
         
         self.__update_filters()
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        fmt_list = _nd.get_name_format()
-        name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        add_option("name_format", name_format)
+        stdoptions.add_name_format_option(menu, category_name)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
