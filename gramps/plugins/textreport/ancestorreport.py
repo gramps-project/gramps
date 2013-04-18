@@ -43,10 +43,11 @@ _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType
-from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption)
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
+                                  StringOption)
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                             FONT_SANS_SERIF, INDEX_TYPE_TOC, 
-                             PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC, 
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -110,6 +111,10 @@ class AncestorReport(Report):
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
+
+        title_name = self._name_display.display_formal(self.center_person)
+        title_format = menu.get_option_by_name('title_format').get_value()
+        self.title = title_format % title_name
 
         lang = menu.get_option_by_name('trans').get_value()
         locale = self.set_locale(lang)
@@ -185,12 +190,9 @@ class AncestorReport(Report):
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
-        name = self._name_display.display_formal(self.center_person)
-        # feature request 2356: avoid genitive form
-        title = self._("Ahnentafel Report for %s") % name
-        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
+        mark = IndexMark(self.title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("AHN-Title")
-        self.doc.write_text(title, mark)
+        self.doc.write_text(self.title, mark)
         self.doc.end_paragraph()
     
         # get the entries out of the map, and sort them.
@@ -287,6 +289,11 @@ class AncestorOptions(MenuReportOptions):
         menu.add_option(category_name, "namebrk", namebrk)
 
         stdoptions.add_localization_option(menu, category_name)
+
+        title_format_string = _("Ahnentafel Report for %s")
+        title_format = StringOption(_('Title format'), title_format_string)
+        title_format.set_help(_("How the title will be shown."))
+        menu.add_option(category_name, "title_format", title_format)
 
     def make_default_style(self, default_style):
         """
