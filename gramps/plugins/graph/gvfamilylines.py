@@ -6,7 +6,7 @@
 # Copyright (C) 2009-2010  Gary Burton 
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011       Paul Franklin
+# Copyright (C) 2011-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,16 +29,14 @@
 Family Lines, a GraphViz-based plugin for Gramps.
 """
 
-from __future__ import unicode_literals
-
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+from __future__ import unicode_literals
 from functools import partial
+import copy
 
 #------------------------------------------------------------------------
 #
@@ -53,6 +51,8 @@ log = logging.getLogger(".FamilyLines")
 # GRAMPS module
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType, Person
 from gramps.gen.utils.file import media_path_full
 from gramps.gui.thumbnails import get_thumbnail_path
@@ -60,11 +60,12 @@ from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
-                          EnumeratedListOption, PersonListOption,
-                          SurnameColorOption)
+                                  EnumeratedListOption, PersonListOption,
+                                  SurnameColorOption)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------
 #
@@ -111,13 +112,16 @@ class FamilyLinesOptions(MenuReportOptions):
     def add_menu_options(self, menu):
 
         # --------------------------------
-        add_option = partial(menu.add_option, _('People of Interest'))
+        category_name = _('People of Interest')
+        add_option = partial(menu.add_option, category_name)
         # --------------------------------
 
         person_list = PersonListOption(_('People of interest'))
         person_list.set_help(_('People of interest are used as a starting '
                                'point when determining "family lines".'))
         add_option('gidlist', person_list)
+
+        stdoptions.add_name_format_option(menu, category_name)
 
         followpar = BooleanOption(
                            _('Follow parents to determine family lines'), True)
@@ -348,6 +352,13 @@ class FamilyLinesReport(Report):
             if person:
                 #option can be from another family tree, so person can be None
                 self._interest_set.add(person.get_handle())
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
@@ -719,7 +730,7 @@ class FamilyLinesReport(Report):
         # loop through all the people we need to output
         for handle in self._people:
             person = self._db.get_person_from_handle(handle)
-            name = name_displayer.display_name(person.get_primary_name())
+            name = self._name_display.display(person)
 
             # figure out what colour to use
             gender = person.get_gender()
