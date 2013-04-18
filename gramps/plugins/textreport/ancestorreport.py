@@ -288,12 +288,12 @@ class AncestorOptions(MenuReportOptions):
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
 
-        stdoptions.add_localization_option(menu, category_name)
-
         title_format_string = _("Ahnentafel Report for %s")
         title_format = StringOption(_('Title format'), title_format_string)
         title_format.set_help(_("How the title will be shown."))
         menu.add_option(category_name, "title_format", title_format)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """
