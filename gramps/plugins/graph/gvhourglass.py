@@ -4,7 +4,8 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Stephane Charette <stephanecharette@gmail.com>
 # Contribution 2009 by    Bob Ham <rah@bash.sh>
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,28 +25,29 @@
 
 """
 Generate an hourglass graph using the GraphViz generator.
-/Reports/GraphViz/Hourglass Graph
 """
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+import copy
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
-                          EnumeratedListOption)
+                                  EnumeratedListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
@@ -107,6 +109,13 @@ class HourGlassReport(Report):
         elif self.colorize == 'filled':
             self.colors = filled
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def write_report(self):
         """
@@ -172,7 +181,7 @@ class HourGlassReport(Report):
         Add a person to the Graph. The node id will be the person's gramps id.
         """
         p_id = person.get_gramps_id()
-        name = name_displayer.display_formal(person)
+        name = self._name_display.display(person)
         
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
@@ -263,6 +272,8 @@ class HourGlassOptions(MenuReportOptions):
         pid.set_help(_("The Center person for the graph"))
         menu.add_option(category_name, "pid", pid)
         
+        stdoptions.add_name_format_option(menu, category_name)
+
         max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
         max_gen.set_help(_("The number of generations of descendants to "
                            "include in the graph"))

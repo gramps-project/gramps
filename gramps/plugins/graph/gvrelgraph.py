@@ -12,6 +12,7 @@
 #    Copyright (C) 2009       Gary Burton
 #    Contribution 2009 by     Bob Ham <rah@bash.sh>
 #    Copyright (C) 2010       Jakim Friant
+#    Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,6 +43,7 @@ Create a relationship graph using Graphviz
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from functools import partial
+import copy
 
 #------------------------------------------------------------------------
 #
@@ -49,12 +51,13 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 from gramps.gen.constfunc import conv_to_unicode
-from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, FilterOption,
-                          PersonOption, ColorOption)
+from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
+                                  FilterOption, PersonOption, ColorOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
@@ -159,6 +162,13 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'none'
         filter_option = get_option_by_name('filter')
         self._filter = filter_option.get_filter()
+
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
@@ -392,7 +402,7 @@ class RelGraphReport(Report):
             self.bUseHtmlOutput = False
 
         # at the very least, the label must have the person's name
-        nm =  name_displayer.display_name(person.get_primary_name())
+        nm = self._name_display.display(person)
         if self.bUseHtmlOutput :
             # avoid < and > in the name, as this is html text
             label += nm.replace('<', '&#60;').replace('>', '&#62;')
@@ -480,7 +490,8 @@ class RelGraphOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         ################################
-        add_option = partial(menu.add_option, _("Report Options"))
+        category_name = _("Report Options")
+        add_option = partial(menu.add_option, category_name)
         ################################
 
         self.__filter = FilterOption(_("Filter"), 0)
@@ -494,6 +505,8 @@ class RelGraphOptions(MenuReportOptions):
         add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
+        stdoptions.add_name_format_option(menu, category_name)
+
         self.__update_filters()
         
         self.incdate = BooleanOption(
