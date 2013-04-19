@@ -438,7 +438,7 @@ class GrampsLocale(object):
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """
         Init a GrampsLocale. Run __init_first_instance() to set up the
-        environement if this is the first run. Return __first_instance
+        environment if this is the first run. Return __first_instance
         otherwise if called without arguments.
         """
         global _hdlr

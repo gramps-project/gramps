@@ -270,7 +270,7 @@ class ProbablyAlive(object):
                                     return (Date().copy_ymd(year - self.AVG_GENERATION_GAP),
                                             Date().copy_ymd(year - self.AVG_GENERATION_GAP + 
                                                                     self.MAX_AGE_PROB_ALIVE),
-                                                                            
+
                                             _("event with spouse"), other)
 
         # Try looking for descendants that were born more than a lifespan

@@ -87,7 +87,7 @@ class StyleListDisplay(object):
 
         set_titles(self.window, self.top.get_object('title'), 
                    _('Document Styles'))
-                                             
+
         self.top.connect_signals({
             "destroy_passed_object" : self.__close,
             "on_ok_clicked" : self.on_ok_clicked, 
@@ -243,7 +243,7 @@ class StyleEditor(object):
 
         p = self.current_p
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
-                             self.current_name                              )
+                             self.current_name)
         self.pname.set_use_markup(True)
 
         descr = p.get_description()

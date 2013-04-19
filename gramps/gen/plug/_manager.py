@@ -425,7 +425,7 @@ class BasePluginManager(object):
     def get_plugin_data(self, category):
         """
         Gets all of the data from general plugins of type category.
-        plugin.data maybe a single item, an iterable, or a callable.
+        plugin.data may be a single item, an iterable, or a callable.
 
         >>> PLUGMAN.get_plugin_data('CSS')
         <a list of raw data items>

@@ -1170,7 +1170,7 @@ class GrampsXmlWriter(UpdateCallback):
                 len(place.get_media_list()) +
                 len(place.get_citation_list())
                )
-                                                      
+
         ml_empty = main_loc.is_empty()
 
         if title == "":

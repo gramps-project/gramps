@@ -1054,7 +1054,7 @@ class MakeReport(object):
     
     def __calc_movements(self, left_group, right_group):
         """ for a family group, see if parents or children need to be
-        moved down so everyone is the the right/left of each other.
+        moved down so everyone is to the right/left of each other.
         
         return a right y_cm and a left y_cm.  these points will be used
         to move parents/children down.

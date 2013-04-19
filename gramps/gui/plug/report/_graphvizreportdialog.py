@@ -193,11 +193,11 @@ class GraphvizReportDialog(ReportDialog):
     def doc_type_changed(self, obj):
         """
         This routine is called when the user selects a new file
-        formats for the report.  It adjust the various dialog sections
+        format for the report.  It adjusts the various dialog sections
         to reflect the appropriate values for the currently selected
         file format.  For example, a HTML document doesn't need any
         paper size/orientation options, but it does need a template
-        file.  Those chances are made here.
+        file.  Those changes are made here.
         """
         self.open_with_app.set_sensitive(True)
             

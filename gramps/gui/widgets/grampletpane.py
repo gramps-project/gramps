@@ -792,7 +792,7 @@ class GridGramplet(GuiGramplet):
 
     def edit_title(self, widget):
         """
-        Edit the the title in the GUI.
+        Edit the title in the GUI.
         """
         parent = widget.get_parent()
         widget.hide()

@@ -215,7 +215,7 @@ class ReportDialog(ManagedWindow):
     #
     #------------------------------------------------------------------------
     def add_user_options(self):
-        """Called to allow subclasses add widgets to the dialog form.
+        """Called to allow subclasses to add widgets to the dialog form.
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
@@ -297,16 +297,16 @@ class ReportDialog(ManagedWindow):
         
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
-        on other routines create the default style for this report,
-        and to read in any user defined styles for this report.  It
-        the builds a menu of all the available styles for the user to
+        on other routines to create the default style for this report,
+        and to read in any user-defined styles for this report.  It
+        then builds a menu of all the available styles for the user to
         choose from."""
         # Build the default style set for this report.
         self.default_style = StyleSheet()
         self.options.make_default_style(self.default_style)
 
         if self.default_style.is_empty():
-            # Don't display the option of no styles are used
+            # Don't display the option if no styles are used
             return
 
         # Styles Frame

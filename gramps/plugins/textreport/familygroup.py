@@ -61,7 +61,7 @@ class FamilyGroup(Report):
 
     def __init__(self, database, options, user):
         """
-        Create the DetAncestorReport object that produces the report.
+        Create the FamilyGroup object that produces the report.
         
         The arguments are:
 

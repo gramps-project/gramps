@@ -346,7 +346,8 @@ class AsciiDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Start a cell. Set the self.in_cell flag, increment the curren cell number.
+    # Start a cell. Set the self.in_cell flag,
+    # increment the current cell number.
     #
     #--------------------------------------------------------------------
     def start_cell(self, style_name, span=1):

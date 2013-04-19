@@ -4587,13 +4587,13 @@ class GedcomParser(UpdateCallback):
 
     def __person_asso(self, line, state):
         """
-        Parse the ASSO tag, add the the referenced person to the person we
+        Parse the ASSO tag, add the referenced person to the person we
         are currently parsing. The GEDCOM spec indicates that valid ASSO tag
         is:
         
         n ASSO @<XREF:INDI>@ {0:M}
            
-        And the the sub tags are:
+        And the sub tags are:
         
         ASSOCIATION_STRUCTURE:=
          +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}

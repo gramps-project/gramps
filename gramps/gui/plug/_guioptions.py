@@ -1483,7 +1483,7 @@ class GuiSurnameColorOption(Gtk.HBox):
 
     def __add_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the the add surname button.
+        Handle the add surname button.
         """
         skip_list = set()
         i = self.__model.get_iter_first()
@@ -1501,7 +1501,7 @@ class GuiSurnameColorOption(Gtk.HBox):
 
     def __del_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """
-        Handle the the delete surname button.
+        Handle the delete surname button.
         """
         (path, column) = self.__tree_view.get_cursor()
         if (path):

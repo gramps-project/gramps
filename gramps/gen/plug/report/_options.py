@@ -286,7 +286,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_paper_metric(self, paper_metric):
         """
-        Set the last paper metric used for the any report in this collection.
+        Set the last paper metric used for any report in this collection.
         @param paper_metric: whether to use metric.
         @type paper_name: boolean
         """
@@ -294,7 +294,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_paper_metric(self):
         """
-        Return the last paper metric used for the any report in this collection.
+        Return the last paper metric used for any report in this collection.
         @returns: returns whether or not to use metric
         @rtype: boolean
         """
@@ -302,7 +302,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_paper_name(self, paper_name):
         """
-        Set the last paper name used for the any report in this collection.
+        Set the last paper name used for any report in this collection.
         @param paper_name: name of the paper to set.
         @type paper_name: str
         """
@@ -310,7 +310,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_paper_name(self):
         """
-        Return the last paper name used for the any report in this collection.
+        Return the last paper name used for any report in this collection.
         @returns: returns the name of the paper
         @rtype: str
         """
@@ -318,7 +318,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_orientation(self, orientation):
         """
-        Set the last orientation used for the any report in this collection.
+        Set the last orientation used for any report in this collection.
         @param orientation: orientation to set.
         @type orientation: int
         """
@@ -326,7 +326,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_orientation(self):
         """
-        Return the last orientation used for the any report in this
+        Return the last orientation used for any report in this
         collection.
         @returns: last orientation used
         @rtype: int
@@ -335,15 +335,15 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_custom_paper_size(self, custom_paper_size):
         """
-        Set the last custom paper size used for the any report in this collection.
+        Set the last custom paper size used for any report in this collection.
         @param custom_paper_size: size to set in cm (width, height)
-        @type margins: [float, float]
+        @type custom_paper_size: [float, float]
         """
         self.last_custom_paper_size = copy.copy(custom_paper_size)
 
     def get_last_custom_paper_size(self):
         """
-        Return the last custom paper size used for the any report in this
+        Return the last custom paper size used for any report in this
         collection.
         @returns: list of last custom paper size used in cm (width, height)
         @rtype: [float, float]
@@ -352,7 +352,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_margins(self, margins):
         """
-        Set the last margins used for the any report in this collection.
+        Set the last margins used for any report in this collection.
         @param margins: margins to set in cm (left, right, top, bottom)
         @type margins: [float, float, float, float]
         """
@@ -360,7 +360,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_margins(self):
         """
-        Return the last margins used for the any report in this
+        Return the last margins used for any report in this
         collection.
         @returns: list of last margins used in cm (left, right, top, bottom)
         @rtype: [float, float, float, float]
@@ -369,7 +369,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_margin(self, pos, value):
         """
-        Set the last margin used for the any report in this collection.
+        Set the last margin used for any report in this collection.
         @param pos: pos to set (0-4) (left, right, top, bottom)
         @type pos: int
         @param value: value to set the margin to in cm
@@ -379,7 +379,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_margin(self, pos):
         """
-        Return the last margins used for the any report in this
+        Return the last margins used for any report in this
         collection.
         @param pos: position in margins list
         @type pos: int
@@ -390,7 +390,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def set_last_css_filename(self, css_filename):
         """
-        Set the last css used for the any report in this collection.
+        Set the last css used for any report in this collection.
 
         css_filename: name of the style to set.
         """
@@ -398,13 +398,13 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_css_filename(self):
         """
-        Return the last template used for the any report in this collection.
+        Return the last template used for any report in this collection.
         """
         return self.last_css_filename
 
     def set_last_format_name(self, format_name):
         """
-        Set the last format used for the any report in this collection.
+        Set the last format used for any report in this collection.
         
         format_name: name of the format to set.
         """
@@ -412,7 +412,7 @@ class OptionListCollection(_options.OptionListCollection):
 
     def get_last_format_name(self):
         """
-        Return the last format used for the any report in this collection.
+        Return the last format used for any report in this collection.
         """
         return self.last_format_name
 
@@ -495,7 +495,7 @@ class OptionParser(_options.OptionParser):
         """
         Create a OptionParser class that populates the passed collection.
 
-        collection:   BookList to be loaded from the file.
+        collection: OptionListCollection to be loaded from the file.
         """
         _options.OptionParser.__init__(self, collection)
         self.common = False

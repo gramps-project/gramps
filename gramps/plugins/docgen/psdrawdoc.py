@@ -126,7 +126,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             '%%EndComments\n'
             '/cm { 28.34 mul } def\n'
             '% build iso-latin-1 version of a font\n'
-            '/font-to-iso-latin-1 {	% <font> font-to-iso-latin-1 <font>\n'
+            '/font-to-iso-latin-1 { % <font> font-to-iso-latin-1 <font>\n'
             '%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n'
             'dup length dict begin {1 index /FID ne {def} {pop pop} ifelse} forall\n'
             '/Encoding ISOLatin1Encoding def currentdict end\n'
@@ -134,7 +134,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             'exch definefont\n'
             '} def\n'
             '\n'
-            '/find-latin-font {	% <name> find-latin-font <font>\n'
+            '/find-latin-font { % <name> find-latin-font <font>\n'
             'findfont font-to-iso-latin-1\n'
             '} def\n'
             )

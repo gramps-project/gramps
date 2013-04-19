@@ -403,7 +403,7 @@ class PageView(DbGUIElement):
     def build_widget(self):
         """
         Builds the container widget for the main view pane. Must be overridden
-        by the the base class. Returns a gtk container widget.
+        by the base class. Returns a gtk container widget.
         """
         raise NotImplementedError
 
