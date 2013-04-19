@@ -179,7 +179,7 @@ def get_person_mark(db, person):
     Return a IndexMark that can be used to index a person in a report
     
     @param db: the GRAMPS database instance
-    @param person: the the key is for
+    @param person: the key is for
     """
     if not person:
         return None

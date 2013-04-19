@@ -29,8 +29,6 @@ Option class representing an enumerated list of possible values.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 from . import Option
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext

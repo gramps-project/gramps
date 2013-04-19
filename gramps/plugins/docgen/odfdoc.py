@@ -835,7 +835,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         wrt1 = self.cntnt1.write
         for style in self.StyleList_notes:
             if style[1] == "FontFace":
-                # Restore any spaced that were replaced by hyphens in
+                # Restore any spaces that were replaced by hyphens in
                 # libodfbackend
                 wrt1(
                     '<style:font-face ' +
@@ -887,7 +887,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     )
 
             elif style[1] == "FontFace":
-                # Restore any spaced that were replaced by hyphens in
+                # Restore any spaces that were replaced by hyphens in
                 # libodfbackend
                 wrt2(
                     '<style:style ' +

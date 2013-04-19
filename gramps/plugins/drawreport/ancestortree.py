@@ -1,8 +1,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly 	 
-# Copyright (C) 2010       Jakim Friant#
+# Copyright (C) 2007-2008  Brian G. Matherly 
+# Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
@@ -920,8 +920,8 @@ class AncestorTreeOptions(MenuReportOptions):
         #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
         #                                     "person"), 0)
         #Spouse_disp.add_item( 0, _("No.  Do not show Spouses"))
-        #Spouse_disp.add_item( 1, _("Yes, and use the the Main Display Format"))
-        #Spouse_disp.add_item( 2, _("Yes, and use the the Secondary "
+        #Spouse_disp.add_item( 1, _("Yes, and use the Main Display Format"))
+        #Spouse_disp.add_item( 2, _("Yes, and use the Secondary "
         #                           "Display Format"))
         #Spouse_disp.set_help(_("Show spouses of the center person?"))
         #menu.add_option(category_name, "Spouse_disp", Spouse_disp)

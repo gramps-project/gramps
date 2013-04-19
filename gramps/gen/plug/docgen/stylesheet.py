@@ -299,7 +299,7 @@ class StyleSheet(object):
         return ParagraphStyle(self.para_styles[name])
 
     def get_paragraph_style_names(self):
-        "Return the the list of paragraph names in the StyleSheet"
+        "Return the list of paragraph names in the StyleSheet"
         return list(self.para_styles.keys())
 
     def add_draw_style(self, name, style):
@@ -320,7 +320,7 @@ class StyleSheet(object):
         return GraphicsStyle(self.draw_styles[name])
 
     def get_draw_style_names(self):
-        "Return the the list of draw style names in the StyleSheet"
+        "Return the list of draw style names in the StyleSheet"
         return list(self.draw_styles.keys())
     
     def add_table_style(self, name, style):
@@ -341,7 +341,7 @@ class StyleSheet(object):
         return TableStyle(self.table_styles[name])
 
     def get_table_style_names(self):
-        "Return the the list of table style names in the StyleSheet"
+        "Return the list of table style names in the StyleSheet"
         return list(self.table_styles.keys())
     
     def add_cell_style(self, name, style):
@@ -362,7 +362,7 @@ class StyleSheet(object):
         return TableCellStyle(self.cell_styles[name])
 
     def get_cell_style_names(self):
-        "Return the the list of cell style names in the StyleSheet"
+        "Return the list of cell style names in the StyleSheet"
         return list(self.cell_styles.keys())
 
 #-------------------------------------------------------------------------

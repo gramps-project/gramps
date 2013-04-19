@@ -497,7 +497,7 @@ class CommandLineReport(object):
 
                 self.option_class.handler.options_dict[opt] = \
                                                       self.options_dict[opt]
-                                                        
+
                 if menu and opt in menu_opt_names:
                     option = menu.get_option_by_name(opt)
                     option.set_value(self.options_dict[opt])

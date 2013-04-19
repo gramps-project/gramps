@@ -3690,10 +3690,10 @@ class EventPages(BasePage):
                             # family event 
                             if int(_type) in _EVENTMAP:
                                 handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
-                                                                                    include_classes = ['Family', 'Person']))
+                                                  include_classes = ['Family', 'Person']))
                             else:
                                 handle_list = set(self.dbase_.find_backlink_handles(event_handle, 
-                                                                                    include_classes = ['Person']))
+                                                  include_classes = ['Person']))
                             if handle_list:
 
                                 trow = Html("tr")
@@ -7305,7 +7305,7 @@ class NavWebReport(Report):
         self.obj_dict[Family][family_handle] = (family_fname, family_name,
                                                 family.gramps_id)
         self.bkref_dict[Family][family_handle].add((bkref_class, bkref_handle))
-                                                   
+
         if self.inc_gallery:
             for media_ref in family.get_media_list():
                 media_handle = media_ref.get_reference_handle()
@@ -7437,7 +7437,7 @@ class NavWebReport(Report):
         self.obj_dict[Source][source_handle] = (source_fname, source_name,
                                                 source.gramps_id)
         self.bkref_dict[Source][source_handle].add((bkref_class, bkref_handle))
-                                                   
+
         ############### Media section ##############
         if self.inc_gallery:
             for media_ref in source.get_media_list():

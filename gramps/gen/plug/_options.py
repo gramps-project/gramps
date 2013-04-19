@@ -468,14 +468,14 @@ class Options(object):
         
     def load_previous_values(self):
         """
-        Modifies all options to have the value they were last used as. Call this
-        function after all options have been added.
+        Modifies all options to have the value they were last used as.
+        Call this function after all options have been added.
         """
         self.handler = OptionHandler(self.name,self.options_dict,self.person_id)
 
     def add_user_options(self):
         """
-        Set up UI controls (widgets) for the options specific for this modul.
+        Set up UI controls (widgets) for the options specific for this module.
 
         This method MUST be overridden by modules that define new options.
         

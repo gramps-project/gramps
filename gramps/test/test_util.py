@@ -114,7 +114,7 @@ def path_append_parent(path=None):
     and return the abspath to the parent as a possible convenience
 
     The path parm may be a dir or a file or missing.
-      If a file, the the dir of the file is used. 
+      If a file, the dir of the file is used. 
       If missing the test-module caller's dir is used.
     And then the parent of that dir is appended (if not already present)
 

@@ -281,7 +281,7 @@ class TextDoc(object):
 
     def stop_link(self):
         """
-        Stop the link section. Defaults to stoppping the underlining
+        Stop the link section. Defaults to stopping the underlining
         for docgen types that don't support links.
         """
         self.stop_underline()

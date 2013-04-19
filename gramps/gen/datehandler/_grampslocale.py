@@ -235,7 +235,7 @@ except:
     # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009', 
     # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20', '2009-02-20', 
     # '09-02-20' hence to reduce the possible values to test, make sure month 
-    # is double digit also day should be double digit, prefebably greater than
+    # is double digit also day should be double digit, preferably greater than
     # 12 for human readablity
 
     timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1)) 

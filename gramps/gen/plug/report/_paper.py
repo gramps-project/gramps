@@ -80,7 +80,7 @@ class PageSizeParser(handler.ContentHandler):
 
 #-------------------------------------------------------------------------
 #
-# Parse XML file. If failed, used default
+# Parse XML file. If it fails, use the default
 #
 #-------------------------------------------------------------------------
 try:

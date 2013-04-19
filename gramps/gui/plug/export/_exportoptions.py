@@ -43,7 +43,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
 from ...utils import ProgressMeter
 from gramps.gen.proxy import (PrivateProxyDb, 
-							  LivingProxyDb, 
+                              LivingProxyDb, 
                               FilterProxyDb, 
                               ReferencedBySelectionProxyDb)
         
