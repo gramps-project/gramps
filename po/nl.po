@@ -41,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-18 17:52+0100\n"
-"PO-Revision-Date: 2013-03-21 09:22+0100\n"
+"POT-Creation-Date: 2013-04-16 18:41+0200\n"
+"PO-Revision-Date: 2013-04-19 08:11+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:48
+#: ../src/Assistant.py:338 ../src/Filters/Rules/Place/_HasPlace.py:49
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
 #: ../src/glade/editfamily.glade.h:16 ../src/glade/mergeperson.glade.h:8
 #: ../src/glade/mergerepository.glade.h:6
@@ -64,7 +64,7 @@ msgid "Address:"
 msgstr "Adres:"
 
 # Stad
-#: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:51
+#: ../src/Assistant.py:340 ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "City:"
 msgstr "Dorp of stad:"
 
@@ -72,7 +72,7 @@ msgstr "Dorp of stad:"
 msgid "State/Province:"
 msgstr "Deelstaat/Provincie:"
 
-#: ../src/Assistant.py:342 ../src/Filters/Rules/Place/_HasPlace.py:54
+#: ../src/Assistant.py:342 ../src/Filters/Rules/Place/_HasPlace.py:55
 msgid "Country:"
 msgstr "Land:"
 
@@ -110,8 +110,8 @@ msgstr "Bladwijzers organiseren"
 #. Handle
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:429
-#: ../src/gui/filtereditor.py:741 ../src/gui/filtereditor.py:894
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:452
+#: ../src/gui/filtereditor.py:765 ../src/gui/filtereditor.py:918
 #: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -136,7 +136,7 @@ msgstr "Naam"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:897
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:921
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -644,7 +644,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1717 ../src/Utils.py:1719 ../src/Utils.py:1723
-#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:473
+#: ../src/Utils.py:1729 ../src/Utils.py:1734 ../src/cli/clidbman.py:506
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -971,7 +971,7 @@ msgstr "Gebruik_van_het_klembord"
 msgid "Unavailable"
 msgstr "NB"
 
-#: ../src/ScratchPad.py:293 ../src/gui/configure.py:430
+#: ../src/ScratchPad.py:293 ../src/gui/configure.py:453
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
 #: ../src/plugins/textreport/FamilyGroup.py:324
@@ -988,7 +988,7 @@ msgstr "Locatie"
 
 # Gebeuren (korter)
 #. 0 this order range above
-#: ../src/ScratchPad.py:330 ../src/gui/configure.py:460
+#: ../src/ScratchPad.py:330 ../src/gui/configure.py:483
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -1003,7 +1003,7 @@ msgid "Event"
 msgstr "Gebeurtenis"
 
 #. 5
-#: ../src/ScratchPad.py:357 ../src/gui/configure.py:452
+#: ../src/ScratchPad.py:357 ../src/gui/configure.py:475
 #: ../src/gui/filtereditor.py:293 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -1036,13 +1036,13 @@ msgstr "Locatie"
 #. ###############################
 #. 3
 #: ../src/ScratchPad.py:384 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:243 ../src/gui/configure.py:464
+#: ../src/gen/plug/docgen/graphdoc.py:243 ../src/gui/configure.py:487
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1018
-#: ../src/plugins/drawreport/DescendTree.py:1610
+#: ../src/plugins/drawreport/DescendTree.py:1614
 #: ../src/plugins/export/ExportCsv.py:343
 #: ../src/plugins/export/ExportCsv.py:460
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
@@ -1080,7 +1080,7 @@ msgid "Family Attribute"
 msgstr "Familiekenmerk"
 
 #: ../src/ScratchPad.py:480 ../src/gen/lib/notetype.py:84
-#: ../src/gui/configure.py:456 ../src/gui/filtereditor.py:298
+#: ../src/gui/configure.py:479 ../src/gui/filtereditor.py:298
 #: ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
@@ -1108,11 +1108,11 @@ msgid "Event ref"
 msgstr "Gebeurtenis verwijzing"
 
 #. show surname and first name
-#: ../src/ScratchPad.py:577 ../src/Utils.py:1338 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:519
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:524
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:526
-#: ../src/gui/configure.py:527 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:577 ../src/Utils.py:1338 ../src/gui/configure.py:538
+#: ../src/gui/configure.py:540 ../src/gui/configure.py:542
+#: ../src/gui/configure.py:544 ../src/gui/configure.py:547
+#: ../src/gui/configure.py:548 ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:88 ../src/gui/plug/_guioptions.py:1436
 #: ../src/plugins/drawreport/StatisticsChart.py:318
 #: ../src/plugins/export/ExportCsv.py:336
@@ -1125,7 +1125,7 @@ msgid "Surname"
 msgstr "Achternaam"
 
 #: ../src/ScratchPad.py:593 ../src/ScratchPad.py:598
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:973
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:996
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:393
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:96
@@ -1179,7 +1179,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:448
+#: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:471
 #: ../src/gui/filtereditor.py:290 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
@@ -1217,7 +1217,7 @@ msgstr "Persoon"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:450
+#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:473
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:503
@@ -1238,7 +1238,7 @@ msgid "Family"
 msgstr "Familie"
 
 #. 7
-#: ../src/ScratchPad.py:750 ../src/gui/configure.py:454
+#: ../src/ScratchPad.py:750 ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
@@ -1255,7 +1255,7 @@ msgid "Source"
 msgstr "Bron"
 
 #. 6
-#: ../src/ScratchPad.py:777 ../src/ToolTips.py:128 ../src/gui/configure.py:462
+#: ../src/ScratchPad.py:777 ../src/ToolTips.py:128 ../src/gui/configure.py:485
 #: ../src/gui/filtereditor.py:296 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1317,7 +1317,7 @@ msgstr "Type"
 #: ../src/gui/selectors/selectplace.py:62
 #: ../src/gui/selectors/selectrepository.py:61
 #: ../src/gui/selectors/selectsource.py:61
-#: ../src/gui/widgets/grampletpane.py:1500
+#: ../src/gui/widgets/grampletpane.py:1501
 #: ../src/plugins/gramplet/PersonDetails.py:124
 #: ../src/plugins/textreport/TagReport.py:457
 #: ../src/plugins/view/citationtreeview.py:165
@@ -1343,8 +1343,8 @@ msgstr "Waarde"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:917 ../src/cli/clidbman.py:65
-#: ../src/gui/configure.py:1135
+#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
+#: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1158
 msgid "Family Tree"
 msgstr "Familiestamboom"
 
@@ -1730,13 +1730,13 @@ msgid "Person|TITLE"
 msgstr "TITEL"
 
 #: ../src/Utils.py:1337 ../src/gen/display/name.py:327
-#: ../src/gui/configure.py:515 ../src/gui/configure.py:517
-#: ../src/gui/configure.py:522 ../src/gui/configure.py:524
-#: ../src/gui/configure.py:526 ../src/gui/configure.py:527
-#: ../src/gui/configure.py:528 ../src/gui/configure.py:529
-#: ../src/gui/configure.py:531 ../src/gui/configure.py:532
-#: ../src/gui/configure.py:533 ../src/gui/configure.py:534
-#: ../src/gui/configure.py:535 ../src/gui/configure.py:536
+#: ../src/gui/configure.py:538 ../src/gui/configure.py:540
+#: ../src/gui/configure.py:545 ../src/gui/configure.py:547
+#: ../src/gui/configure.py:549 ../src/gui/configure.py:550
+#: ../src/gui/configure.py:551 ../src/gui/configure.py:552
+#: ../src/gui/configure.py:554 ../src/gui/configure.py:555
+#: ../src/gui/configure.py:556 ../src/gui/configure.py:557
+#: ../src/gui/configure.py:558 ../src/gui/configure.py:559
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "Given"
@@ -1746,10 +1746,10 @@ msgstr "Voornaam"
 msgid "GIVEN"
 msgstr "VOORNAAM"
 
-#: ../src/Utils.py:1338 ../src/gui/configure.py:522
-#: ../src/gui/configure.py:529 ../src/gui/configure.py:531
-#: ../src/gui/configure.py:532 ../src/gui/configure.py:533
-#: ../src/gui/configure.py:534 ../src/gui/configure.py:535
+#: ../src/Utils.py:1338 ../src/gui/configure.py:545
+#: ../src/gui/configure.py:552 ../src/gui/configure.py:554
+#: ../src/gui/configure.py:555 ../src/gui/configure.py:556
+#: ../src/gui/configure.py:557 ../src/gui/configure.py:558
 msgid "SURNAME"
 msgstr "ACHTERNAAM"
 
@@ -1761,9 +1761,9 @@ msgstr "Roep"
 msgid "Name|CALL"
 msgstr "ROEP"
 
-#: ../src/Utils.py:1340 ../src/gui/configure.py:519
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:524
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:531
+#: ../src/Utils.py:1340 ../src/gui/configure.py:542
+#: ../src/gui/configure.py:544 ../src/gui/configure.py:547
+#: ../src/gui/configure.py:548 ../src/gui/configure.py:554
 msgid "Name|Common"
 msgstr "Gewone"
 
@@ -1779,11 +1779,11 @@ msgstr "Initialen"
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1342 ../src/gui/configure.py:515
-#: ../src/gui/configure.py:517 ../src/gui/configure.py:519
-#: ../src/gui/configure.py:521 ../src/gui/configure.py:522
-#: ../src/gui/configure.py:527 ../src/gui/configure.py:529
-#: ../src/gui/configure.py:534 ../src/gui/configure.py:536
+#: ../src/Utils.py:1342 ../src/gui/configure.py:538
+#: ../src/gui/configure.py:540 ../src/gui/configure.py:542
+#: ../src/gui/configure.py:544 ../src/gui/configure.py:545
+#: ../src/gui/configure.py:550 ../src/gui/configure.py:552
+#: ../src/gui/configure.py:557 ../src/gui/configure.py:559
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:180 ../src/glade/editperson.glade.h:26
 msgid "Suffix"
@@ -1828,7 +1828,7 @@ msgstr "PRIMAIR[CON]"
 
 # patronymisch/patroniemen
 #: ../src/Utils.py:1347 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:528
+#: ../src/gui/configure.py:551
 msgid "Patronymic"
 msgstr "Patroniemen"
 
@@ -1863,7 +1863,7 @@ msgstr "Patroniem[con]"
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONIEM[CON]"
 
-#: ../src/Utils.py:1351 ../src/gui/configure.py:536
+#: ../src/Utils.py:1351 ../src/gui/configure.py:559
 msgid "Rawsurnames"
 msgstr "Ruwachternaam"
 
@@ -1891,8 +1891,8 @@ msgid "PREFIX"
 msgstr "PREFIX"
 
 #: ../src/Utils.py:1354 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:518 ../src/gui/configure.py:520
-#: ../src/gui/configure.py:525 ../src/gui/configure.py:532
+#: ../src/gui/configure.py:541 ../src/gui/configure.py:543
+#: ../src/gui/configure.py:548 ../src/gui/configure.py:555
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Bijnaam"
@@ -1965,7 +1965,7 @@ msgstr "Gegevensbestand geopend"
 msgid "History cleared"
 msgstr "Geschiedenis gewist"
 
-#: ../src/cli/arghandler.py:218
+#: ../src/cli/arghandler.py:219
 #, python-format
 msgid ""
 "Error: Family tree '%s' already exists.\n"
@@ -1974,7 +1974,7 @@ msgstr ""
 "Fout: Familiestamboom '%s' bestaat al.\n"
 "De '-C' optie kan niet worden gebruikt."
 
-#: ../src/cli/arghandler.py:227
+#: ../src/cli/arghandler.py:228
 #, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
@@ -1985,18 +1985,18 @@ msgstr ""
 "Indien GEDCOM, gramps-xml of grdb, gebruik dan de -i optie om te importeren "
 "in een familiestamboom."
 
-#: ../src/cli/arghandler.py:243
+#: ../src/cli/arghandler.py:244
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr "Fout: Importeerbestand %s niet gevonden."
 
-#: ../src/cli/arghandler.py:261
+#: ../src/cli/arghandler.py:262
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
 "Fout: type niet herkend: \"%(format)s\" voor importeerbestand: %(filename)s"
 
-#: ../src/cli/arghandler.py:283
+#: ../src/cli/arghandler.py:284
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -2007,49 +2007,51 @@ msgstr ""
 "WAARSCHUWING: het bestand wordt overschreven:\n"
 "   %s"
 
-#: ../src/cli/arghandler.py:289
+#: ../src/cli/arghandler.py:290
 msgid "OK to overwrite? (yes/no) "
 msgstr "OK om te overschrijven? (ja/nee) "
 
-#: ../src/cli/arghandler.py:294
+#: ../src/cli/arghandler.py:295
 msgid "YES"
 msgstr "JA"
 
-#: ../src/cli/arghandler.py:295
+#: ../src/cli/arghandler.py:296
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr "Het bestaande bestand: %s wordt overschreven"
 
-#: ../src/cli/arghandler.py:315
+#: ../src/cli/arghandler.py:316
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr "FOUT: bestandsformaat niet herkend voor bestand %s"
 
-#: ../src/cli/arghandler.py:402
+#: ../src/cli/arghandler.py:399
 msgid "List of known family trees in your database path\n"
 msgstr "Liijst van de bekende familiestambomen in uw gegevensbestandspad\n"
 
-#: ../src/cli/arghandler.py:406
+#: ../src/cli/arghandler.py:403
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s met naam \"%(f_t_name)s\""
 
-#: ../src/cli/arghandler.py:412
+#: ../src/cli/arghandler.py:409 ../src/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
 msgstr "Gramps familiestambomen:"
 
-#: ../src/cli/arghandler.py:415 ../src/cli/arghandler.py:417
-#: ../src/cli/arghandler.py:421 ../src/cli/clidbman.py:185
+#: ../src/cli/arghandler.py:412 ../src/cli/arghandler.py:414
+#: ../src/cli/arghandler.py:418 ../src/cli/arghandler.py:428
+#: ../src/cli/arghandler.py:433 ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:437 ../src/cli/clidbman.py:211
 msgid "Family tree"
 msgstr "Familiestamboom"
 
-#: ../src/cli/arghandler.py:416
+#: ../src/cli/arghandler.py:413
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Familiestamboom \"%s\":"
 
 # Locatie
-#: ../src/cli/arghandler.py:419 ../src/cli/clidbman.py:186
+#: ../src/cli/arghandler.py:416 ../src/cli/clidbman.py:212
 #: ../src/gui/editors/displaytabs/webembedlist.py:66
 #: ../src/plugins/view/mediaview.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
@@ -2057,80 +2059,80 @@ msgstr "Familiestamboom \"%s\":"
 msgid "Path"
 msgstr "Pad"
 
-#: ../src/cli/arghandler.py:430
+#: ../src/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr "Actie %s uitvoeren."
 
-#: ../src/cli/arghandler.py:432
+#: ../src/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr "Optietekst die gebruikt wordt: %s"
 
-#: ../src/cli/arghandler.py:440
+#: ../src/cli/arghandler.py:458
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exporteren van bestand %(filename)s, formaat %(format)s."
 
-#: ../src/cli/arghandler.py:448
+#: ../src/cli/arghandler.py:466
 msgid "Exiting."
 msgstr "Verlaten."
 
-#: ../src/cli/arghandler.py:452
+#: ../src/cli/arghandler.py:470
 msgid "Cleaning up."
 msgstr "Opkuisen."
 
-#: ../src/cli/arghandler.py:482
+#: ../src/cli/arghandler.py:500
 msgid "Created empty family tree successfully"
 msgstr "Lege familiestamboom succesvol aangemaakt"
 
-#: ../src/cli/arghandler.py:485 ../src/cli/arghandler.py:512
+#: ../src/cli/arghandler.py:503 ../src/cli/arghandler.py:530
 msgid "Error opening the file."
 msgstr "Fout bij openen bestand."
 
-#: ../src/cli/arghandler.py:486 ../src/cli/arghandler.py:513
+#: ../src/cli/arghandler.py:504 ../src/cli/arghandler.py:531
 msgid "Exiting..."
 msgstr "Afsluiten..."
 
-#: ../src/cli/arghandler.py:492
+#: ../src/cli/arghandler.py:510
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importeren van bestand file %(filename)s, formaat %(format)s."
 
-#: ../src/cli/arghandler.py:510
+#: ../src/cli/arghandler.py:528
 msgid "Opened successfully!"
 msgstr "Succesvol geopend!"
 
-#: ../src/cli/arghandler.py:524
+#: ../src/cli/arghandler.py:542
 msgid "Database is locked, cannot open it!"
 msgstr "Het gegevensbestand is op slot en kan niet geopend worden!"
 
-#: ../src/cli/arghandler.py:525
+#: ../src/cli/arghandler.py:543
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/cli/arghandler.py:528
+#: ../src/cli/arghandler.py:546
 msgid "Database needs recovery, cannot open it!"
 msgstr "Gegevensbestand moet hersteld worden. Kan het bestand niet openen!"
 
-#: ../src/cli/arghandler.py:585 ../src/cli/arghandler.py:632
+#: ../src/cli/arghandler.py:603 ../src/cli/arghandler.py:650
 msgid "Ignoring invalid options string."
 msgstr "Ongeldige optietekst wordt genegeerd."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:608
+#: ../src/cli/arghandler.py:626
 msgid "Unknown report name."
 msgstr "Onbekend verslagnaam."
 
-#: ../src/cli/arghandler.py:610
+#: ../src/cli/arghandler.py:628
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Geen verslagsnaam opgegeven. Een van volgende "
 "%(donottranslate)s=verslagsnaam gebruiken"
 
-#: ../src/cli/arghandler.py:614 ../src/cli/arghandler.py:655
+#: ../src/cli/arghandler.py:632 ../src/cli/arghandler.py:673
 #, python-format
 msgid ""
 "%s\n"
@@ -2139,18 +2141,18 @@ msgstr ""
 "%s\n"
 " Beschikbare namen zijn:"
 
-#: ../src/cli/arghandler.py:649
+#: ../src/cli/arghandler.py:667
 msgid "Unknown tool name."
 msgstr "Onbekend gereedschapsnaam."
 
-#: ../src/cli/arghandler.py:651
+#: ../src/cli/arghandler.py:669
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Geen gereedschapsnaam opgegeven. Een van volgende "
 "%(donottranslate)s=gereedschapsnaam gebruiken."
 
-#: ../src/cli/arghandler.py:667
+#: ../src/cli/arghandler.py:685
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Onbekende actie: %s."
@@ -2177,6 +2179,7 @@ msgid ""
 "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
 "  -l                                     List Family Trees\n"
 "  -L                                     List Family Trees in Detail\n"
+"  -t                                     List Family Trees, tab delimited\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 "  -s, --show                             Show config settings\n"
 "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
@@ -2189,7 +2192,7 @@ msgstr ""
 "worden\n"
 "\n"
 "Hulpopties\n"
-"  -?, --help                             deze helpboodschap tonen\n"
+"  -?, --help                             deze hulpboodschap tonen\n"
 "  --usage                                korte boodschap over het gebruik "
 "tonen\n"
 " \n"
@@ -2212,7 +2215,7 @@ msgstr ""
 "starten\n"
 "  -v, --version                          versies tonen\n"
 
-#: ../src/cli/argparser.py:80
+#: ../src/cli/argparser.py:81
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -2331,11 +2334,11 @@ msgstr ""
 "Opmerking: Deze voorbeelden zijn voor 'bash shell'.\n"
 "Syntax kan verschillen voor andere 'shells' en voor Windows.\n"
 
-#: ../src/cli/argparser.py:232 ../src/cli/argparser.py:355
+#: ../src/cli/argparser.py:234 ../src/cli/argparser.py:360
 msgid "Error parsing the arguments"
 msgstr "Fout bij het verwerken van de argumenten"
 
-#: ../src/cli/argparser.py:234
+#: ../src/cli/argparser.py:236
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2345,7 +2348,7 @@ msgstr ""
 "Typ gramps --help voor een overzicht van de commandoregels of lees de man "
 "pagina's."
 
-#: ../src/cli/argparser.py:356
+#: ../src/cli/argparser.py:361
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2355,7 +2358,7 @@ msgstr ""
 "Om de commandoregel juist te gebruiken dient u minstens één bestand op te "
 "geven."
 
-#: ../src/cli/clidbman.py:78
+#: ../src/cli/clidbman.py:80
 #, python-format
 msgid ""
 "ERROR: %s \n"
@@ -2364,50 +2367,54 @@ msgstr ""
 "FOUT: %s \n"
 "        %s"
 
-#: ../src/cli/clidbman.py:179
+#: ../src/cli/clidbman.py:204
 msgid "Number of people"
 msgstr "Aantal personen"
 
-#: ../src/cli/clidbman.py:181 ../src/cli/clidbman.py:183
+#: ../src/cli/clidbman.py:206 ../src/cli/clidbman.py:208
 msgid "Locked?"
 msgstr "Op slot?"
 
-#: ../src/cli/clidbman.py:181
+#: ../src/cli/clidbman.py:206
 msgid "yes"
 msgstr "ja"
 
 # niet/geen
-#: ../src/cli/clidbman.py:183
+#: ../src/cli/clidbman.py:208
 msgid "no"
 msgstr "nee"
 
-#: ../src/cli/clidbman.py:184
-msgid "DB version"
-msgstr "DB-versie"
+#: ../src/cli/clidbman.py:209
+msgid "Bsddb version"
+msgstr "Bsdds-versie"
 
-#: ../src/cli/clidbman.py:187 ../src/gui/dbman.py:287
+#: ../src/cli/clidbman.py:210
+msgid "Schema version"
+msgstr "Schema-versie"
+
+#: ../src/cli/clidbman.py:213 ../src/gui/dbman.py:287
 msgid "Last accessed"
 msgstr "Laatste toegang"
 
-#: ../src/cli/clidbman.py:241
+#: ../src/cli/clidbman.py:269
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Importeren gestart, %s"
 
-#: ../src/cli/clidbman.py:247
+#: ../src/cli/clidbman.py:275
 msgid "Import finished..."
 msgstr "Importeren beëindigd..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:319 ../src/plugins/import/ImportCsv.py:311
+#: ../src/cli/clidbman.py:347 ../src/plugins/import/ImportCsv.py:311
 msgid "Importing data..."
 msgstr "Importeren van gegevens..."
 
-#: ../src/cli/clidbman.py:363
+#: ../src/cli/clidbman.py:396
 msgid "Could not rename family tree"
 msgstr "Kon de familiestamboom niet herbenoemen"
 
-#: ../src/cli/clidbman.py:398
+#: ../src/cli/clidbman.py:431
 #, python-format
 msgid ""
 "\n"
@@ -2426,12 +2433,12 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:450 ../src/gui/configure.py:1070
+#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1093
 msgid "Never"
 msgstr "Nooit"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:470
+#: ../src/cli/clidbman.py:503
 #, python-format
 msgid "Locked by %s"
 msgstr "Op slot door %s"
@@ -2441,7 +2448,7 @@ msgstr "Op slot door %s"
 msgid "WARNING: %s"
 msgstr "WAARSCHUWING: %s"
 
-#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:207
+#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:216
 #, python-format
 msgid "ERROR: %s"
 msgstr "FOUT: %s"
@@ -2456,40 +2463,41 @@ msgid "You do not have write access to the selected file."
 msgstr "U heeft geen schrijftoegangsrechten tot het geselecteerde bestand."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
-#: ../src/gui/dbloader.py:314 ../src/gui/dbloader.py:317
-#: ../src/gui/dbloader.py:320
+#: ../src/cli/grampscli.py:165 ../src/cli/grampscli.py:168
+#: ../src/cli/grampscli.py:171 ../src/gui/dbloader.py:332
+#: ../src/gui/dbloader.py:335 ../src/gui/dbloader.py:338
 msgid "Cannot open database"
 msgstr "Kan gegevensbestand niet openen"
 
-#: ../src/cli/grampscli.py:166 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:324
+#: ../src/cli/grampscli.py:175 ../src/gui/dbloader.py:188
+#: ../src/gui/dbloader.py:342
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kon bestand: %s niet openen"
 
-#: ../src/cli/grampscli.py:219
+#: ../src/cli/grampscli.py:228
 msgid "Could not load a recent Family Tree."
 msgstr "Kon de familiestamboom niet laden."
 
-#: ../src/cli/grampscli.py:220
+#: ../src/cli/grampscli.py:229
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr ""
 "Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:296
+#: ../src/cli/grampscli.py:305
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Fout: %s"
 
-#: ../src/cli/grampscli.py:299 ../src/cli/grampscli.py:310
+#: ../src/cli/grampscli.py:308 ../src/cli/grampscli.py:319
 #, python-format
 msgid "  Details: %s"
 msgstr "  Details: %s"
 
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:306
+#: ../src/cli/grampscli.py:315
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Fout tijdens verwerken argumenten: %s"
@@ -2521,7 +2529,7 @@ msgid "   Valid options are:"
 msgstr "   Geldige opties zijn:"
 
 #: ../src/cli/plug/__init__.py:406 ../src/cli/plug/__init__.py:436
-#: ../src/cli/plug/__init__.py:531
+#: ../src/cli/plug/__init__.py:532
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
@@ -2546,16 +2554,16 @@ msgstr ""
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Om de geldige waarden te zien gebruik '%(notranslate)s'."
 
-#: ../src/cli/plug/__init__.py:520
+#: ../src/cli/plug/__init__.py:521
 msgid "   Available options:"
 msgstr "  Beschikbare opties:"
 
-#: ../src/cli/plug/__init__.py:538
+#: ../src/cli/plug/__init__.py:539
 msgid "   Available values are:"
 msgstr "  Beschikbare waarden zijn:"
 
 #. there was a show option given, but the option is invalid
-#: ../src/cli/plug/__init__.py:550
+#: ../src/cli/plug/__init__.py:551
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -2564,42 +2572,51 @@ msgstr ""
 "optie '%(optionname)s' niet geldig. Om de geldige opties te zien gebruik "
 "'%(donottranslate)s'."
 
-#: ../src/cli/plug/__init__.py:562
+#: ../src/cli/plug/__init__.py:563
 msgid "Failed to write report. "
 msgstr "Verslag werd niet aangemaakt. "
 
-#: ../src/gen/db/base.py:1600
+#: ../src/gen/db/base.py:1601
 msgid "Add child to family"
 msgstr "Kind aan familie toevoegen"
 
-#: ../src/gen/db/base.py:1613 ../src/gen/db/base.py:1618
+#: ../src/gen/db/base.py:1614 ../src/gen/db/base.py:1619
 msgid "Remove child from family"
 msgstr "Verwijder kind uit familie"
 
-#: ../src/gen/db/base.py:1693 ../src/gen/db/base.py:1697
+#: ../src/gen/db/base.py:1694 ../src/gen/db/base.py:1698
 msgid "Remove Family"
 msgstr "Familie verwijderen"
 
-#: ../src/gen/db/base.py:1738
+#: ../src/gen/db/base.py:1739
 msgid "Remove father from family"
 msgstr "Verwijder vader uit familie"
 
-#: ../src/gen/db/base.py:1740
+#: ../src/gen/db/base.py:1741
 msgid "Remove mother from family"
 msgstr "Verwijder moeder uit familie"
 
-#: ../src/gen/db/exceptions.py:78 ../src/plugins/import/ImportGrdb.py:60
+#: ../src/gen/db/exceptions.py:81
+#, python-format
 msgid ""
-"The database version is not supported by this version of Gramps.\n"
+"The schema version is not supported by this version of Gramps.\n"
+"\n"
+"This Family tree is schema version %(tree_vers)s, and this version of Gramps "
+"supports versions %(min_vers)s to %(max_vers)s\n"
+"\n"
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"De versie van het gegevensbestand wordt niet ondersteund door deze \n"
-"versie van Gramps. Gelieve op te waarderen naar een gepastere versie of "
-"gebruik XML om gegevens over te zetten tussen verschillende versies van "
-"gegevensbestanden."
+"De schema-versie van het gegevensbestand wordt niet ondersteund door deze "
+"Gramps-versie.\n"
+"\n"
+"De familiestamboom heeft schema-versie %(tree_vers)s en deze Gramps-versie "
+"ondersteunt de versies %(min_vers)s tot %(max_vers)s\n"
+"\n"
+"Gelieve op te waarderen naar een gepaste versie of gebruik XML om gegevens "
+"over te zetten tussen verschillende versies van gegevensbestanden."
 
-#: ../src/gen/db/exceptions.py:93
+#: ../src/gen/db/exceptions.py:103
 #, python-format
 msgid ""
 "Gramps stores its data in a Berkeley Database. The family tree you try to "
@@ -2621,7 +2638,35 @@ msgstr ""
 "dat die familiestamboom aanmaakte. Exporteer vervolgens naar XML en laad "
 "deze XML in the Gramps-versie die u wenst te gebruiken."
 
-#: ../src/gen/db/exceptions.py:116
+#: ../src/gen/db/exceptions.py:127
+#, python-format
+msgid ""
+"The BSDDB version of the Family Tree you are trying to open needs to be "
+"upgraded from %(env_version)s to %(bdb_version)s.\n"
+"\n"
+"This probably means that the Family Tree was created with an old version of "
+"Gramps. Opening the tree with this version of Gramps may irretrievably "
+"corrupt your tree. You are strongly advised to backup your tree before "
+"proceeding, see: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"If you have made a backup, then you can get Gramps to try to open the tree "
+"and upgrade it"
+msgstr ""
+"De Bsddb-versie van de familiestamboom die u probeert te openen dient te "
+"worden bijgewerkt van versie %(env_version)s naar %(bdb_version)s.\n"
+"\n"
+"Dit betekent waarschijnlijk dat de familiestamboom gemaakt is met een oude "
+"Gramps-versie. Het openen van de stamboom met deze Gramps-versie kan ervoor "
+"zorgen dat de boom onherstelbaar beschadigd raakt. Wij adviseren u "
+"uitdrukkelijk een reservekopie te maken van uw stamboom voordat u verder "
+"gaat. Zie: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/nl\n"
+"\n"
+"Wanneer u een backup hebt gemaakt, kunt u Gramps laten proberen de stamboom "
+"te openen en bij te werken."
+
+#: ../src/gen/db/exceptions.py:150
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2647,7 +2692,7 @@ msgstr ""
 "werkwijze is om de herstelgereedschappen van het 'Berkeley'-"
 "gegevensbestandprogramma te gebruiken."
 
-#: ../src/gen/db/exceptions.py:139
+#: ../src/gen/db/exceptions.py:173
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of Gramps.\n"
@@ -3703,7 +3748,7 @@ msgstr "Familielijn langs vaderszijde"
 msgid "Matrilineal"
 msgstr "Familielijn langs moederszijde"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1113
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1136
 #: ../src/gui/editors/editcitation.py:202
 #: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79 ../src/gui/editors/editmediaref.py:94
@@ -3980,8 +4025,8 @@ msgid "Relationships"
 msgstr "Relaties"
 
 #: ../src/gen/plug/_pluginreg.py:86 ../src/gen/plug/_pluginreg.py:396
-#: ../src/gui/grampsbar.py:565 ../src/gui/widgets/grampletpane.py:205
-#: ../src/gui/widgets/grampletpane.py:930 ../src/glade/grampletpane.glade.h:8
+#: ../src/gui/grampsbar.py:565 ../src/gui/widgets/grampletpane.py:206
+#: ../src/gui/widgets/grampletpane.py:931 ../src/glade/grampletpane.glade.h:8
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -4603,9 +4648,9 @@ msgstr "Versleep de kolommen om de volgorde te veranderen"
 
 # De weergave van Datums en kalenders, werkbalk en statusbalk.
 #. #################
-#: ../src/gui/columnorder.py:130 ../src/gui/configure.py:947
+#: ../src/gui/columnorder.py:130 ../src/gui/configure.py:970
 #: ../src/plugins/drawreport/AncestorTree.py:911
-#: ../src/plugins/drawreport/DescendTree.py:1487
+#: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
 msgstr "Weergave"
 
@@ -4701,11 +4746,16 @@ msgstr "Naamaanpassingscherm"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1237 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1260 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../src/gui/configure.py:431
+#: ../src/gui/configure.py:232 ../src/gui/configure.py:238
+#: ../src/gui/configure.py:701
+msgid "Invalid or incomplete format definition."
+msgstr "Een ongeldige of onvolledige formaatdefinitie."
+
+#: ../src/gui/configure.py:454
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:65
@@ -4718,7 +4768,7 @@ msgid "Locality"
 msgstr "Plaats"
 
 # stad
-#: ../src/gui/configure.py:432
+#: ../src/gui/configure.py:455
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/gui/editors/displaytabs/locationembedlist.py:57
 #: ../src/gui/selectors/selectplace.py:66
@@ -4730,13 +4780,13 @@ msgstr "Plaats"
 msgid "City"
 msgstr "Dorp of stad"
 
-#: ../src/gui/configure.py:433
+#: ../src/gui/configure.py:456
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Provincie"
 
-#: ../src/gui/configure.py:434
+#: ../src/gui/configure.py:457
 #: ../src/gui/editors/displaytabs/addrembedlist.py:77
 #: ../src/gui/editors/displaytabs/locationembedlist.py:60
 #: ../src/gui/selectors/selectplace.py:69
@@ -4751,98 +4801,94 @@ msgstr "Provincie"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/gui/configure.py:435 ../src/plugins/lib/libplaceview.py:100
+#: ../src/gui/configure.py:458 ../src/plugins/lib/libplaceview.py:100
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "Postcode"
 
-#: ../src/gui/configure.py:436
+#: ../src/gui/configure.py:459
 #: ../src/plugins/gramplet/RepositoryDetails.py:111
 #: ../src/plugins/webreport/NarrativeWeb.py:385
 msgid "Phone"
 msgstr "Telefoon"
 
-#: ../src/gui/configure.py:437 ../src/gui/plug/_windows.py:598
+#: ../src/gui/configure.py:460 ../src/gui/plug/_windows.py:598
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "E-mail"
 
-#: ../src/gui/configure.py:438
+#: ../src/gui/configure.py:461
 msgid "Researcher"
 msgstr "Onderzoeker"
 
-#: ../src/gui/configure.py:458 ../src/gui/filtereditor.py:295
+#: ../src/gui/configure.py:481 ../src/gui/filtereditor.py:295
 #: ../src/gui/editors/editperson.py:610
 msgid "Media Object"
 msgstr "Media-object"
 
-#: ../src/gui/configure.py:466
+#: ../src/gui/configure.py:489
 msgid "ID Formats"
 msgstr "ID Formaten"
 
-#: ../src/gui/configure.py:474
+#: ../src/gui/configure.py:497
 msgid "Suppress warning when adding parents to a child."
 msgstr "Onderdruk waarschuwing als ouders aan een kind worden toegevoegd."
 
-#: ../src/gui/configure.py:478
+#: ../src/gui/configure.py:501
 msgid "Suppress warning when cancelling with changed data."
 msgstr ""
 "Onderdruk waarschuwing wanneer verwijderopdracht wordt gegeven met "
 "veranderde gegevens."
 
-#: ../src/gui/configure.py:482
+#: ../src/gui/configure.py:505
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr ""
 "Onderdruk waarschuwingen over een ontbrekende onderzoeker wanneer naar "
 "GEDCOM wordt geëxporteerd."
 
-#: ../src/gui/configure.py:487
+#: ../src/gui/configure.py:510
 msgid "Show plugin status dialog on plugin load error."
 msgstr ""
 "Toon status van de 'plugins' wanneer een fout optreedt bij laden van de "
 "'plugins'."
 
-#: ../src/gui/configure.py:490
+#: ../src/gui/configure.py:513
 msgid "Warnings"
 msgstr "Waarschuwingen"
 
-#: ../src/gui/configure.py:516 ../src/gui/configure.py:530
+#: ../src/gui/configure.py:539 ../src/gui/configure.py:553
 msgid "Common"
 msgstr "Algemeen"
 
-#: ../src/gui/configure.py:523 ../src/plugins/export/ExportCsv.py:337
+#: ../src/gui/configure.py:546 ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
 msgstr "Roep"
 
 # patronymisch/patroniemen
-#: ../src/gui/configure.py:528
+#: ../src/gui/configure.py:551
 msgid "NotPatronymic"
 msgstr "NietPatroniem"
 
-#: ../src/gui/configure.py:609
+#: ../src/gui/configure.py:632
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Om op te slaan, druk enter, Esc om aanpassingen te verwijderen"
 
-#: ../src/gui/configure.py:656
+#: ../src/gui/configure.py:679
 msgid "This format exists already."
 msgstr "Dit formaat bestaat al."
 
-#: ../src/gui/configure.py:678
-msgid "Invalid or incomplete format definition."
-msgstr "Een ongeldige of onvolledige formaatdefinitie."
-
-#: ../src/gui/configure.py:695
+#: ../src/gui/configure.py:718
 msgid "Format"
 msgstr "Formaat"
 
-#: ../src/gui/configure.py:705
+#: ../src/gui/configure.py:728
 msgid "Example"
 msgstr "Voorbeeld"
 
 #. label for the combo
-#: ../src/gui/configure.py:846 ../src/plugins/drawreport/Calendar.py:426
+#: ../src/gui/configure.py:869 ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
@@ -4858,7 +4904,7 @@ msgstr "Voorbeeld"
 msgid "Name format"
 msgstr "Naamformaat"
 
-#: ../src/gui/configure.py:850 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:873 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137 ../src/gui/plug/_windows.py:193
 #: ../src/plugins/BookReport.py:1001 ../src/glade/editperson.glade.h:15
 #: ../src/glade/styleeditor.glade.h:19 ../src/glade/editfamily.glade.h:10
@@ -4866,77 +4912,77 @@ msgstr "Naamformaat"
 msgid "Edit"
 msgstr "Bewerken"
 
-#: ../src/gui/configure.py:860
+#: ../src/gui/configure.py:883
 msgid "Consider single pa/matronymic as surname"
 msgstr "Overweeg een enkel pa/matroniem als achternaam"
 
-#: ../src/gui/configure.py:874
+#: ../src/gui/configure.py:897
 msgid "Date format"
 msgstr "Datumformaat"
 
-#: ../src/gui/configure.py:887
+#: ../src/gui/configure.py:910
 msgid "Calendar on reports"
 msgstr "Kalender in verslagen"
 
-#: ../src/gui/configure.py:900
+#: ../src/gui/configure.py:923
 msgid "Surname guessing"
 msgstr "Achternaam raden"
 
-#: ../src/gui/configure.py:913
+#: ../src/gui/configure.py:936
 msgid "Default family relationship"
 msgstr "Standaard familierelatie"
 
-#: ../src/gui/configure.py:920
+#: ../src/gui/configure.py:943
 msgid "Height multiple surname box (pixels)"
 msgstr "Hoogte rechthoeek voor meerdere achternamen (pixels)"
 
-#: ../src/gui/configure.py:927
+#: ../src/gui/configure.py:950
 msgid "Active person's name and ID"
 msgstr "Naam en Gramps-ID van actieve persoon"
 
-#: ../src/gui/configure.py:928
+#: ../src/gui/configure.py:951
 msgid "Relationship to home person"
 msgstr "Relatie met de beginpersoon"
 
-#: ../src/gui/configure.py:937
+#: ../src/gui/configure.py:960
 msgid "Status bar"
 msgstr "Statusbalk"
 
-#: ../src/gui/configure.py:944
+#: ../src/gui/configure.py:967
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr ""
 "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
 
-#: ../src/gui/configure.py:955
+#: ../src/gui/configure.py:978
 msgid "Missing surname"
 msgstr "Ontbrekende achternaam"
 
-#: ../src/gui/configure.py:958
+#: ../src/gui/configure.py:981
 msgid "Missing given name"
 msgstr "Ontbrekende voornaam"
 
 # complete/volledige/volledig ingevulde  kaarten/archieven
-#: ../src/gui/configure.py:961
+#: ../src/gui/configure.py:984
 msgid "Missing record"
 msgstr "Ontbrekend gegeven"
 
-#: ../src/gui/configure.py:964
+#: ../src/gui/configure.py:987
 msgid "Private surname"
 msgstr "Achternaam privé"
 
-#: ../src/gui/configure.py:967
+#: ../src/gui/configure.py:990
 msgid "Private given name"
 msgstr "Voornaam privé"
 
-#: ../src/gui/configure.py:970
+#: ../src/gui/configure.py:993
 msgid "Private record"
 msgstr "Gegevens privé"
 
-#: ../src/gui/configure.py:1001
+#: ../src/gui/configure.py:1024
 msgid "Change is not immediate"
 msgstr "Verandering is niet onmiddellijk"
 
-#: ../src/gui/configure.py:1002
+#: ../src/gui/configure.py:1025
 msgid ""
 "Changing the data format will not take effect until the next time Gramps is "
 "started."
@@ -4944,129 +4990,129 @@ msgstr ""
 "Het veranderen van het gegevensformaat is enkel van toepassing bij de "
 "volgende start van Gramps."
 
-#: ../src/gui/configure.py:1015
+#: ../src/gui/configure.py:1038
 msgid "Date about range"
 msgstr "Datum ongeveer bereik"
 
-#: ../src/gui/configure.py:1018
+#: ../src/gui/configure.py:1041
 msgid "Date after range"
 msgstr "Datum na bereik"
 
-#: ../src/gui/configure.py:1021
+#: ../src/gui/configure.py:1044
 msgid "Date before range"
 msgstr "Datum voor bereik"
 
-#: ../src/gui/configure.py:1024
+#: ../src/gui/configure.py:1047
 msgid "Maximum age probably alive"
 msgstr "Maximum leeftijd van personen die waarschijnlijk in leven zijn"
 
-#: ../src/gui/configure.py:1027
+#: ../src/gui/configure.py:1050
 msgid "Maximum sibling age difference"
 msgstr "Maximum leeftijdsverschil tussen broers en zussen"
 
-#: ../src/gui/configure.py:1030
+#: ../src/gui/configure.py:1053
 msgid "Minimum years between generations"
 msgstr "Minimum leeftijdsverschil tussen generaties"
 
-#: ../src/gui/configure.py:1033
+#: ../src/gui/configure.py:1056
 msgid "Average years between generations"
 msgstr "Gemiddeld leeftijdsverschil tussen generaties"
 
-#: ../src/gui/configure.py:1036
+#: ../src/gui/configure.py:1059
 msgid "Markup for invalid date format"
 msgstr "Aanduiding voor ongeldig datumformaat"
 
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1062
 msgid "Dates"
 msgstr "Datums"
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1071
 msgid "Add default source on import"
 msgstr "Voeg standaard bron toe bij importeren"
 
-#: ../src/gui/configure.py:1051
+#: ../src/gui/configure.py:1074
 msgid "Enable spelling checker"
 msgstr "Spellingcontrole aanzetten"
 
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1077
 msgid "Display Tip of the Day"
 msgstr "Tip van de dag weergeven"
 
-#: ../src/gui/configure.py:1057
+#: ../src/gui/configure.py:1080
 msgid "Remember last view displayed"
 msgstr "Onthoud laatst getoonde beeld"
 
-#: ../src/gui/configure.py:1060
+#: ../src/gui/configure.py:1083
 msgid "Max generations for relationships"
 msgstr "Maximum aantal generaties waarvoor de verwantschap wordt bepaald"
 
-#: ../src/gui/configure.py:1064
+#: ../src/gui/configure.py:1087
 msgid "Base path for relative media paths"
 msgstr "Standaardpad voor relatieve mediapaden"
 
-#: ../src/gui/configure.py:1071
+#: ../src/gui/configure.py:1094
 msgid "Once a month"
 msgstr "eens per maand"
 
-#: ../src/gui/configure.py:1072
+#: ../src/gui/configure.py:1095
 msgid "Once a week"
 msgstr "Eens per week"
 
-#: ../src/gui/configure.py:1073
+#: ../src/gui/configure.py:1096
 msgid "Once a day"
 msgstr "Eens per dag"
 
-#: ../src/gui/configure.py:1074
+#: ../src/gui/configure.py:1097
 msgid "Always"
 msgstr "Altijd"
 
-#: ../src/gui/configure.py:1079
+#: ../src/gui/configure.py:1102
 msgid "Check for updates"
 msgstr "Naar aanpassingen zoeken"
 
-#: ../src/gui/configure.py:1084
+#: ../src/gui/configure.py:1107
 msgid "Updated addons only"
 msgstr "Enkel aangepaste uitbreidingen"
 
-#: ../src/gui/configure.py:1085
+#: ../src/gui/configure.py:1108
 msgid "New addons only"
 msgstr "Alleen nieuwe uitbreidingen"
 
-#: ../src/gui/configure.py:1086
+#: ../src/gui/configure.py:1109
 msgid "New and updated addons"
 msgstr "Nieuwe en aangepaste uitbreidingen"
 
-#: ../src/gui/configure.py:1096
+#: ../src/gui/configure.py:1119
 msgid "What to check"
 msgstr "Wat controleren"
 
-#: ../src/gui/configure.py:1100
+#: ../src/gui/configure.py:1123
 msgid "Where to check"
 msgstr "Waar controleren"
 
-#: ../src/gui/configure.py:1103
+#: ../src/gui/configure.py:1126
 msgid "Do not ask about previously notified addons"
 msgstr "Niet naar vroegere aangekondigde uitbreidingen vragen"
 
-#: ../src/gui/configure.py:1108
+#: ../src/gui/configure.py:1131
 msgid "Check now"
 msgstr "Nu controleren"
 
-#: ../src/gui/configure.py:1124
+#: ../src/gui/configure.py:1147
 msgid "Family Tree Database path"
 msgstr "Familiestamboomgegevensbestandspad"
 
-#: ../src/gui/configure.py:1132
+#: ../src/gui/configure.py:1155
 msgid "Automatically load last family tree"
 msgstr "Laatste familiestamboom automatisch laden"
 
 # dit is een soort titel in een file-selector
-#: ../src/gui/configure.py:1145
+#: ../src/gui/configure.py:1168
 msgid "Select media directory"
 msgstr "Selecteer media-objectmap"
 
 # dit is een soort titel in een file-selector
-#: ../src/gui/configure.py:1169
+#: ../src/gui/configure.py:1192
 msgid "Select database directory"
 msgstr "Gegevensbestandsmap selecteren"
 
@@ -5145,29 +5191,37 @@ msgstr ""
 "correct geïmporteerd worden. Tracht dus eerst de karakterset te corrigeren "
 "en importeer dan opnieuw"
 
-#: ../src/gui/dbloader.py:303
+#: ../src/gui/dbloader.py:309
 msgid "Need to upgrade database!"
 msgstr "Gegevensbestand moet opgewaardeerd worden!"
 
-#: ../src/gui/dbloader.py:305
+#: ../src/gui/dbloader.py:311
 msgid "Upgrade now"
 msgstr "Opwaarderen"
 
-#: ../src/gui/dbloader.py:306 ../src/gui/viewmanager.py:1046
-#: ../src/plugins/BookReport.py:677 ../src/plugins/BookReport.py:1067
-#: ../src/plugins/view/familyview.py:259
+#: ../src/gui/dbloader.py:312 ../src/gui/dbloader.py:323
+#: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:677
+#: ../src/plugins/BookReport.py:1067 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../src/gui/dbloader.py:365
+#: ../src/gui/dbloader.py:319
+msgid "Need to upgrade BSDDB database!"
+msgstr "BSDDB-gegevensbestand moet opgewaardeerd worden!"
+
+#: ../src/gui/dbloader.py:321
+msgid "I have made a backup, please upgrade my tree"
+msgstr "Ik heb een backup gemaakt, werk de stamboom bij"
+
+#: ../src/gui/dbloader.py:383
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: ../src/gui/dbloader.py:406
+#: ../src/gui/dbloader.py:424
 msgid "Automatically detected"
 msgstr "Automatisch gedetecteerd"
 
-#: ../src/gui/dbloader.py:415
+#: ../src/gui/dbloader.py:433
 msgid "Select file _type:"
 msgstr "Bestands_type selecteren:"
 
@@ -5545,7 +5599,7 @@ msgstr ""
 "Geef een bron-ID of selecteer een bron-ID. Laat leeg om alle objecten zonder "
 "bron te vinden."
 
-#: ../src/gui/filtereditor.py:507 ../src/Filters/Rules/Person/_HasBirth.py:47
+#: ../src/gui/filtereditor.py:506 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
@@ -5554,11 +5608,11 @@ msgstr ""
 msgid "Place:"
 msgstr "Locatie:"
 
-#: ../src/gui/filtereditor.py:509
+#: ../src/gui/filtereditor.py:508
 msgid "Reference count:"
 msgstr "Aantal verwijzingen:"
 
-#: ../src/gui/filtereditor.py:510
+#: ../src/gui/filtereditor.py:509
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
@@ -5566,18 +5620,18 @@ msgid "Number of instances:"
 msgstr "Aantal gevallen:"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/gui/filtereditor.py:513
+#: ../src/gui/filtereditor.py:512
 msgid "Reference count must be:"
 msgstr "Aantal maal waarnaar verwezen wordt moet zijn:"
 
-#: ../src/gui/filtereditor.py:515
+#: ../src/gui/filtereditor.py:514
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
 msgid "Number must be:"
 msgstr "Getal moet zijn:"
 
-#: ../src/gui/filtereditor.py:517
+#: ../src/gui/filtereditor.py:516
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:52
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:47
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:46
@@ -5587,7 +5641,7 @@ msgstr "Getal moet zijn:"
 msgid "Number of generations:"
 msgstr "Aantal generaties:"
 
-#: ../src/gui/filtereditor.py:519 ../src/Filters/Rules/_HasGrampsId.py:46
+#: ../src/gui/filtereditor.py:518 ../src/Filters/Rules/_HasGrampsId.py:46
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
@@ -5604,7 +5658,7 @@ msgstr "Aantal generaties:"
 msgid "ID:"
 msgstr "ID:"
 
-#: ../src/gui/filtereditor.py:522 ../src/Filters/Rules/_HasSourceOfBase.py:46
+#: ../src/gui/filtereditor.py:521 ../src/Filters/Rules/_HasSourceOfBase.py:46
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Family/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:46
@@ -5613,7 +5667,7 @@ msgid "Source ID:"
 msgstr "Bron-ID:"
 
 # naam filteren of filternaam
-#: ../src/gui/filtereditor.py:524
+#: ../src/gui/filtereditor.py:523
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
@@ -5627,73 +5681,73 @@ msgstr "Filternaam:"
 
 # naam filteren of filternaam
 #. filters of another namespace, name may be same as caller!
-#: ../src/gui/filtereditor.py:528
+#: ../src/gui/filtereditor.py:527
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Person filter name:"
 msgstr "Personenfilternaam:"
 
-#: ../src/gui/filtereditor.py:530
+#: ../src/gui/filtereditor.py:529
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
 msgid "Event filter name:"
 msgstr "Gebeurtenissenfilternaam:"
 
 # naam filteren of filternaam
-#: ../src/gui/filtereditor.py:532
+#: ../src/gui/filtereditor.py:531
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:49
 msgid "Source filter name:"
 msgstr "Bronnenfilternaam:"
 
-#: ../src/gui/filtereditor.py:534
+#: ../src/gui/filtereditor.py:533
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:44
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:46
 msgid "Repository filter name:"
 msgstr "Bibliotheekfilternaam:"
 
-#: ../src/gui/filtereditor.py:538
+#: ../src/gui/filtereditor.py:537
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 msgid "Inclusive:"
 msgstr "Inclusief:"
 
-#: ../src/gui/filtereditor.py:539
+#: ../src/gui/filtereditor.py:538
 msgid "Include original person"
 msgstr "Oorspronkelijke persoon bijvoegen"
 
-#: ../src/gui/filtereditor.py:540
+#: ../src/gui/filtereditor.py:539
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Case sensitive:"
 msgstr "Hoofdlettergevoelig:"
 
-#: ../src/gui/filtereditor.py:541
+#: ../src/gui/filtereditor.py:540
 msgid "Use exact case of letters"
 msgstr "Exacte schrijfwijze toepassen"
 
-#: ../src/gui/filtereditor.py:542
+#: ../src/gui/filtereditor.py:541
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasNameOf.py:59
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "Regular-Expression matching:"
 msgstr "Reguliere uitdrukking overeenkomst:"
 
-#: ../src/gui/filtereditor.py:543
+#: ../src/gui/filtereditor.py:542
 msgid "Use regular expression"
 msgstr "Reguliere uitdrukking toepassen"
 
-#: ../src/gui/filtereditor.py:544
+#: ../src/gui/filtereditor.py:543
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Include Family events:"
 msgstr "Familiegebeurtenissen bijvoegen:"
 
-#: ../src/gui/filtereditor.py:545
+#: ../src/gui/filtereditor.py:544
 msgid "Also family events where person is wife/husband"
 msgstr ""
 "Ook die familiegebeurtenissen waarin de persoon echtgenoot/echtgenote is"
 
-#: ../src/gui/filtereditor.py:547 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:546 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
@@ -5701,7 +5755,7 @@ msgid "Tag:"
 msgstr "Tag:"
 
 # Vertrouwen
-#: ../src/gui/filtereditor.py:551
+#: ../src/gui/filtereditor.py:550
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -5716,38 +5770,71 @@ msgstr "Tag:"
 msgid "Confidence level:"
 msgstr "Zekerheidsniveau:"
 
-#: ../src/gui/filtereditor.py:571
+#: ../src/gui/filtereditor.py:562
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:74
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:77
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:66
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:67
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:72
+msgid "Use regular expressions"
+msgstr "Reguliere uitdrukkingen toepassen"
+
+#: ../src/gui/filtereditor.py:563
+msgid ""
+"Interpret the contents of string fields as regular expressions.\n"
+"A decimal point will match any character. A question mark will match zero or "
+"one occurences of the previous character or group. An asterisk will match "
+"zero or more occurences. A plus sign will match one or more occurences. Use "
+"parentheses to group expressions. Specify alternatives using a vertical bar. "
+"A caret will match the start of a line. A dollar sign will match the end of "
+"a line."
+msgstr ""
+"Interpreteer de inhoud van tekstvelden als reguliere expressies.\n"
+"Een decimale punt zal overeenkomen met een willekeurig onbekend karakter. "
+"Een vraagteken komt overeen met nul of een overeenkomsten van het vorige "
+"karakter of groep. Een asterisk komt overeen met nul of meer overeenkomsten. "
+"Een plusteken met een of meer overeenkomsten. Maak gebruik van haakjes om "
+"expressies te groeperen. Alternatieven kunt u door middel van een verticaal "
+"streepje aangeven. Een 'accent circonflexe' (dakje) komt overeen met het "
+"begin van een nieuwe regel. Een dollarteken komt overeen met het eind van "
+"een regel."
+
+#: ../src/gui/filtereditor.py:590
 msgid "Rule Name"
 msgstr "Regelnaam"
 
-#: ../src/gui/filtereditor.py:686 ../src/gui/filtereditor.py:697
+#: ../src/gui/filtereditor.py:707 ../src/gui/filtereditor.py:718
 #: ../src/glade/rule.glade.h:23
 msgid "No rule selected"
 msgstr "Geen regel geselecteerd"
 
-#: ../src/gui/filtereditor.py:737
+#: ../src/gui/filtereditor.py:761
 msgid "Define filter"
 msgstr "Filter bepalen"
 
-#: ../src/gui/filtereditor.py:741
+#: ../src/gui/filtereditor.py:765
 msgid "Values"
 msgstr "Waarden"
 
-#: ../src/gui/filtereditor.py:839
+#: ../src/gui/filtereditor.py:863
 msgid "Add Rule"
 msgstr "Regel toevoegen"
 
-#: ../src/gui/filtereditor.py:851
+#: ../src/gui/filtereditor.py:875
 msgid "Edit Rule"
 msgstr "Regel bewerken"
 
-#: ../src/gui/filtereditor.py:886
+#: ../src/gui/filtereditor.py:910
 msgid "Filter Test"
 msgstr "Filtertest"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #. ###############################
-#: ../src/gui/filtereditor.py:1024 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1048 ../src/plugins/Records.py:516
 #: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5770,19 +5857,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1024
+#: ../src/gui/filtereditor.py:1048
 msgid "Comment"
 msgstr "Opmerking"
 
-#: ../src/gui/filtereditor.py:1032
+#: ../src/gui/filtereditor.py:1056
 msgid "Custom Filter Editor"
 msgstr "Eigengemaakte filters"
 
-#: ../src/gui/filtereditor.py:1098
+#: ../src/gui/filtereditor.py:1122
 msgid "Delete Filter?"
 msgstr "Filter verwijderen?"
 
-#: ../src/gui/filtereditor.py:1099
+#: ../src/gui/filtereditor.py:1123
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -5792,11 +5879,11 @@ msgstr ""
 "deze filter verwijderd wordt, zullen alle onderliggende filters ook "
 "verwijderd worden."
 
-#: ../src/gui/filtereditor.py:1103
+#: ../src/gui/filtereditor.py:1127
 msgid "Delete Filter"
 msgstr "Filter verwijderen"
 
-#: ../src/gui/grampsbar.py:155 ../src/gui/widgets/grampletpane.py:1130
+#: ../src/gui/grampsbar.py:155 ../src/gui/widgets/grampletpane.py:1131
 msgid "Unnamed Gramplet"
 msgstr "Onbenoemde gramplet"
 
@@ -6551,7 +6638,7 @@ msgstr "Media:"
 #. #########################
 #: ../src/gui/viewmanager.py:1550
 #: ../src/plugins/drawreport/AncestorTree.py:989
-#: ../src/plugins/drawreport/DescendTree.py:1581
+#: ../src/plugins/drawreport/DescendTree.py:1585
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
 #: ../src/plugins/textreport/DetDescendantReport.py:976
@@ -9273,42 +9360,42 @@ msgid "Collapse this section"
 msgstr "Deze sectie samenvoegen"
 
 #. default tooltip
-#: ../src/gui/widgets/grampletpane.py:762
+#: ../src/gui/widgets/grampletpane.py:763
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Versleep de eigenschappenknop om te verplaatsen en klik op deze knop voor "
 "instellingen"
 
 #. build the GUI:
-#: ../src/gui/widgets/grampletpane.py:958
+#: ../src/gui/widgets/grampletpane.py:959
 msgid "Right click to add gramplets"
 msgstr "Rechtsklikken om een gramplet toe te voegen"
 
-#: ../src/gui/widgets/grampletpane.py:997
+#: ../src/gui/widgets/grampletpane.py:998
 msgid "Untitled Gramplet"
 msgstr "Onbenoemde gramplet"
 
-#: ../src/gui/widgets/grampletpane.py:1472
+#: ../src/gui/widgets/grampletpane.py:1473
 msgid "Number of Columns"
 msgstr "Aantal kolommen"
 
-#: ../src/gui/widgets/grampletpane.py:1477
+#: ../src/gui/widgets/grampletpane.py:1478
 msgid "Gramplet Layout"
 msgstr "Gramplet-layout"
 
-#: ../src/gui/widgets/grampletpane.py:1507
+#: ../src/gui/widgets/grampletpane.py:1508
 msgid "Use maximum height available"
 msgstr "Gebruik de maximale beschikbare hoogte"
 
-#: ../src/gui/widgets/grampletpane.py:1513
+#: ../src/gui/widgets/grampletpane.py:1514
 msgid "Height if not maximized"
 msgstr "Hoogte indien niet gemaximaliseerd"
 
-#: ../src/gui/widgets/grampletpane.py:1520
+#: ../src/gui/widgets/grampletpane.py:1521
 msgid "Detached width"
 msgstr "Breedte indien losgekoppeld"
 
-#: ../src/gui/widgets/grampletpane.py:1527
+#: ../src/gui/widgets/grampletpane.py:1528
 msgid "Detached height"
 msgstr "Hoogte indien losgekoppeld"
 
@@ -10100,7 +10187,7 @@ msgstr "De gebruikte stijl voor de hoofding."
 
 #: ../src/plugins/Records.py:611
 #: ../src/plugins/drawreport/AncestorTree.py:1070
-#: ../src/plugins/drawreport/DescendTree.py:1670
+#: ../src/plugins/drawreport/DescendTree.py:1674
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
 #: ../src/plugins/textreport/DetAncestralReport.py:904
@@ -10350,7 +10437,7 @@ msgstr "Stamboom uitdrukken..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:868
-#: ../src/plugins/drawreport/DescendTree.py:1452
+#: ../src/plugins/drawreport/DescendTree.py:1456
 msgid "Tree Options"
 msgstr "Stamboomopties"
 
@@ -10374,7 +10461,7 @@ msgid "The center person for the tree"
 msgstr "De centrale persoon voor de stamboom"
 
 #: ../src/plugins/drawreport/AncestorTree.py:874
-#: ../src/plugins/drawreport/DescendTree.py:1472
+#: ../src/plugins/drawreport/DescendTree.py:1476
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
@@ -10384,7 +10471,7 @@ msgid "Generations"
 msgstr "Generaties"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
-#: ../src/plugins/drawreport/DescendTree.py:1473
+#: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "The number of generations to include in the tree"
 msgstr "Het aantal generaties dat in de stamboom wordt voorzien"
 
@@ -10401,7 +10488,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Het aantal generaties met lege rechthoeken dat getoond wordt"
 
 #: ../src/plugins/drawreport/AncestorTree.py:888
-#: ../src/plugins/drawreport/DescendTree.py:1481
+#: ../src/plugins/drawreport/DescendTree.py:1485
 msgid "Co_mpress tree"
 msgstr "Stamboom co_mprimeren"
 
@@ -10474,17 +10561,17 @@ msgid "Display format for the mothers box."
 msgstr "Beeldformaat van de moederrechthoek."
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
-#: ../src/plugins/drawreport/DescendTree.py:1521
+#: ../src/plugins/drawreport/DescendTree.py:1525
 msgid "Include Marriage box"
 msgstr "Huwelijkrechthoek bijvoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:941
-#: ../src/plugins/drawreport/DescendTree.py:1523
+#: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Whether to include a separate marital box in the report"
 msgstr "Al of niet een aparte huwelijkrechthoek in het verslag voorzien"
 
 #: ../src/plugins/drawreport/AncestorTree.py:944
-#: ../src/plugins/drawreport/DescendTree.py:1526
+#: ../src/plugins/drawreport/DescendTree.py:1530
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -10493,44 +10580,44 @@ msgstr ""
 "Weergaveformaat"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
-#: ../src/plugins/drawreport/DescendTree.py:1527
+#: ../src/plugins/drawreport/DescendTree.py:1531
 msgid "Display format for the marital box."
 msgstr "Beeldformaat van de huwelijksrechthoek."
 
 # het gaat hier om papierformaat
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:949
-#: ../src/plugins/drawreport/DescendTree.py:1540
+#: ../src/plugins/drawreport/DescendTree.py:1544
 msgid "Size"
 msgstr "Grootte"
 
 #: ../src/plugins/drawreport/AncestorTree.py:951
-#: ../src/plugins/drawreport/DescendTree.py:1542
+#: ../src/plugins/drawreport/DescendTree.py:1546
 msgid "Scale tree to fit"
 msgstr "Boom passend schalen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:952
-#: ../src/plugins/drawreport/DescendTree.py:1543
+#: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Do not scale tree"
 msgstr "Boom niet schalen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:953
-#: ../src/plugins/drawreport/DescendTree.py:1544
+#: ../src/plugins/drawreport/DescendTree.py:1548
 msgid "Scale tree to fit page width only"
 msgstr "Boom aan paginabreedte aanpassen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:954
-#: ../src/plugins/drawreport/DescendTree.py:1545
+#: ../src/plugins/drawreport/DescendTree.py:1549
 msgid "Scale tree to fit the size of the page"
 msgstr "Stamboom schalen zodat hij op één pagina past"
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
-#: ../src/plugins/drawreport/DescendTree.py:1547
+#: ../src/plugins/drawreport/DescendTree.py:1551
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Boom al dan niet naar een specifieke pagina-afmeting schalen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:962
-#: ../src/plugins/drawreport/DescendTree.py:1553
+#: ../src/plugins/drawreport/DescendTree.py:1557
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -10542,7 +10629,7 @@ msgstr ""
 "gehouden met de instellingen in de tab 'papieropties'"
 
 #: ../src/plugins/drawreport/AncestorTree.py:968
-#: ../src/plugins/drawreport/DescendTree.py:1559
+#: ../src/plugins/drawreport/DescendTree.py:1563
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -10578,13 +10665,13 @@ msgstr ""
 "verwijderen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:991
-#: ../src/plugins/drawreport/DescendTree.py:1583
+#: ../src/plugins/drawreport/DescendTree.py:1587
 msgid "Report Title"
 msgstr "Verslagtitel"
 
 #: ../src/plugins/drawreport/AncestorTree.py:992
-#: ../src/plugins/drawreport/DescendTree.py:1584
-#: ../src/plugins/drawreport/DescendTree.py:1633
+#: ../src/plugins/drawreport/DescendTree.py:1588
+#: ../src/plugins/drawreport/DescendTree.py:1637
 msgid "Do not include a title"
 msgstr "Geen titel toevoegen"
 
@@ -10593,22 +10680,22 @@ msgid "Include Report Title"
 msgstr "Verslagstitel toevoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
-#: ../src/plugins/drawreport/DescendTree.py:1586
+#: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Choose a title for the report"
 msgstr "Een titel voor het verslag kiezen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:997
-#: ../src/plugins/drawreport/DescendTree.py:1590
+#: ../src/plugins/drawreport/DescendTree.py:1594
 msgid "Include a border"
 msgstr "Rand toevoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:998
-#: ../src/plugins/drawreport/DescendTree.py:1591
+#: ../src/plugins/drawreport/DescendTree.py:1595
 msgid "Whether to make a border around the report."
 msgstr "Al of niet een rand rond het verslag toevoegen."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
-#: ../src/plugins/drawreport/DescendTree.py:1594
+#: ../src/plugins/drawreport/DescendTree.py:1598
 msgid "Include Page Numbers"
 msgstr "Paginanummers toevoegen"
 
@@ -10617,28 +10704,28 @@ msgid "Whether to print page numbers on each page."
 msgstr "Al of niet de paginanummers op elke pagina afdrukken."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1005
-#: ../src/plugins/drawreport/DescendTree.py:1598
+#: ../src/plugins/drawreport/DescendTree.py:1602
 msgid "Include Blank Pages"
 msgstr "Lege pagina's bijvoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1006
-#: ../src/plugins/drawreport/DescendTree.py:1599
+#: ../src/plugins/drawreport/DescendTree.py:1603
 msgid "Whether to include pages that are blank."
 msgstr "Met/zonder blanco pagina's."
 
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1013
-#: ../src/plugins/drawreport/DescendTree.py:1604
+#: ../src/plugins/drawreport/DescendTree.py:1608
 msgid "Include a note"
 msgstr "Opmerking bijvoegen"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1014
-#: ../src/plugins/drawreport/DescendTree.py:1606
+#: ../src/plugins/drawreport/DescendTree.py:1610
 msgid "Whether to include a note on the report."
 msgstr "Al of niet een opmerking toevoegen aan het verslag."
 
 #: ../src/plugins/drawreport/AncestorTree.py:1019
-#: ../src/plugins/drawreport/DescendTree.py:1611
+#: ../src/plugins/drawreport/DescendTree.py:1615
 msgid ""
 "Add a note\n"
 "\n"
@@ -10649,12 +10736,12 @@ msgstr ""
 "$T voegt de datum van vandaag toe"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1024
-#: ../src/plugins/drawreport/DescendTree.py:1616
+#: ../src/plugins/drawreport/DescendTree.py:1620
 msgid "Note Location"
 msgstr "Opmerking locatie"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1027
-#: ../src/plugins/drawreport/DescendTree.py:1619
+#: ../src/plugins/drawreport/DescendTree.py:1623
 msgid "Where to place the note."
 msgstr "Waar de opmerking moet geplaatst worden."
 
@@ -10671,12 +10758,12 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Aantal generaties met lege rechthoeken voor onbekende voorouders"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1081
-#: ../src/plugins/drawreport/DescendTree.py:1660
+#: ../src/plugins/drawreport/DescendTree.py:1664
 msgid "The basic style used for the title display."
 msgstr "De gebruikte basisstijl voor de titelweergave."
 
 #: ../src/plugins/drawreport/Calendar.py:98
-#: ../src/plugins/drawreport/DescendTree.py:667
+#: ../src/plugins/drawreport/DescendTree.py:671
 #: ../src/plugins/drawreport/FanChart.py:165
 #: ../src/plugins/graph/GVHourGlass.py:102
 #: ../src/plugins/textreport/AncestorReport.py:105
@@ -11020,50 +11107,50 @@ msgstr "Familiekaart voor %(father1)s en %(mother1)s"
 msgid "Cousin Chart for "
 msgstr "Neven en nichten grafiek voor "
 
-#: ../src/plugins/drawreport/DescendTree.py:735
+#: ../src/plugins/drawreport/DescendTree.py:739
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "De familie %s is niet te vinden in het gegevensbestand"
 
 #. if self.name == "familial_descend_tree":
-#: ../src/plugins/drawreport/DescendTree.py:1455
 #: ../src/plugins/drawreport/DescendTree.py:1459
+#: ../src/plugins/drawreport/DescendTree.py:1463
 msgid "Report for"
 msgstr "Verslag voor"
 
-#: ../src/plugins/drawreport/DescendTree.py:1456
+#: ../src/plugins/drawreport/DescendTree.py:1460
 msgid "The main person for the report"
 msgstr "De hoofdpersoon voor dit verslag"
 
-#: ../src/plugins/drawreport/DescendTree.py:1460
+#: ../src/plugins/drawreport/DescendTree.py:1464
 msgid "The main family for the report"
 msgstr "De centrale familie voor dit verslag"
 
-#: ../src/plugins/drawreport/DescendTree.py:1464
+#: ../src/plugins/drawreport/DescendTree.py:1468
 msgid "Start with the parent(s) of the selected first"
 msgstr "Met de ouder(s) van de geselecteerde persoon beginnen"
 
-#: ../src/plugins/drawreport/DescendTree.py:1467
+#: ../src/plugins/drawreport/DescendTree.py:1471
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr ""
 "De ouders, broers en zusters van de geselecteerde persoon worden getoond."
 
-#: ../src/plugins/drawreport/DescendTree.py:1476
+#: ../src/plugins/drawreport/DescendTree.py:1480
 msgid "Level of Spouses"
 msgstr "Niveau voor de echtgenoten"
 
-#: ../src/plugins/drawreport/DescendTree.py:1477
+#: ../src/plugins/drawreport/DescendTree.py:1481
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 "0=geen echtgenoten, 1=echtgenoten toevoegen, 2=partners van de echtgenoten, "
 "enz"
 
-#: ../src/plugins/drawreport/DescendTree.py:1482
+#: ../src/plugins/drawreport/DescendTree.py:1486
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Al of niet personen naar boven verschuiven om een kleinere boom te verkrijgen"
 
-#: ../src/plugins/drawreport/DescendTree.py:1489
+#: ../src/plugins/drawreport/DescendTree.py:1493
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -11071,15 +11158,15 @@ msgstr ""
 "Afstammeling\n"
 "Weergaveformaat"
 
-#: ../src/plugins/drawreport/DescendTree.py:1493
+#: ../src/plugins/drawreport/DescendTree.py:1497
 msgid "Display format for a descendant."
 msgstr "Weergaveformaat voor een afstammeling."
 
-#: ../src/plugins/drawreport/DescendTree.py:1496
+#: ../src/plugins/drawreport/DescendTree.py:1500
 msgid "Bold direct descendants"
 msgstr "Rechtstreekse afstammelingen vet"
 
-#: ../src/plugins/drawreport/DescendTree.py:1498
+#: ../src/plugins/drawreport/DescendTree.py:1502
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -11092,15 +11179,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../src/plugins/drawreport/DescendTree.py:1510
+#: ../src/plugins/drawreport/DescendTree.py:1514
 msgid "Indent Spouses"
 msgstr "Echtgenoten laten inspringen"
 
-#: ../src/plugins/drawreport/DescendTree.py:1511
+#: ../src/plugins/drawreport/DescendTree.py:1515
 msgid "Whether to indent the spouses in the tree."
 msgstr "De echtgenoten al of niet laten inspringen in de stamboom."
 
-#: ../src/plugins/drawreport/DescendTree.py:1514
+#: ../src/plugins/drawreport/DescendTree.py:1518
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -11108,16 +11195,16 @@ msgstr ""
 "Weergaveformaat\n"
 "partner"
 
-#: ../src/plugins/drawreport/DescendTree.py:1518
+#: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Display format for a spouse."
 msgstr "Weergaveformaat voor een echtgenoot."
 
 #. #################
-#: ../src/plugins/drawreport/DescendTree.py:1531
+#: ../src/plugins/drawreport/DescendTree.py:1535
 msgid "Replace"
 msgstr "Vervang"
 
-#: ../src/plugins/drawreport/DescendTree.py:1534
+#: ../src/plugins/drawreport/DescendTree.py:1538
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -11125,7 +11212,7 @@ msgstr ""
 "Weergaveformaat vervangen:\n"
 "'Vervang dit'/' door dit'"
 
-#: ../src/plugins/drawreport/DescendTree.py:1536
+#: ../src/plugins/drawreport/DescendTree.py:1540
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -11133,24 +11220,24 @@ msgstr ""
 "v.b. \n"
 "Verenigde Staten van Amerika/V.S"
 
-#: ../src/plugins/drawreport/DescendTree.py:1585
-#: ../src/plugins/drawreport/DescendTree.py:1634
+#: ../src/plugins/drawreport/DescendTree.py:1589
+#: ../src/plugins/drawreport/DescendTree.py:1638
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Afstammelingen van [geselecteerde perso(o)n(en)]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1595
+#: ../src/plugins/drawreport/DescendTree.py:1599
 msgid "Whether to include page numbers on each page."
 msgstr "Al of niet de paginanummers op elke pagina toevoegen."
 
-#: ../src/plugins/drawreport/DescendTree.py:1638
+#: ../src/plugins/drawreport/DescendTree.py:1642
 msgid "Family Chart for [names of chosen family]"
 msgstr "Familiekaart voor [namen van de gekozen families]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1642
+#: ../src/plugins/drawreport/DescendTree.py:1646
 msgid "Cousin Chart for [names of children]"
 msgstr "Neven en nichten grafiek voor [namen van de kinderen]"
 
-#: ../src/plugins/drawreport/DescendTree.py:1682
+#: ../src/plugins/drawreport/DescendTree.py:1686
 msgid "The bold style used for the text display."
 msgstr "De gebruikte stijl voor de tekstweergave van vetgedrukte tekst."
 
@@ -14652,6 +14739,17 @@ msgstr "Fout bij lezen van GEDCOM bestand"
 #: ../src/plugins/import/ImportGeneWeb.py:116
 msgid "GeneWeb import"
 msgstr "GeneWeb import"
+
+#: ../src/plugins/import/ImportGrdb.py:60
+msgid ""
+"The database version is not supported by this version of Gramps.\n"
+"Please upgrade to the corresponding version or use XML for porting data "
+"between different database versions."
+msgstr ""
+"De versie van het gegevensbestand wordt niet ondersteund door deze \n"
+"versie van Gramps. Gelieve op te waarderen naar een gepastere versie of "
+"gebruik XML om gegevens over te zetten tussen verschillende versies van "
+"gegevensbestanden."
 
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:71
@@ -20365,7 +20463,7 @@ msgstr "Personen zonder achternaam vinden"
 #: ../src/Filters/Rules/Event/_HasData.py:51
 #: ../src/Filters/Rules/Event/_HasType.py:49
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:55
-#: ../src/Filters/Rules/Place/_HasPlace.py:60
+#: ../src/Filters/Rules/Place/_HasPlace.py:61
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:54
 #: ../src/Filters/Rules/Source/_HasRepository.py:50
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:48
@@ -24885,7 +24983,7 @@ msgstr ""
 "website de mogelijkheid te geven om bestanden te delen. Indien er bestanden "
 "in de onderstaande lijst staan, kunt u deze bestanden downloaden door op de "
 "naam te klikken. De 'download'-pagina en de bestanden hebben hetzelfde "
-"auteursrecht as the rest van deze web-pagina's."
+"auteursrecht als de rest van deze web-pagina's."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5001
 msgid "File Name"
@@ -26011,7 +26109,7 @@ msgstr "Vader onbekend"
 msgid "Unknown mother"
 msgstr "Moeder onbekend"
 
-#: ../src/Filters/_FilterParser.py:114
+#: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
@@ -26020,7 +26118,7 @@ msgstr ""
 "LET OP: er zijn teveel argumenten in de filter '%s'!\n"
 "Tracht om met een gedeelte van de argumenten te beginnen."
 
-#: ../src/Filters/_FilterParser.py:122
+#: ../src/Filters/_FilterParser.py:127
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
@@ -26029,7 +26127,7 @@ msgstr ""
 "LET OP: er zijn te weinig argumenten in de filter '%s'!\n"
 "      Er wordt toch een poging gedaan in de hoop dat dit lukt."
 
-#: ../src/Filters/_FilterParser.py:130
+#: ../src/Filters/_FilterParser.py:135
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "FOUT: de filter %s kan niet worden geladen. Pas eerst de filter aan!"
@@ -27582,36 +27680,36 @@ msgstr ""
 "Vindt locaties waarvan de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:49
+#: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "Street:"
 msgstr "Straat:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:50
+#: ../src/Filters/Rules/Place/_HasPlace.py:51
 msgid "Locality:"
 msgstr "Plaats:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:52
+#: ../src/Filters/Rules/Place/_HasPlace.py:53
 msgid "County:"
 msgstr "Provincie:"
 
 # Provincie:
-#: ../src/Filters/Rules/Place/_HasPlace.py:53
+#: ../src/Filters/Rules/Place/_HasPlace.py:54
 msgid "State:"
 msgstr "Deelstaat:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:55
+#: ../src/Filters/Rules/Place/_HasPlace.py:56
 msgid "ZIP/Postal Code:"
 msgstr "Postcode:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:56
+#: ../src/Filters/Rules/Place/_HasPlace.py:57
 msgid "Church Parish:"
 msgstr "Parochie:"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:58
+#: ../src/Filters/Rules/Place/_HasPlace.py:59
 msgid "Places matching parameters"
 msgstr "Locaties met overeenkomende parameters"
 
-#: ../src/Filters/Rules/Place/_HasPlace.py:59
+#: ../src/Filters/Rules/Place/_HasPlace.py:60
 msgid "Matches places with particular parameters"
 msgstr "Locaties met bepaalde parameters zoeken"
 
@@ -28412,18 +28510,6 @@ msgstr "Opmerkingen met aanduiding: privé"
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
 msgstr "Vindt opmerkingen die aangegeven zijn als privé"
-
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:74
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:77
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:66
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:73
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:67
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:72
-msgid "Use regular expressions"
-msgstr "Reguliere uitdrukkingen toepassen"
 
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:100
