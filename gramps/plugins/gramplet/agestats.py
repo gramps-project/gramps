@@ -24,7 +24,6 @@
 This Gramplet shows textual distributions of age breakdowns of various types.
 """
 
-import locale
 from collections import defaultdict
 
 from gramps.gen.plug import Gramplet
@@ -230,7 +229,7 @@ class AgeStatsGramplet(Gramplet):
         retval = _("Statistics") + ":\n"
         retval += "  " + _("Total") + ": %d\n" % count
         retval += "  " + _("Minimum") + ": %d\n" % minval
-        retval += "  " + _("Average") + locale.format_string(": %.1f\n", average)
+        retval += "  " + _("Average") + glocale.format_string(": %.1f\n", average)
         retval += "  " + _("Median") + ": %d\n" % median
         retval += "  " + _("Maximum") + ": %d\n" % maxval
         return retval
@@ -279,7 +278,7 @@ class AgeStatsGramplet(Gramplet):
                             len(selected))
                 procent = (float(len(selected)) / 
                                 (float(sum(hash.values())))*100)
-                self.append_text(locale.format("%#5.2f", procent))
+                self.append_text(glocale.format("%#5.2f", procent))
                 self.append_text("\n")
                 i += 1
             self.append_text("--------" + 

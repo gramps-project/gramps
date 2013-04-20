@@ -28,7 +28,6 @@
 #------------------------------------------------------------------------
 from __future__ import print_function
 
-import locale
 import sys
 import re
 import datetime
@@ -71,8 +70,13 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.plug import BasePluginManager
 from gramps.cli.grampscli import CLIManager
 from gramps.gen.constfunc import STRTYPE
+from gramps.gen.utils.grampslocale import GrampsLocale
 
-_ = lambda msg: msg
+#FIXME: A locale should be obtained from the user and used to
+#initialize the locale. Passing in lang and language parameters to the
+#constructor prevents querying the environment.
+glocale = GrampsLocale(lang='en_US.UTF-8', languages=['en'])
+_ = glocale.translation.gettext
 
 TAB_HEIGHT = 200
 
@@ -151,22 +155,12 @@ def probably_alive(handle):
     return alive(person, db)
 
 def format_number(number, with_grouping=True):
-    # FIXME: should be user's setting
-    try:
-        locale.setlocale(locale.LC_ALL, "en_US.utf8")
-    except:
-        pass
-    if number != "":
-        return locale.format("%d", number, with_grouping)
+      if number != "":
+        return glocale.format("%d", number, with_grouping)
     else:
-        return locale.format("%d", 0, with_grouping)
+        return glocale.format("%d", 0, with_grouping)
 
 def table_count(table, with_grouping=True):
-    # FIXME: should be user's setting
-    try:
-        locale.setlocale(locale.LC_ALL, "en_US.utf8")
-    except:
-        pass
     if table == "person":
         number = models.Person.objects.count()
     elif table == "family":
@@ -189,7 +183,7 @@ def table_count(table, with_grouping=True):
         number = models.Tag.objects.count()
     else:
         return "[unknown table]"
-    return locale.format("%d", number, with_grouping)
+    return glocale.format("%d", number, with_grouping)
 
 def nbsp(string):
     """
