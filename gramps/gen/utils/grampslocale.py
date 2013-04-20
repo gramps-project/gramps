@@ -36,6 +36,10 @@ import logging
 LOG = logging.getLogger("grampslocale")
 HAVE_ICU = False
 _hdlr = None
+# GrampsLocale initialization comes before command-line argument
+# passing, so one must set the log level directly. The default is
+# logging.WARN. Uncomment the following to change it to logging.DEBUG:
+# LOG.setLevel(logging.DEBUG)
 try:
     from icu import Locale, Collator
     HAVE_ICU = True
@@ -274,21 +278,25 @@ class GrampsLocale(object):
             self.language = [lang]
             return True
 
+        _failure = False
         try:
             locale.setlocale(locale.LC_ALL, '')
             if not _check_locale(locale.getlocale(locale.LC_MESSAGES)):
                 if not _check_locale(locale.getlocale()):
                     if not _check_locale(locale.getdefaultlocale()):
+                        LOG.debug("Usable locale not found, localization settings ignored.");
                         self.lang = 'C'
                         self.encoding = 'ascii'
                         self.language = ['en']
+                        _failure = True
 
         except locale.Error as err:
-            LOG.warning("Locale error %s, localization will be US English.",
+            LOG.debug("Locale error %s, localization settings ignored.",
                         err);
             self.lang = 'C'
             self.encoding = 'ascii'
             self.language = ['en']
+            _failure = True
 
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
         if "LANGUAGE" in os.environ:
@@ -301,6 +309,8 @@ class GrampsLocale(object):
                     LOG.debug("Overiding locale setting %s with LANGUAGE setting %s", self.lang, self.language[0])
                     self.lang = locale.normalize(self.language[0])
                     self.encoding = self.lang.split('.')[1]
+            elif _failure:
+                LOG.warning("No valid locale settings found, using US English")
 
         if HAVE_ICU:
             self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang[:5]
@@ -386,6 +396,7 @@ class GrampsLocale(object):
         if not self.encoding:
             self.encoding = (locale.getpreferredencoding()
                              or sys.getdefaultencoding())
+        LOG.debug("Setting encoding to %s", self.encoding)
 #Ensure that output is encoded correctly to stdout and stderr. This is
 #much less cumbersome and error-prone than encoding individual outputs
 #and better handles the differences between Python 2 and Python 3:
@@ -413,10 +424,11 @@ class GrampsLocale(object):
         # installed. This is particularly a problem on Debian and
         # Debian-derived distributions which by default don't install
         # a lot of locales.
-        if self.lang != 'C':
-            check_lang = self.lang.split('.')
-            if len(check_lang) < 2  or check_lang[1] not in ["utf-8", "UTF-8"]:
-                self.lang = '.'.join((check_lang[0], 'UTF-8'))
+        lang = locale.normalize(self.language[0] if self.language[0] else 'C')
+        check_lang = lang.split('.')
+        if not check_lang[0]  in ('C', 'en', 'en_US'):
+            if len(check_lang) < 2  or check_lang[1] not in ("utf-8", "UTF-8"):
+                lang = '.'.join((check_lang[0], 'UTF-8'))
 
         os.environ["LANG"] = self.lang
         os.environ["LANGUAGE"] = ':'.join(['C' if l in ('en', 'en_US') else l
@@ -560,7 +572,7 @@ class GrampsLocale(object):
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            LOG.warning("No usable languages found in list for %s, using US English", os.path.basename(os.path.dirname(localedir)))
+            LOG.warning("No usable languages found in %s for %s, using US English", ':'.join(languages), os.path.abspath(localedir))
         translator = GrampsNullTranslations()
         translator._language = "en"
         return translator
