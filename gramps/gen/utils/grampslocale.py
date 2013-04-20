@@ -276,8 +276,8 @@ class GrampsLocale(object):
 
         try:
             locale.setlocale(locale.LC_ALL, '')
-            if not _check_locale(locale.getlocale()):
-                if not _check_locale(locale.getlocale(locale.LC_MESSAGES)):
+            if not _check_locale(locale.getlocale(locale.LC_MESSAGES)):
+                if not _check_locale(locale.getlocale()):
                     if not _check_locale(locale.getdefaultlocale()):
                         self.lang = 'C'
                         self.encoding = 'ascii'
@@ -291,12 +291,16 @@ class GrampsLocale(object):
             self.language = ['en']
 
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
-        if not self.lang.startswith('C.') and "LANGUAGE" in os.environ:
+        if "LANGUAGE" in os.environ:
             language = [x for x in [self.check_available_translations(l)
                                     for l in os.environ["LANGUAGE"].split(":")]
                             if x]
             if language:
                 self.language = language
+                if not self.lang.startswith(self.language[0]):
+                    LOG.debug("Overiding locale setting %s with LANGUAGE setting %s", self.lang, self.language[0])
+                    self.lang = locale.normalize(self.language[0])
+                    self.encoding = self.lang.split('.')[1]
 
         if HAVE_ICU:
             self.calendar = locale.getlocale(locale.LC_TIME)[0] or self.lang[:5]
