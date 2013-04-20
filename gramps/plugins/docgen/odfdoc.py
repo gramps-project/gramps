@@ -70,7 +70,6 @@ except ImportError:
     from md5 import md5
 import zipfile
 import time
-import locale
 import sys
 if sys.version_info[0] < 3:
     from cStringIO import StringIO
@@ -496,8 +495,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         wrt = self.cntnt.write
         wrt1, wrt2 = self.cntnt1.write, self.cntnt2.write
         
-        current_locale = locale.getlocale()
-        self.lang = current_locale[0]
+        self.lang = glocale.lang
         self.lang = self.lang.replace('_', '-') if self.lang else "en-US"
 
         self.StyleList_notes = [] # styles to create depending on styled notes.

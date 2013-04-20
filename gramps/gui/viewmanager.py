@@ -370,7 +370,6 @@ class ViewManager(CLIManager):
                 from urllib2 import urlopen
             else:
                 from urllib.request import urlopen
-            import locale
             LOG.debug("Checking for updated addons...")
             langs = glocale.get_language_list()
             langs.append("en")

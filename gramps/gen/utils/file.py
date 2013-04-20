@@ -33,7 +33,6 @@ File and folder related utility functions
 #-------------------------------------------------------------------------
 import os
 import sys
-import locale
 import shutil
 import logging
 LOG = logging.getLogger(".gen.utils.file")
