@@ -162,7 +162,7 @@ def mac_setup_localization(glocale):
         collation = div[0]
         qualifier = None
         if len(div) > 1:
-            parts = div.split(b"=")
+            parts = div[1].split(b"=")
             if len(parts) == 2 and parts[0] == 'collation':
                 qualifier = parts[1]
         return (collation, qualifier)
