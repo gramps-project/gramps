@@ -932,6 +932,26 @@ class GrampsLocale(object):
         """
         return locale.format_string(format, val, grouping)
 
+    def float(self, val):
+        """
+        Parse a string to a floating point number. Uses locale.atof(),
+        in future with ICU present will use icu.NumberFormat.parse().
+        """
+        try:
+            return locale.atof(val)
+        except ValueError:
+            point = locale.localeconv()['decimal_point']
+            sep = locale.localeconv()['thousands_sep']
+            try:
+                if point == ',':
+                    return locale.atof(val.replace(' ', sep).replace('.', sep))
+                elif point == '.':
+                    return locale.atof(val.replace(' ', sep).replace(',', sep))
+                else:
+                    return None
+            except ValueError:
+                return None
+
 #-------------------------------------------------------------------------
 #
 # Translations Classes
