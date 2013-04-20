@@ -814,6 +814,9 @@ class GrampsLocale(object):
         """
         if not self.localedir:
             return None
+        #Note that this isn't a typo for self.language; self.languages
+        #is cached so we don't have to query the file system every
+        #time this function is called.
         if not hasattr(self, 'languages'):
             self.languages = self.get_available_translations()
 
