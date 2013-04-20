@@ -915,6 +915,23 @@ class GrampsLocale(object):
         """
         return GrampsType.xml_str(name)
 
+    def format(self, format, val, grouping=False, monetary=False):
+        """
+        Format a number in the current numeric locale. See python's
+        locale.format for details.  ICU's formatting codes are
+        incompatible with locale's, so just use locale.format for now.
+        """
+        return locale.format(format, val, grouping, monetary)
+
+    def format_string(self, format, val, grouping=False):
+        """
+        Format a string in the current numeric locale. See python's
+        locale.format_string for details.  ICU's message formatting codes are
+        incompatible with locale's, so just use locale.format_string
+        for now.
+        """
+        return locale.format_string(format, val, grouping)
+
 #-------------------------------------------------------------------------
 #
 # Translations Classes

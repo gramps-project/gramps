@@ -32,9 +32,6 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-import locale
 import math
 
 #------------------------------------------------------------------------
@@ -42,6 +39,8 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import PersonOption
@@ -116,7 +115,7 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent = '(%s%%)' % locale.format('%3.2f', 
+                percent = '(%s%%)' % glocale.format('%3.2f', 
                     ((sum(thisgen.values()) / theoretical ) * 100))
                 
                 # TC # English return something like:
