@@ -40,7 +40,6 @@ if sys.version_info[0] < 3:
 import os
 import signal
 
-import locale
 import logging
 
 LOG = logging.getLogger(".")
@@ -60,11 +59,12 @@ from .gen.constfunc import win
 #
 # Setup logging
 #
-# Ideally, this needs to be done before any Gramps modules are imported, so that
-# any code that is executed as the modules are imported can log errors or
-# warnings. Errors and warnings are particularly applicable to TransUtils and
-# setting up internationalisation in this module. const and constfunc have to be
-# imported before this code is executed because they are used in this code.
+# Ideally, this needs to be done before any Gramps modules are
+# imported, so that any code that is executed as the modules are
+# imported can log errors or warnings.  const and constfunc have to be
+# imported before this code is executed because they are used in this
+# code. That unfortunately initializes GrampsLocale, so it has its own
+# logging setup during initialization.
 #-------------------------------------------------------------------------
 """Setup basic logging support."""
 
@@ -401,36 +401,13 @@ def run():
 
     # Calls to LOG must be after setup_logging() and ArgParser() 
     LOG = logging.getLogger(".locale")
-    if hasattr(locale, 'LC_CTYPE'):
-        LOG.debug('Using locale: LC_CTYPE %s %s' %
-                         locale.getlocale(locale.LC_CTYPE))
-    else:
-        LOG.debug('locale: LC_CTYPE is not defined')
-    if hasattr(locale, 'LC_COLLATE'):
-        LOG.debug('Using locale: LC_COLLATE %s %s' %
-                         locale.getlocale(locale.LC_COLLATE))
-    else:
-        LOG.debug('locale: LC_COLLATE is not defined')
-    if hasattr(locale, 'LC_TIME'):
-        LOG.debug('Using locale: LC_TIME %s %s' %
-                         locale.getlocale(locale.LC_TIME))
-    else:
-        LOG.debug('locale: LC_TIME is not defined')
-    if hasattr(locale, 'LC_MONETARY'):
-        LOG.debug('Using locale: LC_MONETARY %s %s' %
-                         locale.getlocale(locale.LC_MONETARY))
-    else:
-        LOG.debug('locale: LC_MONETARY is not defined')
-    if hasattr(locale, 'LC_MESSAGES'):
-        LOG.debug('Using locale: LC_MESSAGES %s %s' %
-                         locale.getlocale(locale.LC_MESSAGES))
-    else:
-        LOG.debug('locale: LC_MESSAGES is not defined')
-    if hasattr(locale, 'LC_NUMERIC'):
-        LOG.debug('Using locale: LC_NUMERIC %s %s' %
-                         locale.getlocale(locale.LC_NUMERIC))
-    else:
-        LOG.debug('locale: LC_NUMERIC is not defined')
+    LOG.debug("Encoding: %s", glocale.encoding)
+    LOG.debug("Translating Gramps to %s", glocale.language[0])
+    LOG.debug("Collation Locale: %s", glocale.collation)
+    LOG.debug("Date/Time Locale: %s", glocale.calendar)
+    LOG.debug("Currency Locale: %s", glocale.currency)
+    LOG.debug("Number-format Locale: %s", glocale.numeric)
+
     if 'LANG' in os.environ:
         LOG.debug('Using LANG: %s' %
                          os.environ.get('LANG'))
