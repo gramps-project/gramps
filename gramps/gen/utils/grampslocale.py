@@ -281,14 +281,13 @@ class GrampsLocale(object):
         _failure = False
         try:
             locale.setlocale(locale.LC_ALL, '')
-            if not _check_locale(locale.getlocale(locale.LC_MESSAGES)):
-                if not _check_locale(locale.getlocale()):
-                    if not _check_locale(locale.getdefaultlocale()):
-                        LOG.debug("Usable locale not found, localization settings ignored.");
-                        self.lang = 'C'
-                        self.encoding = 'ascii'
-                        self.language = ['en']
-                        _failure = True
+            if not _check_locale(locale.getlocale()):
+                if not _check_locale(locale.getdefaultlocale()):
+                    LOG.debug("Usable locale not found, localization settings ignored.");
+                    self.lang = 'C'
+                    self.encoding = 'ascii'
+                    self.language = ['en']
+                    _failure = True
 
         except locale.Error as err:
             LOG.debug("Locale error %s, localization settings ignored.",
@@ -297,6 +296,15 @@ class GrampsLocale(object):
             self.encoding = 'ascii'
             self.language = ['en']
             _failure = True
+
+        #LC_MESSAGES
+        (loc, enc) = locale.getlocale(locale.LC_MESSAGES)
+        if loc:
+            language = self.check_available_translations(loc)
+            if language:
+                self.language = [language]
+            else:
+                LOG.debug("No translation for LC_MESSAGES locale %s", loc)
 
         # $LANGUAGE overrides $LANG, $LC_MESSAGES
         if "LANGUAGE" in os.environ:
@@ -307,8 +315,6 @@ class GrampsLocale(object):
                 self.language = language
                 if not self.lang.startswith(self.language[0]):
                     LOG.debug("Overiding locale setting %s with LANGUAGE setting %s", self.lang, self.language[0])
-                    self.lang = locale.normalize(self.language[0])
-                    self.encoding = self.lang.split('.')[1]
             elif _failure:
                 LOG.warning("No valid locale settings found, using US English")
 
@@ -317,7 +323,7 @@ class GrampsLocale(object):
             self.collation = locale.getlocale(locale.LC_COLLATE)[0] or self.lang[:5]
         else:
             loc = locale.getlocale(locale.LC_TIME)
-            if loc and loc[0]:
+            if loc and self.check_available_translations(loc[0]):
                 self.calendar = '.'.join(loc)
             else:
                 self.calendar = self.lang
@@ -430,7 +436,7 @@ class GrampsLocale(object):
             if len(check_lang) < 2  or check_lang[1] not in ("utf-8", "UTF-8"):
                 lang = '.'.join((check_lang[0], 'UTF-8'))
 
-        os.environ["LANG"] = self.lang
+        os.environ["LANG"] = lang
         os.environ["LANGUAGE"] = ':'.join(['C' if l in ('en', 'en_US') else l
                                            for l in self.language])
 
