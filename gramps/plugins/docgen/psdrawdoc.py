@@ -40,16 +40,14 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
-from gramps.gen.plug.utils import gformat
 from gramps.gen.errors import ReportError
 from gramps.gen.constfunc import cuni
 
 def lrgb(grp):
-    grp = ReportUtils.rgb_color(grp)
-    return (gformat(grp[0]), gformat(grp[1]), gformat(grp[2]))
+    return ['%.3f' % x for x in ReportUtils.rgb_color(grp)]
 
 def coords(grp):
-    return (gformat(grp[0]), gformat(grp[1]))
+    return ['%.3f' % x for x in grp]
 
 #-------------------------------------------------------------------------
 #
@@ -160,8 +158,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             "%d %d\n" % (self.page, self.page)
             )
         if self.paper.get_orientation() != PAPER_PORTRAIT:
-            self.file.write('90 rotate %s cm %s cm translate\n' % (
-                gformat(0),gformat(-1*self.paper.get_size().get_height())))
+            self.file.write('90 rotate %.3f cm %.3f cm translate\n' %
+                            (0, -1*self.paper.get_size().get_height()))
 
     def end_page(self):
         self.file.write(
@@ -196,10 +194,10 @@ class PSDrawDoc(BaseDoc, DrawDoc):
 
         self.file.write(
             'gsave\n'
-            '%s %s %s setrgbcolor\n' % lrgb(stype.get_color()) +
+            '%.3f %.3f %.3f setrgbcolor\n' % stype.get_color() +
             fdef +
             '(%s) dup stringwidth pop -2 div ' % text +
-            '%s cm add %s cm moveto ' % coords(self.translate(x, y)) +
+            '%.3f cm add %.3f cm moveto ' % self.translate(x, y) +
             'show\n'
             'grestore\n'
             )
@@ -218,7 +216,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
 
         self.file.write(
             'gsave\n'
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1)) +
+            '%.3f cm %.3f cm moveto\n' % self.translate(x1, y1) +
             fdef +
             '(%s) show grestore\n' % text
             )
@@ -239,14 +237,12 @@ class PSDrawDoc(BaseDoc, DrawDoc):
 
         (new_text, fdef) = self.encode_text(p, text[0])
 
-        coords = self.translate(x, y)
         self.file.write(
             'gsave\n' +
             fdef +
-            '%s cm %s cm translate\n' % (
-                gformat(coords[0]), gformat(coords[1])) +
-            '%s rotate\n' % gformat(-angle) +
-            '%s %s %s setrgbcolor\n' % lrgb(stype.get_color())
+            '%.3f cm %.3f cm translate\n' % self.translate(x, y) +
+            '%.3f rotate\n' % -angle +
+            '%.3f %.3f %.3f setrgbcolor\n' % stype.get_color()
             )
 
         y = ((size * len(text)) / 2.0) - size
@@ -255,7 +251,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             self.file.write(
                 '(%s) dup stringwidth pop -2 div  '
                     % self.encode(line) +
-                "%s moveto show\n" % gformat(y)
+                "%.3f moveto show\n" % y
                 )
             y -= size
  
@@ -267,7 +263,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         self.file.write(
             'gsave\n'
             'newpath\n'
-            '%s setlinewidth\n' % gformat(stype.get_line_width())
+            '%.3f setlinewidth\n' % stype.get_line_width()
             )
         if stype.get_line_style() == SOLID:
             self.file.write('[] 0 setdash\n')
@@ -281,21 +277,21 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         x1 = point[0] + self.paper.get_left_margin()
         y1 = point[1] + self.paper.get_top_margin()
         self.file.write(
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1))
+            '%.3f cm %.3f cm moveto\n' % self.translate(x1, y1)
             )
 
         for point in path[1:]:
             x1 = point[0] + self.paper.get_left_margin()
             y1 = point[1] + self.paper.get_top_margin()
             self.file.write(
-                '%s cm %s cm lineto\n' % coords(self.translate(x1, y1))
+                '%.3f cm %.3f cm lineto\n' % self.translate(x1, y1)
                 )
         self.file.write('closepath\n')
 
         color = stype.get_fill_color()
         self.file.write(
-            'gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(color) +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()) +
+            'gsave %.3f %.3f %.3f setrgbcolor fill grestore\n' % color +
+            '%.3f %.3f %.3f setrgbcolor stroke\n' % stype.get_color() +
             'grestore\n'
             )
 
@@ -308,9 +304,9 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         stype = style_sheet.get_draw_style(style)
         self.file.write(
             'gsave newpath\n'
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1)) +
-            '%s cm %s cm lineto\n' % coords(self.translate(x2, y2)) +
-            '%s setlinewidth\n' % gformat(stype.get_line_width())
+            '%.3f cm %.3f cm moveto\n' % self.translate(x1, y1) +
+            '%.3f cm %.3f cm lineto\n' % self.translate(x2, y2) +
+            '%.3f setlinewidth\n' % stype.get_line_width()
             )
         if stype.get_line_style() == SOLID:
             self.file.write('[] 0 setdash\n')
@@ -322,7 +318,7 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             
         self.file.write(
             '2 setlinecap\n' +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()) +
+            '%.3f %.3f %.3f setrgbcolor stroke\n' % stype.get_color() +
             'grestore\n'
             )
 
@@ -340,41 +336,41 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         if box_style.get_shadow():
             self.file.write(
                 'newpath\n'
-                '%s cm %s cm moveto\n'
-                    % coords(self.translate(x+shadsize, y+shadsize)) +
-                '0 -%s cm rlineto\n' % gformat(h) +
-                '%s cm 0 rlineto\n' % gformat(w) +
-                '0 %s cm rlineto\n' % gformat(h) +
+                '%.3f cm %.3f cm moveto\n'
+                    % self.translate(x+shadsize, y+shadsize) +
+                '0 -%.3f cm rlineto\n' % h +
+                '%.3f cm 0 rlineto\n' % w +
+                '0 %.3f cm rlineto\n' % h +
                 'closepath\n'
                 '.5 setgray\n'
                 'fill\n'
                 )
         self.file.write(
             'newpath\n' 
-            '%s cm %s cm moveto\n' % coords(self.translate(x, y)) +
-            '0 -%s cm rlineto\n' % gformat(h) +
-            '%s cm 0 rlineto\n' % gformat(w) +
-            '0 %s cm rlineto\n' % gformat(h) +
+            '%.3f cm %.3f cm moveto\n' % self.translate(x, y) +
+            '0 -%.3f cm rlineto\n' % h +
+            '%.3f cm 0 rlineto\n' % w +
+            '0 %.3f cm rlineto\n' % h +
             'closepath\n'
             )
         
         fill_color = box_style.get_fill_color()
         color = box_style.get_color()
         self.file.write(
-            'gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color) +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(color)
+            'gsave %.3f %.3f %.3f setrgbcolor fill grestore\n' % fill_color +
+            '%.3f %.3f %.3f setrgbcolor stroke\n' % color
             )
 
         self.file.write('newpath\n')
         if box_style.get_line_width():
             self.file.write(
-                '%s cm %s cm moveto\n' % coords(self.translate(x, y)) +
-                '0 -%s cm rlineto\n' % gformat(h) +
-                '%s cm 0 rlineto\n' % gformat(w) +
-                '0 %s cm rlineto\n' % gformat(h) +
+                '%.3f cm %.3f cm moveto\n' % self.translate(x, y) +
+                '0 -%.3f cm rlineto\n' % h +
+                '%.3f cm 0 rlineto\n' % w +
+                '0 %.3f cm rlineto\n' % h +
                 'closepath\n' +
-                '%s setlinewidth\n' % gformat(box_style.get_line_width()) +
-                '%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color())
+                '%.3f setlinewidth\n' % box_style.get_line_width() +
+                '%.3f %.3f %.3f setrgbcolor stroke\n' % box_style.get_color()
                 )
         if text:
             para_name = box_style.get_paragraph_style()
@@ -392,8 +388,8 @@ class PSDrawDoc(BaseDoc, DrawDoc):
             for i, line in enumerate(lines):
                 ypos = ystart + (i * fs)
                 self.file.write(
-                    '%s cm %s cm moveto\n'
-                        % coords(self.translate(x+mar, ypos)) +
+                    '%.3f cm %.3f cm moveto\n'
+                        % self.translate(x+mar, ypos) +
                     "(%s) show\n" % lines[i]
                     )
         self.file.write('grestore\n')

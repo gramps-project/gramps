@@ -29,7 +29,6 @@ General utility functions useful for the generic plugin system
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import locale
 import sys
 import os
 if sys.version_info[0] < 3:
@@ -54,33 +53,6 @@ _ = glocale.translation.gettext
 # Local utility functions for gen.plug
 #
 #-------------------------------------------------------------------------
-def gfloat(val):
-    """Convert to floating number, taking care of possible locale differences.
-    
-    Useful for reading float values from text entry fields 
-    while under non-English locale.
-    """
-
-    try:
-        return float(val)
-    except:
-        try:
-            return float(val.replace('.', ', '))
-        except:
-            return float(val.replace(', ', '.'))
-    return 0.0
-
-def gformat(val):
-    """Performs ('%.3f' % val) formatting with the resulting string always 
-    using dot ('.') as a decimal point.
-    
-    Useful for writing float values into XML when under non-English locale.
-    """
-
-    decimal_point = locale.localeconv()['decimal_point']
-    return_val = "%.3f" % val
-    return return_val.replace(decimal_point, '.')
-
 def version_str_to_tup(sversion, positions):
     """
     Given a string version and positions count, returns a tuple of

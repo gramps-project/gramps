@@ -26,15 +26,14 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..utils import gfloat
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from ..docgen import PaperSize
 from ...const import PAPERSIZE
 
@@ -74,8 +73,8 @@ class PageSizeParser(handler.ContentHandler):
     def startElement(self, tag, attrs):
         if tag == "page":
             name = attrs['name']
-            height = gfloat(attrs['height'])
-            width = gfloat(attrs['width'])
+            height = glocale.float(attrs['height'])
+            width = glocale.float(attrs['width'])
             self.paper_list.append(PaperSize(name, height, width))
 
 #-------------------------------------------------------------------------
