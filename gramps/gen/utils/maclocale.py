@@ -70,8 +70,17 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 "C".
 
 """
+# $Id$
+
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
 
 import sys, os, subprocess
+import logging
+LOG = logging.getLogger("grampslocale")
 
 def mac_setup_localization(glocale):
     """
@@ -98,7 +107,8 @@ def mac_setup_localization(glocale):
             if not sys.version_info[0] < 3:
                 answer = answer.decode("utf-8")
             return answer
-        except OSError:
+        except OSError as err:
+            LOG.warning("Failed to load localization defaults from System Preferences: %s", str(err))
             return None
 
     def mac_language_list():
@@ -143,14 +153,11 @@ def mac_setup_localization(glocale):
         if len(div) > 1:
             div = div[1].split(";")
             for phrase in div:
-                try:
-                    (name, value) = phrase.split("=")
-                    if name == "calendar":
-                        calendar = value
-                    elif name == "currency":
-                        currency = value
-                except OSError:
-                    pass
+                (name, value) = phrase.split("=")
+                if name == "calendar":
+                    calendar = value
+                elif name == "currency":
+                    currency = value
 
         return (locale, calendar, currency)
 
@@ -171,41 +178,6 @@ def mac_setup_localization(glocale):
                 qualifier = parts[1]
         return (collation, qualifier)
 
-    def mac_resolve_locale(loc):
-        """
-        Locale.setlocale() will throw if any LC_* environment variable
-        isn't a fully qualified one present in
-        /usr/share/locale. mac_resolve_locale ensures that a locale
-        meets that requirement.
-        """
-        if len(loc) < 2:
-            return None
-        if len(loc) >= 5 and os.path.exists(os.path.join(locale_dir, loc[:5])):
-            return loc[:5]
-        if len(loc) > 2:
-            loc = loc[:2]
-    # First see if it matches lang
-        if (lang and lang.startswith(loc)
-            and os.path.exists(os.path.join(locale_dir, lang[:5]))):
-            return lang[:5]
-        else:
-    # OK, no, look through the translation list, but that's not likely
-    # to be 5 letters long either
-            for _la in translations:
-                if (_la.startswith(loc) and len(_la) >= 5
-                    and os.path.exists(os.path.join(locale_dir, _la[:5]))):
-                    return _la[:5]
-
-            else:
-    # so as a last resort, pick the first one for that language.
-                locale_list = subprocess.Popen(
-                    [find, locale_dir, "-name", loc + "_[A-Z][A-Z]"],
-                    stderr = open("/dev/null"),
-                    stdout = subprocess.PIPE).communicate()[0].strip("()\n").split(",\n")
-                if len(locale_list) > 0:
-                    return os.path.basename(locale_list[0])
-                else:
-                    return None
 
 # The action starts here
 
@@ -215,45 +187,42 @@ def mac_setup_localization(glocale):
     else:
         (collation, coll_qualifier) = mac_get_collation()
 
-    if not (hasattr(glocale, 'lang') and glocale.lang):
+    if not glocale.lang:
+        lang = None
         if "LANG" in os.environ:
-            lang = os.environ["LANG"]
-        else:
-            lang = "en_US"
-            loc = mac_resolve_locale(loc)
-            if loc != None:
-                lang = loc
-            if not lang and collation != None:
-                lang = mac_resolve_locale(collation)
+            lang = glocale.check_available_translations(os.environ["LANG"])
+
+        if not lang:
+            lang = glocale.check_available_translations(loc)
+        if not lang and collation != None:
+            lang = glocale.check_available_translations(collation)
+
+        if not lang:
+            LOG.warning("No locale settings matching available translations found, using US English")
+            lang = 'C'
 
         glocale.lang = lang
 
     if not glocale.language:
-        language = ['en_US']
+        language = None
         if "LANGUAGE" in os.environ:
             language =  [x for x in [glocale.check_available_translations(l)
                                      for l in os.environ["LANGUAGE"].split(":")]
                          if x]
-        elif ("LANG" in os.environ
-              and not os.environ['LANG'].startswith("en_US")):
+        if (not language and "LANG" in os.environ
+            and not os.environ['LANG'].startswith("en_US")):
             lang = glocale.check_available_translations(os.environ['LANG'])
             if lang:
                 language = [lang]
 
-        else:
+        if not language:
             translations = mac_language_list()
             if len(translations) > 0:
                 language = translations
-            elif (len(loc) > 0 and loc in available
-                  and not loc.startswith("en")):
-                lang = glocale.check_available_translations(loc)
-                if lang:
-                    language = [lang]
-            elif (collation and len(collation) > 0 and collation in available
-                  and not collation.startswith("en")):
-                lang = glocale.check_available_translations(collation)
-                if lang:
-                    language = [lang]
+
+
+        if not language:
+            language = [glocale.lang[:5]]
 
         glocale.language = language
 
