@@ -1090,7 +1090,14 @@ class PluginRegister(object):
             fd.close()
             if os.path.exists(os.path.join(os.path.dirname(full_filename),
                                            'locale')):
-                local_gettext = glocale.get_addon_translator(full_filename).gettext
+                try:
+                    local_gettext = glocale.get_addon_translator(full_filename).gettext
+                except ValueError:
+                    print(_('WARNING: Plugin %(plugin_name)s has no translation'
+                            ' for any of your configured languages, using US'
+                            ' English instead') %
+                          {'plugin_name' : filename.split('.')[0] })
+                    local_gettext = glocale.translation.gettext
             else:
                 local_gettext = glocale.translation.gettext
             try:

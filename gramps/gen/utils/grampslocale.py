@@ -535,8 +535,15 @@ class GrampsLocale(object):
                 LOG.warning("Unable to create collator: %s", str(err))
                 self.collator = None
 
-        self.translation = self._get_translation(self.localedomain,
-                                                 self.localedir, self.language)
+        try:
+            self.translation = self._get_translation(self.localedomain,
+                                                     self.localedir,
+                                                     self.language)
+        except ValueError:
+            LOG.warning("Unable to find translation for languages in %s, using US English", ':'.join(self.language))
+            self.translation = GrampsNullTranslations()
+            self.translation._language = "en"
+
         # This is a no-op for secondaries but needs the translation
         # set, so it needs to be here.
         self._set_dictionaries()
@@ -578,7 +585,8 @@ class GrampsLocale(object):
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            LOG.warning("No usable languages found in %s for %s, using US English", ':'.join(languages), os.path.abspath(localedir))
+            raise ValueError("No usable translations in %s" %
+                             ':'.join(languages))
         translator = GrampsNullTranslations()
         translator._language = "en"
         return translator
