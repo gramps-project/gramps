@@ -308,23 +308,23 @@ class GrampsLocale(object):
             else:
                 self.calendar = self.lang
 
-            loc = locale.getlocale(locale.LC_COLLATE)
-            if loc and loc[0]:
-                self.collation = '.'.join(loc)
-            else:
-                self.collation = self.lang
+        loc = locale.getlocale(locale.LC_COLLATE)
+        if loc and loc[0]:
+            self.collation = '.'.join(loc)
+        else:
+            self.collation = self.lang
 
-            loc = locale.getlocale(locale.LC_NUMERIC)
-            if loc and loc[0]:
-                self.numeric = '.'.join(loc)
-            else:
-                self.numeric = self.lang
+        loc = locale.getlocale(locale.LC_NUMERIC)
+        if loc and loc[0]:
+            self.numeric = '.'.join(loc)
+        else:
+            self.numeric = self.lang
 
-            loc = locale.getlocale(locale.LC_MONETARY)
-            if loc and loc[0]:
-                self.currency = '.'.join(loc)
-            else:
-                self.currency = self.lang
+        loc = locale.getlocale(locale.LC_MONETARY)
+        if loc and loc[0]:
+            self.currency = '.'.join(loc)
+        else:
+            self.currency = self.lang
 
     def _win_bindtextdomain(self, localedomain, localedir):
         """
