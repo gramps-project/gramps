@@ -96,6 +96,10 @@
     ${prefix}/lib/graphviz/*.dylib
   </binary>
 
+  <binary>
+    ${prefix}/lib/libgexiv2.dylib
+  </binary>
+
 <!-- Translation filenames, one for each program or library that you
        want to copy in to the bundle. The "dest" attribute is
        optional, as usual. Bundler will find all translations of that
@@ -131,16 +135,20 @@
 
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->
-   <data>
+  <data>
     ${prefix}/share/glib-2.0/schemas
   </data>
 
- <data recurse="True">
+  <data recurse="True">
     ${prefix}/lib/python2.7/*.py
   </data>
 
   <data>
     ${prefix}/lib/python2.7/config/
+  </data>
+
+  <data>
+    ${prefix}/lib/python2.7/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
@@ -151,7 +159,7 @@
     ${prefix}/lib/girepository-1.0/
   </data>
 
-  <!--data>
+ <!--data>
     ${prefix}/share/webkit-1.0/
   </data-->
 
@@ -168,17 +176,21 @@
   </data>
 
   <data>
-    ${prefix}/lib/python2.7/site-packages/gramps/data/
+    ${prefix}/share/gramps/
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python2.7/site-packages/gramps/images/*.png
+    ${prefix}/share/gramps/images/*.png
+  </data>
+
+  <data>
+    ${prefix}/share/gramps/images/splash.jpg
   </data>
 
   <data>
     ${prefix}/share/mime-info/
   </data>
-
+<!-- Note that you must run `dot -c` to create this file -->
   <data>
     ${prefix}/lib/graphviz/config6
   </data>
