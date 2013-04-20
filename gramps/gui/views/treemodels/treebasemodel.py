@@ -35,10 +35,7 @@ This module provides the model that is used for all hierarchical treeviews.
 #
 #-------------------------------------------------------------------------
 import time
-import locale
 import sys
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -57,6 +54,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 import gramps.gui.widgets.progressdialog as progressdlg
 from gramps.gen.constfunc import cuni, UNITYPE
 from .lru import LRU

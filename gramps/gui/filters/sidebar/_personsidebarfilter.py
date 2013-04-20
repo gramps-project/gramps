@@ -26,9 +26,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +39,8 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ... import widgets
 from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer

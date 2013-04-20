@@ -30,12 +30,9 @@ Geography for one person
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import os
 import sys
 import operator
-import locale
 from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
 import socket
@@ -56,6 +53,8 @@ _LOG = logging.getLogger("GeoGraphy.geoperson")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer

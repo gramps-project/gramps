@@ -32,7 +32,6 @@ Utility functions to cast types
 #
 #-------------------------------------------------------------------------
 import os
-import locale
 import sys
 import logging
 LOG = logging.getLogger(".")
