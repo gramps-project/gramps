@@ -180,49 +180,49 @@ class GrampsLocale(object):
         localizations.
         """
 
-        if not (hasattr(self, 'lang') and self.lang):
-            self.lang = None
-            if 'LANG' in os.environ:
-                (lang, loc) = _check_mswin_locale(os.environ['LANG'])
-                if loc:
-                    locale.setlocale(locale.LC_ALL, '.'.join(loc))
+        if 'LANG' in os.environ:
+            (lang, loc) = _check_mswin_locale(os.environ['LANG'])
+            if loc:
+                locale.setlocale(locale.LC_ALL, '.'.join(loc))
+                self.lang = lang
+                self.encoding = loc[1]
+            else:
+                LOG.debug("%%LANG%% value %s not usable", os.environ['LANG'])
+        if not self.lang:
+            locale.setlocale(locale.LC_ALL, '')
+            (lang, encoding) = locale.getlocale()
+            loc = _check_mswin_locale_reverse(lang)
+            if loc:
+                self.lang = loc[0]
+                self.encoding = loc[1]
+            else:
+                (lang, loc) = _check_mswin_locale(lang)
+                if lang:
                     self.lang = lang
-                    self.language = [self.lang]
-                    self.encoding = loc[1]
-
-            if not self.lang:
-                locale.setlocale(locale.LC_ALL, '')
-                (lang, encoding) = locale.getlocale()
-                loc = _check_mswin_locale_reverse(lang)
-                if loc:
-                    self.lang = loc[0]
-                    self.languages = [loc[0]]
                     self.encoding = loc[1]
                 else:
-                    (lang, loc) = _check_mswin_locale(lang)
-                    if lang:
-                        self.lang = lang
-                        self.language = [self.lang]
-                        self.encoding = loc[1]
+                    LOG.debug("No usable locale found in environment")
 
-            if not self.lang:
-                self.lang = 'C'
-                self.language = ['en']
-                self.encoding = 'cp1252'
+        if not self.lang:
+            self.lang = 'C'
+            self.encoding = 'cp1252'
 
-        if not (hasattr(self, 'language') and self.language):
-            if 'LC_MESSAGES' in os.environ:
-                lang = self.check_available_translations(os.environ['LC_MESSAGES'])
-                if lang:
-                    self.language = [lang]
-            if 'LANGUAGE' in os.environ:
-                language = [x for x in [self.check_available_translations(l)
-                                        for l in os.environ["LANGUAGE"].split(":")]
-                            if x]
-
+        if 'LC_MESSAGES' in os.environ:
+            lang = self.check_available_translations(os.environ['LC_MESSAGES'])
+            if lang:
+                self.language = [lang]
+            else:
+                LOG.debug("No translation for %%LC_MESSAGES%% locale")
+        if 'LANGUAGE' in os.environ:
+            language = [x for x in [self.check_available_translations(l)
+                                    for l in os.environ["LANGUAGE"].split(":")]
+                        if x]
+            if language:
                 self.language = language
-        if not (hasattr(self, 'language') and self.language):
-            self.language = [self.lang]
+            else:
+                LOG.debug("No languages with translations found in %%LANGUAGES%%")
+        if not self.language:
+            self.language = [self.lang[:5]]
 
         if 'LC_COLLATE' in os.environ:
             coll = os.environ['LC_COLLATE']
