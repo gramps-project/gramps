@@ -31,7 +31,6 @@ Table Object class for Gramps.
 #-------------------------------------------------------------------------
 from __future__ import unicode_literals
 import time
-import locale
 
 #-------------------------------------------------------------------------
 #
@@ -46,11 +45,8 @@ from ..constfunc import cuni
 # Localized constants
 #
 #-------------------------------------------------------------------------
-try:
-    CODESET = locale.nl_langinfo(locale.CODESET)
-except:
-    CODESET = locale.getpreferredencoding()
-
+from ..const import GRAMPS_LOCALE as glocale
+CODESET = glocale.encoding
 #-------------------------------------------------------------------------
 #
 # Table Object class
