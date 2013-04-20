@@ -130,6 +130,10 @@ def mac_setup_localization(glocale):
         locale = ""
         calendar = ""
         currency = ""
+#Note that numeric separators are encoded in AppleICUNumberSymbols,
+#with [0] being the decimal separator and [1] the thousands
+#separator. This obviously won't translate into a locale without
+#searching the locales database for a match.
         default_locale = _mac_get_gramps_defaults("AppleLocale")
         if not default_locale:
             return (locale, calendar, currency)
@@ -280,5 +284,10 @@ def mac_setup_localization(glocale):
         glocale.collation = os.environ["LC_COLLATION"]
     else:
         glocale.collation = glocale.lang[:5]
+
+    if "LC_NUMERIC" in os.environ:
+        glocale.numeric = os.environ["LC_NUMERIC"]
+    else:
+        glocale.numeric = glocale.lang[:5]
 
 

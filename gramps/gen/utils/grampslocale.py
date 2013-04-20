@@ -251,6 +251,16 @@ class GrampsLocale(object):
         else:
             self.calendar = self.lang
 
+        if 'LC_NUMERIC' in os.environ:
+            self.numeric = os.environ['LC_NUMERIC']
+        else:
+            self.numeric = self.lang
+
+        if 'LC_MONETARY' in os.environ:
+            self.currency = os.environ['LC_MONETARY']
+        else:
+            self.currency = self.lang
+
     def _init_from_environment(self):
 
         def _check_locale(locale):
@@ -304,6 +314,18 @@ class GrampsLocale(object):
             else:
                 self.collation = self.lang
 
+            loc = locale.getlocale(locale.LC_NUMERIC)
+            if loc and loc[0]:
+                self.numeric = '.'.join(loc)
+            else:
+                self.numeric = self.lang
+
+            loc = locale.getlocale(locale.LC_MONETARY)
+            if loc and loc[0]:
+                self.currency = '.'.join(loc)
+            else:
+                self.currency = self.lang
+
     def _win_bindtextdomain(self, localedomain, localedir):
         """
         Help routine for loading and setting up libintl attributes
@@ -343,7 +365,7 @@ class GrampsLocale(object):
             else:
                 self._init_from_environment()
         else:
-            self.currency = self.calendar = self.collation = self.lang
+            self.numeric = self.currency = self.calendar = self.collation = self.lang
 
         if not self.lang:
             self.lang = 'en_US.UTF-8'
