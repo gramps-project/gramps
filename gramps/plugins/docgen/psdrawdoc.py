@@ -123,6 +123,13 @@ class PSDrawDoc(BaseDoc, DrawDoc):
         self.file.write(
             '%%EndComments\n'
             '/cm { 28.34 mul } def\n'
+            '%% Copied from http://en.wikibooks.org/wiki/PostScript_FAQ#How_to_concatenate_strings.3F, where it\'s attributed to Ghostscript, which might be why it worked originally\n'
+            '/concatstrings % (a) (b) -> (ab)\n'
+            '   { exch dup length\n'
+            '     2 index length add string\n'
+            '     dup dup 4 2 roll copy length\n'
+            '     4 -1 roll putinterval\n'
+            '   } bind def\n'
             '% build iso-latin-1 version of a font\n'
             '/font-to-iso-latin-1 { % <font> font-to-iso-latin-1 <font>\n'
             '%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n'
