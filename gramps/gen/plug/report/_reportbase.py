@@ -65,8 +65,8 @@ class Report(object):
             language = None
         locale = GrampsLocale(lang=language)
         self._ = locale.translation.gettext
-        self.__get_date = locale.get_date
-        self.__get_type = locale.get_type
+        self._get_date = locale.get_date
+        self._get_type = locale.get_type
         return locale
 
     def write_report(self):

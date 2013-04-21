@@ -326,7 +326,7 @@ class DetAncestorReport(Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
-                atype = self.__get_type(alt_name.get_type())
+                atype = self._get_type(alt_name.get_type())
                 self.doc.write_text_citation(
                     self._('%(name_kind)s: %(name)s%(endnotes)s') % {
                                 'name_kind' : self._(atype),
@@ -366,7 +366,7 @@ class DetAncestorReport(Report):
                 self.doc.write_text(self._('Address: '))
 
                 if self.fulldate:
-                    date = self.__get_date(addr.get_date_object())
+                    date = self._get_date(addr.get_date_object())
                 else:
                     date = addr.get_date_object().get_year()
 
@@ -387,7 +387,7 @@ class DetAncestorReport(Report):
 
             for attr in attrs:
                 self.doc.start_paragraph('DAR-MoreDetails')
-                attrName = self.__get_type(attr.get_type())
+                attrName = self._get_type(attr.get_type())
                 text = self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : self._(attrName),
                     'value'    : attr.get_value(),
@@ -402,7 +402,7 @@ class DetAncestorReport(Report):
         event = self.database.get_event_from_handle(event_ref.ref)
 
         if self.fulldate:
-            date = self.__get_date(event.get_date_object())
+            date = self._get_date(event.get_date_object())
         else:
             date = event.get_date_object().get_year()
 
@@ -413,7 +413,7 @@ class DetAncestorReport(Report):
             place = ''
 
         self.doc.start_paragraph('DAR-MoreDetails')
-        evtName = self.__get_type(event.get_type())
+        evtName = self._get_type(event.get_type())
         if date and place:
             text +=  self._('%(date)s, %(place)s') % { 
                        'date' : date, 'place' : place }
@@ -445,7 +445,7 @@ class DetAncestorReport(Report):
             for attr in attr_list:
                 if text:
                     text += "; "
-                attrName = self.__get_type(attr.get_type())
+                attrName = self._get_type(attr.get_type())
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : self._(attrName),
                     'value'    : attr.get_value(),
