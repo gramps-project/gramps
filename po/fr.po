@@ -7196,7 +7196,7 @@ msgstr "Bordure masculin vivant"
 # trunk
 #: ../gramps/gui/configure.py:535
 msgid "Gender Male Death"
-msgstr "Décès masculin"
+msgstr "Masculin décédé"
 
 # trunk
 #: ../gramps/gui/configure.py:537
