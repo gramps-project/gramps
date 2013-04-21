@@ -946,6 +946,7 @@ class GrampsLocale(object):
         :returns: The name as text in the proper language.
         :rtype: unicode
         """
+        from gramps.gen.lib.grampstype import GrampsType
         return GrampsType.xml_str(name)
 
     def format(self, format, val, grouping=False, monetary=False):
