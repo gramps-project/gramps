@@ -428,7 +428,7 @@ msgstr ""
 "\n"
 "Met dit proces slaat u een kopie van uw gegevens op in een van de vele "
 "formaten die door Gramps worden ondersteund. U kunt dus een kopie van uw "
-"gegevens maken, een backup maken, of uw gegevens omzetten naar een formaat "
+"gegevens maken, een reservekopie maken, of uw gegevens omzetten naar een formaat "
 "zodat het in andere programma's kan worden gebruikt.\n"
 "\n"
 "Indien u tijdens dit proces op uw beslissing wilt terugkomen kunt u altijd "
@@ -2412,7 +2412,7 @@ msgstr "Importeren van gegevens..."
 
 #: ../src/cli/clidbman.py:396
 msgid "Could not rename family tree"
-msgstr "Kon de familiestamboom niet herbenoemen"
+msgstr "Kon de familiestamboom niet hernoemen"
 
 #: ../src/cli/clidbman.py:431
 #, python-format
@@ -2663,7 +2663,7 @@ msgstr ""
 "gaat. Zie: \n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/nl\n"
 "\n"
-"Wanneer u een backup hebt gemaakt, kunt u Gramps laten proberen de stamboom "
+"Wanneer u een reservekopie hebt gemaakt, kunt u Gramps laten proberen de stamboom "
 "te openen en bij te werken."
 
 #: ../src/gen/db/exceptions.py:150
@@ -3888,7 +3888,7 @@ msgstr "Verzameling"
 
 #: ../src/gen/lib/repotype.py:69
 msgid "Safe"
-msgstr "Veilig"
+msgstr "Kluis"
 
 #: ../src/gen/lib/srcmediatype.py:64
 msgid "Audio"
@@ -5211,7 +5211,7 @@ msgstr "BSDDB-gegevensbestand moet opgewaardeerd worden!"
 
 #: ../src/gui/dbloader.py:321
 msgid "I have made a backup, please upgrade my tree"
-msgstr "Ik heb een backup gemaakt, werk de stamboom bij"
+msgstr "Ik heb een reservekopie gemaakt, werk de stamboom bij"
 
 #: ../src/gui/dbloader.py:383
 msgid "All files"
@@ -5270,7 +5270,7 @@ msgstr "Open slot"
 
 #: ../src/gui/dbman.py:453
 msgid "Rename failed"
-msgstr "Herbenoemen is mislukt"
+msgstr "Hernoemen is mislukt"
 
 #: ../src/gui/dbman.py:454
 #, python-format
@@ -5279,13 +5279,13 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Een poging om een versie te herbenoemen mislukte met de volgende boodschap:\n"
+"Een poging om een versie te hernoemen mislukte met de volgende boodschap:\n"
 "\n"
 "%s"
 
 #: ../src/gui/dbman.py:468
 msgid "Could not rename the Family Tree."
-msgstr "Kon de familiestamboom niet herbenoemen."
+msgstr "Kon de familiestamboom niet hernoemen."
 
 #: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
@@ -5390,11 +5390,11 @@ msgstr ""
 "automatisch hersteld.\n"
 "\n"
 "<b>Details:</b> herstellen van een familiestamboom gebruikt de laatste "
-"''backup'' die Gramps opsloeg bij het laatste gebruik. Indien u gedurende "
+"''reservekopie'' die Gramps opsloeg bij het laatste gebruik. Indien u gedurende "
 "uren/dagen gegevens ingevoerd hebt zonder Gramps te sluiten is al deze "
 "informatie dus verloren! Indien het herstel mislukt, dan is de "
 "oorsproonkelijke familiestamboom voor goed verloren. Daarom is dus een "
-"''backup'' nodig. Indien nu het herstel mislukt of er teveel informatie "
+"''reservekopie'' nodig. Indien nu het herstel mislukt of er teveel informatie "
 "verloren is, kunt u de oorspronkelijke manueel familiestamboom herstellen. "
 "Voor meer informatie zie de webpagina\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/"
@@ -6466,7 +6466,7 @@ msgstr "Reservekopie aanmaken..."
 
 #: ../src/gui/viewmanager.py:782
 msgid "Make a Gramps XML backup of the database"
-msgstr "Een 'Gramps XML' reservekopie van het gegevensbestand aanmaken"
+msgstr "Een 'Gramps XML'-reservekopie van het gegevensbestand aanmaken"
 
 # annuleren hier beter dan negeren/verlaten
 #: ../src/gui/viewmanager.py:784
@@ -6615,7 +6615,7 @@ msgstr "Alleen lezen"
 
 #: ../src/gui/viewmanager.py:1483
 msgid "Gramps XML Backup"
-msgstr "Gramps XML reservekopie"
+msgstr "Gramps XML-reservekopie"
 
 # pad
 #: ../src/gui/viewmanager.py:1493
@@ -9420,7 +9420,7 @@ msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
 msgstr ""
-"Dubbelklikken op het beeld om dit te bekijken met het standaard "
+"Dubbelklik op het beeld om dit te bekijken met het standaard "
 "beeldprogramma."
 
 #: ../src/gui/widgets/progressdialog.py:292
@@ -10087,7 +10087,7 @@ msgstr "Records"
 
 #: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
-msgstr "Dubbelklikken op de achternaam voor meer gegevens"
+msgstr "Dubbelklik op de achternaam voor meer gegevens"
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:398
@@ -12138,7 +12138,7 @@ msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"Dubbelklikken op de rij om een snelverslag dat alle personen met een "
+"Dubbelklik op de rij om een snelverslag dat alle personen met een "
 "geselecteerd kenmerk laat zien."
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:49
@@ -12633,11 +12633,11 @@ msgstr "Dubbelklik op een dag voor meer details"
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:176
 msgid "Double-click on a row to edit the selected child."
-msgstr "Dubbelklikken op de rij om het geselecteerde kind aan te passen."
+msgstr "Dubbelklik op de rij om het geselecteerde kind aan te passen."
 
 #: ../src/plugins/gramplet/Citations.py:63
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Dubbelklikken op een rij om de geselecteerde bron/citaat te bewerken."
+msgstr "Dubbelklik op een rij om de geselecteerde bron/citaat te bewerken."
 
 #: ../src/plugins/gramplet/Citations.py:67
 msgid "Source/Citation"
@@ -13030,7 +13030,7 @@ msgstr ""
 #: ../src/plugins/gramplet/Events.py:45
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
-msgstr "Dubbelklikken op de rij om de geselecteerde gebeurtenis te bewerken."
+msgstr "Dubbelklik op de rij om de geselecteerde gebeurtenis te bewerken."
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:556
 msgid ""
@@ -13458,7 +13458,7 @@ msgstr "Generatie 1"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:261
 msgid "Double-click to see people in generation"
-msgstr "Dubbelklikken om de personen in de generatie te zien"
+msgstr "Dubbelklik om de personen in de generatie te zien"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:263
 #, python-format
@@ -13477,7 +13477,7 @@ msgstr "Generatie %d"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:267
 #, python-format
 msgid "Double-click to see people in generation %d"
-msgstr "Dubbelklikken om de personen in generatie %d te zien"
+msgstr "Dubbelklik om de personen in generatie %d te zien"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:270
 #, python-format
@@ -13500,7 +13500,7 @@ msgstr "Alle generaties"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:274
 msgid "Double-click to see all generations"
-msgstr "Dubbelklikken om alle generaties te zien"
+msgstr "Dubbelklik om alle generaties te zien"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:276
 #, python-format
@@ -13605,7 +13605,7 @@ msgid ""
 "Double-click name to edit"
 msgstr ""
 "Klik op de naam om active naam te veranderen\n"
-"Dubbelklikken om de naam te bewerken"
+"Dubbelklik om de naam te bewerken"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:43
 msgid "Log for this Session"
@@ -13634,7 +13634,7 @@ msgstr "Geselecteerd"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:55
 msgid "Double-click item to see matches"
-msgstr "Dubbelklikken element om overkomsten te zien"
+msgstr "Dubbelklik element om overkomsten te zien"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:94
 #: ../src/plugins/textreport/Summary.py:220
@@ -13729,7 +13729,7 @@ msgstr "Ontbrekende media-objecten"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:62
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:47
 msgid "Double-click surname for details"
-msgstr "Dubbelklikken op de achternaam voor meer details"
+msgstr "Dubbelklik op de achternaam voor meer details"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:82
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:178
@@ -22763,7 +22763,7 @@ msgstr ""
 "\n"
 "Dit hulpmiddel laat u enkel toe om de gegevens in het Gramps-gegevensbestand "
 "zelf te wijzigen. Wanneer u de andere bestanden wenst te verplaatsen of te "
-"herbenoemen dient u dit zelf te doen en buiten het Gramps-programma. "
+"hernoemen dient u dit zelf te doen en buiten het Gramps-programma. "
 "Vervolgens kunt u met dit hulpmiddel de paden aanpassen zodat de media-"
 "objecten de juiste bestandslocaties bevatten."
 
@@ -29239,7 +29239,7 @@ msgstr "Laad familiestamboom"
 
 #: ../src/glade/dbman.glade.h:8
 msgid "_Rename"
-msgstr "Herbenoem"
+msgstr "Hernoem"
 
 #: ../src/glade/editcitation.glade.h:1
 msgid "<b>Citation information</b>"
@@ -30663,7 +30663,7 @@ msgstr "_Oorspronkelijk gebeurtenistype:"
 #: ../src/plugins/tool/desbrowser.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr ""
-"<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
+"<i>Dubbelklik op de rij om de persoonlijke informatie te bewerken</i>"
 
 #: ../src/plugins/tool/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -30819,7 +30819,7 @@ msgstr "SoundEx-code:"
 #: ../src/plugins/tool/removeunused.glade.h:1
 #: ../src/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b>Dubbelklikken op de rij om de informatie te bekijken/bewerken</b>"
+msgstr "<b>Dubbelklik op de rij om de informatie te bekijken/bewerken</b>"
 
 #: ../src/plugins/tool/removeunused.glade.h:2
 #: ../src/plugins/tool/verify.glade.h:6
@@ -31476,7 +31476,7 @@ msgid ""
 "your sources."
 msgstr ""
 "<b>Bronnen beheren</b><br/>Het bronnenscherm geeft een lijst van alle "
-"bronnen. Dubbelklikken op de bron om aan te passen, nota's toe te voegen en "
+"bronnen. Dubbelklik op de bron om aan te passen, nota's toe te voegen en "
 "te zien naar welke personen de bron refereert. U kunt filters gebruiken om "
 "bronnen te groeperen."
 
