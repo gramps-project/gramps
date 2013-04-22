@@ -112,14 +112,14 @@ class AncestorReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        title_name = self._name_display.display_formal(self.center_person)
-        title_format = menu.get_option_by_name('title_format').get_value()
-        self.title = title_format % title_name
-
         lang = menu.get_option_by_name('trans').get_value()
         locale = self.set_locale(lang)
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    locale=locale)
+
+        title_name = self._name_display.display_formal(self.center_person)
+        title_format = menu.get_option_by_name('title_format').get_value()
+        self.title = self._(title_format) % title_name
 
     def apply_filter(self, person_handle, index, generation=1):
         """
