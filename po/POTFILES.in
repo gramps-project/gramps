@@ -573,7 +573,7 @@ gramps/plugins/lib/libpersonview.py
 gramps/plugins/lib/libplaceview.py
 gramps/plugins/lib/libplugins.gpr.py
 gramps/plugins/lib/librecords.py
-gramps/plugins/lib/libtranslate.py
+#gramps/plugins/lib/libtranslate.py
 gramps/plugins/lib/libtreebase.py
 gramps/plugins/lib/maps/geography.py
 gramps/plugins/lib/maps/osmgps.py
