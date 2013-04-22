@@ -25,6 +25,15 @@
 
 #------------------------------------------------------------------------
 #
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+
+#------------------------------------------------------------------------
+#
 # Register Gramplet
 #
 #------------------------------------------------------------------------
@@ -258,14 +267,14 @@ register(GRAMPLET,
 
 register(GRAMPLET, 
          id="To Do", 
-         name=_("To Do"), 
+         name=_("gramplet|To Do"), 
          description = _("Gramplet for displaying a To Do list"),
          status = STABLE,
          fname="todogramplet.py",
          height=300,
          expand=True,
          gramplet = 'ToDoGramplet',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          version="1.0.0",
          gramps_target_version="4.0",
          )
@@ -1073,7 +1082,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'PersonToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Person"],
          )
 
@@ -1087,7 +1096,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'EventToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Event"],
          )
 
@@ -1101,7 +1110,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'FamilyToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Family"],
          )
 
@@ -1115,7 +1124,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'PlaceToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Place"],
          )
 
@@ -1129,7 +1138,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'SourceToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Source"],
          )
 
@@ -1143,7 +1152,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'CitationToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Citation"],
          )
 
@@ -1157,7 +1166,7 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'RepositoryToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Repository"],
          )
 
@@ -1171,6 +1180,6 @@ register(GRAMPLET,
          fname="todo.py",
          height=200,
          gramplet = 'MediaToDo',
-         gramplet_title=_("To Do"),
+         gramplet_title=_("gramplet|To Do"),
          navtypes=["Media"],
          )

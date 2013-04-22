@@ -26,11 +26,11 @@ Note types.
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -86,7 +86,7 @@ class NoteType(GrampsType):
         (CITATION,    _('Citation'),    "Citation"),
         (REPORT_TEXT, _("Report"),      "Report"),
         (HTML_CODE,   _("Html code"),   "Html code"),
-        (TODO,        _("To Do"),       "To Do"),
+        (TODO,        _("notetype|To Do"),       "To Do"),
         ]
         
     _DATAMAPIGNORE = [
