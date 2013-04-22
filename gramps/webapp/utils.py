@@ -155,7 +155,7 @@ def probably_alive(handle):
     return alive(person, db)
 
 def format_number(number, with_grouping=True):
-      if number != "":
+    if number != "":
         return glocale.format("%d", number, with_grouping)
     else:
         return glocale.format("%d", 0, with_grouping)
