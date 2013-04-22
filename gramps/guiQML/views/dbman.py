@@ -23,14 +23,6 @@
 """
 The main view
 """
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-OPENGL = True
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -68,6 +60,13 @@ from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import cuni, UNITYPE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+OPENGL = True
 
 #-------------------------------------------------------------------------
 #
