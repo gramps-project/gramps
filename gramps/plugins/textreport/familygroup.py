@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +38,8 @@ from functools import partial
 # GRAMPS 
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
 from gramps.gen.plug.menu import (BooleanOption, FamilyOption)
 from gramps.gen.plug.report import Report
@@ -47,9 +50,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, FONT_SERIF, 
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.datehandler import get_date
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------
@@ -109,12 +109,14 @@ class FamilyGroup(Report):
         self.incChiMar     = get_value('incChiMar')
         self.includeAttrs  = get_value('incattrs')
 
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
     def dump_parent_event(self, name,event):
         place = ""
         date = ""
         descr = ""
         if event:
-            date = get_date(event)
+            date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             place = ReportUtils.place_name(self.database,place_handle)
             descr = event.get_description()
@@ -123,10 +125,11 @@ class FamilyGroup(Report):
                 for attr in event.get_attribute_list():
                     if descr:
                         descr += "; "
-                    descr += _("%(type)s: %(value)s") % {
-                        'type'     : attr.get_type(),
-                        'value'    : attr.get_value()
-                        }            
+                    attr_type = self._get_type(attr.get_type())
+                    descr += "%(type)s: %(value)s" % {
+                                    'type'  : self._(attr_type),
+                                    'value' : attr.get_value()
+                                    }            
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -178,12 +181,12 @@ class FamilyGroup(Report):
                     birth = "  "
                     if birth_ref:
                         event = self.database.get_event_from_handle(birth_ref.ref)
-                        birth = get_date( event )
+                        birth = self._get_date(event.get_date_object())
                     death_ref = father.get_death_ref()
                     death = "  "
                     if death_ref:
                         event = self.database.get_event_from_handle(death_ref.ref)
-                        death = get_date( event )
+                        death = self._get_date(event.get_date_object())
                     if birth_ref or death_ref:
                         father_name = "%s (%s - %s)" % (father_name,birth,death)
             mother_handle = family.get_mother_handle() 
@@ -195,12 +198,12 @@ class FamilyGroup(Report):
                     birth = "  "
                     if birth_ref:
                         event = self.database.get_event_from_handle(birth_ref.ref)
-                        birth = get_date( event )
+                        birth = self._get_date(event.get_date_object())
                     death_ref = mother.get_death_ref()
                     death = "  "
                     if death_ref:
                         event = self.database.get_event_from_handle(death_ref.ref)
-                        death = get_date( event )
+                        death = self._get_date(event.get_date_object())
                     if birth_ref or death_ref:
                         mother_name = "%s (%s - %s)" % (mother_name,birth,death)
         
@@ -208,7 +211,7 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell("FGR-TextContents")
             self.doc.start_paragraph('FGR-Normal')
-            self.doc.write_text(_("Father"))
+            self.doc.write_text(self._("Father"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd",2)
@@ -219,13 +222,13 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.end_row()
         elif self.missingInfo:
-            self.dump_parent_line(_("Father"), "")
+            self.dump_parent_line(self._("Father"), "")
 
         if mother_name != "":
             self.doc.start_row()
             self.doc.start_cell("FGR-TextContents")
             self.doc.start_paragraph('FGR-Normal')
-            self.doc.write_text(_("Mother"))
+            self.doc.write_text(self._("Mother"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd",2)
@@ -236,7 +239,7 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.end_row()
         elif self.missingInfo:
-            self.dump_parent_line(_("Mother"), "")
+            self.dump_parent_line(self._("Mother"), "")
 
     def dump_parent_line(self, name, text):
         self.doc.start_row()
@@ -291,7 +294,7 @@ class FamilyGroup(Report):
 
         birth_ref = person.get_birth_ref()
         birth = None
-        evtName = str(EventType())
+        evtName = self._("Birth")
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
         if birth or self.missingInfo:
@@ -299,7 +302,7 @@ class FamilyGroup(Report):
 
         death_ref = person.get_death_ref()
         death = None
-        evtName = str(EventType(EventType.DEATH))
+        evtName = self._("Death")
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
         if death or self.missingInfo:
@@ -311,20 +314,19 @@ class FamilyGroup(Report):
             for event_ref in person.get_primary_event_ref_list():
                 if event_ref != birth_ref and event_ref != death_ref:
                     event = self.database.get_event_from_handle(event_ref.ref)
-                    evtType = event.get_type()
-                    name = str( evtType )
-                    self.dump_parent_event(name,event)
+                    event_type = self._get_type(event.get_type())
+                    self.dump_parent_event(self._(event_type),event)
 
         if self.incParAddr:
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
                 location = ReportUtils.get_address_str(addr)
-                date = get_date( addr )
+                date = self._get_date(addr.get_date_object())
                 
                 self.doc.start_row()
                 self.doc.start_cell("FGR-TextContents")
                 self.doc.start_paragraph('FGR-Normal')
-                self.doc.write_text(_("Address"))
+                self.doc.write_text(self._("Address"))
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("FGR-TextContents")
@@ -342,17 +344,18 @@ class FamilyGroup(Report):
         if self.incParNotes:
             for notehandle in person.get_note_list():
                 note = self.database.get_note_from_handle(notehandle)
-                self.dump_parent_noteline(_("Note"), note)
+                self.dump_parent_noteline(self._("Note"), note)
                 
         if self.includeAttrs:
             for attr in person.get_attribute_list():
-                self.dump_parent_line(str(attr.get_type()),attr.get_value())
+                attr_type = self._get_type(attr.get_type())
+                self.dump_parent_line(self._(attr_type),attr.get_value())
 
         if self.incParNames:
             for alt_name in person.get_alternate_names():
-                name_type = str( alt_name.get_type() )
+                name_type = self._get_type(alt_name.get_type())
                 name = self._name_display.display_name(alt_name)
-                self.dump_parent_line(name_type, name)
+                self.dump_parent_line(self._(name_type), name)
 
         self.doc.end_table()
 
@@ -377,18 +380,19 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
             self.doc.start_paragraph('FGR-ParentName')
-            self.doc.write_text(_("Marriage:"))
+            self.doc.write_text(self._("Marriage:"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
 
-            self.dump_parent_event(_("Marriage"),m)
+            self.dump_parent_event(self._("Marriage"),m)
             
             for event_ref in family_list:
                 if event_ref:
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event.get_type() != EventType.MARRIAGE:
-                        self.dump_parent_event(str(event.get_type()),event)
+                        event_type = self._get_type(event.get_type())
+                        self.dump_parent_event(self._(event_type),event)
             
             self.doc.end_table()
 
@@ -396,7 +400,7 @@ class FamilyGroup(Report):
         date = ""
         place = ""
         if event:
-            date = get_date(event)
+            date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(place_handle).get_title()
@@ -458,11 +462,11 @@ class FamilyGroup(Report):
         self.doc.start_paragraph('FGR-ChildText')
         index_str = ("%d" % index)
         if person.get_gender() == Person.MALE:
-            self.doc.write_text(index_str + _("acronym for male|M"))
+            self.doc.write_text(index_str + self._("acronym for male|M"))
         elif person.get_gender() == Person.FEMALE:
-            self.doc.write_text(index_str + _("acronym for female|F"))
+            self.doc.write_text(index_str + self._("acronym for female|F"))
         else:
-            self.doc.write_text(_("acronym for unknown|%dU") % index)
+            self.doc.write_text(self._("acronym for unknown|%dU") % index)
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -477,15 +481,15 @@ class FamilyGroup(Report):
 
         if self.missingInfo or birth is not None:
             if spouse_count != 0 or self.missingInfo or death is not None:
-                self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
+                self.dump_child_event('FGR-TextChild1',self._('Birth'),birth)
             else:
-                self.dump_child_event('FGR-TextChild2',_('Birth'),birth)
+                self.dump_child_event('FGR-TextChild2',self._('Birth'),birth)
                 
         if self.missingInfo or death is not None:
             if spouse_count == 0 or not self.incChiMar:
-                self.dump_child_event('FGR-TextChild2',_('Death'),death)
+                self.dump_child_event('FGR-TextChild2',self._('Death'),death)
             else:
-                self.dump_child_event('FGR-TextChild1',_('Death'),death)
+                self.dump_child_event('FGR-TextChild1',self._('Death'),death)
 
         if self.incChiMar:
             index = 0
@@ -519,7 +523,7 @@ class FamilyGroup(Report):
                     self.doc.end_cell()
                     self.doc.start_cell('FGR-TextContents')
                     self.doc.start_paragraph('FGR-Normal')
-                    self.doc.write_text(_("Spouse"))
+                    self.doc.write_text(self._("Spouse"))
                     self.doc.end_paragraph()
                     self.doc.end_cell()
                     self.doc.start_cell('FGR-TextContentsEnd',2)
@@ -532,12 +536,12 @@ class FamilyGroup(Report):
                         birth_ref = spouse.get_birth_ref()
                         if birth_ref:
                             event = self.database.get_event_from_handle(birth_ref.ref)
-                            birth = get_date(event)
+                            birth = self._get_date(event.get_date_object())
                         death = "  "
                         death_ref = spouse.get_death_ref()
                         if death_ref:
                             event = self.database.get_event_from_handle(death_ref.ref)
-                            death = get_date(event)
+                            death = self._get_date(event.get_date_object())
                         if birth_ref or death_ref:
                             spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
                     mark = ReportUtils.get_person_mark(self.database,spouse)
@@ -547,7 +551,7 @@ class FamilyGroup(Report):
                     self.doc.end_row()
                   
                 if m:
-                    evtName = str(EventType(EventType.MARRIAGE))
+                    evtName = self._("Marriage")
                     if index == families:
                         self.dump_child_event('FGR-TextChild2',evtName,m)
                     else:
@@ -556,16 +560,16 @@ class FamilyGroup(Report):
     def dump_family(self,family_handle,generation):
         self.doc.start_paragraph('FGR-Title')
         if self.recursive and self.generations:
-            title=_("Family Group Report - Generation %d") % generation
+            title = self._("Family Group Report - Generation %d") % generation
         else:
-            title=_("Family Group Report")
+            title = self._("Family Group Report")
         mark = IndexMark(title, INDEX_TYPE_TOC,1)
         self.doc.write_text( title, mark )
         self.doc.end_paragraph()
 
         family = self.database.get_family_from_handle(family_handle)
 
-        self.dump_parent(_("Husband"),family.get_father_handle())
+        self.dump_parent(self._("Husband"),family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
         
@@ -574,7 +578,7 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent(_("Wife"),family.get_mother_handle())
+        self.dump_parent(self._("Wife"),family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:
@@ -584,7 +588,7 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',4)
             self.doc.start_paragraph('FGR-ParentName')
-            self.doc.write_text(_("Children"))
+            self.doc.write_text(self._("Children"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -607,7 +611,7 @@ class FamilyGroup(Report):
             self.dump_family(self.family_handle,1)
         else:
             self.doc.start_paragraph('FGR-Title')
-            self.doc.write_text(_("Family Group Report"))
+            self.doc.write_text(self._("Family Group Report"))
             self.doc.end_paragraph()
 
 #------------------------------------------------------------------------
@@ -642,6 +646,8 @@ class FamilyGroupOptions(MenuReportOptions):
                              "of this family."))
         add_option("recursive", recursive)
         
+        stdoptions.add_localization_option(menu, category_name)
+
         ##########################
         add_option = partial(menu.add_option, _("Include"))
         ##########################
