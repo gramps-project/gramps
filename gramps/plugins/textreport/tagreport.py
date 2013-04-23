@@ -5,6 +5,7 @@
 # Copyright (C) 2009      Gary Burton
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Nick Hall
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,21 +31,23 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.plug.menu import EnumeratedListOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                        TableStyle, TableCellStyle, FONT_SANS_SERIF, 
-                        INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+                                    TableStyle, TableCellStyle,
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.lib import NoteType
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.display.name import displayer as name_displayer
@@ -80,10 +83,12 @@ class TagReport(Report):
             raise ReportError(_('Tag Report'),
                 _('You must first create a tag before running this report.'))
        
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
     def write_report(self):
         self.doc.start_paragraph("TR-Title")
         # feature request 2356: avoid genitive form
-        title = _("Tag Report for %s Items") % self.tag
+        title = self._("Tag Report for %s Items") % self.tag
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -105,7 +110,7 @@ class TagReport(Report):
             return
         
         self.doc.start_paragraph("TR-Heading")
-        header = _("People")
+        header = self._("People")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
@@ -116,25 +121,25 @@ class TagReport(Report):
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Id"))
+        self.doc.write_text(self._("Id"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Name"))
+        self.doc.write_text(self._("Name"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Birth"))
+        self.doc.write_text(self._("Birth"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Death"))
+        self.doc.write_text(self._("Death"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -192,7 +197,7 @@ class TagReport(Report):
             return
         
         self.doc.start_paragraph("TR-Heading")
-        header = _("Families")
+        header = self._("Families")
         mark = IndexMark(header,INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
@@ -203,25 +208,25 @@ class TagReport(Report):
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Id"))
+        self.doc.write_text(self._("Id"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Father"))
+        self.doc.write_text(self._("Father"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Mother"))
+        self.doc.write_text(self._("Mother"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Relationship"))
+        self.doc.write_text(self._("Relationship"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -282,7 +287,7 @@ class TagReport(Report):
             return
         
         self.doc.start_paragraph("TR-Heading")
-        header = _("Events")
+        header = self._("Events")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
@@ -293,25 +298,25 @@ class TagReport(Report):
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Id"))
+        self.doc.write_text(self._("Id"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Date"))
+        self.doc.write_text(self._("Date"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Place"))
+        self.doc.write_text(self._("Place"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Description"))
+        self.doc.write_text(self._("Description"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -368,7 +373,7 @@ class TagReport(Report):
             return
         
         self.doc.start_paragraph("TR-Heading")
-        header = _("Notes")
+        header = self._("Notes")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header ,mark)
         self.doc.end_paragraph()
@@ -379,19 +384,19 @@ class TagReport(Report):
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Id"))
+        self.doc.write_text(self._("Id"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Type"))
+        self.doc.write_text(self._("Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell', 2)
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Text"))
+        self.doc.write_text(self._("Text"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -438,7 +443,7 @@ class TagReport(Report):
             return
         
         self.doc.start_paragraph("TR-Heading")
-        header = _("Media")
+        header = self._("Media")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header ,mark)
         self.doc.end_paragraph()
@@ -449,25 +454,25 @@ class TagReport(Report):
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Id"))
+        self.doc.write_text(self._("Id"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Title"))
+        self.doc.write_text(self._("Title"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Type"))
+        self.doc.write_text(self._("Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(_("Date"))
+        self.doc.write_text(self._("Date"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -542,6 +547,8 @@ class TagOptions(MenuReportOptions):
 
         tag_option.set_help( _("The tag to use for the report"))
         menu.add_option(category_name, "tag", tag_option)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Tag Report."""
