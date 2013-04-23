@@ -4,6 +4,7 @@
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Heinz Brinker
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,21 +30,23 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.plug.menu import FilterOption, PlaceListOption, EnumeratedListOption, \
-                          BooleanOption
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.plug.menu import (FilterOption, PlaceListOption,
+                                  EnumeratedListOption, BooleanOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
-                            TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
-                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                                    TableStyle, TableCellStyle,
+                                    FONT_SANS_SERIF, FONT_SERIF, 
+                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.datehandler import get_date
 from gramps.gen.sort import Sort
@@ -80,11 +83,12 @@ class PlaceReport(Report):
         self.center  = menu.get_option_by_name('center').get_value()
         self.incpriv = menu.get_option_by_name('incpriv').get_value()
 
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
         if self.incpriv:
             self.database = database
         else:
             self.database = PrivateProxyDb(database)
-
 
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -102,14 +106,14 @@ class PlaceReport(Report):
 
     def write_report(self):
         """
-        The routine the actually creates the report. At this point, the document
-        is opened and ready for writing.
+        The routine that actually creates the report.
+        At this point, the document is opened and ready for writing.
         """
 
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
-        title = _("Place Report")
+        title = self._("Place Report")
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("PLC-ReportTitle")
         self.doc.write_text(title, mark)
@@ -147,14 +151,14 @@ class PlaceReport(Report):
         place = self.database.get_place_from_handle(handle)
         location = place.get_main_location()
 
-        place_details = [_("Gramps ID: %s ") % place.get_gramps_id(),
-                         _("Street: %s ") % location.get_street(),
-                         _("Parish: %s ") % location.get_parish(),
-                         _("Locality: %s ") % location.get_locality(),
-                         _("City: %s ") % location.get_city(),
-                         _("County: %s ") % location.get_county(),
-                         _("State: %s") % location.get_state(),
-                         _("Country: %s ") % location.get_country()]
+        place_details = [self._("Gramps ID: %s ") % place.get_gramps_id(),
+                         self._("Street: %s ") % location.get_street(),
+                         self._("Parish: %s ") % location.get_parish(),
+                         self._("Locality: %s ") % location.get_locality(),
+                         self._("City: %s ") % location.get_city(),
+                         self._("County: %s ") % location.get_county(),
+                         self._("State: %s") % location.get_state(),
+                         self._("Country: %s ") % location.get_country()]
         self.doc.start_paragraph("PLC-PlaceTitle")
         self.doc.write_text(("%(nbr)s. %(place)s") % 
                                 {'nbr' : place_nbr,
@@ -176,12 +180,12 @@ class PlaceReport(Report):
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
-            title = _("Events that happened at this place")
+            title = self._("Events that happened at this place")
             self.doc.write_text(title)
             self.doc.end_paragraph()
             self.doc.start_table("EventTable", "PLC-EventTable")
-            column_titles = [_("Date"), _("Type of Event"),
-                             _("Person"), _("Description")]
+            column_titles = [self._("Date"), self._("Type of Event"),
+                             self._("Person"), self._("Description")]
             self.doc.start_row()
             for title in column_titles:
                 self.doc.start_cell("PLC-TableColumn")
@@ -223,8 +227,10 @@ class PlaceReport(Report):
                                      % {'name': _nd.display(person),
                                         'id': person.get_gramps_id()}
                         else:
-                            people = _("%(persons)s and %(name)s (%(id)s)") \
-                                     % {'persons': people, 'name': _nd.display(person),
+                            people = self._("%(persons)s and %(name)s "
+                                            "(%(id)s)") \
+                                     % {'persons': people,
+                                        'name': _nd.display(person),
                                         'id': person.get_gramps_id()}
 
                 event_details = [date, event_type, people, descr]
@@ -249,12 +255,12 @@ class PlaceReport(Report):
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
-            title = _("People associated with this place")
+            title = self._("People associated with this place")
             self.doc.write_text(title)
             self.doc.end_paragraph()
             self.doc.start_table("EventTable", "PLC-PersonTable")
-            column_titles = [_("Person"), _("Type of Event"), \
-                             _("Description"), _("Date")]
+            column_titles = [self._("Person"), self._("Type of Event"), \
+                             self._("Description"), self._("Date")]
             self.doc.start_row()
             for title in column_titles:
                 self.doc.start_cell("PLC-TableColumn")
@@ -285,11 +291,12 @@ class PlaceReport(Report):
                     if f_handle and m_handle:
                         father = self.database.get_person_from_handle(f_handle)
                         mother = self.database.get_person_from_handle(m_handle)
-                        nameEntry = "%s (%s) and %s (%s)" % \
-                                    (_nd.display(father),
-                                     father.get_gramps_id(),
-                                     _nd.display(mother),
-                                     mother.get_gramps_id())
+                        nameEntry = self._("%(father)s (%(father_id)s) and "
+                                           "%(mother)s (%(mother_id)s)") % \
+                                        { 'father' : _nd.display(father),
+                                          'father_id' : father.get_gramps_id(),
+                                          'mother' : _nd.display(mother),
+                                          'mother_id' : mother.get_gramps_id()}
                     else:
                         if f_handle:
                             p_handle = f_handle
@@ -392,6 +399,8 @@ class PlaceOptions(MenuReportOptions):
         incpriv = BooleanOption(_("Include private data"), True)
         incpriv.set_help(_("Whether to include private data"))
         menu.add_option(category_name, "incpriv", incpriv)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """
