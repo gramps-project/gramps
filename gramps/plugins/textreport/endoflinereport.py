@@ -1,8 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,14 +30,14 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -85,6 +86,8 @@ class EndOfLineReport(Report):
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
+
+        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         # eol_map is a map whose:
         #   keys are the generations of the people
@@ -143,21 +146,22 @@ class EndOfLineReport(Report):
 
     def write_report(self):
         """
-        The routine the actually creates the report. At this point, the document
-        is opened and ready for writing.
+        The routine that actually creates the report.
+        At this point, the document is opened and ready for writing.
         """
         pname = self._name_display.display(self.center_person)
         
         self.doc.start_paragraph("EOL-Title")
         # feature request 2356: avoid genitive form
-        title = _("End of Line Report for %s") % pname
+        title = self._("End of Line Report for %s") % pname
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("EOL-Subtitle")
         # feature request 2356: avoid genitive form
-        title = _("All the ancestors of %s who are missing a parent") % pname
+        title = self._("All the ancestors of %s "
+                       "who are missing a parent") % pname
         self.doc.write_text(title)
         self.doc.end_paragraph()
         
@@ -176,7 +180,7 @@ class EndOfLineReport(Report):
         self.doc.start_row()
         self.doc.start_cell('EOL_GenerationCell', 2)
         self.doc.start_paragraph('EOL-Generation')
-        self.doc.write_text( _("Generation %d") % generation )
+        self.doc.write_text(self._("Generation %d") % generation)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -193,14 +197,14 @@ class EndOfLineReport(Report):
         birth_ref = person.get_birth_ref()
         if birth_ref:
             event = self.database.get_event_from_handle(birth_ref.ref)
-            birth_date = get_date( event )
+            birth_date = self._get_date(event.get_date_object())
         
         death_date = ""
         death_ref = person.get_death_ref()
         if death_ref:
             event = self.database.get_event_from_handle(death_ref.ref)
-            death_date = get_date( event )
-        dates = _(" (%(birth_date)s - %(death_date)s)") % { 
+            death_date = self._get_date(event.get_date_object())
+        dates = self._(" (%(birth_date)s - %(death_date)s)") % { 
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }
         
@@ -258,6 +262,8 @@ class EndOfLineOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the End of Line Report."""
