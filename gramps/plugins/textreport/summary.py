@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,23 +33,24 @@ Reports/Text Reports/Database Summary Report.
 #
 #------------------------------------------------------------------------
 import posixpath
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import Person
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                    FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
-
 
 #------------------------------------------------------------------------
 #
@@ -73,12 +75,15 @@ class SummaryReport(Report):
         Report.__init__(self, database, options, user)
         self.__db = database
         
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self.set_locale(lang)
+
     def write_report(self):
         """
         Overridden function to generate the report.
         """
         self.doc.start_paragraph("SR-Title")
-        title = _("Database Summary Report")
+        title = self._("Database Summary Report")
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -101,7 +106,7 @@ class SummaryReport(Report):
         namelist = []
         
         self.doc.start_paragraph("SR-Heading")
-        self.doc.write_text(_("Individuals"))
+        self.doc.write_text(self._("Individuals"))
         self.doc.end_paragraph()
         
         num_people = 0
@@ -154,41 +159,42 @@ class SummaryReport(Report):
                     namelist.append(name.get_surname().strip())
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Number of individuals: %d") % num_people)
+        self.doc.write_text(self._("Number of individuals: %d") % num_people)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Males: %d") % males)
+        self.doc.write_text(self._("Males: %d") % males)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Females: %d") % females)
+        self.doc.write_text(self._("Females: %d") % females)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Individuals with unknown gender: %d") % unknowns)
+        self.doc.write_text(self._("Individuals with unknown gender: %d") % 
+                            unknowns)
         self.doc.end_paragraph()
                             
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Incomplete names: %d") % 
-                            incomp_names)
+        self.doc.write_text(self._("Incomplete names: %d") % incomp_names)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Individuals missing birth dates: %d") % 
+        self.doc.write_text(self._("Individuals missing birth dates: %d") % 
                             missing_bday)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Disconnected individuals: %d") % disconnected)
+        self.doc.write_text(self._("Disconnected individuals: %d") % 
+                            disconnected)
         self.doc.end_paragraph()
                             
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Unique surnames: %d") % len(namelist))
+        self.doc.write_text(self._("Unique surnames: %d") % len(namelist))
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Individuals with media objects: %d") % 
+        self.doc.write_text(self._("Individuals with media objects: %d") % 
                             with_media)
         self.doc.end_paragraph()
 
@@ -197,11 +203,12 @@ class SummaryReport(Report):
         Write a summary of all the families in the database.
         """
         self.doc.start_paragraph("SR-Heading")
-        self.doc.write_text(_("Family Information"))
+        self.doc.write_text(self._("Family Information"))
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Number of families: %d") % self.__db.get_number_of_families())
+        self.doc.write_text(self._("Number of families: %d") % 
+                            self.__db.get_number_of_families())
         self.doc.end_paragraph()
 
     def summarize_media(self):
@@ -213,7 +220,7 @@ class SummaryReport(Report):
         notfound = []
         
         self.doc.start_paragraph("SR-Heading")
-        self.doc.write_text(_("Media Objects"))
+        self.doc.write_text(self._("Media Objects"))
         self.doc.end_paragraph()
         
         total_media = len(self.__db.get_media_object_handles())
@@ -225,24 +232,25 @@ class SummaryReport(Report):
                                  media_path_full(self.__db, media.get_path()))
                 length = len(str(size_in_bytes))
                 if size_in_bytes <= 999999:
-                    mbytes = _("less than 1")
+                    mbytes = self._("less than 1")
                 else:
                     mbytes = str(size_in_bytes)[:(length-6)]
             except:
                 notfound.append(media.get_path())
                 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Number of unique media objects: %d") % 
+        self.doc.write_text(self._("Number of unique media objects: %d") % 
                             total_media)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Total size of media objects: %s MB") % mbytes)
+        self.doc.write_text(self._("Total size of media objects: %s MB") % 
+                            mbytes)
         self.doc.end_paragraph()
     
         if len(notfound) > 0:
             self.doc.start_paragraph("SR-Heading")
-            self.doc.write_text(_("Missing Media Objects"))
+            self.doc.write_text(self._("Missing Media Objects"))
             self.doc.end_paragraph()
 
             for media_path in notfound:
@@ -264,9 +272,10 @@ class SummaryOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         """
-        Add options to the menu for the marker report.
+        Add options to the menu for the summary report.
         """
-        pass
+        category_name = _("Report Options")
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Summary Report."""
