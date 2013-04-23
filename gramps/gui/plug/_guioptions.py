@@ -7,7 +7,7 @@
 # Copyright (C) 2009       Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
-# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2011-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -752,23 +752,22 @@ class GuiFamilyOption(Gtk.HBox):
         
     def __initialize_family(self, override):
         """
-        Find a family to initialize the option with. If there is no saved
-        family option, use the active family.  If there is no active
+        Find a family to initialize the option with. If there is no specified
         family, try to find a family that the user is likely interested in.
         """
         family_list = []
         
         fid = self.__option.get_value()
+        fid_family = self.__db.get_family_from_gramps_id(fid)
+        active_family = self.__uistate.get_active('Family')
 
-        # Use the active family if one is selected
-        family = self.__uistate.get_active('Family')
-        if family and not override:
-            family_list = [family]
-        else:
-            # Use the stored option value
-            family = self.__db.get_family_from_gramps_id(fid)
-            if family:
-                family_list = [family.get_handle()]
+        if override and fid_family:
+            # Use the stored option value if there is one
+            family_list = [fid_family.get_handle()]
+
+        if active_family and not family_list:
+            # Use the active family if one is selected
+            family_list = [active_family]
             
         if not family_list:
             # Next try the family of the active person
@@ -777,6 +776,10 @@ class GuiFamilyOption(Gtk.HBox):
             if person:
                 family_list = person.get_family_handle_list()
             
+        if fid_family and not family_list:
+            # Next try the stored option value if there is one
+            family_list = [fid_family.get_handle()]
+
         if not family_list:
             # Next try the family of the default person in the database.
             person = self.__db.get_default_person()
