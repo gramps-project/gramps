@@ -1,5 +1,5 @@
+# $Id$
 # List of source files which contain translatable strings.
-$Id$
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
 gramps/cli/clidbman.py
