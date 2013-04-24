@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,8 +46,8 @@ from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import PersonOption
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER,
-                            INDEX_TYPE_TOC)
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                                    INDEX_TYPE_TOC)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -88,10 +89,13 @@ class NumberOfAncestorsReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
     def write_report(self):
         """
-        The routine the actually creates the report. At this point, the document
-        is opened and ready for writing.
+        The routine that actually creates the report.
+        At this point, the document is opened and ready for writing.
         """
         thisgen = {}
         all_people = {}
@@ -101,7 +105,7 @@ class NumberOfAncestorsReport(Report):
         self.doc.start_paragraph("NOA-Title")
         name = self._name_display.display(self.__person)
         # feature request 2356: avoid genitive form
-        title = _("Number of Ancestors for %s") % name
+        title = self._("Number of Ancestors for %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -115,15 +119,20 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent = '(%s%%)' % glocale.format('%3.2f', 
+                percent = '(%s%%)' % self._locale.format('%3.2f', 
                     ((sum(thisgen.values()) / theoretical ) * 100))
                 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
-                text = glocale.translation.ngettext(
-                    "Generation %(generation)d has %(count)d individual. %(percent)s",
-                    "Generation %(generation)d has %(count)d individuals. %(percent)s",
-                    thisgensize) % {'generation': gen, 'count': thisgensize, 'percent': percent}
+                text = self._locale.translation.ngettext(
+                    "Generation %(generation)d has %(count)d individual. "
+                        "%(percent)s",
+                    "Generation %(generation)d has %(count)d individuals. "
+                        "%(percent)s",
+                    thisgensize) % {
+                        'generation': gen,
+                        'count': thisgensize,
+                        'percent': percent}
                             
                 self.doc.start_paragraph('NOA-Normal')
                 self.doc.write_text(text)
@@ -161,7 +170,7 @@ class NumberOfAncestorsReport(Report):
 
         # TC # English return something like:
         # Total ancestors in generations 2 to 3 is 4. (66.67%) 
-        text = _("Total ancestors in generations %(second_generation)d to "
+        text = self._("Total ancestors in generations %(second_generation)d to "
                  "%(last_generation)d is %(count)d. %(percent)s") % {
                  'second_generation': 2,
                  'last_generation'  : gen,
@@ -196,6 +205,8 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)    
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Number of Ancestors Report."""
