@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-23 21:04+0200\n"
+"PO-Revision-Date: 2013-04-25 00:42+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -698,7 +698,7 @@ msgstr "ERROR: si us plau, especifiqueu una família"
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "=filename"
-msgstr "=nom_de_fitxer"
+msgstr "=nom de fitxer"
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
@@ -757,7 +757,7 @@ msgstr "Marge inferior del paper"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "=css filename"
-msgstr "=nom_de_fitxer_css"
+msgstr "=nom de fitxer css"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
@@ -1064,7 +1064,7 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:441
 msgid "Upgrade Statistics"
-msgstr "Estadístiques de l'actualització "
+msgstr "Estadístiques de l'actualització"
 
 #: ../gramps/gen/db/write.py:1023
 #, python-format
@@ -14488,7 +14488,7 @@ msgid ""
 msgstr ""
 "El connector %(name)s no s'ha carregat i ha donat un error.\n"
 "\n"
-"%(errror_msg)s\n"
+"%(error_msg)s\n"
 "\n"
 "Si no podeu solucionar el problema tot sol, podeu informar de l'error a "
 "http://bugs.gramps-project.org o poseu-vos en contacte amb l'autor del "
@@ -14517,7 +14517,7 @@ msgid ""
 msgstr ""
 "La vista %(name)s no s'ha carregat i ha donat un error.\n"
 "\n"
-"%(errror_msg)s\n"
+"%(error_msg)s\n"
 "\n"
 "Si no podeu solucionar el problema tot sol, podeu informar de l'error a "
 "http://bugs.gramps-project.org o poseu-vos en contacte amb l'autor del "
@@ -19814,12 +19814,12 @@ msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Qualsevol referència de persona ha de tenir un atribut 'hlink'."
 
 #: ../gramps/plugins/importer/importxml.py:1670
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"El seu arbre genealògic ajunta el nom \"%(key)s\" amb \"%(parent)s\", no "
+"El seu Arbre Genealògic ajunta el nom \"%(key)s\" amb \"%(parent)s\", no "
 "s'ha canviat aquesta agrupació a \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
@@ -19827,9 +19827,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Gramps ha ignorat el valor del mapa de noms"
 
 #: ../gramps/plugins/importer/importxml.py:1732
-#, fuzzy
 msgid "Unknown when imported"
-msgstr "mare desconeguda"
+msgstr "Desconegut quan s'ha importat"
 
 #: ../gramps/plugins/importer/importxml.py:1886
 msgid "Any note reference must have a 'hlink' attribute."
@@ -20044,31 +20043,28 @@ msgstr "Importació GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:2667
 msgid "GEDCOM import report: No errors detected"
-msgstr ""
+msgstr "Informe d'importació de GEDCOM: No s'han detectat errors"
 
 #: ../gramps/plugins/lib/libgedcom.py:2669
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr ""
+msgstr "Informe d'importació de GEDCOM: %s errors detectats"
 
 #: ../gramps/plugins/lib/libgedcom.py:2934
 msgid "Tag recognized but not supported"
-msgstr ""
+msgstr "Etiqueta reconeguda però no suportada"
 
 #: ../gramps/plugins/lib/libgedcom.py:2945
-#, fuzzy
 msgid "Line ignored as not understood"
-msgstr "La línia %d no s'ha entès, i per tant s'ha ignorat."
+msgstr "Línia ignorada perquè no s'ha entès"
 
 #: ../gramps/plugins/lib/libgedcom.py:2970
-#, fuzzy
 msgid "Skipped subordinate line"
-msgstr "saltades %(skip)d subordinada(es) a la línia %(line)d"
+msgstr "Saltada línia subordinada"
 
 #: ../gramps/plugins/lib/libgedcom.py:3002
-#, fuzzy
 msgid "Records not imported into "
-msgstr "%s no s'ha pogut importar"
+msgstr "Registres no importats a "
 
 #: ../gramps/plugins/lib/libgedcom.py:3038
 #, python-format
@@ -20076,6 +20072,9 @@ msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
+"Error: %(msg)s  '%(gramps_id)s' (introduït com a @%(xref)s@) no és al GEDCOM "
+"d'entrada. "
+"Registre sintetitzat"
 
 #: ../gramps/plugins/lib/libgedcom.py:3047
 #, python-format
@@ -20083,6 +20082,9 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
+"Error: %(msg)s  '%(gramps_id)s' (introduït com a @%(xref)s@) no és al GEDCOM "
+"d'entrada. "
+"S'ha creat un registre amb atribut tipificador 'Desconegut'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3086
 #, python-format
@@ -20091,6 +20093,9 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
+"Error: la persona %(person)s (introduïda com a %(orig_person)s) de la família "
+"'%(family)s' (introduïda com a @%(orig_family)s@) no és un membre de la "
+"família referenciada. S'ha tret la referència de família de la persona"
 
 #: ../gramps/plugins/lib/libgedcom.py:3164
 #, python-format
@@ -20102,6 +20107,13 @@ msgid ""
 "Where possible these 'Unknown' objects are \n"
 "referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+" El fitxer importat no era autocontingut\n"
+"Per corregir-ho, s'han creat %(new)d objectes i\n"
+"el seu atribut tipificador s'ha posat a 'Desconegut'.\n"
+"On ha estat possible, aquests objectes\n"
+"'Desconeguts' s'han referenciat per la nota %(unknown)s.\n"
+" "
 
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
@@ -20122,22 +20134,19 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3298
 #: ../gramps/plugins/lib/libgedcom.py:6778
-#, fuzzy
 msgid "GEDCOM data"
-msgstr "GEDCOM"
+msgstr "Dades GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:3344
-#, fuzzy
 msgid "Unknown tag"
-msgstr "Desconegut"
+msgstr "Etiqueta desconeguda"
 
 #: ../gramps/plugins/lib/libgedcom.py:3346
 #: ../gramps/plugins/lib/libgedcom.py:3360
 #: ../gramps/plugins/lib/libgedcom.py:3364
 #: ../gramps/plugins/lib/libgedcom.py:3385
-#, fuzzy
 msgid "Top Level"
-msgstr "Superior Esquerra"
+msgstr "Nivell més Alt"
 
 #: ../gramps/plugins/lib/libgedcom.py:3457
 #, python-format
@@ -20150,9 +20159,8 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:5293
 #: ../gramps/plugins/lib/libgedcom.py:5928
 #: ../gramps/plugins/lib/libgedcom.py:6072
-#, fuzzy
 msgid "Filename omitted"
-msgstr "Nom de fitxer"
+msgstr "Nom de fitxer omès"
 
 #: ../gramps/plugins/lib/libgedcom.py:3653
 #: ../gramps/plugins/lib/libgedcom.py:4960
@@ -20161,45 +20169,44 @@ msgstr "Nom de fitxer"
 #: ../gramps/plugins/lib/libgedcom.py:5930
 #: ../gramps/plugins/lib/libgedcom.py:6074
 msgid "Form omitted"
-msgstr ""
+msgstr "Formulari omès"
 
 #: ../gramps/plugins/lib/libgedcom.py:4724
-#, fuzzy, python-format
+#, python-format
 msgid "FAM (family) Gramps ID %s"
-msgstr "Id Gramps: %s "
+msgstr "FAM (família) Id Gramps %s"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../gramps/plugins/lib/libgedcom.py:5447
-#, fuzzy
 msgid "Empty event note ignored"
-msgstr "Línia %d: la nota d'esdeveniment buida s'ha ignorat."
+msgstr "Nota d'esdeveniment buida ignorada"
 
 #: ../gramps/plugins/lib/libgedcom.py:5765
 #: ../gramps/plugins/lib/libgedcom.py:6581
 msgid "Warn: ADDR overwritten"
-msgstr ""
+msgstr "Avís: ADDR sobreescrit"
 
 #: ../gramps/plugins/lib/libgedcom.py:5942
 #: ../gramps/plugins/lib/libgedcom.py:6367
 msgid "REFN ignored"
-msgstr ""
+msgstr "REFN ignorat"
 
 #. SOURce with the given gramps_id had no title
 #: ../gramps/plugins/lib/libgedcom.py:6035
 #, python-format
 msgid "No title - ID %s"
-msgstr ""
+msgstr "Sense títol - ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6040
-#, fuzzy, python-format
+#, python-format
 msgid "SOUR (source) Gramps ID %s"
-msgstr "Reordenar IDs de Gramps"
+msgstr "SOUR (font) Id Gramps %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6293
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
-msgstr ""
+msgstr "OBJE (objecte audiovisual) Id Gramps %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6321
 #: ../gramps/plugins/lib/libgedcom.py:7274
@@ -20209,7 +20216,7 @@ msgstr "No s'ha pogut importar %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6357
 msgid "BLOB ignored"
-msgstr ""
+msgstr "BLOB ignorat"
 
 #: ../gramps/plugins/lib/libgedcom.py:6377
 msgid "Multimedia REFN:TYPE ignored"
@@ -20220,51 +20227,47 @@ msgid "Mutimedia RIN ignored"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:6474
-#, fuzzy, python-format
+#, python-format
 msgid "REPO (repository) Gramps ID %s"
-msgstr "Reordenar IDs de Gramps"
+msgstr "REPO (repositori) Id Gramps %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6706
-#, fuzzy
 msgid "Head (header)"
-msgstr "Capçalera HTML d'usuari"
+msgstr "Head (capçalera)"
 
 #: ../gramps/plugins/lib/libgedcom.py:6722
 msgid "Approved system identification"
-msgstr ""
+msgstr "Identificació de sistema aprovada"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/lib/libgedcom.py:6732
-#, fuzzy
 msgid "Generated by"
-msgstr "_Generar"
+msgstr "Generat per"
 
 #: ../gramps/plugins/lib/libgedcom.py:6746
 msgid "Name of software product"
-msgstr ""
+msgstr "Nom de producte de programari"
 
 #: ../gramps/plugins/lib/libgedcom.py:6758
 msgid "Version number of software product"
-msgstr ""
+msgstr "Número de versió del producte de programari"
 
 #: ../gramps/plugins/lib/libgedcom.py:6775
 #, python-format
 msgid "Business that produced the product: %s"
-msgstr ""
+msgstr "Empresa que ha creat el producte: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6796
-#, fuzzy
 msgid "Name of source data"
-msgstr "Format de nom"
+msgstr "Nom de les dades font"
 
 #: ../gramps/plugins/lib/libgedcom.py:6810
 msgid "Copyright of source data"
-msgstr ""
+msgstr "Copyright de dades font"
 
 #: ../gramps/plugins/lib/libgedcom.py:6824
-#, fuzzy
 msgid "Publication date of source data"
-msgstr "Informació de Publicació"
+msgstr "Data de publicació de les dades font"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/lib/libgedcom.py:6837
@@ -20274,19 +20277,20 @@ msgstr "Importar des de %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6875
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Identificador de registre d'enviament"
 
 #: ../gramps/plugins/lib/libgedcom.py:6886
 msgid "Language of GEDCOM text"
-msgstr ""
+msgstr "Llengua del text GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:6910
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
-"La importació del fitxer GEDCOM %s amb DEST=%s, podria provocar errors a la "
+"La importació del fitxer GEDCOM %(filename)s amb DEST=%(by)s, podria provocar "
+"errors a la "
 "base de dades resultant!"
 
 #: ../gramps/plugins/lib/libgedcom.py:6913
@@ -20294,86 +20298,76 @@ msgid "Look for nameless events."
 msgstr "Buscar esdeveniments sense nom."
 
 #: ../gramps/plugins/lib/libgedcom.py:6936
-#, fuzzy
 msgid "Character set"
-msgstr "Codificació de caràcters"
+msgstr "Joc de caràcters"
 
 #: ../gramps/plugins/lib/libgedcom.py:6938
-#, fuzzy
 msgid "Character set and version"
-msgstr "Codificació de caràcters"
+msgstr "Joc de caràcters i versió"
 
 #: ../gramps/plugins/lib/libgedcom.py:6954
 msgid "GEDCOM version not supported"
-msgstr ""
+msgstr "Versió de GEDCOM no suportada"
 
 #: ../gramps/plugins/lib/libgedcom.py:6957
-#, fuzzy
 msgid "GEDCOM version"
-msgstr "Opcions d'exportació de GEDCOM"
+msgstr "Versió de GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:6960
-#, fuzzy
 msgid "GEDCOM form not supported"
-msgstr "Importació GEDCOM"
+msgstr "Formulari GEDCOM no suportat"
 
 #: ../gramps/plugins/lib/libgedcom.py:6962
-#, fuzzy
 msgid "GEDCOM form"
-msgstr "Importació GEDCOM"
+msgstr "Formulari GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7008
 msgid "Creation date of GEDCOM"
-msgstr ""
+msgstr "Data de creació de GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7012
 msgid "Creation date and time of GEDCOM"
-msgstr ""
+msgstr "Data i hora de creació de GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:7049
 #: ../gramps/plugins/lib/libgedcom.py:7089
-#, fuzzy
 msgid "Empty note ignored"
-msgstr "Línia %d: s'ha ignora una nota buida."
+msgstr "S'ha ignorat una nota buida"
 
 #: ../gramps/plugins/lib/libgedcom.py:7104
-#, fuzzy, python-format
+#, python-format
 msgid "NOTE Gramps ID %s"
-msgstr "Id Gramps: %s "
+msgstr "NOTA Id Gramps: %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7154
 msgid "Submission: Submitter"
-msgstr ""
+msgstr "Enviament: Remitent"
 
 #: ../gramps/plugins/lib/libgedcom.py:7156
-#, fuzzy
 msgid "Submission: Family file"
-msgstr "Arbre genealògic dels Smith"
+msgstr "Enviament: Fitxer de família"
 
 #: ../gramps/plugins/lib/libgedcom.py:7158
 msgid "Submission: Temple code"
-msgstr ""
+msgstr "Enviament: Codi de Temple"
 
 #: ../gramps/plugins/lib/libgedcom.py:7160
-#, fuzzy
 msgid "Submission: Generations of ancestors"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Enviament: Generacions d'avantpassats"
 
 #: ../gramps/plugins/lib/libgedcom.py:7162
-#, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Enviament: Generacions de descendents"
 
 #: ../gramps/plugins/lib/libgedcom.py:7164
 msgid "Submission: Ordinance process flag"
-msgstr ""
+msgstr "Enviament: opció de procés d'Ordenança"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
 #: ../gramps/plugins/lib/libgedcom.py:7376
-#, fuzzy
 msgid "Invalid temple code"
-msgstr "Nom de fitxer no vàlid"
+msgstr "Codi de temple no vàlid"
 
 #: ../gramps/plugins/lib/libgedcom.py:7464
 msgid ""
@@ -20434,9 +20428,8 @@ msgstr "Sense nota de copyright"
 
 #: ../gramps/plugins/lib/libmetadata.py:55
 #: ../gramps/plugins/lib/libmetadata.py:91
-#, fuzzy
 msgid "Invalid format"
-msgstr "Informador"
+msgstr "Format no vàlid"
 
 #: ../gramps/plugins/lib/libmetadata.py:59
 #, python-format
@@ -20450,16 +20443,15 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:95
 msgid "Camera"
-msgstr ""
+msgstr "Càmera"
 
 #: ../gramps/plugins/lib/libmetadata.py:96
 msgid "GPS"
-msgstr ""
+msgstr "GPS"
 
 #: ../gramps/plugins/lib/libmetadata.py:97
-#, fuzzy
 msgid "Advanced"
-msgstr "Opcions Avançades"
+msgstr "Avançat"
 
 #: ../gramps/plugins/lib/libnarrate.py:86
 #, python-format
@@ -20712,13 +20704,13 @@ msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:190
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s va morir el %(death_date)s a %(death_place)s a "
-"l'edat de %(age)d dies."
+"l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:193
 #, python-format
