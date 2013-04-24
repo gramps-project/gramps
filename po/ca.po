@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-21 13:35+0200\n"
+"PO-Revision-Date: 2013-04-23 21:04+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -11680,13 +11680,12 @@ msgid "Close"
 msgstr "Tancar"
 
 #: ../gramps/gui/glade/mergecitation.glade.h:1
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Seleccionar la persona que proporcionarà\n"
-"les dades primàries per la persona combinada."
+"Seleccionar la cita que proporcionarà\n"
+"les dades primàries per la cita combinada."
 
 #: ../gramps/gui/glade/mergecitation.glade.h:3
 #: ../gramps/gui/glade/mergedata.glade.h:9
@@ -11714,11 +11713,10 @@ msgid "Gramps ID:"
 msgstr "Id Gramps:"
 
 #: ../gramps/gui/glade/mergecitation.glade.h:9
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
-"Es combinaran les notes, objectes audiovisuals, elements de dades i "
-"referències a repositori de totes dues fonts."
+"Es combinaran les notes, objectes audiovisuals i elements de dades de totes "
+"dues cites."
 
 #: ../gramps/gui/glade/mergecitation.glade.h:10
 #: ../gramps/gui/glade/mergeevent.glade.h:11
@@ -11980,14 +11978,12 @@ msgid "Size:"
 msgstr "Mida:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:4
-#, fuzzy
 msgid "_Width:"
-msgstr "Amplada:"
+msgstr "Amplada (_W):"
 
 #: ../gramps/gui/glade/papermenu.glade.h:5
-#, fuzzy
 msgid "_Height:"
-msgstr "Alçada:"
+msgstr "Alçada (_H):"
 
 #: ../gramps/gui/glade/papermenu.glade.h:6
 msgid "Orientation:"
@@ -12004,24 +12000,20 @@ msgid "Margins"
 msgstr "Marges"
 
 #: ../gramps/gui/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
-msgstr "_Esquerra"
+msgstr "Esquerre (_l):"
 
 #: ../gramps/gui/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
-msgstr "_Dreta"
+msgstr "D_ret:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
-msgstr "_Capdamunt"
+msgstr "Dal_t:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:12
-#, fuzzy
 msgid "_Bottom:"
-msgstr "_Sota"
+msgstr "_Baix:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:13
 msgid "Metric"
@@ -12053,36 +12045,32 @@ msgid "<b>Parent relationships</b>"
 msgstr "<b>Relacions de paternitat</b>"
 
 #: ../gramps/gui/glade/reorder.glade.h:2
-#, fuzzy
 msgid "Move parent up"
-msgstr "No s'han trobat progenitors"
+msgstr "Moure pare cap dalt"
 
 #: ../gramps/gui/glade/reorder.glade.h:3
 msgid "Arrow top"
-msgstr ""
+msgstr "Fletxa cap dalt"
 
 #: ../gramps/gui/glade/reorder.glade.h:4
-#, fuzzy
 msgid "Move parent down"
-msgstr "No s'han trobat progenitors"
+msgstr "Moure pare cap abaix"
 
 #: ../gramps/gui/glade/reorder.glade.h:5
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Fletxa cap avall"
 
 #: ../gramps/gui/glade/reorder.glade.h:6
 msgid "<b>Family relationships</b>"
 msgstr "<b>Relacions de família</b>"
 
 #: ../gramps/gui/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move family up"
-msgstr "Cada família"
+msgstr "Moure família cap dalt"
 
 #: ../gramps/gui/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move family down"
-msgstr "Esborrar arbre genealògic"
+msgstr "Moure família cap abaix"
 
 #: ../gramps/gui/glade/rule.glade.h:1
 msgid "Add a new filter"
@@ -12174,9 +12162,8 @@ msgid "Style n_ame:"
 msgstr "N_om d'estil:"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:2
-#, fuzzy
 msgid "Style name"
-msgstr "N_om d'estil:"
+msgstr "Nom d'estil"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:4
 msgid "<b>Type face</b>"
@@ -12300,19 +12287,16 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Opcions de paràgraf</b>"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:36
-#, fuzzy
 msgid "Add a new style"
-msgstr "Afegir nota nova"
+msgstr "Afegir un estil nou"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:38
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Editar la nota seleccionada"
+msgstr "Editar l'estil seleccionat"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:41
-#, fuzzy
 msgid "Delete the selected style"
-msgstr "Esborrar la nota seleccionada"
+msgstr "Esborrar l'estil seleccionat"
 
 #: ../gramps/gui/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -12358,9 +12342,12 @@ msgid ""
 "Your version of gi (gnome-instrospection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
+"La versió que teniu instal·lada de gi (gnome-introspection) sembla que és "
+"massa vella. Cal una versió que tingui la funció 'require_version' per "
+"engegar Gramps"
 
 #: ../gramps/gui/grampsgui.py:75
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
 "At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps "
@@ -12368,8 +12355,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"La versió de Python no compleix els requeriments. Cal almenys la versió de "
-"python %d.%d.%d per executar Gramps.\n"
+"La versió de pygobject no compleix els requeriments.\n"
+"Cal almenys la versió de pygobject %(major)d.%(feature)d.%(minor)d per "
+"executar Gramps amb interfície gràfica.\n"
 "\n"
 "Gramps s'aturarà."
 
@@ -12381,6 +12369,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Gdk, Gtk o Pango typelib no instal·lats.\n"
+"Instal·leu Gnome Introspection, i pygobject versió 3.3.2 o posterior.\n"
+"Després instal·leu  introspection data per a Gdk, Gtk and Pango\n"
+"\n"
+"Gramps s'aturarà ara."
 
 #: ../gramps/gui/grampsgui.py:101
 msgid ""
@@ -12390,6 +12383,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"\n"
+"No s'ha instal·lat el suport python de cairo. Instal·leu el cairo per a la "
+"vostra versió de python\n"
+"\n"
+"Gramps s'aturarà ara."
 
 #: ../gramps/gui/grampsgui.py:144
 msgid "Family Trees"
@@ -12443,9 +12441,8 @@ msgstr "Gràfica en Ventall"
 #: ../gramps/gui/grampsgui.py:157
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:126
 #: ../gramps/plugins/view/fanchartdescview.py:74
-#, fuzzy
 msgid "Descendant Fan Chart"
-msgstr "Informe de Descendents"
+msgstr "Diagrama en Ventall de Descendents"
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -12644,9 +12641,8 @@ msgstr "Tota la Pàgina"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:766
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
-#, fuzzy
 msgid "Citations"
-msgstr "Cita"
+msgstr "Cites"
 
 #: ../gramps/gui/grampsgui.py:202
 msgid "Export"
@@ -12704,11 +12700,19 @@ msgid ""
 "You can also change manually the startup view in the gramps.ini file \n"
 "by changing the last-view parameter.\n"
 msgstr ""
+"\n"
+"Gramps no s'ha pogut engegar. Si us plau, obrir un informe d'error sobre "
+"aquest problema.\n"
+"Pot haver estat a causa d'un error en alguna Vista (feta per tercers) en "
+"arrencar.\n"
+"Per utilitzar una altra vista, no carregueu cap Arbre Genealògic, canvieu de "
+"vista, i després carregueu el vostre Arbre Genealògic.\n"
+"També podeu canviar manualment la vista d'arrencada al fitxer gramps.ini\n"
+"modificant el paràmetre last-view.\n"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:74
-#, fuzzy
 msgid "Error Report Assistant"
-msgstr "Assistent d'Exportació"
+msgstr "Assistent d'Informe d'Errors"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:230
 msgid "Report a bug"
@@ -12784,13 +12788,13 @@ msgstr ""
 "desenvolupadors a solucionar el problema."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:412
-#, fuzzy
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured."
 msgstr ""
-"Si us plau, doni tanta informació com pugui sobre el que estava fent quan va "
-"ocórrer l'error. "
+"Si us plau, doneu tanta informació com pugueu sobre el que estàveu fent quan "
+"va "
+"ocórrer l'error."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:452
 #: ../gramps/gui/logger/_errorreportassistant.py:477
@@ -12819,7 +12823,6 @@ msgid "Bug Report Summary"
 msgstr "Resum de l'Informe d'Error"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:522
-#, fuzzy
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -12912,9 +12915,9 @@ msgid "Filter %s from Clipboard"
 msgstr "Filtrar %s del Portapapers"
 
 #: ../gramps/gui/makefilter.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "Creat el %4d/%02d/%02d"
+msgstr "Creat el %(year)4d/%(month)02d/%(day)02d"
 
 #: ../gramps/gui/merge/mergecitation.py:49
 msgid "manual|Merge_Citations"
@@ -12922,9 +12925,8 @@ msgstr ""
 
 #: ../gramps/gui/merge/mergecitation.py:71
 #: ../gramps/plugins/tool/tools.gpr.py:551
-#, fuzzy
 msgid "Merge Citations"
-msgstr "Cita"
+msgstr "Combinar Cites"
 
 #: ../gramps/gui/merge/mergeevent.py:48
 msgid "manual|Merge_Events"
@@ -13110,9 +13112,9 @@ msgid "unknown mother"
 msgstr "mare desconeguda"
 
 #: ../gramps/gui/plug/_guioptions.py:853
-#, fuzzy, python-format
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s i %(mother)s (%(id)s)"
+msgstr "%(father_name)s i %(mother_name)s (%(family_id)s)"
 
 #: ../gramps/gui/plug/_guioptions.py:1199
 #, python-format
@@ -13638,7 +13640,7 @@ msgstr "Continuar"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:320
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Nom del llibre. OBLIGATORI"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:380
 msgid "New Book"
@@ -13687,14 +13689,12 @@ msgstr ""
 "la base de dades oberta actualment."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:552
-#, fuzzy
 msgid "No selected book item"
-msgstr "Esborrar elements seleccionats?"
+msgstr "No s'ha seleccionat element de llibre"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:553
-#, fuzzy
 msgid "Please select a book item to configure."
-msgstr "Seleccioneu si us plau un filtre diferent per editar"
+msgstr "Seleccioneu si us plau un element de llibre diferent per configurar."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:616
 msgid "Setup"
@@ -13710,11 +13710,11 @@ msgstr "Menú d'Elements Disponibles"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:667
 msgid "No items"
-msgstr ""
+msgstr "Sense elements"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:667
 msgid "This book has no items."
-msgstr ""
+msgstr "Aquest llibre no té elements."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:678
 msgid "No book name"
@@ -13958,9 +13958,8 @@ msgstr ""
 "Cal seleccionar una persona activa perquè aquesta eina funcioni correctament."
 
 #: ../gramps/gui/selectors/selectcitation.py:60
-#, fuzzy
 msgid "Select Source or Citation"
-msgstr "Seleccionar Font"
+msgstr "Seleccionar Font o Cita"
 
 #: ../gramps/gui/selectors/selectevent.py:55
 msgid "Select Event"
@@ -14004,6 +14003,10 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 msgstr ""
+"GtkSpell no s'ha carregat. No hi haurà correcció ortogràfica.\n"
+"Per construir-lo per a Gramps vegeu  http://www.gramps-project.org/wiki/index."
+"php?"
+"title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 
 #: ../gramps/gui/spell.py:96
 msgid "Off"
@@ -14017,9 +14020,8 @@ msgstr "Actiu"
 #. the language does not exist
 #. and presumably if there is no dictionary
 #: ../gramps/gui/spell.py:132
-#, fuzzy
 msgid "Spelling checker could not be attached to TextView"
-msgstr "El comprovador ortogràfic no està instal·lat"
+msgstr "El corrector ortogràfic no s'ha pogut associar a TextView"
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:776
@@ -14076,7 +14078,6 @@ msgid "History cleared"
 msgstr "Historial esborrat"
 
 #: ../gramps/gui/utils.py:221
-#, fuzzy
 msgid "Canceling..."
 msgstr "Cancel·lant..."
 
@@ -14093,13 +14094,14 @@ msgid "Updated"
 msgstr "Actualitzat"
 
 #: ../gramps/gui/viewmanager.py:447
-#, fuzzy
 msgid "Checking Addons Failed"
-msgstr "Comprovant complement..."
+msgstr "Ha fallat la comprovació de Complements"
 
 #: ../gramps/gui/viewmanager.py:448
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
+"Sembla que no està disponible el repositori de complements. Si us plau, "
+"proveu-ho més tard."
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -14265,9 +14267,8 @@ msgid "_Go"
 msgstr "_Saltar"
 
 #: ../gramps/gui/viewmanager.py:791
-#, fuzzy
 msgid "Books..."
-msgstr "Llibres"
+msgstr "Llibres..."
 
 #: ../gramps/gui/viewmanager.py:792
 msgid "_Windows"
@@ -14298,9 +14299,8 @@ msgid "_Bookmarks"
 msgstr "_Punts d'Interès"
 
 #: ../gramps/gui/viewmanager.py:837
-#, fuzzy
 msgid "_Configure..."
-msgstr "_Configurar Vista..."
+msgstr "_Configurar..."
 
 #: ../gramps/gui/viewmanager.py:838
 msgid "Configure the active view"
@@ -14486,6 +14486,16 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"El connector %(name)s no s'ha carregat i ha donat un error.\n"
+"\n"
+"%(errror_msg)s\n"
+"\n"
+"Si no podeu solucionar el problema tot sol, podeu informar de l'error a "
+"http://bugs.gramps-project.org o poseu-vos en contacte amb l'autor del "
+"connector (%(firstauthoremail)s).\n"
+"\n"
+"Si no voleu que Gramps torni a provar de carregar aquest connector, podeu "
+"amagar-lo amb el Gestor de Connectors del menú d'Ajuda."
 
 #: ../gramps/gui/viewmanager.py:1941
 msgid "Failed Loading View"
@@ -14505,6 +14515,16 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
+"La vista %(name)s no s'ha carregat i ha donat un error.\n"
+"\n"
+"%(errror_msg)s\n"
+"\n"
+"Si no podeu solucionar el problema tot sol, podeu informar de l'error a "
+"http://bugs.gramps-project.org o poseu-vos en contacte amb l'autor del "
+"connector (%(firstauthoremail)s).\n"
+"\n"
+"Si no voleu que Gramps torni a provar de carregar aquesta vista, podeu "
+"amagar-la amb el Gestor de Connectors del menú d'Ajuda."
 
 #: ../gramps/gui/views/bookmarks.py:70
 msgid "manual|Bookmarks"
@@ -14659,9 +14679,8 @@ msgid "Set _Home Person"
 msgstr "Fixar Persona _Base"
 
 #: ../gramps/gui/views/navigationview.py:336
-#, fuzzy
 msgid "No Home Person"
-msgstr "Persona base no fixada."
+msgstr "Persona base no fixada"
 
 #: ../gramps/gui/views/navigationview.py:337
 msgid ""
@@ -14669,6 +14688,9 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
+"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de "
+"Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors "
+"confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #: ../gramps/gui/views/navigationview.py:347
 #: ../gramps/gui/views/navigationview.py:350
@@ -14824,9 +14846,8 @@ msgid "Building View"
 msgstr "Construint Vista"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:564
-#, fuzzy
 msgid "Obtaining all rows"
-msgstr "Obtenint totes les persones"
+msgstr "Obtenint totes les files"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:583
 msgid "Applying filter"
@@ -14858,15 +14879,16 @@ msgid "Unnamed Gramplet"
 msgstr "Gramplet sense nom"
 
 #: ../gramps/gui/widgets/grampletbar.py:342
-#, fuzzy
 msgid "Gramplet Bar"
-msgstr "Barra de Gramps"
+msgstr "Barra de Gramplets"
 
 #: ../gramps/gui/widgets/grampletbar.py:344
 msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
+"Seleccioneu la fletxa cap avall de la cantonada dreta per afegir, treure, o "
+"recuperar gramplets."
 
 #: ../gramps/gui/widgets/grampletbar.py:468
 #: ../gramps/plugins/view/dashboardview.py:96
@@ -14878,20 +14900,20 @@ msgid "Remove a gramplet"
 msgstr "Esborrar un gramplet"
 
 #: ../gramps/gui/widgets/grampletbar.py:488
-#, fuzzy
 msgid "Restore default gramplets"
-msgstr "Restaurar un gramplet"
+msgstr "Recuperar els gramplets predeterminats"
 
 #: ../gramps/gui/widgets/grampletbar.py:526
-#, fuzzy
 msgid "Restore to defaults?"
-msgstr "Restaurar un gramplet"
+msgstr "Recuperar la situació predeterminada?"
 
 #: ../gramps/gui/widgets/grampletbar.py:527
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
+"La barra de gramplets es recuperarà perquè contingui els gramplets "
+"predeterminats. Aquesta acció no es pot desfer."
 
 #. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:789
@@ -15048,14 +15070,12 @@ msgstr "'%s' no és un valor de data vàlid"
 
 #. internal name: don't translate
 #: ../gramps/plugins/docgen/asciidoc.py:445
-#, fuzzy
 msgid "Characters per line"
-msgstr "Codificació de caràcters"
+msgstr "Caràcters per línia"
 
 #: ../gramps/plugins/docgen/asciidoc.py:446
-#, fuzzy
 msgid "The number of characters per line"
-msgstr "El nombre d'anys després de l'última data d'esdeveniment"
+msgstr "El nombre de caràcters per línia"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
@@ -15210,14 +15230,13 @@ msgstr "No s'ha pogut obrir %s"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1634
 #: ../gramps/plugins/docgen/pdfdoc.py:228
-#, fuzzy
 msgid "Contents"
 msgstr "Contingut"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1673
 #: ../gramps/plugins/docgen/pdfdoc.py:261
 msgid "Index"
-msgstr ""
+msgstr "Índex"
 
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
@@ -15244,9 +15263,8 @@ msgstr "c."
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:141
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "Gràfic d'Avantpassats per %s"
+msgstr "Diagrama d'Avantpassats"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/ancestortree.py:156
@@ -15322,9 +15340,8 @@ msgstr "El nombre de generacions de caixes buides que es mostraran"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1510
-#, fuzzy
 msgid "Compress tree"
-msgstr "Co_mprimir arbre"
+msgstr "Comprimir arbre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:915
 msgid ""
@@ -15498,24 +15515,23 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1014
 #: ../gramps/plugins/drawreport/descendtree.py:1608
 msgid "inter-box Y scale factor"
-msgstr ""
+msgstr "factor d'escala Y entre caixes"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1016
 #: ../gramps/plugins/drawreport/descendtree.py:1610
 msgid "Make the inter-box Y bigger or smaller"
-msgstr ""
+msgstr "Fer que la Y entre caixes sigui més gran o més petita"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
 #: ../gramps/plugins/drawreport/descendtree.py:1613
-#, fuzzy
 msgid "box shadow scale factor"
-msgstr "No escalar l'arbre"
+msgstr "factor d'escala de l'ombra de caixa"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Make the box shadow bigger or smaller"
-msgstr ""
+msgstr "Fer que l'ombra de caixa sigui més gran o més petita"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
 #: ../gramps/plugins/drawreport/descendtree.py:1622
@@ -15964,9 +15980,8 @@ msgstr "Gràfica de Descendents per a %(father)s i %(mother)s"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:214
-#, fuzzy
 msgid "Descendant Graph"
-msgstr "Gramplet de Descendents"
+msgstr "Diagrama de Descendents"
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -16117,14 +16132,12 @@ msgid "The bold style used for the text display."
 msgstr "L'estil de negreta que es fa servir per mostrar el text."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:32
-#, fuzzy
 msgid "Ancestor Chart"
-msgstr "Arbre d'Avantpassats"
+msgstr "Diagrama d'Avantpassats"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:33
-#, fuzzy
 msgid "Produces a graphical ancestral chart"
-msgstr "Produeix un arbre gràfic d'avantpassats"
+msgstr "Produeix un diagrama d'avantpassats gràfic"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -16141,14 +16154,12 @@ msgid "Produces a graphical calendar"
 msgstr "Crea un calendari gràfic"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:92
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Informe de Descendents"
+msgstr "Diagrama de Descendents"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:93
-#, fuzzy
 msgid "Produces a graphical descendant chart"
-msgstr "Produeix un arbre gràfic de descendents"
+msgstr "Produeix un diagrama de descendents gràfic"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
@@ -16159,14 +16170,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Produeix un arbre gràfic de descendents"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:130
-#, fuzzy
 msgid "Family Descendant Chart"
-msgstr "Arbre de Descendents de Família"
+msgstr "Diagrama de Descendents de Família"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:131
-#, fuzzy
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Produeix un arbre gràfic de descendents al voltant d'una família"
+msgstr "Produeix un diagrama de descendents gràfic al voltant d'una família"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -16210,11 +16219,13 @@ msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "Gràfic de %(generations)d Generacions en Ventall per %(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:255
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "Gràfic de %(generations)d Generacions en Ventall per %(person)s"
+msgstr ""
+"Diagrama de %(generations)d Generacions en Ventall per a\n"
+"%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:646
 #: ../gramps/plugins/textreport/ancestorreport.py:288
@@ -16278,37 +16289,36 @@ msgstr "Mostrar textos radials drets o en forma circular"
 
 #: ../gramps/plugins/drawreport/fanchart.py:670
 msgid "Draw empty boxes"
-msgstr ""
+msgstr "Dibuixar caixes buides"
 
 #: ../gramps/plugins/drawreport/fanchart.py:671
 msgid "Draw the background although there is no information"
-msgstr ""
+msgstr "Dibuixar el fons encara que no hi hagi informació"
 
 #: ../gramps/plugins/drawreport/fanchart.py:674
-#, fuzzy
 msgid "Use one font style for all generations"
-msgstr "Fer doble clic per veure totes les generacions"
+msgstr "Utilitzar un tipus de lletra per a totes les generacions"
 
 #: ../gramps/plugins/drawreport/fanchart.py:675
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
+"Podeu personalitzar el tipus de lletra i el color per a cada generació a "
+"l'editor d'estils"
 
 #: ../gramps/plugins/drawreport/fanchart.py:702
 #: ../gramps/plugins/textreport/alphabeticalindex.py:97
 #: ../gramps/plugins/textreport/tableofcontents.py:97
 msgid "The style used for the title."
-msgstr "L'estil utilitzat per al títol."
+msgstr "L'estil que es fa servir per al títol."
 
 #: ../gramps/plugins/drawreport/fanchart.py:711
-#, fuzzy
 msgid "The basic style used for the default text display."
-msgstr "L'estil bàsic que es fa servir per mostrar el text."
+msgstr "L'estil bàsic que es fa servir per mostrar el text predeterminat."
 
 #: ../gramps/plugins/drawreport/fanchart.py:721
-#, fuzzy
 msgid "The style used for the text display of generation "
-msgstr "L'estil de negreta que es fa servir per mostrar el text."
+msgstr "L'estil que es fa servir per mostrar el text de la generació "
 
 #: ../gramps/plugins/drawreport/statisticschart.py:299
 msgid "Item count"
@@ -16604,9 +16614,8 @@ msgid "Timeline"
 msgstr "Línia temporal"
 
 #: ../gramps/plugins/drawreport/timeline.py:114
-#, fuzzy
 msgid "Applying filter..."
-msgstr "Aplicant Filtre..."
+msgstr "Aplicant filtre..."
 
 #: ../gramps/plugins/drawreport/timeline.py:140
 msgid "Sorting dates..."
@@ -16629,14 +16638,12 @@ msgid "Timeline Graph for %s"
 msgstr "Gràfic de Línia Temporal per %s"
 
 #: ../gramps/plugins/drawreport/timeline.py:284
-#, fuzzy
 msgid "No Date Information"
-msgstr "Informació de Context"
+msgstr "Sense Informació de Data"
 
 #: ../gramps/plugins/drawreport/timeline.py:310
-#, fuzzy
 msgid "Finding date range..."
-msgstr "Imprimint l'Arbre..."
+msgstr "Trobant el rang de dates..."
 
 #: ../gramps/plugins/drawreport/timeline.py:380
 msgid "Determines what people are included in the report"
@@ -16825,13 +16832,12 @@ msgid "Enter a date, click Run"
 msgstr "Introdueixi una data, cliqui Executar"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:68
-#, fuzzy
 msgid ""
 "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This "
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"Introdueixi una data vàlida (com AAAA-MM-DD) a sota, i cliqui Executar. Això "
+"Introduïu una data vàlida (com AAAA-MM-DD) a sota, i cliqueu Executar. Això "
 "calcularà les edats de tothom del seu Arbre Genealògic en aquella data. "
 "Després es pot ordenar per la columna d'edat, i fer doble clic a la fila per "
 "veure o editar."
@@ -16945,24 +16951,20 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Feu doble clic en una fila per editar el fill seleccionat."
 
 #: ../gramps/plugins/gramplet/citations.py:64
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Doble-clic en una fila per editar la font seleccionada."
+msgstr "Feu doble-clic en una fila per editar la font/cita seleccionada."
 
 #: ../gramps/plugins/gramplet/citations.py:68
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Cita"
+msgstr "Font/Cita"
 
 #: ../gramps/plugins/gramplet/citations.py:70
-#, fuzzy
 msgid "Publisher"
-msgstr "Públic"
+msgstr "Editor"
 
 #: ../gramps/plugins/gramplet/citations.py:142
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Cita"
+msgstr "<No hi ha Cita>"
 
 #: ../gramps/plugins/gramplet/descendgramplet.py:50
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:53
@@ -17134,13 +17136,12 @@ msgstr ""
 "web amb Gramps i el meu arbre?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
-#, fuzzy
 msgid ""
 " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
 "msg_id=21487967'>How do I record one's occupation?</a>\n"
 msgstr ""
-" 11. <a href='http://old.nabble.com/German-translation-of-%22occupation%22-"
-"ts21786114.html#a21786114'>Com es registra l'ofici d'algú?</a>\n"
+" 11. <a href='http://sourceforge.net/mailarchive/message.php?"
+"msg_id=21487967'>Com es registra l'ofici d'algú?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:67
 #, python-format
@@ -17258,17 +17259,15 @@ msgstr ""
 "de gràfica de ventall"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:127
-#, fuzzy
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr ""
-"Gramplet que mostra els avantpassats directes de la persona activa en forma "
-"de gràfica de ventall"
+"Gramplet que mostra els descendents directes de la persona activa en forma "
+"de diagrama de ventall"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:156
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Descendents"
+msgstr "Ventall de Descendents"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:143
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:149
@@ -17315,9 +17314,8 @@ msgid "Gramplet showing all activity for this session"
 msgstr "Gramplet que mostra tota l'activitat d'aquesta sessió"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:234
-#, fuzzy
 msgid "Gramplet showing summary data of the Family Tree"
-msgstr "Gramplet que mostra dades de resum de l'arbre genealògic"
+msgstr "Gramplet que mostra dades de resum de l'Arbre Genealògic"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:247
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:254
@@ -17329,9 +17327,8 @@ msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Gramplet que mostra tots els cognoms com un núvol de text"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
-#, fuzzy
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet que proporciona un filtre de notes"
+msgstr "Gramplet que mostra una llista de Coses a Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:275
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:281
@@ -17418,6 +17415,12 @@ msgid ""
 "title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
+"El mòdul GExiv2 no s'ha carregat. No hi haurà disponible la funcionalitat de "
+"metadades d'imatge.\n"
+"Per construir-la per a Gramps, vegeu http://www.gramps-project.org/wiki/index."
+"php?"
+"title=GEPS_029:_GTK3-"
+"GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:408
 msgid "Person Residence"
@@ -17489,14 +17492,12 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet que mostra els objectes audiovisuals per una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:520
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Galeria de Persona"
+msgstr "Galeria de Cites"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:521
-#, fuzzy
 msgid "Gramplet showing media objects for a citation"
-msgstr "Gramplet que mostra els objectes audiovisuals per una persona"
+msgstr "Gramplet que mostra els objectes audiovisuals per una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:534
 msgid "Person Attributes"
@@ -17571,14 +17572,12 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet que mostra les notes per una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:660
-#, fuzzy
 msgid "Citation Notes"
-msgstr "Nota d'Associació"
+msgstr "Notes de Cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:661
-#, fuzzy
 msgid "Gramplet showing the notes for a citation"
-msgstr "Gramplet que mostra les notes per una persona"
+msgstr "Gramplet que mostra les notes per una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:674
 msgid "Repository Notes"
@@ -17597,54 +17596,44 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet que mostra les notes per un objecte audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:702
-#, fuzzy
 msgid "Person Citations"
-msgstr "Detalls de Persona"
+msgstr "Cites de Persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:703
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet que mostra els enllaços cap enrere d'una persona"
+msgstr "Gramplet que mostra les cites d'una persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:716
-#, fuzzy
 msgid "Event Citations"
-msgstr "Cita"
+msgstr "Cites d'Esdeveniment"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:717
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet que mostra els retroenllaços d'un esdeveniment"
+msgstr "Gramplet que mostra les cites d'un esdeveniment"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:730
-#, fuzzy
 msgid "Family Citations"
-msgstr "Enllaços de Família"
+msgstr "Cites de Família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:731
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet que mostra els retroenllaços d'una família"
+msgstr "Gramplet que mostra les cites d'una família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:744
-#, fuzzy
 msgid "Place Citations"
-msgstr "Opcions de Mapa de Llocs"
+msgstr "Cites de Lloc"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:745
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet que mostra els retroenllaços d'un lloc"
+msgstr "Gramplet que mostra les cites d'un lloc"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:758
-#, fuzzy
 msgid "Media Citations"
-msgstr "Cita"
+msgstr "Cites de Medis"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:759
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet que mostra els retroenllaços d'un objecte audiovisual"
+msgstr "Gramplet que mostra les cites d'un objecte audiovisual"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:772
 msgid "Person Children"
@@ -17730,14 +17719,12 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet que mostra els retroenllaços d'una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:870
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Retroenllaços d'Objecte Audiovisual"
+msgstr "Retroenllaços de Cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:871
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet que mostra els enllaços cap enrere d'una persona"
+msgstr "Gramplet que mostra els retroenllaços d'una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:884
 msgid "Repository Backlinks"
@@ -17796,14 +17783,12 @@ msgid "Gramplet providing a source filter"
 msgstr "Gramplet que proporciona un filtre de font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:982
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Filtres de Vida"
+msgstr "Filtre de Cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:983
-#, fuzzy
 msgid "Gramplet providing a citation filter"
-msgstr "Gramplet que proporciona un filtre de medis audiovisuals"
+msgstr "Gramplet que proporciona un filtre de cites"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:996
 msgid "Place Filter"
@@ -17852,91 +17837,75 @@ msgid "Records"
 msgstr "Rècords"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
-#, fuzzy
 msgid "Person To Do"
-msgstr "Id de persona:"
+msgstr "Persona Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet que mostra les notes per una persona"
+msgstr "Gramplet que mostra les notes Per Fer per una persona"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
-#, fuzzy
 msgid "Event To Do"
-msgstr "Tipus d'Esdeveniment"
+msgstr "Esdeveniment Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1083
-#, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet que mostra les notes per un esdeveniment"
+msgstr "Gramplet que mostra les notes Per Fer per un esdeveniment"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1096
-#, fuzzy
 msgid "Family To Do"
-msgstr "Nota Familiar"
+msgstr "Família Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Gramplet que mostra les notes per una família"
+msgstr "Gramplet que mostra les notes Per Fer per una família"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
-#, fuzzy
 msgid "Place To Do"
-msgstr "Nota de Lloc"
+msgstr "Lloc Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1111
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Gramplet que mostra les notes per un lloc"
+msgstr "Gramplet que mostra les notes Per Fer per un lloc"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
-#, fuzzy
 msgid "Source To Do"
-msgstr "Id de Font:"
+msgstr "Font Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Gramplet que mostra les notes per una font"
+msgstr "Gramplet que mostra les notes Per Fer per una font"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
-#, fuzzy
 msgid "Citation To Do"
-msgstr "Cita"
+msgstr "Cita Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1139
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet que mostra les notes per una persona"
+msgstr "Gramplet que mostra les notes Per Fer per una cita"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1152
-#, fuzzy
 msgid "Repository To Do"
-msgstr "Nota de Repositori"
+msgstr "Repositori Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet que mostra les notes per un repositori"
+msgstr "Gramplet que mostra les notes Per Fer per un repositori"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1166
-#, fuzzy
 msgid "Media To Do"
-msgstr "Nota de Medi Audiovisual"
+msgstr "Medi Audiovisual Per Fer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1167
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Gramplet que mostra les notes per un objecte audiovisual"
+msgstr "Gramplet que mostra les notes Per Fer per un objecte audiovisual"
 
 #: ../gramps/plugins/gramplet/notes.py:101
 #: ../gramps/plugins/gramplet/todo.py:126
 #: ../gramps/plugins/gramplet/todogramplet.py:144
 #, python-format
 msgid "%(current)d of %(total)d"
-msgstr ""
+msgstr "%(current)d de %(total)d"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:61
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:70
@@ -18199,9 +18168,8 @@ msgid "Individuals with unknown gender"
 msgstr "Individus de gènere desconegut"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:162
-#, fuzzy
 msgid "Incomplete names"
-msgstr "Persones amb noms incomplets"
+msgstr "Noms incomplets"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:166
 msgid "Individuals missing birth dates"
@@ -18285,28 +18253,26 @@ msgstr "Total de cognoms mostrats"
 #: ../gramps/plugins/gramplet/todo.py:49
 #: ../gramps/plugins/gramplet/todogramplet.py:52
 msgid "Previous To Do note"
-msgstr ""
+msgstr "Nota Per Fer anterior"
 
 #: ../gramps/plugins/gramplet/todo.py:53
 #: ../gramps/plugins/gramplet/todogramplet.py:56
 msgid "Next To Do note"
-msgstr ""
+msgstr "Nota Per Fer següent"
 
 #: ../gramps/plugins/gramplet/todo.py:57
 #: ../gramps/plugins/gramplet/todogramplet.py:60
-#, fuzzy
 msgid "Edit the selected To Do note"
-msgstr "Editar la nota seleccionada"
+msgstr "Editar la nota Per Fer seleccionada"
 
 #: ../gramps/plugins/gramplet/todo.py:61
 #: ../gramps/plugins/gramplet/todogramplet.py:64
-#, fuzzy
 msgid "Add a new To Do note"
-msgstr "Afegir nota nova"
+msgstr "Afegir una nova nota Per Fer"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:142
 msgid "Unattached"
-msgstr ""
+msgstr "Deslligat"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Intro"
@@ -18349,11 +18315,10 @@ msgid "Gramps online manual"
 msgstr "Manual en línia de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid ""
 "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 msgstr ""
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
@@ -18387,7 +18352,6 @@ msgid "Getting Started"
 msgstr "Com començar"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
-#, fuzzy
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new "
 "Family Tree (sometimes called 'database') select \"Family Trees\" from the "
@@ -18397,18 +18361,16 @@ msgid ""
 msgstr ""
 "El primer que heu de fer és crear un nou Arbre Genealògic. Per crear un nou "
 "Arbre Genealògic (anomenat de vegades 'base de dades') seleccioneu \"Arbres "
-"Genealògics\" al menú, trieu \"Gesti d'Arbres Genealògics\", premeu \"Nou\" "
+"Genealògics\" al menú, trieu \"Gestió d'Arbres Genealògics\", premeu \"Nou\" "
 "i doneu-li un nom al vostre arbre genealògic. Per més, detalls, llegiu si us "
 "plau la informació que donen els enllaços anteriors\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
-#, fuzzy
 msgid "Dashboard View"
-msgstr "Vista de Gràfica en Ventall"
+msgstr "Vista de Panell de Control"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
-#, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add "
 "your own gramplets. You can also add gramplets to any view by adding a "
@@ -18419,9 +18381,10 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Ara esteu llegint la pàgina de \"Gramplets\", on podeu afegir el vostres "
-"propis gramplets. També podeu afegir Gramplets a qualsevol vista afegint un "
-"barra lateral o inferior, i clicant a la dreta de la pestanya.\n"
+"Ara esteu llegint la vista del \"Panell de Control\", on podeu afegir els "
+"vostres "
+"propis gramplets. També podeu afegir gramplets a qualsevol vista afegint un "
+"barra lateral i/o inferior, i clicant a la dreta de la pestanya.\n"
 "\n"
 "Podeu clicar la icona de configuració de la barra de tasques per afegir "
 "columnes addicionals, mentre que fer un clic dret al fons us permet d'afegir "
@@ -18666,36 +18629,30 @@ msgstr ""
 
 #. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:143
-#, fuzzy
 msgid "Family Colors"
-msgstr "Color de la Família"
+msgstr "Colors de la Família"
 
 #. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:146
-#, fuzzy
 msgid "Family colors"
-msgstr "Color de la família"
+msgstr "Colors de la família"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:147
-#, fuzzy
 msgid "Colors to use for various family lines."
 msgstr "Colors a utilitzar per diverses línies familiars."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:155
 #: ../gramps/plugins/graph/gvrelgraph.py:558
-#, fuzzy
 msgid "The color to use to display men."
 msgstr "El color a utilitzar per mostrar els homes."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:159
 #: ../gramps/plugins/graph/gvrelgraph.py:562
-#, fuzzy
 msgid "The color to use to display women."
 msgstr "El color a utilitzar per mostrar les dones."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:163
 #: ../gramps/plugins/graph/gvrelgraph.py:567
-#, fuzzy
 msgid "The color to use when the gender is unknown."
 msgstr "El color a utilitzar quan es desconegui el gènere."
 
@@ -18716,38 +18673,32 @@ msgstr "Famílies"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:168
 #: ../gramps/plugins/graph/gvrelgraph.py:572
-#, fuzzy
 msgid "The color to use to display families."
 msgstr "El color a utilitzar per mostrar les famílies."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:171
-#, fuzzy
 msgid "Limit the number of ancestors"
 msgstr "Limitar el nombre d'avantpassats"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:173
-#, fuzzy
 msgid "Whether to limit the number of ancestors."
-msgstr "Si s'han d'ometre els avantpassats duplicats."
+msgstr "Si s'ha de limitar el nombre d'avantpassats."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:179
 msgid "The maximum number of ancestors to include."
 msgstr "El nombre màxim d'avantpassats a incloure."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:183
-#, fuzzy
 msgid "Limit the number of descendants"
-msgstr "Limitar el nombre d'avantpassats"
+msgstr "Limitar el nombre de descendents"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:186
-#, fuzzy
 msgid "Whether to limit the number of descendants."
-msgstr "Si s'han d'imprimir els números de pàgina a cada pàgina."
+msgstr "Si s'ha de limitar el nombre de descendents."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:192
-#, fuzzy
 msgid "The maximum number of descendants to include."
-msgstr "El nombre màxim d'avantpassats a incloure."
+msgstr "El nombre màxim de descendents a incloure."
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:197
@@ -18761,7 +18712,6 @@ msgid "Include thumbnail images of people"
 msgstr "Incloure imatges en miniatura de les persones"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:203
-#, fuzzy
 msgid "Whether to include thumbnail images of people."
 msgstr "Si s'han d'incloure imatges en miniatura de les persones."
 
@@ -18877,11 +18827,11 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:344
 msgid "Empty report"
-msgstr ""
+msgstr "Informe buit"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:345
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "No heu especificat ningú"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:924
 #, python-format
@@ -19058,12 +19008,11 @@ msgid "Gramps package (portable XML)"
 msgstr "Paquet Gramps (XML portable)"
 
 #: ../gramps/plugins/importer/import.gpr.py:89
-#, fuzzy
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
 msgstr ""
-"Importar dades d'un paquet Gramps (un arbre genealògic XML arxivat juntament "
+"Importar dades d'un paquet Gramps (un Arbre Genealògic XML arxivat juntament "
 "amb els fitxers de medis audiovisuals)."
 
 #: ../gramps/plugins/importer/import.gpr.py:107
@@ -19071,12 +19020,11 @@ msgid "Gramps XML Family Tree"
 msgstr "Arbre Genealògic Gramps XML"
 
 #: ../gramps/plugins/importer/import.gpr.py:108
-#, fuzzy
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"El format Gramps XML és una versió en text d'un arbre genealògic. Es "
+"El format Gramps XML és una versió en text d'un Arbre Genealògic. És "
 "compatible a nivell de lectura i escriptura amb el format de base de dades "
 "Gramps actual."
 
@@ -19404,25 +19352,25 @@ msgid "Base path for relative media set"
 msgstr "Camí base per al conjunt de medis audiovisuals"
 
 #: ../gramps/plugins/importer/importgpkg.py:109
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
 "a simpler path. You can change this in the Preferences, while moving your "
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"El camí base per als medis d'aquest arbre genealògic s'ha fixat a %s. "
+"El camí base per als medis d'aquest Arbre Genealògic s'ha fixat a %s. "
 "Consideri de triar-ne un de més senzill. Ho pot canviar a les Preferències, "
 "movent al mateix temps els fitxers a la nova ubicació, i fent servir l'eina "
 "Gestor de Medis, amb l'opció 'Substituir subcadenes dins el camí' per fixar "
-"camins correctes als medis audiovisuals."
+"camins correctes cap als medis audiovisuals."
 
 #: ../gramps/plugins/importer/importgpkg.py:118
 msgid "Cannot set base media path"
 msgstr "No es pot fixar el camí base de medis audiovisuals"
 
 #: ../gramps/plugins/importer/importgpkg.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
 "%(orig_path)s. The imported media objects however are relative from the path "
@@ -19432,13 +19380,13 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"L'arbre genealògic on ha fet la importació ja té un camí base per als medis "
+"L'Arbre Genealògic on heu fet la importació ja té un camí base per als medis "
 "audiovisuals: %(orig_path)s. Els audiovisuals que s'han importat, però, són "
-"relatius al camí %(path)s. Pot modificar el camí base a les Preferències, o "
-"pot convertir els fitxers importats al camí base de medis existent. Ho pot "
+"relatius al camí %(path)s. Podeu modificar el camí base a les Preferències, o "
+"podeu convertir els fitxers importats al camí base de medis existent. Ho pot "
 "fer movent els fitxers a la nova ubicació, i fent servir l'eina Gestor de "
 "Medis, amb l'opció 'Substituir subcadenes dins el camí' per fixar camins "
-"correctes als medis audiovisuals."
+"correctes cap als medis audiovisuals."
 
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:75
@@ -19460,6 +19408,15 @@ msgid ""
 "php?title=Gramps_3.4_Wiki_Manual_-"
 "_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr ""
+"La versió de Base de Dades no està suportada per aquesta versió de Gramps. "
+"Hauríeu d'utilitzar una còpia antiga de Gramps de la versió 3.0.x i importar "
+"la vostra base de dades en aquella. Llavors, hauríeu d'exportar una còpia de "
+"les vostres dades a Gramps XML (Arbre Genealògic). Finalment, hauríeu "
+"d'actualitzar a l'última versió de Gramps (per exemple, aquesta mateixa), "
+"crear una nova base de dades buida i importar el Gramps XML en aquesta "
+"versió. Si us plau, consulteu:http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_3.4_Wiki_Manual_-"
+"_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../gramps/plugins/importer/importprogen.py:81
 msgid "Pro-Gen data error"
@@ -19605,9 +19562,9 @@ msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Nota %(id)s amb %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:295
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "  Família %(id)s amb %(id2)s\n"
+msgstr "  Cita %(id)s amb %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:303
 #, python-format
@@ -19655,9 +19612,9 @@ msgid "  Tags: %d\n"
 msgstr "  Etiquetes: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:312
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
-msgstr "Cita"
+msgstr "  Cites: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:314
 msgid "Number of new objects imported:\n"
@@ -19674,6 +19631,14 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+" El fitxer importat no era autocontingut.\n"
+"Per corregir-ho, s'han creat %(new)d objectes i\n"
+"el seu atribut tipificador s'ha posat a 'Desconegut'.\n"
+"La distribució per categoria es veu al nombre entre\n"
+"parèntesis. On ha estat possible, aquests objectes\n"
+"'Desconeguts' s'han referenciat per la nota %(unknown)s.\n"
+" "
 
 #: ../gramps/plugins/importer/importxml.py:331
 msgid ""
@@ -19721,7 +19686,7 @@ msgid "Could not change media path"
 msgstr "No s'ha pogut canviar la carpeta de medis audiovisuals"
 
 #: ../gramps/plugins/importer/importxml.py:956
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
 "the Family Tree you import into. The original media path has been retained. "
@@ -19729,9 +19694,10 @@ msgid ""
 "Preferences."
 msgstr ""
 "El fitxer obert té una carpeta de medis audiovisuals %s, que està en "
-"conflicte amb la carpeta de medis de l'arbre genealògic on està important. "
-"S'ha conservat la carpeta de medis original. Copiï els fitxers al directori "
-"correcte o canviï la carpeta de medis audiovisuals a les Preferències."
+"conflicte amb la carpeta de medis de l'Arbre Genealògic on esteu fent la "
+"importació. "
+"S'ha conservat la carpeta de medis original. Copieu els fitxers al directori "
+"correcte o canvieu la carpeta de medis audiovisuals a les Preferències."
 
 #: ../gramps/plugins/importer/importxml.py:1014
 msgid ""
