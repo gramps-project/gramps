@@ -288,7 +288,7 @@ class ParagraphStyle(object):
 
     def get_alignment_text(self):
         """
-        Return a text string representing the alginment, either 'left',
+        Return a text string representing the alignment, either 'left',
         'right', 'center', or 'justify'
         """
         if self.align == PARA_ALIGN_LEFT:

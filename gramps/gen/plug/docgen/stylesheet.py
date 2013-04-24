@@ -409,7 +409,6 @@ class SheetParser(handler.ContentHandler):
             if 'description' in attrs:
                 self.p.set_description(attrs['description'])
             self.p.set_right_margin(glocale.float(attrs['rmargin']))
-            self.p.set_right_margin(glocale.float(attrs['rmargin']))
             self.p.set_left_margin(glocale.float(attrs['lmargin']))
             self.p.set_first_indent(glocale.float(attrs['first']))
             try:
