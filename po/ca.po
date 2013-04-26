@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-25 00:42+0200\n"
+"PO-Revision-Date: 2013-04-26 21:46+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -20718,13 +20718,13 @@ msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:194
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(male_name)s va morir el %(death_date)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:197
 #, python-format
@@ -20732,13 +20732,13 @@ msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:198
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(female_name)s va morir el %(death_date)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:202
 #, python-format
@@ -20746,12 +20746,12 @@ msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr "Aquesta persona va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:203
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "Aquesta persona va morir el %(death_date)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:206
 #, python-format
@@ -20759,9 +20759,9 @@ msgid "He died on %(death_date)s in %(death_place)s."
 msgstr "Va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:207
-#, fuzzy, python-format
+#, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(death_date)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(death_date)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:210
 #, python-format
@@ -20769,9 +20769,9 @@ msgid "She died on %(death_date)s in %(death_place)s."
 msgstr "Va morir el %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:211
-#, fuzzy, python-format
+#, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(death_date)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(death_date)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:215
 #: ../gramps/plugins/lib/libnarrate.py:248
@@ -20781,9 +20781,9 @@ msgstr "Mort %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:216
 #: ../gramps/plugins/lib/libnarrate.py:249
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr "Mort %(death_date)s a %(death_place)s (a l'edat de %(age)d dies)."
+msgstr "Mort %(death_date)s a %(death_place)s ( %(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:222
 #, python-format
@@ -20791,13 +20791,13 @@ msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:223
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(unknown_gender_name)s va morir %(death_date)s a %(death_place)s a l'edat "
-"de %(age)d dies."
+"de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:226
 #, python-format
@@ -20805,12 +20805,11 @@ msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:227
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de %(age)d "
-"dies."
+"%(male_name)s va morir %(death_date)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:230
 #, python-format
@@ -20818,12 +20817,12 @@ msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:231
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "%(female_name)s va morir %(death_date)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:235
 #, python-format
@@ -20831,12 +20830,12 @@ msgid "This person died %(death_date)s in %(death_place)s."
 msgstr "Aquesta persona va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:236
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "Aquesta persona va morir %(death_date)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:239
 #, python-format
@@ -20844,9 +20843,9 @@ msgid "He died %(death_date)s in %(death_place)s."
 msgstr "Va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:243
 #, python-format
@@ -20854,9 +20853,9 @@ msgid "She died %(death_date)s in %(death_place)s."
 msgstr "Va morir %(death_date)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:244
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:255
 #, python-format
@@ -20864,10 +20863,10 @@ msgid "%(unknown_gender_name)s died on %(death_date)s."
 msgstr "%(unknown_gender_name)s va morir el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s va morir el %(death_date)s a l'edat de %(age)d dies."
+"%(unknown_gender_name)s va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:259
 #, python-format
@@ -20875,9 +20874,9 @@ msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s va morir el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:260
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s va morir el %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:263
 #, python-format
@@ -20885,9 +20884,9 @@ msgid "%(female_name)s died on %(death_date)s."
 msgstr "%(female_name)s va morir el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:264
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s va morir el %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:268
 #, python-format
@@ -20895,9 +20894,9 @@ msgid "This person died on %(death_date)s."
 msgstr "Aquesta persona va morir el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:269
-#, fuzzy, python-format
+#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)s."
-msgstr "Aquesta persona va morir el %(death_date)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:272
 #, python-format
@@ -20905,9 +20904,9 @@ msgid "He died on %(death_date)s."
 msgstr "Va morir el %(death_date)s ."
 
 #: ../gramps/plugins/lib/libnarrate.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr "Va morir el %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:276
 #, python-format
@@ -20915,9 +20914,9 @@ msgid "She died on %(death_date)s."
 msgstr "Va morir el %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:277
-#, fuzzy, python-format
+#, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr "Va morir el %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:281
 #: ../gramps/plugins/lib/libnarrate.py:314
@@ -20927,9 +20926,9 @@ msgstr "Mort %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:282
 #: ../gramps/plugins/lib/libnarrate.py:315
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "Mort %(death_date)s (a l'edat de %(age)d dies)."
+msgstr "Mort %(death_date)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:288
 #, python-format
@@ -21205,9 +21204,9 @@ msgid "She died in %(death_place)s."
 msgstr "Va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:410
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:414
 #, python-format
@@ -21215,44 +21214,44 @@ msgid "Died in %(death_place)s."
 msgstr "Mort a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:415
-#, fuzzy, python-format
+#, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "Mort a %(death_place)s (%(age)d dies d'edat)."
+msgstr "Mort a %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:422
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)s."
-msgstr "%(unknown_gender_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(unknown_gender_name)s va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:426
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)s."
-msgstr "%(male_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:430
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)s."
-msgstr "%(female_name)s va morir a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:435
-#, fuzzy, python-format
+#, python-format
 msgid "This person died at the age of %(age)s."
-msgstr "Aquesta persona va morir a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:439
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)s."
-msgstr "Va morir a l'edat de %(age)d dies."
+msgstr "Va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:443
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Va morir a l'edat de %(age)d dies."
+msgstr "Va morir a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:448
-#, fuzzy, python-format
+#, python-format
 msgid "Died (%(age)s)."
-msgstr "Mort (%(age)d dies d'edat)."
+msgstr "Mort (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:459
 #, python-format
@@ -21577,330 +21576,328 @@ msgid "Buried%(endnotes)s."
 msgstr "Enterrat%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:592
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s va ser batejat el %(baptism_date)s a %(baptism_place)s"
+"%(male_name)s fou batejat el %(baptism_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:593
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejat el %(baptism_date)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejat el %(baptism_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:596
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s va ser batejada el %(baptism_date)s a %(baptism_place)s"
+"%(female_name)s fou batejada el %(baptism_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:597
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejada el %(baptism_date)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejada el %(baptism_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:600
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s va ser batejat el %(baptism_date)s a "
+"%(unknown_gender_name)s fou batejat el %(baptism_date)s a "
 "%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:601
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"Aquesta persona va ser batejada el %(baptism_date)s a %(baptism_place)s"
+"Aquesta persona fou batejada el %(baptism_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Batejat %(baptism_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:608
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(male_name)s va ser batejat el %(baptism_date)s %(endnotes)s."
+msgstr "%(male_name)s fou batejat el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:609
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Va ser batejat el %(baptism_date)s %(endnotes)s."
+msgstr "Fou batejat el %(baptism_date)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:612
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(female_name)s va ser batejada el %(baptism_date)s %(endnotes)s."
+msgstr "%(female_name)s fou batejada el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:613
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Va ser batejada el %(baptism_date)s %(endnotes)s."
+msgstr "Fou batejada el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:616
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s va ser batejat el %(baptism_date)s %(endnotes)s."
+msgstr "%(unknown_gender_name)s fou batejat el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:617
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Aquesta persona va ser batejada el %(baptism_date)s %(endnotes)s."
+msgstr "Aquesta persona fou batejada el %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:619
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(baptism_date)s%(endnotes)s."
 msgstr "Batejat %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:624
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s va ser batejat el %(month_year)s a %(baptism_place)s"
+"%(male_name)s fou batejat el %(month_year)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejat el %(month_year)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejat el %(month_year)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:628
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s va ser batejada el %(month_year)s a %(baptism_place)s"
+"%(female_name)s fou batejada el %(month_year)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:629
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejada el %(month_year)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejada el %(month_year)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:632
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s va ser batejat el %(month_year)s a %(baptism_place)s"
+"%(unknown_gender_name)s fou batejat el %(month_year)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:633
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Aquesta persona va ser batejada el %(month_year)s a %(baptism_place)s"
+"Aquesta persona fou batejada el %(month_year)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Batejat %(month_year)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:640
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s va ser batejat el %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s fou batejat el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:641
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(month_year)s%(endnotes)s."
-msgstr "Va ser batejat el %(month_year)s%(endnotes)s."
+msgstr "Fou batejat el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:644
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s va ser batejada el %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s fou batejada el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:645
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(month_year)s%(endnotes)s."
-msgstr "Va ser batejada el %(month_year)s%(endnotes)s."
+msgstr "Fou batejada el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:648
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s va ser batejat el %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s fou batejat el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:649
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
-msgstr "Aquesta persona va ser batejada el %(month_year)s%(endnotes)s."
+msgstr "Aquesta persona fou batejada el %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:651
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(month_year)s%(endnotes)s."
 msgstr "Batejat %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:656
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s va ser batejat %(modified_date)s a %(baptism_place)s"
+"%(male_name)s fou batejat %(modified_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:657
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejat %(modified_date)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejat %(modified_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:660
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s va ser batejada %(modified_date)s a %(baptism_place)s"
+"%(female_name)s fou batejada %(modified_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:661
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejada %(modified_date)s a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejada %(modified_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:664
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s va ser batejat %(modified_date)s a %(baptism_place)s"
+"%(unknown_gender_name)s fou batejat %(modified_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:665
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Aquesta persona va ser batejada %(modified_date)s a %(baptism_place)s"
+"Aquesta persona fou batejada %(modified_date)s a %(baptism_place)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Batejat %(modified_date)s a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:672
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s va ser batejat %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s fou batejat %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:673
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized %(modified_date)s%(endnotes)s."
-msgstr "Va ser batejat %(modified_date)s%(endnotes)s."
+msgstr "Fou batejat %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:676
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s va ser batejada %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s fou batejada %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:677
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s%(endnotes)s."
-msgstr "Va ser batejada %(modified_date)s%(endnotes)s."
+msgstr "Fou batejada %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:680
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s va ser batejat %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s fou batejat %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:681
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
-msgstr "Aquesta persona va ser batejada %(modified_date)s%(endnotes)s."
+msgstr "Aquesta persona fou batejada %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:683
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
 msgstr "Batejat %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s va ser batejat a %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s fou batejat a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:689
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejat a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejat a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:692
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s va ser batejada a %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s fou batejada a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:693
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Va ser batejada a %(baptism_place)s%(endnotes)s."
+msgstr "Fou batejada a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:696
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"%(unknown_gender_name)s va ser batejat a %(baptism_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s fou batejat a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:697
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Aquesta persona va ser batejada a %(baptism_place)s%(endnotes)s."
+msgstr "Aquesta persona fou batejada a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Batejat a %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized%(endnotes)s."
-msgstr "%(male_name)s va ser batejat%(endnotes)s."
+msgstr "%(male_name)s fou batejat%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:705
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized%(endnotes)s."
-msgstr "Va ser batejat%(endnotes)s."
+msgstr "Fou batejat%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:708
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
-msgstr "%(female_name)s va ser batejada%(endnotes)s."
+msgstr "%(female_name)s fou batejada%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:709
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized%(endnotes)s."
-msgstr "Va ser batejada%(endnotes)s."
+msgstr "Fou batejada%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:712
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized%(endnotes)s."
-msgstr "%(unknown_gender_name)s va ser batejat%(endnotes)s."
+msgstr "%(unknown_gender_name)s fou batejat%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:713
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized%(endnotes)s."
-msgstr "Aquesta persona va ser batejada%(endnotes)s."
+msgstr "Aquesta persona fou batejada%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:715
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized%(endnotes)s."
 msgstr "Batejat%(endnotes)s."
 
@@ -24042,12 +24039,10 @@ msgstr "Més temps després del casament"
 #. (FATHER_AGE  , _("Father's Age"), "Father Age"),
 #. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
 #: ../gramps/plugins/lib/libtranslate.py:166
-#, fuzzy
 msgid "Father Age"
 msgstr "Edat del Pare"
 
 #: ../gramps/plugins/lib/libtranslate.py:166
-#, fuzzy
 msgid "Mother Age"
 msgstr "Edat de la Mare"
 
@@ -24120,9 +24115,8 @@ msgid "Center on this place"
 msgstr "Centrar en aquest lloc"
 
 #: ../gramps/plugins/lib/maps/geography.py:848
-#, fuzzy
 msgid "You have at least two places with the same title."
-msgstr "No té accés de lectura al fitxer seleccionat."
+msgstr "Teniu com a mínim dos llocs amb el mateix títol."
 
 #: ../gramps/plugins/lib/maps/geography.py:849
 #, python-format
