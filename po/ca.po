@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-27 12:37+0200\n"
+"PO-Revision-Date: 2013-04-27 20:57+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -5627,12 +5627,12 @@ msgid "Relationship loop detected"
 msgstr "Bucle de parentesc detectat"
 
 #: ../gramps/gen/relationship.py:862
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"L'arbre genealògic es remunta més enrere que el màxim de %d generacions "
+"L'Arbre Genealògic es remunta més enrere que el màxim de %d generacions "
 "buscades.\n"
 "És possible que no s'hagi detectat algun parentesc"
 
@@ -8731,14 +8731,12 @@ msgstr "Referència a Fill"
 
 #: ../gramps/gui/editors/editcitation.py:150
 #: ../gramps/gui/editors/editcitation.py:156
-#, fuzzy
 msgid "New Citation"
-msgstr "Cita"
+msgstr "Cita Nova"
 
 #: ../gramps/gui/editors/editcitation.py:387
-#, fuzzy
 msgid "Edit Citation"
-msgstr "Cita"
+msgstr "Editar Cita"
 
 #: ../gramps/gui/editors/editcitation.py:393
 #: ../gramps/gui/editors/editsource.py:182
@@ -8753,21 +8751,21 @@ msgstr ""
 "l'edició."
 
 #: ../gramps/gui/editors/editcitation.py:403
-#, fuzzy
 msgid "Cannot save citation. ID already exists."
-msgstr "No es pot desar la persona. L'Id ja existeix."
+msgstr "No es pot desar la cita. L'Id ja existeix."
 
 #: ../gramps/gui/editors/editcitation.py:404
 #: ../gramps/gui/editors/editcitation.py:418
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
 "This value is already used by '%(prim_object)s'. Please enter a different ID "
 "or leave blank to get the next available ID value."
 msgstr ""
-"Ha intentat d'utilitzar l'Id de Gramps %(id)s, que ja existeix. Aquest valor "
-"ja està agafat per '%(prim_object)s'. Si us plau introdueixi un Id diferent, "
-"o deixi'l en blanc per agafar automàticament el següent valor d'Id "
+"Heu intentat d'utilitzar l'Id de Gramps amb valor %(gramps_id)s, que ja "
+"existeix. Aquest valor "
+"ja està agafat per '%(prim_object)s'. Si us plau introduïu un Id diferent, "
+"o deixeu-lo en blanc per agafar automàticament el següent valor d'Id "
 "disponible."
 
 #: ../gramps/gui/editors/editcitation.py:417
@@ -8788,19 +8786,19 @@ msgid "Edit Source (%s)"
 msgstr "Editar Font (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:444
-#, fuzzy, python-format
+#, python-format
 msgid "Add Citation (%s)"
-msgstr "Esborrar Etiqueta (%s)"
+msgstr "Afegir Cita (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:450
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Citation (%s)"
-msgstr "Cita"
+msgstr "Editar Cita (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:528
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Citation (%s)"
-msgstr "Esborrar Etiqueta (%s)"
+msgstr "Esborrar Cita (%s)"
 
 #: ../gramps/gui/editors/editdate.py:79 ../gramps/gui/editors/editdate.py:88
 msgid "Regular"
@@ -9542,18 +9540,16 @@ msgid "New Place"
 msgstr "Nou Lloc"
 
 #: ../gramps/gui/editors/editplace.py:225
-#, fuzzy
 msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Latitud no vàlida (sintaxi: 18°9'"
+msgstr "Latitud no vàlida (sintaxi: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:226
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 o -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:228
-#, fuzzy
 msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Longitud no vàlida (sintaxi: 18°9'"
+msgstr "Longitud no vàlida (sintaxi: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:229
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
@@ -9734,9 +9730,8 @@ msgid "Source Filters"
 msgstr "Filtres de Font"
 
 #: ../gramps/gui/editors/filtereditor.py:90
-#, fuzzy
 msgid "Media Filters"
-msgstr "Filtre d'Audiovisuals"
+msgstr "Filtres d'Audiovisuals"
 
 #: ../gramps/gui/editors/filtereditor.py:91
 msgid "Repository Filters"
@@ -9747,9 +9742,8 @@ msgid "Note Filters"
 msgstr "Filtres de Nota"
 
 #: ../gramps/gui/editors/filtereditor.py:93
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Filtres de posició"
+msgstr "Filtres de cita"
 
 #: ../gramps/gui/editors/filtereditor.py:245
 msgid "lesser than"
@@ -10016,9 +10010,8 @@ msgstr "Actualitzant visualització..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:98
 #: ../gramps/plugins/view/citationlistview.py:99
-#, fuzzy
 msgid "Volume/Page"
-msgstr "_Volum/Pàgina:"
+msgstr "Volum/Pàgina"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
 #: ../gramps/plugins/view/citationlistview.py:102
@@ -10040,9 +10033,8 @@ msgid "Custom filter"
 msgstr "Filtre personalitzat"
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:98
-#, fuzzy
 msgid "Participants"
-msgstr "Participants Principals"
+msgstr "Participants"
 
 #. The parent may not be birth father in ths family, because it
 #. may be a step family. However, it will be odd to display the
@@ -10108,9 +10100,9 @@ msgstr "Data de naixement"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "exemple: \"%s\" o \"%s\""
+msgstr "exemple: \"%(msg1)s\" o \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
 #: ../gramps/plugins/export/exportcsv.py:343
@@ -10545,14 +10537,12 @@ msgstr "Obrir editor de persones per aquest fill"
 #: ../gramps/gui/glade/editfamily.glade.h:12
 #: ../gramps/gui/glade/rule.glade.h:14
 #: ../gramps/gui/glade/styleeditor.glade.h:40
-#, fuzzy
 msgid "Edition"
-msgstr "Educació"
+msgstr "Edició"
 
 #: ../gramps/gui/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Informació de relació</b>"
+msgstr "<b>Informació de cita</b>"
 
 #: ../gramps/gui/glade/editcitation.glade.h:5
 #: ../gramps/gui/glade/editsourceref.glade.h:5
@@ -10618,19 +10608,17 @@ msgstr ""
 "registre de naixement. "
 
 #: ../gramps/gui/glade/editcitation.glade.h:14
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared citation information will be "
 "reflected in the citation itself, for all items that reference the citation."
 msgstr ""
-"<b>Nota:</b> Qualssevol canvis a la informació del repositori compartit es "
-"reflectiran al propi repositori, per a tots els objectes que hi facin "
+"<b>Nota:</b> Qualssevol canvis a la informació de la cita compartida es "
+"reflectiran a la pròpia cita, per a tots els objectes que hi facin "
 "referència."
 
 #: ../gramps/gui/glade/editcitation.glade.h:15
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "Un Id únic per identificar l'esdeveniment"
+msgstr "Un Id únic per identificar la cita"
 
 #: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/editevent.glade.h:16
@@ -13131,9 +13119,9 @@ msgid "Color"
 msgstr "Color"
 
 #: ../gramps/gui/plug/_guioptions.py:1517
-#, fuzzy, python-format
+#, python-format
 msgid "Select color for %s"
-msgstr "Seleccionar color de lletra"
+msgstr "Seleccionar color  per a %s"
 
 #: ../gramps/gui/plug/_guioptions.py:1677
 #: ../gramps/gui/plug/report/_reportdialog.py:443
@@ -13308,14 +13296,12 @@ msgid "Choose the output format"
 msgstr "Triï el format de sortida"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:238
-#, fuzzy
 msgid "Export options"
-msgstr "Opcions d'exportació de GEDCOM"
+msgstr "Opcions d'exportació"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:307
-#, fuzzy
 msgid "Select save file"
-msgstr "Seleccionar un fitxer"
+msgstr "Seleccionar fitxer per desar"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:351
 #: ../gramps/plugins/tool/mediamanager.py:107
@@ -13347,7 +13333,7 @@ msgstr ""
 "per aturar"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:459
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -13359,9 +13345,9 @@ msgid ""
 msgstr ""
 "Les dades es desaran de la següent manera:\n"
 "\n"
-"Format:\t%s\n"
-"Nom:\t%s\n"
-"Carpeta:\t%s\n"
+"Format:\t%(format)s\n"
+"Nom:\t%(name)s\n"
+"Carpeta:\t%(folder)s\n"
 "\n"
 "Premi Aplicar per continuar, Enrere per revisar les opcions, o Cancel·lar "
 "per aturar"
@@ -27410,25 +27396,23 @@ msgid "Affected path"
 msgstr "Camí afectat"
 
 #: ../gramps/plugins/tool/mediamanager.py:338
-#, fuzzy
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Premi OK per continuar, Cancel·lar per avortar, o Enrera per revisar les "
+"Premi OK per continuar, Cancel·lar per avortar, o Enrere per revisar les "
 "opcions."
 
 #: ../gramps/plugins/tool/mediamanager.py:376
-#, fuzzy
 msgid "Operation successfully finished"
-msgstr "Operació finalitzada satisfactòriament."
+msgstr "Operació finalitzada satisfactòriament"
 
 #: ../gramps/plugins/tool/mediamanager.py:378
-#, fuzzy
 msgid ""
 "The operation you requested has finished successfully. You may press Close "
 "now to continue."
 msgstr ""
-"L'operació que ha demanat ha acabat satisfactòriament. Pot prémer el botó OK "
+"L'operació que heu demanat ha acabat satisfactòriament. Pot prémer el botó de "
+"Tancar "
 "per continuar."
 
 #: ../gramps/plugins/tool/mediamanager.py:381
@@ -27544,64 +27528,57 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "No combinar si la cita té notes"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Coincidir en Pàgina/Volum, Data i Confiança"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
-#, fuzzy
 msgid "Ignore Date"
-msgstr "Edat en Data"
+msgstr "Ignorar la Data"
 
 #: ../gramps/plugins/tool/mergecitations.py:80
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Confiança"
+msgstr "Ignorar Confiança"
 
 #: ../gramps/plugins/tool/mergecitations.py:81
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Ignorar la Data i la Confiança"
 
 #: ../gramps/plugins/tool/mergecitations.py:85
 msgid "manual|Merge citations..."
 msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:132
-#, fuzzy
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
-"Es combinaran les notes, objectes audiovisuals, elements de dades i "
-"referències a repositori de totes dues fonts."
+"Es combinaran les notes, objectes audiovisuals, i elements de dades de les "
+"cites que concordin."
 
 #: ../gramps/plugins/tool/mergecitations.py:162
-#, fuzzy
 msgid "Merge citations tool"
-msgstr "Combinar candidats"
+msgstr "Eina de combinació de cites"
 
 #: ../gramps/plugins/tool/mergecitations.py:183
-#, fuzzy
 msgid "Checking Sources"
-msgstr "Combinar Fonts"
+msgstr "Comprovant Fonts"
 
 #: ../gramps/plugins/tool/mergecitations.py:184
-#, fuzzy
 msgid "Looking for citation fields"
-msgstr "Buscant camps de lloc"
+msgstr "Buscant camps de cita"
 
 #: ../gramps/plugins/tool/mergecitations.py:228
-#, fuzzy
 msgid "Number of merges done"
-msgstr "Nombre de Persones"
+msgstr "Nombre de combinacions fetes"
 
 #: ../gramps/plugins/tool/mergecitations.py:229
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d cita combinada"
+msgstr[1] "%(num)d cites combinades"
 
 #: ../gramps/plugins/tool/notrelated.glade.h:1
 msgid "_Tag"
@@ -27662,34 +27639,28 @@ msgstr[0] "Consultant el nom d'%d persona"
 msgstr[1] "Consultant el nom de %d persones"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "_Street:"
-msgstr "Carrer:"
+msgstr "Ca_rrer:"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "_City:"
-msgstr "Ciutat:"
+msgstr "_Ciutat:"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:5
-#, fuzzy
 msgid "_Country:"
-msgstr "País:"
+msgstr "_País:"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "_ZIP/Postal Code:"
-msgstr "Codi Postal:"
+msgstr "Codi _Postal:"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:7
-#, fuzzy
 msgid "_Phone:"
-msgstr "Telèfon:"
+msgstr "_Telèfon:"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:8
-#, fuzzy
 msgid "_Email:"
-msgstr "Email:"
+msgstr "_Email:"
 
 #: ../gramps/plugins/tool/ownereditor.py:58
 msgid "manual|Edit_Database_Owner_Information..."
@@ -27708,7 +27679,6 @@ msgid "_Accept and close"
 msgstr "_Acceptar i tancar"
 
 #: ../gramps/plugins/tool/patchnames.glade.h:2
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames, titles, prefixes and compound surnames "
 "that Gramps can extract from the Family Tree.\n"
@@ -27724,8 +27694,8 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "A sota hi ha una llista dels malnoms, títols, prefixos i cognoms compostos "
-"que Gramps pot extreure de l'arbre genealògic.\n"
-"Si accepta els canvis, Gramps modificarà les entrades que s'hagin "
+"que Gramps pot extreure de l'Arbre Genealògic.\n"
+"Si accepteu els canvis, Gramps modificarà les entrades que s'hagin "
 "seleccionat.\n"
 "\n"
 "Els cognoms compostos es mostren com a llistes de [prefix, cognom, "
@@ -27790,32 +27760,31 @@ msgid "Extract information from names"
 msgstr "Extreure informació dels noms"
 
 #: ../gramps/plugins/tool/rebuild.py:80
-#, fuzzy
 msgid "Rebuilding secondary indexes..."
 msgstr "Reconstruint índexs secundaris..."
 
 #: ../gramps/plugins/tool/rebuild.py:89
-#, fuzzy
 msgid "Secondary indexes rebuilt"
 msgstr "Índexs secundaris reconstruïts"
 
 #: ../gramps/plugins/tool/rebuild.py:90
-#, fuzzy
 msgid "All secondary indexes have been rebuilt."
 msgstr "S'han reconstruït tots els índexs secundaris."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:85
 msgid "Rebuilding gender statistics for name gender guessing..."
 msgstr ""
+"Reconstruint estadístiques de gènere per endevinar el gènere amb el nom..."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:98
-#, fuzzy
 msgid "Gender statistics rebuilt"
-msgstr "Índexs secundaris reconstruïts"
+msgstr "Estadístiques de gènere reconstruïdes"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:99
 msgid "Gender statistics for name gender guessing have been rebuilt."
 msgstr ""
+"Les estadístiques de gènere per endevinar el gènere amb el nom s'han "
+"reconstruït."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:81
 msgid "Rebuilding reference maps..."
@@ -28141,12 +28110,10 @@ msgstr ""
 "Extreure títols, prefixos i cognoms compostos del nom donat o nom de família."
 
 #: ../gramps/plugins/tool/tools.gpr.py:352
-#, fuzzy
 msgid "Rebuild Secondary Indexes"
 msgstr "Reconstruir Índexs Secundaris"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
-#, fuzzy
 msgid "Rebuilds secondary indexes"
 msgstr "Reconstrueix els índexs secundaris"
 
@@ -28159,13 +28126,14 @@ msgid "Rebuilds reference maps"
 msgstr "Reconstrueix els mapes de referències"
 
 #: ../gramps/plugins/tool/tools.gpr.py:396
-#, fuzzy
 msgid "Rebuild Gender Statistics"
-msgstr "Reconstrueix els índexs secundaris"
+msgstr "Reconstruir Estadístiques de Gènere"
 
 #: ../gramps/plugins/tool/tools.gpr.py:397
 msgid "Rebuilds gender statistics for name gender guessing..."
 msgstr ""
+"Reconstrueix les estadístiques de gènere per endevinar el gènere a partir del "
+"nom..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:418
 msgid "Relationship Calculator"
@@ -28210,13 +28178,12 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Verifica les dades amb proves definides per l'usuari"
 
 #: ../gramps/plugins/tool/tools.gpr.py:552
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
-"Cerca tota la base de dades, buscant entrades individuals que puguin "
-"representar la mateixa persona."
+"Cerca tota la base de dades, buscant cites que tinguin els mateixos "
+"Volum/Pàgina, Data i Confiança."
 
 #: ../gramps/plugins/tool/verify.glade.h:5
 #: ../gramps/plugins/tool/verify.py:619
@@ -28249,9 +28216,8 @@ msgid "Maximum age for an _unmarried person"
 msgstr "Edat màxima per persona _soltera"
 
 #: ../gramps/plugins/tool/verify.glade.h:13
-#, fuzzy
 msgid "_Estimate missing or inexact dates"
-msgstr "_Estimar dates que falten"
+msgstr "_Estimar dates que falten o són inexactes"
 
 #: ../gramps/plugins/tool/verify.glade.h:14
 msgid "_Identify invalid dates"
@@ -28306,14 +28272,12 @@ msgid "manual|Verify_the_Data..."
 msgstr ""
 
 #: ../gramps/plugins/tool/verify.py:258
-#, fuzzy
 msgid "Data Verify tool"
-msgstr "Eina de verificació de la Base de Dades"
+msgstr "Eina de Verificació de Dades"
 
 #: ../gramps/plugins/tool/verify.py:451
-#, fuzzy
 msgid "Data Verification Results"
-msgstr "Resultats de Verificació de la Base de Dades"
+msgstr "Resultats de Verificació de Dades"
 
 #. Add column with the warning text
 #: ../gramps/plugins/tool/verify.py:514
@@ -28461,53 +28425,44 @@ msgid "Marriage date but not married"
 msgstr "Data de casament però no casat"
 
 #: ../gramps/plugins/tool/verify.py:1588
-#, fuzzy
 msgid "Old age but no death"
-msgstr "Edat avançada en morir"
+msgstr "Edat avançada però no hi ha defunció"
 
 #: ../gramps/plugins/view/citationlistview.py:105
-#, fuzzy
 msgid "Source: Title"
-msgstr "Filtre de Font"
+msgstr "Font: Títol"
 
 #: ../gramps/plugins/view/citationlistview.py:106
-#, fuzzy
 msgid "Source: ID"
-msgstr "Id de Font:"
+msgstr "Font: ID"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
-#, fuzzy
 msgid "Source: Author"
-msgstr "Font: %s"
+msgstr "Font: Autor"
 
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
-#, fuzzy
 msgid "Source: Abbreviation"
-msgstr "Abreviació"
+msgstr "Font: Abreviació"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
-#, fuzzy
 msgid "Source: Publication Information"
-msgstr "Informació de Publicació"
+msgstr "Font: Informació de Publicació"
 
 #: ../gramps/plugins/view/citationlistview.py:110
-#, fuzzy
 msgid "Source: Private"
-msgstr "Filtre de Font"
+msgstr "Font: Privat"
 
 #: ../gramps/plugins/view/citationlistview.py:111
-#, fuzzy
 msgid "Source: Last Changed"
-msgstr "Canviat per última vegada"
+msgstr "Font: Última Modificació"
 
 #: ../gramps/plugins/view/citationlistview.py:124
 #: ../gramps/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Add a new citation and a new source"
-msgstr "Crear i afegir una nova font"
+msgstr "Afegir una nova cita i una nova font"
 
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
@@ -28517,33 +28472,27 @@ msgstr "Afegir nova font"
 
 #: ../gramps/plugins/view/citationlistview.py:126
 #: ../gramps/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Afegir una font existent"
+msgstr "Afegir una nova cita a una font existent"
 
 #: ../gramps/plugins/view/citationlistview.py:128
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Esborrar la família seleccionada"
+msgstr "Esborrar la cita seleccionada"
 
 #: ../gramps/plugins/view/citationlistview.py:129
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Combinar les persones seleccionades"
+msgstr "Combinar les cites seleccionades"
 
 #: ../gramps/plugins/view/citationlistview.py:143
-#, fuzzy
 msgid "Citation View"
-msgstr "Cita"
+msgstr "Vista de Cita"
 
 #: ../gramps/plugins/view/citationlistview.py:180
 #: ../gramps/plugins/view/citationtreeview.py:283
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Editor de Filtres Personalitzats"
+msgstr "Editor de Filtres de Cita"
 
 #: ../gramps/plugins/view/citationlistview.py:298
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation "
 "is already being edited or another object that is associated with the same "
@@ -28551,12 +28500,11 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Aquesta referència de medis audiovisuals no es pot editar en aquest moment. "
-"O bé el medi audiovisual associat ja s'està editant, o s'està editant una "
-"altra referència de medis que està associada amb el mateix objecte.\n"
+"Aquesta cita no es pot editar en aquest moment. "
+"O bé la cita associada ja s'està editant, o s'està editant un "
+"altre objecte que està associat amb la mateixa cita.\n"
 "\n"
-"Per editar aquesta referència de medis audiovisual, cal tancar l'objecte de "
-"medis."
+"Per editar aquesta cita, cal tancar l'objecte."
 
 #: ../gramps/plugins/view/citationlistview.py:311
 #: ../gramps/plugins/view/citationlistview.py:322
@@ -28584,6 +28532,9 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
+"Les dues cites seleccionades han de tenir la mateixa font per dur a terme una "
+"combinació. Si voleu combinar aquestes dues cites, primer heu de combinar les "
+"fonts."
 
 #: ../gramps/plugins/view/citationtreeview.py:94
 #, fuzzy
@@ -28641,6 +28592,7 @@ msgstr "No es pot desar l'etiqueta"
 msgid ""
 "In order to add a citation to an existing source,  you must select a source."
 msgstr ""
+"Per afegir una cita a una font ja existent, heu de seleccionar una font."
 
 #: ../gramps/plugins/view/citationtreeview.py:495
 #, fuzzy
@@ -28667,11 +28619,13 @@ msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Tots dos objectes han de ser del mateix tipus, o bé tots dos han de ser "
+"fonts, o tots dos han de ser cites."
 
 #: ../gramps/plugins/view/dashboardview.py:53
 #: ../gramps/plugins/view/view.gpr.py:65 ../gramps/plugins/view/view.gpr.py:73
 msgid "Dashboard"
-msgstr ""
+msgstr "Panell de Control"
 
 #: ../gramps/plugins/view/dashboardview.py:97
 msgid "Restore a gramplet"
@@ -28790,24 +28744,22 @@ msgstr "dependent de la generació"
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
 msgid "Age (0-100) based gradient"
-msgstr ""
+msgstr "Gradient basat en l'Edat (0-100)"
 
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:285
 msgid "Single main (filter) color"
-msgstr ""
+msgstr "Color principal (de filtre)"
 
 #: ../gramps/plugins/view/fanchartdescview.py:288
 #: ../gramps/plugins/view/fanchartview.py:286
-#, fuzzy
 msgid "Time period based gradient"
-msgstr "Ajust del període de temps"
+msgstr "Gradient basat en un període de temps"
 
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
-#, fuzzy
 msgid "White"
-msgstr "blanc"
+msgstr "Blanc"
 
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
