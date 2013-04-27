@@ -48,7 +48,7 @@ class HasCitation(HasCitationBase):
 
     labels      = [ _('Volume/Page:'), 
                     _('Date:'), 
-                    _('Min. Conf. level:')]
+                    _('Confidence level:')]
     name        =  _('People with the <citation>')
     description = _("Matches people with a citation of a particular "
                     "value")

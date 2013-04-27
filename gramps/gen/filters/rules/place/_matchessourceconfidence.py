@@ -42,6 +42,6 @@ from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Media matching a specific confidence level on its 'direct' source references"""
 
-    labels    = [_('Min. Conf. level:')]
+    labels    = [_('Confidence level:')]
     name        = _('Place with a direct source >= <confidence level>')
     description = _("Matches places with at least one direct source with confidence level(s)")

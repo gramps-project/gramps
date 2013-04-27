@@ -43,7 +43,7 @@ from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Events matching a specific confidence level on its 'direct' source references"""
 
-    labels    = [_('Min. Conf. level:')]
+    labels    = [_('Confidence level:')]
     name        = _('Events with at least one direct source >= <confidence level>')
     description = _("Matches events with at least one direct source with confidence level(s)")
 

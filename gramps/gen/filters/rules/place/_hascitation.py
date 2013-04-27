@@ -49,7 +49,7 @@ class HasCitation(HasCitationBase):
 
     labels      = [ _('Volume/Page:'), 
                     _('Date:'), 
-                    _('Min. Conf. level:')]
+                    _('Confidence level:')]
     name        =  _('Place with the <citation>')
     description = _("Matches places with a citation of a particular "
                     "value")

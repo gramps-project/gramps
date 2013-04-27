@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 18:31+0200\n"
+"POT-Creation-Date: 2013-04-27 19:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -609,8 +609,8 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:312 ../gramps/gen/plug/report/_paper.py:91
 #: ../gramps/gen/plug/report/_paper.py:113
-#: ../gramps/gui/plug/report/_papermenu.py:184
-#: ../gramps/gui/plug/report/_papermenu.py:245
+#: ../gramps/gui/plug/report/_papermenu.py:185
+#: ../gramps/gui/plug/report/_papermenu.py:246
 msgid "Custom Size"
 msgstr ""
 
@@ -1365,7 +1365,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 #: ../gramps/gui/editors/filtereditor.py:551
-msgid "Min. Conf. level:"
+msgid "Confidence level:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
@@ -10648,15 +10648,15 @@ msgstr ""
 msgid "CSS file"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_papermenu.py:102
+#: ../gramps/gui/plug/report/_papermenu.py:103
 msgid "Portrait"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_papermenu.py:103
+#: ../gramps/gui/plug/report/_papermenu.py:104
 msgid "Landscape"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_papermenu.py:206
+#: ../gramps/gui/plug/report/_papermenu.py:207
 #: ../gramps/gui/glade/papermenu.glade:131
 #: ../gramps/gui/glade/papermenu.glade:148
 #: ../gramps/gui/glade/papermenu.glade:295
@@ -10672,7 +10672,7 @@ msgstr ""
 msgid "cm"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_papermenu.py:210
+#: ../gramps/gui/plug/report/_papermenu.py:211
 msgid "inch|in."
 msgstr ""
 
