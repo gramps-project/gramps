@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 16:47+0200\n"
-"PO-Revision-Date: 2013-04-27 16:49+0100\n"
+"POT-Creation-Date: 2013-04-27 17:54+0200\n"
+"PO-Revision-Date: 2013-04-27 17:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -30709,6 +30709,10 @@ msgstr "Système de généalogie Gramps"
 #: ../data/gramps.desktop.in.h:4
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gestion des informations généalogiques, optimisation de la recherche et de l'analyse"
+
+#: ../gramps/gen/filters/rules/_hascitationbase.py:53
+msgid "Minimum Confidence|Min. Conf.:"
+msgstr "Conf. min. :"
 
 # trunk
 #~ msgid "To Do"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 16:47+0200\n"
+"POT-Creation-Date: 2013-04-27 17:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29449,4 +29449,8 @@ msgstr ""
 #: ../data/gramps.desktop.in.h:4
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/_hascitationbase.py:53
+msgid "Minimum Confidence|Min. Conf.:"
 msgstr ""
