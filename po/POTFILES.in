@@ -510,6 +510,7 @@ gramps/plugins/drawreport/drawplugins.gpr.py
 gramps/plugins/drawreport/fanchart.py
 gramps/plugins/drawreport/statisticschart.py
 gramps/plugins/drawreport/timeline.py
+gramps/plugins/export/export.gpr.py
 gramps/plugins/export/exportcsv.py
 gramps/plugins/export/exportgedcom.py
 gramps/plugins/export/exportgeneweb.py
