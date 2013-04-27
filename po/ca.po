@@ -19638,7 +19638,6 @@ msgstr ""
 "La distribució per categoria es veu al nombre entre\n"
 "parèntesis. On ha estat possible, aquests objectes\n"
 "'Desconeguts' s'han referenciat per la nota %(unknown)s.\n"
-" "
 
 #: ../gramps/plugins/importer/importxml.py:331
 msgid ""
@@ -20113,7 +20112,6 @@ msgstr ""
 "el seu atribut tipificador s'ha posat a 'Desconegut'.\n"
 "On ha estat possible, aquests objectes\n"
 "'Desconeguts' s'han referenciat per la nota %(unknown)s.\n"
-" "
 
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
