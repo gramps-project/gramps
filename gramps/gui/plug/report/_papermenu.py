@@ -56,6 +56,7 @@ class PaperComboBox(Gtk.ComboBox):
 
     def __init__(self,default_name):
         GObject.GObject.__init__(self)
+        self.set_wrap_width(4)
         
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
