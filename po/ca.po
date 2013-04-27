@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-10 14:50+0200\n"
-"PO-Revision-Date: 2013-04-26 21:46+0200\n"
+"PO-Revision-Date: 2013-04-27 12:37+0200\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -20936,10 +20936,9 @@ msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr "%(unknown_gender_name)s va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:289
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr ""
-"%(unknown_gender_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(unknown_gender_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:292
 #, python-format
@@ -20947,9 +20946,9 @@ msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:293
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:296
 #, python-format
@@ -20957,9 +20956,9 @@ msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:297
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:301
 #, python-format
@@ -20967,9 +20966,9 @@ msgid "This person died %(death_date)s."
 msgstr "Aquesta persona va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:302
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Aquesta persona va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:305
 #, python-format
@@ -20977,9 +20976,9 @@ msgid "He died %(death_date)s."
 msgstr "Va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:306
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:309
 #, python-format
@@ -20987,9 +20986,9 @@ msgid "She died %(death_date)s."
 msgstr "Va morir %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:310
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Va morir %(death_date)s a l'edat de %(age)d dies."
+msgstr "Va morir %(death_date)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:321
 #, python-format
@@ -20997,13 +20996,13 @@ msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:322
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 "%(unknown_gender_name)s va morir el %(month_year)s a %(death_place)s a "
-"l'edat de %(age)d dies."
+"l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:325
 #, python-format
@@ -21011,13 +21010,13 @@ msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:326
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(male_name)s va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:329
 #, python-format
@@ -21025,13 +21024,13 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:330
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 "%(female_name)s va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:334
 #, python-format
@@ -21039,12 +21038,12 @@ msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr "Aquesta persona va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:335
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 "Aquesta persona va morir el %(month_year)s a %(death_place)s a l'edat de "
-"%(age)d dies."
+"%(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:338
 #, python-format
@@ -21052,9 +21051,9 @@ msgid "He died in %(month_year)s in %(death_place)s."
 msgstr "Va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:339
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:342
 #, python-format
@@ -21062,9 +21061,9 @@ msgid "She died in %(month_year)s in %(death_place)s."
 msgstr "Va morir el %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:343
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:347
 #, python-format
@@ -21072,9 +21071,9 @@ msgid "Died %(month_year)s in %(death_place)s."
 msgstr "Mort %(month_year)s a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:348
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Mort %(month_year)s a %(death_place)s (%(age)d dies d'edat)."
+msgstr "Mort %(month_year)s a %(death_place)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:354
 #, python-format
@@ -21082,10 +21081,10 @@ msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr "%(unknown_gender_name)s va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:355
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+"%(unknown_gender_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:358
 #, python-format
@@ -21093,9 +21092,9 @@ msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:362
 #, python-format
@@ -21103,9 +21102,9 @@ msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:363
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:367
 #, python-format
@@ -21113,9 +21112,9 @@ msgid "This person died in %(month_year)s."
 msgstr "Aquesta persona va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:368
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Aquesta persona va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:371
 #, python-format
@@ -21123,9 +21122,9 @@ msgid "He died in %(month_year)s."
 msgstr "Va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:372
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:375
 #, python-format
@@ -21133,9 +21132,9 @@ msgid "She died in %(month_year)s."
 msgstr "Va morir el %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:376
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Va morir el %(month_year)s a l'edat de %(age)d dies."
+msgstr "Va morir el %(month_year)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:380
 #, python-format
@@ -21143,9 +21142,9 @@ msgid "Died %(month_year)s."
 msgstr "Mort %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:381
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Mort %(month_year)s (%(age)d dies d'edat)."
+msgstr "Mort %(month_year)s (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:387
 #, python-format
@@ -21153,10 +21152,10 @@ msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr "%(unknown_gender_name)s va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:388
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+"%(unknown_gender_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:391
 #, python-format
@@ -21164,9 +21163,9 @@ msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:392
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "%(male_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:395
 #, python-format
@@ -21174,9 +21173,9 @@ msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:396
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "%(female_name)s va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:401
 #, python-format
@@ -21184,9 +21183,9 @@ msgid "This person died in %(death_place)s."
 msgstr "Aquesta persona va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:402
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Aquesta persona va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Aquesta persona va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:405
 #, python-format
@@ -21194,9 +21193,9 @@ msgid "He died in %(death_place)s."
 msgstr "Va morir a %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:406
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Va morir a %(death_place)s a l'edat de %(age)d dies."
+msgstr "Va morir a %(death_place)s a l'edat de %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:409
 #, python-format
@@ -24128,6 +24127,12 @@ msgid ""
 "\n"
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
+"El títol del lloc és:\n"
+"<b>%(title)s</b>\n"
+"Els següents llocs són semblants: %(gid)s\n"
+"Podeu canviar el nom dels llocs o combinar-los.\n"
+"\n"
+"<b>No puc continuar amb la petició</b>.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:973
 msgid "Nothing for this view."
@@ -24142,14 +24147,13 @@ msgid "Where to save the tiles for offline mode."
 msgstr "On desar les caselles per mode fora de línia."
 
 #: ../gramps/plugins/lib/maps/geography.py:996
-#, fuzzy
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
-"Si no us queda espai al sistema de fitxers\n"
-"Podeu esborrar totes les caselles ubicades al camí anterior.\n"
+"Si no us queda espai al sistema de fitxers, podeu esborrar totes les caselles "
+"ubicades al camí anterior.\n"
 "Vigileu! Si no teniu internet, no podreu treure el mapa."
 
 #: ../gramps/plugins/lib/maps/geography.py:1001
@@ -24157,9 +24161,8 @@ msgid "Zoom used when centering"
 msgstr "Zoom utilitzant en centrar"
 
 #: ../gramps/plugins/lib/maps/geography.py:1005
-#, fuzzy
 msgid "The maximum number of places to show"
-msgstr "El nombre màxim de generacions ascendents"
+msgstr "El nombre màxim de llocs a mostrar"
 
 #. there is no button. I need to found a solution for this.
 #. it can be very dangerous ! if someone put / in geography.path ...
@@ -24222,14 +24225,12 @@ msgid " state"
 msgstr " estat"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:140
-#, fuzzy
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr "La latitud no és entre %s i %s\n"
+msgstr "La latitud no és entre '54.55' i '69.05'\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:141
-#, fuzzy
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "La longitud no és entre %s i %s"
+msgstr "La longitud no és entre '8.05' i '24.15'"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:142
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:169
@@ -25071,7 +25072,7 @@ msgstr "Calculadora de Parentesc Sueca"
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:388
 msgid "Alphabetical Index"
-msgstr ""
+msgstr "Índex Alfabètic"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:114
 #, fuzzy
@@ -25284,12 +25285,12 @@ msgstr "esp. %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:236
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "vegeu esp. %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:291
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   esp. "
+msgstr "%s esp."
 
 #: ../gramps/plugins/textreport/descendreport.py:407
 #: ../gramps/plugins/textreport/detdescendantreport.py:904
@@ -26407,7 +26408,7 @@ msgstr "Mida total d'objectes audiovisuals: %s MB"
 #: ../gramps/plugins/textreport/tableofcontents.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Taula de Continguts"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:112
 #, fuzzy
@@ -26672,12 +26673,10 @@ msgid "Checking Database"
 msgstr "Comprovant la Base de Dades"
 
 #: ../gramps/plugins/tool/check.py:107
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Buscant cònjuges duplicats"
+msgstr "Buscant duplicats entre taules"
 
 #: ../gramps/plugins/tool/check.py:152
-#, fuzzy
 msgid ""
 "Your Family Tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -26687,10 +26686,10 @@ msgid ""
 msgstr ""
 "L'arbre genealògic conté nanses duplicades entre taules.\n"
 " Això és dolent i es pot arreglar fent una còpia de seguretat\n"
-"de l'arbre genealògic i important-la sobre un arbre genealògic\n"
+"de l'Arbre Genealògic i important-la sobre un Arbre Genealògic\n"
 "buit. La resta de comprovacions se salten, caldria tornar a\n"
-"executar l'eina de Comprovar i Reparar sobre aquest arbre\n"
-"genealògic nou."
+"executar l'eina de Comprovar i Reparar sobre aquest Arbre\n"
+"Genealògic nou."
 
 #: ../gramps/plugins/tool/check.py:159
 msgid "Check Integrity"
@@ -26702,6 +26701,9 @@ msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
+"Els objectes que referenciava aquesta nota estaven referenciats però no hi "
+"eren i per tant s'han creat quan heu executat una acció de Comprovar i "
+"Reparar sobre %s."
 
 #: ../gramps/plugins/tool/check.py:259
 msgid "Looking for invalid name format references"
@@ -26769,9 +26771,8 @@ msgid "Looking for empty source records"
 msgstr "Buscant registres de font buits"
 
 #: ../gramps/plugins/tool/check.py:820
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Buscant registres audiovisuals buits"
+msgstr "Buscant registres de cita buits"
 
 #: ../gramps/plugins/tool/check.py:828
 msgid "Looking for empty place records"
@@ -26818,14 +26819,12 @@ msgid "Looking for place reference problems"
 msgstr "Buscant problemes de referències a llocs"
 
 #: ../gramps/plugins/tool/check.py:1310
-#, fuzzy
 msgid "Looking for citation reference problems"
-msgstr "Buscant problemes de referències a fonts"
+msgstr "Buscant problemes de referències a cites"
 
 #: ../gramps/plugins/tool/check.py:1446
-#, fuzzy
 msgid "Looking for source reference problems"
-msgstr "Buscant problemes de referències a notes"
+msgstr "Buscant problemes de referències a fonts"
 
 #: ../gramps/plugins/tool/check.py:1487
 msgid "Looking for media object reference problems"
@@ -26836,9 +26835,8 @@ msgid "Looking for note reference problems"
 msgstr "Buscant problemes de referències a notes"
 
 #: ../gramps/plugins/tool/check.py:1791
-#, fuzzy
 msgid "Looking for tag reference problems"
-msgstr "Buscant problemes de referències a notes"
+msgstr "Buscant problemes de referències a etiquetes"
 
 #: ../gramps/plugins/tool/check.py:1988
 msgid "No errors were found"
@@ -26849,9 +26847,9 @@ msgid "The database has passed internal checks"
 msgstr "La base de dades ha passat les comprovacions internes"
 
 #: ../gramps/plugins/tool/check.py:1992
-#, fuzzy
 msgid "No errors were found: the database has passed internal checks."
-msgstr "La base de dades ha passat les comprovacions internes"
+msgstr ""
+"No s'han trobat errors: la base de dades ha passat les comprovacions internes."
 
 #: ../gramps/plugins/tool/check.py:1998
 #, python-format
@@ -26969,10 +26967,10 @@ msgstr[0] "S'ha tret %(quantity)d objecte audiovisual que no existia\n"
 msgstr[1] "S'han tret %(quantity)d objectes audiovisuals que no existien\n"
 
 #: ../gramps/plugins/tool/check.py:2138
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
-msgstr[0] "%(quantity)d lloc es referenciava, però no s'ha trobat\n"
+msgstr[0] "%(quantity)d esdeveniment es referenciava, però no s'ha trobat\n"
 msgstr[1] "%(quantity)d llocs es referenciaven, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2145
@@ -27001,10 +26999,10 @@ msgstr[0] "%(quantity)d lloc es referenciava, però no s'ha trobat\n"
 msgstr[1] "%(quantity)d llocs es referenciaven, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2166
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d lloc es referenciava, però no s'ha trobat\n"
+msgstr[0] "%(quantity)d cita es referenciava, però no s'ha trobat\n"
 msgstr[1] "%(quantity)d llocs es referenciaven, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2173
@@ -27032,10 +27030,11 @@ msgstr[1] ""
 "%(quantity)d objectes de nota es referenciaven, però no s'han trobat\n"
 
 #: ../gramps/plugins/tool/check.py:2193 ../gramps/plugins/tool/check.py:2199
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
-msgstr[0] "%(quantity)d objecte de nota es referenciava, però no s'ha trobat\n"
+msgstr[0] ""
+"%(quantity)d objecte d'etiqueta es referenciava, però no s'ha trobat\n"
 msgstr[1] ""
 "%(quantity)d objectes de nota es referenciaven, però no s'han trobat\n"
 
@@ -27366,9 +27365,8 @@ msgid "Introduction"
 msgstr "Introducció"
 
 #: ../gramps/plugins/tool/mediamanager.py:102
-#, fuzzy
 msgid "Selection"
-msgstr "Seccions"
+msgstr "Selecció"
 
 #: ../gramps/plugins/tool/mediamanager.py:223
 msgid ""
