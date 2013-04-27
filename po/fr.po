@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 18:20+0200\n"
-"PO-Revision-Date: 2013-04-27 18:22+0100\n"
+"POT-Creation-Date: 2013-04-27 18:31+0200\n"
+"PO-Revision-Date: 2013-04-27 18:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -10085,11 +10085,8 @@ msgid "Volume/Page"
 msgstr "Volume/Page"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
-#: ../gramps/plugins/view/citationlistview.py:102
-#: ../gramps/plugins/view/citationtreeview.py:97
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
-msgid "Confidence"
-msgstr "Niveau de confiance"
+msgid "Minimum Confidence|Min. Conf."
+msgstr "Conf. min."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:102
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:102
@@ -25092,6 +25089,12 @@ msgstr "Date de mariage mais pas mariés"
 #: ../gramps/plugins/tool/verify.py:1588
 msgid "Old age but no death"
 msgstr "Âge avancé mais pas de décès"
+
+#: ../gramps/plugins/view/citationlistview.py:102
+#: ../gramps/plugins/view/citationtreeview.py:97
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
+msgid "Confidence"
+msgstr "Niveau de confiance"
 
 # trunk
 #: ../gramps/plugins/view/citationlistview.py:105

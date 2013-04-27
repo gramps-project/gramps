@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 18:20+0200\n"
+"POT-Creation-Date: 2013-04-27 18:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9248,10 +9248,7 @@ msgid "Volume/Page"
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
-#: ../gramps/plugins/view/citationlistview.py:102
-#: ../gramps/plugins/view/citationtreeview.py:97
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
-msgid "Confidence"
+msgid "Minimum Confidence|Min. Conf."
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:102
@@ -23843,6 +23840,12 @@ msgstr ""
 
 #: ../gramps/plugins/tool/verify.py:1588
 msgid "Old age but no death"
+msgstr ""
+
+#: ../gramps/plugins/view/citationlistview.py:102
+#: ../gramps/plugins/view/citationtreeview.py:97
+#: ../gramps/plugins/webreport/narrativeweb.py:2373
+msgid "Confidence"
 msgstr ""
 
 #: ../gramps/plugins/view/citationlistview.py:105
