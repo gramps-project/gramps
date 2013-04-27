@@ -548,7 +548,7 @@ class EditRule(ManagedWindow):
                     taglist = ['']
                     taglist = taglist + [tag.get_name() for tag in dbstate.db.iter_tags()]
                     t = MyList(taglist, taglist)
-                elif v == _('Confidence level:'):
+                elif v == _('Min. Conf. level:'):
                     t = MyList(list(map(str, list(range(5)))), 
                                [confidence[i] for i in range(5)])
                 else:                    

@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 17:54+0200\n"
-"PO-Revision-Date: 2013-04-27 17:55+0100\n"
+"POT-Creation-Date: 2013-04-27 18:20+0200\n"
+"PO-Revision-Date: 2013-04-27 18:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1391,12 +1391,9 @@ msgstr "Volume/Page :"
 msgid "Date:"
 msgstr "Date :"
 
-# trunk
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
-#: ../gramps/gui/glade/mergecitation.glade:308
-#: ../gramps/gui/glade/mergecitation.glade:327
-msgid "Confidence:"
-msgstr "Niveau de confiance"
+msgid "Minimum Confidence|Min. Conf.:"
+msgstr "Conf. min. :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
@@ -1624,8 +1621,8 @@ msgstr "Correspond aux citations marquées comme privées"
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 #: ../gramps/gui/editors/filtereditor.py:551
-msgid "Confidence level:"
-msgstr "Niveau de confiance :"
+msgid "Min. Conf. level:"
+msgstr "Niv. min. de confiance :"
 
 # trunk
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
@@ -29255,6 +29252,12 @@ msgstr "<b>Source 1</b>"
 msgid "<b>Source 2</b>"
 msgstr "<b>Source 2</b>"
 
+# trunk
+#: ../gramps/gui/glade/mergecitation.glade:308
+#: ../gramps/gui/glade/mergecitation.glade:327
+msgid "Confidence:"
+msgstr "Niveau de confiance"
+
 #: ../gramps/gui/glade/mergecitation.glade:349
 #: ../gramps/gui/glade/mergecitation.glade:368
 #: ../gramps/gui/glade/mergedata.glade:1038
@@ -30709,10 +30712,6 @@ msgstr "Système de généalogie Gramps"
 #: ../data/gramps.desktop.in.h:4
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Gestion des informations généalogiques, optimisation de la recherche et de l'analyse"
-
-#: ../gramps/gen/filters/rules/_hascitationbase.py:53
-msgid "Minimum Confidence|Min. Conf.:"
-msgstr "Conf. min. :"
 
 # trunk
 #~ msgid "To Do"

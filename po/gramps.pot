@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-27 17:54+0200\n"
+"POT-Creation-Date: 2013-04-27 18:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1148,9 +1148,7 @@ msgid "Date:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
-#: ../gramps/gui/glade/mergecitation.glade:308
-#: ../gramps/gui/glade/mergecitation.glade:327
-msgid "Confidence:"
+msgid "Minimum Confidence|Min. Conf.:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
@@ -1367,7 +1365,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 #: ../gramps/gui/editors/filtereditor.py:551
-msgid "Confidence level:"
+msgid "Min. Conf. level:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
@@ -27819,6 +27817,11 @@ msgstr ""
 msgid "<b>Source 2</b>"
 msgstr ""
 
+#: ../gramps/gui/glade/mergecitation.glade:308
+#: ../gramps/gui/glade/mergecitation.glade:327
+msgid "Confidence:"
+msgstr ""
+
 #: ../gramps/gui/glade/mergecitation.glade:349
 #: ../gramps/gui/glade/mergecitation.glade:368
 #: ../gramps/gui/glade/mergedata.glade:1038
@@ -29449,8 +29452,4 @@ msgstr ""
 #: ../data/gramps.desktop.in.h:4
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
-
-#: ../gramps/gen/filters/rules/_hascitationbase.py:53
-msgid "Minimum Confidence|Min. Conf.:"
 msgstr ""

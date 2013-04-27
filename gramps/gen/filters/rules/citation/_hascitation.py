@@ -49,7 +49,7 @@ class HasCitation(Rule):
 
     labels      = [ _('Volume/Page:'), 
                     _('Date:'), 
-                    _('Confidence level:')]
+                    _('Min. Conf. level:')]
     name        = _('Citations matching parameters')
     category    = _('General filters')
     description = _("Matches citations with particular parameters")

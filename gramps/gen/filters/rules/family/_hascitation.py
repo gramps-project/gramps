@@ -49,7 +49,7 @@ class HasCitation(HasCitationBase):
 
     labels      = [ _('Volume/Page:'), 
                     _('Date:'), 
-                    _('Confidence level:')]
+                    _('Min. Conf. level:')]
     name        =  _('Family with the <citation>')
     description = _("Matches families with a citation of a particular "
                     "value")

@@ -42,7 +42,7 @@ from .._matchessourceconfidencebase import MatchesSourceConfidenceBase
 class MatchesSourceConfidence(MatchesSourceConfidenceBase):
     """Persons matching a specific confidence level on its 'direct' source references"""
 
-    labels    = [_('Confidence level:')]
+    labels    = [_('Min. Conf. level:')]
     name        = _('Persons with at least one direct source >= <confidence level>')
     description = _("Matches persons with at least one direct source with confidence level(s)")
 
