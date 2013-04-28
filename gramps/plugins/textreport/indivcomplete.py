@@ -8,6 +8,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2012      Mathieu MD
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,8 +34,6 @@
 #------------------------------------------------------------------------
 import os
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -42,6 +41,8 @@ from collections import defaultdict
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType, Person, NoteType
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
@@ -61,25 +62,27 @@ from gramps.gen.utils.file import media_path_full
 
 #------------------------------------------------------------------------
 #
-# Global variables
+# Global variables (ones used in both classes here, that is)
 #
 #------------------------------------------------------------------------
 
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
 
-SECTION_CATEGORY = _("Sections")
-# Translated headers for the sections
-FACTS = _("Individual Facts")
-EDUCATION = str(EventType(EventType.EDUCATION))
-CENSUS = str(EventType(EventType.CENSUS))
-ELECTED = str(EventType(EventType.ELECTED))
-MED_INFO = str(EventType(EventType.MED_INFO))
-MILITARY_SERV = str(EventType(EventType.MILITARY_SERV))
-NOB_TITLE = str(EventType(EventType.NOB_TITLE))
-OCCUPATION = str(EventType(EventType.OCCUPATION))
-PROPERTY = str(EventType(EventType.PROPERTY))
-RESIDENCE = str(EventType(EventType.RESIDENCE))
-FAMILY = _("Family")
-CUSTOM = _("Custom")
+SECTION_CATEGORY = _("Sections") # only used in add_menu_options (so no _T_)
+# headers for the sections
+FACTS = _T_("Individual Facts")
+EDUCATION = EventType.xml_str(EventType(EventType.EDUCATION))
+CENSUS = EventType.xml_str(EventType(EventType.CENSUS))
+ELECTED = EventType.xml_str(EventType(EventType.ELECTED))
+MED_INFO = EventType.xml_str(EventType(EventType.MED_INFO))
+MILITARY_SERV = EventType.xml_str(EventType(EventType.MILITARY_SERV))
+NOB_TITLE = EventType.xml_str(EventType(EventType.NOB_TITLE))
+OCCUPATION = EventType.xml_str(EventType(EventType.OCCUPATION))
+PROPERTY = EventType.xml_str(EventType(EventType.PROPERTY))
+RESIDENCE = EventType.xml_str(EventType(EventType.RESIDENCE))
+FAMILY = _T_("Family")
+CUSTOM = _T_("Custom")
 
 SECTION_LIST = [FACTS, CENSUS, EDUCATION, ELECTED, MED_INFO,
                 MILITARY_SERV, NOB_TITLE, OCCUPATION, PROPERTY,
@@ -196,6 +199,8 @@ class IndivCompleteReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
     def write_fact(self, event_ref, event, event_group):
         """
         Writes a single event.
@@ -204,17 +209,17 @@ class IndivCompleteReport(Report):
         role = event_ref.get_role()
         description = event.get_description()
         
-        date = get_date(event)
+        date = self._get_date(event.get_date_object())
         place = ''
         place_handle = event.get_place_handle()
         if place_handle:
             place = self.database.get_place_from_handle(
                                             place_handle).get_title()
-        date_place = combine(_('%s in %s. '), '%s. ', date, place)
+        date_place = combine(self._('%s in %s. '), '%s. ', date, place)
 
         if group_size != 1 or event_group == CUSTOM:
             # Groups with more than one type
-            column_1 = str(event.get_type())
+            column_1 = self._(self._get_type(event.get_type()))
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
                 column_1 = column_1 + ' (' + str(role) + ')'
             column_2 = combine('%s, %s', '%s', description, date_place)
@@ -253,9 +258,11 @@ class IndivCompleteReport(Report):
         self.normal_cell(label)
 
         if parent:
-            text = '%(parent)s, relationship: %(relation)s' % { 
-                                                            'parent': parent, 
-                                                            'relation': rel}
+            text = '%(parent)s, %(separator)s %(relation)s' % { 
+                                      'parent': parent,
+                                      # FIXME this should be lower-case:
+                                      'separator': self._('Relationship:'),
+                                      'relation': self._(rel)}
             self.normal_cell(text, mark=pmark)
         else:
             self.normal_cell('')
@@ -269,7 +276,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell('IDS-TableHead', 2)
         self.doc.start_paragraph('IDS-TableTitle')
-        self.doc.write_text(_('Notes'))
+        self.doc.write_text(self._('Notes'))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -299,7 +306,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(_("Alternate Parents"))
+        self.doc.write_text(self._("Alternate Parents"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -327,18 +334,18 @@ class IndivCompleteReport(Report):
                 father = self.database.get_person_from_handle(father_handle)
                 fname = self._name_display.display(father)
                 mark = ReportUtils.get_person_mark(self.database, father)
-                self.write_p_entry(_('Father'), fname, frel, mark)
+                self.write_p_entry(self._('Father'), fname, frel, mark)
             else:
-                self.write_p_entry(_('Father'), '', '')
+                self.write_p_entry(self._('Father'), '', '')
 
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mname = self._name_display.display(mother)
                 mark = ReportUtils.get_person_mark(self.database, mother)
-                self.write_p_entry(_('Mother'), mname, mrel, mark)
+                self.write_p_entry(self._('Mother'), mname, mrel, mark)
             else:
-                self.write_p_entry(_('Mother'), '', '')
+                self.write_p_entry(self._('Mother'), '', '')
                 
         self.doc.end_table()
         self.doc.start_paragraph("IDS-Normal")
@@ -347,8 +354,10 @@ class IndivCompleteReport(Report):
     def get_name(self, person):
         name = self._name_display.display(person)
         if self.use_gramps_id:
-            return _('%(name)s [%(gid)s]') % {'name': name, 
-                                              'gid': person.get_gramps_id()}
+            # RTL languages are the only reason for "translating" this
+            return self._('%(name)s [%(gid)s]') % {
+                                            'name': name, 
+                                            'gid': person.get_gramps_id()}
         else:
             return name
 
@@ -361,13 +370,13 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(_("Alternate Names"))
+        self.doc.write_text(self._("Alternate Names"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
         
         for name in self.person.get_alternate_names():
-            name_type = str( name.get_type() )
+            name_type = self._(self._get_type(name.get_type()))
             self.doc.start_row()
             self.normal_cell(name_type)
             text = self._name_display.display_name(name)
@@ -391,14 +400,14 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(_("Addresses"))
+        self.doc.write_text(self._("Addresses"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
         
         for addr in alist:
             text = ReportUtils.get_address_str(addr)
-            date = get_date(addr)
+            date = self._get_date(addr.get_date_object())
             endnotes = ""
             if self.use_srcs:
                 endnotes = Endnotes.cite_source(self.bibli, self.database, addr)
@@ -419,7 +428,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(_("Marriages/Children"))
+        self.doc.write_text(self._("Marriages/Children"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -438,7 +447,7 @@ class IndivCompleteReport(Report):
                 text = self.get_name(spouse)
                 mark = ReportUtils.get_person_mark(self.database, spouse)
             else:
-                text = _("unknown")
+                text = self._("unknown")
                 mark = None
             self.doc.write_text(text, mark)
             self.doc.end_paragraph()
@@ -452,7 +461,7 @@ class IndivCompleteReport(Report):
             child_ref_list = family.get_child_ref_list()
             if len(child_ref_list):
                 self.doc.start_row()
-                self.normal_cell(_("Children"))
+                self.normal_cell(self._("Children"))
 
                 self.doc.start_cell("IDS-ListCell")
 
@@ -495,7 +504,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(event_group)
+        self.doc.write_text(self._(event_group))
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -520,7 +529,7 @@ class IndivCompleteReport(Report):
             if event_ref:
                 event = self.database.get_event_from_handle(event_ref.ref)
                 group = TYPE2GROUP[event.get_type().value]
-                if group not in self.section_list:
+                if _(group) not in self.section_list:
                     group = FACTS
                 event_dict[group].append(event_ref)
                     
@@ -563,7 +572,7 @@ class IndivCompleteReport(Report):
         media_list = self.person.get_media_list()
         text = self._name_display.display(self.person)
         # feature request 2356: avoid genitive form
-        title = _("Summary of %s") % text
+        title = self._("Summary of %s") % text
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")
         self.doc.write_text(title, mark)
@@ -610,20 +619,20 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
 
         self.doc.start_cell('IDS-NormalCell')
-        self.normal_paragraph("%s:" % _("Name"))
-        self.normal_paragraph("%s:" % _("Gender"))
-        self.normal_paragraph("%s:" % _("Father"))
-        self.normal_paragraph("%s:" % _("Mother"))
+        self.normal_paragraph("%s:" % self._("Name"))
+        self.normal_paragraph("%s:" % self._("Gender"))
+        self.normal_paragraph("%s:" % self._("Father"))
+        self.normal_paragraph("%s:" % self._("Mother"))
         self.doc.end_cell()
 
         self.doc.start_cell('IDS-NormalCell')
         self.normal_paragraph(text, endnotes, mark)
         if self.person.get_gender() == Person.MALE:
-            self.normal_paragraph(_("Male"))
+            self.normal_paragraph(self._("Male"))
         elif self.person.get_gender() == Person.FEMALE:
-            self.normal_paragraph(_("Female"))
+            self.normal_paragraph(self._("Female"))
         else:
-            self.normal_paragraph(_("Unknown"))
+            self.normal_paragraph(self._("Unknown"))
         self.normal_paragraph(father, mark=fmark)
         self.normal_paragraph(mother, mark=mmark)
         self.doc.end_cell()
@@ -660,7 +669,8 @@ class IndivCompleteReport(Report):
             if self.use_pagebreak and self.bibli.get_citation_count():
                 self.doc.page_break()
             Endnotes.write_endnotes(self.bibli, self.database, self.doc,
-                                    printnotes=self.use_srcs_notes)
+                                    printnotes=self.use_srcs_notes,
+                                    trans_text_=self._)
             
 #------------------------------------------------------------------------
 #
@@ -723,6 +733,8 @@ class IndivCompleteOptions(MenuReportOptions):
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
         menu.add_option(category_name, "grampsid", grampsid)
 
+        stdoptions.add_localization_option(menu, category_name)
+
         ################################
         category_name = SECTION_CATEGORY
         ################################
@@ -730,7 +742,7 @@ class IndivCompleteOptions(MenuReportOptions):
         opt.set_help(_("Check if a separate section is required."))
         for section in SECTION_LIST:
             if section != FACTS:
-                opt.add_button(section, True)
+                opt.add_button(_(section), True)
 
         menu.add_option(category_name, "sections", opt)
 
