@@ -7,6 +7,7 @@
 # Copyright (C) 2010       Craig J. Anderson
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,29 +36,28 @@ Reports/Text Reports/Descendant Report.
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                            FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
-                           EnumeratedListOption)
+                                  EnumeratedListOption)
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.datehandler import get_date
 from gramps.gen.sort import Sort
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                        get_marriage_or_fallback, get_divorce_or_fallback)
-
 
 #------------------------------------------------------------------------
 #
@@ -147,7 +147,7 @@ class Printinfo():
     This class must first be initialized with set_class_vars
     """
     def __init__(self, doc, database, numbering, showmarriage, showdivorce,\
-                 name_display):
+                 name_display, locale):
         #classes
         self._name_display = name_display
         self.doc = doc
@@ -156,22 +156,24 @@ class Printinfo():
         #variables
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
+        self._ = locale.translation.sgettext # needed for English
+        self._get_date = locale.get_date
 
     def __date_place(self,event):
         if event:
-            date = get_date(event)
+            date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
                 place = self.database.get_place_from_handle(
                     place_handle).get_title()
                 return("%(event_abbrev)s %(date)s - %(place)s" % {
-                    'event_abbrev': event.type.get_abbreviation(),
+                    'event_abbrev': event.type.get_abbreviation(self._),
                     'date' : date,
                     'place' : place,
                     })
             else:
                 return("%(event_abbrev)s %(date)s" % {
-                    'event_abbrev': event.type.get_abbreviation(),
+                    'event_abbrev': event.type.get_abbreviation(self._),
                     'date' : date
                     })
         return ""
@@ -219,12 +221,14 @@ class Printinfo():
             mark = ReportUtils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(spouse)
-            self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
+            self.doc.write_text(
+                    self._("sp. %(spouse)s") % {'spouse':name}, mark)
             self.dump_string(spouse, family_handle)
             self.doc.end_paragraph()
         else:
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
-            self.doc.write_text(_("sp. %(spouse)s") % {'spouse':'Unknown'})
+            self.doc.write_text(
+                    self._("sp. %(spouse)s") % {'spouse':'Unknown'})
             self.doc.end_paragraph()
 
     def print_reference(self, level, person, display_num):
@@ -234,8 +238,9 @@ class Printinfo():
             mark = ReportUtils.get_person_mark(self.database, person)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
-            self.doc.write_text(_("sp. see  %(reference)s : %(spouse)s") %
-                {'reference':display_num, 'spouse':name}, mark)
+            self.doc.write_text(
+                    self._("sp. see  %(reference)s : %(spouse)s") %
+                            {'reference':display_num, 'spouse':name}, mark)
             self.doc.end_paragraph()
 
 
@@ -255,13 +260,14 @@ class RecurseDown():
     objPrint:  A Printinfo derived class that prints person
                information on the report
     """
-    def __init__(self, max_generations, database, objPrint, showdups):
+    def __init__(self, max_generations, database, objPrint, showdups, locale):
         self.max_generations = max_generations
         self.database = database
         self.objPrint = objPrint
         self.showdups = showdups
         self.person_printed = {}
-    
+        self._ = locale.translation.sgettext # needed for English
+
     def recurse(self, level, person, curdepth):
 
         person_handle = person.get_handle()
@@ -289,7 +295,7 @@ class RecurseDown():
                 self.objPrint.print_spouse(level, spouse_handle, family)
 
                 if spouse_handle:
-                    spouse_num = _("%s sp." % (ref_str))
+                    spouse_num = self._("%s sp." % (ref_str))
                     self.person_printed[spouse_handle] = spouse_num
 
                 if level >= self.max_generations:
@@ -337,6 +343,9 @@ class DescendantReport(Report):
         
         sort = Sort(self.database)
     
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         #Initialize the Printinfo class    
         self._showdups = menu.get_option_by_name('dups').get_value()
         numbering = menu.get_option_by_name('numbering').get_value()
@@ -359,19 +368,19 @@ class DescendantReport(Report):
             self._name_display.set_default_format(name_format)
 
         self.objPrint = Printinfo(self.doc, database, obj, marrs, divs,
-                                  self._name_display)
+                                  self._name_display, self._locale)
     
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
         name = self._name_display.display(self.center_person)
         # feature request 2356: avoid genitive form
-        title = _("Descendants of %s") % name
+        title = self._("Descendants of %s") % name
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         recurse = RecurseDown(self.max_generations, self.database,
-                              self.objPrint, self._showdups)
+                              self.objPrint, self._showdups, self._locale)
         recurse.recurse(1, self.center_person, None)
 
 #------------------------------------------------------------------------
@@ -420,6 +429,8 @@ class DescendantOptions(MenuReportOptions):
         dups = BooleanOption(_('Show duplicate trees'), True)
         dups.set_help(_("Whether to show duplicate Family Trees in the report."))
         menu.add_option(category_name, "dups", dups)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""
