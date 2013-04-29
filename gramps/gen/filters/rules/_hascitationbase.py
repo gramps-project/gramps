@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,7 @@ class HasCitationBase(Rule):
 
     labels      = [ _('Volume/Page:'), 
                     _('Date:'), 
-                    _('Minimum Confidence|Min. Conf.:') ]
+                    _('Confidence:') ]
     name        = _('Citations matching parameters')
     description = _("Matches citations with particular parameters")
     category    = _('Citation/source filters')
