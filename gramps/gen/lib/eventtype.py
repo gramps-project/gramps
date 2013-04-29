@@ -333,18 +333,18 @@ class EventType(GrampsType):
             return self.value == event_type[0][0] # first one, the code
         return False
 
-    def get_abbreviation(self, trans_text=glocale.translation.sgettext):
+    def get_abbreviation(self, trans_text_=glocale.translation.sgettext):
         """
         Returns the abbreviation for this event. Uses the explicitly
         given abbreviations, or first letter of each word, or the first
         three letters. Appends a period after the abbreviation,
         but not if string is in _ABBREVIATIONS.
 
-        If trans_text is passed in (a glocale.translation.sgettext)
+        If trans_text_ is passed in (a glocale.translation.sgettext)
         then the translated abbreviation will be returned instead.
         """
         if self.value in self._ABBREVIATIONS:
-            return trans_text(self._ABBREVIATIONS[self.value])
+            return trans_text_(self._ABBREVIATIONS[self.value])
         else:
             abbrev = cuni(self)
             if " " in abbrev:
