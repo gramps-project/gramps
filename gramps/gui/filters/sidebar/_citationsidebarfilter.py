@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -104,7 +104,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Volume/Page'), self.filter_page)
         self.add_text_entry(_('Date'), self.filter_date)
-        self.add_entry(_('Confidence'), self.filter_conf)
+        self.add_entry(_('Minimum Confidence|Min. Conf.'), self.filter_conf)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
