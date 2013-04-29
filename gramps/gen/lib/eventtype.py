@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -190,53 +191,56 @@ class EventType(GrampsType):
         (MARR_ALT        , _("Alternate Marriage"),   "Alternate Marriage"),
         ]
 
+    def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+        return value
+
     _ABBREVIATIONS = {
-        BIRTH: _("birth abbreviation|b."),
-        DEATH: _("death abbreviation|d."),
-        MARRIAGE: _("marriage abbreviation|m."),
-        UNKNOWN: _("Unknown abbreviation|unkn."),
-        CUSTOM: _("Custom abbreviation|cust."),
-        ADOPT: _("Adopted abbreviation|adop."),
-        ADULT_CHRISTEN : _("Adult Christening abbreviation|a.chr."),
-        BAPTISM: _("Baptism abbreviation|bap."),
-        BAR_MITZVAH : _("Bar Mitzvah abbreviation|bar."),
-        BAS_MITZVAH : _("Bas Mitzvah abbreviation|bas."),
-        BLESS: _("Blessing abbreviation|bles."),
-        BURIAL: _("Burial abbreviation|bur."),
-        CAUSE_DEATH : _("Cause Of Death abbreviation|d.cau."),
-        CENSUS: _("Census abbreviation|cens."),
-        CHRISTEN: _("Christening abbreviation|chr."),
-        CONFIRMATION: _("Confirmation abbreviation|conf."),
-        CREMATION: _("Cremation abbreviation|crem."),
-        DEGREE: _("Degree abbreviation|deg."),
-        EDUCATION: _("Education abbreviation|edu."),
-        ELECTED: _("Elected abbreviation|elec."),
-        EMIGRATION: _("Emigration abbreviation|em."),
-        FIRST_COMMUN: _("First Communion abbreviation|f.comm."),
-        IMMIGRATION: _("Immigration abbreviation|im."),
-        GRADUATION: _("Graduation abbreviation|grad."),
-        MED_INFO: _("Medical Information abbreviation|medinf."),
-        MILITARY_SERV: _("Military Service abbreviation|milser."),
-        NATURALIZATION: _("Naturalization abbreviation|nat."),
-        NOB_TITLE: _("Nobility Title abbreviation|nob."),
-        NUM_MARRIAGES: _("Number of Marriages abbreviation|n.o.mar."),
-        OCCUPATION: _("Occupation abbreviation|occ."),
-        ORDINATION: _("Ordination abbreviation|ord."),
-        PROBATE: _("Probate abbreviation|prob."),
-        PROPERTY: _("Property abbreviation|prop."),
-        RELIGION: _("Religion abbreviation|rel."),
-        RESIDENCE: _("Residence abbreviation|res."),
-        RETIREMENT: _("Retirement abbreviation|ret."),
-        WILL: _("Will abbreviation|will."),
-        MARR_SETTL: _("Marriage Settlement abbreviation|m.set."),
-        MARR_LIC: _("Marriage License abbreviation|m.lic."),
-        MARR_CONTR: _("Marriage Contract abbreviation|m.con."),
-        MARR_BANNS: _("Marriage Banns abbreviation|m.ban."),
-        MARR_ALT: _("Alternate Marriage abbreviation|alt.mar."),
-        ENGAGEMENT: _("Engagement abbreviation|engd."),
-        DIVORCE: _("Divorce abbreviation|div."),
-        DIV_FILING: _("Divorce Filing abbreviation|div.f."),
-        ANNULMENT: _("Annulment abbreviation|annul.")
+        BIRTH: _T_("birth abbreviation|b."),
+        DEATH: _T_("death abbreviation|d."),
+        MARRIAGE: _T_("marriage abbreviation|m."),
+        UNKNOWN: _T_("Unknown abbreviation|unkn."),
+        CUSTOM: _T_("Custom abbreviation|cust."),
+        ADOPT: _T_("Adopted abbreviation|adop."),
+        ADULT_CHRISTEN : _T_("Adult Christening abbreviation|a.chr."),
+        BAPTISM: _T_("Baptism abbreviation|bap."),
+        BAR_MITZVAH : _T_("Bar Mitzvah abbreviation|bar."),
+        BAS_MITZVAH : _T_("Bas Mitzvah abbreviation|bas."),
+        BLESS: _T_("Blessing abbreviation|bles."),
+        BURIAL: _T_("Burial abbreviation|bur."),
+        CAUSE_DEATH : _T_("Cause Of Death abbreviation|d.cau."),
+        CENSUS: _T_("Census abbreviation|cens."),
+        CHRISTEN: _T_("Christening abbreviation|chr."),
+        CONFIRMATION: _T_("Confirmation abbreviation|conf."),
+        CREMATION: _T_("Cremation abbreviation|crem."),
+        DEGREE: _T_("Degree abbreviation|deg."),
+        EDUCATION: _T_("Education abbreviation|edu."),
+        ELECTED: _T_("Elected abbreviation|elec."),
+        EMIGRATION: _T_("Emigration abbreviation|em."),
+        FIRST_COMMUN: _T_("First Communion abbreviation|f.comm."),
+        IMMIGRATION: _T_("Immigration abbreviation|im."),
+        GRADUATION: _T_("Graduation abbreviation|grad."),
+        MED_INFO: _T_("Medical Information abbreviation|medinf."),
+        MILITARY_SERV: _T_("Military Service abbreviation|milser."),
+        NATURALIZATION: _T_("Naturalization abbreviation|nat."),
+        NOB_TITLE: _T_("Nobility Title abbreviation|nob."),
+        NUM_MARRIAGES: _T_("Number of Marriages abbreviation|n.o.mar."),
+        OCCUPATION: _T_("Occupation abbreviation|occ."),
+        ORDINATION: _T_("Ordination abbreviation|ord."),
+        PROBATE: _T_("Probate abbreviation|prob."),
+        PROPERTY: _T_("Property abbreviation|prop."),
+        RELIGION: _T_("Religion abbreviation|rel."),
+        RESIDENCE: _T_("Residence abbreviation|res."),
+        RETIREMENT: _T_("Retirement abbreviation|ret."),
+        WILL: _T_("Will abbreviation|will."),
+        MARR_SETTL: _T_("Marriage Settlement abbreviation|m.set."),
+        MARR_LIC: _T_("Marriage License abbreviation|m.lic."),
+        MARR_CONTR: _T_("Marriage Contract abbreviation|m.con."),
+        MARR_BANNS: _T_("Marriage Banns abbreviation|m.ban."),
+        MARR_ALT: _T_("Alternate Marriage abbreviation|alt.mar."),
+        ENGAGEMENT: _T_("Engagement abbreviation|engd."),
+        DIVORCE: _T_("Divorce abbreviation|div."),
+        DIV_FILING: _T_("Divorce Filing abbreviation|div.f."),
+        ANNULMENT: _T_("Annulment abbreviation|annul.")
         }
 
     def __init__(self, value=None):
@@ -329,15 +333,18 @@ class EventType(GrampsType):
             return self.value == event_type[0][0] # first one, the code
         return False
 
-    def get_abbreviation(self):
+    def get_abbreviation(self, trans_text=glocale.translation.sgettext):
         """
         Returns the abbreviation for this event. Uses the explicitly
         given abbreviations, or first letter of each word, or the first
         three letters. Appends a period after the abbreviation,
         but not if string is in _ABBREVIATIONS.
+
+        If trans_text is passed in (a glocale.translation.sgettext)
+        then the translated abbreviation will be returned instead.
         """
         if self.value in self._ABBREVIATIONS:
-            return self._ABBREVIATIONS[self.value]
+            return trans_text(self._ABBREVIATIONS[self.value])
         else:
             abbrev = cuni(self)
             if " " in abbrev:
