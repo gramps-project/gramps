@@ -2939,10 +2939,13 @@ class GrampsParser(UpdateCallback):
             obj.add_tag(tag_handle)
 
     def fix_not_instantiated(self):
-        uninstantiated = [(orig_handle, target) for orig_handle in
-                self.import_handles.keys() if
-                [target for target in self.import_handles[orig_handle].keys() if
-                    not self.import_handles[orig_handle][target][INSTANTIATED]]]
+        uninstantiated = []
+        for orig_handle in self.import_handles.keys():
+            tglist = [target for target in self.import_handles[orig_handle].keys() if
+                    not self.import_handles[orig_handle][target][INSTANTIATED]]
+            for target in tglist:
+                uninstantiated += [(orig_handle, target)]
+
         if uninstantiated:
             expl_note = Utils.create_explanation_note(self.db)
             self.db.commit_note(expl_note, self.trans, time.time())
