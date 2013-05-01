@@ -482,5 +482,21 @@
     <date _name="6 of Hanuka" value="> hanuka(y)" offset="5"/>
     <date _name="7 of Hanuka" value="> hanuka(y)" offset="6"/>
     <date _name="8 of Hanuka" value="> hanuka(y)" offset="7"/>
+  </country>
+  <country _name="New Zealand">
+    <date value="*/1/1" type="national" name="New Year's Day"/>
+    <date value="*/1/2" type="national" name="Day After New Year's Day"/>
+    <date value="*/1/1" type="national" offset="+1" name="New Years Day Holiday" if="dow(y, m, d) == 7"/>
+    <date value="*/1/1" type="national" offset="+2" name="Day After New Years Day Holiday" if="dow(y, m, d) == 6"/>
+    <date value="*/feb/6" type="national" name="Waitangi Day"/>
+    <date value="> easter(y)" type="national" offset="-2" name="Good Friday"/>
+    <date value="> easter(y)" type="national" offset="+1" name="Easter Monday"/>
+    <date value="*/apr/25" type="national" name="ANZAC Day"/>
+    <date value="*/-1/mon/jun" type="national" name="Queen's Birthday Holiday"/>
+    <date value="*/-4/mon/oct" type="national" name="Labour Day"/>
+    <date value="*/dec/25" type="national" name="Christmas Day"/>
+    <date value="*/dec/26" type="national" name="Boxing Day"/>
+    <date value="*/dec/25" type="national" offset="+2" name="Christmas Day Holiday" if="dow(y, m, d) > 5"/>
+    <date value="*/dec/26" type="national" offset="+2" name="Boxing Day Holiday" if="dow(y, m, d) > 5"/>
   </country> 
 </calendar>
