@@ -117,6 +117,8 @@ class HourGlassReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
     def write_report(self):
         """
         Generate the report.
@@ -185,13 +187,13 @@ class HourGlassReport(Report):
         
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
-            birth = get_date(birth_evt)
+            birth = self._get_date(birth_evt.get_date_object())
         else:
             birth = ""
         
         death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
-            death = get_date(death_evt)
+            death = self._get_date(death_evt.get_date_object())
         else:
             death = ""
 
@@ -208,7 +210,7 @@ class HourGlassReport(Report):
         label = ""
         marriage = ReportUtils.find_marriage(self.__db, family)
         if marriage:
-            label = get_date(marriage)
+            label = self._get_date(marriage.get_date_object())
         color = ""
         fill = ""
         style = "solid"
@@ -283,6 +285,8 @@ class HourGlassOptions(MenuReportOptions):
         max_gen.set_help(_("The number of generations of ancestors to "
                            "include in the graph"))
         menu.add_option(category_name, "maxascend", max_gen)
+
+        stdoptions.add_localization_option(menu, category_name)
 
         ################################
         category_name = _("Graph Style")
