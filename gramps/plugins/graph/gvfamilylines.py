@@ -56,7 +56,6 @@ _ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType, Person
 from gramps.gen.utils.file import media_path_full
 from gramps.gui.thumbnails import get_thumbnail_path
-from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -142,6 +141,8 @@ class FamilyLinesOptions(MenuReportOptions):
                                        'be removed when determining '
                                        '"family lines".'))
         add_option('removeextra', remove_extra_people)
+
+        stdoptions.add_localization_option(menu, category_name)
 
         # ----------------------------
         add_option = partial(menu.add_option, _('Family Colors'))
@@ -359,6 +360,8 @@ class FamilyLinesReport(Report):
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
+
+        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
@@ -761,7 +764,7 @@ class FamilyLinesReport(Report):
                     if self._just_years and date.get_year_valid():
                         birthStr = '%i' % date.get_year()
                     else:
-                        birthStr = _dd.display(date)
+                        birthStr = self._get_date(date)
 
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
@@ -785,7 +788,7 @@ class FamilyLinesReport(Report):
                     if self._just_years and date.get_year_valid():
                         deathStr = '%i' % date.get_year()
                     else:
-                        deathStr = _dd.display(date)
+                        deathStr = self._get_date(date)
 
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
@@ -812,7 +815,7 @@ class FamilyLinesReport(Report):
                     if mediaMimeType[0:5] == "image":
                         imagePath = get_thumbnail_path(
                                         media_path_full(self._db, 
-                                                              media.get_path()),
+                                                        media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())
 
             # put the label together and output this person
@@ -821,7 +824,8 @@ class FamilyLinesReport(Report):
             if bUseHtmlOutput:
                 lineDelimiter = '<BR/>'
 
-            # if we have an image, then start an HTML table; remember to close the table afterwards!
+            # if we have an image, then start an HTML table;
+            # remember to close the table afterwards!
             if imagePath:
                 label = ('<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
                          'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'
@@ -911,7 +915,7 @@ class FamilyLinesReport(Report):
                                 if self._just_years and date.get_year_valid():
                                     weddingDate = '%i' % date.get_year()
                                 else:
-                                    weddingDate = _dd.display(date)
+                                    weddingDate = self._get_date(date)
                             # get the wedding location
                             if self._incplaces:
                                 place = self._db.get_place_from_handle(event.get_place_handle())
@@ -932,7 +936,7 @@ class FamilyLinesReport(Report):
 #                if child_count == 1:
 #                    childrenStr = _('1 child')
                 if child_count > 1:
-                    childrenStr = _('%d children') % child_count
+                    childrenStr = self._('%d children') % child_count
 
             label = ''
             if weddingDate:
