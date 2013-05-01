@@ -1,11 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008  Brian G. Matherly
-#
 # Adapted from GraphViz.py (now deprecated)
 #    Copyright (C) 2000-2007  Donald N. Allingham
 #    Copyright (C) 2005-2006  Eero Tamminen
+#    Copyright (C) 2007-2008  Brian G. Matherly
 #    Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #    Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #    Copyright (C) 2008       Stephane Charette <stephanecharette@gmail.com>
@@ -40,8 +39,6 @@ Create a relationship graph using Graphviz
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from functools import partial
 import copy
 
@@ -50,6 +47,8 @@ import copy
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
                                   FilterOption, PersonOption, ColorOption)
@@ -87,7 +86,7 @@ class RelGraphReport(Report):
 
     def __init__(self, database, options, user):
         """
-        Create ComprehensiveAncestorsReport object that produces the report.
+        Create RelGraphReport object that produces the report.
         
         The arguments are:
 
@@ -169,6 +168,8 @@ class RelGraphReport(Report):
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
+
+        self.set_locale(menu.get_option_by_name('trans').get_value())
 
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
@@ -369,8 +370,8 @@ class RelGraphReport(Report):
                 if mediaMimeType[0:5] == "image":
                     imagePath = get_thumbnail_path(
                                     media_path_full(self.database, 
-                                                          media.get_path()),
-                                        rectangle=mediaList[0].get_rectangle())
+                                                    media.get_path()),
+                                    rectangle=mediaList[0].get_rectangle())
                     # test if thumbnail actually exists in thumbs
                     # (import of data means media files might not be present
                     imagePath = find_file(imagePath)
@@ -462,14 +463,13 @@ class RelGraphReport(Report):
                 if self.just_years:
                     return '%i' % event.get_date_object().get_year()
                 else:
-                    return get_date(event)
+                    return self._get_date(event.get_date_object())
             elif self.use_place:
                 place_handle = event.get_place_handle()
                 place = self.database.get_place_from_handle(place_handle)
                 if place and place.get_title():
                     return place.get_title()
         return ''
-
 
 #------------------------------------------------------------------------
 #
@@ -555,6 +555,8 @@ class RelGraphOptions(MenuReportOptions):
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
         
+        stdoptions.add_localization_option(menu, category_name)
+
         ################################
         add_option = partial(menu.add_option, _("Graph Style"))
         ################################
