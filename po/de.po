@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-16 19:34+0200\n"
-"PO-Revision-Date: 2013-04-16 19:33+0200\n"
+"POT-Creation-Date: 2013-05-01 13:13+0200\n"
+"PO-Revision-Date: 2013-05-01 13:53+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -15080,7 +15080,7 @@ msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
 
-#: ../src/plugins/import/ImportXml.py:2997
+#: ../src/plugins/import/ImportXml.py:3000
 #, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -15089,7 +15089,7 @@ msgstr ""
 "Fehler: Familie '%(family)s' Vater '%(father)s' Verweist nicht zurück auf "
 "die Familie. Referenz hinzugefügt."
 
-#: ../src/plugins/import/ImportXml.py:3013
+#: ../src/plugins/import/ImportXml.py:3016
 #, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
@@ -15098,7 +15098,7 @@ msgstr ""
 "Fehler: Familie '%(family)s' Mutter '%(mother)s' verweist nicht zurück auf "
 "die Familie.Referenz hinzugefügt."
 
-#: ../src/plugins/import/ImportXml.py:3035
+#: ../src/plugins/import/ImportXml.py:3038
 #, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -19379,6 +19379,10 @@ msgstr "7 vor Chanukka"
 #: ../src/plugins/lib/holidays.xml.in.h:42
 msgid "8 of Hanuka"
 msgstr "8 vor Chanukka"
+
+#: ../src/plugins/lib/holidays.xml.in.h:43
+msgid "New Zealand"
+msgstr "Neuseeland"
 
 #: ../src/plugins/lib/maps/geography.py:162
 #: ../src/plugins/lib/maps/geography.py:165
