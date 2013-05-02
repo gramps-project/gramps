@@ -547,12 +547,20 @@ class GtkDocParagraph(GtkDocBaseElement):
         #
         align = self._style.get_alignment_text()
         if align == 'left':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
+            #We have a problem, in pango, justify works only on full lines, 
+            # and we need an alignment for the partial lines. We don't know
+            # for justify what alignment the user wants however. We assume
+            # here LEFT ...
+            layout.set_alignment(Pango.Alignment.LEFT)
             layout.set_justify(True)
         else:
             raise ValueError
@@ -728,12 +736,20 @@ class GtkDocParagraph(GtkDocBaseElement):
         #
         align = self._style.get_alignment_text()
         if align == 'left':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
+            #We have a problem, in pango, justify works only on full lines, 
+            # and we need an alignment for the partial lines. We don't know
+            # for justify what alignment the user wants however. We assume
+            # here LEFT ...
+            layout.set_alignment(Pango.Alignment.LEFT)
             layout.set_justify(True)
         #
         font_style = self._style.get_font()
@@ -1289,12 +1305,20 @@ class GtkDocText(GtkDocBaseElement):
         # set paragraph properties
         align = self._style.get_alignment_text()
         if align == 'left':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.LEFT)
         elif align == 'right':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.RIGHT)
         elif align == 'center':
+            layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
+            #We have a problem, in pango, justify works only on full lines, 
+            # and we need an alignment for the partial lines. We don't know
+            # for justify what alignment the user wants however. We assume
+            # here CENTER ...
+            layout.set_alignment(Pango.Alignment.CENTER)
             layout.set_justify(True)
         else:
             raise ValueError
