@@ -484,12 +484,13 @@ class IndivCompleteReport(Report):
         if the user option is set.
         """
         event_list = []
-        for event_ref in event_ref_list:
+        for ind, event_ref in enumerate(event_ref_list):
             if event_ref:
                 event = self.database.get_event_from_handle(event_ref.ref)
                 if event:
                     sort_value = event.get_date_object().get_sort_value()
-                    event_list.append((sort_value, event_ref, event))
+                    #first sort on date, equal dates, then sort as in GUI.
+                    event_list.append((str(sort_value) + "%04i"%ind, event_ref, event))
 
         if self.sort:
             event_list.sort()
