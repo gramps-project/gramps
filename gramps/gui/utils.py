@@ -475,7 +475,7 @@ def hex_to_rgb_float(value):
 
 def hex_to_rgb(value):
     """
-    Convert a hexademical value #FF00FF to rgb. Returns tuple of integers
+    Convert a hexadecimal value #FF00FF to rgb. Returns tuple of integers
     """
     value = value.lstrip('#')
     lenv = len(value)
@@ -495,7 +495,7 @@ def color_to_hex(color):
     """Convert Gdk.Color to hex string."""
     hexstring = ""
     for col in 'red', 'green', 'blue':
-        hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
+        hexfrag = hex(getattr(color, col) // (16 * 16)).split("x")[1]
         if len(hexfrag) < 2:
             hexfrag = "0" + hexfrag
         hexstring += hexfrag
