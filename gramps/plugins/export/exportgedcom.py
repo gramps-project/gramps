@@ -1457,5 +1457,5 @@ def export_data(database, filename, user, option_box=None):
         msg2 = _("Could not create %s") % filename
         user.notify_error(msg2, str(msg))
     except DatabaseError as msg:
-        user.notify_db_error(_("Export failed"), str(msg))
+        user.notify_db_error("%s\n%s" % (_("GEDCOM Export failed"), str(msg)))
     return ret
