@@ -219,6 +219,27 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         """
         self.__config.set(constant, unicode(obj.get_text()))
 
+    def update_markup_entry(self, obj, constant):
+        """
+        :param obj: an object with get_text method 
+        :param constant: the config setting to which the text value must be 
+            saved
+        """
+        try:
+            obj.get_text() % 'test_markup'
+        except TypeError:
+            print("WARNING: ignoring invalid value for '%s'" % constant)
+            ErrorDialog(_("Invalid or incomplete format definition."), 
+            obj.get_text())
+            obj.set_text('<b>%s</b>')
+        except ValueError:
+            print("WARNING: ignoring invalid value for '%s'" % constant)
+            ErrorDialog(_("Invalid or incomplete format definition."),
+            obj.get_text())
+            obj.set_text('<b>%s</b>')
+        
+        self.__config.set(constant, unicode(obj.get_text()))
+
     def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()
         hexval = "#%02x%02x%02x" % (color.red/256, 
@@ -1034,7 +1055,7 @@ class GrampsPreferences(ConfigureDialog):
                 6, 'behavior.avg-generation-gap', self.update_int_entry)
         self.add_pos_int_entry(table,
                 _('Markup for invalid date format'), 
-                7, 'preferences.invalid-date-format', self.update_entry)
+                7, 'preferences.invalid-date-format', self.update_markup_entry)
 
         return _('Dates'), table
         
