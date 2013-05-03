@@ -294,13 +294,14 @@ try:
     else:
         language = collation.rsplit('_', 1)[0]
         if language in PyICU.Collator.getAvailableLocales().keys():
-            LOG.warn(_("Language and country %s not supported by ICU: "
-                       "but language %s is supported and will be used" %
+            LOG.warn(_('The language and country combination "%s" '
+                       'is not supported by ICU, '
+                       'but language %s is supported and will be used' %
                        (language_and_country, language)))
             COLLATE_LANG = language
         else:
-            LOG.warn(_("Neither Language and country %s nor language %s "
-                       "supported by ICU: using en_GB" % 
+            LOG.warn(_('Neither the language and country combination '
+                       '"%s" nor language %s is supported by ICU: using en_GB' % 
                        (language_and_country, language)))
             COLLATE_LANG = "en_GB"
     
