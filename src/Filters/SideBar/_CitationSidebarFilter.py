@@ -26,7 +26,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gen.ggettext import gettext as _
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -94,7 +94,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Volume/Page'), self.filter_page)
         self.add_text_entry(_('Date'), self.filter_date)
-        self.add_entry(_('Confidence'), self.filter_conf)
+        self.add_entry(_('Minimum Confidence|Min. Conf.'), self.filter_conf)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)

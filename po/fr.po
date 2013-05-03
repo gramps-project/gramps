@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-03 08:50+0200\n"
-"PO-Revision-Date: 2013-05-03 08:54+0100\n"
+"POT-Creation-Date: 2013-05-03 09:13+0200\n"
+"PO-Revision-Date: 2013-05-03 09:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -22906,7 +22906,6 @@ msgstr "Titre ou page"
 #: ../src/plugins/view/citationtreeview.py:93
 #: ../src/plugins/view/citationlistview.py:98
 #: ../src/plugins/webreport/NarrativeWeb.py:2369
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
 msgid "Confidence"
 msgstr "Niveau de confiance"
 
@@ -27708,6 +27707,10 @@ msgstr "Notes marquées comme privées"
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
 msgstr "Correspond aux notes marquées comme privées"
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
+msgid "Minimum Confidence|Min. Conf."
+msgstr "Conf. min."
 
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:100

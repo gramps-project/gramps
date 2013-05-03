@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-03 08:50+0200\n"
+"POT-Creation-Date: 2013-05-03 09:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21894,7 +21894,6 @@ msgstr ""
 #: ../src/plugins/view/citationtreeview.py:93
 #: ../src/plugins/view/citationlistview.py:98
 #: ../src/plugins/webreport/NarrativeWeb.py:2369
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
 msgid "Confidence"
 msgstr ""
 
@@ -26429,6 +26428,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
+msgstr ""
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
+msgid "Minimum Confidence|Min. Conf."
 msgstr ""
 
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
