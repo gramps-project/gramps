@@ -147,7 +147,7 @@ class Printinfo():
     This class must first be initialized with set_class_vars
     """
     def __init__(self, doc, database, numbering, showmarriage, showdivorce,\
-                 name_display, locale):
+                 name_display, rlocale):
         #classes
         self._name_display = name_display
         self.doc = doc
@@ -156,8 +156,8 @@ class Printinfo():
         #variables
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
-        self._ = locale.translation.sgettext # needed for English
-        self._get_date = locale.get_date
+        self._ = rlocale.translation.sgettext # needed for English
+        self._get_date = rlocale.get_date
 
     def __date_place(self,event):
         if event:
@@ -260,13 +260,13 @@ class RecurseDown():
     objPrint:  A Printinfo derived class that prints person
                information on the report
     """
-    def __init__(self, max_generations, database, objPrint, showdups, locale):
+    def __init__(self, max_generations, database, objPrint, showdups, rlocale):
         self.max_generations = max_generations
         self.database = database
         self.objPrint = objPrint
         self.showdups = showdups
         self.person_printed = {}
-        self._ = locale.translation.sgettext # needed for English
+        self._ = rlocale.translation.sgettext # needed for English
 
     def recurse(self, level, person, curdepth):
 
