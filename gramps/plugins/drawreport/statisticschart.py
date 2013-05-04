@@ -6,7 +6,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012      Paul Franklin
+# Copyright (C) 2012-2013 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,15 +27,13 @@
 
 """Reports/Graphical Reports/Statistics Report"""
 
-from __future__ import division
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import division
 import time
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -44,20 +42,24 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 # Person and relation types
 from gramps.gen.lib import Person, FamilyRelType, EventType, EventRoleType
 from gramps.gen.lib.date import Date
 # gender and report type names
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                             FONT_SANS_SERIF, FONT_SERIF,
-                             PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
-                             IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.menu import (BooleanOption, NumberOption, EnumeratedListOption,
-                           FilterOption, PersonOption)
+                                    FONT_SANS_SERIF, FONT_SERIF,
+                                    PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
+                                    IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.menu import (BooleanOption, BooleanListOption,
+                                  EnumeratedListOption, NumberOption,
+                                  FilterOption, PersonOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.datehandler import displayer, parser
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.datehandler import parser
 
 #------------------------------------------------------------------------
 #
@@ -295,16 +297,19 @@ class _options:
     SORT_VALUE = 0
     SORT_KEY = 1
 
-    sorts = [
+    opt_sorts = [
         (SORT_VALUE, "Item count", _("Item count")),
         (SORT_KEY, "Item name", _("Item name"))
     ]
-    genders = [
+    opt_genders = [
         (Person.UNKNOWN, "Both", _("Both")),
         (Person.MALE, "Men", _("Men")),
         (Person.FEMALE, "Women", _("Women"))
     ]
 
+
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
 
 #------------------------------------------------------------------------
 #
@@ -317,43 +322,43 @@ class Extract(object):
         """Methods for extracting statistical data from the database"""
         # key, non-localized name, localized name, type method, data method
         self.extractors = {
-            'data_title':  ("Title", _("person|Title"),
+            'data_title':  ("Title", _T_("person|Title"),
                             self.get_person, self.get_title),
-            'data_sname':  ("Surname", _("Surname"),
+            'data_sname':  ("Surname", _T_("Surname"),
                             self.get_person, self.get_surname),
-            'data_fname':  ("Forename", _("Forename"),
+            'data_fname':  ("Forename", _T_("Forename"),
                             self.get_person, self.get_forename),
-            'data_gender': ("Gender", _("Gender"),
+            'data_gender': ("Gender", _T_("Gender"),
                             self.get_person, self.get_gender),
-            'data_byear':  ("Birth year", _("Birth year"),
+            'data_byear':  ("Birth year", _T_("Birth year"),
                              self.get_birth, self.get_year),
-            'data_dyear':  ("Death year", _("Death year"),
+            'data_dyear':  ("Death year", _T_("Death year"),
                              self.get_death, self.get_year),
-            'data_bmonth': ("Birth month", _("Birth month"),
+            'data_bmonth': ("Birth month", _T_("Birth month"),
                             self.get_birth, self.get_month),
-            'data_dmonth': ("Death month", _("Death month"),
+            'data_dmonth': ("Death month", _T_("Death month"),
                             self.get_death, self.get_month),
-            'data_bplace': ("Birth place", _("Birth place"),
+            'data_bplace': ("Birth place", _T_("Birth place"),
                             self.get_birth, self.get_place),
-            'data_dplace': ("Death place", _("Death place"),
+            'data_dplace': ("Death place", _T_("Death place"),
                              self.get_death, self.get_place),
-            'data_mplace': ("Marriage place", _("Marriage place"),
+            'data_mplace': ("Marriage place", _T_("Marriage place"),
                              self.get_marriage_handles, self.get_places),
-            'data_mcount': ("Number of relationships", _("Number of relationships"),
+            'data_mcount': ("Number of relationships", _T_("Number of relationships"),
                              self.get_family_handles, self.get_handle_count),
-            'data_fchild': ("Age when first child born", _("Age when first child born"),
+            'data_fchild': ("Age when first child born", _T_("Age when first child born"),
                              self.get_child_handles, self.get_first_child_age),
-            'data_lchild': ("Age when last child born", _("Age when last child born"),
+            'data_lchild': ("Age when last child born", _T_("Age when last child born"),
                              self.get_child_handles, self.get_last_child_age),
-            'data_ccount': ("Number of children", _("Number of children"),
+            'data_ccount': ("Number of children", _T_("Number of children"),
                              self.get_child_handles, self.get_handle_count),
-            'data_mage':   ("Age at marriage", _("Age at marriage"),
+            'data_mage':   ("Age at marriage", _T_("Age at marriage"),
                              self.get_marriage_handles, self.get_event_ages),
-            'data_dage':   ("Age at death", _("Age at death"),
+            'data_dage':   ("Age at death", _T_("Age at death"),
                              self.get_person, self.get_death_age),
-            'data_age':    ("Age", _("Age"),
+            'data_age':    ("Age", _T_("Age"),
                              self.get_person, self.get_person_age),
-            'data_etypes': ("Event type", _("Event type"),
+            'data_etypes': ("Event type", _T_("Event type"),
                              self.get_event_handles, self.get_event_type)
         }
 
@@ -367,7 +372,7 @@ class Extract(object):
         if title:
             return [title]
         else:
-            return [_("(Preferred) title missing")]
+            return [_T_("(Preferred) title missing")]
     
     def get_forename(self, person):
         "return forenames for given person"
@@ -376,7 +381,7 @@ class Extract(object):
         if firstnames:
             return firstnames.split()
         else:
-            return [_("(Preferred) forename missing")]
+            return [_T_("(Preferred) forename missing")]
         
     def get_surname(self, person):
         "return surnames for given person"
@@ -385,17 +390,17 @@ class Extract(object):
         if surnames:
             return surnames.split()
         else:
-            return [_("(Preferred) surname missing")]
+            return [_T_("(Preferred) surname missing")]
         
     def get_gender(self, person):
         "return gender for given person"
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
         if person.gender == Person.MALE:
-            return [_("Men")]
+            return [_T_("Men")]
         if person.gender == Person.FEMALE:
-            return [_("Women")]
-        return [_("Gender unknown")]
+            return [_T_("Women")]
+        return [_T_("Gender unknown")]
 
     def get_year(self, event):
         "return year for given event"
@@ -404,7 +409,7 @@ class Extract(object):
             year = date.get_year()
             if year:
                 return [str(year)]
-        return [_("Date(s) missing")]
+        return [_T_("Date(s) missing")]
         
     def get_month(self, event):
         "return month for given event"
@@ -412,8 +417,8 @@ class Extract(object):
         if date:
             month = date.get_month()
             if month:
-                return [displayer.long_months[month]]
-        return [_("Date(s) missing")]
+                return [self._locale.date_displayer.long_months[month]]
+        return [_T_("Date(s) missing")]
 
     def get_place(self, event):
         "return place for given event"
@@ -422,7 +427,7 @@ class Extract(object):
             place = self.db.get_place_from_handle(place_handle).get_title()
             if place:
                 return [place]
-        return [_("Place missing")]
+        return [_T_("Place missing")]
 
     def get_places(self, data):
         "return places for given (person,event_handles)"
@@ -436,7 +441,7 @@ class Extract(object):
                 if place:
                     places.append(place)
             else:
-                places.append(_("Place missing"))
+                places.append(_T_("Place missing"))
         return places
     
     def get_person_age(self, person):
@@ -444,14 +449,14 @@ class Extract(object):
         death_ref = person.get_death_ref()
         if not death_ref:
             return [self.estimate_age(person)]
-        return [_("Already dead")]
+        return [_T_("Already dead")]
 
     def get_death_age(self, person):
         "return age at death for given person, if dead"
         death_ref = person.get_death_ref()
         if death_ref:
             return [self.estimate_age(person, death_ref.ref)]
-        return [_("Still alive")]
+        return [_T_("Still alive")]
 
     def get_event_ages(self, data):
         "return ages at given (person,event_handles)"
@@ -459,7 +464,7 @@ class Extract(object):
         ages = [self.estimate_age(person, h) for h in event_handles]
         if ages:
             return ages
-        return [_("Events missing")]
+        return [_T_("Events missing")]
 
     def get_event_type(self, data):
         "return event types at given (person,event_handles)"
@@ -467,11 +472,11 @@ class Extract(object):
         person, event_handles = data
         for event_handle in event_handles:
             event = self.db.get_event_from_handle(event_handle)
-            evtType = str(event.get_type())
+            evtType = self._(self._get_type(event.get_type()))
             types.append(evtType)
         if types:
             return types
-        return [_("Events missing")]
+        return [_T_("Events missing")]
 
     def get_first_child_age(self, data):
         "return age when first child in given (person,child_handles) was born"
@@ -479,7 +484,7 @@ class Extract(object):
         if ages:
             errors.append(ages[0])
             return errors
-        return [_("Children missing")]
+        return [_T_("Children missing")]
 
     def get_last_child_age(self, data):
         "return age when last child in given (person,child_handles) was born"
@@ -487,7 +492,7 @@ class Extract(object):
         if ages:
             errors.append(ages[-1])
             return errors
-        return [_("Children missing")]
+        return [_T_("Children missing")]
 
     def get_handle_count(self, data):
         "return number of handles in given (person, handle_list) used for child count, family count"
@@ -506,7 +511,7 @@ class Extract(object):
             if birth_ref:
                 ages.append(self.estimate_age(person, birth_ref.ref))
             else:
-                errors.append(_("Birth missing"))
+                errors.append(_T_("Birth missing"))
                 continue
         ages.sort()
         return (ages, errors)
@@ -517,7 +522,7 @@ class Extract(object):
         age = estimate_age(self.db, person, end, begin)
         if age[0] < 0 or age[1] < 0:
             # inadequate information
-            return _("Date(s) missing")
+            return _T_("Date(s) missing")
         if age[0] == age[1]:
             # exact year
             return "%3d" % age[0]
@@ -597,7 +602,7 @@ class Extract(object):
 
     def get_person_data(self, person, collect):
         """Add data from the database to 'collect' for the given person,
-           using methods rom the 'collect' data dict tuple
+           using methods from the 'collect' data dict tuple
         """
         for chart in collect:
             # get the information
@@ -607,7 +612,7 @@ class Extract(object):
             if obj:
                 value = data_func(obj)        # e.g. get_year()
             else:
-                value = [_("Personal information missing")]
+                value = [_T_("Personal information missing")]
             # list of information found
             for key in value:
                 if key in chart[1]:
@@ -617,7 +622,7 @@ class Extract(object):
 
     
     def collect_data(self, db, filter_func, menu, genders,
-                     year_from, year_to, no_years, cb_progress):
+                     year_from, year_to, no_years, cb_progress, rlocale):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
@@ -629,6 +634,7 @@ class Extract(object):
         year_to     - use only persons who've born this year or before
         no_years    - use also people without known birth year
         cb_progress - callback to indicate progress
+        rlocale     - a GrampsLocale instance
         
         Returns an array of tuple of:
         - Extraction method title
@@ -636,6 +642,9 @@ class Extract(object):
         (- Method)
         """
         self.db = db        # store for use by methods
+        self._locale = rlocale
+        self._ = rlocale.translation.sgettext
+        self._get_type = rlocale.get_type
 
         data = []
         ext = self.extractors
@@ -733,12 +742,18 @@ class StatisticsChart(Report):
             'year_to': year_to
         }
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+        # override default gettext, or English output will have "person|Title"
+        self._ = rlocale.translation.sgettext
+
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'), 
                                   _('Collecting data...'), 0)
         tables = _Extract.collect_data(database, self.filter, menu,
                         gender, year_from, year_to, 
-                        get_value('no_years'), self._user.step_progress)
+                        get_value('no_years'), self._user.step_progress,
+                        rlocale)
         self._user.end_progress()
 
         self._user.begin_progress(_('Statistics Charts'), 
@@ -750,11 +765,15 @@ class StatisticsChart(Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            mapping['chart_title'] = table[0]
+            mapping['chart_title'] = self._(table[0])
             if genders:
-                heading = _("%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
+                heading = self._("%(genders)s born "
+                                 "%(year_from)04d-%(year_to)04d: "
+                                 "%(chart_title)s") % mapping
             else:
-                heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
+                heading = self._("Persons born "
+                                 "%(year_from)04d-%(year_to)04d: "
+                                 "%(chart_title)s") % mapping
             self.data.append((heading, table[0], table[1], lookup))
             self._user.step_progress()
         self._user.end_progress()
@@ -781,7 +800,7 @@ class StatisticsChart(Report):
     def write_report(self):
         "output the selected statistics..."
 
-        mark = IndexMark(_('Statistics Charts'), INDEX_TYPE_TOC, 1)
+        mark = IndexMark(self._('Statistics Charts'), INDEX_TYPE_TOC, 1)
         self._user.begin_progress(_('Statistics Charts'), 
                                   _('Saving charts...'), len(self.data))
         for data in self.data:
@@ -817,7 +836,7 @@ class StatisticsChart(Report):
         chart_data = []
         for key in lookup:
             style = "SC-color-%d" % color
-            text = "%s (%d)" % (key, data[key])
+            text = "%s (%d)" % (self._(key), data[key])
             # graphics style, value, and it's label
             chart_data.append((style, data[key], text))
             color = (color+1) % 7    # There are only 7 color styles defined
@@ -834,7 +853,7 @@ class StatisticsChart(Report):
             legendx = 1.0
             yoffset = margin
     
-        text = _("%s (persons):") % typename
+        text = self._("%s (persons):") % self._(typename)
         draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
 
@@ -869,7 +888,7 @@ class StatisticsChart(Report):
 
         # header
         yoffset += (row_h + pad)
-        text = _("%s (persons):") % typename
+        text = self._("%s (persons):") % self._(typename)
         self.doc.draw_text('SC-text', text, textx, yoffset)
 
         for key in lookup:
@@ -885,7 +904,7 @@ class StatisticsChart(Report):
             startx = stopx - (maxsize * value / max_value)
             self.doc.draw_box('SC-bar',"",startx,yoffset,stopx-startx,row_h)
             # text after bar
-            text = "%s (%d)" % (key, data[key])
+            text = "%s (%d)" % (self._(key), data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
             #print key + ":",
         
@@ -910,12 +929,13 @@ class StatisticsChartOptions(MenuReportOptions):
         """
 
         ################################
-        add_option = partial(menu.add_option, _("Report Options"))
+        category_name = _("Report Options")
+        add_option = partial(menu.add_option, category_name)
         ################################
         
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the report."))
+                     _("Determines what people are included in the report."))
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
@@ -928,8 +948,8 @@ class StatisticsChartOptions(MenuReportOptions):
         
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE )
-        for item_idx in range(len(_options.sorts)):
-            item = _options.sorts[item_idx]
+        for item_idx in range(len(_options.opt_sorts)):
+            item = _options.opt_sorts[item_idx]
             sortby.add_item(item_idx,item[2])
         sortby.set_help( _("Select how the statistical data is sorted."))
         add_option("sortby",sortby)
@@ -957,8 +977,8 @@ class StatisticsChartOptions(MenuReportOptions):
 
         gender = EnumeratedListOption(_('Genders included'),
                                       Person.UNKNOWN )
-        for item_idx in range(len(_options.genders)):
-            item = _options.genders[item_idx]
+        for item_idx in range(len(_options.opt_genders)):
+            item = _options.opt_genders[item_idx]
             gender.add_item(item[0],item[2])
         gender.set_help( _("Select which genders are included into "
                            "statistics."))
@@ -969,20 +989,24 @@ class StatisticsChartOptions(MenuReportOptions):
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
 
+        stdoptions.add_localization_option(menu, category_name)
+
         # -------------------------------------------------
         # List of available charts on separate option tabs
         idx = 0
-        half = (len(_Extract.extractors))/2
-        self.charts = {}
-        for key in _Extract.extractors:
-            if idx < half:
+        half = len(_Extract.extractors) // 2
+        chart_types = []
+        for (chart_opt, tuple) in _Extract.extractors.items():
+            chart_types.append((_(tuple[1]), chart_opt, tuple))
+        sorted_chart_types = sorted(chart_types)
+        for (translated_option_name, opt_name, tuple) in sorted_chart_types:
+            if idx <= half:
                 category_name = _("Charts 1")
             else:
                 category_name = _("Charts 2")
-            
-            opt = BooleanOption(_Extract.extractors[key][1], False)
+            opt = BooleanOption(translated_option_name, False)
             opt.set_help(_("Include charts with indicated data."))
-            menu.add_option(category_name,key, opt)
+            menu.add_option(category_name,opt_name,opt)
             idx += 1
         
         # Enable a couple of charts by default
