@@ -1796,7 +1796,11 @@ class GuiBooleanListOption(Gtk.HBox):
         self.__option = option
         self.__cbutton = []
 
-        COLUMNS = 2 # Number of checkbox columns
+        default = option.get_value().split(',')
+        if len(default) < 15:
+            COLUMNS = 2 # number of checkbox columns
+        else:
+            COLUMNS = 3
         column = []
         for i in range(COLUMNS):
             vbox = Gtk.VBox()
@@ -1805,7 +1809,8 @@ class GuiBooleanListOption(Gtk.HBox):
             vbox.show()
 
         counter = 0
-        default = option.get_value().split(',')
+        this_column_counter = 0
+        ncolumn = 0
         for description in option.get_descriptions():
             button = Gtk.CheckButton(description)
             self.__cbutton.append(button)
@@ -1813,9 +1818,16 @@ class GuiBooleanListOption(Gtk.HBox):
                 if default[counter] == 'True':
                     button.set_active(True)
             button.connect("toggled", self.__list_changed)
-            column[counter % COLUMNS].pack_start(button, True, True, 0)
+            # show the items vertically, not alternating left and right
+            # (if the number is uneven, the left column(s) will have one more)
+            column[ncolumn].pack_start(button, True, True, 0)
             button.show()
             counter += 1
+            this_column_counter += 1
+            this_column_gets = (len(default)+(COLUMNS-(ncolumn+1))) // COLUMNS
+            if this_column_counter + 1 > this_column_gets:
+                ncolumn += 1
+                this_column_counter = 0
         
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
 
