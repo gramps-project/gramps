@@ -571,8 +571,7 @@ def retrieve():
     """
     extract_xml()
     
-    if not os.path.isfile('gramps.pot'):
-        create_template()
+    create_template()
         
     create_filesfile()
     listing('python.txt', ['.py', '.py.in'])
