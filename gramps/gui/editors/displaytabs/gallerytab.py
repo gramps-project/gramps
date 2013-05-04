@@ -481,7 +481,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     data = self.iconlist.get_dest_item_at_pos(x, y)
                     if data:
                         (path, pos) = data
-                        row = path[0]
+                        row = path.get_indices()[0]
 
                         if pos ==  Gtk.ICON_VIEW_DROP_LEFT:
                             row = max(row, 0)
