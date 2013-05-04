@@ -62,7 +62,7 @@ class SelectEvent(BaseSelector):
             (_('Description'),       250, BaseSelector.TEXT, 0),
             (_('ID'),                75,  BaseSelector.TEXT, 1),
             (_('Type'),              75,  BaseSelector.TEXT, 2),
-            (_('Main Participants'), 250, BaseSelector.TEXT, 7),
+            (_('Main Participants'), 250, BaseSelector.TEXT, 8),
             (_('Date'),              150, BaseSelector.TEXT, 3),
             (_('Place'),             150, BaseSelector.TEXT, 4)
             ]
