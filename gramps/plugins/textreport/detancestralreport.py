@@ -230,7 +230,8 @@ class DetAncestorReport(Report):
                 self.doc.page_break()
             # it ignores language set for Note type (use locale)
             endnotes.write_endnotes(self.bibli, self.database, self.doc,
-                                    printnotes=self.inc_srcnotes)
+                                    printnotes=self.inc_srcnotes,
+                                    trans_text_=self._)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
