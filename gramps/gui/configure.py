@@ -363,7 +363,7 @@ class ConfigureDialog(ManagedWindow):
         return entry
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None,
-                          config=None, col_attach=1):
+                          config=None, col_attach=1, helptext=''):
         """ entry field for positive integers
         """
         if not config:
@@ -371,6 +371,7 @@ class ConfigureDialog(ManagedWindow):
         lwidget = BasicLabel("%s: " % label)
         entry = Gtk.Entry()
         entry.set_text(str(config.get(constant)))
+        entry.set_tooltip_markup(helptext)
         if callback:
             entry.connect('changed', callback, constant)
         table.attach(lwidget, col_attach, col_attach+1, index, index+1,
@@ -1188,7 +1189,21 @@ class GrampsPreferences(ConfigureDialog):
                 6, 'behavior.avg-generation-gap', (10, 30))
         self.add_pos_int_entry(table,
                 _('Markup for invalid date format'), 
-                7, 'preferences.invalid-date-format', self.update_markup_entry)
+                7, 'preferences.invalid-date-format',
+                self.update_markup_entry,
+                helptext = _('Convenience markups are:\n'
+                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
+                '<big>&lt;big&gt;Makes font relatively larger&lt;/big&gt;</big>\n'
+                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
+                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
+                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
+                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
+                '<small>&lt;small&gt;Makes font relatively smaller&lt;/small&gt;</small>\n'
+                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
+                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
+                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
+                'will display <u><b>Underlined bold date</b></u>.\n')
+                )
 
         return _('Dates'), table
         
