@@ -32,6 +32,8 @@ from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
 from ..db.dictionary import DictionaryDb
 from gramps.gen.lib.handle import Handle
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 def import_as_dict(filename, user=None):
     """
