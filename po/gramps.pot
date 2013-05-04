@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-04 15:24+0200\n"
+"POT-Creation-Date: 2013-05-04 19:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3604,6 +3604,7 @@ msgstr ""
 #: ../gramps/gen/lib/nameorigintype.py:82 ../gramps/gen/lib/nametype.py:55
 #: ../gramps/gen/lib/notetype.py:81 ../gramps/gen/lib/repotype.py:61
 #: ../gramps/gen/lib/srcmediatype.py:64 ../gramps/gen/lib/urltype.py:56
+#: ../gramps/plugins/textreport/indivcomplete.py:85
 msgid "Custom"
 msgstr ""
 
@@ -3664,6 +3665,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/attrtype.py:75
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:86
+#: ../gramps/plugins/drawreport/statisticschart.py:359
 #: ../gramps/plugins/gramplet/agestats.py:170
 #: ../gramps/plugins/gramplet/events.py:58
 #: ../gramps/plugins/quickview/ageondate.py:56
@@ -4096,6 +4098,190 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:191
 msgid "Alternate Marriage"
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:198
+msgid "birth abbreviation|b."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:199
+msgid "death abbreviation|d."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:200
+msgid "marriage abbreviation|m."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:201
+msgid "Unknown abbreviation|unkn."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:202
+msgid "Custom abbreviation|cust."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:203
+msgid "Adopted abbreviation|adop."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:204
+msgid "Adult Christening abbreviation|a.chr."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:205
+msgid "Baptism abbreviation|bap."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:206
+msgid "Bar Mitzvah abbreviation|bar."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:207
+msgid "Bas Mitzvah abbreviation|bas."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:208
+msgid "Blessing abbreviation|bles."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:209
+msgid "Burial abbreviation|bur."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:210
+msgid "Cause Of Death abbreviation|d.cau."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:211
+msgid "Census abbreviation|cens."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:212
+msgid "Christening abbreviation|chr."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:213
+msgid "Confirmation abbreviation|conf."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:214
+msgid "Cremation abbreviation|crem."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:215
+msgid "Degree abbreviation|deg."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:216
+msgid "Education abbreviation|edu."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:217
+msgid "Elected abbreviation|elec."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:218
+msgid "Emigration abbreviation|em."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:219
+msgid "First Communion abbreviation|f.comm."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:220
+msgid "Immigration abbreviation|im."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:221
+msgid "Graduation abbreviation|grad."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:222
+msgid "Medical Information abbreviation|medinf."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:223
+msgid "Military Service abbreviation|milser."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:224
+msgid "Naturalization abbreviation|nat."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:225
+msgid "Nobility Title abbreviation|nob."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:226
+msgid "Number of Marriages abbreviation|n.o.mar."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:227
+msgid "Occupation abbreviation|occ."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:228
+msgid "Ordination abbreviation|ord."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:229
+msgid "Probate abbreviation|prob."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:230
+msgid "Property abbreviation|prop."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:231
+msgid "Religion abbreviation|rel."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:232
+msgid "Residence abbreviation|res."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:233
+msgid "Retirement abbreviation|ret."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:234
+msgid "Will abbreviation|will."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:235
+msgid "Marriage Settlement abbreviation|m.set."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:236
+msgid "Marriage License abbreviation|m.lic."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:237
+msgid "Marriage Contract abbreviation|m.con."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:238
+msgid "Marriage Banns abbreviation|m.ban."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:239
+msgid "Alternate Marriage abbreviation|alt.mar."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:240
+msgid "Engagement abbreviation|engd."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:241
+msgid "Divorce abbreviation|div."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:242
+msgid "Divorce Filing abbreviation|div.f."
+msgstr ""
+
+#: ../gramps/gen/lib/eventtype.py:243
+msgid "Annulment abbreviation|annul."
 msgstr ""
 
 #: ../gramps/gen/lib/familyreltype.py:55
@@ -4802,6 +4988,10 @@ msgstr ""
 msgid "The basic style used for the endnotes reference notes display."
 msgstr ""
 
+#: ../gramps/gen/plug/report/endnotes.py:128
+msgid "Endnotes"
+msgstr ""
+
 #: ../gramps/gen/plug/report/stdoptions.py:48
 msgid "Translation"
 msgstr ""
@@ -5426,6 +5616,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
 #: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1455
+#: ../gramps/plugins/drawreport/statisticschart.py:327
 #: ../gramps/plugins/export/exportcsv.py:345
 #: ../gramps/plugins/importer/importcsv.py:177
 #: ../gramps/plugins/quickview/filterbyname.py:330
@@ -5994,6 +6185,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:216
 #: ../gramps/plugins/quickview/quickview.gpr.py:200
 #: ../gramps/plugins/quickview/references.py:88
+#: ../gramps/plugins/textreport/indivcomplete.py:84
 #: ../gramps/plugins/view/relview.py:1342
 #: ../gramps/plugins/view/relview.py:1364
 #: ../gramps/plugins/webreport/narrativeweb.py:3114
@@ -8091,6 +8283,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/gui/merge/mergeperson.py:182
 #: ../gramps/gui/selectors/selectperson.py:78
+#: ../gramps/plugins/drawreport/statisticschart.py:331
 #: ../gramps/plugins/export/exportcsv.py:347
 #: ../gramps/plugins/importer/importcsv.py:188
 #: ../gramps/plugins/lib/libpersonview.py:97
@@ -12816,13 +13009,136 @@ msgid "Both"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:306
+#: ../gramps/plugins/drawreport/statisticschart.py:400
 #: ../gramps/plugins/drawreport/statisticschart.py:732
 msgid "Men"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:307
+#: ../gramps/plugins/drawreport/statisticschart.py:402
 #: ../gramps/plugins/drawreport/statisticschart.py:734
 msgid "Women"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:325
+msgid "person|Title"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:329
+msgid "Forename"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:333
+msgid "Birth year"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:335
+msgid "Death year"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:337
+msgid "Birth month"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:339
+msgid "Death month"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:341
+#: ../gramps/plugins/export/exportcsv.py:348
+#: ../gramps/plugins/importer/importcsv.py:191
+msgid "Birth place"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:343
+#: ../gramps/plugins/export/exportcsv.py:350
+#: ../gramps/plugins/importer/importcsv.py:213
+msgid "Death place"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:345
+msgid "Marriage place"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:347
+msgid "Number of relationships"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:349
+msgid "Age when first child born"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:351
+msgid "Age when last child born"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:353
+msgid "Number of children"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:355
+msgid "Age at marriage"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:357
+msgid "Age at death"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:361
+msgid "Event type"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:375
+msgid "(Preferred) title missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:384
+msgid "(Preferred) forename missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:393
+msgid "(Preferred) surname missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:403
+msgid "Gender unknown"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:412
+#: ../gramps/plugins/drawreport/statisticschart.py:421
+#: ../gramps/plugins/drawreport/statisticschart.py:525
+msgid "Date(s) missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:430
+#: ../gramps/plugins/drawreport/statisticschart.py:444
+msgid "Place missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:452
+msgid "Already dead"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:459
+msgid "Still alive"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:467
+#: ../gramps/plugins/drawreport/statisticschart.py:479
+msgid "Events missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:487
+#: ../gramps/plugins/drawreport/statisticschart.py:495
+msgid "Children missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:514
+msgid "Birth missing"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/statisticschart.py:615
+msgid "Personal information missing"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:752
@@ -13189,11 +13505,6 @@ msgid "Translate headers"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:348
-#: ../gramps/plugins/importer/importcsv.py:191
-msgid "Birth place"
-msgstr ""
-
-#: ../gramps/plugins/export/exportcsv.py:348
 #: ../gramps/plugins/importer/importcsv.py:195
 msgid "Birth source"
 msgstr ""
@@ -13211,11 +13522,6 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:349
 #: ../gramps/plugins/importer/importcsv.py:204
 msgid "Baptism source"
-msgstr ""
-
-#: ../gramps/plugins/export/exportcsv.py:350
-#: ../gramps/plugins/importer/importcsv.py:213
-msgid "Death place"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:350
@@ -21463,6 +21769,10 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:72
 msgid "Sections"
+msgstr ""
+
+#: ../gramps/plugins/textreport/indivcomplete.py:74
+msgid "Individual Facts"
 msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:218
