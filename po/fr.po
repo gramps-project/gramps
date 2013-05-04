@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-03 09:13+0200\n"
-"PO-Revision-Date: 2013-05-03 09:15+0100\n"
+"POT-Creation-Date: 2013-05-04 07:50+0200\n"
+"PO-Revision-Date: 2013-05-04 07:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr "Édition des signets"
 #: ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201
 #: ../src/ToolTips.py:212
-#: ../src/gui/configure.py:450
+#: ../src/gui/configure.py:451
 #: ../src/gui/filtereditor.py:765
 #: ../src/gui/filtereditor.py:918
 #: ../src/gui/viewmanager.py:474
@@ -1002,7 +1002,7 @@ msgstr "Non-disponible"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../src/ScratchPad.py:293
-#: ../src/gui/configure.py:451
+#: ../src/gui/configure.py:452
 #: ../src/gui/grampsgui.py:103
 #: ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
@@ -1023,7 +1023,7 @@ msgstr "Emplacement"
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #. 0 this order range above
 #: ../src/ScratchPad.py:330
-#: ../src/gui/configure.py:481
+#: ../src/gui/configure.py:482
 #: ../src/gui/filtereditor.py:292
 #: ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
@@ -1041,7 +1041,7 @@ msgstr "Événement "
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #. 5
 #: ../src/ScratchPad.py:357
-#: ../src/gui/configure.py:473
+#: ../src/gui/configure.py:474
 #: ../src/gui/filtereditor.py:293
 #: ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
@@ -1081,7 +1081,7 @@ msgstr "Lieu "
 #: ../src/ScratchPad.py:384
 #: ../src/ToolTips.py:161
 #: ../src/gen/plug/docgen/graphdoc.py:243
-#: ../src/gui/configure.py:485
+#: ../src/gui/configure.py:486
 #: ../src/gui/filtereditor.py:297
 #: ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88
@@ -1131,7 +1131,7 @@ msgstr "Attribut de la famille"
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../src/ScratchPad.py:480
 #: ../src/gen/lib/notetype.py:84
-#: ../src/gui/configure.py:477
+#: ../src/gui/configure.py:478
 #: ../src/gui/filtereditor.py:298
 #: ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
@@ -1164,14 +1164,14 @@ msgstr "Ref. Événement"
 #. show surname and first name
 #: ../src/ScratchPad.py:577
 #: ../src/Utils.py:1339
-#: ../src/gui/configure.py:536
-#: ../src/gui/configure.py:538
-#: ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542
-#: ../src/gui/configure.py:545
+#: ../src/gui/configure.py:537
+#: ../src/gui/configure.py:539
+#: ../src/gui/configure.py:541
+#: ../src/gui/configure.py:543
 #: ../src/gui/configure.py:546
 #: ../src/gui/configure.py:547
 #: ../src/gui/configure.py:548
+#: ../src/gui/configure.py:549
 #: ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:88
 #: ../src/gui/plug/_guioptions.py:1436
@@ -1188,7 +1188,7 @@ msgstr "Nom de famille"
 #: ../src/ScratchPad.py:593
 #: ../src/ScratchPad.py:598
 #: ../src/gen/plug/report/_constants.py:56
-#: ../src/gui/configure.py:994
+#: ../src/gui/configure.py:995
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:393
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:96
@@ -1247,7 +1247,7 @@ msgstr "%(frel)s %(mrel)s"
 #. functions for the actual quickreports
 #: ../src/ScratchPad.py:693
 #: ../src/ToolTips.py:200
-#: ../src/gui/configure.py:469
+#: ../src/gui/configure.py:470
 #: ../src/gui/filtereditor.py:290
 #: ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85
@@ -1291,7 +1291,7 @@ msgstr "Individu "
 #. show "V Family: ..." and the rest
 #: ../src/ScratchPad.py:721
 #: ../src/ToolTips.py:230
-#: ../src/gui/configure.py:471
+#: ../src/gui/configure.py:472
 #: ../src/gui/filtereditor.py:291
 #: ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487
@@ -1317,7 +1317,7 @@ msgstr "Famille "
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #. 7
 #: ../src/ScratchPad.py:750
-#: ../src/gui/configure.py:475
+#: ../src/gui/configure.py:476
 #: ../src/gui/filtereditor.py:294
 #: ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
@@ -1338,7 +1338,7 @@ msgstr "Source "
 #. 6
 #: ../src/ScratchPad.py:777
 #: ../src/ToolTips.py:128
-#: ../src/gui/configure.py:483
+#: ../src/gui/configure.py:484
 #: ../src/gui/filtereditor.py:296
 #: ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
@@ -1440,7 +1440,7 @@ msgstr "Valeur"
 #: ../src/ScratchPad.py:917
 #: ../src/cli/arghandler.py:426
 #: ../src/cli/clidbman.py:67
-#: ../src/gui/configure.py:1156
+#: ../src/gui/configure.py:1171
 msgid "Family Tree"
 msgstr "Arbre familial"
 
@@ -1848,20 +1848,20 @@ msgstr "TITRE"
 
 #: ../src/Utils.py:1338
 #: ../src/gen/display/name.py:327
-#: ../src/gui/configure.py:536
-#: ../src/gui/configure.py:538
-#: ../src/gui/configure.py:543
-#: ../src/gui/configure.py:545
-#: ../src/gui/configure.py:547
+#: ../src/gui/configure.py:537
+#: ../src/gui/configure.py:539
+#: ../src/gui/configure.py:544
+#: ../src/gui/configure.py:546
 #: ../src/gui/configure.py:548
 #: ../src/gui/configure.py:549
 #: ../src/gui/configure.py:550
-#: ../src/gui/configure.py:552
+#: ../src/gui/configure.py:551
 #: ../src/gui/configure.py:553
 #: ../src/gui/configure.py:554
 #: ../src/gui/configure.py:555
 #: ../src/gui/configure.py:556
 #: ../src/gui/configure.py:557
+#: ../src/gui/configure.py:558
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "Given"
@@ -1874,13 +1874,13 @@ msgstr "PRÉNOM"
 # à vérifier
 # voir clés traduites et GUI
 #: ../src/Utils.py:1339
-#: ../src/gui/configure.py:543
-#: ../src/gui/configure.py:550
-#: ../src/gui/configure.py:552
+#: ../src/gui/configure.py:544
+#: ../src/gui/configure.py:551
 #: ../src/gui/configure.py:553
 #: ../src/gui/configure.py:554
 #: ../src/gui/configure.py:555
 #: ../src/gui/configure.py:556
+#: ../src/gui/configure.py:557
 msgid "SURNAME"
 msgstr "NOM DE FAMILLE"
 
@@ -1894,11 +1894,11 @@ msgstr "USUEL"
 
 # courant ou commun
 #: ../src/Utils.py:1341
-#: ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542
-#: ../src/gui/configure.py:545
+#: ../src/gui/configure.py:541
+#: ../src/gui/configure.py:543
 #: ../src/gui/configure.py:546
-#: ../src/gui/configure.py:552
+#: ../src/gui/configure.py:547
+#: ../src/gui/configure.py:553
 msgid "Name|Common"
 msgstr "Courant"
 
@@ -1916,15 +1916,15 @@ msgid "INITIALS"
 msgstr "INITIALES"
 
 #: ../src/Utils.py:1343
-#: ../src/gui/configure.py:536
-#: ../src/gui/configure.py:538
-#: ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542
+#: ../src/gui/configure.py:537
+#: ../src/gui/configure.py:539
+#: ../src/gui/configure.py:541
 #: ../src/gui/configure.py:543
-#: ../src/gui/configure.py:548
-#: ../src/gui/configure.py:550
-#: ../src/gui/configure.py:555
-#: ../src/gui/configure.py:557
+#: ../src/gui/configure.py:544
+#: ../src/gui/configure.py:549
+#: ../src/gui/configure.py:551
+#: ../src/gui/configure.py:556
+#: ../src/gui/configure.py:558
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:180
 #: ../src/glade/editperson.glade.h:26
@@ -1992,7 +1992,7 @@ msgstr "NOM[CON]"
 
 #: ../src/Utils.py:1348
 #: ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550
 msgid "Patronymic"
 msgstr "Patronyme"
 
@@ -2028,7 +2028,7 @@ msgid "PATRONYMIC[CON]"
 msgstr "PATRONYME[CON]"
 
 #: ../src/Utils.py:1352
-#: ../src/gui/configure.py:557
+#: ../src/gui/configure.py:558
 msgid "Rawsurnames"
 msgstr "NomsDeFamilleBrut"
 
@@ -2059,10 +2059,10 @@ msgstr "PRÉFIXE"
 
 #: ../src/Utils.py:1355
 #: ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:539
-#: ../src/gui/configure.py:541
-#: ../src/gui/configure.py:546
-#: ../src/gui/configure.py:553
+#: ../src/gui/configure.py:540
+#: ../src/gui/configure.py:542
+#: ../src/gui/configure.py:547
+#: ../src/gui/configure.py:554
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Surnom"
@@ -2587,7 +2587,7 @@ msgstr ""
 "\n"
 
 #: ../src/cli/clidbman.py:483
-#: ../src/gui/configure.py:1091
+#: ../src/gui/configure.py:1106
 msgid "Never"
 msgstr "Jamais"
 
@@ -3921,7 +3921,7 @@ msgid "Matrilineal"
 msgstr "Lignée maternelle (nom de la mère)"
 
 #: ../src/gen/lib/notetype.py:80
-#: ../src/gui/configure.py:1134
+#: ../src/gui/configure.py:1149
 #: ../src/gui/editors/editcitation.py:202
 #: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79
@@ -4801,7 +4801,7 @@ msgstr "Glissez et déposez les colonnes pour changer l'ordre"
 
 #. #################
 #: ../src/gui/columnorder.py:130
-#: ../src/gui/configure.py:968
+#: ../src/gui/configure.py:969
 #: ../src/plugins/drawreport/AncestorTree.py:911
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -4880,19 +4880,19 @@ msgstr " Éditeur de noms"
 
 #: ../src/gui/configure.py:130
 #: ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1258
+#: ../src/gui/configure.py:1273
 #: ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Préférences"
 
 #: ../src/gui/configure.py:232
 #: ../src/gui/configure.py:237
-#: ../src/gui/configure.py:699
+#: ../src/gui/configure.py:700
 msgid "Invalid or incomplete format definition."
 msgstr "Définition de format invalide ou incomplète."
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:452
+#: ../src/gui/configure.py:453
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:65
@@ -4906,7 +4906,7 @@ msgid "Locality"
 msgstr "Lieu-dit "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:453
+#: ../src/gui/configure.py:454
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/gui/editors/displaytabs/locationembedlist.py:57
 #: ../src/gui/selectors/selectplace.py:66
@@ -4921,14 +4921,14 @@ msgstr "Ville "
 
 # comté (Canada)
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:454
+#: ../src/gui/configure.py:455
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Région/Départ. (Comté) "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:455
+#: ../src/gui/configure.py:456
 #: ../src/gui/editors/displaytabs/addrembedlist.py:77
 #: ../src/gui/editors/displaytabs/locationembedlist.py:60
 #: ../src/gui/selectors/selectplace.py:69
@@ -4946,7 +4946,7 @@ msgstr "Pays "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
-#: ../src/gui/configure.py:456
+#: ../src/gui/configure.py:457
 #: ../src/plugins/lib/libplaceview.py:100
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78
@@ -4955,89 +4955,89 @@ msgid "ZIP/Postal Code"
 msgstr "Code lieu "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:457
+#: ../src/gui/configure.py:458
 #: ../src/plugins/gramplet/RepositoryDetails.py:111
 #: ../src/plugins/webreport/NarrativeWeb.py:385
 msgid "Phone"
 msgstr "Téléphone "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:458
+#: ../src/gui/configure.py:459
 #: ../src/gui/plug/_windows.py:598
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "Adresse électronique "
 
-#: ../src/gui/configure.py:459
+#: ../src/gui/configure.py:460
 msgid "Researcher"
 msgstr "Chercheur"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../src/gui/configure.py:479
+#: ../src/gui/configure.py:480
 #: ../src/gui/filtereditor.py:295
 #: ../src/gui/editors/editperson.py:610
 msgid "Media Object"
 msgstr "Objet medium "
 
-#: ../src/gui/configure.py:487
+#: ../src/gui/configure.py:488
 msgid "ID Formats"
 msgstr "Formats ID"
 
-#: ../src/gui/configure.py:495
+#: ../src/gui/configure.py:496
 msgid "Suppress warning when adding parents to a child."
 msgstr "Supprimer l'avertissement quand on ajoute des parents à un enfant."
 
-#: ../src/gui/configure.py:499
+#: ../src/gui/configure.py:500
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Supprimer l'avertissement quand on annule une donnée modifiée."
 
-#: ../src/gui/configure.py:503
+#: ../src/gui/configure.py:504
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Supprimer l'avertissement sur l'absence de chercheur lors de l'exportation en GEDCOM."
 
-#: ../src/gui/configure.py:508
+#: ../src/gui/configure.py:509
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Afficher la fenêtre d'état des greffons quand il y a une erreur au chargement d'un greffon."
 
-#: ../src/gui/configure.py:511
+#: ../src/gui/configure.py:512
 msgid "Warnings"
 msgstr "Messages d'alerte"
 
 # Name|Common
-#: ../src/gui/configure.py:537
-#: ../src/gui/configure.py:551
+#: ../src/gui/configure.py:538
+#: ../src/gui/configure.py:552
 msgid "Common"
 msgstr "Courant"
 
-#: ../src/gui/configure.py:544
+#: ../src/gui/configure.py:545
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
 msgstr "Usuel"
 
-#: ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550
 msgid "NotPatronymic"
 msgstr "PasPatronyme"
 
-#: ../src/gui/configure.py:630
+#: ../src/gui/configure.py:631
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Entrée pour enregistrer, Esc pour annuler l'édition"
 
-#: ../src/gui/configure.py:677
+#: ../src/gui/configure.py:678
 msgid "This format exists already."
 msgstr "Ce format existe déjà."
 
-#: ../src/gui/configure.py:716
+#: ../src/gui/configure.py:717
 msgid "Format"
 msgstr "Format"
 
-#: ../src/gui/configure.py:726
+#: ../src/gui/configure.py:727
 msgid "Example"
 msgstr "Exemple"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #. label for the combo
-#: ../src/gui/configure.py:867
+#: ../src/gui/configure.py:868
 #: ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:380
@@ -5054,7 +5054,7 @@ msgstr "Exemple"
 msgid "Name format"
 msgstr "Format des noms "
 
-#: ../src/gui/configure.py:871
+#: ../src/gui/configure.py:872
 #: ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137
 #: ../src/gui/plug/_windows.py:193
@@ -5066,222 +5066,253 @@ msgstr "Format des noms "
 msgid "Edit"
 msgstr "Éditer"
 
-#: ../src/gui/configure.py:881
+#: ../src/gui/configure.py:882
 msgid "Consider single pa/matronymic as surname"
 msgstr "Considérer le simple pa/matronyme comme nom de famille"
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:895
+#: ../src/gui/configure.py:896
 msgid "Date format"
 msgstr "Format des dates "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:908
+#: ../src/gui/configure.py:909
 msgid "Calendar on reports"
 msgstr "Calendrier des rapports "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:921
+#: ../src/gui/configure.py:922
 msgid "Surname guessing"
 msgstr "Nom de famille proposé "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:934
+#: ../src/gui/configure.py:935
 msgid "Default family relationship"
 msgstr "Relation de famille par défault "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:941
+#: ../src/gui/configure.py:942
 msgid "Height multiple surname box (pixels)"
 msgstr "Hauteur du cadre des noms multiples (en pixels) "
 
-#: ../src/gui/configure.py:948
+#: ../src/gui/configure.py:949
 msgid "Active person's name and ID"
 msgstr "Nom et ID de l'individu actif"
 
-#: ../src/gui/configure.py:949
+#: ../src/gui/configure.py:950
 msgid "Relationship to home person"
 msgstr "Relation avec la souche"
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:958
+#: ../src/gui/configure.py:959
 msgid "Status bar"
 msgstr "Barre d'état "
 
-#: ../src/gui/configure.py:965
+#: ../src/gui/configure.py:966
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Afficher le texte des boutons de la barre verticale (nécessite de relancer Gramps)"
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:976
+#: ../src/gui/configure.py:977
 msgid "Missing surname"
 msgstr "Nom de famille manquant "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:979
+#: ../src/gui/configure.py:980
 msgid "Missing given name"
 msgstr "Prénom manquant "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:982
+#: ../src/gui/configure.py:983
 msgid "Missing record"
 msgstr "Enregistrement manquant "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:985
+#: ../src/gui/configure.py:986
 msgid "Private surname"
 msgstr "Nom de famille privé "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:988
+#: ../src/gui/configure.py:989
 msgid "Private given name"
 msgstr "Prénom privé "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:991
+#: ../src/gui/configure.py:992
 msgid "Private record"
 msgstr "Enregistrement privé "
 
-#: ../src/gui/configure.py:1022
+#: ../src/gui/configure.py:1023
 msgid "Change is not immediate"
 msgstr "Le changement n'est pas immédiat"
 
 # Substantif (GNOME fr)
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1024
 msgid "Changing the data format will not take effect until the next time Gramps is started."
 msgstr "Le changement du format des données ne prendra effet que la prochaine fois que Gramps sera démarré."
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1036
+#: ../src/gui/configure.py:1037
 msgid "Date about range"
 msgstr "Nb. d'années avant et après les dates « vers » "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1040
 msgid "Date after range"
 msgstr "Nb. d'années après les dates « après » "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1042
+#: ../src/gui/configure.py:1043
 msgid "Date before range"
 msgstr "Nb. d'années avant les dates « avant » "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1045
+#: ../src/gui/configure.py:1046
 msgid "Maximum age probably alive"
 msgstr "Espérance de vie maximale "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1049
 msgid "Maximum sibling age difference"
 msgstr "Différence d'âge max. entre frères et sœurs "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1051
+#: ../src/gui/configure.py:1052
 msgid "Minimum years between generations"
 msgstr "Nb. minimum d'années entre les générations "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1055
 msgid "Average years between generations"
 msgstr "Nb. moyen d'années entre les générations "
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1057
+#: ../src/gui/configure.py:1058
 msgid "Markup for invalid date format"
 msgstr "Balise pour formater les dates invalides "
 
-#: ../src/gui/configure.py:1060
+#: ../src/gui/configure.py:1061
+#, python-format
+msgid ""
+"Convenience markups are:\n"
+"<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Makes font relatively larger&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Makes font relatively smaller&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n"
+"\n"
+"For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"will display <u><b>Underlined bold date</b></u>\n"
+msgstr ""
+"Les balises supportées sont :\n"
+"<b>&lt;b&gt;Gras&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Agrandit la taille de la police de caractère&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Italique&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Barré&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Indice&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Exposant&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Diminue la taille de la police de caractère&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Police de caractère Monospace&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Souligné&lt;/u&gt;</u>\n"
+"\n"
+"Par exemple, &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"affichera une <u><b>date soulignée et en gras</b></u>.\n"
+
+#: ../src/gui/configure.py:1075
 msgid "Dates"
 msgstr "Dates"
 
-#: ../src/gui/configure.py:1069
+#: ../src/gui/configure.py:1084
 msgid "Add default source on import"
 msgstr "Ajouter une source par défaut à l'importation"
 
-#: ../src/gui/configure.py:1072
+#: ../src/gui/configure.py:1087
 msgid "Enable spelling checker"
 msgstr "Activer le vérificateur orthographique"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1090
 msgid "Display Tip of the Day"
 msgstr "Afficher l'astuce du jour"
 
-#: ../src/gui/configure.py:1078
+#: ../src/gui/configure.py:1093
 msgid "Remember last view displayed"
 msgstr "Se souvenir de la dernière vue affichée"
 
 # L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1081
+#: ../src/gui/configure.py:1096
 msgid "Max generations for relationships"
 msgstr "Nb. max. de générations à parcourir entre 2 individus "
 
-#: ../src/gui/configure.py:1085
+#: ../src/gui/configure.py:1100
 msgid "Base path for relative media paths"
 msgstr "Chemin de base pour les chemins relatifs des media"
 
-#: ../src/gui/configure.py:1092
+#: ../src/gui/configure.py:1107
 msgid "Once a month"
 msgstr "Une fois par mois"
 
-#: ../src/gui/configure.py:1093
+#: ../src/gui/configure.py:1108
 msgid "Once a week"
 msgstr "Une fois par semaine"
 
-#: ../src/gui/configure.py:1094
+#: ../src/gui/configure.py:1109
 msgid "Once a day"
 msgstr "Une fois par jour"
 
-#: ../src/gui/configure.py:1095
+#: ../src/gui/configure.py:1110
 msgid "Always"
 msgstr "Toujours"
 
-#: ../src/gui/configure.py:1100
+#: ../src/gui/configure.py:1115
 msgid "Check for updates"
 msgstr "Vérification des mises à jour"
 
-#: ../src/gui/configure.py:1105
+#: ../src/gui/configure.py:1120
 msgid "Updated addons only"
 msgstr "Seulement les greffons mis à jour"
 
-#: ../src/gui/configure.py:1106
+#: ../src/gui/configure.py:1121
 msgid "New addons only"
 msgstr "Seulement les nouveaux greffons"
 
-#: ../src/gui/configure.py:1107
+#: ../src/gui/configure.py:1122
 msgid "New and updated addons"
 msgstr "Les greffons mis à jour et les nouveaux"
 
-#: ../src/gui/configure.py:1117
+#: ../src/gui/configure.py:1132
 msgid "What to check"
 msgstr "Vérifier"
 
-#: ../src/gui/configure.py:1121
+#: ../src/gui/configure.py:1136
 msgid "Where to check"
 msgstr "Où rechercher"
 
-#: ../src/gui/configure.py:1124
+#: ../src/gui/configure.py:1139
 msgid "Do not ask about previously notified addons"
 msgstr "Ne plus demander pour les greffons notifiés précédemment"
 
-#: ../src/gui/configure.py:1129
+#: ../src/gui/configure.py:1144
 msgid "Check now"
 msgstr "Vérifier maintenant"
 
 #  L'espace finale est pour précéder le « : » codé en dur.
-#: ../src/gui/configure.py:1145
+#: ../src/gui/configure.py:1160
 msgid "Family Tree Database path"
 msgstr "Répertoire des bases de données "
 
-#: ../src/gui/configure.py:1153
+#: ../src/gui/configure.py:1168
 msgid "Automatically load last family tree"
 msgstr "Charger automatiquement le dernier arbre familial"
 
-#: ../src/gui/configure.py:1166
+#: ../src/gui/configure.py:1181
 msgid "Select media directory"
 msgstr "Sélectionner un répertoire media"
 
-#: ../src/gui/configure.py:1190
+#: ../src/gui/configure.py:1205
 msgid "Select database directory"
 msgstr "Sélectionner le répertoire de la base de données"
 
