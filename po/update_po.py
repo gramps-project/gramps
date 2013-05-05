@@ -20,6 +20,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id$
 
 """
 update_po.py for Gramps translations.
@@ -576,6 +578,7 @@ def retrieve():
     create_filesfile()
     listing('python.txt', ['.py', '.py.in'])
     
+    # additional keywords must always be kept in sync with those in genpot.sh
     os.system('''%(xgettext)s -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
