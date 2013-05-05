@@ -387,7 +387,7 @@ class ViewManager(CLIManager):
                                (config.get("behavior.addons-url"), lang[:2]))
                         fp = urlopen(URL, timeout=10)
                     except Exception as err: # some error
-                        LOG.warn("Failed to open %s: %s" (lang, str(err)))
+                        LOG.warn("Failed to open %s: %s" % (lang, err))
                         fp = None
                 if fp and fp.getcode() == 200: # ok
                     break
