@@ -4,7 +4,9 @@
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012      Paul Franklin, Nicolas Adenis-Lamarre, Benny Malengier
+# Copyright (C) 2012-2013 Paul Franklin
+# Copyright (C) 2012      Nicolas Adenis-Lamarre
+# Copyright (C) 2012      Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,8 +30,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from math import pi, cos, sin, log10, acos
 
 def log2(val):
@@ -43,15 +43,18 @@ def log2(val):
 # gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
-                             IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.menu import (EnumeratedListOption, NumberOption, PersonOption,
-                           BooleanOption)
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                                    IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.menu import (EnumeratedListOption, NumberOption,
+                                  PersonOption, BooleanOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType
@@ -193,6 +196,8 @@ class FanChart(Report):
         self.map = [None] * 2**self.max_generations
         self.text = {}
 
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
@@ -241,8 +246,10 @@ class FanChart(Report):
             min_xy = min (self.doc.get_usable_width(), y)
 
         # choose  one line or two lines translation according to the width
-        title = _("%(generations)d Generation Fan Chart for %(person)s" ) % \
-                 { 'generations' : self.max_generations, 'person' : n }
+        title = self._("%(generations)d Generation Fan Chart "
+                       "for %(person)s" ) % {
+                                       'generations' : self.max_generations,
+                                       'person' : n }
         title_nb_lines = 1
         style_sheet = self.doc.get_style_sheet()
         if style_sheet:
@@ -252,8 +259,10 @@ class FanChart(Report):
             if font:
               title_width = pt2cm(self.doc.string_width(font, title))
               if title_width > self.doc.get_usable_width():
-                title = _("%(generations)d Generation Fan Chart for\n%(person)s" ) % \
-                       { 'generations' : self.max_generations, 'person' : n }
+                title = self._("%(generations)d Generation Fan Chart "
+                               "for\n%(person)s" ) % {
+                                       'generations' : self.max_generations,
+                                       'person' : n }
                 title_nb_lines = 2
 
         if self.circle == FULL_CIRCLE or self.circle == QUAR_CIRCLE:
@@ -643,7 +652,8 @@ class FanChartOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
             
         max_gen = NumberOption(_("Generations"), 5, 1, self.MAX_GENERATIONS)
-        max_gen.set_help(_("The number of generations to include in the report"))
+        max_gen.set_help(_("The number of generations "
+                           "to include in the report"))
         menu.add_option(category_name, "maxgen", max_gen)
         
         circle = EnumeratedListOption(_('Type of graph'), HALF_CIRCLE)
@@ -668,12 +678,17 @@ class FanChartOptions(MenuReportOptions):
         radial.set_help(_("Print radial texts upright or roundabout"))
         menu.add_option(category_name, "radial", radial)
         draw_empty = BooleanOption(_("Draw empty boxes"), True)
-        draw_empty.set_help(_("Draw the background although there is no information"))
+        draw_empty.set_help(_("Draw the background "
+                              "although there is no information"))
         menu.add_option(category_name, "draw_empty", draw_empty)
 
-        same_style = BooleanOption(_("Use one font style for all generations"), True)
-        same_style.set_help(_("You can customize font and color for each generation in the style editor"))
+        same_style = BooleanOption(_("Use one font style "
+                                     "for all generations"), True)
+        same_style.set_help(_("You can customize font and color "
+                              "for each generation in the style editor"))
         menu.add_option(category_name, "same_style", same_style)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Fan Chart report."""
