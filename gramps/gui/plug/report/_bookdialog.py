@@ -88,6 +88,8 @@ from gramps.gen.display.name import displayer as _nd
 #------------------------------------------------------------------------
 _UNSUPPORTED = _("Unsupported")
 
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 #------------------------------------------------------------------------
 #
 # Private Functions
@@ -239,8 +241,10 @@ class BookListDisplay(object):
             "on_save_clicked"            : self.do_nothing,
             "on_clear_clicked"           : self.do_nothing
             })
-
-        self.blist = ListModel(self.xml.get_object("list"), [('Name',-1,10)],)
+        self.guilistbooks = self.xml.get_object('list')
+        self.guilistbooks.connect('button-press-event', self.on_button_press)
+        self.guilistbooks.connect('key-press-event', self.on_key_pressed)
+        self.blist = ListModel(self.guilistbooks, [('Name',-1,10)],)
 
         self.redraw()
         self.selection = None
@@ -294,7 +298,35 @@ class BookListDisplay(object):
                 return                
             else:
                 self.top.run()
-    
+
+    def on_button_press(self, obj, event):
+        """
+        Checks for a double click event. In the list, we want to 
+        treat a double click as if it was OK button press.
+        """
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+            store, the_iter = self.blist.get_selected()
+            if not the_iter:
+                return False
+            self.on_booklist_ok_clicked(obj)
+            #emit OK response on dialog to close it automatically
+            self.top.response(-5)
+            return True
+        return False
+
+    def on_key_pressed(self, obj, event):
+        """
+        Handles the return key being pressed on list. If the key is pressed,
+        the Edit button handler is called
+        """
+        if event.type == Gdk.EventType.KEY_PRESS:
+            if  event.keyval in (_RETURN, _KP_ENTER):
+                self.on_booklist_ok_clicked(obj)
+                #emit OK response on dialog to close it automatically
+                self.top.response(-5)
+                return True
+        return False
+
     def do_nothing(self, object):
         pass
 

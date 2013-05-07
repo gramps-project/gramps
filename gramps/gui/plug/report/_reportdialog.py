@@ -194,13 +194,23 @@ class ReportDialog(ManagedWindow):
         self.notebook = Gtk.Notebook()
         self.notebook.set_scrollable(True)
         self.notebook.set_border_width(6)
-        self.window.vbox.add(self.notebook)
+        try:
+            #assume a vbox or hbox
+            self.window.vbox.pack_start(self.notebook, expand=True, fill=True, padding=0)
+        except:
+            #general container instead:
+            self.window.vbox.add(self.notebook)
 
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
 
-        self.window.vbox.add(self.tbl)
+        try:
+            #assume a vbox or hbox
+            self.window.vbox.pack_start(self.tbl, expand=True, fill=True, padding=0)
+        except:
+            #general container instead:
+            self.window.vbox.add(self.tbl)
         self.show()
 
     def get_title(self):
@@ -293,7 +303,7 @@ class ReportDialog(ManagedWindow):
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % 
                           self.report_name)
         label.set_use_markup(True)
-        self.window.vbox.pack_start(label, True, True, self.border_pad)
+        self.window.vbox.pack_start(label, False, False, self.border_pad)
         
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
@@ -376,6 +386,7 @@ class ReportDialog(ManagedWindow):
             row += 1
 
     def setup_other_frames(self):
+        from gramps.gui.plug._guioptions import GuiTextOption
         for key in self.frame_names:
             flist = self.frames[key]
             table = Gtk.Table(3, len(flist))
@@ -393,7 +404,11 @@ class ReportDialog(ManagedWindow):
                     text_widget.set_alignment(0.0, 0.5)
                     table.attach(text_widget, 1, 2, row, row+1,
                                  Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
-                    table.attach(widget, 2, 3, row, row+1,
+                    if isinstance(widget, GuiTextOption):
+                        table.attach(widget, 2, 3, row, row+1,
+                                 yoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
+                    else:
+                        table.attach(widget, 2, 3, row, row+1,
                                  yoptions=Gtk.AttachOptions.SHRINK)
                 else:
                     table.attach(widget, 2, 3, row, row+1,

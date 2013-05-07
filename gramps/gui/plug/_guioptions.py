@@ -366,6 +366,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
         gtext.set_size_request(-1, 70)
         gtext.get_buffer().set_text("\n".join(value))
         gtext.set_editable(1)
+        gtext.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.add(gtext)
         self.__buff = gtext.get_buffer()
         
