@@ -671,7 +671,7 @@ class IndivCompleteReport(Report):
                 self.doc.page_break()
             Endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.use_srcs_notes,
-                                    trans_text_=self._)
+                                    trans_text=self._)
             
 #------------------------------------------------------------------------
 #

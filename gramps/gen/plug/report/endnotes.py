@@ -103,7 +103,7 @@ def cite_source(bibliography, database, obj):
     return txt
 
 def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
-                   trans_text_=glocale.translation.gettext):
+                   trans_text=glocale.translation.gettext):
     """
     Write all the entries in the bibliography as endnotes.
     
@@ -118,14 +118,14 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     @type printnotes: bool
     @param links: Indicate if URL links should be makde 'clickable'.
     @type links: bool
-    @param trans_text_: allow deferred translation of "Endnotes" Endnotes-Header
-    @type trans_text_: a glocale.translation.gettext
+    @param trans_text: allow deferred translation of "Endnotes" Endnotes-Header
+    @type trans_text: a GrampsLocale gettext instance
     """
     if bibliography.get_citation_count() == 0:
         return
 
     doc.start_paragraph('Endnotes-Header')
-    doc.write_text(trans_text_('Endnotes'))
+    doc.write_text(trans_text('Endnotes'))
     doc.end_paragraph()
     
     cindex = 0

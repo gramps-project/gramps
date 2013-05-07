@@ -311,7 +311,7 @@ class DetDescendantReport(Report):
             # it ignores language set for Note type (use locale)
             endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes,
-                                    trans_text_=self._)
+                                    trans_text=self._)
 
     def write_path(self, person):
         path = []
