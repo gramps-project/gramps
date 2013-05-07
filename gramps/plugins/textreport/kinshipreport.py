@@ -4,7 +4,8 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
 # Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at> 
-# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,25 +32,25 @@
 #
 #------------------------------------------------------------------------
 import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                    FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                                    PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import (NumberOption, BooleanOption, PersonOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -100,8 +101,11 @@ class KinshipReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
+        rlocale = self.set_locale(menu.get_option_by_name('trans').get_value())
+
         self.__db = database
-        self.rel_calc = get_relationship_calculator()
+        self.rel_calc = get_relationship_calculator(reinit=True,
+                                                    clocale=rlocale)
 
         self.kinship_map = {}
         self.spouse_map = {}
@@ -115,7 +119,7 @@ class KinshipReport(Report):
         
         self.doc.start_paragraph("KIN-Title")
         # feature request 2356: avoid genitive form
-        title = _("Kinship Report for %s") % pname
+        title = self._("Kinship Report for %s") % pname
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -123,7 +127,7 @@ class KinshipReport(Report):
         if self.inc_spouses:
             spouse_handles = self.get_spouse_handles(self.person.get_handle())
             if spouse_handles:
-                self.write_people(_("Spouses"), spouse_handles)
+                self.write_people(self._("Spouses"), spouse_handles)
 
         # Collect all descendants of the person
         self.traverse_down(self.person.get_handle(), 0, 1)
@@ -147,13 +151,13 @@ class KinshipReport(Report):
                 get_rel_str = self.rel_calc.get_plural_relationship_string
                 
                 title = get_rel_str(Ga, Gb, in_law_b=False)
-                self.write_people(title, self.kinship_map[Ga][Gb])
+                self.write_people(self._(title), self.kinship_map[Ga][Gb])
                 
                 if (self.inc_spouses and
                    Ga in self.spouse_map and
                    Gb in self.spouse_map[Ga]):
                     title = get_rel_str(Ga, Gb, in_law_b=True)
-                    self.write_people(title, self.spouse_map[Ga][Gb])
+                    self.write_people(self._(title), self.spouse_map[Ga][Gb])
 
     def traverse_down(self, person_handle, Ga, Gb, skip_handle=None):
         """
@@ -303,13 +307,13 @@ class KinshipReport(Report):
         birth_date = ""
         birth = get_birth_or_fallback(self.database, person)
         if birth:
-            birth_date = get_date(birth)
+            birth_date = self._get_date(birth.get_date_object())
         
         death_date = ""
         death = get_death_or_fallback(self.database, person)
         if death:
-            death_date = get_date(death)
-        dates = _(" (%(birth_date)s - %(death_date)s)") % { 
+            death_date = self._get_date(death.get_date_object())
+        dates = self._(" (%(birth_date)s - %(death_date)s)") % { 
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }
         
@@ -363,6 +367,8 @@ class KinshipOptions(MenuReportOptions):
         incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"), True)
         incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
         menu.add_option(category_name, "incaunts", incaunts)        
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Kinship Report."""
