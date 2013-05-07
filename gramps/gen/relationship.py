@@ -1787,14 +1787,20 @@ class RelationshipCalculator(object):
 
 __RELCALC_CLASS = None
 
-def get_relationship_calculator(reinit=False):
+def get_relationship_calculator(reinit=False, clocale=glocale):
     """ 
     Return the relationship calculator for the current language.
+
+    If clocale is passed in (a GrampsLocale) then that language will be used.
+
+    @param clocale: allow selection of the relationship language
+    @type clocale: a GrampsLocale instance
+
     """
     global __RELCALC_CLASS
     
     if __RELCALC_CLASS is None or reinit:
-        lang = glocale.language[0]
+        lang = clocale.language[0]
         __RELCALC_CLASS = RelationshipCalculator
         # If lang not set default to English relationship calulator
         # See if lang begins with en_, English_ or english_
