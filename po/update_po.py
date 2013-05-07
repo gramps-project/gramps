@@ -582,7 +582,7 @@ def retrieve():
     os.system('''%(xgettext)s -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
-              '''--keyword=_T_ --keyword=trans_text_ --keyword=_ngettext '''
+              '''--keyword=_T_ --keyword=trans_text_ '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
              )
     
