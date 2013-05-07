@@ -144,7 +144,8 @@ class Translator:
         else:
             # fallback=True will cause the translator to use English if 
             # lang = "en" or if something goes wrong.
-            self.__trans = gettext.translation(TransUtils.get_localedomain(), 
+            self.__trans = gettext.translation(TransUtils.get_localedomain(),\
+                                               TransUtils.LOCALEDIR,
                                                languages=[lang], 
                                                fallback=True)
             val = config.get('preferences.date-format')
