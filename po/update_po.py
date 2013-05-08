@@ -532,6 +532,8 @@ def headers():
         headers.append('''../data/gramps.desktop.in.h''')
     if os.path.isfile('''../data/gramps.keys.in.h'''):
         headers.append('''../data/gramps.keys.in.h''')
+    if os.path.isfile('''gtklist.h'''):
+        headers.append('''gtklist.h''')
     
     return headers
 
@@ -567,11 +569,66 @@ def extract_glade():
              % {'xgettext': xgettextCmd}
              )
 
+def extract_gtkbuilder():
+    """
+    Temp workaround for xgettext bug (< gettext 0.18.3)
+    https://savannah.gnu.org/bugs/index.php?29216
+    See bug reports #6595, #5621
+    """
+    
+    from xml.etree import ElementTree
+    
+    '''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <interface>
+    <!-- interface-requires gtk+ 3.0 -->
+
+    <object class="GtkListStore" id="model1">
+    <columns>
+      <!-- column-name gchararray -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">All rules must apply</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">At least one rule must apply</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Exactly one rule must apply</col>
+      </row>
+    </data>
+  </object>
+    
+    msgid "All rules must apply"
+    msgid "At least one rule must apply"
+    msgid "Exactly one rule must apply"
+    '''
+    
+    files = ['../gramps/plugins/importer/importgedcom.glade', '../gramps/gui/glade/rule.glade']
+    temp = open('gtklist.h', 'w')
+    
+    for filename in files:
+        tree = ElementTree.parse(filename)
+        root = tree.getroot()
+        for line in root.iter():
+            att = line.attrib
+            if att == {'id': '0', 'translatable': 'yes'}:
+                col = 'char *s = N_("%s");\n' % line.text
+                temp.write(col)
+        root.clear()
+    
+    temp.close()
+    print ('Wrote gtklist.h')
+
 def retrieve():
     """
     Extract messages from all files used by Gramps (python, glade, xml)
     """
     extract_xml()
+    
+    extract_gtkbuilder()
     
     create_template()
         
