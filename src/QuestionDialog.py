@@ -107,6 +107,12 @@ class QuestionDialog(object):
         if response == gtk.RESPONSE_ACCEPT:
             task()
 
+from GrampsDisplay import url as display_url
+def on_activate_link(label, uri):
+    # see aboutdialog.py _show_url()
+    display_url(uri)
+    return True
+
 class QuestionDialog2(object):
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
@@ -120,6 +126,8 @@ class QuestionDialog2(object):
         label1.set_use_markup(True)
         
         label2 = self.xml.get_object('qd_label2')
+        # see https://github.com/emesene/emesene/issues/723
+        label2.connect('activate-link', on_activate_link)
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
@@ -217,6 +225,11 @@ class WarningDialog(gtk.MessageDialog):
                                    buttons=gtk.BUTTONS_CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
+        # FIXME: Hyper-links in the secondary text display as underlined text,
+        # but clicking on the link fails with
+        # GtkWarning: Unable to show 'http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup': Operation not supported
+        # self.connect('activate-link'... fails with
+        # <WarningDialog object at 0x4880300 (GtkMessageDialog at 0x5686010)>: unknown signal name: activate-link
         self.set_icon(ICON)
         self.set_title("%s - Gramps" % msg1)
         self.show()

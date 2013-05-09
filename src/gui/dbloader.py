@@ -297,39 +297,59 @@ class DbLoader(CLIDbLoader):
         
         force_schema_upgrade = False
         force_bsddb_upgrade = False
+        force_bsddb_downgrade = False
         try:
             while True:
                 try:
                     self.dbstate.db.load(filename, self._pulse_progress, 
                                          mode, force_schema_upgrade,
-                                         force_bsddb_upgrade)
+                                         force_bsddb_upgrade,
+                                         force_bsddb_downgrade)
                     self.dbstate.db.set_save_path(filename)
                     break
                 except gen.db.exceptions.DbUpgradeRequiredError, msg:
-                    if QuestionDialog2(_("Need to upgrade database!"), 
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
                                        str(msg), 
-                                       _("Upgrade now"), 
-                                       _("Cancel")).run():
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
+                        force_bsddb_downgrade = False
                     else:
                         self.dbstate.no_database()
                         break
                 except gen.db.exceptions.BsddbUpgradeRequiredError, msg:
-                    if QuestionDialog2(_("Need to upgrade BSDDB database!"), 
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
                                        str(msg), 
-                                       _("I have made a backup, "
-                                         "please upgrade my tree"), 
-                                       _("Cancel")).run():
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
+                        force_bsddb_downgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except gen.db.exceptions.BsddbDowngradeRequiredError, msg:
+                    if QuestionDialog2(_("Are you sure you want to downgrade "
+                                         "this Family Tree?"), 
+                                       str(msg), 
+                                       _("I have made a backup,\n"
+                                         "please downgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = False
+                        force_bsddb_downgrade = True
                     else:
                         self.dbstate.no_database()
                         break
         # Get here is there is an exception the while loop does not handle
         except gen.db.exceptions.BsddbDowngradeError, msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._warn( _("Cannot open database"), str(msg))
         except gen.db.exceptions.DbVersionError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
