@@ -96,7 +96,7 @@ def mac_setup_localization(glocale):
 
             answer = subprocess.Popen(
                 args,
-                stderr=open("/Users/john/gramps-errors"),
+                stderr=open("/dev/null"),
                 stdout=subprocess.PIPE).communicate()[0]
             if not answer:
                 LOG.debug("No prefs found for %s:%s", domain, key)
