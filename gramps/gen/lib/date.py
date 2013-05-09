@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Douglas S. Blank
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,6 @@ log = logging.getLogger(".Date")
 #------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext
 
 from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                       french_sdn, persian_sdn, islamic_sdn, swedish_sdn,
@@ -285,80 +285,91 @@ class Span(object):
         """
         return self.get_repr(as_age=True)
 
-    def get_repr(self, as_age=False):
+    def get_repr(self, as_age=False, dlocale=glocale):
         """
         Get the representation as a time or age.
+
+        If dlocale is passed in (a GrampsLocale) then
+        the translated value will be returned instead.
+
+        @param dlocale: allow deferred translation of strings
+        @type dlocale: a GrampsLocale instance
         """
-        _repr = _("unknown")
+        trans_text = dlocale.translation.sgettext
+        _repr = trans_text("unknown")
+        # FIXME all this concatenation will fail for RTL languages
         if self.valid:
+            fdate12 = self._format(self._diff(self.date1, self.date2), dlocale)
+            fdate12p1 = self._format(self._diff(self.date1, self.date2),
+                                     dlocale).format(precision=1)
             if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
-                _repr = _("less than %s years") % Span.ALIVE
+                _repr = trans_text("less than %s years") % Span.ALIVE
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
-                    _repr = self._format(self._diff(self.date1, self.date2))
+                    _repr = fdate12
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("more than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = trans_text("age|about") + " " + fdate12p1
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
-                    _repr = (_("between") + " " + self._format(self._diff(self.date1, stop)) + 
-                                 " " + _("and") + " " + self._format(self._diff(self.date1, start)))
+                    _repr = (trans_text("between") + " " + self._format(self._diff(self.date1, stop),dlocale) + 
+                                 " " + trans_text("and") + " " + self._format(self._diff(self.date1, start),dlocale))
             elif self.date1.get_modifier() == Date.MOD_BEFORE: # BEFORE----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     _repr = self._format((-1, -1 , -1))
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = _("less than about") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than about") + " " + fdate12
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than") + " " + fdate12
             elif self.date1.get_modifier() == Date.MOD_AFTER:    # AFTER----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("more than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("more than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
                     _repr = self._format((-1, -1 , -1))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr = _("more than about") + " " +  self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = trans_text("more than about") + " " + fdate12p1
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("more than") + " " + fdate12
             elif self.date1.get_modifier() == Date.MOD_ABOUT: # ABOUT----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
-                    _repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr = trans_text("age|about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    _repr =  _("more than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  trans_text("more than about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    _repr =  _("less than about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  trans_text("less than about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  trans_text("age|about") + " " + fdate12p1
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
-                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  trans_text("age|about") + " " + fdate12p1
             elif (self.date1.get_modifier() == Date.MOD_RANGE or 
                   self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
-                    _repr = (_("between") + " " + self._format(self._diff(start, self.date2)) + 
-                                 " " + _("and") + " " + self._format(self._diff(stop, self.date2)))
+                    _repr = (trans_text("between") + " " + self._format(self._diff(start, self.date2),dlocale) + 
+                                 " " + trans_text("and") + " " + self._format(self._diff(stop, self.date2),dlocale))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
-                    _repr = _("more than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("more than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_AFTER:
-                    _repr = _("less than") + " " + self._format(self._diff(self.date1, self.date2))
+                    _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
-                    _repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
+                    _repr =  trans_text("age|about") + " " + fdate12p1
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start1, stop1 = self.date1.get_start_stop_range()
@@ -367,8 +378,8 @@ class Span(object):
                     start2 = Date(*start2)
                     stop1 = Date(*stop1)
                     stop2 = Date(*stop2)
-                    _repr = (_("between") + " " + self._format(self._diff(start1, stop2)) + 
-                                 " " + _("and") + " " + self._format(self._diff(stop1, start2)))
+                    _repr = (trans_text("between") + " " + self._format(self._diff(start1, stop2),dlocale) + 
+                                 " " + trans_text("and") + " " + self._format(self._diff(stop1, start2),dlocale))
         return _repr
 
     def __eq__(self, other):
@@ -405,8 +416,17 @@ class Span(object):
         self.precision = precision
         return self.get_repr(as_age)
 
-    def _format(self, diff_tuple):
-        if diff_tuple == (-1, -1, -1): return _("unknown")
+    def _format(self, diff_tuple, dlocale=glocale):
+        """
+        If dlocale is passed in (a GrampsLocale) then
+        the translated value will be returned instead.
+
+        @param dlocale: allow deferred translation of strings
+        @type dlocale: a GrampsLocale instance
+        """
+        trans_text = dlocale.translation.sgettext
+        ngettext = dlocale.translation.ngettext
+        if diff_tuple == (-1, -1, -1): return trans_text("unknown")
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
@@ -429,7 +449,7 @@ class Span(object):
         if self.precision == detail:
             return retval
         if retval == "":
-            retval = _("0 days")
+            retval = trans_text("0 days")
         return retval
 
     def _diff(self, date1, date2):
