@@ -290,8 +290,11 @@ gramps/gen/mime/_pythonmime.py
 gramps/gen/mime/_winmime.py
 gramps/gen/plug/_gramplet.py
 gramps/gen/plug/_manager.py
+gramps/gen/plug/_options.py
 gramps/gen/plug/_pluginreg.py
 gramps/gen/plug/docbackend/docbackend.py
+gramps/gen/plug/docgen/graphdoc.py
+gramps/gen/utils/docgen/odstab.py
 gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py
 gramps/gen/plug/report/_paper.py
@@ -457,6 +460,7 @@ gramps/gui/plug/report/_reportdialog.py
 gramps/gui/plug/report/_stylecombobox.py
 gramps/gui/plug/report/_styleeditor.py
 gramps/gui/plug/tool.py
+gramps/gui/pluginmanager.py
 gramps/gui/selectors/selectcitation.py
 gramps/gui/selectors/selectevent.py
 gramps/gui/selectors/selectfamily.py
@@ -567,6 +571,7 @@ gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
 gramps/plugins/lib/holidays.xml.in
 gramps/plugins/lib/libgedcom.py
+gramps/plugins/lib/libhtmlbackend.py
 gramps/plugins/lib/libhtmlconst.py
 gramps/plugins/lib/libmetadata.py
 gramps/plugins/lib/libnarrate.py
@@ -574,6 +579,7 @@ gramps/plugins/lib/libpersonview.py
 gramps/plugins/lib/libplaceview.py
 gramps/plugins/lib/libplugins.gpr.py
 gramps/plugins/lib/librecords.py
+gramps/plugins/lib/libsubstkeyword.py
 #gramps/plugins/lib/libtranslate.py
 gramps/plugins/lib/libtreebase.py
 gramps/plugins/lib/maps/geography.py
@@ -595,6 +601,7 @@ gramps/plugins/quickview/reporef.py
 gramps/plugins/quickview/samesurnames.py
 gramps/plugins/quickview/siblings.py
 gramps/plugins/rel/relplugins.gpr.py
+gramps/plugins/sidebar/sidebar.gpr.py
 gramps/plugins/textreport/alphabeticalindex.py
 gramps/plugins/textreport/ancestorreport.py
 gramps/plugins/textreport/birthdayreport.py

@@ -191,7 +191,6 @@ gramps/gen/plug/_docgenplugin.py
 gramps/gen/plug/_export.py
 gramps/gen/plug/_import.py
 gramps/gen/plug/_plugin.py
-gramps/gen/plug/_options.py
 gramps/gen/plug/menu/_booleanlist.py
 gramps/gen/plug/menu/_boolean.py
 gramps/gen/plug/menu/_color.py
@@ -218,7 +217,6 @@ gramps/gen/plug/docgen/basedoc.py
 gramps/gen/plug/docgen/drawdoc.py
 gramps/gen/plug/docgen/fontscale.py
 gramps/gen/plug/docgen/fontstyle.py
-gramps/gen/plug/docgen/graphdoc.py
 gramps/gen/plug/docgen/graphicstyle.py
 gramps/gen/plug/docgen/__init__.py
 gramps/gen/plug/docgen/paperstyle.py
@@ -280,7 +278,6 @@ gramps/gui/glade.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
-gramps/gui/pluginmanager.py
 gramps/gui/thumbnails.py
 gramps/gui/user.py
 gramps/gui/glade/catalog/grampswidgets.py
@@ -406,8 +403,6 @@ gramps/guiQML/views/personview.py
 #
 # plugins .gpr.py
 #
-gramps/plugins/sidebar/sidebar.gpr.py
-gramps/plugins/export/export.gpr.py
 gramps/plugins/__init__.py
 gramps/plugins/tool/toolsdebug.gpr.py
 #
@@ -433,11 +428,9 @@ gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgrampsxml.py
 gramps/plugins/lib/libholiday.py
 gramps/plugins/lib/libhtml.py
-gramps/plugins/lib/libhtmlbackend.py
 gramps/plugins/lib/libmapservice.py
 gramps/plugins/lib/libmixin.py
 gramps/plugins/lib/libodfbackend.py
-gramps/plugins/lib/libsubstkeyword.py
 #
 # plugins/map directory
 #
