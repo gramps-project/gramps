@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-08 11:02+0200\n"
-"PO-Revision-Date: 2013-05-08 11:10+0100\n"
+"POT-Creation-Date: 2013-05-09 12:21+0200\n"
+"PO-Revision-Date: 2013-05-09 12:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -897,8 +897,8 @@ msgstr ""
 # The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
 #: ../gramps/gen/const.py:240
 #: ../gramps/gen/const.py:241
-#: ../gramps/gen/lib/date.py:1650
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1670
+#: ../gramps/gen/lib/date.py:1684
 msgid "none"
 msgstr "aucun(e)"
 
@@ -4200,8 +4200,8 @@ msgstr "Parrainé"
 msgid "Foster"
 msgstr "En nourrice"
 
-#: ../gramps/gen/lib/date.py:292
-#: ../gramps/gen/lib/date.py:409
+#: ../gramps/gen/lib/date.py:299
+#: ../gramps/gen/lib/date.py:429
 #: ../gramps/gen/mime/_pythonmime.py:50
 #: ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:64
@@ -4223,48 +4223,48 @@ msgid "unknown"
 msgstr "inconnu"
 
 # trunk
-#: ../gramps/gen/lib/date.py:295
+#: ../gramps/gen/lib/date.py:306
 #, python-format
 msgid "less than %s years"
 msgstr "moins de %s ans"
 
 # ex : 10 ans
-#: ../gramps/gen/lib/date.py:300
-#: ../gramps/gen/lib/date.py:326
-#: ../gramps/gen/lib/date.py:328
-#: ../gramps/gen/lib/date.py:335
-#: ../gramps/gen/lib/date.py:357
+#: ../gramps/gen/lib/date.py:311
+#: ../gramps/gen/lib/date.py:337
+#: ../gramps/gen/lib/date.py:339
+#: ../gramps/gen/lib/date.py:346
+#: ../gramps/gen/lib/date.py:368
 msgid "more than"
 msgstr "plus de"
 
 # ex : 10 ans
-#: ../gramps/gen/lib/date.py:302
-#: ../gramps/gen/lib/date.py:314
-#: ../gramps/gen/lib/date.py:318
-#: ../gramps/gen/lib/date.py:323
-#: ../gramps/gen/lib/date.py:359
+#: ../gramps/gen/lib/date.py:313
+#: ../gramps/gen/lib/date.py:325
+#: ../gramps/gen/lib/date.py:329
+#: ../gramps/gen/lib/date.py:334
+#: ../gramps/gen/lib/date.py:370
 msgid "less than"
 msgstr "moins de"
 
 # ex : 10 ans
-#: ../gramps/gen/lib/date.py:304
-#: ../gramps/gen/lib/date.py:338
-#: ../gramps/gen/lib/date.py:344
-#: ../gramps/gen/lib/date.py:347
-#: ../gramps/gen/lib/date.py:361
+#: ../gramps/gen/lib/date.py:315
+#: ../gramps/gen/lib/date.py:349
+#: ../gramps/gen/lib/date.py:355
+#: ../gramps/gen/lib/date.py:358
+#: ../gramps/gen/lib/date.py:372
 msgid "age|about"
 msgstr "environ"
 
 # ex : 10 ans et 11 ans
-#: ../gramps/gen/lib/date.py:310
-#: ../gramps/gen/lib/date.py:354
-#: ../gramps/gen/lib/date.py:370
+#: ../gramps/gen/lib/date.py:321
+#: ../gramps/gen/lib/date.py:365
+#: ../gramps/gen/lib/date.py:381
 msgid "between"
 msgstr "entre"
 
-#: ../gramps/gen/lib/date.py:311
-#: ../gramps/gen/lib/date.py:355
-#: ../gramps/gen/lib/date.py:371
+#: ../gramps/gen/lib/date.py:322
+#: ../gramps/gen/lib/date.py:366
+#: ../gramps/gen/lib/date.py:382
 #: ../gramps/plugins/quickview/all_relations.py:284
 #: ../gramps/plugins/view/relview.py:1000
 #: ../gramps/plugins/webreport/narrativeweb.py:1156
@@ -4272,100 +4272,103 @@ msgid "and"
 msgstr "et"
 
 # ex : 10 ans
-#: ../gramps/gen/lib/date.py:320
-#: ../gramps/gen/lib/date.py:342
+#: ../gramps/gen/lib/date.py:331
+#: ../gramps/gen/lib/date.py:353
 msgid "less than about"
 msgstr "moins d'environ"
 
 # ex : 10 ans
-#: ../gramps/gen/lib/date.py:332
-#: ../gramps/gen/lib/date.py:340
+#: ../gramps/gen/lib/date.py:343
+#: ../gramps/gen/lib/date.py:351
 msgid "more than about"
 msgstr "plus d'environ"
 
 # âge
-#: ../gramps/gen/lib/date.py:413
+#: ../gramps/gen/lib/date.py:433
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d an"
 msgstr[1] "%d ans"
 
-#: ../gramps/gen/lib/date.py:420
+#: ../gramps/gen/lib/date.py:440
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#: ../gramps/gen/lib/date.py:427
+#: ../gramps/gen/lib/date.py:447
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d jour"
 msgstr[1] "%d jours"
 
-#: ../gramps/gen/lib/date.py:432
+#: ../gramps/gen/lib/date.py:452
 msgid "0 days"
 msgstr "0 jour"
 
-#: ../gramps/gen/lib/date.py:579
+#: ../gramps/gen/lib/date.py:599
 msgid "calendar|Gregorian"
 msgstr "Grégorien"
 
-#: ../gramps/gen/lib/date.py:580
+#: ../gramps/gen/lib/date.py:600
 msgid "calendar|Julian"
 msgstr "Julien"
 
-#: ../gramps/gen/lib/date.py:581
+#: ../gramps/gen/lib/date.py:601
 msgid "calendar|Hebrew"
 msgstr "Hébreu"
 
-#: ../gramps/gen/lib/date.py:582
+#: ../gramps/gen/lib/date.py:602
 msgid "calendar|French Republican"
 msgstr "Républicain (France)"
 
-#: ../gramps/gen/lib/date.py:583
+#: ../gramps/gen/lib/date.py:603
 msgid "calendar|Persian"
 msgstr "Persan"
 
-#: ../gramps/gen/lib/date.py:584
+#: ../gramps/gen/lib/date.py:604
 msgid "calendar|Islamic"
 msgstr "Islamique"
 
-#: ../gramps/gen/lib/date.py:585
+#: ../gramps/gen/lib/date.py:605
 msgid "calendar|Swedish"
 msgstr "Suédois"
 
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "estimated"
 msgstr "Estimé(e)"
 
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "calculated"
 msgstr "Calculé(e)"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684
+#: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "Avant"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684
+#: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "Après"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684
+#: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "Vers"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "range"
 msgstr "Étendu(e)"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "span"
 msgstr "Incrémenté(e)"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "textonly"
 msgstr "Texte seulement"
 
@@ -5308,6 +5311,16 @@ msgstr "Le gramplet %s a causé une erreur"
 msgid "No description was provided"
 msgstr "Aucune description fournie"
 
+# trunk
+#: ../gramps/gen/plug/_options.py:382
+#, python-format
+msgid ""
+"Option '%(opt_name)s' is present in %(file)s\n"
+"  but is not known to the module.  Ignoring..."
+msgstr ""
+"L'option '%(opt_name)s' est présente dans %(file)s\n"
+"  mais elle est inconnue pour ce module.  Option ignorée ..."
+
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Stable"
 msgstr "Stable"
@@ -5417,6 +5430,18 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le d'abord."
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:164
 #: ../gramps/gen/plug/docbackend/docbackend.py:167
+#: ../gramps/gen/utils/docgen/odstab.py:343
+#: ../gramps/gen/utils/docgen/odstab.py:345
+#: ../gramps/gen/utils/docgen/odstab.py:405
+#: ../gramps/gen/utils/docgen/odstab.py:408
+#: ../gramps/gen/utils/docgen/odstab.py:428
+#: ../gramps/gen/utils/docgen/odstab.py:432
+#: ../gramps/gen/utils/docgen/odstab.py:463
+#: ../gramps/gen/utils/docgen/odstab.py:467
+#: ../gramps/gen/utils/docgen/odstab.py:479
+#: ../gramps/gen/utils/docgen/odstab.py:483
+#: ../gramps/gen/utils/docgen/odstab.py:502
+#: ../gramps/gen/utils/docgen/odstab.py:506
 #: ../gramps/plugins/docgen/asciidoc.py:164
 #: ../gramps/plugins/docgen/odfdoc.py:1201
 #: ../gramps/plugins/docgen/odfdoc.py:1204
@@ -5437,10 +5462,309 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le d'abord."
 #: ../gramps/plugins/export/exportvcalendar.py:105
 #: ../gramps/plugins/export/exportvcard.py:73
 #: ../gramps/plugins/export/exportvcard.py:77
+#: ../gramps/plugins/lib/libhtmlbackend.py:248
+#: ../gramps/plugins/lib/libhtmlbackend.py:252
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:262
 #: ../gramps/plugins/webreport/narrativeweb.py:6995
 #, python-format
 msgid "Could not create %s"
 msgstr "Impossible de créer %s"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:71
+#: ../gramps/gen/plug/report/stdoptions.py:50
+#: ../gramps/gen/plug/report/stdoptions.py:63
+msgid "Default"
+msgstr "Défaut"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
+msgid "PostScript / Helvetica"
+msgstr "PostScript / Helvetica"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:73
+msgid "TrueType / FreeSans"
+msgstr "TrueType / FreeSans"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:75
+#: ../gramps/plugins/view/pedigreeview.py:2013
+msgid "Vertical (↓)"
+msgstr "Vertical (↓)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/plugins/view/pedigreeview.py:2014
+msgid "Vertical (↑)"
+msgstr "Vertical (↑)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/plugins/view/pedigreeview.py:2015
+msgid "Horizontal (→)"
+msgstr "Horizontal (→)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/plugins/view/pedigreeview.py:2016
+msgid "Horizontal (←)"
+msgstr "Horizontal (→)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
+msgid "Bottom, left"
+msgstr "Inférieur, gauche"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
+msgid "Bottom, right"
+msgstr "Inférieur, droite"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
+msgid "Top, left"
+msgstr "Supérieur, gauche"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:83
+msgid "Top, Right"
+msgstr "Supérieur, droite"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:84
+msgid "Right, bottom"
+msgstr "Droite, en bas"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:85
+msgid "Right, top"
+msgstr "Droite, en haut"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
+msgid "Left, bottom"
+msgstr "Gauche, en bas"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:87
+msgid "Left, top"
+msgstr "Gauche, en haut"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:89
+msgid "Compress to minimal size"
+msgstr "Compresser à la taille minimale"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:90
+msgid "Fill the given area"
+msgstr "Remplir la zone donnée"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:91
+msgid "Expand uniformly"
+msgstr "Étendre uniformément"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:93
+msgid "Top"
+msgstr "Haut"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:94
+msgid "Bottom"
+msgstr "Bas"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:138
+msgid "GraphViz Layout"
+msgstr "Mise en page GraphViz"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:140
+#: ../gramps/gui/widgets/styledtexteditor.py:489
+msgid "Font family"
+msgstr "Famille de police"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:143
+msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
+msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:149
+#: ../gramps/gui/widgets/styledtexteditor.py:501
+msgid "Font size"
+msgstr "Taille de la police"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:150
+msgid "The font size, in points."
+msgstr "La taille de la police de caractères, en points (pt)."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:153
+msgid "Graph Direction"
+msgstr "Orientation du graphique"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
+msgid "Whether graph goes from top to bottom or left to right."
+msgstr "Précise si le graphique doit aller de haut en bas ou de gauche à droite."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
+msgid "Number of Horizontal Pages"
+msgstr "Nombre de pages horizontales"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:161
+msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
+msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale. Seulement valide pour le format dot et pdf via Ghostscript."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:168
+msgid "Number of Vertical Pages"
+msgstr "Nombre de pages verticales"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:169
+msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
+msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale. Seulement valide pour le format dot et pdf via Ghostscript."
+
+# Substantif (GNOME fr)
+#: ../gramps/gen/plug/docgen/graphdoc.py:176
+msgid "Paging Direction"
+msgstr "Sens des pages"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:179
+msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
+msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que quand il y a plusieurs pages horizontales ou verticales."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
+msgid "GraphViz Options"
+msgstr "Options GraphViz"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
+msgid "Aspect ratio"
+msgstr "Ratio d'aspect"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:203
+msgid ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width and height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing the node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
+msgstr ""
+"Affecte l'espacement des nœuds et la taille du graphique.\n"
+"Si le graphique est plus petit que l'aire d'impression :\n"
+"  Compresser ne changera pas l'espacement des nœuds.\n"
+"  Remplir va augmenter l'espacement des nœuds pour correspondre à l'aire d'impression que se soit en largeur et en hauteur.\n"
+"  Étendre va augmenter l'espacement des nœuds uniformément pour préserver le rendu.\n"
+"Si le graphique est plus grand que l'aire d'impression :\n"
+"  Compresser va essayer de conserver une certaine symétrie.\n"
+"  Remplir va correspondre à l'aire d'impression après une augmentation de l'espacement des nœuds.\n"
+"  Étendre va correspondre à l'aire d'impression."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:219
+msgid "DPI"
+msgstr "Résolution"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:220
+msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 DPI."
+msgstr "Points par pouce (DPI). Pour les images pour internet, comme des .gif ou .png, utiliser des valeurs comme 100 ou 300 DPI. Pour les fichiers PostScript ou PDF utiliser 72 DPI."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:227
+msgid "Node spacing"
+msgstr "Espacement de nœud"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:228
+msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
+msgstr "La quantité minimum d'espace libre, en pouces, entre les nœuds. Pour les graphiques verticaux cela correspond à l'espace entre les colonnes. Pour les graphiques horizontaux c'est celui entre les lignes."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:235
+msgid "Rank spacing"
+msgstr "Espacement de rang"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:236
+msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
+msgstr "La quantité minimum d'espace libre, en pouces, entre les rangs. Pour les graphiques verticaux cela correspond à l'espace entre les lignes. Pour les graphiques horizontaux c'est celui entre les colonnes."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:243
+msgid "Use subgraphs"
+msgstr "Utiliser les sous-graphiques"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:244
+msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints ensemble, mais avec les graphiques compliqués cela créera des lignes plus longues et des graphiques plus larges."
+
+# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+#: ../gramps/gen/plug/docgen/graphdoc.py:251
+#: ../gramps/gui/clipboard.py:402
+#: ../gramps/gui/configure.py:542
+#: ../gramps/gui/editors/editlink.py:85
+#: ../gramps/gui/editors/editmedia.py:91
+#: ../gramps/gui/editors/editmedia.py:174
+#: ../gramps/gui/editors/editmediaref.py:136
+#: ../gramps/gui/editors/filtereditor.py:294
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:101
+#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
+#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
+#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:100
+#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:99
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
+#: ../gramps/gui/views/treemodels/mediamodel.py:134
+#: ../gramps/plugins/drawreport/ancestortree.py:1055
+#: ../gramps/plugins/drawreport/descendtree.py:1649
+#: ../gramps/plugins/export/exportcsv.py:352
+#: ../gramps/plugins/export/exportcsv.py:469
+#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
+#: ../gramps/plugins/importer/importcsv.py:190
+#: ../gramps/plugins/quickview/filterbyname.py:201
+#: ../gramps/plugins/quickview/filterbyname.py:252
+#: ../gramps/plugins/quickview/quickview.gpr.py:205
+#: ../gramps/plugins/quickview/references.py:96
+#: ../gramps/plugins/textreport/familygroup.py:347
+msgid "Note"
+msgstr "Note "
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:254
+msgid "Note to add to the graph"
+msgstr "Note à ajouter au graphique"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:256
+msgid "This text will be added to the graph."
+msgstr "Ce texte sera ajouté au graphique."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:259
+msgid "Note location"
+msgstr "Position de la note"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
+msgid "Whether note will appear on top or bottom of the page."
+msgstr "Choisir d'afficher la note en haut ou en bas de la page."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:266
+msgid "Note size"
+msgstr "Taille de la note"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:267
+msgid "The size of note text, in points."
+msgstr "La taille du texte de la note, en points."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+msgid "PDF (Ghostscript)"
+msgstr "PDF (Ghostscript)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+msgid "PDF (Graphviz)"
+msgstr "PDF (GraphViz)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/plugins/docgen/docgen.gpr.py:158
+msgid "PostScript"
+msgstr "PostScript"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+msgid "Structured Vector Graphics (SVG)"
+msgstr "SVG (Scalable Vector Graphics)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+msgid "Compressed Structured Vector Graphs (SVGZ)"
+msgstr "SVG compressé (SVGZ)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+msgid "JPEG image"
+msgstr "Image JPEG"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+msgid "GIF image"
+msgstr "Image GIF"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+msgid "PNG image"
+msgstr "Image PNG"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+msgid "Graphviz File"
+msgstr "Fichier GraphViz"
 
 # Utilisé dans le menu "Rapports" et dans "Rapports > Livre > Gestionnaire de livre > Articles disponibles"
 # Ce dernier devrait être au singulier
@@ -5519,11 +5843,6 @@ msgstr "Références bibliographiques"
 #: ../gramps/gen/plug/report/stdoptions.py:48
 msgid "Translation"
 msgstr "Traduction "
-
-#: ../gramps/gen/plug/report/stdoptions.py:50
-#: ../gramps/gen/plug/report/stdoptions.py:63
-msgid "Default"
-msgstr "Défaut"
 
 #: ../gramps/gen/plug/report/stdoptions.py:54
 msgid "The translation to be used for the report."
@@ -5952,7 +6271,7 @@ msgid "%s, ..."
 msgstr "%s, ..."
 
 #: ../gramps/gen/utils/db.py:531
-#: ../gramps/plugins/lib/librecords.py:204
+#: ../gramps/plugins/lib/librecords.py:240
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
@@ -6621,36 +6940,6 @@ msgstr "Événement "
 #: ../gramps/gui/glade/editevent.glade:314
 msgid "Place"
 msgstr "Lieu "
-
-# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-#: ../gramps/gui/clipboard.py:402
-#: ../gramps/gui/configure.py:542
-#: ../gramps/gui/editors/editlink.py:85
-#: ../gramps/gui/editors/editmedia.py:91
-#: ../gramps/gui/editors/editmedia.py:174
-#: ../gramps/gui/editors/editmediaref.py:136
-#: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:101
-#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
-#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
-#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:100
-#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:99
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
-#: ../gramps/gui/views/treemodels/mediamodel.py:134
-#: ../gramps/plugins/drawreport/ancestortree.py:1055
-#: ../gramps/plugins/drawreport/descendtree.py:1649
-#: ../gramps/plugins/export/exportcsv.py:352
-#: ../gramps/plugins/export/exportcsv.py:469
-#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
-#: ../gramps/plugins/importer/importcsv.py:190
-#: ../gramps/plugins/quickview/filterbyname.py:201
-#: ../gramps/plugins/quickview/filterbyname.py:252
-#: ../gramps/plugins/quickview/quickview.gpr.py:205
-#: ../gramps/plugins/quickview/references.py:96
-#: ../gramps/plugins/textreport/familygroup.py:347
-msgid "Note"
-msgstr "Note "
 
 #: ../gramps/gui/clipboard.py:435
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:121
@@ -9980,7 +10269,7 @@ msgstr "Test du filtre"
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:376
 #: ../gramps/plugins/textreport/indivcomplete.py:696
-#: ../gramps/plugins/textreport/recordsreport.py:140
+#: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:8001
 #: ../gramps/plugins/webreport/webcal.py:1336
@@ -10275,6 +10564,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"Gdk, Gtk ou Pango typelib n'est pas installé.\n"
+"Installez Gnome Introspection, et pygobject version 3.3.2 ou supérieure.\n"
+"Puis installez les données introspection pour Gdk, Gtk et Pango\n"
+"\n"
+"Gramps va maintenant s'arrêter."
 
 # trunk
 #: ../gramps/gui/grampsgui.py:101
@@ -10284,6 +10578,10 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"\n"
+"Pas de support de python cairo. Installez cairo pour votre version de python\n"
+"\n"
+"Gramps va maintenant s'arrêter."
 
 #: ../gramps/gui/grampsgui.py:144
 msgid "Family Trees"
@@ -11647,7 +11945,7 @@ msgstr "Style "
 #: ../gramps/plugins/textreport/kinshipreport.py:343
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:201
 #: ../gramps/plugins/textreport/placereport.py:374
-#: ../gramps/plugins/textreport/recordsreport.py:138
+#: ../gramps/plugins/textreport/recordsreport.py:170
 #: ../gramps/plugins/textreport/simplebooktitle.py:130
 #: ../gramps/plugins/textreport/summary.py:277
 #: ../gramps/plugins/textreport/tagreport.py:533
@@ -12867,14 +13165,6 @@ msgstr "Couleur d'arrière-plan"
 msgid "Clear Markup"
 msgstr "Effacer la balise"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:489
-msgid "Font family"
-msgstr "Famille de police"
-
-#: ../gramps/gui/widgets/styledtexteditor.py:501
-msgid "Font size"
-msgstr "Taille de la police"
-
 #: ../gramps/gui/widgets/styledtexteditor.py:522
 msgid "Undo"
 msgstr "Défaire"
@@ -12962,10 +13252,6 @@ msgstr "Document PDF"
 #: ../gramps/plugins/docgen/docgen.gpr.py:138
 msgid "Generates documents in PDF format (.pdf)."
 msgstr "Génère des documents au format PDF (.pdf)."
-
-#: ../gramps/plugins/docgen/docgen.gpr.py:158
-msgid "PostScript"
-msgstr "PostScript"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:159
 msgid "Generates documents in PostScript format (.ps)."
@@ -13411,7 +13697,7 @@ msgstr " générations de cases vides pour les ascendants non-connus"
 #: ../gramps/plugins/textreport/indivcomplete.py:816
 #: ../gramps/plugins/textreport/kinshipreport.py:403
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:230
-#: ../gramps/plugins/textreport/recordsreport.py:238
+#: ../gramps/plugins/textreport/recordsreport.py:269
 #: ../gramps/plugins/textreport/summary.py:312
 #: ../gramps/plugins/textreport/tagreport.py:587
 msgid "The basic style used for the text display."
@@ -14229,7 +14515,7 @@ msgid "%s (persons):"
 msgstr "%s (individus) :"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:938
-#: ../gramps/plugins/textreport/recordsreport.py:142
+#: ../gramps/plugins/textreport/recordsreport.py:174
 msgid "Determines what people are included in the report."
 msgstr "Détermine quels individus seront inclus dans le rapport."
 
@@ -14237,7 +14523,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 #: ../gramps/plugins/drawreport/timeline.py:384
 #: ../gramps/plugins/graph/gvrelgraph.py:503
 #: ../gramps/plugins/textreport/indivcomplete.py:702
-#: ../gramps/plugins/textreport/recordsreport.py:146
+#: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:8007
 #: ../gramps/plugins/webreport/webcal.py:1342
@@ -14391,7 +14677,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport"
 
 #: ../gramps/plugins/drawreport/timeline.py:385
 #: ../gramps/plugins/graph/gvrelgraph.py:504
-#: ../gramps/plugins/textreport/recordsreport.py:147
+#: ../gramps/plugins/textreport/recordsreport.py:179
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:8008
 #: ../gramps/plugins/webreport/webcal.py:1343
@@ -15665,7 +15951,7 @@ msgid "Shows some interesting records about people and families"
 msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1072
-#: ../gramps/plugins/textreport/recordsreport.py:82
+#: ../gramps/plugins/textreport/recordsreport.py:91
 msgid "Records"
 msgstr "Enregistrements"
 
@@ -21001,71 +21287,71 @@ msgstr "Fournit la variable de substitution pour les lignes affichées."
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr "Fournit la base nécessaire pour les ancêtres et descendants des rapports graphiques."
 
-#: ../gramps/plugins/lib/librecords.py:382
+#: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
 msgstr "Le plus jeune individu vivant"
 
-#: ../gramps/plugins/lib/librecords.py:383
+#: ../gramps/plugins/lib/librecords.py:56
 msgid "Oldest living person"
 msgstr "Individu vivant le plus âgé"
 
-#: ../gramps/plugins/lib/librecords.py:384
+#: ../gramps/plugins/lib/librecords.py:57
 msgid "Person died at youngest age"
 msgstr "Individu décédé jeune"
 
-#: ../gramps/plugins/lib/librecords.py:385
+#: ../gramps/plugins/lib/librecords.py:58
 msgid "Person died at oldest age"
 msgstr "Individu décédé à un âge avancé"
 
-#: ../gramps/plugins/lib/librecords.py:386
+#: ../gramps/plugins/lib/librecords.py:59
 msgid "Person married at youngest age"
 msgstr "Individu marié jeune"
 
-#: ../gramps/plugins/lib/librecords.py:387
+#: ../gramps/plugins/lib/librecords.py:60
 msgid "Person married at oldest age"
 msgstr "Individu marié à un âge avancé"
 
-#: ../gramps/plugins/lib/librecords.py:388
+#: ../gramps/plugins/lib/librecords.py:61
 msgid "Person divorced at youngest age"
 msgstr "Individu divorcé jeune"
 
-#: ../gramps/plugins/lib/librecords.py:389
+#: ../gramps/plugins/lib/librecords.py:62
 msgid "Person divorced at oldest age"
 msgstr "Individu divorcé à un âge avancé"
 
-#: ../gramps/plugins/lib/librecords.py:390
+#: ../gramps/plugins/lib/librecords.py:63
 msgid "Youngest father"
 msgstr "Le plus jeune père"
 
-#: ../gramps/plugins/lib/librecords.py:391
+#: ../gramps/plugins/lib/librecords.py:64
 msgid "Youngest mother"
 msgstr "La plus jeune mère"
 
-#: ../gramps/plugins/lib/librecords.py:392
+#: ../gramps/plugins/lib/librecords.py:65
 msgid "Oldest father"
 msgstr "Le père le plus âgé"
 
-#: ../gramps/plugins/lib/librecords.py:393
+#: ../gramps/plugins/lib/librecords.py:66
 msgid "Oldest mother"
 msgstr "La mère la plus âgée"
 
-#: ../gramps/plugins/lib/librecords.py:394
+#: ../gramps/plugins/lib/librecords.py:67
 msgid "Couple with most children"
 msgstr "Couple avec le plus d'enfants"
 
-#: ../gramps/plugins/lib/librecords.py:395
+#: ../gramps/plugins/lib/librecords.py:68
 msgid "Living couple married most recently"
 msgstr "Couple marié il y a peu de temps"
 
-#: ../gramps/plugins/lib/librecords.py:396
+#: ../gramps/plugins/lib/librecords.py:69
 msgid "Living couple married most long ago"
 msgstr "Couple marié il y a longtemps"
 
-#: ../gramps/plugins/lib/librecords.py:397
+#: ../gramps/plugins/lib/librecords.py:70
 msgid "Shortest past marriage"
 msgstr "Le mariage le plus court"
 
-#: ../gramps/plugins/lib/librecords.py:398
+#: ../gramps/plugins/lib/librecords.py:71
 msgid "Longest past marriage"
 msgstr "Le mariage le plus long"
 
@@ -22079,6 +22365,18 @@ msgstr "Calcul relationnel slovène"
 #: ../gramps/plugins/rel/relplugins.gpr.py:287
 msgid "Swedish Relationship Calculator"
 msgstr "Calcul relationnel suédois"
+
+#: ../gramps/plugins/sidebar/sidebar.gpr.py:30
+msgid "Category Sidebar"
+msgstr "Barre latérale (Catégorie)"
+
+#: ../gramps/plugins/sidebar/sidebar.gpr.py:31
+msgid "A sidebar to allow the selection of view categories"
+msgstr "Une barre latérale permettant de sélectionner les catégories de vue."
+
+#: ../gramps/plugins/sidebar/sidebar.gpr.py:39
+msgid "Category"
+msgstr "Catégorie"
 
 # trunk
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
@@ -23176,69 +23474,63 @@ msgid "The style used for event and person details."
 msgstr "Le style utilisé pour les détails de l'événement et de l'individu."
 
 # trunk
-#: ../gramps/plugins/textreport/recordsreport.py:108
+#: ../gramps/plugins/textreport/recordsreport.py:136
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
 # trunk
-#: ../gramps/plugins/textreport/recordsreport.py:110
-#, python-format
-msgid " (%(value)s)"
-msgstr " (%(value)s)"
-
-# trunk
-#: ../gramps/plugins/textreport/recordsreport.py:153
+#: ../gramps/plugins/textreport/recordsreport.py:185
 msgid "Number of ranks to display"
 msgstr "Nombre d'articles à afficher"
 
 # call name = prénom dans le context !
-#: ../gramps/plugins/textreport/recordsreport.py:156
+#: ../gramps/plugins/textreport/recordsreport.py:188
 msgid "Use call name"
 msgstr "Utiliser le prénom usuel"
 
 # call name = prénom dans le context !
-#: ../gramps/plugins/textreport/recordsreport.py:158
+#: ../gramps/plugins/textreport/recordsreport.py:190
 msgid "Don't use call name"
 msgstr "Ne pas utiliser le prénom usuel"
 
 # trunk
 # call name = prénom dans le context !
-#: ../gramps/plugins/textreport/recordsreport.py:159
+#: ../gramps/plugins/textreport/recordsreport.py:191
 msgid "Replace first names with call name"
 msgstr "Remplacer les prénoms par le prénom usuel"
 
 # trunk
 # call name = prénom dans le context !
-#: ../gramps/plugins/textreport/recordsreport.py:160
+#: ../gramps/plugins/textreport/recordsreport.py:192
 msgid "Underline call name in first names / add call name to first name"
 msgstr "Souligner ou ajouter le prénom usuel dans les prénoms"
 
-#: ../gramps/plugins/textreport/recordsreport.py:163
+#: ../gramps/plugins/textreport/recordsreport.py:195
 msgid "Footer text"
 msgstr "Pied de texte"
 
-#: ../gramps/plugins/textreport/recordsreport.py:169
+#: ../gramps/plugins/textreport/recordsreport.py:203
 msgid "Person Records"
 msgstr "Enregistrement sur l'individu"
 
-#: ../gramps/plugins/textreport/recordsreport.py:171
+#: ../gramps/plugins/textreport/recordsreport.py:205
 msgid "Family Records"
 msgstr "Enregistrement sur la famille"
 
-#: ../gramps/plugins/textreport/recordsreport.py:209
+#: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "The style used for the report title."
 msgstr "Le style utilisé pour le titre du rapport."
 
-#: ../gramps/plugins/textreport/recordsreport.py:221
+#: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "The style used for the report subtitle."
 msgstr "Le style utilisé pour le sous-titre du rapport."
 
-#: ../gramps/plugins/textreport/recordsreport.py:230
+#: ../gramps/plugins/textreport/recordsreport.py:261
 msgid "The style used for headings."
 msgstr "Le style utilisé pour les en-têtes."
 
-#: ../gramps/plugins/textreport/recordsreport.py:248
+#: ../gramps/plugins/textreport/recordsreport.py:279
 #: ../gramps/plugins/textreport/simplebooktitle.py:186
 msgid "The style used for the footer."
 msgstr "Le style utilisé pour le pied de page."
@@ -26162,22 +26454,6 @@ msgstr "Étendu"
 #: ../gramps/plugins/view/pedigreeview.py:2011
 msgid "Tree direction"
 msgstr "Sens de l'arbre"
-
-#: ../gramps/plugins/view/pedigreeview.py:2013
-msgid "Vertical (↓)"
-msgstr "Vertical (↓)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2014
-msgid "Vertical (↑)"
-msgstr "Vertical (↑)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2015
-msgid "Horizontal (→)"
-msgstr "Horizontal (→)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2016
-msgid "Horizontal (←)"
-msgstr "Horizontal (→)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2018
 msgid "Tree size"
@@ -30782,12 +31058,13 @@ msgstr "Au moins une règle doit correspondre"
 msgid "Exactly one rule must apply"
 msgstr "Une seule règle doit correspondre"
 
+# trunk
+#~ msgid " (%(value)s)"
+#~ msgstr " (%(value)s)"
 #~ msgid "Minimum Confidence|Min. Conf.:"
 #~ msgstr "Conf. min. :"
-
 #~ msgid "Min. Conf. level:"
 #~ msgstr "Niv. min. de confiance :"
-
 # trunk
 #~ msgid "To Do"
 #~ msgstr "À faire"
@@ -31131,110 +31408,11 @@ msgstr "Une seule règle doit correspondre"
 # trunk
 #~ msgid "Referenced Sources"
 #~ msgstr "Sources référencées"
-#~ msgid "PostScript / Helvetica"
-#~ msgstr "PostScript / Helvetica"
-#~ msgid "TrueType / FreeSans"
-#~ msgstr "TrueType / FreeSans"
-#~ msgid "Bottom, left"
-#~ msgstr "Inférieur, gauche"
-#~ msgid "Bottom, right"
-#~ msgstr "Inférieur, droite"
-#~ msgid "Top, left"
-#~ msgstr "Supérieur, gauche"
-#~ msgid "Top, Right"
-#~ msgstr "Supérieur, droite"
-#~ msgid "Right, bottom"
-#~ msgstr "Droite, en bas"
-#~ msgid "Right, top"
-#~ msgstr "Droite, en haut"
-#~ msgid "Left, bottom"
-#~ msgstr "Gauche, en bas"
-#~ msgid "Left, top"
-#~ msgstr "Gauche, en haut"
-#~ msgid "Minimal size"
-#~ msgstr "Taille minimale"
-#~ msgid "Fill the given area"
-#~ msgstr "Remplir la zone donnée"
 #~ msgid "Use optimal number of pages"
 #~ msgstr "Utiliser un nombre de page optimal"
-#~ msgid "Top"
-#~ msgstr "Haut"
-#~ msgid "Bottom"
-#~ msgstr "Bas"
-#~ msgid "GraphViz Layout"
-#~ msgstr "Mise en page GraphViz"
-#~ msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-#~ msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
-#~ msgid "The font size, in points."
-#~ msgstr "La taille de la police de caractères, en points (pt)."
-#~ msgid "Graph Direction"
-#~ msgstr "Orientation du graphique"
-#~ msgid "Whether graph goes from top to bottom or left to right."
-#~ msgstr "Précise si le graphique doit aller de haut en bas ou de gauche à droite."
-#~ msgid "Number of Horizontal Pages"
-#~ msgstr "Nombre de pages horizontales"
-#~ msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
-#~ msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale. Seulement valide pour le format dot et pdf via Ghostscript."
-#~ msgid "Number of Vertical Pages"
-#~ msgstr "Nombre de pages verticales"
-#~ msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
-#~ msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale. Seulement valide pour le format dot et pdf via Ghostscript."
-# Substantif (GNOME fr)
-#~ msgid "Paging Direction"
-#~ msgstr "Sens des pages"
-#~ msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
-#~ msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que quand il y a plusieurs pages horizontales ou verticales."
-#~ msgid "GraphViz Options"
-#~ msgstr "Options GraphViz"
-#~ msgid "Aspect ratio"
-#~ msgstr "Ratio d'aspect"
 # trunk
 #~ msgid "Affects greatly how the graph is laid out on the page."
 #~ msgstr "Affecte grandement l'affichage du graphique sur la page."
-#~ msgid "DPI"
-#~ msgstr "Résolution"
-#~ msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
-#~ msgstr "Points par pouce (DPI). Pour les images pour internet, comme des .gif ou .png, utiliser des valeurs comme 100 ou 300 DPI. Pour les fichiers PostScript ou PDF utiliser 72 DPI."
-#~ msgid "Node spacing"
-#~ msgstr "Espacement de nœud"
-#~ msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
-#~ msgstr "La quantité minimum d'espace libre, en pouces, entre les nœuds. Pour les graphiques verticaux cela correspond à l'espace entre les colonnes. Pour les graphiques horizontaux c'est celui entre les lignes."
-#~ msgid "Rank spacing"
-#~ msgstr "Espacement de rang"
-#~ msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-#~ msgstr "La quantité minimum d'espace libre, en pouces, entre les rangs. Pour les graphiques verticaux cela correspond à l'espace entre les lignes. Pour les graphiques horizontaux c'est celui entre les colonnes."
-#~ msgid "Use subgraphs"
-#~ msgstr "Utiliser les sous-graphiques"
-#~ msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
-#~ msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints ensemble, mais avec les graphiques compliqués cela créera des lignes plus longues et des graphiques plus larges."
-#~ msgid "Note to add to the graph"
-#~ msgstr "Note à ajouter au graphique"
-#~ msgid "This text will be added to the graph."
-#~ msgstr "Ce texte sera ajouté au graphique."
-#~ msgid "Note location"
-#~ msgstr "Position de la note"
-#~ msgid "Whether note will appear on top or bottom of the page."
-#~ msgstr "Choisir d'afficher la note en haut ou en bas de la page."
-#~ msgid "Note size"
-#~ msgstr "Taille de la note"
-#~ msgid "The size of note text, in points."
-#~ msgstr "La taille du texte de la note, en points."
-#~ msgid "PDF (Ghostscript)"
-#~ msgstr "PDF (Ghostscript)"
-#~ msgid "PDF (Graphviz)"
-#~ msgstr "PDF (GraphViz)"
-#~ msgid "Structured Vector Graphics (SVG)"
-#~ msgstr "SVG (Scalable Vector Graphics)"
-#~ msgid "Compressed Structured Vector Graphs (SVGZ)"
-#~ msgstr "SVG compressé (SVGZ)"
-#~ msgid "JPEG image"
-#~ msgstr "Image JPEG"
-#~ msgid "GIF image"
-#~ msgstr "Image GIF"
-#~ msgid "PNG image"
-#~ msgstr "Image PNG"
-#~ msgid "Graphviz File"
-#~ msgstr "Fichier GraphViz"
 # trunk
 #~ msgid "WARNING: PIL module not loaded.  Image cropping in report files will not be available."
 #~ msgstr "MISE EN GARDE : le module PIL n'est pas chargé. Le zoom sur les images dans les rapports ne sera pas disponible."
@@ -31244,12 +31422,6 @@ msgstr "Une seule règle doit correspondre"
 # trunk
 #~ msgid "Add a Family Tree"
 #~ msgstr "Ajouter un arbre familial"
-#~ msgid "Category Sidebar"
-#~ msgstr "Barre latérale (Catégorie)"
-#~ msgid "A sidebar to allow the selection of view categories"
-#~ msgstr "Une barre latérale permettant de sélectionner les catégories de vue."
-#~ msgid "Category"
-#~ msgstr "Catégorie"
 # trunk
 #~ msgid "%(date)s in %(place)s. "
 #~ msgstr "%(date)s à %(place)s. "

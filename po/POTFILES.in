@@ -294,7 +294,6 @@ gramps/gen/plug/_options.py
 gramps/gen/plug/_pluginreg.py
 gramps/gen/plug/docbackend/docbackend.py
 gramps/gen/plug/docgen/graphdoc.py
-gramps/gen/utils/docgen/odstab.py
 gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py
 gramps/gen/plug/report/_paper.py
@@ -307,6 +306,7 @@ gramps/gen/relationship.py
 gramps/gen/simple/_simpleaccess.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/db.py
+gramps/gen/utils/docgen/odstab.py
 gramps/gen/utils/grampslocale.py
 gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
