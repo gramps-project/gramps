@@ -3,7 +3,8 @@
 # Gramps - a GTK+/GNOME based genealogy program - Records plugin
 #
 # Copyright (C) 2008-2011 Reinhard Müller
-# Copyright (C) 2010 Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,18 +29,46 @@
 #
 #------------------------------------------------------------------------
 import datetime
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText, 
                             StyledTextTag, StyledTextTagType)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
+
+#------------------------------------------------------------------------
+#
+# List of records
+#
+#------------------------------------------------------------------------
+
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
+RECORDS = [
+    (_T_("Youngest living person"),          'person_youngestliving',   True),
+    (_T_("Oldest living person"),            'person_oldestliving',     True),
+    (_T_("Person died at youngest age"),     'person_youngestdied',     False),
+    (_T_("Person died at oldest age"),       'person_oldestdied',       True),
+    (_T_("Person married at youngest age"),  'person_youngestmarried',  True),
+    (_T_("Person married at oldest age"),    'person_oldestmarried',    True),
+    (_T_("Person divorced at youngest age"), 'person_youngestdivorced', False),
+    (_T_("Person divorced at oldest age"),   'person_oldestdivorced',   False),
+    (_T_("Youngest father"),                 'person_youngestfather',   True),
+    (_T_("Youngest mother"),                 'person_youngestmother',   True),
+    (_T_("Oldest father"),                   'person_oldestfather',     True),
+    (_T_("Oldest mother"),                   'person_oldestmother',     True),
+    (_T_("Couple with most children"),       'family_mostchildren',     True),
+    (_T_("Living couple married most recently"), 'family_youngestmarried',True),
+    (_T_("Living couple married most long ago"), 'family_oldestmarried',  True),
+    (_T_("Shortest past marriage"),          'family_shortest',         False),
+    (_T_("Longest past marriage"),           'family_longest',          True)]
 
 #------------------------------------------------------------------------
 #
@@ -62,7 +91,12 @@ def _find_death_date(db, person):
                 return event.get_date_object()
     return None
 
-def find_records(db, filter, top_size, callname):
+def find_records(db, filter, top_size, callname,
+                 trans_text=glocale.translation.sgettext):
+    """
+    @param trans_text: allow deferred translation of strings
+    @type trans_text: a GrampsLocale sgettext instance
+    """
 
     today = datetime.date.today()
     today_date = Date(today.year, today.month, today.day)
@@ -89,6 +123,7 @@ def find_records(db, filter, top_size, callname):
     for person_handle in person_handle_list:
         person = db.get_person_from_handle(person_handle)
 
+        # FIXME this should check for a "fallback" birth also/instead
         birth_ref = person.get_birth_ref()
 
         if not birth_ref:
@@ -156,6 +191,7 @@ def find_records(db, filter, top_size, callname):
 
                 child = db.get_person_from_handle(child_ref.ref)
 
+                # FIXME this should check for a "fallback" birth also/instead
                 child_birth_ref = child.get_birth_ref()
                 if not child_birth_ref:
                     continue
@@ -201,7 +237,7 @@ def find_records(db, filter, top_size, callname):
         father = db.get_person_from_handle(father_handle)
         mother = db.get_person_from_handle(mother_handle)
 
-        name = StyledText(_("%(father)s and %(mother)s")) % {
+        name = StyledText(trans_text("%(father)s and %(mother)s")) % {
                 'father': _get_styled_primary_name(father, callname),
                 'mother': _get_styled_primary_name(mother, callname)}
 
@@ -272,7 +308,7 @@ def find_records(db, filter, top_size, callname):
                     duration, name, 'Family', family.handle, top_size)
     #python 3 workaround: assign locals to tmp so we work with runtime version
     tmp = locals()
-    return [(text, varname, tmp[varname]) 
+    return [(trans_text(text), varname, tmp[varname]) 
                 for (text, varname, default) in RECORDS]
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):
@@ -372,27 +408,3 @@ def _get_styled_primary_name(person, callname, placeholder=False):
     """
 
     return _get_styled(person.get_primary_name(), callname, placeholder)
-
-#------------------------------------------------------------------------
-#
-# List of records
-#
-#------------------------------------------------------------------------
-RECORDS = [
-    (_("Youngest living person"),          'person_youngestliving',   True),
-    (_("Oldest living person"),            'person_oldestliving',     True),
-    (_("Person died at youngest age"),     'person_youngestdied',     False),
-    (_("Person died at oldest age"),       'person_oldestdied',       True),
-    (_("Person married at youngest age"),  'person_youngestmarried',  True),
-    (_("Person married at oldest age"),    'person_oldestmarried',    True),
-    (_("Person divorced at youngest age"), 'person_youngestdivorced', False),
-    (_("Person divorced at oldest age"),   'person_oldestdivorced',   False),
-    (_("Youngest father"),                 'person_youngestfather',   True),
-    (_("Youngest mother"),                 'person_youngestmother',   True),
-    (_("Oldest father"),                   'person_oldestfather',     True),
-    (_("Oldest mother"),                   'person_oldestmother',     True),
-    (_("Couple with most children"),       'family_mostchildren',     True),
-    (_("Living couple married most recently"), 'family_youngestmarried', True),
-    (_("Living couple married most long ago"), 'family_oldestmarried',   True),
-    (_("Shortest past marriage"),          'family_shortest',         False),
-    (_("Longest past marriage"),           'family_longest',          True)]

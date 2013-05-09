@@ -3,7 +3,8 @@
 # Gramps - a GTK+/GNOME based genealogy program - Records plugin
 #
 # Copyright (C) 2008-2011 Reinhard Müller
-# Copyright (C) 2010 Jakim Friant
+# Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,23 +28,28 @@
 # Standard Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.plugins.lib.librecords import (RECORDS, find_records, 
-        CALLNAME_DONTUSE, CALLNAME_REPLACE, CALLNAME_UNDERLINE_ADD)
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF,
-        PARA_ALIGN_CENTER, IndexMark, INDEX_TYPE_TOC)
+                                           CALLNAME_DONTUSE, CALLNAME_REPLACE,
+                                           CALLNAME_UNDERLINE_ADD)
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                                    IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, 
-        FilterOption, NumberOption, PersonOption, StringOption)
+                                  FilterOption, NumberOption,
+                                  PersonOption, StringOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.lib import Span
 from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
@@ -70,44 +76,70 @@ class RecordsReport(Report):
         for (text, varname, default) in RECORDS:
             self.include[varname] = menu.get_option_by_name(varname).get_value()
 
+        self._lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(self._lang)
 
     def write_report(self):
         """
         Build the actual report.
         """
 
-        records = find_records(self.database, self.filter, self.top_size, self.callname)
+        records = find_records(self.database, self.filter, self.top_size,
+                               self.callname, trans_text=self._)
 
         self.doc.start_paragraph('REC-Title')
-        title = _("Records")
+        title = self._("Records")
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('REC-Subtitle')
-        self.doc.write_text(self.filter.get_name())
-        self.doc.end_paragraph()
+        if self._lang == 'default':
+            self.doc.start_paragraph('REC-Subtitle')
+            self.doc.write_text(self.filter.get_name())
+            self.doc.end_paragraph()
+        else:
+            # The only way which I thought of to get a desired non-English
+            # filter name if the starting UI is a non-English one, was to
+            # change ReportUtils.get_person_filters so that it creates the
+            # filters with English (untranslated) names, but that would mean
+            # changing every filter.get_name() in every place that the
+            # get_person_filters filters are used, to always translate the
+            # get_name, and I wasn't in the mood to do that to all of them,
+            # so until that happen -- assuming it works, since I didn't try
+            # it to see, since the person's name will be in get_person_filters
+            # but the deferred translation will be where the filter.get_name()
+            # is, so it might not work at all -- but until it does, or another
+            # way is found, there will be no translated subtitle, only a
+            # subtitle if the report's output is in the main/UI language
+            pass # FIXME
 
         for (text, varname, top) in records:
             if not self.include[varname]:
                 continue
 
             self.doc.start_paragraph('REC-Heading')
-            self.doc.write_text(text)
+            self.doc.write_text(self._(text))
             self.doc.end_paragraph()
 
             last_value = None
             rank = 0
-            for (number, (sort, value, name, handletype, handle)) in enumerate(top):
+            for (number,
+                 (sort, value, name, handletype, handle)) in enumerate(top):
+                # FIXME check whether person or family, if a family mark BOTH
                 person = self.database.get_person_from_handle(handle)
                 mark = ReportUtils.get_person_mark(self.database, person)
                 if value != last_value:
                     last_value = value
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
-                self.doc.write_text(_("%(number)s. ") % {'number': rank+1})
+                # FIXME this won't work for RTL languages:
+                self.doc.write_text(self._("%(number)s. ") % {'number': rank+1})
                 self.doc.write_markup(cuni(name), name.get_tags(), mark)
-                self.doc.write_text(_(" (%(value)s)") % {'value': str(value)})
+                if isinstance(value, Span):
+                    tvalue = value.get_repr(dlocale=self._locale)
+                else:
+                    tvalue = value
+                self.doc.write_text(" (%s)" % tvalue)
                 self.doc.end_paragraph()
 
         self.doc.start_paragraph('REC-Footer')
@@ -139,7 +171,7 @@ class RecordsReportOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the report."))
+                      _("Determines what people are included in the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
@@ -163,14 +195,15 @@ class RecordsReportOptions(MenuReportOptions):
         footer = StringOption(_("Footer text"), "")
         menu.add_option(category_name, "footer", footer)
 
+        stdoptions.add_localization_option(menu, category_name)
+
         for (text, varname, default) in RECORDS:
-            option = BooleanOption(text, default)
+            option = BooleanOption(_(text), default)
             if varname.startswith('person'):
                 category_name = _("Person Records")
             elif varname.startswith('family'):
                 category_name = _("Family Records")
             menu.add_option(category_name, varname, option)
-
 
     def __update_filters(self):
         """
@@ -180,7 +213,6 @@ class RecordsReportOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = ReportUtils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
-
 
     def __filter_changed(self):
         """
@@ -194,7 +226,6 @@ class RecordsReportOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
-
 
     def make_default_style(self, default_style):
 
