@@ -2784,7 +2784,7 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version Bsddb %(env_version)s. Cette version de Gramps utilise la version Bsddb %(bdb_version)s. Ainsi vous tentez de charger des données créées avec un nouveau format vers une ancienne version, ceci est voué à l'échec.\n"
 "\n"
-"Vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Vous devrez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
 #: ../src/gen/db/exceptions.py:128
 #, python-format
@@ -2795,7 +2795,7 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version Bsddb %(env_version)s. Cette version de Gramps utilise la version Bsddb %(bdb_version)s. So you are trying to load data created in a newer format into an older program. In this particular case, the difference is very small, so it may work.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devriez utiliser votre <b>nouvelle</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devriez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
 #: ../src/gen/db/exceptions.py:152
 #, python-format
