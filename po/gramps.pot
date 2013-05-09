@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-09 12:21+0200\n"
+"POT-Creation-Date: 2013-05-09 20:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,7 +442,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:167
 #: ../gramps/plugins/graph/gvrelgraph.py:580
-#: ../gramps/plugins/lib/libnarrate.py:1996
+#: ../gramps/plugins/lib/libnarrate.py:2000
 #: ../gramps/plugins/lib/maps/geography.py:714
 #: ../gramps/plugins/lib/maps/geography.py:721
 #: ../gramps/plugins/lib/maps/geography.py:722
@@ -469,65 +469,66 @@ msgstr ""
 msgid "WARNING: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:87 ../gramps/cli/grampscli.py:220
+#: ../gramps/cli/grampscli.py:87 ../gramps/cli/grampscli.py:223
 #, python-format
 msgid "ERROR: %s"
 msgstr ""
 
 #: ../gramps/cli/grampscli.py:97 ../gramps/cli/user.py:173
-#: ../gramps/gui/dialog.py:216
+#: ../gramps/gui/dialog.py:224
 msgid "Low level database corruption detected"
 msgstr ""
 
 #: ../gramps/cli/grampscli.py:99 ../gramps/cli/user.py:174
-#: ../gramps/gui/dialog.py:217
+#: ../gramps/gui/dialog.py:225
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:143 ../gramps/gui/dbloader.py:294
+#: ../gramps/cli/grampscli.py:143 ../gramps/gui/dbloader.py:295
 msgid "Read only database"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:144 ../gramps/gui/dbloader.py:239
-#: ../gramps/gui/dbloader.py:295
+#: ../gramps/cli/grampscli.py:144 ../gramps/gui/dbloader.py:240
+#: ../gramps/gui/dbloader.py:296
 msgid "You do not have write access to the selected file."
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:163 ../gramps/cli/grampscli.py:166
+#: ../gramps/cli/grampscli.py:163 ../gramps/cli/grampscli.py:168
 #: ../gramps/cli/grampscli.py:169 ../gramps/cli/grampscli.py:172
-#: ../gramps/cli/grampscli.py:175 ../gramps/gui/dbloader.py:343
-#: ../gramps/gui/dbloader.py:346 ../gramps/gui/dbloader.py:349
+#: ../gramps/cli/grampscli.py:175 ../gramps/cli/grampscli.py:178
+#: ../gramps/gui/dbloader.py:364 ../gramps/gui/dbloader.py:367
+#: ../gramps/gui/dbloader.py:370
 msgid "Cannot open database"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:179 ../gramps/gui/dbloader.py:198
-#: ../gramps/gui/dbloader.py:353
+#: ../gramps/cli/grampscli.py:182 ../gramps/gui/dbloader.py:199
+#: ../gramps/gui/dbloader.py:374
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:232
+#: ../gramps/cli/grampscli.py:235
 msgid "Could not load a recent Family Tree."
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:233
+#: ../gramps/cli/grampscli.py:236
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:307
+#: ../gramps/cli/grampscli.py:310
 #, python-format
 msgid "Error encountered: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:309 ../gramps/cli/grampscli.py:317
+#: ../gramps/cli/grampscli.py:312 ../gramps/cli/grampscli.py:320
 #, python-format
 msgid "  Details: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:314
+#: ../gramps/cli/grampscli.py:317
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr ""
@@ -737,39 +738,57 @@ msgid ""
 "supports versions %(min_vers)s to %(max_vers)s\n"
 "\n"
 "Please upgrade to the corresponding version or use XML for porting data "
-"between different database versions."
+"between different schema versions."
 msgstr ""
 
 #: ../gramps/gen/db/exceptions.py:104
 #, python-format
 msgid ""
-"Gramps stores its data in a Berkeley Database. The Family Tree you try to "
-"load was created with version %(env_version)s of the Berkeley DB. However, "
-"the Gramps version in use right now employs version %(bdb_version)s of the "
-"Berkeley DB. So you are trying to load data created in a newer format into "
-"an older program; this is bound to fail. The right approach in this case is "
-"to use XML export and import. So try to open the Family Tree on that "
-"computer with that software that created the Family Tree, export it to XML "
-"and load that XML into the version of Gramps you intend to use."
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. So you are trying to load data created in a newer format "
+"into an older program, and this is bound to fail.\n"
+"\n"
+"You should start your <b>newer</b> version of Gramps and <a href=\"http://"
+"www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">make a "
+"backup</a> of your Family Tree. You can then import this backup into this "
+"version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:128
+#: ../gramps/gen/db/exceptions.py:129
 #, python-format
 msgid ""
-"The Bsddb version of the Family Tree you are trying to open needs to be "
-"upgraded from %(env_version)s to %(bdb_version)s.\n"
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. So you are trying to load data created in a newer format "
+"into an older program. In this particular case, the difference is very "
+"small, so it may work.\n"
 "\n"
-"This probably means that the Family Tree was created with an old version of "
-"Gramps. Opening the tree with this version of Gramps may irretrievably "
-"corrupt your tree. You are strongly advised to backup your tree before "
-"proceeding, see: \n"
-"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
-"\n"
-"If you have made a backup, then you can get Gramps to try to open the tree "
-"and upgrade it"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>newer</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:151
+#: ../gramps/gen/db/exceptions.py:153
+#, python-format
+msgid ""
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. Therefore you cannot load this Family Tree without "
+"upgrading the Bsddb version of the Family Tree.\n"
+"\n"
+"Opening the Family Tree with this version of Gramps might irretrievably "
+"corrupt your Family Tree. You are strongly advised to backup your Family "
+"Tree.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
+msgstr ""
+
+#: ../gramps/gen/db/exceptions.py:178
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -783,24 +802,33 @@ msgid ""
 "recovery tools."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:174
+#: ../gramps/gen/db/exceptions.py:203
+#, python-format
 msgid ""
-"The Family Tree structure has changed since the version of Gramps you used "
-"to create this tree.\n"
+"The Family Tree you are trying to load is in the schema version "
+"%(oldschema)s format. This version of Gramps uses schema version "
+"%(newschema)s. Therefore you cannot load this Family Tree without upgrading "
+"the schema version of the Family Tree.\n"
 "\n"
-"Therefore, you cannot open this Family Tree without upgrading the definition "
-"of the structure.\n"
-"If you upgrade then you won't be able to use previous versions of Gramps, "
-"also not with the .gramps xml export!\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently <a href=\"http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded "
+"Family Tree.\n"
 "\n"
-"Upgrading is a difficult task that may not be interrupted, or Gramps will "
-"irretrievably corrupt your tree. Therefore, create a backup copy first. "
-"See: \n"
-"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
+"Upgrading is a difficult task which could irretrievably corrupt your Family "
+"Tree if it is interrupted or fails.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
 msgstr ""
 
 #: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
-#: ../gramps/gen/db/write.py:2026
+#: ../gramps/gen/db/write.py:2057
 #, python-format
 msgid "_Undo %s"
 msgstr ""
@@ -858,7 +886,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1023
+#: ../gramps/gen/db/write.py:1054
 #, python-format
 msgid ""
 "An attempt is made to safe a reference key which is partly bytecode, this is "
@@ -866,11 +894,11 @@ msgid ""
 "Key is %s"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1092
+#: ../gramps/gen/db/write.py:1123
 msgid "Rebuild reference map"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1879
+#: ../gramps/gen/db/write.py:1910
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -7143,11 +7171,11 @@ msgstr ""
 msgid "Select database directory"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:125 ../gramps/gui/plug/tool.py:112
+#: ../gramps/gui/dbloader.py:126 ../gramps/gui/plug/tool.py:112
 msgid "Undo history warning"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:126
+#: ../gramps/gui/dbloader.py:127
 msgid ""
 "Proceeding with import will erase the undo history for this session. In "
 "particular, you will not be able to revert the import or any changes made "
@@ -7157,23 +7185,23 @@ msgid ""
 "your database."
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:131
+#: ../gramps/gui/dbloader.py:132
 msgid "_Proceed with import"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:131 ../gramps/gui/plug/tool.py:119
+#: ../gramps/gui/dbloader.py:132 ../gramps/gui/plug/tool.py:119
 msgid "_Stop"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:138
+#: ../gramps/gui/dbloader.py:139
 msgid "Gramps: Import Family Tree"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:143 ../gramps/gui/grampsgui.py:203
+#: ../gramps/gui/dbloader.py:144 ../gramps/gui/grampsgui.py:203
 msgid "Import"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:199
+#: ../gramps/gui/dbloader.py:200
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -7182,65 +7210,75 @@ msgid ""
 "others."
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:222 ../gramps/gui/dbloader.py:228
+#: ../gramps/gui/dbloader.py:223 ../gramps/gui/dbloader.py:229
 msgid "Cannot open file"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:223
+#: ../gramps/gui/dbloader.py:224
 msgid "The selected file is a directory, not a file.\n"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:229
+#: ../gramps/gui/dbloader.py:230
 msgid "You do not have read access to the selected file."
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:238
+#: ../gramps/gui/dbloader.py:239
 msgid "Cannot create file"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:258
+#: ../gramps/gui/dbloader.py:259
 #, python-format
 msgid "Could not import file: %s"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:259
+#: ../gramps/gui/dbloader.py:260
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:320
-msgid "Need to upgrade database!"
+#: ../gramps/gui/dbloader.py:323 ../gramps/gui/dbloader.py:336
+msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:322
-msgid "Upgrade now"
+#: ../gramps/gui/dbloader.py:326
+msgid ""
+"I have made a backup,\n"
+"please upgrade my Family Tree"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:323 ../gramps/gui/dbloader.py:334
-#: ../gramps/gui/plug/report/_bookdialog.py:296
+#: ../gramps/gui/dbloader.py:328 ../gramps/gui/dbloader.py:341
+#: ../gramps/gui/dbloader.py:354 ../gramps/gui/plug/report/_bookdialog.py:296
 #: ../gramps/gui/plug/report/_bookdialog.py:723
 #: ../gramps/gui/viewmanager.py:1057 ../gramps/plugins/view/familyview.py:254
 msgid "Cancel"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:330
-msgid "Need to upgrade Bsddb database!"
+#: ../gramps/gui/dbloader.py:339
+msgid ""
+"I have made a backup,\n"
+"please upgrade my tree"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:332
-msgid "I have made a backup, please upgrade my tree"
+#: ../gramps/gui/dbloader.py:349
+msgid "Are you sure you want to downgrade this Family Tree?"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:394
+#: ../gramps/gui/dbloader.py:352
+msgid ""
+"I have made a backup,\n"
+"please downgrade my Family Tree"
+msgstr ""
+
+#: ../gramps/gui/dbloader.py:415
 msgid "All files"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:435
+#: ../gramps/gui/dbloader.py:456
 msgid "Automatically detected"
 msgstr ""
 
-#: ../gramps/gui/dbloader.py:444
+#: ../gramps/gui/dbloader.py:465
 msgid "Select file _type:"
 msgstr ""
 
@@ -7444,11 +7482,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:201
+#: ../gramps/gui/dialog.py:209
 msgid "Error detected in database"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:202
+#: ../gramps/gui/dialog.py:210
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
 "by running the \"Check and Repair Database\" tool.\n"
@@ -7458,11 +7496,11 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:333 ../gramps/gui/utils.py:300
+#: ../gramps/gui/dialog.py:346 ../gramps/gui/utils.py:300
 msgid "Attempt to force closing the dialog"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:334
+#: ../gramps/gui/dialog.py:347
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -17019,3012 +17057,3012 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:86
+#: ../gramps/plugins/lib/libnarrate.py:89
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:87
+#: ../gramps/plugins/lib/libnarrate.py:90
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:88
+#: ../gramps/plugins/lib/libnarrate.py:91
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:91
+#: ../gramps/plugins/lib/libnarrate.py:94
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:92
+#: ../gramps/plugins/lib/libnarrate.py:95
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:93
+#: ../gramps/plugins/lib/libnarrate.py:96
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:95
+#: ../gramps/plugins/lib/libnarrate.py:98
 #, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:100
+#: ../gramps/plugins/lib/libnarrate.py:103
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:101
+#: ../gramps/plugins/lib/libnarrate.py:104
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:102
+#: ../gramps/plugins/lib/libnarrate.py:105
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:105
+#: ../gramps/plugins/lib/libnarrate.py:108
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:106
+#: ../gramps/plugins/lib/libnarrate.py:109
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:107
+#: ../gramps/plugins/lib/libnarrate.py:110
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:109
+#: ../gramps/plugins/lib/libnarrate.py:112
 #, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:114
+#: ../gramps/plugins/lib/libnarrate.py:117
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:115
+#: ../gramps/plugins/lib/libnarrate.py:118
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:116
+#: ../gramps/plugins/lib/libnarrate.py:119
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:119
+#: ../gramps/plugins/lib/libnarrate.py:122
 #, python-format
 msgid "This person was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:120
+#: ../gramps/plugins/lib/libnarrate.py:123
 #, python-format
 msgid "He was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:121
+#: ../gramps/plugins/lib/libnarrate.py:124
 #, python-format
 msgid "She was born on %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:123
+#: ../gramps/plugins/lib/libnarrate.py:126
 #, python-format
 msgid "Born %(birth_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:128
+#: ../gramps/plugins/lib/libnarrate.py:131
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:129
+#: ../gramps/plugins/lib/libnarrate.py:132
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:130
+#: ../gramps/plugins/lib/libnarrate.py:133
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:133
+#: ../gramps/plugins/lib/libnarrate.py:136
 #, python-format
 msgid "This person was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:134
+#: ../gramps/plugins/lib/libnarrate.py:137
 #, python-format
 msgid "He was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:135
+#: ../gramps/plugins/lib/libnarrate.py:138
 #, python-format
 msgid "She was born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:137
+#: ../gramps/plugins/lib/libnarrate.py:140
 #, python-format
 msgid "Born %(modified_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:142
+#: ../gramps/plugins/lib/libnarrate.py:145
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:143
+#: ../gramps/plugins/lib/libnarrate.py:146
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:144
+#: ../gramps/plugins/lib/libnarrate.py:147
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:147
+#: ../gramps/plugins/lib/libnarrate.py:150
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:148
+#: ../gramps/plugins/lib/libnarrate.py:151
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:149
+#: ../gramps/plugins/lib/libnarrate.py:152
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:151
+#: ../gramps/plugins/lib/libnarrate.py:154
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:156
+#: ../gramps/plugins/lib/libnarrate.py:159
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:157
+#: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:158
+#: ../gramps/plugins/lib/libnarrate.py:161
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:161
+#: ../gramps/plugins/lib/libnarrate.py:164
 #, python-format
 msgid "This person was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:162
+#: ../gramps/plugins/lib/libnarrate.py:165
 #, python-format
 msgid "He was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:163
+#: ../gramps/plugins/lib/libnarrate.py:166
 #, python-format
 msgid "She was born in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:165
+#: ../gramps/plugins/lib/libnarrate.py:168
 #, python-format
 msgid "Born %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:170
+#: ../gramps/plugins/lib/libnarrate.py:173
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:171
+#: ../gramps/plugins/lib/libnarrate.py:174
 #, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:172
+#: ../gramps/plugins/lib/libnarrate.py:175
 #, python-format
 msgid "%(female_name)s was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:175
+#: ../gramps/plugins/lib/libnarrate.py:178
 #, python-format
 msgid "This person was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:176
+#: ../gramps/plugins/lib/libnarrate.py:179
 #, python-format
 msgid "He was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:177
+#: ../gramps/plugins/lib/libnarrate.py:180
 #, python-format
 msgid "She was born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:179
+#: ../gramps/plugins/lib/libnarrate.py:182
 #, python-format
 msgid "Born in %(birth_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:189
+#: ../gramps/plugins/lib/libnarrate.py:192
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:190
+#: ../gramps/plugins/lib/libnarrate.py:193
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:193
+#: ../gramps/plugins/lib/libnarrate.py:196
 #, python-format
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:194
+#: ../gramps/plugins/lib/libnarrate.py:197
 #, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:197
+#: ../gramps/plugins/lib/libnarrate.py:200
 #, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:198
+#: ../gramps/plugins/lib/libnarrate.py:201
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:202
+#: ../gramps/plugins/lib/libnarrate.py:205
 #, python-format
 msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:203
+#: ../gramps/plugins/lib/libnarrate.py:206
 #, python-format
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:206
+#: ../gramps/plugins/lib/libnarrate.py:209
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:207
+#: ../gramps/plugins/lib/libnarrate.py:210
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:210
+#: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:211
+#: ../gramps/plugins/lib/libnarrate.py:214
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:215
-#: ../gramps/plugins/lib/libnarrate.py:248
+#: ../gramps/plugins/lib/libnarrate.py:218
+#: ../gramps/plugins/lib/libnarrate.py:251
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:216
-#: ../gramps/plugins/lib/libnarrate.py:249
+#: ../gramps/plugins/lib/libnarrate.py:219
+#: ../gramps/plugins/lib/libnarrate.py:252
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:222
+#: ../gramps/plugins/lib/libnarrate.py:225
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:223
+#: ../gramps/plugins/lib/libnarrate.py:226
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:226
+#: ../gramps/plugins/lib/libnarrate.py:229
 #, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:227
+#: ../gramps/plugins/lib/libnarrate.py:230
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:230
+#: ../gramps/plugins/lib/libnarrate.py:233
 #, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:231
+#: ../gramps/plugins/lib/libnarrate.py:234
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:235
+#: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
 msgid "This person died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:236
+#: ../gramps/plugins/lib/libnarrate.py:239
 #, python-format
 msgid ""
 "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:239
+#: ../gramps/plugins/lib/libnarrate.py:242
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:240
+#: ../gramps/plugins/lib/libnarrate.py:243
 #, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:243
+#: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:244
+#: ../gramps/plugins/lib/libnarrate.py:247
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:255
+#: ../gramps/plugins/lib/libnarrate.py:258
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:256
+#: ../gramps/plugins/lib/libnarrate.py:259
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:259
+#: ../gramps/plugins/lib/libnarrate.py:262
 #, python-format
 msgid "%(male_name)s died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:260
+#: ../gramps/plugins/lib/libnarrate.py:263
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:263
+#: ../gramps/plugins/lib/libnarrate.py:266
 #, python-format
 msgid "%(female_name)s died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:264
+#: ../gramps/plugins/lib/libnarrate.py:267
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:268
+#: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
 msgid "This person died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:269
+#: ../gramps/plugins/lib/libnarrate.py:272
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:272
+#: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
 msgid "He died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:273
+#: ../gramps/plugins/lib/libnarrate.py:276
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:276
+#: ../gramps/plugins/lib/libnarrate.py:279
 #, python-format
 msgid "She died on %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:277
+#: ../gramps/plugins/lib/libnarrate.py:280
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:281
-#: ../gramps/plugins/lib/libnarrate.py:314
+#: ../gramps/plugins/lib/libnarrate.py:284
+#: ../gramps/plugins/lib/libnarrate.py:317
 #, python-format
 msgid "Died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:282
-#: ../gramps/plugins/lib/libnarrate.py:315
+#: ../gramps/plugins/lib/libnarrate.py:285
+#: ../gramps/plugins/lib/libnarrate.py:318
 #, python-format
 msgid "Died %(death_date)s (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:288
+#: ../gramps/plugins/lib/libnarrate.py:291
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:289
+#: ../gramps/plugins/lib/libnarrate.py:292
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:292
+#: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
 msgid "%(male_name)s died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:293
+#: ../gramps/plugins/lib/libnarrate.py:296
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:296
+#: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
 msgid "%(female_name)s died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:297
+#: ../gramps/plugins/lib/libnarrate.py:300
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:301
+#: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
 msgid "This person died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:302
+#: ../gramps/plugins/lib/libnarrate.py:305
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:305
+#: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
 msgid "He died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:306
+#: ../gramps/plugins/lib/libnarrate.py:309
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:309
+#: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
 msgid "She died %(death_date)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:310
+#: ../gramps/plugins/lib/libnarrate.py:313
 #, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:321
+#: ../gramps/plugins/lib/libnarrate.py:324
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:322
+#: ../gramps/plugins/lib/libnarrate.py:325
 #, python-format
 msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:325
+#: ../gramps/plugins/lib/libnarrate.py:328
 #, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:326
+#: ../gramps/plugins/lib/libnarrate.py:329
 #, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:329
+#: ../gramps/plugins/lib/libnarrate.py:332
 #, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:330
+#: ../gramps/plugins/lib/libnarrate.py:333
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:334
+#: ../gramps/plugins/lib/libnarrate.py:337
 #, python-format
 msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:335
+#: ../gramps/plugins/lib/libnarrate.py:338
 #, python-format
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:338
+#: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:339
+#: ../gramps/plugins/lib/libnarrate.py:342
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:342
+#: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:343
+#: ../gramps/plugins/lib/libnarrate.py:346
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:347
+#: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:348
+#: ../gramps/plugins/lib/libnarrate.py:351
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:354
+#: ../gramps/plugins/lib/libnarrate.py:357
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:355
+#: ../gramps/plugins/lib/libnarrate.py:358
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:358
+#: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
 msgid "%(male_name)s died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:359
+#: ../gramps/plugins/lib/libnarrate.py:362
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:362
+#: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
 msgid "%(female_name)s died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:363
+#: ../gramps/plugins/lib/libnarrate.py:366
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:367
+#: ../gramps/plugins/lib/libnarrate.py:370
 #, python-format
 msgid "This person died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:368
+#: ../gramps/plugins/lib/libnarrate.py:371
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:371
+#: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
 msgid "He died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:372
+#: ../gramps/plugins/lib/libnarrate.py:375
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:375
+#: ../gramps/plugins/lib/libnarrate.py:378
 #, python-format
 msgid "She died in %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:376
+#: ../gramps/plugins/lib/libnarrate.py:379
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:380
+#: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
 msgid "Died %(month_year)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:381
+#: ../gramps/plugins/lib/libnarrate.py:384
 #, python-format
 msgid "Died %(month_year)s (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:387
+#: ../gramps/plugins/lib/libnarrate.py:390
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:388
+#: ../gramps/plugins/lib/libnarrate.py:391
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:391
+#: ../gramps/plugins/lib/libnarrate.py:394
 #, python-format
 msgid "%(male_name)s died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:392
+#: ../gramps/plugins/lib/libnarrate.py:395
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:395
+#: ../gramps/plugins/lib/libnarrate.py:398
 #, python-format
 msgid "%(female_name)s died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:396
+#: ../gramps/plugins/lib/libnarrate.py:399
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:401
+#: ../gramps/plugins/lib/libnarrate.py:404
 #, python-format
 msgid "This person died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:402
+#: ../gramps/plugins/lib/libnarrate.py:405
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:405
+#: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
 msgid "He died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:406
+#: ../gramps/plugins/lib/libnarrate.py:409
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:409
+#: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
 msgid "She died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:410
+#: ../gramps/plugins/lib/libnarrate.py:413
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:414
+#: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
 msgid "Died in %(death_place)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:415
+#: ../gramps/plugins/lib/libnarrate.py:418
 #, python-format
 msgid "Died in %(death_place)s (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:422
+#: ../gramps/plugins/lib/libnarrate.py:425
 #, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:426
+#: ../gramps/plugins/lib/libnarrate.py:429
 #, python-format
 msgid "%(male_name)s died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:430
+#: ../gramps/plugins/lib/libnarrate.py:433
 #, python-format
 msgid "%(female_name)s died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:435
+#: ../gramps/plugins/lib/libnarrate.py:438
 #, python-format
 msgid "This person died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:439
+#: ../gramps/plugins/lib/libnarrate.py:442
 #, python-format
 msgid "He died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:443
+#: ../gramps/plugins/lib/libnarrate.py:446
 #, python-format
 msgid "She died at the age of %(age)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:448
+#: ../gramps/plugins/lib/libnarrate.py:451
 #, python-format
 msgid "Died (%(age)s)."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:459
+#: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
 msgid ""
 "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:460
+#: ../gramps/plugins/lib/libnarrate.py:463
 #, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:463
+#: ../gramps/plugins/lib/libnarrate.py:466
 #, python-format
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:464
+#: ../gramps/plugins/lib/libnarrate.py:467
 #, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:467
+#: ../gramps/plugins/lib/libnarrate.py:470
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:468
+#: ../gramps/plugins/lib/libnarrate.py:471
 #, python-format
 msgid ""
 "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:470
+#: ../gramps/plugins/lib/libnarrate.py:473
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:475
+#: ../gramps/plugins/lib/libnarrate.py:478
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:476
+#: ../gramps/plugins/lib/libnarrate.py:479
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:479
+#: ../gramps/plugins/lib/libnarrate.py:482
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:480
+#: ../gramps/plugins/lib/libnarrate.py:483
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:483
+#: ../gramps/plugins/lib/libnarrate.py:486
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:484
+#: ../gramps/plugins/lib/libnarrate.py:487
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:486
+#: ../gramps/plugins/lib/libnarrate.py:489
 #, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:491
+#: ../gramps/plugins/lib/libnarrate.py:494
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:492
+#: ../gramps/plugins/lib/libnarrate.py:495
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:495
+#: ../gramps/plugins/lib/libnarrate.py:498
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:496
+#: ../gramps/plugins/lib/libnarrate.py:499
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:499
+#: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:500
+#: ../gramps/plugins/lib/libnarrate.py:503
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:502
+#: ../gramps/plugins/lib/libnarrate.py:505
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:507
+#: ../gramps/plugins/lib/libnarrate.py:510
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:508
+#: ../gramps/plugins/lib/libnarrate.py:511
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:511
+#: ../gramps/plugins/lib/libnarrate.py:514
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:512
+#: ../gramps/plugins/lib/libnarrate.py:515
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:515
+#: ../gramps/plugins/lib/libnarrate.py:518
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:516
+#: ../gramps/plugins/lib/libnarrate.py:519
 #, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:518
+#: ../gramps/plugins/lib/libnarrate.py:521
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:523
+#: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:524
+#: ../gramps/plugins/lib/libnarrate.py:527
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:527
+#: ../gramps/plugins/lib/libnarrate.py:530
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:528
+#: ../gramps/plugins/lib/libnarrate.py:531
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:531
+#: ../gramps/plugins/lib/libnarrate.py:534
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:532
+#: ../gramps/plugins/lib/libnarrate.py:535
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:534
+#: ../gramps/plugins/lib/libnarrate.py:537
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:539
+#: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:540
+#: ../gramps/plugins/lib/libnarrate.py:543
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:543
+#: ../gramps/plugins/lib/libnarrate.py:546
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:544
+#: ../gramps/plugins/lib/libnarrate.py:547
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:547
+#: ../gramps/plugins/lib/libnarrate.py:550
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:548
+#: ../gramps/plugins/lib/libnarrate.py:551
 #, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:550
+#: ../gramps/plugins/lib/libnarrate.py:553
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:555
+#: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:556
+#: ../gramps/plugins/lib/libnarrate.py:559
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:559
+#: ../gramps/plugins/lib/libnarrate.py:562
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:560
+#: ../gramps/plugins/lib/libnarrate.py:563
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:563
+#: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:564
+#: ../gramps/plugins/lib/libnarrate.py:567
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:566
+#: ../gramps/plugins/lib/libnarrate.py:569
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:571
+#: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:572
+#: ../gramps/plugins/lib/libnarrate.py:575
 #, python-format
 msgid "He was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:575
+#: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:576
+#: ../gramps/plugins/lib/libnarrate.py:579
 #, python-format
 msgid "She was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:579
+#: ../gramps/plugins/lib/libnarrate.py:582
 #, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:580
+#: ../gramps/plugins/lib/libnarrate.py:583
 #, python-format
 msgid "This person was buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:582
+#: ../gramps/plugins/lib/libnarrate.py:585
 #, python-format
 msgid "Buried%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:592
+#: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:593
+#: ../gramps/plugins/lib/libnarrate.py:596
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:596
+#: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
 msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:597
+#: ../gramps/plugins/lib/libnarrate.py:600
 #, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:600
+#: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:601
+#: ../gramps/plugins/lib/libnarrate.py:604
 #, python-format
 msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:603
+#: ../gramps/plugins/lib/libnarrate.py:606
 #, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:608
+#: ../gramps/plugins/lib/libnarrate.py:611
 #, python-format
 msgid "%(male_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:609
+#: ../gramps/plugins/lib/libnarrate.py:612
 #, python-format
 msgid "He was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:612
+#: ../gramps/plugins/lib/libnarrate.py:615
 #, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:613
+#: ../gramps/plugins/lib/libnarrate.py:616
 #, python-format
 msgid "She was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:616
+#: ../gramps/plugins/lib/libnarrate.py:619
 #, python-format
 msgid "%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:617
+#: ../gramps/plugins/lib/libnarrate.py:620
 #, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:619
+#: ../gramps/plugins/lib/libnarrate.py:622
 #, python-format
 msgid "Baptized %(baptism_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:624
+#: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
 msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:625
+#: ../gramps/plugins/lib/libnarrate.py:628
 #, python-format
 msgid "He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:628
+#: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
 msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:629
+#: ../gramps/plugins/lib/libnarrate.py:632
 #, python-format
 msgid "She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:632
+#: ../gramps/plugins/lib/libnarrate.py:635
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:633
+#: ../gramps/plugins/lib/libnarrate.py:636
 #, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:635
+#: ../gramps/plugins/lib/libnarrate.py:638
 #, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:640
+#: ../gramps/plugins/lib/libnarrate.py:643
 #, python-format
 msgid "%(male_name)s was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:641
+#: ../gramps/plugins/lib/libnarrate.py:644
 #, python-format
 msgid "He was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:644
+#: ../gramps/plugins/lib/libnarrate.py:647
 #, python-format
 msgid "%(female_name)s was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:645
+#: ../gramps/plugins/lib/libnarrate.py:648
 #, python-format
 msgid "She was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:648
+#: ../gramps/plugins/lib/libnarrate.py:651
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:649
+#: ../gramps/plugins/lib/libnarrate.py:652
 #, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:651
+#: ../gramps/plugins/lib/libnarrate.py:654
 #, python-format
 msgid "Baptized %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:656
+#: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
 msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:657
+#: ../gramps/plugins/lib/libnarrate.py:660
 #, python-format
 msgid "He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:660
+#: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
 msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:661
+#: ../gramps/plugins/lib/libnarrate.py:664
 #, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:664
+#: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:665
+#: ../gramps/plugins/lib/libnarrate.py:668
 #, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:667
+#: ../gramps/plugins/lib/libnarrate.py:670
 #, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:672
+#: ../gramps/plugins/lib/libnarrate.py:675
 #, python-format
 msgid "%(male_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:673
+#: ../gramps/plugins/lib/libnarrate.py:676
 #, python-format
 msgid "He was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:676
+#: ../gramps/plugins/lib/libnarrate.py:679
 #, python-format
 msgid "%(female_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:677
+#: ../gramps/plugins/lib/libnarrate.py:680
 #, python-format
 msgid "She was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:680
+#: ../gramps/plugins/lib/libnarrate.py:683
 #, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:681
+#: ../gramps/plugins/lib/libnarrate.py:684
 #, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:683
+#: ../gramps/plugins/lib/libnarrate.py:686
 #, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:688
+#: ../gramps/plugins/lib/libnarrate.py:691
 #, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:689
+#: ../gramps/plugins/lib/libnarrate.py:692
 #, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:692
+#: ../gramps/plugins/lib/libnarrate.py:695
 #, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:693
+#: ../gramps/plugins/lib/libnarrate.py:696
 #, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:696
+#: ../gramps/plugins/lib/libnarrate.py:699
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:697
+#: ../gramps/plugins/lib/libnarrate.py:700
 #, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:699
+#: ../gramps/plugins/lib/libnarrate.py:702
 #, python-format
 msgid "Baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:704
+#: ../gramps/plugins/lib/libnarrate.py:707
 #, python-format
 msgid "%(male_name)s was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:705
+#: ../gramps/plugins/lib/libnarrate.py:708
 #, python-format
 msgid "He was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:708
+#: ../gramps/plugins/lib/libnarrate.py:711
 #, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:709
+#: ../gramps/plugins/lib/libnarrate.py:712
 #, python-format
 msgid "She was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:712
+#: ../gramps/plugins/lib/libnarrate.py:715
 #, python-format
 msgid "%(unknown_gender_name)s was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:713
+#: ../gramps/plugins/lib/libnarrate.py:716
 #, python-format
 msgid "This person was baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:715
+#: ../gramps/plugins/lib/libnarrate.py:718
 #, python-format
 msgid "Baptized%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:725
+#: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
 msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:726
+#: ../gramps/plugins/lib/libnarrate.py:729
 #, python-format
 msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:729
+#: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
 msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:730
+#: ../gramps/plugins/lib/libnarrate.py:733
 #, python-format
 msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:733
+#: ../gramps/plugins/lib/libnarrate.py:736
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:734
+#: ../gramps/plugins/lib/libnarrate.py:737
 #, python-format
 msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:736
+#: ../gramps/plugins/lib/libnarrate.py:739
 #, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:741
+#: ../gramps/plugins/lib/libnarrate.py:744
 #, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:742
+#: ../gramps/plugins/lib/libnarrate.py:745
 #, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:745
+#: ../gramps/plugins/lib/libnarrate.py:748
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:746
+#: ../gramps/plugins/lib/libnarrate.py:749
 #, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:749
+#: ../gramps/plugins/lib/libnarrate.py:752
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:750
+#: ../gramps/plugins/lib/libnarrate.py:753
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:752
+#: ../gramps/plugins/lib/libnarrate.py:755
 #, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:757
+#: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
 msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:758
+#: ../gramps/plugins/lib/libnarrate.py:761
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:761
+#: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
 msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:762
+#: ../gramps/plugins/lib/libnarrate.py:765
 #, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:765
+#: ../gramps/plugins/lib/libnarrate.py:768
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:766
+#: ../gramps/plugins/lib/libnarrate.py:769
 #, python-format
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:768
+#: ../gramps/plugins/lib/libnarrate.py:771
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:773
+#: ../gramps/plugins/lib/libnarrate.py:776
 #, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:774
+#: ../gramps/plugins/lib/libnarrate.py:777
 #, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:777
+#: ../gramps/plugins/lib/libnarrate.py:780
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:778
+#: ../gramps/plugins/lib/libnarrate.py:781
 #, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:781
+#: ../gramps/plugins/lib/libnarrate.py:784
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:782
+#: ../gramps/plugins/lib/libnarrate.py:785
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:784
+#: ../gramps/plugins/lib/libnarrate.py:787
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:789
+#: ../gramps/plugins/lib/libnarrate.py:792
 #, python-format
 msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:790
+#: ../gramps/plugins/lib/libnarrate.py:793
 #, python-format
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:793
+#: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
 msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:794
+#: ../gramps/plugins/lib/libnarrate.py:797
 #, python-format
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:797
+#: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:798
+#: ../gramps/plugins/lib/libnarrate.py:801
 #, python-format
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:800
+#: ../gramps/plugins/lib/libnarrate.py:803
 #, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:805
+#: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:806
+#: ../gramps/plugins/lib/libnarrate.py:809
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:809
+#: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:810
+#: ../gramps/plugins/lib/libnarrate.py:813
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:813
+#: ../gramps/plugins/lib/libnarrate.py:816
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:814
+#: ../gramps/plugins/lib/libnarrate.py:817
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:816
+#: ../gramps/plugins/lib/libnarrate.py:819
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:821
+#: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:822
+#: ../gramps/plugins/lib/libnarrate.py:825
 #, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:825
+#: ../gramps/plugins/lib/libnarrate.py:828
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:826
+#: ../gramps/plugins/lib/libnarrate.py:829
 #, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:829
+#: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:830
+#: ../gramps/plugins/lib/libnarrate.py:833
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:832
+#: ../gramps/plugins/lib/libnarrate.py:835
 #, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:837
+#: ../gramps/plugins/lib/libnarrate.py:840
 #, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:838
+#: ../gramps/plugins/lib/libnarrate.py:841
 #, python-format
 msgid "He was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:841
+#: ../gramps/plugins/lib/libnarrate.py:844
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:842
+#: ../gramps/plugins/lib/libnarrate.py:845
 #, python-format
 msgid "She was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:845
+#: ../gramps/plugins/lib/libnarrate.py:848
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:846
+#: ../gramps/plugins/lib/libnarrate.py:849
 #, python-format
 msgid "This person was christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:848
+#: ../gramps/plugins/lib/libnarrate.py:851
 #, python-format
 msgid "Christened%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:859
+#: ../gramps/plugins/lib/libnarrate.py:862
 #, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:860
+#: ../gramps/plugins/lib/libnarrate.py:863
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:863
+#: ../gramps/plugins/lib/libnarrate.py:866
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:864
+#: ../gramps/plugins/lib/libnarrate.py:867
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:866
+#: ../gramps/plugins/lib/libnarrate.py:869
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:870
+#: ../gramps/plugins/lib/libnarrate.py:873
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:871
+#: ../gramps/plugins/lib/libnarrate.py:874
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:874
+#: ../gramps/plugins/lib/libnarrate.py:877
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:875
+#: ../gramps/plugins/lib/libnarrate.py:878
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:877
+#: ../gramps/plugins/lib/libnarrate.py:880
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:881
+#: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:882
+#: ../gramps/plugins/lib/libnarrate.py:885
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:885
+#: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:886
+#: ../gramps/plugins/lib/libnarrate.py:889
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:888
+#: ../gramps/plugins/lib/libnarrate.py:891
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:895
+#: ../gramps/plugins/lib/libnarrate.py:898
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:896
+#: ../gramps/plugins/lib/libnarrate.py:899
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:899
+#: ../gramps/plugins/lib/libnarrate.py:902
 #, python-format
 msgid "This person is the child of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:900
+#: ../gramps/plugins/lib/libnarrate.py:903
 #, python-format
 msgid "This person was the child of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:902
+#: ../gramps/plugins/lib/libnarrate.py:905
 #, python-format
 msgid "Child of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:906
+#: ../gramps/plugins/lib/libnarrate.py:909
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:907
+#: ../gramps/plugins/lib/libnarrate.py:910
 #, python-format
 msgid "%(male_name)s was the son of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:910
+#: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
 msgid "He is the son of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:911
+#: ../gramps/plugins/lib/libnarrate.py:914
 #, python-format
 msgid "He was the son of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:913
+#: ../gramps/plugins/lib/libnarrate.py:916
 #, python-format
 msgid "Son of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:917
+#: ../gramps/plugins/lib/libnarrate.py:920
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:918
+#: ../gramps/plugins/lib/libnarrate.py:921
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:921
+#: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She is the daughter of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:922
+#: ../gramps/plugins/lib/libnarrate.py:925
 #, python-format
 msgid "She was the daughter of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:924
+#: ../gramps/plugins/lib/libnarrate.py:927
 #, python-format
 msgid "Daughter of %(father)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:931
+#: ../gramps/plugins/lib/libnarrate.py:934
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:932
+#: ../gramps/plugins/lib/libnarrate.py:935
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:935
+#: ../gramps/plugins/lib/libnarrate.py:938
 #, python-format
 msgid "This person is the child of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:936
+#: ../gramps/plugins/lib/libnarrate.py:939
 #, python-format
 msgid "This person was the child of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:938
+#: ../gramps/plugins/lib/libnarrate.py:941
 #, python-format
 msgid "Child of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:942
+#: ../gramps/plugins/lib/libnarrate.py:945
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:943
+#: ../gramps/plugins/lib/libnarrate.py:946
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:946
+#: ../gramps/plugins/lib/libnarrate.py:949
 #, python-format
 msgid "He is the son of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:947
+#: ../gramps/plugins/lib/libnarrate.py:950
 #, python-format
 msgid "He was the son of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:949
+#: ../gramps/plugins/lib/libnarrate.py:952
 #, python-format
 msgid "Son of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:953
+#: ../gramps/plugins/lib/libnarrate.py:956
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:954
+#: ../gramps/plugins/lib/libnarrate.py:957
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:957
+#: ../gramps/plugins/lib/libnarrate.py:960
 #, python-format
 msgid "She is the daughter of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:958
+#: ../gramps/plugins/lib/libnarrate.py:961
 #, python-format
 msgid "She was the daughter of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:960
+#: ../gramps/plugins/lib/libnarrate.py:963
 #, python-format
 msgid "Daughter of %(mother)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:971
+#: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:972
+#: ../gramps/plugins/lib/libnarrate.py:975
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:973
+#: ../gramps/plugins/lib/libnarrate.py:976
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:976
+#: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:977
+#: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:978
+#: ../gramps/plugins/lib/libnarrate.py:981
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:981
+#: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:982
+#: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:983
+#: ../gramps/plugins/lib/libnarrate.py:986
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:986
+#: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:987
+#: ../gramps/plugins/lib/libnarrate.py:990
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:988
+#: ../gramps/plugins/lib/libnarrate.py:991
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:994
+#: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:995
+#: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:996
+#: ../gramps/plugins/lib/libnarrate.py:999
 #, python-format
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:999
+#: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1000
+#: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1001
+#: ../gramps/plugins/lib/libnarrate.py:1004
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1004
+#: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1005
+#: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1006
+#: ../gramps/plugins/lib/libnarrate.py:1009
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1009
+#: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1010
+#: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1011
+#: ../gramps/plugins/lib/libnarrate.py:1014
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1017
+#: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1018
+#: ../gramps/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1019
+#: ../gramps/plugins/lib/libnarrate.py:1022
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1022
+#: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1023
+#: ../gramps/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1024
+#: ../gramps/plugins/lib/libnarrate.py:1027
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1027
+#: ../gramps/plugins/lib/libnarrate.py:1030
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1028
+#: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1029
+#: ../gramps/plugins/lib/libnarrate.py:1032
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1032
+#: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1033
+#: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1034
+#: ../gramps/plugins/lib/libnarrate.py:1037
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1040
+#: ../gramps/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1041
+#: ../gramps/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1042
+#: ../gramps/plugins/lib/libnarrate.py:1045
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1045
+#: ../gramps/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1046
+#: ../gramps/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1047
+#: ../gramps/plugins/lib/libnarrate.py:1050
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1050
+#: ../gramps/plugins/lib/libnarrate.py:1053
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1051
+#: ../gramps/plugins/lib/libnarrate.py:1054
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1052
+#: ../gramps/plugins/lib/libnarrate.py:1055
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1055
+#: ../gramps/plugins/lib/libnarrate.py:1058
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1056
+#: ../gramps/plugins/lib/libnarrate.py:1059
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1057
+#: ../gramps/plugins/lib/libnarrate.py:1060
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1062
+#: ../gramps/plugins/lib/libnarrate.py:1065
 #, python-format
 msgid "This person married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1063
+#: ../gramps/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1064
+#: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1065
+#: ../gramps/plugins/lib/libnarrate.py:1068
 #, python-format
 msgid "Married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1069
+#: ../gramps/plugins/lib/libnarrate.py:1072
 #, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1070
+#: ../gramps/plugins/lib/libnarrate.py:1073
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1071
+#: ../gramps/plugins/lib/libnarrate.py:1074
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1072
+#: ../gramps/plugins/lib/libnarrate.py:1075
 #, python-format
 msgid "Also married %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1076
+#: ../gramps/plugins/lib/libnarrate.py:1079
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1077
+#: ../gramps/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1078
+#: ../gramps/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1079
+#: ../gramps/plugins/lib/libnarrate.py:1082
 #, python-format
 msgid "Married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1083
+#: ../gramps/plugins/lib/libnarrate.py:1086
 #, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1084
+#: ../gramps/plugins/lib/libnarrate.py:1087
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1085
+#: ../gramps/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1086
+#: ../gramps/plugins/lib/libnarrate.py:1089
 #, python-format
 msgid "Also married %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1096
+#: ../gramps/plugins/lib/libnarrate.py:1099
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1097
+#: ../gramps/plugins/lib/libnarrate.py:1100
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1098
+#: ../gramps/plugins/lib/libnarrate.py:1101
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1101
+#: ../gramps/plugins/lib/libnarrate.py:1104
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1102
+#: ../gramps/plugins/lib/libnarrate.py:1105
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1103
+#: ../gramps/plugins/lib/libnarrate.py:1106
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1106
+#: ../gramps/plugins/lib/libnarrate.py:1109
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1107
+#: ../gramps/plugins/lib/libnarrate.py:1110
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1108
+#: ../gramps/plugins/lib/libnarrate.py:1111
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1111
-#: ../gramps/plugins/lib/libnarrate.py:1134
+#: ../gramps/plugins/lib/libnarrate.py:1114
+#: ../gramps/plugins/lib/libnarrate.py:1137
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1112
-#: ../gramps/plugins/lib/libnarrate.py:1135
+#: ../gramps/plugins/lib/libnarrate.py:1115
+#: ../gramps/plugins/lib/libnarrate.py:1138
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1113
-#: ../gramps/plugins/lib/libnarrate.py:1136
+#: ../gramps/plugins/lib/libnarrate.py:1116
+#: ../gramps/plugins/lib/libnarrate.py:1139
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1119
+#: ../gramps/plugins/lib/libnarrate.py:1122
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1120
+#: ../gramps/plugins/lib/libnarrate.py:1123
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1121
+#: ../gramps/plugins/lib/libnarrate.py:1124
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1124
+#: ../gramps/plugins/lib/libnarrate.py:1127
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1125
+#: ../gramps/plugins/lib/libnarrate.py:1128
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1126
+#: ../gramps/plugins/lib/libnarrate.py:1129
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1129
+#: ../gramps/plugins/lib/libnarrate.py:1132
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1130
+#: ../gramps/plugins/lib/libnarrate.py:1133
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1131
+#: ../gramps/plugins/lib/libnarrate.py:1134
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1142
+#: ../gramps/plugins/lib/libnarrate.py:1145
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1143
+#: ../gramps/plugins/lib/libnarrate.py:1146
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1144
+#: ../gramps/plugins/lib/libnarrate.py:1147
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1147
+#: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1148
+#: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1149
+#: ../gramps/plugins/lib/libnarrate.py:1152
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1152
+#: ../gramps/plugins/lib/libnarrate.py:1155
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1153
+#: ../gramps/plugins/lib/libnarrate.py:1156
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1154
+#: ../gramps/plugins/lib/libnarrate.py:1157
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1157
+#: ../gramps/plugins/lib/libnarrate.py:1160
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1158
+#: ../gramps/plugins/lib/libnarrate.py:1161
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1159
+#: ../gramps/plugins/lib/libnarrate.py:1162
 #, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1165
+#: ../gramps/plugins/lib/libnarrate.py:1168
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in "
 "%(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1166
+#: ../gramps/plugins/lib/libnarrate.py:1169
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on "
 "%(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1167
+#: ../gramps/plugins/lib/libnarrate.py:1170
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s "
 "%(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1170
+#: ../gramps/plugins/lib/libnarrate.py:1173
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1171
+#: ../gramps/plugins/lib/libnarrate.py:1174
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1172
+#: ../gramps/plugins/lib/libnarrate.py:1175
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1175
+#: ../gramps/plugins/lib/libnarrate.py:1178
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1176
+#: ../gramps/plugins/lib/libnarrate.py:1179
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1177
+#: ../gramps/plugins/lib/libnarrate.py:1180
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1180
+#: ../gramps/plugins/lib/libnarrate.py:1183
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1181
+#: ../gramps/plugins/lib/libnarrate.py:1184
 #, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1182
+#: ../gramps/plugins/lib/libnarrate.py:1185
 #, python-format
 msgid ""
 "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1187
+#: ../gramps/plugins/lib/libnarrate.py:1190
 #, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1188
+#: ../gramps/plugins/lib/libnarrate.py:1191
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1189
+#: ../gramps/plugins/lib/libnarrate.py:1192
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1190
-#: ../gramps/plugins/lib/libnarrate.py:1197
+#: ../gramps/plugins/lib/libnarrate.py:1193
+#: ../gramps/plugins/lib/libnarrate.py:1200
 #, python-format
 msgid "Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1194
+#: ../gramps/plugins/lib/libnarrate.py:1197
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1195
+#: ../gramps/plugins/lib/libnarrate.py:1198
 #, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1196
+#: ../gramps/plugins/lib/libnarrate.py:1199
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1201
+#: ../gramps/plugins/lib/libnarrate.py:1204
 #, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1202
+#: ../gramps/plugins/lib/libnarrate.py:1205
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1203
+#: ../gramps/plugins/lib/libnarrate.py:1206
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1204
-#: ../gramps/plugins/lib/libnarrate.py:1211
+#: ../gramps/plugins/lib/libnarrate.py:1207
+#: ../gramps/plugins/lib/libnarrate.py:1214
 #, python-format
 msgid "Unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1208
+#: ../gramps/plugins/lib/libnarrate.py:1211
 #, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1209
+#: ../gramps/plugins/lib/libnarrate.py:1212
 #, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1210
+#: ../gramps/plugins/lib/libnarrate.py:1213
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1222
+#: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1223
+#: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1224
+#: ../gramps/plugins/lib/libnarrate.py:1227
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1227
+#: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
 msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1228
+#: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
 msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1229
+#: ../gramps/plugins/lib/libnarrate.py:1232
 #, python-format
 msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1232
+#: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
 msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1233
+#: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
 msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1234
+#: ../gramps/plugins/lib/libnarrate.py:1237
 #, python-format
 msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1237
+#: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1238
+#: ../gramps/plugins/lib/libnarrate.py:1241
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1239
+#: ../gramps/plugins/lib/libnarrate.py:1242
 #, python-format
 msgid ""
 "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1245
+#: ../gramps/plugins/lib/libnarrate.py:1248
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1246
+#: ../gramps/plugins/lib/libnarrate.py:1249
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1247
+#: ../gramps/plugins/lib/libnarrate.py:1250
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1250
+#: ../gramps/plugins/lib/libnarrate.py:1253
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1251
+#: ../gramps/plugins/lib/libnarrate.py:1254
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1252
+#: ../gramps/plugins/lib/libnarrate.py:1255
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1255
+#: ../gramps/plugins/lib/libnarrate.py:1258
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1256
+#: ../gramps/plugins/lib/libnarrate.py:1259
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1257
+#: ../gramps/plugins/lib/libnarrate.py:1260
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1260
+#: ../gramps/plugins/lib/libnarrate.py:1263
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1261
+#: ../gramps/plugins/lib/libnarrate.py:1264
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1262
+#: ../gramps/plugins/lib/libnarrate.py:1265
 #, python-format
 msgid ""
 "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1268
+#: ../gramps/plugins/lib/libnarrate.py:1271
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1269
+#: ../gramps/plugins/lib/libnarrate.py:1272
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1270
+#: ../gramps/plugins/lib/libnarrate.py:1273
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1273
+#: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1274
+#: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1275
+#: ../gramps/plugins/lib/libnarrate.py:1278
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1278
+#: ../gramps/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1279
+#: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1280
+#: ../gramps/plugins/lib/libnarrate.py:1283
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1283
+#: ../gramps/plugins/lib/libnarrate.py:1286
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1284
+#: ../gramps/plugins/lib/libnarrate.py:1287
 #, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1285
+#: ../gramps/plugins/lib/libnarrate.py:1288
 #, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1291
+#: ../gramps/plugins/lib/libnarrate.py:1294
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1292
+#: ../gramps/plugins/lib/libnarrate.py:1295
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1293
+#: ../gramps/plugins/lib/libnarrate.py:1296
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1296
+#: ../gramps/plugins/lib/libnarrate.py:1299
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1297
+#: ../gramps/plugins/lib/libnarrate.py:1300
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1298
+#: ../gramps/plugins/lib/libnarrate.py:1301
 #, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1301
+#: ../gramps/plugins/lib/libnarrate.py:1304
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1302
+#: ../gramps/plugins/lib/libnarrate.py:1305
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1303
+#: ../gramps/plugins/lib/libnarrate.py:1306
 #, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1306
+#: ../gramps/plugins/lib/libnarrate.py:1309
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1307
+#: ../gramps/plugins/lib/libnarrate.py:1310
 #, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1308
+#: ../gramps/plugins/lib/libnarrate.py:1311
 #, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1313
+#: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1314
+#: ../gramps/plugins/lib/libnarrate.py:1317
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1315
+#: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1316
+#: ../gramps/plugins/lib/libnarrate.py:1319
 #, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1320
+#: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1321
+#: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1322
+#: ../gramps/plugins/lib/libnarrate.py:1325
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1323
+#: ../gramps/plugins/lib/libnarrate.py:1326
 #, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1327
+#: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1328
+#: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1329
+#: ../gramps/plugins/lib/libnarrate.py:1332
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1330
+#: ../gramps/plugins/lib/libnarrate.py:1333
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1334
+#: ../gramps/plugins/lib/libnarrate.py:1337
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1335
+#: ../gramps/plugins/lib/libnarrate.py:1338
 #, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1336
+#: ../gramps/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 
-#: ../gramps/plugins/lib/libnarrate.py:1337
+#: ../gramps/plugins/lib/libnarrate.py:1340
 #, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
 msgstr ""
