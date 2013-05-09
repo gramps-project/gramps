@@ -1,11 +1,12 @@
 ##
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Brian G. Matherly
-# Copyright (C) 2010  Peter Landgren
-# Copyright (C) 2010  Jakim Friant
-# Copyright (C) 2011  Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2010       Peter Landgren
+# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +32,6 @@ from ...lib import NoteType, Citation
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...utils.string import confidence
-from ...datehandler import displayer
 
 def add_endnote_styles(style_sheet):
     """
@@ -103,10 +103,13 @@ def cite_source(bibliography, database, obj):
     return txt
 
 def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
-                   trans_text=glocale.translation.gettext):
+                   elocale=glocale):
     """
     Write all the entries in the bibliography as endnotes.
     
+    If elocale is passed in (a GrampsLocale), then (insofar as possible)
+    the translated values will be returned instead.
+
     @param bibliography: The bibliography that contains the citations.
     @type bibliography: L{Bibliography}
     @param database: The database that the sources come from.
@@ -118,11 +121,13 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     @type printnotes: bool
     @param links: Indicate if URL links should be makde 'clickable'.
     @type links: bool
-    @param trans_text: allow deferred translation of "Endnotes" Endnotes-Header
-    @type trans_text: a GrampsLocale gettext instance
+    @param elocale: allow deferred translation of dates and strings
+    @type elocale: a GrampsLocale instance
     """
     if bibliography.get_citation_count() == 0:
         return
+
+    trans_text = elocale.translation.gettext
 
     doc.start_paragraph('Endnotes-Header')
     doc.write_text(trans_text('Endnotes'))
@@ -143,7 +148,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
 
         for key, ref in citation.get_ref_list():
             doc.start_paragraph('Endnotes-Ref', "%s:" % key)
-            doc.write_text(_format_ref_text(ref, key), links=links)
+            doc.write_text(_format_ref_text(ref, key, elocale), links=links)
             doc.end_paragraph()
 
             if printnotes:
@@ -174,7 +179,7 @@ def _format_source_text(source):
         
     return src_txt
 
-def _format_ref_text(ref, key):
+def _format_ref_text(ref, key, elocale):
     if not ref: return ""
     
     ref_txt = ""
@@ -185,14 +190,27 @@ def _format_ref_text(ref, key):
         datepresent = True
     if datepresent:
         if ref.get_page():
-            ref_txt = "%s - %s" % (ref.get_page(), displayer.display(date))
+            ref_txt = "%s - %s" % (ref.get_page(), elocale.get_date(date))
         else:
-            ref_txt =  displayer.display(date)
+            ref_txt = elocale.get_date(date)
     else:
         ref_txt = ref.get_page()
         
     # Print only confidence level if it is not Normal
-    if ref.get_confidence_level() != Citation.CONF_NORMAL:
+    if (ref.get_confidence_level() != Citation.CONF_NORMAL
+        and elocale == glocale): # FIXME
+        # the correct fix would be to enable deferred translation for at
+        # least the "confidence" list of strings (in gen/utils/string.py),
+        # and possibly others too if they need deferred translation, but that
+        # would require searching out every use of a "confidence" string and
+        # translating it there, either to the UI language or to a "deferred"
+        # language (e.g. when used in a report, as here in this module), but
+        # that would require an immense amount of time and testing and since
+        # a release is imminent this is not the time to consider that, so I
+        # have instead added the above line, which will disable the typeout
+        # of any "confidence" rating /if/ a translated value is needed, while
+        # continuing to show the "confidence" for the normal case of a user
+        # running a report in their own language (when elocale==glocale)
         ref_txt += " [" + confidence[ref.get_confidence_level()] + "]"
     
     return ref_txt

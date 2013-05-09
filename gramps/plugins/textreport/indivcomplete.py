@@ -199,7 +199,8 @@ class IndivCompleteReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
 
     def write_fact(self, event_ref, event, event_group):
         """
@@ -671,7 +672,7 @@ class IndivCompleteReport(Report):
                 self.doc.page_break()
             Endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.use_srcs_notes,
-                                    trans_text=self._)
+                                    elocale=self._locale)
             
 #------------------------------------------------------------------------
 #

@@ -8,7 +8,8 @@
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Vlada Peri\u0107
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011      Tim G L Lyons
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,10 +160,11 @@ class DetAncestorReport(Report):
             empty_place = ""
 
         lang = menu.get_option_by_name('trans').get_value()
-        locale = self.set_locale(lang)
+        self._locale = self.set_locale(lang)
+
         self.__narrator = Narrator(self.database, self.verbose, use_call,
                                    use_fulldate, empty_date, empty_place,
-                                   locale=locale,
+                                   nlocale=self._locale,
                                    get_endnote_numbers=self.endnotes)
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
@@ -231,7 +233,7 @@ class DetAncestorReport(Report):
             # it ignores language set for Note type (use locale)
             endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes,
-                                    trans_text=self._)
+                                    elocale=self._locale)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
