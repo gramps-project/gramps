@@ -62,7 +62,8 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeError, 
                                       DbVersionError, 
                                       DbEnvironmentError,
-                                      BsddbUpgradeRequiredError)
+                                      BsddbUpgradeRequiredError,
+                                      BsddbDowngradeRequiredError)
 from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from .pluginmanager import GuiPluginManager
@@ -307,40 +308,60 @@ class DbLoader(CLIDbLoader):
         
         force_schema_upgrade = False
         force_bsddb_upgrade = False
+        force_bsddb_downgrade = False
         try:
             while True:
                 try:
                     db.load(filename, self._pulse_progress, 
                             mode, force_schema_upgrade,
-                            force_bsddb_upgrade)
+                            force_bsddb_upgrade,
+                            force_bsddb_downgrade)
                     db.set_save_path(filename)
                     self.dbstate.change_database(db)
                     break
                 except DbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Need to upgrade database!"), 
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
                                        str(msg), 
-                                       _("Upgrade now"), 
-                                       _("Cancel")).run():
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
+                        force_bsddb_downgrade = False
                     else:
                         self.dbstate.no_database()
                         break
                 except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Need to upgrade BSDDB database!"), 
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
                                        str(msg), 
-                                       _("I have made a backup, "
+                                       _("I have made a backup,\n"
                                          "please upgrade my tree"), 
-                                       _("Cancel")).run():
+                                       _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
+                        force_bsddb_downgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except BsddbDowngradeRequiredError as msg:
+                    if QuestionDialog2(_("Are you sure you want to downgrade "
+                                         "this Family Tree?"), 
+                                       str(msg), 
+                                       _("I have made a backup,\n"
+                                         "please downgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = False
+                        force_bsddb_downgrade = True
                     else:
                         self.dbstate.no_database()
                         break
         # Get here is there is an exception the while loop does not handle
         except BsddbDowngradeError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._warn( _("Cannot open database"), str(msg))
         except DbVersionError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
