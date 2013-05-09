@@ -385,7 +385,7 @@ gramps/gui/widgets/validatedcomboentry.py
 gramps/gui/widgets/valueaction.py
 gramps/gui/widgets/valuetoolitem.py
 #
-# gui qt
+# gui qt (do not need translation yet))
 #
 gramps/guiQML/grampsqml.py
 gramps/guiQML/__init__.py
