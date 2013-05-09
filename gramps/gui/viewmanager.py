@@ -396,8 +396,7 @@ class ViewManager(CLIManager):
                 lines = list(fp.readlines())
                 count = 0
                 for line in lines:
-                    if sys.version_info[0] >= 3:
-                        line = line.decode('utf-8').replace(": u'", ": '")
+                    line = line.decode('utf-8')
                     try:
                         plugin_dict = safe_eval(line)
                         if type(plugin_dict) != type({}):
