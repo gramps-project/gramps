@@ -79,13 +79,13 @@ class DbVersionError(Exception):
         self.max_vers = max_vers
 
     def __str__(self):
-        return _("The schema version is not supported by this version of "
-                 "Gramps.\n\n"
-                 "This Family Tree is schema version %(tree_vers)s, and this "
-                 "version of Gramps supports versions %(min_vers)s to "
-                 "%(max_vers)s\n\n"
-                 "Please upgrade to the corresponding version or use "
-                 "XML for porting data between different database versions.") %\
+        return _('The schema version is not supported by this version of '
+                 'Gramps.\n\n'
+                 'This Family Tree is schema version %(tree_vers)s, and this '
+                 'version of Gramps supports versions %(min_vers)s to '
+                 '%(max_vers)s\n\n'
+                 'Please upgrade to the corresponding version or use '
+                 'XML for porting data between different schema versions.') %\
                  {'tree_vers': self.tree_vers,
                   'min_vers': self.min_vers,
                   'max_vers': self.max_vers}
@@ -101,17 +101,42 @@ class BsddbDowngradeError(Exception):
         self.bdb_version = str(bdb_version)
 
     def __str__(self):
-        return _('Gramps stores its data in a Berkeley Database. '
-                 'The Family Tree you try to load was created with version '
-                 '%(env_version)s of the Berkeley DB. However, the Gramps '
-                 'version in use right now employs version %(bdb_version)s '
-                 'of the Berkeley DB. So you are trying to load data created '
-                 'in a newer format into an older program; this is bound to '
-                 'fail. The right approach in this case is to use XML export '
-                 'and import. So try to open the Family Tree on that computer '
-                 'with that software that created the Family Tree, export it '
-                 'to XML and load that XML into the version of Gramps you '
-                 'intend to use.') % {'env_version': self.env_version,
+        return _('The Family Tree you are trying to load is in the Bsddb '
+                 'version %(env_version)s format. This version of Gramps uses '
+                 'Bsddb version %(bdb_version)s. So you are trying to load '
+                 'data created in a newer format into an older program, and '
+                 'this is bound to fail.\n\n'
+                 'You should start your <b>newer</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
+                 'make a backup</a> of your Family Tree. You can then import '
+                 'this backup into this version of Gramps.') % \
+                 {'env_version': self.env_version,
+                 'bdb_version': self.bdb_version}
+
+class BsddbDowngradeRequiredError(Exception):
+    """
+    Error used to report that the Berkeley database used to create the family
+    tree is of a version that is newer than the current version, but it may be
+    possible to open the tree, because the difference is only a point upgrade
+    (i.e. a difference in the last digit of the version tuple).
+    """
+    def __init__(self, env_version, bdb_version):
+        Exception.__init__(self)
+        self.env_version = str(env_version)
+        self.bdb_version = str(bdb_version)
+
+    def __str__(self):
+        return _('The Family Tree you are trying to load is in the Bsddb '
+                 'version %(env_version)s format. This version of Gramps uses '
+                 'Bsddb version %(bdb_version)s. So you are trying to load '
+                 'data created in a newer format into an older program. In '
+                 'this particular case, the difference is very small, so it '
+                 'may work.\n\n'
+                 'If you have not already made a backup of your Family Tree, '
+                 'then you should start your <b>newer</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
+                 'make a backup</a> of your Family Tree.') % \
+                 {'env_version': self.env_version,
                  'bdb_version': self.bdb_version}
 
 class BsddbUpgradeRequiredError(Exception):
@@ -125,18 +150,20 @@ class BsddbUpgradeRequiredError(Exception):
         self.bsddb_version = str(bsddb_version)
 
     def __str__(self):
-        return _('The Bsddb version of the Family Tree you are trying to open '
-              'needs to be upgraded from %(env_version)s to %(bdb_version)s.\n\n'
-              'This probably means that the Family Tree was created with '
-              'an old version of Gramps. Opening the tree with this version '
-              'of Gramps may irretrievably corrupt your tree. You are '
-              'strongly advised to backup your tree before proceeding, '
-              'see: \n'
-              'http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n\n'
-              'If you have made a backup, then you can get Gramps to try '
-              'to open the tree and upgrade it') % \
-              {'env_version': self.env_version,
-               'bdb_version': self.bsddb_version}
+        return _('The Family Tree you are trying to load is in the Bsddb '
+                 'version %(env_version)s format. This version of Gramps uses '
+                 'Bsddb version %(bdb_version)s. Therefore you cannot load '
+                 'this Family Tree without upgrading the Bsddb version of the '
+                 'Family Tree.\n\n'
+                 'Opening the Family Tree with this version of Gramps might '
+                 'irretrievably corrupt your Family Tree. You are strongly '
+                 'advised to backup your Family Tree.\n\n'
+                 'If you have not already made a backup of your Family Tree, '
+                 'then you should start your <b>old</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
+                 'make a backup</a> of your Family Tree.') % \
+                 {'env_version': self.env_version,
+                  'bdb_version': self.bsddb_version}
 
 class DbEnvironmentError(Exception):
     """
@@ -167,17 +194,27 @@ class DbUpgradeRequiredError(Exception):
     Error used to report that a database needs to be upgraded before it can be 
     used.
     """
-    def __init__(self):
+    def __init__(self, oldschema, newschema):
         Exception.__init__(self)
+        self.oldschema = oldschema
+        self.newschema = newschema
 
     def __str__(self):
-        return _("The Family Tree structure has changed since the version of"
-            " Gramps you used to create this tree.\n\n"
-            "Therefore, you cannot open this Family Tree without upgrading the"
-            " definition of the structure.\n"
-            "If you upgrade then you won't be able to use previous "
-            "versions of Gramps, also not with the .gramps xml export!\n\n"
-            "Upgrading is a difficult task that may not be interrupted, or "
-            "Gramps will irretrievably corrupt your tree. Therefore, create "
-            "a backup copy first. See: \n"
-            "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup")
+        return _('The Family Tree you are trying to load is in the schema '
+                 'version %(oldschema)s format. This version of Gramps uses '
+                 'schema version %(newschema)s. Therefore you cannot load this '
+                 'Family Tree without upgrading the schema version of the ' 
+                 'Family Tree.\n\n'
+                 'If you upgrade then you won\'t be able to use the previous '
+                 'version of Gramps, even if you subsequently '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
+                 'or <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
+                 'your upgraded Family Tree.\n\n'
+                 'Upgrading is a difficult task which could irretrievably '
+                 'corrupt your Family Tree if it is interrupted or fails.\n\n'
+                 'If you have not already made a backup of your Family Tree, '
+                 'then you should start your <b>old</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">make a backup</a> '
+                 'of your Family Tree.') % \
+                 {'oldschema': self.oldschema,
+                  'newschema': self.newschema}

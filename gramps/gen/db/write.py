@@ -407,7 +407,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return
         (grampsdb_path, db_code) = os.path.split(dirname)
         dotgramps_path = os.path.dirname(grampsdb_path)
-        zipname = title + time.strftime("%Y-%m-%d %H-%M-%S") + ".zip"
+        zipname = title + time.strftime("_%Y-%m-%d_%H-%M-%S") + ".zip"
         if sys.version_info[0] < 3:
             zipname = zipname.encode(glocale.getfilesystemencoding())
         zippath = os.path.join(dotgramps_path, zipname)
@@ -420,7 +420,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                      "delete the zip file at %s" %
                      zippath)
     
-    def __check_bdb_version(self, name, force_bsddb_upgrade=False):
+    def __check_bdb_version(self, name, force_bsddb_upgrade=False,
+                            force_bsddb_downgrade=False):
         """Older version of Berkeley DB can't read data created by a newer
         version."""
         bdb_version = db.version()
@@ -434,31 +435,58 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with open(versionpath, "r") as version_file:
                 bsddb_version = version_file.read().strip()
                 env_version = tuple(map(int, bsddb_version[1:-1].split(', ')))
-            if (env_version[0] > bdb_version[0]) or \
-                (env_version[0] == bdb_version[0] and
-                 env_version[1] > bdb_version[1]):
-                clear_lock_file(name)
-                raise BsddbDowngradeError(env_version, bdb_version)
-            elif env_version == bdb_version:
-                return
         else:
             # bsddb version is unknown
-            bsddb_version = "Unknown"
+            env_version = "Unknown"
 
-        # An upgrade is needed, raise an exception unless the user has allowed
-        # an upgrade
-        if not force_bsddb_upgrade:
-            _LOG.debug("Bsddb upgrade required from %s to %s" %
-                       (bsddb_version, str(bdb_version)))
-            raise exceptions.BsddbUpgradeRequiredError(bsddb_version,
-                                                       str(bdb_version))
-        
-        if not self.readonly:
-            _LOG.warning("Bsddb upgrade requested from %s to %s" %
-                         (bsddb_version, str(bdb_version)))
-            self.update_env_version = True
-        # Make a backup of the database files anyway 
-        self.__make_zip_backup(name)   
+        if env_version == "Unknown" or \
+            (env_version[0] < bdb_version[0]) or \
+            (env_version[0] == bdb_version[0] and
+             env_version[1] < bdb_version[1]) or \
+            (env_version[0] == bdb_version[0] and
+             env_version[1] == bdb_version[1] and
+             env_version[2] < bdb_version[2]):
+            # an upgrade is needed
+            if not force_bsddb_upgrade:
+                _LOG.debug("Bsddb upgrade required from %s to %s" %
+                           (bsddb_version, str(bdb_version)))
+                clear_lock_file(name)
+                raise exceptions.BsddbUpgradeRequiredError(bsddb_version,
+                                                           str(bdb_version))
+            if not self.readonly:
+                _LOG.warning("Bsddb upgrade requested from %s to %s" %
+                             (bsddb_version, str(bdb_version)))
+                self.update_env_version = True
+            # Make a backup of the database files anyway 
+            self.__make_zip_backup(name)   
+        elif (env_version[0] > bdb_version[0]) or \
+            (env_version[0] == bdb_version[0] and
+             env_version[1] > bdb_version[1]):
+            clear_lock_file(name)
+            raise BsddbDowngradeError(env_version, bdb_version)
+        elif (env_version[0] == bdb_version[0] and
+             env_version[1] == bdb_version[1] and
+             env_version[2] > bdb_version[2]):
+            # A down-grade may be possible
+            if not force_bsddb_downgrade:
+                _LOG.debug("Bsddb downgrade required from %s to %s" %
+                           (bsddb_version, str(bdb_version)))
+                clear_lock_file(name)
+                raise exceptions.BsddbDowngradeRequiredError(bsddb_version,
+                                                           str(bdb_version))
+            # Try to do a down-grade
+            if not self.readonly:
+                _LOG.warning("Bsddb downgrade requested from %s to %s" %
+                             (bsddb_version, str(bdb_version)))
+                self.update_env_version = True
+            # Make a backup of the database files anyway 
+            self.__make_zip_backup(name)   
+        elif env_version == bdb_version:
+            # Bsddb version is OK
+            pass
+        else:
+            # This can't happen
+            raise "Comparison between Bsddb version failed"
 
     @catch_db_error
     def version_supported(self):
@@ -493,7 +521,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     @catch_db_error
     def load(self, name, callback, mode=DBMODE_W, force_schema_upgrade=False,
-             force_bsddb_upgrade=False):
+             force_bsddb_upgrade=False, force_bsddb_downgrade=False):
 
         if self.__check_readonly(name):
             mode = DBMODE_R
@@ -513,7 +541,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
 
-        self.__check_bdb_version(name, force_bsddb_upgrade)
+        self.__check_bdb_version(name, force_bsddb_upgrade,
+                                 force_bsddb_downgrade)
 
         # Set up database environment
         self.env = db.DBEnv()
@@ -632,14 +661,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
         if self.need_schema_upgrade():
+            oldschema = self.metadata.get(b'version', default=0)
+            newschema = _DBVERSION
             _LOG.debug("Schema upgrade required from %s to %s" %
-                       (self.metadata.get(b'version', default=0), _DBVERSION))
+                       (oldschema, newschema))
             if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
             else:
                 self.__close_early()
                 clear_lock_file(name)
-                raise DbUpgradeRequiredError()
+                raise DbUpgradeRequiredError(oldschema, newschema)
 
         if callback:
             callback(50)

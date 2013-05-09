@@ -163,6 +163,9 @@ class CLIDbLoader(object):
             self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.BsddbUpgradeRequiredError as msg:
             self.dbstate.no_database()
+        except gen.db.exceptions.BsddbDowngradeRequiredError, msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
             self._errordialog( _("Cannot open database"), str(msg))
         except gen.db.exceptions.BsddbDowngradeError as msg:
             self.dbstate.no_database()
