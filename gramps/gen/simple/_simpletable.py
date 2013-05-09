@@ -266,7 +266,7 @@ class SimpleTable(object):
             if y is None: 
                 return False # no markup for this column
             else:
-                return data
+                return conv_to_unicode_direct(data)
 
     def get_cell_type(self, col):
         """
