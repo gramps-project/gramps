@@ -104,12 +104,12 @@ class SimpleTable(object):
                 retval.append("")
             elif isinstance(item, STRTYPE):
                 if item == "checkbox": 
-                    retval.append("")
+                    retval.append(False)
                     self.set_cell_type(col, "checkbox")
                 else:
                     retval.append(item)
             elif isinstance(item, (int, float)):
-                retval.append(item)
+                retval.append(conv_to_unicode_direct(item))
                 self.row_sort_val(col, item)
             elif isinstance(item, Person):
                 retval.append(self.access.describe(item))
@@ -266,7 +266,7 @@ class SimpleTable(object):
             if y is None: 
                 return False # no markup for this column
             else:
-                return conv_to_unicode_direct(data)
+                return data
 
     def get_cell_type(self, col):
         """
