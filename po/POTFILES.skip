@@ -263,7 +263,6 @@ gramps/gen/utils/test/callback_test.py
 #
 gramps/gen/utils/docgen/__init__.py
 gramps/gen/utils/docgen/csvtab.py
-gramps/gen/utils/docgen/odstab.py
 gramps/gen/utils/docgen/tabbeddoc.py
 #
 # gui - GUI code
