@@ -2,11 +2,12 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009  Brian G. Matherly
+# Copyright (C) 2009       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011       Matt Keenan <matt.keenan@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,6 +73,8 @@ def _get_empty_endnote_numbers(obj):
     return ""
 
 # avoid normal translation!
+# enable deferred translations (see Python docs 22.1.3.4)
+# (these days this is done elsewhere as _T_ but it was done here first)
 ##from gramps.gen.const import GRAMPS_LOCALE as glocale
 ##_ = glocale.translation.gettext
 def _(message): return message
@@ -1391,6 +1394,7 @@ class Narrator(object):
             locale = glocale
         self.__translate_text = locale.translation.gettext
         self.__get_date = locale.get_date
+        self._locale = locale
 
     def set_subject(self, person):
         """
@@ -2244,7 +2248,7 @@ class Narrator(object):
             span = death - birth
             if span and span.is_valid():
                 if span:
-                    age = span
+                    age = span.get_repr(dlocale=self._locale)
                     age_index = _AGE_INDEX
                 else:
                     age = 0
