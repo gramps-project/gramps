@@ -263,7 +263,6 @@ gramps/gen/utils/test/callback_test.py
 #
 gramps/gen/utils/docgen/__init__.py
 gramps/gen/utils/docgen/csvtab.py
-gramps/gen/utils/docgen/odstab.py
 gramps/gen/utils/docgen/tabbeddoc.py
 #
 # gui - GUI code
@@ -385,7 +384,7 @@ gramps/gui/widgets/validatedcomboentry.py
 gramps/gui/widgets/valueaction.py
 gramps/gui/widgets/valuetoolitem.py
 #
-# gui qt
+# gui qt (do not need translation yet)
 #
 gramps/guiQML/grampsqml.py
 gramps/guiQML/__init__.py
@@ -502,7 +501,7 @@ gramps/plugins/rel/rel_sv.py
 gramps/plugins/sidebar/categorysidebar.py
 gramps/plugins/sidebar/__init__.py
 #
-# plugins/tool directory
+# Development tools
 #
 gramps/plugins/tool/dateparserdisplaytest.py
 gramps/plugins/tool/dumpgenderstats.py
@@ -531,7 +530,7 @@ gramps/test/test/test_util_test.py
 gramps/test/test_util.py
 gramps/test/utils_test.py
 #
-#   web
+#   webapp
 #
 gramps/webapp/connection.py
 gramps/webapp/context.py
@@ -555,4 +554,5 @@ gramps/plugins/export/exportgeneweb.glade
 gramps/plugins/export/exportvcalendar.glade
 gramps/plugins/export/exportvcard.glade
 gramps/plugins/tool/check.glade
+# Development tools
 gramps/plugins/tool/phpgedview.glade
