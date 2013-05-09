@@ -1350,13 +1350,17 @@ class Narrator(object):
     Narrator is a class which provides narration text.
     """
 
-    def __init__(self, dbase, verbose=True, use_call_name=False,use_fulldate=False, 
+    def __init__(self, dbase, verbose=True,
+                 use_call_name=False, use_fulldate=False, 
                  empty_date="", empty_place="",
-                 locale=None,
+                 nlocale=glocale,
                  get_endnote_numbers=_get_empty_endnote_numbers):
         """ 
         Initialize the narrator class.
         
+        If nlocale is passed in (a GrampsLocale), then
+        the translated values will be returned instead.
+
         :param dbase: The database that contains the data to be narrated.
         :type dbase: :class:`~gen.db.base,DbBase`
         :param verbose: Specifies whether complete sentences should be used.
@@ -1368,9 +1372,6 @@ class Narrator(object):
         :type empty_date: str
         :param empty_place: String to use when a place is not known.
         :type empty_place: str
-        :param translate_text: A function that returns a translated message 
-            string given a message id (similar to gettext).
-        :type translate_text: callable(str)
         :param get_endnote_numbers: A callable to use for getting a string 
             representing endnote numbers. 
             The function takes a :class:`~gen.lib.CitationBase` instance.
@@ -1378,6 +1379,8 @@ class Narrator(object):
             would represent a reference to an endnote in a document.
         :type get_endnote_numbers: 
             callable( :class:`~gen.lib.CitationBase` )
+        @param nlocale: allow deferred translation of dates and strings
+        @type nlocale: a GrampsLocale instance
         """ 
         self.__db = dbase
         self.__verbose = verbose
@@ -1390,11 +1393,9 @@ class Narrator(object):
         self.__first_name = ""
         self.__first_name_used = False
 
-        if locale is None:
-            locale = glocale
-        self.__translate_text = locale.translation.gettext
-        self.__get_date = locale.get_date
-        self._locale = locale
+        self.__translate_text = nlocale.translation.gettext
+        self.__get_date = nlocale.get_date
+        self._locale = nlocale
 
     def set_subject(self, person):
         """

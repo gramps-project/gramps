@@ -10,7 +10,8 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Vlada Peri\u0107
 # Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011      Tim G L Lyons
+# Copyright (C) 2013      Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -171,7 +172,6 @@ class DetDescendantReport(Report):
         else:
             empty_place = ""
 
-
         # Copy the global NameDisplay so that we don't change application 
         # defaults.
         self._name_display = copy.deepcopy(global_name_display)
@@ -179,13 +179,13 @@ class DetDescendantReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        locale = self.set_locale(get_value('trans'))
+        self._locale = self.set_locale(get_value('trans'))
+
         self.__narrator = Narrator(self.database, self.verbose,
                                    use_call, use_fulldate, 
                                    empty_date, empty_place,
-                                   locale=locale,
+                                   nlocale=self._locale,
                                    get_endnote_numbers=self.endnotes)
-
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
@@ -311,7 +311,7 @@ class DetDescendantReport(Report):
             # it ignores language set for Note type (use locale)
             endnotes.write_endnotes(self.bibli, self.database, self.doc,
                                     printnotes=self.inc_srcnotes,
-                                    trans_text=self._)
+                                    elocale=self._locale)
 
     def write_path(self, person):
         path = []

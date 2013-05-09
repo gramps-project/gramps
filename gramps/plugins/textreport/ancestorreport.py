@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,8 +43,7 @@ _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType
-from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
-                                  StringOption)
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption)
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC, 
                                     PARA_ALIGN_CENTER)
@@ -113,13 +112,10 @@ class AncestorReport(Report):
             self._name_display.set_default_format(name_format)
 
         lang = menu.get_option_by_name('trans').get_value()
-        locale = self.set_locale(lang)
-        self.__narrator = Narrator(self.database,  use_fulldate=True,
-                                   locale=locale)
+        rlocale = self.set_locale(lang)
 
-        title_name = self._name_display.display_formal(self.center_person)
-        title_format = menu.get_option_by_name('title_format').get_value()
-        self.title = self._(title_format) % title_name
+        self.__narrator = Narrator(self.database,  use_fulldate=True,
+                                   nlocale=rlocale)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -190,9 +186,12 @@ class AncestorReport(Report):
         # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
-        mark = IndexMark(self.title, INDEX_TYPE_TOC, 1)
+        name = self._name_display.display_formal(self.center_person)
+        # feature request 2356: avoid genitive form
+        title = self._("Ahnentafel Report for %s") % name
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")
-        self.doc.write_text(self.title, mark)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
     
         # get the entries out of the map, and sort them.
@@ -287,11 +286,6 @@ class AncestorOptions(MenuReportOptions):
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
-
-        title_format_string = _("Ahnentafel Report for %s")
-        title_format = StringOption(_('Title format'), title_format_string)
-        title_format.set_help(_("How the title will be shown."))
-        menu.add_option(category_name, "title_format", title_format)
 
         stdoptions.add_localization_option(menu, category_name)
 
