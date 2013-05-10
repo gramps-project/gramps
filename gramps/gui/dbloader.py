@@ -63,7 +63,9 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       DbVersionError, 
                                       DbEnvironmentError,
                                       BsddbUpgradeRequiredError,
-                                      BsddbDowngradeRequiredError)
+                                      BsddbDowngradeRequiredError,
+                                      PythonUpgradeRequiredError,
+                                      PythonDowngradeError)
 from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from .pluginmanager import GuiPluginManager
@@ -309,13 +311,15 @@ class DbLoader(CLIDbLoader):
         force_schema_upgrade = False
         force_bsddb_upgrade = False
         force_bsddb_downgrade = False
+        force_python_upgrade = False
         try:
             while True:
                 try:
                     db.load(filename, self._pulse_progress, 
                             mode, force_schema_upgrade,
                             force_bsddb_upgrade,
-                            force_bsddb_downgrade)
+                            force_bsddb_downgrade,
+                            force_python_upgrade)
                     db.set_save_path(filename)
                     self.dbstate.change_database(db)
                     break
@@ -329,6 +333,7 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False
+                        force_python_upgrade = False
                     else:
                         self.dbstate.no_database()
                         break
@@ -342,6 +347,7 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
                         force_bsddb_downgrade = False
+                        force_python_upgrade = False
                     else:
                         self.dbstate.no_database()
                         break
@@ -355,6 +361,21 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = True
+                        force_python_upgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except PythonUpgradeRequiredError as msg:
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
+                                       str(msg), 
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = False
+                        force_bsddb_downgrade = False
+                        force_python_upgrade = True
                     else:
                         self.dbstate.no_database()
                         break
@@ -368,6 +389,9 @@ class DbLoader(CLIDbLoader):
         except DbEnvironmentError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
+        except PythonDowngradeError as msg:
+            self.dbstate.no_database()
+            self._warn( _("Cannot open database"), str(msg))
         except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(

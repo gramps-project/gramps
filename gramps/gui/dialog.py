@@ -112,7 +112,7 @@ class QuestionDialog(object):
         if response == Gtk.ResponseType.ACCEPT:
             task()
 
-from display import display_url
+from gramps.gui.display import display_url
 def on_activate_link(label, uri):
     # see aboutdialog.py _show_url()
     display_url(uri)
