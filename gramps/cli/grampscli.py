@@ -55,7 +55,13 @@ from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
 from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
-                                      DbVersionError)
+                                      BsddbDowngradeError, 
+                                      DbVersionError, 
+                                      DbEnvironmentError,
+                                      BsddbUpgradeRequiredError,
+                                      BsddbDowngradeRequiredError,
+                                      PythonUpgradeRequiredError,
+                                      PythonDowngradeError)
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
@@ -158,29 +164,35 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
-        except gen.db.exceptions.DbEnvironmentError as msg:
+        except DbEnvironmentError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.BsddbUpgradeRequiredError as msg:
+        except BsddbUpgradeRequiredError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.BsddbDowngradeRequiredError as msg:
+        except BsddbDowngradeRequiredError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.BsddbDowngradeError as msg:
+        except BsddbDowngradeError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbUpgradeRequiredError as msg:
+        except DbUpgradeRequiredError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
-        except gen.db.exceptions.DbVersionError as msg:
+        except PythonDowngradeError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except PythonUpgradeRequiredError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except DbVersionError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(
                 _("Could not open file: %s") % filename, str(msg))
-        except Errors.DbError as msg:
+        except DbError as msg:
             self.dbstate.no_database()
             self._dberrordialog(msg)
         except Exception:

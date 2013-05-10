@@ -218,3 +218,59 @@ class DbUpgradeRequiredError(Exception):
                  'of your Family Tree.') % \
                  {'oldschema': self.oldschema,
                   'newschema': self.newschema}
+                 
+class PythonDowngradeError(Exception):
+    """
+    Error used to report that the Python version used to create the family tree
+    (i.e. Python3) is of a version that is newer than the current version
+    (i.e.Python2), so the Family Tree cannot be opened
+    """
+    def __init__(self, db_python_version, current_python_version):
+        Exception.__init__(self)
+        self.db_python_version = str(db_python_version)
+        self.current_python_version = str(current_python_version)
+
+    def __str__(self):
+        return _('The Family Tree you are trying to load was created with '
+                 'Python version %(db_python_version)s. This version of Gramps '
+                 'uses Python version %(current_python_version)s.  So you are '
+                 'trying to load '
+                 'data created in a newer format into an older program, and '
+                 'this is bound to fail.\n\n'
+                 'You should start your <b>newer</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
+                 'make a backup</a> of your Family Tree. You can then import '
+                 'this backup into this version of Gramps.') % \
+                 {'db_python_version': self.db_python_version,
+                 'current_python_version': self.current_python_version}
+
+class PythonUpgradeRequiredError(Exception):
+    """
+    Error used to report that the Python version used to create the family tree
+    (i.e. Python2) is earlier than the current Python version (i.e. Python3), so
+    the Family Tree needs to be upgraded..
+    """
+    def __init__(self, db_python_version, current_python_version):
+        Exception.__init__(self)
+        self.db_python_version = str(db_python_version)
+        self.current_python_version = str(current_python_version)
+
+    def __str__(self):
+        return _('The Family Tree you are trying to load is in the Python '
+                 'version %(db_python_version)s format. This version of Gramps '
+                 'uses Python version %(current_python_version)s. Therefore '
+                 'you cannot load this Family Tree without upgrading the '
+                 'Python version of the Family Tree.\n\n'
+                 'If you upgrade then you won\'t be able to use the previous '
+                 'version of Gramps, even if you subsequently '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
+                 'or <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
+                 'your upgraded Family Tree.\n\n'
+                 'Upgrading is a difficult task which could irretrievably '
+                 'corrupt your Family Tree if it is interrupted or fails.\n\n'
+                 'If you have not already made a backup of your Family Tree, '
+                 'then you should start your <b>old</b> version of Gramps and '
+                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">make a backup</a> '
+                 'of your Family Tree.') % \
+                 {'db_python_version': self.db_python_version,
+                 'current_python_version': self.current_python_version}
