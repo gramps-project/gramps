@@ -1,4 +1,5 @@
-# List of source files which do not need to translate.
+# List of source files which do not need to be translated.
+# $Id$
 #
 #   Python files
 #
@@ -50,7 +51,6 @@ gramps/gen/datehandler/_date_sv.py
 gramps/gen/datehandler/_dateutils.py
 gramps/gen/datehandler/_date_zh.py
 gramps/gen/datehandler/_grampslocale.py
-gramps/gen/datehandler/__init__.py
 #
 # gen db API
 #
@@ -195,7 +195,6 @@ gramps/gen/plug/menu/_booleanlist.py
 gramps/gen/plug/menu/_boolean.py
 gramps/gen/plug/menu/_color.py
 gramps/gen/plug/menu/_destination.py
-gramps/gen/plug/menu/_enumeratedlist.py
 gramps/gen/plug/menu/_family.py
 gramps/gen/plug/menu/_filter.py
 gramps/gen/plug/menu/__init__.py
@@ -253,7 +252,6 @@ gramps/gen/utils/config.py
 gramps/gen/utils/debug.py
 gramps/gen/utils/file.py
 gramps/gen/utils/id.py
-gramps/gen/utils/image.py
 gramps/gen/utils/libformatting.py
 gramps/gen/utils/mactrans.py
 gramps/gen/utils/svn.py
@@ -408,7 +406,6 @@ gramps/plugins/tool/toolsdebug.gpr.py
 # plugins/docgen directory
 #
 gramps/plugins/docgen/__init__.py
-gramps/plugins/docgen/latexdoc.py
 #
 # plugins/draw directory
 #
@@ -504,7 +501,6 @@ gramps/plugins/sidebar/__init__.py
 # Development tools
 #
 gramps/plugins/tool/dateparserdisplaytest.py
-gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/__init__.py
 gramps/plugins/tool/phpgedviewconnector.py
 gramps/plugins/tool/populatesources.py
