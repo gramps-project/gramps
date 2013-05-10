@@ -40,7 +40,7 @@ import locale
 import bisect
 from functools import wraps
 import logging
-from sys import maxint, getfilesystemencoding
+from sys import maxint, getfilesystemencoding, version_info
 
 from gen.ggettext import gettext as _
 import config
@@ -232,6 +232,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.has_changed = False
         self.brief_name = None
         self.update_env_version = False
+        self.update_python_version = False
 
     def catch_db_error(func):
         """
@@ -401,6 +402,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             # bsddb version is unknown
             env_version = "Unknown"
+#        _LOG.debug("db version %s, program version %s" % (bsddb_version, bdb_version))
 
         if env_version == "Unknown" or \
             (env_version[0] < bdb_version[0]) or \
@@ -451,6 +453,47 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             # This can't happen
             raise "Comparison between Bsddb version failed"
 
+    def __check_python_version(self, name, force_python_upgrade=False):
+        """
+        The 'pickle' format (may) change with each Python version, see
+        http://docs.python.org/3.2/library/pickle.html#pickle. Code commits
+        21777 and 21778 ensure that when going from python2 to python3, the old
+        format can be read. However, once the data has been written in the
+        python3 format, it will not be possible to go back to pyton2. This check
+        test whether we are changing python versions. If going from 2 to 3 it
+        warns the user, and allows it if he confirms. When going from 3 to 3, an
+        error is raised. Because code for python2 did not write the Python
+        version file, if the file is absent, python2 is assumed.
+        """
+        current_python_version = version_info[0]
+        versionpath = os.path.join(self.path, "pythonversion.txt")
+        if os.path.isfile(versionpath):
+            with open(versionpath, "r") as version_file:
+                db_python_version = int(version_file.read().strip())
+        else:
+            db_python_version = 2
+            
+        if db_python_version == 3 and current_python_version == 2:
+            clear_lock_file(name)
+            raise exceptions.PythonDowngradeError(db_python_version,
+                                                  current_python_version)
+        elif db_python_version == 2 and current_python_version > 2:
+            if not force_python_upgrade:
+                _LOG.debug("Python upgrade required from %s to %s" %
+                           (db_python_version, current_python_version))
+                clear_lock_file(name)
+                raise exceptions.PythonUpgradeRequiredError(db_python_version,
+                                                        current_python_version)
+            # Try to do an upgrade
+            if not self.readonly:
+                _LOG.warning("Python upgrade requested from %s to %s" %
+                             (db_python_version, current_python_version))
+                self.update_python_version = True
+            # Make a backup of the database files anyway 
+            self.__make_zip_backup(name)
+        elif db_python_version == 2 and current_python_version == 2:
+            pass
+    
     @catch_db_error
     def version_supported(self):
         dbversion = self.metadata.get('version', default=0)
@@ -484,7 +527,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     @catch_db_error
     def load(self, name, callback, mode=DBMODE_W, force_schema_upgrade=False,
-             force_bsddb_upgrade=False, force_bsddb_downgrade=False):
+             force_bsddb_upgrade=False, force_bsddb_downgrade=False,
+             force_python_upgrade=False):
 
         if self.__check_readonly(name):
             mode = DBMODE_R
@@ -504,8 +548,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
 
-        self.__check_bdb_version(name, force_bsddb_upgrade,
-                                 force_bsddb_downgrade)
+        # If we re-enter load with force_python_upgrade True, then we have
+        # already checked the bsddb version, and then checked python version,
+        # and are agreeing on the upgrade
+        if not force_python_upgrade:
+            self.__check_bdb_version(name, force_bsddb_upgrade,
+                                     force_bsddb_downgrade)
+        
+        self.__check_python_version(name, force_python_upgrade)
 
         # Set up database environment
         self.env = db.DBEnv()
@@ -615,6 +665,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 version_file.write(str(db.version()))
             _LOG.debug("Updated BDBVERSFN file to %s" % str(db.version()))
 
+        if self.update_python_version:
+            versionpath = os.path.join(name, "pythonversion.txt")
+            with open(versionpath, "w") as version_file:
+                version_file.write(str(version_info[0]))
+            _LOG.debug("Updated python version file to %s" % str(version_info[0]))
+            
         # Here we take care of any changes in the tables related to new code.
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
@@ -2061,6 +2117,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         _LOG.debug("Write bsddb version %s" % str(db.version()))
         with open(versionpath, "w") as version_file:
             version_file.write(str(db.version()))
+
+        versionpath = os.path.join(name, "pythonversion.txt")
+        _LOG.debug("Write python version file to %s" % str(version_info[0]))
+        with open(versionpath, "w") as version_file:
+            version_file.write(str(version_info[0]))
 
         self.metadata.close()
         self.env.close()

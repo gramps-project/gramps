@@ -298,13 +298,15 @@ class DbLoader(CLIDbLoader):
         force_schema_upgrade = False
         force_bsddb_upgrade = False
         force_bsddb_downgrade = False
+        force_python_upgrade = False
         try:
             while True:
                 try:
                     self.dbstate.db.load(filename, self._pulse_progress, 
                                          mode, force_schema_upgrade,
                                          force_bsddb_upgrade,
-                                         force_bsddb_downgrade)
+                                         force_bsddb_downgrade,
+                                         force_python_upgrade)
                     self.dbstate.db.set_save_path(filename)
                     break
                 except gen.db.exceptions.DbUpgradeRequiredError, msg:
@@ -317,6 +319,7 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False
+                        force_python_upgrade = False
                     else:
                         self.dbstate.no_database()
                         break
@@ -330,6 +333,7 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
                         force_bsddb_downgrade = False
+                        force_python_upgrade = False
                     else:
                         self.dbstate.no_database()
                         break
@@ -343,6 +347,21 @@ class DbLoader(CLIDbLoader):
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = True
+                        force_python_upgrade = False
+                    else:
+                        self.dbstate.no_database()
+                        break
+                except gen.db.exceptions.PythonUpgradeRequiredError, msg:
+                    if QuestionDialog2(_("Are you sure you want to upgrade "
+                                         "this Family Tree?"), 
+                                       str(msg), 
+                                       _("I have made a backup,\n"
+                                         "please upgrade my Family Tree"), 
+                                       _("Cancel"), self.uistate.window).run():
+                        force_schema_upgrade = False
+                        force_bsddb_upgrade = False
+                        force_bsddb_downgrade = False
+                        force_python_upgrade = True
                     else:
                         self.dbstate.no_database()
                         break
@@ -356,6 +375,9 @@ class DbLoader(CLIDbLoader):
         except gen.db.exceptions.DbEnvironmentError, msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
+        except gen.db.exceptions.PythonDowngradeError, msg:
+            self.dbstate.no_database()
+            self._warn( _("Cannot open database"), str(msg))
         except OSError, msg:
             self.dbstate.no_database()
             self._errordialog(
