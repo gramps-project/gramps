@@ -1,5 +1,5 @@
-# $Id$
 # List of source files which contain translatable strings.
+# $Id$
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
 gramps/cli/clidbman.py
@@ -8,6 +8,7 @@ gramps/cli/plug/__init__.py
 gramps/cli/user.py
 gramps/gen/config.py
 gramps/gen/const.py
+gramps/gen/datehandler/__init__.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/undoredo.py
@@ -294,6 +295,7 @@ gramps/gen/plug/_options.py
 gramps/gen/plug/_pluginreg.py
 gramps/gen/plug/docbackend/docbackend.py
 gramps/gen/plug/docgen/graphdoc.py
+gramps/gen/plug/menu/_enumeratedlist.py
 gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py
 gramps/gen/plug/report/_paper.py
@@ -307,6 +309,7 @@ gramps/gen/simple/_simpleaccess.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/db.py
 gramps/gen/utils/docgen/odstab.py
+gramps/gen/utils/image.py
 gramps/gen/utils/grampslocale.py
 gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
@@ -502,6 +505,7 @@ gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade
 gramps/plugins/docgen/gtkprint.py
 gramps/plugins/docgen/htmldoc.py
+gramps/plugins/docgen/latexdoc.py
 gramps/plugins/docgen/odfdoc.py
 gramps/plugins/docgen/pdfdoc.py
 gramps/plugins/docgen/psdrawdoc.py
@@ -628,6 +632,7 @@ gramps/plugins/tool/changetypes.py
 gramps/plugins/tool/check.py
 gramps/plugins/tool/desbrowser.glade
 gramps/plugins/tool/desbrowser.py
+gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/eval.glade
 gramps/plugins/tool/eval.py
 gramps/plugins/tool/eventcmp.glade
