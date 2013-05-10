@@ -115,5 +115,5 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
         """
         return 14
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         return len(self.fmap)+1

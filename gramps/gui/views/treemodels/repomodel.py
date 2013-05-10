@@ -115,7 +115,7 @@ class RepositoryModel(FlatBaseModel):
         """
         return 15
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_id(self,data):

@@ -97,7 +97,7 @@ class SourceModel(FlatBaseModel):
         """
         return 8
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_title(self,data):

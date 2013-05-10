@@ -277,6 +277,8 @@ class FlatNodeMap(object):
         iter = Gtk.TreeIter()
         iter.stamp = self.stamp
         ##GTK3: user data may only be an integer, we store the index
+        ##PROBLEM: pygobject 3.8 seems to store 0 as None, we need to correct
+        ##        when using user_data for that!
         iter.user_data = self._hndl2index[handle]
         return iter
 
@@ -327,8 +329,8 @@ class FlatNodeMap(object):
         """
         index = iter.user_data
         if index is None:
-            #Nothing on this level
-            return False
+            #problem in pygobject 3.8, passing 0 stores None
+            index = 0
 
         if self._reverse : 
             index -= 1
@@ -452,7 +454,7 @@ class FlatNodeMap(object):
 # FlatBaseModel
 #
 #-------------------------------------------------------------------------
-class FlatBaseModel(GObject.Object, Gtk.TreeModel):
+class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
@@ -464,7 +466,7 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
                  search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()
-        GObject.GObject.__init__(self)
+        super(FlatBaseModel, self).__init__()
         #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
@@ -713,7 +715,11 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         """
         Get the gramps handle for an iter.
         """
-        index = self.node_map.real_index(iter.user_data)
+        ud = iter.user_data
+        if ud is None:
+            #problem in pygobject 3.8, passing 0 stores None
+            ud = 0
+        index = self.node_map.real_index(ud)
         return self.node_map.get_handle(index)
 
     # The following implement the public interface of Gtk.TreeModel
@@ -727,9 +733,13 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         return Gtk.TreeModelFlags.LIST_ONLY #| Gtk.TreeModelFlags.ITERS_PERSIST
 
     def do_get_n_columns(self):
+        """Internal method. Don't inherit"""
+        return self.on_get_n_columns()
+
+    def on_get_n_columns(self):
         """
         Return the number of columns. Must be implemented in the child objects
-        See Gtk.TreeModel
+        See Gtk.TreeModel. Inherit as needed
         """
         #print 'do_get_n_col'
         raise NotImplementedError
@@ -785,8 +795,12 @@ class FlatBaseModel(GObject.Object, Gtk.TreeModel):
         See Gtk.TreeModel. 
         col is the model column that is needed, not the visible column!
         """
-        #print 'do_get_val', iter, iter.user_data, col
-        handle = self.node_map._index2hndl[iter.user_data][1]
+        #print ('do_get_val', iter, iter.user_data, col)
+        ud = iter.user_data
+        if ud is None:
+            #problem in pygobject 3.8, passing 0 stores None
+            ud = 0
+        handle = self.node_map._index2hndl[ud][1]
         val = self._get_value(handle, col)
         #print 'val is', val, type(val)
 
