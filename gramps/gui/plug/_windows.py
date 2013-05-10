@@ -845,7 +845,7 @@ class ToolManagedWindowBase(ManagedWindow):
     def write_to_page(self, page, text):
         buffer = page.get_buffer()
         mark = buffer.create_mark("end", buffer.get_end_iter())
-        self.results_text.scroll_to_mark(mark, 0.0, True, 0, 0)
+        page.scroll_to_mark(mark, 0.0, True, 0, 0)
         buffer.insert_at_cursor(text)
         buffer.delete_mark_by_name("end")        
 
