@@ -185,7 +185,7 @@ class PeopleBaseModel(object):
             self.lru_bdate.clear()
             self.lru_ddate.clear()
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         """ Return the number of columns in the model """
         return len(self.fmap)+1
 

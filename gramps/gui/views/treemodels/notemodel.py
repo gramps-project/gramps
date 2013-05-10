@@ -97,7 +97,7 @@ class NoteModel(FlatBaseModel):
         """
         return 6
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         """Return the column number of the Note tab."""
         return len(self.fmap) + 1
 

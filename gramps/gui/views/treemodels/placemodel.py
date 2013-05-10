@@ -125,7 +125,7 @@ class PlaceBaseModel(object):
         self.fmap = None
         self.smap = None
 
-    def do_get_n_columns(self):
+    def on_get_n_columns(self):
         return len(self.fmap)+1
 
     def column_place_name(self, data):

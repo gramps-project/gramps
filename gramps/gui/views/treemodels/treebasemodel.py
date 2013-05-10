@@ -235,7 +235,7 @@ class NodeMap(object):
 # TreeBaseModel
 #
 #-------------------------------------------------------------------------
-class TreeBaseModel(GObject.Object, Gtk.TreeModel):
+class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
     """
     The base class for all hierarchical treeview models.  The model defines the
     mapping between a unique node and a path. Paths are defined by a tuple.
@@ -288,7 +288,7 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
                     group_can_have_handle = False,
                     has_secondary=False):
         cput = time.clock()
-        GObject.GObject.__init__(self)
+        super(TreeBaseModel, self).__init__()
         #We create a stamp to recognize invalid iterators. From the docs:
         #Set the stamp to be equal to your model's stamp, to mark the 
         #iterator as valid. When your model's structure changes, you should 
@@ -867,6 +867,10 @@ class TreeBaseModel(GObject.Object, Gtk.TreeModel):
         return 0 #Gtk.TreeModelFlags.ITERS_PERSIST
 
     def do_get_n_columns(self):
+        """Internal method. Don't inherit"""
+        return self.on_get_n_columns()
+
+    def on_get_n_columns(self):
         """
         Return the number of columns. Must be implemented in the child objects
         See Gtk.TreeModel
