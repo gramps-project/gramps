@@ -632,7 +632,6 @@ gramps/plugins/tool/changetypes.py
 gramps/plugins/tool/check.py
 gramps/plugins/tool/desbrowser.glade
 gramps/plugins/tool/desbrowser.py
-gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/eval.glade
 gramps/plugins/tool/eval.py
 gramps/plugins/tool/eventcmp.glade

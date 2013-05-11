@@ -501,6 +501,7 @@ gramps/plugins/sidebar/__init__.py
 # Development tools
 #
 gramps/plugins/tool/dateparserdisplaytest.py
+gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/__init__.py
 gramps/plugins/tool/phpgedviewconnector.py
 gramps/plugins/tool/populatesources.py
