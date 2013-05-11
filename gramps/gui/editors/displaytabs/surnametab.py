@@ -346,6 +346,7 @@ class SurnameTab(EmbeddedList):
             path = self.model.get_path(node).get_indices()[0]
             nccol = self.curr_col+1
             if  nccol < 4:
+                self.curr_celle.editing_done()
                 self.tree.set_cursor_on_cell(Gtk.TreePath((path,)),
                                          focus_column=self.columns[nccol],
                                          focus_cell=None,
@@ -354,6 +355,7 @@ class SurnameTab(EmbeddedList):
                 #go to next line if there is one
                 if path < len(self.obj.get_surname_list()):
                     newpath = Gtk.TreePath((path+1,))
+                    self.curr_celle.editing_done()
                     self.selection.select_path(newpath)
                     self.tree.set_cursor_on_cell(newpath,
                                      focus_column=self.columns[0],
