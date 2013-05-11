@@ -1190,12 +1190,18 @@ class RelationshipCalculator(object):
         return only_birth
 
     def get_one_relationship(self, db, orig_person, other_person, 
-                             extra_info=False):
+                             extra_info=False, olocale=glocale):
         """
         returns a string representing the most relevant relationship between 
         the two people. If extra_info = True, extra information is returned:
         (relation_string, distance_common_orig, distance_common_other)
+
+        If olocale is passed in (a GrampsLocale) that language will be used.
+
+        @param olocale: allow selection of the relationship language
+        @type olocale: a GrampsLocale instance
         """
+        self._locale = olocale
         stop = False
         if orig_person is None:
             rel_str = _("undefined")
@@ -1673,64 +1679,68 @@ class RelationshipCalculator(object):
         if not spouse_type:
             return ''
 
+        trans_text = _
+        if hasattr(self, '_locale') and self._locale != glocale:
+            trans_text = self._locale.translation.sgettext
+
         if spouse_type == self.PARTNER_MARRIED:
             if gender == MALE:
-                return _("husband")
+                return trans_text("husband")
             elif gender == FEMALE:
-                return _("wife")
+                return trans_text("wife")
             else:
-                return _("gender unknown|spouse")
+                return trans_text("gender unknown|spouse")
         elif spouse_type == self.PARTNER_EX_MARRIED:
             if gender == MALE:
-                return _("ex-husband")
+                return trans_text("ex-husband")
             elif gender == FEMALE:
-                return _("ex-wife")
+                return trans_text("ex-wife")
             else:
-                return _("gender unknown|ex-spouse")
+                return trans_text("gender unknown|ex-spouse")
         elif spouse_type == self.PARTNER_UNMARRIED:
             if gender == MALE:
-                return _("unmarried|husband")
+                return trans_text("unmarried|husband")
             elif gender == FEMALE:
-                return _("unmarried|wife")
+                return trans_text("unmarried|wife")
             else:
-                return _("gender unknown,unmarried|spouse")
+                return trans_text("gender unknown,unmarried|spouse")
         elif spouse_type == self.PARTNER_EX_UNMARRIED:
             if gender == MALE:
-                return _("unmarried|ex-husband")
+                return trans_text("unmarried|ex-husband")
             elif gender == FEMALE:
-                return _("unmarried|ex-wife")
+                return trans_text("unmarried|ex-wife")
             else:
-                return _("gender unknown,unmarried|ex-spouse")
+                return trans_text("gender unknown,unmarried|ex-spouse")
         elif spouse_type == self.PARTNER_CIVIL_UNION:
             if gender == MALE:
-                return _("male,civil union|partner")
+                return trans_text("male,civil union|partner")
             elif gender == FEMALE:
-                return _("female,civil union|partner")
+                return trans_text("female,civil union|partner")
             else:
-                return _("gender unknown,civil union|partner")
+                return trans_text("gender unknown,civil union|partner")
         elif spouse_type == self.PARTNER_EX_CIVIL_UNION:
             if gender == MALE:
-                return _("male,civil union|former partner")
+                return trans_text("male,civil union|former partner")
             elif gender == FEMALE:
-                return _("female,civil union|former partner")
+                return trans_text("female,civil union|former partner")
             else:
-                return _("gender unknown,civil union|former partner")
+                return trans_text("gender unknown,civil union|former partner")
         elif spouse_type == self.PARTNER_UNKNOWN_REL:
             if gender == MALE:
-                return _("male,unknown relation|partner")
+                return trans_text("male,unknown relation|partner")
             elif gender == FEMALE:
-                return _("female,unknown relation|partner")
+                return trans_text("female,unknown relation|partner")
             else:
-                return _("gender unknown,unknown relation|partner")
+                return trans_text("gender unknown,unknown relation|partner")
         else:
             # here we have spouse_type == self.PARTNER_EX_UNKNOWN_REL
             #   or other not catched types
             if gender == MALE:
-                return _("male,unknown relation|former partner")
+                return trans_text("male,unknown relation|former partner")
             elif gender == FEMALE:
-                return _("female,unknown relation|former partner")
+                return trans_text("female,unknown relation|former partner")
             else:
-                return _("gender unknown,unknown relation|former partner")
+                return trans_text("gender unknown,unknown relation|former partner")
 
     def connect_db_signals(self, dbstate):
         """ We can save work by storing a map, however, if database changes
