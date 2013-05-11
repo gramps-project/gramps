@@ -170,7 +170,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 refer notes.
         :rtype: list
         """
-        return self.attribute_list + self.citation_list
+        return self.attribute_list
 
     def get_referenced_handles(self):
         """
