@@ -7466,6 +7466,8 @@ class NavWebReport(Report):
                 self._add_media(media_handle, Citation, citation_handle)
 
     def _add_media(self, media_handle, bkref_class, bkref_handle):
+        if self.obj_dict[MediaObject].get(media_handle):
+            return
         media = self.database.get_object_from_handle(media_handle)
         media_name = "Media"
         if self.inc_gallery:
