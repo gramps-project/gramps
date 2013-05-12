@@ -5912,9 +5912,10 @@ msgstr "Le style utilisé pour les notes de références en fin d'ouvrage."
 msgid "Endnotes"
 msgstr "Références bibliographiques"
 
+# 'Traduction' ou 'langue' pour les rapports ?
 #: ../gramps/gen/plug/report/stdoptions.py:48
 msgid "Translation"
-msgstr "Traduction "
+msgstr "Langue "
 
 #: ../gramps/gen/plug/report/stdoptions.py:54
 msgid "The translation to be used for the report."
