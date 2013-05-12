@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-03 11:22+0200\n"
-"PO-Revision-Date: 2013-05-03 14:33+0200\n"
+"POT-Creation-Date: 2013-05-12 01:50+0200\n"
+"PO-Revision-Date: 2013-05-12 03:04+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -80,7 +80,7 @@ msgstr "Lesezeichen organisieren"
 #. Handle
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
-#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:450
+#: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:451
 #: ../src/gui/filtereditor.py:765 ../src/gui/filtereditor.py:918
 #: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
@@ -662,11 +662,11 @@ msgstr "%(east_longitude)s O"
 msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s W"
 
-#: ../src/QuestionDialog.py:193
+#: ../src/QuestionDialog.py:201
 msgid "Error detected in database"
 msgstr "In der Datenbank wurde ein Fehler entdeckt"
 
-#: ../src/QuestionDialog.py:194
+#: ../src/QuestionDialog.py:202
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
 "by running the \"Check and Repair Database\" tool.\n"
@@ -682,11 +682,11 @@ msgstr ""
 "schreibe bitte einen Fehlerbericht auf http://bugs.gramps-project.org\n"
 "\n"
 
-#: ../src/QuestionDialog.py:205 ../src/cli/grampscli.py:93
+#: ../src/QuestionDialog.py:213 ../src/cli/grampscli.py:93
 msgid "Low level database corruption detected"
 msgstr "Interner Datenbankfehler entdeckt"
 
-#: ../src/QuestionDialog.py:206 ../src/cli/grampscli.py:95
+#: ../src/QuestionDialog.py:214 ../src/cli/grampscli.py:95
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
@@ -696,11 +696,11 @@ msgstr ""
 "festgestellt. Dies kann mit dem Stammbaumverwaltung repariert werden. Die "
 "Datenbank wählen und auf die Reparatur-Schaltfläche klicken"
 
-#: ../src/QuestionDialog.py:322 ../src/gui/utils.py:311
+#: ../src/QuestionDialog.py:335 ../src/gui/utils.py:311
 msgid "Attempt to force closing the dialog"
 msgstr "Versuch, das Schließen des Dialogs zu erzwingen"
 
-#: ../src/QuestionDialog.py:323
+#: ../src/QuestionDialog.py:336
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -931,7 +931,7 @@ msgstr "Benutzen_der_Zwischenablage"
 msgid "Unavailable"
 msgstr "Nicht verfügbar"
 
-#: ../src/ScratchPad.py:293 ../src/gui/configure.py:451
+#: ../src/ScratchPad.py:293 ../src/gui/configure.py:452
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
 #: ../src/plugins/textreport/FamilyGroup.py:324
@@ -947,7 +947,7 @@ msgid "Location"
 msgstr "Ort"
 
 #. 0 this order range above
-#: ../src/ScratchPad.py:330 ../src/gui/configure.py:481
+#: ../src/ScratchPad.py:330 ../src/gui/configure.py:482
 #: ../src/gui/filtereditor.py:292 ../src/gui/editors/editlink.py:81
 #: ../src/plugins/gramplet/QuickViewGramplet.py:107
 #: ../src/plugins/quickview/FilterByName.py:150
@@ -962,7 +962,7 @@ msgid "Event"
 msgstr "Ereignis"
 
 #. 5
-#: ../src/ScratchPad.py:357 ../src/gui/configure.py:473
+#: ../src/ScratchPad.py:357 ../src/gui/configure.py:474
 #: ../src/gui/filtereditor.py:293 ../src/gui/editors/editlink.py:86
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
@@ -995,7 +995,7 @@ msgstr "Ort"
 #. ###############################
 #. 3
 #: ../src/ScratchPad.py:384 ../src/ToolTips.py:161
-#: ../src/gen/plug/docgen/graphdoc.py:243 ../src/gui/configure.py:485
+#: ../src/gen/plug/docgen/graphdoc.py:243 ../src/gui/configure.py:486
 #: ../src/gui/filtereditor.py:297 ../src/gui/editors/editlink.py:84
 #: ../src/gui/editors/editmedia.py:88 ../src/gui/editors/editmedia.py:171
 #: ../src/gui/editors/editmediaref.py:133
@@ -1039,7 +1039,7 @@ msgid "Family Attribute"
 msgstr "Familiäres Attribut"
 
 #: ../src/ScratchPad.py:480 ../src/gen/lib/notetype.py:84
-#: ../src/gui/configure.py:477 ../src/gui/filtereditor.py:298
+#: ../src/gui/configure.py:478 ../src/gui/filtereditor.py:298
 #: ../src/gui/editors/editcitation.py:140
 #: ../src/gui/editors/editcitation.py:146
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
@@ -1067,11 +1067,11 @@ msgid "Event ref"
 msgstr "Ereignisref."
 
 #. show surname and first name
-#: ../src/ScratchPad.py:577 ../src/Utils.py:1339 ../src/gui/configure.py:536
-#: ../src/gui/configure.py:538 ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542 ../src/gui/configure.py:545
-#: ../src/gui/configure.py:546 ../src/gui/configure.py:547
-#: ../src/gui/configure.py:548 ../src/gui/editors/displaytabs/surnametab.py:76
+#: ../src/ScratchPad.py:577 ../src/Utils.py:1339 ../src/gui/configure.py:537
+#: ../src/gui/configure.py:539 ../src/gui/configure.py:541
+#: ../src/gui/configure.py:543 ../src/gui/configure.py:546
+#: ../src/gui/configure.py:547 ../src/gui/configure.py:548
+#: ../src/gui/configure.py:549 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:88 ../src/gui/plug/_guioptions.py:1436
 #: ../src/plugins/drawreport/StatisticsChart.py:318
 #: ../src/plugins/export/ExportCsv.py:336
@@ -1084,7 +1084,7 @@ msgid "Surname"
 msgstr "Familienname"
 
 #: ../src/ScratchPad.py:593 ../src/ScratchPad.py:598
-#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:994
+#: ../src/gen/plug/report/_constants.py:56 ../src/gui/configure.py:995
 #: ../src/plugins/textreport/CustomBookText.py:117
 #: ../src/plugins/textreport/TagReport.py:393
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:96
@@ -1138,7 +1138,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:469
+#: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:470
 #: ../src/gui/filtereditor.py:290 ../src/gui/grampsgui.py:134
 #: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
@@ -1176,7 +1176,7 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:471
+#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:472
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:487 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:503
@@ -1197,7 +1197,7 @@ msgid "Family"
 msgstr "Familie"
 
 #. 7
-#: ../src/ScratchPad.py:750 ../src/gui/configure.py:475
+#: ../src/ScratchPad.py:750 ../src/gui/configure.py:476
 #: ../src/gui/filtereditor.py:294 ../src/gui/editors/editlink.py:88
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
@@ -1214,7 +1214,7 @@ msgid "Source"
 msgstr "Quelle"
 
 #. 6
-#: ../src/ScratchPad.py:777 ../src/ToolTips.py:128 ../src/gui/configure.py:483
+#: ../src/ScratchPad.py:777 ../src/ToolTips.py:128 ../src/gui/configure.py:484
 #: ../src/gui/filtereditor.py:296 ../src/gui/editors/editlink.py:87
 #: ../src/gui/editors/editrepository.py:67
 #: ../src/gui/editors/editrepository.py:69
@@ -1303,7 +1303,7 @@ msgstr "Wert"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
-#: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1156
+#: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1171
 msgid "Family Tree"
 msgstr "Stammbaum"
 
@@ -1563,8 +1563,7 @@ msgid ""
 "supported by ICU: using en_GB"
 msgstr ""
 "Weder die Sprache und Land Kombination \"%s\" noch die Sprache %s werden von "
-"ICU "
-"unterstützt: verwende en_GB"
+"ICU unterstützt: verwende en_GB"
 
 #: ../src/Utils.py:319
 msgid "PyICU not available: sorting may be incorrect"
@@ -1693,13 +1692,13 @@ msgid "Person|TITLE"
 msgstr "TITEL"
 
 #: ../src/Utils.py:1338 ../src/gen/display/name.py:327
-#: ../src/gui/configure.py:536 ../src/gui/configure.py:538
-#: ../src/gui/configure.py:543 ../src/gui/configure.py:545
-#: ../src/gui/configure.py:547 ../src/gui/configure.py:548
-#: ../src/gui/configure.py:549 ../src/gui/configure.py:550
-#: ../src/gui/configure.py:552 ../src/gui/configure.py:553
-#: ../src/gui/configure.py:554 ../src/gui/configure.py:555
-#: ../src/gui/configure.py:556 ../src/gui/configure.py:557
+#: ../src/gui/configure.py:537 ../src/gui/configure.py:539
+#: ../src/gui/configure.py:544 ../src/gui/configure.py:546
+#: ../src/gui/configure.py:548 ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550 ../src/gui/configure.py:551
+#: ../src/gui/configure.py:553 ../src/gui/configure.py:554
+#: ../src/gui/configure.py:555 ../src/gui/configure.py:556
+#: ../src/gui/configure.py:557 ../src/gui/configure.py:558
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "Given"
@@ -1709,10 +1708,10 @@ msgstr "Vorname"
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1339 ../src/gui/configure.py:543
-#: ../src/gui/configure.py:550 ../src/gui/configure.py:552
-#: ../src/gui/configure.py:553 ../src/gui/configure.py:554
-#: ../src/gui/configure.py:555 ../src/gui/configure.py:556
+#: ../src/Utils.py:1339 ../src/gui/configure.py:544
+#: ../src/gui/configure.py:551 ../src/gui/configure.py:553
+#: ../src/gui/configure.py:554 ../src/gui/configure.py:555
+#: ../src/gui/configure.py:556 ../src/gui/configure.py:557
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
@@ -1724,9 +1723,9 @@ msgstr "Rufname"
 msgid "Name|CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1341 ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542 ../src/gui/configure.py:545
-#: ../src/gui/configure.py:546 ../src/gui/configure.py:552
+#: ../src/Utils.py:1341 ../src/gui/configure.py:541
+#: ../src/gui/configure.py:543 ../src/gui/configure.py:546
+#: ../src/gui/configure.py:547 ../src/gui/configure.py:553
 msgid "Name|Common"
 msgstr "Üblich"
 
@@ -1742,11 +1741,11 @@ msgstr "Initialen"
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1343 ../src/gui/configure.py:536
-#: ../src/gui/configure.py:538 ../src/gui/configure.py:540
-#: ../src/gui/configure.py:542 ../src/gui/configure.py:543
-#: ../src/gui/configure.py:548 ../src/gui/configure.py:550
-#: ../src/gui/configure.py:555 ../src/gui/configure.py:557
+#: ../src/Utils.py:1343 ../src/gui/configure.py:537
+#: ../src/gui/configure.py:539 ../src/gui/configure.py:541
+#: ../src/gui/configure.py:543 ../src/gui/configure.py:544
+#: ../src/gui/configure.py:549 ../src/gui/configure.py:551
+#: ../src/gui/configure.py:556 ../src/gui/configure.py:558
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:180 ../src/glade/editperson.glade.h:8
 msgid "Suffix"
@@ -1790,7 +1789,7 @@ msgid "PRIMARY[CON]"
 msgstr "PRIMÄR[ÜBL]"
 
 #: ../src/Utils.py:1348 ../src/gen/lib/nameorigintype.py:86
-#: ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550
 msgid "Patronymic"
 msgstr "Patronymikon"
 
@@ -1822,7 +1821,7 @@ msgstr "Patronymikon[übl]"
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYMIKON[ÜBL]"
 
-#: ../src/Utils.py:1352 ../src/gui/configure.py:557
+#: ../src/Utils.py:1352 ../src/gui/configure.py:558
 msgid "Rawsurnames"
 msgstr "Familiennamen"
 
@@ -1849,8 +1848,8 @@ msgid "PREFIX"
 msgstr "PRÄFIX"
 
 #: ../src/Utils.py:1355 ../src/gen/lib/attrtype.py:71
-#: ../src/gui/configure.py:539 ../src/gui/configure.py:541
-#: ../src/gui/configure.py:546 ../src/gui/configure.py:553
+#: ../src/gui/configure.py:540 ../src/gui/configure.py:542
+#: ../src/gui/configure.py:547 ../src/gui/configure.py:554
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Spitzname"
@@ -2383,7 +2382,7 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1091
+#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1106
 msgid "Never"
 msgstr "Nie"
 
@@ -2398,7 +2397,7 @@ msgstr "Gesperrt durch %s"
 msgid "WARNING: %s"
 msgstr "ACHTUNG: %s"
 
-#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:216
+#: ../src/cli/grampscli.py:83 ../src/cli/grampscli.py:225
 #, python-format
 msgid "ERROR: %s"
 msgstr "FEHLER: %s"
@@ -2414,39 +2413,41 @@ msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/cli/grampscli.py:159 ../src/cli/grampscli.py:162
 #: ../src/cli/grampscli.py:165 ../src/cli/grampscli.py:168
-#: ../src/cli/grampscli.py:171 ../src/gui/dbloader.py:332
-#: ../src/gui/dbloader.py:335 ../src/gui/dbloader.py:338
+#: ../src/cli/grampscli.py:171 ../src/cli/grampscli.py:174
+#: ../src/cli/grampscli.py:177 ../src/cli/grampscli.py:180
+#: ../src/gui/dbloader.py:371 ../src/gui/dbloader.py:374
+#: ../src/gui/dbloader.py:377 ../src/gui/dbloader.py:380
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
-#: ../src/cli/grampscli.py:175 ../src/gui/dbloader.py:188
-#: ../src/gui/dbloader.py:342
+#: ../src/cli/grampscli.py:184 ../src/gui/dbloader.py:188
+#: ../src/gui/dbloader.py:384
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
 
-#: ../src/cli/grampscli.py:228
+#: ../src/cli/grampscli.py:237
 msgid "Could not load a recent Family Tree."
 msgstr "Kann letzten Stammbaum nicht laden."
 
-#: ../src/cli/grampscli.py:229
+#: ../src/cli/grampscli.py:238
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Stammbaum existiert nicht, weil er gelöscht wurde."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:305
+#: ../src/cli/grampscli.py:314
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Fehler gefunden: %s"
 
-#: ../src/cli/grampscli.py:308 ../src/cli/grampscli.py:319
+#: ../src/cli/grampscli.py:317 ../src/cli/grampscli.py:328
 #, python-format
 msgid "  Details: %s"
 msgstr "  Details: %s"
 
 #. Convert error message to file system encoding before print
-#: ../src/cli/grampscli.py:315
+#: ../src/cli/grampscli.py:324
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Fehler gefunden in Argumentanalyse: %s"
@@ -2551,11 +2552,11 @@ msgstr "Entferne Mutter aus der Familie"
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
 "\n"
-"This Family tree is schema version %(tree_vers)s, and this version of Gramps "
+"This Family Tree is schema version %(tree_vers)s, and this version of Gramps "
 "supports versions %(min_vers)s to %(max_vers)s\n"
 "\n"
 "Please upgrade to the corresponding version or use XML for porting data "
-"between different database versions."
+"between different schema versions."
 msgstr ""
 "Die Schema Version wird nicht von dieser Gramps Version unterstützt.\n"
 "\n"
@@ -2563,58 +2564,87 @@ msgstr ""
 "unterstützt Versionen %(min_vers)s bis %(max_vers)s\n"
 "\n"
 "Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
-"zwischen verschiedenen Datenbankversionen zu portieren."
+"zwischen verschiedenen Schema Versionen zu portieren."
 
 #: ../src/gen/db/exceptions.py:103
 #, python-format
 msgid ""
-"Gramps stores its data in a Berkeley Database. The family tree you try to "
-"load was created with version %(env_version)s of the Berkeley DB. However, "
-"the Gramps version in use right now employs version %(bdb_version)s of the "
-"Berkeley DB. So you are trying to load data created in a newer format into "
-"an older program; this is bound to fail. The right approach in this case is "
-"to use XML export and import. So try to open the family tree on that "
-"computer with that software that created the family tree, export it to XML "
-"and load that XML into the version of Gramps you intend to use."
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. So you are trying to load data created in a newer format "
+"into an older program, and this is bound to fail.\n"
+"\n"
+"You should start your <b>newer</b> version of Gramps and <a href=\"http://"
+"www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">make a "
+"backup</a> of your Family Tree. You can then import this backup into this "
+"version of Gramps."
 msgstr ""
-"Gramps speichert seine Daten in einer Berkeley Datenbank. Der Stammbaum, den "
-"du versuchst zu öffnen, wurde mit Version  %(env_version)s der Berkeley DB "
-"erstellt. Jedoch verwendet diese Gramps Version die Version  %(bdb_version)s "
-"der Berkeley DB. Du versuchst Daten, die in einem neueren Format erstellt "
-"wurden in einem älteren Programm zu laden; das muss fehlschlagen. Das "
-"richtige Vorgehen in solch einem Fall ist die Verwendung des XML Ex- und "
-"Import. Also versuch den Stammbaum auf dem Rechner zu öffnen auf dem du ihn "
-"erstellt hast, exportiere ihn nach XML und lade diese XML Datei in die "
-"Version von Gramps, die du verwenden möchtest."
+"Der Stammbaum, den du versuchst zu laden, befindet sich in dem BSD Version "
+"%(env_version)s Format. Diese Gramps Version verwendet BSDB Version "
+"%(bdb_version)s. Du versuchst also Daten die in einem neueren Format erstellt "
+"wurden mit einem älteren Programm zu laden und dies muss schief gehen..\n"
+"\n"
+"Du solltest deine <b>neuere</b> Gramps Version starten und <a href=\"http://"
+"www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">eine "
+"Sicherung</a> von deinem Stammbaum zu erstellen. Du kannst dann die Sicherung "
+"in dieser Gramps Version importieren."
 
-#: ../src/gen/db/exceptions.py:127
+#: ../src/gen/db/exceptions.py:128
 #, python-format
 msgid ""
-"The BSDDB version of the Family Tree you are trying to open needs to be "
-"upgraded from %(env_version)s to %(bdb_version)s.\n"
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. So you are trying to load data created in a newer format "
+"into an older program. In this particular case, the difference is very "
+"small, so it may work.\n"
 "\n"
-"This probably means that the Family Tree was created with an old version of "
-"Gramps. Opening the tree with this version of Gramps may irretrievably "
-"corrupt your tree. You are strongly advised to backup your tree before "
-"proceeding, see: \n"
-"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
-"\n"
-"If you have made a backup, then you can get Gramps to try to open the tree "
-"and upgrade it"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>newer</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
 msgstr ""
-"Die BSDDB Version des Stammbaum den du versuchst zu öffnen, muss "
-"aktualisiert werden von %(env_version)s auf %(bdb_version)s.\n"
+"Der Stammbaum, den du versuchst zu laden, befindet sich im BSDDB Version "
+"%(env_version)s Format. Diese Gramps Version verwendet BSDDB Version "
+"%(bdb_version)s. Du versuchst also Daten die in einem neueren Format erstellt "
+"wurden mit einem älteren Programm zu laden und dies muss schief gehen..\n"
 "\n"
-"Dies bedeutet wahrscheinlich, das der Stammbaum mit einer älteren Gramps "
-"Version erstellt wurde. Das Öffnen des Baums mit dieser Gramps Version "
-"könnte ihn irreparabel beschädigen. Es wird dir dringend empfohlen den "
-"Stammbaum zu sichern, bevor du fortfährst. siehe:\n"
-"http://www.gramps-project.org/wiki/index.php?title=How_to_mnake_a_backup\n"
-"\n"
-"Wenn du eine Sicherung erstellt hast, dann kannst du versuchen den Stammbaum "
-"mit Gramps zu öffnen und zu aktualisieren"
+"Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, "
+"solltest du deine <b>neue</b> Version von Gramps starten und <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
+"\">eine Sicherung</a> von deinem Stammbaum erstellen."
 
-#: ../src/gen/db/exceptions.py:150
+#: ../src/gen/db/exceptions.py:152
+#, python-format
+msgid ""
+"The Family Tree you are trying to load is in the Bsddb version "
+"%(env_version)s format. This version of Gramps uses Bsddb version "
+"%(bdb_version)s. Therefore you cannot load this Family Tree without "
+"upgrading the Bsddb version of the Family Tree.\n"
+"\n"
+"Opening the Family Tree with this version of Gramps might irretrievably "
+"corrupt your Family Tree. You are strongly advised to backup your Family "
+"Tree.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
+msgstr ""
+"Der Stammbaum, den du versuchst zu laden, befindet sich im BSDDB Version "
+"%(env_version)s Format. Diese Gramps Version verwendet BSDDB Version "
+"%(bdb_version)s. Daher kannst du diesen Stammbaum nicht laden "
+"ohne die BSDDB Version des Stammbaum zu aktualisieren.\n"
+"\n"
+"Das Öffnen des Stammbaum mit dieser Gramps Version kann den Stammbaum "
+"irreparabel beschädigen. Es wird dir dringend empfohlen deinen Stammbaum zu "
+"sichern..\n"
+"\n"
+"Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, "
+"solltest du deine <b>alte</b> Version von Gramps starten und <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
+"\">eine Sicherung</a> von deinem Stammbaum erstellen."
+
+#: ../src/gen/db/exceptions.py:177
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2638,16 +2668,120 @@ msgstr ""
 "importiere die XML Datei. Alternative, es kann möglich sein deine Datenbank "
 "zu aktualisieren."
 
-#: ../src/gen/db/exceptions.py:173
+#: ../src/gen/db/exceptions.py:202
+#, python-format
 msgid ""
-"You cannot open this database without upgrading it.\n"
-"If you upgrade then you won't be able to use previous versions of Gramps.\n"
-"You might want to make a backup copy first."
+"The Family Tree you are trying to load is in the schema version "
+"%(oldschema)s format. This version of Gramps uses schema version "
+"%(newschema)s. Therefore you cannot load this Family Tree without upgrading "
+"the schema version of the Family Tree.\n"
+"\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently <a href=\"http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded "
+"Family Tree.\n"
+"\n"
+"Upgrading is a difficult task which could irretrievably corrupt your Family "
+"Tree if it is interrupted or fails.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
 msgstr ""
-"Diese Datenbank kann nicht geöffnet werden, ohne sie zu aktualisieren.\n"
-"Wenn du aktualisierst, dann kannst du die vorigen Versionen von Gramps nicht "
-"mehr benutzen.\n"
-"Du solltest vorher eine Sicherung erstellen.."
+"Der Stammbaum, den du versuchst zu laden, befindet sich im Schema Version "
+"%(oldschema)s Format. Diese Gramps Version verwendet Python Version "
+"%(newschema)s. Daher kannst du diesen Stammbaum nicht laden "
+"ohne die Schema Version des Stammbaum zu aktualisieren.\n"
+"\n"
+"Wenn du aktualisierst, kannst du anschließend die vorhergehende Version von "
+"Gramps nicht mehr verwenden, auch wenn du hinterher  deinen aktualisierten "
+"Stammbaum<a href=\"http://www.gramps-project.org/wiki/index.php?title=De:"
+"Gramps_4.0_Wiki_Handbuch_-_Stammbäume_Verwalten#Einen_Stammbaum_sichern"
+"\">sicherst</a> oder <a href=\"http://www.gramps-project.org/wiki/index.php?"
+"title=De:Gramps_4.0_Wiki_Handbuch_-"
+"_Stammbäume_Verwalten#Im_Gramps_Format_exportieren\">exportierst</a> .\n"
+"\n"
+"Aktualisieren ist ein schwieriger Vorgang der deinen Stammbaum irreparabel "
+"beschädigen kann wenn es unterbrochen wird oder fehlschlägt.\n"
+"\n"
+"Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, "
+"solltest du deine <b>alte</b> Version von Gramps starten und <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
+"\">eine Sicherung</a> von deinem Stammbaum erstellen."
+
+#: ../src/gen/db/exceptions.py:233
+#, python-format
+msgid ""
+"The Family Tree you are trying to load was created with Python version "
+"%(db_python_version)s. This version of Gramps uses Python version "
+"%(current_python_version)s.  So you are trying to load data created in a "
+"newer format into an older program, and this is bound to fail.\n"
+"\n"
+"You should start your <b>newer</b> version of Gramps and <a href=\"http://"
+"www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">make a "
+"backup</a> of your Family Tree. You can then import this backup into this "
+"version of Gramps."
+msgstr ""
+"Der Stammbaum, den du versuchst zu laden, wurde im Python Version "
+"%(db_python_version)s Format erstellt. Diese Gramps Version verwendet "
+"Pythonversion "
+"%(current_python_version)s. Du versuchst also Daten die in einem neueren "
+"Format erstellt wurden mit einem älteren Programm zu laden und dies muss "
+"schief gehen..\n"
+"\n"
+"Du solltest deine <b>neuere</b> Gramps Version starten und <a href=\"http://"
+"www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">eine "
+"Sicherung</a> von deinem Stammbaum zu erstellen. Du kannst dann die Sicherung "
+"in dieser Gramps Version importieren."
+
+#: ../src/gen/db/exceptions.py:258
+#, python-format
+msgid ""
+"The Family Tree you are trying to load is in the Python version "
+"%(db_python_version)s format. This version of Gramps uses Python version "
+"%(current_python_version)s. Therefore you cannot load this Family Tree "
+"without upgrading the Python version of the Family Tree.\n"
+"\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, "
+"even if you subsequently <a href=\"http://www.gramps-project.org/wiki/index."
+"php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-"
+"_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded "
+"Family Tree.\n"
+"\n"
+"Upgrading is a difficult task which could irretrievably corrupt your Family "
+"Tree if it is interrupted or fails.\n"
+"\n"
+"If you have not already made a backup of your Family Tree, then you should "
+"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
+"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
+"your Family Tree."
+msgstr ""
+"Der Stammbaum, den du versuchst zu laden,befindet sich im Python Version "
+"%(db_python_version)s Format. Diese Gramps Version verwendet Python Version "
+"%(current_python_version)s. Daher kannst du diesen Stammbaum nicht laden "
+"ohne die Python Version des Stammbaum zu aktualisieren.\n"
+"\n"
+"Wenn du aktualisierst, kannst du anschließend die vorhergehende Version von "
+"Gramps nicht mehr verwenden, auch wenn du hinterher  deinen aktualisierten "
+"Stammbaum<a href=\"http://www.gramps-project.org/wiki/index.php?title=De:"
+"Gramps_4.0_Wiki_Handbuch_-_Stammbäume_Verwalten#Einen_Stammbaum_sichern"
+"\">sicherst</a> oder <a href=\"http://www.gramps-project.org/wiki/index.php?"
+"title=De:Gramps_4.0_Wiki_Handbuch_-"
+"_Stammbäume_Verwalten#Im_Gramps_Format_exportieren\">exportierst</a> .\n"
+"\n"
+"Aktualisieren ist ein schwieriger Vorgang der deinen Stammbaum irreparabel "
+"beschädigen kann wenn es unterbrochen wird oder fehlschlägt.\n"
+"\n"
+"Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, "
+"solltest du deine <b>alte</b> Version von Gramps starten und <a href="
+"\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
+"\">eine Sicherung</a> von deinem Stammbaum erstellen."
 
 #: ../src/gen/db/undoredo.py:241 ../src/gen/db/undoredo.py:278
 #: ../src/plugins/lib/libgrdb.py:1705 ../src/plugins/lib/libgrdb.py:1777
@@ -3657,7 +3791,7 @@ msgstr "Patrilineal"
 msgid "Matrilineal"
 msgstr "Matrilineal"
 
-#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1134
+#: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1149
 #: ../src/gui/editors/editcitation.py:202
 #: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79 ../src/gui/editors/editmediaref.py:94
@@ -4555,7 +4689,7 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Zum ändern der Reihenfolge Spalten an neue Position ziehen"
 
 #. #################
-#: ../src/gui/columnorder.py:130 ../src/gui/configure.py:968
+#: ../src/gui/columnorder.py:130 ../src/gui/configure.py:969
 #: ../src/plugins/drawreport/AncestorTree.py:911
 #: ../src/plugins/drawreport/DescendTree.py:1491
 msgid "Display"
@@ -4653,16 +4787,16 @@ msgid " Name Editor"
 msgstr " Namenseditor"
 
 #: ../src/gui/configure.py:130 ../src/gui/configure.py:148
-#: ../src/gui/configure.py:1258 ../src/gui/views/pageview.py:618
+#: ../src/gui/configure.py:1273 ../src/gui/views/pageview.py:618
 msgid "Preferences"
 msgstr "Einstellungen"
 
 #: ../src/gui/configure.py:232 ../src/gui/configure.py:237
-#: ../src/gui/configure.py:699
+#: ../src/gui/configure.py:700
 msgid "Invalid or incomplete format definition."
 msgstr "Ungültige oder unvollständige Formatfestlegung."
 
-#: ../src/gui/configure.py:452
+#: ../src/gui/configure.py:453
 #: ../src/gui/editors/displaytabs/addrembedlist.py:74
 #: ../src/gui/editors/displaytabs/locationembedlist.py:56
 #: ../src/gui/selectors/selectplace.py:65
@@ -4674,7 +4808,7 @@ msgstr "Ungültige oder unvollständige Formatfestlegung."
 msgid "Locality"
 msgstr "Lokalität"
 
-#: ../src/gui/configure.py:453
+#: ../src/gui/configure.py:454
 #: ../src/gui/editors/displaytabs/addrembedlist.py:75
 #: ../src/gui/editors/displaytabs/locationembedlist.py:57
 #: ../src/gui/selectors/selectplace.py:66
@@ -4686,13 +4820,13 @@ msgstr "Lokalität"
 msgid "City"
 msgstr "Ort"
 
-#: ../src/gui/configure.py:454
+#: ../src/gui/configure.py:455
 #: ../src/gui/editors/displaytabs/addrembedlist.py:76
 #: ../src/plugins/view/repoview.py:89
 msgid "State/County"
 msgstr "Bundesland/Kreis"
 
-#: ../src/gui/configure.py:455
+#: ../src/gui/configure.py:456
 #: ../src/gui/editors/displaytabs/addrembedlist.py:77
 #: ../src/gui/editors/displaytabs/locationembedlist.py:60
 #: ../src/gui/selectors/selectplace.py:69
@@ -4707,88 +4841,88 @@ msgstr "Bundesland/Kreis"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/gui/configure.py:456 ../src/plugins/lib/libplaceview.py:100
+#: ../src/gui/configure.py:457 ../src/plugins/lib/libplaceview.py:100
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/view/placetreeview.py:78 ../src/plugins/view/repoview.py:91
 msgid "ZIP/Postal Code"
 msgstr "PLZ"
 
-#: ../src/gui/configure.py:457
+#: ../src/gui/configure.py:458
 #: ../src/plugins/gramplet/RepositoryDetails.py:111
 #: ../src/plugins/webreport/NarrativeWeb.py:385
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../src/gui/configure.py:458 ../src/gui/plug/_windows.py:598
+#: ../src/gui/configure.py:459 ../src/gui/plug/_windows.py:598
 #: ../src/plugins/view/repoview.py:92
 msgid "Email"
 msgstr "E-Mail"
 
-#: ../src/gui/configure.py:459
+#: ../src/gui/configure.py:460
 msgid "Researcher"
 msgstr "Informationen zum Forscher"
 
-#: ../src/gui/configure.py:479 ../src/gui/filtereditor.py:295
+#: ../src/gui/configure.py:480 ../src/gui/filtereditor.py:295
 #: ../src/gui/editors/editperson.py:610
 msgid "Media Object"
 msgstr "Medienobjekt"
 
-#: ../src/gui/configure.py:487
+#: ../src/gui/configure.py:488
 msgid "ID Formats"
 msgstr "ID-Formate"
 
-#: ../src/gui/configure.py:495
+#: ../src/gui/configure.py:496
 msgid "Suppress warning when adding parents to a child."
 msgstr "Nicht warnen, wenn Eltern zu einem Kind hinzugefügt werden."
 
-#: ../src/gui/configure.py:499
+#: ../src/gui/configure.py:500
 msgid "Suppress warning when cancelling with changed data."
 msgstr "Nicht warnen, wenn mit geänderten Daten abgebrochen wird."
 
-#: ../src/gui/configure.py:503
+#: ../src/gui/configure.py:504
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Nicht warnen, wenn Forscher(in) bei GEDCOM Export fehlt."
 
-#: ../src/gui/configure.py:508
+#: ../src/gui/configure.py:509
 msgid "Show plugin status dialog on plugin load error."
 msgstr ""
 "Zeige den Zusatzmodul Status - Dialog bei fehlerhaft geladenen Zusatzmodul."
 
-#: ../src/gui/configure.py:511
+#: ../src/gui/configure.py:512
 msgid "Warnings"
 msgstr "Warnungen"
 
-#: ../src/gui/configure.py:537 ../src/gui/configure.py:551
+#: ../src/gui/configure.py:538 ../src/gui/configure.py:552
 msgid "Common"
 msgstr "Üblich"
 
-#: ../src/gui/configure.py:544 ../src/plugins/export/ExportCsv.py:337
+#: ../src/gui/configure.py:545 ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
 msgstr "Rufname"
 
-#: ../src/gui/configure.py:549
+#: ../src/gui/configure.py:550
 msgid "NotPatronymic"
 msgstr "KeinPatronymikon"
 
-#: ../src/gui/configure.py:630
+#: ../src/gui/configure.py:631
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Eingabe zum Speichern, ESC zum Abbrechen des bearbeiten"
 
-#: ../src/gui/configure.py:677
+#: ../src/gui/configure.py:678
 msgid "This format exists already."
 msgstr "Dieses Format existiert bereits."
 
-#: ../src/gui/configure.py:716
+#: ../src/gui/configure.py:717
 msgid "Format"
 msgstr "Format"
 
-#: ../src/gui/configure.py:726
+#: ../src/gui/configure.py:727
 msgid "Example"
 msgstr "Beispiel"
 
 #. label for the combo
-#: ../src/gui/configure.py:867 ../src/plugins/drawreport/Calendar.py:426
+#: ../src/gui/configure.py:868 ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/textreport/DescendReport.py:400
@@ -4804,7 +4938,7 @@ msgstr "Beispiel"
 msgid "Name format"
 msgstr "Namensformat"
 
-#: ../src/gui/configure.py:871 ../src/gui/editors/displaytabs/buttontab.py:70
+#: ../src/gui/configure.py:872 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137 ../src/gui/plug/_windows.py:193
 #: ../src/plugins/BookReport.py:1001 ../src/glade/editperson.glade.h:29
 #: ../src/glade/styleeditor.glade.h:4 ../src/glade/editfamily.glade.h:9
@@ -4812,75 +4946,75 @@ msgstr "Namensformat"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../src/gui/configure.py:881
+#: ../src/gui/configure.py:882
 msgid "Consider single pa/matronymic as surname"
 msgstr "Einzelnes Pa/Matronymikon als Nachname betrachten"
 
-#: ../src/gui/configure.py:895
+#: ../src/gui/configure.py:896
 msgid "Date format"
 msgstr "Datumsformat"
 
-#: ../src/gui/configure.py:908
+#: ../src/gui/configure.py:909
 msgid "Calendar on reports"
 msgstr "Kalender für Berichte"
 
-#: ../src/gui/configure.py:921
+#: ../src/gui/configure.py:922
 msgid "Surname guessing"
 msgstr "Familienname-Schätzung"
 
-#: ../src/gui/configure.py:934
+#: ../src/gui/configure.py:935
 msgid "Default family relationship"
 msgstr "Standardfamilienbeziehung"
 
-#: ../src/gui/configure.py:941
+#: ../src/gui/configure.py:942
 msgid "Height multiple surname box (pixels)"
 msgstr "Höhe der Mehrfachnachnamenbox (Pixel)"
 
-#: ../src/gui/configure.py:948
+#: ../src/gui/configure.py:949
 msgid "Active person's name and ID"
 msgstr "Name und GRAMPS-ID der aktiven Person"
 
-#: ../src/gui/configure.py:949
+#: ../src/gui/configure.py:950
 msgid "Relationship to home person"
 msgstr "Verwandtschaftsverhältnis zur Hauptperson"
 
-#: ../src/gui/configure.py:958
+#: ../src/gui/configure.py:959
 msgid "Status bar"
 msgstr "Statusleiste"
 
-#: ../src/gui/configure.py:965
+#: ../src/gui/configure.py:966
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Zeige Text in Seitenleistenschaltflächen (benötigt Neustart)"
 
-#: ../src/gui/configure.py:976
+#: ../src/gui/configure.py:977
 msgid "Missing surname"
 msgstr "Fehlender Familienname"
 
-#: ../src/gui/configure.py:979
+#: ../src/gui/configure.py:980
 msgid "Missing given name"
 msgstr "Fehlender Vorname"
 
-#: ../src/gui/configure.py:982
+#: ../src/gui/configure.py:983
 msgid "Missing record"
 msgstr "Fehlender Datensatz"
 
-#: ../src/gui/configure.py:985
+#: ../src/gui/configure.py:986
 msgid "Private surname"
 msgstr "Vertraulicher Familienname"
 
-#: ../src/gui/configure.py:988
+#: ../src/gui/configure.py:989
 msgid "Private given name"
 msgstr "Vertraulicher Vorname"
 
-#: ../src/gui/configure.py:991
+#: ../src/gui/configure.py:992
 msgid "Private record"
 msgstr "Vertraulicher Datensatz"
 
-#: ../src/gui/configure.py:1022
+#: ../src/gui/configure.py:1023
 msgid "Change is not immediate"
 msgstr "Änderung noch nicht wirksam"
 
-#: ../src/gui/configure.py:1023
+#: ../src/gui/configure.py:1024
 msgid ""
 "Changing the data format will not take effect until the next time Gramps is "
 "started."
@@ -4888,127 +5022,158 @@ msgstr ""
 "Das Ändern der Datumseinstellung wird erst mit einem Neustart von Gramps "
 "aktiv."
 
-#: ../src/gui/configure.py:1036
+#: ../src/gui/configure.py:1037
 msgid "Date about range"
 msgstr "Datum um Spanne"
 
-#: ../src/gui/configure.py:1039
+#: ../src/gui/configure.py:1040
 msgid "Date after range"
 msgstr "Datum nach Spanne"
 
-#: ../src/gui/configure.py:1042
+#: ../src/gui/configure.py:1043
 msgid "Date before range"
 msgstr "Datum vor Spanne"
 
-#: ../src/gui/configure.py:1045
+#: ../src/gui/configure.py:1046
 msgid "Maximum age probably alive"
 msgstr "Maximales Alter wahrscheinlich am leben"
 
-#: ../src/gui/configure.py:1048
+#: ../src/gui/configure.py:1049
 msgid "Maximum sibling age difference"
 msgstr "Maximaler Altersabstand von Geschwistern"
 
-#: ../src/gui/configure.py:1051
+#: ../src/gui/configure.py:1052
 msgid "Minimum years between generations"
 msgstr "Minimaler Abstand in Jahre zwischen Generationen"
 
-#: ../src/gui/configure.py:1054
+#: ../src/gui/configure.py:1055
 msgid "Average years between generations"
 msgstr "Durchschnittlicher Abstand zwischen Generationen in Jahren"
 
-#: ../src/gui/configure.py:1057
+#: ../src/gui/configure.py:1058
 msgid "Markup for invalid date format"
 msgstr "Markierung für ungültiges Datumsformat"
 
-#: ../src/gui/configure.py:1060
+#: ../src/gui/configure.py:1061
+#, python-format
+msgid ""
+"Convenience markups are:\n"
+"<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Makes font relatively larger&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Makes font relatively smaller&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n"
+"\n"
+"For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"will display <u><b>Underlined bold date</b></u>\n"
+msgstr ""
+"Beliebte Hervorhebungen sind:\n"
+"<b>&lt;b&gt;Fett&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Macht Schrift relativ größer&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Kursiv&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Durchgestrichen&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Tiefgestellt&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Hochgestellt&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Macht Schrift relativ kleiner&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Konstantschrift&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Unterstrichen&lt;/u&gt;</u>\n"
+"\n"
+"Zum Beispiel: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"zeigt <u><b>Unterstrichenes fettes Datum</b></u>\n"
+
+#: ../src/gui/configure.py:1075
 msgid "Dates"
 msgstr "Daten"
 
-#: ../src/gui/configure.py:1069
+#: ../src/gui/configure.py:1084
 msgid "Add default source on import"
 msgstr "Füge Standardquelle beim Import hinzu"
 
-#: ../src/gui/configure.py:1072
+#: ../src/gui/configure.py:1087
 msgid "Enable spelling checker"
 msgstr "Rechtschreibprüfung aktivieren"
 
-#: ../src/gui/configure.py:1075
+#: ../src/gui/configure.py:1090
 msgid "Display Tip of the Day"
 msgstr "Tipp des Tages anzeigen"
 
-#: ../src/gui/configure.py:1078
+#: ../src/gui/configure.py:1093
 msgid "Remember last view displayed"
 msgstr "Letzte angezeigte Ansicht merken"
 
-#: ../src/gui/configure.py:1081
+#: ../src/gui/configure.py:1096
 msgid "Max generations for relationships"
 msgstr "Maximale Anzahl der Generationen für Beziehungen"
 
-#: ../src/gui/configure.py:1085
+#: ../src/gui/configure.py:1100
 msgid "Base path for relative media paths"
 msgstr "Basisverzeichnis für relative Medienpfade"
 
-#: ../src/gui/configure.py:1092
+#: ../src/gui/configure.py:1107
 msgid "Once a month"
 msgstr "Einmal im Monat"
 
-#: ../src/gui/configure.py:1093
+#: ../src/gui/configure.py:1108
 msgid "Once a week"
 msgstr "Einmal die Woche"
 
-#: ../src/gui/configure.py:1094
+#: ../src/gui/configure.py:1109
 msgid "Once a day"
 msgstr "Einmal am Tag"
 
-#: ../src/gui/configure.py:1095
+#: ../src/gui/configure.py:1110
 msgid "Always"
 msgstr "Immer"
 
-#: ../src/gui/configure.py:1100
+#: ../src/gui/configure.py:1115
 msgid "Check for updates"
 msgstr "Nach Updates suchen"
 
-#: ../src/gui/configure.py:1105
+#: ../src/gui/configure.py:1120
 msgid "Updated addons only"
 msgstr "Nur aktualisierte Erweiterungen"
 
-#: ../src/gui/configure.py:1106
+#: ../src/gui/configure.py:1121
 msgid "New addons only"
 msgstr "Nur neue Erweiterungen"
 
-#: ../src/gui/configure.py:1107
+#: ../src/gui/configure.py:1122
 msgid "New and updated addons"
 msgstr "Neue und aktualisierte Erweiterungen"
 
-#: ../src/gui/configure.py:1117
+#: ../src/gui/configure.py:1132
 msgid "What to check"
 msgstr "Was prüfen"
 
-#: ../src/gui/configure.py:1121
+#: ../src/gui/configure.py:1136
 msgid "Where to check"
 msgstr "Wo prüfen"
 
-#: ../src/gui/configure.py:1124
+#: ../src/gui/configure.py:1139
 msgid "Do not ask about previously notified addons"
 msgstr "Nicht erneut für früher benachrichtigte Erweiterungen fragen"
 
-#: ../src/gui/configure.py:1129
+#: ../src/gui/configure.py:1144
 msgid "Check now"
 msgstr "Jetzt prüfen"
 
-#: ../src/gui/configure.py:1145
+#: ../src/gui/configure.py:1160
 msgid "Family Tree Database path"
 msgstr "Stammbaumdatenbankpfad"
 
-#: ../src/gui/configure.py:1153
+#: ../src/gui/configure.py:1168
 msgid "Automatically load last family tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
-#: ../src/gui/configure.py:1166
+#: ../src/gui/configure.py:1181
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
 
-#: ../src/gui/configure.py:1190
+#: ../src/gui/configure.py:1205
 msgid "Select database directory"
 msgstr "Wähle Datenbankverzeichnis"
 
@@ -5086,37 +5251,48 @@ msgstr ""
 "Diese Datei gibt ihren Zeichensatz falsch an, daher kann sie nicht korrekt "
 "importiert werden. Bitte korrigiere den Zeichensatz und importiere sie erneut"
 
-#: ../src/gui/dbloader.py:309
-msgid "Need to upgrade database!"
-msgstr "Datenbank muss aktualisiert werden!"
+#: ../src/gui/dbloader.py:313 ../src/gui/dbloader.py:327
+#: ../src/gui/dbloader.py:355
+msgid "Are you sure you want to upgrade this Family Tree?"
+msgstr "Willst du wirklich den Stammbaum aktualisieren?"
 
-#: ../src/gui/dbloader.py:311
-msgid "Upgrade now"
-msgstr "Jetzt aktualisieren"
+#: ../src/gui/dbloader.py:316 ../src/gui/dbloader.py:330
+#: ../src/gui/dbloader.py:358
+msgid ""
+"I have made a backup,\n"
+"please upgrade my Family Tree"
+msgstr ""
+"Ich habe eine Sicherung erstellt,\n"
+" bitte aktualisiere meinen Stammbaum"
 
-#: ../src/gui/dbloader.py:312 ../src/gui/dbloader.py:323
+#: ../src/gui/dbloader.py:318 ../src/gui/dbloader.py:332
+#: ../src/gui/dbloader.py:346 ../src/gui/dbloader.py:360
 #: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:677
 #: ../src/plugins/BookReport.py:1067 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/gui/dbloader.py:319
-msgid "Need to upgrade BSDDB database!"
-msgstr "BSDDB Datenbank muss aktualisiert werden!"
+#: ../src/gui/dbloader.py:341
+msgid "Are you sure you want to downgrade this Family Tree?"
+msgstr "Willst du wirklich den Stammbaum herunterstufen?"
 
-#: ../src/gui/dbloader.py:321
-msgid "I have made a backup, please upgrade my tree"
-msgstr "Ich habe eine Sicherung erstellt, bitte aktualisiere meinen Baum"
+#: ../src/gui/dbloader.py:344
+msgid ""
+"I have made a backup,\n"
+"please downgrade my Family Tree"
+msgstr ""
+"Ich habe eine Sicherung erstellt,\n"
+"bitte stufe meinen Stammbaum herunter."
 
-#: ../src/gui/dbloader.py:383
+#: ../src/gui/dbloader.py:425
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/gui/dbloader.py:424
+#: ../src/gui/dbloader.py:466
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/gui/dbloader.py:433
+#: ../src/gui/dbloader.py:475
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -19187,11 +19363,11 @@ msgstr "%(language)s (%(country)s)"
 #. ex: AttributeType
 #. (FATHER_AGE  , _("Father's Age"), "Father Age"),
 #. (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
-#: ../src/plugins/lib/libtranslate.py:248
+#: ../src/plugins/lib/libtranslate.py:249
 msgid "Father Age"
 msgstr "Alter des Vaters"
 
-#: ../src/plugins/lib/libtranslate.py:248
+#: ../src/plugins/lib/libtranslate.py:249
 msgid "Mother Age"
 msgstr "Alter der Mutter"
 
@@ -31523,6 +31699,48 @@ msgstr ""
 "<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps egal "
 "welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
 "Bibliotheken installiert sind, läuft es hervorragend."
+
+#~ msgid ""
+#~ "Gramps stores its data in a Berkeley Database. The family tree you try to "
+#~ "load was created with version %(env_version)s of the Berkeley DB. "
+#~ "However, the Gramps version in use right now employs version "
+#~ "%(bdb_version)s of the Berkeley DB. So you are trying to load data "
+#~ "created in a newer format into an older program; this is bound to fail. "
+#~ "The right approach in this case is to use XML export and import. So try "
+#~ "to open the family tree on that computer with that software that created "
+#~ "the family tree, export it to XML and load that XML into the version of "
+#~ "Gramps you intend to use."
+#~ msgstr ""
+#~ "Gramps speichert seine Daten in einer Berkeley Datenbank. Der Stammbaum, "
+#~ "den du versuchst zu öffnen, wurde mit Version  %(env_version)s der "
+#~ "Berkeley DB erstellt. Jedoch verwendet diese Gramps Version die Version  "
+#~ "%(bdb_version)s der Berkeley DB. Du versuchst Daten, die in einem neueren "
+#~ "Format erstellt wurden in einem älteren Programm zu laden; das muss "
+#~ "fehlschlagen. Das richtige Vorgehen in solch einem Fall ist die "
+#~ "Verwendung des XML Ex- und Import. Also versuch den Stammbaum auf dem "
+#~ "Rechner zu öffnen auf dem du ihn erstellt hast, exportiere ihn nach XML "
+#~ "und lade diese XML Datei in die Version von Gramps, die du verwenden "
+#~ "möchtest."
+
+#~ msgid ""
+#~ "You cannot open this database without upgrading it.\n"
+#~ "If you upgrade then you won't be able to use previous versions of "
+#~ "Gramps.\n"
+#~ "You might want to make a backup copy first."
+#~ msgstr ""
+#~ "Diese Datenbank kann nicht geöffnet werden, ohne sie zu aktualisieren.\n"
+#~ "Wenn du aktualisierst, dann kannst du die vorigen Versionen von Gramps "
+#~ "nicht mehr benutzen.\n"
+#~ "Du solltest vorher eine Sicherung erstellen.."
+
+#~ msgid "Need to upgrade database!"
+#~ msgstr "Datenbank muss aktualisiert werden!"
+
+#~ msgid "Upgrade now"
+#~ msgstr "Jetzt aktualisieren"
+
+#~ msgid "Need to upgrade BSDDB database!"
+#~ msgstr "BSDDB Datenbank muss aktualisiert werden!"
 
 #~ msgid "Use optimal number of pages"
 #~ msgstr "Benutze optimale Seitenzahl"
