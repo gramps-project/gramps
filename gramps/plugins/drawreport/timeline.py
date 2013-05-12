@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012      Paul Franklin
+# Copyright (C) 2012-2013 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,30 +27,33 @@
 Timeline Chart
 """
 
-from __future__ import division
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+from __future__ import division
+import copy
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.plug.menu import (PersonOption, FilterOption,
+                                  EnumeratedListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.plug.report import MenuReportOptions
 pt2cm = ReportUtils.pt2cm
+from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                             FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER,
-                             IndexMark, INDEX_TYPE_TOC)
+                                    FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER,
+                                    IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.sort import Sort
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
@@ -102,11 +105,21 @@ class TimeLine(Report):
         menu = options.menu
         self.filter = menu.get_option_by_name('filter').get_filter()
 
+        # Copy the global NameDisplay so that we don't change application 
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+
         sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort(database))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
+
+        self._lang = options.menu.get_option_by_name('trans').get_value()
+        self.set_locale(self._lang)
 
     def write_report(self):
         # Apply the filter
@@ -166,9 +179,9 @@ class TimeLine(Report):
             else:
                 d = None
 
-            n = name_displayer.display_formal(p)
+            n = self._name_display.display(p)
             mark = ReportUtils.get_person_mark(self.database, p)
-            self.doc.draw_text('TLG-text', n,incr+pad,
+            self.doc.draw_text('TLG-text', n, incr+pad,
                                self.header + (incr+pad)*index, mark)
             
             y1 = self.header + (pad+incr)*index
@@ -248,14 +261,38 @@ class TimeLine(Report):
         """
         width = self.doc.get_usable_width()
         # feature request 2356: avoid genitive form
-        byline = _("Sorted by %s") % self.sort_name
+        # FIXME the %(author)s was chosen because it already existed in the
+        # gramps.pot file (in a "string freeze") so should probably be changed
+        # FIXME this concatenation will fail for RTL languages
+        title_two = ( self._("Created for %(author)s")
+                          % { 'author' : self.filter.get_name() } +
+                      ' -- ' +
+                      self._("Sorted by %s") % self.sort_name )
         # feature request 2356: avoid genitive form
-        title = _("Timeline Graph for %s") % self.filter.get_name()
+        title_one = self._("Timeline Chart")
+        # FIXME the "Timeline Chart" was chosen because it already existed in
+        # the gramps.pot file (in a "string freeze"); make it "Timeline Graph"
+        if self._lang == 'default':
+            title = title_one + "\n" + title_two
+        else:
+            title = title_one # FIXME
+            # The only way which I thought of to get a desired non-English
+            # filter name if the starting UI is a non-English one, was to
+            # change ReportUtils.get_person_filters so that it creates the
+            # filters with English (untranslated) names, but that would mean
+            # changing every filter.get_name() in every place that the
+            # get_person_filters filters are used, to always translate the
+            # get_name, and I wasn't in the mood to do that to all of them,
+            # so until that happen -- assuming it works, since I didn't try
+            # it to see, since the person's name will be in get_person_filters
+            # but the deferred translation will be where the filter.get_name()
+            # is, so it might not work at all -- but until it does, or another
+            # way is found, there will be no translated subtitle, only a
+            # subtitle if the report's output is in the main/UI language
         mark = None
         if toc:
             mark = IndexMark(title, INDEX_TYPE_TOC, 1)
-        self.doc.center_text('TLG-title', title + "\n" + byline,
-                             width / 2.0, 0, mark)
+        self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
         
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
         """
@@ -281,7 +318,7 @@ class TimeLine(Report):
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
         label_y = self.header - (pt2cm(label_font.get_size()) * 1.2)
-        self.doc.center_text('TLG-label', _("No Date Information"),
+        self.doc.center_text('TLG-label', self._("No Date Information"),
                              width / 2.0, label_y)
 
     def find_year_range(self):
@@ -355,7 +392,7 @@ class TimeLine(Report):
         size = 0
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            n = name_displayer.display_formal(p)
+            n = self._name_display.display(p)
             size = max(self.doc.string_width(font, n),size)
         return pt2cm(size)
 
@@ -377,7 +414,7 @@ class TimeLineOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the report"))
+                       _("Determines what people are included in the report"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
@@ -388,6 +425,8 @@ class TimeLineOptions(MenuReportOptions):
 
         self.__update_filters()
         
+        stdoptions.add_name_format_option(menu, category_name)
+
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):
@@ -396,6 +435,8 @@ class TimeLineOptions(MenuReportOptions):
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
                 
+        stdoptions.add_localization_option(menu, category_name)
+
     def __update_filters(self):
         """
         Update the filter list based on the selected person
