@@ -264,9 +264,10 @@ class GeoPlaces(GeoGraphyView):
                 self._create_one_place(place)
             if place_x:
                 place = dbstate.db.get_place_from_handle(place_x)
-                self.osm.set_center_and_zoom(float(place.get_latitude()),
-                                             float(place.get_longitude()),
-                                             int(config.get("geography.zoom")))
+                if ( place.get_latitude() != "" and place.get_longitude() != "" ):
+                    self.osm.set_center_and_zoom(float(place.get_latitude()),
+                                                 float(place.get_longitude()),
+                                                 int(config.get("geography.zoom")))
         _LOG.debug(" stop createmap.")
         _LOG.debug("%s" % time.strftime("begin sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
