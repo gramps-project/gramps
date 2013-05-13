@@ -668,7 +668,7 @@ class ProgenParser(object):
     __date_pat1 = re.compile(r'(?P<day>\d{1,2}) (-|=) (?P<month>\d{1,2}) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (-|=) (?P<year>\d{4})', re.VERBOSE)
     __date_pat3 = re.compile(r'(?P<year>\d{3,4})', re.VERBOSE)
-    __date_pat4 = re.compile(r'(v|v√≥√≥r|voor|na|circa|ca|rond|¬±) (\.|\s)* (?P<year>\d{3,4})', re.VERBOSE)
+    __date_pat4 = re.compile(r'(v|vóór|voor|na|circa|ca|rond|±) (\.|\s)* (?P<year>\d{3,4})', re.VERBOSE)
     __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     __date_pat6 = re.compile(r'(?P<month>(%s)) (\.|\s)* (?P<year>\d{3,4})' % '|'.join(list(month_values.keys())), re.VERBOSE | re.IGNORECASE)
     def __create_date_from_text(self, txt, diag_msg=None):
@@ -723,7 +723,7 @@ class ProgenParser(object):
         m = self.__date_pat4.match(txt)
         if m:
             year = int(m.group('year'))
-            if m.group(1) == 'voor' or m.group(1) == 'v' or m.group(1) == 'v√≥√≥r':
+            if m.group(1) == 'voor' or m.group(1) == 'v' or m.group(1) == 'vóór':
                 date.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, year, None))
             elif m.group(1) == 'na':
                 date.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, year, None))
