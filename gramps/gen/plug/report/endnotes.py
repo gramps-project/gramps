@@ -128,6 +128,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
         return
 
     trans_text = elocale.translation.gettext
+    # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
 
     doc.start_paragraph('Endnotes-Header')
     doc.write_text(trans_text('Endnotes'))

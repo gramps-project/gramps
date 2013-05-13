@@ -1680,6 +1680,7 @@ class RelationshipCalculator(object):
             return ''
 
         trans_text = _
+        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         if hasattr(self, '_locale') and self._locale != glocale:
             trans_text = self._locale.translation.sgettext
 

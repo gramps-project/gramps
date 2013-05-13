@@ -61,6 +61,7 @@ import gramps.plugins.lib.libholiday as libholiday
 
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 _TITLE0 = _T_("Birthday and Anniversary Report")
 _TITLE1 = _T_("My Birthday Report")
