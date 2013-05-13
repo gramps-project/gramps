@@ -296,6 +296,7 @@ class Span(object):
         @type dlocale: a GrampsLocale instance
         """
         trans_text = dlocale.translation.sgettext
+        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         _repr = trans_text("unknown")
         # FIXME all this concatenation will fail for RTL languages
         if self.valid:

@@ -50,6 +50,7 @@ from gramps.gen.utils.alive import probably_alive
 
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 RECORDS = [
     (_T_("Youngest living person"),          'person_youngestliving',   True),
@@ -96,6 +97,7 @@ def find_records(db, filter, top_size, callname,
     """
     @param trans_text: allow deferred translation of strings
     @type trans_text: a GrampsLocale sgettext instance
+    trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
     """
 
     today = datetime.date.today()

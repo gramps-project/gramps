@@ -193,6 +193,7 @@ class EventType(GrampsType):
 
     def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
         return value
+    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
     _ABBREVIATIONS = {
         BIRTH: _T_("birth abbreviation|b."),

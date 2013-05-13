@@ -68,6 +68,7 @@ from gramps.gen.utils.file import media_path_full
 
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 SECTION_CATEGORY = _("Sections") # only used in add_menu_options (so no _T_)
 # headers for the sections
