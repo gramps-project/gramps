@@ -33,6 +33,7 @@ import re
 from gen.ggettext import gettext as _
 import os
 import struct
+import sys
 
 #------------------------------------------------------------------------
 #
@@ -51,6 +52,7 @@ import Utils
 from gui.utils import ProgressMeter
 import gen.lib
 from gen.db import DbTxn
+from gen.lib.nameorigintype import NameOriginType
 from QuestionDialog import ErrorDialog
 
 class ProgenError(Exception):
@@ -81,18 +83,18 @@ def _importData(database, filename, cb=None):
         return
 
 
-def _find_from_handle(gramps_id, table):
+def _find_from_handle(progen_id, table):
     """
-    Find a handle corresponding to the specified GRAMPS ID. 
+    Find a handle corresponding to the specified Pro-Gen ID. 
     
     The passed table contains the mapping. If the value is found, we return 
     it, otherwise we create a new handle, store it, and return it.
     
     """
-    intid = table.get(gramps_id)
+    intid = table.get(progen_id)
     if not intid:
         intid = Utils.create_id()
-        table[gramps_id] = intid
+        table[progen_id] = intid
     return intid
 
 
@@ -111,7 +113,11 @@ def _read_mem(bname):
     else:
         fname = bname + '.mem'
     f = open(fname, "rb")
-    recfmt = "i28s"
+    log.debug("The current system is %s-endian" % sys.byteorder)
+    # The input file comes from [what was originally] a DOS machine so will
+    # be little-endian, regardless of the 'native' byte order of the host
+    # system
+    recfmt = "<i28s"
     reclen = struct.calcsize( recfmt )
     #print "# reclen = %d" % reclen
 
@@ -343,7 +349,10 @@ class PG30_Def_Table:
         # item 3 is the size of the field
         # ...
         flds = self.flds
-        fmt = '='
+        # The input file comes from [what was originally] a DOS machine so will
+        # be little-endian, regardless of the 'native' byte order of the host
+        # system
+        fmt = '<'
         for f in flds:
             fldtyp = f.type_
             if fldtyp == 2 or fldtyp == 3 or fldtyp == 22 or fldtyp == 23:
@@ -515,46 +524,52 @@ class ProgenParser(object):
         self.progress.close()
 
 
-    def __find_person_handle(self, gramps_id):
+    def __find_person_handle(self, progen_id):
         """
-        Return the database handle associated with the person's GRAMPS ID
+        Return the database handle associated with the person's Pro-Gen ID
         """
-        return _find_from_handle(gramps_id, self.gid2id)
+        return _find_from_handle(progen_id, self.gid2id)
 
-    def __find_family_handle(self, gramps_id):
+    def __find_family_handle(self, progen_id):
         """
-        Return the database handle associated with the family's GRAMPS ID
+        Return the database handle associated with the family's Pro-Gen ID
         """
-        return _find_from_handle(gramps_id, self.fid2id)
+        return _find_from_handle(progen_id, self.fid2id)
 
-    def __find_or_create_person(self, gramps_id):
+    def __find_or_create_person(self, progen_id):
         """
-        Finds or creates a person based on the GRAMPS ID. If the ID is
+        Finds or creates a person based on the Pro-Gen ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new person, assign the handle and GRAMPS ID.
         """
         person = gen.lib.Person()
-        intid = self.gid2id.get(gramps_id)
+        intid = self.gid2id.get(progen_id)
         if self.db.has_person_handle(intid):
             person.unserialize(self.db.get_raw_person_data(intid))
         else:
-            intid = _find_from_handle(gramps_id, self.gid2id)
+            gramps_id = self.db.id2user_format("I%d" % progen_id)
+            if self.db.id_trans.get(gramps_id):
+                gramps_id = self.db.find_next_person_gramps_id()
+            intid = _find_from_handle(progen_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
         return person
 
-    def __find_or_create_family(self, gramps_id):
+    def __find_or_create_family(self, progen_id):
         """
-        Finds or creates a family based on the GRAMPS ID. If the ID is
+        Finds or creates a family based on the Pro-Gen ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new family, assign the handle and GRAMPS ID.
         """
         family = gen.lib.Family()
-        intid = self.fid2id.get(gramps_id)
+        intid = self.fid2id.get(progen_id)
         if self.db.has_family_handle(intid):
             family.unserialize(self.db.get_raw_family_data(intid))
         else:
-            intid = _find_from_handle(gramps_id, self.fid2id)
+            gramps_id = self.db.fid2user_format("F%d" % progen_id)
+            if self.db.id_trans.get(gramps_id):
+                gramps_id = self.db.find_next_family_gramps_id()
+            intid = _find_from_handle(progen_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
         return family
@@ -574,11 +589,10 @@ class ProgenParser(object):
             self.pkeys[place_name] = place.get_handle()
         return place
 
-    def __get_or_create_source(self, source_name, aktenr=None):
+    def __get_or_create_citation(self, source_name, aktenr=None,
+                                 source_text=None):
         if not source_name:
             return None
-
-        source = None
 
         # Aktenr is something very special and it belongs with the source_name
         if aktenr:
@@ -593,11 +607,26 @@ class ProgenParser(object):
             self.db.add_source(source, self.trans)
             self.db.commit_source(source, self.trans)
             self.skeys[source_name] = source.get_handle()
-        sref = gen.lib.Citation()
-        sref.set_reference_handle(source.get_handle())
-        return sref
+            
+        citation = gen.lib.Citation()
+        citation.set_reference_handle(source.get_handle())
+        if aktenr:
+            citation.set_data_item("REFN", aktenr)
+        if source_text:
+            note = gen.lib.Note()
+            note_type = gen.lib.NoteType()
+            note_type.set((gen.lib.NoteType.CUSTOM, "Brontekst"))
+            note.set_type(note_type)
+            note.set(source_text)
+            self.db.add_note(note, self.trans)
+            citation.add_note(note.handle)
+        self.db.add_citation(citation, self.trans)
+        self.db.commit_citation(citation, self.trans)
 
-    def __create_event_and_ref(self, type_, desc=None, date=None, place=None, citation=None):
+        return citation
+
+    def __create_event_and_ref(self, type_, desc=None, date=None, place=None,
+                               citation=None, note_text=None, time=None):
         event = gen.lib.Event()
         event.set_type(gen.lib.EventType(type_))
         if desc:
@@ -608,6 +637,20 @@ class ProgenParser(object):
             event.set_place_handle(place.get_handle())
         if citation:
             event.add_citation(citation.handle)
+        if time:
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.TIME)
+            attr.set_value(time)
+            event.add_attribute(attr)
+        if note_text:
+            note = gen.lib.Note()
+            note_type = gen.lib.NoteType()
+            note_type.set((gen.lib.NoteType.CUSTOM, "Info"))
+            note.set_type(note_type)
+            note.set(note_text)
+            self.db.add_note(note, self.trans)
+            event.add_note(note.handle)
+            
         self.db.add_event(event, self.trans)
         self.db.commit_event(event, self.trans)
         event_ref = gen.lib.EventRef()
@@ -778,13 +821,12 @@ class ProgenParser(object):
         self.progress.set_pass(_('Importing individuals'), len(self.pers))
         for i, rec in enumerate(self.pers):
             pers_id = i + 1
+            log.debug(("Person id %d  " % pers_id) + " ".join(("%s" % r) for r in rec))
             father = rec[father_ix]
             mother = rec[mother_ix]
             if father >= 0 and mother >= 0:
                 recflds = table.convert_record_to_list(rec, self.mems)
 
-                first_name = recflds[first_name_ix]
-                surname_prefix, surname = _split_surname(recflds[surname_ix])
                 gender = recflds[gender_ix]
                 if gender == 'M':
                     gender = gen.lib.Person.MALE
@@ -793,37 +835,52 @@ class ProgenParser(object):
                 else:
                     gender = gen.lib.Person.UNKNOWN
 
-                person = self.__find_or_create_person("I%d" % pers_id)
-                diag_msg = "I%d: %s %s" % (pers_id, first_name.encode('utf-8'), surname.encode('utf-8'))
-                #log.info(diag_msg)
+                person = self.__find_or_create_person(pers_id)
 
-                patronym = recflds[patron_ix]
+                first_name = recflds[first_name_ix]
+                surname_prefix, surname = _split_surname(recflds[surname_ix])
+                patronym = recflds[patron_ix]       # INDI _PATR
+                alias = recflds[alias_ix]           # INDI NAME _ALIA/INDI NAME COMM 
+                title1 = recflds[title1_ix]         # INDI TITL
+                title2 = recflds[title2_ix]         # INDI _TITL2
+                title3 = recflds[title3_ix]         # INDI _TITL3
 
+                diag_msg = "%s: %s %s" % (person.gramps_id, first_name.encode('utf-8'), surname.encode('utf-8'))
+
+                # process the name/given name
                 name = gen.lib.Name()
                 name.set_type(gen.lib.NameType.BIRTH)
-                sname = gen.lib.Surname()
-                sname.set_surname(surname)
-                name.add_surname(sname)
-                if surname_prefix:
-                    sname.set_prefix(surname_prefix)
                 name.set_first_name(first_name)
                 if recflds[call_name_ix]:
                     name.set_call_name(recflds[call_name_ix])
+                title = filter(None, [title1, title2, title3])
+                if title:
+                    name.set_title(", ".join(title))
+                # process the normal surname
+                sname = gen.lib.Surname()
+                sname.set_surname(surname)
+                if surname_prefix:
+                    sname.set_prefix(surname_prefix)
+                name.add_surname(sname)
+                # process the Patronymic
                 if patronym:
-                    #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
-                    #name.set_patronymic(patronym)
-                    log.warning(_("Patronymic name skipped: '%(patronym)s' (%(msg)s)") % {
-                        'patronym' : patronym.encode('utf-8'), 'msg' : diag_msg or '' } )
+                    pname = gen.lib.Surname()
+                    pname.set_surname(patronym)
+                    pname.set_origintype(NameOriginType.PATRONYMIC)
+                    name.add_surname(pname)
+
                 person.set_primary_name(name)
                 person.set_gender(gender)
 
-                alias = recflds[alias_ix]
-                per_code = recflds[per_code_ix]
-                title1 = recflds[title1_ix]
-                title2 = recflds[title2_ix]
-                title3 = recflds[title3_ix]
-                per_klad = recflds[per_klad_ix]
-                per_info = recflds[per_info_ix]
+                per_code = recflds[per_code_ix]     # INDI REFN
+                if per_code:
+                    attr = gen.lib.Attribute()
+                    attr.set_type((gen.lib.AttributeType.CUSTOM, "REFN"))
+                    attr.set_value(per_code)
+                    person.add_attribute(attr)
+
+                per_klad = recflds[per_klad_ix]     # INDI _COMM/INDI COMM
+                per_info = recflds[per_info_ix]     # INDI NOTE
 
                 note_txt = filter(None, [per_info, per_klad])
                 if note_txt:
@@ -851,14 +908,6 @@ class ProgenParser(object):
                         name.set_type(gen.lib.NameType.AKA)
                         person.add_alternate_name(name)                    
 
-                # Debug unused fields
-                for v,t in ((per_code, 'Persoon code'),
-                            (title1, 'Title1'),
-                            (title2, 'Title2'),
-                            (title3, 'Title3')):
-                    if v:
-                        log.warning("%s: %s: '%s'" % (diag_msg, t, v))
-
                 if recflds[occu_ix]:
                     event, event_ref = self.__create_event_and_ref(gen.lib.EventType.OCCUPATION, recflds[occu_ix])
                     person.add_event_ref(event_ref)
@@ -868,59 +917,44 @@ class ProgenParser(object):
                 place = self.__get_or_create_place(recflds[birth_place_ix])
                 time = recflds[birth_time_ix]
                 if time:
-                    time = "tijd: " + time
-                srcref = self.__get_or_create_source(recflds[birth_source_ix], recflds[birth_aktenr_ix])
+                    time_text = "tijd: " + time
+                else:
+                    time_text = None
+                source_title  = recflds[birth_source_ix]
+                source_refn = recflds[birth_aktenr_ix]
                 source_text = recflds[birth_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[birth_info_ix]
-                if date or place or info or srcref:
-                    desc = filter(None, [info, time, source_text])
+                if date or place or info or citation:
+                    desc = filter(None, [info, time_text, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, birth_ref = self.__create_event_and_ref(gen.lib.EventType.BIRTH, desc, date, place, srcref)
+                    event, birth_ref = self.__create_event_and_ref(gen.lib.EventType.BIRTH, desc, date, place, citation, info, time)
                     person.set_birth_ref(birth_ref)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Birth, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # Baptism
                 date = self.__create_date_from_text(recflds[bapt_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[bapt_place_ix])
                 reli = recflds[bapt_reli_ix]
                 witness = recflds[bapt_witn_ix]
-                srcref = self.__get_or_create_source(recflds[bapt_source_ix], recflds[bapt_aktenr_ix])
+                source_title  = recflds[bapt_source_ix]
+                source_refn = recflds[bapt_aktenr_ix]
                 source_text = recflds[bapt_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[bapt_info_ix]
-                if date or place or info or srcref or reli or witness:
+                if date or place or info or citation or reli or witness:
                     desc = filter(None, [reli, info, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, bapt_ref = self.__create_event_and_ref(gen.lib.EventType.BAPTISM, desc, date, place, srcref)
+                    event, bapt_ref = self.__create_event_and_ref(gen.lib.EventType.BAPTISM, desc, date, place, citation, info)
                     person.add_event_ref(bapt_ref)
                     if witness:
                         attr = gen.lib.Attribute()
                         attr.set_type(gen.lib.AttributeType.WITNESS)
                         attr.set_value(witness)
                         event.add_attribute(attr)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Baptism, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Baptism, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
 
                 # Death
                 date = self.__create_date_from_text(recflds[death_date_ix], diag_msg)
@@ -928,66 +962,51 @@ class ProgenParser(object):
                 time = recflds[death_time_ix]
                 if time:
                     time = "tijd: " + time
-                srcref = self.__get_or_create_source(recflds[death_source_ix], recflds[death_aktenr_ix])
+                source_title  = recflds[death_source_ix]
+                source_refn = recflds[death_aktenr_ix]
                 source_text = recflds[death_source_text_ix]
                 info = recflds[death_info_ix]
-                if date or place or info or srcref:
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
+                if date or place or info or citation:
                     desc = filter(None, [info, time, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, death_ref = self.__create_event_and_ref(gen.lib.EventType.DEATH, desc, date, place, srcref)
+                    event, death_ref = self.__create_event_and_ref(gen.lib.EventType.DEATH, desc, date, place, citation, info, time)
                     person.set_death_ref(death_ref)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Death, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # Burial
                 date = self.__create_date_from_text(recflds[bur_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[bur_place_ix])
-                srcref = self.__get_or_create_source(recflds[bur_source_ix], recflds[bur_aktenr_ix])
+                source_title  = recflds[bur_source_ix]
+                source_refn = recflds[bur_aktenr_ix]
                 source_text = recflds[bur_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[bur_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, burial_ref = self.__create_event_and_ref(gen.lib.EventType.BURIAL, desc, date, place, srcref)
+                    event, burial_ref = self.__create_event_and_ref(gen.lib.EventType.BURIAL, desc, date, place, citation, info)
                     person.add_event_ref(burial_ref)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Burial, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # Cremation
                 date = self.__create_date_from_text(recflds[crem_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[crem_place_ix])
-                srcref = self.__get_or_create_source(recflds[crem_source_ix], recflds[crem_aktenr_ix])
+                source_title  = recflds[crem_source_ix]
+                source_refn = recflds[crem_aktenr_ix]
                 source_text = recflds[crem_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[crem_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     # TODO. Check that not both burial and cremation took place.
                     desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, cremation_ref = self.__create_event_and_ref(gen.lib.EventType.CREMATION, desc, date, place, srcref)
+                    event, cremation_ref = self.__create_event_and_ref(gen.lib.EventType.CREMATION, desc, date, place, citation)
                     person.add_event_ref(cremation_ref)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Cremation, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # TODO. Address
                 date = self.__create_date_from_text(recflds[addr_date_ix], diag_msg)
@@ -996,7 +1015,25 @@ class ProgenParser(object):
                 place = self.__get_or_create_place(recflds[addr_place_ix])
                 country = recflds[addr_country_ix]
                 telno = recflds[addr_telno_ix]
-                info = recflds[addr_info_ix]
+                info = recflds[addr_info_ix]          # INDI RESI NOTE/INDI ADDR
+                if place:
+                    loc = gen.lib.Location()
+                    loc.set_street(street)
+                    loc.set_postal_code(postal)
+                    loc.set_country(country)
+                    loc.set_phone(telno)
+                    place.set_main_location(loc)
+                    self.db.commit_place(place, self.trans)
+                    desc = info or None
+                    event, resi_ref = self.__create_event_and_ref(gen.lib.EventType.RESIDENCE, desc, date, place)
+                    if info:
+                        note = gen.lib.Note()
+                        note.set(info)
+                        note.set_type(gen.lib.NoteType.EVENT)
+                        self.db.add_note(note, self.trans)
+                        event.add_note(note.handle)
+                        self.db.commit_event(event, self.trans)
+                    person.add_event_ref(resi_ref)
 
                 self.db.commit_person(person, self.trans)
             self.progress.step()
@@ -1065,22 +1102,24 @@ class ProgenParser(object):
                 recflds = table.convert_record_to_list(rec, self.mems)
                 self.highest_fam_id = fam_id
 
-                fam = self.__find_or_create_family("F%d" % fam_id)
+                fam = self.__find_or_create_family(fam_id)
                 husband_handle = None
                 if husband > 0:
-                    husband_handle = self.__find_person_handle("I%d" % husband)
+                    husband_handle = self.__find_person_handle(husband)
                     fam.set_father_handle(husband_handle)
                     husband_person = self.db.get_person_from_handle(husband_handle)
                     husband_person.add_family_handle(fam.get_handle())
                     self.db.commit_person(husband_person, self.trans)
                 wife_handle = None
                 if wife > 0:
-                    wife_handle = self.__find_person_handle("I%d" % wife)
+                    wife_handle = self.__find_person_handle(wife)
                     fam.set_mother_handle(wife_handle)
                     wife_person = self.db.get_person_from_handle(wife_handle)
                     wife_person.add_family_handle(fam.get_handle())
                     self.db.commit_person(wife_person, self.trans)
-                diag_msg = "F%d: I%d I%d" % (fam_id, husband, wife)
+                diag_msg = "%s: %s %s" % (fam.gramps_id,
+                            husband_person.gramps_id if husband_handle else "",
+                            wife_person.gramps_id if wife_handle else "")
                 self.fm2fam[husband_handle, wife_handle] = fam
 
                 rel_code = recflds[rel_code_ix]
@@ -1095,37 +1134,34 @@ class ProgenParser(object):
                     self.db.add_note(note, self.trans)
                     fam.add_note(note.handle)
 
-                # Debug unused fields
-                for v,t in ((rel_code, 'Relatie code'),):
-                    if v:
-                        log.warning("%s: %s: '%s'" % (diag_msg, t, v))
+                if rel_code:
+                    attr = gen.lib.Attribute()
+                    attr.set_type((gen.lib.AttributeType.CUSTOM, "REFN"))
+                    attr.set_value(rel_code)
+                    fam.add_attribute(attr)
 
                 # Wettelijk => Marriage
                 date = self.__create_date_from_text(recflds[mar_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[mar_place_ix])
                 witness = recflds[mar_witn_ix]
-                srcref = self.__get_or_create_source(recflds[mar_source_ix], recflds[mar_aktenr_ix])
+                citation = self.__get_or_create_citation(recflds[mar_source_ix], recflds[mar_aktenr_ix])
+                source_title  = recflds[mar_source_ix]
+                source_refn = recflds[mar_aktenr_ix]
                 source_text = recflds[mar_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[mar_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, mar_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, srcref)
+                    event, mar_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, citation, info)
                     fam.add_event_ref(mar_ref)
                     if witness:
                         attr = gen.lib.Attribute()
                         attr.set_type(gen.lib.AttributeType.WITNESS)
                         attr.set_value(witness)
                         event.add_attribute(attr)
-                        self.db.commit_event(event, self.trans)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Wettelijk huwelijk, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
                         self.db.commit_event(event, self.trans)
 
                     # Type of relation
@@ -1136,29 +1172,25 @@ class ProgenParser(object):
                 place = self.__get_or_create_place(recflds[marc_place_ix])
                 reli = recflds[marc_reli_ix]
                 witness = recflds[marc_witn_ix]
-                srcref = self.__get_or_create_source(recflds[marc_source_ix], recflds[marc_aktenr_ix])
+                citation = self.__get_or_create_citation(recflds[marc_source_ix], recflds[marc_aktenr_ix])
+                source_title  = recflds[marc_source_ix]
+                source_refn = recflds[marc_aktenr_ix]
                 source_text = recflds[marc_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[marc_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [reli, info, source_text])
                     desc.insert(0, 'Kerkelijk huwelijk')
                     desc = desc and '; '.join(desc) or None
-                    event, marc_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, srcref)
+                    event, marc_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, desc, date, place, citation, info)
                     fam.add_event_ref(marc_ref)
                     if witness:
                         attr = gen.lib.Attribute()
                         attr.set_type(gen.lib.AttributeType.WITNESS)
                         attr.set_value(witness)
                         event.add_attribute(attr)
-                        self.db.commit_event(event, self.trans)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Kerkelijk huwelijk, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
                         self.db.commit_event(event, self.trans)
 
                     # Type of relation
@@ -1168,14 +1200,19 @@ class ProgenParser(object):
                 date = self.__create_date_from_text(recflds[marl_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[marl_place_ix])
                 witness = recflds[marl_witn_ix]
-                srcref = self.__get_or_create_source(recflds[marl_source_ix], recflds[marl_aktenr_ix])
+                citation = self.__get_or_create_citation(recflds[marl_source_ix], recflds[marl_aktenr_ix])
+                source_title  = recflds[marl_source_ix]
+                source_refn = recflds[marl_aktenr_ix]
                 source_text = recflds[marl_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[marl_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [info, source_text])
                     desc.insert(0, 'Ondertrouw')
                     desc = desc and '; '.join(desc) or None
-                    event, marl_ref = self.__create_event_and_ref(gen.lib.EventType.MARR_LIC, desc, date, place, srcref)
+                    event, marl_ref = self.__create_event_and_ref(gen.lib.EventType.MARR_LIC, desc, date, place, citation, info)
                     fam.add_event_ref(marl_ref)
                     if witness:
                         attr = gen.lib.Attribute()
@@ -1183,50 +1220,42 @@ class ProgenParser(object):
                         attr.set_value(witness)
                         event.add_attribute(attr)
                         self.db.commit_event(event, self.trans)
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Ondertrouw, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # Samenwonen => Civil Union
                 date = self.__create_date_from_text(recflds[civu_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[civu_place_ix])
-                srcref = self.__get_or_create_source(recflds[civu_source_ix], recflds[civu_aktenr_ix])
+                citation = self.__get_or_create_citation(recflds[civu_source_ix], recflds[civu_aktenr_ix])
+                source_title  = recflds[civu_source_ix]
+                source_refn = recflds[civu_aktenr_ix]
                 source_text = recflds[civu_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[civu_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [info, source_text])
                     desc.insert(0, 'Samenwonen')
                     desc = desc and '; '.join(desc) or None
-                    event, civu_ref = self.__create_event_and_ref(gen.lib.EventType.UNKNOWN, desc, date, place, srcref)
+                    event, civu_ref = self.__create_event_and_ref(gen.lib.EventType.UNKNOWN, desc, date, place, citation, info)
                     fam.add_event_ref(civu_ref)
                     # Type of relation
                     fam.set_relationship(gen.lib.FamilyRelType(gen.lib.FamilyRelType.CIVIL_UNION))
-                    if source_text:
-                        note_text = "Brontekst: " + source_text
-                        log.warning("Samenwonen, %s: '%s'" % (diag_msg, note_text))
-                        note = gen.lib.Note()
-                        note.set(note_txt)
-                        note.set_type(gen.lib.NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
 
                 # Scheiding => Divorce
                 date = self.__create_date_from_text(recflds[div_date_ix], diag_msg)
                 place = self.__get_or_create_place(recflds[div_place_ix])
-                srcref = self.__get_or_create_source(recflds[div_source_ix], recflds[div_aktenr_ix])
+                citation = self.__get_or_create_citation(recflds[div_source_ix], recflds[div_aktenr_ix])
+                source_title  = recflds[div_source_ix]
+                source_refn = recflds[div_aktenr_ix]
                 source_text = recflds[div_source_text_ix]
+                citation = self.__get_or_create_citation(source_title,
+                                                         source_refn,
+                                                         source_text)
                 info = recflds[div_info_ix]
-                if date or place or info or srcref:
+                if date or place or info or citation:
                     desc = filter(None, [info, source_text])
                     desc = desc and '; '.join(desc) or None
-                    event, div_ref = self.__create_event_and_ref(gen.lib.EventType.DIVORCE, desc, date, place, srcref)
+                    event, div_ref = self.__create_event_and_ref(gen.lib.EventType.DIVORCE, desc, date, place, citation, info)
                     fam.add_event_ref(div_ref)
 
                 self.db.commit_family(fam, self.trans)
@@ -1248,9 +1277,9 @@ class ProgenParser(object):
             mother = rec[mother_ix]
             if father > 0 or mother > 0:
                 # Find the family with this father and mother
-                person_handle = self.__find_person_handle("I%d" % pers_id)
-                father_handle = father > 0 and self.__find_person_handle("I%d" % father) or None
-                mother_handle = mother > 0 and self.__find_person_handle("I%d" % mother) or None
+                person_handle = self.__find_person_handle(pers_id)
+                father_handle = father > 0 and self.__find_person_handle(father) or None
+                mother_handle = mother > 0 and self.__find_person_handle(mother) or None
                 if father > 0 and not father_handle:
                     log.warning(_("cannot find father for I%(person)s (father=%(id)d)") % {
                         'person' : pers_id, 'id' : father } )
@@ -1263,7 +1292,7 @@ class ProgenParser(object):
                         # Family not present in REL. Create a new one.
                         self.highest_fam_id = self.highest_fam_id + 1
                         fam_id = self.highest_fam_id
-                        fam = self.__find_or_create_family("F%d" % fam_id)
+                        fam = self.__find_or_create_family(fam_id)
                         if father_handle:
                             fam.set_father_handle(father_handle)
                             father_person = self.db.get_person_from_handle(father_handle)
