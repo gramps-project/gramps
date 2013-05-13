@@ -1567,7 +1567,7 @@ msgid ""
 "Neither the language and country combination \"%s\" nor language %s is "
 "supported by ICU: using en_GB"
 msgstr ""
-"Varken språk- eller landkombination  \"%\"s eller språk %s stöds av ICU, "
+"Varken språk- eller landkombination  \"%s\" eller språk %s stöds av ICU, "
 "använder en_GB"
 
 #: ../src/Utils.py:319
