@@ -3518,7 +3518,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if line.data[0] == '@':
+        if line.data == '':
+            self.__add_msg(_("Empty Alias <NAME PERSONAL> ignored"), line, state)
+            self.__skip_subordinate_levels(state.level+1, state)
+        elif line.data[0] == '@':
             handle = self.__find_person_handle(self.pid_map[line.data])
             ref = gen.lib.PersonRef()
             ref.ref = handle
