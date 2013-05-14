@@ -2935,11 +2935,13 @@ class GedcomParser(UpdateCallback):
         if problem != "":
             self.number_of_errors += 1
         if line:
-            problem = problem.ljust(33)[0:32]
+            prob_width = 66
+            problem = problem.ljust(prob_width)[0:(prob_width-1)]
+            text = str(line.data).replace("\n", "\n".ljust(prob_width + 22))
             message = "%s   Line %5d: %s %s %s\n" % (problem, line.line,
                                                        line.level, 
                                                        line.token_text,
-                                                       line.data)
+                                                       text)
         else:
             message = problem + "\n"
         if state:
