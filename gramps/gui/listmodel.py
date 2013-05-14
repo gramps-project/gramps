@@ -130,7 +130,7 @@ class ListModel(object):
             self.selection.connect('changed', select_func)
         if event_func:
             self.double_click = event_func
-            self.tree.connect('event', self.__button_press)
+            self.tree.connect('button-press-event', self.__button_press)
 
     def __build_image_column(self, cnum, name, renderer, column):
         renderer = Gtk.CellRendererPixbuf()
