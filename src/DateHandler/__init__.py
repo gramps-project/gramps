@@ -55,6 +55,7 @@ import _Date_sk
 import _Date_sl
 import _Date_sr
 import _Date_sv
+import _Date_uk
 
 # Initialize global parser
 try:
