@@ -6032,7 +6032,7 @@ msgid ""
 "A decimal point will match any character. A question mark will match zero or one occurences of the previous character or group. An asterisk will match zero or more occurences. A plus sign will match one or more occurences. Use parentheses to group expressions. Specify alternatives using a vertical bar. A caret will match the start of a line. A dollar sign will match the end of a line."
 msgstr ""
 "Interprète le contenu des champs comme des expressions rationnelles.\n"
-"Un point décimal va correspondre à un caractère quelconque. Un point d'intérogation va correspondre à une ou aucune valeur pour le précédent caractère ou groupe. L'astérisque va correspondre à une ou aucune valeur. Un signe + va correspondre à une valeur ou plus. Utilisez les parenthèses pour grouper les expressions. Spécifiez les alternatives en utilisant la barre verticale. L'accent circonflexe débute une ligne. Le signe dollar signifie la fin d'une ligne."
+"Un point décimal va correspondre à un caractère quelconque. Un point d'intérogation va correspondre à une ou aucune valeur pour le précédent caractère ou groupe. L'astérisque va correspondre à aucune ou plusieurs occurences. Un signe + va correspondre à une valeur ou plus. Utilisez les parenthèses pour grouper les expressions. Spécifiez les alternatives en utilisant la barre verticale. L'accent circonflexe débute une ligne. Le signe dollar signifie la fin d'une ligne."
 
 #: ../src/gui/filtereditor.py:590
 msgid "Rule Name"
