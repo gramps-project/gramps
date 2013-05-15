@@ -1,5 +1,28 @@
+2013-05-15
+Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
+* infinite recursion bug in narrative web generation
+* protection on family trees when using version 3.4 and 4.0 on the same PC (road to 4.0)
+* merging notes of media with citations now works
+* crash during Calculate Preview of a filtered XML export
+* fix annoying errors on navigation related to citations gramplet and tag object.
+* listing the Family Trees can corrupt them.
+* various fix around handling Gedcom file format
+* fix citations and sources import on ProGen format 
+* better date handling and better alternate translation support on some textual reports according to locale under windows 
+* avoid Errors when setting wrong value as markup for invalid dates (Preferences)
+* fix paragraph layout on PDF format or print output
+* New: New-Zealand holidays
+* Polish and backport code on XML import (road to 4.0)
+* Regular expression rules now use search rather than match, fix design issues on regex filter rules
+* Disable/Enable indent spouse on descendants tree
+* fix regular expressions on Place filter rule
+* consistency on cli arguments (road to 4.0)
+* fix call of non-existant process on references proxy, enhanced tests on proxy filter
+* fix NarWeb creation via cli for some non-english locales
+* Various updated translations: ca, de, fr, it, nl, pt_BR, ru, sv, uk
+
 2013-03-19
-Version 3.4.3 of Gramps! "'Whenever life gets you down, Mrs. Brown'", a maintenance release.
+Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenance release.
 * Sorting (both in the main display window, and particularly in Narrative Web output) now uses PyICU (if that module is available). Inclusion of PyICU is 'strongly recommended'. This resolves a number of bugs particularly related to sorting of non-Latin characters, and sorting on MS Windows and Mac OS X. Some changes have been made in Narrative Web to support contractions for alphabetic indices.
 * The automatic Addon checking and download now works once again (the location used in Gramps 3.4.2 and before had been changed, so the the automatic process was no longer working).
 * Import from Pro-Gen has been updated (at last) to take account of the change to Citations (in 3.4.0)
