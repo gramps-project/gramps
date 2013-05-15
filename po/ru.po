@@ -8,28 +8,28 @@
 # Konstantin Dorichev <kdorichev@gmail.com>, 2008.
 # Yevgeny Zegzda <ezegjda@ya.ru>, 2009, 2010.
 # Andrey Baznikin (http://d.scn.ru/), 2009-2011.
-# Vassilii Khachaturov <vassilii@tarunz.org>, 2011.
-# Egor Reentov <egor.gramps@gmail.com>, 2011, 2012.
+# Vassilii Khachaturov <vassilii@tarunz.org>, 2011-2013.
+# Egor Reentov <egor.gramps@gmail.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-04 19:34+0200\n"
-"PO-Revision-Date: 2012-04-20 11:38+0300\n"
-"Last-Translator: \n"
-"Language-Team: Русский <kde-russian@lists.kde.ru>\n"
+"POT-Creation-Date: 2013-05-09 12:49+0200\n"
+"PO-Revision-Date: 2013-05-15 22:33+0300\n"
+"Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
+"Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.5\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../gramps/cli/arghandler.py:221
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
@@ -38,7 +38,7 @@ msgstr ""
 "Параметр '-C' нельзя использовать."
 
 #: ../gramps/cli/arghandler.py:230
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: Input Family Tree \"%s\" does not exist.\n"
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
@@ -89,7 +89,6 @@ msgid "ERROR: Unrecognized format for export file %s"
 msgstr "ОШИБКА: Неопознанный формат для файла экспорта %s"
 
 #: ../gramps/cli/arghandler.py:405
-#, fuzzy
 msgid "List of known Family Trees in your database path\n"
 msgstr ""
 "Путь к базе данных\n"
@@ -142,7 +141,6 @@ msgid "Cleaning up."
 msgstr "Навожу порядок."
 
 #: ../gramps/cli/arghandler.py:495
-#, fuzzy
 msgid "Created empty Family Tree successfully"
 msgstr "Успешно создано пустое семейное древо"
 
@@ -212,16 +210,13 @@ msgstr ""
 "%(donottranslate)s=ИмяИнструмента."
 
 #: ../gramps/cli/arghandler.py:695
-#, fuzzy
 msgid "Unknown book name."
-msgstr "Неизвестное название инструмента."
+msgstr "Неизвестное название книги."
 
 #: ../gramps/cli/arghandler.py:697
-#, fuzzy, python-format
+#, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
-"Не задано имя инструмента. Пожалуйста, укажите "
-"%(donottranslate)s=ИмяИнструмента."
 
 #: ../gramps/cli/arghandler.py:706
 #, python-format
@@ -229,7 +224,6 @@ msgid "Unknown action: %s."
 msgstr "Неизвестное действие: %s."
 
 #: ../gramps/cli/argparser.py:57
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -280,6 +274,8 @@ msgstr ""
 "  -l                                     Список семейных древес\n"
 "  -L                                     Список семейных древес с "
 "подробностями\n"
+"  -t                                     Список семейных древес, разделённый "
+"табуляцей\n"
 "  -u, --force-unlock                     Принудительно поставить блокировку "
 "на семейное древо\n"
 "  -s, --show                             Показать настройки конфигурации\n"
@@ -288,7 +284,6 @@ msgstr ""
 "  -v, --version                          Показать версию\n"
 
 #: ../gramps/cli/argparser.py:83
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -425,7 +420,7 @@ msgid "Trying to open: %s ..."
 msgstr ""
 
 #: ../gramps/cli/argparser.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s. Ignoring."
 msgstr "Неизвестное действие: %s."
 
@@ -464,43 +459,37 @@ msgstr ""
 "входной файл."
 
 #: ../gramps/cli/clidbman.py:87
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
-"ОШИБКА: %s \n"
-"       %s"
+"ОШИБКА: %(title)s \n"
+"       %(message)s"
 
 #: ../gramps/cli/clidbman.py:213
-#, fuzzy
 msgid "Number of people"
 msgstr "Число людей"
 
 #: ../gramps/cli/clidbman.py:215 ../gramps/cli/clidbman.py:217
-#, fuzzy
 msgid "Locked?"
-msgstr "Заблокировано %s"
+msgstr "Заблокировано?"
 
 #: ../gramps/cli/clidbman.py:215
-#, fuzzy
 msgid "yes"
-msgstr "лет"
+msgstr "да"
 
 #: ../gramps/cli/clidbman.py:217
-#, fuzzy
 msgid "no"
 msgstr "нет"
 
 #: ../gramps/cli/clidbman.py:218
-#, fuzzy
 msgid "Bsddb version"
-msgstr "Версия"
+msgstr "Версия bsddb"
 
 #: ../gramps/cli/clidbman.py:219
-#, fuzzy
 msgid "Schema version"
-msgstr "Удалить версию"
+msgstr ""
 
 #: ../gramps/cli/clidbman.py:224
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
@@ -529,7 +518,6 @@ msgid "Importing data..."
 msgstr "Собираю данные..."
 
 #: ../gramps/cli/clidbman.py:415
-#, fuzzy
 msgid "Could not rename Family Tree"
 msgstr "Не удалось переименовать семейное древо"
 
@@ -678,50 +666,42 @@ msgid "ERROR: Please specify a family"
 msgstr "ОШИБКА: Пожалуйста, укажите семью"
 
 #: ../gramps/cli/plug/__init__.py:268
-#, fuzzy
 msgid "=filename"
-msgstr "Имя файла"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
 msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "=format"
-msgstr "Формат"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "Output file format."
-msgstr "Выходной формат"
+msgstr "Выходной формат."
 
 #: ../gramps/cli/plug/__init__.py:270 ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "=name"
-msgstr "Фамилия"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:270
-#, fuzzy
 msgid "Style name."
-msgstr "Название стиля"
+msgstr "Название стиля."
 
 #: ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "Paper size name."
-msgstr "Приватное имя"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:273
 #: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
 #: ../gramps/cli/plug/__init__.py:279
-#, fuzzy
 msgid "=number"
-msgstr "Номер"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:272
-#, fuzzy
 msgid "Paper orientation number."
-msgstr "Идентификационный номер"
+msgstr "Paper orientation number."
 
 #: ../gramps/cli/plug/__init__.py:273
 msgid "Left paper margin"
@@ -729,9 +709,8 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:274 ../gramps/cli/plug/__init__.py:276
 #: ../gramps/cli/plug/__init__.py:278 ../gramps/cli/plug/__init__.py:280
-#, fuzzy
 msgid "Size in cm"
-msgstr "Размер в байтах"
+msgstr "Размер в см"
 
 #: ../gramps/cli/plug/__init__.py:275
 msgid "Right paper margin"
@@ -746,9 +725,8 @@ msgid "Bottom paper margin"
 msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:281
-#, fuzzy
 msgid "=css filename"
-msgstr "Выберите файл"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
@@ -799,9 +777,8 @@ msgid "   Available options:"
 msgstr "   Возможные параметры:"
 
 #: ../gramps/cli/plug/__init__.py:585
-#, fuzzy
 msgid "(no help available)"
-msgstr "Недоступно"
+msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:594
 msgid "   Available values are:"
@@ -863,7 +840,7 @@ msgstr ""
 "Василий Хачатуров"
 
 #: ../gramps/gen/const.py:240 ../gramps/gen/const.py:241
-#: ../gramps/gen/lib/date.py:1650 ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1670 ../gramps/gen/lib/date.py:1684
 msgid "none"
 msgstr "нет"
 
@@ -888,7 +865,7 @@ msgid "Remove mother from family"
 msgstr "Удалить мать из семьи"
 
 #: ../gramps/gen/db/exceptions.py:82
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
 "\n"
@@ -898,7 +875,8 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"Версия базы данных не поддерживается этой версией Gramps.\n"
+"Версия базы данных %(tree_vers)s не поддерживается этой версией Gramps, "
+"которая распознаёт форматы версии от%(min_vers)s до %(max_vers)s.\n"
 "Пожалуйста, обновите GRAMPS или используйте XML формат для переноски данных "
 "между различными версиями базы данных."
 
@@ -1013,9 +991,8 @@ msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:520
-#, fuzzy
 msgid "Number of new objects upgraded:\n"
-msgstr "Число новых импортированных документов:\n"
+msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:526
 msgid ""
@@ -1029,9 +1006,8 @@ msgstr ""
 
 # statistics over import results
 #: ../gramps/gen/db/upgrade.py:530
-#, fuzzy
 msgid "Upgrade Statistics"
-msgstr "Статистика"
+msgstr ""
 
 #: ../gramps/gen/db/write.py:1023
 #, python-format
@@ -1182,9 +1158,8 @@ msgid "Wrong name format string %s"
 msgstr ""
 
 #: ../gramps/gen/display/name.py:1071
-#, fuzzy
 msgid "ERROR, Edit Name format in Preferences"
-msgstr "Ищу сломанные ссылки на формат имён"
+msgstr ""
 
 #: ../gramps/gen/filters/_filterparser.py:120
 #, python-format
@@ -1336,15 +1311,13 @@ msgstr "Достоверность:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
-#, fuzzy
 msgid "Citations matching parameters"
-msgstr "Заметки, удовлетворяющие параметрам"
+msgstr "Цитаты, удовлетворяющие параметрам"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:55
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:55
-#, fuzzy
 msgid "Matches citations with particular parameters"
-msgstr "Выбирает заметки с определёнными параметрами"
+msgstr "Выбирает цитаты с определёнными параметрами"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:56
 #: ../gramps/gen/filters/rules/_hassourcebase.py:54
@@ -2132,14 +2105,12 @@ msgid "Matches families with a certain number of sources connected to it"
 msgstr "Выбирает семьи с определённым числом источников"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
-#, fuzzy
 msgid "Families with the <source>"
-msgstr "Семьи с <событием>"
+msgstr "Семьи с <источником>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
-#, fuzzy
 msgid "Matches families who have a particular source"
-msgstr "Выбирает людей, ссылающихся на данный источник"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
@@ -2158,14 +2129,12 @@ msgid "Matches families with the particular tag"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
-#, fuzzy
 msgid "Families with twins"
-msgstr "Семьи с <событием>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:48
-#, fuzzy
 msgid "Matches families with twins"
-msgstr "Выбирает семьи с определённым числом числом событий церкви СПД"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Bookmarked families"
@@ -2310,14 +2279,12 @@ msgid "Matches media objects with the attribute of a particular value"
 msgstr "Выбирает документы с определённым значением атрибута"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:52
-#, fuzzy
 msgid "Media with the <citation>"
-msgstr "События с <цитатой>"
+msgstr "Документы с <цитатой>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:53
-#, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "Выбирает события с определённым значением цитаты"
+msgstr "Выбирает документы с определённым значением цитаты"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -2383,24 +2350,20 @@ msgid "Matches media objects with a certain reference count"
 msgstr "Выбирает документы с определёнными количеством ссылок на них"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
-#, fuzzy
 msgid "Media with <count> sources"
-msgstr "Лица с <числом> источников"
+msgstr "Документы с <числом> источников"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:48
-#, fuzzy
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Выбирает семьи с определённым числом источников"
+msgstr "Выбирает документы с определённым числом источников"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
-#, fuzzy
 msgid "Media with the <source>"
-msgstr "Лица с <источником>"
+msgstr "Документы с <источником>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:50
-#, fuzzy
 msgid "Matches media who have a particular source"
-msgstr "Выбирает людей, ссылающихся на данный источник"
+msgstr "Выбирает документы, ссылающихся на данный источник"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Media objects with the <tag>"
@@ -2419,14 +2382,12 @@ msgid "Matches media objects matched by the specified filter name"
 msgstr "Выбирает документы, соответствующие фильтру с указанным названием"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
-#, fuzzy
 msgid "Media with a direct source >= <confidence level>"
-msgstr "Лица с хоть одним источником >= <достоверности>"
+msgstr "Документы с хоть одним источником >= <достоверности>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:47
-#, fuzzy
 msgid "Matches media with at least one direct source with confidence level(s)"
-msgstr "Лица с хоть одним источником >= <достоверности>"
+msgstr "Выбирает документы с хоть одним источником данной достоверности"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:44
 msgid "Media objects marked private"
@@ -2511,14 +2472,12 @@ msgid "Matches notes with the particular tag"
 msgstr "Заметки с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
-#, fuzzy
 msgid "Notes with the particular type"
-msgstr "Событие с данным типом"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
-#, fuzzy
 msgid "Matches notes with the particular type "
-msgstr "Выбирает события определённого типа"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -3074,16 +3033,14 @@ msgid ""
 msgstr "Выбирает потомков и супругов потомков указанного лица"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
-#, fuzzy
 msgid "Descendant family members of <filter> match"
-msgstr "Члены семьи потомка <лица>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:51
-#, fuzzy
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "Выбирает потомков соответствующих фильтру лиц"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Descendants of <person>"
@@ -3439,14 +3396,12 @@ msgstr ""
 "или, если задана вторая дата, между двумя датами"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:53
-#, fuzzy
 msgid "Place with the <citation>"
-msgstr "Люди с <цитатой>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:54
-#, fuzzy
 msgid "Matches places with a citation of a particular value"
-msgstr "Выбирает события с определённым значением цитаты"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
@@ -3566,24 +3521,20 @@ msgid "Matches places with a certain reference count"
 msgstr "Выбирает места с определённым числом ссылок на них"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
-#, fuzzy
 msgid "Place with <count> sources"
-msgstr "Лица с <числом> источников"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
-#, fuzzy
 msgid "Matches places with a certain number of sources connected to it"
-msgstr "Выбирает семьи с определённым числом источников"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
-#, fuzzy
 msgid "Places with the <source>"
-msgstr "Лица с <источником>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
-#, fuzzy
 msgid "Matches places who have a particular source"
-msgstr "Выбирает людей, ссылающихся на данный источник"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/mergeplace.glade:259
@@ -3639,14 +3590,12 @@ msgid "Matches places matched by the specified filter name"
 msgstr "Выбирает места, соответствующие фильтру с указанным названием"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
-#, fuzzy
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Лица с хоть одним источником >= <достоверности>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:47
-#, fuzzy
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr "Лица с хоть одним источником >= <достоверности>"
+msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
 msgid "Places marked private"
@@ -4047,70 +3996,70 @@ msgstr "Спонсируемый"
 msgid "Foster"
 msgstr "Воспитанник"
 
-#: ../gramps/gen/lib/date.py:292 ../gramps/gen/lib/date.py:409
+#: ../gramps/gen/lib/date.py:299 ../gramps/gen/lib/date.py:429
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:64 ../gramps/gen/utils/db.py:521
 #: ../gramps/gui/editors/editperson.py:331
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:92
 #: ../gramps/gui/merge/mergeperson.py:63
 #: ../gramps/gui/views/treemodels/peoplemodel.py:96
-#: ../gramps/plugins/textreport/detancestralreport.py:536
-#: ../gramps/plugins/textreport/detancestralreport.py:543
-#: ../gramps/plugins/textreport/detancestralreport.py:586
-#: ../gramps/plugins/textreport/detancestralreport.py:593
-#: ../gramps/plugins/textreport/detdescendantreport.py:581
-#: ../gramps/plugins/textreport/detdescendantreport.py:588
+#: ../gramps/plugins/textreport/detancestralreport.py:537
+#: ../gramps/plugins/textreport/detancestralreport.py:544
+#: ../gramps/plugins/textreport/detancestralreport.py:587
+#: ../gramps/plugins/textreport/detancestralreport.py:594
+#: ../gramps/plugins/textreport/detdescendantreport.py:582
+#: ../gramps/plugins/textreport/detdescendantreport.py:589
 #: ../gramps/plugins/textreport/indivcomplete.py:450
 #: ../gramps/plugins/view/relview.py:676
 #: ../gramps/plugins/webreport/narrativeweb.py:5390
 msgid "unknown"
 msgstr "неизвестно"
 
-#: ../gramps/gen/lib/date.py:295
+#: ../gramps/gen/lib/date.py:306
 #, python-format
 msgid "less than %s years"
 msgstr "меньше чем %s лет"
 
-#: ../gramps/gen/lib/date.py:300 ../gramps/gen/lib/date.py:326
-#: ../gramps/gen/lib/date.py:328 ../gramps/gen/lib/date.py:335
-#: ../gramps/gen/lib/date.py:357
+#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:337
+#: ../gramps/gen/lib/date.py:339 ../gramps/gen/lib/date.py:346
+#: ../gramps/gen/lib/date.py:368
 msgid "more than"
 msgstr "больше чем"
 
-#: ../gramps/gen/lib/date.py:302 ../gramps/gen/lib/date.py:314
-#: ../gramps/gen/lib/date.py:318 ../gramps/gen/lib/date.py:323
-#: ../gramps/gen/lib/date.py:359
+#: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:325
+#: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:334
+#: ../gramps/gen/lib/date.py:370
 msgid "less than"
 msgstr "меньше чем"
 
-#: ../gramps/gen/lib/date.py:304 ../gramps/gen/lib/date.py:338
-#: ../gramps/gen/lib/date.py:344 ../gramps/gen/lib/date.py:347
-#: ../gramps/gen/lib/date.py:361
+#: ../gramps/gen/lib/date.py:315 ../gramps/gen/lib/date.py:349
+#: ../gramps/gen/lib/date.py:355 ../gramps/gen/lib/date.py:358
+#: ../gramps/gen/lib/date.py:372
 msgid "age|about"
 msgstr "около"
 
-#: ../gramps/gen/lib/date.py:310 ../gramps/gen/lib/date.py:354
-#: ../gramps/gen/lib/date.py:370
+#: ../gramps/gen/lib/date.py:321 ../gramps/gen/lib/date.py:365
+#: ../gramps/gen/lib/date.py:381
 msgid "between"
 msgstr "между"
 
-#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:355
-#: ../gramps/gen/lib/date.py:371
+#: ../gramps/gen/lib/date.py:322 ../gramps/gen/lib/date.py:366
+#: ../gramps/gen/lib/date.py:382
 #: ../gramps/plugins/quickview/all_relations.py:284
 #: ../gramps/plugins/view/relview.py:1000
 #: ../gramps/plugins/webreport/narrativeweb.py:1156
 msgid "and"
 msgstr "и"
 
-#: ../gramps/gen/lib/date.py:320 ../gramps/gen/lib/date.py:342
+#: ../gramps/gen/lib/date.py:331 ../gramps/gen/lib/date.py:353
 msgid "less than about"
 msgstr "меньше чем около"
 
-#: ../gramps/gen/lib/date.py:332 ../gramps/gen/lib/date.py:340
+#: ../gramps/gen/lib/date.py:343 ../gramps/gen/lib/date.py:351
 msgid "more than about"
 msgstr "больше чем около"
 
-#: ../gramps/gen/lib/date.py:413
+#: ../gramps/gen/lib/date.py:433
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
@@ -4119,7 +4068,7 @@ msgstr[1] "%d года"
 msgstr[2] "%d лет"
 
 # !!!FIXME!!! В закладке людей должно быть как минимум Другие (а что в остальных местах?)
-#: ../gramps/gen/lib/date.py:420
+#: ../gramps/gen/lib/date.py:440
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
@@ -4127,7 +4076,7 @@ msgstr[0] "%d месяц"
 msgstr[1] "%d месяца"
 msgstr[2] "%d месяцев"
 
-#: ../gramps/gen/lib/date.py:427
+#: ../gramps/gen/lib/date.py:447
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
@@ -4135,68 +4084,68 @@ msgstr[0] "%d день"
 msgstr[1] "%d дня"
 msgstr[2] "%d дней"
 
-#: ../gramps/gen/lib/date.py:432
+#: ../gramps/gen/lib/date.py:452
 msgid "0 days"
 msgstr "0 дней"
 
-#: ../gramps/gen/lib/date.py:579
+#: ../gramps/gen/lib/date.py:599
 msgid "calendar|Gregorian"
 msgstr "Григорианский"
 
-#: ../gramps/gen/lib/date.py:580
+#: ../gramps/gen/lib/date.py:600
 msgid "calendar|Julian"
 msgstr "Юлианский"
 
-#: ../gramps/gen/lib/date.py:581
+#: ../gramps/gen/lib/date.py:601
 msgid "calendar|Hebrew"
 msgstr "Еврейский"
 
-#: ../gramps/gen/lib/date.py:582
+#: ../gramps/gen/lib/date.py:602
 msgid "calendar|French Republican"
 msgstr "Французский республиканский"
 
-#: ../gramps/gen/lib/date.py:583
+#: ../gramps/gen/lib/date.py:603
 msgid "calendar|Persian"
 msgstr "Иранский"
 
-#: ../gramps/gen/lib/date.py:584
+#: ../gramps/gen/lib/date.py:604
 msgid "calendar|Islamic"
 msgstr "Исламский"
 
-#: ../gramps/gen/lib/date.py:585
+#: ../gramps/gen/lib/date.py:605
 msgid "calendar|Swedish"
 msgstr "Шведский"
 
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "estimated"
 msgstr "оценка"
 
 # LDS
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "calculated"
 msgstr "вычислено"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "до"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "после"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "около"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "range"
 msgstr "отрезок"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "span"
 msgstr "интервал"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "textonly"
 msgstr "только текст"
 
@@ -4816,13 +4765,11 @@ msgstr "Текст из источника"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/quickview/quickview.gpr.py:206
 #: ../gramps/plugins/quickview/references.py:91
-#: ../gramps/webapp/grampsdb/view/citation.py:41
 msgid "Citation"
 msgstr "Цитата"
 
 #: ../gramps/gen/lib/notetype.py:87 ../gramps/gen/plug/_pluginreg.py:80
 #: ../gramps/gui/logger/_errorview.py:135
-#: ../gramps/webapp/grampsdb/views.py:602
 msgid "Report"
 msgstr "Отчёт"
 
@@ -4948,9 +4895,9 @@ msgid "Audio"
 msgstr "Звук"
 
 #: ../gramps/gen/lib/srcmediatype.py:66
-#: ../gramps/gui/plug/report/_bookdialog.py:342
-#: ../gramps/gui/plug/report/_bookdialog.py:863
-#: ../gramps/gui/plug/report/_bookdialog.py:880
+#: ../gramps/gui/plug/report/_bookdialog.py:374
+#: ../gramps/gui/plug/report/_bookdialog.py:895
+#: ../gramps/gui/plug/report/_bookdialog.py:912
 #: ../gramps/gui/glade/book.glade:132
 msgid "Book"
 msgstr "Книга"
@@ -5016,29 +4963,24 @@ msgid "Underline"
 msgstr "Подчёркнутый"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:69
-#, fuzzy
 msgid "Fontface"
 msgstr "Шрифт"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:70
-#, fuzzy
 msgid "Fontsize"
 msgstr "Размер шрифта"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:71
-#, fuzzy
 msgid "Fontcolor"
 msgstr "Цвет шрифта"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
-#, fuzzy
 msgid "Highlight"
-msgstr "Высокая"
+msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
-#, fuzzy
 msgid "Superscript"
-msgstr "Расшифровка"
+msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
@@ -5153,6 +5095,13 @@ msgstr "Грамплет «%s» вызвал ошибку"
 #: ../gramps/gen/plug/_manager.py:61
 msgid "No description was provided"
 msgstr "Описание не предоставлено"
+
+#: ../gramps/gen/plug/_options.py:382
+#, python-format
+msgid ""
+"Option '%(opt_name)s' is present in %(file)s\n"
+"  but is not known to the module.  Ignoring..."
+msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Stable"
@@ -5270,6 +5219,18 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:164
 #: ../gramps/gen/plug/docbackend/docbackend.py:167
+#: ../gramps/gen/utils/docgen/odstab.py:343
+#: ../gramps/gen/utils/docgen/odstab.py:345
+#: ../gramps/gen/utils/docgen/odstab.py:405
+#: ../gramps/gen/utils/docgen/odstab.py:408
+#: ../gramps/gen/utils/docgen/odstab.py:428
+#: ../gramps/gen/utils/docgen/odstab.py:432
+#: ../gramps/gen/utils/docgen/odstab.py:463
+#: ../gramps/gen/utils/docgen/odstab.py:467
+#: ../gramps/gen/utils/docgen/odstab.py:479
+#: ../gramps/gen/utils/docgen/odstab.py:483
+#: ../gramps/gen/utils/docgen/odstab.py:502
+#: ../gramps/gen/utils/docgen/odstab.py:506
 #: ../gramps/plugins/docgen/asciidoc.py:164
 #: ../gramps/plugins/docgen/odfdoc.py:1201
 #: ../gramps/plugins/docgen/odfdoc.py:1204
@@ -5288,10 +5249,346 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/export/exportvcalendar.py:105
 #: ../gramps/plugins/export/exportvcard.py:73
 #: ../gramps/plugins/export/exportvcard.py:77
+#: ../gramps/plugins/lib/libhtmlbackend.py:248
+#: ../gramps/plugins/lib/libhtmlbackend.py:252
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:262
 #: ../gramps/plugins/webreport/narrativeweb.py:6995
 #, python-format
 msgid "Could not create %s"
 msgstr "Ошибка при создании %s"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:71
+#: ../gramps/gen/plug/report/stdoptions.py:50
+#: ../gramps/gen/plug/report/stdoptions.py:63
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
+msgid "PostScript / Helvetica"
+msgstr "PostScript / Helvetica"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:73
+msgid "TrueType / FreeSans"
+msgstr "TrueType / FreeSans"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:75
+#: ../gramps/plugins/view/pedigreeview.py:2013
+msgid "Vertical (↓)"
+msgstr "Вертикально (↓)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/plugins/view/pedigreeview.py:2014
+msgid "Vertical (↑)"
+msgstr "Вертикально (↑)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/plugins/view/pedigreeview.py:2015
+msgid "Horizontal (→)"
+msgstr "Горизонтально (→)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/plugins/view/pedigreeview.py:2016
+msgid "Horizontal (←)"
+msgstr "Горизонтально (←)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
+msgid "Bottom, left"
+msgstr "Вниз, влево"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
+msgid "Bottom, right"
+msgstr "Вниз, вправо"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
+msgid "Top, left"
+msgstr "Верх, влево"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:83
+msgid "Top, Right"
+msgstr "Вверх, вправо"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:84
+msgid "Right, bottom"
+msgstr "Вправо, вниз"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:85
+msgid "Right, top"
+msgstr "Вправо, вверх"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
+msgid "Left, bottom"
+msgstr "Влево, вниз"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:87
+msgid "Left, top"
+msgstr "Влево, вверх"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:89
+msgid "Compress to minimal size"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:90
+msgid "Fill the given area"
+msgstr "Заполнить данную площадь"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:91
+msgid "Expand uniformly"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:93
+msgid "Top"
+msgstr "Верх"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:94
+msgid "Bottom"
+msgstr "Низ"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:138
+msgid "GraphViz Layout"
+msgstr "Разметка GraphViz"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:140
+#: ../gramps/gui/widgets/styledtexteditor.py:489
+msgid "Font family"
+msgstr "Гарнитура шрифта"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:143
+msgid ""
+"Choose the font family. If international characters don't show, use FreeSans "
+"font. FreeSans is available from: http://www.nongnu.org/freefont/"
+msgstr ""
+"Выбрать семейство шрифтов. Если нелатинские символы не видны, используйте "
+"шрифт FreeSans. Загрузить FreeSans можно здесь: http://www.nongnu.org/"
+"freefont/"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:149
+#: ../gramps/gui/widgets/styledtexteditor.py:501
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:150
+msgid "The font size, in points."
+msgstr "Размер шрифта, в пунктах."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:153
+msgid "Graph Direction"
+msgstr "Ориентация графа"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
+msgid "Whether graph goes from top to bottom or left to right."
+msgstr "Строить граф сверху вниз либо слева направо."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
+msgid "Number of Horizontal Pages"
+msgstr "Число страниц по горизонтали"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:161
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"horizontally. Only valid for dot and pdf via Ghostscript."
+msgstr ""
+"GraphViz может создавать очень большие схемы, разбивая граф на прямоугольный "
+"массив страниц. Здесь можно указать число страниц по горизонтали. Подходит "
+"только для dot и pdf через Ghostscript."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:168
+msgid "Number of Vertical Pages"
+msgstr "Число страниц по вертикали"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:169
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"vertically. Only valid for dot and pdf via Ghostscript."
+msgstr ""
+"GraphViz может создавать очень большие схемы, разбивая граф на прямоугольный "
+"массив страниц Здесь можно указать число страниц по вертикали. Подходит "
+"только для dot и pdf через Ghostscript."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:176
+msgid "Paging Direction"
+msgstr "Расположение страниц"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:179
+msgid ""
+"The order in which the graph pages are output. This option only applies if "
+"the horizontal pages or vertical pages are greater than 1."
+msgstr ""
+"Порядок вывода страниц графа. Применимо, только если количество страниц по "
+"горизонтали или по вертикали превышает 1."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
+msgid "GraphViz Options"
+msgstr "Параметры GraphViz"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
+msgid "Aspect ratio"
+msgstr "Отношение сторон"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:203
+msgid ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width "
+"and height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect "
+"ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of "
+"symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing "
+"the node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:219
+msgid "DPI"
+msgstr "DPI"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:220
+msgid ""
+"Dots per inch.  When creating images such as .gif or .png files for the web, "
+"try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
+"DPI."
+msgstr ""
+"Точек на дюйм.  При создании изображений, таких как .gif или .png для "
+"веб-страниц, "
+"попробуйте значения 100 или 300 DPI. При создании файлов PostScript или PDF, "
+"обязательно используйте значение 72 DPI."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:227
+msgid "Node spacing"
+msgstr "Расстояние между узлами"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:228
+msgid ""
+"The minimum amount of free space, in inches, between individual nodes.  For "
+"vertical graphs, this corresponds to spacing between columns.  For "
+"horizontal graphs, this corresponds to spacing between rows."
+msgstr ""
+"Минимальное расстояние в дюймах между отдельными узлами графа. В "
+"вертикальных графах отвечает за расстояние между столбцами. В горизонтальных "
+"графах отвечает за расстояние между строками."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:235
+msgid "Rank spacing"
+msgstr "Расстояние между слоями"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:236
+msgid ""
+"The minimum amount of free space, in inches, between ranks.  For vertical "
+"graphs, this corresponds to spacing between rows.  For horizontal graphs, "
+"this corresponds to spacing between columns."
+msgstr ""
+"Минимальное расстояние в дюймах между слоями графа. В вертикальных графах "
+"отвечает за расстояние между строками. В горизонтальных графах отвечает за "
+"расстояние между столбцами."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:243
+msgid "Use subgraphs"
+msgstr "Использовать подграфы"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:244
+msgid ""
+"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"graphs will result in longer lines and larger graphs."
+msgstr ""
+"Подграфы могут помочь GraphViz расположить супругов рядом, но на сложных "
+"графах это приведет к более длинным линиям и бо́льшим графам."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:251 ../gramps/gui/clipboard.py:402
+#: ../gramps/gui/configure.py:542 ../gramps/gui/editors/editlink.py:85
+#: ../gramps/gui/editors/editmedia.py:91
+#: ../gramps/gui/editors/editmedia.py:174
+#: ../gramps/gui/editors/editmediaref.py:136
+#: ../gramps/gui/editors/filtereditor.py:294
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
+#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
+#: ../gramps/gui/views/treemodels/mediamodel.py:134
+#: ../gramps/plugins/drawreport/ancestortree.py:1055
+#: ../gramps/plugins/drawreport/descendtree.py:1649
+#: ../gramps/plugins/export/exportcsv.py:352
+#: ../gramps/plugins/export/exportcsv.py:469
+#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
+#: ../gramps/plugins/importer/importcsv.py:193
+#: ../gramps/plugins/quickview/filterbyname.py:201
+#: ../gramps/plugins/quickview/filterbyname.py:252
+#: ../gramps/plugins/quickview/quickview.gpr.py:205
+#: ../gramps/plugins/quickview/references.py:96
+#: ../gramps/plugins/textreport/familygroup.py:347
+#: ../gramps/gui/glade/editnote.glade:370
+msgid "Note"
+msgstr "Заметка"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:254
+msgid "Note to add to the graph"
+msgstr "Комментарий для добавления к графу"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:256
+msgid "This text will be added to the graph."
+msgstr "Этот текст будет добавлен к графу."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:259
+msgid "Note location"
+msgstr "Расположение комментария"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
+msgid "Whether note will appear on top or bottom of the page."
+msgstr "Расположение записки вверху или внизу страницы."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:266
+msgid "Note size"
+msgstr "Размер комментария"
+
+# Это --- комментарий к сгенерированному графу, а не "Gramps Note" => НЕ «ЗАМЕТКА»!
+#: ../gramps/gen/plug/docgen/graphdoc.py:267
+msgid "The size of note text, in points."
+msgstr "Это размер шрифта для текста комментария, в пунктах."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+msgid "PDF (Ghostscript)"
+msgstr "PDF (Ghostscript)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+msgid "PDF (Graphviz)"
+msgstr "PDF (Graphviz)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/plugins/docgen/docgen.gpr.py:158
+msgid "PostScript"
+msgstr "PostScript"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+msgid "Structured Vector Graphics (SVG)"
+msgstr "Scalable Vector Graphics (SVG)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+msgid "Compressed Structured Vector Graphs (SVGZ)"
+msgstr "Сжатый Scalable Vector Graphics (SVGZ)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+msgid "JPEG image"
+msgstr "JPEG изображение"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+msgid "GIF image"
+msgstr "GIF изображение"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+msgid "PNG image"
+msgstr "PNG изображение"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+msgid "Graphviz File"
+msgstr "GraphViz файл"
 
 #: ../gramps/gen/plug/report/_book.py:75 ../gramps/gui/plug/_dialogs.py:60
 #: ../gramps/gui/plug/report/_bookdialog.py:89
@@ -5338,8 +5635,8 @@ msgstr "Графика"
 
 #: ../gramps/gen/plug/report/endnotes.py:50
 #: ../gramps/plugins/textreport/ancestorreport.py:352
-#: ../gramps/plugins/textreport/detancestralreport.py:845
-#: ../gramps/plugins/textreport/detdescendantreport.py:1041
+#: ../gramps/plugins/textreport/detancestralreport.py:846
+#: ../gramps/plugins/textreport/detdescendantreport.py:1042
 msgid "The style used for the generation header."
 msgstr "Стиль заголовка поколений."
 
@@ -5366,11 +5663,6 @@ msgstr "Сноски"
 #: ../gramps/gen/plug/report/stdoptions.py:48
 msgid "Translation"
 msgstr "Перевод"
-
-#: ../gramps/gen/plug/report/stdoptions.py:50
-#: ../gramps/gen/plug/report/stdoptions.py:63
-msgid "Default"
-msgstr "По умолчанию"
 
 #: ../gramps/gen/plug/report/stdoptions.py:54
 msgid "The translation to be used for the report."
@@ -5408,7 +5700,7 @@ msgid "PERSON"
 msgstr "ЛИЦО"
 
 #: ../gramps/gen/plug/report/utils.py:269
-#: ../gramps/gui/plug/report/_bookdialog.py:152
+#: ../gramps/gui/plug/report/_bookdialog.py:154
 #: ../gramps/plugins/tool/eventcmp.py:158
 msgid "Entire Database"
 msgstr "Вся база данных"
@@ -5480,9 +5772,9 @@ msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' НЕ для этой версии Gramps."
 
 #: ../gramps/gen/plug/utils.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "Это для версии %d.%d"
+msgstr ""
 
 #: ../gramps/gen/plug/utils.py:266
 #, python-format
@@ -5544,7 +5836,7 @@ msgid "Relationship loop detected"
 msgstr "Обнаружена петля в отношениях"
 
 #: ../gramps/gen/relationship.py:862
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
@@ -5663,7 +5955,7 @@ msgstr "бывшая партнёрша"
 msgid "gender unknown,unknown relation|former partner"
 msgstr "бывший(-ая) партнёр(-ша)"
 
-#: ../gramps/gen/relationship.py:1817
+#: ../gramps/gen/relationship.py:1823
 #, python-format
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
@@ -5671,18 +5963,16 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/utils/alive.py:114
-#, fuzzy
 msgid "death event without date"
-msgstr "событие рождения без даты"
+msgstr "не датированная смерть"
 
 #: ../gramps/gen/utils/alive.py:125
 msgid "death-related evidence"
 msgstr "подтверждение смерти"
 
 #: ../gramps/gen/utils/alive.py:129
-#, fuzzy
 msgid "death-related evidence without date"
-msgstr "подтверждение смерти"
+msgstr "не датированное подтверждение смерти"
 
 #: ../gramps/gen/utils/alive.py:146
 msgid "birth-related evidence"
@@ -5715,14 +6005,12 @@ msgid "sibling death-related date"
 msgstr "дата, связанная со смертью брата/сестры"
 
 #: ../gramps/gen/utils/alive.py:241 ../gramps/gen/utils/alive.py:252
-#, fuzzy
 msgid "a spouse's birth-related date, "
-msgstr "дата, связанная с рождением предка"
+msgstr "дата, связанная с рождением супруга/-и"
 
 #: ../gramps/gen/utils/alive.py:245 ../gramps/gen/utils/alive.py:256
-#, fuzzy
 msgid "a spouse's death-related date, "
-msgstr "дата, связанная со смертью предка"
+msgstr ""
 
 #: ../gramps/gen/utils/alive.py:274
 msgid "event with spouse"
@@ -5775,7 +6063,7 @@ msgstr "нет подтверждения"
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:204
+#: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:240
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
@@ -5986,7 +6274,7 @@ msgstr "ИМЯ"
 #: ../gramps/gui/configure.py:643 ../gramps/gui/configure.py:644
 #: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1455
+#: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1456
 #: ../gramps/plugins/drawreport/statisticschart.py:327
 #: ../gramps/plugins/export/exportcsv.py:345
 #: ../gramps/plugins/importer/importcsv.py:180
@@ -5994,7 +6282,6 @@ msgstr "ИМЯ"
 #: ../gramps/plugins/webreport/narrativeweb.py:2879
 #: ../gramps/plugins/webreport/narrativeweb.py:3960
 #: ../gramps/plugins/webreport/narrativeweb.py:5223
-#: ../gramps/webapp/grampsdb/view/person.py:200
 msgid "Surname"
 msgstr "Фамилия"
 
@@ -6257,7 +6544,7 @@ msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
 
 #: ../gramps/grampsapp.py:137
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %(v1)d."
 "%(v2)d.%(v3)d is needed to start Gramps.\n"
@@ -6265,12 +6552,11 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Версия вашего Python не соответствует требованиям. Для запуска Gramps "
-"необходима версия Python как минимум %d.%d.%d.\n"
+"необходима версия Python как минимум %(v1)d.%(v2)d.%(v3)d\n"
 "\n"
 "Gramps сейчас завершит работу."
 
 #: ../gramps/grampsapp.py:151
-#, fuzzy
 msgid ""
 "\n"
 "You don't have the python bsddb3 package installed. This package is needed "
@@ -6278,10 +6564,6 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версия вашего Python не соответствует требованиям. Для запуска Gramps "
-"необходима версия Python как минимум %d.%d.%d.\n"
-"\n"
-"Gramps сейчас завершит работу."
 
 #: ../gramps/grampsapp.py:377 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:432
@@ -6365,7 +6647,6 @@ msgstr "Адрес"
 #: ../gramps/plugins/textreport/placereport.py:394
 #: ../gramps/plugins/webreport/narrativeweb.py:378
 #: ../gramps/plugins/webreport/narrativeweb.py:980
-#: ../gramps/webapp/grampsdb/view/event.py:136
 msgid "Event"
 msgstr "Событие"
 
@@ -6376,7 +6657,7 @@ msgstr "Событие"
 #: ../gramps/gui/editors/editlink.py:87
 #: ../gramps/gui/editors/filtereditor.py:290
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
-#: ../gramps/gui/plug/_guioptions.py:1306
+#: ../gramps/gui/plug/_guioptions.py:1307
 #: ../gramps/gui/selectors/selectevent.py:67
 #: ../gramps/gui/views/treemodels/placemodel.py:330
 #: ../gramps/plugins/export/exportcsv.py:469
@@ -6399,39 +6680,9 @@ msgstr "Событие"
 #: ../gramps/plugins/webreport/narrativeweb.py:982
 #: ../gramps/plugins/webreport/narrativeweb.py:1230
 #: ../gramps/plugins/webreport/narrativeweb.py:1260
-#: ../gramps/webapp/grampsdb/view/place.py:41
 #: ../gramps/gui/glade/editevent.glade:263
 msgid "Place"
 msgstr "Место"
-
-#: ../gramps/gui/clipboard.py:402 ../gramps/gui/configure.py:542
-#: ../gramps/gui/editors/editlink.py:85 ../gramps/gui/editors/editmedia.py:91
-#: ../gramps/gui/editors/editmedia.py:174
-#: ../gramps/gui/editors/editmediaref.py:136
-#: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
-#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
-#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:107
-#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
-#: ../gramps/gui/views/treemodels/mediamodel.py:134
-#: ../gramps/plugins/drawreport/ancestortree.py:1055
-#: ../gramps/plugins/drawreport/descendtree.py:1649
-#: ../gramps/plugins/export/exportcsv.py:352
-#: ../gramps/plugins/export/exportcsv.py:469
-#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
-#: ../gramps/plugins/importer/importcsv.py:193
-#: ../gramps/plugins/quickview/filterbyname.py:201
-#: ../gramps/plugins/quickview/filterbyname.py:252
-#: ../gramps/plugins/quickview/quickview.gpr.py:205
-#: ../gramps/plugins/quickview/references.py:96
-#: ../gramps/plugins/textreport/familygroup.py:347
-#: ../gramps/webapp/grampsdb/view/note.py:51
-#: ../gramps/gui/glade/editnote.glade:370
-msgid "Note"
-msgstr "Заметка"
 
 #: ../gramps/gui/clipboard.py:435
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:121
@@ -6478,8 +6729,8 @@ msgstr "ссылка на событие"
 #: ../gramps/gui/editors/filtereditor.py:920
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:102
-#: ../gramps/gui/plug/_guioptions.py:1129 ../gramps/gui/plug/_windows.py:120
-#: ../gramps/gui/plug/report/_bookdialog.py:391
+#: ../gramps/gui/plug/_guioptions.py:1130 ../gramps/gui/plug/_windows.py:120
+#: ../gramps/gui/plug/report/_bookdialog.py:423
 #: ../gramps/gui/selectors/selectperson.py:76 ../gramps/gui/viewmanager.py:490
 #: ../gramps/gui/views/bookmarks.py:224 ../gramps/gui/views/tags.py:389
 #: ../gramps/gui/views/treemodels/peoplemodel.py:521
@@ -6493,7 +6744,6 @@ msgstr "ссылка на событие"
 #: ../gramps/plugins/tool/removeunused.py:203
 #: ../gramps/plugins/tool/verify.py:528 ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:6407
-#: ../gramps/webapp/grampsdb/view/person.py:327
 msgid "Name"
 msgstr "Имя"
 
@@ -6516,10 +6766,6 @@ msgstr "Имя"
 #: ../gramps/plugins/webreport/narrativeweb.py:2181
 #: ../gramps/plugins/webreport/narrativeweb.py:4402
 #: ../gramps/plugins/webreport/narrativeweb.py:4524
-#: ../gramps/webapp/grampsdb/view/media.py:54
-#: ../gramps/webapp/grampsdb/view/media.py:55
-#: ../gramps/webapp/grampsdb/views.py:84
-#: ../gramps/webapp/grampsdb/views.py:294
 msgid "Media"
 msgstr "Альбом"
 
@@ -6571,8 +6817,6 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/plugins/webreport/narrativeweb.py:3113
 #: ../gramps/plugins/webreport/narrativeweb.py:3666
 #: ../gramps/plugins/webreport/narrativeweb.py:5988
-#: ../gramps/webapp/grampsdb/view/person.py:345
-#: ../gramps/webapp/grampsdb/view/person.py:475
 #: ../gramps/gui/glade/editpersonref.glade:206
 msgid "Person"
 msgstr "Лицо"
@@ -6594,7 +6838,6 @@ msgstr "Лицо"
 #: ../gramps/plugins/view/relview.py:1342
 #: ../gramps/plugins/view/relview.py:1364
 #: ../gramps/plugins/webreport/narrativeweb.py:3114
-#: ../gramps/webapp/grampsdb/view/family.py:42
 #: ../gramps/gui/glade/editldsord.glade:267
 msgid "Family"
 msgstr "Семья"
@@ -6612,7 +6855,6 @@ msgstr "Семья"
 #: ../gramps/plugins/quickview/quickview.gpr.py:202
 #: ../gramps/plugins/quickview/references.py:90
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/webapp/grampsdb/view/source.py:41
 msgid "Source"
 msgstr "Источник"
 
@@ -6624,7 +6866,6 @@ msgstr "Источник"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
 #: ../gramps/plugins/quickview/filterbyname.py:181
 #: ../gramps/plugins/quickview/filterbyname.py:240
-#: ../gramps/webapp/grampsdb/view/repository.py:41
 msgid "Repository"
 msgstr "Хранилище"
 
@@ -6644,8 +6885,8 @@ msgstr "Хранилище"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:103
 #: ../gramps/gui/merge/mergeperson.py:241 ../gramps/gui/plug/_windows.py:113
 #: ../gramps/gui/plug/_windows.py:231
-#: ../gramps/gui/plug/report/_bookdialog.py:392
-#: ../gramps/gui/plug/report/_bookdialog.py:396
+#: ../gramps/gui/plug/report/_bookdialog.py:424
+#: ../gramps/gui/plug/report/_bookdialog.py:428
 #: ../gramps/gui/selectors/selectevent.py:64
 #: ../gramps/gui/selectors/selectnote.py:69
 #: ../gramps/gui/selectors/selectobject.py:74 ../gramps/gui/viewmanager.py:489
@@ -6936,19 +7177,16 @@ msgid "Gender Male Alive"
 msgstr ""
 
 #: ../gramps/gui/configure.py:555
-#, fuzzy
 msgid "Border Male Alive"
-msgstr "Упорядочить семьи"
+msgstr ""
 
 #: ../gramps/gui/configure.py:557
-#, fuzzy
 msgid "Gender Male Death"
-msgstr "Возраст на момент смерти"
+msgstr ""
 
 #: ../gramps/gui/configure.py:559
-#, fuzzy
 msgid "Border Male Death"
-msgstr "Возраст на момент смерти"
+msgstr ""
 
 #: ../gramps/gui/configure.py:561
 msgid "Gender Female Alive"
@@ -6967,37 +7205,32 @@ msgid "Border Female Death"
 msgstr ""
 
 #: ../gramps/gui/configure.py:577
-#, fuzzy
 msgid "Gender Unknown Alive"
-msgstr "Пол неизвестен"
+msgstr ""
 
 #: ../gramps/gui/configure.py:579
 msgid "Border Unknown Alive"
 msgstr ""
 
 #: ../gramps/gui/configure.py:581
-#, fuzzy
 msgid "Gender Unknown Death"
-msgstr "Пол неизвестен"
+msgstr ""
 
 #: ../gramps/gui/configure.py:583
-#, fuzzy
 msgid "Border Unknown Death"
-msgstr "Неизвестный отец"
+msgstr ""
 
 #: ../gramps/gui/configure.py:585
-#, fuzzy
 msgid "Colors"
-msgstr "Цвет"
+msgstr ""
 
 #: ../gramps/gui/configure.py:593
 msgid "Suppress warning when adding parents to a child."
 msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
 
 #: ../gramps/gui/configure.py:597
-#, fuzzy
 msgid "Suppress warning when canceling with changed data."
-msgstr "Прятать предупреждение при отмене изменённых данных."
+msgstr "Прятать предупреждение при отмене с изменёнными данными."
 
 #: ../gramps/gui/configure.py:601
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
@@ -7046,7 +7279,7 @@ msgstr "Пример"
 #: ../gramps/gui/configure.py:971
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 #: ../gramps/gui/plug/_windows.py:142 ../gramps/gui/plug/_windows.py:198
-#: ../gramps/gui/plug/report/_bookdialog.py:622
+#: ../gramps/gui/plug/report/_bookdialog.py:654
 #: ../gramps/gui/glade/editfamily.glade:281
 #: ../gramps/gui/glade/editfamily.glade:609
 #: ../gramps/gui/glade/editlink.glade:242
@@ -7065,9 +7298,8 @@ msgid "Date format"
 msgstr "Формат дат"
 
 #: ../gramps/gui/configure.py:1003
-#, fuzzy
 msgid "Years"
-msgstr "_Год"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1004
 msgid "Years, Months"
@@ -7078,9 +7310,8 @@ msgid "Years, Months, Days"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1017
-#, fuzzy
 msgid "Age display precision (requires restart)"
-msgstr "Показывать текст на кнопках боковой панели (необходим перезапуск)"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1030
 msgid "Calendar on reports"
@@ -7208,14 +7439,12 @@ msgid "Dates"
 msgstr "Даты"
 
 #: ../gramps/gui/configure.py:1218
-#, fuzzy
 msgid "Add default source on GEDCOM import"
-msgstr "Добавлять источник при импорте"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1222
-#, fuzzy
 msgid "Add tag on import"
-msgstr "Добавлять источник при импорте"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1233
 msgid "Enable spelling checker"
@@ -7274,9 +7503,8 @@ msgid "What to check"
 msgstr "Что проверять"
 
 #: ../gramps/gui/configure.py:1293
-#, fuzzy
 msgid "Where to check"
-msgstr "Что проверять"
+msgstr "Где проверять"
 
 #: ../gramps/gui/configure.py:1297
 msgid "Do not ask about previously notified addons"
@@ -7293,7 +7521,6 @@ msgstr ""
 "с семейным древом"
 
 #: ../gramps/gui/configure.py:1326
-#, fuzzy
 msgid "Automatically load last Family Tree"
 msgstr "Автоматически загружать последнюю базу данных"
 
@@ -7302,9 +7529,8 @@ msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
 #: ../gramps/gui/configure.py:1363
-#, fuzzy
 msgid "Select database directory"
-msgstr "Выбрать каталог документов"
+msgstr "Выбрать каталог базы данных"
 
 #: ../gramps/gui/dbloader.py:125 ../gramps/gui/plug/tool.py:112
 msgid "Undo history warning"
@@ -7334,9 +7560,8 @@ msgid "_Stop"
 msgstr "С_топ"
 
 #: ../gramps/gui/dbloader.py:138
-#, fuzzy
 msgid "Gramps: Import Family Tree"
-msgstr "Семейное древо Gramps XML"
+msgstr ""
 
 #: ../gramps/gui/dbloader.py:143 ../gramps/gui/grampsgui.py:203
 msgid "Import"
@@ -7394,16 +7619,15 @@ msgstr "Обновить сейчас"
 
 # LDS
 #: ../gramps/gui/dbloader.py:323 ../gramps/gui/dbloader.py:334
-#: ../gramps/gui/plug/report/_bookdialog.py:292
-#: ../gramps/gui/plug/report/_bookdialog.py:691
+#: ../gramps/gui/plug/report/_bookdialog.py:296
+#: ../gramps/gui/plug/report/_bookdialog.py:723
 #: ../gramps/gui/viewmanager.py:1057 ../gramps/plugins/view/familyview.py:239
 msgid "Cancel"
 msgstr "Отменить"
 
 #: ../gramps/gui/dbloader.py:330
-#, fuzzy
 msgid "Need to upgrade BSDDB database!"
-msgstr "Необходимо обновить базу данных!"
+msgstr "Необходимо обновить базу данных BSDDB!"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "I have made a backup, please upgrade my tree"
@@ -7430,7 +7654,6 @@ msgid "_Archive"
 msgstr "_Архивировать"
 
 #: ../gramps/gui/dbman.py:282
-#, fuzzy
 msgid "Family Tree name"
 msgstr "Название семейного древа"
 
@@ -7498,17 +7721,15 @@ msgid "Importing archive..."
 msgstr "импортирую архив..."
 
 #: ../gramps/gui/dbman.py:553
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Удалить семейное древо «%s»?"
 
 #: ../gramps/gui/dbman.py:554
-#, fuzzy
 msgid "Removing this Family Tree will permanently destroy the data."
-msgstr "Удаление данного семейного древа окончательно разрушит данные."
+msgstr "Удаление данного семейного древа безвозвратно сотрёт данные."
 
 #: ../gramps/gui/dbman.py:555
-#, fuzzy
 msgid "Remove Family Tree"
 msgstr "Удалить семейное древо"
 
@@ -7527,7 +7748,6 @@ msgid "Remove version"
 msgstr "Удалить версию"
 
 #: ../gramps/gui/dbman.py:596
-#, fuzzy
 msgid "Could not delete Family Tree"
 msgstr "Не удалось удалить семейное древо"
 
@@ -7547,12 +7767,13 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dbman.py:649
-#, fuzzy
 msgid "Repair Family Tree?"
 msgstr "Починить семейное древо?"
 
+# !!!FIXME!!!
+# проверить, что действительно файл называется need_recover в русской версии
 #: ../gramps/gui/dbman.py:651
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree "
 "from the last good backup. There are several ways this can cause unwanted "
@@ -7581,7 +7802,7 @@ msgstr ""
 "семейное древо из последней хорошей резервной копии. В некоторых случаях, "
 "это может привести к нежелательным последствиям, поэтому вам настоятельно "
 "рекомендуется сначала <b>создать резервную копию</b> вашего древа.\n"
-"Выбранное вами семейное древо находится здесь: %s.\n"
+"Выбранное вами семейное древо хранится в: %s.\n"
 "\n"
 "Перед починкой удостоверьтесь, что ваше семейное древо действительно не "
 "открывается, так как драйвер базы данных может исправлять определённые "
@@ -7618,7 +7839,6 @@ msgid "Error restoring backup data"
 msgstr "Ошибка восстановления резервной копии"
 
 #: ../gramps/gui/dbman.py:734
-#, fuzzy
 msgid "Could not create Family Tree"
 msgstr "Ошибка при создании семейного древа"
 
@@ -7915,8 +8135,8 @@ msgstr "Атрибуты"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
 #: ../gramps/gui/merge/mergeperson.py:180
-#: ../gramps/gui/plug/_guioptions.py:1130
-#: ../gramps/gui/plug/_guioptions.py:1307
+#: ../gramps/gui/plug/_guioptions.py:1131
+#: ../gramps/gui/plug/_guioptions.py:1308
 #: ../gramps/gui/selectors/selectcitation.py:68
 #: ../gramps/gui/selectors/selectevent.py:63
 #: ../gramps/gui/selectors/selectfamily.py:62
@@ -7968,9 +8188,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:183
-#, fuzzy
 msgid "Cannot open new citation editor"
-msgstr "Не могу объединить цитаты."
+msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:52
 #, python-format
@@ -8338,14 +8557,14 @@ msgid "Set as default name"
 msgstr "Сделать базовым именем"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:543
+#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:543
 #: ../gramps/gui/views/tags.py:480
 #: ../gramps/plugins/quickview/all_relations.py:308
 msgid "Yes"
 msgstr "Да"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1210 ../gramps/gui/views/listview.py:544
+#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:544
 #: ../gramps/gui/views/tags.py:481
 #: ../gramps/plugins/quickview/all_relations.py:312
 msgid "No"
@@ -9416,18 +9635,16 @@ msgid "New Place"
 msgstr "Новое Место"
 
 #: ../gramps/gui/editors/editplace.py:233
-#, fuzzy
 msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Неверная широта (пример: 18°9'"
+msgstr "Неверная широта (пример: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:234
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 или -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:236
-#, fuzzy
 msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Неверная долгота (пример: 18°9'"
+msgstr "Неверная долгота (пример: 18\\u00b09'"
 
 #: ../gramps/gui/editors/editplace.py:237
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
@@ -9584,7 +9801,6 @@ msgstr "Редактировать метки"
 #: ../gramps/gui/views/tags.py:227
 #: ../gramps/plugins/textreport/tagreport.py:541
 #: ../gramps/plugins/textreport/tagreport.py:545
-#: ../gramps/webapp/grampsdb/view/tag.py:41
 msgid "Tag"
 msgstr "Метка"
 
@@ -9613,9 +9829,8 @@ msgid "Source Filters"
 msgstr "Фильтры источников"
 
 #: ../gramps/gui/editors/filtereditor.py:90
-#, fuzzy
 msgid "Media Filters"
-msgstr "Фильтр документов"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:91
 msgid "Repository Filters"
@@ -9748,7 +9963,7 @@ msgstr "Проверить фильтр"
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:376
 #: ../gramps/plugins/textreport/indivcomplete.py:696
-#: ../gramps/plugins/textreport/recordsreport.py:140
+#: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:8001
 #: ../gramps/plugins/webreport/webcal.py:1336
@@ -9812,7 +10027,7 @@ msgstr ""
 "Для выбора документа пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:311
-#: ../gramps/gui/plug/_guioptions.py:1069
+#: ../gramps/gui/plug/_guioptions.py:1070
 msgid "No image given, click button to select one"
 msgstr "Не указан документ; нажмите кнопку чтобы выбрать"
 
@@ -9821,7 +10036,7 @@ msgid "Edit media object"
 msgstr "Редактировать документ"
 
 #: ../gramps/gui/editors/objectentries.py:313
-#: ../gramps/gui/plug/_guioptions.py:1047
+#: ../gramps/gui/plug/_guioptions.py:1048
 msgid "Select an existing media object"
 msgstr "Выбрать существующий документ"
 
@@ -9840,12 +10055,12 @@ msgstr ""
 "Для выбора заметки пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:365
-#: ../gramps/gui/plug/_guioptions.py:968
+#: ../gramps/gui/plug/_guioptions.py:969
 msgid "No note given, click button to select one"
 msgstr "Заметка не указана; нажмите кнопку чтобы выбрать"
 
 #: ../gramps/gui/editors/objectentries.py:367
-#: ../gramps/gui/plug/_guioptions.py:943
+#: ../gramps/gui/plug/_guioptions.py:944
 msgid "Select an existing note"
 msgstr "Выбрать существующую заметку"
 
@@ -9968,9 +10183,9 @@ msgstr "Дата рождения"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
-#, fuzzy, python-format
+#, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "пример: «%s» или «%s»"
+msgstr "пример: «%(msg1)s» или «%(msg2)s»"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:350
@@ -10018,7 +10233,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:75
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
 "At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps "
@@ -10026,10 +10241,6 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версия вашего Python не соответствует требованиям. Для запуска Gramps "
-"необходима версия Python как минимум %d.%d.%d.\n"
-"\n"
-"Gramps сейчас завершит работу."
 
 #: ../gramps/gui/grampsgui.py:91
 msgid ""
@@ -10084,9 +10295,6 @@ msgstr "Редактирование даты"
 #: ../gramps/plugins/webreport/narrativeweb.py:3631
 #: ../gramps/plugins/webreport/narrativeweb.py:3819
 #: ../gramps/plugins/webreport/narrativeweb.py:6242
-#: ../gramps/webapp/grampsdb/view/event.py:137
-#: ../gramps/webapp/grampsdb/views.py:82
-#: ../gramps/webapp/grampsdb/views.py:284
 msgid "Events"
 msgstr "События"
 
@@ -10102,9 +10310,8 @@ msgstr "Веерная карта"
 #: ../gramps/gui/grampsgui.py:157
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/fanchartdescview.py:74
-#, fuzzy
 msgid "Descendant Fan Chart"
-msgstr "Древо потомков"
+msgstr ""
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -10176,9 +10383,6 @@ msgstr "Объединение"
 #: ../gramps/plugins/webreport/narrativeweb.py:383
 #: ../gramps/plugins/webreport/narrativeweb.py:984
 #: ../gramps/plugins/webreport/narrativeweb.py:1566
-#: ../gramps/webapp/grampsdb/view/note.py:52
-#: ../gramps/webapp/grampsdb/views.py:83
-#: ../gramps/webapp/grampsdb/views.py:304
 msgid "Notes"
 msgstr "Заметки"
 
@@ -10222,15 +10426,10 @@ msgstr "Родословная"
 #: ../gramps/plugins/webreport/narrativeweb.py:1875
 #: ../gramps/plugins/webreport/narrativeweb.py:3343
 #: ../gramps/plugins/webreport/narrativeweb.py:3463
-#: ../gramps/webapp/grampsdb/view/place.py:42
-#: ../gramps/webapp/grampsdb/views.py:87
-#: ../gramps/webapp/grampsdb/views.py:334
 msgid "Places"
 msgstr "Места"
 
-#: ../gramps/gui/grampsgui.py:180 ../gramps/webapp/grampsdb/views.py:75
-#: ../gramps/webapp/grampsdb/views.py:384
-#: ../gramps/webapp/grampsdb/views.py:603
+#: ../gramps/gui/grampsgui.py:180
 msgid "Reports"
 msgstr "Отчёты"
 
@@ -10244,9 +10443,6 @@ msgstr "Отчёты"
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
 #: ../gramps/plugins/webreport/narrativeweb.py:6559
 #: ../gramps/plugins/webreport/narrativeweb.py:6624
-#: ../gramps/webapp/grampsdb/view/repository.py:42
-#: ../gramps/webapp/grampsdb/views.py:88
-#: ../gramps/webapp/grampsdb/views.py:344
 msgid "Repositories"
 msgstr "Хранилища"
 
@@ -10265,9 +10461,6 @@ msgstr "Хранилища"
 #: ../gramps/plugins/webreport/narrativeweb.py:1876
 #: ../gramps/plugins/webreport/narrativeweb.py:4181
 #: ../gramps/plugins/webreport/narrativeweb.py:4264
-#: ../gramps/webapp/grampsdb/view/source.py:42
-#: ../gramps/webapp/grampsdb/views.py:86
-#: ../gramps/webapp/grampsdb/views.py:364
 msgid "Sources"
 msgstr "Источники"
 
@@ -10324,9 +10517,6 @@ msgstr "Уместить на страницу"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:775
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
-#: ../gramps/webapp/grampsdb/view/citation.py:42
-#: ../gramps/webapp/grampsdb/views.py:85
-#: ../gramps/webapp/grampsdb/views.py:354
 msgid "Citations"
 msgstr "Цитаты"
 
@@ -10387,9 +10577,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:74
-#, fuzzy
 msgid "Error Report Assistant"
-msgstr "Помощник экспорта"
+msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:230
 msgid "Report a bug"
@@ -10462,7 +10651,6 @@ msgstr ""
 "неисправность."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:412
-#, fuzzy
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured."
@@ -10497,7 +10685,6 @@ msgid "Bug Report Summary"
 msgstr "Итого Сообщения об Ошибке"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:522
-#, fuzzy
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -10589,9 +10776,9 @@ msgid "Filter %s from Clipboard"
 msgstr "Отфильтровать %s из буфера обмена"
 
 #: ../gramps/gui/makefilter.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "Создано %4d/%02d/%02d"
+msgstr "Создано %(year)4d/%(month)02d/%(day)02d"
 
 #: ../gramps/gui/merge/mergecitation.py:49
 msgid "manual|Merge_Citations"
@@ -10663,7 +10850,7 @@ msgid "No parents found"
 msgstr "Родители не найдены"
 
 #: ../gramps/gui/merge/mergeperson.py:228
-#: ../gramps/plugins/textreport/kinshipreport.py:126
+#: ../gramps/plugins/textreport/kinshipreport.py:130
 #: ../gramps/plugins/view/pedigreeview.py:1652
 msgid "Spouses"
 msgstr "Супруги"
@@ -10757,60 +10944,60 @@ msgstr "Поиск фамилий"
 msgid "Finding surnames"
 msgstr "Поиск фамилий"
 
-#: ../gramps/gui/plug/_guioptions.py:643
+#: ../gramps/gui/plug/_guioptions.py:644
 msgid "Select a different person"
 msgstr "Выберите другое лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:670
+#: ../gramps/gui/plug/_guioptions.py:671
 msgid "Select a person for the report"
 msgstr "Выберите лицо для отчета"
 
-#: ../gramps/gui/plug/_guioptions.py:751
+#: ../gramps/gui/plug/_guioptions.py:752
 msgid "Select a different family"
 msgstr "Выберите другую семью"
 
-#: ../gramps/gui/plug/_guioptions.py:852
-#: ../gramps/gui/plug/report/_bookdialog.py:177
+#: ../gramps/gui/plug/_guioptions.py:853
+#: ../gramps/gui/plug/report/_bookdialog.py:179
 msgid "unknown father"
 msgstr "неизвестный отец"
 
-#: ../gramps/gui/plug/_guioptions.py:858
-#: ../gramps/gui/plug/report/_bookdialog.py:183
+#: ../gramps/gui/plug/_guioptions.py:859
+#: ../gramps/gui/plug/report/_bookdialog.py:185
 msgid "unknown mother"
 msgstr "неизвестная мать"
 
-#: ../gramps/gui/plug/_guioptions.py:860
-#, fuzzy, python-format
+#: ../gramps/gui/plug/_guioptions.py:861
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s и %(mother)s (%(id)s)"
+msgstr "%(father_name)s и %(mother_name)s (%(family_id)s)"
 
-#: ../gramps/gui/plug/_guioptions.py:1206
+#: ../gramps/gui/plug/_guioptions.py:1207
 #, python-format
 msgid "Also include %s?"
 msgstr "Также включать %s?"
 
-#: ../gramps/gui/plug/_guioptions.py:1208
+#: ../gramps/gui/plug/_guioptions.py:1209
 #: ../gramps/gui/selectors/selectperson.py:69
 msgid "Select Person"
 msgstr "Выбрать лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:1456 ../gramps/gui/views/tags.py:390
+#: ../gramps/gui/plug/_guioptions.py:1457 ../gramps/gui/views/tags.py:390
 #: ../gramps/gui/glade/styleeditor.glade:405
 msgid "Color"
 msgstr "Цвет"
 
-#: ../gramps/gui/plug/_guioptions.py:1524
-#, fuzzy, python-format
+#: ../gramps/gui/plug/_guioptions.py:1525
+#, python-format
 msgid "Select color for %s"
-msgstr "Выберите цвет шрифта"
+msgstr "Выберите цвет для %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1684
-#: ../gramps/gui/plug/report/_reportdialog.py:443
+#: ../gramps/gui/plug/_guioptions.py:1685
+#: ../gramps/gui/plug/report/_reportdialog.py:458
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../gramps/gui/plug/_guioptions.py:1764
-#: ../gramps/gui/plug/report/_reportdialog.py:317
+#: ../gramps/gui/plug/_guioptions.py:1765
+#: ../gramps/gui/plug/report/_reportdialog.py:327
 msgid "Style Editor"
 msgstr "Редактор стилей"
 
@@ -10942,7 +11129,7 @@ msgid "Authors"
 msgstr "Авторы"
 
 #: ../gramps/gui/plug/_windows.py:608
-#: ../gramps/gui/plug/report/_reportdialog.py:462
+#: ../gramps/gui/plug/report/_reportdialog.py:477
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -10972,14 +11159,12 @@ msgid "Choose the output format"
 msgstr "Выбор формата для сохранения"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:238
-#, fuzzy
 msgid "Export options"
-msgstr "Настройки экспорта в GEDCOM"
+msgstr "Настройки экспорта"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:307
-#, fuzzy
 msgid "Select save file"
-msgstr "Выберите файл"
+msgstr "Выберите файл для записи"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:351
 #: ../gramps/plugins/tool/mediamanager.py:107
@@ -11011,7 +11196,7 @@ msgstr ""
 "пересмотра возможностей"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:459
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -11023,9 +11208,9 @@ msgid ""
 msgstr ""
 "Данные будут сохранены так:\n"
 "\n"
-"Формат:\t%s\n"
-"Имя:\t%s\n"
-"Каталог:\t%s\n"
+"Формат:\t%(format)s\n"
+"Имя:\t%(name)s\n"
+"Каталог:\t%(folder)s\n"
 "\n"
 "Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для "
 "пересмотра возможностей"
@@ -11108,9 +11293,8 @@ msgstr ""
 "текущая база данных останется без изменений."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:600
-#, fuzzy
 msgid "Error exporting your Family Tree"
-msgstr "Ошибка открытия файла"
+msgstr ""
 
 #: ../gramps/gui/plug/export/_exportoptions.py:57
 msgid "Selecting Preview Data"
@@ -11279,62 +11463,62 @@ msgstr "Быстрый просмотр"
 msgid "See data not in Filter"
 msgstr "Смотреть данные, не попавшие в фильтр"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:185
+#: ../gramps/gui/plug/report/_bookdialog.py:187
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s и %(mother)s (%(id)s)"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:221
+#: ../gramps/gui/plug/report/_bookdialog.py:223
 msgid "Available Books"
 msgstr "Существующие книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:289
+#: ../gramps/gui/plug/report/_bookdialog.py:293
 msgid "Discard Unsaved Changes"
 msgstr "Отменить несохранённые изменения"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:290
+#: ../gramps/gui/plug/report/_bookdialog.py:294
 msgid "You have made changes which have not been saved."
 msgstr "Изменения, сделанные Вами, ещё не были сохранены."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:291
-#: ../gramps/gui/plug/report/_bookdialog.py:690
+#: ../gramps/gui/plug/report/_bookdialog.py:295
+#: ../gramps/gui/plug/report/_bookdialog.py:722
 msgid "Proceed"
 msgstr "Запустить"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:320
+#: ../gramps/gui/plug/report/_bookdialog.py:352
 msgid "Name of the book. MANDATORY"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:380
+#: ../gramps/gui/plug/report/_bookdialog.py:412
 msgid "New Book"
 msgstr "Новая книга"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:383
+#: ../gramps/gui/plug/report/_bookdialog.py:415
 msgid "_Available items"
 msgstr "_Доступные элементы"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:387
+#: ../gramps/gui/plug/report/_bookdialog.py:419
 msgid "Current _book"
 msgstr "Текущая _книга"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:395
+#: ../gramps/gui/plug/report/_bookdialog.py:427
 #: ../gramps/plugins/drawreport/statisticschart.py:302
 msgid "Item name"
 msgstr "Название элемента"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:398
+#: ../gramps/gui/plug/report/_bookdialog.py:430
 msgid "Subject"
 msgstr "Заголовок"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:410
+#: ../gramps/gui/plug/report/_bookdialog.py:442
 msgid "Book selection list"
 msgstr "Список выбора для книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:450
+#: ../gramps/gui/plug/report/_bookdialog.py:482
 msgid "Different database"
 msgstr "Другая база данных"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:451
+#: ../gramps/gui/plug/report/_bookdialog.py:483
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -11351,41 +11535,39 @@ msgstr ""
 "Поэтому, за центральное лицо каждого элемента берётся активное лицо в "
 "текущей базе данных."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:552
-#, fuzzy
+#: ../gramps/gui/plug/report/_bookdialog.py:584
 msgid "No selected book item"
-msgstr "Удалить выделенные элементы?"
+msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:553
-#, fuzzy
+#: ../gramps/gui/plug/report/_bookdialog.py:585
 msgid "Please select a book item to configure."
-msgstr "Пожалуйста выберите другой фильтр для редактирования"
+msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:616
+#: ../gramps/gui/plug/report/_bookdialog.py:648
 msgid "Setup"
 msgstr "Настроить"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:626
+#: ../gramps/gui/plug/report/_bookdialog.py:658
 msgid "Book Menu"
 msgstr "Книга"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:649
+#: ../gramps/gui/plug/report/_bookdialog.py:681
 msgid "Available Items Menu"
 msgstr "Доступные элементы"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:667
+#: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "No items"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:667
+#: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "This book has no items."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:678
+#: ../gramps/gui/plug/report/_bookdialog.py:710
 msgid "No book name"
 msgstr "Нет название книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:679
+#: ../gramps/gui/plug/report/_bookdialog.py:711
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -11395,15 +11577,15 @@ msgstr ""
 "\n"
 "Пожалуйста, дайте ей имя перед сохранением."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:686
+#: ../gramps/gui/plug/report/_bookdialog.py:718
 msgid "Book name already exists"
 msgstr "Книга с таким названием уже имеется"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:687
+#: ../gramps/gui/plug/report/_bookdialog.py:719
 msgid "You are about to save away a book with a name which already exists."
 msgstr "Вы пытаетесь сохранить книгу с названием, которое уже используется."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:883
+#: ../gramps/gui/plug/report/_bookdialog.py:915
 msgid "Gramps Book"
 msgstr "Книга Gramps"
 
@@ -11462,29 +11644,29 @@ msgstr "''"
 msgid "Configuration"
 msgstr "Конфигурация"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:313
+#: ../gramps/gui/plug/report/_reportdialog.py:323
 #: ../gramps/gui/plug/report/_styleeditor.py:102
 msgid "Style"
 msgstr "Стиль"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:356
+#: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/calendarreport.py:418
-#: ../gramps/plugins/drawreport/fanchart.py:639
+#: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/drawreport/statisticschart.py:932
 #: ../gramps/plugins/drawreport/timeline.py:376
 #: ../gramps/plugins/graph/gvrelgraph.py:493
 #: ../gramps/plugins/textreport/ancestorreport.py:270
 #: ../gramps/plugins/textreport/birthdayreport.py:369
 #: ../gramps/plugins/textreport/descendreport.py:401
-#: ../gramps/plugins/textreport/detancestralreport.py:716
-#: ../gramps/plugins/textreport/detdescendantreport.py:881
+#: ../gramps/plugins/textreport/detancestralreport.py:717
+#: ../gramps/plugins/textreport/detdescendantreport.py:882
 #: ../gramps/plugins/textreport/endoflinereport.py:258
 #: ../gramps/plugins/textreport/familygroup.py:634
 #: ../gramps/plugins/textreport/indivcomplete.py:693
-#: ../gramps/plugins/textreport/kinshipreport.py:339
+#: ../gramps/plugins/textreport/kinshipreport.py:343
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:201
 #: ../gramps/plugins/textreport/placereport.py:374
-#: ../gramps/plugins/textreport/recordsreport.py:138
+#: ../gramps/plugins/textreport/recordsreport.py:170
 #: ../gramps/plugins/textreport/simplebooktitle.py:130
 #: ../gramps/plugins/textreport/summary.py:277
 #: ../gramps/plugins/textreport/tagreport.py:533
@@ -11493,17 +11675,17 @@ msgstr "Стиль"
 msgid "Report Options"
 msgstr "Параметры отчёта"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:447
+#: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Document Options"
 msgstr "Параметры документа"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:494
-#: ../gramps/gui/plug/report/_reportdialog.py:519
+#: ../gramps/gui/plug/report/_reportdialog.py:509
+#: ../gramps/gui/plug/report/_reportdialog.py:534
 msgid "Permission problem"
 msgstr "Ошибка отсутствия прав"
 
 # !!!FIXME!!!
-#: ../gramps/gui/plug/report/_reportdialog.py:495
+#: ../gramps/gui/plug/report/_reportdialog.py:510
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -11514,24 +11696,24 @@ msgstr ""
 "\n"
 "Пожалуйста, выберите другой каталог или измените права.."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:504
+#: ../gramps/gui/plug/report/_reportdialog.py:519
 msgid "File already exists"
 msgstr "Файл уже существует"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:505
+#: ../gramps/gui/plug/report/_reportdialog.py:520
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Вы можете выбрать: либо записать поверх файла, либо изменить имя."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:507
+#: ../gramps/gui/plug/report/_reportdialog.py:522
 msgid "_Overwrite"
 msgstr "_Переписать"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:508
+#: ../gramps/gui/plug/report/_reportdialog.py:523
 msgid "_Change filename"
 msgstr "_Изменить имя файла"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:520
+#: ../gramps/gui/plug/report/_reportdialog.py:535
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -11542,22 +11724,22 @@ msgstr ""
 "\n"
 "Пожалуйста, выберите другой путь или измените права."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:650
+#: ../gramps/gui/plug/report/_reportdialog.py:665
 #: ../gramps/gui/plug/tool.py:141 ../gramps/plugins/tool/relcalc.py:150
 msgid "Active person has not been set"
 msgstr "Базовое лицо не установлено"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:651
+#: ../gramps/gui/plug/report/_reportdialog.py:666
 msgid "You must select an active person for this report to work properly."
 msgstr "Для работы этого отчёта необходимо выбрать активное лицо."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:702
-#: ../gramps/gui/plug/report/_reportdialog.py:707
+#: ../gramps/gui/plug/report/_reportdialog.py:717
+#: ../gramps/gui/plug/report/_reportdialog.py:722
 msgid "Report could not be created"
 msgstr "Ошибка создания отчёта"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:70
-#: ../gramps/gui/plug/report/_stylecombobox.py:89
+#: ../gramps/gui/plug/report/_stylecombobox.py:89 gtklist.h:1
 msgid "default"
 msgstr "по умолчанию"
 
@@ -11663,9 +11845,6 @@ msgstr "Выберите заметку"
 #: ../gramps/plugins/view/placetreeview.py:88
 #: ../gramps/plugins/view/repoview.py:100
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/webapp/grampsdb/view/tag.py:42
-#: ../gramps/webapp/grampsdb/views.py:89
-#: ../gramps/webapp/grampsdb/views.py:374
 #: ../gramps/gui/glade/editfamily.glade:810
 #: ../gramps/gui/glade/editmedia.glade:438
 #: ../gramps/gui/glade/editmediaref.glade:882
@@ -11714,9 +11893,8 @@ msgid "On"
 msgstr "Вкл"
 
 #: ../gramps/gui/spell.py:132
-#, fuzzy
 msgid "Spelling checker could not be attached to TextView"
-msgstr "Проверка правописания не установлена"
+msgstr ""
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:775
@@ -11769,7 +11947,6 @@ msgstr "История очищена"
 
 # LDS
 #: ../gramps/gui/utils.py:221
-#, fuzzy
 msgid "Canceling..."
 msgstr "Отменяю..."
 
@@ -11790,9 +11967,8 @@ msgid "New"
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:446
-#, fuzzy
 msgid "Checking Addons Failed"
-msgstr "Проверяю модуль..."
+msgstr ""
 
 #: ../gramps/gui/viewmanager.py:447
 msgid "The addon repository appears to be unavailable. Please try again later."
@@ -11961,9 +12137,8 @@ msgid "_Go"
 msgstr "Пере_ход"
 
 #: ../gramps/gui/viewmanager.py:790
-#, fuzzy
 msgid "Books..."
-msgstr "Книги"
+msgstr "Книги..."
 
 #: ../gramps/gui/viewmanager.py:791
 msgid "_Windows"
@@ -11994,7 +12169,6 @@ msgid "_Bookmarks"
 msgstr "_Закладки"
 
 #: ../gramps/gui/viewmanager.py:836
-#, fuzzy
 msgid "_Configure..."
 msgstr "Настроить вид..."
 
@@ -12108,9 +12282,9 @@ msgstr "Альбом:"
 #: ../gramps/gui/viewmanager.py:1560
 #: ../gramps/plugins/drawreport/ancestortree.py:1026
 #: ../gramps/plugins/drawreport/descendtree.py:1620
-#: ../gramps/plugins/textreport/detancestralreport.py:778
-#: ../gramps/plugins/textreport/detdescendantreport.py:953
+#: ../gramps/plugins/textreport/detancestralreport.py:779
 #: ../gramps/plugins/textreport/detdescendantreport.py:954
+#: ../gramps/plugins/textreport/detdescendantreport.py:955
 #: ../gramps/plugins/textreport/familygroup.py:652
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "Include"
@@ -12353,9 +12527,8 @@ msgid "Set _Home Person"
 msgstr "У_становить базовое лицо"
 
 #: ../gramps/gui/views/navigationview.py:336
-#, fuzzy
 msgid "No Home Person"
-msgstr "Базовое Лицо не назначено."
+msgstr "Базовое лицо не назначено."
 
 #: ../gramps/gui/views/navigationview.py:337
 msgid ""
@@ -12551,9 +12724,8 @@ msgid "Unnamed Gramplet"
 msgstr "Безымянный грамплет"
 
 #: ../gramps/gui/widgets/grampletbar.py:342
-#, fuzzy
 msgid "Gramplet Bar"
-msgstr "Панель Gramps"
+msgstr ""
 
 #: ../gramps/gui/widgets/grampletbar.py:344
 msgid ""
@@ -12700,14 +12872,6 @@ msgstr "Цвет фона"
 msgid "Clear Markup"
 msgstr "Стереть разметку"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:489
-msgid "Font family"
-msgstr "Гарнитура шрифта"
-
-#: ../gramps/gui/widgets/styledtexteditor.py:501
-msgid "Font size"
-msgstr "Размер шрифта"
-
 #: ../gramps/gui/widgets/styledtexteditor.py:522
 msgid "Undo"
 msgstr "Откатить"
@@ -12739,14 +12903,12 @@ msgid "'%s' is not a valid date value"
 msgstr "'%s' не является корректной датой"
 
 #: ../gramps/plugins/docgen/asciidoc.py:446
-#, fuzzy
 msgid "Characters per line"
-msgstr "Кодировка символов"
+msgstr "Символов на строку"
 
 #: ../gramps/plugins/docgen/asciidoc.py:447
-#, fuzzy
 msgid "The number of characters per line"
-msgstr "Количество лет после даты последнего события"
+msgstr "Количество символов в строке"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
@@ -12795,10 +12957,6 @@ msgstr "Документ PDF"
 #: ../gramps/plugins/docgen/docgen.gpr.py:138
 msgid "Generates documents in PDF format (.pdf)."
 msgstr "Создает документы в формате PDF (.pdf)."
-
-#: ../gramps/plugins/docgen/docgen.gpr.py:158
-msgid "PostScript"
-msgstr "PostScript"
 
 #
 #: ../gramps/plugins/docgen/docgen.gpr.py:159
@@ -12866,16 +13024,15 @@ msgid "Index"
 msgstr "Указатель"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:343
-#, fuzzy
 msgid "SVG background color"
-msgstr "Выберите цвет фона"
+msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:345
 msgid "transparent background"
 msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:346
-#: ../gramps/plugins/drawreport/fanchart.py:658
+#: ../gramps/plugins/drawreport/fanchart.py:668
 msgid "white"
 msgstr "белый"
 
@@ -12884,14 +13041,12 @@ msgid "black"
 msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:348
-#, fuzzy
 msgid "red"
-msgstr "Женаты"
+msgstr "красный"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:349
-#, fuzzy
 msgid "green"
-msgstr "Степень"
+msgstr "зелёный"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "blue"
@@ -12902,9 +13057,8 @@ msgid "cyan"
 msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:352
-#, fuzzy
 msgid "magenta"
-msgstr "Изображение"
+msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "yellow"
@@ -12932,9 +13086,8 @@ msgid "short for married|m."
 msgstr "бр."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:141
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "Граф Предков для %s"
+msgstr "Граф предков"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:156
 #, python-format
@@ -12962,15 +13115,15 @@ msgstr "Параметры древа"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/calendarreport.py:432
-#: ../gramps/plugins/drawreport/fanchart.py:641
+#: ../gramps/plugins/drawreport/fanchart.py:650
 #: ../gramps/plugins/graph/gvhourglass.py:273
 #: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/birthdayreport.py:381
 #: ../gramps/plugins/textreport/descendreport.py:403
-#: ../gramps/plugins/textreport/detancestralreport.py:719
-#: ../gramps/plugins/textreport/detdescendantreport.py:884
+#: ../gramps/plugins/textreport/detancestralreport.py:720
+#: ../gramps/plugins/textreport/detdescendantreport.py:885
 #: ../gramps/plugins/textreport/endoflinereport.py:260
-#: ../gramps/plugins/textreport/kinshipreport.py:341
+#: ../gramps/plugins/textreport/kinshipreport.py:345
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:203
 msgid "Center Person"
 msgstr "Главное лицо"
@@ -12981,11 +13134,11 @@ msgstr "Главное лицо для построения древа"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:900
 #: ../gramps/plugins/drawreport/descendtree.py:1501
-#: ../gramps/plugins/drawreport/fanchart.py:645
+#: ../gramps/plugins/drawreport/fanchart.py:654
 #: ../gramps/plugins/textreport/ancestorreport.py:278
 #: ../gramps/plugins/textreport/descendreport.py:417
-#: ../gramps/plugins/textreport/detancestralreport.py:725
-#: ../gramps/plugins/textreport/detdescendantreport.py:899
+#: ../gramps/plugins/textreport/detancestralreport.py:726
+#: ../gramps/plugins/textreport/detdescendantreport.py:900
 msgid "Generations"
 msgstr "Поколения"
 
@@ -13008,7 +13161,6 @@ msgstr "Сколько поколений отображать на графе �
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1510
-#, fuzzy
 msgid "Compress tree"
 msgstr "Сжимать древо"
 
@@ -13176,9 +13328,8 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
 #: ../gramps/plugins/drawreport/descendtree.py:1613
-#, fuzzy
 msgid "box shadow scale factor"
-msgstr "Не масштабировать древо"
+msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1615
@@ -13283,15 +13434,15 @@ msgstr " поколений неизвестных предков в пусты�
 #: ../gramps/plugins/drawreport/ancestortree.py:1107
 #: ../gramps/plugins/drawreport/descendtree.py:1709
 #: ../gramps/plugins/textreport/ancestorreport.py:362
-#: ../gramps/plugins/textreport/detancestralreport.py:881
-#: ../gramps/plugins/textreport/detdescendantreport.py:1077
+#: ../gramps/plugins/textreport/detancestralreport.py:882
+#: ../gramps/plugins/textreport/detdescendantreport.py:1078
 #: ../gramps/plugins/textreport/endoflinereport.py:299
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/familygroup.py:733
 #: ../gramps/plugins/textreport/indivcomplete.py:816
-#: ../gramps/plugins/textreport/kinshipreport.py:397
+#: ../gramps/plugins/textreport/kinshipreport.py:403
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:230
-#: ../gramps/plugins/textreport/recordsreport.py:238
+#: ../gramps/plugins/textreport/recordsreport.py:269
 #: ../gramps/plugins/textreport/summary.py:312
 #: ../gramps/plugins/textreport/tagreport.py:587
 msgid "The basic style used for the text display."
@@ -13311,7 +13462,7 @@ msgstr "Основной стиль заголовков."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:100
 #: ../gramps/plugins/drawreport/descendtree.py:678
-#: ../gramps/plugins/drawreport/fanchart.py:180
+#: ../gramps/plugins/drawreport/fanchart.py:183
 #: ../gramps/plugins/graph/gvhourglass.py:105
 #: ../gramps/plugins/textreport/ancestorreport.py:106
 #: ../gramps/plugins/textreport/birthdayreport.py:101
@@ -13319,7 +13470,7 @@ msgstr "Основной стиль заголовков."
 #: ../gramps/plugins/textreport/detancestralreport.py:138
 #: ../gramps/plugins/textreport/detdescendantreport.py:156
 #: ../gramps/plugins/textreport/endoflinereport.py:81
-#: ../gramps/plugins/textreport/kinshipreport.py:94
+#: ../gramps/plugins/textreport/kinshipreport.py:95
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:83
 #, python-format
 msgid "Person %s is not in the Database"
@@ -13406,14 +13557,14 @@ msgstr "Задайте фильтр, чтобы ограничить лиц, к�
 
 # !!!FIXME!!!
 #: ../gramps/plugins/drawreport/calendarreport.py:433
-#: ../gramps/plugins/drawreport/fanchart.py:642
+#: ../gramps/plugins/drawreport/fanchart.py:651
 #: ../gramps/plugins/textreport/ancestorreport.py:273
 #: ../gramps/plugins/textreport/birthdayreport.py:382
 #: ../gramps/plugins/textreport/descendreport.py:404
-#: ../gramps/plugins/textreport/detancestralreport.py:720
-#: ../gramps/plugins/textreport/detdescendantreport.py:885
+#: ../gramps/plugins/textreport/detancestralreport.py:721
+#: ../gramps/plugins/textreport/detdescendantreport.py:886
 #: ../gramps/plugins/textreport/endoflinereport.py:261
-#: ../gramps/plugins/textreport/kinshipreport.py:342
+#: ../gramps/plugins/textreport/kinshipreport.py:346
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
 msgid "The center person for the report"
 msgstr "Главное лицо для отчета"
@@ -13613,9 +13764,8 @@ msgid "Descendant Chart for %(father)s and %(mother)s"
 msgstr "Древо потомков для %(father)s и %(mother)s."
 
 #: ../gramps/plugins/drawreport/descendtree.py:214
-#, fuzzy
 msgid "Descendant Graph"
-msgstr "Грамплет Потомки"
+msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -13835,108 +13985,105 @@ msgstr "Временная диаграмма"
 msgid "Produces a timeline chart."
 msgstr "Создаёт временную диаграмму."
 
-#: ../gramps/plugins/drawreport/fanchart.py:244
+#: ../gramps/plugins/drawreport/fanchart.py:249
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "Веерная Карта %(generations)d поколений для %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:255
-#, fuzzy, python-format
+#: ../gramps/plugins/drawreport/fanchart.py:262
+#, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "Веерная Карта %(generations)d поколений для %(person)s"
+msgstr "Веерная карта %(generations)d поколений для %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:646
+#: ../gramps/plugins/drawreport/fanchart.py:655
 #: ../gramps/plugins/textreport/ancestorreport.py:279
 #: ../gramps/plugins/textreport/descendreport.py:418
-#: ../gramps/plugins/textreport/detancestralreport.py:726
-#: ../gramps/plugins/textreport/detdescendantreport.py:901
+#: ../gramps/plugins/textreport/detancestralreport.py:727
+#: ../gramps/plugins/textreport/detdescendantreport.py:902
 msgid "The number of generations to include in the report"
 msgstr "Сколько поколений включать в отчет"
 
-#: ../gramps/plugins/drawreport/fanchart.py:649
+#: ../gramps/plugins/drawreport/fanchart.py:659
 msgid "Type of graph"
 msgstr "Тип графа"
 
-#: ../gramps/plugins/drawreport/fanchart.py:650
+#: ../gramps/plugins/drawreport/fanchart.py:660
 msgid "full circle"
 msgstr "полный круг"
 
-#: ../gramps/plugins/drawreport/fanchart.py:651
+#: ../gramps/plugins/drawreport/fanchart.py:661
 msgid "half circle"
 msgstr "полукруг"
 
-#: ../gramps/plugins/drawreport/fanchart.py:652
+#: ../gramps/plugins/drawreport/fanchart.py:662
 msgid "quarter circle"
 msgstr "четверть круга"
 
-#: ../gramps/plugins/drawreport/fanchart.py:653
+#: ../gramps/plugins/drawreport/fanchart.py:663
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Форма графа: полный круг, полукруг или четверть круга."
 
-#: ../gramps/plugins/drawreport/fanchart.py:657
+#: ../gramps/plugins/drawreport/fanchart.py:667
 #: ../gramps/gui/glade/styleeditor.glade:709
 msgid "Background color"
 msgstr "Цвет фона"
 
-#: ../gramps/plugins/drawreport/fanchart.py:659
+#: ../gramps/plugins/drawreport/fanchart.py:669
 msgid "generation dependent"
 msgstr "зависит от поколения"
 
-#: ../gramps/plugins/drawreport/fanchart.py:660
+#: ../gramps/plugins/drawreport/fanchart.py:670
 msgid "Background color is either white or generation dependent"
 msgstr "Цвет фона либо белый, либо зависит от поколения"
 
-#: ../gramps/plugins/drawreport/fanchart.py:664
+#: ../gramps/plugins/drawreport/fanchart.py:674
 msgid "Orientation of radial texts"
 msgstr "Ориентация радиального текста"
 
-#: ../gramps/plugins/drawreport/fanchart.py:666
+#: ../gramps/plugins/drawreport/fanchart.py:676
 msgid "upright"
 msgstr "вверх"
 
-#: ../gramps/plugins/drawreport/fanchart.py:667
+#: ../gramps/plugins/drawreport/fanchart.py:677
 msgid "roundabout"
 msgstr "вокруг"
 
-#: ../gramps/plugins/drawreport/fanchart.py:668
+#: ../gramps/plugins/drawreport/fanchart.py:678
 msgid "Print radial texts upright or roundabout"
 msgstr "Печатать радиальный текст прямо или по кругу"
 
-#: ../gramps/plugins/drawreport/fanchart.py:670
+#: ../gramps/plugins/drawreport/fanchart.py:680
 msgid "Draw empty boxes"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:671
+#: ../gramps/plugins/drawreport/fanchart.py:681
 msgid "Draw the background although there is no information"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:674
-#, fuzzy
+#: ../gramps/plugins/drawreport/fanchart.py:685
 msgid "Use one font style for all generations"
-msgstr "Двойной щелчок, чтобы увидеть все поколения"
+msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:675
+#: ../gramps/plugins/drawreport/fanchart.py:687
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:702
+#: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/alphabeticalindex.py:97
 #: ../gramps/plugins/textreport/tableofcontents.py:97
 msgid "The style used for the title."
 msgstr "Стиль заголовка."
 
-#: ../gramps/plugins/drawreport/fanchart.py:711
-#, fuzzy
+#: ../gramps/plugins/drawreport/fanchart.py:726
 msgid "The basic style used for the default text display."
 msgstr "Основной стиль текста."
 
-#: ../gramps/plugins/drawreport/fanchart.py:721
-#, fuzzy
+#: ../gramps/plugins/drawreport/fanchart.py:736
 msgid "The style used for the text display of generation "
-msgstr "Стиль текста при выделении жирным шрифтом."
+msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:301
 msgid "Item count"
@@ -14112,7 +14259,7 @@ msgid "%s (persons):"
 msgstr "%s (люди):"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:938
-#: ../gramps/plugins/textreport/recordsreport.py:142
+#: ../gramps/plugins/textreport/recordsreport.py:174
 msgid "Determines what people are included in the report."
 msgstr "Определяет какие люди будут включены в отчет."
 
@@ -14120,7 +14267,7 @@ msgstr "Определяет какие люди будут включены в 
 #: ../gramps/plugins/drawreport/timeline.py:384
 #: ../gramps/plugins/graph/gvrelgraph.py:503
 #: ../gramps/plugins/textreport/indivcomplete.py:702
-#: ../gramps/plugins/textreport/recordsreport.py:146
+#: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:8007
 #: ../gramps/plugins/webreport/webcal.py:1342
@@ -14212,12 +14359,12 @@ msgstr "Стиль полей и значений."
 #: ../gramps/plugins/drawreport/timeline.py:447
 #: ../gramps/plugins/textreport/ancestorreport.py:339
 #: ../gramps/plugins/textreport/descendreport.py:448
-#: ../gramps/plugins/textreport/detancestralreport.py:835
-#: ../gramps/plugins/textreport/detdescendantreport.py:1031
+#: ../gramps/plugins/textreport/detancestralreport.py:836
+#: ../gramps/plugins/textreport/detdescendantreport.py:1032
 #: ../gramps/plugins/textreport/endoflinereport.py:281
 #: ../gramps/plugins/textreport/familygroup.py:724
 #: ../gramps/plugins/textreport/indivcomplete.py:784
-#: ../gramps/plugins/textreport/kinshipreport.py:379
+#: ../gramps/plugins/textreport/kinshipreport.py:385
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:223
 #: ../gramps/plugins/textreport/simplebooktitle.py:166
 #: ../gramps/plugins/textreport/summary.py:293
@@ -14269,7 +14416,7 @@ msgstr "Определяет какие люди будут включены в 
 # !!!FIXME!!!
 #: ../gramps/plugins/drawreport/timeline.py:385
 #: ../gramps/plugins/graph/gvrelgraph.py:504
-#: ../gramps/plugins/textreport/recordsreport.py:147
+#: ../gramps/plugins/textreport/recordsreport.py:179
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:8008
 #: ../gramps/plugins/webreport/webcal.py:1343
@@ -14534,9 +14681,8 @@ msgid "Writing repositories"
 msgstr "Запись Хранилищ"
 
 #: ../gramps/plugins/export/exportgedcom.py:1460
-#, fuzzy
 msgid "GEDCOM Export failed"
-msgstr "Экспорт не удался"
+msgstr "Экспорт в GEDCOM не удался"
 
 #: ../gramps/plugins/export/exportgeneweb.py:104
 msgid "No families matched by selected filter"
@@ -15027,15 +15173,13 @@ msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr "Грамплет показывает предков активного лица в виде веерной карты"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:136
-#, fuzzy
 msgid "Gramplet showing active person's direct descendants as a fanchart"
-msgstr "Грамплет показывает предков активного лица в виде веерной карты"
+msgstr "Грамплет показывает прямых предков активного лица в виде веерной карты"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
 #: ../gramps/plugins/view/view.gpr.py:156
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Потомки"
+msgstr "Веерная карта потомков"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:152
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
@@ -15083,7 +15227,6 @@ msgid "Gramplet showing all activity for this session"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:243
-#, fuzzy
 msgid "Gramplet showing summary data of the Family Tree"
 msgstr "Грамплет показывает сводную информацию о семейном древе"
 
@@ -15106,14 +15249,12 @@ msgstr "Грамплет показывает фамилии в виде тек�
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1155
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1183
-#, fuzzy
 msgid "gramplet|To Do"
-msgstr "Грамплет"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:271
-#, fuzzy
 msgid "Gramplet for displaying a To Do list"
-msgstr "Грамплет, осуществляющий отбор заметок по заданным критериям"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:284
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:290
@@ -15463,7 +15604,6 @@ msgstr "Отображает все записи, ссылающиеся на в
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/narrativeweb.py:4891
 #: ../gramps/plugins/webreport/narrativeweb.py:5743
-#: ../gramps/webapp/grampsdb/views.py:1321
 msgid "References"
 msgstr "Ссылки"
 
@@ -15613,89 +15753,73 @@ msgid "Shows some interesting records about people and families"
 msgstr "Включать или нет даты для людей и семей"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1072
-#: ../gramps/plugins/textreport/recordsreport.py:82
+#: ../gramps/plugins/textreport/recordsreport.py:91
 msgid "Records"
 msgstr "Рекорды"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
-#, fuzzy
 msgid "Person To Do"
-msgstr "ID Лица:"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Отображает заметки для выбранного лица"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1091
-#, fuzzy
 msgid "Event To Do"
-msgstr "Тип события"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
-#, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Отображает заметки для выбранного события"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1105
-#, fuzzy
 msgid "Family To Do"
-msgstr "ID Семьи"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1106
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Отображает заметки для выбранной семьи"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1119
-#, fuzzy
 msgid "Place To Do"
-msgstr "Заметка о месте"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1120
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Отображает заметки для выбранного местоположения"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1133
-#, fuzzy
 msgid "Source To Do"
-msgstr "ID Источника:"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1134
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Отображает заметки для выбранного источника"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1147
-#, fuzzy
 msgid "Citation To Do"
-msgstr "Цитата"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Отображает заметки для выбранной цитаты"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1161
-#, fuzzy
 msgid "Repository To Do"
-msgstr "Заметка о хранилище"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Отображает заметки для выбранного хранилища"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1175
-#, fuzzy
 msgid "Media To Do"
-msgstr "Заметка о документе"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1176
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Отображает заметки для выбранного документа"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/notes.py:101
 #: ../gramps/plugins/gramplet/todo.py:126
@@ -15966,7 +16090,6 @@ msgid "Individuals with unknown gender"
 msgstr "Лица неизвестного пола"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:162
-#, fuzzy
 msgid "Incomplete names"
 msgstr "Лица с неполными именами"
 
@@ -16062,15 +16185,13 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/todo.py:57
 #: ../gramps/plugins/gramplet/todogramplet.py:60
-#, fuzzy
 msgid "Edit the selected To Do note"
-msgstr "Редактировать выделенную заметку"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/todo.py:61
 #: ../gramps/plugins/gramplet/todogramplet.py:64
-#, fuzzy
 msgid "Add a new To Do note"
-msgstr "Добавить заметку"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/todogramplet.py:142
 msgid "Unattached"
@@ -16156,7 +16277,6 @@ msgid "Getting Started"
 msgstr "С чего начать"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
-#, fuzzy
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new "
 "Family Tree (sometimes called 'database') select \"Family Trees\" from the "
@@ -16173,12 +16293,10 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
-#, fuzzy
 msgid "Dashboard View"
-msgstr "Веерная карта"
+msgstr "Приборная доска"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
-#, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add "
 "your own gramplets. You can also add gramplets to any view by adding a "
@@ -16189,7 +16307,7 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Это—вид «Грамплеты». Сюда можно добавить грамплеты по Вашему вкусу. "
+"Это—вид «Приборная доска». Сюда можно добавить грамплеты по Вашему вкусу. "
 "Грамплеты также можно добавлять в режиме других видов, на боковую и нижнюю "
 "панели. Для добавления нового грамплета в других видах необходимо щёлкнуть "
 "правой кнопкой мыши справа от заголовка боковой или нижней панели.\n"
@@ -16422,37 +16540,31 @@ msgstr ""
 "при определении семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:148
-#, fuzzy
 msgid "Family Colors"
 msgstr "Цвета семей"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:151
-#, fuzzy
 msgid "Family colors"
 msgstr "Цвета семей"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:152
-#, fuzzy
 msgid "Colors to use for various family lines."
 msgstr "Цвета для отображения разных семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
 #: ../gramps/plugins/graph/gvrelgraph.py:573
-#, fuzzy
 msgid "The color to use to display men."
 msgstr "Цвет для отображения мужчин."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:577
-#, fuzzy
 msgid "The color to use to display women."
 msgstr "Цвет для отображения женщин."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:168
 #: ../gramps/plugins/graph/gvrelgraph.py:582
-#, fuzzy
 msgid "The color to use when the gender is unknown."
-msgstr "Цвет для отображения людей не указанного пола."
+msgstr "Цвет для отображения людей неуказанного пола."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:172
 #: ../gramps/plugins/graph/gvrelgraph.py:586
@@ -16466,15 +16578,12 @@ msgstr "Цвет для отображения людей не указанно�
 #: ../gramps/plugins/webreport/narrativeweb.py:1813
 #: ../gramps/plugins/webreport/narrativeweb.py:1868
 #: ../gramps/plugins/webreport/narrativeweb.py:3064
-#: ../gramps/webapp/grampsdb/views.py:81
-#: ../gramps/webapp/grampsdb/views.py:324
 #: ../gramps/plugins/tool/verify.glade:807
 msgid "Families"
 msgstr "Семьи"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:173
 #: ../gramps/plugins/graph/gvrelgraph.py:587
-#, fuzzy
 msgid "The color to use to display families."
 msgstr "Цвет для отображения семей."
 
@@ -16639,7 +16748,7 @@ msgid "The Center person for the graph"
 msgstr "Главное лицо для построения графа"
 
 #: ../gramps/plugins/graph/gvhourglass.py:279
-#: ../gramps/plugins/textreport/kinshipreport.py:347
+#: ../gramps/plugins/textreport/kinshipreport.py:351
 msgid "Max Descendant Generations"
 msgstr "Максимум поколений потомков"
 
@@ -16648,7 +16757,7 @@ msgid "The number of generations of descendants to include in the graph"
 msgstr "Сколько поколений потомков отображать на графе"
 
 #: ../gramps/plugins/graph/gvhourglass.py:284
-#: ../gramps/plugins/textreport/kinshipreport.py:351
+#: ../gramps/plugins/textreport/kinshipreport.py:355
 msgid "Max Ancestor Generations"
 msgstr "Максимум поколений предков"
 
@@ -16780,7 +16889,6 @@ msgid "Gramps package (portable XML)"
 msgstr "Пакет GRAMPS (портативный XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:89
-#, fuzzy
 msgid ""
 "Import data from a Gramps package (an archived XML Family Tree together with "
 "the media object files.)"
@@ -16793,7 +16901,6 @@ msgid "Gramps XML Family Tree"
 msgstr "Семейное древо Gramps XML"
 
 #: ../gramps/plugins/importer/import.gpr.py:108
-#, fuzzy
 msgid ""
 "The Gramps XML format is a text version of a Family Tree. It is read-write "
 "compatible with the present Gramps database format."
@@ -17054,7 +17161,7 @@ msgstr "Установлен базовый каталог для относит
 
 # DIKIY: коряво?..
 #: ../gramps/plugins/importer/importgpkg.py:109
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The base media path of this Family Tree has been set to %s. Consider taking "
 "a simpler path. You can change this in the Preferences, while moving your "
@@ -17072,7 +17179,7 @@ msgid "Cannot set base media path"
 msgstr "Не могу установить базовый каталог для документов"
 
 #: ../gramps/plugins/importer/importgpkg.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you imported into already has a base media path: "
 "%(orig_path)s. The imported media objects however are relative from the path "
@@ -17354,7 +17461,7 @@ msgid "Could not change media path"
 msgstr "Не могу изменить путь"
 
 #: ../gramps/plugins/importer/importxml.py:959
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
 "the Family Tree you import into. The original media path has been retained. "
@@ -17478,7 +17585,7 @@ msgid "Any person reference must have a 'hlink' attribute."
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1673
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
@@ -17491,9 +17598,8 @@ msgid "Gramps ignored namemap value"
 msgstr "Gramps игнорирует значение namemap"
 
 #: ../gramps/plugins/importer/importxml.py:1735
-#, fuzzy
 msgid "Unknown when imported"
-msgstr "Неизвестная мать"
+msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1904
 msgid "Any note reference must have a 'hlink' attribute."
@@ -17759,13 +17865,13 @@ msgid "Language of GEDCOM text"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:6910
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
-"Импорт файла GEDCOM %s с DEST=%s может вызвать ошибки в полученной базе "
-"данных!"
+"Импорт файла GEDCOM %(filename)s с DEST=%(by)s может вызвать ошибки в "
+"полученной базе данных!"
 
 #: ../gramps/plugins/lib/libgedcom.py:6913
 msgid "Look for nameless events."
@@ -19040,20 +19146,20 @@ msgid "Buried%(endnotes)s."
 msgstr "Похоронен(а)%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:592
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s был крещен %(baptism_date)s в %(baptism_place)s%(endnotes)s."
+"%(male_name)s был крещен %(baptism_date)s в %(baptism_place)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:593
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Он был крещен %(baptism_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:596
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19062,12 +19168,12 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:597
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Она была крещена %(baptism_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:600
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19076,7 +19182,7 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:601
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19084,47 +19190,47 @@ msgstr ""
 "Этот человек был крещен %(baptism_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Крещен(а) %(baptism_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:608
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "%(male_name)s был крещен %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:609
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "Он был крещен %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:612
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "%(female_name)s была крещена %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:613
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "Она была крещена %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:616
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s был(а) крещен(а) %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:617
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
 msgstr "Этот человек был крещен %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:619
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(baptism_date)s%(endnotes)s."
 msgstr "Крещен(а) %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:624
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19132,12 +19238,12 @@ msgstr ""
 "%(male_name)s был крещен в %(month_year)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Он был крещен в %(month_year)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:628
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19146,12 +19252,12 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:629
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Она была крещена в %(month_year)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:632
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19160,54 +19266,54 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:633
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 "Этот человек был крещен в %(month_year)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Крещен(а) в %(month_year)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:640
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s была крещена в %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s был крещен в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:641
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(month_year)s%(endnotes)s."
 msgstr "Он был крещен в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:644
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized in %(month_year)s%(endnotes)s."
 msgstr "%(female_name)s была крещена в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:645
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(month_year)s%(endnotes)s."
 msgstr "Она была крещена в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:648
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s был(а) крещен(а) в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:649
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
 msgstr "Этот человек был крещен в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:651
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(month_year)s%(endnotes)s."
 msgstr "Крещен(а) в %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:656
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19215,12 +19321,12 @@ msgstr ""
 "%(male_name)s был крещен %(modified_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:657
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Он был крещен %(modified_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:660
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19229,12 +19335,12 @@ msgstr ""
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:661
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Она была крещена %(modified_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:664
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
@@ -19243,121 +19349,121 @@ msgstr ""
 "%(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:665
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 "Этот человек был крещен %(modified_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Крещен(а) %(modified_date)s в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:672
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr "%(male_name)s был крещен %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:673
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized %(modified_date)s%(endnotes)s."
 msgstr "Он был крещен %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:676
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr "%(female_name)s была крещена %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:677
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized %(modified_date)s%(endnotes)s."
 msgstr "Она была крещена %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:680
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s был(а) крещен(а) %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:681
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
 msgstr "Этот человек был крещен %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:683
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
 msgstr "Крещен(а) %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr "%(male_name)s был крещен в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:689
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Он был крещен в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:692
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr "%(female_name)s была крещена в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:693
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Она была крещена в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:696
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s был(а) крещен(а) в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:697
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Этот человек был крещен в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized in %(baptism_place)s%(endnotes)s."
 msgstr "Крещен(а) в %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptized%(endnotes)s."
 msgstr "%(male_name)s был крещен%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:705
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptized%(endnotes)s."
 msgstr "Он был крещен%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:708
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
 msgstr "%(female_name)s была крещена%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:709
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptized%(endnotes)s."
 msgstr "Она была крещена%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:712
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptized%(endnotes)s."
 msgstr "%(unknown_gender_name)s был(а) крещен(а)%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:713
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptized%(endnotes)s."
 msgstr "Этот человек был крещен%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:715
-#, fuzzy, python-format
+#, python-format
 msgid "Baptized%(endnotes)s."
 msgstr "Крещен(а)%(endnotes)s."
 
@@ -21464,71 +21570,71 @@ msgid ""
 msgstr ""
 "Предоставляет базовую функциональность для отчётов о потомках и предках."
 
-#: ../gramps/plugins/lib/librecords.py:382
+#: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
 msgstr "Самый молодой ныне живущий человек"
 
-#: ../gramps/plugins/lib/librecords.py:383
+#: ../gramps/plugins/lib/librecords.py:56
 msgid "Oldest living person"
 msgstr "Самый старый ныне живущий человек"
 
-#: ../gramps/plugins/lib/librecords.py:384
+#: ../gramps/plugins/lib/librecords.py:57
 msgid "Person died at youngest age"
 msgstr "Лицо, умершее в самом молодом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:385
+#: ../gramps/plugins/lib/librecords.py:58
 msgid "Person died at oldest age"
 msgstr "Лицо, умершее в самом старом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:386
+#: ../gramps/plugins/lib/librecords.py:59
 msgid "Person married at youngest age"
 msgstr "Лицо, вступившее в брак в самом молодом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:387
+#: ../gramps/plugins/lib/librecords.py:60
 msgid "Person married at oldest age"
 msgstr "Лицо, вступившее в брак в самом старом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:388
+#: ../gramps/plugins/lib/librecords.py:61
 msgid "Person divorced at youngest age"
 msgstr "Лицо, разведшееся в самом молодом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:389
+#: ../gramps/plugins/lib/librecords.py:62
 msgid "Person divorced at oldest age"
 msgstr "Лицо, разведшееся в самом старом возрасте"
 
-#: ../gramps/plugins/lib/librecords.py:390
+#: ../gramps/plugins/lib/librecords.py:63
 msgid "Youngest father"
 msgstr "Самый молодой отец"
 
-#: ../gramps/plugins/lib/librecords.py:391
+#: ../gramps/plugins/lib/librecords.py:64
 msgid "Youngest mother"
 msgstr "Самая молодая мать"
 
-#: ../gramps/plugins/lib/librecords.py:392
+#: ../gramps/plugins/lib/librecords.py:65
 msgid "Oldest father"
 msgstr "Самый старый отец"
 
-#: ../gramps/plugins/lib/librecords.py:393
+#: ../gramps/plugins/lib/librecords.py:66
 msgid "Oldest mother"
 msgstr "Самая старая мать"
 
-#: ../gramps/plugins/lib/librecords.py:394
+#: ../gramps/plugins/lib/librecords.py:67
 msgid "Couple with most children"
 msgstr "Пара с наибольшим количеством детей"
 
-#: ../gramps/plugins/lib/librecords.py:395
+#: ../gramps/plugins/lib/librecords.py:68
 msgid "Living couple married most recently"
 msgstr "Самая последняя вступившая в брак пара"
 
-#: ../gramps/plugins/lib/librecords.py:396
+#: ../gramps/plugins/lib/librecords.py:69
 msgid "Living couple married most long ago"
 msgstr "Самая первая вступившая в брак пара"
 
-#: ../gramps/plugins/lib/librecords.py:397
+#: ../gramps/plugins/lib/librecords.py:70
 msgid "Shortest past marriage"
 msgstr "Самый короткий брак в прошлом"
 
-#: ../gramps/plugins/lib/librecords.py:398
+#: ../gramps/plugins/lib/librecords.py:71
 msgid "Longest past marriage"
 msgstr "Самый длинный брак в прошлом"
 
@@ -21601,9 +21707,8 @@ msgid "Center on this place"
 msgstr "Центрировать здесь"
 
 #: ../gramps/plugins/lib/maps/geography.py:848
-#, fuzzy
 msgid "You have at least two places with the same title."
-msgstr "У вас нет доступа для чтения выбранного файла."
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:849
 #, python-format
@@ -21640,29 +21745,27 @@ msgid "Zoom used when centering"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1005
-#, fuzzy
 msgid "The maximum number of places to show"
-msgstr "Максимальное число поколений предков"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1014
 msgid "The map"
 msgstr "Карта"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr "Ошибка создания каталога: %s"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/osmgps.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Ошибка создания каталога: %s"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/placeselection.py:124
 #: ../gramps/plugins/lib/maps/placeselection.py:126
-#, fuzzy
 msgid "Place Selection in a region"
-msgstr "Искать выделенное в интернете"
+msgstr ""
 
 #: ../gramps/plugins/lib/maps/placeselection.py:127
 msgid ""
@@ -21675,9 +21778,8 @@ msgid "The green values in the row correspond to the current place values."
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/placeselection.py:204
-#, fuzzy
 msgid "New place with empty fields"
-msgstr "Выбирает места, для которых не задана широта или долгота"
+msgstr ""
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:46
 #: ../gramps/plugins/tool/extractcity.py:64
@@ -21697,14 +21799,12 @@ msgid " state"
 msgstr " округ"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:140
-#, fuzzy
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr "Широта должна быть в пределах от %s до %s\n"
+msgstr "Широта должна быть в пределах от '54.55' до '69.05'\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:141
-#, fuzzy
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "Долгота должна быть в пределах от %s до %s"
+msgstr "Долгота должна быть в пределах от '8.05' до '24.15'"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:142
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:169
@@ -21973,7 +22073,6 @@ msgid "Filtering_on|people with unknown gender"
 msgstr "люди неизвестного пола"
 
 #: ../gramps/plugins/quickview/filterbyname.py:64
-#, fuzzy
 msgid "Filtering_on|incomplete names"
 msgstr "лица с неполными именами"
 
@@ -22037,10 +22136,6 @@ msgstr "Всего"
 #: ../gramps/plugins/view/view.gpr.py:180
 #: ../gramps/plugins/view/view.gpr.py:188
 #: ../gramps/plugins/view/view.gpr.py:197
-#: ../gramps/webapp/grampsdb/view/person.py:346
-#: ../gramps/webapp/grampsdb/view/person.py:476
-#: ../gramps/webapp/grampsdb/views.py:80
-#: ../gramps/webapp/grampsdb/views.py:314
 msgid "People"
 msgstr "Люди"
 
@@ -22079,7 +22174,6 @@ msgstr "Число документов"
 #: ../gramps/plugins/quickview/onthisday.py:83
 #: ../gramps/plugins/quickview/onthisday.py:84
 #: ../gramps/plugins/quickview/references.py:72
-#: ../gramps/webapp/grampsdb/views.py:1320
 msgid "Reference"
 msgstr "Ссылка"
 
@@ -22533,9 +22627,8 @@ msgid "Swedish Relationship Calculator"
 msgstr "Шведский калькулятор отношений"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:160
-#, fuzzy
 msgid "Click to select a view"
-msgstr "Щёлкните, чтобы удалить грамплет из отображения"
+msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:30
 msgid "Category Sidebar"
@@ -22562,18 +22655,16 @@ msgid "Drop-Down"
 msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:60
-#, fuzzy
 msgid "Expander Sidebar"
-msgstr "Боковая панель категорий"
+msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:61
 msgid "Selection of views from lists with expanders"
 msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:69
-#, fuzzy
 msgid "Expander"
-msgstr "Расширенный"
+msgstr ""
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:388
@@ -22585,14 +22676,14 @@ msgid "The style used for index entries."
 msgstr ""
 
 #: ../gramps/plugins/textreport/ancestorreport.py:282
-#: ../gramps/plugins/textreport/detancestralreport.py:729
-#: ../gramps/plugins/textreport/detdescendantreport.py:905
+#: ../gramps/plugins/textreport/detancestralreport.py:730
+#: ../gramps/plugins/textreport/detdescendantreport.py:906
 msgid "Page break between generations"
 msgstr "Новая страница между поколениями"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:284
-#: ../gramps/plugins/textreport/detancestralreport.py:731
-#: ../gramps/plugins/textreport/detdescendantreport.py:907
+#: ../gramps/plugins/textreport/detancestralreport.py:732
+#: ../gramps/plugins/textreport/detdescendantreport.py:908
 msgid "Whether to start a new page after each generation."
 msgstr "Открывать ли новую страницу после каждого поколения."
 
@@ -22610,9 +22701,8 @@ msgid "Ahnentafel Report for %s"
 msgstr "Таблица предков для %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:292
-#, fuzzy
 msgid "Title format"
-msgstr "Формат дат"
+msgstr ""
 
 #: ../gramps/plugins/textreport/ancestorreport.py:293
 msgid "How the title will be shown."
@@ -22633,34 +22723,28 @@ msgstr "Отчёт годовщин и дней рождения"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:371
 #: ../gramps/plugins/textreport/birthdayreport.py:373
-#, fuzzy
 msgid "Year of report"
-msgstr "Календарь в отчетах"
+msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:378
-#, fuzzy
 msgid "Select filter to restrict people that appear on report"
-msgstr "Задайте фильтр, чтобы ограничить лиц, которые появятся в календаре"
+msgstr "Задайте фильтр, чтобы ограничить лиц, которые появятся в отчёте"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:408
-#, fuzzy
 msgid "Select the first day of the week for the report"
-msgstr "Задайте первый день недели для календаря"
+msgstr "Задайте первый день недели для отчёта"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:419
-#, fuzzy
 msgid "Include only living people in the report"
-msgstr "Включить в календарь только ныне живущих людей"
+msgstr "Включить в отчёт только ныне живущих людей"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:423
-#, fuzzy
 msgid "Include birthdays in the report"
-msgstr "Включать дни рождения в календарь"
+msgstr "Включать дни рождения в отчёт"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:427
-#, fuzzy
 msgid "Include anniversaries in the report"
-msgstr "Включить годовщины в календарь"
+msgstr "Включить годовщины в отчёт"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:430
 msgid "Include relationships to center person"
@@ -22675,29 +22759,24 @@ msgid "Title text"
 msgstr "Текст заглавия"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:439
-#, fuzzy
 msgid "Title of report"
-msgstr "Название календаря"
+msgstr "Название отчёта"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
-#, fuzzy
 msgid "My Birthday Report"
 msgstr "Отчёт годовщин и дней рождения"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:443
-#, fuzzy
 msgid "First line of text at bottom of report"
-msgstr "Первая строка текста в нижнем колонтитуле календаря"
+msgstr "Первая строка текста в нижнем колонтитуле отчёта"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:447
-#, fuzzy
 msgid "Second line of text at bottom of report"
-msgstr "Вторая строка текста в нижнем колонтитуле календаря"
+msgstr "Вторая строка текста в нижнем колонтитуле отчёта"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:451
-#, fuzzy
 msgid "Third line of text at bottom of report"
-msgstr "Третья строка текста в нижнем колонтитуле календаря"
+msgstr "Третья строка текста в нижнем колонтитуле отчёта"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:505
 msgid "Title text style"
@@ -22776,7 +22855,7 @@ msgid "%s sp."
 msgstr "%s супр."
 
 #: ../gramps/plugins/textreport/descendreport.py:409
-#: ../gramps/plugins/textreport/detdescendantreport.py:890
+#: ../gramps/plugins/textreport/detdescendantreport.py:891
 msgid "Numbering system"
 msgstr "Система нумерации"
 
@@ -22793,7 +22872,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "нумерация Тюпинье"
 
 #: ../gramps/plugins/textreport/descendreport.py:414
-#: ../gramps/plugins/textreport/detdescendantreport.py:896
+#: ../gramps/plugins/textreport/detdescendantreport.py:897
 msgid "The numbering system to be used"
 msgstr "Какая система нумерации поколений и потомков будет использована"
 
@@ -22818,9 +22897,8 @@ msgid "Show duplicate trees"
 msgstr ""
 
 #: ../gramps/plugins/textreport/descendreport.py:430
-#, fuzzy
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Включать или нет информацию о разводе в отчет."
+msgstr ""
 
 #: ../gramps/plugins/textreport/descendreport.py:460
 #, python-format
@@ -22837,268 +22915,268 @@ msgstr "Стиль для супругов %d-го уровня ."
 msgid "Ancestral Report for %s"
 msgstr "Отчёт о Предках для %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:267
-#: ../gramps/plugins/textreport/detdescendantreport.py:387
+#: ../gramps/plugins/textreport/detancestralreport.py:268
+#: ../gramps/plugins/textreport/detdescendantreport.py:388
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s - то же лицо, что и [%(id_str)s]."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:309
-#: ../gramps/plugins/textreport/detdescendantreport.py:771
+#: ../gramps/plugins/textreport/detancestralreport.py:310
+#: ../gramps/plugins/textreport/detdescendantreport.py:772
 #, python-format
 msgid "Notes for %s"
 msgstr "Заметки о %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:324
-#: ../gramps/plugins/textreport/detancestralreport.py:348
-#: ../gramps/plugins/textreport/detancestralreport.py:359
-#: ../gramps/plugins/textreport/detancestralreport.py:383
-#: ../gramps/plugins/textreport/detdescendantreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:802
-#: ../gramps/plugins/textreport/detdescendantreport.py:813
-#: ../gramps/plugins/textreport/detdescendantreport.py:837
+#: ../gramps/plugins/textreport/detancestralreport.py:325
+#: ../gramps/plugins/textreport/detancestralreport.py:349
+#: ../gramps/plugins/textreport/detancestralreport.py:360
+#: ../gramps/plugins/textreport/detancestralreport.py:384
+#: ../gramps/plugins/textreport/detdescendantreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:803
+#: ../gramps/plugins/textreport/detdescendantreport.py:814
+#: ../gramps/plugins/textreport/detdescendantreport.py:838
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Подробности про %(person_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:331
-#: ../gramps/plugins/textreport/detdescendantreport.py:791
+#: ../gramps/plugins/textreport/detancestralreport.py:332
+#: ../gramps/plugins/textreport/detdescendantreport.py:792
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:366
-#: ../gramps/plugins/textreport/detdescendantreport.py:826
+#: ../gramps/plugins/textreport/detancestralreport.py:367
+#: ../gramps/plugins/textreport/detdescendantreport.py:827
 msgid "Address: "
 msgstr "Адрес: "
 
-#: ../gramps/plugins/textreport/detancestralreport.py:391
-#: ../gramps/plugins/textreport/detancestralreport.py:449
-#: ../gramps/plugins/textreport/detdescendantreport.py:464
-#: ../gramps/plugins/textreport/detdescendantreport.py:711
-#: ../gramps/plugins/textreport/detdescendantreport.py:845
+#: ../gramps/plugins/textreport/detancestralreport.py:392
+#: ../gramps/plugins/textreport/detancestralreport.py:450
+#: ../gramps/plugins/textreport/detdescendantreport.py:465
+#: ../gramps/plugins/textreport/detdescendantreport.py:712
+#: ../gramps/plugins/textreport/detdescendantreport.py:846
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:418
-#: ../gramps/plugins/textreport/detdescendantreport.py:433
+#: ../gramps/plugins/textreport/detancestralreport.py:419
+#: ../gramps/plugins/textreport/detdescendantreport.py:434
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:421
-#: ../gramps/plugins/textreport/detdescendantreport.py:436
+#: ../gramps/plugins/textreport/detancestralreport.py:422
+#: ../gramps/plugins/textreport/detdescendantreport.py:437
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:423
-#: ../gramps/plugins/textreport/detdescendantreport.py:438
+#: ../gramps/plugins/textreport/detancestralreport.py:424
+#: ../gramps/plugins/textreport/detdescendantreport.py:439
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:435
-#: ../gramps/plugins/textreport/detdescendantreport.py:450
+#: ../gramps/plugins/textreport/detancestralreport.py:436
+#: ../gramps/plugins/textreport/detdescendantreport.py:451
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:547
-#: ../gramps/plugins/textreport/detdescendantreport.py:603
+#: ../gramps/plugins/textreport/detancestralreport.py:548
+#: ../gramps/plugins/textreport/detdescendantreport.py:604
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Дети %(mother_name)s и %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:600
-#: ../gramps/plugins/textreport/detdescendantreport.py:684
-#: ../gramps/plugins/textreport/detdescendantreport.py:703
+#: ../gramps/plugins/textreport/detancestralreport.py:601
+#: ../gramps/plugins/textreport/detdescendantreport.py:685
+#: ../gramps/plugins/textreport/detdescendantreport.py:704
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Подробности про %(mother_name)s и %(father_name)s:"
 
 # !!!FIXME!!! This noun should be in different forms for different spose gender (супруг/супруга) --dikiy
-#: ../gramps/plugins/textreport/detancestralreport.py:653
-#: ../gramps/plugins/textreport/detdescendantreport.py:552
+#: ../gramps/plugins/textreport/detancestralreport.py:654
+#: ../gramps/plugins/textreport/detdescendantreport.py:553
 #, python-format
 msgid "Spouse: %s"
 msgstr "Супруг: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:655
-#: ../gramps/plugins/textreport/detdescendantreport.py:554
+#: ../gramps/plugins/textreport/detancestralreport.py:656
+#: ../gramps/plugins/textreport/detdescendantreport.py:555
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Отношения с: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:734
-#: ../gramps/plugins/textreport/detdescendantreport.py:910
+#: ../gramps/plugins/textreport/detancestralreport.py:735
+#: ../gramps/plugins/textreport/detdescendantreport.py:911
 #: ../gramps/plugins/textreport/indivcomplete.py:715
 msgid "Page break before end notes"
 msgstr "Новая страница перед сносками"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:736
-#: ../gramps/plugins/textreport/detdescendantreport.py:912
+#: ../gramps/plugins/textreport/detancestralreport.py:737
+#: ../gramps/plugins/textreport/detdescendantreport.py:913
 #: ../gramps/plugins/textreport/indivcomplete.py:717
 msgid "Whether to start a new page before the end notes."
 msgstr "Открывать ли новую страницу перед сносками."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:743
-#: ../gramps/plugins/textreport/detdescendantreport.py:919
+#: ../gramps/plugins/textreport/detancestralreport.py:744
+#: ../gramps/plugins/textreport/detdescendantreport.py:920
 #: ../gramps/plugins/view/relview.py:1691
 msgid "Content"
 msgstr "Содержание"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:745
-#: ../gramps/plugins/textreport/detdescendantreport.py:921
+#: ../gramps/plugins/textreport/detancestralreport.py:746
+#: ../gramps/plugins/textreport/detdescendantreport.py:922
 msgid "Use callname for common name"
 msgstr "Использовать имя в быту как обычное имя"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:746
-#: ../gramps/plugins/textreport/detdescendantreport.py:922
+#: ../gramps/plugins/textreport/detancestralreport.py:747
+#: ../gramps/plugins/textreport/detdescendantreport.py:923
 msgid "Whether to use the call name as the first name."
 msgstr "Использовать ли разговорное имя в качестве основного."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:750
-#: ../gramps/plugins/textreport/detdescendantreport.py:925
+#: ../gramps/plugins/textreport/detancestralreport.py:751
+#: ../gramps/plugins/textreport/detdescendantreport.py:926
 msgid "Use full dates instead of only the year"
 msgstr "Использовать полные даты а не только год"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:751
-#: ../gramps/plugins/textreport/detdescendantreport.py:927
+#: ../gramps/plugins/textreport/detancestralreport.py:752
+#: ../gramps/plugins/textreport/detdescendantreport.py:928
 msgid "Whether to use full dates instead of just year."
 msgstr "Использовать полные даты вместо одного только года."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:754
-#: ../gramps/plugins/textreport/detdescendantreport.py:930
+#: ../gramps/plugins/textreport/detancestralreport.py:755
+#: ../gramps/plugins/textreport/detdescendantreport.py:931
 msgid "List children"
 msgstr "Перечислять детей"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:755
-#: ../gramps/plugins/textreport/detdescendantreport.py:931
+#: ../gramps/plugins/textreport/detancestralreport.py:756
+#: ../gramps/plugins/textreport/detdescendantreport.py:932
 msgid "Whether to list children."
 msgstr "Перечислять ли детей."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:758
-#: ../gramps/plugins/textreport/detdescendantreport.py:934
+#: ../gramps/plugins/textreport/detancestralreport.py:759
+#: ../gramps/plugins/textreport/detdescendantreport.py:935
 msgid "Compute death age"
 msgstr "Вычислять возраст смерти"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:759
-#: ../gramps/plugins/textreport/detdescendantreport.py:935
+#: ../gramps/plugins/textreport/detancestralreport.py:760
+#: ../gramps/plugins/textreport/detdescendantreport.py:936
 msgid "Whether to compute a person's age at death."
 msgstr "Вычислять ли возраст смерти."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:762
-#: ../gramps/plugins/textreport/detdescendantreport.py:938
+#: ../gramps/plugins/textreport/detancestralreport.py:763
+#: ../gramps/plugins/textreport/detdescendantreport.py:939
 msgid "Omit duplicate ancestors"
 msgstr "Пропускать повторяющихся предков"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:763
-#: ../gramps/plugins/textreport/detdescendantreport.py:939
+#: ../gramps/plugins/textreport/detancestralreport.py:764
+#: ../gramps/plugins/textreport/detdescendantreport.py:940
 msgid "Whether to omit duplicate ancestors."
 msgstr "Пропускать ли повторяющихся предков"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:766
+#: ../gramps/plugins/textreport/detancestralreport.py:767
 msgid "Use Complete Sentences"
 msgstr "Использовать полные предложения"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:768
-#: ../gramps/plugins/textreport/detdescendantreport.py:944
+#: ../gramps/plugins/textreport/detancestralreport.py:769
+#: ../gramps/plugins/textreport/detdescendantreport.py:945
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Использовать полные предложения или краткий язык."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:771
-#: ../gramps/plugins/textreport/detdescendantreport.py:947
+#: ../gramps/plugins/textreport/detancestralreport.py:772
+#: ../gramps/plugins/textreport/detdescendantreport.py:948
 msgid "Add descendant reference in child list"
 msgstr "Добавлять ссылки на потомков в списки детей"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:773
-#: ../gramps/plugins/textreport/detdescendantreport.py:950
+#: ../gramps/plugins/textreport/detancestralreport.py:774
+#: ../gramps/plugins/textreport/detdescendantreport.py:951
 msgid "Whether to add descendant references in child list."
 msgstr "Добавлять ли ссылки на потомков в списки детей."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:780
-#: ../gramps/plugins/textreport/detdescendantreport.py:956
+#: ../gramps/plugins/textreport/detancestralreport.py:781
+#: ../gramps/plugins/textreport/detdescendantreport.py:957
 msgid "Include notes"
 msgstr "Включать заметки"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:781
-#: ../gramps/plugins/textreport/detdescendantreport.py:957
+#: ../gramps/plugins/textreport/detancestralreport.py:782
+#: ../gramps/plugins/textreport/detdescendantreport.py:958
 msgid "Whether to include notes."
 msgstr "Включать ли заметки."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:960
+#: ../gramps/plugins/textreport/detancestralreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:961
 msgid "Include attributes"
 msgstr "Включать атрибуты"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:785
-#: ../gramps/plugins/textreport/detdescendantreport.py:961
+#: ../gramps/plugins/textreport/detancestralreport.py:786
+#: ../gramps/plugins/textreport/detdescendantreport.py:962
 #: ../gramps/plugins/textreport/familygroup.py:674
 msgid "Whether to include attributes."
 msgstr "Включать ли атрибуты."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:788
-#: ../gramps/plugins/textreport/detdescendantreport.py:964
+#: ../gramps/plugins/textreport/detancestralreport.py:789
+#: ../gramps/plugins/textreport/detdescendantreport.py:965
 #: ../gramps/plugins/textreport/indivcomplete.py:729
 msgid "Include Photo/Images from Gallery"
 msgstr "Включать изображения из галерей"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:789
-#: ../gramps/plugins/textreport/detdescendantreport.py:965
+#: ../gramps/plugins/textreport/detancestralreport.py:790
+#: ../gramps/plugins/textreport/detdescendantreport.py:966
 #: ../gramps/plugins/textreport/indivcomplete.py:730
 msgid "Whether to include images."
 msgstr "Включать ли изображения."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:792
-#: ../gramps/plugins/textreport/detdescendantreport.py:968
+#: ../gramps/plugins/textreport/detancestralreport.py:793
+#: ../gramps/plugins/textreport/detdescendantreport.py:969
 msgid "Include alternative names"
 msgstr "Включать альтернативные имена"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:793
-#: ../gramps/plugins/textreport/detdescendantreport.py:969
+#: ../gramps/plugins/textreport/detancestralreport.py:794
+#: ../gramps/plugins/textreport/detdescendantreport.py:970
 msgid "Whether to include other names."
 msgstr "Включать ли другие имена."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:796
-#: ../gramps/plugins/textreport/detdescendantreport.py:972
+#: ../gramps/plugins/textreport/detancestralreport.py:797
+#: ../gramps/plugins/textreport/detdescendantreport.py:973
 msgid "Include events"
 msgstr "Включать события"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:797
-#: ../gramps/plugins/textreport/detdescendantreport.py:973
+#: ../gramps/plugins/textreport/detancestralreport.py:798
+#: ../gramps/plugins/textreport/detdescendantreport.py:974
 msgid "Whether to include events."
 msgstr "Включать ли события."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:800
-#: ../gramps/plugins/textreport/detdescendantreport.py:976
+#: ../gramps/plugins/textreport/detancestralreport.py:801
+#: ../gramps/plugins/textreport/detdescendantreport.py:977
 msgid "Include addresses"
 msgstr "Включать адреса"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:801
-#: ../gramps/plugins/textreport/detdescendantreport.py:977
+#: ../gramps/plugins/textreport/detancestralreport.py:802
+#: ../gramps/plugins/textreport/detdescendantreport.py:978
 msgid "Whether to include addresses."
 msgstr "Включать ли адреса."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:804
-#: ../gramps/plugins/textreport/detdescendantreport.py:980
+#: ../gramps/plugins/textreport/detancestralreport.py:805
+#: ../gramps/plugins/textreport/detdescendantreport.py:981
 msgid "Include sources"
 msgstr "Включать источники"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:805
-#: ../gramps/plugins/textreport/detdescendantreport.py:981
+#: ../gramps/plugins/textreport/detancestralreport.py:806
+#: ../gramps/plugins/textreport/detdescendantreport.py:982
 msgid "Whether to include source references."
 msgstr "Включать ли ссылки на источники."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:808
-#: ../gramps/plugins/textreport/detdescendantreport.py:984
+#: ../gramps/plugins/textreport/detancestralreport.py:809
+#: ../gramps/plugins/textreport/detdescendantreport.py:985
 #: ../gramps/plugins/textreport/indivcomplete.py:724
 msgid "Include sources notes"
 msgstr "Включать заметки об источниках"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:809
-#: ../gramps/plugins/textreport/detdescendantreport.py:985
+#: ../gramps/plugins/textreport/detancestralreport.py:810
+#: ../gramps/plugins/textreport/detdescendantreport.py:986
 #: ../gramps/plugins/textreport/indivcomplete.py:725
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
@@ -23107,52 +23185,52 @@ msgstr ""
 "Включать ли заметки к источникам в секцию заключительных примечаний. "
 "Работает только если включено добавление источников."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:815
-#: ../gramps/plugins/textreport/detdescendantreport.py:1011
+#: ../gramps/plugins/textreport/detancestralreport.py:816
+#: ../gramps/plugins/textreport/detdescendantreport.py:1012
 msgid "Missing information"
 msgstr "Отсутствующая информация"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:817
-#: ../gramps/plugins/textreport/detdescendantreport.py:1013
+#: ../gramps/plugins/textreport/detancestralreport.py:818
+#: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Replace missing places with ______"
 msgstr "Заменять пропущенные места на ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:818
-#: ../gramps/plugins/textreport/detdescendantreport.py:1014
+#: ../gramps/plugins/textreport/detancestralreport.py:819
+#: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "Whether to replace missing Places with blanks."
 msgstr "Заменять не указанные места пропусками."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:821
-#: ../gramps/plugins/textreport/detdescendantreport.py:1017
+#: ../gramps/plugins/textreport/detancestralreport.py:822
+#: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "Replace missing dates with ______"
 msgstr "Заменять пропущенные даты на ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:822
-#: ../gramps/plugins/textreport/detdescendantreport.py:1018
+#: ../gramps/plugins/textreport/detancestralreport.py:823
+#: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Заменять не указанные даты пропусками."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:855
-#: ../gramps/plugins/textreport/detdescendantreport.py:1051
+#: ../gramps/plugins/textreport/detancestralreport.py:856
+#: ../gramps/plugins/textreport/detdescendantreport.py:1052
 msgid "The style used for the children list title."
 msgstr "Стиль заголовка списка детей."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:865
-#: ../gramps/plugins/textreport/detdescendantreport.py:1061
+#: ../gramps/plugins/textreport/detancestralreport.py:866
+#: ../gramps/plugins/textreport/detdescendantreport.py:1062
 msgid "The style used for the children list."
 msgstr "Стиль списка детей."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:888
-#: ../gramps/plugins/textreport/detdescendantreport.py:1084
+#: ../gramps/plugins/textreport/detancestralreport.py:889
+#: ../gramps/plugins/textreport/detdescendantreport.py:1085
 msgid "The style used for the first personal entry."
 msgstr "Стиль первой личной записи."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:898
+#: ../gramps/plugins/textreport/detancestralreport.py:899
 msgid "The style used for the More About header."
 msgstr "Стиль заголовка подробностей."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:908
-#: ../gramps/plugins/textreport/detdescendantreport.py:1105
+#: ../gramps/plugins/textreport/detancestralreport.py:909
+#: ../gramps/plugins/textreport/detdescendantreport.py:1106
 msgid "The style used for additional detail data."
 msgstr "Стиль для дополнительной информации."
 
@@ -23161,54 +23239,54 @@ msgstr "Стиль для дополнительной информации."
 msgid "Descendant Report for %(person_name)s"
 msgstr "Отчёт о Потомках для %(person_name)s"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:568
-#, fuzzy, python-format
+#: ../gramps/plugins/textreport/detdescendantreport.py:569
+#, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr "%(number)s. %(name)s (%(value)s)"
+msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:661
+#: ../gramps/plugins/textreport/detdescendantreport.py:662
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Заметки о %(mother_name)s и %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:892
+#: ../gramps/plugins/textreport/detdescendantreport.py:893
 msgid "Henry numbering"
 msgstr "Система Генри"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:893
+#: ../gramps/plugins/textreport/detdescendantreport.py:894
 msgid "d'Aboville numbering"
 msgstr "метод д'Абовиля"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:895
+#: ../gramps/plugins/textreport/detdescendantreport.py:896
 msgid "Record (Modified Register) numbering"
 msgstr "Модифицированная Регистрационная система"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:942
+#: ../gramps/plugins/textreport/detdescendantreport.py:943
 msgid "Use complete sentences"
 msgstr "Использовать полные предложения"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:989
-#: ../gramps/plugins/textreport/kinshipreport.py:355
+#: ../gramps/plugins/textreport/detdescendantreport.py:990
+#: ../gramps/plugins/textreport/kinshipreport.py:359
 msgid "Include spouses"
 msgstr "Включить супругов"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:990
+#: ../gramps/plugins/textreport/detdescendantreport.py:991
 msgid "Whether to include detailed spouse information."
 msgstr "Включать ли подробную информацию о супруге."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:993
+#: ../gramps/plugins/textreport/detdescendantreport.py:994
 msgid "Include spouse reference"
 msgstr "Упоминать супругов"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:994
+#: ../gramps/plugins/textreport/detdescendantreport.py:995
 msgid "Whether to include reference to spouse."
 msgstr "Включать ли упоминания супругов."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:997
+#: ../gramps/plugins/textreport/detdescendantreport.py:998
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Использовать знак наследования ('+') в списке детей"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:999
+#: ../gramps/plugins/textreport/detdescendantreport.py:1000
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
@@ -23216,17 +23294,17 @@ msgstr ""
 "Помещать ли знак ('+') перед номером потомка в списке детей, чтобы "
 "обозначить наличие потомков."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1004
+#: ../gramps/plugins/textreport/detdescendantreport.py:1005
 msgid "Include path to start-person"
 msgstr "Путь до стартового лица"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1005
+#: ../gramps/plugins/textreport/detdescendantreport.py:1006
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr "Включать ли путь от стартового лица до каждого из потомков."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1094
+#: ../gramps/plugins/textreport/detdescendantreport.py:1095
 msgid "The style used for the More About header and for headers of mates."
 msgstr ""
 
@@ -23241,7 +23319,7 @@ msgid "All the ancestors of %s who are missing a parent"
 msgstr "Все предки %s у которых неизвестны родители"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:207
-#: ../gramps/plugins/textreport/kinshipreport.py:312
+#: ../gramps/plugins/textreport/kinshipreport.py:316
 #, python-format
 msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
@@ -23412,9 +23490,9 @@ msgid "Alternate Parents"
 msgstr "Альтернативные родители"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:358
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s [%(gid)s]"
-msgstr "%(father)s [%(gramps_id)s]"
+msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:431
 msgid "Marriages/Children"
@@ -23454,14 +23532,12 @@ msgid "Whether to cite sources."
 msgstr "Цитировать ли источники."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:733
-#, fuzzy
 msgid "Include Gramps ID"
 msgstr "Включать ID"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:734
-#, fuzzy
 msgid "Whether to include Gramps ID next to names."
-msgstr "Включать ли номера идентификаторы объектов Gramps ID"
+msgstr "Включать ли номера-идентификаторы объектов Gramps ID"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:742
 msgid "Event groups"
@@ -23479,40 +23555,40 @@ msgstr "Стиль меток категорий."
 msgid "The style used for the spouse's name."
 msgstr "Стиль имени супруга."
 
-#: ../gramps/plugins/textreport/kinshipreport.py:118
+#: ../gramps/plugins/textreport/kinshipreport.py:122
 #, python-format
 msgid "Kinship Report for %s"
 msgstr "Отчёт о родстве для %s"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:348
+#: ../gramps/plugins/textreport/kinshipreport.py:352
 msgid "The maximum number of descendant generations"
 msgstr "Максимальное число поколений потомков"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:352
+#: ../gramps/plugins/textreport/kinshipreport.py:356
 msgid "The maximum number of ancestor generations"
 msgstr "Максимальное число поколений предков"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:356
+#: ../gramps/plugins/textreport/kinshipreport.py:360
 msgid "Whether to include spouses"
 msgstr "Включить ли супругов"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:359
+#: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "Include cousins"
 msgstr "Включить двоюродных братьев/сестёр"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:360
+#: ../gramps/plugins/textreport/kinshipreport.py:364
 msgid "Whether to include cousins"
 msgstr "Включать ли двоюродных братьев/сестёр"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:363
+#: ../gramps/plugins/textreport/kinshipreport.py:367
 msgid "Include aunts/uncles/nephews/nieces"
 msgstr "Включать дядей/тётей/племянников/племянниц"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:364
+#: ../gramps/plugins/textreport/kinshipreport.py:368
 msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr "Включать ли дядей/тётей/племянников/племянниц"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:389
+#: ../gramps/plugins/textreport/kinshipreport.py:395
 #: ../gramps/plugins/textreport/summary.py:302
 msgid "The basic style used for sub-headings."
 msgstr "Основной стиль используемый для подзаголовков."
@@ -23601,18 +23677,18 @@ msgid "Type of Event"
 msgstr "Тип события"
 
 #: ../gramps/plugins/textreport/placereport.py:230
-#, fuzzy, python-format
+#, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
-msgstr "%(father)s и %(mother)s (%(id)s)"
+msgstr "%(persons)s и %(name)s (%(id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:258
 msgid "People associated with this place"
 msgstr "Люди, связанные с этим местом"
 
 #: ../gramps/plugins/textreport/placereport.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(father)s (%(father_id)s) and %(mother)s (%(mother_id)s)"
-msgstr "%(father)s и %(mother)s (%(id)s)"
+msgstr "%(father)s (%(father_id)s) и %(mother)s (%(mother_id)s)"
 
 #: ../gramps/plugins/textreport/placereport.py:380
 msgid "Select using filter"
@@ -23670,62 +23746,57 @@ msgstr "Стиль используемый для заголовков разд
 msgid "The style used for event and person details."
 msgstr "Стиль используемый для информации о событиях и людях."
 
-#: ../gramps/plugins/textreport/recordsreport.py:108
+#: ../gramps/plugins/textreport/recordsreport.py:136
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
-#: ../gramps/plugins/textreport/recordsreport.py:110
-#, python-format
-msgid " (%(value)s)"
-msgstr " (%(value)s)"
-
-#: ../gramps/plugins/textreport/recordsreport.py:153
+#: ../gramps/plugins/textreport/recordsreport.py:185
 msgid "Number of ranks to display"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:156
+#: ../gramps/plugins/textreport/recordsreport.py:188
 msgid "Use call name"
 msgstr "Использовать прозвище"
 
-#: ../gramps/plugins/textreport/recordsreport.py:158
+#: ../gramps/plugins/textreport/recordsreport.py:190
 msgid "Don't use call name"
 msgstr "Не использовать прозвище"
 
-#: ../gramps/plugins/textreport/recordsreport.py:159
+#: ../gramps/plugins/textreport/recordsreport.py:191
 msgid "Replace first names with call name"
 msgstr "Заменять имя на прозвище"
 
-#: ../gramps/plugins/textreport/recordsreport.py:160
+#: ../gramps/plugins/textreport/recordsreport.py:192
 msgid "Underline call name in first names / add call name to first name"
 msgstr "Подчеркнуть прозвище в имени / добавить прозвище к имени"
 
-#: ../gramps/plugins/textreport/recordsreport.py:163
+#: ../gramps/plugins/textreport/recordsreport.py:195
 msgid "Footer text"
 msgstr "Нижний колонтитул"
 
-#: ../gramps/plugins/textreport/recordsreport.py:169
+#: ../gramps/plugins/textreport/recordsreport.py:203
 msgid "Person Records"
 msgstr "Личные рекорды"
 
-#: ../gramps/plugins/textreport/recordsreport.py:171
+#: ../gramps/plugins/textreport/recordsreport.py:205
 msgid "Family Records"
 msgstr "Семейные рекорды"
 
-#: ../gramps/plugins/textreport/recordsreport.py:209
+#: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "The style used for the report title."
 msgstr "Стиль, используемый для названия отчета."
 
-#: ../gramps/plugins/textreport/recordsreport.py:221
+#: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "The style used for the report subtitle."
 msgstr "Стиль, используемый для подзаголовка отчёта."
 
-#: ../gramps/plugins/textreport/recordsreport.py:230
+#: ../gramps/plugins/textreport/recordsreport.py:261
 msgid "The style used for headings."
 msgstr "Стиль, используемый для заголовков."
 
 # !!!FIXME!!!
-#: ../gramps/plugins/textreport/recordsreport.py:248
+#: ../gramps/plugins/textreport/recordsreport.py:279
 #: ../gramps/plugins/textreport/simplebooktitle.py:186
 msgid "The style used for the footer."
 msgstr "Стиль нижней строки."
@@ -23820,7 +23891,7 @@ msgid "Individuals with unknown gender: %d"
 msgstr "Лиц неизвестного пола: %d"
 
 #: ../gramps/plugins/textreport/summary.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "Incomplete names: %d"
 msgstr "Лиц с неполными именами: %d"
 
@@ -24230,14 +24301,12 @@ msgid "Looking for place reference problems"
 msgstr "Ищу сломанные ссылки на места"
 
 #: ../gramps/plugins/tool/check.py:1310
-#, fuzzy
 msgid "Looking for citation reference problems"
-msgstr "Ищу сломанные цитаты и ссылки на источники"
+msgstr ""
 
 #: ../gramps/plugins/tool/check.py:1446
-#, fuzzy
 msgid "Looking for source reference problems"
-msgstr "Ищу сломанные ссылки на заметки"
+msgstr ""
 
 #: ../gramps/plugins/tool/check.py:1487
 msgid "Looking for media object reference problems"
@@ -24260,7 +24329,6 @@ msgid "The database has passed internal checks"
 msgstr "База данных прошла все внутренние проверки успешно"
 
 #: ../gramps/plugins/tool/check.py:1992
-#, fuzzy
 msgid "No errors were found: the database has passed internal checks."
 msgstr "База данных прошла все внутренние проверки успешно"
 
@@ -24403,12 +24471,12 @@ msgstr[2] "Удалены %(quantity)d утерянных документов\n
 
 # !!!FIXME!!!
 #: ../gramps/plugins/tool/check.py:2138
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
-msgstr[0] "Найдена %(quantity)d ссылка на несуществующее место\n"
-msgstr[1] "Найдено %(quantity)d ссылки на несуществующие места\n"
-msgstr[2] "Найдена %(quantity)d ссылок на несуществующие места\n"
+msgstr[0] "Найдена %(quantity)d ссылка на несуществующее событие\n"
+msgstr[1] "Найдено %(quantity)d ссылки на несуществующие события\n"
+msgstr[2] "Найдена %(quantity)d ссылок на несуществующие события\n"
 
 #: ../gramps/plugins/tool/check.py:2145
 #, python-format
@@ -24476,7 +24544,7 @@ msgstr[2] "Найдено %(quantity)d ссылок на несуществую�
 #, fuzzy, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
-msgstr[0] "Найдена %(quantity)d ссылка на несуществующие заметки\n"
+msgstr[0] ""
 msgstr[1] "Найдено %(quantity)d ссылки на несуществующие комментарии\n"
 msgstr[2] "Найдено %(quantity)d ссылок на несуществующие комментарии\n"
 
@@ -24773,9 +24841,8 @@ msgid "Introduction"
 msgstr "Введение"
 
 #: ../gramps/plugins/tool/mediamanager.py:102
-#, fuzzy
 msgid "Selection"
-msgstr "Разделы"
+msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:223
 msgid ""
@@ -26565,8 +26632,6 @@ msgstr "Лицо является собственным предком."
 #: ../gramps/plugins/view/pedigreeview.py:1546
 #: ../gramps/plugins/webreport/narrativeweb.py:4081
 #: ../gramps/plugins/webreport/webcal.py:538
-#: ../gramps/webapp/grampsdb/views.py:127
-#: ../gramps/webapp/grampsdb/views.py:136
 msgid "Home"
 msgstr "Домой"
 
@@ -26631,22 +26696,6 @@ msgstr "Расширенный"
 #: ../gramps/plugins/view/pedigreeview.py:2011
 msgid "Tree direction"
 msgstr "Направление стрелок"
-
-#: ../gramps/plugins/view/pedigreeview.py:2013
-msgid "Vertical (↓)"
-msgstr "Вертикально (↓)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2014
-msgid "Vertical (↑)"
-msgstr "Вертикально (↑)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2015
-msgid "Horizontal (→)"
-msgstr "Горизонтально (→)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2016
-msgid "Horizontal (←)"
-msgstr "Горизонтально (←)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2018
 msgid "Tree size"
@@ -28455,59 +28504,6 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:159
 msgid "No style sheet"
 msgstr "Без стилевого листа"
-
-#: ../gramps/webapp/grampsdb/view/family.py:43
-#, fuzzy
-msgid "Familes"
-msgstr "Семьи"
-
-#: ../gramps/webapp/grampsdb/view/person.py:328
-#, fuzzy
-msgid "Names"
-msgstr "Имена"
-
-#: ../gramps/webapp/grampsdb/view/person.py:462
-#: ../gramps/webapp/grampsdb/view/person.py:468
-#: ../gramps/webapp/grampsdb/view/person.py:470
-#: ../gramps/webapp/grampsdb/views.py:478
-#: ../gramps/webapp/grampsdb/views.py:480
-#: ../gramps/webapp/grampsdb/views.py:488
-#: ../gramps/webapp/grampsdb/views.py:496
-#: ../gramps/webapp/grampsdb/views.py:504
-#: ../gramps/webapp/grampsdb/views.py:512
-#: ../gramps/webapp/grampsdb/views.py:520
-#: ../gramps/webapp/grampsdb/views.py:528
-#: ../gramps/webapp/grampsdb/views.py:536
-#: ../gramps/webapp/grampsdb/views.py:544
-#: ../gramps/webapp/grampsdb/views.py:552
-#: ../gramps/webapp/grampsdb/views.py:560
-#, fuzzy, python-format
-msgid "Requested %s does not exist."
-msgstr "Файл %s не существует"
-
-#: ../gramps/webapp/grampsdb/views.py:74
-#: ../gramps/webapp/grampsdb/views.py:153
-#: ../gramps/webapp/grampsdb/views.py:472
-msgid "Browse"
-msgstr ""
-
-#: ../gramps/webapp/grampsdb/views.py:76
-#: ../gramps/webapp/grampsdb/views.py:171
-#, fuzzy
-msgid "User"
-msgstr "Имя пользователя:"
-
-#: ../gramps/webapp/grampsdb/views.py:167
-msgid "Requested user not found."
-msgstr ""
-
-#: ../gramps/webapp/grampsdb/views.py:174
-msgid "Requested page is not accessible."
-msgstr ""
-
-#: ../gramps/webapp/grampsdb/views.py:587
-msgid "Requested page type not known"
-msgstr ""
 
 #: ../gramps/gui/glade/addmedia.glade:173
 #: ../gramps/gui/glade/editcitation.glade:477
@@ -31858,6 +31854,53 @@ msgstr ""
 "Систематизируйте генеалогические данные, занимайтесь генеалогическими "
 "исследованиями и анализом"
 
+#: gtklist.h:2
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: gtklist.h:3
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: gtklist.h:4
+msgid "ASCII"
+msgstr "ASCII"
+
+#: gtklist.h:5
+msgid "UTF8"
+msgstr "UTF8"
+
+#: gtklist.h:6
+msgid "All rules must apply"
+msgstr "Должны выполняться все правила"
+
+#: gtklist.h:7
+msgid "At least one rule must apply"
+msgstr "Должно выполняться хотя бы одно правило"
+
+#: gtklist.h:8
+msgid "Exactly one rule must apply"
+msgstr "Должно выполняться ровно одно правило"
+
+#~ msgid " (%(value)s)"
+#~ msgstr " (%(value)s)"
+
+#, fuzzy
+#~ msgid "Familes"
+#~ msgstr "Семьи"
+
+#, fuzzy
+#~ msgid "Names"
+#~ msgstr "Имена"
+
+#, fuzzy
+#~ msgid "Requested %s does not exist."
+#~ msgstr "Файл %s не существует"
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "Имя пользователя:"
+
 #~ msgid "State/Province:"
 #~ msgstr "Штат/Провинция:"
 
@@ -31896,202 +31939,11 @@ msgstr ""
 #~ "старыми версиями Gramps.\n"
 #~ "Возможно сначала вы захотите сделать резервную копию."
 
-#~ msgid "PostScript / Helvetica"
-#~ msgstr "PostScript / Helvetica"
-
-#~ msgid "TrueType / FreeSans"
-#~ msgstr "TrueType / FreeSans"
-
-#~ msgid "Bottom, left"
-#~ msgstr "Вниз, влево"
-
-#~ msgid "Bottom, right"
-#~ msgstr "Вниз, вправо"
-
-#~ msgid "Top, left"
-#~ msgstr "Верх, влево"
-
-#~ msgid "Top, Right"
-#~ msgstr "Вверх, вправо"
-
-#~ msgid "Right, bottom"
-#~ msgstr "Вправо, вниз"
-
-#~ msgid "Right, top"
-#~ msgstr "Вправо, вверх"
-
-#~ msgid "Left, bottom"
-#~ msgstr "Влево, вниз"
-
-#~ msgid "Left, top"
-#~ msgstr "Влево, вверх"
-
-#~ msgid "Minimal size"
-#~ msgstr "Минимальный размер"
-
-#~ msgid "Fill the given area"
-#~ msgstr "Заполнить данную площадь"
-
 #~ msgid "Use optimal number of pages"
 #~ msgstr "Использовать оптимальное число страниц"
 
-#~ msgid "Top"
-#~ msgstr "Верх"
-
-#~ msgid "Bottom"
-#~ msgstr "Низ"
-
-#~ msgid "GraphViz Layout"
-#~ msgstr "Разметка GraphViz"
-
-#~ msgid ""
-#~ "Choose the font family. If international characters don't show, use "
-#~ "FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-#~ msgstr ""
-#~ "Выбрать семейство шрифтов. Если нелатинские символы не видны, используйте "
-#~ "шрифт FreeSans. Загрузить FreeSans можно здесь: http://www.nongnu.org/"
-#~ "freefont/"
-
-#~ msgid "The font size, in points."
-#~ msgstr "Размер шрифта, в пунктах."
-
-#~ msgid "Graph Direction"
-#~ msgstr "Ориентация графа"
-
-#~ msgid "Whether graph goes from top to bottom or left to right."
-#~ msgstr "Строить граф сверху вниз либо слева направо."
-
-#~ msgid "Number of Horizontal Pages"
-#~ msgstr "Число страниц по горизонтали"
-
-#~ msgid ""
-#~ "GraphViz can create very large graphs by spreading the graph across a "
-#~ "rectangular array of pages. This controls the number pages in the array "
-#~ "horizontally. Only valid for dot and pdf via Ghostscript."
-#~ msgstr ""
-#~ "GraphViz может создавать очень большие схемы, разбивая граф на "
-#~ "прямоугольный массив страниц. Здесь можно указать число страниц по "
-#~ "горизонтали. Подходит только для dot и pdf через Ghostscript."
-
-#~ msgid "Number of Vertical Pages"
-#~ msgstr "Число страниц по вертикали"
-
-#~ msgid ""
-#~ "GraphViz can create very large graphs by spreading the graph across a "
-#~ "rectangular array of pages. This controls the number pages in the array "
-#~ "vertically. Only valid for dot and pdf via Ghostscript."
-#~ msgstr ""
-#~ "GraphViz может создавать очень большие схемы, разбивая граф на "
-#~ "прямоугольный массив страниц Здесь можно указать число страниц по "
-#~ "вертикали. Подходит только для dot и pdf через Ghostscript."
-
-#~ msgid "Paging Direction"
-#~ msgstr "Расположение страниц"
-
-#~ msgid ""
-#~ "The order in which the graph pages are output. This option only applies "
-#~ "if the horizontal pages or vertical pages are greater than 1."
-#~ msgstr ""
-#~ "Порядок вывода страниц графа. Применимо, только если количество страниц "
-#~ "по горизонтали или по вертикали превышает 1."
-
-#~ msgid "GraphViz Options"
-#~ msgstr "Параметры GraphViz"
-
-#~ msgid "Aspect ratio"
-#~ msgstr "Отношение сторон"
-
 #~ msgid "Affects greatly how the graph is layed out on the page."
 #~ msgstr "Сильно влияет на то как граф расположен на странице."
-
-#~ msgid "DPI"
-#~ msgstr "DPI"
-
-#~ msgid ""
-#~ "Dots per inch.  When creating images such as .gif or .png files for the "
-#~ "web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF "
-#~ "files, use 72 DPI."
-#~ msgstr ""
-#~ "Точек на дюйм.  При создании изображений, таких как .gif или .png для "
-#~ "веба, попробуйте значения 100 или 300 DPI. При создании файлов PostScript "
-#~ "или PDF, используйте значение 72 DPI."
-
-#~ msgid "Node spacing"
-#~ msgstr "Расстояние между узлами"
-
-#~ msgid ""
-#~ "The minimum amount of free space, in inches, between individual nodes.  "
-#~ "For vertical graphs, this corresponds to spacing between columns.  For "
-#~ "horizontal graphs, this corresponds to spacing between rows."
-#~ msgstr ""
-#~ "Минимальное расстояние в дюймах между отдельными узлами графа. В "
-#~ "вертикальных графах отвечает за расстояние между столбцами. В "
-#~ "горизонтальных графах отвечает за расстояние между строками."
-
-#~ msgid "Rank spacing"
-#~ msgstr "Расстояние между слоями"
-
-#~ msgid ""
-#~ "The minimum amount of free space, in inches, between ranks.  For vertical "
-#~ "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
-#~ "this corresponds to spacing between columns."
-#~ msgstr ""
-#~ "Минимальное расстояние в дюймах между слоями графа. В вертикальных графах "
-#~ "отвечает за расстояние между строками. В горизонтальных графах отвечает "
-#~ "за расстояние между столбцами."
-
-#~ msgid "Use subgraphs"
-#~ msgstr "Использовать подграфы"
-
-#~ msgid ""
-#~ "Subgraphs can help GraphViz position spouses together, but with non-"
-#~ "trivial graphs will result in longer lines and larger graphs."
-#~ msgstr ""
-#~ "Подграфы могут помочь GraphViz расположить супругов рядом, но на сложных "
-#~ "графах это приведет к более длинным линиям и бо́льшим графам."
-
-#~ msgid "Note to add to the graph"
-#~ msgstr "Комментарий для добавления к графу"
-
-#~ msgid "This text will be added to the graph."
-#~ msgstr "Этот текст будет добавлен к графу."
-
-#~ msgid "Note location"
-#~ msgstr "Расположение комментария"
-
-#~ msgid "Whether note will appear on top or bottom of the page."
-#~ msgstr "Расположение записки вверху или внизу страницы."
-
-#~ msgid "Note size"
-#~ msgstr "Размер комментария"
-
-# Это --- комментарий к сгенерированному графу, а не "Gramps Note" => НЕ «ЗАМЕТКА»!
-#~ msgid "The size of note text, in points."
-#~ msgstr "Это размер шрифта для текста комментария, в пунктах."
-
-#~ msgid "PDF (Ghostscript)"
-#~ msgstr "PDF (Ghostscript)"
-
-#~ msgid "PDF (Graphviz)"
-#~ msgstr "PDF (Graphviz)"
-
-#~ msgid "Structured Vector Graphics (SVG)"
-#~ msgstr "Scalable Vector Graphics (SVG)"
-
-#~ msgid "Compressed Structured Vector Graphs (SVGZ)"
-#~ msgstr "Сжатый Scalable Vector Graphics (SVGZ)"
-
-#~ msgid "JPEG image"
-#~ msgstr "JPEG изображение"
-
-#~ msgid "GIF image"
-#~ msgstr "GIF изображение"
-
-#~ msgid "PNG image"
-#~ msgstr "PNG изображение"
-
-#~ msgid "Graphviz File"
-#~ msgstr "GraphViz файл"
 
 #~ msgid "Gramps: Import database"
 #~ msgstr "Gramps: Импорт базы данных"
@@ -32535,15 +32387,6 @@ msgstr ""
 #~ msgid "<b>Values</b>"
 #~ msgstr "<b>Значения</b>"
 
-#~ msgid "All rules must apply"
-#~ msgstr "Должны выполняться все правила"
-
-#~ msgid "At least one rule must apply"
-#~ msgstr "Должно выполняться хотя бы одно правило"
-
-#~ msgid "Exactly one rule must apply"
-#~ msgstr "Должно выполняться ровно одно правило"
-
 #~ msgid "<b>Available Gramps Updates for Addons</b>"
 #~ msgstr "<b>Доступные обновления для дополнений</b>"
 
@@ -32580,18 +32423,6 @@ msgstr ""
 
 #~ msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
 #~ msgstr "<span size=\"larger\" weight=\"bold\">Кодировка GEDCOM</span>"
-
-#~ msgid "ANSEL"
-#~ msgstr "ANSEL"
-
-#~ msgid "ANSI (iso-8859-1)"
-#~ msgstr "ANSI (iso-8859-1)"
-
-#~ msgid "ASCII"
-#~ msgstr "ASCII"
-
-#~ msgid "UTF8"
-#~ msgstr "UTF8"
 
 #~ msgid "Vertical (top to bottom)"
 #~ msgstr "Вертикально (сверху вниз)"
