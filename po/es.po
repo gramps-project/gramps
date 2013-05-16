@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.0.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-14 10:10+0200\n"
-"PO-Revision-Date: 2013-05-16 11:55+0200\n"
+"PO-Revision-Date: 2013-05-16 12:38+0200\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "Language-Team:  \n"
 "Language: \n"
@@ -7186,7 +7186,7 @@ msgstr ""
 "<u>&lt;u&gt;Subrayado&lt;/u&gt;</u>\n"
 "\n"
 "Por ejemplo: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
-"mostrará <u><b>Underlined bold date</b></u>.\n"
+"mostrará <u><b>Fecha en negrita subrayada</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Dates"
@@ -7879,9 +7879,9 @@ msgid ""
 "\n"
 "To edit the citation, close the source editor and open an editor for the citation alone"
 msgstr ""
-"Nos se pudo abrir el nuevo editor de citas. O bien la cita ya se está editando o la fuente asociada ya se está editando y abrir el editor de cita (que también permite editar la fuente), crearía una ambigüedad al abrir dos editores a la misma fuente.\n"
+"No se puede abrir el nuevo editor de cita en este momento. O bien la cita ya se está editando o la fuente asociada ya se está editando y al abrir el editor de cita (que también permite editar la fuente), se crearía una situación ambigua al abrir la misma fuente en dos editores distintos.\n"
 "\n"
-"Para editar la cita, cierre el editor de la fuente y abra un editor para la cita nada más"
+"Para editar la cita, cierre el editor de fuente y abra un editor para la cita solamente"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:183
 msgid "Cannot open new citation editor"
@@ -28226,7 +28226,7 @@ msgstr "Seguimiento de %s"
 #. page description
 #: ../gramps/plugins/webreport/narrativeweb.py:5686
 msgid "This map page represents that person and any descendants with all of their event/ places. If you place your mouse over the marker it will display the place name. The markers and the Reference list are sorted in date order (if any?). Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr "Esta página de mapa representa a la persona y sus descendientes con todos sus eventos/ lugares.  Si coloca su ratón sobre el marcador, mostrará el nombre del lugar.  Los marcadores y la lista de referencias están ordenados por fecha (si consta).  Hacer clic en el nombre de un lugar le llevará a la página de ese lugar."
+msgstr "Esta página de mapa representa a la persona y sus descendientes con todos sus eventos/ lugares.  Si coloca su ratón sobre el marcador, mostrará el nombre del lugar.  Los marcadores y la lista de referencias están ordenados por fecha (si consta).  Hacer clic en un lugar en la sección Referencia le llevará a la página de ese lugar."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5738
 msgid "Drop Markers"
