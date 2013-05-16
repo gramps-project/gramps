@@ -2,7 +2,6 @@
 <!DOCTYPE moduleset SYSTEM "moduleset.dtd">
 <?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
 <moduleset>
-
   <repository type="tarball" name="sourceforge"
               href="http://downloads.sourceforge.net/sourceforge/"/>
   <repository type="tarball" name="pywebkitgtk"
@@ -27,9 +26,9 @@
 	      href="git://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
-  <repository type="tarball" name="launchpad"
-	      href="http://launchpad.net/"/>
-  <repository type="tarball" name="exiv2.org"
+  <repository type="tarball" name="yorba"
+	      href="http://yorba.org/download/"/>
+   <repository type="tarball" name="exiv2.org"
 	      href="http://exiv2.org/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
@@ -60,10 +59,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
 
-  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
-  <distutils id="gramps-svn" >
+  <distutils id="gramps-svn" supports-non-srcdir-builds="no">
     <branch module="trunk" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
@@ -76,10 +75,26 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="graphviz"/>
       <dep package="pil"/>
       <dep package='pyicu'/>
+      <dep package='gexiv2'/>
     </dependencies>
-    <after>
-      <dep package="pyexiv2"/>
-    </after>
+  </distutils>
+
+  <distutils id="gramps-git" supports-non-srcdir-builds="no">
+    <branch module="jralls/Gramps.git" revision="trunk" repo="github"
+	    checkoutdir="gramps-git"/>
+    <dependencies>
+      <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="goocanvas"/>
+      <dep package="librsvg"/>
+      <dep package="shared-mime-info"/>
+      <dep package="hunspell"/>
+      <dep package="gtkspell3"/>
+      <dep package="osmgpsmap"/>
+      <dep package="graphviz"/>
+      <dep package="pil"/>
+      <dep package='pyicu'/>
+      <dep package='gexiv2'/>
+    </dependencies>
   </distutils>
 
   <distutils id="gramps-addons-svn">
@@ -166,34 +181,25 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <autotools id="exiv2">
+  <autotools id="exiv2" supports-non-srcdir-builds="no">
     <branch module="exiv2-0.21.1.tar.gz" repo="exiv2.org" version="0.21.1"/>
   </autotools>
 
-  <autotools id="boost">
-    <branch module="boost/boost_1_52_0.tar.bz2" repo="sourceforge"
-	    version="1.52.0"/>
-  </autotools>
-
-  <distutils id="scons">
-    <branch repo="sourceforge" module="scons/scons-2.0.1.tar.gz" version="2.0.1"/>
-  </distutils>
-
-  <autotools id="pyexiv2">
-    <branch module="pyexiv2/0.3.x/0.3/+download/pyexiv2-0.3.0.tar.bz2"
-	    repo="launchpad" version="0.3.0"/>
+  <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
+	     autogenargs="--enable-introspection"
+	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
+    <branch module="gexiv2/0.5/libgexiv2-0.5.0.tar.xz"
+	    repo="yorba" version="0.5.0">
+      <patch file='/Users/john/Development/GTK-OSX/gramps-svn/gexiv2-libtool.patch' strip="1"/>
+    </branch>
     <dependencies>
       <dep package="exiv2"/>
-      <dep package="scons"/>
     </dependencies>
-    <after>
-      <dep package="boost"/>
-    </after>
   </autotools>
 
   <distutils id="pil">
-    <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/-->
-    <branch module="sloonz/pil-py3k.git" repo="github"/>
+    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+    <!--branch module="sloonz/pil-py3k.git" repo="github"/-->
   </distutils>
 
   <autotools id='icu' autogen-sh='source/configure'
