@@ -64,7 +64,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.4.3.tar.gz" version="3.4.3"
+    <branch module="gramps/gramps-3.4.4.tar.gz" version="3.4.4"
 	    repo="sourceforge">
     </branch>
     <dependencies>
@@ -168,7 +168,8 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </dependencies>
   </distutils>
 
-  <autotools id="graphviz" autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --without-x  --with-pangocairo --with-included-ltdl" autogen-sh="configure">
+  <autotools id="graphviz" autogen-sh="configure"
+	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --without-x  --with-pangocairo --with-included-ltdl=yes">
     <branch module="graphviz-2.28.0.tar.gz" version="2.28.0" repo="graphviz"/>
     <dependencies>
       <dep package="librsvg"/>
