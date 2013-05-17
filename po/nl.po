@@ -896,13 +896,9 @@ msgstr "Tino Meinen, Kees Bakker en Erik De Richter"
 msgid "none"
 msgstr "geen"
 
-<<<<<<< .mine
 #: ../gramps/gen/datehandler/__init__.py:69
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-<<<<<<< .mine
-msgstr "Datumontleder voor '%s' niet beschikbaar, gebruik standaard"
-=======
 msgstr "Datumontleder voor '%s' niet beschikbaar, gebruik standaard"
 
 #: ../gramps/gen/datehandler/__init__.py:85
@@ -910,19 +906,6 @@ msgstr "Datumontleder voor '%s' niet beschikbaar, gebruik standaard"
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Datumweergever voor '%s' niet beschikbaar, gebruik standaard"
 
-=======
-#: ../gramps/gen/datehandler/__init__.py:69
-#, python-format
-msgid "Date parser for '%s' not available, using default"
-msgstr ""
->>>>>>> .r22329
-
-#: ../gramps/gen/datehandler/__init__.py:85
-#, python-format
-msgid "Date displayer for '%s' not available, using default"
-msgstr "Datumweergever voor '%s' niet beschikbaar, gebruik standaard"
-
->>>>>>> .r22314
 #: ../gramps/gen/db/base.py:1617
 msgid "Add child to family"
 msgstr "Kind aan gezin toevoegen"
