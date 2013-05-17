@@ -190,7 +190,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
     <branch module="gexiv2/0.5/libgexiv2-0.5.0.tar.xz"
 	    repo="yorba" version="0.5.0">
-      <patch file='/Users/john/Development/GTK-OSX/gramps-svn/gexiv2-libtool.patch' strip="1"/>
+      <patch file='gexiv2-libtool.patch' strip="1"/>
     </branch>
     <dependencies>
       <dep package="exiv2"/>
