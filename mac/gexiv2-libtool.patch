@@ -7,7 +7,7 @@ diff -c /Users/john/Development/Gramps-Build/gramps-40/src/libgexiv2-0.5.0/Makef
   		$(EXPANDED_INSTALLED_HEADER_FILES)      \
   		$(EXPANDED_SRC_FILES)                   \
   		--library $(LIBRARY_BIN)                \
-+ 		--libtool=$(PREFIX)/bin/libtool         \
++ 		--libtool=libtool                       \
   		--pkg=gobject-2.0
   
   clean:
