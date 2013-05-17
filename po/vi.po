@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS VIETNAMESE 1.0\n"
+"Project-Id-Version: GRAMPS VIETNAMESE 3.3.1-1 - V 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2011-09-26 20:25+0700\n"
+"PO-Revision-Date: 2012-02-29 23:03+0700\n"
 "Last-Translator: De Tran <trande@gmail.com>\n"
 "Language-Team: VIETNAMESE <quangde@sevuon.com>\n"
 "Language: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: VIETNAMESE\n"
 "X-Poedit-Country: VIETNAM\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-KeywordsList: Finishe Vietnamese Translation Sept 23, 2011. 21:45 VN h\n"
+"X-Poedit-KeywordsList: Vietnamese Translation Feb 29, 2012. 14:02 VN time, VIETNAMESE TRANSLATION OF GRAMPS\n"
 
 #: ../gramps/cli/arghandler.py:221
 #, fuzzy, python-format
@@ -47,15 +47,15 @@ msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr "Lỗi: kiểu không biết: \"%(format)s\" cho tập tin nhập: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:286
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"CẢNH BÁO: Tập tin ra đã tồn tại!\n"
+"CẢNH BÁO: Tập tin xuất đã tồn tại!\n"
 "CẢNH BÁO: Tập tin sẽ bị ghi đè:\n"
-"   %(name)s"
+"   %s"
 
 #: ../gramps/cli/arghandler.py:296
 msgid "OK to overwrite? (yes/no) "
@@ -78,17 +78,16 @@ msgstr "LỖI: Không nhận biết mẫu tập tin xuất %s "
 #: ../gramps/cli/arghandler.py:405
 #, fuzzy
 msgid "List of known Family Trees in your database path\n"
-msgstr "Đường CSDL cây gia đình "
+msgstr "Danh sách các cây gia đình được biết trong đường dẫn CSDL\n"
 
 #: ../gramps/cli/arghandler.py:410
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr ""
+msgstr "%(full_DB_path)s với tên \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:415 ../gramps/cli/arghandler.py:426
-#, fuzzy
 msgid "Gramps Family Trees:"
-msgstr "Cây gia đình dạng XML "
+msgstr "Cây gia đình Gramps:"
 
 #. -------------------------------------------------------------------------
 #.
@@ -105,56 +104,54 @@ msgid "Family Tree"
 msgstr "Cây gia đình "
 
 #: ../gramps/cli/arghandler.py:419
-#, fuzzy, python-format
+#, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Cây gia đình "
+msgstr "Cây gia đình  \"%s\":"
 
 #: ../gramps/cli/arghandler.py:448
-#, fuzzy, python-format
+#, python-format
 msgid "Performing action: %s."
-msgstr "Thực hiện hành động được chọn "
+msgstr "Thực hiện hành động: %s."
 
 #: ../gramps/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
-msgstr ""
+msgstr "Dùng chuỗi các tuỳ chọn: %s"
 
 #: ../gramps/cli/arghandler.py:455
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Xuất: tập tin %(filename)s, dạng %(format)s."
 
 #: ../gramps/cli/arghandler.py:462
 msgid "Exiting."
-msgstr ""
+msgstr "Exiting."
 
 #: ../gramps/cli/arghandler.py:466
 msgid "Cleaning up."
-msgstr ""
+msgstr "Dọn sạch."
 
 #: ../gramps/cli/arghandler.py:495
+#, fuzzy
 msgid "Created empty Family Tree successfully"
-msgstr ""
+msgstr "Tạo cây gia đình trồng thành công"
 
 #: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
-#, fuzzy
 msgid "Error opening the file."
-msgstr "Lỗi mở tập tin "
+msgstr "Lỗi mở tập tin."
 
 #: ../gramps/cli/arghandler.py:499 ../gramps/cli/arghandler.py:524
-#, fuzzy
 msgid "Exiting..."
-msgstr "Đang chọn.... "
+msgstr "Exiting..."
 
 #: ../gramps/cli/arghandler.py:503
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr ""
+msgstr "Nhập: tập tin %(filename)s, dạng %(format)s."
 
 #: ../gramps/cli/arghandler.py:521
-#, fuzzy
 msgid "Opened successfully!"
-msgstr "Hoạt động đã hoàn tất thành công. "
+msgstr "Mở thành công! "
 
 #: ../gramps/cli/arghandler.py:535
 msgid "Database is locked, cannot open it!"
@@ -172,51 +169,51 @@ msgstr "CSDL cần được phục hồi, không mở được! "
 #: ../gramps/cli/arghandler.py:596 ../gramps/cli/arghandler.py:644
 #: ../gramps/cli/arghandler.py:685
 msgid "Ignoring invalid options string."
-msgstr ""
+msgstr "Bỏ qua chuỗi tuỳ chọn không hiệu lực. "
 
 #. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:620
-#, fuzzy
 msgid "Unknown report name."
-msgstr "Không biết giới tính "
+msgstr "Báo cáo tên không biết tên"
 
 #: ../gramps/cli/arghandler.py:622
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr ""
+msgstr "Tên báo cáo chưa được cho. Xin dùng một trong %(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:626 ../gramps/cli/arghandler.py:668
 #: ../gramps/cli/arghandler.py:701
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%s\n"
 " Available names are:"
-msgstr "Mene các mục có sẵn "
+msgstr ""
+"%s\n"
+"Các tên hiện có là: "
 
 #: ../gramps/cli/arghandler.py:662
-#, fuzzy
 msgid "Unknown tool name."
-msgstr "Không biết giới tính "
+msgstr "Tên công cụ không biết. "
 
 #: ../gramps/cli/arghandler.py:664
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr ""
+msgstr "Tên công cụ chưa cung cấp. Xin dùng một trong %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:695
 #, fuzzy
 msgid "Unknown book name."
-msgstr "Không biết giới tính "
+msgstr "Tên công cụ không biết. "
 
 #: ../gramps/cli/arghandler.py:697
-#, python-format
+#, fuzzy, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
-msgstr ""
+msgstr "Tên công cụ chưa cung cấp. Xin dùng một trong %(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:706
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown action: %s."
-msgstr "Viết tắt không biết|kb."
+msgstr "Hành động không biết: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
 #: ../gramps/cli/argparser.py:57
@@ -382,7 +379,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:281
 #, fuzzy, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Viết tắt không biết|kb."
+msgstr "Hành động không biết: %s."
 
 #: ../gramps/cli/argparser.py:290
 msgid "setup debugging"
@@ -409,13 +406,13 @@ msgid "Gramps: no such config setting: '%s'"
 msgstr ""
 
 #: ../gramps/cli/argparser.py:365
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
 "Lỗi phân tích các tham số: %s \n"
-"Để dùng dòng lệnh, phải cho ít nhất một tập tin vào để xử lý. "
+"Để dùng dòng lệnh, phải cho ít nhất một tập tin đầu vào để xử lý. "
 
 #: ../gramps/cli/clidbman.py:87
 #, fuzzy, python-format
@@ -624,14 +621,12 @@ msgid "Error encountered in argument parsing: %s"
 msgstr "Gặp lỗi trong phân tích tham số: %s "
 
 #: ../gramps/cli/plug/__init__.py:171
-#, fuzzy
 msgid "ERROR: Please specify a person"
-msgstr "Xin đặt một tên cho sách "
+msgstr "LỖI: Xin chỉ định một người "
 
 #: ../gramps/cli/plug/__init__.py:196
-#, fuzzy
 msgid "ERROR: Please specify a family"
-msgstr "Xin đặt một tên cho sách "
+msgstr "LỖI: Xin chỉ định một gia đình "
 
 #: ../gramps/cli/plug/__init__.py:268
 #, fuzzy
@@ -660,7 +655,7 @@ msgstr "Họ "
 #: ../gramps/cli/plug/__init__.py:270
 #, fuzzy
 msgid "Style name."
-msgstr "Tên kiểu "
+msgstr "Tên kiểu"
 
 #: ../gramps/cli/plug/__init__.py:271
 #, fuzzy
@@ -720,39 +715,38 @@ msgid "Custom Size"
 msgstr "Kích cỡ riêng "
 
 #: ../gramps/cli/plug/__init__.py:424
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown option: %s"
-msgstr "Không biết  mẹ "
+msgstr "Tuỳ chọn không biết: %s"
 
 #: ../gramps/cli/plug/__init__.py:425 ../gramps/cli/plug/__init__.py:507
 msgid "   Valid options are:"
-msgstr ""
+msgstr "Các tuỳ chọn hợp lệ là: "
 
 #: ../gramps/cli/plug/__init__.py:428 ../gramps/cli/plug/__init__.py:510
 #: ../gramps/cli/plug/__init__.py:587
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr ""
+msgstr "Dùng '%(donottranslate)s' để xem mô tả và giá trị có thể nhận"
 
 #: ../gramps/cli/plug/__init__.py:481
 #, python-format
 msgid "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s=%(notranslate3)s'."
-msgstr ""
+msgstr "Bỏ qua '%(notranslate1)s=%(notranslate2)s' và dùng '%(notranslate1)s=%(notranslate3)s'."
 
 #: ../gramps/cli/plug/__init__.py:487
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr ""
+msgstr "Dùng '%(notranslate)s' để xem giá trị hợp lệ. "
 
 #: ../gramps/cli/plug/__init__.py:506
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr ""
+msgstr "Bỏ qua tuỳ chọn không biết: %s"
 
 #: ../gramps/cli/plug/__init__.py:576
-#, fuzzy
 msgid "   Available options:"
-msgstr "Các sách có sẵn "
+msgstr "Các tuỳ chọn có là:"
 
 #: ../gramps/cli/plug/__init__.py:585
 #, fuzzy
@@ -760,19 +754,18 @@ msgid "(no help available)"
 msgstr "không có|KC"
 
 #: ../gramps/cli/plug/__init__.py:594
-#, fuzzy
 msgid "   Available values are:"
-msgstr "Mene các mục có sẵn "
+msgstr "Các giá trị có là: "
 
 #. there was a show option given, but the option is invalid
 #: ../gramps/cli/plug/__init__.py:604
 #, python-format
 msgid "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid options."
-msgstr ""
+msgstr "tuỳ chọn '%(optionname)s' không hợp lệ. Dùng '%(donottranslate)s' để xem tất cả các tuỳ chọn. "
 
 #: ../gramps/cli/plug/__init__.py:618
 msgid "Failed to write report. "
-msgstr "Không ghi vào biểu báo cáo được. "
+msgstr "Không ghi báo cáo được. "
 
 #: ../gramps/gen/config.py:285
 msgid "Imported %Y/%m/%d %H:%M:%S"
@@ -1247,9 +1240,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hascitation.py:49
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gui/glade/mergecitation.glade.h:5
-#, fuzzy
 msgid "Volume/Page:"
-msgstr "_Số quyển "
+msgstr "Trang/quyển: "
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
@@ -1273,9 +1265,8 @@ msgstr "Ngày: "
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gui/glade/mergecitation.glade.h:7
-#, fuzzy
 msgid "Confidence:"
-msgstr "Mật: "
+msgstr "Mật:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
@@ -1300,9 +1291,8 @@ msgstr "So ghi chú với  một số thông số cụ thể nào đó "
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:49
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:49
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:49
-#, fuzzy
 msgid "Citation/source filters"
-msgstr "Bộ lọc tọa độ "
+msgstr "Bộ lọc trích dẫn/nguồn"
 
 #: ../gramps/gen/filters/rules/_haseventbase.py:57
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:47
@@ -1433,14 +1423,12 @@ msgid "No description"
 msgstr "Không có mô tả "
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
-#, fuzzy
 msgid "Every citation"
-msgstr "Trích "
+msgstr "Từng trích dẫn "
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
-#, fuzzy
 msgid "Matches every citation in the database"
-msgstr "Thỏa từng người trong CSDL "
+msgstr "Khớp từng trích dẫn trong CSDL"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
@@ -1467,24 +1455,20 @@ msgid "but before:"
 msgstr "nhưng trước: "
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:48
-#, fuzzy
 msgid "Citations changed after <date time>"
-msgstr "Người thay đổi sau <date time> "
+msgstr "Các trích dẫn thay đổi sau <date time> "
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:49
-#, fuzzy
 msgid "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given."
-msgstr "Thỏa bảnm ghi cá nhân đã thay đổi sau ngày tháng cụ thể (yyyy-mm-dd hh:mm:ss) hoặc trong ngưỡng, nếu thời gian thứ hai được nêu. "
+msgstr "Thỏa bản ghi trích dẫn đã thay đổi sau ngày tháng cụ thể (yyyy-mm-dd hh:mm:ss) hoặc trong ngưỡng, nếu thời gian thứ hai được nêu. "
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:45
-#, fuzzy
 msgid "Citations marked private"
-msgstr "Ghi chú ghi là riêng tư "
+msgstr "Các trích dẫn đánh dầu là riêng tư. "
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:46
-#, fuzzy
 msgid "Matches citations that are indicated as private"
-msgstr "Thỏa đối tượng cho thấy là riêng tư "
+msgstr "Khớp các trích dẫn cho thấy là riêng tư "
 
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:52
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
@@ -1502,64 +1486,52 @@ msgid "Confidence level:"
 msgstr "Mức độ tin cậy: "
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:47
-#, fuzzy
 msgid "Citations with <count> media"
-msgstr "Gia đình với <count> đa phương tiện "
+msgstr "Các trích dẫn với <count> đa phương tiện "
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:48
-#, fuzzy
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "So gian đình với một số mục cụ thể nào đó trong g"
+msgstr "Khớp các trích dẫn với một số mục cụ thể nào đó trong kho hình ảnh"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
-#, fuzzy
 msgid "Citation with <Id>"
-msgstr "Người với <ID> "
+msgstr "Trích dẫn với <ID> "
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:48
-#, fuzzy
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "So gia đình với ID Gramps cụ thể "
+msgstr "Khớp các trích dẫn với ID Gramps cụ thể "
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:48
-#, fuzzy
 msgid "Citations having <count> notes"
-msgstr "Gia đình có <count> ghi chú "
+msgstr "Trích dẫn có <count> ghi chú "
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:49
-#, fuzzy
 msgid "Matches citations having a certain number of notes"
-msgstr "So sự kiến có một số ghi chú nào đó "
+msgstr "Khớp trích dẫn có một số ghi chú nào đó "
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:45
-#, fuzzy
 msgid "Citations having notes containing <substring>"
-msgstr "Gia đình có ghi chú chứa <substring> "
+msgstr "Khớp trích dẫn có ghi chú chứa <substring> "
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:46
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "So gia đình có ghi chú chứa văn bản khớp với một chuỗi phụ "
+msgstr "Khớp trích dẫn có ghi chú chứa văn bản khớp với một chuỗi phụ "
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:44
-#, fuzzy
 msgid "Citations having notes containing <regular expression>"
-msgstr "Gia đình có ghi chú chứa <regular expression>"
+msgstr "Trích dẫn có ghi chú chứa <regular expression>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:45
-#, fuzzy
 msgid "Matches citations whose notes contain text matching a regular expression"
-msgstr "So gia đình có ghi chú chứa văn bản khớp với một biểu thức thông thường "
+msgstr "So gia đình có ghi chú chứa văn bản khớp với một biểu thức thông thường"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:45
-#, fuzzy
 msgid "Citations with a reference count of <count>"
-msgstr "Ghi chú với số đếm tham số là <count> "
+msgstr "Trích dẫn với số đếm tham chiếu là <count> "
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
-#, fuzzy
 msgid "Matches citations with a certain reference count"
-msgstr "So ghi chú với số đếm tham số nào đó "
+msgstr "So trích dẫn với số đếm tham chiếu nào đó "
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
@@ -1594,34 +1566,28 @@ msgid "Sources matching parameters"
 msgstr "Thông số so nguồn "
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:55
-#, fuzzy
 msgid "Matches citations with a source of a particular value"
-msgstr "So gian đình với một sự kiện giá trị cụ thể là "
+msgstr "So trích dẫn với nguồn có giá trị nào đó"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:57
-#, fuzzy
 msgid "Source filters"
-msgstr "Bộ lọc nguồn "
+msgstr "Bộ lọc nguồn"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
-#, fuzzy
 msgid "Citations matching the <filter>"
-msgstr "Ghi chú khớp với <filter> "
+msgstr "Trích dẫn khớp với <filter>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:48
-#, fuzzy
 msgid "Matches citations matched by the specified filter name"
-msgstr "So ghi chú khớp với tên bộ lọc cụ thể nào đó "
+msgstr "So trích dẫn khớp với tên bộ lọc cụ thể nào đó"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:45
-#, fuzzy
 msgid "Citation Volume/Page containing <substring>"
-msgstr "Tên kho chứa <substring> "
+msgstr "Trang/quyển trích dẫn chứa <substring> "
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:46
-#, fuzzy
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "So kho với một tên có chứa văn bản khớp với một chuỗi phụ "
+msgstr "So trích dẫn có trang/quyển chứa chuỗi phụ nào đó "
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
@@ -1630,36 +1596,28 @@ msgid "Repository filter name:"
 msgstr "Lọc tên kho lưu trữ: "
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
-#, fuzzy
 msgid "Citations with a source with a repository reference matching the <repository filter>"
-msgstr "Nguồn với tham chiếu kho thỏa <repository filter> "
+msgstr "Trích dẫn có nguồn với tham chiếu kho tư liệu khớp với <repository filter> "
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:50
-#, fuzzy
 msgid "Matches citations with sources with a repository reference that match a certain repository filter"
-msgstr ""
-"So nguồn với  tham chiếu kho thỏa \n"
-"lọc kho cụ thể nào đó. "
+msgstr "So trích dẫn với nguồn tư liệu  nguồn với  tham chiếu kho thỏa một lọc kho cụ thể nào đó."
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
-#, fuzzy
 msgid "Citations with source matching the <source filter>"
-msgstr "Sự kiện với nguồn khớp với <source filter> "
+msgstr "Trích dẫn với nguồn khớp với <source filter> "
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:52
-#, fuzzy
 msgid "Matches citations with sources that match the specified source filter name"
-msgstr "So sự kiện với nguồn khớp với tên lọc nguồn cụ thể nào đó "
+msgstr "So trích dẫn với nguồn khớp với tên lọc nguồn cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
-#, fuzzy
 msgid "Citations with <Id> matching regular expression"
-msgstr "Ghi chú với <Id> khớp với diễn tả thông thường "
+msgstr "Trích dẫn có <Id> khớp với chuỗi thông thường "
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
-#, fuzzy
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "So ghi chú có ID Gramps khớp với diễn tả thông thường "
+msgstr "So trích dẫn có ID Gramps khớp với chuỗi thông thường "
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -1707,14 +1665,12 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "So sự kiện với thông số sự kiện có giá trị cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:53
-#, fuzzy
 msgid "Event with the <citation>"
-msgstr "Sự kiện với <data> "
+msgstr "Sự kiện với <citation> "
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:54
-#, fuzzy
 msgid "Matches events with a citation of a particular value"
-msgstr "So sự kiện với số liệu ó giá trị cụ thể nào đó "
+msgstr "Khớp sự kiện với trích dẫn có giá trị cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:48
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
@@ -1960,14 +1916,12 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "So gian đình với thông số gian đình có giá trị cụ thể "
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:53
-#, fuzzy
 msgid "Family with the <citation>"
-msgstr "Gia đình vói <tag> "
+msgstr "Gia đình vói <citation> "
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:54
-#, fuzzy
 msgid "Matches families with a citation of a particular value"
-msgstr "So gian đình với một sự kiện giá trị cụ thể là "
+msgstr "Khớp gia đình với một tri1hc dẫn có giá trị cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:49
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
@@ -2232,12 +2186,12 @@ msgstr "So đối tượng đa phương tiện có thông số là giá trị c�
 #: ../gramps/gen/filters/rules/media/_hascitation.py:52
 #, fuzzy
 msgid "Media with the <citation>"
-msgstr "Sự kiện với <data> "
+msgstr "Sự kiện với <citation> "
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:53
 #, fuzzy
 msgid "Matches media with a citation of a particular value"
-msgstr "So gian đình với một sự kiện giá trị cụ thể là "
+msgstr "Khớp gia đình với một tri1hc dẫn có giá trị cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -2437,18 +2391,16 @@ msgid "Notes containing <regular expression>"
 msgstr "Ghi chúa chứa <regular expression> "
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
-#, fuzzy
 msgid "Matches notes that contain text which matches a regular expression"
-msgstr "So ghi chú có văn bản khớp với một diễn tả thông thường "
+msgstr "Khớp ghi chú có văn bản khớp với một biểu thức thông thường"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
 msgstr "Ghi chú chứa <substring> "
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:47
-#, fuzzy
 msgid "Matches notes that contain text which matches a substring"
-msgstr "So ghi chú có văn bản khớp với 1 chuỗi phụ "
+msgstr "Khớp ghi chú có văn bản khớp với 1 chuỗi phụ"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:44
 msgid "Notes marked private"
@@ -2575,14 +2527,12 @@ msgid "Matches people with birth data of a particular value"
 msgstr "Thỏa người với dữ liệu ngày sinh có giá trị cụ thể nào đó "
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:52
-#, fuzzy
 msgid "People with the <citation>"
-msgstr "Người với <tag> "
+msgstr "Người với <trích dẫn>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:53
-#, fuzzy
 msgid "Matches people with a citation of a particular value"
-msgstr "Thỏa người với dữ liệu ngày sinh có giá trị cụ thể nào đó "
+msgstr "Đọ khớp người với trích dẫn của một giá trị cụ thể nào đó"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
@@ -3079,14 +3029,12 @@ msgid "Matches parents of anybody matched by a filter"
 msgstr "So cha mẹ của bất cứ người nào khớp với một chuẩn lọc "
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
-#, fuzzy
 msgid "People related to <Person>"
-msgstr "Không liên quan đến \"%s\" "
+msgstr "Người có liên quan với <Person>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:49
-#, fuzzy
 msgid "Matches people related to a specified person"
-msgstr "So người là tổ tiên của người cụ thể nào đó "
+msgstr "Khớp người liên quan đến một người cụ thể"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Siblings of <filter> match"
@@ -3191,14 +3139,12 @@ msgid "Matches people that are indicated as private"
 msgstr "So người được ghi là riêng tư "
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:45
-#, fuzzy
 msgid "People not marked private"
-msgstr "Người đánh dấu là riêng tư "
+msgstr "Người không đánh dấu là riêng tư "
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:46
-#, fuzzy
 msgid "Matches people that are not indicated as private"
-msgstr "So người được ghi là riêng tư "
+msgstr "Khớp người không cho thấy là riêng tư "
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:44
 msgid "People with incomplete events"
@@ -3279,12 +3225,12 @@ msgstr "So bản ghi địa điểm thay đổi sau thời gian cụ thể (yyyy
 #: ../gramps/gen/filters/rules/place/_hascitation.py:53
 #, fuzzy
 msgid "Place with the <citation>"
-msgstr "Người với <tag> "
+msgstr "Người với <trích dẫn>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:54
 #, fuzzy
 msgid "Matches places with a citation of a particular value"
-msgstr "Thỏa người với dữ liệu ngày sinh có giá trị cụ thể nào đó "
+msgstr "Đọ khớp người với trích dẫn của một giá trị cụ thể nào đó"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
@@ -3307,9 +3253,8 @@ msgid "Places with no latitude or longitude given"
 msgstr "Địa điểm không có vĩ tuyến hay kinh tuyến "
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:51
-#, fuzzy
 msgid "Matches places with empty latitude or longitude"
-msgstr "So địa điểm vói vĩ tuyến hay kinh tuyến bỏ trống"
+msgstr "Khớp địa điểm với vĩ tuyến hay kinh tuyến trống"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:52
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:58
@@ -3347,7 +3292,7 @@ msgstr "So địa điểm có ghi chú chứa từ khớp với một diễn t�
 #: ../gramps/gui/glade/mergerepository.glade.h:5
 #: ../gramps/plugins/tool/soundgen.glade.h:2
 msgid "Name:"
-msgstr "Tên: "
+msgstr "Tên:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:51
 msgid "Street:"
@@ -3491,7 +3436,7 @@ msgstr "Từng kho "
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:47
 msgid "Matches every repository in the database"
-msgstr "So từng k ho trong CSDL "
+msgstr "So từng kho trong CSDL "
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid "Repositories changed after <date time>"
@@ -3535,7 +3480,7 @@ msgstr "So kho với số đếm tham chiếu cụ thể nào đó"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:50
 msgid "Address:"
-msgstr "Địa chỉ: "
+msgstr "Địa chỉ:"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "URL:"
@@ -3562,9 +3507,8 @@ msgid "Repository name containing <substring>"
 msgstr "Tên kho chứa <substring> "
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
-#, fuzzy
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "So kho với một tên có chứa văn bản khớp với một chuỗi phụ "
+msgstr "So kho tư liệu có tên có chứa chuỗi văn bản nào đó "
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with <Id> matching regular expression"
@@ -3691,9 +3635,8 @@ msgid "Sources title containing <substring>"
 msgstr "Tiêu đề nguồn chứa <substring>"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
-#, fuzzy
 msgid "Matches sources whose title contains a certain substring"
-msgstr "So nguồn với tiêu đề chứa văn bản thỏa một chuỗi phụ "
+msgstr "Khớp nguồn có tiêu đề chứa văn bản thỏa một chuỗi phụ nào đó "
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
 msgid "Sources with <Id> matching regular expression"
@@ -3874,9 +3817,9 @@ msgid "unknown"
 msgstr "không biết "
 
 #: ../gramps/gen/lib/date.py:307
-#, fuzzy, python-format
+#, python-format
 msgid "less than %s years"
-msgstr "Ít hơn 1 "
+msgstr "Ít hơn %s năm "
 
 #: ../gramps/gen/lib/date.py:312 ../gramps/gen/lib/date.py:338
 #: ../gramps/gen/lib/date.py:340 ../gramps/gen/lib/date.py:347
@@ -4839,9 +4782,8 @@ msgstr "FTP "
 
 #: ../gramps/gen/merge/mergecitationquery.py:62
 #: ../gramps/plugins/tool/mergecitations.py:192
-#, fuzzy
 msgid "Merge Citation"
-msgstr "Trích "
+msgstr "Nhập chung trích dẫn"
 
 #: ../gramps/gen/merge/mergeeventquery.py:61
 msgid "Merge Event Objects"
@@ -5386,11 +5328,11 @@ msgstr "Không hỗ trợ "
 
 #: ../gramps/gen/plug/report/_constants.py:47
 msgid "Text Reports"
-msgstr "Báo ao vănn bản "
+msgstr "Báo cáo văn bản "
 
 #: ../gramps/gen/plug/report/_constants.py:48
 msgid "Graphical Reports"
-msgstr "Báo cáo đồ họa. "
+msgstr "Báo cáo đồ họa"
 
 #: ../gramps/gen/plug/report/_constants.py:49
 msgid "Code Generators"
@@ -5440,9 +5382,8 @@ msgid "The basic style used for the endnotes reference display."
 msgstr "Kiểu trình bày cơ bản cho hiển thị tham khảo ghi chú cuối bài. "
 
 #: ../gramps/gen/plug/report/endnotes.py:78
-#, fuzzy
 msgid "The basic style used for the endnotes reference notes display."
-msgstr "Kiểu trình bày cơ bản cho hiển thị tham khảo ghi chú cuối bài. "
+msgstr "Kiểu trình bày cơ bản cho hiển thị tham chiếu ghi chú cuối trang. "
 
 #: ../gramps/gen/plug/report/endnotes.py:134
 msgid "Endnotes"
@@ -5759,7 +5700,7 @@ msgstr "Không biết  mẹ "
 #: ../gramps/gen/utils/alive.py:114
 #, fuzzy
 msgid "death event without date"
-msgstr "sự kiện sinh thiếu ngaỳ tháng "
+msgstr "sự kiện sinh thiếu ngày tháng "
 
 #: ../gramps/gen/utils/alive.py:125
 msgid "death-related evidence"
@@ -5933,7 +5874,7 @@ msgstr "Tiếng Ý "
 
 #: ../gramps/gen/utils/grampslocale.py:619
 msgid "Japanese"
-msgstr ""
+msgstr "Người Nhật"
 
 #: ../gramps/gen/utils/grampslocale.py:620
 msgid "Lithuanian"
@@ -6017,54 +5958,44 @@ msgid "Portugal"
 msgstr "Bồ Đào Nha "
 
 #: ../gramps/gen/utils/grampslocale.py:861
-#, fuzzy
 msgid "the person"
-msgstr "người "
+msgstr "người"
 
 #: ../gramps/gen/utils/grampslocale.py:863
-#, fuzzy
 msgid "the family"
-msgstr "Họ font chữ "
+msgstr "gia đình "
 
 #: ../gramps/gen/utils/grampslocale.py:865
-#, fuzzy
 msgid "the place"
-msgstr "Nơi sinh "
+msgstr "vị trí"
 
 #: ../gramps/gen/utils/grampslocale.py:867
-#, fuzzy
 msgid "the event"
-msgstr "Mỗi sự kiện "
+msgstr "sự kiện "
 
 #: ../gramps/gen/utils/grampslocale.py:869
-#, fuzzy
 msgid "the repository"
-msgstr "Từng kho "
+msgstr "kho tư liệu"
 
 #: ../gramps/gen/utils/grampslocale.py:871
-#, fuzzy
 msgid "the note"
-msgstr "Từng ghi chú "
+msgstr "ghi chú "
 
 #: ../gramps/gen/utils/grampslocale.py:873
-#, fuzzy
 msgid "the media"
-msgstr "taì liệu đa phương tiện "
+msgstr "taì liệu đa phương tiện"
 
 #: ../gramps/gen/utils/grampslocale.py:875
-#, fuzzy
 msgid "the source"
-msgstr "Nguồn ngày sinh "
+msgstr "nguồn tư liệu"
 
 #: ../gramps/gen/utils/grampslocale.py:877
-#, fuzzy
 msgid "the filter"
-msgstr "Lọc cha "
+msgstr "bộ lọc"
 
 #: ../gramps/gen/utils/grampslocale.py:879
-#, fuzzy
 msgid "See details"
-msgstr "Xem %s chi tiết "
+msgstr "Xem chi tiết "
 
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/plugins/export/exportcsv.py:347
 #: ../gramps/plugins/importer/importcsv.py:185
@@ -6379,9 +6310,8 @@ msgstr ""
 
 #: ../gramps/grampsapp.py:377 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:432
-#, fuzzy
 msgid "Configuration error:"
-msgstr "Đặt cấu hình cho lỗi"
+msgstr "Lỗi đặt cấu hình: "
 
 #: ../gramps/grampsapp.py:381
 msgid "Error reading configuration"
@@ -6602,14 +6532,13 @@ msgid "Person ref"
 msgstr "Tham chiếu cá nhân "
 
 #: ../gramps/gui/clipboard.py:690
-#, fuzzy
 msgid "Child ref"
-msgstr "Con cái "
+msgstr "Them chiếu con cái "
 
 #: ../gramps/gui/clipboard.py:699
-#, fuzzy, python-format
+#, python-format
 msgid "%(frel)s %(mrel)s"
-msgstr "%(date)s %(time)s"
+msgstr "%(frel)s %(mrel)s"
 
 #. 4
 #. ------------------------------------------------------------------------
@@ -6793,20 +6722,20 @@ msgid "Clipboard"
 msgstr "Bộ nhớ tạm "
 
 #: ../gramps/gui/clipboard.py:1484 ../gramps/gui/plug/quick/_quicktable.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "the object|See %s details"
-msgstr "Xem %s chi tiết "
+msgstr "đối tượng|Xem chi tiết %s"
 
 #. ---------------------------
 #: ../gramps/gui/clipboard.py:1490 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgid "the object|Make %s active"
-msgstr ""
+msgstr "đối tượng|Kích hoạt %s"
 
 #: ../gramps/gui/clipboard.py:1506
-#, fuzzy, python-format
+#, python-format
 msgid "the object|Create Filter from %s selected..."
-msgstr "Tạo bộ lọc từ %s... được chọn "
+msgstr "đối tượng|Tạo bộ lọc từ %s chọn..."
 
 #: ../gramps/gui/columnorder.py:91
 #, python-format
@@ -6845,7 +6774,6 @@ msgid "Display Name Editor"
 msgstr "Hiển thị trình soạn thảo tên "
 
 #: ../gramps/gui/configure.py:108
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:\n"
 "<tt>  \n"
@@ -6867,7 +6795,7 @@ msgid ""
 "     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, \n"
 "     <i>Underhills</i> family nick name, <i>Jose</i> callname.\n"
 msgstr ""
-"Các tử khóa sau đây được thay thế bằng các phần tên tương ứng:\n"
+"Các từ khóa sau đây được thay thế bằng các phần tên tương ứng:\n"
 "<tt>  \n"
 "  <b>Tên</b>      - tên được đặt (tên đầu) <b>Họ</b>      - họ (có thể có tiền tố và dấu nối)\n"
 "  <b>Danh xưng</b>      - Danh xưng (Bác sĩ, Ông)       <b>Hậu tố</b>       - hậu tố (Jr., Sr.)\n"
@@ -7118,7 +7046,7 @@ msgstr "Sửa "
 
 #: ../gramps/gui/configure.py:981
 msgid "Consider single pa/matronymic as surname"
-msgstr ""
+msgstr "Xem xét cha/mẹ như là họ"
 
 #: ../gramps/gui/configure.py:995
 msgid "Date format"
@@ -7151,9 +7079,8 @@ msgid "Surname guessing"
 msgstr "Đoán họ "
 
 #: ../gramps/gui/configure.py:1056
-#, fuzzy
 msgid "Default family relationship"
-msgstr "%d quan hệ gia đình bị hư được khắc phục\n"
+msgstr "Quan hệ gia đình mặc định"
 
 #: ../gramps/gui/configure.py:1063
 msgid "Height multiple surname box (pixels)"
@@ -7740,9 +7667,8 @@ msgid "No active source"
 msgstr "Không có nguồn chủ đạo "
 
 #: ../gramps/gui/displaystate.py:383
-#, fuzzy
 msgid "No active citation"
-msgstr "Không có tài liệu đa phương tiện chủ đạo "
+msgstr "Không có trích dẫn hiện hành"
 
 #: ../gramps/gui/displaystate.py:384
 msgid "No active repository"
@@ -7965,7 +7891,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/backreflist.py:183
 #, fuzzy
 msgid "Cannot open new citation editor"
-msgstr "Không thể nhập ghi chú. "
+msgstr "Không thể hoà chung trích dẫn."
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:52
 #, python-format
@@ -8009,35 +7935,29 @@ msgid "Move Down"
 msgstr "Di chuyển xuống "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:72
-#, fuzzy
 msgid "Create and add a new citation and new source"
-msgstr "Tạo và thêm một nguồn mới "
+msgstr "Tạo và thêm một trích dẫn và nguồn mới "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:73
-#, fuzzy
 msgid "Remove the existing citation"
-msgstr "Bỏ hiệp hội đang có "
+msgstr "Bỏ trích dẫn hiện có "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:74
 #: ../gramps/plugins/view/citationlistview.py:127
-#, fuzzy
 msgid "Edit the selected citation"
-msgstr "Sửa một hiệp hội được chọn "
+msgstr "Sửa một trích dẫn được chọn "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:75
-#, fuzzy
 msgid "Add an existing citation or source"
-msgstr "Thêm một nguồn đang có "
+msgstr "Thêm một trích dẫn hay nguồn đang có "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:76
-#, fuzzy
 msgid "Move the selected citation upwards"
-msgstr "Di chuyển một hiệp hội được chọn lên "
+msgstr "Di chuyển một trích dẫn lên trên "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:77
-#, fuzzy
 msgid "Move the selected citation downwards"
-msgstr "Chuyển một hiệp hội được chọn xuống "
+msgstr "Chuyển một trích dẫn đã chọn xuống thấp"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:85
@@ -8054,9 +7974,8 @@ msgid "Page"
 msgstr "Trang "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:93
-#, fuzzy
 msgid "_Source Citations"
-msgstr "Nối kết nguồn "
+msgstr "_Trích dẫn nguồn"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:173
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:183
@@ -8071,13 +7990,12 @@ msgstr "Không thể chia sẻ tham chiếu này "
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:192
 #: ../gramps/plugins/view/citationtreeview.py:485
-#, fuzzy
 msgid ""
 "This citation cannot be created at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Tham chiếu nguồn này không thể chỉnh sửa lúc này. Hoặc là nguồn liên kết đang được sửa hoặc là tham chiếu nguồn liên kết đến cùng nguồn đang được sửa.\n"
+"Trích dẫn này không thể tạo ra được.  Hoặc là đối tượng nguồn liên kết đang được sửa hoặc là một trích dẫn khác liên quan tới cùng nguồn đang được sửa.\n"
 "\n"
 "Để sửa tham chiếu nguồn này, bạn cần đóng nguồn. "
 
@@ -8219,15 +8137,14 @@ msgid "Non existing media found in the Gallery"
 msgstr "Phát hiện đa phương tiện không tồn tại trong kho hình "
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:313
-#, fuzzy
 msgid ""
 "This media reference cannot be edited at this time. Either the associated media object is already being edited or another media reference that is associated with the same media object is being edited.\n"
 "\n"
 "To edit this media reference, you need to close the media object."
 msgstr ""
-"Tham chiếu sự kiện này không thể chỉnh sửa lúc này. Hoặc là sự kiện liên quan đang được sửa hoặc là tham chiếu sự kiện khác liến quan với cùng sự kiện đang được sửa.\n"
+"Tham chiếu tài liệu đa phương tiện này không thể chỉnh sửa lúc này. Hoặc là tài liệu liên quan đang được sửa hoặc là một tham chiếu tài liệu đa phương tiện khác liên hế với cùng tài liệu n ày đang được sửa.\n"
 "\n"
-"Để sửa tham chiếu sự kiện này, bạn cần đóng sự kiện. "
+"Để sửa tham chiếu sự kiện này, bạn cần đóng đối tượng đa phương tiện. "
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:536
 #: ../gramps/plugins/view/mediaview.py:211
@@ -8596,14 +8513,12 @@ msgstr "Tham chiếu con cái "
 
 #: ../gramps/gui/editors/editcitation.py:150
 #: ../gramps/gui/editors/editcitation.py:156
-#, fuzzy
 msgid "New Citation"
-msgstr "Trích "
+msgstr "Trích dẫn mới "
 
 #: ../gramps/gui/editors/editcitation.py:387
-#, fuzzy
 msgid "Edit Citation"
-msgstr "Trích "
+msgstr "Sửa trích dẫn"
 
 #: ../gramps/gui/editors/editcitation.py:393
 #: ../gramps/gui/editors/editsource.py:182
@@ -8616,15 +8531,14 @@ msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "Không có số liệu cho nguồn này. Xin nhập số liệu vào hay bỏ sửa chữa. "
 
 #: ../gramps/gui/editors/editcitation.py:403
-#, fuzzy
 msgid "Cannot save citation. ID already exists."
-msgstr "Không thể lưu cá nhận. ID đã tồn tại. "
+msgstr "Không thể lưu trích dẫn. ID đã tồn tại. "
 
 #: ../gramps/gui/editors/editcitation.py:404
 #: ../gramps/gui/editors/editcitation.py:418
-#, fuzzy, python-format
+#, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(gramps_id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
-msgstr "Bạn đang cố dùng ID Gramps đã tồn tại với giá trị là %(id)s. Giá trị này hiện đang được dùng bởi '%(prim_object)s'. Xin nhập một ID khác hay bỏ trống để nhận giá trị ID tiếp theo. "
+msgstr "Bạn đang cố dùng ID Gramps đã tồn tại với giá trị là %(gramps_id)s. Giá trị này hiện đang được dùng bởi '%(prim_object)s'. Xin nhập một ID khác hay bỏ trống để nhận giá trị ID có sẵn tiếp theo. "
 
 #: ../gramps/gui/editors/editcitation.py:417
 #: ../gramps/gui/editors/editsource.py:192
@@ -8646,17 +8560,17 @@ msgstr "Sửa nguồn (%s) "
 #: ../gramps/gui/editors/editcitation.py:444
 #, fuzzy, python-format
 msgid "Add Citation (%s)"
-msgstr "Xóa thẻ (%s) "
+msgstr "Xóa trích dẫn (%s) "
 
 #: ../gramps/gui/editors/editcitation.py:450
 #, fuzzy, python-format
 msgid "Edit Citation (%s)"
-msgstr "Trích "
+msgstr "Sửa trích dẫn"
 
 #: ../gramps/gui/editors/editcitation.py:528
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Citation (%s)"
-msgstr "Xóa thẻ (%s) "
+msgstr "Xóa trích dẫn (%s) "
 
 #: ../gramps/gui/editors/editdate.py:79 ../gramps/gui/editors/editdate.py:88
 msgid "Regular"
@@ -8704,7 +8618,7 @@ msgstr "Chọn ngày "
 
 #: ../gramps/gui/editors/editevent.py:65
 msgid "manual|Editing_Information_About_Events"
-msgstr "hướng dẫn|Sửa_thông_tin_về_sự_k"
+msgstr "hướng dẫn|Sửa_thông_tin_về_sự_kiện"
 
 #: ../gramps/gui/editors/editevent.py:99
 #: ../gramps/gui/editors/editeventref.py:241
@@ -8979,7 +8893,7 @@ msgstr "Chọn cha "
 
 #: ../gramps/gui/editors/editfamily.py:851
 msgid "Duplicate Family"
-msgstr "Sao hai gia đình "
+msgstr "Sao gia đình "
 
 #: ../gramps/gui/editors/editfamily.py:852
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
@@ -9254,7 +9168,7 @@ msgstr "Đặt kích hoạt cho một người "
 
 #: ../gramps/gui/editors/editperson.py:673
 msgid "Make Home Person"
-msgstr "Đặt một người có nhà "
+msgstr "Đặt một người là nhân vật chính"
 
 #: ../gramps/gui/editors/editperson.py:784
 msgid "Problem changing the gender"
@@ -9541,9 +9455,8 @@ msgid "Note Filters"
 msgstr "Bộ lọc ghi chú "
 
 #: ../gramps/gui/editors/filtereditor.py:93
-#, fuzzy
 msgid "Citation Filters"
-msgstr "Bộ lọc tọa độ "
+msgstr "Bộ lọc trích dẫn "
 
 #: ../gramps/gui/editors/filtereditor.py:245
 msgid "lesser than"
@@ -9786,9 +9699,8 @@ msgstr "Cập nhật hiển thị..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:98
 #: ../gramps/plugins/view/citationlistview.py:99
-#, fuzzy
 msgid "Volume/Page"
-msgstr "_Số quyển "
+msgstr "Quyển/Trang "
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
 msgid "Minimum Confidence|Min. Conf."
@@ -9807,9 +9719,8 @@ msgid "Custom filter"
 msgstr "Lọc riêng "
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:98
-#, fuzzy
 msgid "Participants"
-msgstr "Người tham gia chính "
+msgstr "Người tham gia"
 
 #. The parent may not be birth father in ths family, because it
 #. may be a step family. However, it will be odd to display the
@@ -10293,14 +10204,12 @@ msgstr "Mở trình sửa người cho đứa bé này "
 #: ../gramps/gui/glade/editfamily.glade.h:12
 #: ../gramps/gui/glade/rule.glade.h:14
 #: ../gramps/gui/glade/styleeditor.glade.h:40
-#, fuzzy
 msgid "Edition"
-msgstr "Học vấn "
+msgstr "Phiên bản "
 
 #: ../gramps/gui/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
-msgstr "<b>Thông tin quan hệ</b> "
+msgstr "<b>Thông tin trích dẫn</b> "
 
 #: ../gramps/gui/glade/editcitation.glade.h:5
 #: ../gramps/gui/glade/editsourceref.glade.h:5
@@ -10338,14 +10247,12 @@ msgid "The date of the entry in the source you are referencing, e.g. the date a 
 msgstr "Ngày của mục trong nguồn bạn tham chiếu, thí dụ, ngày nhà ghé thăm trong thống kê, hay ngày của mục ghi chép trong sổ khai sinh/tử. "
 
 #: ../gramps/gui/glade/editcitation.glade.h:14
-#, fuzzy
 msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
-msgstr "<b>Ghi chú:</b> Những thay đổi ở thông tin chia xẻ sẽ phản ánh bản thân kho, cho tất cả các mục tham chiếu kho. "
+msgstr "<b>Ghi chú:</b> Những thay đổi ở thông tin trích dẫn chia xẻ sẽ phản ánh bản thân chia xẻ,  cho tất cả các mục tham chiếu đến trích dẫn."
 
 #: ../gramps/gui/glade/editcitation.glade.h:15
-#, fuzzy
 msgid "A unique ID to identify the citation"
-msgstr "Mội ID không trùng lắp để nhận biết ghi chú. "
+msgstr "Một ID không trùng lắp để nhận biết trích dẫn"
 
 #: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/editevent.glade.h:16
@@ -10527,9 +10434,8 @@ msgstr "_Nơi: "
 #: ../gramps/gui/glade/editldsord.glade.h:10
 #: ../gramps/gui/glade/editlink.glade.h:6
 #: ../gramps/gui/glade/editpersonref.glade.h:12
-#, fuzzy
 msgid "Selector"
-msgstr "Chọn "
+msgstr "Bộ chọn"
 
 #: ../gramps/gui/glade/editevent.glade.h:15
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
@@ -10622,9 +10528,8 @@ msgstr "Kiểu quan hệ, thí dụ, \"kết hôn\", hay \"độc thân\". Dùng
 #: ../gramps/gui/glade/editmediaref.glade.h:30
 #: ../gramps/gui/glade/editnote.glade.h:12
 #: ../gramps/gui/glade/editperson.glade.h:37
-#, fuzzy
 msgid "_Tags:"
-msgstr "Thẻ: "
+msgstr "_Thẻ: "
 
 #: ../gramps/gui/glade/editfamily.glade.h:23
 #: ../gramps/gui/widgets/monitoredwidgets.py:839
@@ -10654,9 +10559,8 @@ msgid "LDS _Temple:"
 msgstr "Nhà thờ LDS: "
 
 #: ../gramps/gui/glade/editldsord.glade.h:8
-#, fuzzy
 msgid "_Family:"
-msgstr "Gia đình: "
+msgstr "_Gia đình: "
 
 #: ../gramps/gui/glade/editldsord.glade.h:11
 msgid "_Status:"
@@ -10671,14 +10575,12 @@ msgid "Internet Address:"
 msgstr "Địa chỉ internet: "
 
 #: ../gramps/gui/glade/editlink.glade.h:4
-#, fuzzy
 msgid "_Link Type:"
-msgstr "Kiểu liên kết: "
+msgstr "_Kiểu liên kết: "
 
 #: ../gramps/gui/glade/editlink.glade.h:7 ../gramps/gui/viewmanager.py:433
-#, fuzzy
 msgid "New"
-msgstr "Thẻ mới "
+msgstr "Mới"
 
 #: ../gramps/gui/glade/editlocation.glade.h:2
 msgid "The town or city where the place is."
@@ -10737,9 +10639,8 @@ msgid "_Path:"
 msgstr "_Đường dẫn "
 
 #: ../gramps/gui/glade/editmedia.glade.h:5
-#, fuzzy
 msgid "Image preview"
-msgstr "Kích thước hình "
+msgstr "Xem trước hình "
 
 #: ../gramps/gui/glade/editmedia.glade.h:7
 msgid ""
@@ -10761,7 +10662,7 @@ msgstr "Mở trình duyệt tập tin để chọn tài liệu đa phương ti�
 #: ../gramps/gui/glade/editmedia.glade.h:14
 #: ../gramps/gui/glade/editmediaref.glade.h:29
 msgid "Folder"
-msgstr ""
+msgstr "Thư mục"
 
 #: ../gramps/gui/glade/editmedia.glade.h:15
 msgid "A unique ID to identify the Media object."
@@ -10772,9 +10673,8 @@ msgid "A date associated with the media, eg., for a picture the date it is taken
 msgstr "Một ngày liên quan đến tài liệu đa phương tiện, thí dụ, ngày hình được chụp "
 
 #: ../gramps/gui/glade/editmediaref.glade.h:1
-#, fuzzy
 msgid "_Corner 2:  X"
-msgstr "Góc 2: X "
+msgstr "_Góc 2: X "
 
 #: ../gramps/gui/glade/editmediaref.glade.h:3
 msgid "<b>Referenced Region</b>"
@@ -10797,9 +10697,8 @@ msgstr ""
 "Chọn vùng bằng cách nhấp chuột và giữ nút chuột tên góc đính trái của vùng bạn muốn, kéo chuột xuống góc đáy phải của vùng, và nhả nút chuột. "
 
 #: ../gramps/gui/glade/editmediaref.glade.h:9
-#, fuzzy
 msgid "_Corner 1:  X"
-msgstr "Góc 1: x "
+msgstr "_Góc 1: x "
 
 #: ../gramps/gui/glade/editmediaref.glade.h:10
 msgid ""
@@ -10822,9 +10721,8 @@ msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr "Kiểu đối tượng đa phương tiện cho thấy bởi máy, thí dụ hình, video, ..."
 
 #: ../gramps/gui/glade/editmediaref.glade.h:27
-#, fuzzy
 msgid "Select a file"
-msgstr "Chọn tập tin "
+msgstr "Chọn tập tin"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:33
 msgid "<b>Shared Information</b>"
@@ -10947,9 +10845,8 @@ msgid "A Date associated with this name. Eg. for a Married Name, date the name i
 msgstr "Ngày liên kết với tên này. Thí dụ đối với tên hôn nhân, ngày của tên là ngày đầu được dùng ha ngày cưới. "
 
 #: ../gramps/gui/glade/editnote.glade.h:1
-#, fuzzy
 msgid "Styled Text Editor"
-msgstr "Bộ sửa kiểu loại "
+msgstr "Bộ soạn văn bản có kiểu"
 
 #: ../gramps/gui/glade/editnote.glade.h:3
 msgid "A type to classify the note."
@@ -11218,14 +11115,12 @@ msgid "Drag to move; click to detach"
 msgstr "Kéo đễ di chuyển; nhấp để tách rời "
 
 #: ../gramps/gui/glade/grampletpane.glade.h:2
-#, fuzzy
 msgid "Detach"
-msgstr "Chi tiết "
+msgstr "Tách"
 
 #: ../gramps/gui/glade/grampletpane.glade.h:3
-#, fuzzy
 msgid "Config"
-msgstr "Đặt cấu hình "
+msgstr "Đặt cấu hình"
 
 #: ../gramps/gui/glade/grampletpane.glade.h:4
 msgid "Click to expand/collapse"
@@ -11241,16 +11136,15 @@ msgstr "Xóa "
 
 #: ../gramps/gui/glade/grampletpane.glade.h:8
 msgid "Close"
-msgstr ""
+msgstr "Đóng"
 
 #: ../gramps/gui/glade/mergecitation.glade.h:1
-#, fuzzy
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
-"Chọn người cung cấp\n"
-"dữ liệu chính cho người nhập chung. "
+"Chọn trích dẫn sẽ cung cấp\n"
+"dữ liệu chính cho nhập chung trích dẫn. "
 
 #: ../gramps/gui/glade/mergecitation.glade.h:3
 #: ../gramps/gui/glade/mergedata.glade.h:9
@@ -11278,9 +11172,8 @@ msgid "Gramps ID:"
 msgstr "ID Gramps "
 
 #: ../gramps/gui/glade/mergecitation.glade.h:9
-#, fuzzy
 msgid "Notes, media objects and data-items of both citations will be combined."
-msgstr "Ghi chú, đối tượng đa phương tiện, các mục dữ  liệu và tham chiếu kho của 2 nguồn sẽ nhập chung. "
+msgstr "Ghi chú, đối tượng đa phương tiện, các mục dữ  liệu của cả trích dẫn được hoà chung lại."
 
 #: ../gramps/gui/glade/mergecitation.glade.h:10
 #: ../gramps/gui/glade/mergeevent.glade.h:11
@@ -11521,14 +11414,12 @@ msgid "Size:"
 msgstr "Kích cỡ: "
 
 #: ../gramps/gui/glade/papermenu.glade.h:4
-#, fuzzy
 msgid "_Width:"
-msgstr "Rộng: "
+msgstr "_Rộng: "
 
 #: ../gramps/gui/glade/papermenu.glade.h:5
-#, fuzzy
 msgid "_Height:"
-msgstr "Cao: "
+msgstr "_Cao: "
 
 #: ../gramps/gui/glade/papermenu.glade.h:6
 msgid "Orientation:"
@@ -11545,24 +11436,20 @@ msgid "Margins"
 msgstr "Lề "
 
 #: ../gramps/gui/glade/papermenu.glade.h:9
-#, fuzzy
 msgid "_Left:"
-msgstr "_Trái "
+msgstr "_Trái:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:10
-#, fuzzy
 msgid "_Right:"
-msgstr "_Phải "
+msgstr "_Phải :"
 
 #: ../gramps/gui/glade/papermenu.glade.h:11
-#, fuzzy
 msgid "_Top:"
-msgstr "_Trên "
+msgstr "_Trên:"
 
 #: ../gramps/gui/glade/papermenu.glade.h:12
-#, fuzzy
 msgid "_Bottom:"
-msgstr "_Đáy "
+msgstr "_Đáy: "
 
 #: ../gramps/gui/glade/papermenu.glade.h:13
 msgid "Metric"
@@ -11594,36 +11481,32 @@ msgid "<b>Parent relationships</b>"
 msgstr "<b>Quan hệ cha mẹ</b> "
 
 #: ../gramps/gui/glade/reorder.glade.h:2
-#, fuzzy
 msgid "Move parent up"
-msgstr "Không thấy cha mẹ "
+msgstr "Đưa cha mẹ lên"
 
 #: ../gramps/gui/glade/reorder.glade.h:3
 msgid "Arrow top"
-msgstr ""
+msgstr "Mũi tên ở trên"
 
 #: ../gramps/gui/glade/reorder.glade.h:4
-#, fuzzy
 msgid "Move parent down"
-msgstr "Không thấy cha mẹ "
+msgstr "Đưa cha mẹ xuống "
 
 #: ../gramps/gui/glade/reorder.glade.h:5
 msgid "Arrow bottom"
-msgstr ""
+msgstr "Mũi tên ở dưới"
 
 #: ../gramps/gui/glade/reorder.glade.h:6
 msgid "<b>Family relationships</b>"
 msgstr "<b>Quan hệ gia đình</b> "
 
 #: ../gramps/gui/glade/reorder.glade.h:7
-#, fuzzy
 msgid "Move family up"
-msgstr "Mỗi gia đình "
+msgstr "Đưa gia đình lên "
 
 #: ../gramps/gui/glade/reorder.glade.h:8
-#, fuzzy
 msgid "Move family down"
-msgstr "Bỏ cây gia đình "
+msgstr "Đưa gia đình xuống"
 
 #: ../gramps/gui/glade/rule.glade.h:1
 msgid "Add a new filter"
@@ -11714,9 +11597,8 @@ msgid "Style n_ame:"
 msgstr "Tên kiểu "
 
 #: ../gramps/gui/glade/styleeditor.glade.h:2
-#, fuzzy
 msgid "Style name"
-msgstr "Tên kiểu "
+msgstr "Tên kiểu"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:4
 msgid "<b>Type face</b>"
@@ -11840,19 +11722,16 @@ msgid "<b>Paragraph options</b>"
 msgstr "<b>Chọn lực đọn</b>"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:36
-#, fuzzy
 msgid "Add a new style"
-msgstr "Thêm một ghi chú mới "
+msgstr "Thêm một kiểu mới "
 
 #: ../gramps/gui/glade/styleeditor.glade.h:38
-#, fuzzy
 msgid "Edit the selected style"
-msgstr "Sửa chữa ghi chú đang có "
+msgstr "Sửa kiểu được chọn "
 
 #: ../gramps/gui/glade/styleeditor.glade.h:41
-#, fuzzy
 msgid "Delete the selected style"
-msgstr "Xóa ghi chú được chọn "
+msgstr "Xóa kiểu được chọn "
 
 #: ../gramps/gui/glade/tipofday.glade.h:1
 msgid "_Display on startup"
@@ -11965,7 +11844,7 @@ msgstr "Biểu đồ hình quạt "
 #: ../gramps/plugins/view/fanchartdescview.py:74
 #, fuzzy
 msgid "Descendant Fan Chart"
-msgstr "Báo cáo hậu duệ "
+msgstr "Biểu đồ con cháu"
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -12164,9 +12043,8 @@ msgstr "Vừa trang "
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:775
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
-#, fuzzy
 msgid "Citations"
-msgstr "Trích "
+msgstr "Trích"
 
 #: ../gramps/gui/grampsgui.py:202
 msgid "Export"
@@ -12292,7 +12170,7 @@ msgstr "Đây là bản báo cáo lỗi hoàn chỉnh. Trang sau trình hỗ tr�
 
 #: ../gramps/gui/logger/_errorreportassistant.py:553
 msgid "Use the two buttons below to first copy the bug report to the clipboard and then open a webbrowser to file a bug report at "
-msgstr "Dùng hai nút dưới đây để sao chép trước hêt bản báo cáo lỗi vào bộ nhớ đệm rồi mở trình duyệt web để gửi báo cáo lỗi tại "
+msgstr "Dùng hai nút dưới đây để sao chép trước hết bản báo cáo lỗi vào bộ nhớ đệm rồi mở trình duyệt web để gửi báo cáo lỗi tại "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:562
 msgid "Use this button to start a web browser and file a bug report on the Gramps bug tracking system."
@@ -12329,7 +12207,7 @@ msgstr "Gramps đã bị lỗi không tiên liệu được. "
 
 #: ../gramps/gui/logger/_errorview.py:104
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "Dữ liệu của bạn an toàn nhưng chúng tôi khuyến cáo bạn nên khởi động Gramps lại ngay. Nếu bạn muốn báo cáo vấn đề này cho Đội Gramps, xin nhấp vào Báo cáo và Wizard Báo cáo lỗi sẽ giúp bạn tạo một báo cáo lỗi "
+msgstr "Dữ liệu của bạn an toàn nhưng chúng tôi khuyến cáo bạn nên khởi động Gramps lại ngay. Nếu bạn muốn báo cáo vấn đề này cho Đội Gramps, xin nhấp vào Báo cáo và wizard Báo cáo lỗi sẽ giúp bạn tạo một báo cáo lỗi. "
 
 #: ../gramps/gui/logger/_errorview.py:113
 #: ../gramps/gui/logger/_errorview.py:127
@@ -12347,15 +12225,13 @@ msgid "Created on %(year)4d/%(month)02d/%(day)02d"
 msgstr "Được tạo ngày %4d/%02d/%02d"
 
 #: ../gramps/gui/merge/mergecitation.py:49
-#, fuzzy
 msgid "manual|Merge_Citations"
-msgstr "thủ công|Hòa_ghi_chú "
+msgstr "thủ công|Hòa_chung_trích_dẫn"
 
 #: ../gramps/gui/merge/mergecitation.py:71
 #: ../gramps/plugins/tool/tools.gpr.py:551
-#, fuzzy
 msgid "Merge Citations"
-msgstr "Trích "
+msgstr "Nhập chung các trích dẫn"
 
 #: ../gramps/gui/merge/mergeevent.py:48
 msgid "manual|Merge_Events"
@@ -12739,12 +12615,12 @@ msgstr "Chọn dạng trình bày khi xuất "
 #: ../gramps/gui/plug/export/_exportassistant.py:238
 #, fuzzy
 msgid "Export options"
-msgstr "Lựa chọn báo cáo "
+msgstr "Tuỳ chọn xuất tập tin GEDCOM"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:307
 #, fuzzy
 msgid "Select save file"
-msgstr "Chọn tập tin "
+msgstr "Chọn tập tin"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:351
 #: ../gramps/plugins/tool/mediamanager.py:107
@@ -12852,7 +12728,7 @@ msgstr ""
 #: ../gramps/gui/plug/export/_exportassistant.py:600
 #, fuzzy
 msgid "Error exporting your Family Tree"
-msgstr "Sửa chữa cây gia đình? "
+msgstr "Lỗi mở tập tin "
 
 #: ../gramps/gui/plug/export/_exportoptions.py:57
 msgid "Selecting Preview Data"
@@ -13042,7 +12918,7 @@ msgstr "Tiến hành "
 
 #: ../gramps/gui/plug/report/_bookdialog.py:352
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Tên của sách. BẮT BUỘC"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:412
 msgid "New Book"
@@ -13218,7 +13094,7 @@ msgstr "Kiểu thức "
 #: ../gramps/plugins/webreport/narrativeweb.py:7978
 #: ../gramps/plugins/webreport/webcal.py:1321
 msgid "Report Options"
-msgstr "Lựa chọn báo cáo "
+msgstr "Các tuỳ chọn cho báo cáo "
 
 #. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:462
@@ -13275,7 +13151,7 @@ msgstr "Người hoạt động chưa được định "
 
 #: ../gramps/gui/plug/report/_reportdialog.py:666
 msgid "You must select an active person for this report to work properly."
-msgstr "bạn phải chọn một người hoạt động để bản báo cáo có thể làm việc được. "
+msgstr "Bạn phải chọn một người hoạt động để bản báo cáo có thể thực hiện được. "
 
 #: ../gramps/gui/plug/report/_reportdialog.py:717
 #: ../gramps/gui/plug/report/_reportdialog.py:722
@@ -13314,7 +13190,7 @@ msgstr "Dò gỡ rối "
 
 #: ../gramps/gui/plug/tool.py:60
 msgid "Analysis and Exploration"
-msgstr "Phântích và tìm tòi "
+msgstr "Phân tích và tìm tòi "
 
 #: ../gramps/gui/plug/tool.py:61
 msgid "Family Tree Processing"
@@ -13351,9 +13227,8 @@ msgid "You must select an active person for this tool to work properly."
 msgstr "Bạn phải chọn một người hoạt động để công cụ này làm việc được. "
 
 #: ../gramps/gui/selectors/selectcitation.py:60
-#, fuzzy
 msgid "Select Source or Citation"
-msgstr "Chọn nguồn "
+msgstr "Chọn nguồn trích dẫn"
 
 #: ../gramps/gui/selectors/selectevent.py:55
 msgid "Select Event"
@@ -13399,11 +13274,11 @@ msgstr ""
 
 #: ../gramps/gui/spell.py:96
 msgid "Off"
-msgstr ""
+msgstr "Đóng"
 
 #: ../gramps/gui/spell.py:99
 msgid "On"
-msgstr ""
+msgstr "Mở"
 
 #. attaching the spellchecker will fail if
 #. the language does not exist
@@ -13481,9 +13356,8 @@ msgid "Error Opening File"
 msgstr "Lỗi mở tập tin "
 
 #: ../gramps/gui/viewmanager.py:421
-#, fuzzy
 msgid "Updated"
-msgstr "ngày "
+msgstr "Được cập nhật"
 
 #: ../gramps/gui/viewmanager.py:445
 #, fuzzy
@@ -13498,12 +13372,11 @@ msgstr ""
 #. Dead code for l10n
 #: ../gramps/gui/viewmanager.py:454
 msgid "new"
-msgstr ""
+msgstr "mới"
 
 #: ../gramps/gui/viewmanager.py:454
-#, fuzzy
 msgid "update"
-msgstr "ngày "
+msgstr "cập nhật "
 
 #: ../gramps/gui/viewmanager.py:459
 msgid "There are no available addons of this type"
@@ -13523,9 +13396,9 @@ msgid "Available Gramps Updates for Addons"
 msgstr "Hiện có bản cập nhật addon Gramps"
 
 #: ../gramps/gui/viewmanager.py:500
-#, fuzzy, python-format
+#, python-format
 msgid "%(adjective)s: %(addon)s"
-msgstr "%(type)s: %(value)s"
+msgstr "%(adjective)s: %(addon)s"
 
 #: ../gramps/gui/viewmanager.py:557
 msgid "Downloading and installing selected addons..."
@@ -13559,7 +13432,7 @@ msgstr "_Cây gia đình "
 
 #: ../gramps/gui/viewmanager.py:747
 msgid "_Manage Family Trees..."
-msgstr "_Quản l7ý Cây gia đình..."
+msgstr "_Quản lý Cây gia đình..."
 
 #: ../gramps/gui/viewmanager.py:748
 msgid "Manage databases"
@@ -13567,7 +13440,7 @@ msgstr "Quản lý CSDL "
 
 #: ../gramps/gui/viewmanager.py:749
 msgid "Open _Recent"
-msgstr "Mở_mới "
+msgstr "Mở mới "
 
 #: ../gramps/gui/viewmanager.py:750
 msgid "Open an existing database"
@@ -13603,7 +13476,7 @@ msgstr "Danh sách thư Gramps "
 
 #: ../gramps/gui/viewmanager.py:762
 msgid "_Report a Bug"
-msgstr "_Báo một lỗi "
+msgstr "_Báo cáo một lỗi "
 
 #: ../gramps/gui/viewmanager.py:764
 msgid "_Extra Reports/Tools"
@@ -13655,7 +13528,7 @@ msgstr "Mở hội thoại báo cáo "
 
 #: ../gramps/gui/viewmanager.py:787
 msgid "_Go"
-msgstr "_Tiến hành "
+msgstr "_Chuyển tới"
 
 #: ../gramps/gui/viewmanager.py:789
 #, fuzzy
@@ -13772,7 +13645,7 @@ msgstr "Thay đổi không thể bỏ hoàn toàn vì số thay đổi đã th�
 
 #: ../gramps/gui/viewmanager.py:1220
 msgid "View failed to load. Check error output."
-msgstr ""
+msgstr "Không tải được hiển thị. Xem kết quả lỗi. "
 
 #: ../gramps/gui/viewmanager.py:1359
 msgid "Import Statistics"
@@ -14002,9 +13875,8 @@ msgid "_Forward"
 msgstr "_Chuyển "
 
 #: ../gramps/gui/views/navigationview.py:293
-#, fuzzy
 msgid "Go to the next object in the history"
-msgstr "Đi đến trang sau  trong lịch sử "
+msgstr "Đi đến đối tượng kế tiếp trong lịch sử "
 
 #: ../gramps/gui/views/navigationview.py:300
 #: ../gramps/plugins/view/htmlrenderer.py:497
@@ -14012,13 +13884,12 @@ msgid "_Back"
 msgstr "_Trở lại "
 
 #: ../gramps/gui/views/navigationview.py:301
-#, fuzzy
 msgid "Go to the previous object in the history"
-msgstr "Đi đến trang trước trong lịch sử "
+msgstr "Đi đến đối tượng trước trong lịch sử "
 
 #: ../gramps/gui/views/navigationview.py:305
 msgid "_Home"
-msgstr "_Về "
+msgstr "_Trang chủ"
 
 #: ../gramps/gui/views/navigationview.py:307
 msgid "Go to the default person"
@@ -14031,7 +13902,7 @@ msgstr "Đặt người gốc "
 #: ../gramps/gui/views/navigationview.py:336
 #, fuzzy
 msgid "No Home Person"
-msgstr "Chưa đặt người trung tâm. "
+msgstr "Chưa đặt người chính. "
 
 #: ../gramps/gui/views/navigationview.py:337
 msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
@@ -14072,9 +13943,9 @@ msgstr "Cấu hình %s Hiển thị "
 
 #. top widget at the top
 #: ../gramps/gui/views/pageview.py:639
-#, fuzzy, python-format
+#, python-format
 msgid "View %(name)s: %(msg)s"
-msgstr "%(name1)s và %(name2)s"
+msgstr "Xem %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:223
 msgid "New Tag..."
@@ -14174,9 +14045,8 @@ msgstr "<Nơi> "
 #: ../gramps/gui/views/treemodels/placemodel.py:147
 #: ../gramps/gui/views/treemodels/placemodel.py:155
 #: ../gramps/gui/views/treemodels/placemodel.py:163
-#, fuzzy
 msgid "Error in format"
-msgstr "Báo cáo lỗi "
+msgstr "Lỗi ở dạng "
 
 #: ../gramps/gui/views/treemodels/placemodel.py:352
 msgid "<no name>"
@@ -14188,9 +14058,8 @@ msgid "Building View"
 msgstr "Tạo hiển thị "
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:562
-#, fuzzy
 msgid "Obtaining all rows"
-msgstr "Lấy tất cả mọi người "
+msgstr "Lấy tất cả mọi hàng"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:581
 msgid "Applying filter"
@@ -14240,18 +14109,17 @@ msgid "Remove a gramplet"
 msgstr "Bỏ Gramplet "
 
 #: ../gramps/gui/widgets/grampletbar.py:488
-#, fuzzy
 msgid "Restore default gramplets"
-msgstr "Khôi phục một gramplet "
+msgstr "Khôi phục một gramplet mặc định"
 
 #: ../gramps/gui/widgets/grampletbar.py:526
-#, fuzzy
 msgid "Restore to defaults?"
-msgstr "Khôi phục một gramplet "
+msgstr "Khôi phục một gramplet về mặc định? "
 
 #: ../gramps/gui/widgets/grampletbar.py:527
+#, fuzzy
 msgid "The gramplet bar will be restored to contain its default gramplets.  This action cannot be undone."
-msgstr ""
+msgstr "Thanh Grampsbar sẽ được phục hồi để chứa các gramplets mặc định của nó. Việc này không thể quay lại được. "
 
 #. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:789
@@ -14328,9 +14196,8 @@ msgstr "Sắp xếp lại quan hệ: %s "
 
 #. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:381
-#, fuzzy
 msgid "Spellcheck"
-msgstr "Đáng vần "
+msgstr "Kiểm tra chính tả"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:386
 msgid "Search selection on web"
@@ -14865,7 +14732,7 @@ msgstr "Đừng cho tiêu đề vào "
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1030
 msgid "Include Report Title"
-msgstr "Đưa tiêu đề vào "
+msgstr "Bao gồm cả tiêu đề"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
 #: ../gramps/plugins/drawreport/descendtree.py:1625
@@ -15418,14 +15285,12 @@ msgid "The bold style used for the text display."
 msgstr "Kiểu đậm dùng cho hiển thị văn bản. "
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:32
-#, fuzzy
 msgid "Ancestor Chart"
-msgstr "Cây tổ tiên "
+msgstr "Biểu đò tổ tiên "
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:33
-#, fuzzy
 msgid "Produces a graphical ancestral chart"
-msgstr "Tạo cây đồ họa tổ tiên "
+msgstr "Tạo cây đồ họa tổ tiên"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:49
 msgid "Produces a graphical ancestral tree"
@@ -15442,14 +15307,12 @@ msgid "Produces a graphical calendar"
 msgstr "Tạo lịch đồ họa "
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:92
-#, fuzzy
 msgid "Descendant Chart"
-msgstr "Báo cáo hậu duệ "
+msgstr "Biểu đồ con cháu"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:93
-#, fuzzy
 msgid "Produces a graphical descendant chart"
-msgstr "Tạo cây đồ họa con cháu "
+msgstr "Tạo cây biểu đồ con cháu"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
@@ -15460,14 +15323,12 @@ msgid "Produces a graphical descendant tree"
 msgstr "Tạo cây đồ họa con cháu "
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:130
-#, fuzzy
 msgid "Family Descendant Chart"
-msgstr "Cây con cháu gia đình "
+msgstr "Cây con cháu gia đình"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:131
-#, fuzzy
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Tạo cây đồ họa con cháu quanh gia đình "
+msgstr "Tạo cây đồ họa con cháu quanh gia đình"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -15900,9 +15761,8 @@ msgid "Timeline"
 msgstr "Đường thời gian "
 
 #: ../gramps/plugins/drawreport/timeline.py:127
-#, fuzzy
 msgid "Applying filter..."
-msgstr "Áp dụng bộ lọc..."
+msgstr "Áp dụng bộ lọc.."
 
 #: ../gramps/plugins/drawreport/timeline.py:153
 msgid "Sorting dates..."
@@ -15928,14 +15788,12 @@ msgid "Sorted by %s"
 msgstr "Được sắp xếp bởi %s "
 
 #: ../gramps/plugins/drawreport/timeline.py:321
-#, fuzzy
 msgid "No Date Information"
-msgstr "Thông tin ngữ cảnh "
+msgstr "Không có thông tin ngày"
 
 #: ../gramps/plugins/drawreport/timeline.py:347
-#, fuzzy
 msgid "Finding date range..."
-msgstr "Đang in cây... "
+msgstr "Đang tìm khoảng thời gian..."
 
 #: ../gramps/plugins/drawreport/timeline.py:417
 msgid "Determines what people are included in the report"
@@ -15982,9 +15840,8 @@ msgid "CSV is a common spreadsheet format."
 msgstr "CSV là một mẫu bảng dùng phổ biến. "
 
 #: ../gramps/plugins/export/export.gpr.py:41
-#, fuzzy
 msgid "CSV spreadsheet options"
-msgstr "CSV là một mẫu bảng dùng phổ biến. "
+msgstr "Tuỳ chọn cho bảng CSV "
 
 #: ../gramps/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -15999,9 +15856,8 @@ msgid "Web Family Tree format"
 msgstr "Mẫu trang web cây gia đình "
 
 #: ../gramps/plugins/export/export.gpr.py:62
-#, fuzzy
 msgid "Web Family Tree export options"
-msgstr "Mẫu trang web cây gia đình "
+msgstr "Tuỳ chọn xuất cây gia đình cho web"
 
 #: ../gramps/plugins/export/export.gpr.py:73
 #: ../gramps/plugins/importer/import.gpr.py:51 ../data/gramps.keys.in.h:4
@@ -16019,9 +15875,8 @@ msgid "GEDCOM is used to transfer data between genealogy programs. Most genealog
 msgstr "GEDCOM được dùng để chuyển dữ liệu giữa các chương trình gia phả. Phần lớn các chương trình gia phả sẽ chấp nhận tập tin GEDCOM cho nhập liệu."
 
 #: ../gramps/plugins/export/export.gpr.py:84
-#, fuzzy
 msgid "GEDCOM export options"
-msgstr "Lựa chọn báo cáo "
+msgstr "Tuỳ chọn xuất tập tin GEDCOM"
 
 #: ../gramps/plugins/export/export.gpr.py:95
 #: ../gramps/plugins/importer/import.gpr.py:70 ../data/gramps.keys.in.h:5
@@ -16037,9 +15892,8 @@ msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb là chương trình gia phả web ."
 
 #: ../gramps/plugins/export/export.gpr.py:105
-#, fuzzy
 msgid "GeneWeb export options"
-msgstr "Nhập GeneWeb "
+msgstr "Tuỳ chọn xuất dạng GeneWeb "
 
 #: ../gramps/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
@@ -16054,9 +15908,8 @@ msgid "Gramps package is an archived XML family tree together with the media obj
 msgstr "Gói Gramps là một cây gia đình XML cùng với các tập tin đa phương tiện. "
 
 #: ../gramps/plugins/export/export.gpr.py:127
-#, fuzzy
 msgid "Gramps package export options"
-msgstr "Gói Gramps (XML khả chuyển) "
+msgstr "Tuỳ chọn xuất gói Gramps"
 
 #: ../gramps/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
@@ -16071,9 +15924,8 @@ msgid "Gramps XML export is a complete archived XML backup of a Gramps family tr
 msgstr "Xuất Gramps XML là một bản sao lưu XML cây gia đình Gramps không có tạp tin đối tượng đa phương tiện. Thíhc hợp cho sao lưu chương trình. "
 
 #: ../gramps/plugins/export/export.gpr.py:150
-#, fuzzy
 msgid "Gramps XML export options"
-msgstr "Nhập XML Gramps  "
+msgstr "Tuỳ chọn xuất XML Gramps  "
 
 #: ../gramps/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -16088,9 +15940,8 @@ msgid "vCalendar is used in many calendaring and PIM applications."
 msgstr "vCalendar được dùng trong nhiều lịch và ứng dụng PIM."
 
 #: ../gramps/plugins/export/export.gpr.py:171
-#, fuzzy
 msgid "vCalendar export options"
-msgstr "Báo cáo lịch "
+msgstr "Tuỳ họn xuất Báo cáo lịch "
 
 #: ../gramps/plugins/export/export.gpr.py:182
 #: ../gramps/plugins/importer/import.gpr.py:164
@@ -16106,9 +15957,8 @@ msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard được dùng trong nhiều sổ địa chỉ và ứng dụng pim."
 
 #: ../gramps/plugins/export/export.gpr.py:192
-#, fuzzy
 msgid "vCard export options"
-msgstr "Lựa chọn báo cáo "
+msgstr "Tuỳ chọn xuất vCard"
 
 #: ../gramps/plugins/export/exportcsv.py:207
 msgid "Include people"
@@ -16198,7 +16048,7 @@ msgstr "Ghi ghi chú "
 
 #: ../gramps/plugins/export/exportgedcom.py:975
 msgid "Writing repositories"
-msgstr "Đang viết các kho "
+msgstr "Ghi các kho số liệu"
 
 #: ../gramps/plugins/export/exportgedcom.py:1460
 #, fuzzy
@@ -16256,9 +16106,8 @@ msgid "Enter a date, click Run"
 msgstr "Nhập ngày tháng, nhấp vào nút Run "
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:68
-#, fuzzy
 msgid "Enter a valid date (like YYYY-MM-DD) in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column, and double-click the row to view or edit."
-msgstr "Nhập ngày tháng hợp lệ (chẳng hạng nnnn-tt-nn) vào mục dưới đây rồi nhấp Run. Nó sẽ tính toán tuổi mọi người trong Cây gia đình dùng ngày này. Bạn sau đó có thể sắp xếp theo cột, và nhấp đúp vào dòng để xem hay sửa chữa. "
+msgstr "Nhập ngày tháng hợp lệ (chẳng hạng yyyy-mm-dd) vào mục dưới đây rồi nhấp Run. Nó sẽ tính toán tuổi mọi người trong Cây gia đình dùng ngày này. Bạn sau đó có thể sắp xếp theo cột tuổi, và nhấp đúp vào dòng để xem hay sửa chữa. "
 
 #: ../gramps/plugins/gramplet/agestats.py:47
 #: ../gramps/plugins/gramplet/agestats.py:57
@@ -16365,24 +16214,20 @@ msgid "Double-click on a row to edit the selected child."
 msgstr "Nhấp đúp một dòng để sửa con được chọn "
 
 #: ../gramps/plugins/gramplet/citations.py:64
-#, fuzzy
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "Nhấp đúp một dòng để sửa nguồn đã chọn. "
+msgstr "Nhấp đúp một dòng để sửa nguồn/trích dẫn đã chọn. "
 
 #: ../gramps/plugins/gramplet/citations.py:68
-#, fuzzy
 msgid "Source/Citation"
-msgstr "Trích "
+msgstr "Nguồn/trích dẫn"
 
 #: ../gramps/plugins/gramplet/citations.py:70
-#, fuzzy
 msgid "Publisher"
-msgstr "Cộng đồng "
+msgstr "Nhà xuất bản"
 
 #: ../gramps/plugins/gramplet/citations.py:142
-#, fuzzy
 msgid "<No Citation>"
-msgstr "Trích "
+msgstr "<No Citation>"
 
 #: ../gramps/plugins/gramplet/descendgramplet.py:50
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:52
@@ -16859,14 +16704,12 @@ msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet hiển thị đối tượng đa phương tiện một nguồn "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:529
-#, fuzzy
 msgid "Citation Gallery"
-msgstr "Gallery cá nhân "
+msgstr "Gallery trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:530
-#, fuzzy
 msgid "Gramplet showing media objects for a citation"
-msgstr "Gramplet hiển thi đối tượng đa phương tiện cá nhân "
+msgstr "Gramplet hiển thị đối tượng đa phương tiện cho một trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:543
 msgid "Person Attributes"
@@ -16941,14 +16784,12 @@ msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet hiển thị ghi chú nguồn "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:669
-#, fuzzy
 msgid "Citation Notes"
-msgstr "Ghi chú bạn kết giao"
+msgstr "Ghi chú trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:670
-#, fuzzy
 msgid "Gramplet showing the notes for a citation"
-msgstr "Gramplet hiển thị ghi chú cá nhân "
+msgstr "Gramplet hiển thị ghi chú cho trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:683
 msgid "Repository Notes"
@@ -16967,54 +16808,44 @@ msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet hiển thị ghi chú đối tượng đa phương tiện "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:711
-#, fuzzy
 msgid "Person Citations"
-msgstr "Chi tiết cá nhân "
+msgstr "Trích dẫn người"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:712
-#, fuzzy
 msgid "Gramplet showing the citations for a person"
-msgstr "Gramplet hiển thị nối kết với cá nhân "
+msgstr "Gramplet hiển thị trích dẫn cho một người"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:725
-#, fuzzy
 msgid "Event Citations"
-msgstr "Trích "
+msgstr "Trích dẫn sự kiện"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:726
-#, fuzzy
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet hiển thị nối kêt với sự kiện "
+msgstr "Gramplet hiển thị trích dẫn cho một sự kiện"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:739
-#, fuzzy
 msgid "Family Citations"
-msgstr "Nói kết gia đình "
+msgstr "Trích dẫn gia đình"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:740
-#, fuzzy
 msgid "Gramplet showing the citations for a family"
-msgstr "Gramplet hiển thị nối kết với gia đình "
+msgstr "Gramplet hiển thị trích dẫn gia đình"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:753
-#, fuzzy
 msgid "Place Citations"
-msgstr "Bản đồ địa điểm "
+msgstr "Trích dẫn vị trí"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:754
-#, fuzzy
 msgid "Gramplet showing the citations for a place"
-msgstr "Gramplet hiển thị nối kết với địa điểm "
+msgstr "Gramplet hiển thị trích dẫn địa điểm"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:767
-#, fuzzy
 msgid "Media Citations"
-msgstr "Trích "
+msgstr "Trích dẫn tài liệu đa phương tiện"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:768
-#, fuzzy
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet hiển thị nối kết đối tượng đa phương tiện "
+msgstr "Gramplet hiển thị trích dẫn đối tượng đa phương tiện "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:781
 msgid "Person Children"
@@ -17100,14 +16931,12 @@ msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet hiển thị nối kết nguồn "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:879
-#, fuzzy
 msgid "Citation Backlinks"
-msgstr "Nối kết đa phương tiện "
+msgstr "Liên kết ngược trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:880
-#, fuzzy
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet hiển thị nối kết với cá nhân "
+msgstr "Gramplet hiển thị liên kết ngược cho trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:893
 msgid "Repository Backlinks"
@@ -17166,14 +16995,12 @@ msgid "Gramplet providing a source filter"
 msgstr "Gramplet cung cấp lọc nguồn "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:991
-#, fuzzy
 msgid "Citation Filter"
-msgstr "Lọc người còn sống "
+msgstr "Bộ lọc trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:992
-#, fuzzy
 msgid "Gramplet providing a citation filter"
-msgstr "Gramplet cung cấp lọc đa phương tiện "
+msgstr "Gramplet cung cấp bộ lọc trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1005
 msgid "Place Filter"
@@ -17244,7 +17071,7 @@ msgstr "Gramplet hiển thị ghi chú sự kiện "
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1105
 #, fuzzy
 msgid "Family To Do"
-msgstr "Ghi chú gia đình "
+msgstr "Gia đình của"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1106
 #, fuzzy
@@ -17279,7 +17106,7 @@ msgstr "Trích "
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
 #, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet hiển thị ghi chú cá nhân "
+msgstr "Gramplet hiển thị ghi chú cho trích dẫn"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1161
 #, fuzzy
@@ -17670,74 +17497,75 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Intro"
-msgstr ""
+msgstr "Giới thiệu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:107
 msgid ""
 "Gramps is a software package designed for genealogical research. Although similar to other genealogical programs, Gramps offers some unique and powerful features.\n"
 "\n"
-msgstr ""
+msgstr "Gramps là gói phần mềm thiết kế cho việc nghiên cứu gia phả. Mặc dù nó giống các chương trình gia phả khác, Gramps có một số đặc thù và điểm mạnh riêng của nó.\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:110
-#, fuzzy
 msgid "Links"
-msgstr "Liên kết "
+msgstr "Liên kết"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:111
-#, fuzzy
 msgid "Home Page"
-msgstr "Ghi chú trang chủ "
+msgstr "Trang chủ"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:111
-#, fuzzy
 msgid "http://gramps-project.org/"
-msgstr "Đọc gramps-project.org... "
+msgstr "http://gramps-project.org/"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:112
 msgid "Start with Genealogy and Gramps"
-msgstr ""
+msgstr "Bắt đầu với Gia phả học và Gramps "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:114
-#, fuzzy
 msgid "Gramps online manual"
-msgstr "Gramps bỏ qua giá trị sơ đồ tên "
+msgstr "Hướng dẫn trực tuyền cho trình Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
+#, fuzzy
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
-msgstr ""
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
-msgstr ""
+msgstr "Đặt câu hỏi về danh sách thư tín người dùng gramps "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "http://gramps-project.org/contact/"
-msgstr ""
+msgstr "http://gramps-project.org/contact/"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:119
-#, fuzzy
 msgid "Who makes Gramps?"
-msgstr "Chào mừng bạn đến với chương trình Gramps! "
+msgstr "Ai đã tạo ra Gramps? "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:120
 msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
 msgstr ""
+"Gramps được tạo ra bởi các nhà gia phả học cho dùng cho các nhà gia phả học, được tập họp trong Dự án Gramps. Gramps là một gói phần mềm mã nguồn mở, có nghĩa là bạn được tự do để sao chéo và phân phối nó cho bất cứ ai mà bạn thích. Nó được phát triển và duy trì bởi một đội ngũ những người tình nguyện trên toàn thế giới với mục tiêu là làm cho Gramps mạnh mẽ, dễ sử dụng.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:126
 msgid "Getting Started"
-msgstr ""
+msgstr "Bắt đầu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
+#, fuzzy
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your Family Tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"Điều đầu tiên bạn phải làm là tạo ra một cây gia đình mới. Để tạo ra một cây gia đình mới (đôi khi được gọi là 'cơ sở dữ liệu') chọn \"Cây gia đình \" từ menu, chọn \"Quản lý Cây gia đình\", nhấn \"Mới\" và đặt tên cho cây gia đình của bạn. Để biết thêm chi tiết, xin vui lòng đọc các thông tin tại các liên kết ở trên\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
 #, fuzzy
@@ -17745,11 +17573,15 @@ msgid "Dashboard View"
 msgstr "Xem biểu đồ hình quạt "
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
+#, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add your own gramplets. You can also add gramplets to any view by adding a sidebar and/or bottombar, and right-clicking to the right of the tab.\n"
 "\n"
 "You can click the configuration icon in the toolbar to add additional columns, while right-click on the background allows to add gramplets. You can also drag the Properties button to reposition the gramplet  on this page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Bạn đang đọc từ trang \"Gramplets \", nơi bạn có thể thêm gramplets của riêng bạn. Bạn cũng có thể thêm Gramplets vào bất kỳ kiểu hiển thị nào bằng cách thêm một thanh biên và/hoặc thanh dưới, và kích chuột phải vào bên phải của tab.\n"
+"\n"
+"Bạn có thể nhấp vào biểu tượng của định cấu hình trong thanh công cụ để thêm các cột, và nhấp phải vào nền cho phép thêm gramplets. Bạn cũng có thể kéo nút Properties để định vị lại gramplet trên trang này, và tách gramplet nổi lên trên Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -17791,7 +17623,7 @@ msgstr "Thẻ chỉ là người của gia đình phải bỏ qua "
 
 #: ../gramps/plugins/gramplet/whatsnext.py:165
 msgid "No Home Person set."
-msgstr "Chưa đặt người trung tâm. "
+msgstr "Chưa đặt người chính. "
 
 #: ../gramps/plugins/gramplet/whatsnext.py:347
 msgid "first name unknown"
@@ -18031,33 +17863,28 @@ msgid "The color to use to display families."
 msgstr "Màu dùng hiện gia đình. "
 
 #: ../gramps/plugins/graph/gvfamilylines.py:176
-#, fuzzy
 msgid "Limit the number of ancestors"
-msgstr "Giới hạn số cha mẹ "
+msgstr "Giới hạn số ông bà"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:178
-#, fuzzy
 msgid "Whether to limit the number of ancestors."
-msgstr "Có bỏ tổ tiên trùng lắp không. "
+msgstr "Có giới hạn số tổ tiên hay không."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:184
 msgid "The maximum number of ancestors to include."
 msgstr "Số tổ tiên tối đa đưa vào. "
 
 #: ../gramps/plugins/graph/gvfamilylines.py:188
-#, fuzzy
 msgid "Limit the number of descendants"
-msgstr "Giới hạn số cha mẹ "
+msgstr "Giới hạn số con cháu"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:191
-#, fuzzy
 msgid "Whether to limit the number of descendants."
-msgstr "Có in số trang trên mỗi trang không "
+msgstr "Có giới hạn số con cháu không. "
 
 #: ../gramps/plugins/graph/gvfamilylines.py:197
-#, fuzzy
 msgid "The maximum number of descendants to include."
-msgstr "Số tổ tiên tối đa đưa vào. "
+msgstr "Số tối đa thế hệ con cháu đưa vào."
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:202
@@ -18071,9 +17898,8 @@ msgid "Include thumbnail images of people"
 msgstr "Thêm hình thu nhỏ cho người "
 
 #: ../gramps/plugins/graph/gvfamilylines.py:208
-#, fuzzy
 msgid "Whether to include thumbnail images of people."
-msgstr "Có đưa hình thu nhỏ của người vào không. "
+msgstr "Có đưa hình thu nhỏ của người vào không."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
 msgid "Thumbnail location"
@@ -18170,11 +17996,11 @@ msgstr "Có đưa vào tên, ngày tháng và gia đình đánh dấu là riêng
 
 #: ../gramps/plugins/graph/gvfamilylines.py:349
 msgid "Empty report"
-msgstr ""
+msgstr "Báo cáo trống "
 
 #: ../gramps/plugins/graph/gvfamilylines.py:350
 msgid "You did not specify anybody"
-msgstr ""
+msgstr "Bạn chưa nêu một người nào"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
@@ -18755,49 +18581,49 @@ msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Tập tin có thể hư hay CSDL Gramps không hợp lệ. "
 
 #: ../gramps/plugins/importer/importxml.py:266
-#, fuzzy, python-format
+#, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
-msgstr "  %(id)s - %(text)s\n"
+msgstr "  %(id)s - %(text)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "  Family %(id)s with %(id2)s\n"
-msgstr "Gia đình %(id)s\n"
+msgstr "Gia đình %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:275
-#, fuzzy, python-format
+#, python-format
 msgid "  Source %(id)s with %(id2)s\n"
-msgstr "  Nguồn %(id)s\n"
+msgstr "Nguồn %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:278
-#, fuzzy, python-format
+#, python-format
 msgid "  Event %(id)s with %(id2)s\n"
-msgstr "  Sự kiện %(id)s\n"
+msgstr "Sự kiện %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
-msgstr "  Đối tượng đa phương tiện %(id)s\n"
+msgstr "Đối tượng đa phương tiện %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:284
-#, fuzzy, python-format
+#, python-format
 msgid "  Place %(id)s with %(id2)s\n"
-msgstr "Địa điểm %(id)s\n"
+msgstr "Địa điểm %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:287
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
-msgstr "o  Kh %(id)s\n"
+msgstr "Kho tài lie5u %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:290
-#, fuzzy, python-format
+#, python-format
 msgid "  Note %(id)s with %(id2)s\n"
-msgstr "  Ghi chú %(id)s\n"
+msgstr "  Ghi chú %(id)s với %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:295
-#, fuzzy, python-format
+#, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr "Gia đình %(id)s\n"
+msgstr "  Citation %(id)s with %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:303
 #, python-format
@@ -18845,9 +18671,9 @@ msgid "  Tags: %d\n"
 msgstr "  Thẻ: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:312
-#, fuzzy, python-format
+#, python-format
 msgid "  Citations: %d\n"
-msgstr "Trích "
+msgstr "Trích: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:314
 msgid "Number of new objects imported:\n"
@@ -18885,6 +18711,9 @@ msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
+"\n"
+"\n"
+"Đối tượng được chọn để trộn:\n"
 
 #. there is no old style XML
 #: ../gramps/plugins/importer/importxml.py:817
@@ -18892,11 +18721,11 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:1506
 #: ../gramps/plugins/importer/importxml.py:1885
 msgid "The Gramps Xml you are trying to import is malformed."
-msgstr ""
+msgstr "Xml của Gramps bạn đang cố gắng  nhập có hình thức bị lỗi. "
 
 #: ../gramps/plugins/importer/importxml.py:818
 msgid "Attributes that link the data together are missing."
-msgstr ""
+msgstr "Các thuộc tính nối số liệu với nhau bị thiếu. "
 
 #: ../gramps/plugins/importer/importxml.py:922
 msgid "Gramps XML import"
@@ -18990,14 +18819,12 @@ msgid "Witness name: %s"
 msgstr "Tên chứng kiến: %s "
 
 #: ../gramps/plugins/importer/importxml.py:1255
-#, fuzzy
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Sơ đồ tham chiếu đã được tạo lại. "
+msgstr "Bất kỳ tham chiếu sự kiện nào phải có thông số 'hlink'. "
 
 #: ../gramps/plugins/importer/importxml.py:1507
-#, fuzzy
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Sơ đồ tham chiếu đã được tạo lại. "
+msgstr "Bất kỳ tham chiếu người nào phải có một thông số \"hlink'."
 
 #: ../gramps/plugins/importer/importxml.py:1670
 #, fuzzy, python-format
@@ -19014,9 +18841,8 @@ msgid "Unknown when imported"
 msgstr "Không biết  mẹ "
 
 #: ../gramps/plugins/importer/importxml.py:1886
-#, fuzzy
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Sơ đồ tham chiếu đã được tạo lại. "
+msgstr "Bất ky 2tham chiếu ghi chú nào phải có thông số 'hlink'."
 
 #: ../gramps/plugins/importer/importxml.py:2424
 #, python-format
@@ -19078,7 +18904,7 @@ msgstr "Đức "
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:11
 msgid "Japan"
-msgstr ""
+msgstr "Nước Nhật"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
 msgid "Sweden - Holidays"
@@ -19485,7 +19311,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:6962
 #, fuzzy
 msgid "GEDCOM version"
-msgstr "Lựa chọn báo cáo "
+msgstr "Tuỳ chọn xuất tập tin GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:6965
 #, fuzzy
@@ -19532,12 +19358,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:7165
 #, fuzzy
 msgid "Submission: Generations of ancestors"
-msgstr "Giới hạn số cha mẹ "
+msgstr "Giới hạn số ông bà"
 
 #: ../gramps/plugins/lib/libgedcom.py:7167
 #, fuzzy
 msgid "Submission: Generations of descendants"
-msgstr "Giới hạn số cha mẹ "
+msgstr "Giới hạn số con cháu"
 
 #: ../gramps/plugins/lib/libgedcom.py:7169
 msgid "Submission: Ordinance process flag"
@@ -19605,14 +19431,13 @@ msgstr "Không có thông báo bản quyền "
 
 #: ../gramps/plugins/lib/libmetadata.py:55
 #: ../gramps/plugins/lib/libmetadata.py:91
-#, fuzzy
 msgid "Invalid format"
-msgstr "Người đưa tin "
+msgstr "Dạng không đúng"
 
 #: ../gramps/plugins/lib/libmetadata.py:59
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:62
 #, python-format
@@ -19621,11 +19446,11 @@ msgstr "%(date)s %(time)s"
 
 #: ../gramps/plugins/lib/libmetadata.py:95
 msgid "Camera"
-msgstr ""
+msgstr "Máy ảnh"
 
 #: ../gramps/plugins/lib/libmetadata.py:96
 msgid "GPS"
-msgstr ""
+msgstr "GPS"
 
 #: ../gramps/plugins/lib/libmetadata.py:97
 msgid "Advanced"
@@ -19882,9 +19707,9 @@ msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:193
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết %(death_date)s in %(death_place)s lúc  %(age)d ngày. "
+msgstr "%(unknown_gender_name)s chết %(death_date)s ở %(death_place)s lúc %(age)s tuổi. "
 
 #: ../gramps/plugins/lib/libnarrate.py:196
 #, python-format
@@ -19892,9 +19717,9 @@ msgid "%(male_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:197
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:200
 #, python-format
@@ -19902,9 +19727,9 @@ msgid "%(female_name)s died on %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:201
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:205
 #, python-format
@@ -19912,9 +19737,9 @@ msgid "This person died on %(death_date)s in %(death_place)s."
 msgstr "Người  này chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:206
-#, fuzzy, python-format
+#, python-format
 msgid "This person died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Người này chết %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "Người này chết vào ngày %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:209
 #, python-format
@@ -19922,9 +19747,9 @@ msgid "He died on %(death_date)s in %(death_place)s."
 msgstr "Ông chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:210
-#, fuzzy, python-format
+#, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Ông chết %(death_date)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Ông chết %(death_date)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
@@ -19932,9 +19757,9 @@ msgid "She died on %(death_date)s in %(death_place)s."
 msgstr "Bà chết  %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Bà chết %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "Bà chết %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:218
 #: ../gramps/plugins/lib/libnarrate.py:251
@@ -19944,9 +19769,9 @@ msgstr "Chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:219
 #: ../gramps/plugins/lib/libnarrate.py:252
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(death_date)s in %(death_place)s (%(age)s)."
-msgstr "Chết %(death_date)s tại %(death_place)s (lúc  %(age)d ngày tuổi)."
+msgstr "Chết %(death_date)s tại %(death_place)s (lúc  %(age)s tuổi)."
 
 #: ../gramps/plugins/lib/libnarrate.py:225
 #, python-format
@@ -19954,9 +19779,9 @@ msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:226
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết %(death_date)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết %(death_date)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:229
 #, python-format
@@ -19964,9 +19789,9 @@ msgid "%(male_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:230
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "%(male_name)s chết %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:233
 #, python-format
@@ -19974,9 +19799,9 @@ msgid "%(female_name)s died %(death_date)s in %(death_place)s."
 msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:234
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s lúc %(age)d ngày tuổi ."
+msgstr "%(female_name)s chết %(death_date)s tại %(death_place)s lúc %(age)s tuổi ."
 
 #: ../gramps/plugins/lib/libnarrate.py:238
 #, python-format
@@ -19984,9 +19809,9 @@ msgid "This person died %(death_date)s in %(death_place)s."
 msgstr "Người này chết %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Người này chết %(death_date)s tại %(death_place)s lúc %(age)d ngày tuổi ."
+msgstr "Người này chết %(death_date)s tại %(death_place)s lúc %(age)s tuổi ."
 
 #: ../gramps/plugins/lib/libnarrate.py:242
 #, python-format
@@ -19994,9 +19819,9 @@ msgid "He died %(death_date)s in %(death_place)s."
 msgstr "Ông chế %(death_date)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Ông chết  %(death_date)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "Ông chết  %(death_date)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
@@ -20004,9 +19829,9 @@ msgid "She died %(death_date)s in %(death_place)s."
 msgstr "Bà chết  %(death_date)s tạ %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:247
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Bà chết %(death_date)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Bà chết %(death_date)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:258
 #, python-format
@@ -20014,9 +19839,9 @@ msgid "%(unknown_gender_name)s died on %(death_date)s."
 msgstr "%(unknown_gender_name)s chết ngày %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:259
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:262
 #, python-format
@@ -20024,9 +19849,9 @@ msgid "%(male_name)s died on %(death_date)s."
 msgstr "%(male_name)s chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:266
 #, python-format
@@ -20034,9 +19859,9 @@ msgid "%(female_name)s died on %(death_date)s."
 msgstr "%(female_name)s chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:267
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s chết vào  %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "%(female_name)s chết vào  %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:271
 #, python-format
@@ -20044,9 +19869,9 @@ msgid "This person died on %(death_date)s."
 msgstr "Người này chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "This person died on %(death_date)s at the age of %(age)s."
-msgstr "Người này chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "Người này chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
@@ -20054,9 +19879,9 @@ msgid "He died on %(death_date)s."
 msgstr "Ông chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:276
-#, fuzzy, python-format
+#, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr "Ông chết vào %(death_date)s lúc  %(age)d ngày tuổi. "
+msgstr "Ông chết vào %(death_date)s lúc  %(age)s tuổi. "
 
 #: ../gramps/plugins/lib/libnarrate.py:279
 #, python-format
@@ -20064,9 +19889,9 @@ msgid "She died on %(death_date)s."
 msgstr "Bày chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:280
-#, fuzzy, python-format
+#, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr "Bà chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "Bà chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
@@ -20076,9 +19901,9 @@ msgstr "Chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:285
 #: ../gramps/plugins/lib/libnarrate.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(death_date)s (%(age)s)."
-msgstr "Chết %(death_date)s (age %(age)d ngày tuổi )."
+msgstr "Chết %(death_date)s (%(age)s tuổi )."
 
 #: ../gramps/plugins/lib/libnarrate.py:291
 #, python-format
@@ -20086,9 +19911,9 @@ msgid "%(unknown_gender_name)s died %(death_date)s."
 msgstr "%(unknown_gender_name)s chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:292
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết vào %(death_date)s lúc %(age)d ngày tuổi ."
+msgstr "%(unknown_gender_name)s chết vào %(death_date)s lúc %(age)s tuổi ."
 
 #: ../gramps/plugins/lib/libnarrate.py:295
 #, python-format
@@ -20096,9 +19921,9 @@ msgid "%(male_name)s died %(death_date)s."
 msgstr "%(male_name)s chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:296
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(male_name)s chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:299
 #, python-format
@@ -20106,9 +19931,9 @@ msgid "%(female_name)s died %(death_date)s."
 msgstr "%(female_name)s chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:300
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)s."
-msgstr "%(female_name)s chết vào %(death_date)s lúc  %(age)d ngày tuổi."
+msgstr "%(female_name)s chết vào %(death_date)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:304
 #, python-format
@@ -20116,9 +19941,9 @@ msgid "This person died %(death_date)s."
 msgstr "Người này chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:305
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s at the age of %(age)s."
-msgstr "Người này chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "Người này chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
@@ -20126,9 +19951,9 @@ msgid "He died %(death_date)s."
 msgstr "Ông chết vào %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:309
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Ông chết vào  %(death_date)s lúc  %(age)d ngày tuổi."
+msgstr "Ông chết vào  %(death_date)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:312
 #, python-format
@@ -20136,9 +19961,9 @@ msgid "She died %(death_date)s."
 msgstr "Bà ấy chết vào  %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:313
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)s."
-msgstr "Bà ấy chết vào %(death_date)s lúc %(age)d ngày tuổi."
+msgstr "Bà ấy chết vào %(death_date)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:324
 #, python-format
@@ -20146,9 +19971,9 @@ msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(unknown_gender_name)s chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:328
 #, python-format
@@ -20156,9 +19981,9 @@ msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(male_name)s chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:332
 #, python-format
@@ -20166,9 +19991,9 @@ msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
 msgstr "%(female_name)s chết vào  %(month_year)s tạo %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(female_name)s chết vào %(month_year)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:337
 #, python-format
@@ -20176,9 +20001,9 @@ msgid "This person died in %(month_year)s in %(death_place)s."
 msgstr "Người này chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:338
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Người này chết vào %(month_year)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Người này chết vào %(month_year)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:341
 #, python-format
@@ -20186,9 +20011,9 @@ msgid "He died in %(month_year)s in %(death_place)s."
 msgstr "Ông chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:342
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Ông chết vào %(month_year)s tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Ông chết vào %(month_year)s tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:345
 #, python-format
@@ -20196,9 +20021,9 @@ msgid "She died in %(month_year)s in %(death_place)s."
 msgstr "Bà này chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:346
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)s."
-msgstr "Bà này chết vào %(month_year)s tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "Bà này chết vào %(month_year)s tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:350
 #, python-format
@@ -20206,9 +20031,9 @@ msgid "Died %(month_year)s in %(death_place)s."
 msgstr "Chết vào %(month_year)s tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s in %(death_place)s (%(age)s)."
-msgstr "Chết vào %(month_year)s tại %(death_place)s (age %(age)d ngày tuổi)."
+msgstr "Chết vào %(month_year)s tại %(death_place)s (%(age)s tuổi)."
 
 #: ../gramps/plugins/lib/libnarrate.py:357
 #, python-format
@@ -20216,9 +20041,9 @@ msgid "%(unknown_gender_name)s died in %(month_year)s."
 msgstr "%(unknown_gender_name)s chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:358
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết vào %(month_year)s lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết vào %(month_year)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:361
 #, python-format
@@ -20226,9 +20051,9 @@ msgid "%(male_name)s died in %(month_year)s."
 msgstr "%(male_name)s chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(male_name)s chết vào %(month_year)s lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s chết vào %(month_year)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:365
 #, python-format
@@ -20236,9 +20061,9 @@ msgid "%(female_name)s died in %(month_year)s."
 msgstr "%(female_name)s chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:366
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)s."
-msgstr "%(female_name)s chết vào %(month_year)s lúc %(age)d ngày tuổi."
+msgstr "%(female_name)s chết vào %(month_year)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:370
 #, python-format
@@ -20246,9 +20071,9 @@ msgid "This person died in %(month_year)s."
 msgstr "Người này chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:371
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(month_year)s at the age of %(age)s."
-msgstr "Người này chết vào %(month_year)s lúc %(age)d ngày tuổi."
+msgstr "Người này chết vào %(month_year)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:374
 #, python-format
@@ -20256,9 +20081,9 @@ msgid "He died in %(month_year)s."
 msgstr "Ông chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:375
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)s."
-msgstr "Ông chết vào %(month_year)s lúc %(age)d ngày tuổi."
+msgstr "Ông chết vào %(month_year)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:378
 #, python-format
@@ -20266,9 +20091,9 @@ msgid "She died in %(month_year)s."
 msgstr "Bà chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:379
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)s."
-msgstr "Bà chết vào %(month_year)s lúc %(age)d ngày tuổi ."
+msgstr "Bà chết vào %(month_year)s lúc %(age)s tuổi ."
 
 #: ../gramps/plugins/lib/libnarrate.py:383
 #, python-format
@@ -20276,9 +20101,9 @@ msgid "Died %(month_year)s."
 msgstr "Chết vào %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:384
-#, fuzzy, python-format
+#, python-format
 msgid "Died %(month_year)s (%(age)s)."
-msgstr "Chết vào %(month_year)s. (age %(age)d ngày tuổi)."
+msgstr "Chết vào %(month_year)s. (%(age)s tuổi)."
 
 #: ../gramps/plugins/lib/libnarrate.py:390
 #, python-format
@@ -20286,9 +20111,9 @@ msgid "%(unknown_gender_name)s died in %(death_place)s."
 msgstr "%(unknown_gender_name)s chết tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:391
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết tại %(death_place)s lúc %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:394
 #, python-format
@@ -20296,9 +20121,9 @@ msgid "%(male_name)s died in %(death_place)s."
 msgstr "%(male_name)s  chết vào %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:395
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(male_name)s  chết vào %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s  chết vào %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:398
 #, python-format
@@ -20306,9 +20131,9 @@ msgid "%(female_name)s died in %(death_place)s."
 msgstr "%(female_name)s chết vào %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:399
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)s."
-msgstr "%(female_name)s chết vào %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "%(female_name)s chết vào %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:404
 #, python-format
@@ -20316,9 +20141,9 @@ msgid "This person died in %(death_place)s."
 msgstr "Người này chết tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:405
-#, fuzzy, python-format
+#, python-format
 msgid "This person died in %(death_place)s at the age of %(age)s."
-msgstr "Người này chết tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Người này chết tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:408
 #, python-format
@@ -20326,9 +20151,9 @@ msgid "He died in %(death_place)s."
 msgstr "Ông chết tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:409
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)s."
-msgstr "Ông chết tại %(death_place)s lúc  %(age)d ngày tuổi."
+msgstr "Ông chết tại %(death_place)s lúc  %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:412
 #, python-format
@@ -20336,9 +20161,9 @@ msgid "She died in %(death_place)s."
 msgstr "Bà chêt tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:413
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s at the age of %(age)s."
-msgstr "Bà chêt tại %(death_place)s lúc %(age)d ngày tuổi."
+msgstr "Bà chêt tại %(death_place)s lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:417
 #, python-format
@@ -20346,44 +20171,44 @@ msgid "Died in %(death_place)s."
 msgstr "Chết tại %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:418
-#, fuzzy, python-format
+#, python-format
 msgid "Died in %(death_place)s (%(age)s)."
-msgstr "Chết tại %(death_place)s (age %(age)d ngày tuổi)."
+msgstr "Chết tại %(death_place)s (%(age)s tuổi)."
 
 #: ../gramps/plugins/lib/libnarrate.py:425
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)s."
-msgstr "%(unknown_gender_name)s chết lúc %(age)d ngày tuổi."
+msgstr "%(unknown_gender_name)s chết lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:429
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)s."
-msgstr "%(male_name)s chức lúc %(age)d ngày tuổi."
+msgstr "%(male_name)s chức lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:433
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)s."
-msgstr "%(female_name)s chết lúc %(age)d ngày tuổi."
+msgstr "%(female_name)s chết lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:438
-#, fuzzy, python-format
+#, python-format
 msgid "This person died at the age of %(age)s."
-msgstr "Người này chết lúc %(age)d ngày tuổi."
+msgstr "Người này chết lúc %(age)s  tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:442
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)s."
-msgstr "Ông chết lúc %(age)d ngày tuổi."
+msgstr "Ông chết lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:446
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)s."
-msgstr "Bà chết lúc %(age)d ngày tuổi."
+msgstr "Bà chết lúc %(age)s tuổi."
 
 #: ../gramps/plugins/lib/libnarrate.py:451
-#, fuzzy, python-format
+#, python-format
 msgid "Died (%(age)s)."
-msgstr "Chết lúc (age %(age)d ngày tuổi)."
+msgstr "Chết lúc (%(age)s)."
 
 #: ../gramps/plugins/lib/libnarrate.py:462
 #, python-format
@@ -22569,7 +22394,7 @@ msgstr "Cung cấp thay thế khác nhau khi hiển thị dòng. "
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:260
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
-msgstr "Cung cấp cơ sở cần đề tạo báo cáo đồ thị tổ tiên và hậu duyệ. "
+msgstr "Cung cấp cơ sở cần đề tạo báo cáo đồ thị tổ tiên và hậu duệ. "
 
 #: ../gramps/plugins/lib/librecords.py:56
 msgid "Youngest living person"
@@ -22775,25 +22600,26 @@ msgstr "Không tạo được thư mục tile bộ nhớ đệm '%s' "
 
 #: ../gramps/plugins/lib/maps/placeselection.py:124
 #: ../gramps/plugins/lib/maps/placeselection.py:126
-#, fuzzy
 msgid "Place Selection in a region"
-msgstr "Chọn lựa tìm trên web "
+msgstr "Chọn vị trí ở một miền"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:127
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"Chọn độ của lựa chọn.\n"
+"Trên bản đồ bạn phải thấy một vòng tròn hay bán nguyêt tuỳ vào vĩ tuyến. "
 
 #: ../gramps/plugins/lib/maps/placeselection.py:161
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "Giá trị xanh ở hàng tương ứng với giá trị địa điểm hiện tại. "
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
 #: ../gramps/plugins/lib/maps/placeselection.py:204
 msgid "New place with empty fields"
-msgstr ""
+msgstr "Nơi mơi với trường rỗng "
 
 #. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:46
@@ -22932,7 +22758,7 @@ msgstr "Sự kiện cá nhân của con cái "
 
 #: ../gramps/plugins/quickview/all_relations.py:72
 msgid "Home person not set."
-msgstr "Nhân vật chính chưa định. "
+msgstr "Nhân vật chính chưa đặt. "
 
 #: ../gramps/plugins/quickview/all_relations.py:81
 #: ../gramps/plugins/tool/relcalc.py:191
@@ -23008,7 +22834,7 @@ msgstr "Người có có thông số '%s' "
 #: ../gramps/plugins/quickview/attributematch.py:48
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "ênCó %d người thoả thông số t.\n"
+msgstr "Có %d người thoả thông số tên.\n"
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
 msgid "Filtering_on|all"
@@ -23028,56 +22854,56 @@ msgstr "Lọc_tiêu_chí|sự kiện đaỏ thứ tự "
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgid "Filtering_on|Inverse Place"
-msgstr "Lọc_tiêu_chí|điạ điểm đaỏ thứ tự "
+msgstr "Lọc_tiêu_chí|điạ điểm đảo thứ tự "
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgid "Filtering_on|Inverse Source"
-msgstr "Lọc_tiêu_chí|nguồn đaỏ thứ tự "
+msgstr "Lọc_tiêu_chí|nguồn đảo thứ tự "
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgid "Filtering_on|Inverse Repository"
-msgstr "Lọc_tiêu_chí|kho đaỏ thứ tự"
+msgstr "Lọc_tiêu_chí|kho đảo thứ tự"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgid "Filtering_on|Inverse MediaObject"
-msgstr "Lọc_tiêu_chí|đối tượng đa phương tiện đaỏ thứ tự "
+msgstr "Lọc_tiêu_chí|đối tượng đa phương tiện đảo thứ tự "
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgid "Filtering_on|Inverse Note"
-msgstr "Lọc_tiêu_chí|ghi chú đaỏ thứ tự"
+msgstr "Lọc_tiêu_chí|ghi chú đảo thứ tự"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgid "Filtering_on|all people"
-msgstr "Lọc_tiêu_chí|moị người "
+msgstr "Lọc_tiêu_chí|mọi người "
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgid "Filtering_on|all families"
-msgstr "Lọc_tiêu_chí|moị gia đình"
+msgstr "Lọc_tiêu_chí|mọi gia đình"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgid "Filtering_on|all events"
-msgstr "Lọc_tiêu_chí|moị sự kiện "
+msgstr "Lọc_tiêu_chí|mọi sự kiện "
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 msgid "Filtering_on|all places"
-msgstr "Lọc_tiêu_chí|moị nơi "
+msgstr "Lọc_tiêu_chí|mọi nơi "
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
 msgid "Filtering_on|all sources"
-msgstr "Lọc_tiêu_chí|moị nguồn "
+msgstr "Lọc_tiêu_chí|mọi nguồn "
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgid "Filtering_on|all repositories"
-msgstr "Lọc_tiêu_chí|moị kho "
+msgstr "Lọc_tiêu_chí|mọi kho "
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgid "Filtering_on|all media"
-msgstr "Lọc_tiêu_chí|moị taì liệu đa phương tiện "
+msgstr "Lọc_tiêu_chí|mọi tài liệu đa phương tiện "
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgid "Filtering_on|all notes"
-msgstr "Lọc_tiêu_chí|moị ghi chú "
+msgstr "Lọc_tiêu_chí|mọi ghi chú "
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
 msgid "Filtering_on|males"
@@ -23098,7 +22924,7 @@ msgstr "Lọc_tiêu_chí|người tên không đầy đủ "
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|people with missing birth dates"
-msgstr "Lọc_tiêu_chí|người thiếu ngaỳ sinh "
+msgstr "Lọc_tiêu_chí|người thiếu ngày sinh "
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgid "Filtering_on|disconnected people"
@@ -23122,11 +22948,11 @@ msgstr "Lọc_tiêu_chí|taì liệu đa phương tiện không trùng lắp "
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgid "Filtering_on|missing media"
-msgstr "Lọc_tiêu_chí|thiếu taì liệu đa phương tiện "
+msgstr "Lọc_tiêu_chí|thiếu tài liệu đa phương tiện "
 
 #: ../gramps/plugins/quickview/filterbyname.py:74
 msgid "Filtering_on|media by size"
-msgstr "Lọc_tiêu_chí|taì liệu đa phương tiện theo kích cỡ "
+msgstr "Lọc_tiêu_chí|tài liệu đa phương tiện theo kích cỡ "
 
 #: ../gramps/plugins/quickview/filterbyname.py:75
 msgid "Filtering_on|list of people"
@@ -23134,11 +22960,11 @@ msgstr "Lọc_tiêu_chí|danh sách người "
 
 #: ../gramps/plugins/quickview/filterbyname.py:87
 msgid "Summary counts of current selection"
-msgstr "Đếm tóm tắt chọn lực hiện taị"
+msgstr "Đếm tóm tắt chọn lựa hiện tại"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr "Nhấp phaỉ hàng (hay nhấn Enter) để xem mục được chọn. "
+msgstr "Nhấp phải hàng (hay nhấn Enter) để xem mục được chọn. "
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 msgid "Object"
@@ -23175,7 +23001,7 @@ msgstr "Loại tên "
 
 #: ../gramps/plugins/quickview/filterbyname.py:308
 msgid "birth event but no date"
-msgstr "sự kiện sinh thiếu ngaỳ tháng "
+msgstr "sự kiện sinh thiếu ngày tháng "
 
 #: ../gramps/plugins/quickview/filterbyname.py:311
 msgid "missing birth event"
@@ -23183,7 +23009,7 @@ msgstr "thiếu sự kiện sinh "
 
 #: ../gramps/plugins/quickview/filterbyname.py:341
 msgid "Media count"
-msgstr "Đếm taì liệu Đa phương tiện "
+msgstr "Đếm tài liệu Đa phương tiện "
 
 #: ../gramps/plugins/quickview/filterbyname.py:349
 #: ../gramps/plugins/quickview/linkreferences.py:47
@@ -23258,7 +23084,7 @@ msgstr "Tên mẹ"
 
 #: ../gramps/plugins/quickview/lineage.py:103
 msgid "Direct line female descendants"
-msgstr "Con là nữ trực hệ"
+msgstr "Con cháu là nữ trực hệ"
 
 #: ../gramps/plugins/quickview/lineage.py:127
 #: ../gramps/plugins/quickview/lineage.py:221
@@ -23308,7 +23134,7 @@ msgstr "Sự kiện %(date)s "
 
 #: ../gramps/plugins/quickview/onthisday.py:117
 msgid "Events on this exact date"
-msgstr "Sự kiện cuả ngaỳ chính xác naỳ "
+msgstr "Sự kiện của ngày chính xác này "
 
 #: ../gramps/plugins/quickview/onthisday.py:120
 msgid "No events on this exact date"
@@ -23346,7 +23172,7 @@ msgstr "Hiển thị người cùng thông số. "
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:72
 msgid "All Events"
-msgstr "Tât cả sự kiên "
+msgstr "Tât cả sự kiện"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:73
 msgid "Display a person's events, both personal and family."
@@ -23354,7 +23180,7 @@ msgstr "Hiển thị sự kiện của một người, cả cá nhân và gia đ
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:87
 msgid "All Family Events"
-msgstr "Moị sự kiện gia đình"
+msgstr "Mọi sự kiện gia đình"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:88
 msgid "Display the family and family members events."
@@ -23366,7 +23192,7 @@ msgstr "Quan hệ với người chính "
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:108
 msgid "Display all relationships between person and home person."
-msgstr "Hiển thị moị quan hệ giữa người và người chính. "
+msgstr "Hiển thị mọi quan hệ giữa người và người chính. "
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:128
 msgid "Display filtered data"
@@ -23390,17 +23216,16 @@ msgstr "Hiển thị mẫu tuyến"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:181
 msgid "On This Day"
-msgstr "Vaò Ngaỳ Naỳ"
+msgstr "Vào Ngày Này"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:182
 msgid "Display events on a particular day"
-msgstr "Hiển thị sự kiện vaò ngaỳ cụ thể naò "
+msgstr "Hiển thị sự kiện vào ngày cụ thể nào "
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:208
 #: ../gramps/plugins/quickview/references.py:93
-#, fuzzy
 msgid "Source or Citation"
-msgstr "Có đưa nguồn không. "
+msgstr "Nguồn hay trích dẫn"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:214
 #, python-format
@@ -23478,7 +23303,7 @@ msgstr "Loại taì liệu đa phương tiện"
 #: ../gramps/plugins/quickview/reporef.py:64
 #: ../gramps/plugins/webreport/narrativeweb.py:2737
 msgid "Call number"
-msgstr "Số goị "
+msgstr "Số gọi"
 
 #: ../gramps/plugins/quickview/samesurnames.py:40
 msgid "People with incomplete surnames"
@@ -23547,9 +23372,8 @@ msgid "self"
 msgstr "bản thân "
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:32
-#, fuzzy
 msgid "Catalan Relationship Calculator"
-msgstr "Tính quan hệ Ý "
+msgstr "Tính toán quan hệ catalan"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:33
 #: ../gramps/plugins/rel/relplugins.gpr.py:47
@@ -23578,7 +23402,7 @@ msgstr "Tính quan hệ Tiệp khắc "
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:59
 msgid "Danish Relationship Calculator"
-msgstr "Tíh quan hệ Đan Mạch"
+msgstr "Tính quan hệ Đan Mạch"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:75
 msgid "German Relationship Calculator"
@@ -23682,11 +23506,11 @@ msgstr "Có bắt đầu trang mới sau mỗi thế hệ. "
 
 #: ../gramps/plugins/textreport/ancestorreport.py:286
 msgid "Add linebreak after each name"
-msgstr "Thêm dấu chia sau mỗi tên "
+msgstr "Thêm dấu ngắt dòng sau mỗi tên "
 
 #: ../gramps/plugins/textreport/ancestorreport.py:287
 msgid "Indicates if a line break should follow the name."
-msgstr "Cho thấy nếu dòng chia phaỉ sau sau tên. "
+msgstr "Cho thấy nếu ngắt dòng phải sau sau tên. "
 
 #. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 #: ../gramps/plugins/textreport/birthdayreport.py:66
@@ -23706,7 +23530,7 @@ msgstr "Báo cáo ngày sinh và kỷ niệm"
 #: ../gramps/plugins/textreport/birthdayreport.py:216
 #, python-format
 msgid "Relationships shown are to %s"
-msgstr "Quan hiện hiện ra là cho %s "
+msgstr "Quan hệ hiển thị là cho %s "
 
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/birthdayreport.py:414
@@ -23840,12 +23664,12 @@ msgstr "sp. %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:242
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr ""
+msgstr "sp. xem  %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:298
-#, fuzzy, python-format
+#, python-format
 msgid "%s sp."
-msgstr "   sp. "
+msgstr "%s sp."
 
 #: ../gramps/plugins/textreport/descendreport.py:409
 #: ../gramps/plugins/textreport/detdescendantreport.py:891
@@ -23886,14 +23710,13 @@ msgid "Whether to show divorce information in the report."
 msgstr "Có hiện thông tin li dị trong báo cáo không. "
 
 #: ../gramps/plugins/textreport/descendreport.py:429
-#, fuzzy
 msgid "Show duplicate trees"
-msgstr "Hiển thị ngày "
+msgstr "Hiển thị cây trùng lắp"
 
 #: ../gramps/plugins/textreport/descendreport.py:430
 #, fuzzy
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Có hiện thông tin li dị trong báo cáo không. "
+msgstr "Có hiện thông tin cây gia phả trùng lắp  trong báo cáo hay không. "
 
 #: ../gramps/plugins/textreport/descendreport.py:460
 #, python-format
@@ -24033,7 +23856,7 @@ msgstr "Dùng tên goị cho tên chung "
 #: ../gramps/plugins/textreport/detancestralreport.py:749
 #: ../gramps/plugins/textreport/detdescendantreport.py:923
 msgid "Whether to use the call name as the first name."
-msgstr "Có dùng tên goị cho tên không. "
+msgstr "Có dùng tên gọi cho tên không. "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:753
 #: ../gramps/plugins/textreport/detdescendantreport.py:926
@@ -24048,7 +23871,7 @@ msgstr "Có dùng ngaỳ đầy đủ thay vì chỉ năm. "
 #: ../gramps/plugins/textreport/detancestralreport.py:757
 #: ../gramps/plugins/textreport/detdescendantreport.py:931
 msgid "List children"
-msgstr "Liệt kê con caí "
+msgstr "Liệt kê con cái"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:758
 #: ../gramps/plugins/textreport/detdescendantreport.py:932
@@ -24199,7 +24022,7 @@ msgstr "Có thay điạ điểm thiếu băng khoảng trống không. "
 #: ../gramps/plugins/textreport/detancestralreport.py:824
 #: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "Replace missing dates with ______"
-msgstr "Thay ngaỳ thiếu bằng_______"
+msgstr "Thay ngày thiếu bằng_______"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:825
 #: ../gramps/plugins/textreport/detdescendantreport.py:1019
@@ -24272,14 +24095,12 @@ msgid "Whether to include detailed spouse information."
 msgstr "Có đưa vaò thông tin chi tiết bạn đời không. "
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:994
-#, fuzzy
 msgid "Include spouse reference"
-msgstr "Gồm cả bạn đời "
+msgstr "Gồm cả tham chiếu bạn đời "
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:995
-#, fuzzy
 msgid "Whether to include reference to spouse."
-msgstr "Có đưa tham chiếu nguồn vaò không. "
+msgstr "Có đưa tham chiếu bạn đời vào không. "
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:998
 msgid "Include sign of succession ('+') in child-list"
@@ -24722,7 +24543,7 @@ msgstr "Có đưa số liệu riêng tư vaò không "
 
 #: ../gramps/plugins/textreport/placereport.py:432
 msgid "The style used for the title of the report."
-msgstr "Kiểu dùng cho tiêu để báo cáo."
+msgstr "Kiểu dùng cho tiêu đề của báo cáo."
 
 #: ../gramps/plugins/textreport/placereport.py:446
 msgid "The style used for place title."
@@ -24803,9 +24624,9 @@ msgid "The style used for the footer."
 msgstr "Kiểu dùng cho chân trang "
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "File %s does not exist"
-msgstr "Không có tập tin "
+msgstr "Không có tập tin  %s"
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:132
 msgid "book|Title"
@@ -25183,11 +25004,11 @@ msgid "Checking Database"
 msgstr "Kiểm tra CSDL "
 
 #: ../gramps/plugins/tool/check.py:107
-#, fuzzy
 msgid "Looking for cross table duplicates"
-msgstr "Đang tìm bạn đời nhập 2 lần "
+msgstr "Đang tìm trùng lắp bảng đối chiếu chéo"
 
 #: ../gramps/plugins/tool/check.py:152
+#, fuzzy
 msgid ""
 "Your Family Tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -25195,6 +25016,11 @@ msgid ""
 "Tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new Family Tree."
 msgstr ""
+"Cây gia đình của bạn có chứa bảng xử lý trùng lặp chéo.\n"
+"Điều này không tốt và có thể chỉnh lại bằng cách tạo ra bản sao của\n"
+"cây gia đình và nhập bản sao lưu đó vào một cây gia đình trống.\n"
+"Phần kiểm tra còn lại được bỏ qua, công cụ Kiểm tra và\n"
+"Sửa chữa nên chạy mới lại cho cây này gia đình mới này."
 
 #: ../gramps/plugins/tool/check.py:159
 msgid "Check Integrity"
@@ -25265,9 +25091,8 @@ msgid "Looking for empty source records"
 msgstr "Đang tìm bản ghi nguồn trống "
 
 #: ../gramps/plugins/tool/check.py:820
-#, fuzzy
 msgid "Looking for empty citation records"
-msgstr "Đang tìm bản ghi đa phương tiện trống "
+msgstr "Đang tìm bản ghi tham chiếu trích dẫn trống "
 
 #: ../gramps/plugins/tool/check.py:828
 msgid "Looking for empty place records"
@@ -25316,7 +25141,7 @@ msgstr "Đang tìm vấn đề tham chiếu địa điểm "
 #: ../gramps/plugins/tool/check.py:1310
 #, fuzzy
 msgid "Looking for citation reference problems"
-msgstr "Đang tìm vấn đề tham chiếu nguồn "
+msgstr "Đang tìm vấn đề tham chiếu nguồn và trích dẫn"
 
 #: ../gramps/plugins/tool/check.py:1446
 #, fuzzy
@@ -25473,10 +25298,10 @@ msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d địa điểm được tham chiếu nhưng không tìm thấy\n"
 
 #: ../gramps/plugins/tool/check.py:2166
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d địa điểm được tham chiếu nhưng không tìm thấy\n"
+msgstr[0] "%(quantity)d trích dẫn được tham chiếu, nhưng không thấy\n"
 
 #: ../gramps/plugins/tool/check.py:2173
 #, python-format
@@ -25942,61 +25767,54 @@ msgstr "Công cụ này thêm hình vào thư mục tham chiếu bởi hình đa
 
 #: ../gramps/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "Đừng hoà nếu đọan trích dẫn có ghi chú"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Khớp trang/ volume, ngày và mức bảo mật"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
-#, fuzzy
 msgid "Ignore Date"
-msgstr "Tuổi vào ngày tháng "
+msgstr "Ngày tháng bỏ qua"
 
 #: ../gramps/plugins/tool/mergecitations.py:80
-#, fuzzy
 msgid "Ignore Confidence"
-msgstr "Mật "
+msgstr "Bỏ qua tính riêng tư "
 
 #: ../gramps/plugins/tool/mergecitations.py:81
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Bỏ qua ngày tháng và Lòng tin "
 
 #: ../gramps/plugins/tool/mergecitations.py:85
-#, fuzzy
 msgid "manual|Merge citations..."
-msgstr "thủ công|Hòa_gia đình "
+msgstr "thủ công|Hòa_trích dẫn...."
 
 #: ../gramps/plugins/tool/mergecitations.py:132
 #, fuzzy
 msgid "Notes, media objects and data-items of matching citations will be combined."
-msgstr "Ghi chú, đối tượng đa phương tiện, các mục dữ  liệu và tham chiếu kho của 2 nguồn sẽ nhập chung. "
+msgstr "Ghi chú, đối tượng đa phương tiện, các mục dữ  liệu của cả trích dẫn được hoà chung lại."
 
 #: ../gramps/plugins/tool/mergecitations.py:162
-#, fuzzy
 msgid "Merge citations tool"
-msgstr "Đối tượng nhập "
+msgstr "Công cụ hoà chung trích dẫn"
 
 #: ../gramps/plugins/tool/mergecitations.py:183
-#, fuzzy
 msgid "Checking Sources"
-msgstr "Hòa nguồn "
+msgstr "Kiểm tra nguồn"
 
 #: ../gramps/plugins/tool/mergecitations.py:184
-#, fuzzy
 msgid "Looking for citation fields"
-msgstr "Tìm kiếm trường địa điểm "
+msgstr "Tìm kiếm trường trích dẫn"
 
 #: ../gramps/plugins/tool/mergecitations.py:228
-#, fuzzy
 msgid "Number of merges done"
-msgstr "Số người "
+msgstr "Số các sáp nhập chung đã thực hiện "
 
 #: ../gramps/plugins/tool/mergecitations.py:229
-#, python-format
+#, fuzzy, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] ""
+msgstr[0] "%d trích dẫn trộn "
 
 #: ../gramps/plugins/tool/notrelated.glade.h:1
 msgid "_Tag"
@@ -26053,34 +25871,28 @@ msgid_plural "Looking up the names of %d people"
 msgstr[0] "Tìm tên người %d "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:2
-#, fuzzy
 msgid "_Street:"
-msgstr "Đường: "
+msgstr "_Đường: "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:3
-#, fuzzy
 msgid "_City:"
-msgstr "Thành phố: "
+msgstr "_Thành phố: "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:5
-#, fuzzy
 msgid "_Country:"
-msgstr "Nước: "
+msgstr "_Nước: "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:6
-#, fuzzy
 msgid "_ZIP/Postal Code:"
-msgstr "Mã Zip/ mã bưu điện: "
+msgstr "_Mã Zip/ mã bưu điện: "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:7
-#, fuzzy
 msgid "_Phone:"
-msgstr "Điện thoại: "
+msgstr "_Điện thoại: "
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:8
-#, fuzzy
 msgid "_Email:"
-msgstr "Email: "
+msgstr "_Email: "
 
 #: ../gramps/plugins/tool/ownereditor.py:58
 msgid "manual|Edit_Database_Owner_Information..."
@@ -26290,7 +26102,7 @@ msgstr "Đảo dấu "
 #: ../gramps/plugins/tool/removeunused.glade.h:10
 #: ../gramps/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b> Nhấp- đôi vào dòng đê xem/sửa số liệu</b> "
+msgstr "<b> Nhấp- đôi vào dòng để xem/sửa số liệu</b> "
 
 #: ../gramps/plugins/tool/removeunused.py:81
 msgid "Unused Objects"
@@ -26569,9 +26381,8 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Xác minh số liệu với thử nghiệm người dùng "
 
 #: ../gramps/plugins/tool/tools.gpr.py:552
-#, fuzzy
 msgid "Searches the entire database, looking for citations that have the same Volume/Page, Date and Confidence."
-msgstr "Tìm toàn bộ CSDL, tìm xem các mục nhập có thể cho chỉ cùng 1 người "
+msgstr "Tìm toàn bộ CSDL, tìm các trích dẫn có cùng trang/quyển, ngày và tính riêng tư."
 
 #: ../gramps/plugins/tool/verify.glade.h:5
 #: ../gramps/plugins/tool/verify.py:619
@@ -26603,9 +26414,8 @@ msgid "Maximum age for an _unmarried person"
 msgstr "Tuổi tối thiểu cho một người độc thân "
 
 #: ../gramps/plugins/tool/verify.glade.h:13
-#, fuzzy
 msgid "_Estimate missing or inexact dates"
-msgstr "_Nhận biết ngày bị thiếu"
+msgstr "_Ngày bị thiếu hay không chính xác"
 
 #: ../gramps/plugins/tool/verify.glade.h:14
 msgid "_Identify invalid dates"
@@ -26815,9 +26625,8 @@ msgid "Marriage date but not married"
 msgstr "Ngày kết hôn nhưng không kết hôn "
 
 #: ../gramps/plugins/tool/verify.py:1588
-#, fuzzy
 msgid "Old age but no death"
-msgstr "Tuổi già khi chết "
+msgstr "Tuổi già nhưng chưa chết"
 
 #: ../gramps/plugins/view/citationlistview.py:102
 #: ../gramps/plugins/view/citationtreeview.py:97
@@ -26826,48 +26635,41 @@ msgid "Confidence"
 msgstr "Mật "
 
 #: ../gramps/plugins/view/citationlistview.py:105
-#, fuzzy
 msgid "Source: Title"
-msgstr "Lọc nguồn "
+msgstr "Nguồn: tiêu đề"
 
 #: ../gramps/plugins/view/citationlistview.py:106
-#, fuzzy
 msgid "Source: ID"
-msgstr "ID nguồn: "
+msgstr "Nguồn: ID"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
-#, fuzzy
 msgid "Source: Author"
-msgstr "Nguồn: %s "
+msgstr "Nguồn: Tác giả"
 
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
-#, fuzzy
 msgid "Source: Abbreviation"
-msgstr "Viết tắt "
+msgstr "Nguồn: Viết tắt "
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
-#, fuzzy
 msgid "Source: Publication Information"
-msgstr "Thông tin ấn hành"
+msgstr "Ngồn: Thông tin ấn hành"
 
 #: ../gramps/plugins/view/citationlistview.py:110
 #, fuzzy
 msgid "Source: Private"
-msgstr "Lọc nguồn "
+msgstr "Nguồn: tiêu đề"
 
 #: ../gramps/plugins/view/citationlistview.py:111
-#, fuzzy
 msgid "Source: Last Changed"
-msgstr "Thay đổi lần cuối"
+msgstr "Nguồn: Thay đổi lần cuối"
 
 #: ../gramps/plugins/view/citationlistview.py:124
 #: ../gramps/plugins/view/citationtreeview.py:121
-#, fuzzy
 msgid "Add a new citation and a new source"
-msgstr "Tạo và thêm một nguồn mới "
+msgstr "Thêm trích dẫn mới và một nguồn mới "
 
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
@@ -26877,95 +26679,80 @@ msgstr "Thêm một nguồn "
 
 #: ../gramps/plugins/view/citationlistview.py:126
 #: ../gramps/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Add a new citation to an existing source"
-msgstr "Thêm một nguồn đang có "
+msgstr "Thêm một trích dẫn mới vào một nguồn đang có "
 
 #: ../gramps/plugins/view/citationlistview.py:128
-#, fuzzy
 msgid "Delete the selected citation"
-msgstr "Xóa gia đình chọn "
+msgstr "Xóa trích dẫn đã chọn "
 
 #: ../gramps/plugins/view/citationlistview.py:129
-#, fuzzy
 msgid "Merge the selected citations"
-msgstr "Nhập chung người được chọn"
+msgstr "Hoà chung trích dẫn được chọn"
 
 #: ../gramps/plugins/view/citationlistview.py:143
-#, fuzzy
 msgid "Citation View"
-msgstr "Trích "
+msgstr "Xem trích dẫn "
 
 #: ../gramps/plugins/view/citationlistview.py:180
 #: ../gramps/plugins/view/citationtreeview.py:283
-#, fuzzy
 msgid "Citation Filter Editor"
-msgstr "Trình soạn thảo bộ lọc theo ý riêng "
+msgstr "Trình soạn thảo bộ lọc đoạn trích"
 
 #: ../gramps/plugins/view/citationlistview.py:298
-#, fuzzy
 msgid ""
 "This citation cannot be edited at this time. Either the associated citation is already being edited or another object that is associated with the same citation is being edited.\n"
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
-"Tham chiếu sự kiện này không thể chỉnh sửa lúc này. Hoặc là sự kiện liên quan đang được sửa hoặc là tham chiếu sự kiện khác liến quan với cùng sự kiện đang được sửa.\n"
+"Trích dẫn này không thể chỉnh sửa lúc này. Hoặc là trích dẫn liên quan đang được sửa hoặc là một đối tượng khác liên kết đến cùng trích dẫn đang được sửa.\n"
 "\n"
-"Để sửa tham chiếu sự kiện này, bạn cần đóng sự kiện. "
+"Để sửa trích dẫn này, bạn cần đóng đối tượng lại. "
 
 #: ../gramps/plugins/view/citationlistview.py:311
 #: ../gramps/plugins/view/citationlistview.py:322
 #: ../gramps/plugins/view/citationtreeview.py:508
 #: ../gramps/plugins/view/citationtreeview.py:528
-#, fuzzy
 msgid "Cannot merge citations."
-msgstr "Không thể nhập ghi chú. "
+msgstr "Không thể hoà chung trích dẫn."
 
 #: ../gramps/plugins/view/citationlistview.py:312
 #: ../gramps/plugins/view/citationtreeview.py:509
-#, fuzzy
 msgid "Exactly two citations must be selected to perform a merge. A second citation can be selected by holding down the control key while clicking on the desired citation."
-msgstr "Chính xác phải có hai ghi chú được chọn để thực hiện nhập. Ghi chú thứ hai có thể được chọn bằng cách nhấn control trong khi kích chuột vào ghi chú muốn nhập. "
+msgstr "Chính xác phải có hai trích dẫn được chọn để thực hiện hoà chung. Trích dẫn thứ hai có thể được chọn bằng cách nhấn phím control đồng thời nhấp vào trích dẫn muốn nhập. "
 
 #: ../gramps/plugins/view/citationlistview.py:323
 #: ../gramps/plugins/view/citationtreeview.py:529
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
-msgstr ""
+msgstr "Hai trích dẫn được chọn phải có cùng nguồn để tạo ra sự hoà trộn. Nếu bạn muốn trộn hai trích dẫn, thì bản phải trộn nguồn trước. "
 
 #: ../gramps/plugins/view/citationtreeview.py:94
-#, fuzzy
 msgid "Title or Page"
-msgstr "Trang tiêu đề "
+msgstr "Tiêu đề hay trang"
 
 #: ../gramps/plugins/view/citationtreeview.py:124
-#, fuzzy
 msgid "Edit the selected citation or source"
-msgstr "Sửa một nguồn được chọn "
+msgstr "Sửa một trích dẫn hay nguồn được chọn "
 
 #: ../gramps/plugins/view/citationtreeview.py:125
-#, fuzzy
 msgid "Delete the selected citation or source"
-msgstr "Xóa nguồn được chọn "
+msgstr "Xóa trích dẫn hay nguồn được chọn "
 
 #: ../gramps/plugins/view/citationtreeview.py:126
-#, fuzzy
 msgid "Merge the selected citations or selected sources"
-msgstr "Nhập nguồn được chọn "
+msgstr "Hoà các trích dẫn đã chọn hay các nguồn đã chọn "
 
 #: ../gramps/plugins/view/citationtreeview.py:144
-#, fuzzy
 msgid "Citation Tree View"
-msgstr "Xem cây của người "
+msgstr "Xem cây trích dẫn "
 
 #: ../gramps/plugins/view/citationtreeview.py:270
-#, fuzzy
 msgid "Add source..."
-msgstr "Thêm nguồn "
+msgstr "Thêm nguồn ..."
 
 #: ../gramps/plugins/view/citationtreeview.py:275
-#, fuzzy
 msgid "Add citation..."
-msgstr "Thêm bạn đời... "
+msgstr "Thêm trích dẫn..."
 
 #: ../gramps/plugins/view/citationtreeview.py:291
 #: ../gramps/plugins/view/persontreeview.py:84
@@ -26980,33 +26767,30 @@ msgid "Collapse all Nodes"
 msgstr "Thu nhỏ mọi nút "
 
 #: ../gramps/plugins/view/citationtreeview.py:426
-#, fuzzy
 msgid "Cannot add citation."
-msgstr "Không thể lưu thẻ "
+msgstr "Không thể thêm trích dẫn."
 
 #: ../gramps/plugins/view/citationtreeview.py:427
 msgid "In order to add a citation to an existing source,  you must select a source."
-msgstr ""
+msgstr "Để thêm một trích dẫn cho một nguồn đang có, bạn phải chọn một nguồn. "
 
 #: ../gramps/plugins/view/citationtreeview.py:495
-#, fuzzy
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
-"Tham chiếu nguồn này không thể chỉnh sửa lúc này. Hoặc là nguồn liên kết đang được sửa hoặc là tham chiếu nguồn liên kết đến cùng nguồn đang được sửa.\n"
+"Nguồn này không thể chỉnh sửa lúc này. Hoặc là nguồn liên kết đang được sửa hoặc là tham chiếu nguồn liên kết đến cùng nguồn đang được sửa.\n"
 "\n"
-"Để sửa tham chiếu nguồn này, bạn cần đóng nguồn. "
+"Để sửa nguồn này, bạn cần đóng nguồn. "
 
 #: ../gramps/plugins/view/citationtreeview.py:540
-#, fuzzy
 msgid "Cannot perform merge."
-msgstr "Không thể nhập ghi chú. "
+msgstr "Không thể hoà chung.  "
 
 #: ../gramps/plugins/view/citationtreeview.py:541
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
-msgstr ""
+msgstr "Các đối tương phải thuộc kiểu  mẫu, hoặc cả hai phải là nguồn, hoặc cả hai phải là trích dẫn. "
 
 #: ../gramps/plugins/view/dashboardview.py:53
 #: ../gramps/plugins/view/view.gpr.py:65 ../gramps/plugins/view/view.gpr.py:73
@@ -27205,7 +26989,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchartdescview.py:326
 #, fuzzy
 msgid "Size  proportional to number of descendants"
-msgstr "Giới hạn số cha mẹ "
+msgstr "Giới hạn số con cháu"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
@@ -27235,8 +27019,9 @@ msgid "Have they been able to meet?"
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:162
+#, fuzzy
 msgid "GeoClose"
-msgstr ""
+msgstr "Đóng"
 
 #: ../gramps/plugins/view/geoclose.py:212
 #, fuzzy, python-format
@@ -27322,9 +27107,8 @@ msgstr "Hiển thị tât cả sự kiện "
 #: ../gramps/plugins/view/geoevents.py:368
 #: ../gramps/plugins/view/geoplaces.py:357
 #: ../gramps/plugins/view/geoplaces.py:361
-#, fuzzy
 msgid "Centering on Place"
-msgstr "Đặt điểm giữa tại nơi này "
+msgstr "Tập trung vào nơi này "
 
 #: ../gramps/plugins/view/geofamclose.py:130
 #: ../gramps/plugins/view/geography.gpr.py:124
@@ -27351,7 +27135,7 @@ msgstr "Hiển thị tham chiếu %s "
 #: ../gramps/plugins/view/geofamclose.py:246
 #, fuzzy, python-format
 msgid "The other family : %s"
-msgstr "Họ font chữ "
+msgstr "gia đình "
 
 #: ../gramps/plugins/view/geofamclose.py:248
 msgid "You must choose one reference family."
@@ -27434,18 +27218,16 @@ msgid "All known places for one Person"
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:72
-#, fuzzy
 msgid "A view showing the places visited by one person during his life."
-msgstr "Cho phép xem các nơi đã thăm bởi một người trong đời anh ta "
+msgstr "Hiển thị các vị trí ghé thăm bởi một người trong đời anh ta."
 
 #: ../gramps/plugins/view/geography.gpr.py:88
 msgid "All known places for one Family"
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:89
-#, fuzzy
 msgid "A view showing the places visited by one family during all their life."
-msgstr "Hiển thị cho phép ta xem các địa điểm đã đến của một gia đình trong suốt cuộc đời họ. "
+msgstr "Hiển thị cho thấy các vị trí được thăm bởi một gia đình trong suốt đời họ. "
 
 #: ../gramps/plugins/view/geography.gpr.py:105
 msgid "All displacements for one person and their descendants"
@@ -27461,12 +27243,12 @@ msgstr ""
 #: ../gramps/plugins/view/geography.gpr.py:125
 #, fuzzy
 msgid "A view showing the places visited by all family's members during their life: have these two people been able to meet?"
-msgstr "Hiển thị cho phép ta xem các địa điểm đã đến của một gia đình trong suốt cuộc đời họ. "
+msgstr "Hiển thị cho thấy các vị trí được thăm bởi một gia đình trong suốt đời họ. "
 
 #: ../gramps/plugins/view/geography.gpr.py:143
 #, fuzzy
 msgid "A view showing the places visited by two persons during their life: have these two people been able to meet?"
-msgstr "Cho phép xem các nơi đã thăm bởi một người trong đời anh ta "
+msgstr "Hiển thị các vị trí ghé thăm bởi một người trong đời anh ta."
 
 #: ../gramps/plugins/view/geography.gpr.py:160
 #, fuzzy
@@ -27474,19 +27256,17 @@ msgid "All known Places"
 msgstr "Còn gọi là "
 
 #: ../gramps/plugins/view/geography.gpr.py:161
-#, fuzzy
 msgid "A view showing all places of the database."
-msgstr "Hiển thị cho phép ta xem tất cả các nơi của CSDL. "
+msgstr "Hiển thị cho thấy tất cả các nơi trong CSDL. "
 
 #: ../gramps/plugins/view/geography.gpr.py:176
 #, fuzzy
 msgid "All places related to Events"
-msgstr "Không liên quan đến \"%s\" "
+msgstr "Người có liên quan với <Person>"
 
 #: ../gramps/plugins/view/geography.gpr.py:177
-#, fuzzy
 msgid "A view showing all the event places of the database."
-msgstr "Hiển thị cho phép ta xem tât cả sự kiện của CSDL. "
+msgstr "Hiển thị cho thấy tât cả các vị trí sự kiện trong CSDL. "
 
 #: ../gramps/plugins/view/geomoves.py:134
 #, fuzzy
@@ -27588,9 +27368,8 @@ msgid "Html View"
 msgstr "Xem HTML "
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:71
-#, fuzzy
 msgid "A view showing html pages embedded in Gramps"
-msgstr "Hiển thị cho phép bạn xem trang HTML lồng trong Gramps "
+msgstr "Hiển thị cho thấy các trang HTML lồng trong Gramps "
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:78
 msgid "Web"
@@ -27995,7 +27774,7 @@ msgstr "Hiện anh em "
 
 #: ../gramps/plugins/view/repoview.py:89
 msgid "Home URL"
-msgstr "URH chủ "
+msgstr "URL trang chủ "
 
 #: ../gramps/plugins/view/repoview.py:97
 msgid "Search URL"
@@ -28019,7 +27798,7 @@ msgstr "Trình sửa bộ lọc kho "
 
 #: ../gramps/plugins/view/repoview.py:244
 msgid "Cannot merge repositories."
-msgstr "Không thể nhập kho. "
+msgstr "Không thể trộn chung kho. "
 
 #: ../gramps/plugins/view/repoview.py:245
 msgid "Exactly two repositories must be selected to perform a merge. A second repository can be selected by holding down the control key while clicking on the desired repository."
@@ -28062,9 +27841,8 @@ msgid "The view showing all families"
 msgstr "Hiển thị cho thấy tât cả các gia đình "
 
 #: ../gramps/plugins/view/view.gpr.py:66
-#, fuzzy
 msgid "The view showing Gramplets"
-msgstr "Hiển thị cho phép xem Gramplets "
+msgstr "Hiển thị cho thấy các trình Gramplets "
 
 #: ../gramps/plugins/view/view.gpr.py:81
 msgid "The view showing all the media objects"
@@ -28137,24 +27915,21 @@ msgid "The view showing all the sources"
 msgstr "Hiển thị cho thấy tất cả các nguồn "
 
 #: ../gramps/plugins/view/view.gpr.py:268
-#, fuzzy
 msgid "The view showing all the citations"
-msgstr "Hiển thị cho thấy tất cả các ghi chú "
+msgstr "Hiển thị cho thấy tất cả các trích dẫn"
 
 #: ../gramps/plugins/view/view.gpr.py:282
 #, fuzzy
 msgid "Citation Tree"
-msgstr "Xem cây của người "
+msgstr "Xem cây trích dẫn "
 
 #: ../gramps/plugins/view/view.gpr.py:283
-#, fuzzy
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Xem hiển thị địa điểm ở dạng cây. "
+msgstr "Hiển thị cho thấy trích dẫn và nguồn ở dạng cây."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:379
-#, fuzzy
 msgid "Gramps&nbsp;ID"
-msgstr "ID Gramps "
+msgstr "Gramps&nbsp;ID"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:390
 msgid "Postal Code"
@@ -28178,9 +27953,8 @@ msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1306
-#, fuzzy
 msgid "Data Map"
-msgstr "_Số liệu "
+msgstr "Bản đồ số liệu "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1607
 #, python-format
@@ -28224,9 +27998,8 @@ msgstr "Họ "
 #: ../gramps/plugins/webreport/narrativeweb.py:1768
 #: ../gramps/plugins/webreport/narrativeweb.py:1884
 #: ../gramps/plugins/webreport/narrativeweb.py:4804
-#, fuzzy
 msgid "Thumbnails"
-msgstr "Hình thu nhỏ "
+msgstr "Hình thu nhỏ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1769
 #: ../gramps/plugins/webreport/narrativeweb.py:1890
@@ -28254,9 +28027,8 @@ msgstr "Liên hệ "
 
 #. add personal column
 #: ../gramps/plugins/webreport/narrativeweb.py:1912
-#, fuzzy
 msgid "Personal"
-msgstr "Cá nhân "
+msgstr "Cá nhân"
 
 #. add section title
 #: ../gramps/plugins/webreport/narrativeweb.py:2234
@@ -28299,9 +28071,8 @@ msgstr "Trang này chứa chỉ mục tất cả các người trong CSDL họ c
 #. Name Column
 #: ../gramps/plugins/webreport/narrativeweb.py:2904
 #: ../gramps/plugins/webreport/narrativeweb.py:5224
-#, fuzzy
 msgid "Given Name"
-msgstr "Tên "
+msgstr "Tên"
 
 #. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/narrativeweb.py:3048
@@ -28321,15 +28092,13 @@ msgid "Narrated Web Site Report"
 msgstr "Báo cáo tường thuật web site "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3049
-#, fuzzy
 msgid "Creating family pages..."
-msgstr "Tạo trang đa phương tiện "
+msgstr "Tạo trang gia đình..."
 
 #. Families list page message
 #: ../gramps/plugins/webreport/narrativeweb.py:3071
-#, fuzzy
 msgid "This page contains an index of all the families/ relationships in the database, sorted by their family name/ surname. Clicking on a person&#8217;s name will take you to their family/ relationship&#8217;s page."
-msgstr "Trang này chứa chỉ mục tất cả các nơi trong CSDL, xếp theo tiêu đề. Nhấp vào tiêu đề địa điểm sẽ dẫn bạn đến trang web địa điểm. "
+msgstr "Trang này chứa chỉ mục tất cả các gia đình/ quan hệ trong CSDL, xếp theo tên/ họ của gia đình. Nhấp vào một người, vào tên sẽ dẫn bạn đến trang web địa điểm. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3112
 #: ../gramps/plugins/webreport/narrativeweb.py:3375
@@ -28456,14 +28225,12 @@ msgid "Missing media object:"
 msgstr "Đối tượng đa phương tiện bị mất "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4809
-#, fuzzy
 msgid "This page displays a indexed list of all the media objects in this database.  It is sorted by media title.  There is an index of all the media objects in this database.  Clicking on a thumbnail will take you to that image&#8217;s page."
-msgstr "Trang này chứa chỉ mục tất cả các nơi trong CSDL, xếp theo tiêu đề. Nhấp vào tiêu đề địa điểm sẽ dẫn bạn đến trang web địa điểm. "
+msgstr "Trang này chứa chỉ mục tất cả các đối tượng đa phương tiện trong CSDL, xếp theo tiêu đề của chúng. Có một chỉ mục cho tất cả các đối tượng đa phương tiện trong CSDL.  Nhấp vào hình nhỏ sẽ dẫn bạn đến trang web địa điểm. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4825
-#, fuzzy
 msgid "Thumbnail Preview"
-msgstr "Vị trí hình thu nhỏ "
+msgstr "Xem trước hình thu nhỏ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4984
 msgid "This page is for the user/ creator of this Family Tree/ Narrative website to share a couple of files with you regarding their family.  If there are any files listed below, clicking on them will allow you to download them. The download page and files have the same copyright as the remainder of these web pages."
@@ -28499,17 +28266,17 @@ msgstr ""
 
 #. page description
 #: ../gramps/plugins/webreport/narrativeweb.py:5686
+#, fuzzy
 msgid "This map page represents that person and any descendants with all of their event/ places. If you place your mouse over the marker it will display the place name. The markers and the Reference list are sorted in date order (if any?). Clicking on a place&#8217;s name in the Reference section will take you to that place&#8217;s page."
-msgstr ""
+msgstr "Trang này bản đồ này đại diện cho người và con cháu của họ với tất cả các sự kiện / địa điểm của họ. Nếu bạn đưa chuột qua điểm đánh dấu, nó sẽ hiển thị tên địa điểm. Các đánh dấu và danh sách tham khảo được sắp xếp theo thứ tự ngày (nếu có). Nhấp vào tên của một địa điểm &#8217;s ở mục Tham khảo sẽ dẫn bạn đến trang địa điểm&#8217 đó. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5738
 msgid "Drop Markers"
-msgstr ""
+msgstr "Bỏ dấu đánh "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5758
-#, fuzzy
 msgid "Place Title"
-msgstr "Tên địa điểm "
+msgstr "Tiêu đề địa điểm "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5920
 msgid "Ancestors"
@@ -28565,7 +28332,7 @@ msgstr "Tạo trang kho "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6565
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Trang này chứa chỉ mục kho trong CSDL, xếp theo tiêu đề. Nhấp vào tiêu đề kho sẽ dẫn bạn đến trang kho đó. "
+msgstr "Trang này chứa chỉ mục tất cả các kho tư liệu trong CSDL, xếp theo tiêu đề. Nhấp vào tiêu đề kho sẽ dẫn bạn đến trang kho đó. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6580
 msgid "Repository |Name"
@@ -28577,9 +28344,8 @@ msgid "This page contains an index of all the individuals in the database, sorte
 msgstr "Trang này chứa chỉ mục tất cả cá nhân của CSDL, xếp theo họ, và một trong các mục sau đây: địa chỉ, nơi ở, hay liên kết web. Chọn tên một người sẽ dẫn bạn đến trang sổ địa chỉ của cá nhân đó. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6719
-#, fuzzy
 msgid "Full Name"
-msgstr "Tên gọi "
+msgstr "Tên đầy đủ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6952
 #, fuzzy, python-format
@@ -28623,7 +28389,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:7364
 #, fuzzy, python-format
 msgid "Family of %s and %s"
-msgstr "Ghi chú gia đình "
+msgstr "Gia đình của"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
@@ -28631,7 +28397,7 @@ msgstr "Ghi chú gia đình "
 #: ../gramps/plugins/webreport/narrativeweb.py:7372
 #, fuzzy, python-format
 msgid "Family of %s"
-msgstr "Ghi chú gia đình "
+msgstr "Gia đình của"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7575
 msgid "Creating GENDEX file"
@@ -28642,9 +28408,8 @@ msgid "Creating surname pages"
 msgstr "Tạo trang họ "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7638
-#, fuzzy
 msgid "Creating thumbnail preview page..."
-msgstr "Tạo trang họ "
+msgstr "Tạo trang xem trước hình thu nhỏ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7680
 msgid "Creating address book pages ..."
@@ -28717,20 +28482,23 @@ msgstr "Stylesheet sẽ dùng cho trang web"
 #: ../gramps/plugins/webreport/narrativeweb.py:8054
 #, fuzzy
 msgid "Horizontal -- Default"
-msgstr "Ngang (phải sang trái) "
+msgstr "Ngang- mặc định"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8055
+#, fuzzy
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Chiều đứng- phía trái"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8056
+#, fuzzy
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Mờ dần- Chỉ cho trình duyệt "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8057
 #: ../gramps/plugins/webreport/narrativeweb.py:8069
+#, fuzzy
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Xổ xuống- chỉ cho trình duyệt web "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8059
 msgid "Navigation Menu Layout"
@@ -28747,7 +28515,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:8071
 #, fuzzy
 msgid "Citation Referents Layout"
-msgstr "Tham chiếu liên kết "
+msgstr "Tham chiếu trích dẫn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8074
 msgid "Determine the default layout for the Source Page's Citation Referents section"
@@ -28859,11 +28627,12 @@ msgstr "Có đưa tập ảnh các đối tượng đa phương tiện vào khô
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8140
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Tạo và chỉ dùng hình ảnh thu nhỏ "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8141
+#, fuzzy
 msgid "This option allows you to create only thumbnail images instead of the full-sized images on the Media Page. This will allow you to have a much smaller total upload size to your web hosting site."
-msgstr ""
+msgstr "Các tuỳ chọn này cho pháp bạn chọn cách không tạo ra một ảnh đầy đủ như ở trang Đa phương tiện, mà chỉ tạo ảnh nhỏ. Việc này giúp bạn có kích cỡ tải lên nhỏ hơn cho nơi lưu trữ website của bạn. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8147
 msgid "Max width of initial image"
@@ -29031,14 +28800,12 @@ msgid "Whether to display children in birth order or in entry order?"
 msgstr "Có hiện con cái theo thứ tự sinh hay thứ tự nhập? "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8277
-#, fuzzy
 msgid "Include family pages"
-msgstr "Đưa các sự kiện gia đình vào "
+msgstr "Gồm các trang gia đình "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8278
-#, fuzzy
 msgid "Whether or not to include family pages."
-msgstr "Có thêm ảnh vaò không. "
+msgstr "Có thêm trang gia đình không."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8281
 msgid "Include event pages"
@@ -29053,9 +28820,8 @@ msgid "Include repository pages"
 msgstr "Đưa trang kho vào "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8286
-#, fuzzy
 msgid "Whether or not to include the Repository Pages."
-msgstr "Có đưa trang kho vào không "
+msgstr "Có đưa trang trang kho tư liệu vào không."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8289
 msgid "Include GENDEX file (/gendex.txt)"
@@ -29070,28 +28836,24 @@ msgid "Include address book pages"
 msgstr "Gồm trang sách địa chỉ "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8294
-#, fuzzy
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
-msgstr "Có đưa trang sách địa chỉ vào không để có thể gồm cả email và địa chỉ website và sự kiện địa chỉ / nơi cư trú? "
+msgstr "Có đưa trang Sách địa chỉ vào không để có thể bao gồm cả địa chỉ email và địa chỉ website và địa chỉ / nơi cư trú cá nhân."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8304
-#, fuzzy
 msgid "Place Map Options"
-msgstr "Bản đồ địa điểm "
+msgstr "Tuỳ chọn của bản đồ vị trí"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8308
-#, fuzzy
 msgid "Google"
-msgstr "GoogleMaps "
+msgstr "Google"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8310
-#, fuzzy
 msgid "Map Service"
-msgstr "Dịch vụ bản đồ "
+msgstr "Dịch vụ bản đồ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8313
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "Chọn một lựa chọn dịch vụ bản đồ của bạn để tạo trang Bản đồ vị trí. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8318
 msgid "Include Place map on Place Pages"
@@ -29102,41 +28864,38 @@ msgid "Whether to include a place map on the Place Pages, where Latitude/ Longit
 msgstr "Có đưa bản đồ địa chỉ vào trang địa chỉ, là nơi có vĩ độ và kinh độ. "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8324
-#, fuzzy
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Gồm bản đồ trang cá nhân với mọi địa điểm hiện trên trang "
+msgstr "Gồm trang bản đồ gia đình với mọi địa điểm hiện trên bản đồ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8326
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Có hay không thêm bản đồ trang cá nhân vào hiển thị tất cả địa điểm của trang này. Điều này cho phép bạn thấy gia đình đã đi ở nước mình thế nào "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8334
-#, fuzzy
 msgid "Family Links"
-msgstr "Nói kết gia đình "
+msgstr "Liên kết gia đình"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8335
 msgid "Drop"
-msgstr ""
+msgstr "Bỏ "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8336
-#, fuzzy
 msgid "Markers"
-msgstr "Đánh dấu "
+msgstr "Đánh dấu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8337
 msgid "Google/ FamilyMap Option"
-msgstr ""
+msgstr "Tuỳ chọn bản đồ Google/ gia đình "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8340
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
-msgstr ""
+msgstr "Chọn tuỳ chọn nào bạn muốn có cho trang bản đồ gia đình trên bản đồ Google ..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../gramps/plugins/webreport/narrativeweb.py:8800
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Menu theo mẫu  tự: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -29766,45 +29525,6 @@ msgstr "<b>Giấy phép phần mềm Gramps </b><br/>Bạn được tự do dùn
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùng Linux, Gramps chạy với bất cứ môi trường máy tính để bàn nào bạn thích. Khi nào mà các thư viện GTK cần thiết được cài đặt, nó sẽ chạy tốt."
 
-#, fuzzy
-#~ msgid "Family tree"
-#~ msgstr "Cây gia đình "
-
-#~ msgid "Need to upgrade database!"
-#~ msgstr "Cần cập nhật CSDL!"
-
-#~ msgid "Upgrade now"
-#~ msgstr "Nâng cấp "
-
-#, fuzzy
-#~ msgid "Need to upgrade BSDDB database!"
-#~ msgstr "Cần cập nhật CSDL!"
-
-#~ msgid "Timeline Graph for %s"
-#~ msgstr "Biểu đồ đường thời gian cho %s "
-
-#~ msgid "Provides Textual Translation."
-#~ msgstr "Cung cấp bản dịch văn bản. "
-
-#, fuzzy
-#~ msgid "Father Age"
-#~ msgstr "Tuổi của cha "
-
-#, fuzzy
-#~ msgid "Mother Age"
-#~ msgstr "Tuổi của mẹ "
-
-#~ msgid " (%(value)s)"
-#~ msgstr " (%(value)s)"
-
-#, fuzzy
-#~ msgid "window2"
-#~ msgstr "Cửa sổ chính "
-
-#, fuzzy
-#~ msgid "window1"
-#~ msgstr "Cửa sổ chính "
-
 #~ msgid "State/Province:"
 #~ msgstr "Tiểu bang/ Tỉnh: "
 
@@ -29820,6 +29540,12 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid "Select Save File"
 #~ msgstr "Chọn tập tin lưu "
 
+#~ msgid "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG environment variables to prevent this error"
+#~ msgstr "CẢNH BÁO: Thiết đặt địa phương thất bại. Xin chỉnh lại LC_* và/hoặc thông số môi trường LANG để tránh lỗi này"
+
+#~ msgid "ERROR: Setting the 'C' locale didn't work either"
+#~ msgstr "CÓ LỖI: Thiết đặt địa phương hoá 'C' cũng không hoạt động được "
+
 #~ msgid "Sources in repository"
 #~ msgstr "Nguồn từ kho tư liệu "
 
@@ -29831,6 +29557,9 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 
 #~ msgid "Could not make database directory: "
 #~ msgstr "Không thể tạo thư mục CSDL: "
+
+#~ msgid "Gramps stores its data in a Berkeley Database. The family tree you try to load was created with version %(env_version)s of the Berkeley DB. However, the Gramps version in use right now employs version %(bdb_version)s of the Berkeley DB. So you are trying to load data created in a newer format into an older program; this is bound to fail. The right approach in this case is to use XML export and import. So try to open the family tree on that computer with that software that created the family tree, export it to XML and load that XML into the version of Gramps you intend to use."
+#~ msgstr "Gramps lưu trữ dữ liệu của nó trong một cơ sở dữ liệu Berkeley. Cây gia đình bạn đang tải đã được tạo ra với phiên bản %(env_version)s của DB Berkeley. Tuy nhiên, phiên bản Gramps sử dụng hiện nay dùng phiên bản %(bdb_version)s của DB Berkeley. Vì vậy bạn đang cố gắng tải dữ liệu tạo ra ở định dạng mới hơn vào chương trình cũ hơn; điều này dễ gây lỗi. Các làm đúng trong trường hợp này là dùng chức năng xuất và nhập dạng tập tin XML. Do vậy hãy mở cây gia đình trên máy tính đó với phần mềm tạo ra các cây gia đình đó, xuất ra dạng XML và tải tập tin dạng XML đó vào phiên bản của Gramps bạn định sử dụng."
 
 #~ msgid ""
 #~ "You cannot open this database without upgrading it.\n"
@@ -29859,6 +29588,12 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid "Gramps: Import database"
 #~ msgstr "Gramps: nhập CSDL "
 
+#~ msgid "Need to upgrade database!"
+#~ msgstr "Cần cập nhật CSDL!"
+
+#~ msgid "Upgrade now"
+#~ msgstr "Nâng cấp "
+
 #~ msgid "Media Object Filters"
 #~ msgstr "Bộ lọc tài liệu đa phương tiện "
 
@@ -29879,9 +29614,11 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ "Hiển thị %(name)s không tải được. Xem menu Trợ giúp, người quản lý trình cắm chạy để có thêm thông tin.\n"
 #~ "Dùng http://bugs.gramps-project.org để báo lỗi cho hiển thị chính thức, hoặc liênhệ tác giả hiển thị (%(firstauthoremail)s). "
 
-#, fuzzy
 #~ msgid " "
-#~ msgstr ", "
+#~ msgstr " "
+
+#~ msgid "\n"
+#~ msgstr "\n"
 
 #~ msgid "%s and %s (%s)"
 #~ msgstr "%s và %s (%s)"
@@ -29911,16 +29648,31 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgstr "Danh sách sách "
 
 #~ msgid "Book Report"
-#~ msgstr "Báo cáo sách "
+#~ msgstr "Báo cáo dạng sách "
 
 #~ msgid "Please specify a book name"
 #~ msgstr "Xin đặt một tên cho sách "
 
+#~ msgid "No such book '%s'"
+#~ msgstr "Không có sách như thế '%s'"
+
 #~ msgid "Produces a book containing several reports."
 #~ msgstr "Tạo ra một sách chứa vài báo cáo. "
 
+#~ msgid " (%(value)s)"
+#~ msgstr " (%(value)s)"
+
 #~ msgid "PyGtk 2.10 or later is required"
 #~ msgstr "Yêu cầu có PyGtk 2.10 hay phiên bản lớn hơn. "
+
+#~ msgid "Timeline Graph for %s"
+#~ msgstr "Biểu đồ đường thời gian cho %s "
+
+#~ msgid "<-- Image Types -->"
+#~ msgstr "<-- Kiểu hình ảnh -->"
+
+#~ msgid "Warning:  Changing this entry will update the Media object title field in Gramps not Exiv2 metadata."
+#~ msgstr "Cảnh báo: Thay đổi mục này sẽ cập nhật lại trường tiệu đề đối tượng đa phương tiện ở Gramps không thuộc metadata Exiv2."
 
 #~ msgid "Provide a short descripion for this image."
 #~ msgstr "Nhập mô tải ngắn gọn cho hình này. "
@@ -29928,49 +29680,74 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid "Enter the Artist/ Author of this image.  The person's name or the company who is responsible for the creation of this image."
 #~ msgstr "Nhập tên tác giả/ nghệ sĩ cho hình này. Tên người hay công ty chịu trách nhiệm đã tạo ra hình này. "
 
-#, fuzzy
 #~ msgid "Enter the copyright information for this image. \n"
-#~ msgstr "Nhập bản quyền cho hình này.\n"
+#~ msgstr "Nhập thông tin bản quyền cho hình này.\n"
 
-#, fuzzy
+#~ msgid ""
+#~ "The original date/ time when the image was first created/ taken as in a photograph.\n"
+#~ "Example: 1830-01-1 09:30:59"
+#~ msgstr ""
+#~ "Ngày / giờ gốc khi hình được tạo ra/ chụp lần đầu của hình.\n"
+#~ "Thí dụ: 1830-01-1 9:30:59 "
+
+#~ msgid ""
+#~ "This is the date/ time that the image was last changed/ modified.\n"
+#~ "Example: 2011-05-24 14:30:00"
+#~ msgstr ""
+#~ "Đây là ngày/giờ mà hình đã thay đổi/ sửa lần cuối.\n"
+#~ "Thí dụ: 2011-05-24 14:30:00 "
+
 #~ msgid ""
 #~ "Enter the Latitude GPS coordinates for this image,\n"
 #~ "Example: 43.722965, 43 43 22 N, 38° 38′ 03″ N, 38 38 3"
 #~ msgstr ""
 #~ "Nhập vĩ độ GPS cho hình.\n"
-#~ "Thí dụ: 43.722965, 43 43 22 N, 38 38' 03\" N, 38 38 3"
+#~ "Thí dụ: 43.722965, 43 43 22 N, 38 38' 03\" N, 38 38 3 "
 
-#, fuzzy
 #~ msgid ""
 #~ "Enter the Longitude GPS coordinates for this image,\n"
 #~ "Example: 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
 #~ msgstr ""
 #~ "Nhập kinh độ GPS cho hình.\n"
-#~ "Thí dụ 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6"
+#~ "Thí dụ 10.396378, 10 23 46 E, 105° 6′ 6″ W, -105 6 6 "
+
+#~ msgid "This is the measurement of Above or Below Sea Level.  It is measured in meters.Example: 200.558, -200.558"
+#~ msgstr "Đây là kích thước ở mức Trên hoặc Dưới. Đo hệ mét. Thí dụ: 200.558, -200.558 "
 
 #~ msgid "Displays the Gramps Wiki Help page for 'Edit Image Exif Metadata' in your web browser."
 #~ msgstr "Hiển thị trang trợ giúp Wiki Gramps cho 'Sửa chữa Metadata Exif của hình' ở trình duyệt của bạn. "
 
+#~ msgid ""
+#~ "This will open up a new window to allow you to edit/ modify this image's Exif metadata.\n"
+#~ "  It will also allow you to be able to Save the modified metadata."
+#~ msgstr ""
+#~ "Điều này sẽ mở ra một cửa sổ mới để cho phép bạn chỉnh sửa / thay đổi dữ liệu metadata Exif của hình ảnh này. \n"
+#~ "Nó cũng sẽ cho phép bạn có thể lưu dữ liệu metadata sửa đổi."
+
 #~ msgid "Will produce a Popup window showing a Thumbnail Viewing Area"
 #~ msgstr "Sẽ tạo ra một cửa sổ nổi lên hiển thị vùng xem thu nhỏ "
+
+#~ msgid "Select from a drop- down box the image file type that you would like to convert your non- Exiv2 compatible media object to."
+#~ msgstr "Chọn hộp xổ xuống kiểu hình bạn muốn đổi từ đối tượng đa phương tiện không tương thích Exiv2 sang. "
+
+#~ msgid "If your image is not of an image type that can have Exif metadata read/ written to/from, convert it to a type that can?"
+#~ msgstr "Nếu hình của bạn không thuộc dạng hình đọc/ghi thông tin metadata được, có chuyển sang dạng chứa được không? "
 
 #~ msgid "WARNING:  This will completely erase all Exif metadata from this image!  Are you sure that you want to do this?"
 #~ msgstr "Cảnh báo: Điều này hoàn toàn xóa metadata Exif khỏi hình! Bạn có chắc là bạn muốn làm thế không? "
 
-#, fuzzy
 #~ msgid "Thumbnail"
-#~ msgstr "Hình thu nhỏ "
+#~ msgstr "Hình thu nhỏ"
 
 #~ msgid "Select an image to begin..."
 #~ msgstr "Chọn một hình để bắt đầu... "
 
-#, fuzzy
 #~ msgid ""
 #~ "Image is NOT readable,\n"
 #~ "Please choose a different image..."
 #~ msgstr ""
-#~ "Hình không đọc được.\n"
-#~ "Xin chọn hình khác... "
+#~ "Hình không đọc được, \n"
+#~ "Xin chọn hình khác...."
 
 #~ msgid ""
 #~ "Image is NOT writable,\n"
@@ -29980,133 +29757,129 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ "Bạn sẽ KHÔNG thể ghi.\n"
 #~ "Bạn sẽ KHÔNG thể lưu metadata Exif..."
 
-#, fuzzy
 #~ msgid "Please convert this image to an Exiv2- compatible image type..."
-#~ msgstr "Đổi hình này sang hình .jpg? "
+#~ msgstr "Xin đổi hình này sang hình tương thích-Exiv2..."
 
-#, fuzzy
+#~ msgid "Image Size : %04d x %04d pixels"
+#~ msgstr "Kích cỡ hình: %04d x %04d pixels"
+
 #~ msgid "Displaying Exif metadata..."
-#~ msgstr "Xóa tất cả metadata Exif... "
+#~ msgstr "Hiển thị thông tin Exif metadata..."
 
-#, fuzzy
 #~ msgid "Click Close to close this Thumbnail View Area."
-#~ msgstr "Nhấp Đóng để đóng khu xem hình thu nhỏ này. "
+#~ msgstr "Nhấp Đóng để đóng khung xem hình thu nhỏ này. "
 
-#, fuzzy
 #~ msgid "Thumbnail View Area"
-#~ msgstr "Khu xem hình thu nhỏ "
+#~ msgstr "Khung xem hình thu nhỏ"
 
 #~ msgid "Edit Image Exif Metadata"
 #~ msgstr "Sửa metadata Exif của hình "
 
-#, fuzzy
 #~ msgid "WARNING: You are about to convert this image into a .jpeg image.  Are you sure that you want to do this?"
-#~ msgstr "CẢNH BÁO: Bạn sắp đổi hình này sang hình .jpg. Bạn có chắc muốn làm thế không? "
+#~ msgstr "CẢNH BÁO: Bạn sắp đổi hình này sang hình .jpg. Bạn có chắc muốn làm thế không?"
 
-#, fuzzy
 #~ msgid "Convert and Delete"
-#~ msgstr "Đổi và xóa hình gốc "
+#~ msgstr "Đổi và xóa"
 
 #~ msgid "Convert"
 #~ msgstr "Đổi "
 
-#, fuzzy
 #~ msgid "Your image has been converted and the original file has been deleted, and the full path has been updated!"
-#~ msgstr "Hình đã đổi sang hình jpg.và hình gốc đã được xóa bỏ! "
+#~ msgstr "Hình đã đổi sang hình jpg.và hình gốc đã được xóa bỏ, và đường dẫn đầy đủ đã được cập nhật! "
 
-#, fuzzy
+#~ msgid "There has been an error, Please check your source and destination file paths..."
+#~ msgstr "Có một lỗi xảy ra, xin kiểm tra nguồn và đích của đường dẫn tập tin..."
+
+#~ msgid "There was an error in deleting the original file.  You will need to delete it yourself!"
+#~ msgstr "Có lỗi trong phát hiện tập tin gốc. Bạn sẽ cần tự mình xoá nó!"
+
 #~ msgid "There was an error in converting your image file."
-#~ msgstr "Không có metadata Exif cho hình này... "
+#~ msgstr "Có lỗi khi đổi tập tin hình."
 
-#, fuzzy
 #~ msgid "Media Path Update"
-#~ msgstr "ngày chết "
+#~ msgstr "Cập nhật đường dẫn tập tin đa phương tiện"
 
-#, fuzzy
 #~ msgid "There has been an error in updating the image file's path!"
-#~ msgstr "Không có metadata Exif cho hình này... "
+#~ msgstr "Có lỗi khi cập nhật đường dẫn tập tin hình!"
 
-#, fuzzy
 #~ msgid "Click the close button when you are finished modifying this image's Exif metadata."
-#~ msgstr "Nhấp vào nút đóng khi bạn xem xong tất cả metadata của hình. "
+#~ msgstr "Nhấp vào nút đóng khi bạn sửa xong tất cả metadata Exif của hình. "
 
-#, fuzzy
+#~ msgid "Saves a copy of the data fields into the image's Exif metadata."
+#~ msgstr "Lưu một bản sao của các trường số liệu vào metadata Exif của hình. "
+
+#~ msgid "Re -display the data fields that were cleared from the Edit Area."
+#~ msgstr "Hiển thị lại trường số liệu đã xoá từ khu vực Chỉnh sửa. "
+
+#~ msgid "This button will clear all of the data fields shown here."
+#~ msgstr "Nút này sẽ xoá bỏ tất cả trường số liệu hiện tại đây. "
+
+#~ msgid ""
+#~ "Closes this popup Edit window.\n"
+#~ "WARNING: This action will NOT Save any changes/ modification made to this image's Exif metadata."
+#~ msgstr ""
+#~ "Đóng cửa sổ nổi lên Sửa chữa này.\n"
+#~ "CẢNH BÁO: Hành động này KHÔNG thể lưu các thay đổi/ sửa chữa đã thực hiện đã làm cho các metadata Exif của hình này. "
+
 #~ msgid "Media Object Title"
-#~ msgstr "Bộ lọc tài liệu đa phương tiện "
+#~ msgstr "Tựa đối tượng đa phương tiện "
 
-#, fuzzy
 #~ msgid "media Title: "
-#~ msgstr "Tiêu đề lịch "
+#~ msgstr "Tiêu đề của tập tin đa phương tiện"
 
-#, fuzzy
 #~ msgid "General Data"
-#~ msgstr "Tổng quát "
+#~ msgstr "Ngày tổng quát "
 
-#, fuzzy
 #~ msgid "Description: "
-#~ msgstr "Mô tả: "
+#~ msgstr "Mô tả:"
 
-#, fuzzy
 #~ msgid "Artist: "
-#~ msgstr "Nghệ sĩ "
+#~ msgstr "Nghệ sĩ:"
 
-#, fuzzy
 #~ msgid "Copyright: "
-#~ msgstr "Bản quyền "
+#~ msgstr "Bản quyền:"
 
-#, fuzzy
 #~ msgid "Date/ Time"
-#~ msgstr "Ngày/giờ gốc "
+#~ msgstr "Ngày/giờ:"
 
-#, fuzzy
 #~ msgid "Original: "
-#~ msgstr "Thời gian gốc "
+#~ msgstr "Bản gốc:"
 
-#, fuzzy
 #~ msgid "Modified: "
-#~ msgstr "Sửa lần cuối "
+#~ msgstr "Được sửa "
 
-#, fuzzy
 #~ msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-#~ msgstr "Vĩ/kinh độ GPS "
+#~ msgstr "Vĩ/kinh độ GPS"
 
-#, fuzzy
 #~ msgid "Latitude :"
-#~ msgstr "Vĩ độ: "
+#~ msgstr "Vĩ độ:"
 
-#, fuzzy
 #~ msgid "Longitude :"
-#~ msgstr "Kinh độ: "
+#~ msgstr "Kinh độ:"
 
-#, fuzzy
 #~ msgid "Altitude :"
-#~ msgstr "Vĩ độ: "
+#~ msgstr "Cao độ:"
 
-#, fuzzy
 #~ msgid "Bad Date/Time"
-#~ msgstr "Ngày/giờ gốc "
+#~ msgstr "Ngày/giờ sai"
 
 #~ msgid "WARNING!  You are about to completely delete the Exif metadata from this image?"
 #~ msgstr "CẢNH BÁO: Bạn sắp xóa hoàn toàn metadata Exif khỏi hình? "
 
-#, fuzzy
 #~ msgid "Media Title Update"
-#~ msgstr "Lọc đa phương tiện "
+#~ msgstr "Tiêu đề đa phương tiện được cập nhật "
 
-#, fuzzy
 #~ msgid "Media Object Date Created"
-#~ msgstr "Đối tượng đa phương tiện ghi là riêng tư "
+#~ msgstr "Ngày của đối tượng đa phương tiện"
 
-#, fuzzy
 #~ msgid "Saving Exif metadata to this image..."
-#~ msgstr "Lưu metadata Exif của hình này... "
+#~ msgstr "Lưu metadata Exif vào hình này... "
 
 #~ msgid "All Exif metadata has been deleted from this image..."
 #~ msgstr "Mọi metadata Exif đã được xóa khỏi hình... "
 
-#, fuzzy
 #~ msgid "There was an error in stripping the Exif metadata from this image..."
-#~ msgstr "Không có metadata Exif cho hình này... "
+#~ msgstr "Có lỗi khi xoá dữ kiện metadata Exif của hình này... "
 
 #~ msgid "Gramplet showing available third-party plugins (addons)"
 #~ msgstr "Gramplet hiển thị trình plugin (addon) của phía thứ ba"
@@ -30156,14 +29929,23 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid "Import database"
 #~ msgstr "nhập dữ liệu "
 
+#~ msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
+#~ msgstr "Tên theo cha bị bỏ qua:  '%(patronym)s' (%(msg)s)"
+
 #~ msgid "Provides a FormattingHelper class for common strings"
 #~ msgstr "Cung cấp class FormattingHelper để tạo chuổi phổ biến "
 
 #~ msgid "Base class for ImportGrdb"
 #~ msgstr "Lớp cơ sở cho ImportGrdb "
 
+#~ msgid "Provides Textual Translation."
+#~ msgstr "Cung cấp bản dịch văn bản. "
+
 #~ msgid "%(language)s (%(country)s)"
 #~ msgstr "%(language)s (%(country)s)"
+
+#~ msgid "Ref: %s. %s"
+#~ msgstr "Ref: %s. %s"
 
 #~ msgid "%(quantity)d invalid event reference was removed\n"
 #~ msgid_plural "%(quantity)d invalid event references were removed\n"
@@ -30211,28 +29993,26 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid "Source View"
 #~ msgstr "Xem nguồn "
 
+#~ msgid "Pkace"
+#~ msgstr "Pkace"
+
 #~ msgid "Source Reference: %s"
 #~ msgstr "Tham chiếu nguồn:%s "
 
-#, fuzzy
 #~ msgid "Media |Gallery"
-#~ msgstr "Đa phương tiện | Tên "
+#~ msgstr "Đa phương tiện | Kho hình"
 
-#, fuzzy
 #~ msgid "Media | Gallery"
-#~ msgstr "Đa phương tiện | Tên "
+#~ msgstr "Đa phương tiện | Kho hình"
 
-#, fuzzy
 #~ msgid "Partner 1"
-#~ msgstr "Bạn đời "
+#~ msgstr "Bạn đời 1 "
 
-#, fuzzy
 #~ msgid "Partner 2"
-#~ msgstr "Bạn đời "
+#~ msgstr "Bạn đời 2 "
 
-#, fuzzy
 #~ msgid "Family/ Relationship"
-#~ msgstr "<b>Quan hệ gia đình</b> "
+#~ msgstr "Gia đình/ Quan hệ "
 
 #~ msgid "Person(s)"
 #~ msgstr "Người "
@@ -30240,9 +30020,8 @@ msgstr "<b> Gramps cho Gnome hay cho KDE? </ b> <br/> Đối với người dùn
 #~ msgid " and "
 #~ msgstr "và "
 
-#, fuzzy
 #~ msgid "Referenced Sources"
-#~ msgstr "Tham chiếu "
+#~ msgstr "Nguồn tham chiếu "
 
 #~ msgid "Every object"
 #~ msgstr "Từng đối tượng "
