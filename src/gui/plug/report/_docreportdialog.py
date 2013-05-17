@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ class DocReportDialog(ReportDialog):
 
     def init_interface(self):
         ReportDialog.init_interface(self)
-        self.doc_type_changed(self.format_menu)
+        self.doc_type_changed(self.format_menu, preserve_tab=False)
 
     #------------------------------------------------------------------------
     #
@@ -103,7 +103,7 @@ class DocReportDialog(ReportDialog):
         
         self.options.set_document(self.doc)
 
-    def doc_type_changed(self, obj):
+    def doc_type_changed(self, obj, preserve_tab=True):
         """This routine is called when the user selects a new file
         formats for the report.  It adjust the various dialog sections
         to reflect the appropriate values for the currently selected
@@ -119,6 +119,7 @@ class DocReportDialog(ReportDialog):
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
+        old_page = self.notebook.get_current_page()
         if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
@@ -131,6 +132,8 @@ class DocReportDialog(ReportDialog):
             self.html_label.set_use_markup(True)
             self.notebook.insert_page(self.html_table, self.html_label, 0)
             self.html_table.show_all()
+        if preserve_tab:
+            self.notebook.set_current_page(old_page)
         self.firstpage_added = True
 
         ext_val = docgen_plugin.get_extension()
