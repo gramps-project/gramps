@@ -438,6 +438,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 env_version = tuple(map(int, bsddb_version[1:-1].split(', ')))
         else:
             # bsddb version is unknown
+            bsddb_version = "Unknown"
             env_version = "Unknown"
 #        _LOG.debug("db version %s, program version %s" % (bsddb_version, bdb_version))
 
