@@ -6,6 +6,7 @@
 # Copyright (C) 2009       Gary Burton
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -141,6 +142,7 @@ class GraphvizReportDialog(ReportDialog):
     def init_interface(self):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu)
+        self.notebook.set_current_page(1) # don't start on "Paper Options"
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
