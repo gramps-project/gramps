@@ -6108,13 +6108,9 @@ msgstr "PNG-afbeelding"
 msgid "Graphviz File"
 msgstr "Graphviz-bestand"
 
-<<<<<<< .mine
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:125
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-<<<<<<< .mine
-msgstr "Waarde '%(val)s' niet gevonden voor optie '%(opt)s'"
-=======
 msgstr "Waarde '%(val)s' niet gevonden voor optie '%(opt)s'"
 
 #. ------------------------------------------------------------------------
@@ -6122,19 +6118,17 @@ msgstr "Waarde '%(val)s' niet gevonden voor optie '%(opt)s'"
 #. Private Constants
 #.
 #. ------------------------------------------------------------------------
-=======
+
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:125
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
 msgstr ""
->>>>>>> .r22329
 
 #. ------------------------------------------------------------------------
 #.
 #. Private Constants
 #.
 #. ------------------------------------------------------------------------
->>>>>>> .r22314
 #: ../gramps/gen/plug/report/_book.py:75 ../gramps/gui/plug/_dialogs.py:60
 #: ../gramps/gui/plug/report/_bookdialog.py:89
 #: ../gramps/gui/viewmanager.py:123
