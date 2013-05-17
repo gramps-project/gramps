@@ -12969,9 +12969,6 @@ msgstr "Het geselecteerde filter verwijderen"
 
 #: ../gramps/gui/glade/rule.glade.h:16
 msgid "Delete the selected rule"
-<<<<<<< .mine
-msgstr "De geselecteerde regel verwijderen"
-=======
 msgstr "De geselecteerde regel verwijderen"
 
 #: ../gramps/gui/glade/rule.glade.h:18
