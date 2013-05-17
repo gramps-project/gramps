@@ -79,6 +79,8 @@ import ManagedWindow
 from glade import Glade
 import gui.utils
 import gui.user
+from gui.plug import make_gui_option
+from types import ClassType
 
 # Import from specific modules in ReportBase
 from gen.plug.report import CATEGORY_BOOK, book_categories
@@ -446,7 +448,7 @@ class BookList(object):
         f = open(self.file, "w")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<booklist>\n')
-        for name in self.bookmap:
+        for name in sorted(self.bookmap): # enable a diff of archived copies
             book = self.get_book(name)
             dbname = book.get_dbname()
             f.write('<book name="%s" database="%s">\n' % (name, dbname) )
@@ -934,20 +936,26 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         store, the_iter = self.book_model.get_selected()
         if not the_iter:
+            WarningDialog(_('No selected book item'),
+                          _('Please select a book item to configure.')
+                         )
             return
         data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
         row = self.book_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
+        option_class.handler.set_default_stylesheet_name(item.get_style_name())
+        item.is_from_saved_book = bool(self.book.get_name())
         item_dialog = BookItemDialog(self.dbstate, self.uistate,
-                                     item,
-                                     self.track)
+                                     item, self.track)
 
         while True:
             response = item_dialog.window.run()
             if response == gtk.RESPONSE_OK:
                 # dialog will be closed by connect, now continue work while
                 # rest of dialog is unresponsive, release when finished
+                style = option_class.handler.get_default_stylesheet_name()
+                item.set_style_name(style)
                 subject = _get_subject(option_class, self.db)
                 self.book_model.model.set_value(the_iter, 2, subject)
                 self.book.set_item(row, item)
@@ -1042,6 +1050,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if self.book.item_list:
             BookReportDialog(self.dbstate, self.uistate,
                              self.book, BookOptions)
+        else:
+            WarningDialog(_('No items'), _('This book has no items.'))
+            return
         self.close()
 
     def on_save_clicked(self, obj):
@@ -1086,7 +1097,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if book:
             self.open_book(book)
             self.name_entry.set_text(book.get_name())
-            self.book.name = book.get_name()
+            self.book.set_name(book.get_name())
 
     def on_edit_clicked(self, obj):
         """
@@ -1115,6 +1126,7 @@ class BookItemDialog(ReportDialog):
         name = item.get_name()
         translated_name = item.get_translated_name()
         self.option_class = item.option_class
+        self.is_from_saved_book = item.is_from_saved_book
         ReportDialog.__init__(self, dbstate, uistate,
                               self.option_class, name, translated_name, track)
 
@@ -1135,6 +1147,43 @@ class BookItemDialog(ReportDialog):
     def parse_target_frame(self):
         """Target frame is not used."""
         return 1
+
+    def init_options(self, option_class):
+        try:
+            if (issubclass(option_class, object) or     # New-style class
+                isinstance(option_class, ClassType)):   # Old-style class
+                self.options = option_class(self.raw_name, self.db)
+        except TypeError:
+            self.options = option_class
+        if not self.is_from_saved_book:
+            self.options.load_previous_values()
+
+    def add_user_options(self):
+        """
+        Generic method to add user options to the gui.
+        """
+        if not hasattr(self.options, "menu"):
+            return
+        menu = self.options.menu
+        options_dict = self.options.options_dict
+        for category in menu.get_categories():
+            for name in menu.get_option_names(category):
+                option = menu.get_option(category, name)
+                
+                # override option default with xml-saved value:
+                if name in options_dict:
+                    option.set_value(options_dict[name])
+                    
+                widget, label = make_gui_option(option, self.dbstate,
+                                                self.uistate, self.track,
+                                                self.is_from_saved_book)
+                if widget is not None:
+                    if label:
+                        self.add_frame_option(category,
+                                              option.get_label(), 
+                                              widget)
+                    else:
+                        self.add_frame_option(category, "", widget)
     
 #-------------------------------------------------------------------------
 #
@@ -1190,10 +1239,11 @@ class BookReportDialog(DocReportDialog):
     def __init__(self, dbstate, uistate, book, options):
         self.format_menu = None
         self.options = options
+        self.is_from_saved_book = False
         self.page_html_added = False
+        self.book = book
         DocReportDialog.__init__(self, dbstate, uistate, options,
                                   'book', _("Book Report"))
-        self.book = book
         self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
 
@@ -1258,6 +1308,16 @@ class BookReportDialog(DocReportDialog):
         
         if self.open_with_app.get_active():
             gui.utils.open_file_with_default_application(self.target_path)
+
+    def init_options(self, option_class):
+        try:
+            if (issubclass(option_class, object) or     # New-style class
+                isinstance(option_class, ClassType)):   # Old-style class
+                self.options = option_class(self.raw_name, self.db)
+        except TypeError:
+            self.options = option_class
+        if not self.is_from_saved_book:
+            self.options.load_previous_values()
 
 #------------------------------------------------------------------------
 #
