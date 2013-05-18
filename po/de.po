@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 18:43+0200\n"
-"PO-Revision-Date: 2013-05-14 18:52+0200\n"
+"POT-Creation-Date: 2013-05-18 14:15+0200\n"
+"PO-Revision-Date: 2013-05-18 14:18+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -87,10 +87,10 @@ msgstr "Lesezeichen organisieren"
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
-#: ../src/gui/plug/_guioptions.py:1110 ../src/gui/plug/_windows.py:115
+#: ../src/gui/plug/_guioptions.py:1111 ../src/gui/plug/_windows.py:115
 #: ../src/gui/selectors/selectperson.py:74 ../src/gui/views/tags.py:387
 #: ../src/gui/views/treemodels/peoplemodel.py:524
-#: ../src/plugins/BookReport.py:776 ../src/plugins/drawreport/TimeLine.py:68
+#: ../src/plugins/BookReport.py:778 ../src/plugins/drawreport/TimeLine.py:68
 #: ../src/plugins/gramplet/Backlinks.py:45
 #: ../src/plugins/lib/libpersonview.py:92
 #: ../src/plugins/textreport/IndivComplete.py:600
@@ -113,7 +113,7 @@ msgstr "Name"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:77
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../src/gui/editors/displaytabs/repoembedlist.py:67
-#: ../src/gui/plug/_guioptions.py:1111 ../src/gui/plug/_guioptions.py:1288
+#: ../src/gui/plug/_guioptions.py:1112 ../src/gui/plug/_guioptions.py:1289
 #: ../src/gui/selectors/selectcitation.py:67
 #: ../src/gui/selectors/selectevent.py:62
 #: ../src/gui/selectors/selectfamily.py:61
@@ -967,7 +967,7 @@ msgstr "Ereignis"
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:1287 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1288 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:304
 #: ../src/plugins/export/ExportCsv.py:460 ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
@@ -1072,7 +1072,7 @@ msgstr "Ereignisref."
 #: ../src/gui/configure.py:543 ../src/gui/configure.py:546
 #: ../src/gui/configure.py:547 ../src/gui/configure.py:548
 #: ../src/gui/configure.py:549 ../src/gui/editors/displaytabs/surnametab.py:76
-#: ../src/gui/plug/_guioptions.py:88 ../src/gui/plug/_guioptions.py:1436
+#: ../src/gui/plug/_guioptions.py:88 ../src/gui/plug/_guioptions.py:1437
 #: ../src/plugins/drawreport/StatisticsChart.py:318
 #: ../src/plugins/export/ExportCsv.py:336
 #: ../src/plugins/import/ImportCsv.py:170
@@ -1240,7 +1240,7 @@ msgstr "Aufbewahrungsort"
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:235
-#: ../src/plugins/BookReport.py:777 ../src/plugins/BookReport.py:781
+#: ../src/plugins/BookReport.py:779 ../src/plugins/BookReport.py:783
 #: ../src/plugins/gramplet/Backlinks.py:44
 #: ../src/plugins/gramplet/Events.py:49
 #: ../src/plugins/quickview/FilterByName.py:290
@@ -4626,7 +4626,7 @@ msgstr "Datei existiert nicht"
 msgid "PERSON"
 msgstr "PERSON"
 
-#: ../src/gen/plug/report/utils.py:267 ../src/plugins/BookReport.py:161
+#: ../src/gen/plug/report/utils.py:267 ../src/plugins/BookReport.py:163
 #: ../src/plugins/tool/EventCmp.py:156
 msgid "Entire Database"
 msgstr "Gesamte Datenbank"
@@ -4941,7 +4941,7 @@ msgstr "Namensformat"
 
 #: ../src/gui/configure.py:872 ../src/gui/editors/displaytabs/buttontab.py:70
 #: ../src/gui/plug/_windows.py:137 ../src/gui/plug/_windows.py:193
-#: ../src/plugins/BookReport.py:1001 ../src/glade/editperson.glade.h:29
+#: ../src/plugins/BookReport.py:1009 ../src/glade/editperson.glade.h:29
 #: ../src/glade/styleeditor.glade.h:4 ../src/glade/editfamily.glade.h:9
 #: ../src/glade/rule.glade.h:7
 msgid "Edit"
@@ -5268,8 +5268,8 @@ msgstr ""
 
 #: ../src/gui/dbloader.py:318 ../src/gui/dbloader.py:332
 #: ../src/gui/dbloader.py:346 ../src/gui/dbloader.py:360
-#: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:677
-#: ../src/plugins/BookReport.py:1067 ../src/plugins/view/familyview.py:259
+#: ../src/gui/viewmanager.py:1046 ../src/plugins/BookReport.py:679
+#: ../src/plugins/BookReport.py:1078 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -6358,7 +6358,7 @@ msgstr "Fehler beim Öffnen der Datei"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/gui/viewmanager.py:114 ../src/gui/plug/_dialogs.py:59
-#: ../src/plugins/BookReport.py:98
+#: ../src/plugins/BookReport.py:100
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
@@ -6881,7 +6881,7 @@ msgstr ""
 "Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen  oder die "
 "Schaltflächen"
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1050
+#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1051
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 
@@ -6889,7 +6889,7 @@ msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1028
+#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1029
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
@@ -6907,7 +6907,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 "Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:949
+#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:950
 msgid "No note given, click button to select one"
 msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 
@@ -6916,7 +6916,7 @@ msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:924
+#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:925
 msgid "Select an existing note"
 msgstr "Einen existierende Notiz auswählen"
 
@@ -8270,13 +8270,13 @@ msgstr "Als Standardnamen setzen"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:501
+#: ../src/gui/plug/_guioptions.py:1193 ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
-#: ../src/gui/plug/_guioptions.py:1191 ../src/gui/views/listview.py:502
+#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:502
 #: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nein"
@@ -8575,51 +8575,51 @@ msgstr "Finde Familiennamen"
 msgid "Finding surnames"
 msgstr "Finde Familiennamen"
 
-#: ../src/gui/plug/_guioptions.py:630
+#: ../src/gui/plug/_guioptions.py:631
 msgid "Select a different person"
 msgstr "Eine andere Person wählen"
 
-#: ../src/gui/plug/_guioptions.py:657
+#: ../src/gui/plug/_guioptions.py:658
 msgid "Select a person for the report"
 msgstr "Eine Person für den Bericht wählen"
 
-#: ../src/gui/plug/_guioptions.py:738
+#: ../src/gui/plug/_guioptions.py:739
 msgid "Select a different family"
 msgstr "Eine andere Familie wählen"
 
-#: ../src/gui/plug/_guioptions.py:836 ../src/plugins/BookReport.py:186
+#: ../src/gui/plug/_guioptions.py:837 ../src/plugins/BookReport.py:188
 msgid "unknown father"
 msgstr "unbekannter Vater"
 
-#: ../src/gui/plug/_guioptions.py:842 ../src/plugins/BookReport.py:192
+#: ../src/gui/plug/_guioptions.py:843 ../src/plugins/BookReport.py:194
 msgid "unknown mother"
 msgstr "unbekannte Mutter"
 
-#: ../src/gui/plug/_guioptions.py:844
+#: ../src/gui/plug/_guioptions.py:845
 #: ../src/plugins/textreport/PlaceReport.py:225
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s und %s (%s)"
 
-#: ../src/gui/plug/_guioptions.py:1187
+#: ../src/gui/plug/_guioptions.py:1188
 #, python-format
 msgid "Also include %s?"
 msgstr "%s auch berücksichtigen?"
 
-#: ../src/gui/plug/_guioptions.py:1189 ../src/gui/selectors/selectperson.py:67
+#: ../src/gui/plug/_guioptions.py:1190 ../src/gui/selectors/selectperson.py:67
 msgid "Select Person"
 msgstr "Person wählen"
 
-#: ../src/gui/plug/_guioptions.py:1437
+#: ../src/gui/plug/_guioptions.py:1438
 msgid "Colour"
 msgstr "Farbe"
 
-#: ../src/gui/plug/_guioptions.py:1665
+#: ../src/gui/plug/_guioptions.py:1666
 #: ../src/gui/plug/report/_reportdialog.py:461
 msgid "Save As"
 msgstr "Speichern als"
 
-#: ../src/gui/plug/_guioptions.py:1745
+#: ../src/gui/plug/_guioptions.py:1746
 #: ../src/gui/plug/report/_reportdialog.py:318
 #: ../src/gui/plug/report/_styleeditor.py:102
 msgid "Style Editor"
@@ -8768,26 +8768,26 @@ msgstr "Zusatzmodul Fehler"
 msgid "Main window"
 msgstr "Hauptfenster"
 
-#: ../src/gui/plug/report/_docreportdialog.py:124
-#: ../src/gui/plug/report/_graphvizreportdialog.py:175
+#: ../src/gui/plug/report/_docreportdialog.py:126
+#: ../src/gui/plug/report/_graphvizreportdialog.py:180
 msgid "Paper Options"
 msgstr "Papieroptionen"
 
-#: ../src/gui/plug/report/_docreportdialog.py:129
+#: ../src/gui/plug/report/_docreportdialog.py:131
 msgid "HTML Options"
 msgstr "HTML Optionen"
 
-#: ../src/gui/plug/report/_docreportdialog.py:159
-#: ../src/gui/plug/report/_graphvizreportdialog.py:150
+#: ../src/gui/plug/report/_docreportdialog.py:163
+#: ../src/gui/plug/report/_graphvizreportdialog.py:152
 msgid "Output Format"
 msgstr "Ausgabeformat"
 
-#: ../src/gui/plug/report/_docreportdialog.py:166
-#: ../src/gui/plug/report/_graphvizreportdialog.py:157
+#: ../src/gui/plug/report/_docreportdialog.py:170
+#: ../src/gui/plug/report/_graphvizreportdialog.py:159
 msgid "Open with default viewer"
 msgstr "In voreingestellten Programm anzeigen"
 
-#: ../src/gui/plug/report/_docreportdialog.py:203
+#: ../src/gui/plug/report/_docreportdialog.py:210
 msgid "CSS file"
 msgstr "CSS Datei"
 
@@ -9966,70 +9966,70 @@ msgstr ""
 msgid "Error Detail"
 msgstr "Fehlerdetails"
 
-#: ../src/plugins/BookReport.py:194
+#: ../src/plugins/BookReport.py:196
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s und %(mother)s (%(id)s)"
 
-#: ../src/plugins/BookReport.py:602
+#: ../src/plugins/BookReport.py:604
 msgid "Available Books"
 msgstr "Verfügbare Bücher"
 
-#: ../src/plugins/BookReport.py:625
+#: ../src/plugins/BookReport.py:627
 msgid "Book List"
 msgstr "Bücherliste"
 
-#: ../src/plugins/BookReport.py:674
+#: ../src/plugins/BookReport.py:676
 msgid "Discard Unsaved Changes"
 msgstr "Ungesicherte Änderungen verwerfen"
 
-#: ../src/plugins/BookReport.py:675
+#: ../src/plugins/BookReport.py:677
 msgid "You have made changes which have not been saved."
 msgstr "Deine Änderungen wurden noch nicht gespeichert."
 
-#: ../src/plugins/BookReport.py:676 ../src/plugins/BookReport.py:1066
+#: ../src/plugins/BookReport.py:678 ../src/plugins/BookReport.py:1077
 msgid "Proceed"
 msgstr "Fortsetzen"
 
-#: ../src/plugins/BookReport.py:705
+#: ../src/plugins/BookReport.py:707
 msgid "Name of the book. MANDATORY"
 msgstr "Name des Buches. NOTWENDIG"
 
-#: ../src/plugins/BookReport.py:727 ../src/plugins/BookReport.py:1195
-#: ../src/plugins/BookReport.py:1213 ../src/plugins/bookreport.gpr.py:31
+#: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:1246
+#: ../src/plugins/BookReport.py:1263 ../src/plugins/bookreport.gpr.py:31
 msgid "Book Report"
 msgstr "Buchbericht"
 
-#: ../src/plugins/BookReport.py:765
+#: ../src/plugins/BookReport.py:767
 msgid "New Book"
 msgstr "Neues Buch"
 
-#: ../src/plugins/BookReport.py:768
+#: ../src/plugins/BookReport.py:770
 msgid "_Available items"
 msgstr "Verfügbare _Artikel"
 
-#: ../src/plugins/BookReport.py:772
+#: ../src/plugins/BookReport.py:774
 msgid "Current _book"
 msgstr "Aktuelles _Buch"
 
-#: ../src/plugins/BookReport.py:780
+#: ../src/plugins/BookReport.py:782
 #: ../src/plugins/drawreport/StatisticsChart.py:296
 msgid "Item name"
 msgstr "Artikelname"
 
-#: ../src/plugins/BookReport.py:783
+#: ../src/plugins/BookReport.py:785
 msgid "Subject"
 msgstr "Betreff"
 
-#: ../src/plugins/BookReport.py:795
+#: ../src/plugins/BookReport.py:797
 msgid "Book selection list"
 msgstr "Liste zur Auswahl eines Buches"
 
-#: ../src/plugins/BookReport.py:835
+#: ../src/plugins/BookReport.py:837
 msgid "Different database"
 msgstr "Andere Datenbank"
 
-#: ../src/plugins/BookReport.py:836
+#: ../src/plugins/BookReport.py:838
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -10047,23 +10047,39 @@ msgstr ""
 "Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person in "
 "der geöffneten Datenbank gesetzt."
 
-#: ../src/plugins/BookReport.py:995
+#: ../src/plugins/BookReport.py:939
+msgid "No selected book item"
+msgstr "Kein gewähltes Buchelement"
+
+#: ../src/plugins/BookReport.py:940
+msgid "Please select a book item to configure."
+msgstr "Bitte ein Buchelement zum konfigurieren wählen."
+
+#: ../src/plugins/BookReport.py:1003
 msgid "Setup"
 msgstr "Einrichten"
 
-#: ../src/plugins/BookReport.py:1005
+#: ../src/plugins/BookReport.py:1013
 msgid "Book Menu"
 msgstr "Buchmenü"
 
-#: ../src/plugins/BookReport.py:1028
+#: ../src/plugins/BookReport.py:1036
 msgid "Available Items Menu"
 msgstr "Verfügbare Artikel Menü"
 
 #: ../src/plugins/BookReport.py:1054
+msgid "No items"
+msgstr "Keine Elemente"
+
+#: ../src/plugins/BookReport.py:1054
+msgid "This book has no items."
+msgstr "Dieses Buch besitzt keine Elemente."
+
+#: ../src/plugins/BookReport.py:1065
 msgid "No book name"
 msgstr "Kein Buchname"
 
-#: ../src/plugins/BookReport.py:1055
+#: ../src/plugins/BookReport.py:1066
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -10073,24 +10089,24 @@ msgstr ""
 "\n"
 "Bitte gib ihm vorm speichern einen Namen."
 
-#: ../src/plugins/BookReport.py:1062
+#: ../src/plugins/BookReport.py:1073
 msgid "Book name already exists"
 msgstr "Buchname existiert bereits"
 
-#: ../src/plugins/BookReport.py:1063
+#: ../src/plugins/BookReport.py:1074
 msgid "You are about to save away a book with a name which already exists."
 msgstr ""
 "Du bist dabei ein Buch mit einem bereits bestehenden Namen zu speichern."
 
-#: ../src/plugins/BookReport.py:1216
+#: ../src/plugins/BookReport.py:1266
 msgid "Gramps Book"
 msgstr "Gramps Buch"
 
-#: ../src/plugins/BookReport.py:1277 ../src/plugins/BookReport.py:1288
+#: ../src/plugins/BookReport.py:1337 ../src/plugins/BookReport.py:1348
 msgid "Please specify a book name"
 msgstr "Bitte gib einen Buchnamen an"
 
-#: ../src/plugins/BookReport.py:1284
+#: ../src/plugins/BookReport.py:1344
 #, python-format
 msgid "No such book '%s'"
 msgstr "Kein solches Buch '%s'"
