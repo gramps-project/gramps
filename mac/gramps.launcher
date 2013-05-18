@@ -35,7 +35,6 @@ export PYTHON="$bundle_contents/MacOS/python"
 export PYTHONHOME="$bundle_res"
 
 export GRAMPSDIR="$bundle_lib/python$PYVER/site-packages/gramps"
-export GRAMPSI18N="$bundle_data"/locale
 export GRAMPS_RESOURCES="$bundle_data"
 export GRAMPSHOME="$HOME/Library/Application Support"
 
