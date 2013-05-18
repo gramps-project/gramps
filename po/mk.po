@@ -1,6 +1,7 @@
+# Macedonian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2006, 2007 Free Software Foundation, Inc.
-# translation of gramps to Macedonian
-# This file is distributed under the same license as the gramps package.
 #
 # Maintainer: Vlado Pesov <vpesov@genrepsoft.com>, 2008
 # Maintainer: Bojan Seirovski <druid0101@gmail.com>, 2008

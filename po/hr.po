@@ -1,6 +1,7 @@
-# Croatian translation for GRAMPS
-# Copyright (C) Gramps project
+# Croatian translation for Gramps
+# $Id$
 # This file is distributed under the same license as the GRAMPS package.
+# Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
 #
 msgid ""

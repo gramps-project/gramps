@@ -1,3 +1,5 @@
+# Finnish translation for Gramps
+# $Id$
 # translation of fi.po to Finnish
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.

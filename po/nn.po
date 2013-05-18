@@ -1,8 +1,7 @@
-# translation of nn.po to
-# Translation of nn.po to
-# GRAMPS
+# Norwegian (Nynorsk) translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2008
-# This file is distributed under the same license as the GRAMPS package.
 #
 # Sigmund Lorentsen <sigmund.lorentsen@tele2.no>, 2008, 2009, 2010, 2011, 2012.
 msgid ""

@@ -1,6 +1,7 @@
-# Translation of gramps.pot to slovenian
+# Slovenian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
-# This file is distributed under the same license as the gramps package.
 # Bernard Banko <bernard.banko at t-2.net>, 2007-2011, 2011.
 #
 msgid ""

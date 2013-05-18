@@ -1,6 +1,8 @@
+# Albanian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2006, 2007 Free Software Foundation, Inc.
 # translation of celestia-doc-index.0.3.6.po to Albanian
-# This file is distributed under the same license as the GRAMPS package.
 #
 # Maintainer: Armend Iseni <aiseni.as@gmail.com>, 2008
 # Maintainer: Vlado Pesov <vpesov@genrepsoft.com>, 2008

@@ -1,4 +1,6 @@
-# Italian translation for GRAMPS
+# Italian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2001-2013 the Gramps Project
 #
 # Common and noteworthy translations:

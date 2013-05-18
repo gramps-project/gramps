@@ -1,4 +1,5 @@
-# Czech translation for GRAMPS
+# Czech translation for Gramps
+# $Id$
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005

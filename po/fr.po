@@ -1,4 +1,5 @@
-# French translation for gramps
+# French translation for Gramps
+# $Id$
 # Copyright (C) 2001-2012 Free Software Foundation, Inc.
 #
 # Quelques variables pour la cohérence:

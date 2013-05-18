@@ -1,6 +1,9 @@
+# Catalan translation for Gramps
+# $Id$
 # translation of ca.po to Català
 # TRADUCCIÓ AL CATALÀ DE GRAMPS
 # Copyright (C) 2008 PEL GRUP DE GRAMPS
+# This file is distributed under the same license as the gramps package.
 # Aquest fitxer es distribueix segons la mateixa llicència que Gramps
 #
 # Joan Creus <joan punt creus a gmail punt com>, 2008.

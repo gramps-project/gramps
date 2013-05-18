@@ -1,7 +1,8 @@
-# translation of ru.po to
-# Russian translation for Gramps; Русский перевод для GRAMPS
-# Copyright (C) 2002-2011 Free Software Foundation, Inc.
+# Russian translation for Gramps
 # $Id$
+# This file is distributed under the same license as the Gramps package.
+# Русский перевод для GRAMPS
+# Copyright (C) 2002-2011 Free Software Foundation, Inc.
 #
 # Alexander Bogdashevsky <sanderb@kezomba.com>, 2004.
 # Alex Roitman <shura@gramps-project.org>, 2002-2007.

@@ -1,3 +1,6 @@
+# Slovak translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Gramps SLOVAK language version
 # Lubo Vasko, 2005-2011
 #

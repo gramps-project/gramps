@@ -1,4 +1,6 @@
-# translation of pl.po to
+# Polish translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2002-2003, 2006, 2007 Free Software Foundation, Inc.
 #
 # Piotr Czubaszek <pioterus(at)gmail(dot)com>, 2007.
