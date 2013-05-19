@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2013-05-17 15:56+0100\n"
+"PO-Revision-Date: 2013-05-19 15:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -729,7 +729,7 @@ msgstr "=nom_du_fichier"
 # trunk
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Nom du fichier de sortie. OBLIGATOIRE"
 
 #: ../gramps/cli/plug/__init__.py:269
 msgid "=format"
@@ -13129,6 +13129,12 @@ msgid ""
 "You can also change manually the startup view in the gramps.ini file \n"
 "by changing the last-view parameter.\n"
 msgstr ""
+"\n"
+"Gramps n'a pas fonctionné. S'il vous plaît rapportez le.\n"
+"Cela peut être lié à une erreur au démarrage dans une vue complémentaire.\n"
+"Pour utiliser une autre vue, ne changez pas d'arbre familial, mais changez de vue d'abord,\n"
+"puis rechargez votre arbre familal. Vous pouvez également changer manuellement la première\n"
+"vue au démarrage depuis votre fichier gramps.ini en changeant le paramètre last-view.\n"
 
 # trunk
 #: ../gramps/gui/logger/_errorreportassistant.py:74
@@ -31487,8 +31493,10 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 #~ msgstr ""
 #~ "La structure de votre arbre familial a changé depuis la version de Gramps qui l'a créée.\n"
 #~ "\n"
+
 #~ msgid "Need to upgrade database!"
 #~ msgstr "Vous avez besoin de mettre à jour votre base de données !"
+
 #~ msgid "Upgrade now"
 #~ msgstr "Mettre à jour maintenant"
 
@@ -31798,18 +31806,25 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 #~ "Votre version de Python ne remplit pas toutes les conditions requises. Python %d.%d.%d (ou supérieur) est nécessaire pour exécuter Gramps.\n"
 #~ "\n"
 #~ "Gramps va maintenant s'arrêter."
+
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Vous avez besoin de définir un 'individu souche'."
+
 #~ msgid "TODO"
 #~ msgstr "Liste À faire"
+
 #~ msgid "Gramplet for generic notes"
 #~ msgstr "Gramplet pour des notes génériques"
+
 #~ msgid "TODO List"
 #~ msgstr "Liste À faire"
+
 #~ msgid "Enter text"
 #~ msgstr "Entrez un texte"
+
 #~ msgid "Enter your TODO list here."
 #~ msgstr "Entrez votre liste À faire ici."
+
 #~ msgid "Gramplet View"
 #~ msgstr "Vue Gramplet"
 
@@ -32079,36 +32094,52 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 #, fuzzy
 #~ msgid "Add Existing Person as Child"
 #~ msgstr "Ajouter un individu existant comme enfant de la famille"
+
 #~ msgid "Filt_er:"
 #~ msgstr "Filtr_e :"
+
 #~ msgid "_Marriages"
 #~ msgstr "_Mariages"
+
 #~ msgid "I_ndividuals"
 #~ msgstr "I_ndividus"
+
 #~ msgid "Translate _Headers"
 #~ msgstr "Traduire les _en-têtes"
+
 #~ msgid "Export:"
 #~ msgstr "Exporter :"
+
 #~ msgid "_Restrict data on living people"
 #~ msgstr "_Limiter les informations sur les individus vivants"
+
 #~ msgid "Exclude _notes"
 #~ msgstr "Exclure les _notes"
+
 #~ msgid "Use _Living as first name"
 #~ msgstr "Utiliser _Vivant comme prénom"
+
 #~ msgid "Reference i_mages from path:  "
 #~ msgstr "Référencer les i_mages par leur chemin :  "
+
 #~ msgid "phpGedView import"
 #~ msgstr "Importation phpGedView"
+
 #~ msgid "<b>phpGedView import</b>"
 #~ msgstr "<b>Importation phpGedView</b>"
+
 #~ msgid "http://"
 #~ msgstr "http://"
+
 #~ msgid "Username:"
 #~ msgstr "Nom d'utilisateur :"
+
 #~ msgid "Password:"
 #~ msgstr "Mot de passe :"
+
 #~ msgid "Could not make database directory: "
 #~ msgstr "Impossible de créer le répertoire de la base de données : "
+
 #~ msgid "Object with the <source>"
 #~ msgstr "Objet avec la <source>"
 
@@ -32294,6 +32325,7 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 #, fuzzy
 #~ msgid "Family Hyperlink"
 #~ msgstr "Liens familiaux"
+
 #~ msgid "Horizontal -- No Change"
 #~ msgstr "Horizontale -- Aucun changement"
 
@@ -32301,4 +32333,3 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 #, fuzzy
 #~ msgid "All rules must apply sequentially"
 #~ msgstr "Toutes les règles doivent correspondre"
-
