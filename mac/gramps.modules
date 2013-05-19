@@ -104,16 +104,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
-  <distutils id="pybsddb">
-    <branch module="b/bsddb3/bsddb3-5.3.0.tar.gz"
-	    hash="md5:d5aa4f293c4ea755e84383537f74be82" repo="pymodules"
-	    version="5.3.0"/>
-    <dependencies>
-      <dep package="python3"/>
-      <dep package="berkeleydb"/>
-    </dependencies>
-  </distutils>
-
   <autotools id="pyWebKitGtk" >
     <branch module="pywebkitgtk-1.1.7.tar.bz2" version="1.1.7"
 	    repo="pywebkitgtk"/>
