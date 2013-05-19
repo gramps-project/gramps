@@ -18038,7 +18038,6 @@ msgid "Gramps package (portable XML)"
 msgstr "Gramps-pakke (flyttbar XML)"
 
 #: ../gramps/plugins/importer/import.gpr.py:89
-#, fuzzy
 msgid "Import data from a Gramps package (an archived XML Family Tree together with the media object files.)"
 msgstr "Importere data fra en Gramps-pakke (en arkivert XML-slektsdatabase sammen med mediaobjektfiler.)"
 
@@ -18047,7 +18046,6 @@ msgid "Gramps XML Family Tree"
 msgstr "Gramps XML Slektstre"
 
 #: ../gramps/plugins/importer/import.gpr.py:108
-#, fuzzy
 msgid "The Gramps XML format is a text version of a Family Tree. It is read-write compatible with the present Gramps database format."
 msgstr "Gramps XML-database er en tekstversjon av slektstreet. Det er både lese- og skrivekompatibelt med det nåværende databaseformatet til Gramps."
 
@@ -18360,7 +18358,7 @@ msgid "Base path for relative media set"
 msgstr "Grunnsti for relative medier er angitt"
 
 #: ../gramps/plugins/importer/importgpkg.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "The base media path of this Family Tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
 msgstr "Basisstien for media for dette slektsteet er satt til %s. Du bør vurdere å bruke en enklere sti. Du kan endre dette i Innstillinger.  Samtidig flytter du over dine media til en ny katalog, bruker verktøyet Mediahåndterer og velger opsjonen 'Erstatte del av stien' for å sette korrekt sti til dine mediaobjekt."
 
@@ -18369,9 +18367,9 @@ msgid "Cannot set base media path"
 msgstr "Kan ikke sette mediasti"
 
 #: ../gramps/plugins/importer/importgpkg.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "The Family Tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "Slektstreet du importerte har allerede en basissti for media: %(orig_path)s. De importerte mediaobjektene derimot er angitt til å være relativt til %(path)s. Du kan endre mediastien i Innstillinger eller du kan konvertere de importerte filene til å ligge i den allerede angitte basisstien for media. Du kan gjøre dette ved å flytte dine media til en ny posisjon og bruke verktøyet 'Erstatte del av stien' for å sette korrekte stier til dine mediaobjekter."
+msgstr "Slektsdatabasen du importerte har allerede en basissti for media: %(orig_path)s. De importerte mediaobjektene derimot er angitt til å være relativt til %(path)s. Du kan endre mediastien i Innstillinger eller du kan konvertere de importerte filene til å ligge i den allerede angitte basisstien for media. Du kan gjøre dette ved å flytte dine media til en ny posisjon og bruke verktøyet 'Erstatte del av stien' for å sette korrekte stier til dine mediaobjekter."
 
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:76
@@ -18383,7 +18381,6 @@ msgid "%s could not be opened"
 msgstr "Klarte ikke å åpne %s"
 
 #: ../gramps/plugins/importer/importgrdb.py:59
-#, fuzzy
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (Family Tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 msgstr "Versjonen av databasen støttes ikke av denne versjonen av Gramps. Du må bruke en eldre versjon av Gramps (3.0.x) og importere databasen din i den versjonen. Deretter må du eksportere en kopi av dine data til Gramps XML. Så oppgraderer du Gramps (for eksempel til denne versjonen) og lag en ny og tom slektsdatabase. Importere til slutt Gramps XML-fila i denne versjonen. Du henvises videre til http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x for mer informasjon"
 
@@ -18583,7 +18580,7 @@ msgid "Number of new objects imported:\n"
 msgstr "Antall nye importerte objekter:\n"
 
 #: ../gramps/plugins/importer/importxml.py:323
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 " The imported file was not self-contained.\n"
@@ -18595,11 +18592,11 @@ msgid ""
 msgstr ""
 "\n"
 " Den importerte fila var ikke komplett.\n"
-"For å rette på dette ble %d objekter opprettet og\n"
+"For å rette på dette ble %(new)d objekter opprettet og\n"
 "de typiske egenskapene til disse ble satt til 'Ukjent'.\n"
 "Spesifikasjonene per kategori er vist ved numrene\n"
 "i parenteser. Der det er mulig lir disse 'Ukjent'-\n"
-"objektene referert til av notatet %s.\n"
+"objektene referert til av notatet %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:331
 msgid ""
