@@ -137,8 +137,20 @@
     ${prefix}/etc/pango/
   </data>
 
+  <data recurse="True">
+    ${prefix}/share/gramps/*.py
+  </data>
+
+  <data recurse="True">
+    ${prefix}/share/gramps/*.glade
+  </data>
+
+  <data recurse="True">
+    ${prefix}/share/gramps/*.xml
+  </data>
+
   <data>
-    ${prefix}/share/gramps/
+    ${prefix}/share/gramps/images/
   </data>
 
   <!--data>
