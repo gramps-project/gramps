@@ -271,7 +271,6 @@ msgstr ""
 "  -v, --version                          Vis versjoner\n"
 
 #: ../gramps/cli/argparser.py:83
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -630,81 +629,71 @@ msgid "ERROR: Please specify a family"
 msgstr "FEIL: Vennligst spesifiser en familie"
 
 #: ../gramps/cli/plug/__init__.py:268
-#, fuzzy
 msgid "=filename"
-msgstr "Filnavn"
+msgstr "filnavn"
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Navn på utfil. OBLIGATORISK"
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "=format"
-msgstr "Format"
+msgstr "=format"
 
 #: ../gramps/cli/plug/__init__.py:269
-#, fuzzy
 msgid "Output file format."
-msgstr "Filformat"
+msgstr "Filformat til utfil."
 
 #: ../gramps/cli/plug/__init__.py:270 ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "=name"
-msgstr "etternavn"
+msgstr "=navn"
 
 #: ../gramps/cli/plug/__init__.py:270
-#, fuzzy
 msgid "Style name."
-msgstr "Stilnavn:"
+msgstr "Stilnavn."
 
 #: ../gramps/cli/plug/__init__.py:271
-#, fuzzy
 msgid "Paper size name."
-msgstr "Privat fornavn"
+msgstr "Navn på papirformat."
 
 #: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:273
 #: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
 #: ../gramps/cli/plug/__init__.py:279
-#, fuzzy
 msgid "=number"
-msgstr "Nummer"
+msgstr "=nummer"
 
 #: ../gramps/cli/plug/__init__.py:272
-#, fuzzy
 msgid "Paper orientation number."
-msgstr "Identifikasjonsnummer"
+msgstr "Orientering av ark, nummer."
 
 #: ../gramps/cli/plug/__init__.py:273
 msgid "Left paper margin"
-msgstr ""
+msgstr "Venstremarg"
 
 #: ../gramps/cli/plug/__init__.py:274 ../gramps/cli/plug/__init__.py:276
 #: ../gramps/cli/plug/__init__.py:278 ../gramps/cli/plug/__init__.py:280
-#, fuzzy
 msgid "Size in cm"
-msgstr "Størrelse i byte"
+msgstr "Størrelse i cm"
 
 #: ../gramps/cli/plug/__init__.py:275
 msgid "Right paper margin"
-msgstr ""
+msgstr "Høyremarg"
 
 #: ../gramps/cli/plug/__init__.py:277
 msgid "Top paper margin"
-msgstr ""
+msgstr "Toppmarg"
 
 #: ../gramps/cli/plug/__init__.py:279
 msgid "Bottom paper margin"
-msgstr ""
+msgstr "Bunnmarg"
 
 #: ../gramps/cli/plug/__init__.py:281
-#, fuzzy
 msgid "=css filename"
-msgstr "Velg en fil"
+msgstr "=filnavn på css"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "CSS-filnavn som skal brukes, bare html-format"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
@@ -839,7 +828,7 @@ msgid "Remove mother from family"
 msgstr "Fjern mor fra familien"
 
 #: ../gramps/gen/db/exceptions.py:82
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
 "\n"
@@ -848,7 +837,10 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data between different schema versions."
 msgstr ""
 "Databaseversjonen er ikke støttet av denne versjonen av Gramps.\n"
-"Vennligst oppgrader til den korresponderende versjonen, eller bruk XML for å flytte data mellom de forskjellige database versjonene."
+"\n"
+"Denne slektsdatabasen har databaseversjon %(tree_vers)s, og denne versjonen av Gramps støtter versjonene fra %(min_vers)s til %(max_vers)s\n"
+"\n"
+"Vennligst oppgrader til den korresponderende versjonen, eller bruk XML for å flytte data mellom de forskjellige databaseversjonene."
 
 #: ../gramps/gen/db/exceptions.py:104
 #, python-format
@@ -5020,15 +5012,13 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:77
 #: ../gramps/plugins/view/pedigreeview.py:2015
-#, fuzzy
 msgid "Horizontal (→)"
-msgstr "Vannrett (venstre til høyre)"
+msgstr "Vannrett (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
 #: ../gramps/plugins/view/pedigreeview.py:2016
-#, fuzzy
 msgid "Horizontal (←)"
-msgstr "Vannrett (venstre til høyre)"
+msgstr "Vannrett (←)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:80
 msgid "Bottom, left"
@@ -5063,9 +5053,8 @@ msgid "Left, top"
 msgstr "Øverst til venstre"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
-#, fuzzy
 msgid "Compress to minimal size"
-msgstr "Minste størrelse"
+msgstr "Komprimere til minste størrelse"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:90
 msgid "Fill the given area"
@@ -5073,7 +5062,7 @@ msgstr "Fyll ut angitt område"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:91
 msgid "Expand uniformly"
-msgstr ""
+msgstr "Utvide uniformt"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Top"
@@ -5167,7 +5156,6 @@ msgid "DPI"
 msgstr "PPT"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:220
-#, fuzzy
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 DPI."
 msgstr "Punkt per tomme.  Når du lager bilder slik som .gif eller .png for Internett, prøv tall som 100 eller 300 PPT (DPI).  Bruk 72PPT når du lager PostScript- eller PDF-filer."
 
@@ -5542,7 +5530,7 @@ msgid "Relationship loop detected"
 msgstr "Fant en relasjonsløkke"
 
 #: ../gramps/gen/relationship.py:862
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Family Tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
@@ -5781,9 +5769,8 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
 #: ../gramps/gen/utils/image.py:113
-#, fuzzy
 msgid "WARNING: PIL module not loaded.  Image cropping in report files will not be available."
-msgstr "ADVARSEL: modulen pyexiv2 er ikke lastet.  Funksjonaliteten Metadata for bilder vil ikke være tilgjengelig."
+msgstr "ADVARSEL: modulen PIL er ikke lastet.  Funksjonaliteten for å beskjære bilder vil ikke være tilgjengelig."
 
 #: ../gramps/gen/utils/grampslocale.py:604
 msgid "Bulgarian"
@@ -7237,7 +7224,6 @@ msgid "Family Tree Database path"
 msgstr "Databasesti"
 
 #: ../gramps/gui/configure.py:1326
-#, fuzzy
 msgid "Automatically load last Family Tree"
 msgstr "Last inn den siste databasen automatisk"
 
@@ -7317,15 +7303,15 @@ msgstr "Denne fila sier den har en annen tegnkoding enn hva den har, så den kan
 
 #: ../gramps/gui/dbloader.py:327 ../gramps/gui/dbloader.py:341
 #: ../gramps/gui/dbloader.py:369
-#, fuzzy
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Er du sikker på at du vil tømme angrehistorikken?"
+msgstr "Er du sikker på at du vil oppgradere denne slektsdatabasen?"
 
 #: ../gramps/gui/dbloader.py:330 ../gramps/gui/dbloader.py:372
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
-msgstr ""
+msgstr "Jeg har laget en sikkerhetskopi,\n"
+"vennligst oppgradere min slektsdatabase"
 
 #: ../gramps/gui/dbloader.py:332 ../gramps/gui/dbloader.py:346
 #: ../gramps/gui/dbloader.py:360 ../gramps/gui/dbloader.py:374
@@ -7339,18 +7325,19 @@ msgstr "Avbryt"
 msgid ""
 "I have made a backup,\n"
 "please upgrade my tree"
-msgstr ""
+msgstr "Jeg har laget en sikkerhetskopi,\n"
+"vennligst oppgradere min slektsdatabase"
 
 #: ../gramps/gui/dbloader.py:355
-#, fuzzy
 msgid "Are you sure you want to downgrade this Family Tree?"
-msgstr "Er du sikker på at du vil tømme angrehistorikken?"
+msgstr "Er du sikker på at du vil nedgradere denne slektsdatabasen?"
 
 #: ../gramps/gui/dbloader.py:358
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
-msgstr ""
+msgstr "Jeg har laget en sikkerhetskopi,\n"
+"vennligst nedgradere min slektsdatabase"
 
 #: ../gramps/gui/dbloader.py:439
 msgid "All files"
@@ -7373,7 +7360,6 @@ msgid "_Archive"
 msgstr "_Arkiver"
 
 #: ../gramps/gui/dbman.py:282
-#, fuzzy
 msgid "Family Tree name"
 msgstr "Navn på slektsdatabase"
 
@@ -7433,17 +7419,15 @@ msgid "Importing archive..."
 msgstr "Importerer data..."
 
 #: ../gramps/gui/dbman.py:553
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Fjerne slektsdatabasen '%s'?"
 
 #: ../gramps/gui/dbman.py:554
-#, fuzzy
 msgid "Removing this Family Tree will permanently destroy the data."
 msgstr "Fjerning av denne slektsdatabasen vil ødelegge dataene permanent."
 
 #: ../gramps/gui/dbman.py:555
-#, fuzzy
 msgid "Remove Family Tree"
 msgstr "Fjerne slektsdatabase"
 
@@ -7461,7 +7445,6 @@ msgid "Remove version"
 msgstr "Fjern versjon"
 
 #: ../gramps/gui/dbman.py:596
-#, fuzzy
 msgid "Could not delete Family Tree"
 msgstr "Kunne ikke fjerne slektsdatabase"
 
@@ -7481,12 +7464,11 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dbman.py:649
-#, fuzzy
 msgid "Repair Family Tree?"
 msgstr "Reparere slektsdatabase?"
 
 #: ../gramps/gui/dbman.py:651
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree from the last good backup. There are several ways this can cause unwanted effects, so <b>backup</b> the Family Tree first.\n"
 "The Family Tree you have selected is stored in %s.\n"
@@ -7523,7 +7505,6 @@ msgid "Error restoring backup data"
 msgstr "Feil ved innhenting av data fra sikkerhetskopi"
 
 #: ../gramps/gui/dbman.py:734
-#, fuzzy
 msgid "Could not create Family Tree"
 msgstr "Kunne ikke opprette slektsdatabase"
 
@@ -7841,7 +7822,6 @@ msgid "Edit reference"
 msgstr "Endre referanse"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:170
-#, fuzzy
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editors on the same source. \n"
 "\n"
@@ -8189,7 +8169,6 @@ msgid "Group As"
 msgstr "Grupper som:"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
-#, fuzzy
 msgid "Notes Preview"
 msgstr "Forhåndsvisning av notat"
 
@@ -9216,18 +9195,16 @@ msgid "New Place"
 msgstr "Nytt sted"
 
 #: ../gramps/gui/editors/editplace.py:225
-#, fuzzy
 msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Ugyldig breddegrad (syntaks: 18°9')"
+msgstr "Ugyldig breddegrad (syntaks: 18\\u00b099')"
 
 #: ../gramps/gui/editors/editplace.py:226
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 eller -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:228
-#, fuzzy
 msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Ugyldig lengdegrad (syntaks: 18°9')"
+msgstr "Ugyldig lengdegrad (syntaks: 18\\uub099')"
 
 #: ../gramps/gui/editors/editplace.py:229
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
@@ -9403,9 +9380,8 @@ msgid "Source Filters"
 msgstr "Kildefiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:90
-#, fuzzy
 msgid "Media Filters"
-msgstr "Mediafilter"
+msgstr "Mediafiltre"
 
 #: ../gramps/gui/editors/filtereditor.py:91
 msgid "Repository Filters"
@@ -9747,9 +9723,9 @@ msgstr "Fødselsdato"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
-#, fuzzy, python-format
+#, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "eksempel: \"%s\" eller \"%s\""
+msgstr "eksempel: \"%(msg1)s\" eller \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:350
@@ -11720,17 +11696,18 @@ msgstr "_Velg alle"
 
 #: ../gramps/gui/grampsgui.py:61
 msgid "Your version of gi (gnome-instrospection) seems to be too old. You need a version which has the function 'require_version' to start Gramps"
-msgstr ""
+msgstr "Din versjon av gi (gnome-instrospection) ser ut til å være for gammel. Du behøver en versjon som har funksjonen 'require_version' for å starte Gramps"
 
 #: ../gramps/gui/grampsgui.py:75
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your pygobject version does not meet the requirements.\n"
 "At least pygobject %(major)d.%(feature)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Versjonen av Python som du har installert tilfredsstiller ikke kravene.  Du må minst ha python %d.%d.%d for å starte Gramps.\n"
+"Versjonen av pygobject som du har installert tilfredsstiller ikke kravene.\n"
+"Du må minst ha pygobject %(major)d.%(feature)d.%(minor)d for å starte Gramps med grafisk brukergrensesnitt.\n"
 "\n"
 "Gramps vil avslutte nå."
 
@@ -11803,9 +11780,8 @@ msgstr "Vifteformet slektstavle"
 #: ../gramps/gui/grampsgui.py:157
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/fanchartdescview.py:74
-#, fuzzy
 msgid "Descendant Fan Chart"
-msgstr "Etterkommertavle"
+msgstr "Vifteformet etterkommertavle"
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -12058,9 +12034,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:74
-#, fuzzy
 msgid "Error Report Assistant"
-msgstr "Eksportveiviser"
+msgstr "Feil i rapportassistenten"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:230
 msgid "Report a bug"
@@ -12103,9 +12078,8 @@ msgid "This is the information about your system that will help the developers t
 msgstr "Dette er informasjonen om systemet ditt som vil hjelpe utviklerne i å reparere feilen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:412
-#, fuzzy
 msgid "Please provide as much information as you can about what you were doing when the error occured."
-msgstr "Legg ved så mye informasjon som mulig om hva du gjorde da feilen oppstod. "
+msgstr "Legg ved så mye informasjon som mulig om hva du gjorde da feilen oppstod."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:452
 #: ../gramps/gui/logger/_errorreportassistant.py:477
@@ -12126,7 +12100,6 @@ msgid "Bug Report Summary"
 msgstr "Sammendrag av feilrapport"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:522
-#, fuzzy
 msgid "This is the completed bug report. The next page of the assistant will help you to file a bug on the Gramps bug tracking system website."
 msgstr "Dette er hele feilrapporten.  Neste side i assistenten vil hjelpe deg med å legge inn feilrapporten på nettsiden til Gramps' feilhåndteringssystem."
 
@@ -12182,9 +12155,9 @@ msgid "Filter %s from Clipboard"
 msgstr "Filter %s fra utklippstavle"
 
 #: ../gramps/gui/makefilter.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "Laget den %4d/%02d/%02d"
+msgstr "Laget den %(year)4d/%(month)02d/%(day)02d"
 
 #: ../gramps/gui/merge/mergecitation.py:49
 msgid "manual|Merge_Citations"
@@ -12379,9 +12352,9 @@ msgid "unknown mother"
 msgstr "ukjent mor"
 
 #: ../gramps/gui/plug/_guioptions.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
-msgstr "%(father)s og %(mother)s [%(id)s]"
+msgstr "%(father_name)s og %(mother_name)s (%(family_id)s)"
 
 #: ../gramps/gui/plug/_guioptions.py:1207
 #, python-format
@@ -12398,9 +12371,9 @@ msgid "Color"
 msgstr "Farge"
 
 #: ../gramps/gui/plug/_guioptions.py:1525
-#, fuzzy, python-format
+#, python-format
 msgid "Select color for %s"
-msgstr "Velg skriftfarge"
+msgstr "Velg farge for %s"
 
 #: ../gramps/gui/plug/_guioptions.py:1685
 #: ../gramps/gui/plug/report/_reportdialog.py:458
@@ -12575,14 +12548,12 @@ msgid "Choose the output format"
 msgstr "Velg formatet å lagre i"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:238
-#, fuzzy
 msgid "Export options"
-msgstr "Eksportopsjoner for GEDCOM"
+msgstr "Eksportopsjoner"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:307
-#, fuzzy
 msgid "Select save file"
-msgstr "Velg en fil"
+msgstr "Velg en fil for lagring"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:351
 #: ../gramps/plugins/tool/mediamanager.py:107
@@ -12613,7 +12584,7 @@ msgstr ""
 "Klikk Fortsett for å fortsette, Tilbake for å gå tilbake til valgene, eller Avbryt for å avbryte"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:459
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -12625,9 +12596,9 @@ msgid ""
 msgstr ""
 "Dataene vil bli lagret som følger:\n"
 "\n"
-"Format:\t%s\n"
-"Navn:\t%s\n"
-"Mappe:\t%s\n"
+"Format:\t%(format)s\n"
+"Navn:\t%(name)s\n"
+"Mappe:\t%(folder)s\n"
 "\n"
 "Klikk Fortsett for å fortsette, Tilbake for å gå tilbake til valgene, eller Avbryt for å avbryte"
 
@@ -12690,9 +12661,8 @@ msgstr ""
 "Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykke &quot;Avbryt&quot;-knappen når som helst, og databasen vil fortsatt være intakt."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:600
-#, fuzzy
 msgid "Error exporting your Family Tree"
-msgstr "Gramps: Importere slektsdatabase"
+msgstr "Feil ved eksport av din slektsdatabase"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:57
 msgid "Selecting Preview Data"
@@ -12930,14 +12900,12 @@ msgstr ""
 "Derfor blir den sentrale personen for hvert emne til den aktive personen i den åpne databasen."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:584
-#, fuzzy
 msgid "No selected book item"
-msgstr "Fjern valgte element?"
+msgstr "Ingen valgte bokelementer"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:585
-#, fuzzy
 msgid "Please select a book item to configure."
-msgstr "Velg et annet filter for redigering"
+msgstr "Vennligst velg et bokelement som skal settes opp."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:648
 msgid "Setup"
@@ -12953,11 +12921,11 @@ msgstr "Meny over tilgjengelige emner"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "No items"
-msgstr ""
+msgstr "Ingen elementer"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "This book has no items."
-msgstr ""
+msgstr "Denne boka har ingen elementer."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:710
 msgid "No book name"
@@ -13249,9 +13217,8 @@ msgstr "På"
 #. the language does not exist
 #. and presumably if there is no dictionary
 #: ../gramps/gui/spell.py:132
-#, fuzzy
 msgid "Spelling checker could not be attached to TextView"
-msgstr "Stavekontroll ikke installert"
+msgstr "Stavekontroll kunne ikke brukes på TextView"
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:774
@@ -13308,7 +13275,6 @@ msgid "History cleared"
 msgstr "Historikk er tømt"
 
 #: ../gramps/gui/utils.py:221
-#, fuzzy
 msgid "Canceling..."
 msgstr "Avbryter..."
 
@@ -13325,13 +13291,12 @@ msgid "Updated"
 msgstr "Oppdatert"
 
 #: ../gramps/gui/viewmanager.py:445
-#, fuzzy
 msgid "Checking Addons Failed"
-msgstr "Sjekker tillegg..."
+msgstr "Sjekking av tillegg feilet"
 
 #: ../gramps/gui/viewmanager.py:446
 msgid "The addon repository appears to be unavailable. Please try again later."
-msgstr ""
+msgstr "Biblioteket for programtillegg er ikke tilgjengelig. Prøv igjen senere."
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -13497,9 +13462,8 @@ msgid "_Go"
 msgstr "_Gå"
 
 #: ../gramps/gui/viewmanager.py:789
-#, fuzzy
 msgid "Books..."
-msgstr "Bøker"
+msgstr "Bøker..."
 
 #: ../gramps/gui/viewmanager.py:790
 msgid "_Windows"
@@ -13530,9 +13494,8 @@ msgid "_Bookmarks"
 msgstr "_Bokmerker"
 
 #: ../gramps/gui/viewmanager.py:835
-#, fuzzy
 msgid "_Configure..."
-msgstr "_Konfigurere visning..."
+msgstr "_Konfigurere..."
 
 #: ../gramps/gui/viewmanager.py:836
 msgid "Configure the active view"
@@ -14070,7 +14033,6 @@ msgid "Unnamed Gramplet"
 msgstr "Smågramps uten navn"
 
 #: ../gramps/gui/widgets/grampletbar.py:342
-#, fuzzy
 msgid "Gramplet Bar"
 msgstr "Grampsrad"
 
@@ -14096,7 +14058,6 @@ msgid "Restore to defaults?"
 msgstr "Hent inn igjen standardene?"
 
 #: ../gramps/gui/widgets/grampletbar.py:527
-#, fuzzy
 msgid "The gramplet bar will be restored to contain its default gramplets.  This action cannot be undone."
 msgstr "Grampslinja vil bli gjenopprettet til standard smågramps. Dette valget kan ikke angres."
 
@@ -14243,14 +14204,12 @@ msgstr "'%s' er ikke en gyldig dato"
 
 #. internal name: don't translate
 #: ../gramps/plugins/docgen/asciidoc.py:446
-#, fuzzy
 msgid "Characters per line"
-msgstr "Tegnsett"
+msgstr "Tegn per linje"
 
 #: ../gramps/plugins/docgen/asciidoc.py:447
-#, fuzzy
 msgid "The number of characters per line"
-msgstr "Maksimalt antall aner som skal inkluderes."
+msgstr "Maksimalt antall tegn for hver linje"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
@@ -14430,9 +14389,8 @@ msgstr "g."
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:141
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "Anetavle for %s"
+msgstr "Anetavle"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/ancestortree.py:156
@@ -14508,9 +14466,8 @@ msgstr "Antall generasjoner med tomme bokser som skal være med i rapporten"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:914
 #: ../gramps/plugins/drawreport/descendtree.py:1510
-#, fuzzy
 msgid "Compress tree"
-msgstr "Ko_mprimere tre"
+msgstr "Komprimere tre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:915
 msgid "Whether to remove any extra blank spaces set aside for people that are unknown"
@@ -14687,15 +14644,14 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1019
 #: ../gramps/plugins/drawreport/descendtree.py:1613
-#, fuzzy
 msgid "box shadow scale factor"
-msgstr "Ikke skalere treet"
+msgstr "skaleringsfaktor for skyggeboks"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid "Make the box shadow bigger or smaller"
-msgstr ""
+msgstr "Lag skyggeboksen større eller mindre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
 #: ../gramps/plugins/drawreport/descendtree.py:1622
@@ -15121,9 +15077,8 @@ msgstr "Etterkommertre for %(father)s og %(mother)s"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:214
-#, fuzzy
 msgid "Descendant Graph"
-msgstr "Etterkommer"
+msgstr "Etterkommertavle"
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -15354,11 +15309,12 @@ msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(generations)d generasjoners viftetavle for %(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:262
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "%(generations)d generasjoners viftetavle for %(person)s"
+msgstr "%(generations)d generasjoners viftetavle for\n"
+"%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:655
 #: ../gramps/plugins/textreport/ancestorreport.py:278
@@ -15429,13 +15385,12 @@ msgid "Draw the background although there is no information"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:685
-#, fuzzy
 msgid "Use one font style for all generations"
-msgstr "Dobbeltklikk for å se alle generasjoner"
+msgstr "Bruk en skrifttype for alle generasjoner"
 
 #: ../gramps/plugins/drawreport/fanchart.py:687
 msgid "You can customize font and color for each generation in the style editor"
-msgstr ""
+msgstr "Du kan selv definere skrifttyper og farger for hver generasjon i stileditoren"
 
 #: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/alphabeticalindex.py:97
@@ -15444,14 +15399,12 @@ msgid "The style used for the title."
 msgstr "Stil som blir brukt på tittelen."
 
 #: ../gramps/plugins/drawreport/fanchart.py:726
-#, fuzzy
 msgid "The basic style used for the default text display."
-msgstr "Den grunnleggende stilen for tekstvisning."
+msgstr "Den grunnleggende stilen for standard tekstvisning."
 
 #: ../gramps/plugins/drawreport/fanchart.py:736
-#, fuzzy
 msgid "The style used for the text display of generation "
-msgstr "Den uthevede stilen som brukes for tekstvisningen."
+msgstr "stilen som brukes for tekstvisningen av generasjon "
 
 #: ../gramps/plugins/drawreport/statisticschart.py:301
 msgid "Item count"
@@ -15857,7 +15810,6 @@ msgid "GEDCOM is used to transfer data between genealogy programs. Most genealog
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata."
 
 #: ../gramps/plugins/export/export.gpr.py:84
-#, fuzzy
 msgid "GEDCOM export options"
 msgstr "Eksportopsjoner for GEDCOM"
 
@@ -16034,9 +15986,8 @@ msgid "Writing repositories"
 msgstr "Skriver oppbevaringssteder"
 
 #: ../gramps/plugins/export/exportgedcom.py:1460
-#, fuzzy
 msgid "GEDCOM Export failed"
-msgstr "Eksporteringen feilet"
+msgstr "Eksporteringen til GEDCOM feilet"
 
 #: ../gramps/plugins/export/exportgeneweb.py:104
 msgid "No families matched by selected filter"
@@ -16446,15 +16397,13 @@ msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr "Smågramps som viser den aktive personens direkte aner som en viftetavle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:136
-#, fuzzy
 msgid "Gramplet showing active person's direct descendants as a fanchart"
 msgstr "Smågramps som viser den aktive personens direkte aner som en viftetavle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:144
 #: ../gramps/plugins/view/view.gpr.py:156
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "Etterkommer"
+msgstr "Viftetable for etterkommere"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:152
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:158
@@ -16501,7 +16450,6 @@ msgid "Gramplet showing all activity for this session"
 msgstr "Smågramps som viser aktiviteten for denne sesjonen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:243
-#, fuzzy
 msgid "Gramplet showing summary data of the Family Tree"
 msgstr "Smågramps som viser et sammendrag av slektsdatabasen"
 
@@ -16524,14 +16472,12 @@ msgstr "Smågramps som viser alle etternavn som en tekstsky"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1155
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1183
-#, fuzzy
 msgid "gramplet|To Do"
-msgstr "Smågramps"
+msgstr "Å gjøre"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:271
-#, fuzzy
 msgid "Gramplet for displaying a To Do list"
-msgstr "Smågramps som også har et notatfilter"
+msgstr "Smågramps som viser listen over ting som må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:284
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:290
@@ -17031,91 +16977,75 @@ msgid "Records"
 msgstr "Poster"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1077
-#, fuzzy
 msgid "Person To Do"
-msgstr "Person-ID:"
+msgstr "Person der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Smågramps som viser notatene for en person"
+msgstr "Smågramps som viser notatene der noe må gjøres for en person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1091
-#, fuzzy
 msgid "Event To Do"
-msgstr "Hendelsestype"
+msgstr "Hendelse der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
-#, fuzzy
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Smågramps som viser notatene for en hendelse"
+msgstr "Smågramps som viser notatene der noe må gjøres for en hendelse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1105
-#, fuzzy
 msgid "Family To Do"
-msgstr "Familie-ID"
+msgstr "Familie der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1106
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Smågramps som viser notatene for en familie"
+msgstr "Smågramps som viser notatene der noe må gjøres for en familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1119
-#, fuzzy
 msgid "Place To Do"
-msgstr "Stedsnotat"
+msgstr "Sted der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1120
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Smågramps som viser notatene for et sted"
+msgstr "Smågramps som viser notatene der noe må gjøres for et sted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1133
-#, fuzzy
 msgid "Source To Do"
-msgstr "Kilde ID:"
+msgstr "Kilde der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1134
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Smågramps som viser notatene for en kilde"
+msgstr "Smågramps som viser notatene der noe må gjøres for en kilde"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1147
-#, fuzzy
 msgid "Citation To Do"
-msgstr "Sitering"
+msgstr "Sitering der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Smågramps som viser notatene for en sitering"
+msgstr "Smågramps som viser notatene der noe må gjøres for en sitering"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1161
-#, fuzzy
 msgid "Repository To Do"
-msgstr "Oppbevaringsstedsnotat"
+msgstr "Oppbevaringssted der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Smågramps som viser notatene for et oppbevaringssted"
+msgstr "Smågramps som viser notatene der noe må gjøres for et oppbevaringssted"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1175
-#, fuzzy
 msgid "Media To Do"
-msgstr "Medienotat"
+msgstr "Medie der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1176
-#, fuzzy
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Smågramps som viser notatene for et mediaobjekt"
+msgstr "Smågramps som viser notatene der noe må gjøres for et mediaobjekt"
 
 #: ../gramps/plugins/gramplet/notes.py:101
 #: ../gramps/plugins/gramplet/todo.py:126
 #: ../gramps/plugins/gramplet/todogramplet.py:144
 #, python-format
 msgid "%(current)d of %(total)d"
-msgstr ""
+msgstr "%(current)d av %(total)d"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:60
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:69
@@ -17370,9 +17300,8 @@ msgid "Individuals with unknown gender"
 msgstr "Personer med ukjent kjønn"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:162
-#, fuzzy
 msgid "Incomplete names"
-msgstr "Personer med ufullstendige navn"
+msgstr "Ufullstendige navn"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:166
 msgid "Individuals missing birth dates"
@@ -17465,19 +17394,17 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/todo.py:57
 #: ../gramps/plugins/gramplet/todogramplet.py:60
-#, fuzzy
 msgid "Edit the selected To Do note"
-msgstr "Rediger det valgte notatet"
+msgstr "Rediger det valgte notatet der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/todo.py:61
 #: ../gramps/plugins/gramplet/todogramplet.py:64
-#, fuzzy
 msgid "Add a new To Do note"
-msgstr "Legg til en nytt notat"
+msgstr "Legg til en nytt notat der noe må gjøres"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:142
 msgid "Unattached"
-msgstr ""
+msgstr "Ikke vedlagt"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Intro"
@@ -17514,9 +17441,8 @@ msgid "Gramps online manual"
 msgstr "Gramps brukerveiledning på Internett"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
-msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_3.3_Wiki_Manual"
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
@@ -17543,7 +17469,6 @@ msgid "Getting Started"
 msgstr "Komme igang"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
-#, fuzzy
 msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your Family Tree. For more details, please read the information at the links above\n"
 "\n"
@@ -17552,9 +17477,8 @@ msgstr ""
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
-#, fuzzy
 msgid "Dashboard View"
-msgstr "Visning for vifteformet tavle"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
 #, fuzzy
@@ -17792,36 +17716,30 @@ msgstr "Personer og familier som ikke direkte er i slekt med personene av intere
 
 #. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:148
-#, fuzzy
 msgid "Family Colors"
 msgstr "Familiefarger"
 
 #. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:151
-#, fuzzy
 msgid "Family colors"
 msgstr "Familiefarger"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:152
-#, fuzzy
 msgid "Colors to use for various family lines."
 msgstr "Fargene som skal brukes for de ulike slektslinjene."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
 #: ../gramps/plugins/graph/gvrelgraph.py:573
-#, fuzzy
 msgid "The color to use to display men."
 msgstr "Fargen som skal brukes for å vise menn."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:577
-#, fuzzy
 msgid "The color to use to display women."
 msgstr "Fargen som skal brukes for å vise kvinner."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:168
 #: ../gramps/plugins/graph/gvrelgraph.py:582
-#, fuzzy
 msgid "The color to use when the gender is unknown."
 msgstr "Fargen som skal brukes for å vise ukjent kjønn."
 
@@ -17842,7 +17760,6 @@ msgstr "Familier"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:173
 #: ../gramps/plugins/graph/gvrelgraph.py:587
-#, fuzzy
 msgid "The color to use to display families."
 msgstr "Fargen som skal brukes for å vise familier."
 
