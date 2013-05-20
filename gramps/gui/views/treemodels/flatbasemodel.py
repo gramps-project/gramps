@@ -239,8 +239,12 @@ class FlatNodeMap(object):
         :Returns: the path, or None if handle does not link to a path
         """
         index = iter.user_data
+        ##GTK3: user data may only be an integer, we store the index
+        ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
+        ##        when using user_data for that!
+        ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
         if index is None:
-            return None
+            index = 0
         return Gtk.TreePath((self.real_path(index),))
 
     def get_path_from_handle(self, handle):
@@ -277,8 +281,9 @@ class FlatNodeMap(object):
         iter = Gtk.TreeIter()
         iter.stamp = self.stamp
         ##GTK3: user data may only be an integer, we store the index
-        ##PROBLEM: pygobject 3.8 seems to store 0 as None, we need to correct
+        ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
         ##        when using user_data for that!
+        ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
         iter.user_data = self._hndl2index[handle]
         return iter
 
@@ -329,7 +334,10 @@ class FlatNodeMap(object):
         """
         index = iter.user_data
         if index is None:
-            #problem in pygobject 3.8, passing 0 stores None
+            ##GTK3: user data may only be an integer, we store the index
+            ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
+            ##        when using user_data for that!
+            ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
             index = 0
 
         if self._reverse : 
@@ -717,7 +725,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         ud = iter.user_data
         if ud is None:
-            #problem in pygobject 3.8, passing 0 stores None
+            ##GTK3: user data may only be an integer, we store the index
+            ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
+            ##        when using user_data for that!
+            ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
             ud = 0
         index = self.node_map.real_index(ud)
         return self.node_map.get_handle(index)
@@ -798,7 +809,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         #print ('do_get_val', iter, iter.user_data, col)
         ud = iter.user_data
         if ud is None:
-            #problem in pygobject 3.8, passing 0 stores None
+            ##GTK3: user data may only be an integer, we store the index
+            ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
+            ##        when using user_data for that!
+            ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
             ud = 0
         handle = self.node_map._index2hndl[ud][1]
         val = self._get_value(handle, col)
