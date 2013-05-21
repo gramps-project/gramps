@@ -42,7 +42,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 19:59+0200\n"
-"PO-Revision-Date: 2013-05-10 21:03+0100\n"
+"PO-Revision-Date: 2013-05-21 20:36+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -444,7 +444,7 @@ msgstr "Selecteren..."
 
 #: ../src/ExportOptions.py:143
 msgid "Unfiltered Family Tree:"
-msgstr "Ongefilterde familiestamboom:"
+msgstr "Ongefilterde stamboom:"
 
 #: ../src/ExportOptions.py:145 ../src/ExportOptions.py:249
 #: ../src/ExportOptions.py:545
@@ -730,7 +730,7 @@ msgid ""
 msgstr ""
 "Gramps heeft een probleem vastgesteld met het onderliggende 'Berkeley' "
 "gegevensbestand. Dit kan hersteld worden door middel van de "
-"familiestamboombeheerder. Kies het gegevensbestand en klik op de herstelknop"
+"stamboombeheerder. Kies het gegevensbestand en klik op de herstelknop"
 
 #: ../src/QuestionDialog.py:335 ../src/gui/utils.py:311
 msgid "Attempt to force closing the dialog"
@@ -773,8 +773,7 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"De familiestamboom gaat verder dan de maximum %d generaties die werden "
-"doorzocht.\n"
+"De stamboom gaat verder dan de maximum %d generaties die werden doorzocht.\n"
 "Het is dus mogelijk dat bepaalde verwantschappen werden gemist"
 
 #: ../src/Relationship.py:936
@@ -1346,7 +1345,7 @@ msgstr "Waarde"
 #: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
 #: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1171
 msgid "Family Tree"
-msgstr "Familiestamboom"
+msgstr "Stamboom"
 
 # zie ook uncleared.
 # is dit goed?
@@ -1972,7 +1971,7 @@ msgid ""
 "Error: Family tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Fout: Familiestamboom '%s' bestaat al.\n"
+"Fout: Stamboom '%s' bestaat al.\n"
 "De '-C' optie kan niet worden gebruikt."
 
 #: ../src/cli/arghandler.py:228
@@ -1982,9 +1981,9 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family "
 "tree instead."
 msgstr ""
-"Fout: de familiestamboom \"%s\" bestaat niet.\n"
+"Fout: de stamboom \"%s\" bestaat niet.\n"
 "Indien GEDCOM, gramps-xml of grdb, gebruik dan de -i optie om te importeren "
-"in een familiestamboom."
+"in een stamboom."
 
 #: ../src/cli/arghandler.py:244
 #, python-format
@@ -2028,7 +2027,7 @@ msgstr "FOUT: bestandsformaat niet herkend voor bestand %s"
 
 #: ../src/cli/arghandler.py:399
 msgid "List of known family trees in your database path\n"
-msgstr "Liijst van de bekende familiestambomen in uw gegevensbestandspad\n"
+msgstr "Liijst van de bekende stambomen in uw gegevensbestandspad\n"
 
 #: ../src/cli/arghandler.py:403
 #, python-format
@@ -2037,19 +2036,19 @@ msgstr "%(full_DB_path)s met naam \"%(f_t_name)s\""
 
 #: ../src/cli/arghandler.py:409 ../src/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
-msgstr "Gramps familiestambomen:"
+msgstr "Gramps stambomen:"
 
 #: ../src/cli/arghandler.py:412 ../src/cli/arghandler.py:414
 #: ../src/cli/arghandler.py:418 ../src/cli/arghandler.py:428
 #: ../src/cli/arghandler.py:433 ../src/cli/arghandler.py:435
 #: ../src/cli/arghandler.py:437 ../src/cli/clidbman.py:211
 msgid "Family tree"
-msgstr "Familiestamboom"
+msgstr "Stamboom"
 
 #: ../src/cli/arghandler.py:413
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Familiestamboom \"%s\":"
+msgstr "Stamboom \"%s\":"
 
 # Locatie
 #: ../src/cli/arghandler.py:416 ../src/cli/clidbman.py:212
@@ -2085,7 +2084,7 @@ msgstr "Opkuisen."
 
 #: ../src/cli/arghandler.py:500
 msgid "Created empty family tree successfully"
-msgstr "Lege familiestamboom succesvol aangemaakt"
+msgstr "Lege stamboom succesvol aangemaakt"
 
 #: ../src/cli/arghandler.py:503 ../src/cli/arghandler.py:530
 msgid "Error opening the file."
@@ -2198,19 +2197,17 @@ msgstr ""
 "tonen\n"
 " \n"
 "Toepassingsopties\n"
-"  -O, --open=FAMILIESTAMBOOM                 familiestamboom openen\n"
-"  -C, --create=FAMILIESTAMBOOM               nieuwe familiestamboom "
-"aanmaken\n"
+"  -O, --open=STAMBOOM                        stamboom openen\n"
+"  -C, --create=STAMBOOM                      nieuwe stamboom aanmaken\n"
 "  -i, --import=BESTANDSNAAM                      bestand importeren\n"
 "  -e, --export=BESTANDSNAAM                    bestand exporteren\n"
 "  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
 "  -a, --action=ACTIE                    actie opgeven\n"
 "  -p, --options=OPTIETEKST           opties opgeven\n"
 "  -d, --debug=LOG_NAAM                foutmelding activeren\n"
-"  -l                                     Lijst van familiestambomen\n"
-"  -L                                     Lijst van familiestambomen met "
-"details\n"
-"  -u, --force-unlock                     slot openen van familiestamboom\n"
+"  -l                                     Lijst van stambomen\n"
+"  -L                                     Lijst van stambomen met details\n"
+"  -u, --force-unlock                     slot openen van stamboom\n"
 "  -s, --show                        instellingen tonen\n"
 " -c, --config=[config.setting[:waarde]]  instellingen vastleggen en Gramps "
 "starten\n"
@@ -2277,8 +2274,8 @@ msgstr ""
 "\n"
 "Voorbeeld van het gebruik van de Gramps-opdrachtregel\n"
 "\n"
-"1. Om vier familiestambomen te importeren (waarvan het formaat kan afgeleid "
-"worden uit hun namen)\n"
+"1. Om vier stambomen te importeren (waarvan het formaat kan afgeleid worden "
+"uit hun namen)\n"
 "vervolgens de resulterend familiestamboom op fouten te, geeft u volgende "
 "opdracht in:\n"
 "gramps -i bestand1.ged -i bestand2.gpkg -i ~/db3.gramps -i bestand4.wft -a "
@@ -2299,19 +2296,19 @@ msgstr ""
 "gramps -i bestand1.ged -i bestand2.dpkg -e ~/nieuw -f gramps-pkg >outfile "
 "2>errfile\n"
 "\n"
-"5. Om drie familiestambomen te importeren en een interactieve Gramsp-sessie "
-"te starten:\n"
-"gramps -i bstand1.ged -i bestand2.gpkg -i ~/db3.gramps\n"
+"5. Om drie stambomen te importeren en een interactieve Gramps-sessie te "
+"starten:\n"
+"gramps -i bestand1.ged -i bestand2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. Om een gegevensbestand te openen en gebaseerd op deze gegevens een "
 "tijdlijnverslag in 'PDF'-formaat\n"
 "op te stellen en het resultaat in het bestand mijn_tiijdlijn.pdf op te "
 "slaan:\n"
-"gramps -O 'Familiestamboom1' -a report -p name=timeline,off=pdf,"
-"of=mijn_tijdslijn.pdf\n"
+"gramps -O 'Stamboom1' -a report -p name=timeline,off=pdf,of=mijn_tijdslijn."
+"pdf\n"
 "\n"
 "7. Om een samenvatting van het gegevensbestand op te stellen:\n"
-"gramps -O 'Familiestamboom1' -a report -p name=summary\n"
+"gramps -O 'Stamboom1' -a report -p name=summary\n"
 "\n"
 "8. Een lijst van de verslagopties\n"
 "Gebruik de 'name=timeline,show=all' optie om alles over de beschikbare "
@@ -2321,12 +2318,11 @@ msgstr ""
 "Om meer over de beschikbare verslagnamen te leren geeft u 'name=show' tekst "
 "in.\n"
 "\n"
-"9. Om een familiestamboom rechtstreeks naar een 'gramps xml'-bestand om te "
-"zetten:\n"
-"gramps -O 'Familiestamboom1' -e output.gramps -f gramps-xml\n"
+"9. Om een stamboom rechtstreeks naar een 'gramps xml'-bestand om te zetten:\n"
+"gramps -O 'Stamboom1' -e output.gramps -f gramps-xml\n"
 "\n"
 "10. Om een website in een andere taal aan te maken (Duits bijvoorbeeld):\n"
-"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Familiestamboom1' -a report -p "
+"LANGUAGE=de_DE; LANG=de_DE.UTF-8 gramps -O 'Stamboom1' -a report -p "
 "name=navwebpage,target=/../de\n"
 "\n"
 "11. En tenslotte om een interactieve Gramps-sessie te starten:\n"
@@ -2413,7 +2409,7 @@ msgstr "Importeren van gegevens..."
 
 #: ../src/cli/clidbman.py:396
 msgid "Could not rename family tree"
-msgstr "Kon de familiestamboom niet hernoemen"
+msgstr "Kon de stamboom niet hernoemen"
 
 #: ../src/cli/clidbman.py:431
 #, python-format
@@ -2479,12 +2475,11 @@ msgstr "Kon bestand: %s niet openen"
 
 #: ../src/cli/grampscli.py:231
 msgid "Could not load a recent Family Tree."
-msgstr "Kon de familiestamboom niet laden."
+msgstr "Kon de stamboom niet laden."
 
 #: ../src/cli/grampscli.py:232
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
-"Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
+msgstr "Deze stamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
 #. already errors encountered. Show first one on terminal and exit
 #. Convert error message to file system encoding before print
@@ -2698,9 +2693,9 @@ msgstr ""
 "Indien mogelijk kunt u best terugkeren naar uw vroegere Gramps-versie. "
 "Vervolgens uw gegevensbestand naar een 'XML'-bestand exporteren; het "
 "gegevensbestand sluiten; opnieuw naar de huidige Gramps-versie opwaarderen "
-"en het 'XML'-bestand importeren in een lege familiestamboom. Een andere "
-"werkwijze is om de herstelgereedschappen van het 'Berkeley'-"
-"gegevensbestandprogramma te gebruiken."
+"en het 'XML'-bestand importeren in een lege stamboom. Een andere werkwijze "
+"is om de herstelgereedschappen van het 'Berkeley'-gegevensbestandprogramma "
+"te gebruiken."
 
 #: ../src/gen/db/exceptions.py:202
 #, python-format
@@ -2786,7 +2781,7 @@ msgstr ""
 "\n"
 "\n"
 "U kunt best het volgende doen\n"
-"Hulpmiddelen -> Familiestamboom verwerken -> citaten samenvoegen...\n"
+"Hulpmiddelen -> Stamboom verwerken -> citaten samenvoegen...\n"
 "om citaten die gelijke informatie bevatten\n"
 "samen te voegen"
 
@@ -5142,11 +5137,11 @@ msgstr "Nu controleren"
 
 #: ../src/gui/configure.py:1160
 msgid "Family Tree Database path"
-msgstr "Familiestamboomgegevensbestandspad"
+msgstr "Stamboomgegevensbestandspad"
 
 #: ../src/gui/configure.py:1168
 msgid "Automatically load last family tree"
-msgstr "Laatste familiestamboom automatisch laden"
+msgstr "Laatste stamboom automatisch laden"
 
 # dit is een soort titel in een file-selector
 #: ../src/gui/configure.py:1181
@@ -5338,11 +5333,11 @@ msgstr ""
 
 #: ../src/gui/dbman.py:468
 msgid "Could not rename the Family Tree."
-msgstr "Kon de familiestamboom niet hernoemen."
+msgstr "Kon de stamboom niet hernoemen."
 
 #: ../src/gui/dbman.py:469
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Deze familiestamboom bestaat reeds,kies een unieke naam."
+msgstr "Deze stamboom bestaat reeds, kies een unieke naam."
 
 #: ../src/gui/dbman.py:507
 msgid "Extracting archive..."
@@ -5360,12 +5355,11 @@ msgstr "Het gegevensbestand '%s' verwijderen?"
 #: ../src/gui/dbman.py:529
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
-"Het verwijderen van deze familiestamboom zal de gegevens blijvend "
-"verwijderen."
+"Het verwijderen van deze stamboom zal de gegevens blijvend verwijderen."
 
 #: ../src/gui/dbman.py:530
 msgid "Remove family tree"
-msgstr "Familiestamboom verwijderen"
+msgstr "Stamboom verwijderen"
 
 #: ../src/gui/dbman.py:536
 #, python-format
@@ -5384,7 +5378,7 @@ msgstr "Versie verwijderen"
 
 #: ../src/gui/dbman.py:571
 msgid "Could not delete family tree"
-msgstr "Kon de familiestamboom niet verwijderen"
+msgstr "Kon de stamboom niet verwijderen"
 
 #: ../src/gui/dbman.py:596
 msgid "Deletion failed"
@@ -5403,7 +5397,7 @@ msgstr ""
 
 #: ../src/gui/dbman.py:625
 msgid "Repair family tree?"
-msgstr "Familiestamboom herstellen?"
+msgstr "Stamboom herstellen?"
 
 #: ../src/gui/dbman.py:627
 #, python-format
@@ -5431,32 +5425,32 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "<i>need_recover</i> in the family tree directory."
 msgstr ""
-"Indien u op <b>Verder gaan</b> klikt, zal Gramps uw familistamboom proberen "
-"te herstellen vanuit de laatste goede reservekopie. Er zijn meerdere redenen "
+"Indien u op <b>Verder gaan</b> klikt, zal Gramps uw stamboom proberen te "
+"herstellen vanuit de laatste goede reservekopie. Er zijn meerdere redenen "
 "dat dit echter ongewenste effecten kan opleveren, dus steeds eerst een "
 "<b>kopie</b>van de stamboom nemen.\n"
-"De familistamboom die u geselecteerd heeft is opgeslagen in %s.\n"
+"De stamboom die u geselecteerd heeft is opgeslagen in %s.\n"
 "\n"
-"Voor u een herstelling uitvoert, dient u zeker te zijn dat de "
-"familiestamboom niet meer kan geopend worden. Het is mogelijk dat het niet-"
-"zichtbare programmadeel van het gegevensbestand van sommige fouten "
-"automatisch hersteld.\n"
+"Voor u een herstelling uitvoert, dient u zeker te zijn dat de stamboom niet "
+"meer kan geopend worden. Het is mogelijk dat het niet-zichtbare "
+"programmadeel van het gegevensbestand van sommige fouten automatisch "
+"hersteld.\n"
 "\n"
-"<b>Details:</b> herstellen van een familiestamboom gebruikt de laatste "
+"<b>Details:</b> herstellen van een stamboom gebruikt de laatste "
 "''reservekopie'' die Gramps opsloeg bij het laatste gebruik. Indien u "
 "gedurende uren/dagen gegevens ingevoerd hebt zonder Gramps te sluiten is al "
 "deze informatie dus verloren! Indien het herstel mislukt, dan is de "
-"oorsproonkelijke familiestamboom voor goed verloren. Daarom is dus een "
+"oorsproonkelijke stamboom voor goed verloren. Daarom is dus een "
 "''reservekopie'' nodig. Indien nu het herstel mislukt of er teveel "
-"informatie verloren is, kunt u de oorspronkelijke manueel familiestamboom "
+"informatie verloren is, kunt u de oorspronkelijke manueel stamboom "
 "herstellen. Voor meer informatie zie de webpagina\n"
 "http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/"
 "nl  --  Het herstellen van een corrupt gegevensbestand --\n"
-"Voor dat u een herstel uitvoert, dient u de familiestamboom steeds op de "
-"normale manier te openen. Verscheidene fouten die de herstelknop laten "
-"actief worden, kunnen automatisch opgelost worden. Is dit het geval dan kunt "
-"u de herstelknop uitgeschakelen door het bestand <i>need_recover</i> in de "
-"familiestamboommap te verwijderen."
+"Voor dat u een herstel uitvoert, dient u de stamboom steeds op de normale "
+"manier te openen. Verscheidene fouten die de herstelknop laten actief "
+"worden, kunnen automatisch opgelost worden. Is dit het geval dan kunt u de "
+"herstelknop uitgeschakelen door het bestand <i>need_recover</i> in de "
+"stamboommap te verwijderen."
 
 #: ../src/gui/dbman.py:646
 msgid "Proceed, I have taken a backup"
@@ -5477,7 +5471,7 @@ msgstr "Fout bij het herstellen van de opgeslagen gegevens"
 
 #: ../src/gui/dbman.py:710
 msgid "Could not create family tree"
-msgstr "Kon geen familiestamboom aanmaken"
+msgstr "Kon geen stamboom aanmaken"
 
 #: ../src/gui/dbman.py:824
 msgid "Retrieve failed"
@@ -5978,7 +5972,7 @@ msgstr "OK"
 
 #: ../src/gui/grampsgui.py:102
 msgid "Family Trees"
-msgstr "Familiestambomen"
+msgstr "Stambomen"
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
@@ -6435,11 +6429,11 @@ msgstr "Verbinden met een recent gegevensbestand"
 
 #: ../src/gui/viewmanager.py:746
 msgid "_Family Trees"
-msgstr "Familiestambomen"
+msgstr "Stambomen"
 
 #: ../src/gui/viewmanager.py:747
 msgid "_Manage Family Trees..."
-msgstr "Familiestambomen beheren..."
+msgstr "Stambomen beheren..."
 
 #: ../src/gui/viewmanager.py:748
 msgid "Manage databases"
@@ -8970,11 +8964,11 @@ msgstr "Analyse en verkenning"
 
 #: ../src/gui/plug/tool.py:58
 msgid "Family Tree Processing"
-msgstr "Familiestamboom verwerken"
+msgstr "Stamboom verwerken"
 
 #: ../src/gui/plug/tool.py:59
 msgid "Family Tree Repair"
-msgstr "Familiestamboom herstellen"
+msgstr "Stamboom herstellen"
 
 #: ../src/gui/plug/tool.py:60
 msgid "Revision Control"
@@ -10153,7 +10147,7 @@ msgstr "Dubbelklik op de achternaam voor meer gegevens"
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
 #: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
-msgstr "Geen familiestamboom geladen."
+msgstr "Geen stamboom geladen."
 
 #: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
@@ -10485,7 +10479,7 @@ msgstr "Stamboom aanmaken..."
 
 #: ../src/plugins/drawreport/AncestorTree.py:788
 msgid "Printing the Tree..."
-msgstr "Stamboom uitdrukken..."
+msgstr "Stamboom afdrukken..."
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:868
@@ -11321,7 +11315,7 @@ msgstr "Afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:93
 msgid "Produces a graphical descendant chart"
-msgstr "Levert een grafische afstammelingenstamboom"
+msgstr "Levert een grafische afstammelingenboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
@@ -11329,7 +11323,7 @@ msgstr "Afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
-msgstr "Levert een grafische afstammelingenstamboom"
+msgstr "Levert een grafische afstammelingenboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:130
 msgid "Family Descendant Chart"
@@ -11337,7 +11331,7 @@ msgstr "Familie-afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:131
 msgid "Produces a graphical descendant chart around a family"
-msgstr "Een grafische afstammelingenstamboom rond een familie wordt aangemaakt"
+msgstr "Een grafische afstammelingenboom rond een familie wordt aangemaakt"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:147
 msgid "Family Descendant Tree"
@@ -11345,7 +11339,7 @@ msgstr "Familie-afstammelingenstamboom"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:148
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Een grafische afstammelingenstamboom rond een familie wordt aangemaakt"
+msgstr "Een grafische afstammelingenboom rond een familie wordt aangemaakt"
 
 #: ../src/plugins/drawreport/drawplugins.gpr.py:171
 msgid "Produces fan charts"
@@ -11797,7 +11791,7 @@ msgstr "Web Family Tree"
 
 #: ../src/plugins/export/export.gpr.py:53
 msgid "_Web Family Tree"
-msgstr "Web familiestamboom"
+msgstr "Webstamboom"
 
 #: ../src/plugins/export/export.gpr.py:54
 msgid "Web Family Tree format"
@@ -11850,19 +11844,19 @@ msgstr "GeneWeb export-opties"
 
 #: ../src/plugins/export/export.gpr.py:116
 msgid "Gramps XML Package (family tree and media)"
-msgstr "Gramps XML-pakket (familiestamboom en mediabestanden)"
+msgstr "Gramps XML-pakket (stamboom en mediabestanden)"
 
 #: ../src/plugins/export/export.gpr.py:117
 msgid "Gra_mps XML Package (family tree and media)"
-msgstr "Gramps _XML-pakket (familiestamboom en mediabestanden)"
+msgstr "Gramps _XML-pakket (stamboom en mediabestanden)"
 
 #: ../src/plugins/export/export.gpr.py:118
 msgid ""
 "Gramps package is an archived XML family tree together with the media object "
 "files."
 msgstr ""
-"Een Gramps-pakket bestaat uit een gearchiveerde XML familiestamboom samen "
-"met de media-objectbestanden."
+"Een Gramps-pakket bestaat uit een gearchiveerde XML stamboom samen met de "
+"media-objectbestanden."
 
 #: ../src/plugins/export/export.gpr.py:127
 msgid "Gramps package export options"
@@ -11870,11 +11864,11 @@ msgstr "Gramps pakket export-opties"
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
-msgstr "Gramps XML (familiestamboom)"
+msgstr "Gramps XML (stamboom)"
 
 #: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
-msgstr "Gramps _XML (familiestamboom)"
+msgstr "Gramps _XML (stamboom)"
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid ""
@@ -11882,7 +11876,7 @@ msgid ""
 "without the media object files. Suitable for backup purposes."
 msgstr ""
 "'Gramps-XML' export is een volledige gearchiveerde reservekopie van de "
-"Gramps-familiestamboom zonder mediabestanden. Dit formaat is geschikt om "
+"Gramps-stamboom zonder mediabestanden. Dit formaat is geschikt om "
 "reservekopieën te maken."
 
 #: ../src/plugins/export/export.gpr.py:150
@@ -12104,9 +12098,9 @@ msgid ""
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
 "Geef een geldige datum (DD-MM-JJJJ) op in het ingaveveld en klik op start. "
-"Voor iedereen in uw familiestamboom wordt nu op basis van deze datum, een "
-"leeftijd berekend. U kunt vervolgens sorteren via de leeftijdskolom. "
-"Dubbelklikken op de rij maakt bewerken mogelijk."
+"Voor iedereen in uw stamboom wordt nu op basis van deze datum, een leeftijd "
+"berekend. U kunt vervolgens sorteren via de leeftijdskolom. Dubbelklikken op "
+"de rij maakt bewerken mogelijk."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 #: ../src/glade/plugins.glade.h:6
@@ -13388,7 +13382,7 @@ msgstr "Gramplet toont alle activiteiten van deze sessie"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing summary data of the family tree"
-msgstr "Gramplet toont een samenvatting van de familiestamboom"
+msgstr "Gramplet toont een samenvatting van de stamboom"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:227
 #: ../src/plugins/gramplet/gramplet.gpr.py:234
@@ -13907,12 +13901,11 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"Het allereerste dat u dient te doen is een nieuwe familiestamboom aanmaken. "
-"Om een nieuwe familiestamboom (soms 'gegevensbestand' genoemd) aan te maken, "
-"selecteert u  \"Familiestambomen\" in het menu en kiest u  "
-"\"Familiestambomen beheren...\", drukt u op  \"Nieuw\" en benoemt u uw "
-"familiestamboom. Voor verdere details kunt u de informatie lezen die bij de "
-"bovenstaande links staat\n"
+"Het allereerste dat u dient te doen is een nieuwe stamboom aanmaken. Om een "
+"nieuwe stamboom (soms 'gegevensbestand' genoemd) aan te maken, selecteert u  "
+"\"Stambomen\" in het menu en kiest u  \"Stambomen beheren...\", drukt u op  "
+"\"Nieuw\" en benoemt u uw stamboom. Voor verdere details kunt u de "
+"informatie lezen die bij de bovenstaande links staat\n"
 "\n"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:131
@@ -14140,8 +14133,8 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Interessante personen worden als startpunt gebruikt om \"familiestambomen\" "
-"te bepalen."
+"Interessante personen worden als startpunt gebruikt om \"stambomen\" te "
+"bepalen."
 
 #: ../src/plugins/graph/GVFamilyLines.py:120
 msgid "Follow parents to determine family lines"
@@ -14173,7 +14166,7 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Personen en families die niet direct gerelateerd zijn naar interessante "
-"personen zullen verwijderd worden bij het bepalen van de \"familistambomen\"."
+"personen zullen verwijderd worden bij het bepalen van de \"stambomen\"."
 
 #. ----------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:140
@@ -14553,19 +14546,19 @@ msgid ""
 "the media object files.)"
 msgstr ""
 "Importeer gegevens van een Gramps-pakket (dit is een gearchiveerd XML-"
-"familiestamboombestand samen met media-objecten)"
+"stamboombestand samen met media-objecten)"
 
 #: ../src/plugins/import/import.gpr.py:107
 msgid "Gramps XML Family Tree"
-msgstr "Gramps XML familiestamboom"
+msgstr "Gramps XML stamboom"
 
 #: ../src/plugins/import/import.gpr.py:108
 msgid ""
 "The Gramps XML format is a text version of a family tree. It is read-write "
 "compatible with the present Gramps database format."
 msgstr ""
-"Het Gramps XML-gegevensbestand is een tekstversie van een familiestamboom. "
-"Het is compatibel (zowel lezen als schrijven) met het huidige "
+"Het Gramps XML-gegevensbestand is een tekstversie van een stamboom. Het is "
+"compatibel (zowel lezen als schrijven) met het huidige "
 "gegevensbestandsformaat van Gramps."
 
 #: ../src/plugins/import/import.gpr.py:128
@@ -14827,9 +14820,9 @@ msgstr ""
 "van Gramps. U dient dus een oude Gramps-kopie versie 3.0 te gebruiken en uw "
 "gegevensbestand in die versie importeren. U moet dan een kopie van uw "
 "gegevens naar het Gramps-XML formaat exporteren. Dan dient u uw Gramps-"
-"versie op te waarderen, een nieuwe lege familiestamboom aanmaken en dan het "
-"Graùmps-XML bestand daarin importeren. Zie ook: http://www.gramps-project."
-"org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees/"
+"versie op te waarderen, een nieuwe lege stamboom aanmaken en dan het Graùmps-"
+"XML bestand daarin importeren. Zie ook: http://www.gramps-project.org/wiki/"
+"index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees/"
 "nl#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
@@ -14943,10 +14936,10 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Het standaard ingestelde mediapad voor deze familiestamboom is %s. Overweeg "
-"om een eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gebruik "
-"te maken van het mediamanager hulpmiddel. U kunt ook bepaalde "
-"deeltekenreeksen vervangen."
+"Het standaard ingestelde mediapad voor deze stamboom is %s. Overweeg om een "
+"eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gebruik te "
+"maken van het mediamanager hulpmiddel. U kunt ook bepaalde deeltekenreeksen "
+"vervangen."
 
 #: ../src/plugins/import/ImportGpkg.py:116
 msgid "Cannot set base media path"
@@ -14963,7 +14956,7 @@ msgid ""
 "tool, option 'Replace substring in the path' to set correct paths in your "
 "media objects."
 msgstr ""
-"De familiestamboom die u importeerde, heeft al een standaard mediapad: "
+"De stamboom die u importeerde, heeft al een standaard mediapad: "
 "%(orig_path)s. De geïmporteerde media-objecten zijn afhankelijk van pad "
 "%(path)s. U kunt het mediapad veranderen in 'Voorkeuren' of u kunt de "
 "geïmporteerde bestanden aanpassen aan het bestaand e mediapad. U kunt dit "
@@ -15177,9 +15170,9 @@ msgid ""
 "Preferences."
 msgstr ""
 "Het geopende bestand heeft een mediapad %s. Maar dit geeft een conflict met "
-"het mediapad van de familiestamboom. Het oorspronkelijke mediapad werd "
-"behouden. Kopieër de bestanden naar een correcte map of verander het "
-"mediapad in het menu 'voorkeuren'."
+"het mediapad van de stamboom. Het oorspronkelijke mediapad werd behouden. "
+"Kopieer de bestanden naar een correcte map of verander het mediapad in het "
+"menu 'voorkeuren'."
 
 #: ../src/plugins/import/ImportXml.py:968
 msgid ""
@@ -15299,7 +15292,7 @@ msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Uw familiestambomengroepnaam \"%(key)s\" samen met \"%(parent)s\", werd niet "
+"Uw stambomengroepnaam \"%(key)s\" samen met \"%(parent)s\", werd niet "
 "veranderd naar \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1623
@@ -20904,7 +20897,7 @@ msgstr "Dubbele stambomen tonen"
 
 #: ../src/plugins/textreport/DescendReport.py:428
 msgid "Whether to show duplicate family trees in the report."
-msgstr "Al of niet de dubbele familiestambomen in het verslag tonen."
+msgstr "Al of niet de dubbele stambomen in het verslag tonen."
 
 #: ../src/plugins/textreport/DescendReport.py:456
 #, python-format
@@ -22149,12 +22142,12 @@ msgid ""
 "tree. The rest of the checking is skipped, the Check and\n"
 "Repair tool should be run anew on this new family tree."
 msgstr ""
-"Uw familiestamboom bevat dubbele verwijzingen in de kruistabellen.\n"
+"Uw stamboom bevat dubbele verwijzingen in de kruistabellen.\n"
 " Dit is niet goed en kan verholpen worden door een reservekopie van uw\n"
-"familiestamboom te maken en deze reservekopie opnieuw te importeren\n"
-"in een lege familiestamboom. Het vervolg van het controleproces wordt\n"
+"stamboom te maken en deze reservekopie opnieuw te importeren\n"
+"in een lege stamboom. Het vervolg van het controleproces wordt\n"
 "overgeslagen. U doet er goed aan om het hulpmiddel 'controle en herstellen'\n"
-"opnieuw uit te voeren op deze nieuwe familiestamboom."
+"opnieuw uit te voeren op deze nieuwe stamboom."
 
 #: ../src/plugins/tool/Check.py:150
 msgid "Check Integrity"
@@ -24627,16 +24620,15 @@ msgstr "Personenscherm met boomstruktuur"
 
 #: ../src/plugins/view/view.gpr.py:140
 msgid "The view showing all people in the family tree"
-msgstr "Het scherm toont alle personen in de familiestamboom"
+msgstr "Het scherm toont alle personen in de stamboom"
 
 #: ../src/plugins/view/view.gpr.py:156
 msgid "The view showing all people in the family tree in a flat list"
-msgstr ""
-"Het scherm toont alle personen in de familiestamboom in een vlakke lijst"
+msgstr "Het scherm toont alle personen in de stamboom in een vlakke lijst"
 
 #: ../src/plugins/view/view.gpr.py:173
 msgid "The view showing all the places of the family tree"
-msgstr "Het scherm toont alle locaties van de familiestamboom"
+msgstr "Het scherm toont alle locaties van de stamboom"
 
 #: ../src/plugins/view/view.gpr.py:188
 msgid "Repository View"
@@ -24908,7 +24900,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:3715
 #, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Gebeurtenistypes die beginnen met de letter %s "
+msgstr "Gebeurtenistypes die beginnen met de letter %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3914
 msgid "Surnames by person count"
@@ -24932,7 +24924,7 @@ msgstr "Aantal personen"
 #: ../src/plugins/webreport/NarrativeWeb.py:4008
 #, python-format
 msgid "Surnames beginning with letter %s"
-msgstr "Achternamen die beginnen met de letter %s "
+msgstr "Achternamen die beginnen met de letter %s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4151
 msgid "Creating source pages"
@@ -25035,11 +25027,11 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
-"Deze pagina is bedoeld om de gebruiker/opsteller van deze familiestamboom of "
+"Deze pagina is bedoeld om de gebruiker/opsteller van deze stamboom of "
 "website de mogelijkheid te geven om bestanden te delen. Indien er bestanden "
 "in de onderstaande lijst staan, kunt u deze bestanden downloaden door op de "
 "naam te klikken. De 'download'-pagina en de bestanden hebben hetzelfde "
-"auteursrecht als de rest van deze web-pagina's."
+"auteursrecht als de rest van deze webpagina's."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5001
 msgid "File Name"
@@ -25271,7 +25263,7 @@ msgstr "Website titel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7993
 msgid "My Family Tree"
-msgstr "Mijn familiestamboom"
+msgstr "Mijn stamboom"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:7994
 msgid "The title of the web site"
@@ -25580,7 +25572,7 @@ msgstr "Beschrijving voor download"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8211
 msgid "Smith Family Tree"
-msgstr "Familiestamboom van Smith"
+msgstr "Stamboom van Smith"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8212
 #: ../src/plugins/webreport/NarrativeWeb.py:8221
@@ -25589,7 +25581,7 @@ msgstr "Geef een beschrijving voor dit bestand."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8220
 msgid "Johnson Family Tree"
-msgstr "Familiestamboom van Johnson"
+msgstr "Stamboom van Johnson"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8230
 #: ../src/plugins/webreport/WebCal.py:1507
@@ -29275,7 +29267,7 @@ msgstr "<b>Alinea-opties</b>"
 
 #: ../src/glade/dbman.glade.h:1
 msgid "Family Trees - Gramps"
-msgstr "Familiestambomen - Gramps"
+msgstr "Stambomen - Gramps"
 
 #: ../src/glade/dbman.glade.h:2
 msgid "_Rename"
@@ -29291,7 +29283,7 @@ msgstr "Venster sluiten"
 
 #: ../src/glade/dbman.glade.h:6
 msgid "_Load Family Tree"
-msgstr "Laad familiestamboom"
+msgstr "Laad stamboom"
 
 #: ../src/glade/dbman.glade.h:7
 msgid "Revision comment - Gramps"
@@ -30821,8 +30813,7 @@ msgid ""
 "that can be extracted."
 msgstr ""
 "In onderstaande lijst worden de bijnamen, titels, voorvoegsel en "
-"samengestelde achternamen die Gramps uit de familiestamboom kon halen, "
-"getoond.\n"
+"samengestelde achternamen die Gramps uit de stamboom kon halen, getoond.\n"
 "Indien u de aanpassingen aanvaard, zal Gramps de geselecteerde gegevens "
 "veranderen.\n"
 "\n"
@@ -31175,12 +31166,12 @@ msgstr ""
 "gebaseerd op vele criteria. Om een nieuw filter aan te maken gaat u naar "
 "&quot;Bewerken &gt; Personenfilter bewerken&quot;. Hier kunt u uw filter "
 "benoemen en regels toevoegen of bestaande regels combineren uit de bestaande "
-"lijst.  Op deze manier kunnen bv. alle geadopteerde personen in de "
-"familiestamboom gevonden worden. Ook kunnen personen zonder een "
-"geboortedatum gefilterd worden. Om de resultaten te zien dient u uw filter "
-"op te slaan en vervolgens de filter te selecteren onderaan de filterzijbalk; "
-"dan klikt u op toepassen. Wanneer u de filterzijbalk niet zichtbaar is, ga "
-"dan naar &quot;Beeld &gt; Filter."
+"lijst.  Op deze manier kunnen bv. alle geadopteerde personen in de stamboom "
+"gevonden worden. Ook kunnen personen zonder een geboortedatum gefilterd "
+"worden. Om de resultaten te zien dient u uw filter op te slaan en vervolgens "
+"de filter te selecteren onderaan de filterzijbalk; dan klikt u op toepassen. "
+"Wanneer u de filterzijbalk niet zichtbaar is, ga dan naar &quot;Beeld &gt; "
+"Filter."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -31316,10 +31307,9 @@ msgid ""
 msgstr ""
 "<b>Gramps-verslagen</b><br/>Gramps biedt een brede waaier van mogelijke "
 "verslagen. De tekstverslagen zijn zeer handig indien u de resultaten van uw "
-"familiestamboom naar uw familieleden wilt sturen via e-mail. De grafische "
-"verslagen kunnen eenvoudig complexe relaties weergeven. Wenst u van uw "
-"familiestamboom een website maken, dan is daar een speciaal verslag voor om "
-"dit te doen."
+"stamboom naar uw familieleden wilt sturen via e-mail. De grafische verslagen "
+"kunnen eenvoudig complexe relaties weergeven. Wenst u van uw familiestamboom "
+"een website maken, dan is daar een speciaal verslag voor om dit te doen."
 
 #: ../src/data/tips.xml.in.h:17
 msgid ""
@@ -31329,10 +31319,10 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Aanmaken van een nieuwe familiestamboom</b><br/>Een goede manier om een "
-"nieuwe familietak aan te maken is om eerst alle familieleden in te geven in "
-"het gegevensbestand (gebruik &quot;Bewerken &gt; Toevoegen&quot; of klik op "
-"de '+' knop in het personenscherm). Ga vervolgens naar het relatiescherm en "
+"<b>Aanmaken van een nieuwe stamboom</b><br/>Een goede manier om een nieuwe "
+"familietak aan te maken is om eerst alle familieleden in te geven in het "
+"gegevensbestand (gebruik &quot;Bewerken &gt; Toevoegen&quot; of klik op de "
+"'+' knop in het personenscherm). Ga vervolgens naar het relatiescherm en "
 "maak de relaties tussen de personen aan."
 
 #: ../src/data/tips.xml.in.h:18
@@ -31599,7 +31589,7 @@ msgid ""
 msgstr ""
 "<b>Het Stamboomscherm</b><br/>Het stamboomscherm toont een traditionele "
 "stamboom. Hou de muis over een persoon om meer informatie te verkrijgen. "
-"Door rechtklikken verkrijgt u een menu dat snel toegang geeft tot andere "
+"Door rechtsklikken verkrijgt u een menu dat snel toegang geeft tot andere "
 "familieleden en instellingen. Verander de instellingen eens om de "
 "verschillende mogelijkheden te zien."
 
@@ -31672,8 +31662,8 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Het Gramps XML-pakket</b><br/>U kunt uw familiestamboom exporteren naar "
-"een Gramps-pakket. Dit is een gecomprimeerd bestand dat uw stamboomgegevens "
+"<b>Het Gramps XML-pakket</b><br/>U kunt uw stamboom exporteren naar een "
+"Gramps-pakket. Dit is een gecomprimeerd bestand dat uw stamboomgegevens "
 "bevat en ook alle andere bestanden gebruikt door het gegevensbestand (zoals "
 "beelden bv.). Dit bestand is volledig overzetbaar zodat het zeer nuttig is "
 "om reservekopieën te maken of om uw gegevens te delen met andere Gramps-"
@@ -31687,9 +31677,8 @@ msgid ""
 "using a single file, instead of many html files."
 msgstr ""
 "<b>Web Family Tree formaat</b><br/>Gramps kan gegevens exporteren naar het "
-"'Web Family Tree' (WFT) formaat. Dit formaat laat toe om een familiestamboom "
-"'on-line' te tonen met één enkel bestand, i.p.v. een hele reeks html-"
-"bestanden."
+"'Web Family Tree' (WFT) formaat. Dit formaat laat toe om een stamboom online "
+"te tonen met één enkel bestand, i.p.v. een hele reeks html-bestanden."
 
 #: ../src/data/tips.xml.in.h:45
 msgid ""
@@ -31699,11 +31688,10 @@ msgid ""
 "Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr ""
 "<b>Maak een website van uw stamboom</b><br/>U kunt zeer eenvoudig uw "
-"familiestamboom exporteren naar een webpagina. Selecteer daarvoor het "
-"volledige gegevensbestand, familielijnen of geselecteerde individuen en de "
-"aangemaakt webpagina's zijn klaar om geladen te worden naar het WWW. Het "
-"Gramps-project biedt tevens vrije hosting van de webpagina's indien "
-"aangemaakt met Gramps."
+"stamboom exporteren naar een webpagina. Selecteer daarvoor het volledige "
+"gegevensbestand, familielijnen of geselecteerde individuen en de aangemaakt "
+"webpagina's zijn klaar om geladen te worden naar het WWW. Het Gramps-project "
+"biedt tevens vrije hosting van de webpagina's indien aangemaakt met Gramps."
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
