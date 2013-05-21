@@ -1,3 +1,42 @@
+2013-05-21
+Version 4.0.0, the "The Miracle of Birth", new major release.
+* GEP 8: code reorganization
+* GEP 26: Replace make
+* GEP 29: Gtk 3 support
+* GEP 31: Python 3 support
+* Completely reworked localization handling
+* The Gramplet view has been renamed Dashboard. This to avoid an overload of the word Gramplet, and to make it more clear to new users what can be expected in this view
+* GTK 3 uses new themes, so users not on Gnome must set a nice GTK 3 theme to fully appreciate Gramps 4.0. Install a GTK 3 theme and set it. If Gramps looks ugly, you made an error in this step.
+* Different sidebar navigators can be installed
+* New Ancestor Fan Chart View and Descendant Fan Chart View, which offer a lot of insight in your family tree on a small space. Direct printing is available from these views.
+* All wizards are reworked, so the exporter dialog, help and bug report dialog are different from version 3.4, but offer the same functions
+* New To Do Gramplets listing all To Do Notes
+* More reports support output in a different language than the interface language
+* Narrative Web has been reworked to make it more stable.
+
+2013-05-15
+Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
+* infinite recursion bug in narrative web generation
+* protection on family trees when using version 3.4 and 4.0 on the same PC (road to 4.0)
+* merging notes of media with citations now works
+* crash during Calculate Preview of a filtered XML export
+* fix annoying errors on navigation related to citations gramplet and tag object.
+* listing the Family Trees can corrupt them.
+* various fix around handling Gedcom file format
+* fix citations and sources import on ProGen format 
+* better date handling and better alternate translation support on some textual reports according to locale under windows 
+* avoid Errors when setting wrong value as markup for invalid dates (Preferences)
+* fix paragraph layout on PDF format or print output
+* New: New-Zealand holidays
+* Polish and backport code on XML import (road to 4.0)
+* Regular expression rules now use search rather than match, fix design issues on regex filter rules
+* Disable/Enable indent spouse on descendants tree
+* fix regular expressions on Place filter rule
+* consistency on cli arguments (road to 4.0)
+* fix call of non-existant process on references proxy, enhanced tests on proxy filter
+* fix NarWeb creation via cli for some non-english locales
+* Various updated translations: ca, de, fr, it, nl, pt_BR, ru, sv, uk
+
 2013-03-19
 Version 3.4.3 of Gramps! "'Whenever life gets you down, Mrs. Brown'", a maintenance release.
 * Sorting (both in the main display window, and particularly in Narrative Web output) now uses PyICU (if that module is available). Inclusion of PyICU is 'strongly recommended'. This resolves a number of bugs particularly related to sorting of non-Latin characters, and sorting on MS Windows and Mac OS X. Some changes have been made in Narrative Web to support contractions for alphabetic indices.

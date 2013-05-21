@@ -1,34 +1,67 @@
 $Id$
 
-UNSTABLE Gramps 4.0.0 Beta2 release.
+Gramps 4.0.0, the "The Miracle of Birth", release.
 
-This is a technology preview to allow distribution packagers (and plugin
-writers) to update their scripts (and plugins). This release is not
-production ready, so only use it for testing!
-
-It is recommended that Gramps 4.0.0 be used with python 2.7 since many
-dependent packages do not yet have python 3 versions.  A determined person
-can probably download their sources and build them, however.
-
-The dependencies for Gramps 4.0.0 are _completely_ different than 3.4 due 
-to the switch to GObject introspection, and the removal of autotools. So 
-only install 4.0.0 if you are certain you can obtain the dependencies, 
-see README and INSTALL. 
-
-For linux, in Ubuntu 12.10 you can install 4.0.0, but you will need to 
-compile and install osmgpsmap manually to have the maps working (see 
-http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography ) 
-
+This is a major release, don't upgrade before verifying your system can run it.
+As one of the very first big ($5.4 million), multi-platform (Linux, 
+Windows, Mac OS X, ...), non-Gnome GTK applications, Gramps makes the 
+jump to GTK 3. At the same time python 2.7 and python 3 are supported, 
+though the last must still be considered experimental. Gramps 4.0 
+further uses distutils for distribution, so the install sequence is changed.
+The Gramps developers have tried to make Gramps 4.0 as identical as 
+possible to 3.4, so no data changes are done, nor are there big interface 
+changes. In other words, a .gramps backup file of version 4.0 will open 
+without problems in Gramps 3.4, giving users the possibility to fully try Gramps 4.0.
+Don't be mistaken though, a huge amount of code is new and changed! 
+In order to bring this release we thank the many developers who helped 
+the GTK support on Mac, Windows and Linux forward. Note however, 
+Gramps 4.0 will only work on a top of a very recent sortware stack. 
+A Windows installer will probably not be available soon. In Linux current 
+distro's don't contain the optional packages in the form Gramps 4.0 needs. 
+All this should make clear you can safely keep using version 3.4 and wait 
+for packagers to catch up. People who cannot upgrade the required components 
+but want to use Gramps 4.0 should use it in Virtualbox.
 
 Major enhancements in Gramps 4.0.0:
 
-* GEP 8: code reorganization: http://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
+* GEP 8: code reorganization: 
+http://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
 
-* GEP 26: Replace make: http://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
+* GEP 26: Replace make: 
+http://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
 
-* GEP 29: Gtk 3 :http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
+* GEP 29: Gtk 3: 
+http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
 
-* GEP 31: Python 3 support: http://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
+* GEP 31: Python 3 support: 
+http://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
+
+* Completely reworked localization handling
+
+Others changes in Gramps 4.0.0:
+
+* The Gramplet view has been renamed Dashboard. This to avoid an overload 
+of the word Gramplet, and to make it more clear to new users what can 
+be expected in this view
+
+* GTK 3 uses new themes, so users not on Gnome must set a nice GTK 3 
+theme to fully appreciate Gramps 4.0. Install a GTK 3 theme and set it. 
+If Gramps looks ugly, you made an error in this step.
+
+* Different sidebar navigators can be installed
+
+* New Ancestor Fan Chart View and Descendant Fan Chart View, which offer 
+a lot of insight in your family tree on a small space. Direct printing 
+is available from these views.
+
+* All wizards are reworked, so the exporter dialog, help and bug report 
+dialog are different from version 3.4, but offer the same functions
+
+* New To Do Gramplets listing all To Do Notes
+
+* More reports support output in a different language than the interface language
+
+* Narrative Web has been reworked to make it more stable.
 
 More info in the manual 
 http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_What%27s_new%3F
