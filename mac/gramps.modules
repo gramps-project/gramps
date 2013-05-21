@@ -130,27 +130,12 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  </autotools>
 
   <autotools id="osmgpsmap">
-    <branch module="nzjrs/osm-gps-map" repo="github"/>
+    <branch module="nzjrs/osm-gps-map" revision="gtk3" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
     </dependencies>
   </autotools>
-
-  <distutils id="osmgpsmap-py" autogen-sh="gnome-autogen.sh">
-    <branch module="osm-gps-map/python-osmgpsmap-0.7.3.tar.gz" repo="stowers"
-	    version="0.7.3"/>
-    <dependencies>
-      <dep package="osmgpsmap"/>
-  </dependencies>
-  <after>
-    <dep package="pygtk"/>
-    <dep package="pygobject"/>
-    <dep package="pygobject3"/>
-    <dep package="pycairo-python2.6"/>
-    <dep package="pycairo-python3"/>
-  </after>
-  </distutils>
 
   <autotools id="goocanvas" autogen-sh="configure">
     <branch module="goocanvas/2.0/goocanvas-2.0.1.tar.bz2" version="2.0.1"
