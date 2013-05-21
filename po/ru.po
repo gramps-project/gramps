@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2013-05-21 10:37+0100\n"
+"PO-Revision-Date: 2013-05-21 11:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -10228,7 +10228,6 @@ msgid "Revision comment - Gramps"
 msgstr "Комментарий к версии - Gramps"
 
 #: ../gramps/gui/glade/dbman.glade.h:2
-#, fuzzy
 msgid "<b>Version description</b>"
 msgstr "<b>Описание версии</b>"
 
@@ -10494,7 +10493,6 @@ msgid "Edition"
 msgstr "Издание"
 
 #: ../gramps/gui/glade/editcitation.glade.h:1
-#, fuzzy
 msgid "<b>Citation information</b>"
 msgstr "<b>Данные о цитате</b>"
 
@@ -10621,7 +10619,6 @@ msgstr "Название источника."
 
 #: ../gramps/gui/glade/editcitation.glade.h:30
 #: ../gramps/gui/glade/editsourceref.glade.h:28
-#, fuzzy
 msgid "<b>Shared source information</b>"
 msgstr "<b>Общая информация об источнике</b>"
 
@@ -10646,7 +10643,6 @@ msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr "Месяц-День, которым начинается новый год (например, «1-1», «3-1», «3-25»)"
 
 #: ../gramps/gui/glade/editdate.glade.h:6
-#, fuzzy
 msgid "<b>Q_uality</b>"
 msgstr "<b>Качество</b>"
 
@@ -10671,7 +10667,6 @@ msgid "_Year"
 msgstr "_Год"
 
 #: ../gramps/gui/glade/editdate.glade.h:12
-#, fuzzy
 msgid "<b>Second date</b>"
 msgstr "<b>Вторая дата</b>"
 
@@ -10743,7 +10738,6 @@ msgstr ""
 #: ../gramps/gui/glade/editeventref.glade.h:1
 #: ../gramps/gui/glade/editreporef.glade.h:3
 #: ../gramps/gui/glade/editsourceref.glade.h:1
-#, fuzzy
 msgid "<b>Reference information</b>"
 msgstr "<b>Информация о ссылке</b>"
 
@@ -10757,7 +10751,6 @@ msgstr "<b>Внимание:</b> Все изменения в общей инф�
 
 #: ../gramps/gui/glade/editeventref.glade.h:15
 #: ../gramps/gui/glade/editreporef.glade.h:19
-#, fuzzy
 msgid "<b>Shared information</b>"
 msgstr "<b>Общая информация</b>"
 
@@ -10794,7 +10787,6 @@ msgid "Indicates if the record is private"
 msgstr "Указывает на частную запись"
 
 #: ../gramps/gui/glade/editfamily.glade.h:17
-#, fuzzy
 msgid "<b>Relationship Information</b>"
 msgstr "<b>Данные об Отношении</b>"
 
@@ -10971,7 +10963,6 @@ msgid "_Corner 2:  X"
 msgstr "Угол 2:  X"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:3
-#, fuzzy
 msgid "<b>Referenced Region</b>"
 msgstr "<b>Область для ссылке</b>"
 
@@ -11016,7 +11007,6 @@ msgid "Select a file"
 msgstr "Выберите файл"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:33
-#, fuzzy
 msgid "<b>Shared Information</b>"
 msgstr "<b>Общая Информация</b>"
 
@@ -11779,7 +11769,6 @@ msgid "Author's email:"
 msgstr "Эл. почта автора:"
 
 #: ../gramps/gui/glade/reorder.glade.h:1
-#, fuzzy
 msgid "<b>Parent relationships</b>"
 msgstr "<b>Родительские отношения</b>"
 
@@ -11802,7 +11791,6 @@ msgid "Arrow bottom"
 msgstr "Вниз, влево"
 
 #: ../gramps/gui/glade/reorder.glade.h:6
-#, fuzzy
 msgid "<b>Family relationships</b>"
 msgstr "<b>Семейные отношения</b>"
 
@@ -11835,7 +11823,6 @@ msgid "Delete the selected filter"
 msgstr "Удалить выделенный фильтр"
 
 #: ../gramps/gui/glade/rule.glade.h:6
-#, fuzzy
 msgid "<i>Note: changes take effect only after this window is closed</i>"
 msgstr "<i>Внимание: изменения вступят в силу только после закрытия этого окна</i>"
 
@@ -11871,7 +11858,6 @@ msgid "<b>Options</b>"
 msgstr "<b>Параметры</b>"
 
 #: ../gramps/gui/glade/rule.glade.h:18
-#, fuzzy
 msgid "<b>Rule list</b>"
 msgstr "<b>Список правил</b>"
 
@@ -11888,7 +11874,6 @@ msgid "Return values that do no_t match the filter rules"
 msgstr "_Возвращать значения, не удовлетворяющие правилам фильтра (обратить)"
 
 #: ../gramps/gui/glade/rule.glade.h:23
-#, fuzzy
 msgid "<b>Selected Rule</b>"
 msgstr "<b>Выделенное правило</b>"
 
@@ -11910,7 +11895,6 @@ msgid "Style name"
 msgstr "Название стиля"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:4
-#, fuzzy
 msgid "<b>Type face</b>"
 msgstr "<b>Стиль шрифта</b>"
 
@@ -11950,7 +11934,6 @@ msgid "_Underline"
 msgstr "Под_чёркнутый"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:14
-#, fuzzy
 msgid "<b>Font options</b>"
 msgstr "<b>Параметры шрифта</b>"
 
@@ -11971,7 +11954,6 @@ msgid "Cen_ter"
 msgstr "По _центру"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:19
-#, fuzzy
 msgid "<b>Alignment</b>"
 msgstr "<b>Выравнивание</b>"
 
@@ -11992,7 +11974,6 @@ msgid "L_eft:"
 msgstr "Л_евый край:"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:25
-#, fuzzy
 msgid "<b>Spacing</b>"
 msgstr "<b>Интервал</b>"
 
@@ -12029,12 +12010,10 @@ msgid "_Bottom"
 msgstr "По _нижнему краю"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:34
-#, fuzzy
 msgid "<b>Indentation</b>"
 msgstr "<b>Отступ</b>"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:35
-#, fuzzy
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Параметры абзаца</b>"
 
@@ -18757,7 +18736,6 @@ msgid "UTF8"
 msgstr "UTF8"
 
 #: ../gramps/plugins/importer/importgedcom.glade.h:10
-#, fuzzy
 msgid "<b>Warning messages</b>"
 msgstr "<b>Предупреждения</b>"
 
@@ -25780,7 +25758,6 @@ msgid "Check and Repair"
 msgstr "Проверка и Коррекция"
 
 #: ../gramps/plugins/tool/desbrowser.glade.h:1
-#, fuzzy
 msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr "<i>Двойной щелчок по строке для редактирования личной информации</i>"
 
@@ -25798,17 +25775,14 @@ msgid "Descendant Browser tool"
 msgstr "Инструмент Просмотра Потомков"
 
 #: ../gramps/plugins/tool/eval.glade.h:1
-#, fuzzy
 msgid "<b>Evaluation Window</b>"
 msgstr "<b>Окно оценки</b>"
 
 #: ../gramps/plugins/tool/eval.glade.h:2
-#, fuzzy
 msgid "<b>Output Window</b>"
 msgstr "<b>Окно вывода</b>"
 
 #: ../gramps/plugins/tool/eval.glade.h:3
-#, fuzzy
 msgid "<b>Error Window</b>"
 msgstr "<b>Окно ошибок</b>"
 
@@ -25931,7 +25905,6 @@ msgstr "Ниже приведён список Мест и возможные д
 
 #: ../gramps/plugins/tool/finddupes.glade.h:1
 #: ../gramps/plugins/tool/mergecitations.glade.h:1
-#, fuzzy
 msgid "<b>Match Threshold</b>"
 msgstr "<b>Граница соответствия</b>"
 
@@ -26101,7 +26074,6 @@ msgid "Press Apply to proceed, Cancel to abort, or Back to revisit your options.
 msgstr "Нажмите OK для продолжения, Отмена для отказа, или Назад для пересмотра возможностей."
 
 #: ../gramps/plugins/tool/mediamanager.py:376
-#, fuzzy
 msgid "Operation successfully finished"
 msgstr "Операция успешно завершена."
 
@@ -26531,7 +26503,6 @@ msgstr "О_братить отметки"
 
 #: ../gramps/plugins/tool/removeunused.glade.h:10
 #: ../gramps/plugins/tool/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
 msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
 
@@ -27307,7 +27278,6 @@ msgstr "Ровно две семьи должны быть выделены дл
 
 #: ../gramps/plugins/view/fanchartdescview.py:167
 #: ../gramps/plugins/view/fanchartview.py:165
-#, fuzzy
 msgid "_Print..."
 msgstr "Напечатать..."
 
@@ -27353,7 +27323,6 @@ msgstr "Настройка периода времени"
 
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
-#, fuzzy
 msgid "White"
 msgstr "белый"
 
@@ -27398,13 +27367,11 @@ msgstr "Веерная карта"
 
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:311
-#, fuzzy
 msgid "Full Circle"
 msgstr "полный круг"
 
 #: ../gramps/plugins/view/fanchartdescview.py:317
 #: ../gramps/plugins/view/fanchartview.py:311
-#, fuzzy
 msgid "Half Circle"
 msgstr "полукруг"
 
@@ -27483,7 +27450,6 @@ msgid "Go to the person view and select the people you want to compare. Return t
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:274
-#, fuzzy
 msgid "reference _Person"
 msgstr "Ссылка на лицо"
 
@@ -27558,7 +27524,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:197
 #: ../gramps/plugins/view/geofamily.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s [%(gramps_id)s]"
 
