@@ -172,15 +172,19 @@
   </data>
 
   <data>
+    ${prefix}/lib/python2.7/site-packages/gramps/gen/utils/resource-path
+  </data>
+
+  <data>
     ${prefix}/share/gramps/
   </data>
 
   <data recurse="True">
-    ${prefix}/share/gramps/icons/*.png
+    ${prefix}/share/gramps/images/*.png
   </data>
 
   <data>
-    ${prefix}/share/gramps/icons/hicolor/splash.jpg
+    ${prefix}/share/gramps/images/splash.jpg
   </data>
 
   <data>
