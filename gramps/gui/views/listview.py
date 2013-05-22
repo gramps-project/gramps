@@ -750,11 +750,16 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
+            #store selected handles
+            self._sel_handles_before_update = self.selected_handles()
             list(map(self.model.update_row_by_handle, handle_list))
             _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
                     str(time.clock() - cput) + ' sec')
             # Ensure row is still selected after a change of postion in tree.
-            if handle_list and not self.selected_handles():
+            if self._sel_handles_before_update:
+                #we can only set one selected again, we take last
+                self.goto_handle(self._sel_handles_before_update[-1])
+            elif handle_list and not self.selected_handles():
                 self.goto_handle(handle_list[-1])
         else:
             self.dirty = True
