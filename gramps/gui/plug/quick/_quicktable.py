@@ -124,7 +124,8 @@ class QuickTable(SimpleTable):
         # you need index, treeview, path, button_code,
         # func, and event_time
         if index is not None:
-            popup = Gtk.Menu()
+            self.popup = Gtk.Menu()
+            popup = self.popup
             if (index is not None and self._link[index]):
             # See details (edit, etc):
                 objclass, handle = self._link[index]
