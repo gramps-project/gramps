@@ -1,3 +1,11 @@
+2013-05-22
+Version 3.4.5 of Gramps! "We have also developed a tomato which can eject itself when an accident is imminent", a maintenance release.
+* problem after upgrading to 3.4.4 from 3.3.1
+* ability to keep custom filename on output
+* book report: sub reports forget/overwrite their settings when trying to re-configure them
+* end of line report options window - changing output format cause change active tab to "Report Options"
+* various updated translations: de, es, fr, nb, nl, pl, sk
+
 2013-05-15
 Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
 * infinite recursion bug in narrative web generation
