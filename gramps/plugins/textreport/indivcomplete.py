@@ -255,16 +255,14 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-    def write_p_entry(self, label, parent, rel, pmark=None):
+    def write_p_entry(self, label, parent_name, rel_type, pmark=None):
         self.doc.start_row()
         self.normal_cell(label)
-
-        if parent:
-            text = '%(parent)s, %(separator)s %(relation)s' % { 
-                                      'parent': parent,
-                                      # FIXME this should be lower-case:
-                                      'separator': self._('Relationship:'),
-                                      'relation': self._(rel)}
+        if parent_name:
+            # for example (a stepfather): John Smith, relationship: Step
+            text = self._('%(parent-name)s, relationship: %(rel-type)s') % {
+                                      'parent-name' : parent_name,
+                                      'rel-type' : self._(rel_type)}
             self.normal_cell(text, mark=pmark)
         else:
             self.normal_cell('')
