@@ -64,7 +64,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.4.4.tar.gz" version="3.4.4"
+    <branch module="gramps/gramps-3.4.5.tar.gz" version="3.4.5"
 	    repo="sourceforge">
     </branch>
     <dependencies>
