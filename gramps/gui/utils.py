@@ -33,6 +33,7 @@ from __future__ import print_function, division
 #-------------------------------------------------------------------------
 import os
 import sys
+import subprocess
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 # gtk is not included here, because this file is currently imported
@@ -367,7 +368,6 @@ def open_file_with_default_application( file_path ):
     """
     from .dialog import ErrorDialog
     norm_path = os.path.normpath( file_path )
-
     if not os.path.exists(norm_path):
         ErrorDialog(_("Error Opening File"), _("File does not exist"))
         return
@@ -377,17 +377,17 @@ def open_file_with_default_application( file_path ):
             os.startfile(norm_path)
         except WindowsError as msg:
             ErrorDialog(_("Error Opening File"), str(msg))
+        return
+
+    if mac():
+        utility = '/usr/bin/open'
     else:
-        if mac():
-            utility = '/usr/bin/open'
-        else:
-            utility = 'xdg-open'
-        search = os.environ['PATH'].split(':')
-        for lpath in search:
-            prog = os.path.join(lpath, utility)
-            if os.path.isfile(prog):
-                os.spawnvpe(os.P_NOWAIT, prog, [prog, norm_path], os.environ)
-                return
+        utility = 'xdg-open'
+    try:
+        subprocess.check_output([utility, norm_path], stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as err:
+        ErrorDialog(_("Error Opening File"), err.output)
+    return
 
 def process_pending_events(max_count=10):
     """

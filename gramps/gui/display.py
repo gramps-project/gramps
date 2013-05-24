@@ -24,7 +24,9 @@ from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gui.utils import open_file_with_default_application as run_file
 import os
+import subprocess
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
 #completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and 
@@ -57,7 +59,24 @@ def display_help(webpage='', section=''):
         if section:
             link = link + '#' + section
     display_url(link)
-        
+
+def run_file(file_name):
+    """
+    Open a file or url with the default application. This should work
+    on GNOME, KDE, XFCE, ... as we use a freedesktop application
+    """
+    if is_quartz():
+        prog = find_binary('open')
+    else:
+        prog = find_binary('xdg-open')
+    if prog:
+        try:
+            subprocess.check_call([prog, file_name])
+        except subprocess.CalledProcessError:
+            return False
+        return True
+    return False
+
 def display_url(link, uistate=None):
     """
     Open the specified URL in a browser. 
@@ -70,20 +89,6 @@ def display_url(link, uistate=None):
             return
     if not run_file(link):
         run_browser(link)
-
-def run_file(file):
-    """
-    Open a file or url with the default application. This should work
-    on GNOME, KDE, XFCE, ... as we use a freedesktop application
-    """
-    if is_quartz():
-        prog = find_binary('open')
-    else:
-        prog = find_binary('xdg-open')
-    if prog:
-        os.spawnvpe(os.P_NOWAIT, prog, [prog, file], os.environ)
-        return True
-    return False
 
 def run_browser(url):
     """
