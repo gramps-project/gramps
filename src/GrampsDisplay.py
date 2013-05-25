@@ -25,6 +25,7 @@ import constfunc
 import config
 import locale
 import os
+import subprocess
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
 #completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and 
@@ -88,7 +89,7 @@ def url(link, uistate=None):
     if not run_file(link):
         run_browser(link)
 
-def run_file(file):
+def run_file(file_name):
     """
     Open a file or url with the default application. This should work
     on GNOME, KDE, XFCE, ... as we use a freedesktop application
@@ -98,7 +99,10 @@ def run_file(file):
     else:
         prog = find_binary('xdg-open')
     if prog:
-        os.spawnvpe(os.P_NOWAIT, prog, [prog, file], os.environ)
+        try:
+            subprocess.check_call([prog, file_name])
+        except subprocess.CalledProcessError:
+            return False
         return True
     return False
 
