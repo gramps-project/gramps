@@ -300,36 +300,50 @@ def __startgramps(errors, argparser):
     Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
-    from .dialog import ErrorDialog
-    #handle first existing errors in GUI fashion
-    if errors:
-        for error in errors:
-            ErrorDialog(error[0], error[1])
-        Gtk.main_quit()
-        sys.exit(1)
+    try:
+        from .dialog import ErrorDialog
+        #handle first existing errors in GUI fashion
+        if errors:
+            for error in errors:
+                ErrorDialog(error[0], error[1])
+            Gtk.main_quit()
+            sys.exit(1)
 
-    if argparser.errors:
-        for error in argparser.errors:
-            ErrorDialog(error[0], error[1])
-        Gtk.main_quit()
-        sys.exit(1)
+        if argparser.errors:
+            for error in argparser.errors:
+                ErrorDialog(error[0], error[1])
+            Gtk.main_quit()
+            sys.exit(1)
 
-    # add gui logger
-    from .logger import RotateHandler, GtkHandler
-    form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: "
-                                "%(filename)s: line %(lineno)d: %(message)s")
-    # Create the log handlers
-    rh = RotateHandler(capacity=20)
-    rh.setFormatter(form)
-    # Only error and critical log records should
-    # trigger the GUI handler.
-    gtkh = GtkHandler(rotate_handler=rh)
-    gtkh.setFormatter(form)
-    gtkh.setLevel(logging.ERROR)
-    l = logging.getLogger()
-    l.addHandler(rh)
-    l.addHandler(gtkh)
+        # add gui logger
+        from .logger import RotateHandler, GtkHandler
+        form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: "
+                                    "%(filename)s: line %(lineno)d: %(message)s")
+        # Create the log handlers
+        rh = RotateHandler(capacity=20)
+        rh.setFormatter(form)
+        # Only error and critical log records should
+        # trigger the GUI handler.
+        gtkh = GtkHandler(rotate_handler=rh)
+        gtkh.setFormatter(form)
+        gtkh.setLevel(logging.ERROR)
+        l = logging.getLogger()
+        l.addHandler(rh)
+        l.addHandler(gtkh)
 
+    except:
+        #make sure there is a clean exit if there is an error in above steps
+        quit_now = True
+        exit_code = 1
+        LOG.error(_(
+    "\nGramps failed to start. Please report a bug about this.\n"
+    "This could be because of an error in a (third party) View on startup.\n"
+    "To use another view, don't load a Family Tree, change view, and then load"
+    " your Family Tree.\n"
+    "You can also change manually the startup view in the gramps.ini file \n"
+    "by changing the last-view parameter.\n"
+                   ), exc_info=True)
+    
     # start GRAMPS, errors stop the gtk loop
     try:
         quit_now = False
