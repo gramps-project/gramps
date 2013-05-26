@@ -663,8 +663,8 @@ class GedcomWriter(UpdateCallback):
         """
         for addr in person.get_address_list():
             self._writeln(1, 'RESI')
-            self.__date(2, addr.get_date_object())
-            self._write_addr(2, addr)
+            self._date(2, addr.get_date_object())
+            self.__write_addr(2, addr)
             if addr.get_phone():
                 self._writeln(2, 'PHON', addr.get_phone())
 
