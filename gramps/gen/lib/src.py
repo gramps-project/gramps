@@ -35,6 +35,7 @@ from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
 from .notebase import NoteBase
 from .tagbase import TagBase
+from .attrbase import SrcAttributeBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
@@ -45,7 +46,7 @@ from .handle import Handle
 # Source class
 #
 #-------------------------------------------------------------------------
-class Source(MediaBase, NoteBase, PrimaryObject):
+class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
     """A record of a source of information."""
     
     def __init__(self):
@@ -53,10 +54,10 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         PrimaryObject.__init__(self)
         MediaBase.__init__(self)
         NoteBase.__init__(self)
+        SrcAttributeBase.__init__(self)
         self.title = ""
         self.author = ""
         self.pubinfo = ""
-        self.datamap = {}
         self.abbrev = ""
         self.reporef_list = []
         
@@ -64,13 +65,19 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.handle, self.gramps_id, cuni(self.title),
-                cuni(self.author), cuni(self.pubinfo),
-                NoteBase.serialize(self),
-                MediaBase.serialize(self), cuni(self.abbrev),
-                self.change, self.datamap,
-                [rr.serialize() for rr in self.reporef_list],
-                TagBase.serialize(self), self.private)
+        return (self.handle,                                       # 0
+                self.gramps_id,                                    # 1
+                cuni(self.title),                                  # 2
+                cuni(self.author),                                 # 3
+                cuni(self.pubinfo),                                # 4
+                NoteBase.serialize(self),                          # 5
+                MediaBase.serialize(self),                         # 6
+                cuni(self.abbrev),                                 # 7
+                self.change,                                       # 8
+                SrcAttributeBase.serialize(self),                  # 9
+                [rr.serialize() for rr in self.reporef_list],      # 10
+                TagBase.serialize(self),                           # 11
+                self.private)                                      # 12
 
     def to_struct(self):
         """
@@ -100,8 +107,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self), 
                 "abbrev": cuni(self.abbrev),
-                "change": self.change, 
-                "datamap": {"dict": self.datamap},
+                "change": self.change,
+                "srcattr_list": SrcAttributeBase.to_struct(self),
                 "reporef_list": [rr.to_struct() for rr in self.reporef_list],
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
@@ -111,14 +118,25 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
         """
-        (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, note_list, media_list,
-         self.abbrev, self.change, self.datamap, reporef_list,
-         tag_list, self.private) = data
+        (self.handle,       #  0
+         self.gramps_id,    #  1
+         self.title,        #  2
+         self.author,       #  3
+         self.pubinfo,      #  4
+         note_list,         #  5
+         media_list,        #  6
+         self.abbrev,       #  7
+         self.change,       #  8
+         srcattr_list,      #  9
+         reporef_list,      #  10
+         tag_list,          #  11
+         self.private       #  12
+        ) = data
 
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         TagBase.unserialize(self, tag_list)
+        SrcAttributeBase.unserialize(self, srcattr_list)
         self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         return self
         
@@ -179,7 +197,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :rtype: list
         """
         return [self.title, self.author, self.pubinfo, self.abbrev,
-                self.gramps_id] + list(self.datamap.keys()) + list(self.datamap.values())
+                self.gramps_id]
     
     def get_text_data_child_list(self):
         """
@@ -188,7 +206,7 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list + self.reporef_list
+        return self.media_list + self.reporef_list + self.attribute_list
 
     def get_citation_child_list(self):
         """
@@ -242,24 +260,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         self._merge_note_list(acquisition)
         self._merge_media_list(acquisition)
         self._merge_tag_list(acquisition)
-        my_datamap = self.get_data_map()
-        acquisition_map = acquisition.get_data_map()
-        for key in acquisition.get_data_map():
-            if key not in my_datamap:
-                self.datamap[key] = acquisition_map[key]
+        self._merge_attribute_list(acquisition)
         self._merge_reporef_list(acquisition)
-
-    def get_data_map(self):
-        """Return the data map of attributes for the source."""
-        return self.datamap
-
-    def set_data_map(self, datamap):
-        """Set the data map of attributes for the source."""
-        self.datamap = datamap
-
-    def set_data_item(self, key, value):
-        """Set the particular data item in the attribute data map."""
-        self.datamap[key] = value
 
     def set_title(self, title):
         """

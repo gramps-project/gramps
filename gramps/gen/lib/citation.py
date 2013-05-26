@@ -44,6 +44,7 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .datebase import DateBase
 from .tagbase import TagBase
+from .attrbase import SrcAttributeBase
 from ..constfunc import cuni
 from .handle import Handle
 
@@ -52,7 +53,7 @@ from .handle import Handle
 # Citation class
 #
 #-------------------------------------------------------------------------
-class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
+class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
     """
     A record of a citation of a source of information.
     
@@ -76,7 +77,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         self.source_handle = None                      #  5
         self.page = ""                                 #  3
         self.confidence = Citation.CONF_NORMAL         #  4
-        self.datamap = {}                              #  8
+        SrcAttributeBase.__init__(self)                #  8
         
     def serialize(self, no_text_date = False):
         """
@@ -90,7 +91,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
                 self.source_handle,                    #  5
                 NoteBase.serialize(self),              #  6
                 MediaBase.serialize(self),             #  7
-                self.datamap,                          #  8
+                SrcAttributeBase.serialize(self),      #  8
                 self.change,                           #  9
                 TagBase.serialize(self),               # 10
                 self.private)                          # 11
@@ -123,7 +124,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
                 "source_handle": Handle("Source", self.source_handle), #  5
                 "note_list": NoteBase.to_struct(self),           #  6
                 "media_list": MediaBase.to_struct(self),         #  7
-                "datamap": self.datamap,                         #  8
+                "srcattr_list": SrcAttributeBase.to_struct(self),#  8
                 "change": self.change,                           #  9
                 "tag_list": TagBase.to_struct(self),             # 10
                 "private": self.private}                         # 11
@@ -141,7 +142,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
          self.source_handle,                           #  5
          note_list,                                    #  6
          media_list,                                   #  7
-         self.datamap,                                 #  8
+         srcattr_list,                                 #  8
          self.change,                                  #  9
          tag_list,                                     # 10
          self.private                                  # 11
@@ -151,6 +152,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
         TagBase.unserialize(self, tag_list)
+        SrcAttributeBase.unserialize(self, srcattr_list)
         return self
         
     def _has_handle_reference(self, classname, handle):
@@ -209,8 +211,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.page,
-                self.gramps_id] + list(self.datamap.keys()) + list(self.datamap.values())
+        return [self.page, self.gramps_id]
     
     def get_text_data_child_list(self):
         """
@@ -219,7 +220,7 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         :returns: Returns the list of child objects that may carry textual data.
         :rtype: list
         """
-        return self.media_list
+        return self.media_list + self.attribute_list
 
     def get_note_child_list(self):
         """
@@ -271,25 +272,9 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
         idx = min(level_priority.index(self.confidence),
                   level_priority.index(acquisition.confidence))
         self.confidence = level_priority[idx]
-        my_datamap = self.get_data_map()
-        acquisition_map = acquisition.get_data_map()
-        for key in acquisition.get_data_map():
-            if key not in my_datamap:
-                self.datamap[key] = acquisition_map[key]
+        self._merge_attribute_list(acquisition)
         # N.B. a Citation can refer to only one 'Source', so the 
         # 'Source' from acquisition cannot be merged in
-
-    def get_data_map(self):
-        """Return the data map of attributes for the source."""
-        return self.datamap
-
-    def set_data_map(self, datamap):
-        """Set the data map of attributes for the source."""
-        self.datamap = datamap
-
-    def set_data_item(self, key, value):
-        """Set the particular data item in the attribute data map."""
-        self.datamap[key] = value
 
     def set_confidence_level(self, val):
         """Set the confidence level."""

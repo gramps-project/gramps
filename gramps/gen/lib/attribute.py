@@ -40,10 +40,10 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
-# Attribute for Person/Family/MediaObject/MediaRef
+# Root object for Attribute 
 #
 #-------------------------------------------------------------------------
-class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
+class AttributeRoot(SecondaryObject, PrivacyBase):
     """
     Provide a simple key/value pair for describing properties. 
     Used to store descriptive information.
@@ -64,23 +64,16 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
         Create a new Attribute object, copying from the source if provided.
         """
         PrivacyBase.__init__(self, source)
-        CitationBase.__init__(self, source)
-        NoteBase.__init__(self, source)
         
-        if source:
-            self.type = AttributeType(source.type)
-            self.value = source.value
-        else:
-            self.type = AttributeType()
-            self.value = ""
+        #type structure depends on inheriting classes
+        self.type = None
+        self.value = None
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
-                CitationBase.serialize(self),
-                NoteBase.serialize(self),
                 self.type.serialize(), self.value)
 
     def to_struct(self):
@@ -104,8 +97,6 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
         :rtype: dict
         """
         return {"private": PrivacyBase.serialize(self),
-                "citation_list": CitationBase.to_struct(self),
-                "note_list": NoteBase.to_struct(self),
                 "type": self.type.to_struct(), 
                 "value": self.value}
 
@@ -113,10 +104,8 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list, the_type, self.value) = data
+        (privacy, the_type, self.value) = data
         PrivacyBase.unserialize(self, privacy)
-        CitationBase.unserialize(self, citation_list)
-        NoteBase.unserialize(self, note_list)
         self.type.unserialize(the_type)
         return self
 
@@ -166,8 +155,7 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
-        return self.get_referenced_note_handles() + \
-                self.get_referenced_citation_handles()
+        return []
 
     def is_equivalent(self, other):
         """
@@ -197,8 +185,6 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
         :rtype acquisition: Attribute
         """
         self._merge_privacy(acquisition)
-        self._merge_citation_list(acquisition)
-        self._merge_note_list(acquisition)
 
     def set_type(self, val):
         """Set the type (or key) of the Attribute instance."""
@@ -215,3 +201,94 @@ class Attribute(SecondaryObject, PrivacyBase, CitationBase, NoteBase):
     def get_value(self):
         """Return the value of the Attribute instance."""
         return self.value
+
+#-------------------------------------------------------------------------
+#
+# Attribute for Person/Family/MediaObject/MediaRef
+#
+#-------------------------------------------------------------------------
+class Attribute(AttributeRoot, CitationBase, NoteBase):
+        
+    def __init__(self, source=None):
+        """
+        Create a new Attribute object, copying from the source if provided.
+        """
+        AttributeRoot.__init__(self, source)
+        CitationBase.__init__(self, source)
+        NoteBase.__init__(self, source)
+        
+        if source:
+            self.type = AttributeType(source.type)
+            self.value = source.value
+        else:
+            self.type = AttributeType()
+            self.value = ""
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return (PrivacyBase.serialize(self),
+                CitationBase.serialize(self),
+                NoteBase.serialize(self),
+                self.type.serialize(), self.value)
+
+    def to_struct(self):
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
+        """
+        return {"private": PrivacyBase.serialize(self),
+                "citation_list": CitationBase.to_struct(self),
+                "note_list": NoteBase.to_struct(self),
+                "type": self.type.to_struct(), 
+                "value": self.value}
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        (privacy, citation_list, note_list, the_type, self.value) = data
+        PrivacyBase.unserialize(self, privacy)
+        CitationBase.unserialize(self, citation_list)
+        NoteBase.unserialize(self, note_list)
+        self.type.unserialize(the_type)
+        return self
+
+    def get_referenced_handles(self):
+        """
+        Return the list of (classname, handle) tuples for all directly
+        referenced primary objects.
+        
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
+        """
+        return self.get_referenced_note_handles() + \
+                self.get_referenced_citation_handles()
+
+    def merge(self, acquisition):
+        """
+        Merge the content of acquisition into this attribute.
+
+        Lost: type and value of acquisition.
+
+        :param acquisition: the attribute to merge with the present attribute.
+        :rtype acquisition: Attribute
+        """
+        AttributeRoot.merge(self, acquisition)
+        self._merge_citation_list(acquisition)
+        self._merge_note_list(acquisition)

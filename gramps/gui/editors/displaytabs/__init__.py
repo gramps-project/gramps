@@ -39,7 +39,6 @@ from .embeddedlist import EmbeddedList
 from .addrembedlist import AddrEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList
-from .dataembedlist import DataEmbedList
 from .eventbackreflist import EventBackRefList
 from .eventembedlist import EventEmbedList
 from .familyattrembedlist import FamilyAttrEmbedList
@@ -60,4 +59,5 @@ from .placebackreflist import PlaceBackRefList
 from .repoembedlist import RepoEmbedList
 from .surnametab import SurnameTab
 from .sourcebackreflist import SourceBackRefList
+from .srcattrembedlist import SrcAttrEmbedList
 from .webembedlist import WebEmbedList

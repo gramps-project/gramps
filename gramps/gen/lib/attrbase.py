@@ -31,6 +31,7 @@ AttributeBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from .attribute import Attribute
+from .srcattribute import SrcAttribute
 from .const import IDENTICAL, EQUAL
 from ..constfunc import STRTYPE
 
@@ -39,23 +40,24 @@ from ..constfunc import STRTYPE
 # AttributeBase class
 #
 #-------------------------------------------------------------------------
-class AttributeBase(object):
+class AttributeRootBase(object):
     """
     Base class for attribute-aware objects.
     """
+    _CLASS = None
 
     def __init__(self, source=None):
         """
-        Initialize a AttributeBase. 
+        Initialize a AttributeBase.
         
-        If the source is not None, then object is initialized from values of 
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
         :type source: AttributeBase
         """
         if source:
-            self.attribute_list = [Attribute(attribute)
+            self.attribute_list = [self._CLASS(attribute)
                                     for attribute in source.attribute_list]
         else:
             self.attribute_list = []
@@ -92,7 +94,7 @@ class AttributeBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.attribute_list = [Attribute().unserialize(item) for item in data]
+        self.attribute_list = [self._CLASS().unserialize(item) for item in data]
 
     def add_attribute(self, attribute):
         """
@@ -162,3 +164,10 @@ class AttributeBase(object):
                     break
             else:
                 self.attribute_list.append(addendum)
+
+class AttributeBase(AttributeRootBase):
+    _CLASS = Attribute
+
+class SrcAttributeBase(AttributeRootBase):
+    _CLASS = SrcAttribute
+

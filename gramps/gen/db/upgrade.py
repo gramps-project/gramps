@@ -51,8 +51,10 @@ from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY,
 from gramps.gui.dialog import (InfoDialog)
 
 def gramps_upgrade_17(self):
-    """Upgrade database from version 16 to 17. This upgrade adds tags to
-       event, place, repository, source and citation objects.
+    """Upgrade database from version 16 to 17. 
+       1. This upgrade adds tags to event, place, repository, source and 
+          citation objects.
+       2. Data of Source becomes SourceAttributes Secondary Object
     """
     length = (len(self.event_map) + len(self.place_map) +
               len(self.repository_map) + len(self.source_map) +
@@ -134,9 +136,53 @@ def gramps_upgrade_17(self):
             txn.put(handle, new_citation)
         self.update()
 
+    # -------------------------------------------------------
+    # Upgrade Source and Citation datamap to SrcAttributeBase
+    # -------------------------------------------------------
+    for handle in self.source_map.keys():
+        source = self.source_map[handle]
+        (handle, gramps_id, title, author, pubinfo,
+            notelist, medialist, abbrev, change, datamap, reporef_list,
+            taglist, private) = source
+        srcattributelist = upgrade_datamap_17(datamap)
+        new_source = (handle, gramps_id, title, author, pubinfo,
+            notelist, medialist, abbrev, change, srcattributelist, reporef_list,
+            taglist, private)
+        with BSDDBTxn(self.env, self.source_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_source)
+        self.update()
+
+    for handle in self.citation_map.keys():
+        citation = self.citation_map[handle]
+        (handle, gramps_id, datelist, page, confidence, source_handle, 
+            notelist, medialist, datamap, change, taglist, private) = citation
+        srcattributelist = upgrade_datamap_17(datamap)
+        new_citation = (handle, gramps_id, datelist, page, confidence, source_handle, 
+            notelist, medialist, srcattributelist, change, taglist, private)
+        with BSDDBTxn(self.env, self.citation_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_citation)
+        self.update()
+
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put(b'version', 17)
+
+def upgrade_datamap_17(datamap):
+    """
+    In version 16 key value pairs are stored in source and citation. These become
+    SrcAttribute
+    """
+    new_srcattr_list = []
+    private = False
+    from ..lib.srcattrtype import SrcAttributeType
+    for (key, value) in datamap.iteritems():
+        the_type = SrcAttributeType(key).serialize()
+        new_srcattr_list.append((private, the_type, value))
+    return new_srcattr_list
 
 def gramps_upgrade_16(self):
     """Upgrade database from version 15 to 16. This upgrade converts all

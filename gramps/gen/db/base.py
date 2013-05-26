@@ -542,6 +542,13 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_source_attribute_types(self):
+        """
+        Return a list of all Attribute types associated with Source/Citation
+        instances in the database.
+        """
+        raise NotImplementedError
+
     def get_place_bookmarks(self):
         """
         Return the list of Place handles in the bookmarks.

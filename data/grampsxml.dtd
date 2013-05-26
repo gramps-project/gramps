@@ -230,7 +230,7 @@ SOURCES
 
 <!ELEMENT sources (source)*>
 <!ELEMENT source (stitle?, sauthor?, spubinfo?, sabbrev?,
-                  noteref*, objref*, data_item*, reporef*, tagref*)>
+                  noteref*, objref*, srcattribute*, reporef*, tagref*)>
 <!ATTLIST source
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
@@ -369,7 +369,7 @@ CITATIONS
 <!ELEMENT citations (citation)*>
 
 <!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence?,
-                    noteref*, objref*, data_item*, sourceref, tagref*)>
+                    noteref*, objref*, srcattribute*, sourceref, tagref*)>
 <!ATTLIST citation
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
@@ -489,6 +489,13 @@ SHARED ELEMENTS
 
 <!ELEMENT attribute (citationref*, noteref*)>
 <!ATTLIST attribute
+        priv    (0|1)   #IMPLIED
+        type    CDATA   #REQUIRED
+        value   CDATA   #REQUIRED
+>
+
+<!ELEMENT srcattribute EMPTY>
+<!ATTLIST srcattribute
         priv    (0|1)   #IMPLIED
         type    CDATA   #REQUIRED
         value   CDATA   #REQUIRED

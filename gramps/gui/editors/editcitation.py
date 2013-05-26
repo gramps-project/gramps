@@ -45,7 +45,7 @@ from gramps.gen.lib import Citation, NoteType, Source
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 
-from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
+from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           SourceBackRefList, RepoEmbedList, CitationBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                        MonitoredDate, MonitoredTagList)
@@ -347,10 +347,10 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_ref, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
             
-        self.data_tab = DataEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj)
-        self._add_tab(notebook_ref, self.data_tab)
-        self.track_ref_for_deletion("data_tab")
+        self.attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj.get_attribute_list())
+        self._add_tab(notebook_ref, self.attr_tab)
+        self.track_ref_for_deletion("attr_tab")
             
         self.citationref_list = CitationBackRefList(self.dbstate, self.uistate, 
                               self.track,
@@ -377,10 +377,10 @@ class EditCitation(EditPrimary):
         self._add_tab(notebook_src, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
             
-        self.data_tab = DataEmbedList(self.dbstate, self.uistate, self.track,
-                          self.source)
-        self._add_tab(notebook_src, self.data_tab)
-        self.track_ref_for_deletion("data_tab")
+        self.sattr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source.get_attribute_list())
+        self._add_tab(notebook_src, self.sattr_tab)
+        self.track_ref_for_deletion("sattr_tab")
             
         self.repo_tab = RepoEmbedList(self.dbstate, self.uistate, self.track,
                           self.source.get_reporef_list())

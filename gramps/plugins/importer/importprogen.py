@@ -619,7 +619,10 @@ class ProgenParser(object):
         citation = Citation()
         citation.set_reference_handle(source.get_handle())
         if aktenr:
-            citation.set_data_item("REFN", aktenr)
+            sattr = SrcAttribute()
+            sattr.set_type("REFN")
+            sattr.set_value(aktenr)
+            citation.add_attribute(sattr)
         if source_text:
             note = Note()
             note_type = NoteType()

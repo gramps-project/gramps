@@ -51,7 +51,13 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Source, SourceMediaType, Surname, Tag, Url, UrlType
+from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
+                ChildRefType, Citation, Date, Event, EventRef, EventRoleType, 
+                EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, 
+                MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType,
+                Person, PersonRef, Place, RepoRef, Repository, RepositoryType,
+                Source, SourceMediaType, SrcAttribute, SrcAttributeType,
+                Surname, Tag, Url, UrlType)
 from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_type
@@ -356,7 +362,10 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
             while randint(0,1) == 1:
-                o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+                sattr = SrcAttribute()
+                sattr.set_type(self.rand_text(self.SHORT))
+                sattr.set_value(self.rand_text(self.SHORT))
+                o.add_attribute(sattr)
             o.set_handle(handle)
             self.db.add_source(o, self.trans)
             print("object %s, handle %s, Gramps_Id %s" % (o, o.handle, 
@@ -1692,7 +1701,10 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
             while randint(0,1) == 1:
-                o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
+                sattr = SrcAttribute()
+                sattr.set_type(self.rand_text(self.SHORT))
+                sattr.set_value(self.rand_text(self.SHORT))
+                o.add_attribute(sattr)
             while randint(0,1) == 1:
                 r = RepoRef()
                 self.fill_object(r)

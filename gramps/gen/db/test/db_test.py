@@ -120,6 +120,7 @@ class DbTest(object):
         "get_repository_types",
         "get_researcher",
         "get_save_path",
+        "get_source_attribute_types",
         "get_source_bookmarks",
         "get_source_cursor",
         "get_source_from_gramps_id",

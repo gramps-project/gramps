@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 200?-2013  Benny Malengier
 # Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010-2011  Nick Hall
 # Copyright (C) 2011       Michiel D. Nauta
@@ -52,6 +53,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             MediaObject, MediaRef, Name, NameOriginType, 
                             NameType, Note, NoteType, Person, PersonRef, 
                             Place, RepoRef, Repository, Researcher, Source, 
+                            SrcAttribute, SrcAttributeType,
                             StyledText, StyledTextTag, StyledTextTagType, 
                             Surname, Tag, Url)
 from gramps.gen.db import DbTxn
@@ -533,6 +535,7 @@ class GrampsParser(UpdateCallback):
         self.in_old_sourceref = False
         self.source = None
         self.attribute = None
+        self.srcattribute = None
         self.placeobj = None
         self.locations = 0
         self.place_map = {}
@@ -622,6 +625,7 @@ class GrampsParser(UpdateCallback):
             "attribute": (self.start_attribute, self.stop_attribute), 
             "attr_type": (None, self.stop_attr_type), 
             "attr_value": (None, self.stop_attr_value), 
+            "srcattribute": (self.start_srcattribute, self.stop_srcattribute),
             "bookmark": (self.start_bmark, None), 
             "bookmarks": (None, None), 
             "format": (self.start_format, None), 
@@ -648,7 +652,7 @@ class GrampsParser(UpdateCallback):
             "type": (None, self.stop_type), 
             "witness": (self.start_witness, self.stop_witness), 
             "eventref": (self.start_eventref, self.stop_eventref), 
-            "data_item": (self.start_data_item, None), 
+            "data_item": (self.start_data_item, None),     #deprecated in 1.6.0
             "families": (None, self.stop_families), 
             "family": (self.start_family, self.stop_family), 
             "rel": (self.start_rel, None), 
@@ -1075,10 +1079,17 @@ class GrampsParser(UpdateCallback):
         self.ord.set_temple(attrs['val'])
 
     def start_data_item(self, attrs):
+        """
+        Deprecated in 1.6.0, replaced by srcattribute
+        """
+        sat = SrcAttributeType(attrs['key'])
+        sa = SrcAttribute()
+        sa.set_type(sat)
+        sa.set_value(attrs['value'])
         if self.source:
-            self.source.set_data_item(attrs['key'], attrs['value'])
+            self.source.add_attribute(sa)
         else:
-            self.citation.set_data_item(attrs['key'], attrs['value'])
+            self.citation.add_attribute(sa)
 
     def start_status(self, attrs):
         try:
@@ -1305,6 +1316,18 @@ class GrampsParser(UpdateCallback):
             self.person.add_attribute(self.attribute)
         elif self.family:
             self.family.add_attribute(self.attribute)
+
+    def start_srcattribute(self, attrs):
+        self.srcattribute = SrcAttribute()
+        self.srcattribute.private = bool(attrs.get("priv"))
+        self.srcattribute.type = SrcAttributeType()
+        if 'type' in attrs:
+            self.srcattribute.type.set_from_xml_str(attrs["type"])
+        self.srcattribute.value = attrs.get("value", '')
+        if self.source:
+            self.source.add_attribute(self.srcattribute)
+        elif self.citation:
+            self.citation.add_attribute(self.srcattribute)
 
     def start_address(self, attrs):
         self.address = Address()
@@ -2419,6 +2442,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_attribute(self, *tag):
         self.attribute = None
+
+    def stop_srcattribute(self, *tag):
+        self.srcattribute = None
 
     def stop_comment(self, tag):
         # Parse witnesses created by older gramps

@@ -58,19 +58,22 @@ from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 # EditAttribute class
 #
 #-------------------------------------------------------------------------
-class EditAttribute(EditSecondary):
+class EditAttributeRoot(EditSecondary):
     """
-    Displays a dialog that allows the user to edit an attribute.
+    Root baseclass for the root Attribute data editor
     """
 
     def __init__(self, state, uistate, track, attrib, title, data_list, callback):
         """
         Displays the dialog box.
 
-        parent - The class that called the Address editor.
+        state - dbstate
+        uistate - the uistate
+        track - list of parent windows
         attrib - The attribute that is to be edited
         title - The title of the dialog box
-        list - list of options for the pop down menu
+        data_list - list of options for the pop down menu to help selection of a
+               attribute type
         """
         self.alist = data_list
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
@@ -78,7 +81,7 @@ class EditAttribute(EditSecondary):
     def _local_init(self):
         self.width_key = 'interface.attribute-width'
         self.height_key = 'interface.attribute-height'
-        self.top = Glade()
+        self.top = Glade('editattribute.glade')
         
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
@@ -109,18 +112,6 @@ class EditAttribute(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
-        self.srcref_list = CitationEmbedList(self.dbstate,
-                                             self.uistate,
-                                             self.track,
-                                             self.obj.get_citation_list())
-        self._add_tab(notebook, self.srcref_list)
-        self.track_ref_for_deletion("srcref_list")
-        
-        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(),
-                    notetype = NoteType.ATTRIBUTE)
-        self._add_tab(notebook, self.note_tab)
-        self.track_ref_for_deletion("note_tab")
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
@@ -152,6 +143,76 @@ class EditAttribute(EditSecondary):
         if self.callback:
             self.callback(self.obj)
         self.close()
+
+#-------------------------------------------------------------------------
+#
+# EditSrcAttribute class
+#
+#-------------------------------------------------------------------------
+class EditSrcAttribute(EditAttributeRoot):
+    """
+    Source attribute are minimal attributes. This Displays the editor to 
+    edit these.
+    """
+    
+    def __init__(self, state, uistate, track, attrib, title, data_list, callback):
+        """
+        Displays the dialog box.
+
+        state - dbstate
+        uistate - the uistate
+        track - list of parent windows
+        attrib - The attribute that is to be edited
+        title - The title of the dialog box
+        data_list - list of options for the pop down menu to help selection of a
+               attribute type
+        """
+        EditAttributeRoot.__init__(self, state, uistate, track, attrib, title,
+                                   data_list, callback)
+    
+#-------------------------------------------------------------------------
+#
+# EditAttribute class
+#
+#-------------------------------------------------------------------------
+class EditAttribute(EditAttributeRoot):
+    """
+    Displays a dialog that allows the user to edit an attribute.
+    """
+
+    def __init__(self, state, uistate, track, attrib, title, data_list, callback):
+        """
+        Displays the dialog box.
+
+        state - dbstate
+        uistate - the uistate
+        track - list of parent windows
+        attrib - The attribute that is to be edited
+        title - The title of the dialog box
+        data_list - list of options for the pop down menu to help selection of a
+               attribute type
+        """
+        EditAttributeRoot.__init__(self, state, uistate, track, attrib, title,
+                                   data_list, callback)
+
+    def _create_tabbed_pages(self):
+        notebook = Gtk.Notebook()
+        self.srcref_list = CitationEmbedList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                                             self.obj.get_citation_list())
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
+        
+        self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_list(),
+                    notetype = NoteType.ATTRIBUTE)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
+        
+        self._setup_notebook_tabs( notebook)
+        notebook.show_all()
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
 #-------------------------------------------------------------------------
 #

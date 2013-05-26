@@ -152,6 +152,7 @@ class _DdTargets(object):
         self.PERSONREF          = _DdType(self, 'personref')
         self.SOURCEREF          = _DdType(self, 'srcref')
         self.SOURCE_LINK        = _DdType(self, 'source-link')
+        self.SRCATTRIBUTE          = _DdType(self, 'sattr')
         self.URL                = _DdType(self, 'url')
         self.SURNAME            = _DdType(self, 'surname')
         self.CITATION_LINK      = _DdType(self, 'citation-link')
@@ -181,6 +182,7 @@ class _DdTargets(object):
             self.REPOREF, 
             self.SOURCEREF, 
             self.SOURCE_LINK, 
+            self.SRCATTRIBUTE, 
             self.URL, 
             self.SURNAME,
             self.CITATION_LINK

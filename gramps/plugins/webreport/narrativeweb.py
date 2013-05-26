@@ -14,6 +14,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -601,15 +602,6 @@ class BasePage(object):
     def display_pages(self, *param):
         pass
 
-    # for use in write_data_map()
-    def fix(self, line):
-        try:
-            l = cuni(line)
-        except:
-            l = conv_to_unicode(str(line),errors = 'replace')
-        l = l.strip().translate(strip_dict)
-        return html_escape(l)
-
     def get_nav_menu_hyperlink(self, url_fname, nav_text):
         """
         returns the navigation menu hyperlink
@@ -867,7 +859,7 @@ class BasePage(object):
                     (self.dump_notes(attr.get_note_list()),             "ColumnNotes"),
                     (self.get_citation_links(attr.get_citation_list()), "ColumnSources")
                 ]
-        )  
+        )
         return trow
 
     def get_citation_links(self, citation_handle_list):
@@ -1294,16 +1286,16 @@ class BasePage(object):
                 tbody += trow
         return table
 
-    def write_data_map(self, data_map):
+    def write_srcattr(self, srcattr_list):
         """
-        writes out the data map for the different objects
+        writes out the srcattr for the different objects
         """
-        if len(data_map) == 0:
+        if len(srcattr_list) == 0:
             return None
 
         # begin data map division and section title...
         with Html("div", class_ = "subsection", id = "data_map") as section:
-            section += Html("h4", _("Data Map"), inline = True)
+            section += Html("h4", _("Attributes"), inline = True)
 
             with Html("table", class_ = "infolist") as table:
                 section += table
@@ -1320,10 +1312,10 @@ class BasePage(object):
                 tbody = Html("tbody")
                 table += tbody
 
-                for key in data_map.keys():
+                for srcattr in srcattr_list:
                     trow = Html("tr") + (
-                        Html("td", self.fix(key), class_ = "ColumnAttribute", inline = True),
-                        Html("td", self.fix(data_map[key]), class_ = "ColumnValue", inline = True)
+                        Html("td", str(srcattr.get_type()), class_ = "ColumnAttribute", inline = True),
+                        Html("td", srcattr.get_value(), class_ = "ColumnValue", inline = True)
                     )
                     tbody += trow
         return section
@@ -1581,7 +1573,7 @@ class BasePage(object):
         tbody.extend(
             self.dump_attribute(attr) for attr in attrlist
         )
-
+ 
     def write_footer(self):
         """
         Will create and display the footer section of each page...
@@ -4312,7 +4304,7 @@ class SourcePages(BasePage):
                     sourcedetail += sourcemedia
 
             # Source Data Map...
-            src_data_map = self.write_data_map(source.get_data_map())
+            src_data_map = self.write_srcattr(source.get_attribute_list())
             if src_data_map is not None:
                 sourcedetail += src_data_map
 

@@ -23,7 +23,7 @@
 #
 
 from .editaddress import EditAddress
-from .editattribute import EditAttribute, EditFamilyAttribute
+from .editattribute import EditAttribute, EditFamilyAttribute, EditSrcAttribute
 from .editchildref import EditChildRef
 from .editcitation import EditCitation, DeleteCitationQuery
 from .editdate import EditDate

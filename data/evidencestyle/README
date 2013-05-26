@@ -1,0 +1,19 @@
+* Original evidence_style downloaded from 
+  http://jytangledweb.org/genealogy/evidencestyle/ which are given there
+  for use in genealogy programs
+
+* Several fixes done in the csv file which I believe were errors
+
+* Run
+
+  $ python evidencefield.py
+
+  to generate two files with python code usable in srcattrtype.py in Gramps.
+
+* If in the future one wants to insert _NEW_ evidence styles, add them at the 
+  bottom of the csv file, generate the data, and copy to srcattrtype.py
+
+* CAREFUL: When adding or changing things, DON'T change the type of already 
+  released versions in Gramps! That means the integer indexes used must remain
+  the same! If only styles are added at the bottom and no lines removed, 
+  this should not be a problem.

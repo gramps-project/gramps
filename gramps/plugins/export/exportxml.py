@@ -8,6 +8,7 @@
 # Copyright (C) 2009       Douglas S. Blank
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010-2011  Nick Hall
+# Copyright (C) 2013  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -582,7 +583,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_line("confidence", citation.get_confidence_level(), index+1)
         self.write_note_list(citation.get_note_list(), index+1)
         self.write_media_list(citation.get_media_list(), index+1)
-        self.write_data_map(citation.get_data_map())
+        self.write_srcattribute_list(citation.get_attribute_list(), index+1)
         self.write_ref("sourceref", citation.get_reference_handle(), index+1)
 
         for tag_handle in citation.get_tag_list():
@@ -590,17 +591,17 @@ class GrampsXmlWriter(UpdateCallback):
 
         self.g.write("%s</citation>\n" % sp)
 
-    def write_source(self,source,index=1):
+    def write_source(self, source, index=1):
         sp = "  "*index
-        self.write_primary_tag("source",source,index)
-        self.write_force_line("stitle",source.get_title(),index+1)
-        self.write_line("sauthor",source.get_author(),index+1)
-        self.write_line("spubinfo",source.get_publication_info(),index+1)
-        self.write_line("sabbrev",source.get_abbreviation(),index+1)
-        self.write_note_list(source.get_note_list(),index+1)
-        self.write_media_list(source.get_media_list(),index+1)
-        self.write_data_map(source.get_data_map())
-        self.write_reporef_list(source.get_reporef_list(),index+1)
+        self.write_primary_tag("source", source, index)
+        self.write_force_line("stitle", source.get_title(), index+1)
+        self.write_line("sauthor", source.get_author(), index+1)
+        self.write_line("spubinfo", source.get_publication_info(), index+1)
+        self.write_line("sabbrev", source.get_abbreviation(), index+1)
+        self.write_note_list(source.get_note_list(), index+1)
+        self.write_media_list(source.get_media_list(), index+1)
+        self.write_srcattribute_list(source.get_attribute_list(), index+1)
+        self.write_reporef_list(source.get_reporef_list(), index+1)
 
         for tag_handle in source.get_tag_list():
             self.write_ref("tagref", tag_handle, index+1)
@@ -1063,6 +1064,15 @@ class GrampsXmlWriter(UpdateCallback):
                 self.write_note_list(attr.get_note_list(),indent+1)
                 self.g.write('%s</attribute>\n' % sp)
 
+    def write_srcattribute_list(self, list, indent=3):
+        sp = '  ' * indent
+        for srcattr in list:
+            self.g.write('%s<srcattribute%s type="%s" value="%s"' %
+                         (sp, conf_priv(srcattr), escxml(srcattr.get_type().xml_str()),
+                         self.fix(srcattr.get_value()))
+                         )
+            self.g.write('/>\n')
+
     def write_media_list(self,list,indent=3):
         sp = '  '*indent
         for photo in list:
@@ -1108,15 +1118,6 @@ class GrampsXmlWriter(UpdateCallback):
                     self.write_ref("citationref", citation_handle, indent+1)
                 self.write_note_list(nreflist, indent+1)
                 self.g.write('%s</objref>\n' % sp)
-
-    def write_data_map(self,datamap,indent=3):
-        if len(datamap) == 0:
-            return
-        
-        sp = '  '*indent
-        for key in list(datamap.keys()):
-            self.g.write('%s<data_item key="%s" value="%s"/>\n' %
-                         (sp,self.fix(key), self.fix(datamap[key])))
 
     def write_reporef_list(self, rrlist, index=1):
         for reporef in rrlist:

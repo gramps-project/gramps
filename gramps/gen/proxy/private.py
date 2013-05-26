@@ -43,7 +43,8 @@ LOG = logging.getLogger(".citation")
 #-------------------------------------------------------------------------
 from ..lib import (MediaRef, Attribute, Address, EventRef, 
                    Person, Name, Source, RepoRef, MediaObject, Place, Event, 
-                   Family, ChildRef, Repository, LdsOrd, Surname, Citation)
+                   Family, ChildRef, Repository, LdsOrd, Surname, Citation,
+                   SrcAttribute)
 from .proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
@@ -527,7 +528,7 @@ def copy_associations(db, original_obj, clean_obj):
             if associated_person and not associated_person.get_privacy():
                 new_person_ref_list.append(person_ref)
     clean_obj.set_person_ref_list(new_person_ref_list)
-            
+
 def copy_attributes(db, original_obj, clean_obj):
     """
     Copies attributes from one object to another - excluding references to 
@@ -549,7 +550,27 @@ def copy_attributes(db, original_obj, clean_obj):
             copy_notes(db, attribute, new_attribute)
             copy_citation_ref_list(db, attribute, new_attribute)
             clean_obj.add_attribute(new_attribute)
-      
+
+def copy_srcattributes(db, original_obj, clean_obj):
+    """
+    Copies srcattributes from one object to another - excluding references to 
+    private srcattributes.
+
+    @param db: GRAMPS database to which the references belongs
+    @type db: DbBase
+    @param original_obj: Object that may have private references
+    @type original_obj: SrcAttributeBase
+    @param clean_obj: Object that will have only non-private references
+    @type original_obj: SrcAttributeBase
+    @returns: Nothing
+    """   
+    for attribute in original_obj.get_attribute_list():
+        if attribute and not attribute.get_privacy():
+            new_attribute = SrcAttribute()
+            new_attribute.set_type(attribute.get_type())
+            new_attribute.set_value(attribute.get_value())
+            clean_obj.add_attribute(new_attribute)
+
 def copy_urls(db, original_obj, clean_obj):
     """
     Copies urls from one object to another - excluding references to 
@@ -744,10 +765,10 @@ def sanitize_citation(db, citation):
     new_citation.set_page(citation.get_page())
     new_citation.set_confidence_level(citation.get_confidence_level())
     new_citation.set_reference_handle(citation.get_reference_handle())
-    new_citation.set_data_map(citation.get_data_map())
     new_citation.set_gramps_id(citation.get_gramps_id())
     new_citation.set_handle(citation.get_handle())
     new_citation.set_change_time(citation.get_change_time())
+    copy_srcattributes(db, citation, new_citation)
     copy_notes(db, citation, new_citation)
     copy_media_ref_list(db, citation, new_citation)
     
@@ -892,7 +913,6 @@ def sanitize_source(db, source):
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())
     new_source.set_change_time(source.get_change_time())
-    new_source.set_data_map(source.get_data_map())
     
     for repo_ref in source.get_reporef_list():
         if repo_ref and not repo_ref.get_privacy():
@@ -901,6 +921,7 @@ def sanitize_source(db, source):
             if repo and not repo.get_privacy():
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
+    copy_srcattributes(db, source, new_source)
     copy_media_ref_list(db, source, new_source)
     copy_notes(db, source, new_source)
     

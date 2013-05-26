@@ -368,6 +368,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.individual_event_names = set()
         self.individual_attributes = set()
         self.family_attributes = set()
+        self.source_attributes = set()
         self.child_ref_types = set()
         self.family_rel_types = set()
         self.event_role_names = set()
@@ -1553,6 +1554,13 @@ class DbBsddbRead(DbReadBase, Callback):
         in the database.
         """
         return list(self.note_types)
+
+    def get_source_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Source/Citation
+        instances in the database.
+        """
+        return list(self.source_attributes)
 
     def get_source_media_types(self):
         """

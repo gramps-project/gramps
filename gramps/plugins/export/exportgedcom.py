@@ -663,8 +663,8 @@ class GedcomWriter(UpdateCallback):
         """
         for addr in person.get_address_list():
             self._writeln(1, 'RESI')
-            self.__date(2, addr.get_date_object())
-            self._write_addr(2, addr)
+            self._date(2, addr.get_date_object())
+            self.__write_addr(2, addr)
             if addr.get_phone():
                 self._writeln(2, 'PHON', addr.get_phone())
 
@@ -1307,13 +1307,18 @@ class GedcomWriter(UpdateCallback):
                           if n and n.get_type() != NoteType.SOURCE_TEXT]
             self._note_references(note_list, level+1)
             self._photos(citation.get_media_list(), level+1)
-            
-        if "EVEN" in list(citation.get_data_map().keys()):
-            self._writeln(level+1, "EVEN", citation.get_data_map()["EVEN"])
-            if "EVEN:ROLE" in list(citation.get_data_map().keys()):
-                self._writeln(level+2, "ROLE", 
-                               citation.get_data_map()["EVEN:ROLE"])
-                
+        
+        even = None
+        for srcattr in citation.get_attribute_list():
+            if srcattr.type == SrcAttributeType.EVEN_CITED:
+                even = srcattr.value
+                self._writeln(level+1, "EVEN", even)
+                break
+        if even:
+            for srcattr in citation.get_attribute_list():
+                if srcattr.type == SrcAttributeType.EVEN_ROLE:
+                    self._writeln(level+2, "ROLE", srcattr.value)
+                    break
 
     def _photo(self, photo, level):
         """

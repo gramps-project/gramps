@@ -35,5 +35,5 @@
 # Public Constants
 #
 #------------------------------------------------------------------------
-GRAMPS_XML_VERSION = "1.6.0"
+GRAMPS_XML_VERSION = "1.6.0"    # version for Gramps 4.1
 

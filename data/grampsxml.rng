@@ -438,9 +438,8 @@
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="data_item">
-        <attribute name="key"><text/></attribute>
-        <attribute name="value"><text/></attribute>
+    <zeroOrMore><element name="srcattribute">
+        <ref name="srcattribute-content"/>
     </element></zeroOrMore>
     <element name="sourceref">
         <ref name="sourceref-content"/>
@@ -459,9 +458,8 @@
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
-    <zeroOrMore><element name="data_item">
-        <attribute name="key"><text/></attribute>
-        <attribute name="value"><text/></attribute>
+    <zeroOrMore><element name="srcattribute">
+        <ref name="srcattribute-content"/>
     </element></zeroOrMore>
     <zeroOrMore><element name="reporef">
         <ref name="reporef-content"/>
@@ -670,6 +668,14 @@
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
+  </define>
+  
+  <define name="srcattribute-content">
+    <optional><attribute name="priv">
+        <ref name="priv-content"/>
+    </attribute></optional>
+    <attribute name="type"><text/></attribute>
+    <attribute name="value"><text/></attribute>
   </define>
 
   <define name="url-content">

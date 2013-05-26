@@ -34,7 +34,7 @@ from gi.repository import GObject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import Attribute
+from gramps.gen.lib import SrcAttribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .attrmodel import AttrModel
@@ -45,10 +45,10 @@ from .embeddedlist import EmbeddedList
 # 
 #
 #-------------------------------------------------------------------------
-class AttrEmbedList(EmbeddedList):
+class SrcAttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = 2
-    _DND_TYPE   = DdTargets.ATTRIBUTE
+    _DND_TYPE   = DdTargets.SRCATTRIBUTE
 
     _MSG = {
         'add'   : _('Create and add a new attribute'),
@@ -69,19 +69,19 @@ class AttrEmbedList(EmbeddedList):
         """
         Initialize the displaytab. The dbstate and uistate is needed
         track is the list of parent windows
-        data is an attribute_list (as obtained by AttributeBase) to display and
-            edit
+        data is an srcattribute_list (as obtained by SrcAttributeBase) to
+            display and edit
         """
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'), 
                               AttrModel, move_buttons=True)
 
     def get_editor(self):
-        from .. import EditAttribute
-        return EditAttribute
+        from .. import EditSrcAttribute
+        return EditSrcAttribute
 
     def get_user_values(self):
-        return self.dbstate.db.get_person_attribute_types()        
+        return self.dbstate.db.get_source_attribute_types()
 
     def get_icon_name(self):
         return 'gramps-attribute'
@@ -94,7 +94,7 @@ class AttrEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         pname = ''
-        attr = Attribute()
+        attr = SrcAttribute()
         try:
             self.get_editor()(
                 self.dbstate, self.uistate, self.track, attr, 

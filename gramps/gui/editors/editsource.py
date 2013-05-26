@@ -49,7 +49,7 @@ from gramps.gen.lib import NoteType, Source
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 
-from .displaytabs import (NoteTab, GalleryTab, DataEmbedList,
+from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           CitationBackRefList, RepoEmbedList)
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from ..dialog import ErrorDialog
@@ -155,12 +155,12 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
                                           
-        self.data_tab = DataEmbedList(self.dbstate,
-                                      self.uistate,
-                                      self.track,
-                                      self.obj)
-        self._add_tab(notebook, self.data_tab)
-        self.track_ref_for_deletion("data_tab")
+        self.attr_tab = SrcAttrEmbedList(self.dbstate,
+                                         self.uistate,
+                                         self.track,
+                                         self.obj.get_attribute_list())
+        self._add_tab(notebook, self.attr_tab)
+        self.track_ref_for_deletion("attr_tab")
                                        
         self.repo_tab = RepoEmbedList(self.dbstate,
                                       self.uistate,

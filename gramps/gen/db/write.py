@@ -819,6 +819,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.individual_event_names = set(meta(b'pevent_names'))
         self.family_attributes = set(meta(b'fattr_names'))
         self.individual_attributes = set(meta(b'pattr_names'))
+        self.source_attributes = set(meta(b'sattr_names'))
         self.marker_names = set(meta(b'marker_names'))
         self.child_ref_types = set(meta(b'child_refs'))
         self.family_rel_types = set(meta(b'family_rels'))
@@ -1252,6 +1253,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put(b'pevent_names', list(self.individual_event_names))
                 txn.put(b'fattr_names', list(self.family_attributes))
                 txn.put(b'pattr_names', list(self.individual_attributes))
+                txn.put(b'sattr_names', list(self.source_attributes))
                 txn.put(b'marker_names', list(self.marker_names))
                 txn.put(b'child_refs', list(self.child_ref_types))
                 txn.put(b'family_rels', list(self.family_rel_types))
@@ -1815,6 +1817,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
+        self.source_attributes.update(
+            [str(attr.type) for attr in source.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
     def commit_citation(self, citation, transaction, change_time=None):
         """
         Commit the specified Citation to the database, storing the changes as 
@@ -1828,6 +1834,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
+
+        self.source_attributes.update(
+            [str(attr.type) for attr in citation.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
 
     def commit_place(self, place, transaction, change_time=None):
         """

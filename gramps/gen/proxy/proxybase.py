@@ -784,6 +784,11 @@ class ProxyDbBase(DbReadBase):
         Note instances in the database"""
         return self.db.get_note_types()
 
+    def get_source_attribute_types(self):
+        """returns a list of all Attribute types associated with Source/Citation
+           instances in the database"""
+        return self.db.get_source_attribute_types()
+
     def get_source_media_types(self):
         """returns a list of all custom source media types associated with
         Source instances in the database"""
