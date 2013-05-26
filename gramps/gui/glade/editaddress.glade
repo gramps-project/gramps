@@ -16,12 +16,10 @@
             <child>
               <object class="GtkButton" id="cancel">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -33,7 +31,6 @@
             <child>
               <object class="GtkButton" id="ok">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -42,7 +39,6 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -54,12 +50,10 @@
             <child>
               <object class="GtkButton" id="help">
                 <property name="label">gtk-help</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -323,11 +317,9 @@ Note: Use Residence Event for genealogical address data.</property>
                 </child>
                 <child>
                   <object class="GtkToggleButton" id="private">
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                     <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                     <child internal-child="accessible">
@@ -360,13 +352,11 @@ Note: Use Residence Event for genealogical address data.</property>
                 </child>
                 <child>
                   <object class="GtkButton" id="date_stat">
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Invoke date editor</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                     <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                     <accessibility>
@@ -394,7 +384,7 @@ Note: Use Residence Event for genealogical address data.</property>
                     <property name="left_attach">6</property>
                     <property name="right_attach">7</property>
                     <property name="x_options"/>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -407,6 +397,7 @@ Note: Use Residence Event for genealogical address data.</property>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
