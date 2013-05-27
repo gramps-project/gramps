@@ -86,7 +86,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         None,
         None,
         (_('Age'), EventRefModel.COL_SORTAGE[0], 60, TEXT_COL, -1, None),
-        None
+        None,
+        (_('Private'), EventRefModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock')
         ]
 
     def __init__(self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs):
@@ -196,6 +197,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 (1, 3),  # date
                 (1, 9),  # age
                 (1, 4),  # place
+                (1, 11), # private
                 (1, 5),  # role
                 )
 

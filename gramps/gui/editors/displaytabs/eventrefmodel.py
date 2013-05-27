@@ -80,9 +80,11 @@ class EventRefModel(Gtk.TreeStore):
     COL_FONTWEIGHT = (8, int)
     COL_AGE = (9, str)
     COL_SORTAGE = (10, str)
+    COL_PRIVATE = (11, bool)
     
     COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
-            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE, COL_SORTAGE)
+            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE, COL_SORTAGE,
+            COL_PRIVATE)
 
     def __init__(self, event_list, db, groups, **kwargs):
         """
@@ -107,7 +109,7 @@ class EventRefModel(Gtk.TreeStore):
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD, '', '']
+        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD, '', '', None]
 
     def namegroup(self, groupindex, length):
         return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
@@ -125,6 +127,7 @@ class EventRefModel(Gtk.TreeStore):
                 self.colweight(index),
                 self.column_age(event),
                 self.column_sort_age(event),
+                eventref.get_privacy(),
                ]
     
     def colweight(self, index):

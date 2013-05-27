@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from .embeddedlist import TEXT_COL, MARKUP_COL, ICON_COL
 from .ldsembedlist import LdsEmbedList
 from gramps.gen.lib import LdsOrd
 
@@ -43,17 +44,18 @@ from gramps.gen.lib import LdsOrd
 #-------------------------------------------------------------------------
 class FamilyLdsEmbedList(LdsEmbedList):
 
-    _HANDLE_COL = 5
+    _HANDLE_COL = 6
 #    _DND_TYPE   = DdTargets.ADDRESS
 
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, 0, -1), 
-        (_('Date'),    1, 150, 1, -1), 
-        (_('Status'),  3, 75, 0, -1), 
-        (_('Temple'),  2, 200, 0, -1), 
-        (_('Place'),   3, 100, 0, -1), 
+        (_('Type'),    0, 150, TEXT_COL, -1, None),
+        (_('Date'),    1, 150, MARKUP_COL, -1, None),
+        (_('Status'),  3, 75, TEXT_COL, -1, None),
+        (_('Temple'),  2, 200, TEXT_COL, -1, None),
+        (_('Place'),   3, 100, TEXT_COL, -1, None),
+        (_('Private'), 5,  30, ICON_COL, -1, 'gramps-lock')
         ]
     
     def __init__(self, dbstate, uistate, track, data):

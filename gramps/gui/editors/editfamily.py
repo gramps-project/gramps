@@ -79,7 +79,8 @@ from .editchildref import EditChildRef
 from .editperson import EditPerson
 from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
-                         FamilyLdsEmbedList, ChildModel)
+                         FamilyLdsEmbedList, ChildModel,
+                         TEXT_COL, MARKUP_COL, ICON_COL)
 from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
                          MonitoredTagList)
 from gramps.gen.plug import CATEGORY_QR_FAMILY
@@ -103,7 +104,7 @@ class ChildEmbedList(EmbeddedList):
     is contained here instead of in displaytabs.
     """
 
-    _HANDLE_COL = 13
+    _HANDLE_COL = 14
     _DND_TYPE = DdTargets.CHILDREF
     _DND_EXTRA = DdTargets.PERSON_LINK
 
@@ -118,16 +119,20 @@ class ChildEmbedList(EmbeddedList):
 
     # (name, column in model, width, markup/text, font weight)
     _column_names = [
-        (_('#'), 0, 25, 0, -1),
-        (_('ID'), 1, 60, 0, -1),
-        (_('Name'), 10, 250, 0, -1),
-        (_('Gender'), 3, 75, 0, -1),
-        (_('Paternal'), 4, 100, 0, -1),
-        (_('Maternal'), 5, 100, 0, -1),
-        (_('Birth Date'), 11, 150, 1, -1),
-        (_('Death Date'), 12, 150, 1, -1),
-        (_('Birth Place'), 8, 150, 0, -1),
-        (_('Death Place'), 9, 150, 0, -1),
+        (_('#'), 0, 25, TEXT_COL, -1, None),
+        (_('ID'), 1, 60, TEXT_COL, -1, None),
+        (_('Name'), 10, 250, TEXT_COL, -1, None),
+        (_('Gender'), 3, 75, TEXT_COL, -1, None),
+        (_('Paternal'), 4, 100, TEXT_COL, -1, None),
+        (_('Maternal'), 5, 100, TEXT_COL, -1, None),
+        (_('Birth Date'), 11, 150, MARKUP_COL, -1, None),
+        (_('Death Date'), 12, 150, MARKUP_COL, -1, None),
+        (_('Birth Place'), 8, 150, TEXT_COL, -1, None),
+        (_('Death Place'), 9, 150, TEXT_COL, -1, None),
+        None,
+        None,
+        None,
+        (_('Private'), 13,  30, ICON_COL, -1, 'gramps-lock')
         ]
     
     def __init__(self, dbstate, uistate, track, family):
@@ -165,7 +170,7 @@ class ChildEmbedList(EmbeddedList):
         return self.family.get_child_ref_list()
 
     def column_order(self):
-        return [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
+        return [(1, 13), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
                 (0, 8), (0, 9)]
 
     def add_button_clicked(self, obj=None):

@@ -74,9 +74,10 @@ class NameModel(Gtk.TreeStore):
     COL_GROUPAS = (4, str)
     COL_HASSOURCE = (5, str)
     COL_NOTEPREVIEW = (6, str)
+    COL_PRIVATE = (7, bool)
     
     COLS = (COL_NAME, COL_TYPE, COL_DATA, COL_FONTWEIGHT, COL_GROUPAS,
-            COL_HASSOURCE, COL_NOTEPREVIEW)
+            COL_HASSOURCE, COL_NOTEPREVIEW, COL_PRIVATE)
 
     def __init__(self, obj_list, db, groups):
         """
@@ -98,7 +99,7 @@ class NameModel(Gtk.TreeStore):
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', (index, None), WEIGHT_NORMAL, '', '', '']
+        return [name, '', (index, None), WEIGHT_NORMAL, '', '', '', None]
 
     def row(self, index, name):
         """
@@ -111,7 +112,8 @@ class NameModel(Gtk.TreeStore):
                 self.colweight(index),
                 name.get_group_as(),
                 self.hassource(name),
-                self.notepreview(name)
+                self.notepreview(name),
+                name.get_privacy(),
                ]
     def colweight(self, index):
         if index == self.DEFINDEX:
