@@ -42,7 +42,7 @@ from gramps.gen.lib import Address
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .addressmodel import AddressModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -70,12 +70,12 @@ class AddrEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Date'),         0, 150, 1, -1), 
-        (_('Street'),       1, 225, 0, -1), 
-        (_('Locality'),     2, 100, 0, -1), 
-        (_('City'),         3, 100, 0, -1), 
-        (_('State/County'), 4, 100, 0, -1), 
-        (_('Country'),      5, 75, 0, -1), 
+        (_('Date'),         0, 150, MARKUP_COL, -1, None), 
+        (_('Street'),       1, 225, TEXT_COL, -1, None), 
+        (_('Locality'),     2, 100, TEXT_COL, -1, None), 
+        (_('City'),         3, 100, TEXT_COL, -1, None), 
+        (_('State/County'), 4, 100, TEXT_COL, -1, None), 
+        (_('Country'),      5, 75, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

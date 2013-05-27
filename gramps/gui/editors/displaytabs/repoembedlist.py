@@ -40,7 +40,7 @@ from ...selectors import SelectorFactory
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .reporefmodel import RepoRefModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -65,10 +65,10 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),     0, 75, 0, -1), 
-        (_('Title'),  1, 200, 0, -1), 
-        (_('Call Number'), 2, 125, 0, -1), 
-        (_('Type'),   3, 100, 0, -1), 
+        (_('ID'),     0, 75, TEXT_COL, -1, None), 
+        (_('Title'),  1, 200, TEXT_COL, -1, None), 
+        (_('Call Number'), 2, 125, TEXT_COL, -1, None), 
+        (_('Type'),   3, 100, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, obj):

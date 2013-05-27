@@ -37,7 +37,7 @@ from gi.repository import GObject
 from gramps.gen.lib import LdsOrd
 from gramps.gen.errors import WindowActiveError
 from .ldsmodel import LdsModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -60,11 +60,11 @@ class LdsEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, 0, -1), 
-        (_('Date'),    1, 150, 1, -1), 
-        (_('Status'),  3, 75, 0, -1), 
-        (_('Temple'),  2, 200, 0, -1), 
-        (_('Place'),   3, 100, 0, -1), 
+        (_('Type'),    0, 150, TEXT_COL, -1, None), 
+        (_('Date'),    1, 150, MARKUP_COL, -1, None), 
+        (_('Status'),  3, 75, TEXT_COL, -1, None), 
+        (_('Temple'),  2, 200, TEXT_COL, -1, None), 
+        (_('Place'),   3, 100, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

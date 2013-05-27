@@ -45,7 +45,7 @@ from gramps.gen.lib import Note
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 from .notemodel import NoteModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
@@ -75,8 +75,8 @@ class NoteTab(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100, 0, -1), 
-        (_('Preview'), 1, 200, 0, -1), 
+        (_('Type'), 0, 100, TEXT_COL, -1, None), 
+        (_('Preview'), 1, 200, TEXT_COL, -1, None), 
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None, 

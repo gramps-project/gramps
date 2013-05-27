@@ -49,7 +49,7 @@ from gramps.gen.lib import Source, Citation
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 from .citationrefmodel import CitationRefModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
@@ -80,10 +80,10 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'),  0, 200, 0, -1), 
-        (_('Author'), 1, 125, 0, -1), 
-        (_('Page'),   2, 100, 0, -1), 
-        (_('ID'),     3, 75, 0, -1), 
+        (_('Title'),  0, 200, TEXT_COL, -1, None), 
+        (_('Author'), 1, 125, TEXT_COL, -1, None), 
+        (_('Page'),   2, 100, TEXT_COL, -1, None), 
+        (_('ID'),     3, 75, TEXT_COL, -1, None), 
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None):

@@ -39,7 +39,7 @@ from gramps.gen.lib import Url
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .webmodel import WebModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -63,9 +63,9 @@ class WebEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type')       , 0, 100, 0, -1), 
-        (_('Path')       , 1, 200, 0, -1), 
-        (_('Description'), 2, 150, 0, -1), 
+        (_('Type')       , 0, 100, TEXT_COL, -1, None), 
+        (_('Path')       , 1, 200, TEXT_COL, -1, None), 
+        (_('Description'), 2, 150, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

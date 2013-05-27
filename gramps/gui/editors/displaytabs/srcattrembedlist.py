@@ -38,7 +38,7 @@ from gramps.gen.lib import SrcAttribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .attrmodel import AttrModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +47,7 @@ from .embeddedlist import EmbeddedList
 #-------------------------------------------------------------------------
 class SrcAttrEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 2
+    _HANDLE_COL = 3
     _DND_TYPE   = DdTargets.SRCATTRIBUTE
 
     _MSG = {
@@ -59,10 +59,11 @@ class SrcAttrEmbedList(EmbeddedList):
     }
 
     #index = column in model. Value =
-    #  (name, sortcol in model, width, markup/text, weigth_col
+    #  (name, sortcol in model, width, markup/text, weigth_col, icon
     _column_names = [
-        (_('Type'), 0, 250, 0, -1), 
-        (_('Value'), 1, 200, 0, -1), 
+        (_('Type'), 0, 250, TEXT_COL, -1, None), 
+        (_('Value'), 1, 200, TEXT_COL, -1, None), 
+        (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
         ]
     
     def __init__(self, dbstate, uistate, track, data):
@@ -90,7 +91,7 @@ class SrcAttrEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1))
+        return ((1, 2), (1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
         pname = ''

@@ -46,6 +46,7 @@ from gramps.gen.lib import Name, Surname
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .namemodel import NameModel
+from .embeddedlist import TEXT_COL, MARKUP_COL, ICON_COL
 from .groupembeddedlist import GroupEmbeddedList
 
 #-------------------------------------------------------------------------
@@ -70,13 +71,13 @@ class NameEmbedList(GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Name'), -1, 250, 0, NameModel.COL_FONTWEIGHT[0]), 
-        (_('Type'), NameModel.COL_TYPE[0], 100, 0, -1), 
+        (_('Name'), -1, 250, TEXT_COL, NameModel.COL_FONTWEIGHT[0], None), 
+        (_('Type'), NameModel.COL_TYPE[0], 100, TEXT_COL, -1, None), 
         None,
         None,
-        (_('Group As'), NameModel.COL_GROUPAS[0],100, 0, -1),
-        (_('Source'), NameModel.COL_HASSOURCE[0],60, 0, -1),
-        (_('Notes Preview'), NameModel.COL_NOTEPREVIEW[0], 250, 0, -1),
+        (_('Group As'), NameModel.COL_GROUPAS[0],100, TEXT_COL, -1, None),
+        (_('Source'), NameModel.COL_HASSOURCE[0],60, TEXT_COL, -1, None),
+        (_('Notes Preview'), NameModel.COL_NOTEPREVIEW[0], 250, TEXT_COL, -1, None),
         ]
     
     def __init__(self, dbstate, uistate, track, data, person, callback):

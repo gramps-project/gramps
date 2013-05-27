@@ -52,6 +52,16 @@ from gi.repository import Pango
 from ...utils import is_right_click
 from .buttontab import ButtonTab
 
+
+#----------------------------------------------------------------
+#
+# Constants
+#
+#----------------------------------------------------------------
+TEXT_COL = 0
+MARKUP_COL = 1 
+ICON_COL = 2
+
 #-------------------------------------------------------------------------
 #
 # Classes
@@ -80,6 +90,8 @@ class EmbeddedList(ButtonTab):
         self.changed = False
         self.model = None
         self.build_model = build_model
+        #renderer for pixbuf
+        self.pb_renderer = None
 
         # handle the selection
         self.tree.set_hover_selection(True)
@@ -88,6 +100,7 @@ class EmbeddedList(ButtonTab):
         self.track_ref_for_deletion("selection")
 
         # build the columns
+        self.col_icons = {}
         self.columns = []
         self.build_columns()
 
@@ -470,19 +483,35 @@ class EmbeddedList(ButtonTab):
             # assign it to the column name. The text value is extracted
             # from the model column specified in pair[1]
             name = self._column_names[pair[1]][0]
-            renderer = Gtk.CellRendererText()
-            renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
-            if self._column_names[pair[1]][3] == 0:
-                column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
+            col_icon = self._column_names[pair[1]][5]
+            if (self._column_names[pair[1]][3] in [TEXT_COL, MARKUP_COL]):
+                renderer = Gtk.CellRendererText()
+                renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
+                if self._column_names[pair[1]][3] == 0:
+                    column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
+                else:
+                    column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
+                if not self._column_names[pair[1]][4] == -1:
+                    #apply weight attribute
+                    column.add_attribute(renderer, "weight", 
+                                         self._column_names[pair[1]][4])
+            elif self._column_names[pair[1]][3] == ICON_COL:
+                self.col_icons[pair[1]] = col_icon
+                self.pb_renderer = Gtk.CellRendererPixbuf()
+                column = Gtk.TreeViewColumn(name, self.pb_renderer)
+                column.set_cell_data_func(self.pb_renderer, self.icon_func, pair[1])
             else:
-                column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
-            if not self._column_names[pair[1]][4] == -1:
-                #apply weight attribute
-                column.add_attribute(renderer, "weight", 
-                                     self._column_names[pair[1]][4])
-
-            # insert the colum into the tree
-            column.set_resizable(True)
+                raise NotImplementedError, 'Unknown column type'
+            if col_icon is not None:
+                image = Gtk.Image()
+                image.set_from_stock(col_icon, Gtk.IconSize.MENU)
+                image.set_tooltip_text(name)
+                image.show()
+                column.set_widget(image)
+                column.set_resizable(False)
+            else:
+                # insert the colum into the tree
+                column.set_resizable(True)
             column.set_clickable(True)
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             #column.set_min_width(self._column_names[pair[1]][2])
@@ -493,6 +522,18 @@ class EmbeddedList(ButtonTab):
             self.tree.append_column(column)
         self.track_ref_for_deletion("columns")
 
+    def icon_func(self, column, renderer, model, iter_, col_num):
+        '''
+        Set the stock icon property of the cell renderer.  We use a cell data
+        function because there is a problem returning None from a model.
+        '''
+        stock_id = model.get_value(iter_, col_num)
+        if stock_id == '' or stock_id == False:
+            stock_id = None
+        elif stock_id == True:
+            stock_id = self.col_icons[col_num]
+        renderer.set_property('stock_id', stock_id)
+        
     def construct_model(self):
         """
         Method that creates the model using the passed build_model parameter

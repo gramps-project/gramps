@@ -47,7 +47,7 @@ _ENTER = Gdk.keyval_from_name("Enter")
 #
 #-------------------------------------------------------------------------
 from .surnamemodel import SurnameModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
 from gramps.gen.constfunc import conv_to_unicode
@@ -73,9 +73,9 @@ class SurnameTab(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Prefix'), -1, 150, 0, -1),
-        (_('Surname'), -1, 250, 0, -1),
-        (_('Connector'), -1, 100, 0, -1),
+        (_('Prefix'), -1, 150, TEXT_COL, -1, None),
+        (_('Surname'), -1, 250, TEXT_COL, -1, None),
+        (_('Connector'), -1, 100, TEXT_COL, -1, None),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
     _column_toggle = (_('Name|Primary'), -1, 80, 4)

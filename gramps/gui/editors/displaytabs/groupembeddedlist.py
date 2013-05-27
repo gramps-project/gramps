@@ -47,7 +47,7 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #

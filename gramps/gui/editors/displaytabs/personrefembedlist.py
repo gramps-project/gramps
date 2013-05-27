@@ -38,7 +38,7 @@ from gramps.gen.lib import PersonRef
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .personrefmodel import PersonRefModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -61,9 +61,9 @@ class PersonRefEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Name'), 0, 250, 0, -1), 
-        (_('ID'), 1, 100, 0, -1), 
-        (_('Association'), 2, 100, 0, -1), 
+        (_('Name'), 0, 250, TEXT_COL, -1, None), 
+        (_('ID'), 1, 100, TEXT_COL, -1, None), 
+        (_('Association'), 2, 100, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

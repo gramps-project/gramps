@@ -35,7 +35,7 @@ from .childmodel import ChildModel
 
 # Then import tab classes
 from .grampstab import GrampsTab
-from .embeddedlist import EmbeddedList 
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from .addrembedlist import AddrEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList

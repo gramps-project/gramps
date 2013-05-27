@@ -44,7 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from ...widgets import SimpleButton
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -58,9 +58,9 @@ class BackRefList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100, 0, -1),
-        (_('ID'),  1,  75, 0, -1),
-        (_('Name'), 2, 250, 0, -1),
+        (_('Type'), 0, 100, TEXT_COL, -1, None),
+        (_('ID'),  1,  75, TEXT_COL, -1, None),
+        (_('Name'), 2, 250, TEXT_COL, -1, None),
         ]
     
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):

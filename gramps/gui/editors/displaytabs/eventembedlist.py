@@ -39,6 +39,7 @@ from gi.repository import GObject
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
+from .embeddedlist import TEXT_COL, MARKUP_COL, ICON_COL
 from .groupembeddedlist import GroupEmbeddedList
 from .eventrefmodel import EventRefModel
 from ...dbguielement import DbGUIElement
@@ -72,18 +73,19 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Description'), -1, 240, 0, EventRefModel.COL_FONTWEIGHT[0]),
-        (_('Type'), EventRefModel.COL_TYPE[0], 100, 0, 
-                                            EventRefModel.COL_FONTWEIGHT[0]),
-        (_('ID'), EventRefModel.COL_GID[0], 60, 0, 
-                                            EventRefModel.COL_FONTWEIGHT[0]),
-        (_('Date'), EventRefModel.COL_SORTDATE[0], 150, 1, -1),
-        (_('Place'), EventRefModel.COL_PLACE[0], 150, 0, -1),
-        (_('Role'), EventRefModel.COL_ROLE[0], 80, 0, -1),
+        (_('Description'), -1, 240, TEXT_COL,
+                        EventRefModel.COL_FONTWEIGHT[0], None),
+        (_('Type'), EventRefModel.COL_TYPE[0], 100, TEXT_COL, 
+                        EventRefModel.COL_FONTWEIGHT[0], None),
+        (_('ID'), EventRefModel.COL_GID[0], 60, TEXT_COL, 
+                        EventRefModel.COL_FONTWEIGHT[0], None),
+        (_('Date'), EventRefModel.COL_SORTDATE[0], 150, MARKUP_COL, -1, None),
+        (_('Place'), EventRefModel.COL_PLACE[0], 150, TEXT_COL, -1, None),
+        (_('Role'), EventRefModel.COL_ROLE[0], 80, TEXT_COL, -1, None),
         None,
         None,
         None,
-        (_('Age'), EventRefModel.COL_SORTAGE[0], 60, 0, -1),
+        (_('Age'), EventRefModel.COL_SORTAGE[0], 60, TEXT_COL, -1, None),
         None
         ]
 

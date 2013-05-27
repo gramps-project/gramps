@@ -38,7 +38,7 @@ from gramps.gen.lib import Location
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .locationmodel import LocationModel
-from .embeddedlist import EmbeddedList
+from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
@@ -53,12 +53,12 @@ class LocationEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Street'),         0, 150, 0, -1), 
-        (_('Locality'),       1, 100, 0, -1), 
-        (_('City'),           2, 100, 0, -1), 
-        (_('County'),         3, 100, 0, -1), 
-        (_('State'),          4, 100, 0, -1), 
-        (_('Country'),        5, 75, 0, -1), 
+        (_('Street'),         0, 150, TEXT_COL, -1, None), 
+        (_('Locality'),       1, 100, TEXT_COL, -1, None), 
+        (_('City'),           2, 100, TEXT_COL, -1, None), 
+        (_('County'),         3, 100, TEXT_COL, -1, None), 
+        (_('State'),          4, 100, TEXT_COL, -1, None), 
+        (_('Country'),        5, 75, TEXT_COL, -1, None), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):
