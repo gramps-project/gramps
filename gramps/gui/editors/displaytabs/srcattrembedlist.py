@@ -38,7 +38,8 @@ from gramps.gen.lib import SrcAttribute
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .attrmodel import AttrModel
-from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
+from .embeddedlist import (EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL,
+                           TEXT_EDIT_COL)
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +63,7 @@ class SrcAttrEmbedList(EmbeddedList):
     #  (name, sortcol in model, width, markup/text, weigth_col, icon
     _column_names = [
         (_('Type'), 0, 250, TEXT_COL, -1, None),
-        (_('Value'), 1, 200, TEXT_COL, -1, None),
+        (_('Value'), 1, 200, TEXT_EDIT_COL, -1, None),
         (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
         ]
     
@@ -92,6 +93,42 @@ class SrcAttrEmbedList(EmbeddedList):
 
     def column_order(self):
         return ((1, 2), (1, 0), (1, 1))
+
+    def setup_editable_col(self):
+        """
+        inherit this and set the variables needed for editable columns
+        Variable edit_col_funcs needs to be a dictionary from model col_nr to
+        function to call for 
+        Example:
+        self.edit_col_funcs ={1: {'edit_start': self.on_edit_start,
+                                  'edited': self.on_edited
+                              }}
+        """
+        self.edit_col_funcs ={1: {'edit_start': self.on_value_edit_start,
+                                  'edited': self.on_value_edited}}
+
+    def on_value_edit_start(self, cellr, celle, path, colnr):
+        """ 
+        Start of editing. Store stuff so we know when editing ends where we
+        are
+        """
+        pass
+        #self.curr_col = colnr
+        #self.curr_cellr = cellr
+        #self.curr_celle = celle
+
+    def on_value_edited(self, cell, path, new_text, colnr):
+        """
+        Edit happened. The model is updated and the attr objects updated.
+        colnr must be the column in the model.
+        """
+        node = self.model.get_iter(path)
+        self.model.set_value(node, colnr, new_text)
+        ## Now we need to update the data in the object driving the editor.
+        #path appears to be a string
+        path = int(path)
+        attr = self.data[path]
+        attr.set_value(new_text)
 
     def add_button_clicked(self, obj):
         pname = ''

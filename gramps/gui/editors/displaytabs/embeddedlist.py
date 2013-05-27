@@ -61,6 +61,7 @@ from .buttontab import ButtonTab
 TEXT_COL = 0
 MARKUP_COL = 1 
 ICON_COL = 2
+TEXT_EDIT_COL = 3
 
 #-------------------------------------------------------------------------
 #
@@ -458,6 +459,18 @@ class EmbeddedList(ButtonTab):
         """
         raise NotImplementedError
 
+    def setup_editable_col(self):
+        """
+        inherit this and set the variables needed for editable columns
+        Variable edit_col_funcs needs to be a dictionary from model col_nr to
+        function to call for 
+        Example:
+        self.edit_col_funcs ={1: {'edit_start': self.on_edit_start,
+                                  'edited': self.on_edited
+                              }}
+        """
+        self.edit_col_funcs ={}
+
     def build_columns(self):
         """
         Builds the columns and inserts them into the TreeView. Any
@@ -470,9 +483,9 @@ class EmbeddedList(ButtonTab):
         
         list(map(self.tree.remove_column, self.columns))
         self.columns = []
+        self.setup_editable_col()
 
         # loop through the values returned by column_order
-        
         for pair in self.column_order():
 
             # if the first value isn't 1, then we skip the values
@@ -484,10 +497,13 @@ class EmbeddedList(ButtonTab):
             # from the model column specified in pair[1]
             name = self._column_names[pair[1]][0]
             col_icon = self._column_names[pair[1]][5]
-            if (self._column_names[pair[1]][3] in [TEXT_COL, MARKUP_COL]):
+            model_col = self._column_names[pair[1]][1]
+            type_col = self._column_names[pair[1]][3]
+            
+            if (type_col in [TEXT_COL, MARKUP_COL, TEXT_EDIT_COL]):
                 renderer = Gtk.CellRendererText()
                 renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
-                if self._column_names[pair[1]][3] == 0:
+                if type_col == TEXT_COL or type_col == TEXT_EDIT_COL:
                     column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
                 else:
                     column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
@@ -495,6 +511,15 @@ class EmbeddedList(ButtonTab):
                     #apply weight attribute
                     column.add_attribute(renderer, "weight", 
                                          self._column_names[pair[1]][4])
+                #set up editable
+                if type_col == TEXT_EDIT_COL:
+                    #model col must have functions defined
+                    callbacks = self.edit_col_funcs[model_col]
+                    for renderer in column.get_cells():
+                        renderer.set_property('editable', not self.dbstate.db.readonly)
+                        renderer.connect('editing_started', 
+                                            callbacks['edit_start'], model_col)
+                        renderer.connect('edited', callbacks['edited'], model_col)
             elif self._column_names[pair[1]][3] == ICON_COL:
                 self.col_icons[pair[1]] = col_icon
                 self.pb_renderer = Gtk.CellRendererPixbuf()
