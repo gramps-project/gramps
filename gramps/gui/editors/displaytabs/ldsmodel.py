@@ -51,7 +51,7 @@ class LdsModel(Gtk.ListStore):
     _HANDLE_COL = 5
 
     def __init__(self, lds_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, bool, object)
 
         self.db = db
         for lds_ord in lds_list:
@@ -60,7 +60,8 @@ class LdsModel(Gtk.ListStore):
                 get_date(lds_ord), 
                 lds_ord.status2str(), 
                 TEMPLES.name(lds_ord.get_temple()),
-                self.column_place(lds_ord), 
+                self.column_place(lds_ord),
+                lds_ord.get_privacy(),
                 lds_ord, 
                 ])
 

@@ -48,7 +48,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 #-------------------------------------------------------------------------
 class WebEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 3
+    _HANDLE_COL = 4
     _DND_TYPE   = DdTargets.URL
 
     _MSG = {
@@ -63,9 +63,10 @@ class WebEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type')       , 0, 100, TEXT_COL, -1, None), 
-        (_('Path')       , 1, 200, TEXT_COL, -1, None), 
-        (_('Description'), 2, 150, TEXT_COL, -1, None), 
+        (_('Type')       , 0, 100, TEXT_COL, -1, None),
+        (_('Path')       , 1, 200, TEXT_COL, -1, None),
+        (_('Description'), 2, 150, TEXT_COL, -1, None),
+        (_('Private'),     3,  30, ICON_COL, -1, 'gramps-lock')
         ]
     
     def __init__(self, dbstate, uistate, track, data):
@@ -80,7 +81,7 @@ class WebEmbedList(EmbeddedList):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2))
+        return ((1, 3), (1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
         from .. import EditUrl

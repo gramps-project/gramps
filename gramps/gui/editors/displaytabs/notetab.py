@@ -60,7 +60,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 2
+    _HANDLE_COL = 3
     _DND_TYPE = DdTargets.NOTE_LINK
 
     _MSG = {
@@ -75,8 +75,9 @@ class NoteTab(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100, TEXT_COL, -1, None), 
-        (_('Preview'), 1, 200, TEXT_COL, -1, None), 
+        (_('Type'), 0, 100, TEXT_COL, -1, None),
+        (_('Preview'), 1, 200, TEXT_COL, -1, None),
+        (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None, 
@@ -117,7 +118,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 0), (1, 1))
+        return ((1, 2), (1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
         """

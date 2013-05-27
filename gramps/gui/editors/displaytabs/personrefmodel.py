@@ -42,12 +42,13 @@ from gramps.gen.display.name import displayer as name_displayer
 class PersonRefModel(Gtk.ListStore):
 
     def __init__(self, obj_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, bool, object)
         self.db = db
         for obj in obj_list:
             p = self.db.get_person_from_handle(obj.ref)
             if p:
-                data = [name_displayer.display(p), p.gramps_id, obj.rel, obj]
+                data = [name_displayer.display(p), p.gramps_id, obj.rel, 
+                        obj.get_privacy(), obj]
             else:
-                data = ['unknown','unknown', obj.rel, obj]
+                data = ['unknown','unknown', obj.rel, obj.get_privacy(), obj]
             self.append(row=data)

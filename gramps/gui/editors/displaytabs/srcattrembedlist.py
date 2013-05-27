@@ -61,8 +61,8 @@ class SrcAttrEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col, icon
     _column_names = [
-        (_('Type'), 0, 250, TEXT_COL, -1, None), 
-        (_('Value'), 1, 200, TEXT_COL, -1, None), 
+        (_('Type'), 0, 250, TEXT_COL, -1, None),
+        (_('Value'), 1, 200, TEXT_COL, -1, None),
         (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
         ]
     

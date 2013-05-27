@@ -42,7 +42,7 @@ from gi.repository import Gtk
 class RepoRefModel(Gtk.ListStore):
 
     def __init__(self, ref_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, bool, object)
         self.db = db
         for ref in ref_list:
             repo = self.db.get_repository_from_handle(ref.ref)
@@ -51,4 +51,5 @@ class RepoRefModel(Gtk.ListStore):
                 repo.name,
                 ref.call_number, 
                 str(repo.get_type()),
+                ref.get_privacy(),
                 ref, ])

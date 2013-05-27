@@ -64,7 +64,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     Derives from the EmbeddedList class.
     """
 
-    _HANDLE_COL = 4  # Column number from CitationRefModel
+    _HANDLE_COL = 5  # Column number from CitationRefModel
     _DND_TYPE = DdTargets.CITATION_LINK
     _DND_EXTRA = DdTargets.SOURCE_LINK
 
@@ -80,10 +80,11 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'),  0, 200, TEXT_COL, -1, None), 
-        (_('Author'), 1, 125, TEXT_COL, -1, None), 
-        (_('Page'),   2, 100, TEXT_COL, -1, None), 
-        (_('ID'),     3, 75, TEXT_COL, -1, None), 
+        (_('Title'),   0, 200, TEXT_COL, -1, None),
+        (_('Author'),  1, 125, TEXT_COL, -1, None),
+        (_('Page'),    2, 100, TEXT_COL, -1, None),
+        (_('ID'),      3,  75, TEXT_COL, -1, None),
+        (_('Private'), 4,  30, ICON_COL, -1, 'gramps-lock')
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None):
@@ -123,7 +124,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Return the column order of the columns in the display tab.
         """
-        return ((1, 0), (1, 1), (1, 2), (1, 3))
+        return ((1, 4), (1, 0), (1, 1), (1, 2), (1, 3))
 
     def add_button_clicked(self, obj):
         """

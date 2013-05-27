@@ -35,15 +35,16 @@ from gi.repository import Gtk
 class NoteModel(Gtk.ListStore):
 
     def __init__(self, note_list, db):
-        Gtk.ListStore.__init__(self, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, bool, str)
         self.db = db
         for handle in note_list:
             note = self.db.get_note_from_handle(handle)
-            text = note.get().replace('\n', ' ')
+            text = note.get()[:85].replace('\n', ' ')
             if len(text) > 80:
                 text = text[:80]+"..."
             self.append(row=[
                 str(note.get_type()), 
                 text, 
+                note.get_privacy(),
                 handle, 
                 ])

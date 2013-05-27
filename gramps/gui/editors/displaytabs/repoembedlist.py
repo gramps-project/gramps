@@ -49,7 +49,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 #-------------------------------------------------------------------------
 class RepoEmbedList(EmbeddedList, DbGUIElement):
 
-    _HANDLE_COL = 4
+    _HANDLE_COL = 5
     _DND_TYPE = DdTargets.REPOREF
     _DND_EXTRA = DdTargets.REPO_LINK
         
@@ -65,10 +65,11 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),     0, 75, TEXT_COL, -1, None), 
-        (_('Title'),  1, 200, TEXT_COL, -1, None), 
-        (_('Call Number'), 2, 125, TEXT_COL, -1, None), 
-        (_('Type'),   3, 100, TEXT_COL, -1, None), 
+        (_('ID'),     0, 75, TEXT_COL, -1, None),
+        (_('Title'),  1, 200, TEXT_COL, -1, None),
+        (_('Call Number'), 2, 125, TEXT_COL, -1, None),
+        (_('Type'),   3, 100, TEXT_COL, -1, None),
+        (_('Private'), 4, 30, ICON_COL, -1, 'gramps-lock')
         ]
     
     def __init__(self, dbstate, uistate, track, obj):
@@ -98,7 +99,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         return self.obj
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3))
+        return ((1, 4), (1, 0), (1, 1), (1, 2), (1, 3))
 
     def handle_extra_type(self, objtype, obj):
         from .. import EditRepoRef

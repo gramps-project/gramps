@@ -36,10 +36,11 @@ from gi.repository import Gtk
 class CitationRefModel(Gtk.ListStore):
 
     def __init__(self, citation_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, bool, str)
         self.db = db
         for handle in citation_list:
             citation = self.db.get_citation_from_handle(handle) 
             src = self.db.get_source_from_handle(citation.get_reference_handle())
             self.append(row=[src.title, src.author, citation.page,
-                             citation.gramps_id, handle, ])
+                             citation.gramps_id, citation.get_privacy(),
+                             handle, ])
