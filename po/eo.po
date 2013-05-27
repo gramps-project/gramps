@@ -1,7 +1,9 @@
+# Esperanto translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # translation of nova.po to Esperanto
 # translation of eo.po to Esperanto
 # translation of template.po to Esperanto
-# GRAMPS
 # Copyright (C) YEAR ORGANIZATION
 # Pier Luigi Cinquantini <petrolinux@infinito.it>, 2003
 #

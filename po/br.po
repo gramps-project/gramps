@@ -1,6 +1,7 @@
-# Breton translation for gramps
+# Breton translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
-# This file is distributed under the same license as the gramps package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
 #
 msgid ""

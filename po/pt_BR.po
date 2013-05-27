@@ -1,3 +1,6 @@
+# Portuguese (Brazil) translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Brazilian-Portuguese translation for Gramps.
 # Tradução português-brasileiro para o Gramps.
 # Copyright (C) 2002-2013 Free Software Foundation, Inc.

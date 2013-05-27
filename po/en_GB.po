@@ -1,6 +1,7 @@
-# English (United Kingdom) translations for Gramps.
-# Copyright (C) 2012 The Gramps Project
+# English (United Kingdom) translation for Gramps
+# $Id$
 # This file is distributed under the same license as the Gramps package.
+# Copyright (C) 2012 The Gramps Project
 # Nick Hall, 2012.
 #
 # analyzing -> analysing

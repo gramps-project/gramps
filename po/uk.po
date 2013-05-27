@@ -1,6 +1,7 @@
-# Ukrainian translation for gramps
+# Ukrainian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2011 Gramps
-# This file is distributed under the same license as the gramps package.
 # Fedir Zinchuk <fedikw@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""

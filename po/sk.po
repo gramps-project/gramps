@@ -1,4 +1,6 @@
-# Gramps SLOVAK language version
+# Slovak translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Lubo Vasko <pgval at inmail dot sk>, 2005-2013, 2013.
 #
 msgid ""

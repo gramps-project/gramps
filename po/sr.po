@@ -1,5 +1,6 @@
-# Serbian translation of GRAMPS
-# This file is distributed under the same license as GRAMPS.
+# Serbian translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Vlada Perić <vlada.peric@gmail.com>, 2008.
 msgid ""
 msgstr ""

@@ -1,9 +1,11 @@
+# Spanish translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Messages in spanish for the gramps genealogical software
 #
 # Copyright (C) 2001 Andrés Sepúlveda  <andres@ccpo.odu.edu>.
 # Copyright (C) 2004-2013 Julio Sánchez <jsanchez@users.sourceforge.com>
 #
-# 	$Id$
 # 	
 msgid ""
 msgstr ""

@@ -1,3 +1,6 @@
+# Catalan translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # translation of ca.po to Català
 # TRADUCCIÓ AL CATALÀ DE GRAMPS
 # Copyright (C) 2008 PEL GRUP DE GRAMPS

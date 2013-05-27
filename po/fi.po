@@ -1,5 +1,6 @@
-# translation of fi.po to Finnish
-# GRAMPS
+# Finnish translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR ORGANIZATION.
 #
 # Eero Tamminen <eerot@sf>, 2005, 2006, 2007, 2008.

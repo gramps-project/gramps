@@ -1,5 +1,6 @@
-# translation of nb.po to
-# Gramps
+# Norwegian (Bokmaal) translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR ORGANIZATION.
 #
 #
