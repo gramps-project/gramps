@@ -63,7 +63,7 @@ ident = ''
 
 TYPE2CITEMAP = {}
 FIELDTYPEMAP = {}
-index = 10
+index = 100
 indexval = 10
 first = True
 
@@ -76,11 +76,11 @@ with open(csvfilename, 'rb') as csvfile:
             continue
 
         if row[CATCOL]:
-            cat = row[CATCOL]
-            cattype = row[CATTYPECOL]
-            type = row[TYPECOL]
-            descr = row[DESCRCOL]
-            source_type = row[IDENTCOL]
+            cat = row[CATCOL].strip()
+            cattype = row[CATTYPECOL].strip()
+            type = row[TYPECOL].strip()
+            descr = row[DESCRCOL].strip()
+            source_type = row[IDENTCOL].strip()
             if descr:
                 source_descr = '%s - %s - %s (%s)' % (type, cattype, cat, descr)
                 source_descr_code = "_('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % { "\
@@ -105,9 +105,9 @@ with open(csvfilename, 'rb') as csvfile:
             
         if row[CITETYPECOL]:
             #new citation type, 
-            cite_type = row[CITETYPECOL]
+            cite_type = row[CITETYPECOL].strip()
         #add field for template to evidence style
-        field = row[FIELDCOL]
+        field = row[FIELDCOL].strip()
         field_type = field.replace(' ', '_').replace("'","")\
                      .replace('&','AND').replace('(', '6').replace(')','9')\
                      .replace('[', '').replace(']','').replace('/', '_OR_')\
@@ -121,16 +121,17 @@ with open(csvfilename, 'rb') as csvfile:
             index += 1
         fielddata = []
         private = 'False'
-        if  row[PRIVACYCOL]:
+        if  row[PRIVACYCOL].strip():
             private = 'True'
         optional = 'False'
-        if  row[OPTCOL]:
+        if  row[OPTCOL].strip():
             optional = 'True'
         TYPE2CITEMAP[source_type][cite_type] += [(row[LDELCOL], field_type, 
                         row[RDELCOL], row[STYLECOL], private, optional)]
 
 #now generate the python code we need in source attr types
-code = ""
+code = "    #following fields are generated with evidencefieldgenerator.py\n" \
+       "    #the index starts at 100!\n"
 datamap = "\n    _DATAMAP += [\n"
 allkeys = sorted(FIELDTYPEMAP.keys())
 for field_type in allkeys:
