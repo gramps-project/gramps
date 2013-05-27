@@ -4,7 +4,6 @@
 # translation of nova.po to Esperanto
 # translation of eo.po to Esperanto
 # translation of template.po to Esperanto
-# GRAMPS
 # Copyright (C) YEAR ORGANIZATION
 # Pier Luigi Cinquantini <petrolinux@infinito.it>, 2003
 #

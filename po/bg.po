@@ -1,11 +1,11 @@
 # Bulgarian translation for Gramps
 # $Id$
+# This file is distributed under the same license as the Gramps package.
 # Kamen Naydenov <pau4o@pixel-bg.com>, 2006
 # Svetoslav Stefanov <lfu.project@gmail.com>, 2009
 # Boril Gourinov <boril.gourinov@gmail.com>, 2007, 2008, 2009, 2010. 
 # translation of gramps.pot to Bulgarian
 # Copyright (C) 2001-2007, 2008 Free Software Foundation, Inc.
-# This file is distributed under the same license as the GRAMPS package.
 # Boril Gourinov <boril.gourinov@gmail.com>, 2007, 2008, 2009, 2010.
 msgid ""
 msgstr ""

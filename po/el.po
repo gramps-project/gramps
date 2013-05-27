@@ -1,7 +1,7 @@
 # Greek translation for Gramps
 # $Id$
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Gramps package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""

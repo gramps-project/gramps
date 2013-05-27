@@ -1,8 +1,8 @@
 # Danish translation for Gramps
 # $Id$
-# Danish translation for Gramps; Dansk oversættelse til GRAMPS
+# This file is distributed under the same license as the Gramps package.
+# Dansk oversættelse til GRAMPS
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# This file is distributed under the same license as the GRAMPS package.
 # Lars Kr. Lundin <gramps@lklundin.dk>, 2002.
 # Morten Bo Johansen <mbj@spamcop.net>, 2006-, >= Gramps 0.7.3
 # *** Vedr. ordstilling: ***

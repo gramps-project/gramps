@@ -1,6 +1,6 @@
 # Arabic translation for Gramps
 # $Id$
-# This file is distributed under the same license as the GRAMPS package.
+# This file is distributed under the same license as the Gramps package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Arabic Gramps\n"

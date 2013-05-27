@@ -1,7 +1,6 @@
 # Portuguese (Portugal) translation for Gramps
 # $Id$
 # This file is distributed under the same license as the Gramps package.
-# Portuguese (Europe) translation for Gramps.
 # Tradução em Português (Europeu) do GRAMPS
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
