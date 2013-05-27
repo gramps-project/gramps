@@ -92,6 +92,14 @@ If make fails, use gmake (the name FreeBSD gives to GNU make) instead.
 You might need a patch also. FreeBSD has in ports a patch (  /usr/ports/science/gramps/files)
 you need to apply to po/Makefile.in.in 
 
+Note to Windows AIO-users
+---------------------
+Sometimes the theme used in Windows will not work properly.
+Run gtk2_prefs.exe, which can be found in
+C:\Program Files\GrampsAIO64\bin
+r in
+C:\Program Files (X86)\GrampsAIO32\bin
+and select "Crux" or "Clearlooks".
 
 --------------------------------
 The Gramps Project
