@@ -78,22 +78,22 @@ with open(csvfilename, 'rb') as csvfile:
         if row[CATCOL]:
             cat = row[CATCOL].strip()
             cattype = row[CATTYPECOL].strip()
-            type = row[TYPECOL].strip()
+            types = row[TYPECOL].strip()
             descr = row[DESCRCOL].strip()
             source_type = row[IDENTCOL].strip()
             if descr:
-                source_descr = '%s - %s - %s (%s)' % (type, cattype, cat, descr)
+                source_descr = '%s - %s - %s (%s)' % (cat, cattype, types, descr)
                 source_descr_code = "_('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % { "\
-                        " 'first': _('" + type + "'),"\
+                        " 'first': _('" + cat + "'),"\
                         " 'sec': _('" + cattype + "'),"\
-                        " 'third': _('" + cat + "'),"\
+                        " 'third': _('" + types + "'),"\
                         " 'fourth': _('" + descr + "')}"
             else:
-                source_descr = '%s - %s - %s' % (type, cattype, cat)
+                source_descr = '%s - %s - %s' % (cat, cattype, types)
                 source_descr_code = "_('%(first)s - %(sec)s - %(third)s') % { "\
-                        " 'first': _('" + type + "'),"\
+                        " 'first': _('" + cat + "'),"\
                         " 'sec': _('" + cattype + "'),"\
-                        " 'third': _('" + cat + "')}"
+                        " 'third': _('" + types + "')}"
             if source_type in TYPE2CITEMAP:
                 assert TYPE2CITEMAP[source_type] ['descr'] == source_descr, source_type + ' ' + TYPE2CITEMAP[source_type] ['descr'] + ' NOT ' + source_descr
             else:
@@ -162,7 +162,10 @@ for source_type in allkeys:
 code += '\n    # Localization of the different source types\n'\
             + datamap + '        ]\n'
 
-code += "\n    #templates for the source types defined\n"
+code += "\n    #templates for the source types defined\n"\
+        "    # F: Full reference\n"\
+        "    # S: Short reference (if F used once, use S afterwards)\n" \
+        "    # L: List reference (for in bibliography list)\n"
 code += '    EVIDENCETEMPLATES = {\n'
 for source_type in allkeys:
     code += "        '" + source_type + "': {\n"
