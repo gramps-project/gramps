@@ -1465,7 +1465,7 @@ class SrcAttributeType(GrampsType):
     # S: Short reference (if F used once, use S afterwards)
     # L: List reference (for in bibliography list)
     EVIDENCETEMPLATES = {
-        'ESM100': {
+        ESM100: {
             'F': [
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6FIRST9, '', '', False, False),
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6LAST9, ',', '', False, False),
@@ -1495,7 +1495,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM101': {
+        ESM101: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -1519,7 +1519,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM102': {
+        ESM102: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', ITEM_TITLE, '', 'Quoted', False, False),
@@ -1543,7 +1543,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_TITLE, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM103': {
+        ESM103: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -1580,7 +1580,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM104': {
+        ESM104: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -1603,7 +1603,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM105': {
+        ESM105: {
             'F': [
                 ('', ITEM_ID_6GENERIC9, ',', '', False, False),
                 ('', ARTIFACT_ID, ',', '', False, False),
@@ -1629,7 +1629,7 @@ class SrcAttributeType(GrampsType):
                 ('', ARTIFACT_ID, '.', '', False, False),
                 ],
         },
-        'ESM106': {
+        ESM106: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -1662,7 +1662,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM107': {
+        ESM107: {
             'F': [
                 ('', BIBLE_ID_6OWNER_FIRST9, '', '', False, False),
                 ('', BIBLE_ID_6OWNER_LAST9, ',', '', False, False),
@@ -1697,7 +1697,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_OR_SECTION, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM108': {
+        ESM108: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -1724,7 +1724,7 @@ class SrcAttributeType(GrampsType):
                 ('', REFERRAL_TO_PRIOR_EVALUATION, '.', '', False, False),
                 ],
         },
-        'ESM109': {
+        ESM109: {
             'F': [
                 ('', WRITER_6FIRST9, '', '', False, False),
                 ('', WRITER_6LAST9, '', '', False, False),
@@ -1757,7 +1757,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM110': {
+        ESM110: {
             'F': [
                 ('', PERSON_INTERVIEWED_6FIRST9, '', '', False, False),
                 ('', PERSON_INTERVIEWED_6LAST9, '', '', False, False),
@@ -1791,7 +1791,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM111': {
+        ESM111: {
             'F': [
                 ('', GRANTOR_6AUTHOR9, ',', '', False, False),
                 ('to', RECIPIENT, ',', '', False, False),
@@ -1819,7 +1819,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM112': {
+        ESM112: {
             'F': [
                 ('', WRITER, ',', '', False, False),
                 ('', WRITERS_AFFILIATION_6IF_RELEVANT9, ',', '', False, False),
@@ -1847,7 +1847,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM113': {
+        ESM113: {
             'F': [
                 ('', WRITER, ',', '', False, False),
                 ('', WRITERS_LOCATION, '', '', False, False),
@@ -1876,7 +1876,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM114': {
+        ESM114: {
             'F': [
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6FIRST9, '', '', False, False),
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6LAST9, ',', '', False, False),
@@ -1908,7 +1908,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM115': {
+        ESM115: {
             'F': [
                 ('', COLLECTION, ',', '', False, False),
                 ('', COMPILER, '', '', False, False),
@@ -1937,7 +1937,7 @@ class SrcAttributeType(GrampsType):
                 ('', REFERENCE_TO_PRIOR_DISCUSSION, '.', '', False, False),
                 ],
         },
-        'ESM161': {
+        ESM161: {
             'F': [
                 ('', RECORD_BOOK_TITLE_6QUOTED_EXACTLY9, ',', 'Quoted', False, False),
                 ('', PAGE6S9, ';', '', False, False),
@@ -1959,7 +1959,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM162': {
+        ESM162: {
             'F': [
                 ('', ITEM, ',', '', False, False),
                 ('', ITEM_TYPE, ',', '', False, False),
@@ -1985,7 +1985,7 @@ class SrcAttributeType(GrampsType):
                 ('', CORPORATE_COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM163': {
+        ESM163: {
             'F': [
                 ('', CORPORATE_WRITER, '', '', False, False),
                 ('(', WRITERS_LOCATION, ')', '', False, False),
@@ -2015,7 +2015,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM164': {
+        ESM164: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', SPECIFIC_ITEM_OF_INTEREST, ';', '', False, False),
@@ -2043,7 +2043,7 @@ class SrcAttributeType(GrampsType):
                 ('', CORPORATE_COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM165': {
+        ESM165: {
             'F': [
                 ('', DATABASE_TITLE, '.', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2068,7 +2068,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM166': {
+        ESM166: {
             'F': [
                 ('', COLLECTION, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2092,7 +2092,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM167': {
+        ESM167: {
             'F': [
                 ('', FILE, ',', '', False, False),
                 ('', MEMBERSHIP_NUMBER, ',', '', False, False),
@@ -2112,7 +2112,7 @@ class SrcAttributeType(GrampsType):
                 ('', ORGANIZATION_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM168': {
+        ESM168: {
             'F': [
                 ('', ORGANIZATION, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2134,7 +2134,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM169': {
+        ESM169: {
             'F': [
                 ('', RECORD_TITLE_6QUOTED_EXACTLY9, ';', 'Quoted', False, False),
                 ('', FILE, ',', '', False, False),
@@ -2155,7 +2155,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM170': {
+        ESM170: {
             'F': [
                 ('', ITEM_OF_INTEREST, ';', '', False, False),
                 ('“', FILE_TITLE, ',', '', False, False),
@@ -2177,7 +2177,7 @@ class SrcAttributeType(GrampsType):
                 ('', ORGANIZATION_6CREATOR9, '.', '', False, False),
                 ],
         },
-        'ESM171': {
+        ESM171: {
             'F': [
                 ('', CORPORATE_AUTHOR, '', '', False, False),
                 ('(', CORPORATE_LOCATION, '),', '', False, False),
@@ -2204,7 +2204,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPORT_DATE, '.', '', False, False),
                 ],
         },
-        'ESM172': {
+        ESM172: {
             'F': [
                 ('', RESEARCHER_6AUTHOR9_6FIRST9, '', '', False, False),
                 ('', RESEARCHER_6AUTHOR9_6LAST9, '', '', False, False),
@@ -2242,7 +2242,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM173': {
+        ESM173: {
             'F': [
                 ('', CORPORATE_AUTHOR_6RESEARCHERS_NOT_IDENTIFIED9, '', '', False, False),
                 ('(', CORPORATE_LOCATION, '),', '', False, False),
@@ -2268,7 +2268,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_PART, '.', '', False, False),
                 ],
         },
-        'ESM174': {
+        ESM174: {
             'F': [
                 ('', INSTITUTIONAL_AUTHOR, ',', '', False, False),
                 ('', RECORD_OR_VOLUME_TITLE, ',', 'Quoted', False, False),
@@ -2289,7 +2289,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM175': {
+        ESM175: {
             'F': [
                 ('', STUDENT_6FIRST9, '', '', False, False),
                 ('', STUDENT_6LAST9, ',', '', False, False),
@@ -2324,7 +2324,7 @@ class SrcAttributeType(GrampsType):
                 ('', INSTITUTION, '.', '', False, False),
                 ],
         },
-        'ESM209': {
+        ESM209: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, ')', '', False, False),
@@ -2343,7 +2343,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_TYPE, '.', '', False, False),
                 ],
         },
-        'ESM210': {
+        ESM210: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, ')', '', False, False),
@@ -2366,7 +2366,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM211': {
+        ESM211: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2389,7 +2389,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM212': {
+        ESM212: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2413,7 +2413,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM213': {
+        ESM213: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, ';', '', False, False),
@@ -2434,7 +2434,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM214': {
+        ESM214: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2454,7 +2454,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM215': {
+        ESM215: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2476,7 +2476,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM216': {
+        ESM216: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2495,7 +2495,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM217': {
+        ESM217: {
             'F': [
                 ('', FILE_LABEL, '', 'Quoted', False, False),
                 ('(', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2518,7 +2518,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM218': {
+        ESM218: {
             'F': [
                 ('', FILE_LABEL, '', 'Quoted', False, False),
                 ('(', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2539,7 +2539,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM219': {
+        ESM219: {
             'F': [
                 ('', CREATOR_6FIRST9, '', '', False, False),
                 ('', CREATOR_6LAST9, ',', '', False, False),
@@ -2565,7 +2565,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM237': {
+        ESM237: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2595,7 +2595,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM238': {
+        ESM238: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', PAGE6S9, ',', '', False, False),
@@ -2622,7 +2622,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM239': {
+        ESM239: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION, ',', '', False, False),
@@ -2659,7 +2659,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM240': {
+        ESM240: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2692,7 +2692,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM241': {
+        ESM241: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6LONG9, ',', '', False, False),
@@ -2723,7 +2723,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM242': {
+        ESM242: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6SHORT9, ',', '', False, False),
@@ -2752,7 +2752,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM243': {
+        ESM243: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6SHORT9, ',', '', False, False),
@@ -2785,7 +2785,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM244': {
+        ESM244: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2817,7 +2817,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM245': {
+        ESM245: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2846,7 +2846,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM246': {
+        ESM246: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2878,7 +2878,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM247': {
+        ESM247: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2903,7 +2903,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM248': {
+        ESM248: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2933,7 +2933,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM249': {
+        ESM249: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2961,7 +2961,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM250': {
+        ESM250: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2991,7 +2991,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM251': {
+        ESM251: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -3021,7 +3021,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM252': {
+        ESM252: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -3054,7 +3054,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM253': {
+        ESM253: {
             'F': [
                 ('', DATABASE_6PUBLICATION9_TITLE, ',', 'Italics', False, False),
                 ('', RECORD_FORMAT, '', '', False, False),
@@ -3076,7 +3076,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_WITH_ABBREVIATED_DETAIL, '.', '', False, False),
                 ],
         },
-        'ESM254': {
+        ESM254: {
             'F': [
                 ('', COMPILER, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -3103,7 +3103,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM255': {
+        ESM255: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', STATE, ',', '', False, False),
@@ -3126,7 +3126,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM256': {
+        ESM256: {
             'F': [
                 ('', COMPILER, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -3150,7 +3150,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM311': {
+        ESM311: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3175,7 +3175,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_AND_ITEM, '.', '', False, False),
                 ],
         },
-        'ESM312': {
+        ESM312: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3201,7 +3201,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM313': {
+        ESM313: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3225,7 +3225,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM314': {
+        ESM314: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3255,7 +3255,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM315': {
+        ESM315: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3281,7 +3281,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM316': {
+        ESM316: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3306,7 +3306,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM317': {
+        ESM317: {
             'F': [
                 ('', FILM_TITLE, ',', 'Italics', False, False),
                 ('', RECORD_TYPE, ',', '', False, False),
@@ -3334,7 +3334,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM318': {
+        ESM318: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3363,7 +3363,7 @@ class SrcAttributeType(GrampsType):
                 ('', WHEN_ISSUED, '.', '', False, False),
                 ],
         },
-        'ESM319': {
+        ESM319: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3388,7 +3388,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM320': {
+        ESM320: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -3415,7 +3415,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM373': {
+        ESM373: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3441,7 +3441,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM374': {
+        ESM374: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, '', '', False, False),
@@ -3465,7 +3465,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM375': {
+        ESM375: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3489,7 +3489,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_AND_OR_OR_ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM376': {
+        ESM376: {
             'F': [
                 ('', JURISDICTION_6STATE9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3517,7 +3517,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM377': {
+        ESM377: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -3541,7 +3541,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION, '.', '', False, False),
                 ],
         },
-        'ESM378': {
+        ESM378: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3573,7 +3573,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_OR_ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM379': {
+        ESM379: {
             'F': [
                 ('', CASE_ID_OR_ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ',', '', False, False),
@@ -3600,7 +3600,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION_6COUNTY9, '.', '', False, False),
                 ],
         },
-        'ESM380': {
+        ESM380: {
             'F': [
                 ('', JURISDICTION_6LOCAL_COUNTRY9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3625,7 +3625,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM381': {
+        ESM381: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3660,7 +3660,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM382': {
+        ESM382: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -3683,7 +3683,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM421': {
+        ESM421: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_OR_COLLECTION, ',', '', False, False),
@@ -3706,7 +3706,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM422': {
+        ESM422: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', RECORD_SERIES, ',', '', False, False),
@@ -3731,7 +3731,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM423': {
+        ESM423: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -3754,7 +3754,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_AND_OR_OR_ITEM, '.', '', False, False),
                 ],
         },
-        'ESM424': {
+        ESM424: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -3779,7 +3779,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM425': {
+        ESM425: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3801,7 +3801,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM426': {
+        ESM426: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -3824,7 +3824,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM427': {
+        ESM427: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3847,7 +3847,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM428': {
+        ESM428: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3869,7 +3869,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM429': {
+        ESM429: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', DOCUMENT, ',', '', False, False),
@@ -3891,7 +3891,7 @@ class SrcAttributeType(GrampsType):
                 ('', DOCUMENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM430': {
+        ESM430: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3915,7 +3915,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM431': {
+        ESM431: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3942,7 +3942,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM432': {
+        ESM432: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3966,7 +3966,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM487': {
+        ESM487: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3992,7 +3992,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM488': {
+        ESM488: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -4014,7 +4014,7 @@ class SrcAttributeType(GrampsType):
                 ('', VOLUME_AND_PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM489': {
+        ESM489: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -4039,7 +4039,7 @@ class SrcAttributeType(GrampsType):
                 ('', DATE, '.', '', False, False),
                 ],
         },
-        'ESM490': {
+        ESM490: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ',', '', False, False),
@@ -4062,7 +4062,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM491': {
+        ESM491: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -4085,7 +4085,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION, '.', '', False, False),
                 ],
         },
-        'ESM492': {
+        ESM492: {
             'F': [
                 ('', JURISDICTION_OR_AGENCY, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -4118,7 +4118,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM493': {
+        ESM493: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -4142,7 +4142,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM494': {
+        ESM494: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ':', '', False, False),
@@ -4174,7 +4174,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM495': {
+        ESM495: {
             'F': [
                 ('', CREATOR_OF_DATABASE_6FIRST9, '', '', False, False),
                 ('', CREATOR_OF_DATABASE_6LAST9, ',', '', False, False),
@@ -4203,7 +4203,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM496': {
+        ESM496: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', WEBSITE_TITLE_6SAME_AS_CREATOR9, '', 'Italics', False, False),
@@ -4225,7 +4225,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM539': {
+        ESM539: {
             'F': [
                 ('', FILE_UNIT, ',', '', False, False),
                 ('', DATE, ',', '', False, False),
@@ -4253,7 +4253,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM540': {
+        ESM540: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4277,7 +4277,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM541': {
+        ESM541: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4307,7 +4307,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM542': {
+        ESM542: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4337,7 +4337,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM543': {
+        ESM543: {
             'F': [
                 ('', FILE_UNIT, ',', 'Quoted', False, False),
                 ('', DATE, ';', '', False, False),
@@ -4364,7 +4364,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM544': {
+        ESM544: {
             'F': [
                 ('', PHOTOGRAPH_TITLE, ',', 'Quoted', False, False),
                 ('', PHOTOGRAPH_NO, ',', '', False, False),
@@ -4390,7 +4390,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM545': {
+        ESM545: {
             'F': [
                 ('', FILE_ID_6FIRST9, '', '', False, False),
                 ('', FILE_ID_6LAST9, ',', '', False, False),
@@ -4419,7 +4419,7 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM546': {
+        ESM546: {
             'F': [
                 ('', NAME, ',', '', False, False),
                 ('', SOCIAL_SECURITY_NO, ',', '', False, False),
@@ -4442,7 +4442,7 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM547': {
+        ESM547: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -4466,7 +4466,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM548': {
+        ESM548: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4491,7 +4491,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM549': {
+        ESM549: {
             'F': [
                 ('', CREATOR_OF_DATABASE, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -4521,7 +4521,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM550': {
+        ESM550: {
             'F': [
                 ('', CREATOR_OWNER_OF_DATABASE_AND_WEBSITE, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -4548,7 +4548,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM551': {
+        ESM551: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4573,7 +4573,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM552': {
+        ESM552: {
             'F': [
                 ('', FILE_UNIT, ',', '', False, False),
                 ('', DATE, ';', '', False, False),
@@ -4602,7 +4602,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_GROUP_NO_6SHORT9_REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM553': {
+        ESM553: {
             'F': [
                 ('', PUBLICATION_TITLE, ',', 'Italics', False, False),
                 ('', FILM_ID_6PUBLICATION_NO9, '', '', False, False),
@@ -4626,7 +4626,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM554': {
+        ESM554: {
             'F': [
                 ('', CREATOR_OR_OWNER_OF_DATABASE_AND_WEBSITE, ',', '', False, False),
                 ('', TITLE_OF_DATABASE, ',', 'Quoted', False, False),
@@ -4653,7 +4653,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM555': {
+        ESM555: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4678,7 +4678,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM556': {
+        ESM556: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4700,7 +4700,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM646': {
+        ESM646: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4726,7 +4726,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM647': {
+        ESM647: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4755,7 +4755,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM648': {
+        ESM648: {
             'F': [
                 ('', EDITOR_6FIRST9, '', '', False, False),
                 ('', EDITOR_6LAST9, ',', '', False, False),
@@ -4780,7 +4780,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM649': {
+        ESM649: {
             'F': [
                 ('', ABSTRACTOR_6FIRST9, '', '', False, False),
                 ('', ABSTRACTOR_6LAST9, ',', '', False, False),
@@ -4806,7 +4806,7 @@ class SrcAttributeType(GrampsType):
                 ('', VOLUME_AND_PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM650': {
+        ESM650: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, '.', '', False, False),
@@ -4834,7 +4834,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM651': {
+        ESM651: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4860,7 +4860,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM652': {
+        ESM652: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -4884,7 +4884,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM653': {
+        ESM653: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4907,7 +4907,7 @@ class SrcAttributeType(GrampsType):
                 ('(', YEAR6S9, ').', '', False, False),
                 ],
         },
-        'ESM654': {
+        ESM654: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4935,7 +4935,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_LOCATION, '.', '', False, False),
                 ],
         },
-        'ESM655': {
+        ESM655: {
             'F': [
                 ('', AUTHOR_6TRANSLATOR9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6TRANSLATOR9_6LAST9, ',', '', False, False),
@@ -4961,7 +4961,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM656': {
+        ESM656: {
             'F': [
                 ('', PRESENTER_6FIRST9, '', '', False, False),
                 ('', PRESENTER_6LAST9, ',', '', False, False),
@@ -4989,7 +4989,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_LOCATION, '.', '', False, False),
                 ],
         },
-        'ESM657': {
+        ESM657: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5011,7 +5011,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM658': {
+        ESM658: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5041,7 +5041,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM659': {
+        ESM659: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5069,7 +5069,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM660': {
+        ESM660: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5099,7 +5099,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM661': {
+        ESM661: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5127,7 +5127,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM727': {
+        ESM727: {
             'F': [
                 ('', AUTHOR_6COMPILER9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6COMPILER9_6LAST9, ',', '', False, False),
@@ -5151,7 +5151,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM728': {
+        ESM728: {
             'F': [
                 ('', EDITOR_6FIRST9, '', '', False, False),
                 ('', EDITOR_6LAST9, ',', '', False, False),
@@ -5178,7 +5178,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_6LEGAL_STYLE9, '.', '', False, False),
                 ],
         },
-        'ESM729': {
+        ESM729: {
             'F': [
                 ('', TITLE, '.', 'Italics', False, False),
                 ('', SPECIFIC_VOLUME6S9_6SHORT9, ',', '', False, False),
@@ -5202,7 +5202,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_6LEGAL_STYLE9, '.', '', False, False),
                 ],
         },
-        'ESM730': {
+        ESM730: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -5228,7 +5228,7 @@ class SrcAttributeType(GrampsType):
                 ('', TITLE_OF_ACT, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM731': {
+        ESM731: {
             'F': [
                 ('', NAME_OF_ACT, ',', 'Quoted', False, False),
                 ('', TITLE_NO, ',', '', False, False),
@@ -5254,7 +5254,7 @@ class SrcAttributeType(GrampsType):
                 ('', CITATION_6LEGAL_STYLE9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM732': {
+        ESM732: {
             'F': [
                 ('', TITLE_OF_ACT, ',', 'Italics', False, False),
                 ('', ACT_NO, '.', '', False, False),
@@ -5269,7 +5269,7 @@ class SrcAttributeType(GrampsType):
                 ('', ACT_NO, '.', '', False, False),
                 ],
         },
-        'ESM733': {
+        ESM733: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', TITLE_OF_SERIES, ',', 'Italics', False, False),
@@ -5296,7 +5296,7 @@ class SrcAttributeType(GrampsType):
                 ('', TITLE_OF_ACT, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM734': {
+        ESM734: {
             'F': [
                 ('', AUTHOR_6COMPILER9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6COMPILER9_6LAST9, ',', '', False, False),
@@ -5320,7 +5320,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM735': {
+        ESM735: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -5346,7 +5346,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM736': {
+        ESM736: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', DOCUMENT_TITLE, ',', 'Italics', False, False),
@@ -5372,7 +5372,7 @@ class SrcAttributeType(GrampsType):
                 ('', DOCUMENT_ID, '.', '', False, False),
                 ],
         },
-        'ESM737': {
+        ESM737: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', SERIES_TITLE, ',', 'Italics', False, False),
@@ -5402,7 +5402,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM738': {
+        ESM738: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', TITLE_OF_PAMPHLET, ',', 'Italics', False, False),
@@ -5429,7 +5429,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM739': {
+        ESM739: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5457,7 +5457,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM779': {
+        ESM779: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5483,7 +5483,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM780': {
+        ESM780: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5517,7 +5517,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM781': {
+        ESM781: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5549,7 +5549,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM782': {
+        ESM782: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5572,7 +5572,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM783': {
+        ESM783: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5601,7 +5601,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM784': {
+        ESM784: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5626,7 +5626,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM785': {
+        ESM785: {
             'F': [
                 ('', ARTICLE_TITLE, ',', 'Quoted', False, False),
                 ('', NEWSPAPER, ',', 'Italics', False, False),
@@ -5643,7 +5643,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_AND_COLUMN, '.', '', False, False),
                 ],
         },
-        'ESM786': {
+        ESM786: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5672,7 +5672,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM787': {
+        ESM787: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5700,7 +5700,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM788': {
+        ESM788: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5724,7 +5724,7 @@ class SrcAttributeType(GrampsType):
                 ('', POSTING_DATE, '.', '', False, False),
                 ],
         },
-        'ESM789': {
+        ESM789: {
             'F': [
                 ('', PRESENTER_OR_GUEST_6FIRST9, '', '', False, False),
                 ('', PRESENTER_OR_GUEST_6LAST9, ',', '', False, False),
@@ -5758,7 +5758,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM790': {
+        ESM790: {
             'F': [
                 ('', PRESENTER_6FIRST9, '', '', False, False),
                 ('', PRESENTER_6LAST9, ',', '', False, False),
@@ -5790,7 +5790,7 @@ class SrcAttributeType(GrampsType):
                 ('', CLIP_ID, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM93': {
+        ESM93: {
             'F': [
                 ('', CREATOR_6FIRST9, '', '', False, False),
                 ('', CREATOR_6LAST9, ',', '', False, False),
@@ -5819,7 +5819,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM94': {
+        ESM94: {
             'F': [
                 ('', COLLECTION, ',', 'Quoted', False, False),
                 ('', WEBSITE_CREATOR_OR_OWNER, ',', '', False, False),
@@ -5846,7 +5846,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM95': {
+        ESM95: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -5869,7 +5869,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OR_PIECE_NUMBER, '.', '', False, False),
                 ],
         },
-        'ESM96': {
+        ESM96: {
             'F': [
                 ('', DOCUMENT_TITLE, ',', 'Quoted', False, False),
                 ('', SERIES_NO, ',', '', False, False),
@@ -5896,7 +5896,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM97': {
+        ESM97: {
             'F': [
                 ('', AUTHOR_6GRANTOR9, 'to', '', False, False),
                 ('', RECIPIENT, ',', '', False, False),
@@ -5924,7 +5924,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM98': {
+        ESM98: {
             'F': [
                 ('', BIBLE_ID_ORIGINAL_OWNER_6FIRST9, '', '', False, False),
                 ('', BIBLE_ID_ORIGINAL_OWNER_6LAST9, ',', '', False, False),
@@ -5956,7 +5956,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_DATA, '.', '', False, False),
                 ],
         },
-        'ESM99': {
+        ESM99: {
             'F': [
                 ('', SUBJECT_FIRST, '', '', False, False),
                 ('', SUBJECT_LAST, ',', '', False, False),

@@ -168,7 +168,7 @@ code += "\n    #templates for the source types defined\n"\
         "    # L: List reference (for in bibliography list)\n"
 code += '    EVIDENCETEMPLATES = {\n'
 for source_type in allkeys:
-    code += "        '" + source_type + "': {\n"
+    code += "        " + source_type + ": {\n"
     for val in ['F', 'L', 'S']:
         code += "            '" + val + "': [\n"
         for field in TYPE2CITEMAP[source_type][val]:
