@@ -620,8 +620,8 @@ class EditPerson(EditPrimary):
         Look for right-clicks on a picture and create a popup menu of the
         available actions.
         """
-
-        menu = Gtk.Menu()
+        self.imgmenu = Gtk.Menu()
+        menu = self.imgmenu
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
