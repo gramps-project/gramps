@@ -6,7 +6,7 @@
 # Copyright (C) 2008      Raphael Ackermann
 # Copyright (C) 2008-2011 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2011-2012 Paul Franklin
+# Copyright (C) 2011-2013 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -303,7 +303,7 @@ class CommandLineReport(object):
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
                 self.options_help['off'][2].append(
-                    graph_format["ext"] + "\t" + graph_format["descr"] )
+                    graph_format["type"] + "\t" + graph_format["descr"] )
         else:
             self.options_help['off'][2] = "NA"
 
@@ -468,13 +468,13 @@ class CommandLineReport(object):
                 _chosen_format = plugin.get_extension()
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
-                if graph_format['ext'] == self.options_dict['off']:
+                if graph_format['type'] == self.options_dict['off']:
                     if not self.format: # choose the first one, not the last
                         self.format = graph_format["class"]
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = graphdoc.FORMATS[0]["class"]
-                _chosen_format = graphdoc.FORMATS[0]["ext"]
+                _chosen_format = graphdoc.FORMATS[0]["type"]
         else:
             self.format = None
         if _chosen_format and _format_str:
