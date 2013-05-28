@@ -149,9 +149,9 @@ with open('srcattrtype_extra.py', 'wb') as srcattrfile:
 # 
 
 #first an English to internationalized map
-code = "    #SRCTYPE has some predefined values which map to citation styles\n"
+code = "    #SRCTEMPLATE has some predefined values which map to citation styles\n"
 
-datamap = "    _SRCTYPEVAL_MAP = [\n"
+datamap = "    _SRCTEMPLATEVAL_MAP = [\n"
 allkeys = sorted(TYPE2CITEMAP.keys())
 for source_type in allkeys:
     code += "    " + source_type + ' = %d\n' % TYPE2CITEMAP[source_type]['i']

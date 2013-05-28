@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2013  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ class SrcAttributeType(GrampsType):
 
     UNKNOWN     = -1
     CUSTOM      = 0
-    SRCTYPE     = 1
+    SRCTEMPLATE = 1
     # GEDCOM support
     EVEN_REC    = 2
     EVEN_CITED  = 3
@@ -58,13 +58,13 @@ class SrcAttributeType(GrampsType):
     GEN_BY      = 5
     
     _CUSTOM = CUSTOM
-    _DEFAULT = SRCTYPE
+    _DEFAULT = SRCTEMPLATE
     
     _DATAMAP = [
         (UNKNOWN     , _("Unknown"), "Unknown"),
         (CUSTOM      , _("Custom"), "Custom"),
         # required attribute to use for Elizabeth Shown Mills citation defs
-        (SRCTYPE     , _("Source Type"), "Source Type"),
+        (SRCTEMPLATE , _("Source Template"), "Source Template"),
         # GEDCOM support
         (EVEN_REC    , _("Events Recorded in Source"), "Events Recorded in Source"),  # GEDCOM EVENTS_RECORDED
         (EVEN_CITED  , _("Event Type used for citation"), "Event Type used for citation"), # GEDCOM EVENT_TYPE_CITED_FROM
@@ -1114,7 +1114,7 @@ class SrcAttributeType(GrampsType):
         (YEAR_SUPPLIED, _("Year supplied"), "Year supplied"),
         ]
 
-    #SRCTYPE has some predefined values which map to citation styles
+    #SRCTEMPLATE has some predefined values which map to citation styles
     ESM100 = 17
     ESM101 = 18
     ESM102 = 19
@@ -1287,7 +1287,7 @@ class SrcAttributeType(GrampsType):
     ESM99 = 16
 
     # Localization of the different source types
-    _SRCTYPEVAL_MAP = [
+    _SRCTEMPLATEVAL_MAP = [
         (ESM100, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Research Report')}, "Archives & Artifacts - Archived Material - Research Report"),
         (ESM101, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Unpublished narrative')}, "Archives & Artifacts - Archived Material - Unpublished narrative"),
         (ESM102, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Vertical file')}, "Archives & Artifacts - Archived Material - Vertical file"),
@@ -5985,11 +5985,11 @@ class SrcAttributeType(GrampsType):
 
 
     # We construct Map for sourcetype values. Use these to store value of 
-    # SRCTYPE in English in the database.
-    I2S_SRCTYPEMAP =  dict([(item[0], item[1]) for item in _SRCTYPEVAL_MAP])
-    S2I_SRCTYPEMAP =  dict([(item[1], item[0]) for item in _SRCTYPEVAL_MAP])
-    I2E_SRCTYPEMAP =  dict([(item[0], item[2]) for item in _SRCTYPEVAL_MAP])
-    E2I_SRCTYPEMAP =  dict([(item[2], item[0]) for item in _SRCTYPEVAL_MAP])
+    # SRCTEMPLATE in English in the database.
+    I2S_SRCTEMPLATEMAP =  dict([(item[0], item[1]) for item in _SRCTEMPLATEVAL_MAP])
+    S2I_SRCTEMPLATEMAP =  dict([(item[1], item[0]) for item in _SRCTEMPLATEVAL_MAP])
+    I2E_SRCTEMPLATEMAP =  dict([(item[0], item[2]) for item in _SRCTEMPLATEVAL_MAP])
+    E2I_SRCTEMPLATEMAP =  dict([(item[2], item[0]) for item in _SRCTEMPLATEVAL_MAP])
     
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
