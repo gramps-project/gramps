@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 12:49+0200\n"
-"PO-Revision-Date: 2013-05-15 22:33+0300\n"
+"PO-Revision-Date: 2013-05-28 13:31+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -11513,7 +11513,7 @@ msgstr "Заголовок"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:442
 msgid "Book selection list"
-msgstr "Список выбора для книги"
+msgstr "Список выбора книги"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:482
 msgid "Different database"
@@ -17358,37 +17358,37 @@ msgstr ""
 #: ../gramps/plugins/importer/importxml.py:306
 #, python-format
 msgid "  People: %d\n"
-msgstr "  Люди: %d\n"
+msgstr "  Людей: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:307
 #, python-format
 msgid "  Families: %d\n"
-msgstr "  Семьи: %d\n"
+msgstr "  Семей: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:308
 #, python-format
 msgid "  Sources: %d\n"
-msgstr " Источники: %d\n"
+msgstr " Источников: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:309
 #, python-format
 msgid "  Events: %d\n"
-msgstr "  События: %d\n"
+msgstr "  Событий: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:310
 #, python-format
 msgid "  Media Objects: %d\n"
-msgstr "  Документы: %d\n"
+msgstr "  Документов: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:311
 #, python-format
 msgid "  Places: %d\n"
-msgstr "  Места:  %d\n"
+msgstr "  Мест:  %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:312
 #, python-format
 msgid "  Repositories: %d\n"
-msgstr "  Хранилища: %d\n"
+msgstr "  Хранилищ: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:313
 #, python-format
@@ -17398,16 +17398,16 @@ msgstr "Заметок: %d\n"
 #: ../gramps/plugins/importer/importxml.py:314
 #, python-format
 msgid "  Tags: %d\n"
-msgstr "  Метки: %d\n"
+msgstr "  Меток: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:315
 #, python-format
 msgid "  Citations: %d\n"
-msgstr "  Цитаты: %d\n"
+msgstr "  Цитат: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:317
 msgid "Number of new objects imported:\n"
-msgstr "Число новых импортированных документов:\n"
+msgstr "Импортировано новых:\n"
 
 #: ../gramps/plugins/importer/importxml.py:326
 #, python-format
@@ -23934,7 +23934,7 @@ msgstr "Общий размер документов: %s МБ"
 #: ../gramps/plugins/textreport/tableofcontents.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
 msgid "Table Of Contents"
-msgstr ""
+msgstr "Содержание"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:112
 msgid "The style used for first level headings."
@@ -24082,7 +24082,7 @@ msgstr "Предоставляет обзор базы данных"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:367
 msgid "Produces a table of contents for book reports."
-msgstr ""
+msgstr "Создаёт содержание для отчётов-книг."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:389
 msgid "Produces an alphabetical index for book reports."
@@ -25188,32 +25188,28 @@ msgid "Extract information from names"
 msgstr "Выделить информацию из имён"
 
 #: ../gramps/plugins/tool/rebuild.py:80
-#, fuzzy
 msgid "Rebuilding secondary indexes..."
 msgstr "Воссоздаю вторичные индексы..."
 
 #: ../gramps/plugins/tool/rebuild.py:89
-#, fuzzy
 msgid "Secondary indexes rebuilt"
 msgstr "Вторичные индексы перестроены"
 
 #: ../gramps/plugins/tool/rebuild.py:90
-#, fuzzy
 msgid "All secondary indexes have been rebuilt."
 msgstr "Все вторичные индексы перестроены."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:85
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Воссоздаю статистику полов..."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:98
-#, fuzzy
 msgid "Gender statistics rebuilt"
-msgstr "Вторичные индексы перестроены"
+msgstr "Статистика полов перестроены"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:99
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr ""
+msgstr "Статистика полов для угадывания пола по имени перестроена."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:81
 msgid "Rebuilding reference maps..."
@@ -25475,12 +25471,10 @@ msgstr ""
 "Выделить титулы, приставки и составные фамилии из личных имён или фамилий."
 
 #: ../gramps/plugins/tool/tools.gpr.py:352
-#, fuzzy
 msgid "Rebuild Secondary Indexes"
 msgstr "Перестроить вторичные индексы"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
-#, fuzzy
 msgid "Rebuilds secondary indexes"
 msgstr "Перестраивает вторичные индексы"
 
@@ -25493,13 +25487,12 @@ msgid "Rebuilds reference maps"
 msgstr "Воссоздаёт таблицы ссылок"
 
 #: ../gramps/plugins/tool/tools.gpr.py:396
-#, fuzzy
 msgid "Rebuild Gender Statistics"
-msgstr "Перестраивает вторичные индексы"
+msgstr "Перестроить статистику полов"
 
 #: ../gramps/plugins/tool/tools.gpr.py:397
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Перестраивает статистику полов для угадывания пола по имени..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:418
 msgid "Relationship Calculator"
@@ -25902,7 +25895,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:53
 #: ../gramps/plugins/view/view.gpr.py:65 ../gramps/plugins/view/view.gpr.py:73
 msgid "Dashboard"
-msgstr ""
+msgstr "Приборная доска"
 
 #: ../gramps/plugins/view/dashboardview.py:97
 msgid "Restore a gramplet"
@@ -25996,9 +25989,8 @@ msgstr "Напечатать..."
 
 #: ../gramps/plugins/view/fanchartdescview.py:169
 #: ../gramps/plugins/view/fanchartview.py:167
-#, fuzzy
 msgid "Print or save the Fan Chart View"
-msgstr "Веерная карта"
+msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:279
 #: ../gramps/plugins/view/fanchartview.py:277
@@ -26073,9 +26065,8 @@ msgstr "Ищу дублированных супругов"
 
 #: ../gramps/plugins/view/fanchartdescview.py:314
 #: ../gramps/plugins/view/fanchartview.py:309
-#, fuzzy
 msgid "Fan chart type"
-msgstr "Веерная карта"
+msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:311
@@ -26136,14 +26127,14 @@ msgid "GeoClose"
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:212
-#, fuzzy, python-format
+#, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:217
-#, fuzzy, python-format
+#, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr " (%(birth_date)s - %(death_date)s)"
+msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:222
 #, fuzzy
@@ -26318,10 +26309,10 @@ msgid "Family places for %s"
 msgstr "Фильтры семей"
 
 #: ../gramps/plugins/view/geography.gpr.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "OsmGpsMap module not loaded. OsmGpsMap must be >= 0.8. yours is %s"
 msgstr ""
-"ВНИМАНИЕ: модуль «osmgpsmap» не загружен. Требуется версия не ниже 0.7.0, у "
+"ВНИМАНИЕ: модуль «osmgpsmap» не загружен. Требуется версия не ниже 0.8, у "
 "Вас установлена %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:61
@@ -26352,14 +26343,11 @@ msgid "All displacements for one person and their descendants"
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:106
-#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for one person and their descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Вид, отображающий все места, про которые известно, что оба лица посетили их "
-"на протяжении своей жизни: была ли у них возможность встретиться?"
 
 #: ../gramps/plugins/view/geography.gpr.py:125
 #, fuzzy
@@ -26839,9 +26827,9 @@ msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../gramps/plugins/view/relview.py:1204
 #: ../gramps/plugins/view/relview.py:1206
-#, fuzzy, python-format
+#, python-format
 msgid "%(event)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr ""
 
 #: ../gramps/plugins/view/relview.py:1267
 #, python-format
@@ -27013,9 +27001,8 @@ msgstr "Определяет число предков выделенного л
 #: ../gramps/plugins/view/view.gpr.py:133
 #: ../gramps/plugins/view/view.gpr.py:142
 #: ../gramps/plugins/view/view.gpr.py:157
-#, fuzzy
 msgid "Charts"
-msgstr "Графики 1"
+msgstr "Графики"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 #, fuzzy
@@ -27028,9 +27015,8 @@ msgid "Showing descendants through a fanchart"
 msgstr "Показывает родственные отношения в виде веерной карты"
 
 #: ../gramps/plugins/view/view.gpr.py:171
-#, fuzzy
 msgid "Grouped People"
-msgstr "Люди, являющиеся приёмными детьми"
+msgstr "Сгруппированный список"
 
 #: ../gramps/plugins/view/view.gpr.py:172
 #, fuzzy
@@ -27043,14 +27029,12 @@ msgid "The view showing all people in the Family Tree in a flat list"
 msgstr "Показ всех людей в семейном древе общим списком"
 
 #: ../gramps/plugins/view/view.gpr.py:206
-#, fuzzy
 msgid "The view showing all the places of the Family Tree"
 msgstr "Вид, отображающий все места, связанные с данным семейным древом"
 
 #: ../gramps/plugins/view/view.gpr.py:221
-#, fuzzy
 msgid "Place Tree"
-msgstr "Вид «Иерархия мест»"
+msgstr "Иерархия мест"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "A view displaying places in a tree format."
@@ -27114,9 +27098,9 @@ msgstr ""
 "Создано с помощью <a·href=\"%(homepage)s\">Gramps</a> %(version)s %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1621
-#, fuzzy, python-format
+#, python-format
 msgid "<br />Created for <a href = \"%(url)s\">%(name)s</a>"
-msgstr "<br />Страница создана для <a href = \"%s\">%s</a>"
+msgstr "<br />Страница создана для <a href = \"%(url)s\">%(name)s</a>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1726
 #: ../gramps/plugins/webstuff/webstuff.py:66
@@ -28609,9 +28593,8 @@ msgid "Revision comment - Gramps"
 msgstr "Комментарий к версии - Gramps"
 
 #: ../gramps/gui/glade/dbman.glade:62
-#, fuzzy
 msgid "Version description"
-msgstr "<b>Описание версии</b>"
+msgstr "Описание версии"
 
 #: ../gramps/gui/glade/dbman.glade:104
 msgid "Family Trees - Gramps"
@@ -28866,9 +28849,8 @@ msgid "Edition"
 msgstr "Издание"
 
 #: ../gramps/gui/glade/editcitation.glade:89
-#, fuzzy
 msgid "Citation information"
-msgstr "<b>Данные о цитате</b>"
+msgstr "Данные о цитате"
 
 #: ../gramps/gui/glade/editcitation.glade:174
 #: ../gramps/gui/glade/editsourceref.glade:177
@@ -29030,9 +29012,8 @@ msgstr "Название источника."
 
 #: ../gramps/gui/glade/editcitation.glade:826
 #: ../gramps/gui/glade/editsourceref.glade:634
-#, fuzzy
 msgid "Shared source information"
-msgstr "<b>Общая информация об источнике</b>"
+msgstr "Общая информация об источнике"
 
 #: ../gramps/gui/glade/editdate.glade:121
 msgid "Calenda_r:"
@@ -29056,12 +29037,10 @@ msgstr ""
 "Месяц-День, которым начинается новый год (например, «1-1», «3-1», «3-25»)"
 
 #: ../gramps/gui/glade/editdate.glade:262
-#, fuzzy
 msgid "Q_uality"
-msgstr "<b>Качество</b>"
+msgstr "Качество"
 
 #: ../gramps/gui/glade/editdate.glade:298
-#, fuzzy
 msgid "_Type"
 msgstr "_Тип:"
 
@@ -29078,9 +29057,8 @@ msgid "_Year"
 msgstr "_Год"
 
 #: ../gramps/gui/glade/editdate.glade:452
-#, fuzzy
 msgid "Second date"
-msgstr "<b>Вторая дата</b>"
+msgstr "Вторая дата"
 
 #: ../gramps/gui/glade/editdate.glade:470
 msgid "D_ay"
@@ -29157,9 +29135,8 @@ msgstr "Уникальный номер для идентификации соб
 #: ../gramps/gui/glade/editeventref.glade:83
 #: ../gramps/gui/glade/editreporef.glade:94
 #: ../gramps/gui/glade/editsourceref.glade:89
-#, fuzzy
 msgid "Reference information"
-msgstr "<b>Информация о ссылке</b>"
+msgstr "Информация о ссылке"
 
 #: ../gramps/gui/glade/editeventref.glade:115
 msgid "_Role:"
@@ -29175,9 +29152,8 @@ msgstr ""
 
 #: ../gramps/gui/glade/editeventref.glade:624
 #: ../gramps/gui/glade/editreporef.glade:476
-#, fuzzy
 msgid "Shared information"
-msgstr "<b>Общая информация</b>"
+msgstr "Общая информация"
 
 #: ../gramps/gui/glade/editfamily.glade:27
 #: ../gramps/gui/glade/editname.glade:27
@@ -29218,9 +29194,8 @@ msgid "Indicates if the record is private"
 msgstr "Указывает на частную запись"
 
 #: ../gramps/gui/glade/editfamily.glade:681
-#, fuzzy
 msgid "Relationship Information"
-msgstr "<b>Данные об Отношении</b>"
+msgstr "Данные об отношении"
 
 #: ../gramps/gui/glade/editfamily.glade:713
 msgid "A unique ID for the family"
@@ -29387,9 +29362,8 @@ msgid "_Corner 2:  X"
 msgstr "Угол 2:  X"
 
 #: ../gramps/gui/glade/editmediaref.glade:168
-#, fuzzy
 msgid "Referenced Region"
-msgstr "<b>Область для ссылке</b>"
+msgstr "Область для ссылки"
 
 #: ../gramps/gui/glade/editmediaref.glade:185
 #: ../gramps/gui/glade/editmediaref.glade:204
@@ -29450,9 +29424,8 @@ msgid "Select a file"
 msgstr "Выберите файл"
 
 #: ../gramps/gui/glade/editmediaref.glade:914
-#, fuzzy
 msgid "Shared Information"
-msgstr "<b>Общая Информация</b>"
+msgstr "Общая информация"
 
 #: ../gramps/gui/glade/editname.glade:116
 #: ../gramps/gui/glade/editperson.glade:351
@@ -30278,9 +30251,8 @@ msgid "Author's email:"
 msgstr "Эл. почта автора:"
 
 #: ../gramps/gui/glade/reorder.glade:90
-#, fuzzy
 msgid "Parent relationships"
-msgstr "<b>Родительские отношения</b>"
+msgstr "Родительские отношения"
 
 #: ../gramps/gui/glade/reorder.glade:113
 msgid "Move parent up"
@@ -30299,9 +30271,8 @@ msgid "Arrow bottom"
 msgstr ""
 
 #: ../gramps/gui/glade/reorder.glade:206
-#, fuzzy
 msgid "Family relationships"
-msgstr "<b>Семейные отношения</b>"
+msgstr "Семейные отношения"
 
 #: ../gramps/gui/glade/reorder.glade:255
 msgid "Move family up"
@@ -30332,10 +30303,8 @@ msgid "Delete the selected filter"
 msgstr "Удалить выделенный фильтр"
 
 #: ../gramps/gui/glade/rule.glade:260
-#, fuzzy
 msgid "Note: changes take effect only after this window is closed"
-msgstr ""
-"<i>Внимание: изменения вступят в силу только после закрытия этого окна</i>"
+msgstr "Внимание: изменения вступят в силу только после закрытия этого окна"
 
 #: ../gramps/gui/glade/rule.glade:444
 msgid "Add another rule to the filter"
@@ -30350,9 +30319,8 @@ msgid "Delete the selected rule"
 msgstr "Удалить выделенное правило"
 
 #: ../gramps/gui/glade/rule.glade:577
-#, fuzzy
 msgid "Rule list"
-msgstr "<b>Список правил</b>"
+msgstr "Список правил"
 
 #: ../gramps/gui/glade/rule.glade:595
 #, fuzzy
@@ -30368,9 +30336,8 @@ msgid "Return values that do no_t match the filter rules"
 msgstr "_Возвращать значения, не удовлетворяющие правилам фильтра (обратить)"
 
 #: ../gramps/gui/glade/rule.glade:890
-#, fuzzy
 msgid "Selected Rule"
-msgstr "<b>Выделенное правило</b>"
+msgstr "Выделенное правило"
 
 #: ../gramps/gui/glade/styleeditor.glade:132
 msgid "Style n_ame:"
@@ -30381,9 +30348,8 @@ msgid "Style name"
 msgstr "Название стиля"
 
 #: ../gramps/gui/glade/styleeditor.glade:290
-#, fuzzy
 msgid "Type face"
-msgstr "<b>Стиль шрифта</b>"
+msgstr "Стиль шрифта"
 
 # !!!FIXME!!!
 #: ../gramps/gui/glade/styleeditor.glade:304
@@ -30408,9 +30374,8 @@ msgid "_Underline"
 msgstr "Под_чёркнутый"
 
 #: ../gramps/gui/glade/styleeditor.glade:545
-#, fuzzy
 msgid "Font options"
-msgstr "<b>Параметры шрифта</b>"
+msgstr "Параметры шрифта"
 
 #: ../gramps/gui/glade/styleeditor.glade:599
 msgid "_Left"
@@ -30429,9 +30394,8 @@ msgid "Cen_ter"
 msgstr "По _центру"
 
 #: ../gramps/gui/glade/styleeditor.glade:691
-#, fuzzy
 msgid "Alignment"
-msgstr "<b>Выравнивание</b>"
+msgstr "Выравнивание"
 
 #: ../gramps/gui/glade/styleeditor.glade:728
 msgid "First li_ne:"
@@ -30446,9 +30410,8 @@ msgid "L_eft:"
 msgstr "Л_евый край:"
 
 #: ../gramps/gui/glade/styleeditor.glade:838
-#, fuzzy
 msgid "Spacing"
-msgstr "<b>Интервал</b>"
+msgstr "Интервал"
 
 #: ../gramps/gui/glade/styleeditor.glade:857
 msgid "Abo_ve:"
@@ -30479,14 +30442,12 @@ msgid "_Bottom"
 msgstr "По _нижнему краю"
 
 #: ../gramps/gui/glade/styleeditor.glade:1188
-#, fuzzy
 msgid "Indentation"
-msgstr "<b>Отступ</b>"
+msgstr "Отступ"
 
 #: ../gramps/gui/glade/styleeditor.glade:1227
-#, fuzzy
 msgid "Paragraph options"
-msgstr "<b>Параметры абзаца</b>"
+msgstr "Параметры абзаца"
 
 #: ../gramps/gui/glade/styleeditor.glade:1381
 msgid "Add a new style"
@@ -30588,9 +30549,8 @@ msgid "Gramps - GEDCOM Encoding"
 msgstr "Gramps - Кодировка GEDCOM"
 
 #: ../gramps/plugins/importer/importgedcom.glade:75
-#, fuzzy
 msgid "GEDCOM Encoding"
-msgstr "Gramps - Кодировка GEDCOM"
+msgstr "Кодировка GEDCOM"
 
 #: ../gramps/plugins/importer/importgedcom.glade:93
 msgid ""
@@ -30608,9 +30568,8 @@ msgid "Encoding: "
 msgstr "Кодировка: "
 
 #: ../gramps/plugins/importer/importgedcom.glade:233
-#, fuzzy
 msgid "Warning messages"
-msgstr "<b>Предупреждения</b>"
+msgstr "Предупреждения"
 
 #: ../gramps/plugins/importer/importgedcom.glade:300
 msgid "Created by:"
@@ -30663,24 +30622,20 @@ msgid "_New event type:"
 msgstr "_Заменить на:"
 
 #: ../gramps/plugins/tool/desbrowser.glade:106
-#, fuzzy
 msgid "Double-click on the row to edit personal information"
-msgstr "<i>Двойной щелчок по строке для редактирования личной информации</i>"
+msgstr "Двойной щелчок по строке для редактирования личной информации"
 
 #: ../gramps/plugins/tool/eval.glade:162
-#, fuzzy
 msgid "Evaluation Window"
-msgstr "<b>Окно оценки</b>"
+msgstr "Окно оценки"
 
 #: ../gramps/plugins/tool/eval.glade:178
-#, fuzzy
 msgid "Output Window"
-msgstr "<b>Окно вывода</b>"
+msgstr "Окно вывода"
 
 #: ../gramps/plugins/tool/eval.glade:217
-#, fuzzy
 msgid "Error Window"
-msgstr "<b>Окно ошибок</b>"
+msgstr "Окно ошибок"
 
 #: ../gramps/plugins/tool/eventcmp.glade:239
 msgid "_Filter:"
@@ -30700,9 +30655,8 @@ msgstr "Редактор фильтров поль_зователя"
 
 #: ../gramps/plugins/tool/finddupes.glade:126
 #: ../gramps/plugins/tool/mergecitations.glade:132
-#, fuzzy
 msgid "Match Threshold"
-msgstr "<b>Граница соответствия</b>"
+msgstr "Граница соответствия"
 
 #: ../gramps/plugins/tool/finddupes.glade:157
 msgid "Use soundex codes"
@@ -30820,9 +30774,8 @@ msgstr "О_братить отметки"
 
 #: ../gramps/plugins/tool/removeunused.glade:335
 #: ../gramps/plugins/tool/verify.glade:959
-#, fuzzy
 msgid "Double-click on a row to view/edit data"
-msgstr "<b>Двойной щелчок в строке для просмотра/правки данных</b>"
+msgstr "Двойной щелчок в строке для просмотра/правки данных"
 
 #: ../gramps/plugins/tool/soundgen.glade:27
 msgid "Close Window"
@@ -31573,7 +31526,6 @@ msgstr ""
 "семьи."
 
 #: ../data/tips.xml.in.h:56
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 20 languages. If Gramps supports your language and it is not being "
