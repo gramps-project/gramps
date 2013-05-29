@@ -66,7 +66,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.set_model(self.model)
         self.goto(default_key)
         # set up selection and fields on click
-        self.connect('button-press-event', self._on_button_press)
+        self.connect('button-release-event', self._on_button_release)
         self.connect('key_press_event', self._on_key_press_event)
 
     def build_model(self):
@@ -77,6 +77,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.I2Str = srcattrt.I2S_SRCTEMPLATEMAP
         self.I2Key = srcattrt.I2E_SRCTEMPLATEMAP
         self.Str2I = srcattrt.S2I_SRCTEMPLATEMAP
+        self.Key2I = srcattrt.E2I_SRCTEMPLATEMAP
         self.Key2Path = {}
         # store (index, key, cat, cat_type, src_type)
         self.model = Gtk.TreeStore(int, str, str)
@@ -159,6 +160,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
             self.selection.unselect_all()
             self.selection.select_path(path)
             self.scroll_to_cell(path, None, 1, 0.5, 0)
+            self.sel_callback(self.Key2I[key], key)
 
     def get_selected(self):
         """
@@ -169,11 +171,11 @@ class SrcTemplateTreeView(Gtk.TreeView):
             return (model.get_value(node, 0), model.get_value(node,1), node)
         return None
 
-    def _on_button_press(self, obj, event):
+    def _on_button_release(self, obj, event):
         """
         Handle button press
         """
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
+        if event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1:
             ref = self.get_selected()
             if ref and ref[0] != -10:
                 self.sel_callback(ref[0], ref[1])

@@ -211,7 +211,8 @@ class EditSource(EditPrimary):
         """
         Change in the template tab must be reflected in other places
         """
-        self.attr_tab.rebuild_callback()
+        if self.attr_tab:
+            self.attr_tab.rebuild_callback()
 
     def _create_tabbed_pages(self):
         notebook = self.glade.get_object('notebook')
@@ -222,13 +223,11 @@ class EditSource(EditPrimary):
                               _('Overview'), gridsrc)
         self._add_tab(notebook, self.overviewtab)
 
-        gridtemp =  self.glade.get_object('gridtemplate')
-        
-        #recreate start page as GrampsTab
+        #recreate second page as GrampsTab
         notebook.remove_page(0)
+        self.attr_tab = None
         self.template_tab = SrcTemplateTab(self.dbstate, self.uistate,
-                                self.track, self.obj, gridtemp,
-                                self.glade.get_object('scrolledtemplates'),
+                                self.track, self.obj, self.glade,
                                 self.update_template_data
                                 )
         self._add_tab(notebook, self.template_tab)

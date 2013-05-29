@@ -44,6 +44,7 @@ from gi.repository import Gtk
 from gramps.gen.lib.srcattrtype import SrcAttributeType
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
+from ...widgets import UndoableEntry
 from .grampstab import GrampsTab
 
 #-------------------------------------------------------------------------
@@ -55,7 +56,7 @@ class SrcTemplateTab(GrampsTab):
     """
     This class provides the tabpage for template generation of attributes.
     """
-    def __init__(self, dbstate, uistate, track, src, widget, scrolled,
+    def __init__(self, dbstate, uistate, track, src, glade,
                  callback_src_changed):
         """
         @param dbstate: The database state. Contains a reference to
@@ -71,19 +72,27 @@ class SrcTemplateTab(GrampsTab):
         @type track: list
         @param src: source which we manage in this tab
         @type src: gen.lib.Source
-        @param widget: widget with all the elements
-        @type widget: GTK dialog
+        @param glade: glade objects with the needed widgets
         """
         self.src = src
+        self.glade = glade
         self.callback_src_changed = callback_src_changed
         self.readonly = dbstate.db.readonly
+        
         GrampsTab.__init__(self, dbstate, uistate, track, _("Source Template"))
         eventbox = Gtk.EventBox()
+        widget = self.glade.get_object('gridtemplate')
         eventbox.add(widget)
         self.pack_start(eventbox, True, True, 0)
         self._set_label(show_image=False)
         widget.connect('key_press_event', self.key_pressed)
-        self.setup_interface(scrolled)
+        
+        self.lbls = []
+        self.inpts = []
+        self.gridfields = self.glade.get_object('gridfields')
+        #self.vbox_fields_label = self.glade.get_object('fields_01')
+        #self.vbox_fields_input = self.glade.get_object('fields_02')
+        self.setup_interface(self.glade.get_object('scrolledtemplates'))
         self.show_all()
 
     def is_empty(self):
@@ -112,6 +121,39 @@ class SrcTemplateTab(GrampsTab):
         """
         self.src.set_source_template(index, key)
         self.callback_src_changed()
+        
+        srcattr = SrcAttributeType()
+        if index in srcattr.EVIDENCETEMPLATES:
+            #a predefined template, 
+            self.reset_template_fields(srcattr.EVIDENCETEMPLATES[index])
+
+    def reset_template_fields(self, template):
+        # first remove old fields
+        for lbl in self.lbls:
+            self.gridfields.remove(lbl)
+        for inpt in self.inpts:
+            self.gridfields.remove(inpt)
+        self.lbls = []
+        self.inpts = []
+        row = 1
+        # now add new fields
+        for fielddef in template['F']:
+            self.gridfields.insert_row(row)
+            row += 1
+            field = fielddef[1]
+            srcattr = SrcAttributeType(field)
+            lbl = Gtk.Label(_("%s:") %str(srcattr))
+            lbl.set_halign(Gtk.Align.START)
+            self.gridfields.attach(lbl, 0, row-1, 1, 1)
+            self.lbls.append(lbl)
+            inpt = UndoableEntry()
+            inpt.set_halign(Gtk.Align.FILL)
+            self.gridfields.attach(inpt, 1, row-1, 1, 1)
+            self.inpts.append(inpt)
+        
+        self.show_all()
+
+
 
 ##    def setup_autocomp_combobox(self):
 ##        """
