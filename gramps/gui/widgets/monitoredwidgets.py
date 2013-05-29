@@ -194,7 +194,7 @@ class MonitoredEntryIndicator(MonitoredEntry):
                  autolist=None, changed=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
                                 autolist, changed)
-        if get_val(None):
+        if self.get_val(None):
             self.indicatorshown = False
         else:
             self.indicatorshown = True
