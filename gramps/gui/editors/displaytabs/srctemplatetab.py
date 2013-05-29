@@ -102,7 +102,7 @@ class SrcTemplateTab(GrampsTab):
         """
         srcattr = SrcAttributeType()
         templ = self.src.get_source_template()
-        self.temp_tv = SrcTemplateTreeView(templ[1],
+        self.temp_tv = SrcTemplateTreeView(templ[2],
                                 sel_callback=self.on_template_selected)
         scrolled.add(self.temp_tv)
 

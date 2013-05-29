@@ -64,10 +64,10 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.make_columns()
         self.selection = self.get_selection()
         self.set_model(self.model)
+        self.goto(default_key)
         # set up selection and fields on click
         self.connect('button-press-event', self._on_button_press)
         self.connect('key_press_event', self._on_key_press_event)
-        self.defer_select = False
 
     def build_model(self):
         """
@@ -77,6 +77,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.I2Str = srcattrt.I2S_SRCTEMPLATEMAP
         self.I2Key = srcattrt.I2E_SRCTEMPLATEMAP
         self.Str2I = srcattrt.S2I_SRCTEMPLATEMAP
+        self.Key2Path = {}
         # store (index, key, cat, cat_type, src_type)
         self.model = Gtk.TreeStore(int, str, str)
         alltexts = sorted(self.Str2I.keys())
@@ -96,15 +97,16 @@ class SrcTemplateTreeView(Gtk.TreeView):
                 vals = truevals
             index = self.Str2I[alltext]
             row = [index, self.I2Key[index], lastval]
+            iter = None
             if prevstrval[0] == vals[0] and prevstrval[1] == vals[1]:
                 #same parentiter
-                self.model.append(parentiter, row)
+                iter = self.model.append(parentiter, row)
             elif prevstrval[0] == vals[0]:
                 #up one parentiter, make new sublevel2 if needed
                 parentiter = parentiterlev1
                 if vals[2]:
                     parentiter = self.model.append(parentiter, [-10, '', vals[1]])
-                self.model.append(parentiter, row)
+                iter = self.model.append(parentiter, row)
             else:
                 #new value
                 parentiterlev1 = None
@@ -113,11 +115,17 @@ class SrcTemplateTreeView(Gtk.TreeView):
                     parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
                     #make sublevel2
                     parentiter= self.model.append(parentiterlev1, [-10, '', vals[1]])
+                    iter = self.model.append(parentiter, row)
                 elif vals[1]:
                     #only new sublevel1 needed
                     parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
                     parentiter = parentiterlev1
-                    self.model.append(parentiter, row)
+                    iter = self.model.append(parentiter, row)
+                else:
+                    #only a top level
+                    iter = self.model.append(None, row)
+            #store key to path
+            self.Key2Path[row[1]] = self.model.get_path(iter)
             prevstrval = [vals[0], vals[1]]
 
     def make_columns(self):
@@ -127,6 +135,30 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.append_column(column)
         #no headers needed:
         self.set_headers_visible (False)
+
+    def goto(self, key):
+        """
+        highlight key in the view
+        """
+        #we determine the path of key
+        
+        path = self.Key2Path[key]
+        iter_ = self.model.get_iter(path)
+        if iter_:
+            # Expand tree
+            parent_iter = self.model.iter_parent(iter_)
+            if parent_iter:
+                parent_path = self.model.get_path(parent_iter)
+                parent_path_list = parent_path.get_indices()
+                for i in range(len(parent_path_list)):
+                    expand_path = Gtk.TreePath(
+                            tuple([x for x in parent_path_list[:i+1]]))
+                    self.expand_row(expand_path, False)
+
+            # Select active object
+            self.selection.unselect_all()
+            self.selection.select_path(path)
+            self.scroll_to_cell(path, None, 1, 0.5, 0)
 
     def get_selected(self):
         """
