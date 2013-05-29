@@ -107,19 +107,34 @@ class MonitoredCheckbox(object):
 class MonitoredEntry(object):
 
     def __init__(self, obj, set_val, get_val, read_only=False, 
-                 autolist=None, changed=None):
+                 autolist=None, changed=None, parameter=None):
+        """
+        A monitored entry field. On changes, set_val will be called. get_val is
+        used to obtain the data. set and get_val are passed parameter if it is
+        not None.
+        Use autolist to use autocompletion.
+        """
         self.obj = obj
-        self.set_val = set_val
-        self.get_val = get_val
+        self.__set_func(set_val, get_val, parameter)
         self.changed = changed
 
-        if get_val():
-            self.obj.set_text(get_val())
+        gval = self.get_val(self.parameter)
+        if gval:
+            self.obj.set_text(gval)
         self.obj.connect('changed', self._on_change)
         self.obj.set_editable(not read_only)
 
         if autolist:
             fill_entry(obj, autolist)
+
+    def __set_func(self, set_val, get_val, parameter):
+        if parameter is not None:
+            self.set_val = lambda x: set_val(x, parameter)
+            self.get_val = lambda x: get_val(parameter)
+        else:
+            self.set_val = set_val
+            self.get_val =  lambda x: get_val()
+        self.parameter = parameter
 
 ##    def destroy(self):
 ##        """
@@ -129,9 +144,8 @@ class MonitoredEntry(object):
 ##        self.get_val = None
 ##        self.obj = None
 
-    def reinit(self, set_val, get_val):
-        self.set_val = set_val
-        self.get_val = get_val
+    def reinit(self, set_val, get_val, parameter=None):
+        self.__set_func(set_val, get_val, parameter)
         self.update()
 
     def set_text(self, text):
@@ -163,8 +177,8 @@ class MonitoredEntry(object):
         self.obj.grab_focus()
 
     def update(self):
-        if self.get_val() is not None:
-            self.obj.set_text(self.get_val())
+        if self.get_val(None) is not None:
+            self.obj.set_text(self.get_val(None))
 
 #-------------------------------------------------------------------------
 #
@@ -180,7 +194,7 @@ class MonitoredEntryIndicator(MonitoredEntry):
                  autolist=None, changed=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
                                 autolist, changed)
-        if get_val():
+        if get_val(None):
             self.indicatorshown = False
         else:
             self.indicatorshown = True

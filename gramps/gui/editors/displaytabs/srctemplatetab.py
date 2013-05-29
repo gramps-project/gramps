@@ -42,9 +42,10 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib.srcattrtype import SrcAttributeType
+from gramps.gen.lib.srcattribute import SrcAttribute
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
-from ...widgets import UndoableEntry
+from ...widgets import UndoableEntry, MonitoredEntry
 from .grampstab import GrampsTab
 
 #-------------------------------------------------------------------------
@@ -141,19 +142,62 @@ class SrcTemplateTab(GrampsTab):
             self.gridfields.insert_row(row)
             row += 1
             field = fielddef[1]
+            #setup label
             srcattr = SrcAttributeType(field)
             lbl = Gtk.Label(_("%s:") %str(srcattr))
             lbl.set_halign(Gtk.Align.START)
             self.gridfields.attach(lbl, 0, row-1, 1, 1)
             self.lbls.append(lbl)
+            #setup entry
             inpt = UndoableEntry()
             inpt.set_halign(Gtk.Align.FILL)
+            inpt.set_hexpand(True)
             self.gridfields.attach(inpt, 1, row-1, 1, 1)
             self.inpts.append(inpt)
+            MonitoredEntry(inpt, self.set_field, self.get_field, 
+                           read_only=self.dbstate.db.readonly, 
+                           parameter=field)
         
         self.show_all()
 
+    def get_field(self, srcattrtype):
+        """
+        Obtain srcattribute with type srcattrtype, where srcattrtype is an
+        integer key!
+        """
+        print 'get field called'
+        src = self.src
+        val = ''
+        for attr in src.attribute_list:
+            if int(attr.get_type()) == srcattrtype:
+                val = attr.get_value()
+                break
+        return val
 
+    def set_field(self, value, srcattrtype):
+        """
+        Set attribute of source of type srcattrtype (which is integer!) to 
+        value. If not present, create attribute. If value == '', remove
+        """
+        print 'set field called', value, srcattrtype
+        src = self.src
+        value = value.strip()
+        foundattr = None
+        for attr in src.attribute_list:
+            if int(attr.get_type()) == srcattrtype:
+                attr.set_value(value)
+                foundattr = attr
+                break
+        if foundattr and value == '':
+            src.remove_attribute(foundattr)
+        if foundattr is None and value != '':
+            foundattr = SrcAttribute()
+            foundattr.set_type(srcattrtype)
+            foundattr.set_value(value)
+            src.add_attribute(foundattr)
+        #indicate source object changed
+        self.callback_src_changed()
+        
 
 ##    def setup_autocomp_combobox(self):
 ##        """
