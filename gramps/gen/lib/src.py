@@ -35,7 +35,7 @@ from .primaryobj import PrimaryObject
 from .mediabase import MediaBase
 from .notebase import NoteBase
 from .tagbase import TagBase
-from .attrbase import SrcAttributeBase
+from .srcattrbase import SrcAttributeBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni

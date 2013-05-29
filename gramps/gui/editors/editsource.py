@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -47,9 +47,14 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Source
 from gramps.gen.db import DbTxn
+from gramps.gen.utils.file import media_path_full
+from ..thumbnails import get_thumbnail_image
 from .editprimary import EditPrimary
+from .editreference import RefTab
+from .editmediaref import EditMediaRef
 
 from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
+                          SrcTemplateTab,
                           CitationBackRefList, RepoEmbedList)
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from ..dialog import ErrorDialog
@@ -89,10 +94,65 @@ class EditSource(EditPrimary):
         self.set_window(self.glade.toplevel, None, 
                         self.get_menu_title())
 
+        self.obj_photo = self.glade.get_object("sourcePix")
+        self.frame_photo = self.glade.get_object("frame5")
+        self.eventbox = self.glade.get_object("eventbox1")
+
+    def _post_init(self):
+        """
+        Handle any initialization that needs to be done after the interface is
+        brought up.
+
+        Post initalization function.
+        This is called by _EditPrimary's init routine, and overridden in the
+        derived class (this class).
+
+        """
+        self.load_source_image()
+        self.title.grab_focus()
+
+    def load_source_image(self):
+        """
+        Load the primary image into the main form if it exists.
+
+        Used as callback on Gallery Tab too.
+
+        """
+        media_list = self.obj.get_media_list()
+        if media_list:
+            ref = media_list[0]
+            handle = ref.get_reference_handle()
+            obj = self.dbstate.db.get_object_from_handle(handle)
+            if obj is None :
+                #notify user of error
+                from ..dialog import RunDatabaseRepair
+                RunDatabaseRepair(
+                            _('Non existing media found in the Gallery'))
+            else:
+                self.load_photo(ref, obj)
+        else:
+            self.obj_photo.hide()
+            self.frame_photo.hide()
+
+    def load_photo(self, ref, obj):
+        """
+        Load the source's main photo using the Thumbnailer.
+        """
+        pixbuf = get_thumbnail_image(
+                        media_path_full(self.dbstate.db, obj.get_path()), 
+                        obj.get_mime_type(),
+                        ref.get_rectangle())
+
+        self.obj_photo.set_from_pixbuf(pixbuf)
+        self.obj_photo.show()
+        self.frame_photo.show_all()
+
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_object('ok'),self.save)
         self.define_cancel_button(self.glade.get_object('cancel'))
         self.define_help_button(self.glade.get_object('help'))
+        self.eventbox.connect('button-press-event',
+                                self._image_button_press)
 
     def _connect_db_signals(self):
         """
@@ -103,14 +163,16 @@ class EditSource(EditPrimary):
         self._add_db_signal('source-delete', self.check_for_close)
 
     def _setup_fields(self):
-        self.author = MonitoredEntry(self.glade.get_object("author"),
-                                     self.obj.set_author, self.obj.get_author,
-                                     self.db.readonly)
-
-        self.pubinfo = MonitoredEntry(self.glade.get_object("pubinfo"),
-                                      self.obj.set_publication_info,
-                                      self.obj.get_publication_info,
-                                      self.db.readonly)
+##        self.author = MonitoredEntry(self.glade.get_object("author"),
+##                                     self.obj.set_author, self.obj.get_author,
+##                                     self.db.readonly)
+##
+##        self.pubinfo = MonitoredEntry(self.glade.get_object("pubinfo"),
+##                                      self.obj.set_publication_info,
+##                                      self.obj.get_publication_info,
+##                                      self.db.readonly)
+        self.author = self.glade.get_object("author")
+        self.pubinfo = self.glade.get_object("pubinfo")
 
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
@@ -136,8 +198,41 @@ class EditSource(EditPrimary):
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
 
+        self.update_attr()
+
+    def update_attr(self):
+        """
+        Reaction to update on attributes
+        """
+        self.author.set_text(self.obj.get_author())
+        self.pubinfo.set_text(self.obj.get_publication_info())
+
+    def update_template_data(self):
+        """
+        Change in the template tab must be reflected in other places
+        """
+        self.attr_tab.rebuild_callback()
+
     def _create_tabbed_pages(self):
-        notebook = Gtk.Notebook()
+        notebook = self.glade.get_object('notebook')
+        gridsrc =  self.glade.get_object('gridsrc')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.overviewtab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('Overview'), gridsrc)
+        self._add_tab(notebook, self.overviewtab)
+
+        gridtemp =  self.glade.get_object('gridtemplate')
+        
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.template_tab = SrcTemplateTab(self.dbstate, self.uistate,
+                                self.track, self.obj, gridtemp,
+                                self.glade.get_object('scrolledtemplates'),
+                                self.update_template_data
+                                )
+        self._add_tab(notebook, self.template_tab)
+        self.track_ref_for_deletion("template_tab")
 
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
@@ -151,7 +246,8 @@ class EditSource(EditPrimary):
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
                                       self.track,
-                                      self.obj.get_media_list())
+                                      self.obj.get_media_list(),
+                                      self.load_source_image)
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
                                           
@@ -183,6 +279,76 @@ class EditSource(EditPrimary):
 
     def build_menu_names(self, source):
         return (_('Edit Source'), self.get_menu_title())        
+
+    def _image_button_press(self, obj, event):
+        """
+        Button press event that is caught when a button has been pressed while
+        on the image on the main form.
+
+        This does not apply to the images in galleries, just the image on the
+        main form.
+        """
+        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+
+            media_list = self.obj.get_media_list()
+            if media_list:
+                media_ref = media_list[0]
+                object_handle = media_ref.get_reference_handle()
+                media_obj = self.db.get_object_from_handle(object_handle)
+
+                try:
+                    EditMediaRef(self.dbstate, self.uistate, self.track,
+                                 media_obj, media_ref, self.load_photo)
+                except WindowActiveError:
+                    pass
+
+        elif is_right_click(event):
+            media_list = self.obj.get_media_list()
+            if media_list:
+                photo = media_list[0]
+                self._show_popup(photo, event)
+        #do not propagate further:
+        return True
+
+    def _show_popup(self, photo, event):
+        """
+        Look for right-clicks on a picture and create a popup menu of the
+        available actions.
+        """
+        self.imgmenu = Gtk.Menu()
+        menu = self.imgmenu
+        menu.set_title(_("Media Object"))
+        obj = self.db.get_object_from_handle(photo.get_reference_handle())
+        if obj:
+            add_menuitem(menu, _("View"), photo,
+                                   self._popup_view_photo)
+        add_menuitem(menu, _("Edit Object Properties"), photo,
+                               self._popup_change_description)
+        menu.popup(None, None, None, None, event.button, event.time)
+
+    def _popup_view_photo(self, obj):
+        """
+        Open this picture in the default picture viewer.
+        """
+        media_list = self.obj.get_media_list()
+        if media_list:
+            photo = media_list[0]
+            object_handle = photo.get_reference_handle()
+            ref_obj = self.db.get_object_from_handle(object_handle)
+            photo_path = media_path_full(self.db, ref_obj.get_path())
+            open_file_with_default_application(photo_path)
+
+    def _popup_change_description(self, obj):
+        """
+        Bring up the EditMediaRef dialog for the image on the main form.
+        """
+        media_list = self.obj.get_media_list()
+        if media_list:
+            media_ref = media_list[0]
+            object_handle = media_ref.get_reference_handle()
+            media_obj = self.db.get_object_from_handle(object_handle)
+            EditMediaRef(self.dbstate, self.uistate, self.track,
+                         media_obj, media_ref, self.load_photo)
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

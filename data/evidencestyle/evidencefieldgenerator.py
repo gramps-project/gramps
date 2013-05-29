@@ -149,15 +149,16 @@ with open('srcattrtype_extra.py', 'wb') as srcattrfile:
 # 
 
 #first an English to internationalized map
-code = "    #SRCTYPE has some predefined values which map to citation styles\n"
+code = "    #SRCTEMPLATE has some predefined values which map to citation styles\n"
 
-datamap = "    _SRCTYPEVAL_MAP = [\n"
+datamap = "    _SRCTEMPLATEVAL_MAP = [\n"\
+        "        (UNKNOWN, _('Unknown'), 'Unknown'),\n"
 allkeys = sorted(TYPE2CITEMAP.keys())
 for source_type in allkeys:
     code += "    " + source_type + ' = %d\n' % TYPE2CITEMAP[source_type]['i']
     # we use descrcode in to translate string to reduce work for translators
-    datamap += '        (' + source_type + ', ' + TYPE2CITEMAP[source_type]['descrcode'] \
-            +', "' + TYPE2CITEMAP[source_type]['descr'] + '"),\n'
+    datamap += "        (" + source_type + ", " + TYPE2CITEMAP[source_type]['descrcode'] \
+            +", '" + source_type+ "'),\n"
 
 code += '\n    # Localization of the different source types\n'\
             + datamap + '        ]\n'
@@ -168,7 +169,7 @@ code += "\n    #templates for the source types defined\n"\
         "    # L: List reference (for in bibliography list)\n"
 code += '    EVIDENCETEMPLATES = {\n'
 for source_type in allkeys:
-    code += "        '" + source_type + "': {\n"
+    code += "        " + source_type + ": {\n"
     for val in ['F', 'L', 'S']:
         code += "            '" + val + "': [\n"
         for field in TYPE2CITEMAP[source_type][val]:

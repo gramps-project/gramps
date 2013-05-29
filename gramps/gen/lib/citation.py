@@ -44,7 +44,7 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .datebase import DateBase
 from .tagbase import TagBase
-from .attrbase import SrcAttributeBase
+from .srcattrbase import SrcAttributeBase
 from ..constfunc import cuni
 from .handle import Handle
 

@@ -31,7 +31,6 @@ AttributeBase class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from .attribute import Attribute
-from .srcattribute import SrcAttribute
 from .const import IDENTICAL, EQUAL
 from ..constfunc import STRTYPE
 
@@ -167,7 +166,3 @@ class AttributeRootBase(object):
 
 class AttributeBase(AttributeRootBase):
     _CLASS = Attribute
-
-class SrcAttributeBase(AttributeRootBase):
-    _CLASS = SrcAttribute
-

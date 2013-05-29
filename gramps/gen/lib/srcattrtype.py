@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2013  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ class SrcAttributeType(GrampsType):
 
     UNKNOWN     = -1
     CUSTOM      = 0
-    SRCTYPE     = 1
+    SRCTEMPLATE = 1
     # GEDCOM support
     EVEN_REC    = 2
     EVEN_CITED  = 3
@@ -58,13 +58,13 @@ class SrcAttributeType(GrampsType):
     GEN_BY      = 5
     
     _CUSTOM = CUSTOM
-    _DEFAULT = SRCTYPE
+    _DEFAULT = SRCTEMPLATE
     
     _DATAMAP = [
         (UNKNOWN     , _("Unknown"), "Unknown"),
         (CUSTOM      , _("Custom"), "Custom"),
         # required attribute to use for Elizabeth Shown Mills citation defs
-        (SRCTYPE     , _("Source Type"), "Source Type"),
+        (SRCTEMPLATE , _("Source Template"), "Source Template"),
         # GEDCOM support
         (EVEN_REC    , _("Events Recorded in Source"), "Events Recorded in Source"),  # GEDCOM EVENTS_RECORDED
         (EVEN_CITED  , _("Event Type used for citation"), "Event Type used for citation"), # GEDCOM EVENT_TYPE_CITED_FROM
@@ -1114,7 +1114,7 @@ class SrcAttributeType(GrampsType):
         (YEAR_SUPPLIED, _("Year supplied"), "Year supplied"),
         ]
 
-    #SRCTYPE has some predefined values which map to citation styles
+    #SRCTEMPLATE has some predefined values which map to citation styles
     ESM100 = 17
     ESM101 = 18
     ESM102 = 19
@@ -1287,177 +1287,178 @@ class SrcAttributeType(GrampsType):
     ESM99 = 16
 
     # Localization of the different source types
-    _SRCTYPEVAL_MAP = [
-        (ESM100, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Research Report')}, "Archives & Artifacts - Archived Material - Research Report"),
-        (ESM101, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Unpublished narrative')}, "Archives & Artifacts - Archived Material - Unpublished narrative"),
-        (ESM102, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Vertical file')}, "Archives & Artifacts - Archived Material - Vertical file"),
-        (ESM103, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Preservation Film'), 'third': _('FHL-GSU film')}, "Archives & Artifacts - Preservation Film - FHL-GSU film"),
-        (ESM104, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Preservation Film'), 'third': _('In-house film')}, "Archives & Artifacts - Preservation Film - In-house film"),
-        (ESM105, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Artifact')}, "Archives & Artifacts - Private Holdings - Artifact"),
-        (ESM106, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Diary or journal, etc.')}, "Archives & Artifacts - Private Holdings - Diary or journal, etc."),
-        (ESM107, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Family Bible Records')}, "Archives & Artifacts - Private Holdings - Family Bible Records"),
-        (ESM108, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Family Chart or Group Sheet')}, "Archives & Artifacts - Private Holdings - Family Chart or Group Sheet"),
-        (ESM109, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Historic letter')}, "Archives & Artifacts - Private Holdings - Historic letter"),
-        (ESM110, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Interview tape & transcript')}, "Archives & Artifacts - Private Holdings - Interview tape & transcript"),
-        (ESM111, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Legal document, unrecorded')}, "Archives & Artifacts - Private Holdings - Legal document, unrecorded"),
-        (ESM112, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Personal correspondence')}, "Archives & Artifacts - Private Holdings - Personal correspondence"),
-        (ESM113, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Personal e-mail')}, "Archives & Artifacts - Private Holdings - Personal e-mail"),
-        (ESM114, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Research Report')}, "Archives & Artifacts - Private Holdings - Research Report"),
-        (ESM115, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Tradition, recorded')}, "Archives & Artifacts - Private Holdings - Tradition, recorded"),
-        (ESM161, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Bound volume')}, "Business & institutional Records - Corporate Records - Bound volume"),
-        (ESM162, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Document (loose record)')}, "Business & institutional Records - Corporate Records - Document (loose record)"),
-        (ESM163, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Extract supplied by staff')}, "Business & institutional Records - Corporate Records - Extract supplied by staff"),
-        (ESM164, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Microfilm')}, "Business & institutional Records - Corporate Records - Microfilm"),
-        (ESM165, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Online database')}, "Business & institutional Records - Corporate Records - Online database"),
-        (ESM166, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Online image')}, "Business & institutional Records - Corporate Records - Online image"),
-        (ESM167, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Lineage-society Records'), 'third': _('Application file')}, "Business & institutional Records - Lineage-society Records - Application file"),
-        (ESM168, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Lineage-society Records'), 'third': _('Online database')}, "Business & institutional Records - Lineage-society Records - Online database"),
-        (ESM169, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Organizational Records'), 'third': _('Archived in-house')}, "Business & institutional Records - Organizational Records - Archived in-house"),
-        (ESM170, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Organizational Records'), 'third': _('Archived off-site')}, "Business & institutional Records - Organizational Records - Archived off-site"),
-        (ESM171, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Genetic testing')}, "Business & institutional Records - Professional Reports - Genetic testing"),
-        (ESM172, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Historical research: corporate')}, "Business & institutional Records - Professional Reports - Historical research: corporate"),
-        (ESM173, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Historical research: online')}, "Business & institutional Records - Professional Reports - Historical research: online"),
-        (ESM174, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('School Records'), 'third': _('Administrative material')}, "Business & institutional Records - School Records - Administrative material"),
-        (ESM175, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('School Records'), 'third': _('Student transcript')}, "Business & institutional Records - School Records - Student transcript"),
-        (ESM209, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Office records'), 'fourth': _('personally used')}, "Cemetery Records - Cemetery Office Records - Office records (personally used)"),
-        (ESM210, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Office records'), 'fourth': _('supplied by staff')}, "Cemetery Records - Cemetery Office Records - Office records (supplied by staff)"),
-        (ESM211, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Online images')}, "Cemetery Records - Cemetery Office Records - Online images"),
-        (ESM212, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Preservation film, FHL-GSU')}, "Cemetery Records - Cemetery Office Records - Preservation film, FHL-GSU"),
-        (ESM213, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Grave markers'), 'fourth': _('rural')}, "Cemetery Records - Markers & Memorials (Originals) - Grave markers (rural)"),
-        (ESM214, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Grave markers'), 'fourth': _('urban')}, "Cemetery Records - Markers & Memorials (Originals) - Grave markers (urban)"),
-        (ESM215, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Images online')}, "Cemetery Records - Markers & Memorials (Originals) - Images online"),
-        (ESM216, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Memorial plaques')}, "Cemetery Records - Markers & Memorials (Originals) - Memorial plaques"),
-        (ESM217, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Cemetery abstracts'), 'fourth': _('vertical file')}, "Cemetery Records - Derivatives - Cemetery abstracts (vertical file)"),
-        (ESM218, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Cemetery abstracts'), 'fourth': _('card file')}, "Cemetery Records - Derivatives - Cemetery abstracts (card file)"),
-        (ESM219, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Database online')}, "Cemetery Records - Derivatives - Database online"),
-        (ESM237, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Original manuscripts (U.S.)'), 'third': _('Local copy'), 'fourth': _('federal census')}, "Census Records - Original manuscripts (U.S.) - Local copy (federal census)"),
-        (ESM238, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Original manuscripts (U.S.)'), 'third': _('National Archives copy')}, "Census Records - Original manuscripts (U.S.) - National Archives copy"),
-        (ESM239, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('CD/DVD')}, "Census Records - Digital Images - CD/DVD"),
-        (ESM240, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online commercial site')}, "Census Records - Digital Images - Online commercial site"),
-        (ESM241, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online archives'), 'fourth': _('France')}, "Census Records - Digital Images - Online archives (France)"),
-        (ESM242, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online commercial site'), 'fourth': _('U.K. Wales')}, "Census Records - Digital Images - Online commercial site (U.K. Wales)"),
-        (ESM243, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Native-American tribal census')}, "Census Records - Microfilm (U.S.) - Native-American tribal census"),
-        (ESM244, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('NARA film')}, "Census Records - Microfilm (U.S.) - “Nonpopulation” schedules (NARA film)"),
-        (ESM245, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('FHL-GSU preservation film')}, "Census Records - Microfilm (U.S.) - “Nonpopulation” schedules (FHL-GSU preservation film)"),
-        (ESM246, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('UNC microfilm publication')}, "Census Records - Microfilm (U.S.) - “Nonpopulation” schedules (UNC microfilm publication)"),
-        (ESM247, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1790-1840')}, "Census Records - Microfilm (U.S.) - Population schedules (1790-1840)"),
-        (ESM248, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1850-1870')}, "Census Records - Microfilm (U.S.) - Population schedules (1850-1870)"),
-        (ESM249, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1850-1860: slaves')}, "Census Records - Microfilm (U.S.) - Population schedules (1850-1860: slaves)"),
-        (ESM250, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1880-1930')}, "Census Records - Microfilm (U.S.) - Population schedules (1880-1930)"),
-        (ESM251, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('State-level copies')}, "Census Records - Microfilm (U.S.) - Population schedules (State-level copies)"),
-        (ESM252, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('State-sponsored censuses')}, "Census Records - Microfilm (U.S.) - State-sponsored censuses"),
-        (ESM253, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('CD/DVD')}, "Census Records - Derivatives - Database (CD/DVD)"),
-        (ESM254, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('online')}, "Census Records - Derivatives - Database (online)"),
-        (ESM255, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Soundex & Miracode, microfilm')}, "Census Records - Derivatives - Soundex & Miracode, microfilm"),
-        (ESM256, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Statistical database'), 'fourth': _('online')}, "Census Records - Derivatives - Statistical database (online)"),
-        (ESM311, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Named volume'), 'fourth': _('held by church')}, "Church Records - Church Books - Named volume (held by church)"),
-        (ESM312, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Named volume'), 'fourth': _('archived off-site')}, "Church Records - Church Books - Named volume (archived off-site)"),
-        (ESM313, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Numbered volume'), 'fourth': _('archived off-site')}, "Church Records - Church Books - Numbered volume (archived off-site)"),
-        (ESM314, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Digitized online')}, "Church Records - Image Copies - Digitized online"),
-        (ESM315, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation')}, "Church Records - Image Copies - Microfilm (FHL-GSU preservation)"),
-        (ESM316, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('LDS records at FHL')}, "Church Records - Image Copies - Microfilm (LDS records at FHL)"),
-        (ESM317, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm publication')}, "Church Records - Image Copies - Microfilm publication"),
-        (ESM318, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church-issued certificate')}, "Church Records - Derivatives - Church-issued certificate"),
-        (ESM319, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church record book, recopied')}, "Church Records - Derivatives - Church record book, recopied"),
-        (ESM320, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church-records database'), 'fourth': _('online')}, "Church Records - Derivatives - Church-records database (online)"),
-        (ESM373, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Case files')}, "Local & State Records: Courts & Governance - Original Records - Local (Case files)"),
-        (ESM374, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Record Books')}, "Local & State Records: Courts & Governance - Original Records - Local (Record Books)"),
-        (ESM375, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Record Books, archived off-site')}, "Local & State Records: Courts & Governance - Original Records - Local (Record Books, archived off-site)"),
-        (ESM376, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('State-level'), 'fourth': _('Appeals court record books')}, "Local & State Records: Courts & Governance - Original Records - State-level (Appeals court record books)"),
-        (ESM377, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('State-level'), 'fourth': _('Legislative petitions & files')}, "Local & State Records: Courts & Governance - Original Records - State-level (Legislative petitions & files)"),
-        (ESM378, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('CD/DVD')}, "Local & State Records: Courts & Governance - Image Copies - CD/DVD"),
-        (ESM379, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('Archival preservation copy')}, "Local & State Records: Courts & Governance - Image Copies - Microfilm (Archival preservation copy)"),
-        (ESM380, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation copy')}, "Local & State Records: Courts & Governance - Image Copies - Microfilm (FHL-GSU preservation copy)"),
-        (ESM381, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Online')}, "Local & State Records: Courts & Governance - Image Copies - Online"),
-        (ESM382, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Derivatives'), 'third': _('Databases'), 'fourth': _('online')}, "Local & State Records: Courts & Governance - Derivatives - Databases (online)"),
-        (ESM421, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('File items')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - File items"),
-        (ESM422, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Files moved to state archives')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Files moved to state archives"),
-        (ESM423, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Registers'), 'fourth': _('Named volume')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Registers (Named volume)"),
-        (ESM424, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Registers'), 'fourth': _('Numbered volume')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Registers (Numbered volume)"),
-        (ESM425, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital-records certificate')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Vital-records certificate"),
-        (ESM426, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital-records register')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Vital-records register"),
-        (ESM427, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital records, amended')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Vital records, amended"),
-        (ESM428, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital records, delayed')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - Local Records - Vital records, delayed"),
-        (ESM429, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Miscellaneous file')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - State-level Records - Miscellaneous file"),
-        (ESM430, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital-records certificate')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - State-level Records - Vital-records certificate"),
-        (ESM431, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital-records register')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - State-level Records - Vital-records register"),
-        (ESM432, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital records, amended')}, "Local & State Records: Licenses, Registrations, Rolls & Vital Records - State-level Records - Vital records, amended"),
-        (ESM487, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Case files')}, "Local & State Records: Property & Probates - Original Records - Local (Case files)"),
-        (ESM488, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Registers')}, "Local & State Records: Property & Probates - Original Records - Local (Registers)"),
-        (ESM489, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Tract book')}, "Local & State Records: Property & Probates - Original Records - Local (Tract book)"),
-        (ESM490, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('State level'), 'fourth': _('Land-grant register')}, "Local & State Records: Property & Probates - Original Records - State level (Land-grant register)"),
-        (ESM491, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('State level'), 'fourth': _('Land warrants: loose')}, "Local & State Records: Property & Probates - Original Records - State level (Land warrants: loose)"),
-        (ESM492, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('CD/DVD')}, "Local & State Records: Property & Probates - Image Copies - CD/DVD"),
-        (ESM493, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('Microfilm')}, "Local & State Records: Property & Probates - Image Copies - Microfilm"),
-        (ESM494, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('Online')}, "Local & State Records: Property & Probates - Image Copies - Online"),
-        (ESM495, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Derivatives'), 'third': _('Abstracts'), 'fourth': _('online')}, "Local & State Records: Property & Probates - Derivatives - Abstracts (online)"),
-        (ESM496, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('online')}, "Local & State Records: Property & Probates - Derivatives - Database (online)"),
-        (ESM539, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Audio recordings'), 'fourth': _('National Archives')}, "National Government Records - Original Materials (U.S.) - Audio recordings (National Archives)"),
-        (ESM540, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('Library of Congress')}, "National Government Records - Original Materials (U.S.) - Manuscripts (Library of Congress)"),
-        (ESM541, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('National Archives')}, "National Government Records - Original Materials (U.S.) - Manuscripts (National Archives)"),
-        (ESM542, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('National Archives-Regional')}, "National Government Records - Original Materials (U.S.) - Manuscripts (National Archives-Regional)"),
-        (ESM543, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Maps'), 'fourth': _('National Archives')}, "National Government Records - Original Materials (U.S.) - Maps (National Archives)"),
-        (ESM544, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Photographs'), 'fourth': _('Library of Congress')}, "National Government Records - Original Materials (U.S.) - Photographs (Library of Congress)"),
-        (ESM545, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Railroad Retirement Board')}, "National Government Records - Original Materials (U.S.) - Railroad Retirement Board"),
-        (ESM546, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Social Security Administration')}, "National Government Records - Original Materials (U.S.) - Social Security Administration"),
-        (ESM547, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('CD-ROM publication')}, "National Government Records - Databases - CD-ROM publication"),
-        (ESM548, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (Australia)')}, "National Government Records - Databases - Online (National Archives (Australia))"),
-        (ESM549, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (Canada)')}, "National Government Records - Databases - Online (National Archives (Canada))"),
-        (ESM550, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (U.K.)')}, "National Government Records - Databases - Online (National Archives (U.K.))"),
-        (ESM551, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (U.S.)')}, "National Government Records - Databases - Online (National Archives (U.S.))"),
-        (ESM552, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('National Archives microfilm'), 'fourth': _('NARA Style citation')}, "National Government Records - Image Copies - National Archives microfilm (NARA Style citation)"),
-        (ESM553, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('National Archives microfilm'), 'fourth': _('Publications Style citation')}, "National Government Records - Image Copies - National Archives microfilm (Publications Style citation)"),
-        (ESM554, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('Library of Congress')}, "National Government Records - Image Copies - Online: (Library of Congress)"),
-        (ESM555, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('National Archives (U.S.)')}, "National Government Records - Image Copies - Online: (National Archives (U.S.))"),
-        (ESM556, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('Patent & Trademark Office (U.S.)')}, "National Government Records - Image Copies - Online: (Patent & Trademark Office (U.S.))"),
-        (ESM646, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('basic format')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (basic format)"),
-        (ESM647, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('chapter')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (chapter)"),
-        (ESM648, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('edited')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (edited)"),
-        (ESM649, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('multivolume set')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (multivolume set)"),
-        (ESM650, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('reprint')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (reprint)"),
-        (ESM651, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('revised edition')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Book (revised edition)"),
-        (ESM652, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Leaflet')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Leaflet"),
-        (ESM653, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Map')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Print Publications - Map"),
-        (ESM654, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Audio book')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Electronic Publications - Audio book"),
-        (ESM655, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('CD/DVD book (text)')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Electronic Publications - CD/DVD book (text)"),
-        (ESM656, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Video')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Electronic Publications - Video"),
-        (ESM657, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Website as “book”')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Electronic Publications - Website as “book”"),
-        (ESM658, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('CD/DVD publication')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Image Copies - CD/DVD publication"),
-        (ESM659, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Image Copies - Microfilm (FHL-GSU preservation)"),
-        (ESM660, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Microfilm publication')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Image Copies - Microfilm publication"),
-        (ESM661, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Online publication')}, "Publications: Books, CDs, Maps, Leaflets & Videos - Image Copies - Online publication"),
-        (ESM727, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Book:'), 'third': _('Basic Format')}, "Publications: Legal Works & Government Documents - Book: - Basic Format"),
-        (ESM728, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Case Reporters'), 'fourth': _('Series named for editor')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Case Reporters (Series named for editor)"),
-        (ESM729, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Case Reporters'), 'fourth': _('Standardized series')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Case Reporters (Standardized series)"),
-        (ESM730, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Codes & statutes, online'), 'fourth': _('State database')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Codes & statutes, online (State database)"),
-        (ESM731, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Codes & statutes, online'), 'fourth': _('U.S. Code')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Codes & statutes, online (U.S. Code)"),
-        (ESM732, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Slip laws:'), 'fourth': _('federal')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Slip laws: (federal)"),
-        (ESM733, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Statutes:'), 'fourth': _('federal')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Statutes: (federal)"),
-        (ESM734, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Statutes:'), 'fourth': _('state')}, "Publications: Legal Works & Government Documents - Legal Reference Works - Statutes: (state)"),
-        (ESM735, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Congressional Records'), 'fourth': _('Citing volume from title page')}, "Publications: Legal Works & Government Documents - Printed Government Documents - Congressional Records (Citing volume from title page)"),
-        (ESM736, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Congressional Records'), 'fourth': _('Traditional academic style')}, "Publications: Legal Works & Government Documents - Printed Government Documents - Congressional Records (Traditional academic style)"),
-        (ESM737, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Online images')}, "Publications: Legal Works & Government Documents - Printed Government Documents - Online images"),
-        (ESM738, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('National Archives (U.S.) guides'), 'fourth': _('Descriptive pamphlet, online')}, "Publications: Legal Works & Government Documents - Printed Government Documents - National Archives (U.S.) guides (Descriptive pamphlet, online)"),
-        (ESM739, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('National Archives (U.S.) guides'), 'fourth': _('Preliminary inventory, microfilmed')}, "Publications: Legal Works & Government Documents - Printed Government Documents - National Archives (U.S.) guides (Preliminary inventory, microfilmed)"),
-        (ESM779, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Print editions')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Journal articles (Print editions)"),
-        (ESM780, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Online archives of print journals')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Journal articles (Online archives of print journals)"),
-        (ESM781, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Online journals')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Journal articles (Online journals)"),
-        (ESM782, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Magazine articles'), 'fourth': _('Print editions')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Magazine articles (Print editions)"),
-        (ESM783, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Magazine articles'), 'fourth': _('Online reprints, random items')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Magazine articles (Online reprints, random items)"),
-        (ESM784, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newsletter articles'), 'fourth': _('Print editions')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Newsletter articles (Print editions)"),
-        (ESM785, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newspaper articles'), 'fourth': _('Print editions')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Newspaper articles (Print editions)"),
-        (ESM786, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newspaper articles'), 'fourth': _('Online archives')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Periodicals - Newspaper articles (Online archives)"),
-        (ESM787, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Blogs')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Broadcasts & Web Miscellanea - Blogs"),
-        (ESM788, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Discussion forums & lists')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Broadcasts & Web Miscellanea - Discussion forums & lists"),
-        (ESM789, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Podcasts')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Broadcasts & Web Miscellanea - Podcasts"),
-        (ESM790, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Radio & television clips')}, "Publications: Periodicals, Broadcasts & Web Miscellanea - Broadcasts & Web Miscellanea - Radio & television clips"),
-        (ESM93, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Artifact')}, "Archives & Artifacts - Archived Material - Artifact"),
-        (ESM94, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Digital Archives')}, "Archives & Artifacts - Archived Material - Digital Archives"),
-        (ESM95, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Collection, emphasis on')}, "Archives & Artifacts - Archived Material - Manuscript Records (Collection, emphasis on)"),
-        (ESM96, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Document, emphasis on')}, "Archives & Artifacts - Archived Material - Manuscript Records (Document, emphasis on)"),
-        (ESM97, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Series, emphasis on')}, "Archives & Artifacts - Archived Material - Manuscript Records (Series, emphasis on)"),
-        (ESM98, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Personal Bible')}, "Archives & Artifacts - Archived Material - Personal Bible"),
-        (ESM99, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Portrait')}, "Archives & Artifacts - Archived Material - Portrait"),
+    _SRCTEMPLATEVAL_MAP = [
+        (UNKNOWN, _('Unknown'), 'Unknown'),
+        (ESM100, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Research Report')}, 'ESM100'),
+        (ESM101, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Unpublished narrative')}, 'ESM101'),
+        (ESM102, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Vertical file')}, 'ESM102'),
+        (ESM103, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Preservation Film'), 'third': _('FHL-GSU film')}, 'ESM103'),
+        (ESM104, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Preservation Film'), 'third': _('In-house film')}, 'ESM104'),
+        (ESM105, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Artifact')}, 'ESM105'),
+        (ESM106, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Diary or journal, etc.')}, 'ESM106'),
+        (ESM107, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Family Bible Records')}, 'ESM107'),
+        (ESM108, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Family Chart or Group Sheet')}, 'ESM108'),
+        (ESM109, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Historic letter')}, 'ESM109'),
+        (ESM110, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Interview tape & transcript')}, 'ESM110'),
+        (ESM111, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Legal document, unrecorded')}, 'ESM111'),
+        (ESM112, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Personal correspondence')}, 'ESM112'),
+        (ESM113, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Personal e-mail')}, 'ESM113'),
+        (ESM114, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Research Report')}, 'ESM114'),
+        (ESM115, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Private Holdings'), 'third': _('Tradition, recorded')}, 'ESM115'),
+        (ESM161, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Bound volume')}, 'ESM161'),
+        (ESM162, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Document (loose record)')}, 'ESM162'),
+        (ESM163, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Extract supplied by staff')}, 'ESM163'),
+        (ESM164, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Microfilm')}, 'ESM164'),
+        (ESM165, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Online database')}, 'ESM165'),
+        (ESM166, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Corporate Records'), 'third': _('Online image')}, 'ESM166'),
+        (ESM167, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Lineage-society Records'), 'third': _('Application file')}, 'ESM167'),
+        (ESM168, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Lineage-society Records'), 'third': _('Online database')}, 'ESM168'),
+        (ESM169, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Organizational Records'), 'third': _('Archived in-house')}, 'ESM169'),
+        (ESM170, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Organizational Records'), 'third': _('Archived off-site')}, 'ESM170'),
+        (ESM171, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Genetic testing')}, 'ESM171'),
+        (ESM172, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Historical research: corporate')}, 'ESM172'),
+        (ESM173, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('Professional Reports'), 'third': _('Historical research: online')}, 'ESM173'),
+        (ESM174, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('School Records'), 'third': _('Administrative material')}, 'ESM174'),
+        (ESM175, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Business & institutional Records'), 'sec': _('School Records'), 'third': _('Student transcript')}, 'ESM175'),
+        (ESM209, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Office records'), 'fourth': _('personally used')}, 'ESM209'),
+        (ESM210, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Office records'), 'fourth': _('supplied by staff')}, 'ESM210'),
+        (ESM211, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Online images')}, 'ESM211'),
+        (ESM212, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Cemetery Office Records'), 'third': _('Preservation film, FHL-GSU')}, 'ESM212'),
+        (ESM213, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Grave markers'), 'fourth': _('rural')}, 'ESM213'),
+        (ESM214, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Grave markers'), 'fourth': _('urban')}, 'ESM214'),
+        (ESM215, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Images online')}, 'ESM215'),
+        (ESM216, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Markers & Memorials (Originals)'), 'third': _('Memorial plaques')}, 'ESM216'),
+        (ESM217, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Cemetery abstracts'), 'fourth': _('vertical file')}, 'ESM217'),
+        (ESM218, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Cemetery abstracts'), 'fourth': _('card file')}, 'ESM218'),
+        (ESM219, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Cemetery Records'), 'sec': _('Derivatives'), 'third': _('Database online')}, 'ESM219'),
+        (ESM237, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Original manuscripts (U.S.)'), 'third': _('Local copy'), 'fourth': _('federal census')}, 'ESM237'),
+        (ESM238, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Original manuscripts (U.S.)'), 'third': _('National Archives copy')}, 'ESM238'),
+        (ESM239, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('CD/DVD')}, 'ESM239'),
+        (ESM240, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online commercial site')}, 'ESM240'),
+        (ESM241, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online archives'), 'fourth': _('France')}, 'ESM241'),
+        (ESM242, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Digital Images'), 'third': _('Online commercial site'), 'fourth': _('U.K. Wales')}, 'ESM242'),
+        (ESM243, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Native-American tribal census')}, 'ESM243'),
+        (ESM244, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('NARA film')}, 'ESM244'),
+        (ESM245, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('FHL-GSU preservation film')}, 'ESM245'),
+        (ESM246, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('“Nonpopulation” schedules'), 'fourth': _('UNC microfilm publication')}, 'ESM246'),
+        (ESM247, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1790-1840')}, 'ESM247'),
+        (ESM248, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1850-1870')}, 'ESM248'),
+        (ESM249, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1850-1860: slaves')}, 'ESM249'),
+        (ESM250, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('1880-1930')}, 'ESM250'),
+        (ESM251, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('Population schedules'), 'fourth': _('State-level copies')}, 'ESM251'),
+        (ESM252, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Microfilm (U.S.)'), 'third': _('State-sponsored censuses')}, 'ESM252'),
+        (ESM253, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('CD/DVD')}, 'ESM253'),
+        (ESM254, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('online')}, 'ESM254'),
+        (ESM255, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Soundex & Miracode, microfilm')}, 'ESM255'),
+        (ESM256, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Census Records'), 'sec': _('Derivatives'), 'third': _('Statistical database'), 'fourth': _('online')}, 'ESM256'),
+        (ESM311, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Named volume'), 'fourth': _('held by church')}, 'ESM311'),
+        (ESM312, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Named volume'), 'fourth': _('archived off-site')}, 'ESM312'),
+        (ESM313, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Church Books'), 'third': _('Numbered volume'), 'fourth': _('archived off-site')}, 'ESM313'),
+        (ESM314, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Digitized online')}, 'ESM314'),
+        (ESM315, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation')}, 'ESM315'),
+        (ESM316, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('LDS records at FHL')}, 'ESM316'),
+        (ESM317, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Image Copies'), 'third': _('Microfilm publication')}, 'ESM317'),
+        (ESM318, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church-issued certificate')}, 'ESM318'),
+        (ESM319, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church record book, recopied')}, 'ESM319'),
+        (ESM320, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Church Records'), 'sec': _('Derivatives'), 'third': _('Church-records database'), 'fourth': _('online')}, 'ESM320'),
+        (ESM373, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Case files')}, 'ESM373'),
+        (ESM374, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Record Books')}, 'ESM374'),
+        (ESM375, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Record Books, archived off-site')}, 'ESM375'),
+        (ESM376, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('State-level'), 'fourth': _('Appeals court record books')}, 'ESM376'),
+        (ESM377, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Original Records'), 'third': _('State-level'), 'fourth': _('Legislative petitions & files')}, 'ESM377'),
+        (ESM378, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('CD/DVD')}, 'ESM378'),
+        (ESM379, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('Archival preservation copy')}, 'ESM379'),
+        (ESM380, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation copy')}, 'ESM380'),
+        (ESM381, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Image Copies'), 'third': _('Online')}, 'ESM381'),
+        (ESM382, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Courts & Governance'), 'sec': _('Derivatives'), 'third': _('Databases'), 'fourth': _('online')}, 'ESM382'),
+        (ESM421, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('File items')}, 'ESM421'),
+        (ESM422, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Files moved to state archives')}, 'ESM422'),
+        (ESM423, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Registers'), 'fourth': _('Named volume')}, 'ESM423'),
+        (ESM424, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Registers'), 'fourth': _('Numbered volume')}, 'ESM424'),
+        (ESM425, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital-records certificate')}, 'ESM425'),
+        (ESM426, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital-records register')}, 'ESM426'),
+        (ESM427, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital records, amended')}, 'ESM427'),
+        (ESM428, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('Local Records'), 'third': _('Vital records, delayed')}, 'ESM428'),
+        (ESM429, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Miscellaneous file')}, 'ESM429'),
+        (ESM430, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital-records certificate')}, 'ESM430'),
+        (ESM431, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital-records register')}, 'ESM431'),
+        (ESM432, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Licenses, Registrations, Rolls & Vital Records'), 'sec': _('State-level Records'), 'third': _('Vital records, amended')}, 'ESM432'),
+        (ESM487, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Case files')}, 'ESM487'),
+        (ESM488, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Registers')}, 'ESM488'),
+        (ESM489, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('Local'), 'fourth': _('Tract book')}, 'ESM489'),
+        (ESM490, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('State level'), 'fourth': _('Land-grant register')}, 'ESM490'),
+        (ESM491, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Original Records'), 'third': _('State level'), 'fourth': _('Land warrants: loose')}, 'ESM491'),
+        (ESM492, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('CD/DVD')}, 'ESM492'),
+        (ESM493, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('Microfilm')}, 'ESM493'),
+        (ESM494, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Image Copies'), 'third': _('Online')}, 'ESM494'),
+        (ESM495, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Derivatives'), 'third': _('Abstracts'), 'fourth': _('online')}, 'ESM495'),
+        (ESM496, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Local & State Records: Property & Probates'), 'sec': _('Derivatives'), 'third': _('Database'), 'fourth': _('online')}, 'ESM496'),
+        (ESM539, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Audio recordings'), 'fourth': _('National Archives')}, 'ESM539'),
+        (ESM540, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('Library of Congress')}, 'ESM540'),
+        (ESM541, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('National Archives')}, 'ESM541'),
+        (ESM542, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Manuscripts'), 'fourth': _('National Archives-Regional')}, 'ESM542'),
+        (ESM543, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Maps'), 'fourth': _('National Archives')}, 'ESM543'),
+        (ESM544, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Photographs'), 'fourth': _('Library of Congress')}, 'ESM544'),
+        (ESM545, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Railroad Retirement Board')}, 'ESM545'),
+        (ESM546, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Original Materials (U.S.)'), 'third': _('Social Security Administration')}, 'ESM546'),
+        (ESM547, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('CD-ROM publication')}, 'ESM547'),
+        (ESM548, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (Australia)')}, 'ESM548'),
+        (ESM549, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (Canada)')}, 'ESM549'),
+        (ESM550, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (U.K.)')}, 'ESM550'),
+        (ESM551, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Databases'), 'third': _('Online'), 'fourth': _('National Archives (U.S.)')}, 'ESM551'),
+        (ESM552, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('National Archives microfilm'), 'fourth': _('NARA Style citation')}, 'ESM552'),
+        (ESM553, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('National Archives microfilm'), 'fourth': _('Publications Style citation')}, 'ESM553'),
+        (ESM554, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('Library of Congress')}, 'ESM554'),
+        (ESM555, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('National Archives (U.S.)')}, 'ESM555'),
+        (ESM556, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('National Government Records'), 'sec': _('Image Copies'), 'third': _('Online:'), 'fourth': _('Patent & Trademark Office (U.S.)')}, 'ESM556'),
+        (ESM646, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('basic format')}, 'ESM646'),
+        (ESM647, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('chapter')}, 'ESM647'),
+        (ESM648, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('edited')}, 'ESM648'),
+        (ESM649, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('multivolume set')}, 'ESM649'),
+        (ESM650, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('reprint')}, 'ESM650'),
+        (ESM651, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Book'), 'fourth': _('revised edition')}, 'ESM651'),
+        (ESM652, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Leaflet')}, 'ESM652'),
+        (ESM653, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Print Publications'), 'third': _('Map')}, 'ESM653'),
+        (ESM654, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Audio book')}, 'ESM654'),
+        (ESM655, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('CD/DVD book (text)')}, 'ESM655'),
+        (ESM656, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Video')}, 'ESM656'),
+        (ESM657, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Electronic Publications'), 'third': _('Website as “book”')}, 'ESM657'),
+        (ESM658, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('CD/DVD publication')}, 'ESM658'),
+        (ESM659, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Microfilm'), 'fourth': _('FHL-GSU preservation')}, 'ESM659'),
+        (ESM660, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Microfilm publication')}, 'ESM660'),
+        (ESM661, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Books, CDs, Maps, Leaflets & Videos'), 'sec': _('Image Copies'), 'third': _('Online publication')}, 'ESM661'),
+        (ESM727, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Book:'), 'third': _('Basic Format')}, 'ESM727'),
+        (ESM728, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Case Reporters'), 'fourth': _('Series named for editor')}, 'ESM728'),
+        (ESM729, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Case Reporters'), 'fourth': _('Standardized series')}, 'ESM729'),
+        (ESM730, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Codes & statutes, online'), 'fourth': _('State database')}, 'ESM730'),
+        (ESM731, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Codes & statutes, online'), 'fourth': _('U.S. Code')}, 'ESM731'),
+        (ESM732, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Slip laws:'), 'fourth': _('federal')}, 'ESM732'),
+        (ESM733, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Statutes:'), 'fourth': _('federal')}, 'ESM733'),
+        (ESM734, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Legal Reference Works'), 'third': _('Statutes:'), 'fourth': _('state')}, 'ESM734'),
+        (ESM735, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Congressional Records'), 'fourth': _('Citing volume from title page')}, 'ESM735'),
+        (ESM736, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Congressional Records'), 'fourth': _('Traditional academic style')}, 'ESM736'),
+        (ESM737, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('Online images')}, 'ESM737'),
+        (ESM738, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('National Archives (U.S.) guides'), 'fourth': _('Descriptive pamphlet, online')}, 'ESM738'),
+        (ESM739, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Legal Works & Government Documents'), 'sec': _('Printed Government Documents'), 'third': _('National Archives (U.S.) guides'), 'fourth': _('Preliminary inventory, microfilmed')}, 'ESM739'),
+        (ESM779, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Print editions')}, 'ESM779'),
+        (ESM780, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Online archives of print journals')}, 'ESM780'),
+        (ESM781, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Journal articles'), 'fourth': _('Online journals')}, 'ESM781'),
+        (ESM782, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Magazine articles'), 'fourth': _('Print editions')}, 'ESM782'),
+        (ESM783, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Magazine articles'), 'fourth': _('Online reprints, random items')}, 'ESM783'),
+        (ESM784, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newsletter articles'), 'fourth': _('Print editions')}, 'ESM784'),
+        (ESM785, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newspaper articles'), 'fourth': _('Print editions')}, 'ESM785'),
+        (ESM786, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Periodicals'), 'third': _('Newspaper articles'), 'fourth': _('Online archives')}, 'ESM786'),
+        (ESM787, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Blogs')}, 'ESM787'),
+        (ESM788, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Discussion forums & lists')}, 'ESM788'),
+        (ESM789, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Podcasts')}, 'ESM789'),
+        (ESM790, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Publications: Periodicals, Broadcasts & Web Miscellanea'), 'sec': _('Broadcasts & Web Miscellanea'), 'third': _('Radio & television clips')}, 'ESM790'),
+        (ESM93, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Artifact')}, 'ESM93'),
+        (ESM94, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Digital Archives')}, 'ESM94'),
+        (ESM95, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Collection, emphasis on')}, 'ESM95'),
+        (ESM96, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Document, emphasis on')}, 'ESM96'),
+        (ESM97, _('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Manuscript Records'), 'fourth': _('Series, emphasis on')}, 'ESM97'),
+        (ESM98, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Personal Bible')}, 'ESM98'),
+        (ESM99, _('%(first)s - %(sec)s - %(third)s') % {  'first': _('Archives & Artifacts'), 'sec': _('Archived Material'), 'third': _('Portrait')}, 'ESM99'),
         ]
 
     #templates for the source types defined
@@ -1465,7 +1466,7 @@ class SrcAttributeType(GrampsType):
     # S: Short reference (if F used once, use S afterwards)
     # L: List reference (for in bibliography list)
     EVIDENCETEMPLATES = {
-        'ESM100': {
+        ESM100: {
             'F': [
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6FIRST9, '', '', False, False),
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6LAST9, ',', '', False, False),
@@ -1495,7 +1496,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM101': {
+        ESM101: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -1519,7 +1520,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM102': {
+        ESM102: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', ITEM_TITLE, '', 'Quoted', False, False),
@@ -1543,7 +1544,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_TITLE, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM103': {
+        ESM103: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -1580,7 +1581,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM104': {
+        ESM104: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -1603,7 +1604,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM105': {
+        ESM105: {
             'F': [
                 ('', ITEM_ID_6GENERIC9, ',', '', False, False),
                 ('', ARTIFACT_ID, ',', '', False, False),
@@ -1629,7 +1630,7 @@ class SrcAttributeType(GrampsType):
                 ('', ARTIFACT_ID, '.', '', False, False),
                 ],
         },
-        'ESM106': {
+        ESM106: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -1662,7 +1663,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM107': {
+        ESM107: {
             'F': [
                 ('', BIBLE_ID_6OWNER_FIRST9, '', '', False, False),
                 ('', BIBLE_ID_6OWNER_LAST9, ',', '', False, False),
@@ -1697,7 +1698,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_OR_SECTION, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM108': {
+        ESM108: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -1724,7 +1725,7 @@ class SrcAttributeType(GrampsType):
                 ('', REFERRAL_TO_PRIOR_EVALUATION, '.', '', False, False),
                 ],
         },
-        'ESM109': {
+        ESM109: {
             'F': [
                 ('', WRITER_6FIRST9, '', '', False, False),
                 ('', WRITER_6LAST9, '', '', False, False),
@@ -1757,7 +1758,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM110': {
+        ESM110: {
             'F': [
                 ('', PERSON_INTERVIEWED_6FIRST9, '', '', False, False),
                 ('', PERSON_INTERVIEWED_6LAST9, '', '', False, False),
@@ -1791,7 +1792,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM111': {
+        ESM111: {
             'F': [
                 ('', GRANTOR_6AUTHOR9, ',', '', False, False),
                 ('to', RECIPIENT, ',', '', False, False),
@@ -1819,7 +1820,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM112': {
+        ESM112: {
             'F': [
                 ('', WRITER, ',', '', False, False),
                 ('', WRITERS_AFFILIATION_6IF_RELEVANT9, ',', '', False, False),
@@ -1847,7 +1848,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM113': {
+        ESM113: {
             'F': [
                 ('', WRITER, ',', '', False, False),
                 ('', WRITERS_LOCATION, '', '', False, False),
@@ -1876,7 +1877,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM114': {
+        ESM114: {
             'F': [
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6FIRST9, '', '', False, False),
                 ('', AUTHOR_AND_PROFESSIONAL_CREDENTIALS_6LAST9, ',', '', False, False),
@@ -1908,7 +1909,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM115': {
+        ESM115: {
             'F': [
                 ('', COLLECTION, ',', '', False, False),
                 ('', COMPILER, '', '', False, False),
@@ -1937,7 +1938,7 @@ class SrcAttributeType(GrampsType):
                 ('', REFERENCE_TO_PRIOR_DISCUSSION, '.', '', False, False),
                 ],
         },
-        'ESM161': {
+        ESM161: {
             'F': [
                 ('', RECORD_BOOK_TITLE_6QUOTED_EXACTLY9, ',', 'Quoted', False, False),
                 ('', PAGE6S9, ';', '', False, False),
@@ -1959,7 +1960,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM162': {
+        ESM162: {
             'F': [
                 ('', ITEM, ',', '', False, False),
                 ('', ITEM_TYPE, ',', '', False, False),
@@ -1985,7 +1986,7 @@ class SrcAttributeType(GrampsType):
                 ('', CORPORATE_COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM163': {
+        ESM163: {
             'F': [
                 ('', CORPORATE_WRITER, '', '', False, False),
                 ('(', WRITERS_LOCATION, ')', '', False, False),
@@ -2015,7 +2016,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM164': {
+        ESM164: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', SPECIFIC_ITEM_OF_INTEREST, ';', '', False, False),
@@ -2043,7 +2044,7 @@ class SrcAttributeType(GrampsType):
                 ('', CORPORATE_COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM165': {
+        ESM165: {
             'F': [
                 ('', DATABASE_TITLE, '.', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2068,7 +2069,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM166': {
+        ESM166: {
             'F': [
                 ('', COLLECTION, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2092,7 +2093,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM167': {
+        ESM167: {
             'F': [
                 ('', FILE, ',', '', False, False),
                 ('', MEMBERSHIP_NUMBER, ',', '', False, False),
@@ -2112,7 +2113,7 @@ class SrcAttributeType(GrampsType):
                 ('', ORGANIZATION_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM168': {
+        ESM168: {
             'F': [
                 ('', ORGANIZATION, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2134,7 +2135,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM169': {
+        ESM169: {
             'F': [
                 ('', RECORD_TITLE_6QUOTED_EXACTLY9, ';', 'Quoted', False, False),
                 ('', FILE, ',', '', False, False),
@@ -2155,7 +2156,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM170': {
+        ESM170: {
             'F': [
                 ('', ITEM_OF_INTEREST, ';', '', False, False),
                 ('“', FILE_TITLE, ',', '', False, False),
@@ -2177,7 +2178,7 @@ class SrcAttributeType(GrampsType):
                 ('', ORGANIZATION_6CREATOR9, '.', '', False, False),
                 ],
         },
-        'ESM171': {
+        ESM171: {
             'F': [
                 ('', CORPORATE_AUTHOR, '', '', False, False),
                 ('(', CORPORATE_LOCATION, '),', '', False, False),
@@ -2204,7 +2205,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPORT_DATE, '.', '', False, False),
                 ],
         },
-        'ESM172': {
+        ESM172: {
             'F': [
                 ('', RESEARCHER_6AUTHOR9_6FIRST9, '', '', False, False),
                 ('', RESEARCHER_6AUTHOR9_6LAST9, '', '', False, False),
@@ -2242,7 +2243,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM173': {
+        ESM173: {
             'F': [
                 ('', CORPORATE_AUTHOR_6RESEARCHERS_NOT_IDENTIFIED9, '', '', False, False),
                 ('(', CORPORATE_LOCATION, '),', '', False, False),
@@ -2268,7 +2269,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_PART, '.', '', False, False),
                 ],
         },
-        'ESM174': {
+        ESM174: {
             'F': [
                 ('', INSTITUTIONAL_AUTHOR, ',', '', False, False),
                 ('', RECORD_OR_VOLUME_TITLE, ',', 'Quoted', False, False),
@@ -2289,7 +2290,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM175': {
+        ESM175: {
             'F': [
                 ('', STUDENT_6FIRST9, '', '', False, False),
                 ('', STUDENT_6LAST9, ',', '', False, False),
@@ -2324,7 +2325,7 @@ class SrcAttributeType(GrampsType):
                 ('', INSTITUTION, '.', '', False, False),
                 ],
         },
-        'ESM209': {
+        ESM209: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, ')', '', False, False),
@@ -2343,7 +2344,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_TYPE, '.', '', False, False),
                 ],
         },
-        'ESM210': {
+        ESM210: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, ')', '', False, False),
@@ -2366,7 +2367,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM211': {
+        ESM211: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2389,7 +2390,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM212': {
+        ESM212: {
             'F': [
                 ('', CEMETERY_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2413,7 +2414,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM213': {
+        ESM213: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, ';', '', False, False),
@@ -2434,7 +2435,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM214': {
+        ESM214: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2454,7 +2455,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM215': {
+        ESM215: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', WEBSITE_TITLE, ',', 'Italics', False, False),
@@ -2476,7 +2477,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM216': {
+        ESM216: {
             'F': [
                 ('', CEMETERY, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -2495,7 +2496,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM217': {
+        ESM217: {
             'F': [
                 ('', FILE_LABEL, '', 'Quoted', False, False),
                 ('(', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2518,7 +2519,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM218': {
+        ESM218: {
             'F': [
                 ('', FILE_LABEL, '', 'Quoted', False, False),
                 ('(', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -2539,7 +2540,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM219': {
+        ESM219: {
             'F': [
                 ('', CREATOR_6FIRST9, '', '', False, False),
                 ('', CREATOR_6LAST9, ',', '', False, False),
@@ -2565,7 +2566,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM237': {
+        ESM237: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2595,7 +2596,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM238': {
+        ESM238: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', PAGE6S9, ',', '', False, False),
@@ -2622,7 +2623,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM239': {
+        ESM239: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION, ',', '', False, False),
@@ -2659,7 +2660,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM240': {
+        ESM240: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2692,7 +2693,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM241': {
+        ESM241: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6LONG9, ',', '', False, False),
@@ -2723,7 +2724,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM242': {
+        ESM242: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6SHORT9, ',', '', False, False),
@@ -2752,7 +2753,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM243': {
+        ESM243: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6SHORT9, ',', '', False, False),
@@ -2785,7 +2786,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM244': {
+        ESM244: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2817,7 +2818,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM245': {
+        ESM245: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2846,7 +2847,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM246': {
+        ESM246: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2878,7 +2879,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM247': {
+        ESM247: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2903,7 +2904,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM248': {
+        ESM248: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2933,7 +2934,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM249': {
+        ESM249: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2961,7 +2962,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM250': {
+        ESM250: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -2991,7 +2992,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM251': {
+        ESM251: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -3021,7 +3022,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM252': {
+        ESM252: {
             'F': [
                 ('', CENSUS_ID_6GENERIC9, ',', '', False, False),
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
@@ -3054,7 +3055,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM253': {
+        ESM253: {
             'F': [
                 ('', DATABASE_6PUBLICATION9_TITLE, ',', 'Italics', False, False),
                 ('', RECORD_FORMAT, '', '', False, False),
@@ -3076,7 +3077,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_WITH_ABBREVIATED_DETAIL, '.', '', False, False),
                 ],
         },
-        'ESM254': {
+        ESM254: {
             'F': [
                 ('', COMPILER, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -3103,7 +3104,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM255': {
+        ESM255: {
             'F': [
                 ('', CENSUS_ID, ',', '', False, False),
                 ('', STATE, ',', '', False, False),
@@ -3126,7 +3127,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON6S9_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM256': {
+        ESM256: {
             'F': [
                 ('', COMPILER, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -3150,7 +3151,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM311': {
+        ESM311: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3175,7 +3176,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_AND_ITEM, '.', '', False, False),
                 ],
         },
-        'ESM312': {
+        ESM312: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3201,7 +3202,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM313': {
+        ESM313: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3225,7 +3226,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM314': {
+        ESM314: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3255,7 +3256,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM315': {
+        ESM315: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3281,7 +3282,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM316': {
+        ESM316: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3306,7 +3307,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM317': {
+        ESM317: {
             'F': [
                 ('', FILM_TITLE, ',', 'Italics', False, False),
                 ('', RECORD_TYPE, ',', '', False, False),
@@ -3334,7 +3335,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM318': {
+        ESM318: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3363,7 +3364,7 @@ class SrcAttributeType(GrampsType):
                 ('', WHEN_ISSUED, '.', '', False, False),
                 ],
         },
-        'ESM319': {
+        ESM319: {
             'F': [
                 ('', CHURCH_6AUTHOR9, '', '', False, False),
                 ('(', LOCATION, '),', '', False, False),
@@ -3388,7 +3389,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM320': {
+        ESM320: {
             'F': [
                 ('', COMPILER_6FIRST9, '', '', False, False),
                 ('', COMPILER_6LAST9, ',', '', False, False),
@@ -3415,7 +3416,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM373': {
+        ESM373: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3441,7 +3442,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM374': {
+        ESM374: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, '', '', False, False),
@@ -3465,7 +3466,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM375': {
+        ESM375: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3489,7 +3490,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_AND_OR_OR_ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM376': {
+        ESM376: {
             'F': [
                 ('', JURISDICTION_6STATE9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3517,7 +3518,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM377': {
+        ESM377: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -3541,7 +3542,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION, '.', '', False, False),
                 ],
         },
-        'ESM378': {
+        ESM378: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3573,7 +3574,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_OR_ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM379': {
+        ESM379: {
             'F': [
                 ('', CASE_ID_OR_ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ',', '', False, False),
@@ -3600,7 +3601,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION_6COUNTY9, '.', '', False, False),
                 ],
         },
-        'ESM380': {
+        ESM380: {
             'F': [
                 ('', JURISDICTION_6LOCAL_COUNTRY9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3625,7 +3626,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM381': {
+        ESM381: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES, '', '', False, False),
@@ -3660,7 +3661,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM382': {
+        ESM382: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -3683,7 +3684,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM421': {
+        ESM421: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_OR_COLLECTION, ',', '', False, False),
@@ -3706,7 +3707,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM422': {
+        ESM422: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', RECORD_SERIES, ',', '', False, False),
@@ -3731,7 +3732,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM423': {
+        ESM423: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -3754,7 +3755,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_AND_OR_OR_ITEM, '.', '', False, False),
                 ],
         },
-        'ESM424': {
+        ESM424: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -3779,7 +3780,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM425': {
+        ESM425: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3801,7 +3802,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM426': {
+        ESM426: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -3824,7 +3825,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM427': {
+        ESM427: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3847,7 +3848,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM428': {
+        ESM428: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', CERTIFICATE_TYPE_AND_NO, '', '', False, False),
@@ -3869,7 +3870,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM429': {
+        ESM429: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', DOCUMENT, ',', '', False, False),
@@ -3891,7 +3892,7 @@ class SrcAttributeType(GrampsType):
                 ('', DOCUMENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM430': {
+        ESM430: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3915,7 +3916,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM431': {
+        ESM431: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3942,7 +3943,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9, '.', '', False, False),
                 ],
         },
-        'ESM432': {
+        ESM432: {
             'F': [
                 ('', JURISDICTION_6STATE9, '', '', False, False),
                 ('', AGENCY_OR_CREATOR, ',', '', False, False),
@@ -3966,7 +3967,7 @@ class SrcAttributeType(GrampsType):
                 ('', ID_OF_PERSON6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM487': {
+        ESM487: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SERIES, ',', '', False, False),
@@ -3992,7 +3993,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM488': {
+        ESM488: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -4014,7 +4015,7 @@ class SrcAttributeType(GrampsType):
                 ('', VOLUME_AND_PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM489': {
+        ESM489: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SERIES_6SHORT9, ',', '', False, False),
@@ -4039,7 +4040,7 @@ class SrcAttributeType(GrampsType):
                 ('', DATE, '.', '', False, False),
                 ],
         },
-        'ESM490': {
+        ESM490: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ',', '', False, False),
@@ -4062,7 +4063,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM491': {
+        ESM491: {
             'F': [
                 ('', ITEM_OF_INTEREST, ',', '', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -4085,7 +4086,7 @@ class SrcAttributeType(GrampsType):
                 ('', JURISDICTION, '.', '', False, False),
                 ],
         },
-        'ESM492': {
+        ESM492: {
             'F': [
                 ('', JURISDICTION_OR_AGENCY, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -4118,7 +4119,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM493': {
+        ESM493: {
             'F': [
                 ('', JURISDICTION_6CITY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ',', 'Quoted', False, False),
@@ -4142,7 +4143,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM494': {
+        ESM494: {
             'F': [
                 ('', JURISDICTION_6COUNTY_STATE9, ',', '', False, False),
                 ('', SPECIFIC_VOLUME6S9, ':', '', False, False),
@@ -4174,7 +4175,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, '.', '', False, False),
                 ],
         },
-        'ESM495': {
+        ESM495: {
             'F': [
                 ('', CREATOR_OF_DATABASE_6FIRST9, '', '', False, False),
                 ('', CREATOR_OF_DATABASE_6LAST9, ',', '', False, False),
@@ -4203,7 +4204,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM496': {
+        ESM496: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', WEBSITE_TITLE_6SAME_AS_CREATOR9, '', 'Italics', False, False),
@@ -4225,7 +4226,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM539': {
+        ESM539: {
             'F': [
                 ('', FILE_UNIT, ',', '', False, False),
                 ('', DATE, ',', '', False, False),
@@ -4253,7 +4254,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM540': {
+        ESM540: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4277,7 +4278,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM541': {
+        ESM541: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4307,7 +4308,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM542': {
+        ESM542: {
             'F': [
                 ('', DOCUMENT_ID, ',', '', False, False),
                 ('', DOCUMENT_DATE, ';', '', False, False),
@@ -4337,7 +4338,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM543': {
+        ESM543: {
             'F': [
                 ('', FILE_UNIT, ',', 'Quoted', False, False),
                 ('', DATE, ';', '', False, False),
@@ -4364,7 +4365,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM544': {
+        ESM544: {
             'F': [
                 ('', PHOTOGRAPH_TITLE, ',', 'Quoted', False, False),
                 ('', PHOTOGRAPH_NO, ',', '', False, False),
@@ -4390,7 +4391,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM545': {
+        ESM545: {
             'F': [
                 ('', FILE_ID_6FIRST9, '', '', False, False),
                 ('', FILE_ID_6LAST9, ',', '', False, False),
@@ -4419,7 +4420,7 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM546': {
+        ESM546: {
             'F': [
                 ('', NAME, ',', '', False, False),
                 ('', SOCIAL_SECURITY_NO, ',', '', False, False),
@@ -4442,7 +4443,7 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY, '.', '', False, False),
                 ],
         },
-        'ESM547': {
+        ESM547: {
             'F': [
                 ('', CREATOR, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -4466,7 +4467,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM548': {
+        ESM548: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4491,7 +4492,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM549': {
+        ESM549: {
             'F': [
                 ('', CREATOR_OF_DATABASE, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -4521,7 +4522,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM550': {
+        ESM550: {
             'F': [
                 ('', CREATOR_OWNER_OF_DATABASE_AND_WEBSITE, ',', '', False, False),
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
@@ -4548,7 +4549,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', '', False, False),
                 ],
         },
-        'ESM551': {
+        ESM551: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4573,7 +4574,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM552': {
+        ESM552: {
             'F': [
                 ('', FILE_UNIT, ',', '', False, False),
                 ('', DATE, ';', '', False, False),
@@ -4602,7 +4603,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_GROUP_NO_6SHORT9_REPOSITORY_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM553': {
+        ESM553: {
             'F': [
                 ('', PUBLICATION_TITLE, ',', 'Italics', False, False),
                 ('', FILM_ID_6PUBLICATION_NO9, '', '', False, False),
@@ -4626,7 +4627,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM554': {
+        ESM554: {
             'F': [
                 ('', CREATOR_OR_OWNER_OF_DATABASE_AND_WEBSITE, ',', '', False, False),
                 ('', TITLE_OF_DATABASE, ',', 'Quoted', False, False),
@@ -4653,7 +4654,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM555': {
+        ESM555: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4678,7 +4679,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM556': {
+        ESM556: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -4700,7 +4701,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_ITEM_OF_INTEREST_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM646': {
+        ESM646: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4726,7 +4727,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM647': {
+        ESM647: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4755,7 +4756,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM648': {
+        ESM648: {
             'F': [
                 ('', EDITOR_6FIRST9, '', '', False, False),
                 ('', EDITOR_6LAST9, ',', '', False, False),
@@ -4780,7 +4781,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM649': {
+        ESM649: {
             'F': [
                 ('', ABSTRACTOR_6FIRST9, '', '', False, False),
                 ('', ABSTRACTOR_6LAST9, ',', '', False, False),
@@ -4806,7 +4807,7 @@ class SrcAttributeType(GrampsType):
                 ('', VOLUME_AND_PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM650': {
+        ESM650: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, '.', '', False, False),
@@ -4834,7 +4835,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM651': {
+        ESM651: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4860,7 +4861,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM652': {
+        ESM652: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -4884,7 +4885,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM653': {
+        ESM653: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4907,7 +4908,7 @@ class SrcAttributeType(GrampsType):
                 ('(', YEAR6S9, ').', '', False, False),
                 ],
         },
-        'ESM654': {
+        ESM654: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -4935,7 +4936,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_LOCATION, '.', '', False, False),
                 ],
         },
-        'ESM655': {
+        ESM655: {
             'F': [
                 ('', AUTHOR_6TRANSLATOR9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6TRANSLATOR9_6LAST9, ',', '', False, False),
@@ -4961,7 +4962,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM656': {
+        ESM656: {
             'F': [
                 ('', PRESENTER_6FIRST9, '', '', False, False),
                 ('', PRESENTER_6LAST9, ',', '', False, False),
@@ -4989,7 +4990,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_LOCATION, '.', '', False, False),
                 ],
         },
-        'ESM657': {
+        ESM657: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5011,7 +5012,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM658': {
+        ESM658: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5041,7 +5042,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM659': {
+        ESM659: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5069,7 +5070,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM660': {
+        ESM660: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5099,7 +5100,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM661': {
+        ESM661: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5127,7 +5128,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM727': {
+        ESM727: {
             'F': [
                 ('', AUTHOR_6COMPILER9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6COMPILER9_6LAST9, ',', '', False, False),
@@ -5151,7 +5152,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM728': {
+        ESM728: {
             'F': [
                 ('', EDITOR_6FIRST9, '', '', False, False),
                 ('', EDITOR_6LAST9, ',', '', False, False),
@@ -5178,7 +5179,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_6LEGAL_STYLE9, '.', '', False, False),
                 ],
         },
-        'ESM729': {
+        ESM729: {
             'F': [
                 ('', TITLE, '.', 'Italics', False, False),
                 ('', SPECIFIC_VOLUME6S9_6SHORT9, ',', '', False, False),
@@ -5202,7 +5203,7 @@ class SrcAttributeType(GrampsType):
                 ('', CASE_LABEL_6LEGAL_STYLE9, '.', '', False, False),
                 ],
         },
-        'ESM730': {
+        ESM730: {
             'F': [
                 ('', DATABASE_TITLE, ',', 'Quoted', False, False),
                 ('', ITEM_TYPE_OR_FORMAT, ',', '', False, False),
@@ -5228,7 +5229,7 @@ class SrcAttributeType(GrampsType):
                 ('', TITLE_OF_ACT, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM731': {
+        ESM731: {
             'F': [
                 ('', NAME_OF_ACT, ',', 'Quoted', False, False),
                 ('', TITLE_NO, ',', '', False, False),
@@ -5254,7 +5255,7 @@ class SrcAttributeType(GrampsType):
                 ('', CITATION_6LEGAL_STYLE9_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM732': {
+        ESM732: {
             'F': [
                 ('', TITLE_OF_ACT, ',', 'Italics', False, False),
                 ('', ACT_NO, '.', '', False, False),
@@ -5269,7 +5270,7 @@ class SrcAttributeType(GrampsType):
                 ('', ACT_NO, '.', '', False, False),
                 ],
         },
-        'ESM733': {
+        ESM733: {
             'F': [
                 ('', AUTHOR, ',', '', False, False),
                 ('', TITLE_OF_SERIES, ',', 'Italics', False, False),
@@ -5296,7 +5297,7 @@ class SrcAttributeType(GrampsType):
                 ('', TITLE_OF_ACT, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM734': {
+        ESM734: {
             'F': [
                 ('', AUTHOR_6COMPILER9_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6COMPILER9_6LAST9, ',', '', False, False),
@@ -5320,7 +5321,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM735': {
+        ESM735: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', TITLE, ',', 'Italics', False, False),
@@ -5346,7 +5347,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM736': {
+        ESM736: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', DOCUMENT_TITLE, ',', 'Italics', False, False),
@@ -5372,7 +5373,7 @@ class SrcAttributeType(GrampsType):
                 ('', DOCUMENT_ID, '.', '', False, False),
                 ],
         },
-        'ESM737': {
+        ESM737: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', SERIES_TITLE, ',', 'Italics', False, False),
@@ -5402,7 +5403,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM738': {
+        ESM738: {
             'F': [
                 ('', AUTHOR_6SHORT9, ',', '', False, False),
                 ('', TITLE_OF_PAMPHLET, ',', 'Italics', False, False),
@@ -5429,7 +5430,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM739': {
+        ESM739: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5457,7 +5458,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM, '.', '', False, False),
                 ],
         },
-        'ESM779': {
+        ESM779: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5483,7 +5484,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM780': {
+        ESM780: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5517,7 +5518,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM781': {
+        ESM781: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5549,7 +5550,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM782': {
+        ESM782: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5572,7 +5573,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM783': {
+        ESM783: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5601,7 +5602,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM784': {
+        ESM784: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5626,7 +5627,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM785': {
+        ESM785: {
             'F': [
                 ('', ARTICLE_TITLE, ',', 'Quoted', False, False),
                 ('', NEWSPAPER, ',', 'Italics', False, False),
@@ -5643,7 +5644,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE_AND_COLUMN, '.', '', False, False),
                 ],
         },
-        'ESM786': {
+        ESM786: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5672,7 +5673,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM787': {
+        ESM787: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5700,7 +5701,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT, '.', '', False, False),
                 ],
         },
-        'ESM788': {
+        ESM788: {
             'F': [
                 ('', AUTHOR_6FIRST9, '', '', False, False),
                 ('', AUTHOR_6LAST9, ',', '', False, False),
@@ -5724,7 +5725,7 @@ class SrcAttributeType(GrampsType):
                 ('', POSTING_DATE, '.', '', False, False),
                 ],
         },
-        'ESM789': {
+        ESM789: {
             'F': [
                 ('', PRESENTER_OR_GUEST_6FIRST9, '', '', False, False),
                 ('', PRESENTER_OR_GUEST_6LAST9, ',', '', False, False),
@@ -5758,7 +5759,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_CONTENT_6SHORT9, '.', '', False, False),
                 ],
         },
-        'ESM790': {
+        ESM790: {
             'F': [
                 ('', PRESENTER_6FIRST9, '', '', False, False),
                 ('', PRESENTER_6LAST9, ',', '', False, False),
@@ -5790,7 +5791,7 @@ class SrcAttributeType(GrampsType):
                 ('', CLIP_ID, '.', 'Quoted', False, False),
                 ],
         },
-        'ESM93': {
+        ESM93: {
             'F': [
                 ('', CREATOR_6FIRST9, '', '', False, False),
                 ('', CREATOR_6LAST9, ',', '', False, False),
@@ -5819,7 +5820,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM94': {
+        ESM94: {
             'F': [
                 ('', COLLECTION, ',', 'Quoted', False, False),
                 ('', WEBSITE_CREATOR_OR_OWNER, ',', '', False, False),
@@ -5846,7 +5847,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, '.', '', False, False),
                 ],
         },
-        'ESM95': {
+        ESM95: {
             'F': [
                 ('', RECORD_TITLE, ',', 'Quoted', False, False),
                 ('', RECORD_DATE6S9, ';', '', False, False),
@@ -5869,7 +5870,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OR_PIECE_NUMBER, '.', '', False, False),
                 ],
         },
-        'ESM96': {
+        ESM96: {
             'F': [
                 ('', DOCUMENT_TITLE, ',', 'Quoted', False, False),
                 ('', SERIES_NO, ',', '', False, False),
@@ -5896,7 +5897,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM97': {
+        ESM97: {
             'F': [
                 ('', AUTHOR_6GRANTOR9, 'to', '', False, False),
                 ('', RECIPIENT, ',', '', False, False),
@@ -5924,7 +5925,7 @@ class SrcAttributeType(GrampsType):
                 ('', COLLECTION, '.', '', False, False),
                 ],
         },
-        'ESM98': {
+        ESM98: {
             'F': [
                 ('', BIBLE_ID_ORIGINAL_OWNER_6FIRST9, '', '', False, False),
                 ('', BIBLE_ID_ORIGINAL_OWNER_6LAST9, ',', '', False, False),
@@ -5956,7 +5957,7 @@ class SrcAttributeType(GrampsType):
                 ('', SPECIFIC_DATA, '.', '', False, False),
                 ],
         },
-        'ESM99': {
+        ESM99: {
             'F': [
                 ('', SUBJECT_FIRST, '', '', False, False),
                 ('', SUBJECT_LAST, ',', '', False, False),
@@ -5985,11 +5986,18 @@ class SrcAttributeType(GrampsType):
 
 
     # We construct Map for sourcetype values. Use these to store value of 
-    # SRCTYPE in English in the database.
-    I2S_SRCTYPEMAP =  dict([(item[0], item[1]) for item in _SRCTYPEVAL_MAP])
-    S2I_SRCTYPEMAP =  dict([(item[1], item[0]) for item in _SRCTYPEVAL_MAP])
-    I2E_SRCTYPEMAP =  dict([(item[0], item[2]) for item in _SRCTYPEVAL_MAP])
-    E2I_SRCTYPEMAP =  dict([(item[2], item[0]) for item in _SRCTYPEVAL_MAP])
+    # SRCTEMPLATE in English in the database.
+    I2S_SRCTEMPLATEMAP =  dict([(item[0], item[1]) for item in _SRCTEMPLATEVAL_MAP])
+    S2I_SRCTEMPLATEMAP =  dict([(item[1], item[0]) for item in _SRCTEMPLATEVAL_MAP])
+    I2E_SRCTEMPLATEMAP =  dict([(item[0], item[2]) for item in _SRCTEMPLATEVAL_MAP])
+    E2I_SRCTEMPLATEMAP =  dict([(item[2], item[0]) for item in _SRCTEMPLATEVAL_MAP])
     
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
+
+    def get_templatevalue_default(self):
+        return self.UNKNOWN
+
+    def get_templatevalue_map(self):
+        return self.I2S_SRCTEMPLATEMAP
+
