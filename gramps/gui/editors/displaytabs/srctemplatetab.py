@@ -165,7 +165,6 @@ class SrcTemplateTab(GrampsTab):
         Obtain srcattribute with type srcattrtype, where srcattrtype is an
         integer key!
         """
-        print 'get field called'
         src = self.src
         val = ''
         for attr in src.attribute_list:

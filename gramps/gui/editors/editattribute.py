@@ -102,8 +102,10 @@ class EditAttributeRoot(EditSecondary):
             self.top.get_object("private"),
             self.obj, self.db.readonly)
 
+        attrcmb = self.top.get_object("attr_menu")
+        attrcmb.set_wrap_width(2)
         self.type_selector = MonitoredDataType(
-            self.top.get_object("attr_menu"),
+            attrcmb,
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
