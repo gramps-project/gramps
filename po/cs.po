@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2013-05-17 15:08+0100\n"
+"PO-Revision-Date: 2013-05-31 14:24+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -213,12 +213,12 @@ msgstr "Ignoruji neplatný řetězec voleb."
 #. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:620
 msgid "Unknown report name."
-msgstr "Neznámý název zprávy."
+msgstr "Neznámý název sestavy."
 
 #: ../gramps/cli/arghandler.py:622
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr "Nebyl zadán název zprávy. Použijte prosím jeden z %(donottranslate)s=reportname"
+msgstr "Nebyl zadán název sestavy. Použijte prosím jeden z %(donottranslate)s=reportname"
 
 #: ../gramps/cli/arghandler.py:626
 #: ../gramps/cli/arghandler.py:668
@@ -247,7 +247,7 @@ msgstr "Neznámý název knihy."
 #: ../gramps/cli/arghandler.py:697
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
-msgstr "Nebyl zadán název zprávy. Použijte prosím jeden z %(donottranslate)s=bookname."
+msgstr "Nebyl zadán název knihy. Použijte prosím jeden z %(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:706
 #, python-format
@@ -828,7 +828,7 @@ msgstr "volba  '%(optionname)s' není platná. Všechny platné volby zjistíte 
 
 #: ../gramps/cli/plug/__init__.py:618
 msgid "Failed to write report. "
-msgstr "Nepodařilo se vytvořit zprávu. "
+msgstr "Nepodařilo se vytvořit sestavu. "
 
 #: ../gramps/gen/config.py:285
 msgid "Imported %Y/%m/%d %H:%M:%S"
@@ -4699,7 +4699,7 @@ msgstr "Citace"
 #: ../gramps/gen/plug/_pluginreg.py:80
 #: ../gramps/gui/logger/_errorview.py:135
 msgid "Report"
-msgstr "Zpráva"
+msgstr "Sestava"
 
 #: ../gramps/gen/lib/notetype.py:88
 msgid "Html code"
@@ -5036,7 +5036,7 @@ msgstr "Nestabilní"
 
 #: ../gramps/gen/plug/_pluginreg.py:81
 msgid "Quickreport"
-msgstr "Rychlá zpráva"
+msgstr "Rychlá sestava"
 
 #: ../gramps/gen/plug/_pluginreg.py:82
 msgid "Tool"
@@ -5501,11 +5501,11 @@ msgstr "Nepodporované"
 
 #: ../gramps/gen/plug/report/_constants.py:47
 msgid "Text Reports"
-msgstr "Textové zprávy"
+msgstr "Textové sestavy"
 
 #: ../gramps/gen/plug/report/_constants.py:48
 msgid "Graphical Reports"
-msgstr "Grafické zprávy"
+msgstr "Grafické sestavy"
 
 #: ../gramps/gen/plug/report/_constants.py:49
 msgid "Code Generators"
@@ -5570,7 +5570,7 @@ msgstr "Překlad"
 
 #: ../gramps/gen/plug/report/stdoptions.py:54
 msgid "The translation to be used for the report."
-msgstr "Překlad použitý pro tuto zprávu."
+msgstr "Překlad použitý pro tuto sestavu."
 
 #. label for the combo
 #: ../gramps/gen/plug/report/stdoptions.py:62
@@ -5992,7 +5992,7 @@ msgstr "%(father)s a %(mother)s"
 
 #: ../gramps/gen/utils/image.py:113
 msgid "WARNING: PIL module not loaded.  Image cropping in report files will not be available."
-msgstr "POZOR: modul PIL nebyl nahrán. Funkčnost ořezu obrázků ve zprávách nebude dostupná."
+msgstr "POZOR: modul PIL nebyl nahrán. Funkčnost ořezu obrázků v sestavách nebude dostupná."
 
 #: ../gramps/gen/utils/grampslocale.py:604
 msgid "Bulgarian"
@@ -7309,7 +7309,7 @@ msgstr "Podrobnost zobrazení věku (projeví se po restartu)"
 
 #: ../gramps/gui/configure.py:1030
 msgid "Calendar on reports"
-msgstr "Kalendář ve zprávách"
+msgstr "Kalendář v sestavách"
 
 #: ../gramps/gui/configure.py:1043
 msgid "Surname guessing"
@@ -11038,7 +11038,7 @@ msgstr "Přez_dívka"
 #: ../gramps/gui/glade/editname.glade.h:13
 #: ../gramps/gui/glade/editperson.glade.h:6
 msgid "Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports."
-msgstr "Část křestního jména, která je používána jako běžné jméno. Pokud je podklad červený,  jméno není součástí křestního jména a v některých zprávách nebude tištěno jako podtržené."
+msgstr "Část křestního jména, která je používána jako běžné jméno. Pokud je podklad červený,  jméno není součástí křestního jména a v některých sestavách nebude tištěno jako podtržené."
 
 #: ../gramps/gui/glade/editname.glade.h:14
 #: ../gramps/gui/glade/editperson.glade.h:8
@@ -11141,8 +11141,8 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will improve the report layout.\n"
 "Use monospace font to keep preformatting."
 msgstr ""
-"Pokud je volba aktivní, budou mezery ve vaší poznámce promítnuty do zprávy. Použijte v případě kdy potřebujete formátovat rozložení mezerami (např. tabulky). \n"
-"Pokud není zaškrtnuto, budou poznámky ve zprávách pro zlepšení rozvržení automaticky očištěny.\n"
+"Pokud je volba aktivní, budou mezery ve vaší poznámce promítnuty do sestavy. Použijte v případě kdy potřebujete formátovat rozložení mezerami (např. tabulky). \n"
+"Pokud není zaškrtnuto, budou poznámky v sestavách pro zlepšení rozvržení automaticky očištěny.\n"
 "Pro předformátování použijte písmo se stejnou roztečí (monospace)."
 
 #: ../gramps/gui/glade/editnote.glade.h:14
@@ -11745,7 +11745,7 @@ msgstr "Spustit"
 #: ../gramps/gui/glade/plugins.glade.h:3
 #: ../gramps/gui/plug/_dialogs.py:280
 msgid "Select a report from those available on the left."
-msgstr "Vyberte zprávu ze zpráv dostupných vlevo."
+msgstr "Vyberte sestavu ze sestav dostupných vlevo."
 
 #: ../gramps/gui/glade/plugins.glade.h:4
 msgid "Status:"
@@ -12026,7 +12026,7 @@ msgstr "<b>Dostupné aktualizace pro rozšíření Gramps</b>"
 
 #: ../gramps/gui/glade/updateaddons.glade.h:3
 msgid "Gramps comes with a core set of plugins which provide all of the necessary features. However, you can extend this functionality with additional Addons. These addons provide reports, listings, views, gramplets, and more. Here you can select among the available extra addons, they will be retrieved from the internet off of the Gramps website, and installed locally on your computer. If you close this dialog now, you can install addons later from the menu under Edit -> Preferences."
-msgstr "Gramps je vydán se základní sadou zásuvných modulů, které poskytují všechny nezbytné funkce. Přesto je možné rozšířit funkčnost přidáním dalších Rozšíření. Tato rozšíření poskytují nové zprávy, seznamy, náhledy, gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými rozšířeními, které budou získány z Internetu z webu Gramps a instalovány lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření instalovat později využitím nabídky Úpravy -> Předvolby."
+msgstr "Gramps je vydán se základní sadou zásuvných modulů, které poskytují všechny nezbytné funkce. Přesto je možné rozšířit funkčnost přidáním dalších Rozšíření. Tato rozšíření poskytují nové sestavy, seznamy, náhledy, gramplety a další vlastnosti. Zde si můžete vybrat mezi dalšími dostupnými rozšířeními, které budou získány z Internetu z webu Gramps a instalovány lokálně na vašem počítači. Pokud nyní zavřete tento dialog, můžete rozšíření instalovat později využitím nabídky Úpravy -> Předvolby."
 
 #: ../gramps/gui/glade/updateaddons.glade.h:4
 msgid "_Select All"
@@ -12265,7 +12265,7 @@ msgstr "Místa"
 
 #: ../gramps/gui/grampsgui.py:180
 msgid "Reports"
-msgstr "Zprávy"
+msgstr "Sestavy"
 
 #: ../gramps/gui/grampsgui.py:181
 #: ../gramps/plugins/quickview/filterbyname.py:107
@@ -12655,7 +12655,7 @@ msgstr "Vy_generovat"
 
 #: ../gramps/gui/plug/_dialogs.py:281
 msgid "Generate selected report"
-msgstr "Vytvořit vybranou zprávu"
+msgstr "Vytvořit vybranou sestavu"
 
 #: ../gramps/gui/plug/_dialogs.py:310
 msgid "Tool Selection"
@@ -12706,7 +12706,7 @@ msgstr "Vybrat jinou osobu"
 
 #: ../gramps/gui/plug/_guioptions.py:671
 msgid "Select a person for the report"
-msgstr "Vybrat osobu do zprávy"
+msgstr "Vybrat osobu do sestavy"
 
 #: ../gramps/gui/plug/_guioptions.py:752
 msgid "Select a different family"
@@ -13404,7 +13404,7 @@ msgstr "Styl"
 #: ../gramps/plugins/webreport/narrativeweb.py:7978
 #: ../gramps/plugins/webreport/webcal.py:1321
 msgid "Report Options"
-msgstr "Nastavení zprávy"
+msgstr "Nastavení sestavy"
 
 #. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:462
@@ -13467,7 +13467,7 @@ msgstr "Aby report pracoval správně, musíte zvolit aktivní osobu."
 #: ../gramps/gui/plug/report/_reportdialog.py:717
 #: ../gramps/gui/plug/report/_reportdialog.py:722
 msgid "Report could not be created"
-msgstr "Zprávu nelze vytvořit"
+msgstr "Sestavu nelze vytvořit"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:70
 #: ../gramps/gui/plug/report/_stylecombobox.py:89
@@ -13797,7 +13797,7 @@ msgstr "_Zaslat hlášení o chybě"
 
 #: ../gramps/gui/viewmanager.py:764
 msgid "_Extra Reports/Tools"
-msgstr "Další zprávy/Nástroj_e"
+msgstr "Další sestavy/nástroj_e"
 
 #: ../gramps/gui/viewmanager.py:766
 msgid "_About"
@@ -13842,7 +13842,7 @@ msgstr "Z_právy"
 
 #: ../gramps/gui/viewmanager.py:786
 msgid "Open the reports dialog"
-msgstr "Otevřít dialog zpráv"
+msgstr "Otevřít dialog sestav"
 
 #: ../gramps/gui/viewmanager.py:787
 msgid "_Go"
@@ -14933,7 +14933,7 @@ msgstr "Zahrnout box sňatku"
 #: ../gramps/plugins/drawreport/ancestortree.py:967
 #: ../gramps/plugins/drawreport/descendtree.py:1552
 msgid "Whether to include a separate marital box in the report"
-msgstr "Zda do zprávy zahrnout separátní martial box"
+msgstr "Zda do sestavy zahrnout separátní martial box"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
 #: ../gramps/plugins/drawreport/descendtree.py:1555
@@ -15049,7 +15049,7 @@ msgstr "Zvětšit nebo zmenšit stín pole"
 #: ../gramps/plugins/drawreport/ancestortree.py:1028
 #: ../gramps/plugins/drawreport/descendtree.py:1622
 msgid "Report Title"
-msgstr "Název zprávy"
+msgstr "Název sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1029
 #: ../gramps/plugins/drawreport/descendtree.py:1623
@@ -15059,12 +15059,12 @@ msgstr "Nezahrnovat název"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1030
 msgid "Include Report Title"
-msgstr "Zahrnout název zprávy"
+msgstr "Zahrnout název sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
 #: ../gramps/plugins/drawreport/descendtree.py:1625
 msgid "Choose a title for the report"
-msgstr "Zvolte název této zprávy"
+msgstr "Zvolte název této sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1034
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -15074,7 +15074,7 @@ msgstr "Zahrnout okraje"
 #: ../gramps/plugins/drawreport/ancestortree.py:1035
 #: ../gramps/plugins/drawreport/descendtree.py:1630
 msgid "Whether to make a border around the report."
-msgstr "Zda orámovat zprávu."
+msgstr "Zda orámovat sestavu."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1038
 #: ../gramps/plugins/drawreport/descendtree.py:1633
@@ -15104,7 +15104,7 @@ msgstr "Zahrnout poznámku"
 #: ../gramps/plugins/drawreport/ancestortree.py:1051
 #: ../gramps/plugins/drawreport/descendtree.py:1645
 msgid "Whether to include a note on the report."
-msgstr "Zda do zprávy zahrnout poznámku."
+msgstr "Zda do sestavy zahrnout poznámku."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1056
 #: ../gramps/plugins/drawreport/descendtree.py:1650
@@ -15190,7 +15190,7 @@ msgstr "Osoba %s není v databázi"
 #: ../gramps/plugins/drawreport/calendarreport.py:271
 #: ../gramps/plugins/drawreport/calendarreport.py:279
 msgid "Calendar Report"
-msgstr "Zpráva kalendář"
+msgstr "Sestava kalendář"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:169
 #: ../gramps/plugins/textreport/birthdayreport.py:220
@@ -15275,7 +15275,7 @@ msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 #: ../gramps/plugins/textreport/kinshipreport.py:346
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
 msgid "The center person for the report"
-msgstr "Výchozí osoba pro zprávu"
+msgstr "Výchozí osoba pro sestavu"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:441
 #: ../gramps/plugins/textreport/birthdayreport.py:431
@@ -15500,15 +15500,15 @@ msgstr "Rodina %s není v databázi"
 #: ../gramps/plugins/drawreport/descendtree.py:1484
 #: ../gramps/plugins/drawreport/descendtree.py:1488
 msgid "Report for"
-msgstr "Zpráva pro"
+msgstr "Sestava pro"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1485
 msgid "The main person for the report"
-msgstr "Výchozí osoba pro zprávu"
+msgstr "Výchozí osoba pro sestavu"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1489
 msgid "The main family for the report"
-msgstr "Výchozí rodina pro zprávu"
+msgstr "Výchozí rodina pro sestavu"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1493
 msgid "Start with the parent(s) of the selected first"
@@ -15977,7 +15977,7 @@ msgstr "%s (osoby):"
 #: ../gramps/plugins/drawreport/statisticschart.py:939
 #: ../gramps/plugins/textreport/recordsreport.py:174
 msgid "Determines what people are included in the report."
-msgstr "Určí které osoby budou zahrnuty do zprávy."
+msgstr "Určí které osoby budou zahrnuty do sestavy."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:943
 #: ../gramps/plugins/drawreport/timeline.py:421
@@ -16130,7 +16130,7 @@ msgstr "Hledá se časové období..."
 
 #: ../gramps/plugins/drawreport/timeline.py:417
 msgid "Determines what people are included in the report"
-msgstr "Určí které osoby budou zahrnuty do zprávy"
+msgstr "Určí které osoby budou zahrnuty do sestavy"
 
 #: ../gramps/plugins/drawreport/timeline.py:422
 #: ../gramps/plugins/graph/gvrelgraph.py:504
@@ -18301,7 +18301,7 @@ msgstr "Zda zahrnovat jména, data a rodiny, které jsou označeny jako důvěrn
 
 #: ../gramps/plugins/graph/gvfamilylines.py:349
 msgid "Empty report"
-msgstr "Prázdná zpráva"
+msgstr "Prázdná sestava"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:350
 msgid "You did not specify anybody"
@@ -18387,7 +18387,7 @@ msgstr "Zahrnout URL"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:532
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
-msgstr "Zahrnout URL do každého uzlu grafu, aby mohly být vytvořeny PDF a soubory obrázkových map obsahující aktivní odkazy na soubory vytvořené zprávou 'Vyprávěná WWW stránka'."
+msgstr "Zahrnout URL do každého uzlu grafu, aby mohly být vytvořeny PDF a soubory obrázkových map obsahující aktivní odkazy na soubory vytvořené sestavou 'Vyprávěná WWW stránka'."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:539
 msgid "Include IDs"
@@ -22693,7 +22693,7 @@ msgstr "Poskytuje nahrazení proměnných na zobrazených řádcích."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:260
 msgid "Provides the base needed for the ancestor and descendant graphical reports."
-msgstr "Poskytuje základ potřebný pro grafické zprávy předků a potomků."
+msgstr "Poskytuje základ potřebný pro grafické sestavy předků a potomků."
 
 #: ../gramps/plugins/lib/librecords.py:56
 msgid "Youngest living person"
@@ -23351,7 +23351,7 @@ msgstr "Otcovská linie osoby %s"
 
 #: ../gramps/plugins/quickview/lineage.py:56
 msgid "This report shows the father lineage, also called patronymic lineage or Y-line. People in this lineage all share the same Y-chromosome."
-msgstr "Tato zpráva ukazuje otcovskou linii, někdy také nazývanou linie Y. Všechny osoby v této linii sdílejí stejný Y chromozom."
+msgstr "Tato sestava ukazuje otcovskou linii, někdy také nazývanou linie Y. Všechny osoby v této linii sdílejí stejný Y chromozom."
 
 #: ../gramps/plugins/quickview/lineage.py:63
 msgid "Name Father"
@@ -23376,7 +23376,7 @@ msgstr "Linie matek osoby %s"
 
 #: ../gramps/plugins/quickview/lineage.py:87
 msgid "This report shows the mother lineage, also called matronymic lineage mtDNA lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
-msgstr "Tato zpráva ukazuje linni po matce, zvanou též liniie mtDNA. Všechny osoby v této linii sdílejí stejnou Mitochondriální DNA (mtDNA nebo chondriom)."
+msgstr "Tato sestava ukazuje linni po matce, zvanou též liniie mtDNA. Všechny osoby v této linii sdílejí stejnou Mitochondriální DNA (mtDNA nebo chondriom)."
 
 #: ../gramps/plugins/quickview/lineage.py:95
 msgid "Name Mother"
@@ -23824,7 +23824,7 @@ msgstr "Report svátků a narozenin"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:67
 msgid "My Birthday Report"
-msgstr "Můje narozeninová zpráva"
+msgstr "Můje narozeninová sestava"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:216
@@ -23835,27 +23835,27 @@ msgstr "Zobrazené vztahy k %s"
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/birthdayreport.py:414
 msgid "Year of report"
-msgstr "Rok zprávy"
+msgstr "Rok sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 msgid "Select filter to restrict people that appear on report"
-msgstr "Vyberte filtr pro omezení osob, které se objeví ve zprávě"
+msgstr "Vyberte filtr pro omezení osob, které se objeví ve sestavě"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:449
 msgid "Select the first day of the week for the report"
-msgstr "Vyberte první den týdne pro zprávu"
+msgstr "Vyberte první den týdne pro sestavu"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:460
 msgid "Include only living people in the report"
-msgstr "Zahrnout pouze žijící osoby do zprávy"
+msgstr "Zahrnout pouze žijící osoby do sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:464
 msgid "Include birthdays in the report"
-msgstr "Zahrnout narozeniny do zprávy"
+msgstr "Zahrnout narozeniny do sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:468
 msgid "Include anniversaries in the report"
-msgstr "Zahrnout výročí do zprávy"
+msgstr "Zahrnout výročí do sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:471
 msgid "Include relationships to center person"
@@ -23871,19 +23871,19 @@ msgstr "Text titulku"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:481
 msgid "Title of report"
-msgstr "Titulek zprávy"
+msgstr "Titulek sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:485
 msgid "First line of text at bottom of report"
-msgstr "První řádka textu v dolní části zprávy"
+msgstr "První řádka textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "Second line of text at bottom of report"
-msgstr "Druhá řádka textu v dolní části zprávy"
+msgstr "Druhá řádka textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Third line of text at bottom of report"
-msgstr "Třetí řádka textu v dolní části zprávy"
+msgstr "Třetí řádka textu v dolní části sestavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:547
 msgid "Title text style"
@@ -23989,7 +23989,7 @@ msgstr "Zobrazit informace o sňatku"
 
 #: ../gramps/plugins/textreport/descendreport.py:422
 msgid "Whether to show marriage information in the report."
-msgstr "Zda zahrnout informace o sňatcích do zprávy."
+msgstr "Zda zahrnout informace o sňatcích do sestavy."
 
 #: ../gramps/plugins/textreport/descendreport.py:425
 msgid "Show divorce info"
@@ -23997,7 +23997,7 @@ msgstr "Zobrazit informace o rozvodu"
 
 #: ../gramps/plugins/textreport/descendreport.py:426
 msgid "Whether to show divorce information in the report."
-msgstr "Zda zahrnout informace o rozvodu do zprávy."
+msgstr "Zda zahrnout informace o rozvodu do sestavy."
 
 #: ../gramps/plugins/textreport/descendreport.py:429
 msgid "Show duplicate trees"
@@ -24005,7 +24005,7 @@ msgstr "Zobrazit duplicitní stromy"
 
 #: ../gramps/plugins/textreport/descendreport.py:430
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr "Zda zobrazit duplicitní rodokmeny do zprávy."
+msgstr "Zda zobrazit duplicitní rodokmeny do sestavy."
 
 #: ../gramps/plugins/textreport/descendreport.py:460
 #, python-format
@@ -24415,7 +24415,7 @@ msgstr "Styl použitý pro záhlaví Více o a pro záhlaví druhů/družek."
 #: ../gramps/plugins/textreport/endoflinereport.py:156
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Zpráva Poslední předek pro osobu %s"
+msgstr "Sestava Poslední předek pro osobu %s"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:163
@@ -24458,13 +24458,13 @@ msgstr "%dN"
 #: ../gramps/plugins/textreport/familygroup.py:563
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Souhrnná zpráva o rodině - generace %d"
+msgstr "Souhrnná sestava o rodině - generace %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:565
 #: ../gramps/plugins/textreport/familygroup.py:614
 #: ../gramps/plugins/textreport/textplugins.gpr.py:186
 msgid "Family Group Report"
-msgstr "Zpráva o rodině"
+msgstr "Sestava o rodině"
 
 #. #########################
 #: ../gramps/plugins/textreport/familygroup.py:638
@@ -24473,7 +24473,7 @@ msgstr "Ústřední rodina"
 
 #: ../gramps/plugins/textreport/familygroup.py:639
 msgid "The center family for the report"
-msgstr "Ústřední rodina pro zprávu"
+msgstr "Ústřední rodina pro sestavu"
 
 #: ../gramps/plugins/textreport/familygroup.py:644
 msgid "Recursive"
@@ -24481,7 +24481,7 @@ msgstr "Rekurzivní"
 
 #: ../gramps/plugins/textreport/familygroup.py:645
 msgid "Create reports for all descendants of this family."
-msgstr "Vytvořit zprávy pro všechny potomky této rodiny."
+msgstr "Vytvořit sestavy pro všechny potomky této rodiny."
 
 #. #########################
 #: ../gramps/plugins/textreport/familygroup.py:655
@@ -24490,7 +24490,7 @@ msgstr "Čísla generací (pouze rekurzivně)"
 
 #: ../gramps/plugins/textreport/familygroup.py:657
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Zda do každé zprávy zahrnout generaci (pouze rekurzivně)."
+msgstr "Zda do každé sestavy zahrnout generaci (pouze rekurzivně)."
 
 #: ../gramps/plugins/textreport/familygroup.py:661
 msgid "Parent Events"
@@ -24620,7 +24620,7 @@ msgstr "Žena"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:700
 msgid "Select the filter to be applied to the report."
-msgstr "Zvolte filtr, který bude aplikován na zprávu."
+msgstr "Zvolte filtr, který bude aplikován na sestavu."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:713
 msgid "List events chronologically"
@@ -24667,7 +24667,7 @@ msgstr "Styl používaný pro jméno partnera."
 #: ../gramps/plugins/textreport/kinshipreport.py:122
 #, python-format
 msgid "Kinship Report for %s"
-msgstr "Zpráva o příbuzných osoby %s"
+msgstr "Sestava o příbuzných osoby %s"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:352
 msgid "The maximum number of descendant generations"
@@ -24729,11 +24729,11 @@ msgstr "Celkový počet předků mezi %(second_generation)d a %(last_generation)
 #: ../gramps/plugins/textreport/placereport.py:129
 #: ../gramps/plugins/textreport/textplugins.gpr.py:298
 msgid "Place Report"
-msgstr "Zpráva o místech"
+msgstr "Sestava o místech"
 
 #: ../gramps/plugins/textreport/placereport.py:130
 msgid "Generating report"
-msgstr "Vytváří se zpráva"
+msgstr "Vytváří se sestava"
 
 #: ../gramps/plugins/textreport/placereport.py:154
 #, python-format
@@ -24812,7 +24812,7 @@ msgstr "Vybrat místa jednotlivě"
 
 #: ../gramps/plugins/textreport/placereport.py:389
 msgid "List of places to report on"
-msgstr "Seznam míst pro zprávu"
+msgstr "Seznam míst pro sestavu"
 
 #: ../gramps/plugins/textreport/placereport.py:392
 msgid "Center on"
@@ -24820,7 +24820,7 @@ msgstr "Vystředit na"
 
 #: ../gramps/plugins/textreport/placereport.py:396
 msgid "If report is event or person centered"
-msgstr "Zda je zpráva zaměřená na osobu nebo událost"
+msgstr "Zda je sestava zaměřená na osobu nebo událost"
 
 #: ../gramps/plugins/textreport/placereport.py:399
 msgid "Include private data"
@@ -24832,7 +24832,7 @@ msgstr "Zda zahrnout soukromé informace"
 
 #: ../gramps/plugins/textreport/placereport.py:432
 msgid "The style used for the title of the report."
-msgstr "Styl používaný pro nadpis zprávy."
+msgstr "Styl používaný pro nadpis sestavy."
 
 #: ../gramps/plugins/textreport/placereport.py:446
 msgid "The style used for place title."
@@ -24894,11 +24894,11 @@ msgstr "Záznamy rodiny"
 
 #: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "The style used for the report title."
-msgstr "Styl použitý pro název zprávy."
+msgstr "Styl použitý pro název sestavy."
 
 #: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "The style used for the report subtitle."
-msgstr "Styl použitý pro podtitul zprávy."
+msgstr "Styl použitý pro podtitul sestavy."
 
 #: ../gramps/plugins/textreport/recordsreport.py:261
 msgid "The style used for headings."
@@ -24970,7 +24970,7 @@ msgstr "Styl požitý pro podtitul."
 #: ../gramps/plugins/textreport/summary.py:86
 #: ../gramps/plugins/textreport/textplugins.gpr.py:343
 msgid "Database Summary Report"
-msgstr "Sumarizační zpráva databáze"
+msgstr "Sumarizační sestava databáze"
 
 #: ../gramps/plugins/textreport/summary.py:162
 #, python-format
@@ -25052,17 +25052,17 @@ msgstr "Styl používaný pro nadpisy třetí úrovně."
 #: ../gramps/plugins/textreport/tagreport.py:83
 #: ../gramps/plugins/textreport/textplugins.gpr.py:253
 msgid "Tag Report"
-msgstr "Zpráva o štítcích"
+msgstr "Sestava o štítcích"
 
 #: ../gramps/plugins/textreport/tagreport.py:84
 msgid "You must first create a tag before running this report."
-msgstr "Než spustíte tuto zprávu, musíte vytvořit štítek."
+msgstr "Než spustíte tuto sestavu, musíte vytvořit štítek."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:91
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Zpráva o štítcích pro %s položek"
+msgstr "Sestava o štítcích pro %s položek"
 
 #: ../gramps/plugins/textreport/tagreport.py:124
 #: ../gramps/plugins/textreport/tagreport.py:211
@@ -25074,7 +25074,7 @@ msgstr "Id"
 
 #: ../gramps/plugins/textreport/tagreport.py:548
 msgid "The tag to use for the report"
-msgstr "Štítek použitý pro zprávu"
+msgstr "Štítek použitý pro sestavu"
 
 #: ../gramps/plugins/textreport/tagreport.py:598
 msgid "The basic style used for table headings."
@@ -25082,11 +25082,11 @@ msgstr "Základní styl používaný pro titulky tabulek."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:32
 msgid "Ahnentafel Report"
-msgstr "Zpráva o předcích"
+msgstr "Sestava o předcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:33
 msgid "Produces a textual ancestral report"
-msgstr "Vytvoří textovou zprávu o předcích"
+msgstr "Vytvoří textovou sestavu o předcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:55
 msgid "Produces a report of birthdays and anniversaries"
@@ -25098,7 +25098,7 @@ msgstr "Přidat vlastní text do knihy"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:98
 msgid "Descendant Report"
-msgstr "Zpráva o potomcích"
+msgstr "Sestava o potomcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:99
 msgid "Produces a list of descendants of the active person"
@@ -25106,7 +25106,7 @@ msgstr "Vytvoří seznam potomků vybrané osoby"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:120
 msgid "Detailed Ancestral Report"
-msgstr "Podrobná zpráva o předcích"
+msgstr "Podrobná sestava o předcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:121
 msgid "Produces a detailed ancestral report"
@@ -25114,39 +25114,39 @@ msgstr "Vytvoří podrobný seznam předků"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:142
 msgid "Detailed Descendant Report"
-msgstr "Podrobná zpráva o potomcích"
+msgstr "Podrobná sestava o potomcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:143
 msgid "Produces a detailed descendant report"
-msgstr "Vytvoří detailní zprávu o potomcích"
+msgstr "Vytvoří detailní sestavu o potomcích"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:164
 msgid "End of Line Report"
-msgstr "Zpráva Poslední předek"
+msgstr "Sestava Poslední předek"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:165
 msgid "Produces a textual end of line report"
-msgstr "Vytvoří textovou zprávu o předcích kterým chybí rodič"
+msgstr "Vytvoří textovou sestavu o předcích kterým chybí rodič"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:187
 msgid "Produces a family group report showing information on a set of parents and their children."
-msgstr "Vytvoří zprávu o rodině, vypíše informace o rodičích a jejich dětech."
+msgstr "Vytvoří sestavu o rodině, vypíše informace o rodičích a jejich dětech."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:209
 msgid "Complete Individual Report"
-msgstr "Úplná zpráva o osobě"
+msgstr "Úplná sestava o osobě"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:210
 msgid "Produces a complete report on the selected people"
-msgstr "Vytvoří úplnou zprávu o vybraných osobách"
+msgstr "Vytvoří úplnou sestavu o vybraných osobách"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:231
 msgid "Kinship Report"
-msgstr "Příbuzenská zpráva"
+msgstr "Příbuzenská sestava"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:232
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Vytvoří textovou zprávu o příbuzných dané osoby"
+msgstr "Vytvoří textovou sestavu o příbuzných dané osoby"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:254
 msgid "Produces a list of people with a specified tag"
@@ -25154,7 +25154,7 @@ msgstr "Vytvoří seznam osob s uvedeným štítkem"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:276
 msgid "Number of Ancestors Report"
-msgstr "Zpráva o počtu předků"
+msgstr "Sestava o počtu předků"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:277
 msgid "Counts number of ancestors of selected person"
@@ -25162,7 +25162,7 @@ msgstr "Spočítá počet předků vybrané osoby"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:299
 msgid "Produces a textual place report"
-msgstr "Vytvoří textovou zprávu o místech"
+msgstr "Vytvoří textovou sestavu o místech"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:321
 msgid "Title Page"
@@ -25170,7 +25170,7 @@ msgstr "Titulní stránka"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:322
 msgid "Produces a title page for book reports."
-msgstr "Vytvoří titulní stranu knihy zpráv."
+msgstr "Vytvoří titulní stranu knihy sestav."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:344
 msgid "Provides a summary of the current database"
@@ -25178,15 +25178,15 @@ msgstr "Poskytne přehled současné databáze"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:367
 msgid "Produces a table of contents for book reports."
-msgstr "Vytvoří obsah pro knižní zprávy."
+msgstr "Vytvoří obsah pro knižní sestavy."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:389
 msgid "Produces an alphabetical index for book reports."
-msgstr "Vytvoří abecední rejstřík pro knižní zprávy."
+msgstr "Vytvoří abecední rejstřík pro knižní sestavy."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:410
 msgid "Records Report"
-msgstr "Zpráva záznamů"
+msgstr "Sestava záznamů"
 
 #: ../gramps/plugins/tool/changenames.glade.h:1
 msgid ""
@@ -27240,7 +27240,7 @@ msgstr "Bílá"
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
 msgid "Color scheme classic report"
-msgstr "Barevné schéma klasická zpráva"
+msgstr "Barevné schéma klasická sestava"
 
 #: ../gramps/plugins/view/fanchartdescview.py:291
 #: ../gramps/plugins/view/fanchartview.py:289
@@ -28400,7 +28400,7 @@ msgstr "Křestní jméno"
 #: ../gramps/plugins/webreport/narrativeweb.py:7637
 #: ../gramps/plugins/webreport/narrativeweb.py:7679
 msgid "Narrated Web Site Report"
-msgstr "Zpráva Vyprávěné WWW stránky"
+msgstr "Sestava Vyprávěné WWW stránky"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3049
 msgid "Creating family pages..."
@@ -28834,7 +28834,7 @@ msgstr "Generační graf"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8084
 msgid "The number of generations to include in the ancestor graph"
-msgstr "Počet generací zahrnutý ve zprávě o předcích"
+msgstr "Počet generací zahrnutý ve sestavě o předcích"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8094
 msgid "Page Generation"
@@ -29203,7 +29203,7 @@ msgstr "Abecední nabídka: %s"
 #: ../gramps/plugins/webreport/webcal.py:1086
 #: ../gramps/plugins/webreport/webcal.py:1092
 msgid "Web Calendar Report"
-msgstr "Zpráva Webový kalendář"
+msgstr "Sestava Webový kalendář"
 
 #: ../gramps/plugins/webreport/webcal.py:300
 #, python-format
@@ -29436,11 +29436,11 @@ msgstr "Zda vytvořit denní stránky, nebo nikoli"
 
 #: ../gramps/plugins/webreport/webcal.py:1543
 msgid "Link to Narrated Web Report"
-msgstr "Linkovat do Vyprávěné webové zprávy"
+msgstr "Linkovat do Vyprávěné webové sestavy"
 
 #: ../gramps/plugins/webreport/webcal.py:1544
 msgid "Whether to link data to web report or not"
-msgstr "Zda linkovat data do webové zprávy nebo ne"
+msgstr "Zda linkovat data do webové sestavy nebo ne"
 
 #: ../gramps/plugins/webreport/webcal.py:1550
 msgid "Link prefix"
@@ -29634,7 +29634,7 @@ msgstr "<b>Nastavení Vašich předvoleb</b><br/>&quot;Úpravy &gt; Předvolby..
 
 #: ../data/tips.xml.in.h:16
 msgid "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The Graphical Reports and Graphs can present complex relationships easily and the Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email. If you're ready to make a website for your family tree then there's a report for that as well."
-msgstr "<b>Zprávy Gramps</b><br/> Gramps nabízí širokou škálu výzkumných zpráv. Grafické zprávy a grafy prezentují komplexní vztahy jednoduchou formou. Textové zprávy jsou zvláště užitečné, pokud chcete poslat váš rodinný strom členům vaší rodiny elektronickou poštou. Pokud jste připraveni vytvořit pro Váš rodokmen web, Gramps nabízí nástroj i pro tento případ."
+msgstr "<b>Sestavy Gramps</b><br/> Gramps nabízí širokou škálu výzkumných sestav. Grafické sestavy a grafy prezentují komplexní vztahy jednoduchou formou. Textové sestavy jsou zvláště užitečné, pokud chcete poslat váš rodinný strom členům vaší rodiny elektronickou poštou. Pokud jste připraveni vytvořit pro Váš rodokmen web, Gramps nabízí nástroj i pro tento případ."
 
 #: ../data/tips.xml.in.h:17
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
@@ -29762,7 +29762,7 @@ msgstr "<b>Domovská stránka Gramps</b><br/>Domovskou stránku Gramps najdete n
 
 #: ../data/tips.xml.in.h:48
 msgid "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information secure by allowing you to mark information as private. Data marked as private can be excluded from reports and data exports. Look for the padlock which toggles records between private and public."
-msgstr "<b>Soukromí v Gramps</b><br/>Chcete-li udržet některé osobní informace tajné, označte je jako jako důvěrné. Údaje označené jako důvěrné lze vyřadit ze zpráv a datových exportů.  Hledejte visací zámek, kterým změníte statut záznamu z veřejného na soukromý a naopak."
+msgstr "<b>Soukromí v Gramps</b><br/>Chcete-li udržet některé osobní informace tajné, označte je jako jako důvěrné. Údaje označené jako důvěrné lze vyřadit ze sestav a datových exportů.  Hledejte visací zámek, kterým změníte statut záznamu z veřejného na soukromý a naopak."
 
 #: ../data/tips.xml.in.h:49
 msgid "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -29770,11 +29770,11 @@ msgstr "<b>Uchováváme dobré záznamy</b><br/>Při záznamu genealogických ú
 
 #: ../data/tips.xml.in.h:50
 msgid "<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; Extra Reports/Tools&quot;. This is the best way for advanced users to experiment and create new functionality."
-msgstr "<b>Další zprávy a nástroje</b><br/>Další zprávy a nástroje mohou být do Gramps přidány prostřednictvím systému &quot;Rozšíření&quot; . Naleznete jej pod &quot;Nápověda &gt; Další zprávy/Nástroje&quot;. Toto je nejlepší cesta jak umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
+msgstr "<b>Další sestavy a nástroje</b><br/>Další sestavy a nástroje mohou být do Gramps přidány prostřednictvím systému &quot;Rozšíření&quot; . Naleznete jej pod &quot;Nápověda &gt; Další sestavy/nástroje&quot;. Toto je nejlepší cesta jak umožnit pokročilým uživatelům experimentovat a přidávat nové funkčnosti."
 
 #: ../data/tips.xml.in.h:51
 msgid "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; Book Report...&quot;, allows you to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "<b>Knižní zprávy</b><br/>Zprávy  pod &quot;Zprávy &gt; Knihy &gt; Knižní zpráva...&quot;, vám umožní sloučit rozmanité zprávy do jednoho dokumentu. Jedna zpráva se šíří snadněji než několik dílčích, zvláště pokud je vytištěna."
+msgstr "<b>Knižní Sestavy</b><br/>Sestavy  pod &quot;Sestavy &gt; Knihy &gt; Knižní sestava...&quot;, vám umožní sloučit rozmanité sestavy do jednoho dokumentu. Jedna sestava se šíří snadněji než několik dílčích, zvláště pokud je vytištěna."
 
 #: ../data/tips.xml.in.h:52
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
