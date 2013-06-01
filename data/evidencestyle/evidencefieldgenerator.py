@@ -49,9 +49,18 @@ IDENTCOL = 6
 LDELCOL = 7  # left delimiter
 FIELDCOL = 8
 RDELCOL = 9 # right delimiter
-STYLECOL = 10
-PRIVACYCOL = 11
-OPTCOL = 12
+GEDCOMCOL = 10
+SHORTERCOL = 11
+STYLECOL = 12
+PRIVACYCOL = 13
+OPTCOL = 14
+
+GEDCOMFIELDS = {'A': 'GED_AUTHOR', 'T': 'GED_TITLE', 
+                'P': 'GED_PUBINF', 'D': 'GED_DATE'}
+SHORTERALG = {'LOC': 'SHORTERALG_LOC', 'YEAR': 'SHORTERALG_YEAR',
+              'ETAL': 'SHORTERALG_ETAL', 'REV.': 'SHORTERALG_REVERT_TO_DOT'}
+STYLES = {'Quoted': 'STYLE_QUOTE', 'Italics': 'STYLE_EMPH',
+          'QuotedCont': 'STYLE_QUOTECONT', 'Bold': 'STYLE_BOLD'}
 
 nr = -1
 cat = ''
@@ -104,8 +113,12 @@ with open(csvfilename, 'rb') as csvfile:
             
             
         if row[CITETYPECOL]:
-            #new citation type, 
+            #new citation type,
             cite_type = row[CITETYPECOL].strip()
+            if cite_type == 'S':
+                shortcite = True
+            else:
+                shortcite = False
         #add field for template to evidence style
         field = row[FIELDCOL].strip()
         field_type = field.replace(' ', '_').replace("'","")\
@@ -126,8 +139,22 @@ with open(csvfilename, 'rb') as csvfile:
         optional = 'False'
         if  row[OPTCOL].strip():
             optional = 'True'
+        shorteralg = SHORTERALG.get(row[SHORTERCOL].strip()) or 'EMPTY'
+        gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip()) or 'EMPTY'
+        style = STYLES.get(row[STYLECOL].strip()) or 'EMPTY'
+        
         TYPE2CITEMAP[source_type][cite_type] += [(row[LDELCOL], field_type, 
-                        row[RDELCOL], row[STYLECOL], private, optional)]
+                        row[RDELCOL], style, private, optional, 
+                        shorteralg, gedcommap)]
+        #if shorttype, we store a type for the short version so user can store
+        #this
+        if shortcite and shorteralg == '':
+            field_type_short = field_type + '_SHORT_VERSION'
+            if field_type_short in FIELDTYPEMAP:
+                pass
+            else:
+                FIELDTYPEMAP[field_type_short] = (index, field_descr + ' (Short)')
+                index += 1
 
 #now generate the python code we need in source attr types
 code = "    #following fields are generated with evidencefieldgenerator.py\n" \
@@ -174,9 +201,10 @@ for source_type in allkeys:
         code += "            '" + val + "': [\n"
         for field in TYPE2CITEMAP[source_type][val]:
             # field is tuple (row[LDELCOL], field_type, row[RDELCOL], row[STYLECOL]
-            #    , private, optional)
-            code += "                ('"+ field[0] + "', " + field[1]  + ", '" + field[2] + \
-                    "', '" + field[3] + "', " + field[4] + ", " + field[5] + "),\n"
+            #    , private, optional, shorteralg, gedcommap)
+            code += "                ('"+ field[0] + "', " + field[1]  + ", '"\
+                    + field[2] + "', " + field[3] + ", " + field[4] + ", "\
+                    + field[5] + ", " + field[6] + ", " + field[7] + "),\n"
         code += "                ],\n"
     code += "        },\n"
 code += "    }\n"
