@@ -36,6 +36,7 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
+from .srctemplate import SrcTemplate
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
@@ -281,21 +282,37 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """
         return self.title
 
-    def set_author(self, author):
-        """Set the author of the Source."""
-        self.author = author
+##    def set_author(self, author):
+##        """Set the author of the Source."""
+##        self.author = author
 
     def get_author(self):
-        """Return the author of the Source."""
-        return self.author
+        """Return the author of the Source.
+        Author depends on the source template. The logic is:
+        1. obtain template
+        2. create author from the 'full' reference
+        3. if no template, it defaults to GEDCOM, so AUTHOR will be used
+        """
+        attrlist = self.get_attribute_list()
+        stemp = SrcTemplate(self.get_source_template()[0])
+        
+        return stemp.author_gedcom(attrlist)
 
-    def set_publication_info(self, text):
-        """Set the publication information of the Source."""
-        self.pubinfo = text
+##    def set_publication_info(self, text):
+##        """Set the publication information of the Source."""
+##        self.pubinfo = text
 
     def get_publication_info(self):
-        """Return the publication information of the Source."""
-        return self.pubinfo
+        """Return the publication information of the Source.
+        PubInfo depends on the source template. The logic is:
+        1. obtain template
+        2. create pubinfo from the 'full' reference
+        3. if no template, it defaults to GEDCOM, so PUB_INFO will be used
+        """
+        attrlist = self.get_attribute_list()
+        stemp = SrcTemplate(self.get_source_template()[0])
+        
+        return stemp.pubinfo_gedcom(attrlist)
 
     def set_abbreviation(self, abbrev):
         """Set the title abbreviation of the Source."""

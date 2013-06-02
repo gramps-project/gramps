@@ -55,6 +55,9 @@ from .repo import Repository
 from .note import Note
 from .citation import Citation
 
+# Logical objects
+from .srctemplate import SrcTemplate
+
 # Table objects
 from .tag import Tag
 

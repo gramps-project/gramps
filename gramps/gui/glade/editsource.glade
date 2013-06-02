@@ -160,6 +160,7 @@
                       <object class="UndoableEntry" id="source_title">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Title of the source.</property>
                         <property name="invisible_char">•</property>
                       </object>
                       <packing>
@@ -244,6 +245,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
+                            <property name="tooltip_text" translatable="yes">A unique ID to identify the source</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -531,6 +533,7 @@
                       <object class="UndoableEntry" id="abbrev">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Provide the short identifier you use for local sorting, filing, and retrieving source records.</property>
                         <property name="invisible_char">•</property>
                       </object>
                       <packing>
@@ -643,6 +646,27 @@
                               <object class="GtkGrid" id="gridfields">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
                                 <child>
                                   <placeholder/>
                                 </child>

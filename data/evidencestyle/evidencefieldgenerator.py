@@ -55,6 +55,7 @@ STYLECOL = 12
 PRIVACYCOL = 13
 OPTCOL = 14
 
+CITE_TYPES = {'F': 'REF_TYPE_F', 'L': 'REF_TYPE_L', 'S': 'REF_TYPE_S'}
 GEDCOMFIELDS = {'A': 'GED_AUTHOR', 'T': 'GED_TITLE', 
                 'P': 'GED_PUBINF', 'D': 'GED_DATE'}
 SHORTERALG = {'LOC': 'SHORTERALG_LOC', 'YEAR': 'SHORTERALG_YEAR',
@@ -106,7 +107,8 @@ with open(csvfilename, 'rb') as csvfile:
             if source_type in TYPE2CITEMAP:
                 assert TYPE2CITEMAP[source_type] ['descr'] == source_descr, source_type + ' ' + TYPE2CITEMAP[source_type] ['descr'] + ' NOT ' + source_descr
             else:
-                TYPE2CITEMAP[source_type] = {'L': [], 'F': [], 'S': [], 
+                TYPE2CITEMAP[source_type] = {'REF_TYPE_L': [], 'REF_TYPE_F': [],
+                            'REF_TYPE_S': [], 
                             'i': indexval, 'descr': source_descr,
                             'descrcode': source_descr_code}
                 indexval += 1
@@ -119,6 +121,7 @@ with open(csvfilename, 'rb') as csvfile:
                 shortcite = True
             else:
                 shortcite = False
+            cite_type = CITE_TYPES[cite_type]
         #add field for template to evidence style
         field = row[FIELDCOL].strip()
         field_type = field.replace(' ', '_').replace("'","")\
@@ -148,7 +151,7 @@ with open(csvfilename, 'rb') as csvfile:
                         shorteralg, gedcommap)]
         #if shorttype, we store a type for the short version so user can store
         #this
-        if shortcite and shorteralg == '':
+        if shortcite and shorteralg == 'EMPTY':
             field_type_short = field_type + '_SHORT_VERSION'
             if field_type_short in FIELDTYPEMAP:
                 pass
@@ -197,8 +200,8 @@ code += "\n    #templates for the source types defined\n"\
 code += '    EVIDENCETEMPLATES = {\n'
 for source_type in allkeys:
     code += "        " + source_type + ": {\n"
-    for val in ['F', 'L', 'S']:
-        code += "            '" + val + "': [\n"
+    for val in ['REF_TYPE_L', 'REF_TYPE_F', 'REF_TYPE_S']:
+        code += "            " + val + ": [\n"
         for field in TYPE2CITEMAP[source_type][val]:
             # field is tuple (row[LDELCOL], field_type, row[RDELCOL], row[STYLECOL]
             #    , private, optional, shorteralg, gedcommap)

@@ -45,7 +45,7 @@ from gi.repository import Gtk, Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Source
+from gramps.gen.lib import NoteType, Source, SrcTemplate
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
@@ -58,6 +58,7 @@ from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           CitationBackRefList, RepoEmbedList)
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from ..dialog import ErrorDialog
+from ..utils import is_right_click, open_file_with_default_application
 from ..glade import Glade
 
 #-------------------------------------------------------------------------
@@ -213,6 +214,7 @@ class EditSource(EditPrimary):
         """
         if self.attr_tab:
             self.attr_tab.rebuild_callback()
+        self.update_attr()
 
     def _create_tabbed_pages(self):
         notebook = self.glade.get_object('notebook')

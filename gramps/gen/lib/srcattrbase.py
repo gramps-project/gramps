@@ -53,21 +53,31 @@ class SrcAttributeBase(AttributeRootBase):
         This is the value of the first source template in the attribute list
         If not known UNKNOWN is returned as key, which is integer. Other keys
         will be str.
-        :rtype tuple: (key, translated_string, english_string)
+        :rtype tuple: (key, description, string_key_as stored)
         """
-        templ = SrcAttributeType.UNKNOWN
+        #no template is UNKNOWN!
+        templ = SrcAttributeType.UNKNOWN  
         for attr in self.attribute_list:
             if int(attr.get_type()) == SrcAttributeType.SRCTEMPLATE:
                 val = attr.get_value()
                 try:
-                    templ = SrcAttributeType.E2I_SRCTEMPLATEMAP[val]
+                    templ = SrcAttributeType.K2I_SRCTEMPLATEMAP[val]
                 except KeyError:
                     # a template not in the predefined list. convert to unknown
-                    print ('SrcAttributeType: Keyerror "', val,
+                    print ('SrcAttributeBase: Keyerror "', val,
                            '"for now UNKNOWN taken, later custom templates?')
                 break
-        return (templ, SrcAttributeType.I2S_SRCTEMPLATEMAP[templ], 
-                       SrcAttributeType.I2E_SRCTEMPLATEMAP[templ])
+        try:
+            retval = (templ, SrcAttributeType.I2S_SRCTEMPLATEMAP[templ], 
+                       SrcAttributeType.I2K_SRCTEMPLATEMAP[templ])
+        except KeyError:
+            #templ is not present, return the default GEDCOM value as actual
+            #template
+            templ = SrcAttributeType.UNKNOWN
+            retval = (templ, 
+                      SrcAttributeType.I2S_SRCTEMPLATEMAP[SrcAttributeType.UNKNOWN], 
+                      SrcAttributeType.I2K_SRCTEMPLATEMAP[SrcAttributeType.UNKNOWN])
+        return retval
 
     def set_source_template(self, tempindex, tempcustom_str):
         """
@@ -94,8 +104,7 @@ class SrcAttributeBase(AttributeRootBase):
         (tempindex == SrcAttributeType.CUSTOM and tempcustom_str.strip() == ''):
             self.remove_attribute(attrtemp)
         elif not (tempindex == SrcAttributeType.CUSTOM):
-            attr.set_value(SrcAttributeType.I2E_SRCTEMPLATEMAP[tempindex])
+            attrtemp.set_value(SrcAttributeType.I2K_SRCTEMPLATEMAP[tempindex])
         else:
             #custom key, store string as is
-            attr.set_value(tempindex)
-            
+            attrtemp.set_value(tempindex)

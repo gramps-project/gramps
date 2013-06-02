@@ -41,7 +41,8 @@ from gi.repository import Gtk
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib.srcattrtype import SrcAttributeType
+from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
+                                REF_TYPE_S, REF_TYPE_L)
 from gramps.gen.lib.srcattribute import SrcAttribute
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
@@ -138,7 +139,7 @@ class SrcTemplateTab(GrampsTab):
         self.inpts = []
         row = 1
         # now add new fields
-        for fielddef in template['F']:
+        for fielddef in template[REF_TYPE_F]:
             self.gridfields.insert_row(row)
             row += 1
             field = fielddef[1]
@@ -178,7 +179,6 @@ class SrcTemplateTab(GrampsTab):
         Set attribute of source of type srcattrtype (which is integer!) to 
         value. If not present, create attribute. If value == '', remove
         """
-        print 'set field called', value, srcattrtype
         src = self.src
         value = value.strip()
         foundattr = None

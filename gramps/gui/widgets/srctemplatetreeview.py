@@ -75,9 +75,9 @@ class SrcTemplateTreeView(Gtk.TreeView):
         """
         srcattrt = SrcAttributeType()
         self.I2Str = srcattrt.I2S_SRCTEMPLATEMAP
-        self.I2Key = srcattrt.I2E_SRCTEMPLATEMAP
+        self.I2Key = srcattrt.I2K_SRCTEMPLATEMAP
         self.Str2I = srcattrt.S2I_SRCTEMPLATEMAP
-        self.Key2I = srcattrt.E2I_SRCTEMPLATEMAP
+        self.Key2I = srcattrt.K2I_SRCTEMPLATEMAP
         self.Key2Path = {}
         # store (index, key, cat, cat_type, src_type)
         self.model = Gtk.TreeStore(int, str, str)
@@ -87,11 +87,18 @@ class SrcTemplateTreeView(Gtk.TreeView):
         prevstrval = ['', '']
         for alltext in alltexts:
             vals = alltext.split('-')
-            lastval = vals[-1]
             if len(vals) > 3:
                 vals = [vals[0], vals[1], ' - '.join(vals[2:])]
-                lastval = vals[2]
             vals = [x.strip() for x in vals]
+            #lastval is last non '' value
+            lastval = vals[-1]
+            if not lastval:
+                lastval = vals[-2]
+            if not lastval:
+                lastval = vals[-3]
+            if vals[0] == 'All':
+                print lastval
+                print vals
             truevals = ['','','']
             if len(vals) < 3 :
                 truevals[:len(vals)] = vals[:]
@@ -121,6 +128,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
                     #only new sublevel1 needed
                     parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
                     parentiter = parentiterlev1
+                    print 'here', row, alltext
                     iter = self.model.append(parentiter, row)
                 else:
                     #only a top level

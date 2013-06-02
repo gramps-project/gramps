@@ -45,6 +45,10 @@ from .grampstype import GrampsType
 #
 #-------------------------------------------------------------------------
 
+REF_TYPE_F = 1 # Full footnote citation to a source
+REF_TYPE_S = 2 # Short footnote citation to a source
+REF_TYPE_L = 3 # Listed reference of the source (no citation info)
+
 EMPTY = 0
 # template to GEDCOM field mapping for L reference fields
 GED_AUTHOR = 1
@@ -53,7 +57,7 @@ GED_PUBINF = 3
 # template to GEDCOM field mapping for Date in F reference fields
 GED_DATE   = 4
 # template to a shortening algorithm mapping for predefined algorithms
-SHORTERALG_LOC  = 1   # reduce a location to a shorter format
+SHORTERALG_LOC  = 1   # reduce a location to a shorter format (typically city level)
 SHORTERALG_YEAR = 2   # reduce a date to only the year part
 SHORTERALG_ETAL = 3   # reduce an author list to "first author et al."
 SHORTERALG_REVERT_TO_DOT = 4  # change a list of first, second, third to 
@@ -108,350 +112,517 @@ class SrcAttributeType(GrampsType):
 
     #following fields are generated with evidencefieldgenerator.py
     #the index starts at 100!
-    ABSTRACTOR_6GIVEN9 = 355
-    ABSTRACTOR_6SURNAME9 = 354
-    ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC = 258
-    ACT_NO = 387
-    ACT_TITLE = 380
-    ADDRESS_FOR_PRIVATE_USE = 175
-    AGENCY = 336
-    AGENCY_OR_CREATOR = 279
-    AGENCY_OR_REPOSITORY = 335
-    ANALYTICAL_COMMENTS_BY_RESEARCHER = 254
-    ARCHIVAL_DESCRIPTION = 146
-    ARCHIVAL_ID = 304
-    ARTICLE_PAGE6S9 = 395
-    ARTICLE_SUBTITLE = 392
-    ARTICLE_TITLE = 321
+    ABSTRACTOR_6GIVEN9 = 490
+    ABSTRACTOR_6SURNAME9 = 489
+    ABSTRACTOR_6SURNAME9_SHORT_VERSION = 492
+    ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC = 321
+    ACT_NO = 532
+    ACT_NO_SHORT_VERSION = 533
+    ACT_TITLE = 521
+    ACT_TITLE_SHORT_VERSION = 522
+    ADDRESS_FOR_PRIVATE_USE = 206
+    AGENCY = 461
+    AGENCY_OR_CREATOR = 359
+    AGENCY_OR_REPOSITORY = 455
+    AGENCY_OR_REPOSITORY_SHORT_VERSION = 460
+    ANALYTICAL_COMMENTS_BY_RESEARCHER = 314
+    ARCHIVAL_DESCRIPTION = 163
+    ARCHIVAL_ID = 403
+    ARTICLE_PAGE6S9 = 546
+    ARTICLE_SUBTITLE = 543
+    ARTICLE_TITLE = 433
+    ARTICLE_TITLE_SHORT_VERSION = 436
     ARTIFACT_TITLE = 102
-    ARTIFACT_TYPE = 173
-    AUTHOR = 154
-    AUTHOR_6COMPILER9_6GIVEN9 = 375
-    AUTHOR_6COMPILER9_6SURNAME9 = 374
-    AUTHOR_6GIVEN9 = 148
-    AUTHOR_6GRANTOR9 = 198
-    AUTHOR_6GRANTOR9_6GIVEN9 = 126
-    AUTHOR_6GRANTOR9_6SURNAME9 = 127
-    AUTHOR_6SURNAME9 = 147
-    AUTHOR_6TRANSLATOR9_6GIVEN9 = 362
-    AUTHOR_6TRANSLATOR9_6SURNAME9 = 361
-    BIBLE_ID = 136
-    BIBLE_ORIGINAL_OWNER_6GIVEN9 = 135
-    BIBLE_ORIGINAL_OWNER_6SURNAME9 = 134
-    BIBLE_TITLE = 138
-    BLOG_NAME = 406
-    BOOK = 303
-    BOOK_EDITOR = 349
-    BOOK_TITLE = 348
-    BROADCAST_DATE = 417
-    CASE = 378
-    CASE_FILE_NO = 309
-    CASE_LABEL = 300
-    CEMETERY = 257
-    CEMETERY_6AUTHOR9 = 252
-    CENSUS_ID = 264
-    CERTIFICATE_DATE = 312
-    CERTIFICATE_ID = 298
-    CERTIFICATE_NO = 311
-    CERTIFICATE_TYPE = 310
-    CHAPTER = 386
-    CHAPTER_PAGES = 350
-    CHAPTER_TITLE = 347
-    CHURCH_6AUTHOR9 = 292
-    CIVIL_DIVISION6S9 = 267
-    CLASS = 247
-    CLIP_ID = 418
-    CODE = 291
+    ARTIFACT_TITLE_SHORT_VERSION = 110
+    ARTIFACT_TYPE = 204
+    ARTIFACT_TYPE_SHORT_VERSION = 212
+    AUTHOR = 177
+    AUTHOR_6COMPILER9_6GIVEN9 = 516
+    AUTHOR_6COMPILER9_6SURNAME9 = 515
+    AUTHOR_6GIVEN9 = 168
+    AUTHOR_6GRANTOR9 = 239
+    AUTHOR_6GRANTOR9_6GIVEN9 = 135
+    AUTHOR_6GRANTOR9_6SURNAME9 = 136
+    AUTHOR_6GRANTOR9_6SURNAME9_SHORT_VERSION = 143
+    AUTHOR_6GRANTOR9_SHORT_VERSION = 240
+    AUTHOR_6SURNAME9 = 167
+    AUTHOR_6SURNAME9_SHORT_VERSION = 173
+    AUTHOR_6TRANSLATOR9_6GIVEN9 = 500
+    AUTHOR_6TRANSLATOR9_6SURNAME9 = 499
+    AUTHOR_6TRANSLATOR9_6SURNAME9_SHORT_VERSION = 501
+    AUTHOR_SHORT_VERSION = 181
+    BIBLE_ID = 149
+    BIBLE_ID_SHORT_VERSION = 158
+    BIBLE_ORIGINAL_OWNER_6GIVEN9 = 148
+    BIBLE_ORIGINAL_OWNER_6GIVEN9_SHORT_VERSION = 156
+    BIBLE_ORIGINAL_OWNER_6SURNAME9 = 147
+    BIBLE_ORIGINAL_OWNER_6SURNAME9_SHORT_VERSION = 157
+    BIBLE_TITLE = 151
+    BLOG_NAME = 559
+    BOOK = 402
+    BOOK_EDITOR = 482
+    BOOK_SHORT_VERSION = 405
+    BOOK_TITLE = 481
+    BOOK_TITLE_SHORT_VERSION = 542
+    BROADCAST_DATE = 573
+    CASE = 519
+    CASE_FILE_NO = 411
+    CASE_FILE_NO_SHORT_VERSION = 412
+    CASE_LABEL = 396
+    CASE_LABEL_SHORT_VERSION = 398
+    CEMETERY = 320
+    CEMETERY_6AUTHOR9 = 312
+    CEMETERY_6AUTHOR9_SHORT_VERSION = 315
+    CEMETERY_SHORT_VERSION = 324
+    CENSUS_ID = 332
+    CENSUS_ID_SHORT_VERSION = 338
+    CERTIFICATE_DATE = 415
+    CERTIFICATE_DATE_SHORT_VERSION = 419
+    CERTIFICATE_ID = 392
+    CERTIFICATE_ID_SHORT_VERSION = 394
+    CERTIFICATE_NO = 414
+    CERTIFICATE_NO_SHORT_VERSION = 418
+    CERTIFICATE_TYPE = 413
+    CERTIFICATE_TYPE_SHORT_VERSION = 417
+    CHAPTER = 528
+    CHAPTER_PAGES = 483
+    CHAPTER_TITLE = 480
+    CHAPTER_TITLE_SHORT_VERSION = 484
+    CHURCH_6AUTHOR9 = 380
+    CHURCH_6AUTHOR9_SHORT_VERSION = 381
+    CIVIL_DIVISION6S9 = 335
+    CIVIL_DIVISION6S9_SHORT_VERSION = 342
+    CLASS = 303
+    CLASS_SHORT_VERSION = 310
+    CLIP_ID = 576
+    CLIP_ID_SHORT_VERSION = 581
+    CODE = 377
+    CODE_SHORT_VERSION = 379
     COLLECTION = 105
-    COLLECTION_OWNER = 297
-    COLUMN6S9 = 403
-    COMPILER = 215
-    COMPILER_6GIVEN9 = 159
-    COMPILER_6SURNAME9 = 158
-    CONGRESS = 389
-    CONTACT_ADDRESS = 201
-    CONTACT_PRIVATE_ADDRESS = 200
-    COPY_ID = 266
-    COPY_TYPE = 285
-    CORPORATE_AFFILIATION = 240
-    CORPORATE_AUTHOR = 235
-    CORPORATE_LOCATION = 236
-    COUNTRY = 339
-    COURT_TERM = 301
+    COLLECTION_OWNER = 391
+    COLLECTION_SHORT_VERSION = 111
+    COLUMN6S9 = 555
+    COLUMN6S9_SHORT_VERSION = 556
+    COMPILER = 257
+    COMPILER_6GIVEN9 = 184
+    COMPILER_6GIVEN9_SHORT_VERSION = 211
+    COMPILER_6SURNAME9 = 183
+    COMPILER_6SURNAME9_SHORT_VERSION = 196
+    COMPILER_SHORT_VERSION = 375
+    CONGRESS = 536
+    CONGRESS_SHORT_VERSION = 538
+    CONTACT_ADDRESS = 243
+    CONTACT_PRIVATE_ADDRESS = 242
+    COPY_ID = 334
+    COPY_ID_SHORT_VERSION = 341
+    COPY_TYPE = 368
+    COPY_TYPE_SHORT_VERSION = 370
+    CORPORATE_AFFILIATION = 294
+    CORPORATE_AUTHOR = 287
+    CORPORATE_AUTHOR_SHORT_VERSION = 292
+    CORPORATE_LOCATION = 288
+    COUNTRY = 466
+    COURT_TERM = 399
+    COURT_TERM_SHORT_VERSION = 400
     CREATION_DATE = 104
-    CREATOR = 255
+    CREATION_DATE_SHORT_VERSION = 166
+    CREATOR = 317
     CREATOR_6GIVEN9 = 101
     CREATOR_6SURNAME9 = 100
-    CREATOR_OF_BLOG = 405
-    CREATOR_OF_DATABASE = 340
-    CREATOR_OF_DATABASE_6GIVEN9 = 320
-    CREATOR_OF_DATABASE_6SURNAME9 = 319
-    CREATOR_OR_OWNER = 344
-    CREDIT_LINE = 117
-    CURRENT_OR_LAST_KNOWN_OWNER = 174
-    DATABASE_TITLE = 230
-    DATA_COLLECTION_INFO = 259
-    DATE = 122
-    DATE_ACCESSED = 114
-    DATE_ENTRY = 294
-    DATE_OWNED = 227
-    DATE_RANGE = 137
-    DATE_READ_OR_PHOTOGRAPHED = 260
-    DATE_SPAN_READ = 410
-    DESCRIPTION_AND_EVALUATION_BY_RESEARCHER = 186
+    CREATOR_6SURNAME9_SHORT_VERSION = 330
+    CREATOR_OF_BLOG = 558
+    CREATOR_OF_DATABASE = 467
+    CREATOR_OF_DATABASE_6GIVEN9 = 432
+    CREATOR_OF_DATABASE_6SURNAME9 = 431
+    CREATOR_OF_DATABASE_6SURNAME9_SHORT_VERSION = 435
+    CREATOR_OF_DATABASE_SHORT_VERSION = 468
+    CREATOR_OR_OWNER = 475
+    CREATOR_OR_OWNER_SHORT_VERSION = 477
+    CREATOR_SHORT_VERSION = 326
+    CREDIT_LINE = 119
+    CURRENT_OR_LAST_KNOWN_OWNER = 205
+    DATABASE_TITLE = 278
+    DATABASE_TITLE_SHORT_VERSION = 280
+    DATA_COLLECTION_INFO = 322
+    DATE = 128
+    DATE_ACCESSED = 116
+    DATE_ENTRY = 384
+    DATE_ENTRY_SHORT_VERSION = 390
+    DATE_OWNED = 273
+    DATE_RANGE = 150
+    DATE_READ_OR_PHOTOGRAPHED = 323
+    DATE_SHORT_VERSION = 441
+    DATE_SPAN_READ = 563
+    DESCRIPTION_AND_EVALUATION_BY_RESEARCHER = 220
     DESCRIPTIVE_DETAIL_OR_EVALUATION = 109
-    DIGITAL_ID_NO = 341
-    DIGITAL_PATH = 231
-    DISTRICT = 283
-    DIVISION = 326
-    DOCUMENT = 314
-    DOCUMENT_ID = 327
-    DOCUMENT_TITLE = 115
-    DVD_TITLE = 367
-    EDITION = 382
-    EDITION_DATA = 359
-    EDITION_YEAR = 383
-    EDITOR_6GIVEN9 = 352
-    EDITOR_6SURNAME9 = 351
-    ENTRY = 315
-    ENUMERATION_DISTRICT = 276
-    FILE = 171
-    FILE_DATE = 316
-    FILE_ID_6GIVEN9 = 332
-    FILE_ID_6SURNAME9 = 331
-    FILE_LABEL = 262
-    FILE_LOCATION = 222
-    FILE_NAME = 132
-    FILE_NO = 131
-    FILE_TITLE = 234
-    FILE_TYPE = 333
-    FILE_UNIT = 324
-    FILE_UNIT_NO = 325
-    FILE_YEAR = 334
-    FILM_ID = 170
-    FILM_LOCATION = 167
-    FILM_PUBLICATION_SERIES = 371
-    FILM_PUBLISHER = 373
-    FILM_REPOSITORY = 166
-    FILM_REPOSITORY_LOCATION = 295
-    FILM_TITLE = 281
-    FILM_TYPE = 164
-    FOLDER_LABEL = 157
-    FORMAT = 274
-    FRAME_NOS = 308
-    GEOGRAPHIC_DIVISION = 275
-    HOUSEHOLD = 278
-    HOUSEHOLD_ID = 268
-    INSTITUTION = 248
-    INSTITUTIONAL_AUTHOR = 243
-    INTERVIEWEE_ADDRESS_FOR_PRIVATE_USE = 195
-    INTERVIEWER = 196
-    ISSUES_EXAMINED = 402
-    ISSUE_DATE = 394
-    ITEM = 224
-    ITEM_DATE = 156
-    ITEM_FORMAT = 194
-    ITEM_ID = 178
+    DIGITAL_ID_NO = 469
+    DIGITAL_PATH = 279
+    DISTRICT = 364
+    DISTRICT_SHORT_VERSION = 366
+    DIVISION = 443
+    DOCUMENT = 421
+    DOCUMENT_ID = 444
+    DOCUMENT_ID_SHORT_VERSION = 445
+    DOCUMENT_SHORT_VERSION = 422
+    DOCUMENT_TITLE = 117
+    DOCUMENT_TITLE_SHORT_VERSION = 121
+    DVD_TITLE = 508
+    EDITION = 524
+    EDITION_DATA = 495
+    EDITION_YEAR = 525
+    EDITOR_6GIVEN9 = 486
+    EDITOR_6SURNAME9 = 485
+    EDITOR_6SURNAME9_SHORT_VERSION = 488
+    ENTRY = 423
+    ENTRY_SHORT_VERSION = 424
+    ENUMERATION_DISTRICT = 354
+    ENUMERATION_DISTRICT_SHORT_VERSION = 357
+    FILE = 200
+    FILE_DATE = 425
+    FILE_DATE_SHORT_VERSION = 427
+    FILE_ID_6GIVEN9 = 452
+    FILE_ID_6GIVEN9_SHORT_VERSION = 456
+    FILE_ID_6SURNAME9 = 451
+    FILE_ID_6SURNAME9_SHORT_VERSION = 457
+    FILE_LABEL = 327
+    FILE_LABEL_SHORT_VERSION = 328
+    FILE_LOCATION = 265
+    FILE_NAME = 141
+    FILE_NAME_SHORT_VERSION = 426
+    FILE_NO = 140
+    FILE_NO_SHORT_VERSION = 397
+    FILE_SHORT_VERSION = 203
+    FILE_TITLE = 285
+    FILE_TITLE_SHORT_VERSION = 286
+    FILE_TYPE = 453
+    FILE_TYPE_SHORT_VERSION = 458
+    FILE_UNIT = 438
+    FILE_UNIT_NO = 439
+    FILE_UNIT_NO_SHORT_VERSION = 442
+    FILE_UNIT_SHORT_VERSION = 440
+    FILE_YEAR = 454
+    FILE_YEAR_SHORT_VERSION = 459
+    FILM_ID = 195
+    FILM_ID_SHORT_VERSION = 474
+    FILM_LOCATION = 192
+    FILM_PUBLICATION_SERIES = 512
+    FILM_PUBLISHER = 514
+    FILM_REPOSITORY = 191
+    FILM_REPOSITORY_LOCATION = 385
+    FILM_TITLE = 362
+    FILM_TITLE_SHORT_VERSION = 388
+    FILM_TYPE = 189
+    FOLDER_LABEL = 180
+    FOLDER_LABEL_SHORT_VERSION = 329
+    FORMAT = 352
+    FRAME_NOS = 410
+    GEOGRAPHIC_DIVISION = 353
+    HOUSEHOLD = 356
+    HOUSEHOLD_ID = 336
+    HOUSEHOLD_ID_SHORT_VERSION = 343
+    INSTITUTION = 304
+    INSTITUTIONAL_AUTHOR = 297
+    INSTITUTIONAL_AUTHOR_SHORT_VERSION = 299
+    INSTITUTION_SHORT_VERSION = 311
+    INTERVIEWEE_ADDRESS_FOR_PRIVATE_USE = 233
+    INTERVIEWER = 234
+    ISSUES_EXAMINED = 554
+    ISSUE_DATE = 545
+    ITEM = 268
+    ITEM_DATE = 179
+    ITEM_FORMAT = 232
+    ITEM_ID = 209
+    ITEM_ID_SHORT_VERSION = 210
     ITEM_NO = 108
-    ITEM_OF_INTEREST = 169
-    ITEM_OR_PIECE = 120
-    ITEM_OR_PIECE_NUMBER = 121
-    ITEM_TITLE = 155
+    ITEM_OF_INTEREST = 194
+    ITEM_OF_INTEREST_SHORT_VERSION = 199
+    ITEM_OR_PIECE = 125
+    ITEM_OR_PIECE_NUMBER = 126
+    ITEM_OR_PIECE_NUMBER_SHORT_VERSION = 129
+    ITEM_SHORT_VERSION = 269
+    ITEM_TITLE = 178
+    ITEM_TITLE_SHORT_VERSION = 182
     ITEM_TYPE = 103
-    JOURNAL_TITLE = 393
-    JURISDICTION = 263
-    JURISDICTION_6STATE9 = 302
-    JURISDICTION_OR_AGENCY = 317
-    LIBRARY_DIVISION = 328
-    LOCATION = 192
-    LOCATION_OF_INSTITUTION = 249
-    LOCATION_ON_PAGE = 396
-    MAGAZINE = 397
-    MAIN_TITLE = 353
-    MANUSCRIPT_NO = 142
-    MANUSCRIPT_SERIES_TITLE = 160
-    MANUSCRIPT_TITLE = 153
-    MEMBERSHIP_NUMBER = 233
-    MESSAGE_TITLE = 411
-    MICROFILM_ID = 229
-    NAME = 337
-    NAME_OF_ACT = 384
-    NAME_OF_CODE = 381
-    NAME_OF_FORUM = 408
-    NAME_OF_INTERVIEWER = 193
-    NETWORK_OR_PRODUCER = 421
-    NEWSLETTER = 400
-    NEWSPAPER = 401
-    NEW_FORMAT = 358
-    NO_OF_ROLLS = 165
-    NO_OF_VOLS = 161
-    ORGANIZATION = 232
-    ORIGINAL_PUBLICATION_DATA = 369
-    ORIGINAL_PUBLICATION_DATE = 398
-    ORIGINAL_PUBLICATION_YEAR = 357
-    OWNER = 181
-    OWNERS_ADDRESS = 217
-    OWNERS_ADDRESS_FOR_PRIVATE_USE = 197
-    OWNERS_LOCATION = 176
-    OWNERS_PRIVATE_ADDRESS = 216
-    OWNER_AND_CONTACT_INFORMATION = 214
-    OWNER_LOCATION = 163
-    OWNER_OR_REPOSITORY = 286
-    OWNER_OR_SUPPLIERS_LOCATION = 185
-    OWNER_REPOSITORY = 162
-    PAGE6S9 = 116
-    PAGE_ID = 277
-    PART = 379
-    PERSON6S9_ID = 313
-    PERSON_INTERVIEWED_6GIVEN9 = 191
-    PERSON_INTERVIEWED_6SURNAME9 = 190
-    PERSON_OF_INTEREST = 269
-    PHOTOGRAPH_NO = 330
-    PHOTOGRAPH_TITLE = 329
-    PLACE_CREATED = 180
-    PLACE_OF_FILM_PUBLICATION = 372
-    PLACE_OF_PUBLICATION = 289
-    PODCAST_HOST = 415
-    PODCAST_TITLE = 416
-    POSITION_ON_SOURCE = 370
-    POSTING_DATE = 407
-    PRESENTER_6GIVEN9 = 364
-    PRESENTER_6SURNAME9 = 363
-    PRESENTER_OR_GUEST_6GIVEN9 = 413
-    PRESENTER_OR_GUEST_6SURNAME9 = 412
-    PRIVATE_RESEARCHER_ADDRESS = 206
-    PROFESSIONAL_CREDENTIALS = 149
-    PROVENANCE_AND_EVALUATION_OF_TRADITION = 220
-    PUBLICATION_FORMAT = 305
-    PUBLICATION_NO = 342
-    PUBLICATION_PLACE = 139
-    PUBLICATION_TITLE = 273
-    PUBLICATION_YEAR = 377
-    PUBLISHED = 282
-    PUBLISHER = 140
-    PUB_INFO = 423
-    RECIPIENT = 151
-    RECIPIENTS_ADDRESS = 213
-    RECIPIENTS_LOCATION = 237
-    RECIPIENTS_PRIVATE_ADDRESS = 212
-    RECIPIENT_6GIVEN9 = 128
-    RECIPIENT_6SURNAME9 = 129
-    RECORD_BOOK = 256
-    RECORD_BOOK_TITLE = 221
-    RECORD_DATE6S9 = 119
-    RECORD_FORMAT = 288
-    RECORD_GROUP = 318
-    RECORD_GROUP_AND_OR_OR_SUBGROUP = 223
-    RECORD_GROUP_NAME = 271
-    RECORD_GROUP_NO = 272
-    RECORD_GROUP_TITLE = 323
-    RECORD_HOLDER = 250
-    RECORD_HOLDER_PRIVATE_ADDRESS = 251
-    RECORD_ID = 130
-    RECORD_OR_VOLUME_TITLE = 244
-    RECORD_OWNER = 226
-    RECORD_REPOSITORY = 307
-    RECORD_SERIES = 293
-    RECORD_TITLE = 118
-    RECORD_TYPE = 179
-    REPORT_DATE = 152
-    REPORT_TITLE = 150
+    ITEM_TYPE_SHORT_VERSION = 238
+    JOURNAL_TITLE = 544
+    JURISDICTION = 331
+    JURISDICTION_6STATE9 = 401
+    JURISDICTION_6STATE9_SHORT_VERSION = 404
+    JURISDICTION_OR_AGENCY = 428
+    JURISDICTION_OR_AGENCY_SHORT_VERSION = 430
+    JURISDICTION_SHORT_VERSION = 339
+    LIBRARY_DIVISION = 446
+    LOCATION = 230
+    LOCATION_OF_INSTITUTION = 305
+    LOCATION_ON_PAGE = 547
+    LOCATION_ON_PAGE_SHORT_VERSION = 548
+    LOCATION_SHORT_VERSION = 386
+    MAGAZINE = 549
+    MAIN_TITLE = 487
+    MAIN_TITLE_SHORT_VERSION = 497
+    MANUSCRIPT_NO = 155
+    MANUSCRIPT_SERIES_TITLE = 185
+    MANUSCRIPT_SERIES_TITLE_SHORT_VERSION = 197
+    MANUSCRIPT_TITLE = 175
+    MANUSCRIPT_TITLE_SHORT_VERSION = 176
+    MEMBERSHIP_NUMBER = 282
+    MEMBERSHIP_NUMBER_SHORT_VERSION = 283
+    MESSAGE_TITLE = 564
+    MESSAGE_TITLE_SHORT_VERSION = 565
+    MICROFILM_ID = 276
+    MICROFILM_ID_SHORT_VERSION = 472
+    NAME = 462
+    NAME_OF_ACT = 526
+    NAME_OF_ACT_SHORT_VERSION = 529
+    NAME_OF_CODE = 523
+    NAME_OF_CODE_SHORT_VERSION = 531
+    NAME_OF_FORUM = 561
+    NAME_OF_FORUM_SHORT_VERSION = 566
+    NAME_OF_INTERVIEWER = 231
+    NAME_SHORT_VERSION = 464
+    NETWORK_OR_PRODUCER = 579
+    NEWSLETTER = 552
+    NEWSPAPER = 553
+    NEW_FORMAT = 494
+    NO_OF_ROLLS = 190
+    NO_OF_VOLS = 186
+    ORGANIZATION = 281
+    ORGANIZATION_SHORT_VERSION = 284
+    ORIGINAL_PUBLICATION_DATA = 510
+    ORIGINAL_PUBLICATION_DATE = 550
+    ORIGINAL_PUBLICATION_YEAR = 493
+    OWNER = 215
+    OWNERS_ADDRESS = 259
+    OWNERS_ADDRESS_FOR_PRIVATE_USE = 235
+    OWNERS_LOCATION = 207
+    OWNERS_PRIVATE_ADDRESS = 258
+    OWNER_AND_CONTACT_INFORMATION = 256
+    OWNER_LOCATION = 188
+    OWNER_OR_REPOSITORY = 369
+    OWNER_OR_SUPPLIERS_LOCATION = 219
+    OWNER_REPOSITORY = 187
+    PAGE6S9 = 118
+    PAGE6S9_SHORT_VERSION = 122
+    PAGE_ID = 355
+    PAGE_ID_SHORT_VERSION = 358
+    PART = 520
+    PERSON6S9_ID = 416
+    PERSON6S9_ID_SHORT_VERSION = 420
+    PERSON_INTERVIEWED_6GIVEN9 = 229
+    PERSON_INTERVIEWED_6GIVEN9_SHORT_VERSION = 236
+    PERSON_INTERVIEWED_6SURNAME9 = 228
+    PERSON_INTERVIEWED_6SURNAME9_SHORT_VERSION = 237
+    PERSON_OF_INTEREST = 337
+    PERSON_OF_INTEREST_SHORT_VERSION = 344
+    PHOTOGRAPH_NO = 448
+    PHOTOGRAPH_NO_SHORT_VERSION = 450
+    PHOTOGRAPH_TITLE = 447
+    PHOTOGRAPH_TITLE_SHORT_VERSION = 449
+    PLACE_CREATED = 214
+    PLACE_OF_FILM_PUBLICATION = 513
+    PLACE_OF_PUBLICATION = 373
+    PODCAST_HOST = 571
+    PODCAST_TITLE = 572
+    POSITION_ON_SOURCE = 511
+    POSTING_DATE = 560
+    POSTING_DATE_SHORT_VERSION = 567
+    PRESENTER_6GIVEN9 = 503
+    PRESENTER_6SURNAME9 = 502
+    PRESENTER_6SURNAME9_SHORT_VERSION = 505
+    PRESENTER_OR_GUEST_6GIVEN9 = 569
+    PRESENTER_OR_GUEST_6SURNAME9 = 568
+    PRESENTER_OR_GUEST_6SURNAME9_SHORT_VERSION = 574
+    PRIVATE_RESEARCHER_ADDRESS = 248
+    PROFESSIONAL_CREDENTIALS = 169
+    PROVENANCE_AND_EVALUATION_OF_TRADITION = 262
+    PUBLICATION_FORMAT = 406
+    PUBLICATION_NO = 470
+    PUBLICATION_PLACE = 152
+    PUBLICATION_TITLE = 351
+    PUBLICATION_TITLE_SHORT_VERSION = 473
+    PUBLICATION_YEAR = 518
+    PUBLISHED = 363
+    PUBLISHER = 153
+    PUB_INFO = 583
+    RECIPIENT = 171
+    RECIPIENTS_ADDRESS = 255
+    RECIPIENTS_LOCATION = 289
+    RECIPIENTS_PRIVATE_ADDRESS = 254
+    RECIPIENT_6GIVEN9 = 137
+    RECIPIENT_6SURNAME9 = 138
+    RECIPIENT_6SURNAME9_SHORT_VERSION = 144
+    RECIPIENT_SHORT_VERSION = 226
+    RECORD_BOOK = 318
+    RECORD_BOOK_SHORT_VERSION = 319
+    RECORD_BOOK_TITLE = 264
+    RECORD_BOOK_TITLE_SHORT_VERSION = 266
+    RECORD_DATE6S9 = 124
+    RECORD_DATE6S9_SHORT_VERSION = 227
+    RECORD_FORMAT = 372
+    RECORD_GROUP = 429
+    RECORD_GROUP_AND_OR_OR_SUBGROUP = 267
+    RECORD_GROUP_NAME = 346
+    RECORD_GROUP_NO = 347
+    RECORD_GROUP_NO_SHORT_VERSION = 349
+    RECORD_GROUP_TITLE = 437
+    RECORD_HOLDER = 306
+    RECORD_HOLDER_PRIVATE_ADDRESS = 307
+    RECORD_ID = 139
+    RECORD_ID_SHORT_VERSION = 145
+    RECORD_OR_VOLUME_TITLE = 298
+    RECORD_OR_VOLUME_TITLE_SHORT_VERSION = 300
+    RECORD_OWNER = 272
+    RECORD_REPOSITORY = 409
+    RECORD_SERIES = 382
+    RECORD_SERIES_SHORT_VERSION = 383
+    RECORD_TITLE = 123
+    RECORD_TITLE_SHORT_VERSION = 127
+    RECORD_TYPE = 213
+    RECORD_TYPE_SHORT_VERSION = 316
+    REPORT_DATE = 172
+    REPORT_DATE_SHORT_VERSION = 293
+    REPORT_TITLE = 170
+    REPORT_TITLE_SHORT_VERSION = 174
     REPOSITORY = 106
     REPOSITORY_LOCATION = 107
-    RESEARCHER = 205
-    RESEARCHERS_ADDRESS = 207
-    RESEARCHERS_ID = 199
-    RESEARCHERS_PRIVATE_CONTACT_INFORMATION = 211
-    RESEARCH_PROJECT = 204
-    RESEARCH_SERIES = 210
-    ROLL = 296
-    ROLL_NO = 172
-    SCHEDULE = 265
-    SCHEDULE_TITLE = 280
-    SECTION = 168
-    SECTION_LOT_OR_ROW = 261
-    SEGMENT = 420
-    SERIES = 124
-    SERIES_ID = 133
-    SERIES_NO = 123
-    SESSION = 390
-    SHEET_NO = 284
-    SITE_OWNER_OR_CREATOR = 322
-    SOCIAL_SECURITY_NO = 338
-    SOURCES_RELATIONSHIP_TO_SUBJECT_ETC = 219
-    SOURCE_OF_INFORMATION = 218
-    SPECIFIC_DATA = 143
-    STATE = 290
-    STUDENT_6GIVEN9 = 246
-    STUDENT_6SURNAME9 = 245
-    SUBGROUP = 270
-    SUBJECT = 203
-    SUBJECT_6GIVEN9 = 145
-    SUBJECT_6SURNAME9 = 144
-    SUBJECT_LINE = 209
-    SUBJECT_OR_NATURE_OF_DATA_PROVIDED = 253
-    SUBJECT_OR_TITLE = 414
-    SUBSERIES = 228
-    SUBTITLE = 346
-    SUPPLIER = 182
-    SUPPLIERS_LOCATION = 183
-    TERM = 306
-    TIMESTAMP = 422
-    TIMESTAMP_IN_AUDIO = 360
-    TIMESTAMP_IN_VIDEO = 365
-    TITLE = 287
-    TITLE_NO = 385
-    TITLE_OF_DATABASE = 345
-    TITLE_OF_PAMPHLET = 391
-    TITLE_OF_SERIES = 388
-    TITLE_OF_SHOW = 419
-    TITLE_OF_WEBSITE = 366
-    TOTAL_ROLLS = 343
-    TOTAL_VOLUMES = 376
-    TRANSLATION_OF_TITLE = 368
-    TYPE_OF_FORUM = 409
-    URL_6DIGITAL_LOCATION9 = 112
-    VOLUME = 125
-    VOLUME_DATA = 356
-    WEBSITE = 399
-    WEBSITE_CREATOR_OR_OWNER = 110
-    WEBSITE_TITLE = 111
-    WEBSITE_URL_6DIGITAL_LOCATION9 = 404
-    WHEN_HELD = 239
-    WHEN_ISSUED = 299
-    WHERE_HELD = 238
-    WHERE_HELD_PRIVATE_ADDRESS = 241
-    WRITER = 225
-    WRITERS_AFFILIATION = 202
-    WRITERS_CONTACT_INFORMATION = 208
-    WRITERS_LOCATION = 189
-    WRITER_6GIVEN9 = 188
-    WRITER_6SURNAME9 = 187
-    YEAR6S9 = 113
-    YEAR_ACCESSED = 242
-    YEAR_OWNED = 177
-    YEAR_PUBLISHED = 141
-    YEAR_SUPPLIED = 184
+    REPOSITORY_SHORT_VERSION = 350
+    RESEARCHER = 247
+    RESEARCHERS_ADDRESS = 249
+    RESEARCHERS_ID = 241
+    RESEARCHERS_PRIVATE_CONTACT_INFORMATION = 253
+    RESEARCH_PROJECT = 246
+    RESEARCH_SERIES = 252
+    ROLL = 387
+    ROLL_NO = 201
+    ROLL_SHORT_VERSION = 389
+    SCHEDULE = 333
+    SCHEDULE_SHORT_VERSION = 340
+    SCHEDULE_TITLE = 360
+    SCHEDULE_TITLE_SHORT_VERSION = 361
+    SECTION = 193
+    SECTION_LOT_OR_ROW = 325
+    SECTION_SHORT_VERSION = 198
+    SEGMENT = 578
+    SERIES = 131
+    SERIES_ID = 142
+    SERIES_ID_SHORT_VERSION = 146
+    SERIES_NO = 130
+    SERIES_NO_SHORT_VERSION = 133
+    SERIES_SHORT_VERSION = 270
+    SESSION = 537
+    SESSION_SHORT_VERSION = 539
+    SHEET_NO = 365
+    SHEET_NO_SHORT_VERSION = 367
+    SITE_OWNER_OR_CREATOR = 434
+    SOCIAL_SECURITY_NO = 463
+    SOCIAL_SECURITY_NO_SHORT_VERSION = 465
+    SOURCES_RELATIONSHIP_TO_SUBJECT_ETC = 261
+    SOURCE_OF_INFORMATION = 260
+    SPECIFIC_DATA = 159
+    SPECIFIC_DATA_SHORT_VERSION = 160
+    STATE = 376
+    STATE_SHORT_VERSION = 378
+    STUDENT_6GIVEN9 = 302
+    STUDENT_6GIVEN9_SHORT_VERSION = 308
+    STUDENT_6SURNAME9 = 301
+    STUDENT_6SURNAME9_SHORT_VERSION = 309
+    SUBGROUP = 345
+    SUBGROUP_SHORT_VERSION = 348
+    SUBJECT = 245
+    SUBJECT_6GIVEN9 = 162
+    SUBJECT_6GIVEN9_SHORT_VERSION = 164
+    SUBJECT_6SURNAME9 = 161
+    SUBJECT_6SURNAME9_SHORT_VERSION = 165
+    SUBJECT_LINE = 251
+    SUBJECT_OR_NATURE_OF_DATA_PROVIDED = 313
+    SUBJECT_OR_TITLE = 570
+    SUBJECT_OR_TITLE_SHORT_VERSION = 575
+    SUBJECT_SHORT_VERSION = 263
+    SUBSERIES = 275
+    SUBSERIES_SHORT_VERSION = 277
+    SUBTITLE = 479
+    SUPPLIER = 216
+    SUPPLIERS_LOCATION = 217
+    TERM = 407
+    TERM_SHORT_VERSION = 408
+    TIMESTAMP = 580
+    TIMESTAMP_IN_AUDIO = 496
+    TIMESTAMP_IN_AUDIO_SHORT_VERSION = 498
+    TIMESTAMP_IN_VIDEO = 504
+    TIMESTAMP_IN_VIDEO_SHORT_VERSION = 506
+    TIMESTAMP_SHORT_VERSION = 582
+    TITLE = 371
+    TITLE_NO = 527
+    TITLE_NO_SHORT_VERSION = 530
+    TITLE_OF_DATABASE = 476
+    TITLE_OF_DATABASE_SHORT_VERSION = 478
+    TITLE_OF_PAMPHLET = 540
+    TITLE_OF_PAMPHLET_SHORT_VERSION = 541
+    TITLE_OF_SERIES = 534
+    TITLE_OF_SERIES_SHORT_VERSION = 535
+    TITLE_OF_SHOW = 577
+    TITLE_OF_WEBSITE = 507
+    TITLE_SHORT_VERSION = 374
+    TOTAL_ROLLS = 471
+    TOTAL_VOLUMES = 517
+    TRANSLATION_OF_TITLE = 509
+    TYPE_OF_FORUM = 562
+    URL_6DIGITAL_LOCATION9 = 114
+    VOLUME = 132
+    VOLUME_DATA = 491
+    VOLUME_SHORT_VERSION = 134
+    WEBSITE = 551
+    WEBSITE_CREATOR_OR_OWNER = 112
+    WEBSITE_TITLE = 113
+    WEBSITE_TITLE_SHORT_VERSION = 120
+    WEBSITE_URL_6DIGITAL_LOCATION9 = 557
+    WHEN_HELD = 291
+    WHEN_ISSUED = 393
+    WHEN_ISSUED_SHORT_VERSION = 395
+    WHERE_HELD = 290
+    WHERE_HELD_PRIVATE_ADDRESS = 295
+    WRITER = 271
+    WRITERS_AFFILIATION = 244
+    WRITERS_CONTACT_INFORMATION = 250
+    WRITERS_LOCATION = 223
+    WRITER_6GIVEN9 = 222
+    WRITER_6GIVEN9_SHORT_VERSION = 224
+    WRITER_6SURNAME9 = 221
+    WRITER_6SURNAME9_SHORT_VERSION = 225
+    WRITER_SHORT_VERSION = 274
+    YEAR6S9 = 115
+    YEAR6S9_SHORT_VERSION = 202
+    YEAR_ACCESSED = 296
+    YEAR_OWNED = 208
+    YEAR_PUBLISHED = 154
+    YEAR_SUPPLIED = 218
 
 
     _DATAMAP += [
         (ABSTRACTOR_6GIVEN9, _("Abstractor (given)"), "Abstractor (given)"),
         (ABSTRACTOR_6SURNAME9, _("Abstractor (surname)"), "Abstractor (surname)"),
+        (ABSTRACTOR_6SURNAME9_SHORT_VERSION, _("Abstractor (surname) (Short)"), "Abstractor (surname) (Short)"),
         (ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC, _("Access data, distance, direction, gps reading, etc."), "Access data, distance, direction, gps reading, etc."),
         (ACT_NO, _("Act no."), "Act no."),
+        (ACT_NO_SHORT_VERSION, _("Act no. (Short)"), "Act no. (Short)"),
         (ACT_TITLE, _("Act title"), "Act title"),
+        (ACT_TITLE_SHORT_VERSION, _("Act title (Short)"), "Act title (Short)"),
         (ADDRESS_FOR_PRIVATE_USE, _("Address for private use"), "Address for private use"),
         (AGENCY, _("Agency"), "Agency"),
         (AGENCY_OR_CREATOR, _("Agency/creator"), "Agency/creator"),
         (AGENCY_OR_REPOSITORY, _("Agency/repository"), "Agency/repository"),
+        (AGENCY_OR_REPOSITORY_SHORT_VERSION, _("Agency/repository (Short)"), "Agency/repository (Short)"),
         (ANALYTICAL_COMMENTS_BY_RESEARCHER, _("Analytical comments by researcher"), "Analytical comments by researcher"),
         (ARCHIVAL_DESCRIPTION, _("Archival description"), "Archival description"),
         (ARCHIVAL_ID, _("Archival id"), "Archival id"),
         (ARTICLE_PAGE6S9, _("Article page(s)"), "Article page(s)"),
         (ARTICLE_SUBTITLE, _("Article subtitle"), "Article subtitle"),
         (ARTICLE_TITLE, _("Article title"), "Article title"),
+        (ARTICLE_TITLE_SHORT_VERSION, _("Article title (Short)"), "Article title (Short)"),
         (ARTIFACT_TITLE, _("Artifact title"), "Artifact title"),
+        (ARTIFACT_TITLE_SHORT_VERSION, _("Artifact title (Short)"), "Artifact title (Short)"),
         (ARTIFACT_TYPE, _("Artifact type"), "Artifact type"),
+        (ARTIFACT_TYPE_SHORT_VERSION, _("Artifact type (Short)"), "Artifact type (Short)"),
         (AUTHOR, _("Author"), "Author"),
         (AUTHOR_6COMPILER9_6GIVEN9, _("Author (compiler) (given)"), "Author (compiler) (given)"),
         (AUTHOR_6COMPILER9_6SURNAME9, _("Author (compiler) (surname)"), "Author (compiler) (surname)"),
@@ -459,118 +630,187 @@ class SrcAttributeType(GrampsType):
         (AUTHOR_6GRANTOR9, _("Author (grantor)"), "Author (grantor)"),
         (AUTHOR_6GRANTOR9_6GIVEN9, _("Author (grantor) (given)"), "Author (grantor) (given)"),
         (AUTHOR_6GRANTOR9_6SURNAME9, _("Author (grantor) (surname)"), "Author (grantor) (surname)"),
+        (AUTHOR_6GRANTOR9_6SURNAME9_SHORT_VERSION, _("Author (grantor) (surname) (Short)"), "Author (grantor) (surname) (Short)"),
+        (AUTHOR_6GRANTOR9_SHORT_VERSION, _("Author (grantor) (Short)"), "Author (grantor) (Short)"),
         (AUTHOR_6SURNAME9, _("Author (surname)"), "Author (surname)"),
+        (AUTHOR_6SURNAME9_SHORT_VERSION, _("Author (surname) (Short)"), "Author (surname) (Short)"),
         (AUTHOR_6TRANSLATOR9_6GIVEN9, _("Author (translator) (given)"), "Author (translator) (given)"),
         (AUTHOR_6TRANSLATOR9_6SURNAME9, _("Author (translator) (surname)"), "Author (translator) (surname)"),
+        (AUTHOR_6TRANSLATOR9_6SURNAME9_SHORT_VERSION, _("Author (translator) (surname) (Short)"), "Author (translator) (surname) (Short)"),
+        (AUTHOR_SHORT_VERSION, _("Author (Short)"), "Author (Short)"),
         (BIBLE_ID, _("Bible id"), "Bible id"),
+        (BIBLE_ID_SHORT_VERSION, _("Bible id (Short)"), "Bible id (Short)"),
         (BIBLE_ORIGINAL_OWNER_6GIVEN9, _("Bible original owner (given)"), "Bible original owner (given)"),
+        (BIBLE_ORIGINAL_OWNER_6GIVEN9_SHORT_VERSION, _("Bible original owner (given) (Short)"), "Bible original owner (given) (Short)"),
         (BIBLE_ORIGINAL_OWNER_6SURNAME9, _("Bible original owner (surname)"), "Bible original owner (surname)"),
+        (BIBLE_ORIGINAL_OWNER_6SURNAME9_SHORT_VERSION, _("Bible original owner (surname) (Short)"), "Bible original owner (surname) (Short)"),
         (BIBLE_TITLE, _("Bible title"), "Bible title"),
         (BLOG_NAME, _("Blog name"), "Blog name"),
         (BOOK, _("Book"), "Book"),
         (BOOK_EDITOR, _("Book editor"), "Book editor"),
+        (BOOK_SHORT_VERSION, _("Book (Short)"), "Book (Short)"),
         (BOOK_TITLE, _("Book title"), "Book title"),
+        (BOOK_TITLE_SHORT_VERSION, _("Book title (Short)"), "Book title (Short)"),
         (BROADCAST_DATE, _("Broadcast date"), "Broadcast date"),
         (CASE, _("Case"), "Case"),
         (CASE_FILE_NO, _("Case file no."), "Case file no."),
+        (CASE_FILE_NO_SHORT_VERSION, _("Case file no. (Short)"), "Case file no. (Short)"),
         (CASE_LABEL, _("Case label"), "Case label"),
+        (CASE_LABEL_SHORT_VERSION, _("Case label (Short)"), "Case label (Short)"),
         (CEMETERY, _("Cemetery"), "Cemetery"),
         (CEMETERY_6AUTHOR9, _("Cemetery (author)"), "Cemetery (author)"),
+        (CEMETERY_6AUTHOR9_SHORT_VERSION, _("Cemetery (author) (Short)"), "Cemetery (author) (Short)"),
+        (CEMETERY_SHORT_VERSION, _("Cemetery (Short)"), "Cemetery (Short)"),
         (CENSUS_ID, _("Census id"), "Census id"),
+        (CENSUS_ID_SHORT_VERSION, _("Census id (Short)"), "Census id (Short)"),
         (CERTIFICATE_DATE, _("Certificate date"), "Certificate date"),
+        (CERTIFICATE_DATE_SHORT_VERSION, _("Certificate date (Short)"), "Certificate date (Short)"),
         (CERTIFICATE_ID, _("Certificate id"), "Certificate id"),
+        (CERTIFICATE_ID_SHORT_VERSION, _("Certificate id (Short)"), "Certificate id (Short)"),
         (CERTIFICATE_NO, _("Certificate no."), "Certificate no."),
+        (CERTIFICATE_NO_SHORT_VERSION, _("Certificate no. (Short)"), "Certificate no. (Short)"),
         (CERTIFICATE_TYPE, _("Certificate type"), "Certificate type"),
+        (CERTIFICATE_TYPE_SHORT_VERSION, _("Certificate type (Short)"), "Certificate type (Short)"),
         (CHAPTER, _("Chapter"), "Chapter"),
         (CHAPTER_PAGES, _("Chapter pages"), "Chapter pages"),
         (CHAPTER_TITLE, _("Chapter title"), "Chapter title"),
+        (CHAPTER_TITLE_SHORT_VERSION, _("Chapter title (Short)"), "Chapter title (Short)"),
         (CHURCH_6AUTHOR9, _("Church (author)"), "Church (author)"),
+        (CHURCH_6AUTHOR9_SHORT_VERSION, _("Church (author) (Short)"), "Church (author) (Short)"),
         (CIVIL_DIVISION6S9, _("Civil division(s)"), "Civil division(s)"),
+        (CIVIL_DIVISION6S9_SHORT_VERSION, _("Civil division(s) (Short)"), "Civil division(s) (Short)"),
         (CLASS, _("Class"), "Class"),
+        (CLASS_SHORT_VERSION, _("Class (Short)"), "Class (Short)"),
         (CLIP_ID, _("Clip id"), "Clip id"),
+        (CLIP_ID_SHORT_VERSION, _("Clip id (Short)"), "Clip id (Short)"),
         (CODE, _("Code"), "Code"),
+        (CODE_SHORT_VERSION, _("Code (Short)"), "Code (Short)"),
         (COLLECTION, _("Collection"), "Collection"),
         (COLLECTION_OWNER, _("Collection owner"), "Collection owner"),
+        (COLLECTION_SHORT_VERSION, _("Collection (Short)"), "Collection (Short)"),
         (COLUMN6S9, _("Column(s)"), "Column(s)"),
+        (COLUMN6S9_SHORT_VERSION, _("Column(s) (Short)"), "Column(s) (Short)"),
         (COMPILER, _("Compiler"), "Compiler"),
         (COMPILER_6GIVEN9, _("Compiler (given)"), "Compiler (given)"),
+        (COMPILER_6GIVEN9_SHORT_VERSION, _("Compiler (given) (Short)"), "Compiler (given) (Short)"),
         (COMPILER_6SURNAME9, _("Compiler (surname)"), "Compiler (surname)"),
+        (COMPILER_6SURNAME9_SHORT_VERSION, _("Compiler (surname) (Short)"), "Compiler (surname) (Short)"),
+        (COMPILER_SHORT_VERSION, _("Compiler (Short)"), "Compiler (Short)"),
         (CONGRESS, _("Congress"), "Congress"),
+        (CONGRESS_SHORT_VERSION, _("Congress (Short)"), "Congress (Short)"),
         (CONTACT_ADDRESS, _("Contact address"), "Contact address"),
         (CONTACT_PRIVATE_ADDRESS, _("Contact private address"), "Contact private address"),
         (COPY_ID, _("Copy id"), "Copy id"),
+        (COPY_ID_SHORT_VERSION, _("Copy id (Short)"), "Copy id (Short)"),
         (COPY_TYPE, _("Copy type"), "Copy type"),
+        (COPY_TYPE_SHORT_VERSION, _("Copy type (Short)"), "Copy type (Short)"),
         (CORPORATE_AFFILIATION, _("Corporate affiliation"), "Corporate affiliation"),
         (CORPORATE_AUTHOR, _("Corporate author"), "Corporate author"),
+        (CORPORATE_AUTHOR_SHORT_VERSION, _("Corporate author (Short)"), "Corporate author (Short)"),
         (CORPORATE_LOCATION, _("Corporate location"), "Corporate location"),
         (COUNTRY, _("Country"), "Country"),
         (COURT_TERM, _("Court term"), "Court term"),
+        (COURT_TERM_SHORT_VERSION, _("Court term (Short)"), "Court term (Short)"),
         (CREATION_DATE, _("Creation date"), "Creation date"),
+        (CREATION_DATE_SHORT_VERSION, _("Creation date (Short)"), "Creation date (Short)"),
         (CREATOR, _("Creator"), "Creator"),
         (CREATOR_6GIVEN9, _("Creator (given)"), "Creator (given)"),
         (CREATOR_6SURNAME9, _("Creator (surname)"), "Creator (surname)"),
+        (CREATOR_6SURNAME9_SHORT_VERSION, _("Creator (surname) (Short)"), "Creator (surname) (Short)"),
         (CREATOR_OF_BLOG, _("Creator of blog"), "Creator of blog"),
         (CREATOR_OF_DATABASE, _("Creator of database"), "Creator of database"),
         (CREATOR_OF_DATABASE_6GIVEN9, _("Creator of database (given)"), "Creator of database (given)"),
         (CREATOR_OF_DATABASE_6SURNAME9, _("Creator of database (surname)"), "Creator of database (surname)"),
+        (CREATOR_OF_DATABASE_6SURNAME9_SHORT_VERSION, _("Creator of database (surname) (Short)"), "Creator of database (surname) (Short)"),
+        (CREATOR_OF_DATABASE_SHORT_VERSION, _("Creator of database (Short)"), "Creator of database (Short)"),
         (CREATOR_OR_OWNER, _("Creator/owner"), "Creator/owner"),
+        (CREATOR_OR_OWNER_SHORT_VERSION, _("Creator/owner (Short)"), "Creator/owner (Short)"),
+        (CREATOR_SHORT_VERSION, _("Creator (Short)"), "Creator (Short)"),
         (CREDIT_LINE, _("Credit line"), "Credit line"),
         (CURRENT_OR_LAST_KNOWN_OWNER, _("Current or last known owner"), "Current or last known owner"),
         (DATABASE_TITLE, _("Database title"), "Database title"),
+        (DATABASE_TITLE_SHORT_VERSION, _("Database title (Short)"), "Database title (Short)"),
         (DATA_COLLECTION_INFO, _("Data collection info"), "Data collection info"),
         (DATE, _("Date"), "Date"),
         (DATE_ACCESSED, _("Date accessed"), "Date accessed"),
         (DATE_ENTRY, _("Date entry"), "Date entry"),
+        (DATE_ENTRY_SHORT_VERSION, _("Date entry (Short)"), "Date entry (Short)"),
         (DATE_OWNED, _("Date owned"), "Date owned"),
         (DATE_RANGE, _("Date range"), "Date range"),
         (DATE_READ_OR_PHOTOGRAPHED, _("Date read or photographed"), "Date read or photographed"),
+        (DATE_SHORT_VERSION, _("Date (Short)"), "Date (Short)"),
         (DATE_SPAN_READ, _("Date-span read"), "Date-span read"),
         (DESCRIPTION_AND_EVALUATION_BY_RESEARCHER, _("Description & evaluation by researcher"), "Description & evaluation by researcher"),
         (DESCRIPTIVE_DETAIL_OR_EVALUATION, _("Descriptive detail/evaluation"), "Descriptive detail/evaluation"),
         (DIGITAL_ID_NO, _("Digital id no."), "Digital id no."),
         (DIGITAL_PATH, _("Digital path"), "Digital path"),
         (DISTRICT, _("District"), "District"),
+        (DISTRICT_SHORT_VERSION, _("District (Short)"), "District (Short)"),
         (DIVISION, _("Division"), "Division"),
         (DOCUMENT, _("Document"), "Document"),
         (DOCUMENT_ID, _("Document id"), "Document id"),
+        (DOCUMENT_ID_SHORT_VERSION, _("Document id (Short)"), "Document id (Short)"),
+        (DOCUMENT_SHORT_VERSION, _("Document (Short)"), "Document (Short)"),
         (DOCUMENT_TITLE, _("Document title"), "Document title"),
+        (DOCUMENT_TITLE_SHORT_VERSION, _("Document title (Short)"), "Document title (Short)"),
         (DVD_TITLE, _("Dvd title"), "Dvd title"),
         (EDITION, _("Edition"), "Edition"),
         (EDITION_DATA, _("Edition data"), "Edition data"),
         (EDITION_YEAR, _("Edition year"), "Edition year"),
         (EDITOR_6GIVEN9, _("Editor (given)"), "Editor (given)"),
         (EDITOR_6SURNAME9, _("Editor (surname)"), "Editor (surname)"),
+        (EDITOR_6SURNAME9_SHORT_VERSION, _("Editor (surname) (Short)"), "Editor (surname) (Short)"),
         (ENTRY, _("Entry"), "Entry"),
+        (ENTRY_SHORT_VERSION, _("Entry (Short)"), "Entry (Short)"),
         (ENUMERATION_DISTRICT, _("Enumeration district"), "Enumeration district"),
+        (ENUMERATION_DISTRICT_SHORT_VERSION, _("Enumeration district (Short)"), "Enumeration district (Short)"),
         (FILE, _("File"), "File"),
         (FILE_DATE, _("File date"), "File date"),
+        (FILE_DATE_SHORT_VERSION, _("File date (Short)"), "File date (Short)"),
         (FILE_ID_6GIVEN9, _("File id (given)"), "File id (given)"),
+        (FILE_ID_6GIVEN9_SHORT_VERSION, _("File id (given) (Short)"), "File id (given) (Short)"),
         (FILE_ID_6SURNAME9, _("File id (surname)"), "File id (surname)"),
+        (FILE_ID_6SURNAME9_SHORT_VERSION, _("File id (surname) (Short)"), "File id (surname) (Short)"),
         (FILE_LABEL, _("File label"), "File label"),
+        (FILE_LABEL_SHORT_VERSION, _("File label (Short)"), "File label (Short)"),
         (FILE_LOCATION, _("File location"), "File location"),
         (FILE_NAME, _("File name"), "File name"),
+        (FILE_NAME_SHORT_VERSION, _("File name (Short)"), "File name (Short)"),
         (FILE_NO, _("File no."), "File no."),
+        (FILE_NO_SHORT_VERSION, _("File no. (Short)"), "File no. (Short)"),
+        (FILE_SHORT_VERSION, _("File (Short)"), "File (Short)"),
         (FILE_TITLE, _("File title"), "File title"),
+        (FILE_TITLE_SHORT_VERSION, _("File title (Short)"), "File title (Short)"),
         (FILE_TYPE, _("File type"), "File type"),
+        (FILE_TYPE_SHORT_VERSION, _("File type (Short)"), "File type (Short)"),
         (FILE_UNIT, _("File unit"), "File unit"),
         (FILE_UNIT_NO, _("File unit no."), "File unit no."),
+        (FILE_UNIT_NO_SHORT_VERSION, _("File unit no. (Short)"), "File unit no. (Short)"),
+        (FILE_UNIT_SHORT_VERSION, _("File unit (Short)"), "File unit (Short)"),
         (FILE_YEAR, _("File year"), "File year"),
+        (FILE_YEAR_SHORT_VERSION, _("File year (Short)"), "File year (Short)"),
         (FILM_ID, _("Film id"), "Film id"),
+        (FILM_ID_SHORT_VERSION, _("Film id (Short)"), "Film id (Short)"),
         (FILM_LOCATION, _("Film location"), "Film location"),
         (FILM_PUBLICATION_SERIES, _("Film publication series"), "Film publication series"),
         (FILM_PUBLISHER, _("Film publisher"), "Film publisher"),
         (FILM_REPOSITORY, _("Film repository"), "Film repository"),
         (FILM_REPOSITORY_LOCATION, _("Film repository location"), "Film repository location"),
         (FILM_TITLE, _("Film title"), "Film title"),
+        (FILM_TITLE_SHORT_VERSION, _("Film title (Short)"), "Film title (Short)"),
         (FILM_TYPE, _("Film type"), "Film type"),
         (FOLDER_LABEL, _("Folder label"), "Folder label"),
+        (FOLDER_LABEL_SHORT_VERSION, _("Folder label (Short)"), "Folder label (Short)"),
         (FORMAT, _("Format"), "Format"),
         (FRAME_NOS, _("Frame nos."), "Frame nos."),
         (GEOGRAPHIC_DIVISION, _("Geographic division"), "Geographic division"),
         (HOUSEHOLD, _("Household"), "Household"),
         (HOUSEHOLD_ID, _("Household id"), "Household id"),
+        (HOUSEHOLD_ID_SHORT_VERSION, _("Household id (Short)"), "Household id (Short)"),
         (INSTITUTION, _("Institution"), "Institution"),
         (INSTITUTIONAL_AUTHOR, _("Institutional author"), "Institutional author"),
+        (INSTITUTIONAL_AUTHOR_SHORT_VERSION, _("Institutional author (Short)"), "Institutional author (Short)"),
+        (INSTITUTION_SHORT_VERSION, _("Institution (Short)"), "Institution (Short)"),
         (INTERVIEWEE_ADDRESS_FOR_PRIVATE_USE, _("Interviewee address for private use"), "Interviewee address for private use"),
         (INTERVIEWER, _("Interviewer"), "Interviewer"),
         (ISSUES_EXAMINED, _("Issues examined"), "Issues examined"),
@@ -579,33 +819,54 @@ class SrcAttributeType(GrampsType):
         (ITEM_DATE, _("Item date"), "Item date"),
         (ITEM_FORMAT, _("Item format"), "Item format"),
         (ITEM_ID, _("Item id"), "Item id"),
+        (ITEM_ID_SHORT_VERSION, _("Item id (Short)"), "Item id (Short)"),
         (ITEM_NO, _("Item no."), "Item no."),
         (ITEM_OF_INTEREST, _("Item of interest"), "Item of interest"),
+        (ITEM_OF_INTEREST_SHORT_VERSION, _("Item of interest (Short)"), "Item of interest (Short)"),
         (ITEM_OR_PIECE, _("Item or piece"), "Item or piece"),
         (ITEM_OR_PIECE_NUMBER, _("Item or piece number"), "Item or piece number"),
+        (ITEM_OR_PIECE_NUMBER_SHORT_VERSION, _("Item or piece number (Short)"), "Item or piece number (Short)"),
+        (ITEM_SHORT_VERSION, _("Item (Short)"), "Item (Short)"),
         (ITEM_TITLE, _("Item title"), "Item title"),
+        (ITEM_TITLE_SHORT_VERSION, _("Item title (Short)"), "Item title (Short)"),
         (ITEM_TYPE, _("Item type"), "Item type"),
+        (ITEM_TYPE_SHORT_VERSION, _("Item type (Short)"), "Item type (Short)"),
         (JOURNAL_TITLE, _("Journal title"), "Journal title"),
         (JURISDICTION, _("Jurisdiction"), "Jurisdiction"),
         (JURISDICTION_6STATE9, _("Jurisdiction (state)"), "Jurisdiction (state)"),
+        (JURISDICTION_6STATE9_SHORT_VERSION, _("Jurisdiction (state) (Short)"), "Jurisdiction (state) (Short)"),
         (JURISDICTION_OR_AGENCY, _("Jurisdiction/agency"), "Jurisdiction/agency"),
+        (JURISDICTION_OR_AGENCY_SHORT_VERSION, _("Jurisdiction/agency (Short)"), "Jurisdiction/agency (Short)"),
+        (JURISDICTION_SHORT_VERSION, _("Jurisdiction (Short)"), "Jurisdiction (Short)"),
         (LIBRARY_DIVISION, _("Library division"), "Library division"),
         (LOCATION, _("Location"), "Location"),
         (LOCATION_OF_INSTITUTION, _("Location of institution"), "Location of institution"),
         (LOCATION_ON_PAGE, _("Location on page"), "Location on page"),
+        (LOCATION_ON_PAGE_SHORT_VERSION, _("Location on page (Short)"), "Location on page (Short)"),
+        (LOCATION_SHORT_VERSION, _("Location (Short)"), "Location (Short)"),
         (MAGAZINE, _("Magazine"), "Magazine"),
         (MAIN_TITLE, _("Main title"), "Main title"),
+        (MAIN_TITLE_SHORT_VERSION, _("Main title (Short)"), "Main title (Short)"),
         (MANUSCRIPT_NO, _("Manuscript no."), "Manuscript no."),
         (MANUSCRIPT_SERIES_TITLE, _("Manuscript series title"), "Manuscript series title"),
+        (MANUSCRIPT_SERIES_TITLE_SHORT_VERSION, _("Manuscript series title (Short)"), "Manuscript series title (Short)"),
         (MANUSCRIPT_TITLE, _("Manuscript title"), "Manuscript title"),
+        (MANUSCRIPT_TITLE_SHORT_VERSION, _("Manuscript title (Short)"), "Manuscript title (Short)"),
         (MEMBERSHIP_NUMBER, _("Membership number"), "Membership number"),
+        (MEMBERSHIP_NUMBER_SHORT_VERSION, _("Membership number (Short)"), "Membership number (Short)"),
         (MESSAGE_TITLE, _("Message title"), "Message title"),
+        (MESSAGE_TITLE_SHORT_VERSION, _("Message title (Short)"), "Message title (Short)"),
         (MICROFILM_ID, _("Microfilm id"), "Microfilm id"),
+        (MICROFILM_ID_SHORT_VERSION, _("Microfilm id (Short)"), "Microfilm id (Short)"),
         (NAME, _("Name"), "Name"),
         (NAME_OF_ACT, _("Name of act"), "Name of act"),
+        (NAME_OF_ACT_SHORT_VERSION, _("Name of act (Short)"), "Name of act (Short)"),
         (NAME_OF_CODE, _("Name of code"), "Name of code"),
+        (NAME_OF_CODE_SHORT_VERSION, _("Name of code (Short)"), "Name of code (Short)"),
         (NAME_OF_FORUM, _("Name of forum"), "Name of forum"),
+        (NAME_OF_FORUM_SHORT_VERSION, _("Name of forum (Short)"), "Name of forum (Short)"),
         (NAME_OF_INTERVIEWER, _("Name of interviewer"), "Name of interviewer"),
+        (NAME_SHORT_VERSION, _("Name (Short)"), "Name (Short)"),
         (NETWORK_OR_PRODUCER, _("Network or producer"), "Network or producer"),
         (NEWSLETTER, _("Newsletter"), "Newsletter"),
         (NEWSPAPER, _("Newspaper"), "Newspaper"),
@@ -613,6 +874,7 @@ class SrcAttributeType(GrampsType):
         (NO_OF_ROLLS, _("No. of rolls"), "No. of rolls"),
         (NO_OF_VOLS, _("No. of vols."), "No. of vols."),
         (ORGANIZATION, _("Organization"), "Organization"),
+        (ORGANIZATION_SHORT_VERSION, _("Organization (Short)"), "Organization (Short)"),
         (ORIGINAL_PUBLICATION_DATA, _("Original publication data"), "Original publication data"),
         (ORIGINAL_PUBLICATION_DATE, _("Original publication date"), "Original publication date"),
         (ORIGINAL_PUBLICATION_YEAR, _("Original publication year"), "Original publication year"),
@@ -627,14 +889,22 @@ class SrcAttributeType(GrampsType):
         (OWNER_OR_SUPPLIERS_LOCATION, _("Owner or supplier's location"), "Owner or supplier's location"),
         (OWNER_REPOSITORY, _("Owner repository"), "Owner repository"),
         (PAGE6S9, _("Page(s)"), "Page(s)"),
+        (PAGE6S9_SHORT_VERSION, _("Page(s) (Short)"), "Page(s) (Short)"),
         (PAGE_ID, _("Page id"), "Page id"),
+        (PAGE_ID_SHORT_VERSION, _("Page id (Short)"), "Page id (Short)"),
         (PART, _("Part"), "Part"),
         (PERSON6S9_ID, _("Person(s) id"), "Person(s) id"),
+        (PERSON6S9_ID_SHORT_VERSION, _("Person(s) id (Short)"), "Person(s) id (Short)"),
         (PERSON_INTERVIEWED_6GIVEN9, _("Person interviewed (given)"), "Person interviewed (given)"),
+        (PERSON_INTERVIEWED_6GIVEN9_SHORT_VERSION, _("Person interviewed (given) (Short)"), "Person interviewed (given) (Short)"),
         (PERSON_INTERVIEWED_6SURNAME9, _("Person interviewed (surname)"), "Person interviewed (surname)"),
+        (PERSON_INTERVIEWED_6SURNAME9_SHORT_VERSION, _("Person interviewed (surname) (Short)"), "Person interviewed (surname) (Short)"),
         (PERSON_OF_INTEREST, _("Person of interest"), "Person of interest"),
+        (PERSON_OF_INTEREST_SHORT_VERSION, _("Person of interest (Short)"), "Person of interest (Short)"),
         (PHOTOGRAPH_NO, _("Photograph no."), "Photograph no."),
+        (PHOTOGRAPH_NO_SHORT_VERSION, _("Photograph no. (Short)"), "Photograph no. (Short)"),
         (PHOTOGRAPH_TITLE, _("Photograph title"), "Photograph title"),
+        (PHOTOGRAPH_TITLE_SHORT_VERSION, _("Photograph title (Short)"), "Photograph title (Short)"),
         (PLACE_CREATED, _("Place created"), "Place created"),
         (PLACE_OF_FILM_PUBLICATION, _("Place of film publication"), "Place of film publication"),
         (PLACE_OF_PUBLICATION, _("Place of publication"), "Place of publication"),
@@ -642,10 +912,13 @@ class SrcAttributeType(GrampsType):
         (PODCAST_TITLE, _("Podcast title"), "Podcast title"),
         (POSITION_ON_SOURCE, _("Position on source"), "Position on source"),
         (POSTING_DATE, _("Posting date"), "Posting date"),
+        (POSTING_DATE_SHORT_VERSION, _("Posting date (Short)"), "Posting date (Short)"),
         (PRESENTER_6GIVEN9, _("Presenter (given)"), "Presenter (given)"),
         (PRESENTER_6SURNAME9, _("Presenter (surname)"), "Presenter (surname)"),
+        (PRESENTER_6SURNAME9_SHORT_VERSION, _("Presenter (surname) (Short)"), "Presenter (surname) (Short)"),
         (PRESENTER_OR_GUEST_6GIVEN9, _("Presenter or guest (given)"), "Presenter or guest (given)"),
         (PRESENTER_OR_GUEST_6SURNAME9, _("Presenter or guest (surname)"), "Presenter or guest (surname)"),
+        (PRESENTER_OR_GUEST_6SURNAME9_SHORT_VERSION, _("Presenter or guest (surname) (Short)"), "Presenter or guest (surname) (Short)"),
         (PRIVATE_RESEARCHER_ADDRESS, _("Private researcher address"), "Private researcher address"),
         (PROFESSIONAL_CREDENTIALS, _("Professional credentials"), "Professional credentials"),
         (PROVENANCE_AND_EVALUATION_OF_TRADITION, _("Provenance & evaluation of tradition"), "Provenance & evaluation of tradition"),
@@ -653,6 +926,7 @@ class SrcAttributeType(GrampsType):
         (PUBLICATION_NO, _("Publication no."), "Publication no."),
         (PUBLICATION_PLACE, _("Publication place"), "Publication place"),
         (PUBLICATION_TITLE, _("Publication title"), "Publication title"),
+        (PUBLICATION_TITLE_SHORT_VERSION, _("Publication title (Short)"), "Publication title (Short)"),
         (PUBLICATION_YEAR, _("Publication year"), "Publication year"),
         (PUBLISHED, _("Published"), "Published"),
         (PUBLISHER, _("Publisher"), "Publisher"),
@@ -663,28 +937,42 @@ class SrcAttributeType(GrampsType):
         (RECIPIENTS_PRIVATE_ADDRESS, _("Recipient's private address"), "Recipient's private address"),
         (RECIPIENT_6GIVEN9, _("Recipient (given)"), "Recipient (given)"),
         (RECIPIENT_6SURNAME9, _("Recipient (surname)"), "Recipient (surname)"),
+        (RECIPIENT_6SURNAME9_SHORT_VERSION, _("Recipient (surname) (Short)"), "Recipient (surname) (Short)"),
+        (RECIPIENT_SHORT_VERSION, _("Recipient (Short)"), "Recipient (Short)"),
         (RECORD_BOOK, _("Record book"), "Record book"),
+        (RECORD_BOOK_SHORT_VERSION, _("Record book (Short)"), "Record book (Short)"),
         (RECORD_BOOK_TITLE, _("Record book title"), "Record book title"),
+        (RECORD_BOOK_TITLE_SHORT_VERSION, _("Record book title (Short)"), "Record book title (Short)"),
         (RECORD_DATE6S9, _("Record date(s)"), "Record date(s)"),
+        (RECORD_DATE6S9_SHORT_VERSION, _("Record date(s) (Short)"), "Record date(s) (Short)"),
         (RECORD_FORMAT, _("Record format"), "Record format"),
         (RECORD_GROUP, _("Record group"), "Record group"),
         (RECORD_GROUP_AND_OR_OR_SUBGROUP, _("Record group and/or subgroup"), "Record group and/or subgroup"),
         (RECORD_GROUP_NAME, _("Record group name"), "Record group name"),
         (RECORD_GROUP_NO, _("Record group no."), "Record group no."),
+        (RECORD_GROUP_NO_SHORT_VERSION, _("Record group no. (Short)"), "Record group no. (Short)"),
         (RECORD_GROUP_TITLE, _("Record group title"), "Record group title"),
         (RECORD_HOLDER, _("Record holder"), "Record holder"),
         (RECORD_HOLDER_PRIVATE_ADDRESS, _("Record holder private address"), "Record holder private address"),
         (RECORD_ID, _("Record id"), "Record id"),
+        (RECORD_ID_SHORT_VERSION, _("Record id (Short)"), "Record id (Short)"),
         (RECORD_OR_VOLUME_TITLE, _("Record/volume title"), "Record/volume title"),
+        (RECORD_OR_VOLUME_TITLE_SHORT_VERSION, _("Record/volume title (Short)"), "Record/volume title (Short)"),
         (RECORD_OWNER, _("Record owner"), "Record owner"),
         (RECORD_REPOSITORY, _("Record repository"), "Record repository"),
         (RECORD_SERIES, _("Record series"), "Record series"),
+        (RECORD_SERIES_SHORT_VERSION, _("Record series (Short)"), "Record series (Short)"),
         (RECORD_TITLE, _("Record title"), "Record title"),
+        (RECORD_TITLE_SHORT_VERSION, _("Record title (Short)"), "Record title (Short)"),
         (RECORD_TYPE, _("Record type"), "Record type"),
+        (RECORD_TYPE_SHORT_VERSION, _("Record type (Short)"), "Record type (Short)"),
         (REPORT_DATE, _("Report date"), "Report date"),
+        (REPORT_DATE_SHORT_VERSION, _("Report date (Short)"), "Report date (Short)"),
         (REPORT_TITLE, _("Report title"), "Report title"),
+        (REPORT_TITLE_SHORT_VERSION, _("Report title (Short)"), "Report title (Short)"),
         (REPOSITORY, _("Repository"), "Repository"),
         (REPOSITORY_LOCATION, _("Repository location"), "Repository location"),
+        (REPOSITORY_SHORT_VERSION, _("Repository (Short)"), "Repository (Short)"),
         (RESEARCHER, _("Researcher"), "Researcher"),
         (RESEARCHERS_ADDRESS, _("Researcher's address"), "Researcher's address"),
         (RESEARCHERS_ID, _("Researcher's id"), "Researcher's id"),
@@ -693,46 +981,75 @@ class SrcAttributeType(GrampsType):
         (RESEARCH_SERIES, _("Research series"), "Research series"),
         (ROLL, _("Roll"), "Roll"),
         (ROLL_NO, _("Roll no."), "Roll no."),
+        (ROLL_SHORT_VERSION, _("Roll (Short)"), "Roll (Short)"),
         (SCHEDULE, _("Schedule"), "Schedule"),
+        (SCHEDULE_SHORT_VERSION, _("Schedule (Short)"), "Schedule (Short)"),
         (SCHEDULE_TITLE, _("Schedule title"), "Schedule title"),
+        (SCHEDULE_TITLE_SHORT_VERSION, _("Schedule title (Short)"), "Schedule title (Short)"),
         (SECTION, _("Section"), "Section"),
         (SECTION_LOT_OR_ROW, _("Section lot or row"), "Section lot or row"),
+        (SECTION_SHORT_VERSION, _("Section (Short)"), "Section (Short)"),
         (SEGMENT, _("Segment"), "Segment"),
         (SERIES, _("Series"), "Series"),
         (SERIES_ID, _("Series id"), "Series id"),
+        (SERIES_ID_SHORT_VERSION, _("Series id (Short)"), "Series id (Short)"),
         (SERIES_NO, _("Series no."), "Series no."),
+        (SERIES_NO_SHORT_VERSION, _("Series no. (Short)"), "Series no. (Short)"),
+        (SERIES_SHORT_VERSION, _("Series (Short)"), "Series (Short)"),
         (SESSION, _("Session"), "Session"),
+        (SESSION_SHORT_VERSION, _("Session (Short)"), "Session (Short)"),
         (SHEET_NO, _("Sheet no."), "Sheet no."),
+        (SHEET_NO_SHORT_VERSION, _("Sheet no. (Short)"), "Sheet no. (Short)"),
         (SITE_OWNER_OR_CREATOR, _("Site owner or creator"), "Site owner or creator"),
         (SOCIAL_SECURITY_NO, _("Social security no."), "Social security no."),
+        (SOCIAL_SECURITY_NO_SHORT_VERSION, _("Social security no. (Short)"), "Social security no. (Short)"),
         (SOURCES_RELATIONSHIP_TO_SUBJECT_ETC, _("Source's relationship to subject, etc."), "Source's relationship to subject, etc."),
         (SOURCE_OF_INFORMATION, _("Source of information"), "Source of information"),
         (SPECIFIC_DATA, _("Specific data"), "Specific data"),
+        (SPECIFIC_DATA_SHORT_VERSION, _("Specific data (Short)"), "Specific data (Short)"),
         (STATE, _("State"), "State"),
+        (STATE_SHORT_VERSION, _("State (Short)"), "State (Short)"),
         (STUDENT_6GIVEN9, _("Student (given)"), "Student (given)"),
+        (STUDENT_6GIVEN9_SHORT_VERSION, _("Student (given) (Short)"), "Student (given) (Short)"),
         (STUDENT_6SURNAME9, _("Student (surname)"), "Student (surname)"),
+        (STUDENT_6SURNAME9_SHORT_VERSION, _("Student (surname) (Short)"), "Student (surname) (Short)"),
         (SUBGROUP, _("Subgroup"), "Subgroup"),
+        (SUBGROUP_SHORT_VERSION, _("Subgroup (Short)"), "Subgroup (Short)"),
         (SUBJECT, _("Subject"), "Subject"),
         (SUBJECT_6GIVEN9, _("Subject (given)"), "Subject (given)"),
+        (SUBJECT_6GIVEN9_SHORT_VERSION, _("Subject (given) (Short)"), "Subject (given) (Short)"),
         (SUBJECT_6SURNAME9, _("Subject (surname)"), "Subject (surname)"),
+        (SUBJECT_6SURNAME9_SHORT_VERSION, _("Subject (surname) (Short)"), "Subject (surname) (Short)"),
         (SUBJECT_LINE, _("Subject line"), "Subject line"),
         (SUBJECT_OR_NATURE_OF_DATA_PROVIDED, _("Subject or nature of data provided"), "Subject or nature of data provided"),
         (SUBJECT_OR_TITLE, _("Subject/title"), "Subject/title"),
+        (SUBJECT_OR_TITLE_SHORT_VERSION, _("Subject/title (Short)"), "Subject/title (Short)"),
+        (SUBJECT_SHORT_VERSION, _("Subject (Short)"), "Subject (Short)"),
         (SUBSERIES, _("Subseries"), "Subseries"),
+        (SUBSERIES_SHORT_VERSION, _("Subseries (Short)"), "Subseries (Short)"),
         (SUBTITLE, _("Subtitle"), "Subtitle"),
         (SUPPLIER, _("Supplier"), "Supplier"),
         (SUPPLIERS_LOCATION, _("Supplier's location"), "Supplier's location"),
         (TERM, _("Term"), "Term"),
+        (TERM_SHORT_VERSION, _("Term (Short)"), "Term (Short)"),
         (TIMESTAMP, _("Timestamp"), "Timestamp"),
         (TIMESTAMP_IN_AUDIO, _("Timestamp in audio"), "Timestamp in audio"),
+        (TIMESTAMP_IN_AUDIO_SHORT_VERSION, _("Timestamp in audio (Short)"), "Timestamp in audio (Short)"),
         (TIMESTAMP_IN_VIDEO, _("Timestamp in video"), "Timestamp in video"),
+        (TIMESTAMP_IN_VIDEO_SHORT_VERSION, _("Timestamp in video (Short)"), "Timestamp in video (Short)"),
+        (TIMESTAMP_SHORT_VERSION, _("Timestamp (Short)"), "Timestamp (Short)"),
         (TITLE, _("Title"), "Title"),
         (TITLE_NO, _("Title no."), "Title no."),
+        (TITLE_NO_SHORT_VERSION, _("Title no. (Short)"), "Title no. (Short)"),
         (TITLE_OF_DATABASE, _("Title of database"), "Title of database"),
+        (TITLE_OF_DATABASE_SHORT_VERSION, _("Title of database (Short)"), "Title of database (Short)"),
         (TITLE_OF_PAMPHLET, _("Title of pamphlet"), "Title of pamphlet"),
+        (TITLE_OF_PAMPHLET_SHORT_VERSION, _("Title of pamphlet (Short)"), "Title of pamphlet (Short)"),
         (TITLE_OF_SERIES, _("Title of series"), "Title of series"),
+        (TITLE_OF_SERIES_SHORT_VERSION, _("Title of series (Short)"), "Title of series (Short)"),
         (TITLE_OF_SHOW, _("Title of show"), "Title of show"),
         (TITLE_OF_WEBSITE, _("Title of website"), "Title of website"),
+        (TITLE_SHORT_VERSION, _("Title (Short)"), "Title (Short)"),
         (TOTAL_ROLLS, _("Total rolls"), "Total rolls"),
         (TOTAL_VOLUMES, _("Total volumes"), "Total volumes"),
         (TRANSLATION_OF_TITLE, _("Translation of title"), "Translation of title"),
@@ -740,12 +1057,15 @@ class SrcAttributeType(GrampsType):
         (URL_6DIGITAL_LOCATION9, _("Url (digital location)"), "Url (digital location)"),
         (VOLUME, _("Volume"), "Volume"),
         (VOLUME_DATA, _("Volume data"), "Volume data"),
+        (VOLUME_SHORT_VERSION, _("Volume (Short)"), "Volume (Short)"),
         (WEBSITE, _("Website"), "Website"),
         (WEBSITE_CREATOR_OR_OWNER, _("Website creator/owner"), "Website creator/owner"),
         (WEBSITE_TITLE, _("Website title"), "Website title"),
+        (WEBSITE_TITLE_SHORT_VERSION, _("Website title (Short)"), "Website title (Short)"),
         (WEBSITE_URL_6DIGITAL_LOCATION9, _("Website url (digital location)"), "Website url (digital location)"),
         (WHEN_HELD, _("When held"), "When held"),
         (WHEN_ISSUED, _("When issued"), "When issued"),
+        (WHEN_ISSUED_SHORT_VERSION, _("When issued (Short)"), "When issued (Short)"),
         (WHERE_HELD, _("Where held"), "Where held"),
         (WHERE_HELD_PRIVATE_ADDRESS, _("Where held private address"), "Where held private address"),
         (WRITER, _("Writer"), "Writer"),
@@ -753,8 +1073,12 @@ class SrcAttributeType(GrampsType):
         (WRITERS_CONTACT_INFORMATION, _("Writer's contact information"), "Writer's contact information"),
         (WRITERS_LOCATION, _("Writer's location"), "Writer's location"),
         (WRITER_6GIVEN9, _("Writer (given)"), "Writer (given)"),
+        (WRITER_6GIVEN9_SHORT_VERSION, _("Writer (given) (Short)"), "Writer (given) (Short)"),
         (WRITER_6SURNAME9, _("Writer (surname)"), "Writer (surname)"),
+        (WRITER_6SURNAME9_SHORT_VERSION, _("Writer (surname) (Short)"), "Writer (surname) (Short)"),
+        (WRITER_SHORT_VERSION, _("Writer (Short)"), "Writer (Short)"),
         (YEAR6S9, _("Year(s)"), "Year(s)"),
+        (YEAR6S9_SHORT_VERSION, _("Year(s) (Short)"), "Year(s) (Short)"),
         (YEAR_ACCESSED, _("Year accessed"), "Year accessed"),
         (YEAR_OWNED, _("Year owned"), "Year owned"),
         (YEAR_PUBLISHED, _("Year published"), "Year published"),
@@ -1116,7 +1440,19 @@ class SrcAttributeType(GrampsType):
     # L: List reference (for in bibliography list)
     EVIDENCETEMPLATES = {
         ESM100: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, 'to', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PROFESSIONAL_CREDENTIALS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1129,26 +1465,22 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, 'to', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM101: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', MANUSCRIPT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', MANUSCRIPT_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -1157,31 +1489,14 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', MANUSCRIPT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', MANUSCRIPT_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM102: {
-            'F': [
-                ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_TITLE, '', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('(', ITEM_DATE, ');', EMPTY, False, False, EMPTY, EMPTY),
-                ('folder:', FOLDER_LABEL, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', COLLECTION, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ITEM_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
                 ('', ITEM_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -1190,13 +1505,36 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_TITLE, '', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('(', ITEM_DATE, ');', EMPTY, False, False, EMPTY, EMPTY),
+                ('folder:', FOLDER_LABEL, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', COLLECTION, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM103: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', COMPILER_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', MANUSCRIPT_SERIES_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', NO_OF_VOLS, 'vols.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNER_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNER_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_SERIES_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -1211,21 +1549,7 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', COMPILER_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', MANUSCRIPT_SERIES_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', NO_OF_VOLS, 'vols.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNER_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNER_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_SERIES_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('vol.', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1234,7 +1558,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM104: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1244,14 +1575,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', YEAR6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1259,7 +1583,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM105: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', COMPILER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTIFACT_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('in ', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -1271,17 +1605,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', COMPILER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTIFACT_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -1289,7 +1613,19 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM106: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', MANUSCRIPT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_CREATED, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -1303,26 +1639,28 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR_OWNED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', MANUSCRIPT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_CREATED, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MANUSCRIPT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM107: {
-            'F': [
+            REF_TYPE_L: [
+                ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', BIBLE_ID, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', BIBLE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_PUBLISHED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1339,21 +1677,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', BIBLE_ID, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', BIBLE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_PUBLISHED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1362,18 +1686,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM108: {
-            'F': [
-                ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', COLLECTION, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SUPPLIER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNER_OR_SUPPLIERS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', YEAR_SUPPLIED, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ('', DESCRIPTION_AND_EVALUATION_BY_RESEARCHER, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', COMPILER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -1384,13 +1697,36 @@ class SrcAttributeType(GrampsType):
                 ('', SUPPLIERS_LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR_SUPPLIED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', COLLECTION, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SUPPLIER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNER_OR_SUPPLIERS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', YEAR_SUPPLIED, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ('', DESCRIPTION_AND_EVALUATION_BY_RESEARCHER, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM109: {
-            'F': [
+            REF_TYPE_L: [
+                ('', WRITER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, EMPTY),
@@ -1403,19 +1739,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', WRITER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITER_6SURNAME9, 'to', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1423,7 +1747,20 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM110: {
-            'F': [
+            REF_TYPE_L: [
+                ('', PERSON_INTERVIEWED_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PERSON_INTERVIEWED_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, 'by', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', NAME_OF_INTERVIEWER, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PERSON_INTERVIEWED_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PERSON_INTERVIEWED_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', INTERVIEWEE_ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
@@ -1437,20 +1774,7 @@ class SrcAttributeType(GrampsType):
                 ('', OWNERS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', PERSON_INTERVIEWED_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PERSON_INTERVIEWED_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, 'by', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', NAME_OF_INTERVIEWER, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PERSON_INTERVIEWED_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PERSON_INTERVIEWED_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1458,7 +1782,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM111: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GRANTOR9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1471,14 +1802,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ADDRESS_FOR_PRIVATE_USE, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6GRANTOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1486,7 +1810,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM112: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RESEARCHERS_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CONTACT_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', CONTACT_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITERS_AFFILIATION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1502,20 +1832,20 @@ class SrcAttributeType(GrampsType):
                 ('', PRIVATE_RESEARCHER_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
                 ('', RESEARCHERS_ADDRESS, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RESEARCHERS_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CONTACT_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', CONTACT_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', WRITER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM113: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RESEARCHERS_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CONTACT_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', CONTACT_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', WRITER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WRITERS_LOCATION, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -1531,13 +1861,7 @@ class SrcAttributeType(GrampsType):
                 ('', RESEARCHERS_PRIVATE_CONTACT_INFORMATION, ',', EMPTY, True, False, EMPTY, EMPTY),
                 ('', RESEARCHERS_ADDRESS, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RESEARCHERS_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CONTACT_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', CONTACT_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', WRITER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1545,7 +1869,20 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM114: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, 'to', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECIPIENT, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECIPIENTS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', RECIPIENTS_ADDRESS, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_FORMAT, '', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNER_AND_CONTACT_INFORMATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PROFESSIONAL_CREDENTIALS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1559,27 +1896,23 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_FORMAT, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', OWNER_AND_CONTACT_INFORMATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, 'to', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECIPIENT, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECIPIENTS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', RECIPIENTS_ADDRESS, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_FORMAT, '', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNER_AND_CONTACT_INFORMATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM115: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COLLECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1593,22 +1926,20 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_DATE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PROVENANCE_AND_EVALUATION_OF_TRADITION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CURRENT_OR_LAST_KNOWN_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_ADDRESS, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COLLECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT, '', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM161: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', RECORD_BOOK_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -1618,21 +1949,22 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', RECORD_BOOK_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM162: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_AND_OR_OR_SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -1644,15 +1976,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_AND_OR_OR_SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1660,7 +1984,18 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM163: {
-            'F': [
+            REF_TYPE_L: [
+                ('', WRITER, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', DATE_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', WRITER, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1672,25 +2007,23 @@ class SrcAttributeType(GrampsType):
                 ('', OWNERS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', WRITER, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', WRITERS_LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', DATE_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', WRITER, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM164: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SUBSERIES, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', MICROFILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBSERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1702,16 +2035,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SUBSERIES, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', MICROFILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', RECORD_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBSERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1720,7 +2044,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM165: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1730,22 +2062,22 @@ class SrcAttributeType(GrampsType):
                 ('', DIGITAL_PATH, ',', EMPTY, False, True, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM166: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_F: [
                 ('', COLLECTION, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -1754,42 +2086,41 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('citing', CREDIT_LINE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COLLECTION, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM167: {
-            'F': [
+            REF_TYPE_L: [
+                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', COLLECTION, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MEMBERSHIP_NUMBER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ORGANIZATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', COLLECTION, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MEMBERSHIP_NUMBER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM168: {
-            'F': [
+            REF_TYPE_L: [
+                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ORGANIZATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -1797,21 +2128,20 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ORGANIZATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM169: {
-            'F': [
+            REF_TYPE_L: [
+                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', RECORD_TITLE, ';', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', FILE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1820,19 +2150,20 @@ class SrcAttributeType(GrampsType):
                 ('', ORGANIZATION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM170: {
-            'F': [
+            REF_TYPE_L: [
+                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', FILE_TITLE, ',', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_TITLE, ',', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
@@ -1840,32 +2171,14 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', FILE_TITLE, ',', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ORGANIZATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM171: {
-            'F': [
-                ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', CORPORATE_LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECIPIENTS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', RECIPIENTS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPORT_DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', WHERE_HELD, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('(', CORPORATE_LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -1876,14 +2189,40 @@ class SrcAttributeType(GrampsType):
                 ('', WHERE_HELD, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', CORPORATE_LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECIPIENTS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', RECIPIENTS_LOCATION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPORT_DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', WHERE_HELD, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CORPORATE_AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM172: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, True, EMPTY, GED_AUTHOR),
+                ('(', CORPORATE_AFFILIATION, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CORPORATE_LOCATION, '.)', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECIPIENT, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECIPIENTS_PRIVATE_ADDRESS, '.', EMPTY, True, False, EMPTY, EMPTY),
+                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WHERE_HELD, '', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WHERE_HELD_PRIVATE_ADDRESS, '.', EMPTY, True, False, EMPTY, GED_PUBINF),
+                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PROFESSIONAL_CREDENTIALS, '', EMPTY, False, True, EMPTY, EMPTY),
@@ -1899,29 +2238,23 @@ class SrcAttributeType(GrampsType):
                 ('', WHERE_HELD_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
                 ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PROFESSIONAL_CREDENTIALS, '.', EMPTY, False, True, EMPTY, GED_AUTHOR),
-                ('(', CORPORATE_AFFILIATION, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CORPORATE_LOCATION, '.)', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECIPIENT, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECIPIENTS_PRIVATE_ADDRESS, '.', EMPTY, True, False, EMPTY, EMPTY),
-                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WHERE_HELD, '', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WHERE_HELD_PRIVATE_ADDRESS, '.', EMPTY, True, False, EMPTY, GED_PUBINF),
-                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM173: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', CORPORATE_LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', CORPORATE_LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -1931,23 +2264,20 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SECTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CORPORATE_AUTHOR, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', CORPORATE_LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPORT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', REPORT_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPORT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', SECTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM174: {
-            'F': [
+            REF_TYPE_L: [
+                ('', INSTITUTIONAL_AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', RECORD_OR_VOLUME_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', INSTITUTIONAL_AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_OR_VOLUME_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1955,20 +2285,26 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', INSTITUTIONAL_AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', RECORD_OR_VOLUME_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', INSTITUTIONAL_AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_OR_VOLUME_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM175: {
-            'F': [
+            REF_TYPE_L: [
+                ('', STUDENT_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', STUDENT_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CLASS, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', INSTITUTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', LOCATION_OF_INSTITUTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_HOLDER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_HOLDER_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
+                ('', WHERE_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', STUDENT_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', STUDENT_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CLASS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -1982,19 +2318,7 @@ class SrcAttributeType(GrampsType):
                 ('', WHERE_HELD, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', STUDENT_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', STUDENT_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CLASS, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', INSTITUTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', LOCATION_OF_INSTITUTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_HOLDER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_HOLDER_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, EMPTY),
-                ('', WHERE_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WHEN_HELD, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', STUDENT_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', STUDENT_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CLASS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2003,26 +2327,33 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM209: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, ')', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_OR_NATURE_OF_DATA_PROVIDED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ANALYTICAL_COMMENTS_BY_RESEARCHER, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, ')', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', RECORD_TYPE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM210: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, ')', EMPTY, False, False, EMPTY, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2030,14 +2361,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_OR_NATURE_OF_DATA_PROVIDED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ')', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('to', RECIPIENT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, ')', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('to', RECIPIENT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2045,7 +2369,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM211: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2055,30 +2387,14 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM212: {
-            'F': [
-                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_BOOK, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('p,', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', MICROFILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', RECORD_BOOK, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -2086,7 +2402,15 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_BOOK, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('p,', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', MICROFILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CEMETERY_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', RECORD_BOOK, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2094,7 +2418,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM213: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', LOCATION, ';', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC, '),', EMPTY, False, False, EMPTY, EMPTY),
@@ -2102,20 +2432,19 @@ class SrcAttributeType(GrampsType):
                 ('', DATA_COLLECTION_INFO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE_READ_OR_PHOTOGRAPHED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', LOCATION, ';', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ACCESS_DATA_DISTANCE_DIRECTION_GPS_READING_ETC, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', ITEM, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM214: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2123,19 +2452,21 @@ class SrcAttributeType(GrampsType):
                 ('', DATA_COLLECTION_INFO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM215: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -2143,40 +2474,40 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM216: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATA_COLLECTION_INFO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE_READ_OR_PHOTOGRAPHED, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CEMETERY, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CEMETERY, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', ITEM, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM217: {
-            'F': [
+            REF_TYPE_L: [
+                ('', FILE_LABEL, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILE_LABEL, '', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('(', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATION_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2185,21 +2516,21 @@ class SrcAttributeType(GrampsType):
                 ('', FOLDER_LABEL, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', FILE_LABEL, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILE_LABEL, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', FOLDER_LABEL, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM218: {
-            'F': [
+            REF_TYPE_L: [
+                ('', FILE_LABEL, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILE_LABEL, '', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('(', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATION_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2207,20 +2538,22 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', FILE_LABEL, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILE_LABEL, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM219: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CREATOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2230,23 +2563,22 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CREATOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM237: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COPY_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -2258,15 +2590,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COPY_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2278,7 +2602,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM238: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NAME, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -2290,15 +2622,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NAME, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -2309,7 +2633,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM239: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2325,17 +2659,7 @@ class SrcAttributeType(GrampsType):
                 ('', DATE, ');', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2346,7 +2670,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM240: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2360,16 +2693,7 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, ');', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2379,7 +2703,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM241: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2392,16 +2725,7 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, ');', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2410,7 +2734,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM242: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, ',', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2422,15 +2754,7 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, ');', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, ',', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2439,7 +2763,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM243: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2453,17 +2787,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('roll ', ROLL_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2472,7 +2796,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM244: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE_TITLE, 'schedule.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2483,16 +2816,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE_TITLE, 'schedule.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2504,17 +2828,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM245: {
-            'F': [
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ';', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', OWNER_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY_LOCATION, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -2524,7 +2838,17 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ';', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', OWNER_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY_LOCATION, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2533,7 +2857,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM246: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FILM_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2546,17 +2880,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ROLL_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FILM_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2565,15 +2889,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM247: {
-            'F': [
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
                 ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -2581,7 +2897,15 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2590,7 +2914,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM248: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2600,16 +2933,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2620,16 +2944,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM249: {
-            'F': [
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -2638,7 +2953,16 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHED, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2648,7 +2972,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM250: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2660,16 +2993,7 @@ class SrcAttributeType(GrampsType):
                 ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CIVIL_DIVISION6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2680,7 +3004,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM251: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COPY_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNER_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2693,16 +3026,7 @@ class SrcAttributeType(GrampsType):
                 ('', OWNER_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COPY_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNER_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -2713,7 +3037,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM252: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2725,17 +3059,7 @@ class SrcAttributeType(GrampsType):
                 ('', LOCATION, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SCHEDULE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SCHEDULE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2746,7 +3070,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM253: {
-            'F': [
+            REF_TYPE_L: [
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', RECORD_FORMAT, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -2756,21 +3087,23 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_ID, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM254: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COMPILER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2781,30 +3114,14 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COMPILER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM255: {
-            'F': [
-                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', STATE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CODE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', STATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', CENSUS_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -2812,7 +3129,14 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', STATE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CODE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PERSON_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CENSUS_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', STATE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CODE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2820,7 +3144,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM256: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COMPILER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2829,22 +3161,21 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COMPILER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COMPILER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM311: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2854,14 +3185,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2870,7 +3194,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM312: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -2880,23 +3213,21 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM313: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -2907,14 +3238,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', RECORD_SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -2923,7 +3247,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM314: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2935,16 +3268,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', RECORD_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2953,17 +3277,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM315: {
-            'F': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('p.', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_ID, '', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', RECORD_SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -2973,7 +3287,17 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', FILM_REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('p.', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_ID, '', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -2981,16 +3305,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM316: {
-            'F': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -3000,7 +3315,16 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3008,7 +3332,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM317: {
-            'F': [
+            REF_TYPE_L: [
+                ('', FILM_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILM_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', NO_OF_ROLLS, 'rolls', EMPTY, False, False, EMPTY, EMPTY),
@@ -3020,15 +3352,7 @@ class SrcAttributeType(GrampsType):
                 ('', DATE_ENTRY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', FILM_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_TYPE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', NO_OF_ROLLS, 'rolls.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILM_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ROLL, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE_ENTRY, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3036,7 +3360,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM318: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, GED_PUBINF),
+                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3048,16 +3381,7 @@ class SrcAttributeType(GrampsType):
                 ('', WHEN_ISSUED, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION_OWNER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', OWNERS_PRIVATE_ADDRESS, ',', EMPTY, True, False, EMPTY, GED_PUBINF),
-                ('', OWNERS_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_OWNED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3065,7 +3389,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM319: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', RECORD_BOOK, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_BOOK, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3075,14 +3406,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('(', LOCATION, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', RECORD_BOOK, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CHURCH_6AUTHOR9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', LOCATION, '),', EMPTY, False, False, SHORTERALG_LOC, EMPTY),
                 ('', RECORD_BOOK, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3090,7 +3414,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM320: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -3101,23 +3434,20 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', COMPILER_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COMPILER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM373: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('File', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3127,13 +3457,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('File', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3143,7 +3467,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM374: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3153,14 +3484,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3168,7 +3492,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM375: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3178,13 +3508,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3194,7 +3518,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM376: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION_6STATE9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BOOK, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3205,14 +3536,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION_6STATE9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BOOK, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3222,7 +3546,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM377: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3231,14 +3562,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3246,7 +3570,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM378: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3260,17 +3594,7 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3280,7 +3604,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM379: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3292,14 +3623,7 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3307,7 +3631,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM380: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3317,23 +3650,25 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM381: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CASE_FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3347,18 +3682,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CASE_FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3368,7 +3692,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM382: {
-            'F': [
+            REF_TYPE_L: [
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -3377,21 +3708,20 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM421: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3401,13 +3731,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3415,7 +3739,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM422: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('file:', FILE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -3426,21 +3757,20 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('file:', FILE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM423: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3449,13 +3779,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3463,7 +3787,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM424: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3473,13 +3803,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3488,7 +3812,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM425: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3497,13 +3827,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3512,7 +3836,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM426: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', VOLUME, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', SECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3521,13 +3851,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', VOLUME, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', SECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3536,7 +3860,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM427: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3546,13 +3876,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3561,7 +3885,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM428: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3570,13 +3900,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3585,7 +3909,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM429: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NAME, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DOCUMENT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -3595,21 +3927,20 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NAME, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DOCUMENT, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM430: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AGENCY_OR_CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3619,14 +3950,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3635,7 +3959,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM431: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AGENCY_OR_CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3647,14 +3978,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BOOK, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3664,7 +3988,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM432: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AGENCY_OR_CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3674,14 +4005,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', AGENCY_OR_CREATOR, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION_6STATE9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CERTIFICATE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -3690,7 +4014,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM487: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3701,13 +4031,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3718,7 +4042,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM488: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3728,13 +4058,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3742,7 +4066,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM489: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3752,13 +4082,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3768,7 +4092,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM490: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_OR_AGENCY, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -3777,13 +4107,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_OR_AGENCY, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -3791,7 +4115,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM491: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3799,14 +4130,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION_6STATE9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3814,19 +4138,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM492: {
-            'F': [
-                ('', JURISDICTION_OR_AGENCY, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PUBLICATION_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', PUBLICATION_FORMAT, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', JURISDICTION_OR_AGENCY, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
                 ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', RECORD_GROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -3839,7 +4151,19 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', JURISDICTION_OR_AGENCY, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PUBLICATION_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', PUBLICATION_FORMAT, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', JURISDICTION_OR_AGENCY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3847,15 +4171,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM493: {
-            'F': [
-                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', JURISDICTION, '.', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
                 ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', RECORD_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
@@ -3864,14 +4180,33 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', FILM_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM494: {
-            'F': [
+            REF_TYPE_L: [
+                ('', JURISDICTION, ',', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3883,18 +4218,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', JURISDICTION, ',', EMPTY, False, False, SHORTERALG_REVERT_TO_DOT, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', JURISDICTION, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3903,7 +4227,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM495: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR_OF_DATABASE_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CREATOR_OF_DATABASE_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, ',', EMPTY, False, True, EMPTY, GED_TITLE),
+                ('', SITE_OWNER_OR_CREATOR, ',', EMPTY, False, True, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR_OF_DATABASE_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATOR_OF_DATABASE_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -3914,17 +4248,7 @@ class SrcAttributeType(GrampsType):
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR_OF_DATABASE_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CREATOR_OF_DATABASE_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, ',', EMPTY, False, True, EMPTY, GED_TITLE),
-                ('', SITE_OWNER_OR_CREATOR, ',', EMPTY, False, True, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR_OF_DATABASE_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -3932,7 +4256,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM496: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, ',', EMPTY, False, True, EMPTY, GED_TITLE),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -3940,21 +4271,21 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, ',', EMPTY, False, True, EMPTY, GED_TITLE),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM539: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SPECIFIC_DATA, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3965,14 +4296,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SPECIFIC_DATA, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -3982,7 +4306,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM540: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DIVISION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -3991,14 +4322,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DIVISION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4007,7 +4331,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM541: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4020,15 +4352,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_UNIT_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4037,7 +4361,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM542: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_TITLE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4049,15 +4381,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_TITLE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DOCUMENT_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_UNIT_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
@@ -4067,16 +4391,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM543: {
-            'F': [
-                ('', FILE_UNIT, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', SERIES, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_GROUP_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', FILE_UNIT, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
                 ('', DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -4085,7 +4400,16 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', FILE_UNIT, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', SERIES, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_GROUP_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', FILE_UNIT, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, SHORTERALG_YEAR, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4094,7 +4418,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM544: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SUBSERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', LIBRARY_DIVISION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PHOTOGRAPH_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PHOTOGRAPH_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBSERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4104,15 +4436,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SUBSERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', LIBRARY_DIVISION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PHOTOGRAPH_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PHOTOGRAPH_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4120,18 +4444,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM545: {
-            'F': [
-                ('', FILE_ID_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILE_ID_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILE_YEAR, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', RECORD_GROUP_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', FILE_ID_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', FILE_ID_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ('', FILE_TYPE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -4142,7 +4455,18 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', FILE_ID_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILE_ID_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILE_YEAR, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', RECORD_GROUP_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', FILE_ID_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_ID_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', FILE_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4152,7 +4476,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM546: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AGENCY, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', NAME, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SOCIAL_SECURITY_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4160,13 +4490,7 @@ class SrcAttributeType(GrampsType):
                 ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AGENCY, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', AGENCY_OR_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', NAME, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SOCIAL_SECURITY_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, SHORTERALG_YEAR, EMPTY),
@@ -4175,7 +4499,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM547: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -4184,22 +4516,22 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM548: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4208,15 +4540,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4224,7 +4548,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM549: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CREATOR_OF_DATABASE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR_OF_DATABASE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4235,17 +4569,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CREATOR_OF_DATABASE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR_OF_DATABASE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4254,7 +4578,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM550: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', CREATOR_OF_DATABASE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR_OF_DATABASE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4264,16 +4597,7 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COUNTRY, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', CREATOR_OF_DATABASE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4281,7 +4605,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM551: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4291,14 +4622,7 @@ class SrcAttributeType(GrampsType):
                 ('', DIGITAL_ID_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4306,7 +4630,18 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM552: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', MICROFILM_ID, '', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLICATION_NO, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', TOTAL_ROLLS, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -4319,18 +4654,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', MICROFILM_ID, '', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLICATION_NO, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', TOTAL_ROLLS, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', SUBGROUP, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_TITLE, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', RECORD_GROUP_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', FILE_UNIT, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -4340,7 +4664,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM553: {
-            'F': [
+            REF_TYPE_L: [
+                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', TOTAL_ROLLS, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PUBLICATION_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('(', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -4349,15 +4681,7 @@ class SrcAttributeType(GrampsType):
                 ('', ROLL, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', PUBLICATION_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', TOTAL_ROLLS, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PUBLICATION_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', FILM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ROLL, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4365,18 +4689,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM554: {
-            'F': [
-                ('', CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', TITLE_OF_DATABASE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', DIGITAL_ID_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', TITLE_OF_DATABASE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
                 ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
@@ -4384,7 +4697,18 @@ class SrcAttributeType(GrampsType):
                 ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', TITLE_OF_DATABASE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ITEM_OF_INTEREST, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', DIGITAL_ID_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE_OF_DATABASE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4392,7 +4716,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM555: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4402,14 +4733,7 @@ class SrcAttributeType(GrampsType):
                 ('', DIGITAL_ID_NO, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4417,7 +4741,14 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM556: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, True, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4426,20 +4757,22 @@ class SrcAttributeType(GrampsType):
                 ('', ITEM_OF_INTEREST, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, True, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM646: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SUBTITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ':', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4449,34 +4782,14 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SUBTITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM647: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CHAPTER_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', BOOK_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', BOOK_EDITOR, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', CHAPTER_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -4487,23 +4800,25 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', CHAPTER_PAGES, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CHAPTER_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', BOOK_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', BOOK_EDITOR, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CHAPTER_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM648: {
-            'F': [
-                ('', EDITOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', TITLE, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', EDITOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', MAIN_TITLE, ':', EMPTY, False, False, EMPTY, GED_TITLE),
@@ -4512,14 +4827,32 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', EDITOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', TITLE, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM649: {
-            'F': [
+            REF_TYPE_L: [
+                ('', ABSTRACTOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ABSTRACTOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME_DATA, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', ABSTRACTOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ABSTRACTOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4530,16 +4863,7 @@ class SrcAttributeType(GrampsType):
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', ABSTRACTOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ABSTRACTOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME_DATA, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ABSTRACTOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -4547,7 +4871,17 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM650: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', NEW_FORMAT, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4558,24 +4892,23 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', NEW_FORMAT, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM651: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', EDITION_DATA, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4585,23 +4918,22 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', EDITION_DATA, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM652: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', FORMAT, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -4610,30 +4942,14 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM653: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
@@ -4641,14 +4957,32 @@ class SrcAttributeType(GrampsType):
                 ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('(', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('(', YEAR6S9, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM654: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', MAIN_TITLE, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SUBTITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MAIN_TITLE, ':', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4659,24 +4993,23 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_AUDIO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', MAIN_TITLE, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SUBTITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MAIN_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_AUDIO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM655: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6TRANSLATOR9_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6TRANSLATOR9_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6TRANSLATOR9_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6TRANSLATOR9_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4686,23 +5019,24 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6TRANSLATOR9_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6TRANSLATOR9_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6TRANSLATOR9_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM656: {
-            'F': [
+            REF_TYPE_L: [
+                ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PRESENTER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PRESENTER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4713,24 +5047,21 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_VIDEO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PRESENTER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_VIDEO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM657: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE_OF_WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4738,21 +5069,25 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE_OF_WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ITEM_OF_INTEREST, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM658: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', NEW_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', DVD_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4764,35 +5099,14 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', NEW_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', DVD_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM659: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', TRANSLATION_OF_TITLE, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', ORIGINAL_PUBLICATION_DATA, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', POSITION_ON_SOURCE, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
@@ -4803,14 +5117,36 @@ class SrcAttributeType(GrampsType):
                 ('', FILM_REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', FILM_REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', TRANSLATION_OF_TITLE, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', ORIGINAL_PUBLICATION_DATA, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', FILM_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', POSITION_ON_SOURCE, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM660: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ORIGINAL_PUBLICATION_DATA, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_PUBLICATION_SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', ROLL, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', ITEM_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PLACE_OF_FILM_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FILM_PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4823,26 +5159,24 @@ class SrcAttributeType(GrampsType):
                 ('', ROLL, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ORIGINAL_PUBLICATION_DATA, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_PUBLICATION_SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', ROLL, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', ITEM_NO, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PLACE_OF_FILM_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FILM_PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM661: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', NEW_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4853,24 +5187,22 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ORIGINAL_PUBLICATION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', NEW_FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM727: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6COMPILER9_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6COMPILER9_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6COMPILER9_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6COMPILER9_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4879,22 +5211,23 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6COMPILER9_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6COMPILER9_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM728: {
-            'F': [
+            REF_TYPE_L: [
+                ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', EDITOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', TOTAL_VOLUMES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', EDITOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4908,21 +5241,21 @@ class SrcAttributeType(GrampsType):
                 ('(', YEAR6S9, ');', EMPTY, False, False, EMPTY, EMPTY),
                 ('hereinafter cited as', CASE_LABEL, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', EDITOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', EDITOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', TOTAL_VOLUMES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CASE_LABEL, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM729: {
-            'F': [
+            REF_TYPE_L: [
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COURT_TERM, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SUBTITLE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', COURT_TERM, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4934,21 +5267,20 @@ class SrcAttributeType(GrampsType):
                 ('', CASE, ';', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('hereinafter cited as', CASE_LABEL, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COURT_TERM, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SUBTITLE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CASE_LABEL, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM730: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', ITEM_TYPE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -4959,22 +5291,23 @@ class SrcAttributeType(GrampsType):
                 ('', PART, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('Act:', ACT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DATABASE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DATABASE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ACT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM731: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', NAME_OF_CODE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', EDITION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', NAME_OF_ACT, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', TITLE_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', NAME_OF_CODE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -4987,16 +5320,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', NAME_OF_CODE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', EDITION_YEAR, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', NAME_OF_ACT, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', TITLE_NO, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', NAME_OF_CODE, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -5004,22 +5328,30 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM732: {
-            'F': [
-                ('', ACT_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', ACT_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ACT_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
                 ('', ACT_NO, '.', EMPTY, False, False, EMPTY, GED_TITLE),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', ACT_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', ACT_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', ACT_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ACT_NO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM733: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE_OF_SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE_OF_SERIES, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -5029,15 +5361,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ACT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE_OF_SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', TITLE_OF_SERIES, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -5046,7 +5370,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM734: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -5055,22 +5387,24 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM735: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', CONGRESS, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SESSION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DOCUMENT_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', CONGRESS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5081,24 +5415,21 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', CONGRESS, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SESSION, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DOCUMENT_ID, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM736: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', CONGRESS, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', SESSION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DOCUMENT_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', CONGRESS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5110,14 +5441,7 @@ class SrcAttributeType(GrampsType):
                 ('', YEAR6S9, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', CONGRESS, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', SESSION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CONGRESS, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SESSION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5126,7 +5450,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM737: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', CONGRESS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5140,16 +5473,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', SERIES, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', CONGRESS, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5158,7 +5482,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM738: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE_OF_PAMPHLET, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE_OF_PAMPHLET, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5168,16 +5501,7 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE_OF_PAMPHLET, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE_OF_PAMPHLET, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5185,7 +5509,16 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM739: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', BOOK_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BOOK_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -5196,16 +5529,7 @@ class SrcAttributeType(GrampsType):
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', BOOK_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PLACE_OF_PUBLICATION, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BOOK_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5213,17 +5537,7 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM779: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
-                ('', ARTICLE_SUBTITLE, ',', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
-                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
@@ -5233,14 +5547,37 @@ class SrcAttributeType(GrampsType):
                 ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', ARTICLE_PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
+                ('', ARTICLE_SUBTITLE, ',', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
+                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM780: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', ARTICLE_SUBTITLE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', ISSUE_DATE, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('accessed', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
@@ -5254,27 +5591,26 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', ARTICLE_SUBTITLE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', ISSUE_DATE, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('accessed', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM781: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', ARTICLE_SUBTITLE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
+                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', VOLUME, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('(', ISSUE_DATE, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, EMPTY),
@@ -5287,34 +5623,14 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTICLE_TITLE, ':', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', ARTICLE_SUBTITLE, '.', STYLE_QUOTECONT, False, False, EMPTY, GED_TITLE),
-                ('', JOURNAL_TITLE, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', VOLUME, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('(', ISSUE_DATE, ').', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM782: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', MAGAZINE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', ISSUE_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -5322,25 +5638,22 @@ class SrcAttributeType(GrampsType):
                 ('', ISSUE_DATE, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', ARTICLE_PAGE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', MAGAZINE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', ISSUE_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM783: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', WEBSITE_CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', WEBSITE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
-                ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
-                ('', LOCATION_ON_PAGE, ';', EMPTY, False, False, EMPTY, EMPTY),
-                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -5351,23 +5664,25 @@ class SrcAttributeType(GrampsType):
                 ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', WEBSITE_CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', WEBSITE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
+                ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
+                ('', LOCATION_ON_PAGE, ';', EMPTY, False, False, EMPTY, EMPTY),
+                ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM784: {
-            'F': [
-                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
-                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-                ('', NEWSLETTER, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
-                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
-                ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, EMPTY),
-                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
-                ],
-            'L': [
+            REF_TYPE_L: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
                 ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
@@ -5376,33 +5691,52 @@ class SrcAttributeType(GrampsType):
                 ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ('', ARTICLE_PAGE6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
                 ],
-            'S': [
+            REF_TYPE_F: [
+                ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
+                ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+                ('', NEWSLETTER, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
+                ('', VOLUME, '', EMPTY, False, False, EMPTY, EMPTY),
+                ('(', ISSUE_DATE, '):', EMPTY, False, False, EMPTY, EMPTY),
+                ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+                ],
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM785: {
-            'F': [
+            REF_TYPE_L: [
+                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', NEWSPAPER, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ISSUES_EXAMINED, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ],
+            REF_TYPE_F: [
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', NEWSPAPER, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', ISSUE_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('col.', COLUMN6S9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', LOCATION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', NEWSPAPER, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ISSUES_EXAMINED, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('p.', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('col.', COLUMN6S9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM786: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', NEWSPAPER, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', ISSUE_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5414,24 +5748,24 @@ class SrcAttributeType(GrampsType):
                 ('', LOCATION_ON_PAGE, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', NEWSPAPER, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', ISSUE_DATE, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', EDITION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM787: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', CREATOR_OF_BLOG, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', BLOG_NAME, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', POSTING_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5442,24 +5776,20 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', AUTHOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTICLE_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', CREATOR_OF_BLOG, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', BLOG_NAME, '', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', POSTING_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTICLE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', LOCATION_ON_PAGE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM788: {
-            'F': [
+            REF_TYPE_L: [
+                ('', NAME_OF_FORUM, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', TYPE_OF_FORUM, ',', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', DATE_SPAN_READ, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', WEBSITE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MESSAGE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5469,13 +5799,7 @@ class SrcAttributeType(GrampsType):
                 ('(', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, EMPTY),
                 ('accessed', DATE_ACCESSED, ').', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', NAME_OF_FORUM, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', TYPE_OF_FORUM, ',', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', DATE_SPAN_READ, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', WEBSITE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', MESSAGE_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', NAME_OF_FORUM, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -5483,7 +5807,20 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM789: {
-            'F': [
+            REF_TYPE_L: [
+                ('', PRESENTER_OR_GUEST_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PRESENTER_OR_GUEST_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', SUBJECT_OR_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('by', PODCAST_HOST, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', PODCAST_TITLE, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', BROADCAST_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PRESENTER_OR_GUEST_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PRESENTER_OR_GUEST_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_OR_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5497,27 +5834,27 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_AUDIO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', PRESENTER_OR_GUEST_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PRESENTER_OR_GUEST_6GIVEN9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', SUBJECT_OR_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('by', PODCAST_HOST, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', PODCAST_TITLE, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', BROADCAST_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PRESENTER_OR_GUEST_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_OR_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP_IN_AUDIO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM790: {
-            'F': [
+            REF_TYPE_L: [
+                ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', PRESENTER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CLIP_ID, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', TITLE_OF_SHOW, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', SEGMENT, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', BROADCAST_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', NETWORK_OR_PRODUCER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', PRESENTER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CLIP_ID, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5531,27 +5868,24 @@ class SrcAttributeType(GrampsType):
                 ('accessed', DATE_ACCESSED, '),', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', PRESENTER_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CLIP_ID, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', TITLE_OF_SHOW, ':', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', SEGMENT, ',', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', BROADCAST_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', FORMAT, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', NETWORK_OR_PRODUCER, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_ACCESSED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', PRESENTER_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CLIP_ID, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', TIMESTAMP, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM93: {
-            'F': [
+            REF_TYPE_L: [
+                ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CREATOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', ARTIFACT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, SHORTERALG_LOC, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', CREATOR_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARTIFACT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5563,24 +5897,22 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CREATOR_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', ARTIFACT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, SHORTERALG_LOC, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', CREATOR_6SURNAME9, ',', EMPTY, False, False, SHORTERALG_ETAL, EMPTY),
                 ('', ARTIFACT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', COLLECTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
         },
         ESM94: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
+                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', COLLECTION, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_CREATOR_OR_OWNER, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, '', STYLE_EMPH, False, False, EMPTY, EMPTY),
@@ -5591,15 +5923,7 @@ class SrcAttributeType(GrampsType):
                 ('p.', PAGE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREDIT_LINE, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', ITEM_TYPE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', WEBSITE_CREATOR_OR_OWNER, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', WEBSITE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_PUBINF),
-                ('', URL_6DIGITAL_LOCATION9, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR6S9, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', COLLECTION, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', WEBSITE_TITLE, ',', STYLE_EMPH, False, False, EMPTY, EMPTY),
                 ('', DOCUMENT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
@@ -5607,7 +5931,12 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM95: {
-            'F': [
+            REF_TYPE_L: [
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', RECORD_DATE6S9, ';', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ITEM_OR_PIECE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5617,12 +5946,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', RECORD_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', DATE, ',', EMPTY, False, False, SHORTERALG_YEAR, EMPTY),
                 ('', COLLECTION, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5630,7 +5954,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM96: {
-            'F': [
+            REF_TYPE_L: [
+                ('', DOCUMENT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', SERIES_NO, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', SERIES, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', DOCUMENT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', SERIES_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SERIES, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5640,15 +5972,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', DOCUMENT_TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', SERIES_NO, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', SERIES, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', DOCUMENT_TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', SERIES_NO, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', VOLUME, ':', EMPTY, False, False, EMPTY, EMPTY),
@@ -5657,7 +5981,13 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM97: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR_6GRANTOR9_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', AUTHOR_6GRANTOR9_6SURNAME9, 'to', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECIPIENT_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
@@ -5672,13 +6002,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SERIES, '.', EMPTY, False, False, EMPTY, GED_TITLE),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR_6GRANTOR9_6SURNAME9, 'to', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECIPIENT_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', RECORD_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5688,7 +6012,20 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM98: {
-            'F': [
+            REF_TYPE_L: [
+                ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, ' ', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', BIBLE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
+                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', YEAR_PUBLISHED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5703,20 +6040,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DESCRIPTIVE_DETAIL_OR_EVALUATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, ' ', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', DATE_RANGE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', BIBLE_TITLE, '.', STYLE_EMPH, False, False, EMPTY, GED_TITLE),
-                ('', PUBLICATION_PLACE, ':', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', PUBLISHER, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', YEAR_PUBLISHED, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', BIBLE_ORIGINAL_OWNER_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ORIGINAL_OWNER_6SURNAME9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', BIBLE_ID, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5724,7 +6048,15 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         ESM99: {
-            'F': [
+            REF_TYPE_L: [
+                ('', SUBJECT_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', SUBJECT_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', SUBJECT_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATION_DATE, ';', EMPTY, False, False, EMPTY, EMPTY),
@@ -5733,15 +6065,7 @@ class SrcAttributeType(GrampsType):
                 ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', ARCHIVAL_DESCRIPTION, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', SUBJECT_6SURNAME9, ',', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', SUBJECT_6GIVEN9, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', CREATION_DATE, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', COLLECTION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY, ',', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ('', REPOSITORY_LOCATION, '.', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', SUBJECT_6GIVEN9, '', EMPTY, False, False, EMPTY, EMPTY),
                 ('', SUBJECT_6SURNAME9, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', CREATION_DATE, ',', EMPTY, False, False, EMPTY, EMPTY),
@@ -5749,19 +6073,19 @@ class SrcAttributeType(GrampsType):
                 ],
         },
         GEDCOM: {
-            'F': [
+            REF_TYPE_L: [
+                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
+                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
+                ('', PUB_INFO, '', EMPTY, False, False, EMPTY, GED_PUBINF),
+                ],
+            REF_TYPE_F: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
                 ('', PUB_INFO, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ' -', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
                 ],
-            'L': [
-                ('', AUTHOR, '.', EMPTY, False, False, EMPTY, GED_AUTHOR),
-                ('', TITLE, '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE),
-                ('', PUB_INFO, '', EMPTY, False, False, EMPTY, GED_PUBINF),
-                ],
-            'S': [
+            REF_TYPE_S: [
                 ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
                 ('', DATE, ' -', EMPTY, False, False, EMPTY, EMPTY),
                 ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
@@ -5770,17 +6094,17 @@ class SrcAttributeType(GrampsType):
     }
 
     # We construct Map for sourcetype values. Use these to store value of 
-    # SRCTEMPLATE in English in the database.
+    # SRCTEMPLATE as a Key in the database.
     I2S_SRCTEMPLATEMAP =  dict([(item[0], item[1]) for item in _SRCTEMPLATEVAL_MAP])
     S2I_SRCTEMPLATEMAP =  dict([(item[1], item[0]) for item in _SRCTEMPLATEVAL_MAP])
-    I2E_SRCTEMPLATEMAP =  dict([(item[0], item[2]) for item in _SRCTEMPLATEVAL_MAP])
-    E2I_SRCTEMPLATEMAP =  dict([(item[2], item[0]) for item in _SRCTEMPLATEVAL_MAP])
+    I2K_SRCTEMPLATEMAP =  dict([(item[0], item[2]) for item in _SRCTEMPLATEVAL_MAP])
+    K2I_SRCTEMPLATEMAP =  dict([(item[2], item[0]) for item in _SRCTEMPLATEVAL_MAP])
     
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
 
     def get_templatevalue_default(self):
-        return self.UNKNOWN
+        return self.GEDCOM
 
     def get_templatevalue_map(self):
         return self.I2S_SRCTEMPLATEMAP

@@ -82,8 +82,8 @@ class EditPrimary(ManagedWindow, DbGUIElement):
 
         self._local_init()
         self._set_size()
-        self._create_tabbed_pages()
         self._setup_fields()
+        self._create_tabbed_pages()
         self._connect_signals()
         #if the database is changed, all info shown is invalid and the window
         # should close
