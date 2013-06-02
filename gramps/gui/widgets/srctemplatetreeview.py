@@ -96,9 +96,6 @@ class SrcTemplateTreeView(Gtk.TreeView):
                 lastval = vals[-2]
             if not lastval:
                 lastval = vals[-3]
-            if vals[0] == 'All':
-                print lastval
-                print vals
             truevals = ['','','']
             if len(vals) < 3 :
                 truevals[:len(vals)] = vals[:]
@@ -128,7 +125,6 @@ class SrcTemplateTreeView(Gtk.TreeView):
                     #only new sublevel1 needed
                     parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
                     parentiter = parentiterlev1
-                    print 'here', row, alltext
                     iter = self.model.append(parentiter, row)
                 else:
                     #only a top level

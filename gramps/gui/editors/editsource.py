@@ -70,7 +70,8 @@ from ..glade import Glade
 class EditSource(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, source):
-
+        self.srctemp = None
+        self.citation = None
         EditPrimary.__init__(self, dbstate, uistate, track, source, 
                              dbstate.db.get_source_from_handle, 
                              dbstate.db.get_source_from_gramps_id)
@@ -162,6 +163,10 @@ class EditSource(EditPrimary):
         """
         self._add_db_signal('source-rebuild', self._do_close)
         self._add_db_signal('source-delete', self.check_for_close)
+        self._add_db_signal('note-delete', self.update_notes)
+        self._add_db_signal('note-update', self.update_notes)
+        self._add_db_signal('note-add', self.update_notes)
+        self._add_db_signal('note-rebuild', self.update_notes)
 
     def _setup_fields(self):
 ##        self.author = MonitoredEntry(self.glade.get_object("author"),
@@ -172,8 +177,13 @@ class EditSource(EditPrimary):
 ##                                      self.obj.set_publication_info,
 ##                                      self.obj.get_publication_info,
 ##                                      self.db.readonly)
+        #reference info fields
+        self.refL = self.glade.get_object("refL")
+        self.refF = self.glade.get_object("refF")
+        self.refS = self.glade.get_object("refS")
         self.author = self.glade.get_object("author")
         self.pubinfo = self.glade.get_object("pubinfo")
+        self.source_text =  self.glade.get_object("source_text")
 
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
@@ -200,13 +210,31 @@ class EditSource(EditPrimary):
                                     self.db.readonly)
 
         self.update_attr()
+        self.update_notes()
 
     def update_attr(self):
         """
         Reaction to update on attributes
         """
-        self.author.set_text(self.obj.get_author())
-        self.pubinfo.set_text(self.obj.get_publication_info())
+        #we only construct once the template to use to format information
+        if self.srctemp is None:
+            self.srctemp = SrcTemplate(self.obj.get_source_template()[0])
+        #if source template changed, reinit template
+        if self.obj.get_source_template()[0] != self.srctemp.get_template_key():
+            self.srctemp.set_template_key(self.obj.get_source_template()[0])
+        #set new attrlist in template
+        self.srctemp.set_attr_list(self.obj.get_attribute_list())
+        
+        #set fields with the template
+        self.refL.set_text(self.srctemp.reference_L())
+        if self.citation:
+            self.refF.set_text(self.srctemp.reference_F())
+            self.refS.set_text(self.srctemp.reference_S())
+        else:
+            self.refF.set_text(_("<no citation loaded>"))
+            self.refS.set_text(_("<no citation loaded>"))
+        self.author.set_text(self.srctemp.author_gedcom())
+        self.pubinfo.set_text(self.srctemp.pubinfo_gedcom())
 
     def update_template_data(self):
         """
@@ -215,6 +243,20 @@ class EditSource(EditPrimary):
         if self.attr_tab:
             self.attr_tab.rebuild_callback()
         self.update_attr()
+
+    def update_notes(self, *par):
+        """
+        Change the source text on the overview page when notebase of the source
+        changed
+        """
+        note_list = [ self.db.get_note_from_handle(h) 
+                      for h in self.obj.get_note_list() ]
+        note_list = [ n for n in note_list 
+                      if n.get_type() == NoteType.SOURCE_TEXT]
+        ref_text = ""
+        for note in note_list:
+            ref_text += note_list[0].get() + "\n"
+        self.source_text.get_buffer().set_text(ref_text)
 
     def _create_tabbed_pages(self):
         notebook = self.glade.get_object('notebook')
@@ -240,7 +282,8 @@ class EditSource(EditPrimary):
                                 self.track,
                                 self.obj.get_note_list(),
                                 self.get_menu_title(),
-                                NoteType.SOURCE)
+                                NoteType.SOURCE,
+                                callback_notebase_changed=self.update_notes)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
         

@@ -101,7 +101,15 @@ class SrcTemplate(object):
         self.refS = None
         # attrmap will hold mapping of field to normal value and short value
         # short value will be None if not given
+        # map is field -> (normal value for ref L, 
+        #                  normal value for ref F/S, short value ref S)
         self.attrmap = {}
+
+    def get_template_key(self):
+        """
+        Obtain the current template key used
+        """
+        return self.template_key
 
     def set_template_key(self, template_key):
         """
@@ -123,17 +131,22 @@ class SrcTemplate(object):
                 print ('SrcTemplate: Keyerror "', template_key,
                            '", custom templates templates not implemented?')
                 raise NotImplementedError
+        self.template_key = template_key
 
-    def set_attr_list(self, attr_list):
+    def set_attr_list(self, attr_list, attr_list_citation=None):
         """
-        Set the attribute list of this template. Setting once for difference
-        references saves some time
+        Set the attribute list of this template. Setting once for different
+        references saves some time.
+        attr_list should be the source attribute list
+        If citation given, citation attributes overrule source attributes for 
+        the Full and Short references
         """
         self.empty()
         self.attr_list = attr_list or []
+        self.attr_list_cite = attr_list_citation or []
         # store attributes in a dict last to first. this overwrites data so first
         # attribute will be the one taken if duplicates are present
-        for attr in attr_list[::-1]:
+        for attr in self.attr_list[::-1]:
             lower = False
             typ = attr.get_type()
             key = int(typ)
@@ -146,15 +159,50 @@ class SrcTemplate(object):
                 key = str(typ)
             if key in self.attrmap:
                 if lower:
-                    self.attrmap[key] = (self.attrmap[key][0], attr.get_value())
+                    self.attrmap[key] = (self.attrmap[key][0],
+                                self.attrmap[key][0], attr.get_value())
                 else:
-                    self.attrmap[key] = (attr.get_value(), self.attrmap[key][1])
+                    self.attrmap[key] = (attr.get_value(), 
+                                attr.get_value(), self.attrmap[key][1])
             else:
                 if lower:
                     #store also in normal already value of short
-                    self.attrmap[key] = (attr.get_value(), attr.get_value())
+                    self.attrmap[key] = (attr.get_value(),
+                                attr.get_value(), attr.get_value())
                 else:
-                    self.attrmap[key] = (attr.get_value(), None)
+                    self.attrmap[key] = (attr.get_value(), 
+                                attr.get_value(), None)
+
+        for attr in self.attr_list_cite[::-1]:
+            #we do same for citation information, but only update last two
+            # values of the attrmap
+            lower = False
+            typ = attr.get_type()
+            key = int(typ)
+            keystr = typ.xml_str().lower()
+            if keystr.lower().endswith(' (short)'):
+                #a shorter version, we store with base type
+                key = int(SrcAttributeType(keystr[:-8]))
+                lower = True
+            if key == SrcAttributeType.CUSTOM:
+                key = str(typ)
+            if key in self.attrmap:
+                if lower:
+                    self.attrmap[key] = (self.attrmap[key][0],
+                                self.attrmap[key][2], attr.get_value())
+                else:
+                    self.attrmap[key] = (self.attrmap[key][0],
+                                attr.get_value(), self.attrmap[key][3])
+            else:
+                #field only present in citation.
+                if lower:
+                    #store also in normal already value of short, keep None
+                    #for source fields
+                    self.attrmap[key] = (None,
+                                attr.get_value(), attr.get_value())
+                else:
+                    self.attrmap[key] = (None,
+                                attr.get_value(), None)
 
     def reference_L(self, attr_list=None):
         """
@@ -205,7 +253,16 @@ class SrcTemplate(object):
         #        ('', DATE, ' -', EMPTY, False, False, EMPTY, EMPTY),
         #        ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
         #        ]
+        
+        #set col of attrmap to use:
+        if reftype == REF_TYPE_L:
+            COL_NORMAL = 0
+            COL_SHORT = 2
+        else:
+            COL_NORMAL = 1
+            COL_SHORT = 2
         ref = ['']
+        fieldadded = [False]
         for (ldel, field, rdel, style, priv, opt, short, gedcom) in reflist:
             if not gedcomfield is None and gedcom != gedcomfield:
                 continue
@@ -213,6 +270,7 @@ class SrcTemplate(object):
             #left delimiter
             if ldel in ['(', '[', '{']:
                 ref += ['']
+                fieldadded += [False]
                 ref[-1] += ldel
                 ldeltodo = ''
             else:
@@ -221,42 +279,67 @@ class SrcTemplate(object):
             #field
             field = ''
             if val is not None:
-                if reftype == REF_TYPE_S and val[1] is not None:
+                if reftype == REF_TYPE_S and val[COL_SHORT] is not None:
                     customshort = True
-                    field = val[1]
+                    field = val[COL_SHORT]
                 else:
-                    field = val[0]
+                    field = val[COL_NORMAL]
             if short and not customshort:
                 #we apply the shortening algorithm
                 ## TODO: not implemented yet
                 pass
-            if field:
-                ref[-1] += ldeltodo + field
+            if field.strip():
+                fieldadded[-1] = True
+                ref[-1] += ldeltodo
+                if len(ref[-1]) and ref[-1][-1] == '.':
+                    ref[-1] += ' ' + field.capitalize()
+                elif  len(ref[-1]) and ref[-1][-1] in [',', ':', '-']:
+                    ref[-1] += ' ' + field
+                else:
+                    ref[-1] += field
             #right delimiter
             if ')' in rdel:
                 if len(ref[-1] [ref[-1].find('('):]) > 0 :
                     newval = ref[-1] + rdel
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    fieldadded[-1] = True
                     ref[-1] += newval
                 else:
                     #no data inside of delimiter, we remove it entirely
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    #if . at end of rdel, add it
+                    if rdel[-1] == '.':
+                        ref[-1] = ref[-1] + '.'
             elif ']' in rdel:
-                if len(ref[-1] [ref[-1].find(']'):]) > 0 :
+                if len(ref[-1] [ref[-1].find('['):]) > 0 :
                     newval = ref[-1] + rdel
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    fieldadded[-1] = True
                     ref[-1] += newval
                 else:
                     #no data inside of delimiter, we remove it entirely
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    #if . at end of rdel, add it
+                    if rdel[-1] == '.':
+                        ref[-1] = ref[-1] + '.'
             elif '}' in rdel:
-                if len(ref[-1] [ref[-1].find('}'):]) > 0 :
+                if len(ref[-1] [ref[-1].find('{'):]) > 0 :
                     newval = ref[-1] + rdel
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    fieldadded[-1] = True
                     ref[-1] += newval
                 else:
                     #no data inside of delimiter, we remove it entirely
                     ref = ref[:-1]
+                    fieldadded = fieldadded[:-1]
+                    #if . at end of rdel, add it
+                    if rdel[-1] == '.':
+                        ref[-1] = ref[-1] + '.'
             else:
                 # we add rdel
                 if not ref[-1]:
@@ -270,19 +353,26 @@ class SrcTemplate(object):
                         ref[-1] = ref[-1][:-1] + rdel
                     else:
                         ref[-1] = ref[-1] + rdel
+                    #we only add delimiters after this if new fields are added
+                    fieldadded[-1] = False
                 elif len(rdel) and rdel[0] == ',':
                     curval = ref[-1]
                     if len(curval) and curval[-1] == '.':
                         pass
                     elif len(curval) and curval[-1] == ',':
                         pass
-                    else:
+                    elif fieldadded[-1]:
                         ref[-1] = ref[-1] + rdel
+                    #we only add delimiters after this if new fields are added
+                    fieldadded[-1] = False
                 else:
-                    ref[-1] = ref[-1] + rdel
+                    if fieldadded[-1]:
+                        ref[-1] = ref[-1] + rdel
+                        #we only add delimiters after this if new fields are added
+                        fieldadded[-1] = False
                     
         ref = ''.join(ref)
-        return ref
+        return ref.capitalize()
 
     def author_gedcom(self, attr_list=None):
         if attr_list:

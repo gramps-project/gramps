@@ -81,10 +81,11 @@ class NoteTab(EmbeddedList, DbGUIElement):
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None, 
-                    notetype=None):
+                    notetype=None, callback_notebase_changed=None):
         self.data = data
         self.callertitle = callertitle
         self.notetype = notetype
+        self.callback_notebase_changed = callback_notebase_changed
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _("_Notes"), NoteModel, share_button=True, 
                               move_buttons=True)
@@ -150,6 +151,8 @@ class NoteTab(EmbeddedList, DbGUIElement):
         self.changed = True
         self.rebuild()
         GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        if self.callback_notebase_changed:
+            self.callback_notebase_changed()
 
     def edit_button_clicked(self, obj):
         """
