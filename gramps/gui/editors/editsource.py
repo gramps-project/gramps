@@ -310,7 +310,7 @@ class EditSource(EditPrimary):
         self.track_ref_for_deletion("attr_tab")
 
         self.citedin_tab = CitedInTab(self.dbstate, self.uistate,
-                                 self.track, self.obj)
+                                 self.track, self.obj, self.cite_apply_callback)
         self._add_tab(notebook, self.citedin_tab)
         self.track_ref_for_deletion("citedin_tab")
 
@@ -435,6 +435,22 @@ class EditSource(EditPrimary):
                         
         self.close()
 
+    # CITATION PART 
+    def cite_apply_callback(self, citation_handle):
+        if self.citation:
+            self.unload_citation()
+        self.load_citation(citation_handle)
+
+    def unload_citation(self):
+        pass
+
+    def load_citation(self, chandle):
+        if self.citation:
+            raise Exception("Request to change citation, but another citation loaded")
+        self.citation = chandle
+        #update source part that uses citation
+        self.update_attr()
+    
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source

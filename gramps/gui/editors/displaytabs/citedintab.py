@@ -29,11 +29,14 @@ from __future__ import print_function
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+import sys
+
 #-------------------------------------------------------------------------
 #
 # GTK libraries
 #
 #-------------------------------------------------------------------------
+from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -42,11 +45,16 @@ from gi.repository import Gtk
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import (get_citation_referents, family_name,
                     get_participant_from_event)
 from .grampstab import GrampsTab
 from ...widgets import SimpleButton
+
+
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
+_RETURN = Gdk.keyval_from_name("Return")
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +68,7 @@ class CitedInTab(GrampsTab):
     It shows these objects in a treeviewl and allows to load citations in the 
     top  part of the source editor.
     """
-    def __init__(self, dbstate, uistate, track, src):
+    def __init__(self, dbstate, uistate, track, src, cite_apply_callback):
         """
         @param dbstate: The database state. Contains a reference to
         the database, along with other state information. The GrampsTab
@@ -80,6 +88,7 @@ class CitedInTab(GrampsTab):
         self.src = src
         self.readonly = dbstate.db.readonly
         self.srtdata = []
+        self.cite_apply_callback = cite_apply_callback
         
         GrampsTab.__init__(self, dbstate, uistate, track, _("Cited In"))
         self._set_label()
@@ -101,6 +110,53 @@ class CitedInTab(GrampsTab):
         Return True if there is no data to show
         """
         return len(self.srtdata) == 0
+
+    def setup_interface(self):
+        """
+        Set all information on the widgets
+        * button tabs to load citation
+        * treeview in scrollable with info
+        """
+        ##print (self.srtdata)
+        ##print(self.obj2citemap)
+        #create the load button, add it to a hbox, and add that box to the 
+        #tab page
+        self.load_btn  = SimpleButton(Gtk.STOCK_APPLY, self.apply_button_clicked)
+        self.load_btn.set_tooltip_text(_("Apply a selected citation so as to"
+                                " edit it in the top part of this interface"))
+        self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.edit_btn.set_tooltip_text(_("Edit the object containing the"
+                                " selected citation"))
+
+        hbox = Gtk.HBox()
+        hbox.set_spacing(6)
+        hbox.pack_start(self.load_btn, False, True, 0)
+        hbox.pack_start(self.edit_btn, False, True, 0)
+
+        hbox.show_all()
+        self.pack_start(hbox, False, True, 0)
+        if self.dbstate.db.readonly:
+            self.load_btn.set_sensitive(False)
+
+        # create the tree, turn on rule hinting and connect the
+        # button press to the double click function.
+        self.tree = Gtk.TreeView()
+        self.tree.set_rules_hint(True)
+        self.tree.connect('button_press_event', self.double_click)
+        self.tree.connect('key_press_event', self.key_pressed)
+        
+        self.make_columns()
+        self.tree.set_model(self.model)
+
+        self.selection = self.tree.get_selection()
+
+        # create the scrolled window, and attach the treeview
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_shadow_type(Gtk.ShadowType.IN)
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scroll.add(self.tree)
+        #add this to the tab
+        self.pack_start(scroll, True, True, 0)
 
     def generate_data(self):
         """
@@ -150,7 +206,7 @@ class CitedInTab(GrampsTab):
                         "outside citation")
         self.srtdata = sorted(self.srtdata, key=lambda x: glocale.sort_key(x[0]))
 
-    def __add_object(self, obj, cite, descr_obj, shortdescr):
+    def __add_object(self, obj, cite, descr_obj, shortdescr, objname):
         """
         obtain citation data of the object and store here so it can be shown
         in a treeview
@@ -158,7 +214,7 @@ class CitedInTab(GrampsTab):
         if not obj.handle in self.obj2citemap:
             self.obj2citemap[obj.handle] = {'prim': [], 'sec': [], 'subsec': []}
             #add for sorting in the treeview to map
-            self.srtdata.append((descr_obj, obj.handle, shortdescr))
+            self.srtdata.append((descr_obj, obj.handle, shortdescr, objname))
         #we analyse the object to determine where the citation is used.
         if hasattr(obj, 'get_citation_list'):
             for citehandle in obj.get_citation_list():
@@ -195,7 +251,7 @@ class CitedInTab(GrampsTab):
         name = _nd.display_name(obj.get_primary_name())
         self.__add_object(obj, cite, _("Person %(id)s: %(descr)s") % {
                     'id': obj.get_gramps_id(),
-                    'descr': name}, _("Cited in Person"))
+                    'descr': name}, _("Cited in Person"), "Person")
 
     def __add_family(self, obj, cite):
         """
@@ -204,7 +260,7 @@ class CitedInTab(GrampsTab):
         name = family_name(obj, self.dbstate.db, _("Unknown Family"))
         self.__add_object(obj, cite, _("Family %(id)s: %(descr)s") % {
                     'id': obj.get_gramps_id(),
-                    'descr': name}, _("Cited in Family"))
+                    'descr': name}, _("Cited in Family"), "Family")
 
     def __add_event(self, obj, cite):
         """
@@ -220,7 +276,7 @@ class CitedInTab(GrampsTab):
         name = _('Event %(id)s: %(descr)s') % {
                     'id': obj.get_gramps_id(),
                     'descr': event_name}
-        self.__add_object(obj, cite, name, _("Cited in Event"))
+        self.__add_object(obj, cite, name, _("Cited in Event"), "Event")
 
     def __add_place(self, obj, cite):
         """
@@ -228,7 +284,7 @@ class CitedInTab(GrampsTab):
         """
         self.__add_object(obj, cite, _('Place %(id)s: %(descr)s') % {
                     'id': obj.get_gramps_id(),
-                    'descr': obj.get_title()}, _("Cited in Place"))
+                    'descr': obj.get_title()}, _("Cited in Place"), "Place")
 
     def __add_repo(self, obj, cite):
         """
@@ -236,7 +292,7 @@ class CitedInTab(GrampsTab):
         """
         self.__add_object(obj, cite, _('Repository %(id)s: %(descr)s') % {
                     'id': obj.get_gramps_id(),
-                    'descr': obj.get_name()}, _("Cited in Repository"))
+                    'descr': obj.get_name()}, _("Cited in Repository"), "Repository")
 
     def __add_media(self, obj, cite):
         """
@@ -249,7 +305,7 @@ class CitedInTab(GrampsTab):
             name = obj.get_mime_type()
         self.__add_object(obj, cite, _('Media %(id)s: %(descr)s') % {
                     'id': obj.get_gramps_id(),
-                    'descr': name}, _("Cited in Media"))
+                    'descr': name}, _("Cited in Media"), "Media")
 
     def format_sec_obj(self, objsec):
         """
@@ -302,53 +358,13 @@ class CitedInTab(GrampsTab):
                     'descr' : descr}
         return descr
 
-    def setup_interface(self):
-        """
-        Set all information on the widgets
-        * button tabs to load citation
-        * treeview in scrollable with info
-        """
-        ##print (self.srtdata)
-        ##print(self.obj2citemap)
-        #create the load button, add it to a hbox, and add that box to the 
-        #tab page
-        self.load_btn  = SimpleButton(Gtk.STOCK_APPLY, self.load_button_clicked)
-
-        hbox = Gtk.HBox()
-        hbox.set_spacing(6)
-        hbox.pack_start(self.load_btn, False, True, 0)
-
-        hbox.show_all()
-        self.pack_start(hbox, False, True, 0)
-        if self.dbstate.db.readonly:
-            self.load_btn.set_sensitive(False)
-
-        # create the tree, turn on rule hinting and connect the
-        # button press to the double click function.
-        self.tree = Gtk.TreeView()
-        self.tree.set_rules_hint(True)
-        self.tree.connect('button_press_event', self.double_click)
-        self.tree.connect('key_press_event', self.key_pressed)
-        
-        self.make_columns()
-        self.tree.set_model(self.model)
-        self.tree.expand_all()
-
-        # create the scrolled window, and attach the treeview
-        scroll = Gtk.ScrolledWindow()
-        scroll.set_shadow_type(Gtk.ShadowType.IN)
-        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        scroll.add(self.tree)
-        #add this to the tab
-        self.pack_start(scroll, True, True, 0)
-
     def double_click(self, obj, event):
         """
         Handles the double click on list. If the double click occurs,
-        the load button handler is called
+        the apply button handler is called
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
-            self.load_button_clicked(obj)
+            self.apply_button_clicked(obj)
 
     def key_pressed(self, obj, event):
         """
@@ -358,48 +374,119 @@ class CitedInTab(GrampsTab):
         if event.type == Gdk.EventType.KEY_PRESS:
             #print 'key pressed', event.keyval, event.get_state(), _ADD
             if  event.keyval in (_RETURN, _KP_ENTER):
-                self.load_button_clicked(obj)
+                self.apply_button_clicked(obj)
                 return True
             else:
                 return GrampsTab.key_pressed(self, obj, event)
             return False
 
-    def load_button_clicked(self, obj):
+    def apply_button_clicked(self, obj):
         """
         Function called with the Load button is clicked. This function
         should be overridden by the derived class.
         """
-        print("Uncaught Add clicked")
+        sel = self.get_selected()
+        if sel[0]:
+            self.cite_apply_callback(sel[0])
+
+    def edit_button_clicked(self, obj):
+        """
+        Function called with the Load button is clicked. This function
+        should be overridden by the derived class.
+        """
+        sel = self.get_selected()
+        ref = sel[1]
+        reftype = sel[2]
+        if not ref:
+            return
+
+        from .. import (EditEvent, EditPerson, EditFamily, EditPlace, 
+                        EditMedia, EditRepository, EditCitation)
+
+        if reftype == 'Person':
+            try:
+                person = self.dbstate.db.get_person_from_handle(ref)
+                EditPerson(self.dbstate, self.uistate, [], person)
+            except WindowActiveError:
+                pass
+        elif reftype == 'Family':
+            try:
+                family = self.dbstate.db.get_family_from_handle(ref)
+                EditFamily(self.dbstate, self.uistate, [], family)
+            except WindowActiveError:
+                pass
+        elif reftype == 'Place':
+            try:
+                place = self.dbstate.db.get_place_from_handle(ref)
+                EditPlace(self.dbstate, self.uistate, [], place)
+            except WindowActiveError:
+                pass
+        elif reftype == 'Media':
+            try:
+                obj = self.dbstate.db.get_object_from_handle(ref)
+                EditMedia(self.dbstate, self.uistate, [], obj)
+            except WindowActiveError:
+                pass
+        elif reftype == 'Event':
+            try:
+                event = self.dbstate.db.get_event_from_handle(ref)
+                EditEvent(self.dbstate, self.uistate, [], event)
+            except WindowActiveError:
+                pass
+        elif reftype == 'Repository':
+            try:
+                repo = self.dbstate.db.get_repository_from_handle(ref)
+                EditRepository(self.dbstate, self.uistate, [], repo)
+            except WindowActiveError:
+                pass
 
     def build_model(self):
         """
         set up the model the treeview will use based on the data
         """
-        # store (citationhandle, primobjhandle, name, citationgid, index)
+        # store (citationhandle, primobjhandle, name, citationgid, index, classname)
         # here, depending on the leve, name will be primobjname, secobjname, or
         # subsecobjname
         # citationhandle will be '' for rows which create sublevels
-        self.model = Gtk.TreeStore(str, str, str, str, int)
-        for (descr, primhandle, shortdescr) in self.srtdata:
+        self.model = Gtk.TreeStore(str, str, str, str, int, str)
+        
+        if sys.version_info[0] < 3:
+            self.idle = GObject.idle_add(self.load_model().next)
+        else:
+            self.idle = GObject.idle_add(self.load_model().__next__)
+    
+    def load_model(self):
+        """
+        To make sure source editor is responsive, we use idle_add to 
+        build the model.
+        WARNING: a consequence of above is that loading can still be happening
+            while the GUI using this model is no longer used. Disconnect any
+            methods before closing the GUI.
+        """
+        for (descr, primhandle, shortdescr, objname) in self.srtdata:
             data = self.obj2citemap[primhandle]
             #top level node
-            iter = self.model.append(None, ['', primhandle, descr, '', -1])
+            iter = self.model.append(None, ['', primhandle, descr, '', -1, objname])
             for ind, chandle in enumerate(data['prim']):
                 citation = self.dbstate.db.get_citation_from_handle(chandle)
                 self.model.append(iter, [chandle, primhandle, shortdescr,
-                        citation.get_gramps_id(), ind])
+                        citation.get_gramps_id(), ind, objname])
             base = len(data['prim'])
             for ind, val in enumerate(data['sec']):
                 chandle, secdescr = val
                 citation = self.dbstate.db.get_citation_from_handle(chandle)
                 self.model.append(iter, [chandle, primhandle, secdescr,
-                        citation.get_gramps_id(), base+ind])
+                        citation.get_gramps_id(), base+ind, objname])
             base += len(data['sec'])
             for ind, val in enumerate(data['subsec']):
                 chandle, subsecdescr = val
                 citation = self.dbstate.db.get_citation_from_handle(chandle)
                 self.model.append(iter, [chandle, primhandle, subsecdescr,
-                        citation.get_gramps_id(), base+ind])
+                        citation.get_gramps_id(), base+ind, objname])
+            yield True
+        #only now can we expand all nodes:
+        self.tree.expand_all()
+        yield False
 
     def make_columns(self):
         #make the columns in the treeview
@@ -408,3 +495,18 @@ class CitedInTab(GrampsTab):
         self.tree.append_column(column)
         column = Gtk.TreeViewColumn(_("Citation"), renderer, text=3)
         self.tree.append_column(column)
+
+    def get_selected(self):
+        """
+        Return the (citation_handle, primary_object_handle, classname_prim_obj)
+        associated with the selected row in the model.
+        If no selection has been made, None is returned.
+        If not on a citation, citation_handle will be empty string ''
+        """
+        (model, iter) = self.selection.get_selected()
+        # store contains: (citationhandle, primobjhandle, name, citationgid, index)
+        if iter:
+            return  (model.get_value(iter, 0), model.get_value(iter, 1),
+                     model.get_value(iter, 5))
+        return None
+
