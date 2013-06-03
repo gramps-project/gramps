@@ -39,6 +39,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from .addrembedlist import AddrEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList
+from .citedintab import CitedInTab
 from .eventbackreflist import EventBackRefList
 from .eventembedlist import EventEmbedList
 from .familyattrembedlist import FamilyAttrEmbedList

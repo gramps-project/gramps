@@ -244,6 +244,9 @@ class SrcTemplate(object):
         """
         Compute the reference based on data present.
         At the moment no style is applied!
+        
+        THIS IS UGLY CODE AT THE MOMENT! SHOULD BE ENTIRELY REWRITTEN, FOR 
+        NOW IT JUST GIVES ME SOMETHING TO USE IN THE PROTOTYPE !!
         """
         reflist = self.tempstruct[reftype]
         # reflist is typically a list like
@@ -292,7 +295,7 @@ class SrcTemplate(object):
                 fieldadded[-1] = True
                 ref[-1] += ldeltodo
                 if len(ref[-1]) and ref[-1][-1] == '.':
-                    ref[-1] += ' ' + field.capitalize()
+                    ref[-1] += ' ' + field[0].capitalize() + field[1:]
                 elif  len(ref[-1]) and ref[-1][-1] in [',', ':', '-']:
                     ref[-1] += ' ' + field
                 else:
@@ -372,7 +375,10 @@ class SrcTemplate(object):
                         fieldadded[-1] = False
                     
         ref = ''.join(ref)
-        return ref.capitalize()
+        if ref:
+            return ref[0].capitalize() + ref[1:]
+        else:
+            return ref
 
     def author_gedcom(self, attr_list=None):
         if attr_list:

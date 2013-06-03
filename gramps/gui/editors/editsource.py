@@ -54,7 +54,7 @@ from .editreference import RefTab
 from .editmediaref import EditMediaRef
 
 from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
-                          SrcTemplateTab,
+                          SrcTemplateTab, CitedInTab,
                           CitationBackRefList, RepoEmbedList)
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
 from ..dialog import ErrorDialog
@@ -286,7 +286,7 @@ class EditSource(EditPrimary):
                                 callback_notebase_changed=self.update_notes)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
                                       self.track,
@@ -294,21 +294,26 @@ class EditSource(EditPrimary):
                                       self.load_source_image)
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
-                                          
-        self.attr_tab = SrcAttrEmbedList(self.dbstate,
-                                         self.uistate,
-                                         self.track,
-                                         self.obj.get_attribute_list())
-        self._add_tab(notebook, self.attr_tab)
-        self.track_ref_for_deletion("attr_tab")
-                                       
+
         self.repo_tab = RepoEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,
                                       self.obj.get_reporef_list())
         self._add_tab(notebook, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
-        
+
+        self.attr_tab = SrcAttrEmbedList(self.dbstate,
+                                         self.uistate,
+                                         self.track,
+                                         self.obj.get_attribute_list())
+        self._add_tab(notebook, self.attr_tab)
+        self.track_ref_for_deletion("attr_tab")
+
+        self.citedin_tab = CitedInTab(self.dbstate, self.uistate,
+                                 self.track, self.obj)
+        self._add_tab(notebook, self.citedin_tab)
+        self.track_ref_for_deletion("citedin_tab")
+
         self.backref_list = CitationBackRefList(self.dbstate,
                                               self.uistate,
                                               self.track,

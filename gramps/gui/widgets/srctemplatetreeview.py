@@ -23,13 +23,19 @@
 """
 A class to select source templates
 """
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
 # GTK classes
 #
 #-------------------------------------------------------------------------
-
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -38,7 +44,6 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-
 from gramps.gen.lib import SrcAttributeType
 
 #-------------------------------------------------------------------------
@@ -79,7 +84,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.Str2I = srcattrt.S2I_SRCTEMPLATEMAP
         self.Key2I = srcattrt.K2I_SRCTEMPLATEMAP
         self.Key2Path = {}
-        # store (index, key, cat, cat_type, src_type)
+        # store (index, key, src_type)
         self.model = Gtk.TreeStore(int, str, str)
         alltexts = sorted(self.Str2I.keys())
         parentiter = None
@@ -136,7 +141,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
     def make_columns(self):
         #make the column in the treeview
         renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn("Template", renderer, text=2)
+        column = Gtk.TreeViewColumn(_("Template"), renderer, text=2)
         self.append_column(column)
         #no headers needed:
         self.set_headers_visible (False)

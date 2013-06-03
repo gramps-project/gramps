@@ -118,8 +118,8 @@ class GrampsTab(Gtk.VBox):
         else:
             func = Gtk.Image.new_from_stock
             name = icon
-        
-        self.tab_image = func(name, Gtk.IconSize.MENU)
+
+        self.tab_image = func(name, Gtk.IconSize.MENU)    
         self.track_ref_for_deletion("tab_image")
         self.label = Gtk.Label(label=self.tab_name)
         self.track_ref_for_deletion("label")

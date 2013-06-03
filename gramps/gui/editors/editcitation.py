@@ -298,7 +298,7 @@ class EditCitation(EditPrimary):
             self.db.readonly)
         
         self.author = MonitoredEntry(
-            self.glade.get_object('author'), self.source.set_author,
+            self.glade.get_object('author'), self.eat_it,
             self.source.get_author,self.db.readonly)
         
         self.gid = MonitoredEntry(
@@ -323,8 +323,14 @@ class EditCitation(EditPrimary):
             self.source.get_abbreviation,self.db.readonly)
 
         self.pubinfo = MonitoredEntry(
-            self.glade.get_object('pub_info'), self.source.set_publication_info,
+            self.glade.get_object('pub_info'), self.eat_it,
             self.source.get_publication_info,self.db.readonly)
+
+    def eat_it(self, *pars):
+        """
+        TODO: remove this method again, for prototype only
+        """
+        pass
 
     def _create_tabbed_pages(self):
         """

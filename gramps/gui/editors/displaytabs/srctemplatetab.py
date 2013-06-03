@@ -129,6 +129,33 @@ class SrcTemplateTab(GrampsTab):
             #a predefined template, 
             self.reset_template_fields(srcattr.EVIDENCETEMPLATES[index])
 
+    def _add_entry(self, row, srcattrtype, label):
+        """
+        Add an entryfield to the grid of fields at row row, to edit the given
+        srcattrtype value. Use label label if given to indicate the field
+        (otherwise the srcattrtype string description is used)
+        Note srcattrtype should actually be the integer key of the type!
+        """
+        self.gridfields.insert_row(row)
+        field = srcattrtype
+        #setup label
+        if not label:
+            srcattr = SrcAttributeType(field)
+            label = str(srcattr)
+        lbl = Gtk.Label(_("%s:") % label)
+        lbl.set_halign(Gtk.Align.START)
+        self.gridfields.attach(lbl, 0, row-1, 1, 1)
+        self.lbls.append(lbl)
+        #setup entry
+        inpt = UndoableEntry()
+        inpt.set_halign(Gtk.Align.FILL)
+        inpt.set_hexpand(True)
+        self.gridfields.attach(inpt, 1, row-1, 1, 1)
+        self.inpts.append(inpt)
+        MonitoredEntry(inpt, self.set_field, self.get_field, 
+                       read_only=self.dbstate.db.readonly, 
+                       parameter=srcattrtype)
+
     def reset_template_fields(self, template):
         # first remove old fields
         for lbl in self.lbls:
@@ -139,25 +166,9 @@ class SrcTemplateTab(GrampsTab):
         self.inpts = []
         row = 1
         # now add new fields
-        for fielddef in template[REF_TYPE_F]:
-            self.gridfields.insert_row(row)
+        for fielddef in template[REF_TYPE_L]:
+            self._add_entry(row, fielddef[1], '')
             row += 1
-            field = fielddef[1]
-            #setup label
-            srcattr = SrcAttributeType(field)
-            lbl = Gtk.Label(_("%s:") %str(srcattr))
-            lbl.set_halign(Gtk.Align.START)
-            self.gridfields.attach(lbl, 0, row-1, 1, 1)
-            self.lbls.append(lbl)
-            #setup entry
-            inpt = UndoableEntry()
-            inpt.set_halign(Gtk.Align.FILL)
-            inpt.set_hexpand(True)
-            self.gridfields.attach(inpt, 1, row-1, 1, 1)
-            self.inpts.append(inpt)
-            MonitoredEntry(inpt, self.set_field, self.get_field, 
-                           read_only=self.dbstate.db.readonly, 
-                           parameter=field)
         
         self.show_all()
 
@@ -196,7 +207,6 @@ class SrcTemplateTab(GrampsTab):
             src.add_attribute(foundattr)
         #indicate source object changed
         self.callback_src_changed()
-        
 
 ##    def setup_autocomp_combobox(self):
 ##        """
