@@ -1,3 +1,6 @@
+# Dutch translation for Gramps
+# $Id$
+# This file is distributed under the same license as the Gramps package.
 # translation of nl.po to nederlands
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
