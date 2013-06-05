@@ -80,6 +80,8 @@ class EditSource(EditPrimary):
         """
         self.srctemp = None
         self.citation = citation
+        self.template_tab = None
+        self.attr_tab = None
         if not source and not citation:
             raise NotImplementedError
         elif not source:
@@ -104,13 +106,13 @@ class EditSource(EditPrimary):
 
     def get_menu_title(self):
         title = self.obj.get_title()
-        if title:
+        if self.obj.get_handle():
             title = _('Source') + ": " + title
         else:
             title = _('New Source')
         if self.citation is not None:
             citeid = self.citation.get_gramps_id()
-            if citeid:
+            if self.citation.get_handle():
                 if self.callertitle:
                     title = _('Citation: %(id)s - %(context)s' % {
                              'id'      : citeid,
@@ -331,6 +333,12 @@ class EditSource(EditPrimary):
             self.refS.set_text(_("<no citation loaded>"))
         self.author.set_text(self.srctemp.author_gedcom())
         self.pubinfo.set_text(self.srctemp.pubinfo_gedcom())
+        if self.template_tab and self.template_tab.autoset_title:
+            title = self.srctemp.title_gedcom()
+            self.obj.set_title(title)
+            self.title.update()
+        #lastly update the window title
+        self.update_title(self.get_menu_title())
 
     def update_template_data(self):
         """
@@ -358,14 +366,13 @@ class EditSource(EditPrimary):
         notebook = self.glade.get_object('notebook')
         gridsrc =  self.glade.get_object('gridsrc')
         #recreate start page as GrampsTab
+        notebook.remove_page(1)
         notebook.remove_page(0)
         self.overviewtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('Overview'), gridsrc)
         self._add_tab(notebook, self.overviewtab)
 
         #recreate second page as GrampsTab
-        notebook.remove_page(0)
-        self.attr_tab = None
         self.template_tab = SrcTemplateTab(self.dbstate, self.uistate,
                                 self.track, self.obj, self.glade,
                                 self.update_template_data

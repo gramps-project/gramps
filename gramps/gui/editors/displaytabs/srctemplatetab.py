@@ -43,7 +43,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
                                 REF_TYPE_S, REF_TYPE_L, EMPTY)
-from gramps.gen.lib.srcattribute import SrcAttribute
+from gramps.gen.lib import SrcAttribute, SrcTemplate
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
 from ...widgets import UndoableEntry, MonitoredEntry
@@ -80,7 +80,9 @@ class SrcTemplateTab(GrampsTab):
         self.glade = glade
         self.callback_src_changed = callback_src_changed
         self.readonly = dbstate.db.readonly
-        
+
+        self.autoset_title = False
+
         GrampsTab.__init__(self, dbstate, uistate, track, _("Source Template"))
         eventbox = Gtk.EventBox()
         widget = self.glade.get_object('gridtemplate')
@@ -93,6 +95,7 @@ class SrcTemplateTab(GrampsTab):
         self.inpts = []
         self.monentry = []
         self.gridfields = self.glade.get_object('gridfields')
+        self.autotitle = self.glade.get_object("autotitle_checkbtn")
         #self.vbox_fields_label = self.glade.get_object('fields_01')
         #self.vbox_fields_input = self.glade.get_object('fields_02')
         self.setup_interface(self.glade.get_object('scrolledtemplates'))
@@ -117,6 +120,34 @@ class SrcTemplateTab(GrampsTab):
         self.temp_tv = SrcTemplateTreeView(templ[2],
                                 sel_callback=self.on_template_selected)
         scrolled.add(self.temp_tv)
+        
+        #autotitle checkbox
+        self.autotitle.set_active(self.autotitle_get_orig_val())
+        self.autotitle.set_sensitive(not self.dbstate.db.readonly)
+        self.autotitle.connect('toggled', self.autotitle_on_toggle)
+
+    def autotitle_get_orig_val(self):
+        """
+        If title of the source is what we would set with autotitle, we set
+        the checkbox to true. Otherwise to False
+        """
+        srctemp = SrcTemplate(self.src.get_source_template()[0])
+        srctemp.set_attr_list(self.src.get_attribute_list())
+        title = srctemp.title_gedcom()
+        if self.src.get_title() == title:
+            self.autoset_title = True
+        else:
+            self.autoset_title = False
+        return self.autoset_title
+
+    def autotitle_on_toggle(self, obj):
+        """ the autoset_title attribute will be used in editsource to 
+        determine that title must be set
+        """
+        self.autoset_title = obj.get_active()
+        #it might be that the title must be changed, so we trigger the callback
+        # which will update the title in the source object
+        self.callback_src_changed()
 
     def on_template_selected(self, index, key):
         """
