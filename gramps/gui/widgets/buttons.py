@@ -182,3 +182,7 @@ class PrivacyButton(object):
             self.obj.set_privacy(False)
         image.show()
         obj.add(image)
+
+    def update(self):
+        """ force an update so as to correspond with the object monitored"""
+        self.set_active(self.obj.get_privacy())

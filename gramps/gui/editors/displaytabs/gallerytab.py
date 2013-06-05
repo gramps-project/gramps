@@ -365,6 +365,16 @@ class GalleryTab(ButtonTab, DbGUIElement):
         """
         self.rebuild()
 
+    def rebuild_callback(self):
+        """
+        The view must be remade when data changes outside this tab.
+        Use this method to connect to after a db change. It makes sure the 
+        data is obtained again from the present object and the db what is not
+        present in the obj, and the view rebuild
+        """
+        self.changed = True
+        self.rebuild()
+
     def media_delete(self, del_media_handle_list):
         """
         Outside of this tab media objects have been deleted. Check if tab

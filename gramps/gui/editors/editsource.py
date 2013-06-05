@@ -45,7 +45,7 @@ from gi.repository import Gtk, Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Source, SrcTemplate
+from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
@@ -56,7 +56,8 @@ from .editmediaref import EditMediaRef
 from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           SrcTemplateTab, CitedInTab,
                           CitationBackRefList, RepoEmbedList)
-from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
+from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
+                       MonitoredMenu)
 from ..dialog import ErrorDialog
 from ..utils import is_right_click, open_file_with_default_application
 from ..glade import Glade
@@ -69,12 +70,34 @@ from ..glade import Glade
 
 class EditSource(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track, source):
+    def __init__(self, dbstate, uistate, track, source, citation=None,
+                    callback=None,
+                    callertitle = None):
+        """
+        Editor for source and citations of that source
+        If source is not given, citation must be given, and the source of the
+        citation will be used
+        """
         self.srctemp = None
-        self.citation = None
+        self.citation = citation
+        if not source and not citation:
+            raise NotImplementedError
+        elif not source:
+            #citation will be used to obtain the source
+            hsource = citation.get_reference_handle()
+            source = dbstate.db.get_source_from_handle(hsource)
+        elif citation:
+            #source and citation are given, they MUST be connected or citation
+            #must be a new object
+            if citation.get_reference_handle() and \
+                not (citation.get_reference_handle() == source.handle):
+                raise Exception('Citation must be a Citation of the Source edited')
+        self.callertitle = callertitle
+
+        self.citation_ready = False
         EditPrimary.__init__(self, dbstate, uistate, track, source, 
                              dbstate.db.get_source_from_handle, 
-                             dbstate.db.get_source_from_gramps_id)
+                             dbstate.db.get_source_from_gramps_id, callback)
 
     def empty_object(self):
         return Source()
@@ -85,6 +108,23 @@ class EditSource(EditPrimary):
             title = _('Source') + ": " + title
         else:
             title = _('New Source')
+        if self.citation is not None:
+            citeid = self.citation.get_gramps_id()
+            if citeid:
+                if self.callertitle:
+                    title = _('Citation: %(id)s - %(context)s' % {
+                             'id'      : citeid,
+                             'context' : self.callertitle
+                             }) + ' ' + title
+                else:
+                    title = _('Citation') + ": " + citeid  + ' ' + title
+            else:
+                if self.callertitle:
+                    title = _('New Citation - %(context)s' % {
+                             'context' : self.callertitle
+                             }) + ' ' + title
+                else:     
+                    title = _('New Citation') + ' ' + title
         return title
 
     def _local_init(self):
@@ -99,6 +139,10 @@ class EditSource(EditPrimary):
         self.obj_photo = self.glade.get_object("sourcePix")
         self.frame_photo = self.glade.get_object("frame5")
         self.eventbox = self.glade.get_object("eventbox1")
+        self.notebook_ref = self.glade.get_object('notebook_citation')
+        self.cinf = self.glade.get_object("cite_info_lbl")
+
+        self.define_warn_box2(self.glade.get_object("warn_box2"))
 
     def _post_init(self):
         """
@@ -110,6 +154,9 @@ class EditSource(EditPrimary):
         derived class (this class).
 
         """
+        if self.citation is None:
+            self.unload_citation()
+
         self.load_source_image()
         self.title.grab_focus()
 
@@ -161,6 +208,8 @@ class EditSource(EditPrimary):
         Connect any signals that need to be connected. 
         Called by the init routine of the base class (_EditPrimary).
         """
+        self._add_db_signal('citation-rebuild', self._do_close)
+        self._add_db_signal('citation-delete', self.check_for_close_cite)
         self._add_db_signal('source-rebuild', self._do_close)
         self._add_db_signal('source-delete', self.check_for_close)
         self._add_db_signal('note-delete', self.update_notes)
@@ -168,6 +217,17 @@ class EditSource(EditPrimary):
         self._add_db_signal('note-add', self.update_notes)
         self._add_db_signal('note-rebuild', self.update_notes)
 
+    def check_for_close_cite(self, handles):
+        """
+        Callback method for delete signals. 
+        If there is a delete signal of the citation object we are
+        editing, the 
+        editor (and all child windows spawned) should be closed
+        """
+        #citation, we only close if that citation is open
+        if self.citation and self.citation.get_handle() in handles:
+            self._do_close()
+    
     def _setup_fields(self):
 ##        self.author = MonitoredEntry(self.glade.get_object("author"),
 ##                                     self.obj.set_author, self.obj.get_author,
@@ -177,7 +237,7 @@ class EditSource(EditPrimary):
 ##                                      self.obj.set_publication_info,
 ##                                      self.obj.get_publication_info,
 ##                                      self.db.readonly)
-        #reference info fields
+        #reference info fields of source
         self.refL = self.glade.get_object("refL")
         self.refF = self.glade.get_object("refF")
         self.refS = self.glade.get_object("refS")
@@ -185,6 +245,7 @@ class EditSource(EditPrimary):
         self.pubinfo = self.glade.get_object("pubinfo")
         self.source_text =  self.glade.get_object("source_text")
 
+        #editable source fields
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
@@ -209,8 +270,43 @@ class EditSource(EditPrimary):
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
 
+        #editable citation fields
+        if self.citation:
+            self._setup_citation_fields()
+
+        #trigger updates of read only fields
         self.update_attr()
         self.update_notes()
+
+    def _setup_citation_fields(self):
+        if self.citation_ready:
+            raise Exception
+        self.gid = MonitoredEntry(
+            self.glade.get_object('gid2'), self.citation.set_gramps_id,
+            self.citation.get_gramps_id, self.db.readonly)
+
+        self.type_mon = MonitoredMenu(
+            self.glade.get_object('confidence'),
+            self.citation.set_confidence_level,
+            self.citation.get_confidence_level, [
+            (_('Very Low'), Citation.CONF_VERY_LOW),
+            (_('Low'), Citation.CONF_LOW),
+            (_('Normal'), Citation.CONF_NORMAL),
+            (_('High'), Citation.CONF_HIGH),
+            (_('Very High'), Citation.CONF_VERY_HIGH)],
+            self.db.readonly)
+
+        self.tags2 = MonitoredTagList(
+            self.glade.get_object("tag_label2"), 
+            self.glade.get_object("tag_button2"), 
+            self.citation.set_tag_list, 
+            self.citation.get_tag_list,
+            self.db,
+            self.uistate, self.track,
+            self.db.readonly)
+
+        self.ref_privacy = PrivacyButton(
+            self.glade.get_object('privacy'), self.citation, self.db.readonly)
 
     def update_attr(self):
         """
@@ -325,7 +421,54 @@ class EditSource(EditPrimary):
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
         self.glade.get_object('vbox').pack_start(notebook, True, True, 0)
+        
+        #now create citation tabbed pages
+        if self.citation:
+            self._create_citation_tabbed_pages()
 
+    def _create_citation_tabbed_pages(self):
+        if self.citation_ready:
+            raise Exception
+        self.citation_ready = True
+        
+        tblref =  self.glade.get_object('grid1')
+        notebook_ref = self.notebook_ref
+        #recreate start page as GrampsTab
+        notebook_ref.remove_page(0)
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+        self._add_tab(notebook_ref, self.reftab)
+        self.track_ref_for_deletion("reftab")
+
+        self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
+                    self.citation.get_note_list(), self.get_menu_title(),
+                    notetype=NoteType.CITATION)
+        self._add_tab(notebook_ref, self.comment_tab)
+        self.track_ref_for_deletion("comment_tab")
+
+        self.gallery_tab = GalleryTab(self.dbstate, self.uistate, self.track,
+                       self.citation.get_media_list())
+        self._add_tab(notebook_ref, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
+            
+        self.attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.citation.get_attribute_list())
+        self._add_tab(notebook_ref, self.attr_tab)
+        self.track_ref_for_deletion("attr_tab")
+            
+        self.citationref_list = CitationBackRefList(self.dbstate, self.uistate, 
+                              self.track,
+                              self.db.find_backlink_handles(self.citation.handle),
+                              self.enable_warnbox2)
+        self._add_tab(notebook_ref, self.citationref_list)
+        self.track_ref_for_deletion("citationref_list")
+
+    def define_warn_box2(self, box):
+        self.warn_box2 = box
+
+    def enable_warnbox2(self):
+        self.warn_box2.show()
+        
     def build_menu_names(self, source):
         return (_('Edit Source'), self.get_menu_title())        
 
@@ -442,15 +585,48 @@ class EditSource(EditPrimary):
         self.load_citation(citation_handle)
 
     def unload_citation(self):
-        pass
+        self.cinf.set_visible(False)
+        self.notebook_ref.set_visible(False)
+        if self.citation:
+            #there is a citation, we clear it
+            self.citation.unserialize(Citation().serialize())
 
     def load_citation(self, chandle):
-        if self.citation:
-            raise Exception("Request to change citation, but another citation loaded")
-        self.citation = chandle
+        #we switch current citatoin for the new one
+        if not self.citation:
+            #there is no citation yet, put an empty one
+            self.citation = Citation()
+        if chandle:
+            newcite = self.db.get_citation_from_handle(chandle)
+        else:
+            newcite = Citation()
+        if not newcite:
+            #error in database, link to citation handle that does not exist
+            raise Exception
+        self.citation.unserialize(newcite.serialize())
+        if not self.citation_ready:
+            self._setup_citation_fields()
+            self._create_citation_tabbed_pages()
+        else:
+            self.citation_changed()
+        self.cinf.set_visible(True)
+        self.notebook_ref.set_visible(True)
+
+    def  citation_changed(self):
+        """
+        The citation part of the editor changed, we need to update all
+        GUI fields showing data of it
+        """
         #update source part that uses citation
         self.update_attr()
-    
+        #trigger update of the monitored fields
+        for field in [self.gid, self.type_mon, self.tags2, self.ref_privacy]:
+            field.update()
+        #trigger update of the tab fields
+        for tab in [self.comment_tab, self.gallery_tab, self.attr_tab,
+                    self.citationref_list]:
+            tab.rebuild_callback()
+
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source

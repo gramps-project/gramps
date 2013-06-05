@@ -177,6 +177,7 @@ class MonitoredEntry(object):
         self.obj.grab_focus()
 
     def update(self):
+        """ force an update so as to correspond with the object monitored"""
         if self.get_val(None) is not None:
             self.obj.set_text(self.get_val(None))
 
@@ -560,6 +561,9 @@ class MonitoredMenu(object):
         if self.changed:
             self.changed()
 
+    def update(self):
+        """ force an update so as to correspond with the object monitored"""
+        self.obj.set_active(self.data.get(self.get_val(), 0))
 #-------------------------------------------------------------------------
 #
 # MonitoredStrMenu class
@@ -833,12 +837,7 @@ class MonitoredTagList(object):
         self.track = track
         self.db = db
         self.set_list = set_list
-
-        self.tag_list = []
-        for handle in get_list():
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
-                self.tag_list.append((handle, tag.get_name()))
+        self.get_list = get_list
 
         self.all_tags = []
         for tag in self.db.iter_tags():
@@ -855,7 +854,7 @@ class MonitoredTagList(object):
         button.connect('key-press-event', self.cb_edit)
         button.set_sensitive(not readonly)
 
-        self._display()
+        self.update()
 
 ##    def destroy(self):
 ##        """
@@ -890,3 +889,12 @@ class MonitoredTagList(object):
                 self.set_list([item[0] for item in self.tag_list])
             return True
         return False
+
+    def update(self):
+        """ force an update so as to correspond with the object monitored"""
+        self.tag_list = []
+        for handle in self.get_list():
+            tag = self.db.get_tag_from_handle(handle)
+            if tag:
+                self.tag_list.append((handle, tag.get_name()))
+        self._display()

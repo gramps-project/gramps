@@ -609,7 +609,7 @@ class EmbeddedList(ButtonTab):
         @type prebuildpath: tree path
         """
         pass
-    
+
     def rebuild_callback(self):
         """
         The view must be remade when data changes outside this tab.
