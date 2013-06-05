@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
-                                REF_TYPE_S, REF_TYPE_L)
+                                REF_TYPE_S, REF_TYPE_L, EMPTY)
 from gramps.gen.lib.srcattribute import SrcAttribute
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
@@ -91,6 +91,7 @@ class SrcTemplateTab(GrampsTab):
         
         self.lbls = []
         self.inpts = []
+        self.monentry = []
         self.gridfields = self.glade.get_object('gridfields')
         #self.vbox_fields_label = self.glade.get_object('fields_01')
         #self.vbox_fields_input = self.glade.get_object('fields_02')
@@ -162,14 +163,56 @@ class SrcTemplateTab(GrampsTab):
             self.gridfields.remove(lbl)
         for inpt in self.inpts:
             self.gridfields.remove(inpt)
+        for mon in self.monentry:
+            del mon
         self.lbls = []
         self.inpts = []
+        self.monentry = []
         row = 1
         # now add new fields
+        fieldsL = []
         for fielddef in template[REF_TYPE_L]:
+            fieldsL.append(fielddef[1])
             self._add_entry(row, fielddef[1], '')
             row += 1
-        
+
+        tempsattrt = SrcAttributeType()
+        # now add optional short citation values
+        fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
+                            if fielddef[1] in fieldsL and fielddef[6]==EMPTY]
+        if fieldsS:
+            self.gridfields.insert_row(row)
+            lbl = Gtk.Label('')
+            lbl.set_markup(_("<b>Optional Short Versions:</b>"))
+            lbl.set_halign(Gtk.Align.START)
+            self.gridfields.attach(lbl, 0, row-1, 2, 1)
+            self.lbls.append(lbl)
+            row += 1
+        for fielddef in fieldsS:
+            self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
+            row += 1
+            
+
+        # now add optional default citation values
+        fieldsF = [fielddef for fielddef in template[REF_TYPE_F] 
+                                            if fielddef[1] not in fieldsL]
+        if fieldsF:
+            self.gridfields.insert_row(row)
+            lbl = Gtk.Label('')
+            lbl.set_markup(_("<b>Optional Default Citation Fields:</b>"))
+            lbl.set_halign(Gtk.Align.START)
+            self.gridfields.attach(lbl, 0, row-1, 2, 1)
+            self.lbls.append(lbl)
+            row += 1
+        for fielddef in fieldsF:
+            self._add_entry(row, fielddef[1], '')
+            row += 1
+        fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
+                            if fielddef[1] not in fieldsL and fielddef[6]==EMPTY]
+        for fielddef in fieldsS:
+            self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
+            row += 1
+
         self.show_all()
 
     def get_field(self, srcattrtype):

@@ -6108,4 +6108,13 @@ class SrcAttributeType(GrampsType):
 
     def get_templatevalue_map(self):
         return self.I2S_SRCTEMPLATEMAP
+ 
+    def short_version(self, sattrtype):
+        """
+        Method that returns the type which is the short version type of the given type
+        """
+        sattrt = SrcAttributeType(sattrtype)
+        if sattrt.xml_str().lower().endswith(' (short)'):
+            return sattrtype
+        return SrcAttributeType(sattrt.xml_str() +' (Short)')
 

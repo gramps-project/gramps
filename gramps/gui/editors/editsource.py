@@ -410,13 +410,13 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.citedin_tab)
         self.track_ref_for_deletion("citedin_tab")
 
-        self.backref_list = CitationBackRefList(self.dbstate,
-                                              self.uistate,
-                                              self.track,
-                              self.db.find_backlink_handles(self.obj.handle))
-        self.backref_tab = self._add_tab(notebook, self.backref_list)
-        self.track_ref_for_deletion("backref_tab")
-        self.track_ref_for_deletion("backref_list")
+##        self.backref_list = CitationBackRefList(self.dbstate,
+##                                              self.uistate,
+##                                              self.track,
+##                              self.db.find_backlink_handles(self.obj.handle))
+##        self.backref_tab = self._add_tab(notebook, self.backref_list)
+##        self.track_ref_for_deletion("backref_tab")
+##        self.track_ref_for_deletion("backref_list")
         
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
