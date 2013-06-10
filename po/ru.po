@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 12:49+0200\n"
-"PO-Revision-Date: 2013-05-28 13:31+0300\n"
+"PO-Revision-Date: 2013-06-10 17:59+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -1125,7 +1125,7 @@ msgstr "отчество[им]"
 
 #: ../gramps/gen/display/name.py:604 ../gramps/gen/display/name.py:698
 msgid "patronymic[con]"
-msgstr "отчество[св] "
+msgstr "отчество[св]"
 
 #: ../gramps/gen/display/name.py:606 ../gramps/gen/display/name.py:700
 msgid "notpatronymic"
@@ -1703,7 +1703,7 @@ msgid ""
 "ss) or in the range, if a second date/time is given."
 msgstr ""
 "Выбирает события, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
-"или, если задана вторая дата, между двумя датами"
+"или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:44
 msgid "Events marked private"
@@ -2264,7 +2264,7 @@ msgid ""
 "ss) or in the range, if a second date:time is given."
 msgstr ""
 "Выбирает документы, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
-"или, если задана вторая дата, между двумя датами"
+"или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:103
@@ -3255,8 +3255,8 @@ msgid ""
 "Matches people that are children in a family with less than two parents or "
 "are not children in any family."
 msgstr ""
-"Выбирает людей, которые являются детьми в семьях с одним родителем или "
-"которые не являются чьими либо детьми"
+"Выбирает людей, которые являются детьми в семьях с одним родителем, или "
+"которые не являются чьими-либо детьми."
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:44
 msgid "People with multiple marriage records"
@@ -3394,7 +3394,7 @@ msgid ""
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Выбирает места, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
-"или, если задана вторая дата, между двумя датами"
+"или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:53
 msgid "Place with the <citation>"
@@ -4784,7 +4784,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Person Note"
-msgstr "Заметка о человеке "
+msgstr "Заметка о человеке"
 
 #: ../gramps/gen/lib/notetype.py:94
 msgid "Name Note"
@@ -4813,7 +4813,7 @@ msgstr "Заметка о семье"
 
 #: ../gramps/gen/lib/notetype.py:100
 msgid "Event Note"
-msgstr "Заметка о событии "
+msgstr "Заметка о событии"
 
 #: ../gramps/gen/lib/notetype.py:101
 msgid "Event Reference Note"
@@ -6007,7 +6007,7 @@ msgstr "дата, связанная со смертью брата/сестры
 
 #: ../gramps/gen/utils/alive.py:241 ../gramps/gen/utils/alive.py:252
 msgid "a spouse's birth-related date, "
-msgstr "дата, связанная с рождением супруга/-и"
+msgstr "дата, связанная с рождением супруга/-и, "
 
 #: ../gramps/gen/utils/alive.py:245 ../gramps/gen/utils/alive.py:256
 msgid "a spouse's death-related date, "
@@ -9416,7 +9416,7 @@ msgstr "Редактор имён"
 #: ../gramps/gui/editors/editname.py:171
 #: ../gramps/gui/editors/editperson.py:307
 msgid "Call name must be the given name that is normally used."
-msgstr "Часть полного имени, которая используется в обиходе. "
+msgstr "Часть полного имени, которая используется в обиходе."
 
 #: ../gramps/gui/editors/editname.py:309
 msgid "New Name"
@@ -10657,7 +10657,7 @@ msgid ""
 "the error occured."
 msgstr ""
 "Пожалуйста, предоставьте как можно больше информации о том, что вы делали во "
-"время ошибки. "
+"время сбоя."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:452
 #: ../gramps/gui/logger/_errorreportassistant.py:477
@@ -10699,7 +10699,7 @@ msgid ""
 "then open a webbrowser to file a bug report at "
 msgstr ""
 "Используйте две кнопки, расположенных ниже, чтобы скопировать отчет об "
-"ошибке в буфер обмена и  затем открыть окно веб-браузера для отправки отчета"
+"ошибке в буфер обмена и затем открыть окно веб-браузера для отправки отчета "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:562
 msgid ""
@@ -11398,7 +11398,7 @@ msgstr "Применить выбранный фильтр людей"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:599
 msgid "Applying selected note filter"
-msgstr "Применить выбранный фильтр заметок "
+msgstr "Применить выбранный фильтр заметок"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:608
 msgid "Filtering referenced records"
@@ -12933,7 +12933,7 @@ msgstr "HTML"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:74
 msgid "Generates documents in HTML format."
-msgstr "Создает документы в формате HTML"
+msgstr "Создает документы в формате HTML."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:94
 msgid "LaTeX"
@@ -13169,7 +13169,7 @@ msgstr "Сжимать древо"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr "Подавлять ли отступы, резервирующие место для неизвестных лиц "
+msgstr "Подавлять ли отступы, резервирующие место для неизвестных лиц"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:929
 msgid ""
@@ -13842,7 +13842,7 @@ msgstr "Выделять прямых потомков жирным шрифто
 #: ../gramps/plugins/drawreport/descendtree.py:1527
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
-msgstr "Выделять ли прямых потомков (в отличие от приёмных) жирным шрифтом"
+msgstr "Выделять ли прямых потомков (в отличие от приёмных) жирным шрифтом."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1539
 msgid "Indent Spouses"
@@ -16508,7 +16508,7 @@ msgid ""
 "lines\"."
 msgstr ""
 "Лица, представляющие интерес являются стартовой точкой, от которой строятся "
-"семейные линии"
+"семейные линии."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:126
 msgid "Follow parents to determine family lines"
@@ -16518,7 +16518,7 @@ msgstr "Следовать к родителям для определения �
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr "Родители и их предки будут учтены при построении семейных линий"
+msgstr "Родители и их предки будут учтены при построении семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:131
 msgid "Follow children to determine \"family lines\""
@@ -16526,7 +16526,7 @@ msgstr "Следовать к детям для определения семе�
 
 #: ../gramps/plugins/graph/gvfamilylines.py:133
 msgid "Children will be considered when determining \"family lines\"."
-msgstr "Дети и из потомки будут учтены при построении семейных линий"
+msgstr "Дети и из потомки будут учтены при построении семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:138
 msgid "Try to remove extra people and families"
@@ -23076,7 +23076,7 @@ msgstr "Пропускать повторяющихся предков"
 #: ../gramps/plugins/textreport/detancestralreport.py:764
 #: ../gramps/plugins/textreport/detdescendantreport.py:940
 msgid "Whether to omit duplicate ancestors."
-msgstr "Пропускать ли повторяющихся предков"
+msgstr "Пропускать ли повторяющихся предков."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:767
 msgid "Use Complete Sentences"
@@ -23437,7 +23437,7 @@ msgstr "Даты Родственников"
 
 #: ../gramps/plugins/textreport/familygroup.py:688
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Включать ли даты родственников (отец, мать, супруг)"
+msgstr "Включать ли даты родственников (отец, мать, супруг)."
 
 #: ../gramps/plugins/textreport/familygroup.py:692
 msgid "Children Marriages"
@@ -23538,7 +23538,7 @@ msgstr "Включать ID"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:734
 msgid "Whether to include Gramps ID next to names."
-msgstr "Включать ли номера-идентификаторы объектов Gramps ID"
+msgstr "Включать ли номера-идентификаторы объектов Gramps ID."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:742
 msgid "Event groups"
@@ -23636,22 +23636,22 @@ msgstr "Gramps ID: %s "
 #: ../gramps/plugins/textreport/placereport.py:155
 #, python-format
 msgid "Street: %s "
-msgstr "Улица: %s"
+msgstr "Улица: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:156
 #, python-format
 msgid "Parish: %s "
-msgstr "Церковный приход: %s"
+msgstr "Церковный приход: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:157
 #, python-format
 msgid "Locality: %s "
-msgstr "Местность: %s"
+msgstr "Местность: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:158
 #, python-format
 msgid "City: %s "
-msgstr "Город: %s"
+msgstr "Город: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:159
 #, python-format
@@ -23666,7 +23666,7 @@ msgstr "Штат: %s"
 #: ../gramps/plugins/textreport/placereport.py:161
 #, python-format
 msgid "Country: %s "
-msgstr "Страна: %s"
+msgstr "Страна: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:183
 msgid "Events that happened at this place"
@@ -24331,7 +24331,7 @@ msgstr "База данных прошла все внутренние пров�
 
 #: ../gramps/plugins/tool/check.py:1992
 msgid "No errors were found: the database has passed internal checks."
-msgstr "База данных прошла все внутренние проверки успешно"
+msgstr "База данных прошла все внутренние проверки успешно."
 
 # !!!FIXME!!!
 #: ../gramps/plugins/tool/check.py:1998
@@ -25862,7 +25862,7 @@ msgstr "Свернуть все узлы"
 
 #: ../gramps/plugins/view/citationtreeview.py:428
 msgid "Cannot add citation."
-msgstr "Не могу добавить цитату"
+msgstr "Не могу добавить цитату."
 
 #: ../gramps/plugins/view/citationtreeview.py:429
 msgid ""
@@ -26372,7 +26372,7 @@ msgstr "Все места"
 
 #: ../gramps/plugins/view/geography.gpr.py:161
 msgid "A view showing all places of the database."
-msgstr "Вид, отображающий все места, связанные с данным семейным древом"
+msgstr "Вид, отображающий все места, связанные с данным семейным древом."
 
 #: ../gramps/plugins/view/geography.gpr.py:176
 msgid "All places related to Events"
@@ -27222,7 +27222,7 @@ msgstr "Повествовательный сайт"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3049
 msgid "Creating family pages..."
-msgstr "Создаю страницы семей"
+msgstr "Создаю страницы семей..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3071
 msgid ""
@@ -29100,7 +29100,7 @@ msgid ""
 "the tool 'Extract Event Description'."
 msgstr ""
 "Описание события. Не заполняйте это поле, если Вы собираетесь "
-"воспользоваться автоматическим инструментом «Извлечь описания событий»"
+"воспользоваться автоматическим инструментом «Извлечь описания событий»."
 
 #: ../gramps/gui/glade/editevent.glade:199
 #: ../gramps/gui/glade/editeventref.glade:288
