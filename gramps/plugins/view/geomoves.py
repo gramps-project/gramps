@@ -544,7 +544,8 @@ class GeoMoves(GeoGraphyView):
         """
         Create the menu for the selected marker
         """
-        menu = Gtk.Menu()
+        self.menu = Gtk.Menu()
+        menu = self.menu
         menu.set_title("descendance")
         events = []
         message = ""
@@ -585,7 +586,8 @@ class GeoMoves(GeoGraphyView):
             add_item = Gtk.MenuItem(label=message)
             add_item.show()
             menu.append(add_item)
-            itemoption = Gtk.Menu()
+            self.itemoption = Gtk.Menu()
+            itemoption = self.itemoption
             itemoption.set_title(message)
             itemoption.show()
             add_item.set_submenu(itemoption)

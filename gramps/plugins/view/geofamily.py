@@ -377,7 +377,8 @@ class GeoFamily(GeoGraphyView):
         self._create_markers()
 
     def add_event_bubble_message(self, event, lat, lon, mark, menu):
-        itemoption = Gtk.Menu()
+        self.itemoption = Gtk.Menu()
+        itemoption = self.itemoption
         itemoption.show()
         menu.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Family"))
@@ -398,7 +399,8 @@ class GeoFamily(GeoGraphyView):
         itemoption.append(center)
 
     def bubble_message(self, event, lat, lon, marks):
-        menu = Gtk.Menu()
+        self.menu = Gtk.Menu()
+        menu = self.menu
         menu.set_title("family")
         message = ""
         oldplace = ""

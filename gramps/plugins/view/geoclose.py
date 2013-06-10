@@ -460,7 +460,8 @@ class GeoClose(GeoGraphyView):
         """
         Create the menu for the selected marker
         """
-        menu = Gtk.Menu()
+        self.newmenu = Gtk.Menu()
+        menu = self.newmenu
         menu.set_title("person")
         events = []
         message = ""
@@ -499,10 +500,12 @@ class GeoClose(GeoGraphyView):
                             descr = _('No description')
                         message = "(%s) %s => %s" % ( date, plce[11], descr)
                     prevmark = plce
-                    add_item = Gtk.MenuItem(label=message)
+                    self.add_item = Gtk.MenuItem(label=message)
+                    add_item = self.add_item
                     add_item.show()
                     menu.append(add_item)
-                    itemoption = Gtk.Menu()
+                    self.itemoption = Gtk.Menu()
+                    itemoption = self.itemoption
                     itemoption.set_title(message)
                     itemoption.show()
                     add_item.set_submenu(itemoption)
