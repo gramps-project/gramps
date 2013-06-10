@@ -77,11 +77,16 @@ class EditSource(EditPrimary):
         Editor for source and citations of that source
         If source is not given, citation must be given, and the source of the
         citation will be used
+        callback: function to call on save with the loaded citation handle. If
+                    no citation is loaded, None will be used as handle. Caller
+                    must handle this (corresponds to closing the editor with 
+                    nothing made!)
         """
         self.srctemp = None
         self.citation = citation
         self.template_tab = None
         self.attr_tab = None
+        self.citation_loaded = True
         if not source and not citation:
             raise NotImplementedError
         elif not source:
@@ -94,6 +99,9 @@ class EditSource(EditPrimary):
             if citation.get_reference_handle() and \
                 not (citation.get_reference_handle() == source.handle):
                 raise Exception('Citation must be a Citation of the Source edited')
+        else:
+            #no citation given.
+            self.citation_loaded = False
         self.callertitle = callertitle
 
         self.citation_ready = False
@@ -162,7 +170,7 @@ class EditSource(EditPrimary):
         self.load_source_image()
         if not self.obj.handle:
             #new source, open on template view, and focus there.
-            self.notebook_src.set_current_pate(self.template_page_nr)
+            self.notebook_src.set_current_page(self.template_page_nr)
             self.template_tab.make_active()
         elif self.citation:
             #there is a citation!
@@ -588,7 +596,25 @@ class EditSource(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
+        #tests on the citation if needed:
+        if self.citation_loaded:
+            (uses_dupe_id, gramps_id) = self._citation_uses_duplicate_id(
+                                            self.citation)
+            if uses_dupe_id:
+                prim_object = self.db.get_citation_from_gramps_id(gramps_id)
+                name = prim_object.get_page()
+                msg1 = _("Cannot save citation. ID already exists.")
+                msg2 = _("You have attempted to use the existing Gramps ID with "
+                         "value %(gramps_id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                             'gramps_id' : gramps_id, 'prim_object' : name }
+                ErrorDialog(msg1, msg2)
+                self.ok_button.set_sensitive(True)
+                return
+        
         with DbTxn('', self.db) as trans:
+            # First commit the Source Primary object
             if not self.obj.get_handle():
                 self.db.add_source(self.obj, trans)
                 msg = _("Add Source (%s)") % self.obj.get_title()
@@ -597,9 +623,47 @@ class EditSource(EditPrimary):
                     self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
                 self.db.commit_source(self.obj, trans)
                 msg = _("Edit Source (%s)") % self.obj.get_title()
+            
+            # Now commit the Citation Primary object if needed
+            if self.citation_loaded:
+                if not self.citation.get_handle():
+                    self.db.add_citation(self.citation, trans)
+                    msg += "\n" + _("Add Citation (%s)") % self.citation.get_page()
+                else:
+                    if not self.citation.get_gramps_id():
+                        self.citation.set_gramps_id(
+                                        self.db.find_next_citation_gramps_id())
+                    self.db.commit_citation(self.citation, trans)
+                    msg += "\n" + _("Edit Citation (%s)") % self.citation.get_page()
+            # set transaction description
             trans.set_description(msg)
-                        
+
+        if self.callback and self.citation_loaded:
+            #new calling sequence of callback
+            self.callback(self.citation.get_handle())
+        elif self.callback:
+            #user closed citation, but a callback is needed. We don't know
+            #what citatin to return, so return None. Caller should handle this!
+            self.callback(None)
+
         self.close()
+
+    def _citation_uses_duplicate_id(self, obj):
+        """
+        Check whether a changed or added GRAMPS ID already exists in the DB.
+        
+        Return True if a duplicate GRAMPS ID has been detected.
+        
+        """
+        original = self.db.get_citation_from_handle(obj.get_handle())
+        if original and original.get_gramps_id() == obj.get_gramps_id():
+            #id did not change, so all is good
+            return (False, 0)
+        else:
+            idval = obj.get_gramps_id()
+            if self.db.get_source_from_gramps_id(idval):
+                return (True, idval)
+            return (False, 0)
 
     # CITATION PART 
     def cite_apply_callback(self, citation_handle):
@@ -610,6 +674,7 @@ class EditSource(EditPrimary):
     def unload_citation(self):
         self.cinf.set_visible(False)
         self.notebook_ref.set_visible(False)
+        self.citation_loaded = False
         if self.citation:
             #there is a citation, we clear it
             self.citation.unserialize(Citation().serialize())
@@ -633,6 +698,7 @@ class EditSource(EditPrimary):
         else:
             self.citation_changed()
         self.cinf.set_visible(True)
+        self.citation_loaded = True
         self.notebook_ref.set_visible(True)
 
     def  citation_changed(self):
