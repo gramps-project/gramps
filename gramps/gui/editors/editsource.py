@@ -160,7 +160,21 @@ class EditSource(EditPrimary):
             self.unload_citation()
 
         self.load_source_image()
-        self.title.grab_focus()
+        if not self.obj.handle:
+            #new source, open on template view, and focus there.
+            self.notebook_src.set_current_pate(self.template_page_nr)
+            self.template_tab.make_active()
+        elif self.citation:
+            #there is a citation!
+            if self.citation.handle:
+                #existing citation!
+                self.notebook_ref.grab_focus()
+            else:
+                #new citation!
+                self.notebook_ref.grab_focus()
+        else:
+            #existing source, no citation
+            self.title.grab_focus()
 
     def load_source_image(self):
         """
@@ -363,7 +377,8 @@ class EditSource(EditPrimary):
         self.source_text.get_buffer().set_text(ref_text)
 
     def _create_tabbed_pages(self):
-        notebook = self.glade.get_object('notebook')
+        self.notebook_src = self.glade.get_object('notebook')
+        notebook = self.notebook_src
         gridsrc =  self.glade.get_object('gridsrc')
         #recreate start page as GrampsTab
         notebook.remove_page(1)
@@ -373,6 +388,7 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.overviewtab)
 
         #recreate second page as GrampsTab
+        self.template_page_nr = 1
         self.template_tab = SrcTemplateTab(self.dbstate, self.uistate,
                                 self.track, self.obj, self.glade,
                                 self.update_template_data

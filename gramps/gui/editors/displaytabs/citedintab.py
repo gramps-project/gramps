@@ -401,7 +401,7 @@ class CitedInTab(GrampsTab):
             return
 
         from .. import (EditEvent, EditPerson, EditFamily, EditPlace, 
-                        EditMedia, EditRepository, EditCitation)
+                        EditMedia, EditRepository)
 
         if reftype == 'Person':
             try:

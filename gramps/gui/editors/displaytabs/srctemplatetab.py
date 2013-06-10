@@ -101,6 +101,12 @@ class SrcTemplateTab(GrampsTab):
         self.setup_interface(self.glade.get_object('scrolledtemplates'))
         self.show_all()
 
+    def make_active(self):
+        """
+        Called by using editor to focus on correct field in the tab
+        """
+        self.temp_tv.grab_focus()
+
     def is_empty(self):
         """
         Override base class

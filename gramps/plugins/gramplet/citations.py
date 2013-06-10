@@ -20,7 +20,7 @@
 # $Id$
 #
 
-from gramps.gui.editors import EditSource, EditCitation
+from gramps.gui.editors import EditSource
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
 from gramps.gui.dbguielement import DbGUIElement
@@ -268,7 +268,7 @@ class Citations(Gramplet, DbGUIElement):
             citation = self.dbstate.db.get_citation_from_handle(handle)
             source_handle = citation.get_reference_handle()
             source = self.dbstate.db.get_source_from_handle(source_handle)
-            EditCitation(self.dbstate, self.uistate, [], citation, source)
+            EditSource(self.dbstate, self.uistate, [], source, citation)
         except WindowActiveError:
             pass
 

@@ -137,8 +137,7 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         
         from .. import EditEvent, EditPerson, EditFamily, EditSource, \
-                                EditPlace, EditMedia, EditRepository, \
-                                EditCitation
+                                EditPlace, EditMedia, EditRepository
 
         (reftype, ref) = self.find_node()
         if reftype == 'Person':
@@ -162,7 +161,9 @@ class BackRefList(EmbeddedList):
         elif reftype == 'Citation':
             try:
                 citation = self.dbstate.db.get_citation_from_handle(ref)
-                EditCitation(self.dbstate, self.uistate, [], citation)
+                EditSource(self.dbstate, self.uistate, [],
+                           self.dbstate.db.get_source_from_handle(
+                                citation.get_reference_handle()), citation)
             except WindowActiveError:
                 """
                 Return the text used when citation cannot be edited

@@ -196,10 +196,20 @@ class NavigationView(PageView):
                                                 self.navigation_group())
         if active_handle:
             self.goto_handle(active_handle)
+        else:
+            #make the pageview the object with focus, so moving arrow works
+            self.grab_focus()
             
         hobj = self.get_history()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
+
+    def grab_focus(self):
+        """
+        Inherit this method to indicate where to put focus if there is no 
+        specific handle in focus
+        """
+        pass
 
     def get_active(self):
         """

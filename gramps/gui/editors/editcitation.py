@@ -58,8 +58,31 @@ from ..glade import Glade
 # EditCitationclass
 #
 #-------------------------------------------------------------------------
-
 class EditCitation(EditPrimary):
+    """
+    Create an Editor for Citation object. This actually opens the source!
+    
+    This class is called both to edit the Citation Primary object
+    and to edit references from other objects to citations.
+    
+    @param callertitle: Text passed by calling object to add to title 
+    @type callertitle: str
+    """
+    
+    def __init__(self, dbstate, uistate, track, citation, callback=None,
+                 callertitle = None):
+        from .editsource import EditSource
+        if citation.handle:
+            EditSource(dbstate, uistate, track, dbstate.db.get_source_from_handle(
+                            citation.get_reference_handle()), citation,
+                       callback, callertitle)
+        else:
+            #we don't allow this, caller should be changed to call EditSource
+            #directly !
+            raise NotImplementedError("Depracated call")
+            
+
+class EditCitationOld(EditPrimary):
     """
     Create an EditCitation window. Associate a citation with the window.
     

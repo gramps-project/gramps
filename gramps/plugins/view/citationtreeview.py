@@ -56,8 +56,8 @@ from gramps.gui.views.bookmarks import CitationBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
-from gramps.gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
-    DeleteSrcQuery
+from gramps.gui.editors import (DeleteCitationQuery, EditSource, 
+                                DeleteSrcQuery)
 from gramps.gui.filters.sidebar import SourceSidebarFilter
 from gramps.gui.merge import MergeCitation, MergeSource
 
@@ -400,8 +400,7 @@ class CitationTreeView(ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditCitation(self.dbstate, self.uistate, [], Citation(),
-                         Source())
+            EditSource(self.dbstate, self.uistate, [], Source(), Citation())
         except WindowActiveError:
             pass
 
@@ -418,8 +417,8 @@ class CitationTreeView(ListView):
                 raise ValueError("selection must be either source or citation")
             if source:
                 try:
-                    EditCitation(self.dbstate, self.uistate, [], 
-                                 Citation(), source)
+                    EditSource(self.dbstate, self.uistate, [], source,
+                               Citation())
                 except WindowActiveError:
                     from gramps.gui.dialog import WarningDialog
                     WarningDialog(_("Cannot share this reference"),
@@ -469,7 +468,9 @@ class CitationTreeView(ListView):
                 raise ValueError("selection must be either source or citation")
             if citation:
                 try:
-                    EditCitation(self.dbstate, self.uistate, [], citation)
+                    EditSource(self.dbstate, self.uistate, [],
+                               self.dbstate.db.get_source_from_handle(
+                                    citation.get_reference_handle()), citation)
                 except WindowActiveError:
                     pass
             else: # FIXME need try block here

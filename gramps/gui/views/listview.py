@@ -304,6 +304,13 @@ class ListView(NavigationView):
         NavigationView.set_inactive(self)
         self.uistate.viewmanager.tags.tag_disable()
 
+    def grab_focus(self):
+        """
+        Inherit this method to indicate where to put focus if there is no 
+        specific handle in focus
+        """
+        self.list.grab_focus()
+
     def __build_tree(self):
         profile(self._build_tree)
 

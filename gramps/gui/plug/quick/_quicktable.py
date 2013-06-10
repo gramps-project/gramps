@@ -60,7 +60,7 @@ from gramps.gen.errors import WindowActiveError
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets
 from ..quick import run_quick_report_by_name
-from ...editors import (EditPerson, EditEvent, EditFamily, EditCitation, 
+from ...editors import (EditPerson, EditEvent, EditFamily, 
                          EditSource, EditPlace, EditRepository, EditNote, 
                          EditMedia)
 
@@ -216,9 +216,11 @@ class QuickTable(SimpleTable):
             elif objclass == 'Citation':
                 ref = self.access.dbase.get_citation_from_handle(handle)
                 if ref:
+                    dbstate = self.simpledoc.doc.dbstate
                     try:
-                        EditCitation(self.simpledoc.doc.dbstate, 
-                                     self.simpledoc.doc.uistate, [], ref)
+                        EditSource(dbstate, self.simpledoc.doc.uistate, [], 
+                                   dbstate.db.get_source_from_handle(
+                                        ref.get_reference_handle()), ref)
                         return True # handled event
                     except WindowActiveError:
                         pass

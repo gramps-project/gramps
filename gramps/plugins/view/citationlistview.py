@@ -54,7 +54,7 @@ from gramps.gui.views.bookmarks import CitationBookmarks
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
-from gramps.gui.editors import EditCitation, DeleteCitationQuery
+from gramps.gui.editors import EditSource, DeleteCitationQuery
 from gramps.gui.filters.sidebar import CitationSidebarFilter
 from gramps.gui.merge import MergeCitation
 
@@ -255,7 +255,7 @@ class CitationListView(ListView):
                       citation to an existing source)
         
         Create a new Source instance and Citation instance and call the 
-        EditCitation editor with the new source and new citation. 
+        EditSource editor with the new source and new citation. 
         
         Called when the Add button is clicked. 
         If the window already exists (WindowActiveError), we ignore it. 
@@ -266,8 +266,7 @@ class CitationListView(ListView):
         window to already exist, so this is just an extra safety measure.
         """
         try:
-            EditCitation(self.dbstate, self.uistate, [], Citation(),
-                         Source())
+            EditSource(self.dbstate, self.uistate, [], Source(), Citation())
         except WindowActiveError:
             pass
 
@@ -289,7 +288,9 @@ class CitationListView(ListView):
         for handle in self.selected_handles():
             citation = self.dbstate.db.get_citation_from_handle(handle)
             try:
-                EditCitation(self.dbstate, self.uistate, [], citation)
+                EditSource(self.dbstate, self.uistate, [],
+                           self.dbstate.db.get_source_from_handle(
+                                citation.get_reference_handle()), citation)
             except WindowActiveError:
                 pass
 
