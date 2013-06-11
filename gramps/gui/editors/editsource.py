@@ -58,7 +58,7 @@ from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           CitationBackRefList, RepoEmbedList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
                        MonitoredMenu)
-from ..dialog import ErrorDialog
+from ..dialog import ErrorDialog, QuestionDialog2
 from ..utils import is_right_click, open_file_with_default_application
 from ..glade import Glade
 
@@ -151,6 +151,7 @@ class EditSource(EditPrimary):
         self.eventbox = self.glade.get_object("eventbox1")
         self.notebook_ref = self.glade.get_object('notebook_citation')
         self.cinf = self.glade.get_object("cite_info_lbl")
+        self.btnclose_cite = self.glade.get_object("btnclose_cite")
 
         self.define_warn_box2(self.glade.get_object("warn_box2"))
 
@@ -221,9 +222,10 @@ class EditSource(EditPrimary):
         self.frame_photo.show_all()
 
     def _connect_signals(self):
-        self.define_ok_button(self.glade.get_object('ok'),self.save)
+        self.define_ok_button(self.glade.get_object('ok'), self.save)
         self.define_cancel_button(self.glade.get_object('cancel'))
         self.define_help_button(self.glade.get_object('help'))
+        self.btnclose_cite.connect('clicked', self.close_citation)
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
 
@@ -573,14 +575,63 @@ class EditSource(EditPrimary):
             EditMediaRef(self.dbstate, self.uistate, self.track,
                          media_obj, media_ref, self.load_photo)
 
-    def save(self, *obj):
+    def close_citation(self, *obj):
+        """
+        Callback on close citation button clicked
+        """
+        if not self.citation_loaded:
+            return
+        
         self.ok_button.set_sensitive(False)
+        self.btnclose_cite.set_sensitive(False)
+        
+        #ask if ok to save the citation if needed
+        save_citation = False
+        if not self.citation.get_handle():
+            #new citation, ask if we should save.
+            qd = QuestionDialog2(_("Closing New Citation"), 
+                _("Should the new citation be saved to your family tree?"), 
+                _("Save Citation"),
+                _("Don't Save Citation"), parent=self.window)
+            ok = qd.run()
+            if ok:
+                save_citation = True
+        elif self.citation_data_has_changed():
+            #if citation changed, ask if user does not want to save it first
+            qd = QuestionDialog2(_('Save Changes?'),
+                _('If you close without saving, the changes you '
+                  'have made will be lost'), 
+                _("Save Citation"),
+                _("Don't Save Citation"), parent=self.window)
+            ok = qd.run()
+            if ok:
+                save_citation = True
+        
+        if save_citation:
+            #we save the citation. If new source, this means the source must
+            #be saved too!
+            res = self.__base_save_source_test()
+            if not res:
+                return
+            res = self.__base_save_citation_test()
+            if not res:
+                return
+            self.__base_save(only_cite=True)
+            
+        #now close the citation part
+        self.unload_citation()
+        #make safe button active again
+        self.ok_button.set_sensitive(True)
+
+    def __base_save_source_test(self):
         if self.object_is_empty():
             ErrorDialog(_("Cannot save source"),
                         _("No data exists for this source. Please "
                           "enter data or cancel the edit."))
             self.ok_button.set_sensitive(True)
-            return
+            if self.citation_loaded:
+                self.btnclose_cite.set_sensitive(True)
+            return False
         
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
@@ -594,8 +645,13 @@ class EditSource(EditPrimary):
                          'id' : id, 'prim_object' : name }
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
-            return
+            if self.citation_loaded:
+                self.btnclose_cite.set_sensitive(True)
+            return False
+        return True
 
+
+    def __base_save_citation_test(self):
         #tests on the citation if needed:
         if self.citation_loaded:
             (uses_dupe_id, gramps_id) = self._citation_uses_duplicate_id(
@@ -611,18 +667,29 @@ class EditSource(EditPrimary):
                              'gramps_id' : gramps_id, 'prim_object' : name }
                 ErrorDialog(msg1, msg2)
                 self.ok_button.set_sensitive(True)
-                return
-        
+                if self.citation_loaded:
+                    self.btnclose_cite.set_sensitive(True)
+                return False
+        return True
+
+    def __base_save(self, only_cite=False):
+        """
+        Save to database. If only_cite, the idea is to only save the citation
+        part. If the source does not exist, sourse will be saved anyway
+        """
         with DbTxn('', self.db) as trans:
             # First commit the Source Primary object
             if not self.obj.get_handle():
                 self.db.add_source(self.obj, trans)
                 msg = _("Add Source (%s)") % self.obj.get_title()
-            else:
+            elif not only_cite:
+                #a changed source is not saved if only_cite
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
                 self.db.commit_source(self.obj, trans)
                 msg = _("Edit Source (%s)") % self.obj.get_title()
+            else:
+                msg = ''
             
             # Now commit the Citation Primary object if needed
             if self.citation_loaded:
@@ -637,6 +704,19 @@ class EditSource(EditPrimary):
                     msg += "\n" + _("Edit Citation (%s)") % self.citation.get_page()
             # set transaction description
             trans.set_description(msg)
+
+    def save(self, *obj):
+        self.ok_button.set_sensitive(False)
+        self.btnclose_cite.set_sensitive(False)
+        
+        res = self.__base_save_source_test()
+        if not res:
+            return
+        res = self.__base_save_citation_test()
+        if not res:
+            return
+        
+        self.__base_save()
 
         if self.callback and self.citation_loaded:
             #new calling sequence of callback
@@ -661,7 +741,7 @@ class EditSource(EditPrimary):
             return (False, 0)
         else:
             idval = obj.get_gramps_id()
-            if self.db.get_source_from_gramps_id(idval):
+            if self.db.get_citation_from_gramps_id(idval):
                 return (True, idval)
             return (False, 0)
 
@@ -673,6 +753,7 @@ class EditSource(EditPrimary):
 
     def unload_citation(self):
         self.cinf.set_visible(False)
+        self.btnclose_cite.set_sensitive(False)
         self.notebook_ref.set_visible(False)
         self.citation_loaded = False
         if self.citation:
@@ -698,10 +779,11 @@ class EditSource(EditPrimary):
         else:
             self.citation_changed()
         self.cinf.set_visible(True)
+        self.btnclose_cite.set_sensitive(True)
         self.citation_loaded = True
         self.notebook_ref.set_visible(True)
 
-    def  citation_changed(self):
+    def citation_changed(self):
         """
         The citation part of the editor changed, we need to update all
         GUI fields showing data of it
@@ -715,6 +797,35 @@ class EditSource(EditPrimary):
         for tab in [self.comment_tab, self.gallery_tab, self.attr_tab,
                     self.citationref_list]:
             tab.rebuild_callback()
+
+    def data_has_changed(self):
+        return self.citation_data_has_changed() or \
+                 EditPrimary.data_has_changed(self)
+
+    def citation_data_has_changed(self):
+        """
+        This checks whether the citation data has changed
+        
+        A date comparison can fail incorrectly because we have made the
+        decision to store entered text in the date. However, there is no
+        entered date when importing from a XML file, so we can get an
+        incorrect fail.
+        """
+        if not self.citation_loaded:
+            return False
+        if self.db.readonly:
+            return False
+        if self.citation.handle:
+            orig = self.db.get_citation_from_handle(self.citation.handle)
+            if orig:
+                cmp_obj = orig
+            else:
+                cmp_obj = Citation()
+            return cmp_obj.serialize(True)[1:] != self.citation.serialize(True)[1:]
+        else:
+            cmp_obj = Citation()
+            return cmp_obj.serialize(True)[1:] != self.citation.serialize()[1:]
+
 
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):

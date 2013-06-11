@@ -25,12 +25,28 @@
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
                 <property name="use_stock">True</property>
+                <property name="yalign">0.51999998092651367</property>
                 <signal name="clicked" handler="on_sourceEditor_cancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnclose_cite">
+                <property name="label" translatable="yes">Close C_itation</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Close top citation part. If changed, you will be asked if changes must be saved.</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -48,7 +64,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -64,7 +80,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -1041,7 +1057,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-6">cancel</action-widget>
+      <action-widget response="-4">cancel</action-widget>
+      <action-widget response="0">btnclose_cite</action-widget>
       <action-widget response="-5">ok</action-widget>
       <action-widget response="-11">help</action-widget>
     </action-widgets>
