@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 12:49+0200\n"
-"PO-Revision-Date: 2013-06-11 16:09+0300\n"
+"PO-Revision-Date: 2013-06-12 01:16+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -418,7 +418,7 @@ msgstr ""
 #: ../gramps/cli/argparser.py:247
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr ""
+msgstr "Пытаюсь открыть: %s ..."
 
 #: ../gramps/cli/argparser.py:281
 #, python-format
@@ -427,27 +427,27 @@ msgstr "Неизвестное действие: %s."
 
 #: ../gramps/cli/argparser.py:290
 msgid "setup debugging"
-msgstr ""
+msgstr "настройки отладки"
 
 #: ../gramps/cli/argparser.py:301
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr ""
+msgstr "Конфигурация Gramps из %s:"
 
 #: ../gramps/cli/argparser.py:319
 #, python-format
 msgid "Current Gramps config setting: %s:%s"
-msgstr ""
+msgstr "Текущая настройка конфигурации: %s:%s"
 
 #: ../gramps/cli/argparser.py:328
 #, python-format
 msgid "    New Gramps config setting: %s:%s"
-msgstr ""
+msgstr "    Новая настройка конфигурации: %s:%s"
 
 #: ../gramps/cli/argparser.py:335
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr ""
+msgstr "Gramps: неизвестная настройка конфигурации: «%s»"
 
 #: ../gramps/cli/argparser.py:365
 #, python-format
@@ -490,7 +490,7 @@ msgstr "Версия bsddb"
 
 #: ../gramps/cli/clidbman.py:219
 msgid "Schema version"
-msgstr ""
+msgstr "Версия базы данных"
 
 #: ../gramps/cli/clidbman.py:224
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
@@ -533,6 +533,13 @@ msgid ""
 "    %s\n"
 "\n"
 msgstr ""
+"\n"
+"ОШИБКА: Неверный путь к базе данных.\n"
+"Укажите правильный путь к базе данных в меню «Правка->Настройки...»\n"
+"\n"
+"Детали: не могу создать папку для базы данных:\n"
+"    %s\n"
+"\n"
 
 #: ../gramps/cli/clidbman.py:503 ../gramps/gui/configure.py:1261
 msgid "Never"
