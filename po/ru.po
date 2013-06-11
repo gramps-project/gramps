@@ -11,6 +11,7 @@
 # Andrey Baznikin (http://d.scn.ru/), 2009-2011.
 # Vassilii Khachaturov <vassilii@tarunz.org>, 2011-2013.
 # Egor Reentov <egor.gramps@gmail.com>, 2011, 2012, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
