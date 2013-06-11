@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 12:49+0200\n"
-"PO-Revision-Date: 2013-06-10 17:59+0300\n"
+"PO-Revision-Date: 2013-06-11 16:09+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -1845,7 +1845,7 @@ msgstr "Событие с данным типом"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:49
 msgid "Matches events with the particular type "
-msgstr "Выбирает события определённого типа"
+msgstr "Выбирает события определённого типа "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:46
 msgid "Events matching the <filter>"
@@ -16317,7 +16317,7 @@ msgstr ""
 "колонки. Щелчком правой кнопкой по фону можно выбрать, какие грамплеты "
 "добавить. Грамплеты можно перетаскивать с места на место за значок "
 "«свойства». Щелчком по этому значку можно перевести окно грамплета во "
-"всплывающий режим.\t"
+"всплывающий режим."
 
 #: ../gramps/plugins/gramplet/whatsnext.py:59
 msgid "Minimum number of items to display"
@@ -24886,24 +24886,23 @@ msgid "Affected path"
 msgstr "Подпадающий путь"
 
 #: ../gramps/plugins/tool/mediamanager.py:338
-#, fuzzy
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Нажмите OK для продолжения, Отмена для отказа, или Назад для пересмотра "
+"Нажмите «Применить» для продолжения, «Отменить» для отказа, или «Назад» для "
+"пересмотра "
 "возможностей."
 
 #: ../gramps/plugins/tool/mediamanager.py:376
-#, fuzzy
 msgid "Operation successfully finished"
 msgstr "Операция успешно завершена."
 
 #: ../gramps/plugins/tool/mediamanager.py:378
-#, fuzzy
 msgid ""
 "The operation you requested has finished successfully. You may press Close "
 "now to continue."
-msgstr "Затребованная операция успешно завершена. Нажмите OK для продолжения."
+msgstr ""
+"Затребованная операция успешно завершена. Нажмите «Закрыть» для продолжения."
 
 #: ../gramps/plugins/tool/mediamanager.py:381
 msgid "Operation failed"
@@ -25740,9 +25739,8 @@ msgid "Source: Publication Information"
 msgstr "Источник: информация о публикации"
 
 #: ../gramps/plugins/view/citationlistview.py:112
-#, fuzzy
 msgid "Source: Private"
-msgstr "Источник: название"
+msgstr "Источник: приватный"
 
 #: ../gramps/plugins/view/citationlistview.py:113
 msgid "Source: Last Changed"
@@ -25750,7 +25748,6 @@ msgstr "Источник: последнее изменение"
 
 #: ../gramps/plugins/view/citationlistview.py:126
 #: ../gramps/plugins/view/citationtreeview.py:123
-#, fuzzy
 msgid "Add a new citation and a new source"
 msgstr "Создать и добавить новую цитату из нового источника"
 
@@ -25983,7 +25980,6 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:167
 #: ../gramps/plugins/view/fanchartview.py:165
-#, fuzzy
 msgid "_Print..."
 msgstr "Напечатать..."
 
@@ -25994,21 +25990,18 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:279
 #: ../gramps/plugins/view/fanchartview.py:277
-#, fuzzy
 msgid "Text Font"
-msgstr "Только текст"
+msgstr "Шрифт текста"
 
 #: ../gramps/plugins/view/fanchartdescview.py:283
 #: ../gramps/plugins/view/fanchartview.py:281
-#, fuzzy
 msgid "Gender colors"
-msgstr "Пол"
+msgstr "Расцветка по половому признаку"
 
 #: ../gramps/plugins/view/fanchartdescview.py:284
 #: ../gramps/plugins/view/fanchartview.py:282
-#, fuzzy
 msgid "Generation based gradient"
-msgstr "зависит от поколения"
+msgstr "Градиентная заливка, зависит от поколения"
 
 #: ../gramps/plugins/view/fanchartdescview.py:285
 #: ../gramps/plugins/view/fanchartview.py:283
@@ -26022,13 +26015,11 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:288
 #: ../gramps/plugins/view/fanchartview.py:286
-#, fuzzy
 msgid "Time period based gradient"
-msgstr "Настройка периода времени"
+msgstr "Градиентная заливка, зависит от периода времени"
 
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
-#, fuzzy
 msgid "White"
 msgstr "белый"
 
@@ -26044,7 +26035,6 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:300
 #: ../gramps/plugins/view/fanchartview.py:298
-#, fuzzy
 msgid "Background"
 msgstr "Цвет фона"
 
@@ -26059,9 +26049,8 @@ msgid "End gradient/2nd color"
 msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:311
-#, fuzzy
 msgid "Color for duplicates"
-msgstr "Ищу дублированных супругов"
+msgstr "Цвет для дубликатов"
 
 #: ../gramps/plugins/view/fanchartdescview.py:314
 #: ../gramps/plugins/view/fanchartview.py:309
@@ -26070,13 +26059,11 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:311
-#, fuzzy
 msgid "Full Circle"
 msgstr "полный круг"
 
 #: ../gramps/plugins/view/fanchartdescview.py:317
 #: ../gramps/plugins/view/fanchartview.py:311
-#, fuzzy
 msgid "Half Circle"
 msgstr "полукруг"
 
@@ -26086,18 +26073,16 @@ msgid "Quadrant"
 msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:321
-#, fuzzy
 msgid "Fan chart distribution"
-msgstr "Распределение продолжительности жизни"
+msgstr "Распределение по веерной карте"
 
 #: ../gramps/plugins/view/fanchartdescview.py:324
 msgid "Homogeneous children distribution"
 msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:326
-#, fuzzy
 msgid "Size  proportional to number of descendants"
-msgstr "Ограничить число потомков"
+msgstr "Установить размер пропорционально числу потомков"
 
 #: ../gramps/plugins/view/fanchartdescview.py:330
 #: ../gramps/plugins/view/fanchartview.py:324
@@ -26108,14 +26093,12 @@ msgstr "Расположение"
 
 #: ../gramps/plugins/view/fanchartdescview.py:503
 #: ../gramps/plugins/view/fanchartview.py:512
-#, fuzzy
 msgid "No preview available"
-msgstr "Картографическая служба недоступна."
+msgstr "Предварительный просмотр недоступен"
 
 #: ../gramps/plugins/view/fanchartview.py:317
-#, fuzzy
 msgid "Show children ring"
-msgstr "Отсутствуют дети"
+msgstr "Отображать кольцо детей"
 
 #: ../gramps/plugins/view/geoclose.py:132
 #: ../gramps/plugins/view/geography.gpr.py:142
@@ -26137,9 +26120,8 @@ msgid "The other : %(name)s ( %(birth)s - %(death)s )"
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:222
-#, fuzzy
 msgid "The other person is unknown"
-msgstr "Цвет для отображения людей не указанного пола."
+msgstr "Второе лицо не указано"
 
 #: ../gramps/plugins/view/geoclose.py:225
 msgid "You must choose one reference person."
@@ -26152,19 +26134,17 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:274
-#, fuzzy
 msgid "reference _Person"
-msgstr "Настройки"
+msgstr "исходное лицо"
 
 #: ../gramps/plugins/view/geoclose.py:275
-#, fuzzy
 msgid "Select the person which is the reference for life ways"
-msgstr "Удаление лица сотрёт его из базы данных."
+msgstr ""
+"Выберите лицо, относительно которого будут рассчитаны жизненные маршруты"
 
 #: ../gramps/plugins/view/geoclose.py:288
-#, fuzzy
 msgid "Select the person which will be our reference."
-msgstr "Задайте период, для которого вы желаете видеть связанные с ним места"
+msgstr "Задайте лицо, относительно которого будут производиться расчёты."
 
 #: ../gramps/plugins/view/geoclose.py:382
 #: ../gramps/plugins/view/geofamclose.py:442
@@ -26176,9 +26156,8 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:533
-#, fuzzy
 msgid "Choose the reference person"
-msgstr "Удалить выделенное лицо"
+msgstr "Выберите исходное лицо"
 
 #: ../gramps/plugins/view/geoclose.py:556
 msgid ""
@@ -26192,9 +26171,8 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:567
 #: ../gramps/plugins/view/geofamclose.py:711
-#, fuzzy
 msgid "The selection parameters"
-msgstr "Заметки, удовлетворяющие параметрам"
+msgstr "Параметры отбора"
 
 #: ../gramps/plugins/view/geoevents.py:112
 msgid "Events places map"
@@ -26226,20 +26204,20 @@ msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:197
 #: ../gramps/plugins/view/geofamily.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
-msgstr "Ребенок %(father)s и %(mother)s."
+msgstr "%(gramps_id)s : %(father)s и %(mother)s"
 
 #: ../gramps/plugins/view/geofamclose.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Family reference : %s"
-msgstr "Показывает ссылки на %s"
+msgstr "Ссылка на семью : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:244
 #: ../gramps/plugins/view/geofamclose.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "The other family : %s"
-msgstr "семья"
+msgstr "Вторая семья : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:248
 msgid "You must choose one reference family."
@@ -26252,9 +26230,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:264
-#, fuzzy
 msgid "reference _Family"
-msgstr "Фильтр ссылок"
+msgstr "Исходная семья"
 
 #: ../gramps/plugins/view/geofamclose.py:265
 msgid "Select the family which is the reference for life ways"
@@ -26262,15 +26239,15 @@ msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:541
 #: ../gramps/plugins/view/geofamily.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "Father : %(id)s : %(name)s"
-msgstr "Отец : %s : %s"
+msgstr "Отец : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:547
 #: ../gramps/plugins/view/geofamily.py:325
-#, fuzzy, python-format
+#, python-format
 msgid "Mother : %(id)s : %(name)s"
-msgstr "Мать : %s : %s"
+msgstr "Мать : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:557
 #: ../gramps/plugins/view/geofamily.py:336
@@ -26285,9 +26262,8 @@ msgid "Person : %(id)s %(name)s has no family."
 msgstr "Лицо : %(id)s %(name)s не имеет семьи."
 
 #: ../gramps/plugins/view/geofamclose.py:677
-#, fuzzy
 msgid "Choose the reference family"
-msgstr "Удалить выделенную семью"
+msgstr "Выберите исходную семью"
 
 #: ../gramps/plugins/view/geofamclose.py:700
 msgid ""
@@ -26304,9 +26280,9 @@ msgid "Family places map"
 msgstr ""
 
 #: ../gramps/plugins/view/geofamily.py:300
-#, fuzzy, python-format
+#, python-format
 msgid "Family places for %s"
-msgstr "Фильтры семей"
+msgstr "Семейные местоположения для %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:51
 #, python-format
@@ -26350,13 +26326,14 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:125
-#, fuzzy
 msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
-"Вид, отображающий все места, про которые известно, что оба лица посетили их "
-"на протяжении своей жизни: была ли у них возможность встретиться?"
+"Вид, отображающий все места, про которые известно, что все члены семьи "
+"посетили их "
+"на протяжении своей жизни: была ли у двух данных людей возможность "
+"встретиться?"
 
 #: ../gramps/plugins/view/geography.gpr.py:143
 msgid ""
@@ -26383,23 +26360,21 @@ msgid "A view showing all the event places of the database."
 msgstr ""
 
 #: ../gramps/plugins/view/geomoves.py:134
-#, fuzzy
 msgid "Descendance of the active person."
-msgstr "Редактировать активное лицо"
+msgstr "Потомки активного лица."
 
 #: ../gramps/plugins/view/geomoves.py:164
 msgid "GeoMoves"
 msgstr ""
 
 #: ../gramps/plugins/view/geomoves.py:467
-#, fuzzy, python-format
+#, python-format
 msgid "All descendance for %s"
-msgstr "Потомки %s"
+msgstr "Все потомки для %s"
 
 #: ../gramps/plugins/view/geomoves.py:632
-#, fuzzy
 msgid "The maximum number of generations.\n"
-msgstr "Максимальное число поколений предков"
+msgstr "Максимальное число поколений.\n"
 
 #: ../gramps/plugins/view/geomoves.py:639
 msgid "Time in milliseconds between drawing two generations.\n"
@@ -26414,9 +26389,9 @@ msgid "Person places map"
 msgstr ""
 
 #: ../gramps/plugins/view/geoperson.py:301
-#, fuzzy, python-format
+#, python-format
 msgid "Person places for %s"
-msgstr "Фильтры людей"
+msgstr "Местоположения для лица %s"
 
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "Animate"
@@ -26449,14 +26424,13 @@ msgid "The place name in the status bar is disabled."
 msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:285
-#, fuzzy, python-format
+#, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr "Максимальное число включаемых предков."
+msgstr "Достигнуто максимально разрешённое число местоположений (%d)."
 
 #: ../gramps/plugins/view/geoplaces.py:288
-#, fuzzy
 msgid "Some information are missing."
-msgstr "Личная информация отсутствует"
+msgstr "Часть информации отсутствует."
 
 #: ../gramps/plugins/view/geoplaces.py:290
 msgid "Please, use filtering to reduce this number."
@@ -27005,26 +26979,22 @@ msgid "Charts"
 msgstr "Графики"
 
 #: ../gramps/plugins/view/view.gpr.py:143
-#, fuzzy
 msgid "A view showing parents through a fanchart"
-msgstr "Показывает родственные отношения в виде веерной карты"
+msgstr "Отображает родителей веерной картой"
 
 #: ../gramps/plugins/view/view.gpr.py:158
-#, fuzzy
 msgid "Showing descendants through a fanchart"
-msgstr "Показывает родственные отношения в виде веерной карты"
+msgstr "Отображает потомков в виде веерной карты"
 
 #: ../gramps/plugins/view/view.gpr.py:171
 msgid "Grouped People"
 msgstr "Сгруппированный список"
 
 #: ../gramps/plugins/view/view.gpr.py:172
-#, fuzzy
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr "Показ всех людей в семейном древе общим списком"
+msgstr "Показ всех людей в семейном древе, сгруппированных по фамилии"
 
 #: ../gramps/plugins/view/view.gpr.py:189
-#, fuzzy
 msgid "The view showing all people in the Family Tree in a flat list"
 msgstr "Показ всех людей в семейном древе общим списком"
 
@@ -27053,7 +27023,6 @@ msgid "The view showing all the citations"
 msgstr "Вид, отображающий все цитаты"
 
 #: ../gramps/plugins/view/view.gpr.py:282
-#, fuzzy
 msgid "Citation Tree"
 msgstr "Дерево цитат"
 
@@ -27242,9 +27211,8 @@ msgid "Letter"
 msgstr "Буква"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3151
-#, fuzzy
 msgid "Families beginning with letter "
-msgstr "Типы событий, начинающиеся с буквы "
+msgstr "Семьи на букву "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3326
 msgid "Creating place pages"
@@ -27264,7 +27232,7 @@ msgid "Place Name | Name"
 msgstr "Название"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3415
-#, fuzzy, python-format
+#, python-format
 msgid "Places beginning with letter %s"
 msgstr "Места на букву %s"
 
@@ -27287,9 +27255,9 @@ msgstr ""
 "соответствующего события."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3719
-#, fuzzy, python-format
+#, python-format
 msgid "Event types beginning with letter %s"
-msgstr "Типы событий, начинающиеся с буквы "
+msgstr "Типы событий на букву %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3918
 msgid "Surnames by person count"
@@ -27309,9 +27277,9 @@ msgid "Number of People"
 msgstr "Число людей"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4012
-#, fuzzy, python-format
+#, python-format
 msgid "Surnames beginning with letter %s"
-msgstr "Типы событий, начинающиеся с буквы "
+msgstr "Фамилии на букву %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4155
 msgid "Creating source pages"
@@ -27439,9 +27407,9 @@ msgstr ""
 "Выбор лица приведёт к странице этого лица."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5269
-#, fuzzy, python-format
+#, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
-msgstr "Типы событий, начинающиеся с буквы "
+msgstr "Фамилии %(surname)s на букву %(letter)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5682
 #, python-format
@@ -27486,22 +27454,18 @@ msgid "Age at Death"
 msgstr "Возраст на момент смерти"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6311
-#, fuzzy
 msgid "Stepfather"
-msgstr "отец"
+msgstr "Отчим"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6321
-#, fuzzy
 msgid "Stepmother"
-msgstr "мать"
+msgstr "Мачеха"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6345
-#, fuzzy
 msgid "Not siblings"
-msgstr "Показывать братьев/сестёр"
+msgstr "Не братья/сестры"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6406
-#, fuzzy
 msgid "Relation to main person"
 msgstr "Родство с базовым лицом"
 
@@ -27541,9 +27505,9 @@ msgid "Full Name"
 msgstr "Полное имя"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6952
-#, fuzzy, python-format
+#, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
-msgstr "Ни %s, ни %s не являются каталогами"
+msgstr "Ни %(current)s, ни %(parent)s не являются каталогами"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6960
 #: ../gramps/plugins/webreport/narrativeweb.py:6965
@@ -27571,7 +27535,6 @@ msgid "Missing media objects:"
 msgstr "Утерянные документы:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7149
-#, fuzzy
 msgid "Applying Person Filter..."
 msgstr "Применяю фильтр..."
 
@@ -27580,15 +27543,15 @@ msgid "Constructing list of other objects..."
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7364
-#, fuzzy, python-format
+#, python-format
 msgid "Family of %s and %s"
-msgstr "Изменения в семье"
+msgstr "Семья %s и %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7368
 #: ../gramps/plugins/webreport/narrativeweb.py:7372
-#, fuzzy, python-format
+#, python-format
 msgid "Family of %s"
-msgstr "Заметки о семье"
+msgstr "Семья %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7573
 msgid "Creating GENDEX file"
@@ -28925,7 +28888,6 @@ msgstr "Уникальный номер для идентификации цит
 #: ../gramps/gui/glade/editplace.glade:228
 #: ../gramps/gui/glade/editrepository.glade:236
 #: ../gramps/gui/glade/editsource.glade:236
-#, fuzzy
 msgid "Tags:"
 msgstr "Метки:"
 
@@ -29175,14 +29137,12 @@ msgid "Death:"
 msgstr "Смерть:"
 
 #: ../gramps/gui/glade/editfamily.glade:162
-#, fuzzy
 msgid "Father/partner1"
-msgstr "Отцовские фильтры"
+msgstr "Отец/партнёр №1"
 
 #: ../gramps/gui/glade/editfamily.glade:459
-#, fuzzy
 msgid "Mother/partner2"
-msgstr "Материнские фильтры"
+msgstr "Мать/партнёр №2"
 
 #: ../gramps/gui/glade/editfamily.glade:542
 #: ../gramps/gui/glade/editreporef.glade:180
@@ -29491,9 +29451,8 @@ msgid ""
 msgstr "Имя-описание, данное вместо, либо вдобавок, к официальному имени."
 
 #: ../gramps/gui/glade/editname.glade:365
-#, fuzzy
 msgid "Given Name(s) "
-msgstr "Имя"
+msgstr "Имя(-на) "
 
 #: ../gramps/gui/glade/editname.glade:420
 msgid "_Family Nick Name:"
@@ -29508,9 +29467,8 @@ msgstr ""
 "однофамильцев. Известно также как «фермерское имя»."
 
 #: ../gramps/gui/glade/editname.glade:462
-#, fuzzy
 msgid "Family Names "
-msgstr "Заметки о семье"
+msgstr "Фамилии "
 
 #: ../gramps/gui/glade/editname.glade:516
 msgid "G_roup as:"
@@ -29630,7 +29588,6 @@ msgid "Set person as private data"
 msgstr "Обозначить лицо как личные данные"
 
 #: ../gramps/gui/glade/editperson.glade:497
-#, fuzzy
 msgid "Preferred Name"
 msgstr "Предпочитаемое имя"
 
@@ -29868,9 +29825,8 @@ msgid "A descriptive caption of the Internet location you are storing."
 msgstr "Описание данного интернет-ресурса."
 
 #: ../gramps/gui/glade/grampletpane.glade:7
-#, fuzzy
 msgid "window2"
-msgstr "Главное окно"
+msgstr "window2"
 
 #: ../gramps/gui/glade/grampletpane.glade:60
 msgid "Drag to move; click to detach"
@@ -29911,16 +29867,14 @@ msgstr ""
 #: ../gramps/gui/glade/mergecitation.glade:202
 #: ../gramps/gui/glade/mergedata.glade:838
 #: ../gramps/gui/glade/mergesource.glade:190
-#, fuzzy
 msgid "Source 1"
-msgstr "Источник"
+msgstr "Источник №1"
 
 #: ../gramps/gui/glade/mergecitation.glade:216
 #: ../gramps/gui/glade/mergedata.glade:856
 #: ../gramps/gui/glade/mergesource.glade:204
-#, fuzzy
 msgid "Source 2"
-msgstr "Источник"
+msgstr "Источник №2"
 
 #: ../gramps/gui/glade/mergecitation.glade:353
 #: ../gramps/gui/glade/mergecitation.glade:372
@@ -29981,9 +29935,8 @@ msgid "Other"
 msgstr "Другое"
 
 #: ../gramps/gui/glade/mergedata.glade:604
-#, fuzzy
 msgid "Title selection"
-msgstr "Выбор фильтра"
+msgstr "Выбор названия"
 
 #: ../gramps/gui/glade/mergedata.glade:617
 #: ../gramps/gui/glade/mergeplace.glade:190
@@ -30004,14 +29957,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergeevent.glade:190
-#, fuzzy
 msgid "Event 1"
-msgstr "Событие"
+msgstr "Событие №1"
 
 #: ../gramps/gui/glade/mergeevent.glade:204
-#, fuzzy
 msgid "Event 2"
-msgstr "Событие"
+msgstr "Событие №2"
 
 #: ../gramps/gui/glade/mergeevent.glade:578
 msgid ""
@@ -30028,14 +29979,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergefamily.glade:193
-#, fuzzy
 msgid "Family 1"
-msgstr "Семья"
+msgstr "Семья №1"
 
 #: ../gramps/gui/glade/mergefamily.glade:207
-#, fuzzy
 msgid "Family 2"
-msgstr "Семья"
+msgstr "Семья №2"
 
 #: ../gramps/gui/glade/mergefamily.glade:221
 #: ../gramps/gui/glade/mergefamily.glade:240
@@ -30064,14 +30013,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergemedia.glade:190
-#, fuzzy
 msgid "Object 1"
-msgstr "Объект"
+msgstr "Объект №1"
 
 #: ../gramps/gui/glade/mergemedia.glade:204
-#, fuzzy
 msgid "Object 2"
-msgstr "Объект"
+msgstr "Объект №2"
 
 #: ../gramps/gui/glade/mergemedia.glade:509
 msgid "Attributes, sources, notes and tags of both objects will be combined."
@@ -30087,14 +30034,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergenote.glade:190
-#, fuzzy
 msgid "Note 1"
-msgstr "Заметка"
+msgstr "Заметка №1"
 
 #: ../gramps/gui/glade/mergenote.glade:204
-#, fuzzy
 msgid "Note 2"
-msgstr "Заметка"
+msgstr "Заметка №2"
 
 #: ../gramps/gui/glade/mergeperson.glade:104
 msgid ""
@@ -30105,14 +30050,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergeperson.glade:200
-#, fuzzy
 msgid "Person 1"
-msgstr "Лицо"
+msgstr "Лицо №1"
 
 #: ../gramps/gui/glade/mergeperson.glade:214
-#, fuzzy
 msgid "Person 2"
-msgstr "Лицо"
+msgstr "Лицо №2"
 
 #: ../gramps/gui/glade/mergeperson.glade:269
 #: ../gramps/gui/glade/mergeperson.glade:288
@@ -30161,14 +30104,12 @@ msgstr ""
 "данные для результата объединения."
 
 #: ../gramps/gui/glade/mergerepository.glade:190
-#, fuzzy
 msgid "Repository 1"
-msgstr "Хранилище"
+msgstr "Хранилище №1"
 
 #: ../gramps/gui/glade/mergerepository.glade:204
-#, fuzzy
 msgid "Repository 2"
-msgstr "Хранилище"
+msgstr "Хранилище №2"
 
 #: ../gramps/gui/glade/mergerepository.glade:440
 msgid "Addresses, urls and notes of both repositories will be combined."
@@ -30323,9 +30264,8 @@ msgid "Rule list"
 msgstr "Список правил"
 
 #: ../gramps/gui/glade/rule.glade:595
-#, fuzzy
 msgid "Definition"
-msgstr "Путь"
+msgstr "Определение"
 
 #: ../gramps/gui/glade/rule.glade:611
 msgid "Co_mment:"
@@ -30462,9 +30402,8 @@ msgid "Delete the selected style"
 msgstr "Удалить выделенный стиль"
 
 #: ../gramps/gui/glade/tipofday.glade:8
-#, fuzzy
 msgid "window1"
-msgstr "Главное окно"
+msgstr ""
 
 #: ../gramps/gui/glade/tipofday.glade:54
 msgid "_Display on startup"
@@ -30673,9 +30612,8 @@ msgstr "Пожалуйста, потерпите. Это может затяну
 
 # !!!FIXME!!!
 #: ../gramps/plugins/tool/leak.glade:94
-#, fuzzy
 msgid "Uncollected Objects"
-msgstr "Неуничтоженный объект"
+msgstr "Неуничтоженные объекты"
 
 #: ../gramps/plugins/tool/mergecitations.glade:163
 msgid "Don't merge if citation has notes"
@@ -31253,7 +31191,7 @@ msgid ""
 "genealogical data. The Gramps database back end is so robust that some users "
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>Что в имени?..</b></br>Название «Gramps» предложил первоначальному автору "
+"<b>Что в имени?..</b><br/>Название «Gramps» предложил первоначальному автору "
 "программы, Дону Эллингему, его отец. Это --- сокращение фразы "
 "<i>Genealogical Research and Analysis Management Program System</i> "
 "(Программная система управления генеалогическими изысканиями и анализом - "
@@ -31772,9 +31710,8 @@ msgid "8 of Hanuka"
 msgstr "8й день Хануки"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:43
-#, fuzzy
 msgid "New Zealand"
-msgstr "Новое событие"
+msgstr "Новая Зеландия"
 
 #: ../data/gramps.xml.in.h:1 ../data/gramps.keys.in.h:1
 msgid "Gramps database"
