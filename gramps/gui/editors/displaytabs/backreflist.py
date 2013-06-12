@@ -65,10 +65,10 @@ class BackRefList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
         self.obj = obj
+        self.connectid = None
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('_References'), refmodel)
         self._callback = callback
-        self.connectid = self.model.connect('row-inserted', self.update_label)
         self.track_ref_for_deletion("model")
 
     def update_label(self, *obj):
@@ -124,6 +124,12 @@ class BackRefList(EmbeddedList):
     def get_data(self):
         return self.obj
 
+    def _set_data(self, new_backref_list):
+        """
+        Reset data associated with display tab. Only called in rebuild_callback!
+        """
+        self.obj = new_backref_list
+    
     def column_order(self):
         return ((1, 0), (1, 1), (1, 2))
 
@@ -207,3 +213,13 @@ class BackRefList(EmbeddedList):
                 EditRepository(self.dbstate, self.uistate, [], repo)
             except WindowActiveError:
                 pass
+
+    def rebuild(self):
+        """
+        Rebuild the view. This remakes the model, so we need to reconnect the
+        signal
+        """
+        if not self.connectid is None:
+            self.model.disconnect(self.connectid)
+        EmbeddedList.rebuild(self)
+        self.connectid = self.model.connect('row-inserted', self.update_label)

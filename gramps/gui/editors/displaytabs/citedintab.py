@@ -176,8 +176,10 @@ class CitedInTab(GrampsTab):
             ##print ('t1', cobjclass, chandle)
             if cobjclass == 'Citation':
                 cite = db.get_citation_from_handle(chandle)
+                has_backlink = False
                 for (objclass, handle) in db.find_backlink_handles(chandle):
                     ##print ('t2', objclass, handle)
+                    has_backlink = True
                     if objclass == 'Person':
                         ref = db.get_person_from_handle(handle)
                         self.__add_person(ref, cite)
@@ -199,18 +201,31 @@ class CitedInTab(GrampsTab):
                     else:
                         #most strange, not possible for citation there!
                         print ("Error in citedintab.py: citation referenced "
-                                "outside citation")
+                                "outside citation. Run rebuild reference tables")
+                if not has_backlink:
+                    self.__add_cite(cite)
             else:
                 #most strange, not possible !
                 print ("Error in citedintab.py: source referenced "
-                        "outside citation")
+                        "outside citation. Run rebuild reference tables")
         self.srtdata = sorted(self.srtdata, key=lambda x: glocale.sort_key(x[0]))
 
     def __add_object(self, obj, cite, descr_obj, shortdescr, objname):
         """
         obtain citation data of the object and store here so it can be shown
-        in a treeview
+        in a treeview. If obj=None, an unused citation...
         """
+        if obj is None:
+            #adding of a citation which is part of not a singel object. The
+            #citation is added under None.
+            if not None in self.obj2citemap:
+                self.obj2citemap[None] = {'prim': [], 'sec': [], 'subsec': []}
+                #add for sorting in the treeview to map
+                self.srtdata.append((descr_obj, None, shortdescr, objname))
+            #add this citation
+            self.obj2citemap[None]['prim'].append(cite.handle)
+            return
+            
         if not obj.handle in self.obj2citemap:
             self.obj2citemap[obj.handle] = {'prim': [], 'sec': [], 'subsec': []}
             #add for sorting in the treeview to map
@@ -306,6 +321,13 @@ class CitedInTab(GrampsTab):
         self.__add_object(obj, cite, _('Media %(id)s: %(descr)s') % {
                     'id': obj.get_gramps_id(),
                     'descr': name}, _("Cited in Media"), "Media")
+
+    def __add_cite(self, cite):
+        """
+        see __add_object
+        """
+        self.__add_object(None, cite, _('Unused Citations'),
+                    _('Unused Citation'), "Citation")
 
     def format_sec_obj(self, objsec):
         """

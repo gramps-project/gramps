@@ -448,6 +448,17 @@ class EmbeddedList(ButtonTab):
         """
         raise NotImplementedError
 
+    def _set_data(self):
+        """
+        Reset the data associated with the list. This is typically
+        a list of objects.
+
+        This should be overridden in the derived classes. This method should 
+        only be given if it is needed to call rebuild_callback with new_list
+        parameter. Don't use it otherwise!
+        """
+        raise NotImplementedError
+
     def column_order(self):
         """
         Specifies the column order for the columns. This should be
@@ -610,12 +621,14 @@ class EmbeddedList(ButtonTab):
         """
         pass
 
-    def rebuild_callback(self):
+    def rebuild_callback(self, new_list=None):
         """
         The view must be remade when data changes outside this tab.
         Use this method to connect to after a db change. It makes sure the 
         data is obtained again from the present object and the db what is not
         present in the obj, and the view rebuild
         """
+        if new_list is not None:
+            self._set_data(new_list)
         self.changed = True
         self.rebuild()

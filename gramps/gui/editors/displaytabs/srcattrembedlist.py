@@ -91,6 +91,12 @@ class SrcAttrEmbedList(EmbeddedList):
     def get_data(self):
         return self.data
 
+    def _set_data(self, new_data):
+        """
+        Reset data associated with display tab. Only called in rebuild_callback!
+        """
+        self.data = new_data
+
     def column_order(self):
         return ((1, 2), (1, 0), (1, 1))
 

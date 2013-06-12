@@ -115,6 +115,12 @@ class NoteTab(EmbeddedList, DbGUIElement):
         """
         return self.data
 
+    def _set_data(self, new_data):
+        """
+        Reset data associated with display tab. Only called in rebuild_callback!
+        """
+        self.data = new_data
+
     def column_order(self):
         """
         Return the column order of the columns in the display tab.

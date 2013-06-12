@@ -690,7 +690,8 @@ class EditSource(EditPrimary):
                 msg = _("Edit Source (%s)") % self.obj.get_title()
             else:
                 msg = ''
-            
+            # Make sure citation references this source
+            self.citation.set_reference_handle(self.obj.handle)
             # Now commit the Citation Primary object if needed
             if self.citation_loaded:
                 if not self.citation.get_handle():
@@ -719,12 +720,9 @@ class EditSource(EditPrimary):
         self.__base_save()
 
         if self.callback and self.citation_loaded:
-            #new calling sequence of callback
+            #callback only returns the citation handle. Source can be determined
+            # of this if needed.
             self.callback(self.citation.get_handle())
-        elif self.callback:
-            #user closed citation, but a callback is needed. We don't know
-            #what citatin to return, so return None. Caller should handle this!
-            self.callback(None)
 
         self.close()
 
@@ -747,8 +745,8 @@ class EditSource(EditPrimary):
 
     # CITATION PART 
     def cite_apply_callback(self, citation_handle):
-        if self.citation:
-            self.unload_citation()
+        if self.citation_loaded:
+            self.close_citation()
         self.load_citation(citation_handle)
 
     def unload_citation(self):
@@ -794,9 +792,11 @@ class EditSource(EditPrimary):
         for field in [self.gid, self.type_mon, self.tags2, self.ref_privacy]:
             field.update()
         #trigger update of the tab fields
-        for tab in [self.comment_tab, self.gallery_tab, self.attr_tab,
-                    self.citationref_list]:
-            tab.rebuild_callback()
+        self.comment_tab.rebuild_callback(self.citation.get_note_list())
+        self.gallery_tab.rebuild_callback(self.citation.get_media_list())
+        self.attr_tab.rebuild_callback(self.citation.get_attribute_list())
+        self.citationref_list.rebuild_callback(
+                        self.db.find_backlink_handles(self.citation.handle))
 
     def data_has_changed(self):
         return self.citation_data_has_changed() or \
