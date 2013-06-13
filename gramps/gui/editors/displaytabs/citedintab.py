@@ -68,7 +68,8 @@ class CitedInTab(GrampsTab):
     It shows these objects in a treeviewl and allows to load citations in the 
     top  part of the source editor.
     """
-    def __init__(self, dbstate, uistate, track, src, cite_apply_callback):
+    def __init__(self, dbstate, uistate, track, src, cite_apply_callback,
+                 cite_add_callback):
         """
         @param dbstate: The database state. Contains a reference to
         the database, along with other state information. The GrampsTab
@@ -83,12 +84,13 @@ class CitedInTab(GrampsTab):
         @type track: list
         @param src: source which we manage in this tab
         @type src: gen.lib.Source
-        @param glade: glade objects with the needed widgets
         """
         self.src = src
         self.readonly = dbstate.db.readonly
         self.srtdata = []
         self.cite_apply_callback = cite_apply_callback
+        self.cite_add_callback = cite_add_callback
+        self.dirty_selection = False
         
         GrampsTab.__init__(self, dbstate, uistate, track, _("Cited In"))
         self._set_label()
@@ -101,6 +103,7 @@ class CitedInTab(GrampsTab):
         self.build_model()
         self.setup_interface()
         self.show_all()
+        self._selection_changed()
 
     def get_icon_name(self):
         return 'gramps-citation'
@@ -122,15 +125,28 @@ class CitedInTab(GrampsTab):
         #create the load button, add it to a hbox, and add that box to the 
         #tab page
         self.load_btn  = SimpleButton(Gtk.STOCK_APPLY, self.apply_button_clicked)
+        self.load_btn.set_label(_("Load Citation"))
+        self.load_btn.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_APPLY,
+                                Gtk.IconSize.BUTTON))
+        #self.load_btn.set_always_show_image(True)
         self.load_btn.set_tooltip_text(_("Apply a selected citation so as to"
                                 " edit it in the top part of this interface"))
+        self.add_btn = SimpleButton(Gtk.STOCK_ADD, self.add_button_clicked)
+        self.add_btn.set_label(_("Add New Cition"))
+        self.add_btn.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_ADD,
+                                Gtk.IconSize.BUTTON))
+        self.add_btn.set_tooltip_text(_("Add a new citation to this source"))
         self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.edit_btn.set_label(_("Edit Cited In"))
+        self.edit_btn.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_EDIT,
+                                Gtk.IconSize.BUTTON))
         self.edit_btn.set_tooltip_text(_("Edit the object containing the"
                                 " selected citation"))
 
         hbox = Gtk.HBox()
         hbox.set_spacing(6)
         hbox.pack_start(self.load_btn, False, True, 0)
+        hbox.pack_start(self.add_btn, False, True, 0)
         hbox.pack_start(self.edit_btn, False, True, 0)
 
         hbox.show_all()
@@ -149,6 +165,7 @@ class CitedInTab(GrampsTab):
         self.tree.set_model(self.model)
 
         self.selection = self.tree.get_selection()
+        self.selection.connect('changed', self._selection_changed)
 
         # create the scrolled window, and attach the treeview
         scroll = Gtk.ScrolledWindow()
@@ -404,17 +421,22 @@ class CitedInTab(GrampsTab):
 
     def apply_button_clicked(self, obj):
         """
-        Function called with the Load button is clicked. This function
-        should be overridden by the derived class.
+        Function called with the Load button is clicked.
         """
         sel = self.get_selected()
         if sel[0]:
             self.cite_apply_callback(sel[0])
 
+    def add_button_clicked(self, obj):
+        """
+        Function called with the Add button is clicked. This function
+        should be overridden by the derived class.
+        """
+        self.cite_add_callback()
+
     def edit_button_clicked(self, obj):
         """
-        Function called with the Load button is clicked. This function
-        should be overridden by the derived class.
+        Function called with the Edit button is clicked.
         """
         sel = self.get_selected()
         ref = sel[1]
@@ -532,3 +554,50 @@ class CitedInTab(GrampsTab):
                      model.get_value(iter, 5))
         return None
 
+    def _selection_changed(self, obj=None):
+        """
+        Attached to the selection's 'changed' signal. 
+        Should we ever want to (in)activate the buttons depending on what is
+        selected, we should do it here
+        """
+        # This method is called as callback on change, and can be called 
+        # explicitly, dirty_selection must make sure they do not interact
+        if self.dirty_selection:
+            return
+        if self.get_selected() is not None:
+            #change what buttons are possible
+            self.load_btn.set_sensitive(True)
+            self.edit_btn.set_sensitive(True)
+        else:
+            self.load_btn.set_sensitive(False)
+            self.edit_btn.set_sensitive(False)
+
+    def rebuild(self):
+        """
+        Rebuilds the data in the tab by creating a new model,
+        using the build_model function 
+        """
+        offset = self.tree.get_visible_rect()
+        #during rebuild, don't do _selection_changed
+        self.dirty_selection = True
+        (model, node) = self.selection.get_selected()
+        selectedpath = None
+        if node:
+            selectedpath = model.get_path(node)
+        self.tree.set_model(None)
+        if self.model and hasattr(self.model, 'destroy'):
+            self.model.destroy()
+        
+        #actually rebuild things
+        self.generate_data()
+        self.build_model()
+        self.tree.set_model(self.model)
+
+        #reset previous select
+        if not selectedpath is None:
+            self.selection.select_path(selectedpath)
+        #model and tree are reset, allow _selection_changed again, and force it
+        self.dirty_selection = False
+        self._selection_changed()
+        if self.tree.get_realized():
+            GObject.idle_add(self.tree.scroll_to_point, offset.x, offset.y)

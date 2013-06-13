@@ -307,9 +307,9 @@ class EditSource(EditPrimary):
     def _setup_citation_fields(self):
         if self.citation_ready:
             raise Exception
-        self.gid = MonitoredEntry(
+        self.gid2 = MonitoredEntry(
             self.glade.get_object('gid2'), self.citation.set_gramps_id,
-            self.citation.get_gramps_id, self.db.readonly)
+            self.get_citation_gramps_id, self.db.readonly)
 
         self.type_mon = MonitoredMenu(
             self.glade.get_object('confidence'),
@@ -333,6 +333,17 @@ class EditSource(EditPrimary):
 
         self.ref_privacy = PrivacyButton(
             self.glade.get_object('privacy'), self.citation, self.db.readonly)
+
+    def get_citation_gramps_id(self):
+        """
+        Monitered entry on None does nothing, while get_gramps_id returns None
+        for empty string! We convert here
+        """
+        val = self.citation.get_gramps_id()
+        if val is None:
+            return ''
+        else:
+            return val
 
     def update_attr(self):
         """
@@ -439,7 +450,8 @@ class EditSource(EditPrimary):
         self.track_ref_for_deletion("attr_tab")
 
         self.citedin_tab = CitedInTab(self.dbstate, self.uistate,
-                                 self.track, self.obj, self.cite_apply_callback)
+                                self.track, self.obj, self.cite_apply_callback,
+                                self.cite_add_callback)
         self._add_tab(notebook, self.citedin_tab)
         self.track_ref_for_deletion("citedin_tab")
 
@@ -617,6 +629,9 @@ class EditSource(EditPrimary):
             if not res:
                 return
             self.__base_save(only_cite=True)
+            #as a citation changed, we need to update some fields in source
+            #section
+            self.citedin_tab.rebuild()
             
         #now close the citation part
         self.unload_citation()
@@ -749,6 +764,14 @@ class EditSource(EditPrimary):
             self.close_citation()
         self.load_citation(citation_handle)
 
+    def cite_add_callback(self):
+        """
+        User wants to add a new citation to the source.
+        """
+        if self.citation_loaded:
+            self.close_citation()
+        self.load_citation(None)
+
     def unload_citation(self):
         self.cinf.set_visible(False)
         self.btnclose_cite.set_sensitive(False)
@@ -759,6 +782,9 @@ class EditSource(EditPrimary):
             self.citation.unserialize(Citation().serialize())
 
     def load_citation(self, chandle):
+        """
+        Loading a citation in the top view
+        """
         #we switch current citatoin for the new one
         if not self.citation:
             #there is no citation yet, put an empty one
@@ -789,7 +815,7 @@ class EditSource(EditPrimary):
         #update source part that uses citation
         self.update_attr()
         #trigger update of the monitored fields
-        for field in [self.gid, self.type_mon, self.tags2, self.ref_privacy]:
+        for field in [self.gid2, self.type_mon, self.tags2, self.ref_privacy]:
             field.update()
         #trigger update of the tab fields
         self.comment_tab.rebuild_callback(self.citation.get_note_list())
