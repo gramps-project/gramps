@@ -744,11 +744,19 @@ class Lexer(object):
                 level = int(line[0])
                 # there should only be one space after the level,
                 # but we can ignore more,
+                line = line[2].lstrip(' ')
                 # then split into tag+delim+line_value
                 # or xfef_id+delim+rest
-                line = line[2].lstrip(' ').partition(' ')
-                tag = line[0]
-                line_value = line[2]
+                # the xref_id can have spaces in it
+                if line.startswith('@'):
+                    line = line.split('@', 2)
+                    # line is now [None, alphanum+pointer_string, rest]
+                    tag = '@' + line[1] + '@'
+                    line_value = line[2]
+                else:
+                    line = line.partition(' ')
+                    tag = line[0]
+                    line_value = line[2]
             except:
                 continue
 
