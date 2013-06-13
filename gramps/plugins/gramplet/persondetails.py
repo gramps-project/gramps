@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2011 Nick Hall
+# Copyright (C) 2013 Heinz Brinker <heinzbrinker@yahoo.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -112,8 +113,8 @@ class PersonDetails(Gramplet):
         """
         self.load_person_image(active_person)
         self.name.set_text(name_displayer.display(active_person))
-
         self.clear_table()
+        self.display_alternate_names(active_person)
         self.display_parents(active_person)
         self.display_separator()
         self.display_type(active_person, EventType(EventType.BIRTH))
@@ -144,6 +145,21 @@ class PersonDetails(Gramplet):
         rows += 1
         self.table.resize(rows, 2)
         self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL)
+
+    def display_alternate_names(self, active_person):
+        """
+        Display other names of the person
+        """
+        try:
+            nlist = active_person.get_alternate_names()
+            if len(nlist) > 0:
+                for altname in nlist:
+                    name_type = str( altname.get_type() )
+                    text = name_displayer.display_name(altname)
+                    self.add_row(name_type, text)
+                self.display_separator()
+        except:
+            pass
 
     def display_parents(self, active_person):
         """
