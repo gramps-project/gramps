@@ -706,7 +706,8 @@ class EditSource(EditPrimary):
             else:
                 msg = ''
             # Make sure citation references this source
-            self.citation.set_reference_handle(self.obj.handle)
+            if self.citation:
+                self.citation.set_reference_handle(self.obj.handle)
             # Now commit the Citation Primary object if needed
             if self.citation_loaded:
                 if not self.citation.get_handle():

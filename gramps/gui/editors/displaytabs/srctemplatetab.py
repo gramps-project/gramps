@@ -91,10 +91,9 @@ class SrcTemplateTab(GrampsTab):
         self._set_label(show_image=False)
         widget.connect('key_press_event', self.key_pressed)
         
-        self.lbls = []
-        self.inpts = []
-        self.monentry = []
-        self.gridfields = self.glade.get_object('gridfields')
+        self.tmplfields = TemplateFields(self.dbstate.db,
+                self.glade.get_object('gridfields'),
+                self.src, None, self.callback_src_changed, None)
         self.autotitle = self.glade.get_object("autotitle_checkbtn")
         #self.vbox_fields_label = self.glade.get_object('fields_01')
         #self.vbox_fields_input = self.glade.get_object('fields_02')
@@ -165,34 +164,36 @@ class SrcTemplateTab(GrampsTab):
         srcattr = SrcAttributeType()
         if index in srcattr.EVIDENCETEMPLATES:
             #a predefined template, 
-            self.reset_template_fields(srcattr.EVIDENCETEMPLATES[index])
+            self.tmplfields.reset_template_fields(srcattr.EVIDENCETEMPLATES[index])
 
-    def _add_entry(self, row, srcattrtype, label):
+#-------------------------------------------------------------------------
+#
+# TemplateFields Class
+#
+#-------------------------------------------------------------------------
+class TemplateFields(object):
+    """
+    Class to manage fields of a source template.
+    Can be used on source and on citation level.
+    """
+    def __init__(self, db, grid, src, cite, callback_src_changed,
+                 callback_cite_changed):
         """
-        Add an entryfield to the grid of fields at row row, to edit the given
-        srcattrtype value. Use label label if given to indicate the field
-        (otherwise the srcattrtype string description is used)
-        Note srcattrtype should actually be the integer key of the type!
+        grid: The Gtk.Grid that should hold the fields
+        src : The source to which the fields belong
+        cite: The citation to which the fields belong (set None if only source)
         """
-        self.gridfields.insert_row(row)
-        field = srcattrtype
-        #setup label
-        if not label:
-            srcattr = SrcAttributeType(field)
-            label = str(srcattr)
-        lbl = Gtk.Label(_("%s:") % label)
-        lbl.set_halign(Gtk.Align.START)
-        self.gridfields.attach(lbl, 0, row-1, 1, 1)
-        self.lbls.append(lbl)
-        #setup entry
-        inpt = UndoableEntry()
-        inpt.set_halign(Gtk.Align.FILL)
-        inpt.set_hexpand(True)
-        self.gridfields.attach(inpt, 1, row-1, 1, 1)
-        self.inpts.append(inpt)
-        MonitoredEntry(inpt, self.set_field, self.get_field, 
-                       read_only=self.dbstate.db.readonly, 
-                       parameter=srcattrtype)
+        self.gridfields = grid
+        self.db = db
+        self.src = src
+        self.cite = cite
+        self.callback_src_changed = callback_src_changed
+        self.callback_cite_changed = callback_cite_changed
+        
+        #storage
+        self.lbls = []
+        self.inpts = []
+        self.monentry = []
 
     def reset_template_fields(self, template):
         # first remove old fields
@@ -228,7 +229,6 @@ class SrcTemplateTab(GrampsTab):
         for fielddef in fieldsS:
             self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
             row += 1
-            
 
         # now add optional default citation values
         fieldsF = [fielddef for fielddef in template[REF_TYPE_F] 
@@ -250,7 +250,35 @@ class SrcTemplateTab(GrampsTab):
             self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
             row += 1
 
-        self.show_all()
+        self.gridfields.show_all()
+
+
+    def _add_entry(self, row, srcattrtype, label):
+        """
+        Add an entryfield to the grid of fields at row row, to edit the given
+        srcattrtype value. Use label label if given to indicate the field
+        (otherwise the srcattrtype string description is used)
+        Note srcattrtype should actually be the integer key of the type!
+        """
+        self.gridfields.insert_row(row)
+        field = srcattrtype
+        #setup label
+        if not label:
+            srcattr = SrcAttributeType(field)
+            label = str(srcattr)
+        lbl = Gtk.Label(_("%s:") % label)
+        lbl.set_halign(Gtk.Align.START)
+        self.gridfields.attach(lbl, 0, row-1, 1, 1)
+        self.lbls.append(lbl)
+        #setup entry
+        inpt = UndoableEntry()
+        inpt.set_halign(Gtk.Align.FILL)
+        inpt.set_hexpand(True)
+        self.gridfields.attach(inpt, 1, row-1, 1, 1)
+        self.inpts.append(inpt)
+        MonitoredEntry(inpt, self.set_field, self.get_field, 
+                       read_only=self.db.readonly, 
+                       parameter=srcattrtype)
 
     def get_field(self, srcattrtype):
         """
