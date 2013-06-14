@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2013-06-12 18:55+0300\n"
+"PO-Revision-Date: 2013-06-12 22:56-0800\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../gramps/cli/arghandler.py:221
 #, python-format
@@ -10681,7 +10681,7 @@ msgid ""
 "You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner."
 msgstr ""
 "Якщо медіа - зображення, виберіть конкретну частину зображення, на яку Ви хочете послатися.\n"
-"Ви можете скористатися мишкою щоб вибрати ділянку зображення, або використайте ці кнопки для визначення верхнього лівого, та нижнього правого кута цієї ділянки. Точка (0,0) є лівим верхнім кутом зображення, та (100,100) - правим нижнім кутом."
+"Ви можете скористатися мишкою щоб вибрати ділянку зображення, або використайте кнопки зі стрілками для визначення верхнього лівого, та нижнього правого кута цієї ділянки. Точка (0,0) є лівим верхнім кутом зображення, та (100,100) - правим нижнім кутом."
 
 #: ../gramps/gui/glade/editmediaref.glade.h:6
 msgid ""
@@ -10700,6 +10700,8 @@ msgid ""
 "If media is an image, select the specific part of the image you want to reference.\n"
 "You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.\n"
 msgstr ""
+"Якщо медіа є зображенням, виберіть частину зображення, на яку Ви хочете послатися.\n"
+"Використайте мишу для вибору частини зображення, або кнопки для відзначення верхньго лівого і нижнього правого кутів цієї ділянки. Точка (0,0) буде верхнім лівим кутом, та (100,100) - нижнім правим.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:20
 msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
@@ -12876,7 +12878,7 @@ msgstr "Не включати записи не пов'язані з обран�
 
 #: ../gramps/gui/plug/quick/_quickreports.py:103
 msgid "Web Connect"
-msgstr ""
+msgstr "Веб зв'язок"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:148
 #: ../gramps/gui/plug/quick/_textbufdoc.py:77
@@ -26952,7 +26954,7 @@ msgstr "Однорідний розподіл дітей"
 
 #: ../gramps/plugins/view/fanchartdescview.py:326
 msgid "Size  proportional to number of descendants"
-msgstr ""
+msgstr "Розмір пропорційний до кількості нащадків"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
