@@ -56,6 +56,7 @@ from .editmediaref import EditMediaRef
 from .displaytabs import (NoteTab, GalleryTab, SrcAttrEmbedList,
                           SrcTemplateTab, CitedInTab,
                           CitationBackRefList, RepoEmbedList)
+from .displaytabs.srctemplatetab import TemplateFields
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
                        MonitoredMenu)
 from ..dialog import ErrorDialog, QuestionDialog2
@@ -102,6 +103,8 @@ class EditSource(EditPrimary):
         else:
             #no citation given.
             self.citation_loaded = False
+            #we put an empty base citation ready.
+            self.citation = Citation()
         self.callertitle = callertitle
 
         self.citation_ready = False
@@ -118,7 +121,7 @@ class EditSource(EditPrimary):
             title = _('Source') + ": " + title
         else:
             title = _('New Source')
-        if self.citation is not None:
+        if self.citation_loaded:
             citeid = self.citation.get_gramps_id()
             if self.citation.get_handle():
                 if self.callertitle:
@@ -165,7 +168,7 @@ class EditSource(EditPrimary):
         derived class (this class).
 
         """
-        if self.citation is None:
+        if not self.citation_loaded:
             self.unload_citation()
 
         self.load_source_image()
@@ -173,7 +176,7 @@ class EditSource(EditPrimary):
             #new source, open on template view, and focus there.
             self.notebook_src.set_current_page(self.template_page_nr)
             self.template_tab.make_active()
-        elif self.citation:
+        elif self.citation_loaded:
             #there is a citation!
             if self.citation.handle:
                 #existing citation!
@@ -297,8 +300,7 @@ class EditSource(EditPrimary):
                                     self.db.readonly)
 
         #editable citation fields
-        if self.citation:
-            self._setup_citation_fields()
+        self._setup_citation_fields()
 
         #trigger updates of read only fields
         self.update_attr()
@@ -360,7 +362,7 @@ class EditSource(EditPrimary):
         
         #set fields with the template
         self.refL.set_text(self.srctemp.reference_L())
-        if self.citation:
+        if self.citation_loaded:
             self.refF.set_text(self.srctemp.reference_F())
             self.refS.set_text(self.srctemp.reference_S())
         else:
@@ -382,6 +384,13 @@ class EditSource(EditPrimary):
         if self.attr_tab:
             self.attr_tab.rebuild_callback()
         self.update_attr()
+
+    def callback_cite_changed(self):
+        """
+        Change in the citation part might lead to changes needed in the src GUI
+        section
+        """
+        pass
 
     def update_notes(self, *par):
         """
@@ -468,8 +477,7 @@ class EditSource(EditPrimary):
         self.glade.get_object('vbox').pack_start(notebook, True, True, 0)
         
         #now create citation tabbed pages
-        if self.citation:
-            self._create_citation_tabbed_pages()
+        self._create_citation_tabbed_pages()
 
     def _create_citation_tabbed_pages(self):
         if self.citation_ready:
@@ -484,6 +492,10 @@ class EditSource(EditPrimary):
                               _('General'), tblref)
         self._add_tab(notebook_ref, self.reftab)
         self.track_ref_for_deletion("reftab")
+        #reftab contains the citation template fields
+        self.tmplfields = TemplateFields(self.dbstate.db,
+                self.glade.get_object('grid_citefields'),
+                self.obj, self.citation, None, self.callback_cite_changed)
 
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.citation.get_note_list(), self.get_menu_title(),
