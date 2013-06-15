@@ -53,7 +53,7 @@ class SrcAttributeBase(AttributeRootBase):
         This is the value of the first source template in the attribute list
         If not known UNKNOWN is returned as key, which is integer. Other keys
         will be str.
-        :rtype tuple: (key, description, string_key_as stored)
+        :rtype tuple: (index, description, string_key_as stored)
         """
         #no template is UNKNOWN!
         templ = SrcAttributeType.UNKNOWN  

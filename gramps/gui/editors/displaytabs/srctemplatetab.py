@@ -159,12 +159,10 @@ class SrcTemplateTab(GrampsTab):
         Selected template changed, we save this and update interface
         """
         self.src.set_source_template(index, key)
-        self.callback_src_changed()
+        self.callback_src_changed(templatechanged=True)
         
-        srcattr = SrcAttributeType()
-        if index in srcattr.EVIDENCETEMPLATES:
-            #a predefined template, 
-            self.tmplfields.reset_template_fields(srcattr.EVIDENCETEMPLATES[index])
+        #a predefined template, 
+        self.tmplfields.reset_template_fields(index)
 
 #-------------------------------------------------------------------------
 #
@@ -195,7 +193,19 @@ class TemplateFields(object):
         self.inpts = []
         self.monentry = []
 
-    def reset_template_fields(self, template):
+    def reset_template_fields(self, index):
+        """
+        Method that constructs the actual fields where user can enter data.
+        Template must be the index of the template.
+        """
+        #obtain the template of the index
+        srcattr = SrcAttributeType()
+        if index in srcattr.EVIDENCETEMPLATES:
+            #a predefined template, 
+            template = srcattr.EVIDENCETEMPLATES[index]
+        else:
+            return
+        
         # first remove old fields
         for lbl in self.lbls:
             self.gridfields.remove(lbl)
@@ -211,29 +221,32 @@ class TemplateFields(object):
         fieldsL = []
         for fielddef in template[REF_TYPE_L]:
             fieldsL.append(fielddef[1])
-            self._add_entry(row, fielddef[1], '')
-            row += 1
+            if self.cite is None:
+                #these are source fields
+                self._add_entry(row, fielddef[1], '')
+                row += 1
 
         tempsattrt = SrcAttributeType()
         # now add optional short citation values
-        fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
+        if self.cite is None:
+            fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
                             if fielddef[1] in fieldsL and fielddef[6]==EMPTY]
-        if fieldsS:
-            self.gridfields.insert_row(row)
-            lbl = Gtk.Label('')
-            lbl.set_markup(_("<b>Optional Short Versions:</b>"))
-            lbl.set_halign(Gtk.Align.START)
-            self.gridfields.attach(lbl, 0, row-1, 2, 1)
-            self.lbls.append(lbl)
-            row += 1
-        for fielddef in fieldsS:
-            self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
-            row += 1
+            if fieldsS:
+                self.gridfields.insert_row(row)
+                lbl = Gtk.Label('')
+                lbl.set_markup(_("<b>Optional Short Versions:</b>"))
+                lbl.set_halign(Gtk.Align.START)
+                self.gridfields.attach(lbl, 0, row-1, 2, 1)
+                self.lbls.append(lbl)
+                row += 1
+            for fielddef in fieldsS:
+                self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
+                row += 1
 
-        # now add optional default citation values
+        # now add citation values (optional on source level)
         fieldsF = [fielddef for fielddef in template[REF_TYPE_F] 
                                             if fielddef[1] not in fieldsL]
-        if fieldsF:
+        if fieldsF and self.cite is None:
             self.gridfields.insert_row(row)
             lbl = Gtk.Label('')
             lbl.set_markup(_("<b>Optional Default Citation Fields:</b>"))
@@ -246,12 +259,21 @@ class TemplateFields(object):
             row += 1
         fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
                             if fielddef[1] not in fieldsL and fielddef[6]==EMPTY]
+        if not self.cite is None:
+            #we indicate with a text these are the short versions
+            if fieldsS:
+                self.gridfields.insert_row(row)
+                lbl = Gtk.Label('')
+                lbl.set_markup(_("<b>Optional Short Versions:</b>"))
+                lbl.set_halign(Gtk.Align.START)
+                self.gridfields.attach(lbl, 0, row-1, 2, 1)
+                self.lbls.append(lbl)
+                row += 1
         for fielddef in fieldsS:
             self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
             row += 1
 
         self.gridfields.show_all()
-
 
     def _add_entry(self, row, srcattrtype, label):
         """
@@ -276,45 +298,62 @@ class TemplateFields(object):
         inpt.set_hexpand(True)
         self.gridfields.attach(inpt, 1, row-1, 1, 1)
         self.inpts.append(inpt)
-        MonitoredEntry(inpt, self.set_field, self.get_field, 
-                       read_only=self.db.readonly, 
-                       parameter=srcattrtype)
+        if self.cite:
+            MonitoredEntry(inpt, self.set_cite_field, self.get_cite_field, 
+                           read_only=self.db.readonly, 
+                           parameter=srcattrtype)
+        else:
+            MonitoredEntry(inpt, self.set_src_field, self.get_src_field, 
+                           read_only=self.db.readonly, 
+                           parameter=srcattrtype)
 
-    def get_field(self, srcattrtype):
+    def get_src_field(self, srcattrtype):
+        self.__get_field(srcattrtype, self.src)
+
+    def get_cite_field(self, srcattrtype):
+        self.__get_field(srcattrtype, self.cite)
+
+    def __get_field(self, srcattrtype, obj):
         """
         Obtain srcattribute with type srcattrtype, where srcattrtype is an
         integer key!
         """
-        src = self.src
         val = ''
-        for attr in src.attribute_list:
+        for attr in obj.attribute_list:
             if int(attr.get_type()) == srcattrtype:
                 val = attr.get_value()
                 break
         return val
 
-    def set_field(self, value, srcattrtype):
+    def set_src_field(self, value, srcattrtype):
+        self.__set_field(value, srcattrtype, self.src)
+        #indicate source object changed
+        self.callback_src_changed()
+
+    def set_cite_field(self, value, srcattrtype):
+        self.__set_field(value, srcattrtype, self.cite)
+        #indicate source object changed
+        self.callback_cite_changed()
+
+    def __set_field(self, value, srcattrtype, obj):
         """
         Set attribute of source of type srcattrtype (which is integer!) to 
         value. If not present, create attribute. If value == '', remove
         """
-        src = self.src
         value = value.strip()
         foundattr = None
-        for attr in src.attribute_list:
+        for attr in obj.attribute_list:
             if int(attr.get_type()) == srcattrtype:
                 attr.set_value(value)
                 foundattr = attr
                 break
         if foundattr and value == '':
-            src.remove_attribute(foundattr)
+            obj.remove_attribute(foundattr)
         if foundattr is None and value != '':
             foundattr = SrcAttribute()
             foundattr.set_type(srcattrtype)
             foundattr.set_value(value)
-            src.add_attribute(foundattr)
-        #indicate source object changed
-        self.callback_src_changed()
+            obj.add_attribute(foundattr)
 
 ##    def setup_autocomp_combobox(self):
 ##        """

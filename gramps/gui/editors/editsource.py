@@ -155,6 +155,7 @@ class EditSource(EditPrimary):
         self.notebook_ref = self.glade.get_object('notebook_citation')
         self.cinf = self.glade.get_object("cite_info_lbl")
         self.btnclose_cite = self.glade.get_object("btnclose_cite")
+        self.tmplfields = None
 
         self.define_warn_box2(self.glade.get_object("warn_box2"))
 
@@ -377,10 +378,14 @@ class EditSource(EditPrimary):
         #lastly update the window title
         self.update_title(self.get_menu_title())
 
-    def update_template_data(self):
+    def update_template_data(self, templatechanged=False):
         """
-        Change in the template tab must be reflected in other places
+        Change in the template tab of source must be reflected in other places.
+        If template itself changed, templatechanged==True must be passed
         """
+        if templatechanged and self.tmplfields:
+            #the citation template fields must be changed!
+            self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
         if self.attr_tab:
             self.attr_tab.rebuild_callback()
         self.update_attr()
@@ -496,6 +501,7 @@ class EditSource(EditPrimary):
         self.tmplfields = TemplateFields(self.dbstate.db,
                 self.glade.get_object('grid_citefields'),
                 self.obj, self.citation, None, self.callback_cite_changed)
+        self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
 
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.citation.get_note_list(), self.get_menu_title(),
@@ -815,6 +821,8 @@ class EditSource(EditPrimary):
             self._create_citation_tabbed_pages()
         else:
             self.citation_changed()
+        #the citation template fields must be changed!
+        self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
         self.cinf.set_visible(True)
         self.btnclose_cite.set_sensitive(True)
         self.citation_loaded = True
