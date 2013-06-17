@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.5.0//EN"
-"http://gramps-project.org/xml/1.5.0/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.5.0/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.6.0//EN"
+"http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.6.0/">
   <header>
-    <created date="2013-01-13" version="4.1.0-r21095M"/>
+    <created date="2013-06-02" version="4.1.0-r22453"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
   </header>
+  <tags>
+    <tag handle="_c7642d9389b54417e8b" change="1370206720" name="tag1" color="#000000000000" priority="0"/>
+  </tags>
   <events>
     <event handle="_a701e8fd8ea27f99704" change="1198197326" id="E0000">
       <type>Birth</type>
@@ -528,6 +531,158 @@
       <place hlink="_67MT6DB6KWOVMBAXSY"/>
       <description>Marriage of Lloyd Smith and Janis Elaine Green</description>
     </event>
+    <event handle="_bd750cc852945743320" change="1301940145" id="E0121">
+      <type>Birth</type>
+      <dateval val="1902-06-28"/>
+    </event>
+    <event handle="_bd750d46bfe3f54dc37" change="1301940197" id="E0122">
+      <type>Death</type>
+      <dateval val="1987-11-16"/>
+      <place hlink="_7JMT6DN2LOF54KXHTU"/>
+    </event>
+    <event handle="_bd750e2c5051f9f9596" change="1301940291" id="E0123">
+      <type>Marriage</type>
+      <dateval val="1920-05-14"/>
+    </event>
+    <event handle="_bd750f87f8f5f85ed92" change="1301940433" id="E0124">
+      <type>Birth</type>
+      <dateval val="1920-12-22"/>
+    </event>
+    <event handle="_bd7510938ee530f327e" change="1301940543" id="E0125">
+      <type>Birth</type>
+      <dateval val="1923-06-24"/>
+      <place hlink="_7JMT6DN2LOF54KXHTU"/>
+    </event>
+    <event handle="_bd7511b78ec7588ba8f" change="1301940662" id="E0126">
+      <type>Birth</type>
+      <dateval val="1917-06-21"/>
+    </event>
+    <event handle="_bd7511dbb250640b8f9" change="1301940699" id="E0127">
+      <type>Death</type>
+      <dateval val="1990-02-22"/>
+    </event>
+    <event handle="_bd751294da3419c6b05" change="1301940753" id="E0128">
+      <type>Marriage</type>
+      <dateval val="1940-04-06"/>
+      <place hlink="_7JMT6DN2LOF54KXHTU"/>
+    </event>
+    <event handle="_bd75138019e3dd26210" change="1301940935" id="E0129">
+      <type>Divorce</type>
+      <dateval val="1946-07" type="about"/>
+    </event>
+    <event handle="_bd7515393b61e665f22" change="1301941030" id="E0130">
+      <type>Birth</type>
+      <dateval val="1914-09-14"/>
+    </event>
+    <event handle="_bd7515bd20a397d6227" change="1301941084" id="E0131">
+      <type>Death</type>
+      <dateval val="1970-11-17"/>
+      <place hlink="_67MT6DB6KWOVMBAXSY"/>
+    </event>
+    <event handle="_bd7516712945a2e2e52" change="1301941158" id="E0132">
+      <type>Marriage</type>
+      <dateval val="1948-01-16"/>
+      <place hlink="_67MT6DB6KWOVMBAXSY"/>
+    </event>
+    <event handle="_bd7517e297e15825efe" change="1301942055" id="E0133">
+      <type>Birth</type>
+      <dateval val="1941-08-21"/>
+      <place hlink="_7JMT6DN2LOF54KXHTU"/>
+    </event>
+    <event handle="_bd751aaa22c47103f8a" change="1301941601" id="E0135">
+      <type>Marriage</type>
+      <dateval val="1939-03-04"/>
+    </event>
+    <event handle="_bd751b1f55021ba97f1" change="1301941649" id="E0136">
+      <type>Divorce</type>
+      <dateval val="1941-04-16"/>
+    </event>
+    <event handle="_bd751cd71503c392a91" change="1301942076" id="E0138">
+      <type>Birth</type>
+      <dateval val="1945-04-29" type="about"/>
+    </event>
+    <event handle="_bd751d8bc6a607a0cab" change="1301943728" id="E0139">
+      <type>Birth</type>
+      <dateval val="1950-02-06"/>
+      <place hlink="_67MT6DB6KWOVMBAXSY"/>
+    </event>
+    <event handle="_bd7523717d51778b278" change="1301942521" id="E0140">
+      <type>Birth</type>
+      <dateval val="1920-07-07"/>
+    </event>
+    <event handle="_bd7523d45e118a51684" change="1301942562" id="E0141">
+      <type>Death</type>
+      <dateval val="1993-07-12"/>
+    </event>
+    <event handle="_bd75248d701148dc3f9" change="1301942637" id="E0142">
+      <type>Marriage</type>
+      <dateval val="1945-08-13"/>
+    </event>
+    <event handle="_bd75256710a193d1afe" change="1301942727" id="E0143">
+      <type>Birth</type>
+      <dateval val="1947-09-14"/>
+    </event>
+    <event handle="_bd7525e3f6345befa12" change="1301942778" id="E0144">
+      <type>Birth</type>
+      <dateval val="1949-07-03"/>
+    </event>
+    <event handle="_bd75268080337b77a4a" change="1301942842" id="E0145">
+      <type>Birth</type>
+      <dateval val="1952-09-23"/>
+    </event>
+    <event handle="_bd7527243eb2adcc2d6" change="1301942909" id="E0146">
+      <type>Divorce</type>
+      <dateval val="1955"/>
+    </event>
+    <event handle="_bd7528efed86c148120" change="1301943097" id="E0148">
+      <type>Marriage</type>
+      <dateval val="1956-03-15"/>
+    </event>
+    <event handle="_bd752e8e30e23af6f38" change="1301943686" id="E0150">
+      <type>Death</type>
+      <dateval val="2002-06-21"/>
+    </event>
+    <event handle="_bd7532a79dc7cebeaa8" change="1301944152" id="E0151">
+      <type>Birth</type>
+      <dateval val="1925-09-12"/>
+      <place hlink="_7JMT6DN2LOF54KXHTU"/>
+    </event>
+    <event handle="_bd75336b8f42dc72cbc" change="1301944196" id="E0152">
+      <type>Death</type>
+      <dateval val="2000-01-25"/>
+    </event>
+    <event handle="_bd75349209b0f2e5654" change="1301944317" id="E0153">
+      <type>Birth</type>
+      <dateval val="1925-09-26"/>
+    </event>
+    <event handle="_bd753552afc540398d0" change="1301944396" id="E0154">
+      <type>Marriage</type>
+      <dateval val="1946"/>
+    </event>
+    <event handle="_bd7535d4ca162cb2dce" change="1301944449" id="E0155">
+      <type>Divorce</type>
+      <dateval val="1949-06" type="about"/>
+    </event>
+    <event handle="_bd7536f6d067fc0893f" change="1301944568" id="E0156">
+      <type>Birth</type>
+      <dateval val="1927-02-17"/>
+    </event>
+    <event handle="_bd75376da8616d3bb96" change="1301944617" id="E0157">
+      <type>Marriage</type>
+      <dateval val="1950-01-30"/>
+    </event>
+    <event handle="_bd753af24e41dd1fb68" change="1301944986" id="E0158">
+      <type>Birth</type>
+      <dateval val="1947-11-15"/>
+    </event>
+    <event handle="_bd753b663797a1e1d18" change="1301945033" id="E0159">
+      <type>Birth</type>
+      <dateval val="1949-01-05"/>
+    </event>
+    <event handle="_bd753c56f195aeb8f24" change="1301945159" id="E0160">
+      <type>Birth</type>
+      <dateval val="1950-07-27"/>
+    </event>
   </events>
   <people home="_PSNT6D0DDHJOBCFJWX">
     <person handle="_0ONT6DJS5KD5W6EA1P" change="1198197326" id="I0004">
@@ -705,6 +860,7 @@
       <eventref hlink="_a701e8fde5d0cc6484e" role="Primary"/>
       <eventref hlink="_a701e8fde75723d0c85" role="Primary"/>
       <childof hlink="_KKMT6D5KWF1VP03K4B"/>
+      <parentin hlink="_bd750af3e934b6d3934"/>
     </person>
     <person handle="_NDNT6D8O7D3QRKP07N" change="1198197326" id="I0017">
       <gender>F</gender>
@@ -737,7 +893,7 @@
       <objref hlink="_HHNT6D73QPKC0KWK2Y"/>
       <childof hlink="_S7MT6D1JSGX9PZO27F"/>
     </person>
-    <person handle="_PSNT6D0DDHJOBCFJWX" change="1198197326" id="I0037">
+    <person handle="_PSNT6D0DDHJOBCFJWX" change="1370206720" id="I0037">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Edwin Michael</first>
@@ -753,6 +909,7 @@
       <objref hlink="_CVNT6DHG5ICZ1UGUO9"/>
       <childof hlink="_1HMT6DNWTSPXIL2FDM"/>
       <parentin hlink="_CGNT6DV02D0CQTGBAO"/>
+      <tagref hlink="_c7642d9389b54417e8b"/>
     </person>
     <person handle="_RDMT6D6113RO3X299I" change="1198197326" id="I0019">
       <gender>M</gender>
@@ -968,6 +1125,185 @@
       <eventref hlink="_a701e8fdb0a2faa54b5" role="Primary"/>
       <parentin hlink="_MMMT6D6NGNO5YERSLM"/>
     </person>
+    <person handle="_bd750d5cc7f5a094950" change="1301940319" id="I0056">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Alvera C.</first>
+        <surname>Erickson</surname>
+      </name>
+      <eventref hlink="_bd750cc852945743320" role="Primary"/>
+      <eventref hlink="_bd750d46bfe3f54dc37" role="Primary"/>
+      <parentin hlink="_bd750af3e934b6d3934"/>
+    </person>
+    <person handle="_bd750fae3bf5fb52f41" change="1301943705" id="I0057">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Anna Louise</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd750f87f8f5f85ed92" role="Primary"/>
+      <eventref hlink="_bd752e8e30e23af6f38" role="Primary"/>
+      <childof hlink="_bd750af3e934b6d3934"/>
+      <parentin hlink="_bd75111820230015633"/>
+      <parentin hlink="_bd7514750de3e09296e"/>
+    </person>
+    <person handle="_bd7510a06e063c4ebee" change="1301942652" id="I0058">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Elaine Marie</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd7510938ee530f327e" role="Primary"/>
+      <childof hlink="_bd750af3e934b6d3934"/>
+      <parentin hlink="_bd75229b5c86a3f4e0e"/>
+    </person>
+    <person handle="_bd751223f4c4504b316" change="1301940875" id="I0059">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Eli Harry</first>
+        <surname>Jones</surname>
+      </name>
+      <eventref hlink="_bd7511b78ec7588ba8f" role="Primary"/>
+      <eventref hlink="_bd7511dbb250640b8f9" role="Primary"/>
+      <parentin hlink="_bd75111820230015633"/>
+    </person>
+    <person handle="_bd7515d66246e2e88dc" change="1301941735" id="I0060">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Leroy Verl</first>
+        <surname>Morgan</surname>
+      </name>
+      <eventref hlink="_bd7515393b61e665f22" role="Primary"/>
+      <eventref hlink="_bd7515bd20a397d6227" role="Primary"/>
+      <parentin hlink="_bd7514750de3e09296e"/>
+      <parentin hlink="_bd7518a961d20ca9037"/>
+    </person>
+    <person handle="_bd7517fd3fe2e5a5e14" change="1301943794" id="I0061">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Roberta Michele</first>
+        <surname>Jones</surname>
+      </name>
+      <eventref hlink="_bd7517e297e15825efe" role="Primary"/>
+      <childof hlink="_bd75111820230015633"/>
+      <childof hlink="_bd7514750de3e09296e"/>
+    </person>
+    <person handle="_bd751ce66f940ce1e90" change="1301943794" id="I0063">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Frank Albert</first>
+        <surname>Jones</surname>
+      </name>
+      <eventref hlink="_bd751cd71503c392a91" role="Primary"/>
+      <childof hlink="_bd75111820230015633"/>
+      <childof hlink="_bd7514750de3e09296e"/>
+    </person>
+    <person handle="_bd751d970186c7c7b7c" change="1301943733" id="I0064">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Margaret Ann</first>
+        <surname>Morgan</surname>
+      </name>
+      <eventref hlink="_bd751d8bc6a607a0cab" role="Primary"/>
+      <childof hlink="_bd7514750de3e09296e"/>
+    </person>
+    <person handle="_bd7523ecb0767f5ad53" change="1301943100" id="I0065">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Robert Alfred</first>
+        <surname>Shannon</surname>
+      </name>
+      <eventref hlink="_bd7523717d51778b278" role="Primary"/>
+      <eventref hlink="_bd7523d45e118a51684" role="Primary"/>
+      <parentin hlink="_bd75229b5c86a3f4e0e"/>
+      <parentin hlink="_bd752761a3e4fd23f2b"/>
+    </person>
+    <person handle="_bd752570e6e5592b5c0" change="1301942914" id="I0066">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Kelly Christine</first>
+        <surname>Shannon</surname>
+      </name>
+      <eventref hlink="_bd75256710a193d1afe" role="Primary"/>
+      <childof hlink="_bd75229b5c86a3f4e0e"/>
+    </person>
+    <person handle="_bd7525ee5481876d199" change="1301942914" id="I0067">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Lisa Marie</first>
+        <surname>Shannon</surname>
+      </name>
+      <eventref hlink="_bd7525e3f6345befa12" role="Primary"/>
+      <childof hlink="_bd75229b5c86a3f4e0e"/>
+    </person>
+    <person handle="_bd752686b30645aeaaf" change="1301942914" id="I0068">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Matthew John</first>
+        <surname>Shannon</surname>
+      </name>
+      <eventref hlink="_bd75268080337b77a4a" role="Primary"/>
+      <childof hlink="_bd75229b5c86a3f4e0e"/>
+    </person>
+    <person handle="_bd7532b94e33af612c6" change="1301944619" id="I0071">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Warren Edward</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd7532a79dc7cebeaa8" role="Primary"/>
+      <eventref hlink="_bd75336b8f42dc72cbc" role="Primary"/>
+      <childof hlink="_bd750af3e934b6d3934"/>
+      <parentin hlink="_bd7533c1ed4114b0896"/>
+      <parentin hlink="_bd7536046944b843a26"/>
+    </person>
+    <person handle="_bd7534a49f013482f95" change="1301944405" id="I0072">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Alice Hannah</first>
+        <surname>Iverson</surname>
+      </name>
+      <eventref hlink="_bd75349209b0f2e5654" role="Primary"/>
+      <parentin hlink="_bd7533c1ed4114b0896"/>
+    </person>
+    <person handle="_bd75371353304125b3f" change="1301944619" id="I0073">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Evelyn Lucille</first>
+        <surname>Watson</surname>
+      </name>
+      <eventref hlink="_bd7536f6d067fc0893f" role="Primary"/>
+      <parentin hlink="_bd7536046944b843a26"/>
+    </person>
+    <person handle="_bd7539fc2292e24045e" change="1301945256" id="I0076">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marie Astri</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd753af24e41dd1fb68" role="Primary"/>
+      <childof hlink="_bd7533c1ed4114b0896"/>
+      <childof hlink="_bd7536046944b843a26"/>
+    </person>
+    <person handle="_bd753a6f5280a3a7985" change="1301945256" id="I0077">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Susan Elizabeth</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd753b663797a1e1d18" role="Primary"/>
+      <childof hlink="_bd7533c1ed4114b0896"/>
+      <childof hlink="_bd7536046944b843a26"/>
+    </person>
+    <person handle="_bd753c5922c1912e3b9" change="1301945256" id="I0078">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Karen Christine</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_bd753c56f195aeb8f24" role="Primary"/>
+      <childof hlink="_bd7536046944b843a26"/>
+    </person>
   </people>
   <families>
     <family handle="_1HMT6DNWTSPXIL2FDM" change="1198197326" id="F0012">
@@ -1085,6 +1421,72 @@
       <father hlink="_VVMT6D4M4VVILJ8Q1S"/>
       <mother hlink="_NQMT6DX5NIOGMEGJA3"/>
       <eventref hlink="_a701e8ff0514bd46d08" role="Family"/>
+    </family>
+    <family handle="_bd750af3e934b6d3934" change="1301944124" id="F0015">
+      <rel type="Married"/>
+      <father hlink="_K3NT6DMBYAXNTXOO3F"/>
+      <mother hlink="_bd750d5cc7f5a094950"/>
+      <eventref hlink="_bd750e2c5051f9f9596" role="Family"/>
+      <childref hlink="_bd750fae3bf5fb52f41"/>
+      <childref hlink="_bd7510a06e063c4ebee"/>
+      <childref hlink="_bd7532b94e33af612c6"/>
+    </family>
+    <family handle="_bd75111820230015633" change="1301943794" id="F0016">
+      <rel type="Married"/>
+      <father hlink="_bd751223f4c4504b316"/>
+      <mother hlink="_bd750fae3bf5fb52f41"/>
+      <eventref hlink="_bd751294da3419c6b05" role="Family"/>
+      <eventref hlink="_bd75138019e3dd26210" role="Family"/>
+      <childref hlink="_bd7517fd3fe2e5a5e14"/>
+      <childref hlink="_bd751ce66f940ce1e90"/>
+    </family>
+    <family handle="_bd7514750de3e09296e" change="1301942036" id="F0017">
+      <rel type="Married"/>
+      <father hlink="_bd7515d66246e2e88dc"/>
+      <mother hlink="_bd750fae3bf5fb52f41"/>
+      <eventref hlink="_bd7516712945a2e2e52" role="Family"/>
+      <childref hlink="_bd7517fd3fe2e5a5e14" frel="Stepchild"/>
+      <childref hlink="_bd751ce66f940ce1e90" frel="Stepchild"/>
+      <childref hlink="_bd751d970186c7c7b7c"/>
+    </family>
+    <family handle="_bd7518a961d20ca9037" change="1301941725" id="F0018">
+      <rel type="Married"/>
+      <father hlink="_bd7515d66246e2e88dc"/>
+      <eventref hlink="_bd751aaa22c47103f8a" role="Family"/>
+      <eventref hlink="_bd751b1f55021ba97f1" role="Family"/>
+    </family>
+    <family handle="_bd75229b5c86a3f4e0e" change="1301942914" id="F0019">
+      <rel type="Married"/>
+      <father hlink="_bd7523ecb0767f5ad53"/>
+      <mother hlink="_bd7510a06e063c4ebee"/>
+      <eventref hlink="_bd75248d701148dc3f9" role="Family"/>
+      <eventref hlink="_bd7527243eb2adcc2d6" role="Family"/>
+      <childref hlink="_bd752570e6e5592b5c0"/>
+      <childref hlink="_bd7525ee5481876d199"/>
+      <childref hlink="_bd752686b30645aeaaf"/>
+    </family>
+    <family handle="_bd752761a3e4fd23f2b" change="1301943296" id="F0020">
+      <rel type="Married"/>
+      <father hlink="_bd7523ecb0767f5ad53"/>
+      <eventref hlink="_bd7528efed86c148120" role="Family"/>
+    </family>
+    <family handle="_bd7533c1ed4114b0896" change="1301944940" id="F0021">
+      <rel type="Married"/>
+      <father hlink="_bd7532b94e33af612c6"/>
+      <mother hlink="_bd7534a49f013482f95"/>
+      <eventref hlink="_bd753552afc540398d0" role="Family"/>
+      <eventref hlink="_bd7535d4ca162cb2dce" role="Family"/>
+      <childref hlink="_bd7539fc2292e24045e"/>
+      <childref hlink="_bd753a6f5280a3a7985"/>
+    </family>
+    <family handle="_bd7536046944b843a26" change="1301945256" id="F0022">
+      <rel type="Married"/>
+      <father hlink="_bd7532b94e33af612c6"/>
+      <mother hlink="_bd75371353304125b3f"/>
+      <eventref hlink="_bd75376da8616d3bb96" role="Family"/>
+      <childref hlink="_bd7539fc2292e24045e" mrel="Stepchild"/>
+      <childref hlink="_bd753a6f5280a3a7985" mrel="Stepchild"/>
+      <childref hlink="_bd753c5922c1912e3b9"/>
     </family>
   </families>
   <citations>
