@@ -74,12 +74,13 @@ ident = ''
 
 TYPE2CITEMAP = {}
 FIELDTYPEMAP = {}
+FIELDS_SHORT = []
 index = 100
 indexval = 10
 first = True
 
 with open(csvfilename, 'rb') as csvfile:
-   reader = csv.reader(csvfile, delimiter=',')
+   reader = csv.reader(csvfile, delimiter=';')
    for row in reader:
         if first:
             #skip first row with headers
@@ -88,20 +89,38 @@ with open(csvfilename, 'rb') as csvfile:
 
         if row[CATCOL]:
             cat = row[CATCOL].strip()
+            if cat.startswith('EE '):
+                cat = cat[3:]
+                EE = True
+            else:
+                EE = False
             cattype = row[CATTYPECOL].strip()
             types = row[TYPECOL].strip()
             descr = row[DESCRCOL].strip()
             source_type = row[IDENTCOL].strip()
             if descr:
                 source_descr = '%s - %s - %s (%s)' % (cat, cattype, types, descr)
-                source_descr_code = "_('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % { "\
+                if not EE:
+                    source_descr_code = "_('%(first)s - %(sec)s - %(third)s (%(fourth)s)') % { "\
+                        " 'first': _('" + cat + "'),"\
+                        " 'sec': _('" + cattype + "'),"\
+                        " 'third': _('" + types + "'),"\
+                        " 'fourth': _('" + descr + "')}"
+                else:
+                    source_descr_code = "_('EE %(first)s - %(sec)s - %(third)s (%(fourth)s)') % { "\
                         " 'first': _('" + cat + "'),"\
                         " 'sec': _('" + cattype + "'),"\
                         " 'third': _('" + types + "'),"\
                         " 'fourth': _('" + descr + "')}"
             else:
                 source_descr = '%s - %s - %s' % (cat, cattype, types)
-                source_descr_code = "_('%(first)s - %(sec)s - %(third)s') % { "\
+                if not EE:
+                    source_descr_code = "_('%(first)s - %(sec)s - %(third)s') % { "\
+                        " 'first': _('" + cat + "'),"\
+                        " 'sec': _('" + cattype + "'),"\
+                        " 'third': _('" + types + "')}"
+                else:
+                    source_descr_code = "_('EE %(first)s - %(sec)s - %(third)s') % { "\
                         " 'first': _('" + cat + "'),"\
                         " 'sec': _('" + cattype + "'),"\
                         " 'third': _('" + types + "')}"
@@ -113,7 +132,6 @@ with open(csvfilename, 'rb') as csvfile:
                             'i': indexval, 'descr': source_descr,
                             'descrcode': source_descr_code}
                 indexval += 1
-            
             
         if row[CITETYPECOL]:
             #new citation type,
@@ -131,6 +149,8 @@ with open(csvfilename, 'rb') as csvfile:
                      .replace(',', '').replace('.', '').replace(':', '')\
                      .replace('-', '_')
         field_descr =  field.replace('[', '').replace(']','').lower().capitalize()
+        field_label = row[LABELCOL].strip()
+        field_label = field_label.replace("'", "\\'")
         if field_type in FIELDTYPEMAP:
             assert field_descr == FIELDTYPEMAP[field_type][1], 'Problem %s %s %s' % (field_type, field_descr, FIELDTYPEMAP[field_type][1])
         else:
@@ -148,7 +168,7 @@ with open(csvfilename, 'rb') as csvfile:
         style = STYLES.get(row[STYLECOL].strip()) or 'EMPTY'
         
         TYPE2CITEMAP[source_type][cite_type] += [(row[LDELCOL], field_type, 
-                        row[RDELCOL], style, private, optional, 
+                        row[RDELCOL], field_label, style, private, optional, 
                         shorteralg, gedcommap)]
         #if shorttype, we store a type for the short version so user can store
         #this
@@ -158,6 +178,7 @@ with open(csvfilename, 'rb') as csvfile:
                 pass
             else:
                 FIELDTYPEMAP[field_type_short] = (index, field_descr + ' (Short)')
+                FIELDS_SHORT.append(field_type_short)
                 index += 1
 
 #now generate the python code we need in source attr types
@@ -169,8 +190,10 @@ for field_type in allkeys:
     code += "    " + field_type + ' = %d\n' % FIELDTYPEMAP[field_type][0]
     datamap += '        (' + field_type + ', _("' + FIELDTYPEMAP[field_type][1] \
             +'"), "' + FIELDTYPEMAP[field_type][1] + '"),\n'
-
-code += '\n' + datamap + '        ]\n'
+code += "\n    _DATAMAPIGNORE = [\n" 
+for field in FIELDS_SHORT:
+    code += "        " + field + ',\n'
+code += '    ]\n\n' + datamap + '        ]\n'
 
 with open('srcattrtype_extra.py', 'wb') as srcattrfile:
     srcattrfile.write(code)
@@ -204,11 +227,12 @@ for source_type in allkeys:
     for val in ['REF_TYPE_L', 'REF_TYPE_F', 'REF_TYPE_S']:
         code += "            " + val + ": [\n"
         for field in TYPE2CITEMAP[source_type][val]:
-            # field is tuple (row[LDELCOL], field_type, row[RDELCOL], row[STYLECOL]
+            # field is tuple (row[LDELCOL], field_type, row[RDELCOL], 
+            # field_label, row[STYLECOL]
             #    , private, optional, shorteralg, gedcommap)
-            code += "                ('"+ field[0] + "', " + field[1]  + ", '"\
-                    + field[2] + "', " + field[3] + ", " + field[4] + ", "\
-                    + field[5] + ", " + field[6] + ", " + field[7] + "),\n"
+            code += "                ('"+ field[0] + "', " + field[1]  + ", _('"\
+                    +field[3] + "'), '"+ field[2] + "', " + field[4] + ", " + field[5] + ", "\
+                    + field[6] + ", " + field[7] + ", " + field[8] + "),\n"
         code += "                ],\n"
     code += "        },\n"
 code += "    }\n"

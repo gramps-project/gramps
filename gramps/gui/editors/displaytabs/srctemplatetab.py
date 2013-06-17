@@ -223,14 +223,14 @@ class TemplateFields(object):
             fieldsL.append(fielddef[1])
             if self.cite is None:
                 #these are source fields
-                self._add_entry(row, fielddef[1], '')
+                self._add_entry(row, fielddef[1], fielddef[2])
                 row += 1
 
         tempsattrt = SrcAttributeType()
         # now add optional short citation values
         if self.cite is None:
             fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
-                            if fielddef[1] in fieldsL and fielddef[6]==EMPTY]
+                            if fielddef[1] in fieldsL and fielddef[7]==EMPTY]
             if fieldsS:
                 self.gridfields.insert_row(row)
                 lbl = Gtk.Label('')
@@ -240,7 +240,11 @@ class TemplateFields(object):
                 self.lbls.append(lbl)
                 row += 1
             for fielddef in fieldsS:
-                self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
+                lblval = fielddef[2]
+                if lblval:
+                    lblval = _('%(normal_version_label)s (Short)') % {
+                                'normal_version_label': lblval}
+                self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
                 row += 1
 
         # now add citation values (optional on source level)
@@ -255,10 +259,10 @@ class TemplateFields(object):
             self.lbls.append(lbl)
             row += 1
         for fielddef in fieldsF:
-            self._add_entry(row, fielddef[1], '')
+            self._add_entry(row, fielddef[1], fielddef[2])
             row += 1
         fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
-                            if fielddef[1] not in fieldsL and fielddef[6]==EMPTY]
+                            if fielddef[1] not in fieldsL and fielddef[7]==EMPTY]
         if not self.cite is None:
             #we indicate with a text these are the short versions
             if fieldsS:
@@ -270,22 +274,28 @@ class TemplateFields(object):
                 self.lbls.append(lbl)
                 row += 1
         for fielddef in fieldsS:
-            self._add_entry(row, tempsattrt.short_version(fielddef[1]), '')
+            lblval = fielddef[2]
+            if lblval:
+                lblval = _('%(normal_version_label)s (Short)') % {
+                                'normal_version_label': lblval}
+            self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
             row += 1
 
         self.gridfields.show_all()
 
-    def _add_entry(self, row, srcattrtype, label):
+    def _add_entry(self, row, srcattrtype, alt_label):
         """
         Add an entryfield to the grid of fields at row row, to edit the given
-        srcattrtype value. Use label label if given to indicate the field
+        srcattrtype value. Use alt_label if given to indicate the field
         (otherwise the srcattrtype string description is used)
         Note srcattrtype should actually be the integer key of the type!
         """
         self.gridfields.insert_row(row)
         field = srcattrtype
         #setup label
-        if not label:
+        if alt_label:
+            label = alt_label
+        else:
             srcattr = SrcAttributeType(field)
             label = str(srcattr)
         lbl = Gtk.Label(_("%s:") % label)

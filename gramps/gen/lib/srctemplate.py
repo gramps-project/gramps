@@ -250,11 +250,11 @@ class SrcTemplate(object):
         """
         reflist = self.tempstruct[reftype]
         # reflist is typically a list like
-        # [      ('', AUTHOR, ',', EMPTY, False, False, EMPTY, EMPTY),
-        #        ('', TITLE, ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
-        #        ('', PUB_INFO, '.', EMPTY, False, False, EMPTY, EMPTY),
-        #        ('', DATE, ' -', EMPTY, False, False, EMPTY, EMPTY),
-        #        ('', PAGE6S9, '.', EMPTY, False, False, EMPTY, EMPTY),
+        # [      ('', AUTHOR, '', ',', EMPTY, False, False, EMPTY, EMPTY),
+        #        ('', TITLE, '', ',', STYLE_QUOTE, False, False, EMPTY, EMPTY),
+        #        ('', PUB_INFO, '', '.', EMPTY, False, False, EMPTY, EMPTY),
+        #        ('', DATE, '', ' -', EMPTY, False, False, EMPTY, EMPTY),
+        #        ('', PAGE, 'Page(s)', '.', EMPTY, False, False, EMPTY, EMPTY),
         #        ]
         
         #set col of attrmap to use:
@@ -266,7 +266,7 @@ class SrcTemplate(object):
             COL_SHORT = 2
         ref = ['']
         fieldadded = [False]
-        for (ldel, field, rdel, style, priv, opt, short, gedcom) in reflist:
+        for (ldel, field, label, rdel, style, priv, opt, short, gedcom) in reflist:
             if not gedcomfield is None and gedcom != gedcomfield:
                 continue
             customshort = False
