@@ -606,6 +606,11 @@ class PedigreeView(NavigationView):
         self.scrolledwindow.add_with_viewport(event_box)
 
         self.table = Gtk.Grid()
+        # force LTR layout of the tree, even though the text might be RTL!
+        # this way the horizontal scroll preferences will be correct always
+        if self.table.get_direction() == Gtk.TextDirection.RTL:
+            self.table.set_direction(Gtk.TextDirection.LTR)
+            self.table.set_halign(Gtk.Align.END)
         event_box.add(self.table)
         event_box.get_parent().set_shadow_type(Gtk.ShadowType.NONE)
         self.table.set_row_spacing(1)
@@ -1101,6 +1106,10 @@ class PedigreeView(NavigationView):
             elif self.tree_direction == 3:
                 child_arrow = Gtk.ArrowType.RIGHT
                 parent_arrow = Gtk.ArrowType.LEFT
+            # GTK will reverse the icons for RTL locales, but we force LTR layout of the table,
+            # so reverse the arrows back...
+            if self.tree_direction in [2,3] and self.scrolledwindow.get_direction() == Gtk.TextDirection.RTL:
+                child_arrow, parent_arrow = parent_arrow, child_arrow
 
             button = Gtk.Button()
             button.add(Gtk.Arrow.new(child_arrow, Gtk.ShadowType.IN))
