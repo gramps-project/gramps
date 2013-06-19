@@ -328,10 +328,10 @@ class TemplateFields(object):
                            parameter=srcattrtype)
 
     def get_src_field(self, srcattrtype):
-        self.__get_field(srcattrtype, self.src)
+        return self.__get_field(srcattrtype, self.src)
 
     def get_cite_field(self, srcattrtype):
-        self.__get_field(srcattrtype, self.cite)
+        return self.__get_field(srcattrtype, self.cite)
 
     def __get_field(self, srcattrtype, obj):
         """

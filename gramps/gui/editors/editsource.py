@@ -359,7 +359,12 @@ class EditSource(EditPrimary):
         if self.obj.get_source_template()[0] != self.srctemp.get_template_key():
             self.srctemp.set_template_key(self.obj.get_source_template()[0])
         #set new attrlist in template
-        self.srctemp.set_attr_list(self.obj.get_attribute_list())
+        if self.citation_loaded:
+            citeattr = self.citation.get_attribute_list()
+        else:
+            citeattr = None
+        self.srctemp.set_attr_list(self.obj.get_attribute_list(), citeattr)
+        
         
         #set fields with the template
         self.refL.set_text(self.srctemp.reference_L())
@@ -395,7 +400,7 @@ class EditSource(EditPrimary):
         Change in the citation part might lead to changes needed in the src GUI
         section
         """
-        pass
+        self.update_template_data(False)
 
     def update_notes(self, *par):
         """

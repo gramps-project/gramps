@@ -129,8 +129,8 @@ class SrcAttributeType(GrampsType):
     CHAPTER_PAGES = 223
     COLLECTION = 104
     COLLECTION_SHORT_VERSION = 111
-    COLUMN = 240
-    COLUMN_SHORT_VERSION = 241
+    COLUMN = 241
+    COLUMN_SHORT_VERSION = 242
     COMPILER = 166
     COMPILER_SHORT_VERSION = 200
     CREATION_DATE = 103
@@ -175,8 +175,8 @@ class SrcAttributeType(GrampsType):
     INSTITUTION_SHORT_VERSION = 178
     INTERVIEWER = 161
     ISSUE_DATE = 237
-    ISSUE_DATE_SHORT_VERSION = 243
-    ISSUE_RANGE = 239
+    ISSUE_DATE_SHORT_VERSION = 244
+    ISSUE_RANGE = 240
     ITEM_OF_INTEREST = 122
     ITEM_OF_INTEREST_SHORT_VERSION = 153
     JURISDICTION = 183
@@ -195,7 +195,8 @@ class SrcAttributeType(GrampsType):
     PART = 231
     PLACE_CREATED = 157
     POSITION = 180
-    POSTING_DATE = 242
+    POSITION_SHORT_VERSION = 239
+    POSTING_DATE = 243
     PROFESSIONAL_CREDENTIALS = 145
     PROVENANCE = 167
     PUBLICATION_FORMAT = 215
@@ -205,7 +206,7 @@ class SrcAttributeType(GrampsType):
     PUBLICATION_YEAR = 139
     PUBLICATION_YEAR_SHORT_VERSION = 203
     PUBLISHER = 138
-    PUB_INFO = 244
+    PUB_INFO = 245
     RECIPIENT = 129
     RECIPIENT_SHORT_VERSION = 133
     RELATIONSHIP = 168
@@ -308,6 +309,7 @@ class SrcAttributeType(GrampsType):
         EDITOR_SHORT_VERSION,
         ACT_SHORT_VERSION,
         SESSION_SHORT_VERSION,
+        POSITION_SHORT_VERSION,
         COLUMN_SHORT_VERSION,
         ISSUE_DATE_SHORT_VERSION,
     ]
@@ -397,6 +399,7 @@ class SrcAttributeType(GrampsType):
         (PART, _("Part"), "Part"),
         (PLACE_CREATED, _("Place created"), "Place created"),
         (POSITION, _("Position"), "Position"),
+        (POSITION_SHORT_VERSION, _("Position (Short)"), "Position (Short)"),
         (POSTING_DATE, _("Posting date"), "Posting date"),
         (PROFESSIONAL_CREDENTIALS, _("Professional credentials"), "Professional credentials"),
         (PROVENANCE, _("Provenance"), "Provenance"),
@@ -7847,7 +7850,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('accessed', DATE_ACCESSED, _(''), '),', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
             REF_TYPE_S: [
@@ -7855,7 +7858,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('', TITLE, _('Article Title'), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
         },
@@ -7899,7 +7902,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('accessed', DATE_ACCESSED, _(''), '),', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
             REF_TYPE_S: [
@@ -7907,7 +7910,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('', TITLE, _('Article Title'), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
         },
@@ -7977,7 +7980,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('accessed', DATE_ACCESSED, _(''), '),', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', CREDIT_LINE, _(''), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -7987,7 +7990,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('', TITLE, _('Article Title'), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
         },
@@ -8091,7 +8094,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('accessed', DATE_ACCESSED, _(''), '),', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', CREDIT_LINE, _(''), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -8101,7 +8104,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('', TITLE, _('Article Title'), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
         },
@@ -8137,7 +8140,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('accessed', DATE_ACCESSED, _(''), '),', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
             REF_TYPE_S: [
@@ -8145,7 +8148,7 @@ class SrcAttributeType(GrampsType):
                 None, None),
                 ('', TITLE, _('Article Title'), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', LOCATION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                ('', POSITION, _('Location on Page'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ],
         },

@@ -299,52 +299,37 @@ class SrcTemplate(object):
                     ref[-1] += ' ' + field[0].capitalize() + field[1:]
                 elif  len(ref[-1]) and ref[-1][-1] in [',', ':', '-']:
                     ref[-1] += ' ' + field
+                elif len(ref[-1]) and ref[-1] != ' ':
+                    ref[-1] += ' ' + field
                 else:
                     ref[-1] += field
             #right delimiter
-            if ')' in rdel:
-                if len(ref[-1] [ref[-1].find('('):]) > 0 :
-                    newval = ref[-1] + rdel
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    fieldadded[-1] = True
-                    ref[-1] += newval
-                else:
-                    #no data inside of delimiter, we remove it entirely
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    #if . at end of rdel, add it
-                    if rdel[-1] == '.':
-                        ref[-1] = ref[-1] + '.'
-            elif ']' in rdel:
-                if len(ref[-1] [ref[-1].find('['):]) > 0 :
-                    newval = ref[-1] + rdel
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    fieldadded[-1] = True
-                    ref[-1] += newval
-                else:
-                    #no data inside of delimiter, we remove it entirely
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    #if . at end of rdel, add it
-                    if rdel[-1] == '.':
-                        ref[-1] = ref[-1] + '.'
-            elif '}' in rdel:
-                if len(ref[-1] [ref[-1].find('{'):]) > 0 :
-                    newval = ref[-1] + rdel
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    fieldadded[-1] = True
-                    ref[-1] += newval
-                else:
-                    #no data inside of delimiter, we remove it entirely
-                    ref = ref[:-1]
-                    fieldadded = fieldadded[:-1]
-                    #if . at end of rdel, add it
-                    if rdel[-1] == '.':
-                        ref[-1] = ref[-1] + '.'
-            else:
+            nobracket = True
+            for bracketl, bracketr in [('(', ')'), ('[',']'), ('{','}')]:
+                if bracketr in rdel:
+                    nobracket = False
+                    if len(ref[-1] [ref[-1].find(bracketl)+1:]) > 0 :
+                        newval = ref[-1] + rdel
+                        ref = ref[:-1]
+                        fieldadded = fieldadded[:-1]
+                        fieldadded[-1] = True
+                        ref[-1] += newval
+                    else:
+                        #no data inside of delimiter, we remove it entirely
+                        ref = ref[:-1]
+                        fieldadded = fieldadded[:-1]
+                        #if . at end of rdel, add it
+                        if rdel[-1] == '.':
+                            if ref[-1] and ref[-1][-1] in [',', '.']:
+                                ref[-1] = ref[-1][:-1]
+                            if ref[-1]:
+                                ref[-1] = ref[-1] + '.'
+                        elif rdel[-1] == ',':
+                            if ref[-1] and ref[-1][-1] in [',', '.']:
+                                pass
+                            elif ref[-1]:
+                                ref[-1] = ref[-1] + ','
+            if nobracket:
                 # we add rdel
                 if not ref[-1]:
                     #nothing there, don't add delimiter
@@ -375,9 +360,11 @@ class SrcTemplate(object):
                         #we only add delimiters after this if new fields are added
                         fieldadded[-1] = False
                     
-        ref = ''.join(ref)
+        ref = ' '.join(ref)
         if ref:
-            return ref[0].capitalize() + ref[1:]
+            ref = ref[0].capitalize() + ref[1:]
+            ref.replace('  ', ' ')
+            return ref
         else:
             return ref
 
