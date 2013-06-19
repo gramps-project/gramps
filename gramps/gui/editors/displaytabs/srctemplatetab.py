@@ -46,7 +46,7 @@ from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F,
 from gramps.gen.lib import SrcAttribute, SrcTemplate
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
-from ...widgets import UndoableEntry, MonitoredEntry
+from ...widgets import UndoableEntry, MonitoredEntryIndicator
 from .grampstab import GrampsTab
 
 #-------------------------------------------------------------------------
@@ -220,10 +220,14 @@ class TemplateFields(object):
         # now add new fields
         fieldsL = []
         for fielddef in template[REF_TYPE_L]:
+            hint = fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1])
+            
             fieldsL.append(fielddef[1])
             if self.cite is None:
                 #these are source fields
-                self._add_entry(row, fielddef[1], fielddef[2])
+                self._add_entry(row, fielddef[1], fielddef[2],
+                    fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
+                    fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
                 row += 1
 
         tempsattrt = SrcAttributeType()
@@ -259,7 +263,9 @@ class TemplateFields(object):
             self.lbls.append(lbl)
             row += 1
         for fielddef in fieldsF:
-            self._add_entry(row, fielddef[1], fielddef[2])
+            self._add_entry(row, fielddef[1], fielddef[2],
+                    fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
+                    fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
             row += 1
         fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
                             if fielddef[1] not in fieldsL and fielddef[7]==EMPTY]
@@ -283,7 +289,7 @@ class TemplateFields(object):
 
         self.gridfields.show_all()
 
-    def _add_entry(self, row, srcattrtype, alt_label):
+    def _add_entry(self, row, srcattrtype, alt_label, hint=None, tooltip=None):
         """
         Add an entryfield to the grid of fields at row row, to edit the given
         srcattrtype value. Use alt_label if given to indicate the field
@@ -306,14 +312,18 @@ class TemplateFields(object):
         inpt = UndoableEntry()
         inpt.set_halign(Gtk.Align.FILL)
         inpt.set_hexpand(True)
+        if tooltip:
+            inpt.set_tooltip_text(tooltip)
         self.gridfields.attach(inpt, 1, row-1, 1, 1)
         self.inpts.append(inpt)
         if self.cite:
-            MonitoredEntry(inpt, self.set_cite_field, self.get_cite_field, 
+            MonitoredEntryIndicator(inpt, self.set_cite_field, self.get_cite_field,
+                           hint or "",
                            read_only=self.db.readonly, 
                            parameter=srcattrtype)
         else:
-            MonitoredEntry(inpt, self.set_src_field, self.get_src_field, 
+            MonitoredEntryIndicator(inpt, self.set_src_field, self.get_src_field,
+                           hint or "",
                            read_only=self.db.readonly, 
                            parameter=srcattrtype)
 

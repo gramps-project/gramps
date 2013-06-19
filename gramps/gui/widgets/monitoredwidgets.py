@@ -192,18 +192,20 @@ class MonitoredEntryIndicator(MonitoredEntry):
     entry becomes active
     """
     def __init__(self, obj, set_val, get_val, indicator, read_only=False, 
-                 autolist=None, changed=None):
+                 autolist=None, changed=None, parameter=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
-                                autolist, changed)
+                                autolist, changed, parameter)
+        self.origcolor = obj.get_style_context().get_color(Gtk.StateType.NORMAL)
         if self.get_val(None):
             self.indicatorshown = False
         else:
             self.indicatorshown = True
             self.indicator = indicator
             self.obj.set_text(indicator)
-            self.obj.modify_text(Gtk.StateType.NORMAL, 
-                                 Gdk.color_parse('grey'))
-            self.obj.modify_font(Pango.FontDescription('sans italic'))
+            rgba = Gdk.RGBA()
+            Gdk.RGBA.parse(rgba, 'grey')
+            self.obj.override_color(Gtk.StateType.NORMAL, rgba)
+            self.obj.override_font(Pango.FontDescription('sans italic'))
             self.fockey = self.obj.connect('focus-in-event', 
                                                self._obj_focus)
     
@@ -218,8 +220,8 @@ class MonitoredEntryIndicator(MonitoredEntry):
         callback for when prefix obtains focus
         """
         self.set_text('')
-        self.obj.modify_text(Gtk.StateType.NORMAL, Gdk.color_parse('black'))
-        self.obj.modify_font(Pango.FontDescription('normal'))
+        self.obj.override_color(Gtk.StateType.NORMAL, self.origcolor)
+        self.obj.override_font(Pango.FontDescription('normal'))
         self.obj.disconnect(self.fockey)
         self.indicatorshown = False
         return False
