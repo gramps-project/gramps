@@ -154,6 +154,17 @@ class CitationTreeView(ListView):
 
         self.additional_uis.append(self.additional_ui())
 
+    # Override change_active from NavigationView, so that only Citations can be
+    # put in the history list for the CitationTreeView
+    def change_active(self, handle):
+        if self.dbstate.db.get_citation_from_handle(handle):
+            super(CitationTreeView, self).change_active(handle)
+        else:
+            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # more comprehensive solution is needed in the long term. See also
+            # add in Bookmarks.CitationBookmarks
+            pass
+    
     def setup_filter(self):
         """
         Override the setup of the default Search Bar in listview, so that only
