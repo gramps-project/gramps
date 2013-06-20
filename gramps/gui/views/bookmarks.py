@@ -394,6 +394,29 @@ class CitationBookmarks(ListBookmarks) :
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Citation', handle)
 
+    # Override add from ListBookmarks, so that when self.bookmarks.add is called
+    # from ListView.add_bookmark, it will not add a Source bookmark to a
+    # Citation view.
+    def add(self, handle):
+        """Append the citation to the bottom of the bookmarks."""
+        if self.dbstate.db.get_citation_from_handle(handle):
+            ListBookmarks.add(self, handle)
+        else:
+            # Probably trying to bookmark a source when the navigation type is
+            # citation. This can occur when in the Citation Tree View and we
+            # bookmark a source.
+            
+            # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
+            # more comprehensive solution is needed in the long term. See also
+            # change_active in CitatinTreeView
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(_("Cannot bookmark this reference"),
+                          "Only Citations can be bookmarked in this view. "
+                          "You are probably trying to bookmark a Source in the "
+                          "Citation Tree View. In this view, only Citations "
+                          "can be bookmarked. To bookmark a Source, switch to "
+                          "the Source View")
+
     def connect_signals(self):
         self.dbstate.db.connect('citation-delete', self.remove_handles)
 
