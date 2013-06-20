@@ -8,7 +8,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Doug Blank
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -284,17 +284,15 @@ class ArgHandler(object):
                 self.__error(_("WARNING: Output file already exists!\n"
                                "WARNING: It will be overwritten:\n   %s") % 
                                fullpath)
-                answer = None
-                while not answer:
-                    try:
-                        ans = raw_input(_('OK to overwrite? (yes/no) ') \
+                try:
+                    answer = raw_input(_('OK to overwrite? (yes/no) ') \
                                          .encode(sys.getfilesystemencoding()))
-                    except EOFError:
-                        print
-                        sys.exit(0)
-                if ans.upper() in ('Y', 'YES', _('YES').upper()):
-                    self.__error( _("Will overwrite the existing file: %s") 
-                                    % fullpath)
+                except EOFError:
+                    print
+                    sys.exit(0)
+                if answer.upper() in ('Y', 'YES', _('YES').upper()):
+                    self.__error(_("Will overwrite the existing file: %s") 
+                                   % fullpath)
                 else:
                     sys.exit(0)
 
