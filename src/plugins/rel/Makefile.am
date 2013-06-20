@@ -25,7 +25,8 @@ pkgpython_PYTHON = \
 	rel_ru.py\
 	rel_sk.py\
 	rel_sl.py\
-	rel_sv.py
+	rel_sv.py\
+        rel_uk.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/rel
 pkgpythondir = $(datadir)/@PACKAGE@/plugins/rel

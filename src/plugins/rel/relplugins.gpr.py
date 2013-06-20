@@ -294,3 +294,19 @@ plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["sv", "SV", "sv_SE", "swedish", "Swedish", "sv_SE.UTF8",
                  "sv_SE@euro", "sv_SE.UTF8@euro", "svenska", "Svenska",
                  "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8", "Swedish_Sweden"]
+# uk
+plg = newplugin()
+plg.id    = 'relcalc_uk'
+plg.name  = _("Ukrainian Relationship Calculator")
+plg.description =  _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = '3.4'
+plg.status = STABLE
+plg.fname = 'rel_uk.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["uk", "UA", "uk_UA", "ukrainian",
+                 "Ukrainian", "uk_UA.utf8",
+                 "uk_UA.UTF8", "uk_UA.utf-8", "uk_UA.UTF-8", "uk_UA.iso88595",
+                 "uk_UA.iso8859-5", "uk_UA.iso-8859-5", "koi8u", "uk_koi8u",
+                 "uk_UA.koi8u","uk_UA.KOI8-U",] 
