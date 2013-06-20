@@ -499,4 +499,41 @@
     <date value="*/dec/25" type="national" offset="+2" name="Christmas Day Holiday" if="dow(y, m, d) > 5"/>
     <date value="*/dec/26" type="national" offset="+2" name="Boxing Day Holiday" if="dow(y, m, d) > 5"/>
   </country> 
+  <country _name="Ukraine">
+    <date value="*/1/1" type="national" name="Новий Рік"/>
+    <date value="*/1/6" type="religious" name="Святий Вечір"/>
+    <date value="*/1/7" type="religious" name="Різдво"/>
+    <date value="*/1/13" type="religious" name="Маланка"/>
+    <date value="*/1/14" type="religious" name="Старий Новий рік, Щедрий вечір"/>
+    <date value="*/1/19" type="religious" name="Водохреща"/>
+    <date value="*/1/22" type="national" name="День Соборності України"/>
+    <date value="*/2/14" type="secular" name="День закоханих"/>
+    <date value="*/2/15" type="religious" name="Стрітення"/>
+    <date value="*/3/8" type="secular" name="Міжнародний жіночий день"/>
+    <date value="*/3/20" type="secular" name="Весняне Рівнодення"/>
+    <date value="*/4/1" type="secular" name="День сміху"/>
+    <date value="*/4/7" type="religious" name="Благовіщення"/>
+    <date value="2010/4/4" type="religious" name="Великдень"/>
+    <date value="2011/4/24" type="religious" name="Великдень"/>
+    <date value="2012/4/15" type="religious" name="Великдень"/>
+    <date value="2013/5/5" type="religious" name="Великдень"/>
+    <date value="2014/4/20" type="religious" name="Великдень"/>
+    <date value="2015/4/12" type="religious" name="Великдень"/>
+    <date value="2016/5/1" type="religious" name="Великдень"/>
+    <date value="2017/4/16" type="religious" name="Великдень"/>
+    <date value="2018/4/8" type="religious" name="Великдень"/>
+    <date value="2019/4/28" type="religious" name="Великдень"/>
+    <date value="2020/4/19" type="religious" name="Великдень"/>
+    <date value="*/5/1" type="national" name="День Праці"/>
+    <date value="*/6/21" type="secular" name="Весняне Сонцестояння"/>
+    <date value="*/6/28" type="national" name="День Конституції України"/>
+    <date value="*/7/7" type="religious" name="Івана Купала"/>
+    <date value="*/8/19" type="religious" name="Спаса"/>
+    <date value="*/8/24" type="national" name="День Незалежності України"/>
+    <date value="*/9/22" type="secular" name="Осіннє Рівнодення"/>
+    <date value="*/10/14" type="religious" name="Покрова, День Українського козацтва"/>
+    <date value="*/12/13" type="religious" name="Андрія"/>
+    <date value="*/12/19" type="religious" name="Миколая"/>
+    <date value="*/12/21" type="secular" name="Осіннє Сонцестояння"/>
+  </country>
 </calendar>
