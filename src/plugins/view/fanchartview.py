@@ -345,13 +345,17 @@ class FanChartWidget(gtk.Widget):
         pos = start + ((stop - start) - self.text_degrees(text,radius))/2.0 + 90
         x, y, w, h = self.allocation
         cr.save()
-        # Create a PangoLayout, set the font and text 
-        # Draw the layout N_WORDS times in a circle 
-        for i in range(len(text)):
+        l = len(text)
+        # A quick hack so it works at least in some RTL scenarios
+        # CTL text will still be broken, see bug# 4571
+        ith_char_sector = (lambda i: l - i) if pango.find_base_dir(text, l) \
+                                               == pango.DIRECTION_RTL \
+                                            else lambda i: i
+        for i in range(l):
             cr.save()
             layout = self.create_pango_layout(text[i])
             layout.set_font_description(pango.FontDescription("sans 8"))
-            angle = 360.0 * i / (radius * self.degrees_per_radius) + pos
+            angle = 360.0 * ith_char_sector(i) / (radius * self.degrees_per_radius) + pos
             cr.set_source_rgb(0, 0, 0) # black 
             cr.rotate(angle * (math.pi / 180));
             # Inform Pango to re-layout the text with the new transformation
