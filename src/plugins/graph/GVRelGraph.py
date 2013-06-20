@@ -57,7 +57,6 @@ import DateHandler
 import gen.lib
 import Utils
 import ThumbNails
-import Relationship
 from gen.utils import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -122,11 +121,7 @@ class RelGraphReport(Report):
         menu = options.menu
         get_option_by_name = options.menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
-        
-        self.center_person = database.get_person_from_gramps_id(get_value('pid'))
 
-        self.increlname = get_value('increlname')
-        self.advrelinfo = get_value('advrelinfo')
         self.includeid = get_value('incid')
         self.includedates = get_value('incdate')
         self.includeurl = get_value('url')
@@ -162,10 +157,6 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'none'
         filter_option = get_option_by_name('filter')
         self._filter = filter_option.get_filter()
-        
-        if self.increlname :
-            # init Relationship Calcilator
-            self.relationship = Relationship.get_relationship_calculator()
 
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
@@ -335,9 +326,6 @@ class RelGraphReport(Report):
         elif gender == person.UNKNOWN:
             shape = "hexagon"
 
-        if person == self.center_person and self.increlname:
-            shape = "octagon" 
-
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']
@@ -413,28 +401,12 @@ class RelGraphReport(Report):
         if self.includedates:
             birth, death = self.get_date_strings(person)
             label = label + '%s(%s - %s)' % (lineDelimiter, birth, death)
-
-        if self.increlname :
-            # Display Relationship info
-            if self.advrelinfo:
-                (relation, Ga, Gb) = self.relationship.get_one_relationship(self.database, self.center_person, person, True)
-            else:
-                relation = self.relationship.get_one_relationship(self.database, self.center_person, person)
-
-            if self.bUseHtmlOutput:
-                label += '<BR/>' + relation
-                if self.advrelinfo:
-                    label += '<BR/>Ga=%d Gb=%d' % (Ga, Gb)
-            else:
-                label += "%s%s" % (lineDelimiter, relation)
-                if self.advrelinfo:
-                    label += "%sGa=%d Gb=%d" % (lineDelimiter, Ga, Gb)
-
+            
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
             label += '</TD></TR></TABLE>'
             return label
-        else:
+        else :
             # non html label is enclosed by "" so escape other "
             return label.replace('"', '\\\"')
     
@@ -505,7 +477,7 @@ class RelGraphOptions(MenuReportOptions):
         self.__filter.set_help(
                          _("Determines what people are included in the graph"))
         add_option("filter", self.__filter)
-        #self.__filter.connect('value-changed', self.__filter_changed)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
@@ -513,18 +485,6 @@ class RelGraphOptions(MenuReportOptions):
         self.__pid.connect('value-changed', self.__update_filters)
         
         self.__update_filters()
-        
-        self.__include_relname = BooleanOption(
-                            _("Include Relationships"), True)
-        self.__include_relname.set_help(_("Include the Relationships"
-                          "names, for display relations to the center person"))
-        add_option("increlname", self.__include_relname)
-        
-        self.__include_advrelinfo = BooleanOption(
-                            _("Advanced Relationships info"), False)
-        self.__include_advrelinfo.set_help(_("Include Ga and Gb info,"
-                          " useful for debug the Relationship calculator"))
-        add_option("advrelinfo", self.__include_advrelinfo)
         
         self.incdate = BooleanOption(
                             _("Include Birth, Marriage and Death dates"), True)
@@ -644,18 +604,18 @@ class RelGraphOptions(MenuReportOptions):
         else:
             self.justyears.set_available(False)
 
-    #def __filter_changed(self):
-        #"""
-        #Handle filter change. If the filter is not specific to a person,
-        #disable the person option
-        #"""
-        #filter_value = self.__filter.get_value()
-        #if filter_value in [1, 2, 3, 4]:
-            ## Filters 1, 2, 3 and 4 rely on the center person
-            #self.__pid.set_available(True)
-        #else:
-            ## The rest don't
-            #self.__pid.set_available(False)
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
 
     def __image_changed(self):
         """
