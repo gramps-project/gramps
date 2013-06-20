@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-17 14:10+0200\n"
-"PO-Revision-Date: 2013-06-11 13:44+0300\n"
+"PO-Revision-Date: 2013-06-20 12:52+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -30363,7 +30363,7 @@ msgid "Full Name"
 msgstr "Полное имя"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6952
-#, fuzzy, python-format
+#, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "Ни %(current)s, ни %(parent)s не являются каталогами"
 
