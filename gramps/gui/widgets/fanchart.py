@@ -4,6 +4,7 @@
 # Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
 # Copyright (C) 2009 Douglas S. Blank
 # Copyright (C) 2012 Benny Malengier
+# Copyright (C) 2013 Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,6 +73,7 @@ from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_peo
                                  get_age, get_timeperiod, preset_name)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gui.utilscairo import warpPath
 
 #-------------------------------------------------------------------------
 #
@@ -601,6 +603,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 txlen = int(w/height * txlen)
             cont = True
             while cont:
+                # FIXME this can make an invalid Unicode truncation
+                # if it comes in between CTL text. Should use the approach
+                # similar to draw_arc_text() and use layout wrapping logic
+                # instead, and then reset to proper length.
                 layout = self.create_pango_layout(text[:txlen])
                 layout.set_font_description(font)
                 w, h = layout.get_size()
@@ -629,59 +635,96 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             PangoCairo.show_layout(cr, layout)
             cr.restore()
         else:
-            # center text:
-            #  1. determine degrees of the text we can draw
-            degpadding = PAD_TEXT / radius * (180 / math.pi) # degrees for padding
-            degneed = degpadding
-            maxlen = len(text)
-            hoffset = 0
-            for i in range(len(text)):
-                layout = self.create_pango_layout(text[i])
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 2 # 2 pixel padding after letter
-                h = h / Pango.SCALE + 2 # 2 pixel padding
-                if h/2 > hoffset:
-                    hoffset = h/2
-                degneed += w / radius * (180 / math.pi)
-                if degneed > stop - start - degpadding:
-                    #outside of the box
-                    maxlen = i
-                    break
-            #  2. determine degrees over we can distribute before and after
-            if degneed > stop - start - degpadding:
-                degover = 0
-            else:
-                degover = stop - start - degneed - degpadding
-            #  3. now draw this text, letter per letter
-            text = text[:maxlen]
-            
-            # offset for cairo-font system is 90, padding used is 5:
-            pos = start + 90 + degpadding + degover / 2
-            # Create a PangoLayout, set the font and text 
-            # Draw the layout N_WORDS times in a circle 
-            for i in range(len(text)):
-                layout = self.create_pango_layout(text[i])
-                layout.set_font_description(font)
-                w, h = layout.get_size()
-                w = w / Pango.SCALE + 2 # 4 pixel padding after word
-                h = h / Pango.SCALE + 2 # 4 pixel padding
-                degneed = w / radius * (180 / math.pi)
-                if pos+degneed > stop + 90:
-                    #failsafe, outside of the box, redo
-                    break
-
-                cr.save()
-                cr.rotate(pos * math.pi / 180)
-                pos = pos + degneed
-                # Inform Pango to re-layout the text with the new transformation
-                layout.context_changed()
-                #width, height = layout.get_size()
-                #r.move_to(- (width / Pango.SCALE) / 2.0, - radius)
-                cr.move_to(0, - radius - hoffset)
-                PangoCairo.show_layout(cr, layout)
-                cr.restore()
+            self.draw_arc_text(cr, text, radius, start, stop, font)
         cr.restore()
+
+    def draw_arc_text(self, cr, text, radius, start, stop, font):
+        """
+        Display text at a particular radius, between start and stop
+        degrees, setting it up along the arc, center-justified.
+
+        Text not fitting a single line will be word-wrapped away.
+        """
+
+        # 1. determine the spread of text we can draw, in radians
+        degpadding = PAD_TEXT / radius * (180 / math.pi) # degrees for padding
+        # offset for cairo-font system is 90, padding used is 5:
+        pos = start + 90 + degpadding/2
+        cr.save()
+        cr.rotate(math.radians(pos))
+        cr.new_path()
+        cr.move_to(0, -radius)
+        rad_spread = math.radians(stop - start - degpadding)
+
+        # 2. use Pango.Layout to set up the text for us, and do
+        # the hard work in CTL text handling and line wrapping.
+        layout = self.create_pango_layout(text)
+        layout.set_font_description(font)
+        layout.set_width(Pango.SCALE * radius * rad_spread)
+        layout.set_wrap(Pango.WrapMode.WORD)
+
+        # 3. clip to the top line only so the text looks nice
+        # all around the circle at the same radius.
+        # NOTE: one may not truncate the text var here,
+        # because the truncation can create invalid Unicode.
+        if layout.get_line_count() > 1:
+            layout.set_text(text, layout.get_line(0).length)
+
+        # 4. Use the layout to provide us the metrics of the text box
+        PangoCairo.layout_path(cr, layout)
+        w, h = layout.get_pixel_size()
+        #le = layout.get_line(0).get_pixel_extents()[0]
+        pe = cr.path_extents()
+        arc_used_ratio = w / (radius * rad_spread)
+        rad_mid = math.radians(pos) + rad_spread/2
+
+        # 5. The moment of truth: map the text box onto the sector, and render!
+        warpPath(cr, \
+            self.create_map_rect_to_sector(radius, pe, \
+                arc_used_ratio, rad_mid - rad_spread/2, rad_mid + rad_spread/2))
+        cr.fill()
+        cr.restore()
+
+    @staticmethod
+    def create_map_rect_to_sector(radius, rect, arc_used_ratio, start_rad, stop_rad):
+        """Create a 2D-transform, mapping a rectangle onto a circle sector.
+
+        radius -- average radius of the target sector
+        rect -- (x1, y1, x2, y2)
+        arc_used_ratio -- From 0.0 to 1.0. Rather than stretching onto the
+            whole sector, only the middle arc_used_ratio part will be mapped onto.
+        start_rad -- start radial angle of the sector, in radians
+        stop_rad -- stop radial angle of the sector, in radians
+
+        Returns a lambda (x,y)|->(xNew,yNew) to feed to warpPath.
+        """
+
+        x0, y0, w, h = rect[0], rect[1], rect[2]-rect[0], rect[3]-rect[1]
+
+        radiusin = radius - h/2
+        radiusout = radius + h/2
+        drho = h
+        dphi = (stop_rad - start_rad)
+
+        # There has to be a clearer way to express this transform,
+        # by stacking a set of transforms on cr around using this function
+        # and doing a mapping between unit squares of rectangular and polar
+        # coordinates.
+
+        def phi(x):
+            return (x - x0) * dphi * arc_used_ratio / w \
+                   + (1 - arc_used_ratio) * dphi / 2 \
+                   - math.pi/2 
+        def rho(y):
+            return (y - y0) * (radiusin - radiusout)/h + radiusout
+
+        # In (user coordinates units - pixels):
+        # x from x0 to x0 + w
+        # y from y0 to y0 + h
+        # Out:
+        # (x, y) within the arc_used_ratio of a box like drawn by draw_radbox
+        return lambda x, y: \
+            (rho(y) * math.cos(phi(x)), rho(y) * math.sin(phi(x)))
 
     def draw_gradient(self, cr, widget, halfdist):
         gradwidth = 10
