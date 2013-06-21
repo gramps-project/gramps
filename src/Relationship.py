@@ -20,8 +20,6 @@
 
 # $Id$
 
-from __future__ import print_function
-
 """
 Classes for relationships.
 """
@@ -30,6 +28,8 @@ Classes for relationships.
 # python modules
 #
 #-------------------------------------------------------------------------
+
+from __future__ import print_function
 import os
 
 #-------------------------------------------------------------------------
@@ -1023,7 +1023,7 @@ class RelationshipCalculator(object):
                                 pmap, depth, stoprecursemap)
         except:
             import traceback
-            print(traceback.print_exc())
+            traceback.print_exc()
             return
 
     def collapse_relations(self, relations):
