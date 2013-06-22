@@ -1232,6 +1232,9 @@ class GrampletPane(gtk.ScrolledWindow):
         mainframe = mframe.get_parent() # actually a vbox
         rect = source.get_allocation()
         sx, sy = rect.width, rect.height
+        # Convert to LTR co-ordinates when using RTL locale
+        if source.get_direction() == gtk.TEXT_DIR_RTL:
+            x = sx - x
         # first, find column:
         col = 0
         for i in range(len(self.columns)):
