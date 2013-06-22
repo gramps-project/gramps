@@ -701,8 +701,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         x0, y0, w, h = rect[0], rect[1], rect[2]-rect[0], rect[3]-rect[1]
 
-        radiusin = radius - h/2
-        radiusout = radius + h/2
+        radiusin = radius - h/2.0
+        radiusout = radius + h/2.0
         drho = h
         dphi = (stop_rad - start_rad)
 
