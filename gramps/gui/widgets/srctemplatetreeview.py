@@ -44,7 +44,7 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import SrcAttributeType
+from gramps.gen.lib import SrcTemplate
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +54,7 @@ from gramps.gen.lib import SrcAttributeType
 
 class SrcTemplateTreeView(Gtk.TreeView):
     '''
-    TreeView for SrcAttribute templates, to allow fast selection
+    TreeView for SrcTemplate templates, to allow fast selection
     '''
     def __init__(self, default_key, sel_callback):
         """
@@ -78,11 +78,11 @@ class SrcTemplateTreeView(Gtk.TreeView):
         """
         Obtains all templates and stores them in a TreeStore
         """
-        srcattrt = SrcAttributeType()
-        self.I2Str = srcattrt.I2S_SRCTEMPLATEMAP
-        self.I2Key = srcattrt.I2K_SRCTEMPLATEMAP
-        self.Str2I = srcattrt.S2I_SRCTEMPLATEMAP
-        self.Key2I = srcattrt.K2I_SRCTEMPLATEMAP
+        srctemp = SrcTemplate()
+        self.I2Str = srctemp.I2S_SRCTEMPLATEMAP
+        self.I2Key = srctemp.I2K_SRCTEMPLATEMAP
+        self.Str2I = srctemp.S2I_SRCTEMPLATEMAP
+        self.Key2I = srctemp.K2I_SRCTEMPLATEMAP
         self.Key2Path = {}
         # store (index, key, src_type)
         self.model = Gtk.TreeStore(int, str, str)

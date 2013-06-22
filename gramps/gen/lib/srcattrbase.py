@@ -32,6 +32,7 @@ SrcAttributeBase class for GRAMPS.
 from .attrbase import AttributeRootBase
 from .srcattribute import SrcAttribute
 from .srcattrtype import SrcAttributeType
+from .srctemplate import SrcTemplate
 
 #-------------------------------------------------------------------------
 #
@@ -56,27 +57,27 @@ class SrcAttributeBase(AttributeRootBase):
         :rtype tuple: (index, description, string_key_as stored)
         """
         #no template is UNKNOWN!
-        templ = SrcAttributeType.UNKNOWN  
+        templ = SrcTemplate.UNKNOWN  
         for attr in self.attribute_list:
             if int(attr.get_type()) == SrcAttributeType.SRCTEMPLATE:
                 val = attr.get_value()
                 try:
-                    templ = SrcAttributeType.K2I_SRCTEMPLATEMAP[val]
+                    templ = SrcTemplate.K2I_SRCTEMPLATEMAP[val]
                 except KeyError:
                     # a template not in the predefined list. convert to unknown
                     print ('SrcAttributeBase: Keyerror "', val,
                            '"for now UNKNOWN taken, later custom templates?')
                 break
         try:
-            retval = (templ, SrcAttributeType.I2S_SRCTEMPLATEMAP[templ], 
-                       SrcAttributeType.I2K_SRCTEMPLATEMAP[templ])
+            retval = (templ, SrcTemplate.I2S_SRCTEMPLATEMAP[templ], 
+                       SrcTemplate.I2K_SRCTEMPLATEMAP[templ])
         except KeyError:
             #templ is not present, return the default GEDCOM value as actual
             #template
-            templ = SrcAttributeType.UNKNOWN
+            templ = SrcTemplate.UNKNOWN
             retval = (templ, 
-                      SrcAttributeType.I2S_SRCTEMPLATEMAP[SrcAttributeType.UNKNOWN], 
-                      SrcAttributeType.I2K_SRCTEMPLATEMAP[SrcAttributeType.UNKNOWN])
+                      SrcTemplate.I2S_SRCTEMPLATEMAP[SrcTemplate.UNKNOWN], 
+                      SrcTemplate.I2K_SRCTEMPLATEMAP[SrcTemplate.UNKNOWN])
         return retval
 
     def set_source_template(self, tempindex, tempcustom_str):
@@ -100,11 +101,11 @@ class SrcAttributeBase(AttributeRootBase):
             #we create a new attribute and add it
             attrtemp = SrcAttribute()
             self.add_attribute(attrtemp)
-        if tempindex == SrcAttributeType.UNKNOWN or \
-        (tempindex == SrcAttributeType.CUSTOM and tempcustom_str.strip() == ''):
+        if tempindex == SrcTemplate.UNKNOWN or \
+        (tempindex == SrcTemplate.CUSTOM and tempcustom_str.strip() == ''):
             self.remove_attribute(attrtemp)
-        elif not (tempindex == SrcAttributeType.CUSTOM):
-            attrtemp.set_value(SrcAttributeType.I2K_SRCTEMPLATEMAP[tempindex])
+        elif not (tempindex == SrcTemplate.CUSTOM):
+            attrtemp.set_value(SrcTemplate.I2K_SRCTEMPLATEMAP[tempindex])
         else:
             #custom key, store string as is
             attrtemp.set_value(tempindex)

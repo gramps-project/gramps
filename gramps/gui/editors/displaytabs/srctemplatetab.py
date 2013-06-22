@@ -120,7 +120,6 @@ class SrcTemplateTab(GrampsTab):
         
         :param scrolled: GtkScrolledWindow to which to add treeview with templates
         """
-        srcattr = SrcAttributeType()
         templ = self.src.get_source_template()
         self.temp_tv = SrcTemplateTreeView(templ[2],
                                 sel_callback=self.on_template_selected)
@@ -199,10 +198,9 @@ class TemplateFields(object):
         Template must be the index of the template.
         """
         #obtain the template of the index
-        srcattr = SrcAttributeType()
-        if index in srcattr.EVIDENCETEMPLATES:
+        if index in SrcTemplate.EVIDENCETEMPLATES:
             #a predefined template, 
-            template = srcattr.EVIDENCETEMPLATES[index]
+            template = SrcTemplate.EVIDENCETEMPLATES[index]
         else:
             return
         
@@ -298,6 +296,8 @@ class TemplateFields(object):
         """
         self.gridfields.insert_row(row)
         field = srcattrtype
+        if isinstance(field, basestring):
+            raise NotImplementedError, "type must be the integer key"
         #setup label
         if alt_label:
             label = alt_label

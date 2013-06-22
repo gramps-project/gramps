@@ -66,6 +66,11 @@ SHORTERALG = {'LOC': 'SHORTERALG_LOC', 'YEAR': 'SHORTERALG_YEAR',
 STYLES = {'Quoted': 'STYLE_QUOTE', 'Italics': 'STYLE_EMPH',
           'QuotedCont': 'STYLE_QUOTECONT', 'Bold': 'STYLE_BOLD'}
 
+#already defined srcattrtypes
+KNOWN_FIELDS = ['EVEN_REC', 'EVEN_CITED', 'EVEN_ROLE', 'GEN_BY', 'REPOSITORY',
+        'REPOSITORY_ADDRESS', 'REPOSITORY_SHORT_VERSION', 'REPOSITORY_CALL_NUMBER',
+        'DATE']
+
 DEFAULT_HINTS = {
     "ACT": "Public Law 12-98",
     "ADDRESS": "Broadway Avenue, New York",
@@ -351,6 +356,9 @@ with open(csvfilename, 'rb') as csvfile:
         field_label = field_label.replace("'", "\\'")
         if field_type in FIELDTYPEMAP:
             assert field_descr == FIELDTYPEMAP[field_type][1], 'Problem %s %s %s' % (field_type, field_descr, FIELDTYPEMAP[field_type][1])
+        elif field_type in KNOWN_FIELDS:
+            #no need to add it
+            pass
         else:
             FIELDTYPEMAP[field_type] = (index, field_descr)
             index += 1
@@ -374,7 +382,7 @@ with open(csvfilename, 'rb') as csvfile:
         #this
         if shortcite and shorteralg == 'EMPTY':
             field_type_short = field_type + '_SHORT_VERSION'
-            if field_type_short in FIELDTYPEMAP:
+            if field_type_short in FIELDTYPEMAP or field_type_short in KNOWN_FIELDS:
                 pass
             else:
                 FIELDTYPEMAP[field_type_short] = (index, field_descr + ' (Short)')
@@ -451,7 +459,7 @@ for source_type in allkeys:
                 tooltip = '_("' + field[10] + '")'
             else:
                 tooltip = 'None'
-            code += "                ('"+ field[0] + "', " + field[1]  + ", _('"\
+            code += "                ('"+ field[0] + "', SrcAttributeType." + field[1]  + ", _('"\
                     +field[3] + "'), '"+ field[2] + "', " + field[4] + ", " + field[5] + ", "\
                     + field[6] + ", " + field[7] + ", " + field[8] + ",\n" \
                     + "                " +hint + ", " + tooltip + "),\n"
