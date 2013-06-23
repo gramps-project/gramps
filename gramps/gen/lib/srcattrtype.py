@@ -126,58 +126,58 @@ class SrcAttributeType(GrampsType):
 
     #following fields are generated with evidencefieldgenerator.py
     #the index starts at 100!
-    ACT = 228
-    ACT_SHORT_VERSION = 229
+    ACT = 226
+    ACT_SHORT_VERSION = 227
     ADDRESS = 155
     AFFILIATION = 160
     AUTHOR = 100
     AUTHOR_LOCATION = 170
     AUTHOR_SHORT_VERSION = 107
-    BOOK = 205
-    BOOK_SHORT_VERSION = 206
-    CASE = 200
-    CASE_SHORT_VERSION = 202
+    BOOK = 203
+    BOOK_SHORT_VERSION = 204
+    CASE = 198
+    CASE_SHORT_VERSION = 200
     CEMETERY = 176
     CEMETERY_SHORT_VERSION = 178
-    CHAPTER = 230
-    CHAPTER_PAGES = 219
+    CHAPTER = 228
+    CHAPTER_PAGES = 217
     COLLECTION = 104
     COLLECTION_SHORT_VERSION = 109
-    COLUMN = 237
-    COLUMN_SHORT_VERSION = 238
+    COLUMN = 235
+    COLUMN_SHORT_VERSION = 236
     COMPILER = 163
-    COMPILER_SHORT_VERSION = 196
+    COMPILER_SHORT_VERSION = 194
     CREATION_DATE = 103
     CREATION_DATE_SHORT_VERSION = 141
-    CREATOR = 192
-    CREATOR_SHORT_VERSION = 215
+    CREATOR = 190
+    CREATOR_SHORT_VERSION = 213
     CREDIT_LINE = 116
     DATE_ACCESSED = 114
     DATE_RANGE = 133
     DATE_SHORT_VERSION = 156
     DESCRIPTION = 139
-    DISTRICT = 190
-    DISTRICT_SHORT_VERSION = 191
+    DISTRICT = 188
+    DISTRICT_SHORT_VERSION = 189
     DIVISION = 182
     DIVISION_SHORT_VERSION = 186
-    EDITION = 223
-    EDITOR = 218
-    EDITOR_SHORT_VERSION = 220
+    EDITION = 221
+    EDITOR = 216
+    EDITOR_SHORT_VERSION = 218
     FILE = 129
-    FILE_DATE = 208
-    FILE_DATE_SHORT_VERSION = 209
+    FILE_DATE = 206
+    FILE_DATE_SHORT_VERSION = 207
     FILE_LOCATION = 166
     FILE_NO = 128
-    FILE_NO_SHORT_VERSION = 201
+    FILE_NO_SHORT_VERSION = 199
     FILE_SHORT_VERSION = 152
     FILE_UNIT = 143
     FILE_UNIT_SHORT_VERSION = 179
-    FILM_ID = 193
-    FILM_PUBLICATION_PLACE = 225
-    FILM_PUBLISHER = 226
+    FILM_ID = 191
+    FILM_PUBLICATION_PLACE = 223
+    FILM_PUBLISHER = 224
     FILM_TYPE = 147
     FORMAT = 159
-    FRAME = 207
+    FRAME = 205
     GROUP = 167
     GROUP_SHORT_VERSION = 174
     HOUSEHOLD = 183
@@ -187,39 +187,39 @@ class SrcAttributeType(GrampsType):
     INSTITUTION = 173
     INSTITUTION_SHORT_VERSION = 175
     INTERVIEWER = 158
-    ISSUE_DATE = 233
-    ISSUE_DATE_SHORT_VERSION = 240
-    ISSUE_RANGE = 236
+    ISSUE_DATE = 231
+    ISSUE_DATE_SHORT_VERSION = 238
+    ISSUE_RANGE = 234
     ITEM_OF_INTEREST = 119
     ITEM_OF_INTEREST_SHORT_VERSION = 150
     JURISDICTION = 180
     JURISDICTION_SHORT_VERSION = 184
     LOCATION = 157
-    LOCATION_SHORT_VERSION = 197
+    LOCATION_SHORT_VERSION = 195
     NUMBER = 105
     NUMBER_6TOTAL9 = 144
     NUMBER_SHORT_VERSION = 120
     ORIGINAL_REPOSITORY = 145
     ORIGINAL_REPOSITORY_LOCATION = 146
-    ORIGINAL_YEAR = 222
+    ORIGINAL_YEAR = 220
     PAGE = 115
-    PAGE_RANGE = 234
+    PAGE_RANGE = 232
     PAGE_SHORT_VERSION = 118
-    PART = 227
+    PART = 225
     PLACE_CREATED = 154
     POSITION = 177
-    POSITION_SHORT_VERSION = 235
-    POSTING_DATE = 239
+    POSITION_SHORT_VERSION = 233
+    POSTING_DATE = 237
     PROFESSIONAL_CREDENTIALS = 142
     PROVENANCE = 164
-    PUBLICATION_FORMAT = 211
+    PUBLICATION_FORMAT = 209
     PUBLICATION_PLACE = 134
-    PUBLICATION_TITLE = 210
-    PUBLICATION_TITLE_SHORT_VERSION = 216
+    PUBLICATION_TITLE = 208
+    PUBLICATION_TITLE_SHORT_VERSION = 214
     PUBLICATION_YEAR = 136
-    PUBLICATION_YEAR_SHORT_VERSION = 199
+    PUBLICATION_YEAR_SHORT_VERSION = 197
     PUBLISHER = 135
-    PUB_INFO = 241
+    PUB_INFO = 239
     RECIPIENT = 126
     RECIPIENT_SHORT_VERSION = 130
     RELATIONSHIP = 165
@@ -229,7 +229,7 @@ class SrcAttributeType(GrampsType):
     RESEARCH_COMMENT_SHORT_VERSION = 137
     RESEARCH_PROJECT = 161
     ROLL = 151
-    ROLL_SHORT_VERSION = 198
+    ROLL_SHORT_VERSION = 196
     SCHEDULE = 181
     SCHEDULE_SHORT_VERSION = 185
     SECTION = 148
@@ -238,36 +238,34 @@ class SrcAttributeType(GrampsType):
     SERIES_NO = 121
     SERIES_NO_SHORT_VERSION = 124
     SERIES_SHORT_VERSION = 132
-    SESSION = 231
-    SESSION_SHORT_VERSION = 232
-    SHEET_NO = 194
-    SHEET_NO_SHORT_VERSION = 195
-    SUBGROUP = 188
-    SUBGROUP_SHORT_VERSION = 189
+    SESSION = 229
+    SESSION_SHORT_VERSION = 230
+    SHEET_NO = 192
+    SHEET_NO_SHORT_VERSION = 193
     SUBJECT = 138
     SUBJECT_SHORT_VERSION = 140
     SUBSERIES = 168
     SUBSERIES_SHORT_VERSION = 169
-    SUBTITLE = 217
-    TERM = 203
-    TERM_SHORT_VERSION = 204
-    TIMESTAMP = 212
-    TIMESTAMP_SHORT_VERSION = 213
+    SUBTITLE = 215
+    TERM = 201
+    TERM_SHORT_VERSION = 202
+    TIMESTAMP = 210
+    TIMESTAMP_SHORT_VERSION = 211
     TITLE = 101
     TITLE_SHORT_VERSION = 108
-    TRANSLATION = 224
+    TRANSLATION = 222
     TYPE = 102
     TYPE_SHORT_VERSION = 153
     URL_6DIGITAL_LOCATION9 = 112
     VOLUME = 123
-    VOLUME_INFO = 221
+    VOLUME_INFO = 219
     VOLUME_SHORT_VERSION = 125
     WEBSITE = 111
     WEBSITE_CREATOR_OR_OWNER = 110
     WEBSITE_SHORT_VERSION = 117
     YEAR = 113
     YEAR_ACCESSED = 172
-    YEAR_SHORT_VERSION = 214
+    YEAR_SHORT_VERSION = 212
 
     _DATAMAPIGNORE = [
         AUTHOR_SHORT_VERSION,
@@ -299,7 +297,6 @@ class SrcAttributeType(GrampsType):
         SCHEDULE_SHORT_VERSION,
         DIVISION_SHORT_VERSION,
         HOUSEHOLD_SHORT_VERSION,
-        SUBGROUP_SHORT_VERSION,
         DISTRICT_SHORT_VERSION,
         SHEET_NO_SHORT_VERSION,
         COMPILER_SHORT_VERSION,
@@ -441,8 +438,6 @@ class SrcAttributeType(GrampsType):
         (SESSION_SHORT_VERSION, _("Session (Short)"), "Session (Short)"),
         (SHEET_NO, _("Sheet no."), "Sheet no."),
         (SHEET_NO_SHORT_VERSION, _("Sheet no. (Short)"), "Sheet no. (Short)"),
-        (SUBGROUP, _("Subgroup"), "Subgroup"),
-        (SUBGROUP_SHORT_VERSION, _("Subgroup (Short)"), "Subgroup (Short)"),
         (SUBJECT, _("Subject"), "Subject"),
         (SUBJECT_SHORT_VERSION, _("Subject (Short)"), "Subject (Short)"),
         (SUBSERIES, _("Subseries"), "Subseries"),
@@ -546,7 +541,6 @@ class SrcAttributeType(GrampsType):
         SERIES_NO: _("series 34-38"),
         SESSION: _("2nd session"),
         SHEET_NO: _("sheet 13-C"),
-        SUBGROUP: _("Diplomatic correspondance, 1798-1810"),
         SUBJECT: _("D. Copernicus and close family"),
         SUBTITLE: _("Subtitle of article or magazine ..."),
         TERM: _("June Term 1934 or 13th Congress or Reagan Office or ..."),
@@ -616,6 +610,7 @@ class SrcAttributeType(GrampsType):
         RESEARCH_PROJECT: _("The genealogical or scientific research project."),
         ROLL: _("The Microfilm role."),
         SCHEDULE: _("The census schedule (the type of census table) used, eg population schedule or slave schedule. or ..."),
+        SECTION: _("The section or subgroup under which filed, eg 'Diplomatic correspondance, 1798-1810'"),
         SESSION: _("The number of the meeting or series of connected meetings devoted by a legislature to a single order of business, program, agenda, or announced purpose."),
         SHEET_NO: _("Number of a census sheet."),
         TERM: _("Reference to the time a person/group/parliament is in office or session."),

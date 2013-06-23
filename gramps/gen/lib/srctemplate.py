@@ -2312,7 +2312,7 @@ class SrcTemplate(object):
             REF_TYPE_L: [
                 ('', SrcAttributeType.SERIES, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Name'), ',', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -2334,7 +2334,7 @@ class SrcTemplate(object):
                 None, None),
                 ('vol.', SrcAttributeType.VOLUME, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Name'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -2354,7 +2354,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.SERIES, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.NUMBER, _('Record Group No.'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -5254,7 +5254,7 @@ class SrcTemplate(object):
             REF_TYPE_L: [
                 ('', SrcAttributeType.SERIES, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Title'), ',', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -5278,7 +5278,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.SERIES, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Title'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -5304,7 +5304,7 @@ class SrcTemplate(object):
         },
         ESM542: {
             REF_TYPE_L: [
-                ('', SrcAttributeType.SUBGROUP, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.SERIES, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -5328,7 +5328,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.SERIES, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Title'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -5346,7 +5346,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.FILE_NO, _('File Unit Number'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.NUMBER, _('Record Group Number'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -5762,7 +5762,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.NUMBER_6TOTAL9, _('Total Rolls'), ').', EMPTY, False, False, EMPTY, GED_PUBINF,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Title'), ',', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -5784,7 +5784,7 @@ class SrcTemplate(object):
                 None, None),
                 ('roll ', SrcAttributeType.ROLL, _(''), ');', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.SUBGROUP, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.SECTION, _('Subgroup'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Record Group Title'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -8123,6 +8123,7 @@ class SrcTemplate(object):
                 ],
         },
     }
+
     # We construct Map for template values. Use these to store value of 
     # SRCTEMPLATE as a Key in the database.
     I2S_SRCTEMPLATEMAP =  dict([(item[0], item[1]) for item in _SRCTEMPLATEVAL_MAP])
