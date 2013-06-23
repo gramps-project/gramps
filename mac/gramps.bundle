@@ -73,10 +73,6 @@
   </binary>
 
   <binary>
-     ${prefix}/lib/libgettextpo.0.dylib
-  </binary>
-
-  <binary>
      ${prefix}/lib/libosmgpsmap.3.dylib
   </binary>
 
