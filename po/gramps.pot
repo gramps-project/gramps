@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-21 19:25+0200\n"
+"POT-Creation-Date: 2013-06-23 11:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -724,12 +724,12 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:69
+#: ../gramps/gen/datehandler/__init__.py:70
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:85
+#: ../gramps/gen/datehandler/__init__.py:86
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
@@ -5853,187 +5853,191 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:604
-msgid "Bulgarian"
+msgid "Arabic"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:605
-msgid "Catalan"
+msgid "Bulgarian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:606
-msgid "Czech"
+msgid "Catalan"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:607
-msgid "Danish"
+msgid "Czech"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:608
-msgid "German"
+msgid "Danish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:609
-msgid "Greek"
+msgid "German"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:610
-msgid "English"
+msgid "Greek"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:611
-msgid "Esperanto"
+msgid "English"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:612
-msgid "Spanish"
+msgid "Esperanto"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:613
-msgid "Finnish"
+msgid "Spanish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:614
-msgid "French"
+msgid "Finnish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:615
-msgid "Hebrew"
+msgid "French"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:616
-msgid "Croatian"
+msgid "Hebrew"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:617
-msgid "Hungarian"
+msgid "Croatian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:618
-msgid "Italian"
+msgid "Hungarian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:619
-msgid "Japanese"
+msgid "Italian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:620
-msgid "Lithuanian"
+msgid "Japanese"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:621
-msgid "Macedonian"
+msgid "Lithuanian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:622
-msgid "Norwegian Bokmal"
+msgid "Macedonian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:623
-msgid "Dutch"
+msgid "Norwegian Bokmal"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:624
-msgid "Norwegian Nynorsk"
+msgid "Dutch"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:625
-msgid "Polish"
+msgid "Norwegian Nynorsk"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:626
-msgid "Portuguese"
+msgid "Polish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:627
-msgid "Romanian"
+msgid "Portuguese"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:628
-msgid "Russian"
+msgid "Romanian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:629
-msgid "Slovak"
+msgid "Russian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:630
-msgid "Slovenian"
+msgid "Slovak"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:631
-msgid "Albanian"
+msgid "Slovenian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:632
-msgid "Swedish"
+msgid "Albanian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:633
-msgid "Turkish"
+msgid "Swedish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:634
-msgid "Ukrainian"
+msgid "Turkish"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:635
-msgid "Vietnamese"
+msgid "Ukrainian"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:636
+msgid "Vietnamese"
+msgstr ""
+
+#: ../gramps/gen/utils/grampslocale.py:637
 msgid "Chinese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:641
+#: ../gramps/gen/utils/grampslocale.py:642
 msgid "Brazil"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:642
+#: ../gramps/gen/utils/grampslocale.py:643
 #: ../gramps/plugins/lib/holidays.xml.in.h:5
 msgid "China"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:643
+#: ../gramps/gen/utils/grampslocale.py:644
 msgid "Portugal"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:861
+#: ../gramps/gen/utils/grampslocale.py:862
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:863
+#: ../gramps/gen/utils/grampslocale.py:864
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:865
+#: ../gramps/gen/utils/grampslocale.py:866
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:867
+#: ../gramps/gen/utils/grampslocale.py:868
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:869
+#: ../gramps/gen/utils/grampslocale.py:870
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:871
+#: ../gramps/gen/utils/grampslocale.py:872
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:873
+#: ../gramps/gen/utils/grampslocale.py:874
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:875
+#: ../gramps/gen/utils/grampslocale.py:876
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:877
+#: ../gramps/gen/utils/grampslocale.py:878
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:879
+#: ../gramps/gen/utils/grampslocale.py:880
 msgid "See details"
 msgstr ""
 
@@ -6722,7 +6726,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/gui/selectors/selectrepository.py:62
 #: ../gramps/gui/selectors/selectsource.py:62
-#: ../gramps/gui/widgets/grampletpane.py:1544
+#: ../gramps/gui/widgets/grampletpane.py:1547
 #: ../gramps/plugins/gramplet/persondetails.py:126
 #: ../gramps/plugins/textreport/tagreport.py:463
 #: ../gramps/plugins/view/citationtreeview.py:176
@@ -14218,27 +14222,27 @@ msgstr ""
 msgid "Untitled Gramplet"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1516
+#: ../gramps/gui/widgets/grampletpane.py:1519
 msgid "Number of Columns"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1521
+#: ../gramps/gui/widgets/grampletpane.py:1524
 msgid "Gramplet Layout"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1551
+#: ../gramps/gui/widgets/grampletpane.py:1554
 msgid "Use maximum height available"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1557
+#: ../gramps/gui/widgets/grampletpane.py:1560
 msgid "Height if not maximized"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1564
+#: ../gramps/gui/widgets/grampletpane.py:1567
 msgid "Detached width"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1571
+#: ../gramps/gui/widgets/grampletpane.py:1574
 msgid "Detached height"
 msgstr ""
 

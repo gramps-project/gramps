@@ -601,6 +601,7 @@ class GrampsLocale(object):
         _ = self.translation.gettext
         if not self._lang_map:
             self._lang_map = {
+                "ar" : _("Arabic"),
                 "bg" : _("Bulgarian"),
                 "ca" : _("Catalan"),
                 "cs" : _("Czech"),
