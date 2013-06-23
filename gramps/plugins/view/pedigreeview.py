@@ -1333,7 +1333,7 @@ class PedigreeView(NavigationView):
         or call option menu.
         """
         if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
-            widget.get_root_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.FLEUR))
+            widget.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.FLEUR))
             self._last_x = event.x
             self._last_y = event.y
             self._in_move = True
@@ -1347,7 +1347,7 @@ class PedigreeView(NavigationView):
         """Exit from scroll mode when button release."""
         if event.button == 1 and event.type == Gdk.EventType.BUTTON_RELEASE:
             self.cb_bg_motion_notify_event(widget, event)
-            widget.get_root_window().set_cursor(None)
+            widget.get_window().set_cursor(None)
             self._in_move = False
             return True
         return False
