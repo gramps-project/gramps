@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-23 11:01+0200\n"
-"PO-Revision-Date: 2013-06-23 11:03+0100\n"
+"POT-Creation-Date: 2013-06-23 12:16+0200\n"
+"PO-Revision-Date: 2013-06-23 12:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -4203,7 +4203,7 @@ msgstr "Âge"
 
 #: ../gramps/gen/lib/attrtype.py:76
 msgid "Father's Age"
-msgstr "Âge du mari /compagnon"
+msgstr "Âge du mari / compagnon"
 
 #: ../gramps/gen/lib/attrtype.py:77
 msgid "Mother's Age"
@@ -24953,6 +24953,7 @@ msgstr "Calcul relationnel catalan"
 #: ../gramps/plugins/rel/relplugins.gpr.py:261
 #: ../gramps/plugins/rel/relplugins.gpr.py:275
 #: ../gramps/plugins/rel/relplugins.gpr.py:288
+#: ../gramps/plugins/rel/relplugins.gpr.py:302
 msgid "Calculates relationships between people"
 msgstr "Calcul des relations entre deux individus"
 
@@ -25023,6 +25024,10 @@ msgstr "Calcul relationnel slovène"
 #: ../gramps/plugins/rel/relplugins.gpr.py:287
 msgid "Swedish Relationship Calculator"
 msgstr "Calcul relationnel suédois"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:301
+msgid "Ukrainian Relationship Calculator"
+msgstr "Calcul relationnel ukrainien"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:30
 msgid "Category Sidebar"
