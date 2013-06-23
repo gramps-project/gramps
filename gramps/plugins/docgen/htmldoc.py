@@ -298,7 +298,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             if os.path.exists(fullpath):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
-        self.copy_file(os.path.join(IMAGE_DIR, 'favicon.ico'), 
+        self.copy_file(os.path.join(IMAGE_DIR, 'webstuff', 'favicon.ico'), 
                         'favicon.ico')
 
     def __reduce_list(self):

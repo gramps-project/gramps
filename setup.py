@@ -390,7 +390,7 @@ SWANKY_IMG = glob.glob(os.path.join('data', 'css', 'swanky-purse', 'images', '*.
 data_files_core.append(('share/doc/gramps', DOC_FILES))
 data_files_core.append(('share/doc/gramps/example/gedcom', GEDCOM_FILES))
 data_files_core.append(('share/doc/gramps/example/gramps', GRAMPS_FILES))
-data_files_core.append(('share/gramps/images', IMAGE_WEB))
+data_files_core.append(('share/gramps/images/webstuff', IMAGE_WEB))
 data_files_core.append(('share/gramps/css', CSS_FILES))
 data_files_core.append(('share/gramps/css/swanky-purse', SWANKY_PURSE))
 data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
