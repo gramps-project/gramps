@@ -234,7 +234,28 @@ def get_address_str(addr):
             else:
                 str = "%s, %s" % (str, info)
     return str
+
+def get_address_ref_str(addr):
+    """
+    Return a string that combines the elements of an address without county,
+    postal_code and phone, for typical use in references
     
+    @param addr: the GRAMPS address instance
+    """
+    str = ""
+    elems = [ addr.get_street(), 
+              addr.get_locality(), 
+              addr.get_city(), 
+              addr.get_state(), 
+              addr.get_country(), ]
+    
+    for info in elems:
+        if info:
+            if str == "":
+                str = info
+            else:
+                str = "%s, %s" % (str, info)
+    return str
 #-------------------------------------------------------------------------
 #
 # People Filters

@@ -44,6 +44,7 @@ from gi.repository import Gtk
 from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
                                 REF_TYPE_S, REF_TYPE_L, EMPTY)
 from gramps.gen.lib import SrcAttribute, SrcTemplate
+from gramps.gen.plug.report.utils import get_address_ref_str
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
 from ...widgets import UndoableEntry, MonitoredEntryIndicator
@@ -308,7 +309,18 @@ class TemplateFields(object):
         lbl.set_halign(Gtk.Align.START)
         self.gridfields.attach(lbl, 0, row-1, 1, 1)
         self.lbls.append(lbl)
-        #setup entry
+        if srcattrtype in [SrcAttributeType.REPOSITORY,
+                SrcAttributeType.REPOSITORY_ADDRESS,
+                SrcAttributeType.REPOSITORY_CALL_NUMBER]:
+            self._add_repo_entry(srcattrtype, row)
+        else:
+            #setup entry
+            self._add_normal_entry(srcattrtype, row, hint, tooltip)
+
+    def _add_normal_entry(self, srcattrtype, row, hint, tooltip):
+        """
+        add an entryfield that sets the required SrcAttribute
+        """
         inpt = UndoableEntry()
         inpt.set_halign(Gtk.Align.FILL)
         inpt.set_hexpand(True)
@@ -326,6 +338,42 @@ class TemplateFields(object):
                            hint or "",
                            read_only=self.db.readonly, 
                            parameter=srcattrtype)
+
+    def _add_repo_entry(self, srcattrtype, row):
+        """
+        Add a field that obtains info from repository
+        """
+        repo_list = self.src.get_reporef_list()
+        if repo_list:
+            reporef = repo_list[0]
+            repo = self.db.get_repository_from_handle(reporef.get_reference_handle())
+        else:
+            reporef = None
+            repo = None
+        if not reporef:
+            lbl = Gtk.Label("")
+            lbl.set_markup(_("<i>No repository added to the source</i>"))
+            lbl.set_halign(Gtk.Align.START)
+            self.gridfields.attach(lbl, 1, row-1, 1, 1)
+            self.lbls.append(lbl)
+        else:
+            #we show the data as defined by the field
+            if srcattrtype == SrcAttributeType.REPOSITORY:
+                text = repo.get_name()
+            elif srcattrtype == SrcAttributeType.REPOSITORY_ADDRESS:
+                text = _("<i>No Address attached to the repository</i>")
+                addrlist = repo.get_address_list()
+                if addrlist:
+                    text = get_address_ref_str(addrlist[0])
+            elif srcattrtype == SrcAttributeType.REPOSITORY_CALL_NUMBER:
+                text = reporef.get_call_number().strip()
+                if not text:
+                    text = _("<i>No call number given in the repository reference</i>")
+            lbl = Gtk.Label("")
+            lbl.set_markup(text)
+            lbl.set_halign(Gtk.Align.START)
+            self.gridfields.attach(lbl, 1, row-1, 1, 1)
+            self.lbls.append(lbl)
 
     def get_src_field(self, srcattrtype):
         return self.__get_field(srcattrtype, self.src)
