@@ -1,3 +1,25 @@
+2013-06-24
+Version 4.0.1, the "What is washing when we are on the verge of a great scientific breakthrough?", a maintenance release.
+* Gtk3: fix menu on person editor and Geography views, convert deprecated code for the indicator in entryfield
+* Gedcom: Fix crash on export when there are addresses, fix space on ID
+* Disallow bookmarking a source in the Citation Tree View
+* Better RTL support on Pedigreeview and position for gramplets
+* Fix bad scaling in address editor
+* Fix crash on ancestor chart report
+* Fix navigation issues with selected line
+* Fix size of the 'Tip of the day' dialog
+* Fix right-click on tables in Quick Views
+* Fix cursor corruption on Pedigree view
+* Improvements when exporting via CLI
+* Reports: Various fixes on dialogs, output file formats and cleanup on error messages
+* MacOS: Fix bad filename on Gramps URL, osm-gps-map revision, image paths, resource-path file, maclocale
+* Move the HTML resources from gramps/plugins/webstuff to Data and Images
+* Alternate Names in Person Details Gramplet (patch by Heinz Brinker)
+* New holidays, date and relationship handlers for Ukrainian
+* Enhancements for testing localized Relationship handlers (contribution by Fedir)
+* More names and events on data.gramps sample
+* Translations updated: cs, de, es, fr, hu, nb, nl, ru, uk, and new support for Arabic
+
 2013-05-21
 Version 4.0.0, the "The Miracle of Birth", new major release.
 * GEP 8: code reorganization
