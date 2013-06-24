@@ -431,7 +431,7 @@ class CommandLineReport(object):
                 
             else:
                 print (_("Ignoring unknown option: %s") % opt).encode(sys.getfilesystemencoding())
-                print (_("   Valid options are:"), ", ".join(
+                print (_("   Valid options are:") + ", ".join(
                                                      self.options_dict.keys())).encode(sys.getfilesystemencoding())
                 print (_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
