@@ -1,9 +1,8 @@
 # Arabic translation for Gramps
 # $Id$
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
 #
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # mbnoimi, 2013.
 # Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>, 2013.
 msgid ""
