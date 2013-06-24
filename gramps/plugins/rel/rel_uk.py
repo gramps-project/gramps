@@ -143,7 +143,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
 
-    def get_sword_distaff(self, level, reltocommon, gender = gen.lib.Person.UNKNOWN):
+    def get_sword_distaff(self, level, reltocommon, gender = Person.UNKNOWN):
         """
         Generate relationships 'by male line' or 'by female line',
         specific for Ukraine
@@ -159,10 +159,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 break
             by_line = g
 
-        if by_line == self.REL_FATHER and gender == gen.lib.Person.MALE:
+        if by_line == self.REL_FATHER and gender == Person.MALE:
             # by male line
             return " по чоловічій лінії"
-        elif by_line == self.REL_MOTHER and gender == gen.lib.Person.FEMALE:
+        elif by_line == self.REL_MOTHER and gender == Person.FEMALE:
             # by male line
             return " по жіночій лінії"
         elif reltocommon[0] == self.REL_FATHER:
@@ -242,11 +242,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 # Grandfather, Greatgrandfather, Greatgreatgrandfather
                 return t_inlaw + _father_level[level] \
-                    + self.get_sword_distaff(level, reltocommon, gen.lib.Person.MALE)
+                    + self.get_sword_distaff(level, reltocommon, Person.MALE)
         else:
             # For deep generations
             return t_inlaw + "пра(пра)дід у %d поколінні" % (level + 1) \
-                    + self.get_sword_distaff(level, reltocommon, gen.lib.Person.MALE)
+                    + self.get_sword_distaff(level, reltocommon, Person.MALE)
 
 
     def get_mother(self, level, reltocommon, inlaw=''):
@@ -268,11 +268,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 # Grandmother, Greatgrandmother, Greatgreatgrandmother
                 return t_inlaw + _mother_level[level] \
-                    + self.get_sword_distaff(level, reltocommon, gen.lib.Person.FEMALE)
+                    + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
         else:
             # For deep generations
             return t_inlaw + "пра(пра)баба у %d поколінні" % (level + 1) \
-                    + self.get_sword_distaff(level, reltocommon, gen.lib.Person.FEMALE)
+                    + self.get_sword_distaff(level, reltocommon, Person.FEMALE)
 
 
 
@@ -532,12 +532,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
         Return level name depend of gender
         """
-        if (gender == gen.lib.Person.MALE):
+        if (gender == Person.MALE):
             if level < len(_level_name_male):
                 return _level_name_male[level]
             else:
                 return "%d-юрідний" % level
-        elif (gender == gen.lib.Person.FEMALE):
+        elif (gender == Person.FEMALE):
             if level < len(_level_name_female):
                 return _level_name_female[level]
             else:
@@ -609,13 +609,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Ga == 0:
             # b is son/descendant of a
 
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "зять"
                 else:
                     rel_str = self.get_son(Gb, inlaw)
 
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "невістка"
                 else:
@@ -628,13 +628,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Gb == 0:
             # b is parent/grand parent of a
 
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "тесть"
                 else:
                     rel_str = self.get_father(Ga, reltocommon_a, inlaw)
 
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 if inlaw and Gb == 1 and not step:
                     rel_str = "теща"
                 else:
@@ -652,13 +652,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # that called in parent RelationshipCalculator
             # see Relationship.py
 
-            if gender_b == gen.lib.Person.MALE:
+            if gender_b == Person.MALE:
                 if inlaw and not step:
                     rel_str = "рідний брат"
                 else:
                     rel_str = "напів рідний брат"
 
-            elif gender_b == gen.lib.Person.FEMALE:
+            elif gender_b == Person.FEMALE:
                 if inlaw and not step:
                     rel_str = "рідна сестра"
                 else:
@@ -669,9 +669,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Gb == 1 and Ga > 1:
              # b is aunt/uncle of a
 
-            if (gender_b == gen.lib.Person.MALE):
+            if (gender_b == Person.MALE):
                 rel_str = self.get_uncle(Ga, reltocommon_a, inlaw)
-            elif (gender_b == gen.lib.Person.FEMALE):
+            elif (gender_b == Person.FEMALE):
                 rel_str = self.get_aunt(Ga, reltocommon_a, inlaw)
             else:
                 rel_str = self.get_uncle_aunt_unknown(Ga, reltocommon_a, inlaw)
@@ -679,9 +679,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Ga  == 1 and Gb > 1:
             # b is niece/nephew of a
 
-            if (gender_b == gen.lib.Person.MALE):
+            if (gender_b == Person.MALE):
                 rel_str = self.get_nephew(Gb, reltocommon_b, inlaw)
-            elif (gender_b == gen.lib.Person.FEMALE):
+            elif (gender_b == Person.FEMALE):
                 rel_str = self.get_niece(Gb, reltocommon_b, inlaw)
             else:
                 rel_str = self.get_nephew_niece_unknown(Gb, reltocommon_b, inlaw)
@@ -699,7 +699,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     level_name = self.get_level(Gb, gender_b)
 
 
-                if (gender_b == gen.lib.Person.MALE):
+                if (gender_b == Person.MALE):
                      # b is far  uncle
                     if inlaw != '':
                         t_inlaw = "названий "
@@ -709,7 +709,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     else:
                         rel_str = t_inlaw + "%s пра(пра)дід в %d поколінні" \
                             % (level_name, (level))
-                elif (gender_b == gen.lib.Person.FEMALE):
+                elif (gender_b == Person.FEMALE):
                      # b is far aunt
                     if inlaw != '':
                         t_inlaw = "названа "
@@ -733,7 +733,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 level_name = self.get_level(Ga, gender_b)
                 level = Gb - Ga + 1
 
-                if (gender_b == gen.lib.Person.MALE):
+                if (gender_b == Person.MALE):
                     # b is far nephew
                     if level == 2:
                         rel_str = "%s небіж" % level_name
@@ -741,7 +741,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                         rel_str = "%s пра(пра)внук у %d поколінні" \
                             % (level_name, level)
                     #rel_str = "%s %s" % (level_name, self.get_nephew(level, reltocommon_b, inlaw))
-                elif (gender_b == gen.lib.Person.FEMALE):
+                elif (gender_b == Person.FEMALE):
                     # b is far niece
                     if level == 2:
                         rel_str = "%s небога" % level_name
@@ -757,11 +757,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 # b is cousin of a
                 level_name = self.get_level(Ga, gender_b)
 
-                if (gender_b == gen.lib.Person.MALE):
+                if (gender_b == Person.MALE):
                     if inlaw != '':
                         t_inlaw = "названий "
                     rel_str = t_inlaw + "%s брат" % level_name
-                elif (gender_b == gen.lib.Person.FEMALE):
+                elif (gender_b == Person.FEMALE):
                     if inlaw != '':
                         t_inlaw = "названа "
                     rel_str = t_inlaw + "%s сестра" % level_name
@@ -831,52 +831,52 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         if sib_type == self.NORM_SIB:
             if not inlaw:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'рідний брат'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'рідна сестра'
                 else:
                     rel_str = 'рідний(а) брат або сестра'
             else:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "названий брат"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "названа сестра"
                 else:
                     rel_str = "названий(а) брат або сестра"
         elif sib_type == self.UNKNOWN_SIB:
             if not inlaw:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = 'брат'
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = 'сестра'
                 else:
                     rel_str = 'брат або сестра'
             else:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "швагро"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "братова"
                 else:
                     rel_str = "швагро або братова"
         elif sib_type == self.HALF_SIB_FATHER:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "єдинокровний(напіврідний) брат"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "єдинокровна(напіврідна) сестра"
                 else:
                     rel_str = "напіврідний(а) брат/сестра"
         elif sib_type == self.HALF_SIB_MOTHER:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "єдинокровний(напіврідний) брат"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "єдинокровна(напіврідна) сестра"
                 else:
                     rel_str = "напіврідний(а) брат/сестра"
         elif sib_type == self.STEP_SIB:
-                if gender_b == gen.lib.Person.MALE:
+                if gender_b == Person.MALE:
                     rel_str = "зведений брат"
-                elif gender_b == gen.lib.Person.FEMALE:
+                elif gender_b == Person.FEMALE:
                     rel_str = "зведена сестра"
                 else:
                     rel_str = "зведений брат або сестра"
