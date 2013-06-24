@@ -422,7 +422,7 @@ class CommandLineReport(object):
                 self.options_help[name].append(option.get_help())
             else:
                 print(_("Unknown option: %s") % option, file=sys.stderr)
-                print(_("   Valid options are:"),
+                print(_("   Valid options are:") +
                       ", ".join(list(self.options_dict.keys())),
                                                         file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
