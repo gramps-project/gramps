@@ -5204,7 +5204,7 @@ msgstr "Fiche"
 
 #: ../gramps/gen/lib/srcmediatype.py:68
 msgid "Electronic"
-msgstr "Électronique"
+msgstr "Numérique"
 
 #: ../gramps/gen/lib/srcmediatype.py:69
 msgid "Fiche"
@@ -11983,7 +11983,7 @@ msgstr "Suppor_t :"
 
 #: ../gramps/gui/glade/editreporef.glade.h:5
 msgid "Call n_umber:"
-msgstr "_Numéro d'identifiant - Cote :"
+msgstr "Nu_méro d'identifiant - Cote :"
 
 #: ../gramps/gui/glade/editreporef.glade.h:6
 msgid "On what type of media this source is available in the repository."
