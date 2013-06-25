@@ -285,7 +285,11 @@ class ListView(NavigationView):
         function because we don't want to set the color of untagged rows.
         '''
         fg_color = model.get_value(iter_, model.color_column())
-        renderer.set_property('foreground', fg_color)
+        #for color errors, typically color column is badly set
+        if fg_color:
+            renderer.set_property('foreground', fg_color)
+        else:
+            _LOG.debug('Bad color set: ' + str(fg_color))
 
     def set_active(self):
         NavigationView.set_active(self)
