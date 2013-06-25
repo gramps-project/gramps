@@ -19,12 +19,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _DateParser.py 18562 2011-12-10 10:04:35Z m_d_n $
+# $Id$
 
 """
-Date parsing class. Serves as the base class for any localized
-date parsing class. The default, base class provides parsing for
-English.
+Arabic-specific classes for parsing and displaying dates.
 """
 
 #-------------------------------------------------------------------------
@@ -205,12 +203,12 @@ class DateParserAR(DateParser):
 
 #-------------------------------------------------------------------------
 #
-# Italian display
+# Arabic display
 #
 #-------------------------------------------------------------------------
 class DateDisplayAR(DateDisplay):
     """
-    Italian language date display class. 
+    Arabic language date display class. 
     """
     # this is used to display the 12 gregorian months
     long_months = ( "", "كانون الثاني", "شباط", "آذار", "نيسان", "أيار", 

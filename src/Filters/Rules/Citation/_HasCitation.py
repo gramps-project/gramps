@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _hascitation.py 20271 2012-08-27 09:39:02Z bmcage $
+# $Id$
 
 """
 Filter rule to match citation data.
