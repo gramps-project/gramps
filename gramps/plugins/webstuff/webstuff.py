@@ -25,7 +25,7 @@
 #    python modules
 #------------------------------------------------
 import os
-from gramps.gen.const import VERSION_DIR
+from gramps.gen.const import VERSION_DIR, IMAGE_DIR, DATA_DIR
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -47,11 +47,10 @@ def load_on_reg(dbstate, uistate, plugin):
     """
     Runs when plugin is registered.
     """
-    dir, fname = os.path.split(__file__)
     from functools import partial
-    path_css = partial(os.path.join, dir, "css")
-    path_img = partial(os.path.join, dir, "images")
-    path_js = partial(os.path.join, dir, "js")
+    path_css = partial(os.path.join, DATA_DIR, "css")
+    path_img = partial(os.path.join, IMAGE_DIR, "webstuff")
+    path_js = partial(os.path.join, DATA_DIR, "javascript")
     CSS_FILES = [
 
         # id, user selectable?, translated_name, option name, fullpath,
@@ -160,7 +159,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Document image
         ["Document", 0, "Document",
-         path_img("document.png"), None, [], [] ],
+         os.path.join(IMAGE_DIR, "document.png"), None, [], [] ],
 
         # blank
         ["Blank", 0, "Blank",

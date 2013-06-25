@@ -49,8 +49,8 @@ from stat import ST_MODE
 import io
 from gramps.version import VERSION
 
-ALL_LINGUAS = ('bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr', 'he',
-               'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
+ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr',
+               'he', 'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
 INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
@@ -358,13 +358,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.glade')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.png')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.svg')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.css')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.html')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.js')
-package_data_core.append('plugins/webstuff/images/*.gif')
-package_data_core.append('plugins/webstuff/images/*.ico')
 package_data_core.append('gen/utils/resource-path')
 
 package_data_gui = ['gui/glade/*.glade']
@@ -387,9 +380,20 @@ DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'LICENSE', 'NEWS',
              'README', 'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
+IMAGE_WEB = glob.glob(os.path.join('images', 'webstuff', '*.png'))
+IMAGE_WEB.extend(glob.glob(os.path.join('images', 'webstuff','*.ico')))
+IMAGE_WEB.extend(glob.glob(os.path.join('images', 'webstuff', '*.gif')))
+JS_FILES = glob.glob(os.path.join('data', 'javascript', '*.js'))
+CSS_FILES = glob.glob(os.path.join('data', 'css', '*.css'))
+SWANKY_PURSE = glob.glob(os.path.join('data', 'css', 'swanky-purse', '*.css'))
+SWANKY_IMG = glob.glob(os.path.join('data', 'css', 'swanky-purse', 'images', '*.png'))
 data_files_core.append(('share/doc/gramps', DOC_FILES))
 data_files_core.append(('share/doc/gramps/example/gedcom', GEDCOM_FILES))
-data_files_core.append(('share/doc/gramps/example/gramps', GRAMPS_FILES)) 
+data_files_core.append(('share/doc/gramps/example/gramps', GRAMPS_FILES))
+data_files_core.append(('share/gramps/images/webstuff', IMAGE_WEB))
+data_files_core.append(('share/gramps/css', CSS_FILES))
+data_files_core.append(('share/gramps/css/swanky-purse', SWANKY_PURSE))
+data_files_core.append(('share/gramps/css/swanky-purse/images', SWANKY_IMG))
 
 PNG_FILES = glob.glob(os.path.join('data', '*.png'))
 SVG_FILES = glob.glob(os.path.join('data', '*.svg'))

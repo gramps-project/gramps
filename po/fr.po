@@ -3880,11 +3880,11 @@ msgstr "Âge"
 
 #: ../gramps/gen/lib/attrtype.py:75
 msgid "Father's Age"
-msgstr "Âge du père"
+msgstr "Âge du mari / compagnon"
 
 #: ../gramps/gen/lib/attrtype.py:76
 msgid "Mother's Age"
-msgstr "Âge de la mère"
+msgstr "Âge de la femme / compagne"
 
 #: ../gramps/gen/lib/attrtype.py:77
 #: ../gramps/gen/lib/eventroletype.py:66
@@ -31137,7 +31137,7 @@ msgstr "<b>Organisation des vues</b><br/>Quelques vues peuvent représenter vos 
 
 #: ../gramps/data/tips.xml.in.h:23
 msgid "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons."
-msgstr "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de « Aller à &gt; Suivant&quot; et &quot;Aller à  &gt; Précédent »."
+msgstr "<b>Navigation Précédent et Suivant</b><br/>Gramps conserve une liste des objets actifs tels que les individus, événements lorsque vous naviguez dans votre base de données. Vous pouvez avancer et reculer dans la liste à l'aide de « Aller à &gt; Suivant&quot; et &quot;Aller à &gt; Précédent »."
 
 #: ../gramps/data/tips.xml.in.h:24
 msgid "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."

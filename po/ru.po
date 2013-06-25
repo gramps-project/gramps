@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-09 12:49+0200\n"
-"PO-Revision-Date: 2013-06-12 01:16+0300\n"
+"PO-Revision-Date: 2013-06-18 10:28+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -92,7 +92,7 @@ msgstr "ОШИБКА: Неопознанный формат для файла э
 #: ../gramps/cli/arghandler.py:405
 msgid "List of known Family Trees in your database path\n"
 msgstr ""
-"Путь к базе данных"
+"Путь к базе данных "
 "с семейным древом\n"
 
 #: ../gramps/cli/arghandler.py:410
@@ -218,6 +218,8 @@ msgstr "Неизвестное название книги."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
+"Не задано название книги. Пожалуйста, укажите одно из %"
+"(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:706
 #, python-format
@@ -679,7 +681,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:268
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Имя файла на выходе. ОБЯЗАТЕЛЬНО"
 
 #: ../gramps/cli/plug/__init__.py:269
 msgid "=format"
@@ -699,7 +701,7 @@ msgstr "Название стиля."
 
 #: ../gramps/cli/plug/__init__.py:271
 msgid "Paper size name."
-msgstr ""
+msgstr "Формат листа бумаги."
 
 #: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:273
 #: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
@@ -709,7 +711,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:272
 msgid "Paper orientation number."
-msgstr "Paper orientation number."
+msgstr "Ориентация страницы."
 
 #: ../gramps/cli/plug/__init__.py:273
 msgid "Left paper margin"
@@ -722,15 +724,15 @@ msgstr "Размер в см"
 
 #: ../gramps/cli/plug/__init__.py:275
 msgid "Right paper margin"
-msgstr ""
+msgstr "Правое поле"
 
 #: ../gramps/cli/plug/__init__.py:277
 msgid "Top paper margin"
-msgstr ""
+msgstr "Верхнее поле"
 
 #: ../gramps/cli/plug/__init__.py:279
 msgid "Bottom paper margin"
-msgstr ""
+msgstr "Нижнее поле"
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "=css filename"
@@ -738,7 +740,7 @@ msgstr ""
 
 #: ../gramps/cli/plug/__init__.py:281
 msgid "CSS filename to use, html format only"
-msgstr ""
+msgstr "Имя файла CSS, только для формата HTML"
 
 #: ../gramps/cli/plug/__init__.py:312 ../gramps/gen/plug/report/_paper.py:91
 #: ../gramps/gen/plug/report/_paper.py:113
@@ -786,7 +788,7 @@ msgstr "   Возможные параметры:"
 
 #: ../gramps/cli/plug/__init__.py:585
 msgid "(no help available)"
-msgstr ""
+msgstr "(подсказка отсутствует)"
 
 #: ../gramps/cli/plug/__init__.py:594
 msgid "   Available values are:"
@@ -805,19 +807,19 @@ msgstr "Не удалось записать отчет. "
 
 #: ../gramps/gen/config.py:285
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "Импортировано %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:294
 msgid "Missing Given Name"
-msgstr "Отсутствующее имя"
+msgstr "Имя отсутствует"
 
 #: ../gramps/gen/config.py:295
 msgid "Missing Record"
-msgstr "Отсутствующая информация"
+msgstr "Запись отсутствует"
 
 #: ../gramps/gen/config.py:296
 msgid "Missing Surname"
-msgstr "Отсутствующая Фамилия"
+msgstr "Фамилия отсутствует"
 
 #: ../gramps/gen/config.py:303 ../gramps/gen/config.py:305
 msgid "Living"
@@ -900,6 +902,15 @@ msgid ""
 "computer with that software that created the Family Tree, export it to XML "
 "and load that XML into the version of Gramps you intend to use."
 msgstr ""
+"Gramps хранит свои данные в базе данных Беркли. Семейное древо, "
+"которое Вы пытаетесь загрузить, было записано в формате СУБД Беркли "
+"версии %(env_version)s. Текущая же версия Gramps version использкет "
+"СУБД Беркли версии %(bdb_version)s. Таким образом, Вы пытаетесь "
+"загрузить данные записанные в более новом формате в устаревшую "
+"сборку программы, это, скорее всего, не удастся. Правильные способ "
+"для решения этой проблемы — использовать экспорт и импорт в формате "
+"XML. Попытайтесь открыть это древо на том компьютере, где оно было "
+"создано, экспортируйте его в XML, а затем импортируйте его здесь."
 
 #: ../gramps/gen/db/exceptions.py:128
 #, python-format
@@ -916,6 +927,17 @@ msgid ""
 "If you have made a backup, then you can get Gramps to try to open the tree "
 "and upgrade it"
 msgstr ""
+"Версию BSDDB древа, которое Вы пытаетесь открыть, надо обновить "
+"с %(env_version)s на %(bdb_version)s.\n"
+"\n"
+"Скорее всего это значит, что это древо было создано в более старой версии "
+"Gramps. Открытие его в настоящей версии Gramps может безвозвратно "
+"повредить Ваше древо. Настоятельно рекомендуется сделать резервную "
+"копию Ваших данных, см.: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"Если Вы уже сделали резервную копию, то Вы можете попробовать открыть "
+"это древо, при этом произойдёт обновление версии BSDDB."
 
 #: ../gramps/gen/db/exceptions.py:151
 msgid ""
@@ -956,6 +978,19 @@ msgid ""
 "See: \n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 msgstr ""
+"Структура данных семейного древа, которую использует Gramps, изменилась "
+"с тех пор, как данное дерево было создано.\n"
+"\n"
+"По этой причине, для открытия этого древа необходимо произвести обновление "
+"формата структуры данных.\n"
+"После обновления использовать предыдущие версии Gramps будет невозможно, "
+"даже если делать экспорт в формат .gramps xml!\n"
+"\n"
+"Обновление — сложная процедура, которую нельзя прерывать, иначе данные "
+"могут быть безвозвратно повреждены. Поэтому, перед началом обновления, "
+"сделайте резервную копию. "
+"См.: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 
 #: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
 #: ../gramps/gen/db/write.py:2026
@@ -1015,7 +1050,7 @@ msgstr ""
 # statistics over import results
 #: ../gramps/gen/db/upgrade.py:530
 msgid "Upgrade Statistics"
-msgstr ""
+msgstr "Итоги обновления:"
 
 #: ../gramps/gen/db/write.py:1023
 #, python-format
@@ -1035,6 +1070,8 @@ msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
 "active in the database."
 msgstr ""
+"Начата вторая транзакция с базой данных, хотя текущая транзакция, «%s», ещё "
+"не завершилась."
 
 #: ../gramps/gen/display/name.py:331
 msgid "Default format (defined by Gramps preferences)"
@@ -1163,11 +1200,11 @@ msgstr "семпрозвище"
 #: ../gramps/gen/display/name.py:1067
 #, python-format
 msgid "Wrong name format string %s"
-msgstr ""
+msgstr "Неверная строка формата имени «%s»"
 
 #: ../gramps/gen/display/name.py:1071
 msgid "ERROR, Edit Name format in Preferences"
-msgstr ""
+msgstr "ОШИБКА, Установите строку формата в меню «Настройки»"
 
 #: ../gramps/gen/filters/_filterparser.py:120
 #, python-format
@@ -1267,7 +1304,7 @@ msgstr "Общие фильтры"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:82
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Неверный формат даты/времени"
 
 #: ../gramps/gen/filters/rules/_changedsincebase.py:83
 #, python-format
@@ -1275,6 +1312,8 @@ msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
+"Допускаются только дата/время в формате вида ГГГГ-ММ-ДД ЧЧ:ММ:СС или только "
+"ГГГГ-ММ-ДД. «%s» не годится."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:51
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:50
@@ -1325,7 +1364,7 @@ msgstr "Цитаты, удовлетворяющие параметрам"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:55
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:55
 msgid "Matches citations with particular parameters"
-msgstr "Выбирает цитаты с определёнными параметрами"
+msgstr "Выбирает цитаты с данными параметрами"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:56
 #: ../gramps/gen/filters/rules/_hassourcebase.py:54
@@ -1339,7 +1378,7 @@ msgstr "Выбирает цитаты с определёнными параме
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:49
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:49
 msgid "Citation/source filters"
-msgstr ""
+msgstr "Фильтры цитат/источников"
 
 #: ../gramps/gen/filters/rules/_haseventbase.py:57
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:47
@@ -1447,7 +1486,7 @@ msgstr "Название:"
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:72
 #, python-format
 msgid "Can't find filter %s in the defined custom filters"
-msgstr ""
+msgstr "Не могу найти фильтр «%s» среди заданных фильтров пользователя."
 
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
@@ -1542,7 +1581,7 @@ msgstr "Цитаты с <числом> документов"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:48
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Выбирает цитаты с определенным числом документов в галерее"
+msgstr "Выбирает цитаты с данным числом документов в галерее"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:47
 msgid "Citation with <Id>"
@@ -1558,7 +1597,7 @@ msgstr "Цитаты с <числом> заметок"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:49
 msgid "Matches citations having a certain number of notes"
-msgstr "Выбирает цитаты с определённым числом заметок"
+msgstr "Выбирает цитаты с данным числом заметок"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:45
 msgid "Citations having notes containing <substring>"
@@ -1587,7 +1626,7 @@ msgstr "Цитаты с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:46
 msgid "Matches citations with a certain reference count"
-msgstr ""
+msgstr "Выбирает цитаты с данным счётчиком ссылок"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
@@ -1633,7 +1672,7 @@ msgstr "Источники, удовлетворяющие параметрам"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:55
 msgid "Matches citations with a source of a particular value"
-msgstr ""
+msgstr "Выбирает цитаты из данного источника"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:57
 msgid "Source filters"
@@ -1674,6 +1713,8 @@ msgid ""
 "Matches citations with sources with a repository reference that match a "
 "certain repository filter"
 msgstr ""
+"Выбирает цитаты из источников из хранилищ, соответствующих указанному фильтру "
+"хранилищ"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:51
 msgid "Citations with source matching the <source filter>"
@@ -1739,7 +1780,7 @@ msgstr "События с <атрибутом>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:48
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Выбирает события с определённым значением атрибута"
+msgstr "Выбирает события с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:53
 msgid "Event with the <citation>"
@@ -1747,7 +1788,7 @@ msgstr "События с <цитатой>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:54
 msgid "Matches events with a citation of a particular value"
-msgstr "Выбирает события с определённым значением цитаты"
+msgstr "Выбирает события с данным значением цитаты"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:48
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
@@ -1785,7 +1826,7 @@ msgstr "События с <данными>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:51
 msgid "Matches events with data of a particular value"
-msgstr ""
+msgstr "Выбирает события с указанным значением в поле данных"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -1809,7 +1850,7 @@ msgstr "События с <числом> заметок"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:48
 msgid "Matches events having a certain number of notes"
-msgstr "Выбирает события с определённым числом заметок"
+msgstr "Выбирает события с данным числом заметок"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:44
 msgid "Events having notes containing <substring>"
@@ -1836,7 +1877,7 @@ msgstr "События с <числом> ссылок"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:45
 msgid "Matches events with a certain reference count"
-msgstr "Выбирает события с определённым числом ссылок на них"
+msgstr "Выбирает события с данным числом ссылок на них"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:46
 msgid "Events with <count> sources"
@@ -1844,7 +1885,7 @@ msgstr "События с <числом> источников"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:47
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Выбирает события с определённым числом источников"
+msgstr "Выбирает события с данным числом источников"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -1882,11 +1923,11 @@ msgstr "Выбирает события людей, соответствующи
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "События с хоть одним источником >= <достоверность>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:48
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr ""
+msgstr "Выбирает события с хотя бы одним достоверным источником."
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:51
 msgid "Events with source matching the <source filter>"
@@ -1999,7 +2040,7 @@ msgstr "Семьи с семейным <атрибутом>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:48
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Выбирает семьи с определённым значением атрибута"
+msgstr "Выбирает семьи с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:53
 msgid "Family with the <citation>"
@@ -2007,7 +2048,7 @@ msgstr "Семьи с <цитатой>"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:54
 msgid "Matches families with a citation of a particular value"
-msgstr ""
+msgstr "Выбирает семьи с цитатами с указанным значением в поле данных"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:49
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
@@ -2028,7 +2069,7 @@ msgstr "Семьи с <событием>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:55
 msgid "Matches families with an event of a particular value"
-msgstr "Выбирает семьи с определённым событием"
+msgstr "Выбирает семьи с данным событием"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:47
 msgid "Families with <count> media"
@@ -2052,7 +2093,7 @@ msgstr "Семьи с <числом> событий СПД"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:51
 msgid "Matches families with a certain number of LDS events"
-msgstr "Выбирает семьи с определённым числом числом событий церкви СПД"
+msgstr "Выбирает семьи с данным числом числом событий церкви СПД"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:47
 msgid "Families having <count> notes"
@@ -2060,7 +2101,7 @@ msgstr "Семьи с <числом> заметок"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:48
 msgid "Matches families having a certain number notes"
-msgstr "Выбирает семьи с определённым количеством заметок"
+msgstr "Выбирает семьи с данным количеством заметок"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:44
 msgid "Families having notes containing <substring>"
@@ -2088,7 +2129,7 @@ msgstr "Семьи с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:45
 msgid "Matches family objects with a certain reference count"
-msgstr "Выбирает семьи с определённым числом ссылок на них"
+msgstr "Выбирает семьи с данным числом ссылок на них"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
@@ -2102,7 +2143,7 @@ msgstr "Семьи с типом отношений"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:49
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Выбирает семьи с определённым типом отношений"
+msgstr "Выбирает семьи с данным типом отношений"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:47
 msgid "Families with <count> sources"
@@ -2110,7 +2151,7 @@ msgstr "Семьи с <числом> источников"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:48
 msgid "Matches families with a certain number of sources connected to it"
-msgstr "Выбирает семьи с определённым числом источников"
+msgstr "Выбирает семьи с данным числом источников"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
 msgid "Families with the <source>"
@@ -2118,7 +2159,7 @@ msgstr "Семьи с <источником>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:50
 msgid "Matches families who have a particular source"
-msgstr ""
+msgstr "Выбирает семьи с указанным источником"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
@@ -2134,15 +2175,15 @@ msgstr "Семьи с <пометкой>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:51
 msgid "Matches families with the particular tag"
-msgstr ""
+msgstr "Выбирает семьи с указанной меткой"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
 msgid "Families with twins"
-msgstr ""
+msgstr "Семьи с близнецами"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:48
 msgid "Matches families with twins"
-msgstr ""
+msgstr "Выбирает семьи с близнецами"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Bookmarked families"
@@ -2162,12 +2203,12 @@ msgstr "Выбирает семьи, соответствующие фильтр
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:46
 msgid "Families with at least one direct source >= <confidence level>"
-msgstr ""
+msgstr "Семьи с хоть одним источником >= <достоверность>"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:47
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
-msgstr ""
+msgstr "Выбирает семьи с хоть одним достоверным источником."
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
 msgid "Families with mother with the <Id>"
@@ -2284,7 +2325,7 @@ msgstr "Документ с <атрибутом>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:48
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Выбирает документы с определённым значением атрибута"
+msgstr "Выбирает документы с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:52
 msgid "Media with the <citation>"
@@ -2292,7 +2333,7 @@ msgstr "Документы с <цитатой>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:53
 msgid "Matches media with a citation of a particular value"
-msgstr "Выбирает документы с определённым значением цитаты"
+msgstr "Выбирает документы с данным значением цитаты"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:46
 msgid "Media object with <Id>"
@@ -2326,7 +2367,7 @@ msgstr "Документ, удовлетворяющий параметрам"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:54
 msgid "Matches media objects with particular parameters"
-msgstr "Выбирает документы с определёнными параметрами"
+msgstr "Выбирает документы с данными параметрами"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:44
 msgid "Media objects having notes containing <substring>"
@@ -2355,7 +2396,7 @@ msgstr "Документы с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
-msgstr "Выбирает документы с определёнными количеством ссылок на них"
+msgstr "Выбирает документы с данными количеством ссылок на них"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:47
 msgid "Media with <count> sources"
@@ -2363,7 +2404,7 @@ msgstr "Документы с <числом> источников"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:48
 msgid "Matches media with a certain number of sources connected to it"
-msgstr "Выбирает документы с определённым числом источников"
+msgstr "Выбирает документы с данным числом источников"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
 msgid "Media with the <source>"
@@ -2379,7 +2420,7 @@ msgstr "Документы с <пометкой>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:51
 msgid "Matches media objects with the particular tag"
-msgstr ""
+msgstr "Выбирает документы с указанной меткой"
 
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:46
 msgid "Media objects matching the <filter>"
@@ -2460,7 +2501,7 @@ msgstr "Заметки, удовлетворяющие параметрам"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:52
 msgid "Matches Notes with particular parameters"
-msgstr "Выбирает заметки с определёнными параметрами"
+msgstr "Выбирает заметки с данными параметрами"
 
 # !!!FIXME!!!
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:44
@@ -2469,7 +2510,7 @@ msgstr "Заметки с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:45
 msgid "Matches notes with a certain reference count"
-msgstr "Выбирает заметки с определённым количеством ссылок на них"
+msgstr "Выбирает заметки с данным количеством ссылок на них"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:50
 msgid "Notes with the <tag>"
@@ -2481,11 +2522,11 @@ msgstr "Заметки с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:48
 msgid "Notes with the particular type"
-msgstr ""
+msgstr "Заметки указанного типа"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:49
 msgid "Matches notes with the particular type "
-msgstr ""
+msgstr "Выбирает заметки определённого типа "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:46
 msgid "Notes matching the <filter>"
@@ -2570,6 +2611,12 @@ msgid ""
 "between the specified person and the target people.  Each path is not "
 "necessarily the shortest path."
 msgstr ""
+"Поиск по базе данных, начиная от указанного лица, выбирает всех родственников "
+"между этим лицом и множеством людей, заданным с помощью фильтра. Результат "
+"представляет из себя набор цепей родства (как кровного, так и через брак), "
+"между "
+"указанным лицом и заданным множеством людей. Каждая цепь не обязательно "
+"будет кратчайшей."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:137
 msgid "Finding relationship paths"
@@ -2613,7 +2660,7 @@ msgstr "Люди с <числом> адресов"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:52
 msgid "Matches people with a certain number of personal addresses"
-msgstr "Выбирает людей с определённым количеством личных адресов"
+msgstr "Выбирает людей с данным количеством личных адресов"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:47
 msgid "People with an alternate name"
@@ -2629,7 +2676,7 @@ msgstr "Выбирает лиц с <количеством> связей"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:52
 msgid "Matches people with a certain number of associations"
-msgstr "Выбирает лиц с определённым количеством связей"
+msgstr "Выбирает лиц с данным количеством связей"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 #: ../gramps/gui/editors/filtereditor.py:100
@@ -2642,7 +2689,7 @@ msgstr "Люди с личным <атрибутом>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:48
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "Выбирает людей с определённым значением личного атрибута"
+msgstr "Выбирает людей с данным значением личного атрибута"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:50
 msgid "People with the <birth data>"
@@ -2658,7 +2705,7 @@ msgstr "Люди с <цитатой>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:53
 msgid "Matches people with a citation of a particular value"
-msgstr ""
+msgstr "Выбирает людей с цитатами с указанным значением"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "People with a common ancestor with <person>"
@@ -2709,7 +2756,7 @@ msgstr "Люди с личными <событиями>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 msgid "Matches people with a personal event of a particular value"
-msgstr "Выбирает людей с определённым личным событием"
+msgstr "Выбирает людей с данным личным событием"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:47
 msgid "People with the family <attribute>"
@@ -2717,7 +2764,7 @@ msgstr "Люди с семейным <атрибутом>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:48
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Выбирает объекты с определённым значением семейного атрибута"
+msgstr "Выбирает объекты с данным значением семейного атрибута"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:53
 msgid "People with the family <event>"
@@ -2725,7 +2772,7 @@ msgstr "Люди с семейными <событиями>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:54
 msgid "Matches people with a family event of a particular value"
-msgstr "Выбирает людей с определённым семейным событием"
+msgstr "Выбирает людей с данным семейным событием"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:44
 msgid "People with <count> media"
@@ -2751,7 +2798,7 @@ msgstr "Лица с <числом> событий СПД"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:51
 msgid "Matches people with a certain number of LDS events"
-msgstr "Выбирает людей с определённым числом числом событий церкви СПД"
+msgstr "Выбирает людей с данным числом числом событий церкви СПД"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:49
 msgid "Given name:"
@@ -2910,7 +2957,7 @@ msgstr "Лица с <числом> источников"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:48
 msgid "Matches people with a certain number of sources connected to it"
-msgstr ""
+msgstr "Выбирает людей, для которых задано указанное количество источников."
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "People with the <source>"
@@ -2926,7 +2973,7 @@ msgstr "Люди с <пометкой>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:51
 msgid "Matches people with the particular tag"
-msgstr ""
+msgstr "Выбирает людей с указанной меткой"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 #: ../gramps/gui/editors/filtereditor.py:540
@@ -3042,13 +3089,14 @@ msgstr "Выбирает потомков и супругов потомков �
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid "Descendant family members of <filter> match"
-msgstr ""
+msgstr "Члены семьи потомков тех, кого выбрал <фильтр>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:51
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
+"Выбирает потомков и супругов потомков лиц, выбранных указанным фильтром"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Descendants of <person>"
@@ -3191,11 +3239,11 @@ msgstr "Выбирает предков соответствующих филь�
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "People related to <Person>"
-msgstr ""
+msgstr "Родственники <лица>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:49
 msgid "Matches people related to a specified person"
-msgstr ""
+msgstr "Выбирает людей, находящихся в родстве с указанным лицом"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Siblings of <filter> match"
@@ -3251,7 +3299,7 @@ msgstr "Лица с хоть одним источником >= <достове�
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:47
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
-msgstr ""
+msgstr "Выбирает людей с хотя бы одним источником указанной достоверности"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:45
 msgid "People missing parents"
@@ -3405,11 +3453,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:53
 msgid "Place with the <citation>"
-msgstr ""
+msgstr "Местоположение с <цитатой>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:54
 msgid "Matches places with a citation of a particular value"
-msgstr ""
+msgstr "Выбирает местоположения с цитатой с указанным значением"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:47
 msgid "Places with <count> media"
@@ -3446,7 +3494,7 @@ msgstr "Места, имеющие <число> заметок"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:48
 msgid "Matches places having a certain number of notes"
-msgstr "Выбирает места с определённым числом заметок"
+msgstr "Выбирает места с данным числом заметок"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:44
 msgid "Places having notes containing <substring>"
@@ -3517,7 +3565,7 @@ msgstr "Места, соответствующие параметрам"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:61
 msgid "Matches places with particular parameters"
-msgstr "Выбирает места с определёнными параметрами"
+msgstr "Выбирает места с данными параметрами"
 
 # !!!FIXME!!!
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:44
@@ -3526,23 +3574,23 @@ msgstr "Места с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:45
 msgid "Matches places with a certain reference count"
-msgstr "Выбирает места с определённым числом ссылок на них"
+msgstr "Выбирает места с данным числом ссылок на них"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:47
 msgid "Place with <count> sources"
-msgstr ""
+msgstr "Местоположение с <числом> источников"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:48
 msgid "Matches places with a certain number of sources connected to it"
-msgstr ""
+msgstr "Выбирает местоположения с указанным числом источников"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Places with the <source>"
-msgstr ""
+msgstr "Местоположения с <источником>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:50
 msgid "Matches places who have a particular source"
-msgstr ""
+msgstr "Выбирает местоположения с указанным источником"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/mergeplace.glade:259
@@ -3599,11 +3647,11 @@ msgstr "Выбирает места, соответствующие фильтр
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
-msgstr ""
+msgstr "Местоположение с источником >= <достоверность>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:47
 msgid "Matches places with at least one direct source with confidence level(s)"
-msgstr ""
+msgstr "Выбирает места с хоть одним достоверным источником"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:44
 msgid "Places marked private"
@@ -3678,7 +3726,7 @@ msgstr "Хранилища с количеством ссылок <count>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
-msgstr "Выбирает хранилища с определённым количеством ссылок на них"
+msgstr "Выбирает хранилища с данным количеством ссылок на них"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:50
 msgid "Address:"
@@ -3694,7 +3742,7 @@ msgstr "Хранилище, удовлетворяющее параметрам"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:54
 msgid "Matches Repositories with particular parameters"
-msgstr "Выбирает хранилища с определёнными параметрами"
+msgstr "Выбирает хранилища с данными параметрами"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -3801,7 +3849,7 @@ msgstr "Источники с числом ссылок <число>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:45
 msgid "Matches sources with a certain reference count"
-msgstr "Выбирает источники с определённым числом ссылок на них"
+msgstr "Выбирает источники с данным числом ссылок на них"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:49
 msgid "Sources with <count> Repository references"
@@ -3815,12 +3863,15 @@ msgstr "Выбирает источники с определенным числ
 msgid ""
 "Sources with repository reference containing <substring> in \"Call Number\""
 msgstr ""
+"Источники со ссылкой на хранилища с указанной <подстрокой> в поле «Номер»"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:47
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
+"Выбирает источники со ссылкой на хранилища,\n"
+"с данной подстрокой в поле «Номер»"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -3832,17 +3883,19 @@ msgstr "Выбирает источники, соответствующие фи
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:46
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr ""
+msgstr "Источники со ссылкой на хранилища, соответствующие <фильтру хранилищ>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:47
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
+"Выбирает источники со ссылкой на хранилища, которые\n"
+"соответствуют указанному фильтру хранилищ"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
 msgid "Sources title containing <substring>"
-msgstr ""
+msgstr "Название источника содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
 msgid "Matches sources whose title contains a certain substring"
@@ -4984,11 +5037,11 @@ msgstr "Цвет шрифта"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:72
 msgid "Highlight"
-msgstr ""
+msgstr "Выделение"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:73
 msgid "Superscript"
-msgstr ""
+msgstr "Верхний индекс"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
@@ -5110,6 +5163,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
+"Настройка «%(opt_name)s» задана в %(file)s,\n"
+"  но не поддерживается данным модулем. Игнорирую..."
 
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Stable"
@@ -5183,6 +5238,8 @@ msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
 "configured languages, using US English instead"
 msgstr ""
+"ВНИМАНИЕ: Модуль %(plugin_name)s не переведён ни на один из языков, "
+"которые указаны у Вас в настройках, будет использован английский язык"
 
 #: ../gramps/gen/plug/_pluginreg.py:1108 ../gramps/gen/plug/_pluginreg.py:1113
 #, python-format
@@ -5334,7 +5391,7 @@ msgstr "Влево, вверх"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
 msgid "Compress to minimal size"
-msgstr ""
+msgstr "Сжать до минимального размера"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:90
 msgid "Fill the given area"
@@ -5342,7 +5399,7 @@ msgstr "Заполнить данную площадь"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:91
 msgid "Expand uniformly"
-msgstr ""
+msgstr "Равномерно растянуть"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Top"
@@ -5451,6 +5508,19 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
+"Влияет на размещение узлов и масштабирование графа.\n"
+"Если граф меньше, чем область для печати:\n"
+"  «Сжать» не изменит расстояние между узлами. \n"
+"  «Заполнить» увеличит расстояние между узлами, \n"
+"заполняя область для печати и по горизонтали, и по вертикали.\n"
+"  «Растянуть» равномерно увеличит расстояние между узлами,\n"
+"сохраняя пропорции между сторонами.\n"
+"Если граф больше, чем область для печати:\n"
+"  «Сжать» упакует граф в более плотную форму, пожертвовав симметрией\n"
+"  «Заполнить» сожмёт граф до размера области для печати,\n"
+"предварительно увеличив расстояние между узлами\n"
+"  «Растянуть» равномерно сожмёт граф до размера области\n"
+"для печати, сохраняя пропорции между сторонами."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 msgid "DPI"
@@ -5782,7 +5852,7 @@ msgstr "'%s' НЕ для этой версии Gramps."
 #: ../gramps/gen/plug/utils.py:256
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr ""
+msgstr "Предназначен для версии %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:266
 #, python-format
@@ -5969,6 +6039,8 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
+"Перевод терминологии родственных отношений для языка «%s» не осуществлён. "
+"Будет использована английская терминология."
 
 #: ../gramps/gen/utils/alive.py:114
 msgid "death event without date"
@@ -6018,7 +6090,7 @@ msgstr "дата, связанная с рождением супруга/-и, "
 
 #: ../gramps/gen/utils/alive.py:245 ../gramps/gen/utils/alive.py:256
 msgid "a spouse's death-related date, "
-msgstr ""
+msgstr "дата, связанная со смертью супруга/-и, "
 
 #: ../gramps/gen/utils/alive.py:274
 msgid "event with spouse"
@@ -6231,7 +6303,7 @@ msgstr "семья"
 
 #: ../gramps/gen/utils/grampslocale.py:865
 msgid "the place"
-msgstr ""
+msgstr "местоположение"
 
 #: ../gramps/gen/utils/grampslocale.py:867
 msgid "the event"
@@ -6243,20 +6315,20 @@ msgstr "хранилище"
 
 #: ../gramps/gen/utils/grampslocale.py:871
 msgid "the note"
-msgstr ""
+msgstr "заметка"
 
 # !!!FIXME!!!
 #: ../gramps/gen/utils/grampslocale.py:873
 msgid "the media"
-msgstr ""
+msgstr "документ"
 
 #: ../gramps/gen/utils/grampslocale.py:875
 msgid "the source"
-msgstr ""
+msgstr "источник"
 
 #: ../gramps/gen/utils/grampslocale.py:877
 msgid "the filter"
-msgstr ""
+msgstr "фильтр"
 
 #: ../gramps/gen/utils/grampslocale.py:879
 msgid "See details"
@@ -6550,6 +6622,8 @@ msgstr ""
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
+"Объекты, на которые ссылалась эта заметка, отсутствовали в файле, "
+"импортированном %s."
 
 #: ../gramps/grampsapp.py:137
 #, python-format
@@ -6572,6 +6646,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
+"\n"
+"У Вас не установлен пакет python bsddb3. Он требуется для запуска "
+"Gramps.\n"
+"\n"
+"Сейчас Gramps завершит выполнение."
 
 #: ../gramps/grampsapp.py:377 ../gramps/grampsapp.py:384
 #: ../gramps/grampsapp.py:432
@@ -6788,7 +6867,7 @@ msgstr "ссылка на лицо"
 
 #: ../gramps/gui/clipboard.py:690
 msgid "Child ref"
-msgstr ""
+msgstr "Ссылка на ребёнка"
 
 #: ../gramps/gui/clipboard.py:699
 #, python-format
@@ -6965,7 +7044,7 @@ msgstr "Буфер обмена"
 #: ../gramps/gui/clipboard.py:1484 ../gramps/gui/plug/quick/_quicktable.py:131
 #, python-format
 msgid "the object|See %s details"
-msgstr ""
+msgstr "См. детали для %s"
 
 #: ../gramps/gui/clipboard.py:1490 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
@@ -7097,6 +7176,9 @@ msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
 msgstr ""
+"Введите информацию о себе, чтобы люди могли с Вами связаться, если Вы "
+"опубликуете "
+"информацию из Вашего древа"
 
 #: ../gramps/gui/configure.py:509
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
@@ -7178,59 +7260,59 @@ msgstr "Форматы ID"
 
 #: ../gramps/gui/configure.py:551
 msgid "Set the colors used for boxes in the graphical views"
-msgstr ""
+msgstr "Настройки цветов, используемых в видах с графическими отображениями"
 
 #: ../gramps/gui/configure.py:553
 msgid "Gender Male Alive"
-msgstr ""
+msgstr "Живые мужского пола"
 
 #: ../gramps/gui/configure.py:555
 msgid "Border Male Alive"
-msgstr ""
+msgstr "Граница для живых мужского пола"
 
 #: ../gramps/gui/configure.py:557
 msgid "Gender Male Death"
-msgstr ""
+msgstr "Умершие мужского пола"
 
 #: ../gramps/gui/configure.py:559
 msgid "Border Male Death"
-msgstr ""
+msgstr "Граница для умерших мужского пола"
 
 #: ../gramps/gui/configure.py:561
 msgid "Gender Female Alive"
-msgstr ""
+msgstr "Живые женского пола"
 
 #: ../gramps/gui/configure.py:563
 msgid "Border Female Alive"
-msgstr ""
+msgstr "Граница для живых женского пола"
 
 #: ../gramps/gui/configure.py:565
 msgid "Gender Female Death"
-msgstr ""
+msgstr "Умершие женского пола"
 
 #: ../gramps/gui/configure.py:567
 msgid "Border Female Death"
-msgstr ""
+msgstr "Граница для умерших женского пола"
 
 #: ../gramps/gui/configure.py:577
 msgid "Gender Unknown Alive"
-msgstr ""
+msgstr "Живые неизвестного пола"
 
 #: ../gramps/gui/configure.py:579
 msgid "Border Unknown Alive"
-msgstr ""
+msgstr "Граница для живых неизвестного пола"
 
 #: ../gramps/gui/configure.py:581
 msgid "Gender Unknown Death"
-msgstr ""
+msgstr "Умершие неизвестного пола"
 
 #: ../gramps/gui/configure.py:583
 msgid "Border Unknown Death"
-msgstr ""
+msgstr "Граница для умерших неизвестного пола"
 
 #: ../gramps/gui/configure.py:585
 msgid "Colors"
-msgstr ""
+msgstr "Цвета"
 
 #: ../gramps/gui/configure.py:593
 msgid "Suppress warning when adding parents to a child."
@@ -7299,7 +7381,7 @@ msgstr "Редактировать"
 
 #: ../gramps/gui/configure.py:981
 msgid "Consider single pa/matronymic as surname"
-msgstr ""
+msgstr "Использовать одиночное отчество/матроним как фамилию"
 
 #: ../gramps/gui/configure.py:995
 msgid "Date format"
@@ -7307,19 +7389,19 @@ msgstr "Формат дат"
 
 #: ../gramps/gui/configure.py:1003
 msgid "Years"
-msgstr ""
+msgstr "Года"
 
 #: ../gramps/gui/configure.py:1004
 msgid "Years, Months"
-msgstr ""
+msgstr "Года, месяцы"
 
 #: ../gramps/gui/configure.py:1005
 msgid "Years, Months, Days"
-msgstr ""
+msgstr "Года, месяцы, дни"
 
 #: ../gramps/gui/configure.py:1017
 msgid "Age display precision (requires restart)"
-msgstr ""
+msgstr "Точность при отображении возраста (требуется перезапуск)"
 
 #: ../gramps/gui/configure.py:1030
 msgid "Calendar on reports"
@@ -7356,7 +7438,7 @@ msgstr "Показывать текст на кнопках боковой па�
 
 #: ../gramps/gui/configure.py:1093
 msgid "Show close button in gramplet bar tabs"
-msgstr ""
+msgstr "Показывать кнопку для закрытия панели грамплетов"
 
 #: ../gramps/gui/configure.py:1105
 msgid "Missing surname"
@@ -7422,7 +7504,7 @@ msgstr "Среднее количество лет между поколения
 
 #: ../gramps/gui/configure.py:1191
 msgid "Markup for invalid date format"
-msgstr "Пометка для индивидуальных форматов имен"
+msgstr "Разметка для индивидуальных форматов имен"
 
 #: ../gramps/gui/configure.py:1194
 #, python-format
@@ -7441,6 +7523,19 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
+"Возможная разметка:\n"
+"<b>&lt;b&gt;Жирный шрифт&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Увеличенный шрифт&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;Курсив&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Зачёркнутый текст&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Нижний индекс&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Верхний индекс&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Уменьшенный шрифт&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Моноширинный шрифт&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Подчёркнутый текст&lt;/u&gt;</u>\n"
+"\n"
+"Например: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"отобразит <u><b>подчёркнутую дату жирным шрифтом</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Dates"
@@ -7448,11 +7543,11 @@ msgstr "Даты"
 
 #: ../gramps/gui/configure.py:1218
 msgid "Add default source on GEDCOM import"
-msgstr ""
+msgstr "Добавлять источник по умолчанию при импорте из GEDCOM"
 
 #: ../gramps/gui/configure.py:1222
 msgid "Add tag on import"
-msgstr ""
+msgstr "Добавлять метку при импорте"
 
 #: ../gramps/gui/configure.py:1233
 msgid "Enable spelling checker"
@@ -7569,7 +7664,7 @@ msgstr "С_топ"
 
 #: ../gramps/gui/dbloader.py:138
 msgid "Gramps: Import Family Tree"
-msgstr ""
+msgstr "Gramps: Импортировать древо"
 
 #: ../gramps/gui/dbloader.py:143 ../gramps/gui/grampsgui.py:203
 msgid "Import"
@@ -7639,7 +7734,7 @@ msgstr "Необходимо обновить базу данных BSDDB!"
 
 #: ../gramps/gui/dbloader.py:332
 msgid "I have made a backup, please upgrade my tree"
-msgstr ""
+msgstr "У меня есть резерная копия, моё древо можно обновить"
 
 #: ../gramps/gui/dbloader.py:394
 msgid "All files"
@@ -8197,7 +8292,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:183
 msgid "Cannot open new citation editor"
-msgstr ""
+msgstr "Не могу редактировать цитату"
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:52
 #, python-format
@@ -8291,7 +8386,7 @@ msgstr "Страница"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:93
 msgid "_Source Citations"
-msgstr ""
+msgstr "Цитаты источника"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:173
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:183
@@ -8894,12 +8989,12 @@ msgstr "Редактирование Источника (%s)"
 #: ../gramps/gui/editors/editcitation.py:462
 #, python-format
 msgid "Add Citation (%s)"
-msgstr ""
+msgstr "Добавить цитату (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:468
 #, python-format
 msgid "Edit Citation (%s)"
-msgstr ""
+msgstr "Редактировать цитату (%s)"
 
 #: ../gramps/gui/editors/editcitation.py:546
 #, python-format
@@ -8953,7 +9048,7 @@ msgstr "Выбор даты"
 
 #: ../gramps/gui/editors/editevent.py:65
 msgid "manual|Editing_Information_About_Events"
-msgstr ""
+msgstr "Редактирование информации о событиях"
 
 #: ../gramps/gui/editors/editevent.py:99
 #: ../gramps/gui/editors/editeventref.py:241
@@ -9777,7 +9872,7 @@ msgstr "Удалить Источник (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:50 ../gramps/gui/views/tags.py:88
 msgid "manual|Tags"
-msgstr ""
+msgstr "Метки"
 
 #: ../gramps/gui/editors/edittaglist.py:70
 #: ../gramps/gui/editors/edittaglist.py:128
@@ -9838,7 +9933,7 @@ msgstr "Фильтры источников"
 
 #: ../gramps/gui/editors/filtereditor.py:90
 msgid "Media Filters"
-msgstr ""
+msgstr "Фильтры документов"
 
 #: ../gramps/gui/editors/filtereditor.py:91
 msgid "Repository Filters"
@@ -10113,7 +10208,7 @@ msgstr "Том/Страница"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 msgid "Minimum Confidence|Min. Conf."
-msgstr ""
+msgstr "Мин. достов."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:110
@@ -10319,7 +10414,7 @@ msgstr "Веерная карта"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/view/fanchartdescview.py:74
 msgid "Descendant Fan Chart"
-msgstr ""
+msgstr "Веерная карта потомков"
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -10799,19 +10894,19 @@ msgstr "Объединить цитаты"
 
 #: ../gramps/gui/merge/mergeevent.py:48
 msgid "manual|Merge_Events"
-msgstr ""
+msgstr "Объединение событий"
 
 #: ../gramps/gui/merge/mergeevent.py:70
 msgid "Merge Events"
-msgstr "Объединение событий"
+msgstr "Объединить события"
 
 #: ../gramps/gui/merge/mergefamily.py:49
 msgid "manual|Merge_Families"
-msgstr ""
+msgstr "Объединение семей"
 
 #: ../gramps/gui/merge/mergefamily.py:71
 msgid "Merge Families"
-msgstr "Объединение семей"
+msgstr "Объединить семьи"
 
 #: ../gramps/gui/merge/mergefamily.py:225
 #: ../gramps/gui/merge/mergeperson.py:340
@@ -10821,11 +10916,11 @@ msgstr "Ошибка объединения людей"
 
 #: ../gramps/gui/merge/mergemedia.py:47
 msgid "manual|Merge_Media_Objects"
-msgstr ""
+msgstr "Объединение документов"
 
 #: ../gramps/gui/merge/mergenote.py:47
 msgid "manual|Merge_Notes"
-msgstr ""
+msgstr "Объединение заметок"
 
 #: ../gramps/gui/merge/mergenote.py:96
 msgid "flowed"
@@ -10889,7 +10984,7 @@ msgstr "Объединение мест"
 
 #: ../gramps/gui/merge/mergerepository.py:46
 msgid "manual|Merge_Repositories"
-msgstr ""
+msgstr "Объединение хранилищ"
 
 #: ../gramps/gui/merge/mergesource.py:48
 msgid "manual|Merge_Sources"
@@ -11302,7 +11397,7 @@ msgstr ""
 
 #: ../gramps/gui/plug/export/_exportassistant.py:600
 msgid "Error exporting your Family Tree"
-msgstr ""
+msgstr "Ошибка при экспорте древа"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:57
 msgid "Selecting Preview Data"
@@ -11495,7 +11590,7 @@ msgstr "Запустить"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:352
 msgid "Name of the book. MANDATORY"
-msgstr ""
+msgstr "Название книги. ОБЯЗАТЕЛЬНО"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:412
 msgid "New Book"
@@ -11545,11 +11640,11 @@ msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:584
 msgid "No selected book item"
-msgstr ""
+msgstr "Не выбран элемент книги"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:585
 msgid "Please select a book item to configure."
-msgstr ""
+msgstr "Выберите элемент книги для настройки."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:648
 msgid "Setup"
@@ -11565,11 +11660,11 @@ msgstr "Доступные элементы"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "No items"
-msgstr ""
+msgstr "Нет элементов"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "This book has no items."
-msgstr ""
+msgstr "В этой книге нет элементов."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:710
 msgid "No book name"
@@ -11891,6 +11986,9 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 msgstr ""
+"Не загружен GtkSpell. Проверка правописания недоступна.\n"
+"Для сборки GtkSpell см. http://www.gramps-project.org/wiki/index.php?"
+"title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 
 #: ../gramps/gui/spell.py:96
 msgid "Off"
@@ -12264,6 +12362,8 @@ msgstr ""
 #: ../gramps/gui/viewmanager.py:1221
 msgid "View failed to load. Check error output."
 msgstr ""
+"Не удалось загрузить вид. Проверьте сообщения об ошибках в окне, из которого "
+"запущен Gramps."
 
 # statistics over import results
 #: ../gramps/gui/viewmanager.py:1360
@@ -12733,7 +12833,7 @@ msgstr "Безымянный грамплет"
 
 #: ../gramps/gui/widgets/grampletbar.py:342
 msgid "Gramplet Bar"
-msgstr ""
+msgstr "Панель грамплетов"
 
 #: ../gramps/gui/widgets/grampletbar.py:344
 msgid ""
@@ -13033,11 +13133,11 @@ msgstr "Указатель"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:343
 msgid "SVG background color"
-msgstr ""
+msgstr "Фон SVG"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:345
 msgid "transparent background"
-msgstr ""
+msgstr "прозрачный фон"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:346
 #: ../gramps/plugins/drawreport/fanchart.py:668
@@ -13046,7 +13146,7 @@ msgstr "белый"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:347
 msgid "black"
-msgstr ""
+msgstr "чёрный"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "red"
@@ -13058,23 +13158,23 @@ msgstr "зелёный"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "blue"
-msgstr ""
+msgstr "синий"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "cyan"
-msgstr ""
+msgstr "голубой"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "magenta"
-msgstr ""
+msgstr "фиолетовый"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "yellow"
-msgstr ""
+msgstr "жёлтый"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:354
 msgid "The color, if any, of the SVG background"
-msgstr ""
+msgstr "Цвет фона для SVG"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:74
 #: ../gramps/plugins/drawreport/descendtree.py:61
@@ -13773,7 +13873,7 @@ msgstr "Древо потомков для %(father)s и %(mother)s."
 
 #: ../gramps/plugins/drawreport/descendtree.py:214
 msgid "Descendant Graph"
-msgstr ""
+msgstr "Граф потомков"
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -14064,7 +14164,7 @@ msgstr "Печатать радиальный текст прямо или по 
 
 #: ../gramps/plugins/drawreport/fanchart.py:680
 msgid "Draw empty boxes"
-msgstr ""
+msgstr "Рисовать пустые ячейки"
 
 #: ../gramps/plugins/drawreport/fanchart.py:681
 msgid "Draw the background although there is no information"
@@ -14072,7 +14172,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:685
 msgid "Use one font style for all generations"
-msgstr ""
+msgstr "Использовать одинаковый стиль шрифта для всех поколений"
 
 #: ../gramps/plugins/drawreport/fanchart.py:687
 msgid ""
@@ -14466,7 +14566,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:41
 msgid "CSV spreadsheet options"
-msgstr ""
+msgstr "Настройки CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -15423,7 +15523,7 @@ msgstr "Отображает документы для выбранного ис
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:529
 msgid "Citation Gallery"
-msgstr ""
+msgstr "Галерея цитаты"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:530
 msgid "Gramplet showing media objects for a citation"
@@ -15527,7 +15627,7 @@ msgstr "Отображает заметки для выбранного доку
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:711
 msgid "Person Citations"
-msgstr ""
+msgstr "Цитаты для лица"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:712
 msgid "Gramplet showing the citations for a person"
@@ -15535,7 +15635,7 @@ msgstr "Отображает все цитаты для выбранного л�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:725
 msgid "Event Citations"
-msgstr ""
+msgstr "Цитаты для события"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Gramplet showing the citations for an event"
@@ -15551,7 +15651,7 @@ msgstr "Отображает все цитаты для выбранной се�
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:753
 msgid "Place Citations"
-msgstr ""
+msgstr "Цитаты для местоположения"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:754
 msgid "Gramplet showing the citations for a place"
@@ -17045,7 +17145,7 @@ msgstr "причина смерти"
 #: ../gramps/plugins/webreport/narrativeweb.py:4292
 #: ../gramps/plugins/webreport/narrativeweb.py:6642
 msgid "Gramps ID"
-msgstr "Gramps ID"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:226
 msgid "Gramps id"
@@ -17360,7 +17460,7 @@ msgstr "  Заметка %(id)s с %(id2)s\n"
 #: ../gramps/plugins/importer/importxml.py:298
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
-msgstr ""
+msgstr "  Цитата %(id)s с %(id2)s\n"
 
 #: ../gramps/plugins/importer/importxml.py:306
 #, python-format
@@ -17448,6 +17548,9 @@ msgid ""
 "\n"
 "Objects that are candidates to be merged:\n"
 msgstr ""
+"\n"
+"\n"
+"Объекты-кандидаты на объединение:\n"
 
 #: ../gramps/plugins/importer/importxml.py:820
 #: ../gramps/plugins/importer/importxml.py:1257
@@ -24553,8 +24656,8 @@ msgstr[2] "Найдено %(quantity)d ссылок на несуществую�
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] ""
-msgstr[1] "Найдено %(quantity)d ссылки на несуществующие комментарии\n"
-msgstr[2] "Найдено %(quantity)d ссылок на несуществующие комментарии\n"
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../gramps/plugins/tool/check.py:2205
 #, python-format

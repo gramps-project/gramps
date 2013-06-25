@@ -48,7 +48,7 @@ import time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.utils.image import resize_to_jpeg
-from gramps.gen.const import DATA_DIR, WEBSTUFF_IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
+from gramps.gen.const import DATA_DIR, IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
 from gramps.gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
@@ -298,7 +298,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             if os.path.exists(fullpath):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
-        self.copy_file(os.path.join(WEBSTUFF_IMAGE_DIR, 'favicon.ico'), 
+        self.copy_file(os.path.join(IMAGE_DIR, 'webstuff', 'favicon.ico'), 
                         'favicon.ico')
 
     def __reduce_list(self):

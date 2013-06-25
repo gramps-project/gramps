@@ -95,7 +95,7 @@ class RelCalc(tool.Tool, ManagedWindow):
                 self.colord.append((0, col, size))
 
         self.dbstate = dbstate
-        self.relationship = get_relationship_calculator()
+        self.relationship = get_relationship_calculator(glocale)
         self.relationship.connect_db_signals(dbstate)
 
         self.glade = Glade()
