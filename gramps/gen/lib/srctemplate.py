@@ -427,7 +427,7 @@ class SrcTemplate(object):
                                 self.attrmap[key][2], attr.get_value())
                 else:
                     self.attrmap[key] = (self.attrmap[key][0],
-                                attr.get_value(), self.attrmap[key][3])
+                                attr.get_value(), self.attrmap[key][2])
             else:
                 #field only present in citation.
                 if lower:
