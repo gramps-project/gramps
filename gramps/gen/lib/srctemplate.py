@@ -38,6 +38,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .srcattrtype import *
+from .date import Date
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +92,7 @@ class SrcTemplate(object):
     """
     UNKNOWN     = -1
     CUSTOM      = 0
-    
+
     #SRCTEMPLATE has some predefined values which map to citation styles
     ESM100 = 17
     ESM101 = 18
@@ -454,9 +455,9 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Report Title'), '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
                 None, None),
-                ('', SrcAttributeType.TYPE, _('Item Type'), 'to', EMPTY, False, False, EMPTY, GED_PUBINF,
+                ('', SrcAttributeType.TYPE, _('Item Type'), '', EMPTY, False, False, EMPTY, GED_PUBINF,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_PUBINF,
+                (' to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_PUBINF,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Report Date'), '.', EMPTY, False, False, EMPTY, GED_PUBINF,
                 None, None),
@@ -476,9 +477,9 @@ class SrcTemplate(object):
                 None, None),
                 ('p.', SrcAttributeType.PAGE, _('Page(s)'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.TYPE, _('Item Type'), 'to', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.TYPE, _('Item Type'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Report Date'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -876,7 +877,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ')', EMPTY, True, False, EMPTY, GED_PUBINF,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                (' to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -894,7 +895,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ')', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -910,9 +911,9 @@ class SrcTemplate(object):
                 None, None),
                 ],
             REF_TYPE_S: [
-                ('', SrcAttributeType.AUTHOR, _('Writer'), 'to', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.AUTHOR, _('Writer'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Record Date(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -984,7 +985,7 @@ class SrcTemplate(object):
             REF_TYPE_F: [
                 ('', SrcAttributeType.AUTHOR, _('Author (Grantor)'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.ID, _('Record ID'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1006,7 +1007,7 @@ class SrcTemplate(object):
             REF_TYPE_S: [
                 ('', SrcAttributeType.AUTHOR, _('Author (Grantor)'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.ID, _('Record ID'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1030,7 +1031,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ',', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1052,7 +1053,7 @@ class SrcTemplate(object):
             REF_TYPE_S: [
                 ('', SrcAttributeType.AUTHOR, _('Writer'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Record Date(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1072,7 +1073,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ',', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1094,7 +1095,7 @@ class SrcTemplate(object):
             REF_TYPE_S: [
                 ('', SrcAttributeType.AUTHOR, _('Writer'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1110,9 +1111,9 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.TITLE, _('Report Title'), '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
                 None, None),
-                ('', SrcAttributeType.TYPE, _('Item Type'), 'to', EMPTY, False, False, EMPTY, GED_TITLE,
+                ('', SrcAttributeType.TYPE, _('Item Type'), '', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), '', EMPTY, False, False, EMPTY, GED_TITLE,
+                (' to', SrcAttributeType.RECIPIENT, _(''), '', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.ADDRESS, _('Recipient Address'), ',', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
@@ -1136,9 +1137,9 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.PAGE, _('Page(s)'), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.TYPE, _('Item Type'), 'to', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.TYPE, _('Item Type'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.ADDRESS, _('Recipient Address'), '', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
@@ -1302,7 +1303,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ')', EMPTY, True, False, EMPTY, GED_PUBINF,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                (' to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -1320,7 +1321,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.ADDRESS, _('Writer\'s Address'), ')', EMPTY, True, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1338,7 +1339,7 @@ class SrcTemplate(object):
             REF_TYPE_S: [
                 ('', SrcAttributeType.AUTHOR, _('Writer'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Record Date(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1838,7 +1839,7 @@ class SrcTemplate(object):
                 None, None),
                 ('', SrcAttributeType.DATE, _('Record Date(s)'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ';', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.REPOSITORY, _('Record Holder'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1894,7 +1895,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.LOCATION, _(''), ')', EMPTY, False, False, EMPTY, GED_PUBINF,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
+                (' to', SrcAttributeType.RECIPIENT, _(''), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), '.', EMPTY, False, False, EMPTY, GED_TITLE,
                 None, None),
@@ -1906,7 +1907,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.LOCATION, _(''), ')', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.TYPE, _('Item Type'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -1920,7 +1921,7 @@ class SrcTemplate(object):
                 None, None),
                 ('(', SrcAttributeType.LOCATION, _(''), ')', EMPTY, False, False, SHORTERALG_LOC, EMPTY,
                 None, None),
-                ('to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.DATE, _('Record Date(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -7960,9 +7961,9 @@ class SrcTemplate(object):
                 None, None),
                 ],
             REF_TYPE_F: [
-                ('', SrcAttributeType.AUTHOR, _('Author (Grantor)'), 'to', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.AUTHOR, _('Author (Grantor)'), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.ID, _('Record ID'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -7984,9 +7985,9 @@ class SrcTemplate(object):
                 None, None),
                 ],
             REF_TYPE_S: [
-                ('', SrcAttributeType.AUTHOR, _(''), 'to', EMPTY, False, False, EMPTY, EMPTY,
+                ('', SrcAttributeType.AUTHOR, _(''), '', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
-                ('', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                (' to', SrcAttributeType.RECIPIENT, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
                 ('', SrcAttributeType.ID, _('Record ID'), ',', EMPTY, False, False, EMPTY, EMPTY,
                 None, None),
@@ -8190,17 +8191,20 @@ class SrcTemplate(object):
                 raise NotImplementedError
         self.template_key = template_key
 
-    def set_attr_list(self, attr_list, attr_list_citation=None):
+    def set_attr_list(self, attr_list, attr_list_citation=None, date_citation=None):
         """
         Set the attribute list of this template. Setting once for different
         references saves some time.
         attr_list should be the source attribute list
         If citation given, citation attributes overrule source attributes for 
         the Full and Short references
+        The citation date is not stored as attribute, so pass Date() object via
+        date_citation if a date is known.
         """
         self.empty()
         self.attr_list = attr_list or []
         self.attr_list_cite = attr_list_citation or []
+        self.date_citation = date_citation
         # store attributes in a dict last to first. this overwrites data so first
         # attribute will be the one taken if duplicates are present
         for attr in self.attr_list[::-1]:
@@ -8260,6 +8264,10 @@ class SrcTemplate(object):
                 else:
                     self.attrmap[key] = (None,
                                 attr.get_value(), None)
+        if self.date_citation:
+            #we store the date of the citation in attrmap
+            key = SrcAttributeType.DATE
+            self.attrmap[key] = (None, self.date_citation, None)
 
     def reference_L(self, attr_list=None):
         """
@@ -8349,6 +8357,9 @@ class SrcTemplate(object):
                 #we apply the shortening algorithm
                 ## TODO: not implemented yet
                 pass
+            #if field is a Date object, we now convert to string
+            if isinstance(field, Date):
+                field = str(field)
             if field.strip():
                 fieldadded[-1] = True
                 ref[-1] += ldeltodo
@@ -8395,7 +8406,7 @@ class SrcTemplate(object):
                     curval = ref[-1]
                     if len(curval) and curval[-1] == '.':
                         pass
-                    elif len(curval) and curval[-1] == ',':
+                    elif len(curval) and curval[-1] in [',', ';']:
                         ref[-1] = ref[-1][:-1] + rdel
                     else:
                         ref[-1] = ref[-1] + rdel
@@ -8403,7 +8414,7 @@ class SrcTemplate(object):
                     fieldadded[-1] = False
                 elif len(rdel) and rdel[0] == ',':
                     curval = ref[-1]
-                    if len(curval) and curval[-1] == '.':
+                    if len(curval) and curval[-1] in ['.', ';']:
                         pass
                     elif len(curval) and curval[-1] == ',':
                         pass

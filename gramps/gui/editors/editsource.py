@@ -361,10 +361,12 @@ class EditSource(EditPrimary):
         #set new attrlist in template
         if self.citation_loaded:
             citeattr = self.citation.get_attribute_list()
+            citedate = self.citation.get_date_object()
         else:
             citeattr = None
-        self.srctemp.set_attr_list(self.obj.get_attribute_list(), citeattr)
-        
+            citedate = None
+        self.srctemp.set_attr_list(self.obj.get_attribute_list(), citeattr,
+                                   citedate)
         
         #set fields with the template
         self.refL.set_text(self.srctemp.reference_L())
@@ -503,8 +505,8 @@ class EditSource(EditPrimary):
         self._add_tab(notebook_ref, self.reftab)
         self.track_ref_for_deletion("reftab")
         #reftab contains the citation template fields
-        self.tmplfields = TemplateFields(self.dbstate.db,
-                self.glade.get_object('grid_citefields'),
+        self.tmplfields = TemplateFields(self.dbstate.db, self.uistate,
+                self.track, self.glade.get_object('grid_citefields'),
                 self.obj, self.citation, None, self.callback_cite_changed)
         self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
 
@@ -821,6 +823,8 @@ class EditSource(EditPrimary):
             #error in database, link to citation handle that does not exist
             raise Exception
         self.citation.unserialize(newcite.serialize())
+        #we have a citation:
+        self.citation_loaded = True
         if not self.citation_ready:
             self._setup_citation_fields()
             self._create_citation_tabbed_pages()
@@ -830,7 +834,6 @@ class EditSource(EditPrimary):
         self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
         self.cinf.set_visible(True)
         self.btnclose_cite.set_sensitive(True)
-        self.citation_loaded = True
         self.notebook_ref.set_visible(True)
 
     def citation_changed(self):

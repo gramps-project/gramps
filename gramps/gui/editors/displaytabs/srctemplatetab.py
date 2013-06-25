@@ -47,7 +47,8 @@ from gramps.gen.lib import SrcAttribute, SrcTemplate
 from gramps.gen.plug.report.utils import get_address_ref_str
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
-from ...widgets import UndoableEntry, MonitoredEntryIndicator
+from ...widgets import (UndoableEntry, MonitoredEntryIndicator, MonitoredDate,
+                        ValidatableMaskedEntry)
 from .grampstab import GrampsTab
 
 #-------------------------------------------------------------------------
@@ -92,8 +93,8 @@ class SrcTemplateTab(GrampsTab):
         self._set_label(show_image=False)
         widget.connect('key_press_event', self.key_pressed)
         
-        self.tmplfields = TemplateFields(self.dbstate.db,
-                self.glade.get_object('gridfields'),
+        self.tmplfields = TemplateFields(self.dbstate.db, self.uistate,
+                self.track, self.glade.get_object('gridfields'),
                 self.src, None, self.callback_src_changed, None)
         self.autotitle = self.glade.get_object("autotitle_checkbtn")
         #self.vbox_fields_label = self.glade.get_object('fields_01')
@@ -174,8 +175,8 @@ class TemplateFields(object):
     Class to manage fields of a source template.
     Can be used on source and on citation level.
     """
-    def __init__(self, db, grid, src, cite, callback_src_changed,
-                 callback_cite_changed):
+    def __init__(self, db, uistate, track, grid, src, cite,
+                 callback_src_changed, callback_cite_changed):
         """
         grid: The Gtk.Grid that should hold the fields
         src : The source to which the fields belong
@@ -183,6 +184,8 @@ class TemplateFields(object):
         """
         self.gridfields = grid
         self.db = db
+        self.uistate = uistate
+        self.track = track
         self.src = src
         self.cite = cite
         self.callback_src_changed = callback_src_changed
@@ -191,6 +194,7 @@ class TemplateFields(object):
         #storage
         self.lbls = []
         self.inpts = []
+        self.btns = []
         self.monentry = []
 
     def reset_template_fields(self, index):
@@ -212,9 +216,12 @@ class TemplateFields(object):
             self.gridfields.remove(inpt)
         for mon in self.monentry:
             del mon
+        for btn in self.btns:
+            self.gridfields.remove(btn)
         self.lbls = []
         self.inpts = []
         self.monentry = []
+        self.btns = []
         row = 1
         # now add new fields
         fieldsL = []
@@ -313,6 +320,10 @@ class TemplateFields(object):
                 SrcAttributeType.REPOSITORY_ADDRESS,
                 SrcAttributeType.REPOSITORY_CALL_NUMBER]:
             self._add_repo_entry(srcattrtype, row)
+        elif self.cite and srcattrtype == SrcAttributeType.DATE:
+            #the DATE on level citation is not an attribute but stored
+            #as date in the citation
+            self._add_cite_date(row)
         else:
             #setup entry
             self._add_normal_entry(srcattrtype, row, hint, tooltip)
@@ -338,6 +349,30 @@ class TemplateFields(object):
                            hint or "",
                            read_only=self.db.readonly, 
                            parameter=srcattrtype)
+
+    def _add_cite_date(self, row):
+        """
+        Add the entry corresponding to the date field on citation level
+        """
+        inpt = ValidatableMaskedEntry()
+        inpt.set_halign(Gtk.Align.FILL)
+        inpt.set_hexpand(True)
+        inpt.set_tooltip_text("The date of the entry in the source you are"
+            " referencing with this citation. E.g. the date a house was visited"
+            " during a census , or the date an entry was made in a"
+            " birth log/registry")
+        self.gridfields.attach(inpt, 1, row-1, 1, 1)
+        self.inpts.append(inpt)
+        btn = self.make_btn('gramps-date')
+        self.gridfields.attach(btn, 2, row-1, 1, 1)
+        self.btns.append(btn)
+        MonitoredDate(
+            inpt,
+            btn, 
+            self.cite.get_date_object(),
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
     def _add_repo_entry(self, srcattrtype, row):
         """
@@ -374,6 +409,16 @@ class TemplateFields(object):
             lbl.set_halign(Gtk.Align.START)
             self.gridfields.attach(lbl, 1, row-1, 1, 1)
             self.lbls.append(lbl)
+
+    def make_btn(self, stockid):
+        """
+        Create a button for use with a stock image
+        """
+        image = Gtk.Image.new_from_stock('gramps-date', Gtk.IconSize.MENU)
+        btn = Gtk.Button()
+        btn.set_image(image)
+        btn.set_always_show_image(True)
+        return btn
 
     def get_src_field(self, srcattrtype):
         return self.__get_field(srcattrtype, self.src)
