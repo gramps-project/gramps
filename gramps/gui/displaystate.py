@@ -538,7 +538,11 @@ class DisplayState(Callback):
             self.window.get_window().set_cursor(self.BUSY_CURSOR)
         else:
             self.window.get_window().set_cursor(self.cursor)
-        process_pending_events()
+        if self.window.get_window().is_visible():
+            #avoid critical gdk error: 
+            #Gdk-CRITICAL **: gdk_error_trap_pop_internal: assertion `trap != NULL' failed
+            #only process events if window is actually visible
+            process_pending_events()
 
     def set_open_widget(self, widget):
         self.widget = widget
