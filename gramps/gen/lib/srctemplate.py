@@ -431,13 +431,11 @@ class SrcTemplate(object):
             else:
                 #field only present in citation.
                 if lower:
-                    #store also in normal already value of short, keep None
-                    #for source fields
-                    self.attrmap[key] = (None,
-                                attr.get_value(), attr.get_value())
+                    #store also in normal already value of short, keep empty
+                    #string for source fields
+                    self.attrmap[key] = ('', attr.get_value(), attr.get_value())
                 else:
-                    self.attrmap[key] = (None,
-                                attr.get_value(), None)
+                    self.attrmap[key] = ('', attr.get_value(), None)
         if self.date_citation:
             #we store the date of the citation in attrmap
             key = SrcAttributeType.DATE
@@ -455,25 +453,25 @@ class SrcTemplate(object):
         self.refL = self._reference(REF_TYPE_L)
         return self.refL
 
-    def reference_S(self, attr_list=None):
+    def reference_S(self, attr_list=None, attr_list_citation=None, date_citation=None):
         """
         Return the short reference based on the passed source attribute list
         If attr_list is None, same list as before is used.
         """
-        if attr_list:
-            self.set_attr_list(attr_list)
+        if attr_list or attr_list_citation or date_citation:
+            self.set_attr_list(attr_list, attr_list_citation, date_citation)
         if self.refS is not None:
             return self.refS
         self.refS = self._reference(REF_TYPE_S)
         return self.refS
 
-    def reference_F(self, attr_list=None):
+    def reference_F(self, attr_list=None, attr_list_citation=None, date_citation=None):
         """
         Return the full reference based on the passed source attribute list
         If attr_list is None, same list as before is used.
         """
-        if attr_list:
-            self.set_attr_list(attr_list)
+        if attr_list or attr_list_citation or date_citation:
+            self.set_attr_list(attr_list, attr_list_citation, date_citation)
         if self.refF is not None:
             return self.refF
         self.refF = self._reference(REF_TYPE_F)

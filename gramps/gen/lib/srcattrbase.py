@@ -69,8 +69,8 @@ class SrcAttributeBase(AttributeRootBase):
                     templ = val
                 else:
                     # a template not in the predefined list. convert to unknown
-                    print ('Unknown Template: Keyerror "', val,
-                           '"for now UNKNOWN taken.\nDownload required template style!')
+                    print ('Unknown Template: Keyerror:', val,
+                           'For now UNKNOWN is used.\nDownload required template style!')
                 break
         try:
             retval = (templ, SrcTemplate.template_description(templ))
