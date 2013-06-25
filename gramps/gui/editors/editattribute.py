@@ -107,7 +107,8 @@ class EditAttributeRoot(EditSecondary):
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
-            custom_values=self.alist
+            custom_values=self.alist,
+            ignore_values=self.obj.get_type().get_ignore_list()
             )
 
     def _create_tabbed_pages(self):
