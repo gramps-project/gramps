@@ -452,7 +452,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
                     col, text, inv = search[1]
-                    func = lambda x: self._get_value(x, col) or ""
+                    func = lambda x: self._get_value(x, col, store_cache=False) or ""
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                     else:
@@ -912,7 +912,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         else:
             return val
 
-    def _get_value(self, handle, col, secondary=False):
+    def _get_value(self, handle, col, secondary=False, store_cache=True):
         """
         Returns the contents of a given column of a gramps object
         """
@@ -923,7 +923,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 data = self.map(handle)
             else:
                 data = self.map2(handle)
-        if not self._in_build:
+        if not self._in_build and store_cache:
             self.lru_data[handle] = data
 
         try:
