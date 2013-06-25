@@ -386,6 +386,16 @@ class BasePluginManager(object):
         """
         return self.__pgr.sidebar_plugins()
     
+    def get_reg_srctemplates(self):
+        """ Return list of registered sidebars. Only non-hidden templates 
+        are returned, as srctemplate plugins can redifine templates of other
+        plugins. By setting hidden, user can select style he wants
+        """
+        #sr
+        hidden_plugins = set(config.get('plugin.hiddenplugins'))
+        return [plg for plg in self.__pgr.srctemplate_plugins()
+                                if plg.id not in hidden_plugins]
+
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict

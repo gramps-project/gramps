@@ -23,6 +23,10 @@
 """
 SrcAttributeBase class for GRAMPS.
 """
+from __future__ import print_function
+
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -61,26 +65,23 @@ class SrcAttributeBase(AttributeRootBase):
         for attr in self.attribute_list:
             if int(attr.get_type()) == SrcAttributeType.SRCTEMPLATE:
                 val = attr.get_value()
-                try:
-                    templ = SrcTemplate.K2I_SRCTEMPLATEMAP[val]
-                except KeyError:
+                if SrcTemplate.template_defined(val):
+                    templ = val
+                else:
                     # a template not in the predefined list. convert to unknown
-                    print ('SrcAttributeBase: Keyerror "', val,
-                           '"for now UNKNOWN taken, later custom templates?')
+                    print ('Unknown Template: Keyerror "', val,
+                           '"for now UNKNOWN taken.\nDownload required template style!')
                 break
         try:
-            retval = (templ, SrcTemplate.I2S_SRCTEMPLATEMAP[templ], 
-                       SrcTemplate.I2K_SRCTEMPLATEMAP[templ])
+            retval = (templ, SrcTemplate.template_description(templ))
         except KeyError:
             #templ is not present, return the default GEDCOM value as actual
             #template
             templ = SrcTemplate.UNKNOWN
-            retval = (templ, 
-                      SrcTemplate.I2S_SRCTEMPLATEMAP[SrcTemplate.UNKNOWN], 
-                      SrcTemplate.I2K_SRCTEMPLATEMAP[SrcTemplate.UNKNOWN])
+            retval = (templ, _('Unknown'))
         return retval
 
-    def set_source_template(self, tempindex, tempcustom_str):
+    def set_source_template(self, template):
         """
         Set the source template of the source/citation
         This is the value of the first source template in the attribute list
@@ -101,11 +102,8 @@ class SrcAttributeBase(AttributeRootBase):
             #we create a new attribute and add it
             attrtemp = SrcAttribute()
             self.add_attribute(attrtemp)
-        if tempindex == SrcTemplate.UNKNOWN or \
-        (tempindex == SrcTemplate.CUSTOM and tempcustom_str.strip() == ''):
+        if template == SrcTemplate.UNKNOWN:
             self.remove_attribute(attrtemp)
-        elif not (tempindex == SrcTemplate.CUSTOM):
-            attrtemp.set_value(SrcTemplate.I2K_SRCTEMPLATEMAP[tempindex])
         else:
             #custom key, store string as is
-            attrtemp.set_value(tempindex)
+            attrtemp.set_value(template)

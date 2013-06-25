@@ -123,7 +123,7 @@ class SrcTemplateTab(GrampsTab):
         :param scrolled: GtkScrolledWindow to which to add treeview with templates
         """
         templ = self.src.get_source_template()
-        self.temp_tv = SrcTemplateTreeView(templ[2],
+        self.temp_tv = SrcTemplateTreeView(templ[0],
                                 sel_callback=self.on_template_selected)
         scrolled.add(self.temp_tv)
         
@@ -155,15 +155,15 @@ class SrcTemplateTab(GrampsTab):
         # which will update the title in the source object
         self.callback_src_changed()
 
-    def on_template_selected(self, index, key):
+    def on_template_selected(self, key):
         """
         Selected template changed, we save this and update interface
         """
-        self.src.set_source_template(index, key)
+        self.src.set_source_template(key)
         self.callback_src_changed(templatechanged=True)
         
         #a predefined template, 
-        self.tmplfields.reset_template_fields(index)
+        self.tmplfields.reset_template_fields(key)
 
 #-------------------------------------------------------------------------
 #
@@ -197,15 +197,15 @@ class TemplateFields(object):
         self.btns = []
         self.monentry = []
 
-    def reset_template_fields(self, index):
+    def reset_template_fields(self, key):
         """
         Method that constructs the actual fields where user can enter data.
         Template must be the index of the template.
         """
-        #obtain the template of the index
-        if index in SrcTemplate.EVIDENCETEMPLATES:
+        #obtain the template of the key
+        if SrcTemplate.template_defined(key):
             #a predefined template, 
-            template = SrcTemplate.EVIDENCETEMPLATES[index]
+            template = SrcTemplate.get_template(key)
         else:
             return
         
@@ -467,45 +467,3 @@ class TemplateFields(object):
             foundattr.set_type(srcattrtype)
             foundattr.set_value(value)
             obj.add_attribute(foundattr)
-
-##    def setup_autocomp_combobox(self):
-##        """
-##        Experimental code to set up a combobox with all templates.
-##        This is too slow, we use treeview in second attempt
-##        """
-##        self.srctempcmb = Gtk.ComboBox(has_entry=True)
-##        ignore_values = []
-##        custom_values = []
-##        srcattr = SrcAttributeType()
-##        default = srcattr.get_templatevalue_default()
-##        maptempval = srcattr.get_templatevalue_map().copy()
-##        if ignore_values :
-##            for key in list(maptempval.keys()):
-##                if key in ignore_values and key not in (None, default):
-##                    del map[key]
-##
-##        self.sel = StandardCustomSelector(
-##            maptempval, 
-##            self.srctempcmb, 
-##            srcattr.get_custom(), 
-##            default, 
-##            additional=custom_values)
-##
-##        templ = self.src.get_source_template()
-##        self.sel.set_values((templ[0], templ[1]))
-##        self.srctempcmb.set_sensitive(not self.readonly)
-##        self.srctempcmb.connect('changed', self.on_change_template)
-##        srctemphbox.pack_start(self.srctempcmb, False, True, 0)
-##        
-##        return topvbox
-
-##    def fix_value(self, value):
-##        if value[0] == SrcAttributeType.CUSTOM:
-##            return value
-##        else:
-##            return (value[0], '')
-##
-##    def on_change_template(self, obj):
-##        #value = self.fix_value(self.srctempcmb.get_values())
-##        value = self.sel.get_values()
-##        self.src.set_source_template(value[0], value[1])

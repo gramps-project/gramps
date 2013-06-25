@@ -78,19 +78,14 @@ class SrcTemplateTreeView(Gtk.TreeView):
         """
         Obtains all templates and stores them in a TreeStore
         """
-        srctemp = SrcTemplate()
-        self.I2Str = srctemp.I2S_SRCTEMPLATEMAP
-        self.I2Key = srctemp.I2K_SRCTEMPLATEMAP
-        self.Str2I = srctemp.S2I_SRCTEMPLATEMAP
-        self.Key2I = srctemp.K2I_SRCTEMPLATEMAP
         self.Key2Path = {}
-        # store (index, key, src_type)
-        self.model = Gtk.TreeStore(int, str, str)
-        alltexts = sorted(self.Str2I.keys())
+        # store (key, src_type)
+        self.model = Gtk.TreeStore(str, str)
+        alltexts = sorted((SrcTemplate.template_description(x), x) for x in SrcTemplate.all_templates())
         parentiter = None
         parentiterlev1 = None
         prevstrval = ['', '']
-        for alltext in alltexts:
+        for alltext, key in alltexts:
             vals = alltext.split('-')
             if len(vals) > 3:
                 vals = [vals[0], vals[1], ' - '.join(vals[2:])]
@@ -105,8 +100,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
             if len(vals) < 3 :
                 truevals[:len(vals)] = vals[:]
                 vals = truevals
-            index = self.Str2I[alltext]
-            row = [index, self.I2Key[index], lastval]
+            row = [key, lastval]
             iter = None
             if prevstrval[0] == vals[0] and prevstrval[1] == vals[1]:
                 #same parentiter
@@ -115,33 +109,33 @@ class SrcTemplateTreeView(Gtk.TreeView):
                 #up one parentiter, make new sublevel2 if needed
                 parentiter = parentiterlev1
                 if vals[2]:
-                    parentiter = self.model.append(parentiter, [-10, '', vals[1]])
+                    parentiter = self.model.append(parentiter, ['', vals[1]])
                 iter = self.model.append(parentiter, row)
             else:
                 #new value
                 parentiterlev1 = None
                 if vals[2] and vals[1]:
                     #new sublevel1  and 2 needed
-                    parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
+                    parentiterlev1 = self.model.append(None, ['', vals[0]])
                     #make sublevel2
-                    parentiter= self.model.append(parentiterlev1, [-10, '', vals[1]])
+                    parentiter= self.model.append(parentiterlev1, ['', vals[1]])
                     iter = self.model.append(parentiter, row)
                 elif vals[1]:
                     #only new sublevel1 needed
-                    parentiterlev1 = self.model.append(None, [-10, '', vals[0]])
+                    parentiterlev1 = self.model.append(None, ['', vals[0]])
                     parentiter = parentiterlev1
                     iter = self.model.append(parentiter, row)
                 else:
                     #only a top level
                     iter = self.model.append(None, row)
             #store key to path
-            self.Key2Path[row[1]] = self.model.get_path(iter)
+            self.Key2Path[row[0]] = self.model.get_path(iter)
             prevstrval = [vals[0], vals[1]]
 
     def make_columns(self):
         #make the column in the treeview
         renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_("Template"), renderer, text=2)
+        column = Gtk.TreeViewColumn(_("Template"), renderer, text=1)
         self.append_column(column)
         #no headers needed:
         self.set_headers_visible (False)
@@ -151,7 +145,6 @@ class SrcTemplateTreeView(Gtk.TreeView):
         highlight key in the view
         """
         #we determine the path of key
-        
         path = self.Key2Path[key]
         iter_ = self.model.get_iter(path)
         if iter_:
@@ -169,7 +162,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
             self.selection.unselect_all()
             self.selection.select_path(path)
             self.scroll_to_cell(path, None, 1, 0.5, 0)
-            self.sel_callback(self.Key2I[key], key)
+            self.sel_callback(key)
 
     def get_selected(self):
         """
@@ -177,7 +170,7 @@ class SrcTemplateTreeView(Gtk.TreeView):
         """
         (model, node) = self.selection.get_selected()
         if node:
-            return (model.get_value(node, 0), model.get_value(node,1), node)
+            return (model.get_value(node, 0), node)
         return None
 
     def _on_button_release(self, obj, event):
@@ -186,8 +179,8 @@ class SrcTemplateTreeView(Gtk.TreeView):
         """
         if event.type == Gdk.EventType.BUTTON_RELEASE and event.button == 1:
             ref = self.get_selected()
-            if ref and ref[0] != -10:
-                self.sel_callback(ref[0], ref[1])
+            if ref and ref[0] != '':
+                self.sel_callback(ref[0])
         return False
     
     def _on_key_press_event(self, widget, event):
@@ -195,10 +188,10 @@ class SrcTemplateTreeView(Gtk.TreeView):
             if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
                 ref = self.get_selected()
                 if ref:
-                    if ref[0] != -10:
-                        self.sel_callback(ref[0], ref[1])
+                    if ref[0] != '':
+                        self.sel_callback(ref[0])
                     else:
-                        path = self.model.get_path(ref[2])
+                        path = self.model.get_path(ref[0])
                         if self.row_expanded(path):
                             self.collapse_row(path)
                         else:

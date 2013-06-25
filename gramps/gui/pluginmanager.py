@@ -317,4 +317,10 @@ class GuiPluginManager(Callback):
     def get_reg_general(self, category=None):
         return [plg for plg in self.basemgr.get_reg_general(category)
                                 if plg.id not in self.__hidden_plugins]
-
+    
+    def get_reg_srctemplates(self):
+        """
+        Obtain registered SrcTemplates
+        Srctemplates are already filtered on hidden in the base manager
+        """
+        return self.basemgr.get_reg_srctemplates()

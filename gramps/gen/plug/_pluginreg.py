@@ -74,8 +74,9 @@ VIEW        = 8
 RELCALC     = 9
 GRAMPLET    = 10
 SIDEBAR     = 11
+SRCTEMPLATE = 12
 PTYPE       = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
-               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR]
+               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, SRCTEMPLATE]
 PTYPE_STR   = {
         REPORT: _('Report') , 
         QUICKREPORT: _('Quickreport'), 
@@ -89,6 +90,7 @@ PTYPE_STR   = {
         RELCALC: _('Relationships'), 
         GRAMPLET: _('Gramplet'),
         SIDEBAR: _('Sidebar'),
+        SRCTEMPLATE: _('Source Templates'),
         }
 
 #possible report categories
@@ -990,6 +992,7 @@ def make_environment(**kwargs):
         'RELCALC': RELCALC,
         'GRAMPLET': GRAMPLET,
         'SIDEBAR': SIDEBAR,
+        'SRCTEMPLATE': SRCTEMPLATE,
         'CATEGORY_TEXT': CATEGORY_TEXT,
         'CATEGORY_DRAW': CATEGORY_DRAW,
         'CATEGORY_CODE': CATEGORY_CODE,
@@ -1261,6 +1264,11 @@ class PluginRegister(object):
         """Return a list of PluginData that are of type SIDEBAR
         """
         return self.type_plugins(SIDEBAR)
+
+    def srctemplate_plugins(self):
+        """Return a list of PluginData that are of type SRCTEMPLATE
+        """
+        return self.type_plugins(SRCTEMPLATE)
 
     def filter_load_on_reg(self):
         """Return a list of PluginData that have load_on_reg == True
