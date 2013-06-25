@@ -48,6 +48,7 @@ from gen.lib.grampstype import GrampsType
 #
 #------------------------------------------------------------------------
 _LANG_MAP = {
+    "ar" : _("Arabic"),
     "bg" : _("Bulgarian"),
     "ca" : _("Catalan"),
     "cs" : _("Czech"),
