@@ -306,7 +306,7 @@ def _record(lowest, highest, value, text, handle_type, handle):
 
 
 def _output(value):
-    return str(value)
+    return unicode(value)
 
 
 #------------------------------------------------------------------------
