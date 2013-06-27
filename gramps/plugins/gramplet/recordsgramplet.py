@@ -71,7 +71,7 @@ class RecordsGramplet(Gramplet):
                     rank = number
                 self.append_text("\n  %s. " % (rank+1))
                 self.link(cuni(name), handletype, handle)
-                self.append_text(" (%s)" % str(value))
+                self.append_text(" (%s)" % value)
             self.append_text("\n")
         self.append_text("", scroll_to='begin')
         yield False
