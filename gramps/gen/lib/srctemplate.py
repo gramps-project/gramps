@@ -197,9 +197,10 @@ def load_srctemplate_csv(csvfile):
         #             .replace('[', '').replace(']','').replace('/', '_OR_')\
         #             .replace(',', '').replace('.', '').replace(':', '')\
         #             .replace('-', '_')
-        field_type = int(SrcAttributeType(field_type))
-        if field_type == SrcAttributeType.CUSTOM:
-            raise NotImplementedError, "field must be a known SrcAttributeType"
+        ifield_type = int(SrcAttributeType(field_type))
+        if ifield_type == SrcAttributeType.CUSTOM:
+            raise NotImplementedError, "field must be a known SrcAttributeType, is " + str(SrcAttributeType(field_type))
+        field_type = ifield_type
         #field_descr =  field.replace('[', '').replace(']','').lower().capitalize()
         field_label = row[LABELCOL].strip()
         #field_label = field_label.replace("'", "\\'")
