@@ -197,7 +197,11 @@ def load_srctemplate_csv(csvfile):
         #             .replace('[', '').replace(']','').replace('/', '_OR_')\
         #             .replace(',', '').replace('.', '').replace(':', '')\
         #             .replace('-', '_')
-        ifield_type = int(SrcAttributeType(field_type))
+        
+        #we need to force English SrcAttributeType
+        ifield_type = SrcAttributeType()
+        ifield_type.set_from_xml_str(field_type)
+        ifield_type = int(SrcAttributeType(ifield_type))
         if ifield_type == SrcAttributeType.CUSTOM:
             raise NotImplementedError, "field must be a known SrcAttributeType, is " + str(SrcAttributeType(field_type))
         field_type = ifield_type
