@@ -405,12 +405,15 @@ if available:
             navtypes=["Media"],
             )
 else:
-    import logging
-    logging.warning(_("GExiv2 module not loaded. "
-                      "Image metadata functionality will not be available.\n"
-                      "To build it for Gramps see http://www.gramps-project.org/"
-                      "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection"
-                      "_Conversion#GExiv2_for_Image_metadata"))    
+    from gramps.gen.config import config
+    if not config.get('behavior.ignore-gexiv2'):
+        import logging
+        logging.warning(_("GExiv2 module not loaded. Image metadata "
+                          "functionality will not be available.\n"
+                          "To build it for Gramps see "
+                          "http://www.gramps-project.org/wiki/index.php?"
+                          "title=GEPS_029:_GTK3-GObject_introspection"
+                          "_Conversion#GExiv2_for_Image_metadata"))    
 
 register(GRAMPLET, 
          id="Person Residence", 
