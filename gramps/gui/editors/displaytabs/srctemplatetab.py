@@ -202,6 +202,7 @@ class TemplateFields(object):
         Method that constructs the actual fields where user can enter data.
         Template must be the index of the template.
         """
+        show_default_cite_fields = False #we don't do this for now
         #obtain the template of the key
         if SrcTemplate.template_defined(key):
             #a predefined template, 
@@ -260,7 +261,7 @@ class TemplateFields(object):
         # now add citation values (optional on source level)
         fieldsF = [fielddef for fielddef in template[REF_TYPE_F] 
                                             if fielddef[1] not in fieldsL]
-        if fieldsF and self.cite is None:
+        if fieldsF and show_default_cite_fields and self.cite is None:
             self.gridfields.insert_row(row)
             lbl = Gtk.Label('')
             lbl.set_markup(_("<b>Optional Default Citation Fields:</b>"))
@@ -268,11 +269,12 @@ class TemplateFields(object):
             self.gridfields.attach(lbl, 0, row-1, 2, 1)
             self.lbls.append(lbl)
             row += 1
-        for fielddef in fieldsF:
-            self._add_entry(row, fielddef[1], fielddef[2],
-                    fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
-                    fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
-            row += 1
+        if show_default_cite_fields or (not self.cite is None):
+            for fielddef in fieldsF:
+                self._add_entry(row, fielddef[1], fielddef[2],
+                        fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
+                        fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
+                row += 1
         fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
                             if fielddef[1] not in fieldsL and fielddef[7]==EMPTY]
         if not self.cite is None:
@@ -285,13 +287,14 @@ class TemplateFields(object):
                 self.gridfields.attach(lbl, 0, row-1, 2, 1)
                 self.lbls.append(lbl)
                 row += 1
-        for fielddef in fieldsS:
-            lblval = fielddef[2]
-            if lblval:
-                lblval = _('%(normal_version_label)s (Short)') % {
-                                'normal_version_label': lblval}
-            self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
-            row += 1
+        if show_default_cite_fields or (not self.cite is None):
+            for fielddef in fieldsS:
+                lblval = fielddef[2]
+                if lblval:
+                    lblval = _('%(normal_version_label)s (Short)') % {
+                                    'normal_version_label': lblval}
+                self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
+                row += 1
 
         self.gridfields.show_all()
 
