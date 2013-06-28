@@ -39,7 +39,7 @@ from .srcattrbase import SrcAttributeBase
 from .srctemplate import SrcTemplate
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
-from ..constfunc import cuni
+from ..constfunc import cuni, deprecated
 from .handle import Handle
 
 #-------------------------------------------------------------------------
@@ -273,6 +273,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """
         self.title = title
 
+    @deprecated
     def get_title(self):
         """
         Return the descriptive title of the Place object.
@@ -286,6 +287,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
 ##        """Set the author of the Source."""
 ##        self.author = author
 
+    @deprecated
     def get_author(self):
         """Return the author of the Source.
         Author depends on the source template. The logic is:
@@ -302,6 +304,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
 ##        """Set the publication information of the Source."""
 ##        self.pubinfo = text
 
+    @deprecated
     def get_publication_info(self):
         """Return the publication information of the Source.
         PubInfo depends on the source template. The logic is:
@@ -318,8 +321,10 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """Set the title abbreviation of the Source."""
         self.abbrev = abbrev
 
+    @deprecated
     def get_abbreviation(self):
         """Return the title abbreviation of the Source."""
+        print 'test'
         return self.abbrev
 
     def add_repo_reference(self, repo_ref):

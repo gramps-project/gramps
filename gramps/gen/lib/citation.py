@@ -45,7 +45,7 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
-from ..constfunc import cuni
+from ..constfunc import cuni, deprecated
 from .handle import Handle
 
 #-------------------------------------------------------------------------
@@ -288,6 +288,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         """Set the page indicator of the Citation."""
         self.page = page
 
+    @deprecated
     def get_page(self):
         """Get the page indicator of the Citation."""
         return self.page
