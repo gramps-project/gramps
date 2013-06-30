@@ -205,8 +205,12 @@ class StyledTextEditor(Gtk.TextView):
 
         # we want to disable the unicode menu in the popup
         settings = Gtk.Settings.get_default()
-        self.show_unicode = settings.get_property('gtk-show-unicode-menu')
-        settings.set_property('gtk-show-unicode-menu', False)
+        try:
+            self.show_unicode = settings.get_property('gtk-show-unicode-menu')
+            settings.set_property('gtk-show-unicode-menu', False)
+        except:
+            #GTK 3.9+ no longer has show-unicode-menu
+            pass
         
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
