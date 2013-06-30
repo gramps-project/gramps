@@ -273,7 +273,6 @@ class Calendar(Report):
                                   db.get_number_of_people())
         people = self.filter.apply(self.database, people, 
                                    self._user.step_progress)
-        rel_calc = get_relationship_calculator()
         self._user.end_progress()
 
         self._user.begin_progress(_('Calendar Report'), 
