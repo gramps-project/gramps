@@ -463,7 +463,8 @@ class GrampletBar(Gtk.Notebook):
         """
         Called when the drop-down button is clicked.
         """
-        menu = Gtk.Menu()
+        self.menu = Gtk.Menu()
+        menu = self.menu
 
         ag_menu = Gtk.MenuItem(label=_('Add a gramplet'))
         nav_type = self.pageview.navigation_type()
