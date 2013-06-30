@@ -235,6 +235,7 @@ class MaskedEntry(UndoableEntry):
     __gtype_name__ = 'MaskedEntry'
 
     def __init__(self):
+        self._block_changed = False
         UndoableEntry.__init__(self)
 
         # connect in UndoableEntry:
@@ -253,7 +254,6 @@ class MaskedEntry(UndoableEntry):
 
         self._completion = None
         self._exact_completion = False
-        self._block_changed = False
         self.hasicon = False
 ##        self._icon = IconEntry(self)
 
@@ -1157,10 +1157,10 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.data_type = None
         self.mandatory = False
         self.error_icon = error_icon
+        self._block_changed = False
 
         MaskedEntry.__init__(self)
         
-        self._block_changed = False
         self._valid = True
         self._def_error_msg = None
         self._fade = FadeOut(self, err_color)
@@ -1171,7 +1171,8 @@ class ValidatableMaskedEntry(MaskedEntry):
 
     # Virtual methods
     def do_changed(self):
-        if self._block_changed:
+        block_changed = getattr(self, '_block_changed', True)
+        if block_changed:
             self.emit_stop_by_name('changed')
             return
         self.emit('content-changed')
