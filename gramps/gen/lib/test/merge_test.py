@@ -66,7 +66,7 @@ class CitationBaseTest:
     def test_citation_merge(self):
         citation = Citation()
         citation.set_reference_handle('123456')
-        citation.set_page('p.10')
+        citation.set_name('p.10')
         self.titanic.add_citation(citation.handle)
         self.ref_obj.add_citation(citation.handle)
         self.phoenix.merge(self.titanic)
@@ -385,10 +385,10 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         attr1.set_value(10)
         citation1 = Citation()
         citation1.set_reference_handle('123456')
-        citation1.set_page('p.10')
+        citation1.set_name('p.10')
         citation2 = Citation()
         citation2.set_reference_handle('234567')
-        citation2.set_page('p.20')
+        citation2.set_name('p.20')
         attr1.add_citation(citation1.handle)
         attr1.add_citation(citation2.handle)
         attr2 = Attribute()
@@ -396,10 +396,10 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         attr2.set_value(10)
         citation3 = Citation()
         citation3.set_reference_handle('123456')
-        citation3.set_page('p.10')
+        citation3.set_name('p.10')
         citation4 = Citation()
         citation4.set_reference_handle('654321')
-        citation4.set_page('p.20')
+        citation4.set_name('p.20')
         attr2.add_citation(citation3.handle)
         attr2.add_citation(citation4.handle)
         self.phoenix.add_attribute(attr1)
@@ -1539,11 +1539,11 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         MediaBaseTest):
     def setUp(self):
         self.phoenix = Source()
-        self.phoenix.set_title("Source 1")
+        self.phoenix.set_name("Source 1")
         self.titanic = Source()
-        self.titanic.set_title("Source 1")
+        self.titanic.set_name("Source 1")
         self.ref_obj = Source()
-        self.ref_obj.set_title("Source 1")
+        self.ref_obj.set_name("Source 1")
 
     def todo_test_replace(self):
         pass
@@ -1701,7 +1701,7 @@ class CitationBaseCheck(unittest.TestCase):
     def test_replace_newpresent(self):
         citation = Citation()
         citation.set_reference_handle('654321')
-        citation.set_page('p.10')
+        citation.set_name('p.10')
         citation2 = Citation()
         citation2.set_reference_handle('234567')
         self.phoenix.add_citation(citation.handle)
@@ -1738,13 +1738,13 @@ class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
     def setUp(self):
         self.phoenix = Citation()
         self.phoenix.set_reference_handle('123456')
-        self.phoenix.set_page('p.10')
+        self.phoenix.set_name('p.10')
         self.titanic = Citation()
         self.titanic.set_reference_handle('123456')
-        self.titanic.set_page('p.10')
+        self.titanic.set_name('p.10')
         self.ref_obj = Citation()
         self.ref_obj.set_reference_handle('123456')
-        self.ref_obj.set_page('p.10')
+        self.ref_obj.set_name('p.10')
 
     def test_merge_confidence(self):
         known_values = ( (0, 0, 0), (0, 1, 0), (0, 2, 0), (0, 3, 0), (0, 4, 0),

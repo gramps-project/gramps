@@ -354,11 +354,11 @@ class TestcaseGenerator(tool.BatchTool):
             handle = o.get_handle()
     
             o = Source()
-            o.set_title("dup 2" + self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                o.set_author( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                o.set_publication_info( self.rand_text(self.LONG))
+            o.set_name("dup 2" + self.rand_text(self.SHORT))
+##            if randint(0,1) == 1:
+##                o.set_author( self.rand_text(self.SHORT))
+##            if randint(0,1) == 1:
+##                o.set_publication_info( self.rand_text(self.LONG))
             if randint(0,1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
             while randint(0,1) == 1:
@@ -402,7 +402,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.add_object(m, self.trans)
             
             s = Source()
-            s.set_title('media should be removed from this source')
+            s.set_name('media should be removed from this source')
             r = MediaRef()
             r.set_reference_handle(m.handle)
             s.add_media_reference(r)
@@ -411,7 +411,7 @@ class TestcaseGenerator(tool.BatchTool):
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(s.handle)
-            c.set_page('media should be removed from this citation')
+            c.set_name('media should be removed from this citation')
             r = MediaRef()
             r.set_reference_handle(m.handle)
             c.add_media_reference(r)
@@ -843,25 +843,25 @@ class TestcaseGenerator(tool.BatchTool):
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
-            c.set_page('unreferenced citation with invalid source ref')
+            c.set_name('unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
-            c.set_page('unreferenced citation with invalid source ref')
+            c.set_name('unreferenced citation with invalid source ref')
             self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle("unknownsourcehandle")
-            c.set_page('citation and references to it should be removed')
+            c.set_name('citation and references to it should be removed')
             c_h1 = self.db.add_citation(c, self.trans)
             
             c = Citation()
             self.fill_object(c)
             c.set_reference_handle(None)
-            c.set_page('citation and references to it should be removed')
+            c.set_name('citation and references to it should be removed')
             c_h2 = self.db.add_citation(c, self.trans)
 
             self.create_all_possible_citations([c_h1, c_h2], "Broken21",
@@ -1693,11 +1693,11 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_name( self.rand_text(self.SHORT))
 
         if isinstance(o,Source):
-            o.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                o.set_author( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                o.set_publication_info( self.rand_text(self.LONG))
+            o.set_name( self.rand_text(self.SHORT))
+##            if randint(0,1) == 1:
+##                o.set_author( self.rand_text(self.SHORT))
+##            if randint(0,1) == 1:
+##                o.set_publication_info( self.rand_text(self.LONG))
             if randint(0,1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
             while randint(0,1) == 1:
@@ -1728,7 +1728,7 @@ class TestcaseGenerator(tool.BatchTool):
                 self.generated_sources.append( s.get_handle())
             o.set_reference_handle( choice( self.generated_sources))
             if randint(0,1) == 1:
-                o.set_page( self.rand_text(self.NUMERIC))
+                o.set_name( self.rand_text(self.NUMERIC))
             #if randint(0,1) == 1:
             #    o.set_text( self.rand_text(self.SHORT))
             #if randint(0,1) == 1:

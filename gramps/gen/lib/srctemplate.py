@@ -357,18 +357,12 @@ class SrcTemplate(object):
         Change to the new template key for reference styling
         """
         self.empty()
-        if template_key == UNKNOWN:
+        self.template_key = template_key
+        if template_key == UNKNOWN or template_key not in EVIDENCETEMPLATES:
             #for key unknown we use styling according to GEDCOM
             template_key = 'GEDCOM'
             
-        try:
-            self.tempstruct = EVIDENCETEMPLATES[template_key]
-        except:
-            print 
-            raise NotImplementedError, 'SrcTemplate: Keyerror "' \
-                    + str(template_key) \
-                    + '", custom templates templates not implemented!'
-        self.template_key = template_key
+        self.tempstruct = EVIDENCETEMPLATES[template_key]
 
     def set_attr_list(self, attr_list, attr_list_citation=None, date_citation=None):
         """
@@ -482,6 +476,21 @@ class SrcTemplate(object):
         self.refF = self._reference(REF_TYPE_F)
         return self.refF
 
+    def __ged_page_reflist(self):
+        """
+        Construct a derived template reflist for use to construct the gedcom
+        page field
+        """
+        reflist_F = self.tempstruct[REF_TYPE_F]
+        reflist_L_fields = [field[1] for field in self.tempstruct[REF_TYPE_L]]
+        result = []
+        for entry in reflist_F:
+            if entry[1] in reflist_L_fields:
+                continue
+            if entry[1] == SrcAttributeType.DATE:
+                continue
+            result.append(entry)
+
     def _reference(self, reftype, gedcomfield=None):
         """
         Compute the reference based on data present.
@@ -490,7 +499,10 @@ class SrcTemplate(object):
         THIS IS UGLY CODE AT THE MOMENT! SHOULD BE ENTIRELY REWRITTEN, FOR 
         NOW IT JUST GIVES ME SOMETHING TO USE IN THE PROTOTYPE !!
         """
-        reflist = self.tempstruct[reftype]
+        if gedcomfield == GED_PAGE:
+            self.__ged_page_reflist()
+        else:
+            reflist = self.tempstruct[reftype]
         # reflist is typically a list like
         # [      ('', AUTHOR, '', ',', EMPTY, False, False, EMPTY, EMPTY, None, None),
         #        ('', TITLE, '', ',', STYLE_QUOTE, False, False, EMPTY, EMPTY, None, None),
@@ -627,3 +639,8 @@ class SrcTemplate(object):
         if attr_list:
             self.set_attr_list(attr_list)
         return self._reference(REF_TYPE_L, GED_PUBINF)
+
+    def page_gedcom(self, attr_list=None):
+        if attr_list:
+            self.set_attr_list(attr_list)
+        return self._reference(REF_TYPE_F, GED_PAGE)

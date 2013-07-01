@@ -48,7 +48,7 @@ class HasCitationBase(Rule):
     First parameter is [Volume/page, Date, Confidence]
     """
 
-    labels      = [ _('Volume/Page:'), 
+    labels      = [ _('Name:'), 
                     _('Date:'), 
                     _('Confidence:') ]
     name        = _('Citations matching parameters')
@@ -72,7 +72,7 @@ class HasCitationBase(Rule):
         return False
     
     def _apply(self, db, citation):
-        if not self.match_substring(0, citation.get_page()):
+        if not self.match_substring(0, citation.get_name()):
             return False
 
         if self.date:

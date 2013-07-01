@@ -44,6 +44,16 @@ from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
+
+COLUMN_HANDLE     = 0
+COLUMN_ID         = 1
+COLUMN_NAME       = 2
+COLUMN_TEMPLATE   = 3
+COLUMN_ABBREV     = 6
+COLUMN_CHANGE     = 7
+COLUMN_TAGS       = 10
+COLUMN_PRIV       = 11
+
 #-------------------------------------------------------------------------
 #
 # SourceModel
@@ -56,22 +66,24 @@ class SourceModel(FlatBaseModel):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
         self.fmap = [
-            self.column_title,
+            self.column_name,
             self.column_id,
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
+            self.column_template,
             self.column_private,
             self.column_tags,
             self.column_change,
             self.column_tag_color
             ]
         self.smap = [
-            self.column_title,
+            self.column_name,
             self.column_id,
             self.column_author,
             self.column_abbrev,
             self.column_pubinfo,
+            self.column_template,
             self.column_private,
             self.column_tags,
             self.sort_change,
@@ -95,38 +107,43 @@ class SourceModel(FlatBaseModel):
         """
         Return the color column.
         """
-        return 8
+        return 9
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_title(self,data):
-        return cuni(data[2])
+    def column_name(self, data):
+        return cuni(data[COLUMN_NAME])
 
-    def column_author(self,data):
-        return cuni(data[3])
+    def column_author(self, data):
+        source = self.db.get_source_from_handle(data[COLUMN_HANDLE])
+        return cuni(source.get_gedcom_author())
 
-    def column_abbrev(self,data):
-        return cuni(data[7])
+    def column_template(self, data):
+        return cuni(data[COLUMN_TEMPLATE])
 
-    def column_id(self,data):
-        return cuni(data[1])
+    def column_abbrev(self, data):
+        return cuni(data[COLUMN_ABBREV])
 
-    def column_pubinfo(self,data):
-        return cuni(data[4])
+    def column_id(self, data):
+        return cuni(data[COLUMN_ID])
+
+    def column_pubinfo(self, data):
+        source = self.db.get_source_from_handle(data[COLUMN_HANDLE])
+        return cuni(source.get_gedcom_publication_info())
 
     def column_private(self, data):
-        if data[12]:
+        if data[COLUMN_PRIV]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def column_change(self,data):
-        return format_time(data[8])
+        return format_time(data[COLUMN_CHANGE])
     
     def sort_change(self,data):
-        return "%012x" % data[8]
+        return "%012x" % data[COLUMN_CHANGE]
 
     def get_tag_name(self, tag_handle):
         """
@@ -140,7 +157,7 @@ class SourceModel(FlatBaseModel):
         """
         tag_color = "#000000000000"
         tag_priority = None
-        for handle in data[11]:
+        for handle in data[COLUMN_TAGS]:
             tag = self.db.get_tag_from_handle(handle)
             if tag:
                 this_priority = tag.get_priority()
@@ -153,5 +170,5 @@ class SourceModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[11]))
+        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
         return ', '.join(sorted(tag_list, key=glocale.sort_key))

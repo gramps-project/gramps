@@ -97,14 +97,14 @@ class BackRefModel(Gtk.ListStore):
                     continue
                 gid = p.gramps_id
                 handle = p.handle
-                name = p.get_title()
+                name = p.get_name()
             elif dtype == 'Citation':
                 p = self.db.get_citation_from_handle(ref[1])
                 if not p:
                     continue
                 gid = p.gramps_id
                 handle = p.handle
-                name = p.get_page()
+                name = p.get_name()
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
                 if not p:

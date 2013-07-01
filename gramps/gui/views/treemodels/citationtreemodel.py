@@ -82,6 +82,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_private, # COL_PRIV       (both Source & Citation)
             self.source_src_tags,    # COL_TAGS       (both Source & Citation)
             self.source_src_chan,    # COL_CHAN       (both Source & Citation)
+            self.source_src_template,# COL_TEMPLATE   (Source only)
             self.source_src_auth,    # COL_SRC_AUTH   (Source only)
             self.source_src_abbr,    # COL_SRC_ABBR   (Source only)
             self.source_src_pinfo,   # COL_SRC_PINFO  (Source only)
@@ -95,6 +96,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_private,
             self.source_src_tags,
             self.source_sort2_change,
+            self.source_src_template,
             self.source_src_auth,
             self.source_src_abbr,
             self.source_src_pinfo,
@@ -132,7 +134,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         self.map2 = self.db.get_raw_citation_data
         self.gen_cursor2 = self.db.get_citation_cursor
         self.fmap2 = [
-            self.citation_page,
+            self.citation_name,
             self.citation_id,
             self.citation_date,
             self.citation_confidence,
@@ -142,16 +144,18 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             None,
             None,
             None,
+            None,
             self.citation_tag_color
             ]
         self.smap2 = [
-            self.citation_page,
+            self.citation_name,
             self.citation_id,
             self.citation_sort_date,
             self.citation_confidence,
             self.citation_private,
             self.citation_tags,
             self.citation_sort_change,
+            self.dummy_sort_key,
             self.dummy_sort_key,
             self.dummy_sort_key,
             self.dummy_sort_key,
@@ -162,7 +166,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         """
         Return the color column.
         """
-        return 10
+        return 11
 
     def get_tree_levels(self):
         """

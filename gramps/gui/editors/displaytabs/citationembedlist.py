@@ -80,9 +80,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Title'),   0, 200, TEXT_COL, -1, None),
+        (_('Source Name'),   0, 200, TEXT_COL, -1, None),
         (_('Author'),  1, 125, TEXT_COL, -1, None),
-        (_('Page'),    2, 100, TEXT_COL, -1, None),
+        (_('Citation Name'),    2, 140, TEXT_COL, -1, None),
         (_('ID'),      3,  75, TEXT_COL, -1, None),
         (_('Private'), 4,  30, ICON_COL, -1, 'gramps-lock')
     ]

@@ -56,9 +56,8 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         MediaBase.__init__(self)
         NoteBase.__init__(self)
         SrcAttributeBase.__init__(self)
-        self.title = ""
-        self.author = ""
-        self.pubinfo = ""
+        self.name = ""
+        self.template = 'GEDCOM'
         self.abbrev = ""
         self.reporef_list = []
         
@@ -68,17 +67,16 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """
         return (self.handle,                                       # 0
                 self.gramps_id,                                    # 1
-                cuni(self.title),                                  # 2
-                cuni(self.author),                                 # 3
-                cuni(self.pubinfo),                                # 4
-                NoteBase.serialize(self),                          # 5
-                MediaBase.serialize(self),                         # 6
-                cuni(self.abbrev),                                 # 7
-                self.change,                                       # 8
-                SrcAttributeBase.serialize(self),                  # 9
-                [rr.serialize() for rr in self.reporef_list],      # 10
-                TagBase.serialize(self),                           # 11
-                self.private)                                      # 12
+                cuni(self.name),                                   # 2
+                cuni(self.template),                               # 3
+                NoteBase.serialize(self),                          # 4
+                MediaBase.serialize(self),                         # 5
+                cuni(self.abbrev),                                 # 6
+                self.change,                                       # 7
+                SrcAttributeBase.serialize(self),                  # 8
+                [rr.serialize() for rr in self.reporef_list],      # 9
+                TagBase.serialize(self),                           # 10
+                self.private)                                      # 11
 
     def to_struct(self):
         """
@@ -102,9 +100,8 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """
         return {"handle": Handle("Source", self.handle), 
                 "gramps_id": self.gramps_id, 
-                "title": cuni(self.title),
-                "author": cuni(self.author), 
-                "pubinfo": cuni(self.pubinfo),
+                "name": cuni(self.name),
+                "template": cuni(self.template),
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self), 
                 "abbrev": cuni(self.abbrev),
@@ -121,17 +118,16 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         """
         (self.handle,       #  0
          self.gramps_id,    #  1
-         self.title,        #  2
-         self.author,       #  3
-         self.pubinfo,      #  4
-         note_list,         #  5
-         media_list,        #  6
-         self.abbrev,       #  7
-         self.change,       #  8
-         srcattr_list,      #  9
-         reporef_list,      #  10
-         tag_list,          #  11
-         self.private       #  12
+         self.name,         #  2
+         self.template,     #  3
+         note_list,         #  4
+         media_list,        #  5
+         self.abbrev,       #  6
+         self.change,       #  7
+         srcattr_list,      #  8
+         reporef_list,      #  9
+         tag_list,          #  10
+         self.private       #  11
         ) = data
 
         NoteBase.unserialize(self, note_list)
@@ -264,67 +260,61 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         self._merge_attribute_list(acquisition)
         self._merge_reporef_list(acquisition)
 
-    def set_title(self, title):
+    def set_template(self, template):
         """
-        Set the descriptive title of the Source object.
-
-        :param title: descriptive title to assign to the Source
-        :type title: str
+        Set the template type of the Source object. This defines a number of
+        preset SrcAttributes to be filled in by the user
+        
+        :param template: a template code as defined in SrcTemplate
+        :type template: str
         """
-        self.title = title
+        self.template = template
 
-    @deprecated
-    def get_title(self):
-        """
-        Return the descriptive title of the Place object.
-
-        :returns: Returns the descriptive title of the Place
+    def get_template(self):
+        """Return the template type of the Source
+        
+        :returns: Returns the code of the SrcTemplate set for this Source
         :rtype: str
         """
-        return self.title
+        return self.template
 
-##    def set_author(self, author):
-##        """Set the author of the Source."""
-##        self.author = author
-
-    @deprecated
-    def get_author(self):
-        """Return the author of the Source.
-        Author depends on the source template. The logic is:
-        1. obtain template
-        2. create author from the 'full' reference
-        3. if no template, it defaults to GEDCOM, so AUTHOR will be used
+    def set_name(self, name):
         """
-        attrlist = self.get_attribute_list()
-        stemp = SrcTemplate(self.get_source_template()[0])
+        Set a descriptive name for the Source object, which will be used in 
+        Gramps for sorting, identification.
+        Typically, this value is set automatically based on the template, but
+        is user changeable if needed.
         
-        return stemp.author_gedcom(attrlist)
-
-##    def set_publication_info(self, text):
-##        """Set the publication information of the Source."""
-##        self.pubinfo = text
-
-    @deprecated
-    def get_publication_info(self):
-        """Return the publication information of the Source.
-        PubInfo depends on the source template. The logic is:
-        1. obtain template
-        2. create pubinfo from the 'full' reference
-        3. if no template, it defaults to GEDCOM, so PUB_INFO will be used
+        :param name: a descriptive name to assign to the Source
+        :type name: str
         """
-        attrlist = self.get_attribute_list()
-        stemp = SrcTemplate(self.get_source_template()[0])
-        
-        return stemp.pubinfo_gedcom(attrlist)
+        self.name = name
+
+    def get_name(self):
+        """
+        Return the descriptive name of the source
+
+        :returns: Returns the descriptive name of the source
+        :rtype: str
+        """
+        return self.name
 
     def set_abbreviation(self, abbrev):
-        """Set the title abbreviation of the Source."""
+        """Set the title abbreviation of the Source used for LOCAL 
+           sorting or filing.
+        
+        :param abbrev: Short form used to retrieve Source locally
+        :type abbrev: str
+        """
         self.abbrev = abbrev
 
-    @deprecated
     def get_abbreviation(self):
-        """Return the title abbreviation of the Source."""
-        print 'test'
+        """Return the title abbreviation of the Source used for LOCAL 
+           sorting or filing.
+        
+        :returns: Short form used to retrieve Source locally
+        :rtype: str
+        """
         return self.abbrev
 
     def add_repo_reference(self, repo_ref):
@@ -428,3 +418,61 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
                         new_ref.merge(repo_ref)
                     self.reporef_list.pop(idx)
                     refs_list.pop(idx)
+
+    #-------------------------------------------------------------------------
+    #
+    # GEDCOM interface
+    #
+    #-------------------------------------------------------------------------
+
+    @deprecated
+    def get_title(self):
+        return self.get_gedcom_title()
+
+    @deprecated
+    def get_author(self):
+        return self.get_gedcom_author()
+
+    @deprecated
+    def get_publication_info(self):
+        return self.get_gedcom_publication_info()
+
+    def get_gedcom_title(self):
+        """
+        Return the descriptive title of the source
+        Title depends on the source template. The logic is:
+        1. obtain template
+        2. create title from the 'full' reference
+        3. if no template, it defaults to GEDCOM, so TITLE will be used
+
+        :returns: Returns the descriptive title of the source
+        :rtype: str
+        """
+        attrlist = self.get_attribute_list()
+        stemp = SrcTemplate(self.get_template())
+        
+        return stemp.title_gedcom(attrlist)
+
+    def get_gedcom_author(self):
+        """Return the author of the Source.
+        Author depends on the source template. The logic is:
+        1. obtain template
+        2. create author from the 'full' reference
+        3. if no template, it defaults to GEDCOM, so AUTHOR will be used
+        """
+        attrlist = self.get_attribute_list()
+        stemp = SrcTemplate(self.get_template())
+        
+        return stemp.author_gedcom(attrlist)
+
+    def get_gedcom_publication_info(self):
+        """Return the publication information of the Source.
+        PubInfo depends on the source template. The logic is:
+        1. obtain template
+        2. create pubinfo from the 'full' reference
+        3. if no template, it defaults to GEDCOM, so PUB_INFO will be used
+        """
+        attrlist = self.get_attribute_list()
+        stemp = SrcTemplate(self.get_template())
+        
+        return stemp.pubinfo_gedcom(attrlist)

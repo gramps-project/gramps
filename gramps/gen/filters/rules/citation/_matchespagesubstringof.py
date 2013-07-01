@@ -42,14 +42,14 @@ class MatchesPageSubstringOf(Rule):
     """Citation Volume/Page title containing <substring>"""
 
     labels      = [ _('Substring:')]
-    name        = _('Citation Volume/Page containing <substring>')
-    description = _("Matches citations whose Volume/Page contains a "
+    name        = _('Citation Name containing <substring>')
+    description = _("Matches citations whose Name contains a "
                     "certain substring")
     category    = _('General filters')
 
     def apply(self, db, object):
         """ Apply the filter """
-        title = object.get_page()
+        title = object.get_name()
         if title.upper().find(self.list[0].upper()) != -1:
             return True
         return False

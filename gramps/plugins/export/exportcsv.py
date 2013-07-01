@@ -102,7 +102,7 @@ def get_primary_source_title(db, obj):
         citation = db.get_citation_from_handle(citation_handle)
         source = db.get_source_from_handle(citation.get_reference_handle())
         if source:
-            return source.get_title()
+            return source.get_name()
     return ""
 
 #-------------------------------------------------------------------------

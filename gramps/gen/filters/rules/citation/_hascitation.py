@@ -47,7 +47,7 @@ from ....datehandler import parser
 class HasCitation(Rule):
     """Rule that checks for a citations with a particular value"""
 
-    labels      = [ _('Volume/Page:'), 
+    labels      = [ _('Name:'), 
                     _('Date:'), 
                     _('Confidence level:')]
     name        = _('Citations matching parameters')
@@ -64,7 +64,7 @@ class HasCitation(Rule):
             pass
 
     def apply(self, dbase, citation):
-        if not self.match_substring(0, citation.get_page()):
+        if not self.match_substring(0, citation.get_name()):
             return False
 
         if self.date:

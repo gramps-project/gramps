@@ -70,8 +70,8 @@ class MergeSource(ManagedWindow):
                         _("Merge Sources"))
 
         # Detailed Selection widgets
-        title1 = self.src1.get_title()
-        title2 = self.src2.get_title()
+        title1 = self.src1.get_name()
+        title2 = self.src2.get_name()
         entry1 = self.get_widget("title1")
         entry2 = self.get_widget("title2")
         entry1.set_text(title1)
@@ -80,13 +80,13 @@ class MergeSource(ManagedWindow):
             for widget_name in ('title1', 'title2', 'title_btn1', 'title_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        entry1 = self.get_widget("author1")
-        entry2 = self.get_widget("author2")
-        entry1.set_text(self.src1.get_author())
-        entry2.set_text(self.src2.get_author())
+        entry1 = self.get_widget("template1")
+        entry2 = self.get_widget("template2")
+        entry1.set_text(self.src1.get_template())
+        entry2.set_text(self.src2.get_template())
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('author1', 'author2', 'author_btn1',
-                    'author_btn2'):
+            for widget_name in ('template1', 'template2', 'template_btn1',
+                    'template_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("abbrev1")
@@ -96,14 +96,6 @@ class MergeSource(ManagedWindow):
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('abbrev1', 'abbrev2', 'abbrev_btn1',
                     'abbrev_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
-        entry1 = self.get_widget("pub1")
-        entry2 = self.get_widget("pub2")
-        entry1.set_text(self.src1.get_publication_info())
-        entry2.set_text(self.src2.get_publication_info())
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('pub1', 'pub2', 'pub_btn1', 'pub_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.src1.get_gramps_id()
@@ -134,15 +126,13 @@ class MergeSource(ManagedWindow):
         """first chosen source changes"""
         if obj.get_active():
             self.get_widget("title_btn1").set_active(True)
-            self.get_widget("author_btn1").set_active(True)
+            self.get_widget("template_btn1").set_active(True)
             self.get_widget("abbrev_btn1").set_active(True)
-            self.get_widget("pub_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("title_btn2").set_active(True)
-            self.get_widget("author_btn2").set_active(True)
+            self.get_widget("template_btn2").set_active(True)
             self.get_widget("abbrev_btn2").set_active(True)
-            self.get_widget("pub_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
@@ -167,13 +157,11 @@ class MergeSource(ManagedWindow):
                     phoenix.get_handle())
 
         if self.get_widget("title_btn1").get_active() ^ use_handle1:
-            phoenix.set_title(titanic.get_title())
-        if self.get_widget("author_btn1").get_active() ^ use_handle1:
-            phoenix.set_author(titanic.get_author())
+            phoenix.set_name(titanic.get_name())
+        if self.get_widget("template_btn1").get_active() ^ use_handle1:
+            phoenix.set_template(titanic.get_template())
         if self.get_widget("abbrev_btn1").get_active() ^ use_handle1:
             phoenix.set_abbreviation(titanic.get_abbreviation())
-        if self.get_widget("pub_btn1").get_active() ^ use_handle1:
-            phoenix.set_publication_info(titanic.get_publication_info())
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 

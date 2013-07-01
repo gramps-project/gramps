@@ -178,7 +178,7 @@ class GeneWebWriter(object):
                                         )
                                     )
 
-    def write_sources(self,reflist):
+    def write_sources(self, reflist):
         # FIXME
         #if self.restrict and self.exclnotes:
         #    return
@@ -190,7 +190,7 @@ class GeneWebWriter(object):
                 source = self.db.get_source_from_handle(src_handle)
                 if source:
                     self.writeln( "src %s" % 
-                        (self.rem_spaces(source.get_title()))
+                        (self.rem_spaces(source.get_name()))
                         )
 
     def write_children(self,family, father):
@@ -422,7 +422,7 @@ class GeneWebWriter(object):
 
         return ret
 
-    def get_primary_source(self,reflist):
+    def get_primary_source(self, reflist):
         ret = ""
         if reflist:
             for handle in reflist:
@@ -432,7 +432,7 @@ class GeneWebWriter(object):
                 if source:
                     if ret != "":
                         ret = ret + ", "
-                        ret = ret + source.get_title()
+                        ret = ret + source.get_name()
         return ret
     
     def format_single_date(self, subdate, cal, mode):

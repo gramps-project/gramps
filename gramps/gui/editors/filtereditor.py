@@ -347,10 +347,10 @@ class MyID(Gtk.Box):
             name = place.get_title()
         elif self.namespace == 'Source':
             source = self.db.get_source_from_gramps_id(gramps_id)
-            name = source.get_title()
+            name = source.get_name()
         elif self.namespace == 'Citation':
             citation = self.db.get_citation_from_gramps_id(gramps_id)
-            name = citation.get_page()
+            name = citation.get_name()
         elif self.namespace == 'Media':
             obj = self.db.get_object_from_gramps_id(gramps_id)
             name = obj.get_path()
@@ -951,11 +951,11 @@ class ShowResults(ManagedWindow):
             gid = event.get_gramps_id()
         elif self.namespace == 'Source':
             source = self.db.get_source_from_handle(handle)
-            name = source.get_title()
+            name = source.get_name()
             gid = source.get_gramps_id()
         elif self.namespace == 'Citation':
             citation = self.db.get_citation_from_handle(handle)
-            name = citation.get_page()
+            name = citation.get_name()
             gid = citation.get_gramps_id()
         elif self.namespace == 'Place':
             place = self.db.get_place_from_handle(handle)
@@ -987,9 +987,9 @@ class ShowResults(ManagedWindow):
         elif self.namespace == 'Event':
             sortname = self.db.get_event_from_handle(handle).get_description()
         elif self.namespace == 'Source':
-            sortname = self.db.get_source_from_handle(handle).get_title()
+            sortname = self.db.get_source_from_handle(handle).get_name()
         elif self.namespace == 'Citation':
-            sortname = self.db.get_citation_from_handle(handle).get_page()
+            sortname = self.db.get_citation_from_handle(handle).get_name()
         elif self.namespace == 'Place':
             sortname = self.db.get_place_from_handle(handle).get_title()
         elif self.namespace == 'Media':

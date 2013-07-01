@@ -625,7 +625,7 @@ class GrampsParser(UpdateCallback):
             "attribute": (self.start_attribute, self.stop_attribute), 
             "attr_type": (None, self.stop_attr_type), 
             "attr_value": (None, self.stop_attr_value), 
-            "srcattribute": (self.start_srcattribute, self.stop_srcattribute),
+            "srcattribute": (self.start_srcattribute, self.stop_srcattribute), #new in 1.6.0
             "bookmark": (self.start_bmark, None), 
             "bookmarks": (None, None), 
             "format": (self.start_format, None), 
@@ -673,7 +673,8 @@ class GrampsParser(UpdateCallback):
             "objref": (self.start_objref, self.stop_objref), 
             "object": (self.start_object, self.stop_object), 
             "file": (self.start_file, None), 
-            "page": (None, self.stop_page), 
+            "page": (None, self.stop_page),               #deprecated in 1.6.0 
+            "cname": (None, self.stop_cname),
             "place": (self.start_place, self.stop_place), 
             "dateval": (self.start_dateval, None), 
             "daterange": (self.start_daterange, None), 
@@ -701,17 +702,19 @@ class GrampsParser(UpdateCallback):
             "respostal": (None, self.stop_respostal), 
             "resphone": (None, self.stop_resphone), 
             "resemail": (None, self.stop_resemail), 
-            "sauthor": (None, self.stop_sauthor), 
+            "sauthor": (None, self.stop_sauthor),   #deprecated in 1.6.0
             "sabbrev": (None, self.stop_sabbrev), 
             "scomments": (None, self.stop_scomments), 
             "source": (self.start_source, self.stop_source), 
             "sourceref": (self.start_sourceref, self.stop_sourceref), 
             "sources": (None, None), 
-            "spage": (None, self.stop_spage), 
-            "spubinfo": (None, self.stop_spubinfo), 
+            "spage": (None, self.stop_spage), #deprecated
+            "spubinfo": (None, self.stop_spubinfo),  #deprecated in 1.6.0
             "state": (None, self.stop_state), 
             "stext": (None, self.stop_stext), 
-            "stitle": (None, self.stop_stitle), 
+            "stitle": (None, self.stop_stitle),      #deprecated in 1.6.0
+            "sname": (None, self.stop_sname),      #new in 1.6.0
+            "stemplate": (None, self.stop_stemplate),      #new in 1.6.0
             "street": (None, self.stop_street), 
             "style": (self.start_style, None),
             "tag": (self.start_tag, self.stop_tag),
@@ -2725,8 +2728,22 @@ class GrampsParser(UpdateCallback):
         else:
             self.person.set_gender (Person.UNKNOWN)
 
+    def stop_sname(self, tag):
+        #store descriptive name of the source
+        self.source.name = tag
+
+    def stop_stemplate(self, tag):
+        #store template of the source
+        self.source.template = tag
+
     def stop_stitle(self, tag):
-        self.source.title = tag
+        #title was deprecated and converted to name and attribute TITLE in 1.6.0
+        if not self.source.name:
+            self.source.name = tag
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.TITLE)
+        sattr.set_value(tag)
+        self.source.add_attribute(sattr)
 
     def stop_sourceref(self, *tag):
         # if we are in an old style sourceref we need to commit the citation
@@ -2747,7 +2764,11 @@ class GrampsParser(UpdateCallback):
         self.citation = None
 
     def stop_sauthor(self, tag):
-        self.source.author = tag
+        #author was deprecated and converted to attribute AUTHOR in 1.6.0
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.AUTHOR)
+        sattr.set_value(tag)
+        self.source.add_attribute(sattr)
 
     def stop_phone(self, tag):
         self.address.phone = tag
@@ -2775,11 +2796,25 @@ class GrampsParser(UpdateCallback):
 
     def stop_spage(self, tag):
         # Valid for version <= 1.4.0
-        self.citation.set_page(tag)
+        if not self.citation.name:
+            self.citation.set_name(tag)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.PAGE)
+        sattr.set_value(tag)
+        self.citation.add_attribute(sattr)
+
+    def stop_cname(self, tag):
+        self.citation.set_name(tag)
 
     def stop_page(self, tag):
         # Valid for version >= 1.5.0
-        self.citation.set_page(tag)
+        # page was deprecated and converted to name and attribute PAGE in 1.6.0
+        if not self.citation.name:
+            self.citation.set_name(tag)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.PAGE)
+        sattr.set_value(tag)
+        self.citation.add_attribute(sattr)
 
     def stop_confidence(self, tag):
         # Valid for version >= 1.5.0
@@ -2789,7 +2824,11 @@ class GrampsParser(UpdateCallback):
         self.ord = None
 
     def stop_spubinfo(self, tag):
-        self.source.set_publication_info(tag)
+        #pubinfo was deprecated and converted to attribute PUB_INFO in 1.6.0
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.PUB_INFO)
+        sattr.set_value(tag)
+        self.source.add_attribute(sattr)
 
     def stop_sabbrev(self, tag):
         self.source.set_abbreviation(tag)

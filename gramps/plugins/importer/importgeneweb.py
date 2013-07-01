@@ -50,7 +50,10 @@ LOG = logging.getLogger(".ImportGeneWeb")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import GedcomError
-from gramps.gen.lib import Attribute, AttributeType, ChildRef, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, Place, Source
+from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation, Date,
+        Event, EventRef, EventRoleType, EventType, Family, FamilyRelType,
+        Name, NameType, Note, Person, PersonRef, Place, Source,
+        SrcAttribute, SrcAttributeType)
 from gramps.gen.db import DbTxn
 from gramps.gen.constfunc import STRTYPE, cuni, conv_to_unicode
 if sys.version_info[0] < 3:
@@ -876,9 +879,13 @@ class GeneWebParser(object):
             source = self.db.get_source_from_handle(self.skeys[source_name])
         else:
             source = Source()
-            source.set_title(source_name)
-            self.db.add_source(source,self.trans)
-            self.db.commit_source(source,self.trans)
+            source.set_name(source_name)
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.TITLE)
+            sattr.set_value(source_name)
+            source.add_attribute(sattr)
+            self.db.add_source(source, self.trans)
+            self.db.commit_source(source, self.trans)
             self.skeys[source_name] = source.get_handle()
         citation = Citation()
         citation.set_reference_handle(source.get_handle())

@@ -50,7 +50,9 @@ LOG = logging.getLogger(".ImportCSV")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
+from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType,
+        Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place,
+        Source, Surname, SrcAttribute, SrcAttributeType, Tag)
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
 from gramps.gen.datehandler import parser as _dp
@@ -829,12 +831,16 @@ class CSVParser(object):
         LOG.debug("get_or_create_source: looking for: %s", source_text)
         for source_handle in source_list:
             source = self.db.get_source_from_handle(source_handle)
-            if source.get_title() == source_text:
+            if source.get_name() == source_text:
                 LOG.debug("   returning existing source")
                 return (0, source)
         LOG.debug("   creating source")
         source = Source()
-        source.set_title(source_text)
+        source.set_name(source_text)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.TITLE)
+        sattr.set_value(source_text)
+        source.add_attribute(sattr)
         self.db.add_source(source, self.trans)
         return (1, source)
 

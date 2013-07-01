@@ -45,6 +45,7 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
+from .srctemplate import SrcTemplate
 from ..constfunc import cuni, deprecated
 from .handle import Handle
 
@@ -75,7 +76,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         NoteBase.__init__(self)                        #  6
         DateBase.__init__(self)                        #  2
         self.source_handle = None                      #  5
-        self.page = ""                                 #  3
+        self.name = ""                                 #  3
         self.confidence = Citation.CONF_NORMAL         #  4
         SrcAttributeBase.__init__(self)                #  8
         
@@ -86,7 +87,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         return (self.handle,                           #  0
                 self.gramps_id,                        #  1
                 DateBase.serialize(self, no_text_date),#  2
-                cuni(self.page),                       #  3
+                cuni(self.name),                       #  3
                 self.confidence,                       #  4
                 self.source_handle,                    #  5
                 NoteBase.serialize(self),              #  6
@@ -119,7 +120,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         return {"handle": Handle("Citation", self.handle),       #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
-                "page": cuni(self.page),                         #  3
+                "name": cuni(self.name),                         #  3
                 "confidence": self.confidence,                   #  4
                 "source_handle": Handle("Source", self.source_handle), #  5
                 "note_list": NoteBase.to_struct(self),           #  6
@@ -137,7 +138,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         (self.handle,                                  #  0
          self.gramps_id,                               #  1
          date,                                         #  2
-         self.page,                                    #  3
+         self.name,                                    #  3
          self.confidence,                              #  4
          self.source_handle,                           #  5
          note_list,                                    #  6
@@ -283,18 +284,64 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
     def get_confidence_level(self):
         """Return the confidence level."""
         return self.confidence
-        
-    def set_page(self, page):
-        """Set the page indicator of the Citation."""
-        self.page = page
 
-    @deprecated
-    def get_page(self):
-        """Get the page indicator of the Citation."""
-        return self.page
+    def set_name(self, name):
+        """
+        Set a descriptive name for the Citation object, which will be used in 
+        Gramps for sorting, identification.
+        Typically, this value is set automatically based on the template of the
+        Source of this Citation, but is user changeable if needed.
+        
+        :param name: a descriptive name to assign to the Citation
+        :type name: str
+        """
+        self.name = name
+
+    def get_name(self):
+        """
+        Return the descriptive name of the citation
+
+        :returns: Returns the descriptive name of the Citation
+        :rtype: str
+        """
+        return self.name
+
 
     def set_reference_handle(self, val):
         self.source_handle = val
 
     def get_reference_handle(self):
         return self.source_handle
+
+    #-------------------------------------------------------------------------
+    #
+    # GEDCOM interface
+    #
+    #-------------------------------------------------------------------------
+
+    @deprecated
+    def get_page(self):
+        """Get the page indicator of the Citation.
+        
+        This method is deprecated. the citation name is returned as fallback.
+        Convert to get_name, or use the source template to construct citation
+        reference information
+        """
+        return self.get_name()
+
+    def get_gedcom_page(self, templatekey):
+        """
+        Return the descriptive page part as used in GEDCOM
+        page depends on the source template. The logic is:
+        1. obtain template, if no key given, name of citation is used
+        2. create page from the 'full' reference
+
+        :returns: Returns the descriptive page part of the citation
+        :rtype: str
+        """
+        attrlist = self.get_attribute_list()
+        if templatekey:
+            stemp = SrcTemplate(templatekey)
+            return stemp.page_gedcom(attrlist)
+        else:
+            return self.get_name()

@@ -508,9 +508,9 @@ class ClipCitation(ClipHandleWrapper):
                                citation.get_note_list()))
                 srctxtlist = [note for note in notelist 
                         if note.get_type() == NoteType.SOURCE_TEXT]
-                page = citation.get_page()
-                if not page:
-                    page = _('not available|NA')
+                cname = citation.get_name()
+                if not cname:
+                    cname = _('not available|NA')
                 text = ""
                 if len(srctxtlist) > 0:
                     text = " ".join(srctxtlist[0].get().split())
@@ -519,8 +519,8 @@ class ClipCitation(ClipHandleWrapper):
                     text = cuni(text)
                     if len(text) > 60:
                         text =  text[:60]+"..."
-                self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
-                                    'pag'        : page,
+                self._value = _("Citation Name: %(name)s -- %(sourcetext)s") % {
+                                    'name'        : cname,
                                     'sourcetext' : text,
                                     }
 
@@ -774,7 +774,7 @@ class ClipSourceLink(ClipHandleWrapper):
             source = self._db.get_source_from_handle(self._handle)
             if source:
                 self._title = source.get_gramps_id()
-                self._value = source.get_title()
+                self._value = source.get_name()
 
     def is_valid(self):
         data = pickle.loads(self._obj)

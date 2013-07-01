@@ -430,7 +430,7 @@
   <define name="citation-content">
     <ref name="primary-object"/>
     <optional><ref name="date-content"/></optional>
-    <optional><element name="page"><text/></element></optional>
+    <optional><element name="cname"><text/></element></optional>
     <optional><element name="confidence"><text/></element></optional>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
@@ -448,9 +448,8 @@
 
   <define name="source-content">
     <ref name="primary-object"/>
-    <optional><element name="stitle"><text/></element></optional>
-    <optional><element name="sauthor"><text/></element></optional>
-    <optional><element name="spubinfo"><text/></element></optional>
+    <optional><element name="sname"><text/></element></optional>
+    <optional><element name="stemplate"><text/></element></optional>
     <optional><element name="sabbrev"><text/></element></optional>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>

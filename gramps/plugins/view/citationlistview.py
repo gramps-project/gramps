@@ -81,7 +81,7 @@ class CitationListView(ListView):
     """
     # The data items here have to correspond, in order, to the items in
     # src/giu/views/treemodels/citationlismodel.py
-    COL_TITLE_PAGE     =  0
+    COL_TITLE_NAME     =  0
     COL_ID             =  1
     COL_DATE           =  2
     COL_CONFIDENCE     =  3
@@ -90,14 +90,12 @@ class CitationListView(ListView):
     COL_CHAN           =  6
     COL_SRC_TITLE      =  7
     COL_SRC_ID         =  8
-    COL_SRC_AUTH       =  9
-    COL_SRC_ABBR       = 10
-    COL_SRC_PINFO      = 11
-    COL_SRC_PRIV       = 12
-    COL_SRC_CHAN       = 13
+    COL_SRC_ABBR       =  9
+    COL_SRC_PRIV       = 10
+    COL_SRC_CHAN       = 11
     # column definitions
     COLUMNS = [
-        (_('Volume/Page'), TEXT, None),
+        (_('Name'), TEXT, None),
         (_('ID'), TEXT, None),
         (_('Date'), MARKUP, None),
         (_('Confidence'), TEXT, None),
@@ -106,22 +104,22 @@ class CitationListView(ListView):
         (_('Last Changed'), TEXT, None),
         (_('Source: Title'), TEXT, None),
         (_('Source: ID'), TEXT, None),
-        (_('Source: Author'), TEXT, None),
+        #(_('Source: Author'), TEXT, None),
         (_('Source: Abbreviation'), TEXT, None),
-        (_('Source: Publication Information'), TEXT, None),
+        #(_('Source: Publication Information'), TEXT, None),
         (_('Source: Private'), ICON, 'gramps-lock'),
         (_('Source: Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE_PAGE, COL_ID, COL_DATE,
+        ('columns.visible', [COL_TITLE_NAME, COL_ID, COL_DATE,
                              COL_CONFIDENCE]),
-        ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
+        ('columns.rank', [COL_TITLE_NAME, COL_ID, COL_DATE, COL_CONFIDENCE,
                           COL_PRIV, COL_TAGS, COL_CHAN, COL_SRC_TITLE,
-                          COL_SRC_ID, COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
+                          COL_SRC_ID, COL_SRC_ABBR,  
                           COL_SRC_PRIV, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 40, 100, 100, 200, 75, 75, 100, 
-                          150, 40, 100])
+        ('columns.size', [200, 75, 100, 100, 40, 100, 100, 200, 75, 100, 
+                          40, 100])
         )    
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")

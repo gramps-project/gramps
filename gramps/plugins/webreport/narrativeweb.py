@@ -7446,7 +7446,7 @@ class NavWebReport(Report):
         citation = self.database.get_citation_from_handle(citation_handle)
         # If Page is none, we want to make sure that a tuple is generated for 
         # the source backreference
-        citation_name = citation.get_page() or ""
+        citation_name = citation.get_name() or ""
         source_handle = citation.get_reference_handle()
         self.obj_dict[Citation][citation_handle] = ("", citation_name,
                                                     citation.gramps_id)

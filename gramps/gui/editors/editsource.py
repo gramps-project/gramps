@@ -259,14 +259,6 @@ class EditSource(EditPrimary):
             self._do_close()
     
     def _setup_fields(self):
-##        self.author = MonitoredEntry(self.glade.get_object("author"),
-##                                     self.obj.set_author, self.obj.get_author,
-##                                     self.db.readonly)
-##
-##        self.pubinfo = MonitoredEntry(self.glade.get_object("pubinfo"),
-##                                      self.obj.set_publication_info,
-##                                      self.obj.get_publication_info,
-##                                      self.db.readonly)
         #reference info fields of source
         self.refL = self.glade.get_object("refL")
         self.refF = self.glade.get_object("refF")
@@ -297,7 +289,7 @@ class EditSource(EditPrimary):
                                      self.db.readonly)
 
         self.title = MonitoredEntry(self.glade.get_object("source_title"),
-                                    self.obj.set_title, self.obj.get_title,
+                                    self.obj.set_name, self.obj.get_name,
                                     self.db.readonly)
 
         #editable citation fields
@@ -310,6 +302,10 @@ class EditSource(EditPrimary):
     def _setup_citation_fields(self):
         if self.citation_ready:
             raise Exception
+        self.cname = MonitoredEntry(
+            self.glade.get_object('cname'), self.citation.set_name,
+            self.citation.get_name, self.db.readonly)
+
         self.gid2 = MonitoredEntry(
             self.glade.get_object('gid2'), self.citation.set_gramps_id,
             self.get_citation_gramps_id, self.db.readonly)
@@ -354,10 +350,10 @@ class EditSource(EditPrimary):
         """
         #we only construct once the template to use to format information
         if self.srctemp is None:
-            self.srctemp = SrcTemplate(self.obj.get_source_template()[0])
+            self.srctemp = SrcTemplate(self.obj.get_template())
         #if source template changed, reinit template
-        if self.obj.get_source_template()[0] != self.srctemp.get_template_key():
-            self.srctemp.set_template_key(self.obj.get_source_template()[0])
+        if self.obj.get_template() != self.srctemp.get_template_key():
+            self.srctemp.set_template_key(self.obj.get_template())
         #set new attrlist in template
         if self.citation_loaded:
             citeattr = self.citation.get_attribute_list()
@@ -380,7 +376,7 @@ class EditSource(EditPrimary):
         self.pubinfo.set_text(self.srctemp.pubinfo_gedcom())
         if self.template_tab and self.template_tab.autoset_title:
             title = self.srctemp.title_gedcom()
-            self.obj.set_title(title)
+            self.obj.set_name(title)
             self.title.update()
         #lastly update the window title
         self.update_title(self.get_menu_title())
@@ -392,7 +388,7 @@ class EditSource(EditPrimary):
         """
         if templatechanged and self.tmplfields:
             #the citation template fields must be changed!
-            self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
+            self.tmplfields.reset_template_fields(self.obj.get_template())
         if self.attr_tab:
             self.attr_tab.rebuild_callback()
         self.update_attr()
@@ -508,7 +504,7 @@ class EditSource(EditPrimary):
         self.tmplfields = TemplateFields(self.dbstate.db, self.uistate,
                 self.track, self.glade.get_object('grid_citefields'),
                 self.obj, self.citation, None, self.callback_cite_changed)
-        self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
+        self.tmplfields.reset_template_fields(self.obj.get_template())
 
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.citation.get_note_list(), self.get_menu_title(),
@@ -831,7 +827,7 @@ class EditSource(EditPrimary):
         else:
             self.citation_changed()
         #the citation template fields must be changed!
-        self.tmplfields.reset_template_fields(self.obj.get_source_template()[0])
+        self.tmplfields.reset_template_fields(self.obj.get_template())
         self.cinf.set_visible(True)
         self.btnclose_cite.set_sensitive(True)
         self.notebook_ref.set_visible(True)

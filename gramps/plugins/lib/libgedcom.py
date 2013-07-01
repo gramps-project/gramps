@@ -1852,7 +1852,12 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             self.def_src = Source()
             fname = os.path.basename(filename).split('\\')[-1]
-            self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
+            stitle = _("Import from GEDCOM (%s)") % fname
+            self.def_src.set_name(stitle)
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.TITLE)
+            sattr.set_value(stitle)
+            self.def_src.add_attribute(sattr)
         if default_tag_format:
             name = time.strftime(default_tag_format)
             tag = self.dbase.get_tag_from_name(name)
@@ -2664,7 +2669,11 @@ class GedcomParser(UpdateCallback):
             for title, handle in self.inline_srcs.items():
                 src = Source()
                 src.set_handle(handle)
-                src.set_title(title)
+                src.set_name(title)
+                sattr = SrcAttribute()
+                sattr.set_type(SrcAttributeType.TITLE)
+                sattr.set_value(title)
+                src.add_attribute(sattr)
                 self.dbase.add_source(src, self.trans)
             self.__clean_up()
             
@@ -3380,7 +3389,11 @@ class GedcomParser(UpdateCallback):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line.data])
-                source.set_title(line.data[5:])
+                sattr = SrcAttribute()
+                sattr.set_type(SrcAttributeType.TITLE)
+                sattr.set_value(line.data[5:])
+                source.add_attribute(sattr)
+                source.set_name(line.data[5:])
                 self.dbase.commit_source(source, self.trans)
             elif key[0:4] == "NOTE":
                 try:
@@ -5865,7 +5878,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.citation.set_page(line.data)
+        page = line.data
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.PAGE)
+        sattr.set_value(page)
+        state.citation.add_attribute(sattr)
+        state.citation.set_name(page)
 
     def __citation_date(self, line, state):
         """
@@ -6052,7 +6070,7 @@ class GedcomParser(UpdateCallback):
         state = CurrentState()
         state.source = self.__find_or_create_source(self.sid_map[name]) 
         # SOURce with the given gramps_id had no title
-        state.source.set_title(_("No title - ID %s") % 
+        state.source.set_name(_("No title - ID %s") % 
                                state.source.get_gramps_id())
         state.level = level
 
@@ -6247,7 +6265,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.source.set_author(line.data)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.AUTHOR)
+        sattr.set_value(line.data)
+        state.source.add_attribute(sattr)
 
     def __source_publ(self, line, state):
         """
@@ -6256,7 +6277,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.source.set_publication_info(line.data)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.PUB_INFO)
+        sattr.set_value(line.data)
+        state.source.add_attribute(sattr)
         self.__skip_subordinate_levels(state.level+1, state)
 
     def __source_title(self, line, state):
@@ -6266,7 +6290,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.source.set_title(line.data.replace('\n', ' '))
+        title = line.data.replace('\n', ' ')
+        state.source.set_name(title)
+        sattr = SrcAttribute()
+        sattr.set_type(SrcAttributeType.TITLE)
+        sattr.set_value(title)
+        state.source.add_attribute(sattr)
 
     def __source_taxt_peri(self, line, state):
         """
@@ -6275,8 +6304,13 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.source.get_title() == "":
-            state.source.set_title(line.data.replace('\n', ' '))
+        if state.source.get_gedcom_title() == "":
+            title = line.data.replace('\n', ' ')
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.TITLE)
+            sattr.set_value(title)
+            src.add_attribute(sattr)
+            state.source.set_name(title)
 
     #----------------------------------------------------------------------
     #
@@ -6873,7 +6907,12 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             filename = os.path.basename(line.data).split('\\')[-1]
             # feature request 2356: avoid genitive form
-            self.def_src.set_title(_("Import from %s") % filename)
+            title = _("Import from %s") % filename
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.TITLE)
+            sattr.set_value(title)
+            src.add_attribute(sattr)
+            self.def_src.set_name(title)
 
     def __header_copr(self, line, state):
         """
@@ -6883,7 +6922,10 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            self.def_src.set_publication_info(line.data)
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.PUB_INFO)
+            sattr.set_value(line.data)
+            self.def_src.add_attribute(sattr)
 
     def __header_subm(self, line, state):
         """
@@ -7088,7 +7130,10 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            self.def_src.set_author(line.data)
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.AUTHOR)
+            sattr.set_value(line.data)
+            self.def_src.add_attribute(sattr)
 
     def __parse_note(self, line, obj, level, state):
         if line.token == TOKEN_RNOTE:
@@ -7245,13 +7290,13 @@ class GedcomParser(UpdateCallback):
             self.inline_srcs[title] = handle
         else:
             src = self.__find_or_create_source(self.sid_map[line.data])
-            # We need to set the title to the cross reference identifier of the
+            # We need to set the name to the cross reference identifier of the
             # SOURce record, just in case we never find the source record. If we
             # din't find the source record, then the source object would have
-            # got deleted by Chack and repair because the record is empty. If we
+            # got deleted by Check and repair because the record is empty. If we
             # find the source record, the title is overwritten in
             # __source_title.
-            src.set_title(line.data)
+            src.set_name(line.data)
         self.dbase.commit_source(src, self.trans)
         self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)

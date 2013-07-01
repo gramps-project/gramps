@@ -55,6 +55,9 @@ def gramps_upgrade_17(self):
        1. This upgrade adds tags to event, place, repository, source and 
           citation objects.
        2. Data of Source becomes SourceAttributes Secondary Object
+       3. Citation page is deprecated and becomes Citation name 
+          Source title, author and pubinfo are deprecated. Now there is 
+          Source template and name instead.
     """
     length = (len(self.event_map) + len(self.place_map) +
               len(self.repository_map) + len(self.source_map) +
@@ -137,15 +140,33 @@ def gramps_upgrade_17(self):
         self.update()
 
     # -------------------------------------------------------
-    # Upgrade Source and Citation datamap to SrcAttributeBase
+    #  1. Upgrade Source and Citation datamap to SrcAttributeBase
+    #  2. Citation page is deprecated and becomes Citation name 
+    #     Source title, author and pubinfo are deprecated. Now there is 
+    #     Source template and name instead.
     # -------------------------------------------------------
+    from ..lib.srcattrtype import SrcAttributeType
+    private = False
+    
     for handle in self.source_map.keys():
         source = self.source_map[handle]
         (handle, gramps_id, title, author, pubinfo,
             notelist, medialist, abbrev, change, datamap, reporef_list,
             taglist, private) = source
         srcattributelist = upgrade_datamap_17(datamap)
-        new_source = (handle, gramps_id, title, author, pubinfo,
+        if title:
+            the_type = (SrcAttributeType.TITLE, '')
+            srcattributelist.append((private, the_type, title))
+        if author:
+            the_type = (SrcAttributeType.AUTHOR, '')
+            srcattributelist.append((private, the_type, author))
+        if pubinfo:
+            the_type = (SrcAttributeType.PUB_INFO, '')
+            srcattributelist.append((private, the_type, pubinfo))
+
+        name = title
+        template = 'GEDCOM'
+        new_source = (handle, gramps_id, name, template,
             notelist, medialist, abbrev, change, srcattributelist, reporef_list,
             taglist, private)
         with BSDDBTxn(self.env, self.source_map) as txn:
@@ -159,14 +180,19 @@ def gramps_upgrade_17(self):
         (handle, gramps_id, datelist, page, confidence, source_handle, 
             notelist, medialist, datamap, change, taglist, private) = citation
         srcattributelist = upgrade_datamap_17(datamap)
-        new_citation = (handle, gramps_id, datelist, page, confidence, source_handle, 
+        if page:
+            the_type = (SrcAttributeType.PAGE, '')
+            srcattributelist.append((private, the_type, page))
+
+        name = page
+        new_citation = (handle, gramps_id, datelist, name, confidence, source_handle, 
             notelist, medialist, srcattributelist, change, taglist, private)
         with BSDDBTxn(self.env, self.citation_map) as txn:
             if isinstance(handle, UNITYPE):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_citation)
         self.update()
-
+    
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put(b'version', 17)

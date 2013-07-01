@@ -122,8 +122,8 @@ class SrcTemplateTab(GrampsTab):
         
         :param scrolled: GtkScrolledWindow to which to add treeview with templates
         """
-        templ = self.src.get_source_template()
-        self.temp_tv = SrcTemplateTreeView(templ[0],
+        templ = self.src.get_template()
+        self.temp_tv = SrcTemplateTreeView(templ,
                                 sel_callback=self.on_template_selected)
         scrolled.add(self.temp_tv)
         
@@ -137,7 +137,7 @@ class SrcTemplateTab(GrampsTab):
         If title of the source is what we would set with autotitle, we set
         the checkbox to true. Otherwise to False
         """
-        srctemp = SrcTemplate(self.src.get_source_template()[0])
+        srctemp = SrcTemplate(self.src.get_template())
         srctemp.set_attr_list(self.src.get_attribute_list())
         title = srctemp.title_gedcom()
         if self.src.get_title() == title:
@@ -159,7 +159,7 @@ class SrcTemplateTab(GrampsTab):
         """
         Selected template changed, we save this and update interface
         """
-        self.src.set_source_template(key)
+        self.src.set_template(key)
         self.callback_src_changed(templatechanged=True)
         
         #a predefined template, 

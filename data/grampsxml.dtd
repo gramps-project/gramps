@@ -229,7 +229,7 @@ SOURCES
 -->
 
 <!ELEMENT sources (source)*>
-<!ELEMENT source (stitle?, sauthor?, spubinfo?, sabbrev?,
+<!ELEMENT source (sname?, stemplate?, sabbrev?,
                   noteref*, objref*, srcattribute*, reporef*, tagref*)>
 <!ATTLIST source
         id        CDATA #IMPLIED
@@ -237,9 +237,8 @@ SOURCES
         priv      (0|1) #IMPLIED
         change    CDATA #REQUIRED
 >
-<!ELEMENT stitle   (#PCDATA)>
-<!ELEMENT sauthor  (#PCDATA)>
-<!ELEMENT spubinfo (#PCDATA)>
+<!ELEMENT sname   (#PCDATA)>
+<!ELEMENT stemplate  (#PCDATA)>
 <!ELEMENT sabbrev  (#PCDATA)>
 
 <!--    ************************************************************
@@ -368,7 +367,7 @@ CITATIONS
 
 <!ELEMENT citations (citation)*>
 
-<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence?,
+<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, cname?, confidence?,
                     noteref*, objref*, srcattribute*, sourceref, tagref*)>
 <!ATTLIST citation
         id        CDATA #IMPLIED
@@ -376,6 +375,7 @@ CITATIONS
         priv      (0|1) #IMPLIED
         change    CDATA #REQUIRED
 >
+<!ELEMENT cname   (#PCDATA)>
 
 <!--    ************************************************************
 BOOKMARKS

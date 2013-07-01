@@ -909,14 +909,17 @@ class GedcomWriter(UpdateCallback):
             source = self.dbase.get_source_from_handle(handle)
             if source is None: continue
             self._writeln(0, '@%s@' % source_id, 'SOUR')
-            if source.get_title():
-                self._writeln(1, 'TITL', source.get_title())
+            stitle = source.get_gedcom_title()
+            if stitle:
+                self._writeln(1, 'TITL', stitle)
 
-            if source.get_author():
-                self._writeln(1, "AUTH", source.get_author())
+            sauth = source.get_gedcom_author()
+            if sauth:
+                self._writeln(1, "AUTH", sauth)
 
-            if source.get_publication_info():
-                self._writeln(1, "PUBL", source.get_publication_info())
+            spubi = source.get_gedcom_publication_info()
+            if spubi:
+                self._writeln(1, "PUBL", spubi)
 
             if source.get_abbreviation():
                 self._writeln(1, 'ABBR', source.get_abbreviation())
@@ -1267,11 +1270,12 @@ class GedcomWriter(UpdateCallback):
 
         # Reference to the source
         self._writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
-        if citation.get_page() != "":
+        gedcom_page = citation.get_gedcom_page(src.get_template())
+        if gedcom_page != "":
         # PAGE <WHERE_WITHIN_SOURCE> can not have CONC lines.
         # WHERE_WITHIN_SOURCE:= {Size=1:248}
         # Maximize line to 248 and set limit to 248, for no line split
-            self._writeln(level+1, 'PAGE', citation.get_page()[0:248], 
+            self._writeln(level+1, 'PAGE', gedcom_page[0:248], 
                            limit=248)
 
 

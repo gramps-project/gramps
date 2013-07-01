@@ -75,7 +75,7 @@ IGNORE_CONFIDENCE = 2
 IGNORE_BOTH = 3
 
 _val2label = {
-    ALL_FIELDS        : _("Match on Page/Volume, Date and Confidence"),
+    ALL_FIELDS        : _("Match on Citation Name, Date and Confidence"),
     IGNORE_DATE       : _("Ignore Date"),
     IGNORE_CONFIDENCE : _("Ignore Confidence"),
     IGNORE_BOTH       : _("Ignore Date and Confidence")
@@ -198,7 +198,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                         "that has a citation reference." % class_name)
 
                     citation = db.get_citation_from_handle(citation_handle)
-                    key = citation.get_page()
+                    key = citation.get_name()
                     if fields != IGNORE_DATE and fields != IGNORE_BOTH:
                         key += "\n" + get_date(citation)
                     if fields != IGNORE_CONFIDENCE and fields != IGNORE_BOTH:
@@ -297,10 +297,10 @@ class MergeCitationsOptions(tool.ToolOptions):
         }
         self.options_help = {
             'dont_merge_notes'   : 
-                ("=0/1","Whether to merge citations if they have notes", 
+                ("=0/1", "Whether to merge citations if they have notes", 
                  ["Merge citations with notes", 
                   "Do not merge citations with notes"],
                  False),
-            'fields' : ("=num","Threshold for matching",
-                           "Integer number")
+            'fields' : ("=num", "Threshold for matching",
+                        "Integer number")
             }

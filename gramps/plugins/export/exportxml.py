@@ -579,7 +579,7 @@ class GrampsXmlWriter(UpdateCallback):
         sp = "  " * index
         self.write_primary_tag("citation", citation, index)
         self.write_date(citation.get_date_object(), index+1)
-        self.write_line("page", citation.get_page(), index+1)
+        self.write_line("cname", citation.get_name(), index+1)
         self.write_line("confidence", citation.get_confidence_level(), index+1)
         self.write_note_list(citation.get_note_list(), index+1)
         self.write_media_list(citation.get_media_list(), index+1)
@@ -594,9 +594,8 @@ class GrampsXmlWriter(UpdateCallback):
     def write_source(self, source, index=1):
         sp = "  "*index
         self.write_primary_tag("source", source, index)
-        self.write_force_line("stitle", source.get_title(), index+1)
-        self.write_line("sauthor", source.get_author(), index+1)
-        self.write_line("spubinfo", source.get_publication_info(), index+1)
+        self.write_force_line("sname", source.get_name(), index+1)
+        self.write_line("stemplate", source.get_template(), index+1)
         self.write_line("sabbrev", source.get_abbreviation(), index+1)
         self.write_note_list(source.get_note_list(), index+1)
         self.write_media_list(source.get_media_list(), index+1)

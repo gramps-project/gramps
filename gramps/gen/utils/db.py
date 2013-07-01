@@ -348,14 +348,14 @@ def navigation_label(db, nav_type, handle):
     elif nav_type == 'Source':
         obj = db.get_source_from_handle(handle)
         if obj:
-            label = obj.get_title()
+            label = obj.get_name()
     elif nav_type == 'Citation':
         obj = db.get_citation_from_handle(handle)
         if obj:
-            label = obj.get_page()
+            label = obj.get_name()
             src = db.get_source_from_handle(obj.get_reference_handle())
             if src:
-                label = src.get_title() + " "  + label
+                label = src.get_name() + " "  + label
     elif nav_type == 'Repository':
         obj = db.get_repository_from_handle(handle)
         if obj:

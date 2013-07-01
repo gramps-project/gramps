@@ -56,6 +56,7 @@ GED_TITLE  = 2
 GED_PUBINF = 3
 # template to GEDCOM field mapping for Date in F reference fields
 GED_DATE   = 4
+GED_PAGE   = 5
 # template to a shortening algorithm mapping for predefined algorithms
 SHORTERALG_LOC  = 1   # reduce a location to a shorter format (typically city level)
 SHORTERALG_YEAR = 2   # reduce a date to only the year part
@@ -87,7 +88,6 @@ class SrcAttributeType(GrampsType):
     # PREDEFINED TYPES
     UNKNOWN     = -1
     CUSTOM      = 0
-    SRCTEMPLATE = 1
     # GEDCOM support
     EVEN_REC    = 2
     EVEN_CITED  = 3
@@ -103,14 +103,9 @@ class SrcAttributeType(GrampsType):
     # 2. existing class attributes
     DATE = 14
     
-    _CUSTOM = CUSTOM
-    _DEFAULT = SRCTEMPLATE
-    
     _DATAMAP = [
         (UNKNOWN     , _("Unknown"), "Unknown"),
         (CUSTOM      , _("Custom"), "Custom"),
-        # required attribute to use for Elizabeth Shown Mills citation defs
-        (SRCTEMPLATE , _("Source Template"), "Source Template"),
         # GEDCOM support
         (EVEN_REC    , _("Events Recorded in Source"), "Events Recorded in Source"),  # GEDCOM EVENTS_RECORDED
         (EVEN_CITED  , _("Event Type Used for Citation"), "Event Type Used for Citation"), # GEDCOM EVENT_TYPE_CITED_FROM
@@ -266,6 +261,9 @@ class SrcAttributeType(GrampsType):
     YEAR = 113
     YEAR_ACCESSED = 172
     YEAR_SHORT_VERSION = 212
+
+    _CUSTOM = CUSTOM
+    _DEFAULT = TITLE
 
     _DATAMAPIGNORE = [
         AUTHOR_SHORT_VERSION,

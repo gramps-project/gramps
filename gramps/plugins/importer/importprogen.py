@@ -55,7 +55,8 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event, 
                             EventRef, EventType, Family, FamilyRelType, Name, 
                             NameType, Note, NoteType, Person, Place, Source, 
-                            Surname, Citation, Location, NameOriginType)
+                            Surname, Citation, Location, NameOriginType,
+                            SrcAttribute, SrcAttributeType)
 from gramps.gen.db import DbTxn
 
 class ProgenError(Exception):
@@ -611,7 +612,11 @@ class ProgenParser(object):
         else:
             # Create a new Source
             source = Source()
-            source.set_title(source_name)
+            source.set_name(source_name)
+            sattr = SrcAttribute()
+            sattr.set_type(SrcAttributeType.TITLE)
+            sattr.set_value(source_name)
+            source.add_attribute(sattr)
             self.db.add_source(source, self.trans)
             self.db.commit_source(source, self.trans)
             self.skeys[source_name] = source.get_handle()

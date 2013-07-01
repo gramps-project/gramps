@@ -35,8 +35,6 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from .attrbase import AttributeRootBase
 from .srcattribute import SrcAttribute
-from .srcattrtype import SrcAttributeType
-from .srctemplate import SrcTemplate
 
 #-------------------------------------------------------------------------
 #
@@ -46,64 +44,3 @@ from .srctemplate import SrcTemplate
 
 class SrcAttributeBase(AttributeRootBase):
     _CLASS = SrcAttribute
-
-    #------------------------------------------------------------------------
-    #
-    # Logical methods
-    #
-    #------------------------------------------------------------------------
-    def get_source_template(self):
-        """
-        Return the source template of the source/citation
-        This is the value of the first source template in the attribute list
-        If not known UNKNOWN is returned as key, which is integer. Other keys
-        will be str.
-        :rtype tuple: (index, description, string_key_as stored)
-        """
-        #no template is UNKNOWN!
-        templ = SrcTemplate.UNKNOWN  
-        for attr in self.attribute_list:
-            if int(attr.get_type()) == SrcAttributeType.SRCTEMPLATE:
-                val = attr.get_value()
-                if SrcTemplate.template_defined(val):
-                    templ = val
-                else:
-                    # a template not in the predefined list. convert to unknown
-                    print ('Unknown Template: Keyerror:', val,
-                           'For now UNKNOWN is used.\nDownload required template style!')
-                break
-        try:
-            retval = (templ, SrcTemplate.template_description(templ))
-        except KeyError:
-            #templ is not present, return the default GEDCOM value as actual
-            #template
-            templ = SrcTemplate.UNKNOWN
-            retval = (templ, _('Unknown'))
-        return retval
-
-    def set_source_template(self, template):
-        """
-        Set the source template of the source/citation
-        This is the value of the first source template in the attribute list
-        If tempindex is UNKNOWN, the template is removed.
-        If tempindex is not CUSTOM, string value of tempindex is stored.
-        Otherwise, the user given string value tempcustom_str is stored
-        :param tempindex: integer template key
-        :param tempcustom_str: string of a custom key to use as value for 
-            template
-        """
-        attrtemp = None
-        for attr in self.attribute_list:
-            if int(attr.get_type()) == SrcAttributeType.SRCTEMPLATE:
-                #we update the existing template
-                attrtemp = attr
-                break
-        if attrtemp is None:
-            #we create a new attribute and add it
-            attrtemp = SrcAttribute()
-            self.add_attribute(attrtemp)
-        if template == SrcTemplate.UNKNOWN:
-            self.remove_attribute(attrtemp)
-        else:
-            #custom key, store string as is
-            attrtemp.set_value(template)

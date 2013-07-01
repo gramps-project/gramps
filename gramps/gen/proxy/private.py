@@ -762,7 +762,7 @@ def sanitize_citation(db, citation):
     """
     new_citation = Citation()
     new_citation.set_date_object(citation.get_date_object())
-    new_citation.set_page(citation.get_page())
+    new_citation.set_name(citation.get_name())
     new_citation.set_confidence_level(citation.get_confidence_level())
     new_citation.set_reference_handle(citation.get_reference_handle())
     new_citation.set_gramps_id(citation.get_gramps_id())
@@ -906,9 +906,8 @@ def sanitize_source(db, source):
     """
     new_source = Source()
     
-    new_source.set_author(source.get_author())
-    new_source.set_title(source.get_title())
-    new_source.set_publication_info(source.get_publication_info())
+    new_source.set_name(source.get_name())
+    new_source.set_template(source.get_template())
     new_source.set_abbreviation(source.get_abbreviation())
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())

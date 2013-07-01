@@ -70,32 +70,34 @@ _ = glocale.translation.gettext
 class SourceView(ListView):
     """ sources listview class 
     """
-    COL_TITLE = 0
+    COL_NAME = 0
     COL_ID = 1
     COL_AUTH = 2
     COL_ABBR = 3
     COL_PINFO = 4
-    COL_PRIV = 5
-    COL_TAGS = 6
-    COL_CHAN = 7
+    COL_TEMPLATE = 5
+    COL_PRIV = 6
+    COL_TAGS = 7
+    COL_CHAN = 8
     
     # column definitions
     COLUMNS = [
-        (_('Title'), TEXT, None),
+        (_('Name'), TEXT, None),
         (_('ID'), TEXT, None),
         (_('Author'), TEXT, None),
         (_('Abbreviation'), TEXT, None),
         (_('Publication Information'), TEXT, None),
+        (_('Template'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
         (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE, COL_ID, COL_AUTH, COL_PINFO]),
-        ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
-                          COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [200, 75, 150, 100, 150, 40, 100, 100])
+        ('columns.visible', [COL_NAME, COL_ID, COL_AUTH, COL_PINFO]),
+        ('columns.rank', [COL_NAME, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
+                          COL_TEMPLATE, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [200, 75, 150, 100, 150, 50, 40, 100, 100])
         )    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")

@@ -56,7 +56,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 COLUMN_HANDLE      = 0
 COLUMN_ID          = 1
 COLUMN_DATE        = 2
-COLUMN_PAGE        = 3
+COLUMN_NAME        = 3
 COLUMN_CONFIDENCE  = 4
 COLUMN_SOURCE      = 5
 COLUMN_CHANGE      = 9
@@ -66,13 +66,12 @@ COLUMN_PRIV        = 11
 # Data for the Source object
 COLUMN2_HANDLE     = 0
 COLUMN2_ID         = 1
-COLUMN2_TITLE      = 2
-COLUMN2_AUTHOR     = 3
-COLUMN2_PUBINFO    = 4
-COLUMN2_ABBREV     = 7
-COLUMN2_CHANGE     = 8
-COLUMN2_TAGS       = 11
-COLUMN2_PRIV       = 12
+COLUMN2_NAME       = 2
+COLUMN2_TEMPLATE   = 3
+COLUMN2_ABBREV     = 6
+COLUMN2_CHANGE     = 7
+COLUMN2_TAGS       = 10
+COLUMN2_PRIV       = 11
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -112,8 +111,8 @@ class CitationBaseModel(object):
     def citation_id(self, data):
         return cuni(data[COLUMN_ID])
 
-    def citation_page(self, data):
-        return cuni(data[COLUMN_PAGE])
+    def citation_name(self, data):
+        return cuni(data[COLUMN_NAME])
 
     def citation_confidence(self, data):
         return cuni(confidence[data[COLUMN_CONFIDENCE]])
@@ -160,7 +159,15 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_title())
+            return cuni(source.get_name())
+        except:
+            return ''
+
+    def citation_src_template(self, data):
+        source_handle = data[COLUMN_SOURCE]
+        try:
+            source = self.db.get_source_from_handle(source_handle)
+            return cuni(source.get_template())
         except:
             return ''
 
@@ -173,10 +180,11 @@ class CitationBaseModel(object):
             return ''
 
     def citation_src_auth(self, data):
+        return ''
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_author())
+            return cuni(source.get_gedcom_author())
         except:
             return ''
 
@@ -189,10 +197,11 @@ class CitationBaseModel(object):
             return ''
 
     def citation_src_pinfo(self, data):
+        return ''
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_publication_info())
+            return cuni(source.get_gedcom_publication_info())
         except:
             return ''
 
@@ -228,19 +237,24 @@ class CitationBaseModel(object):
 # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
-        return cuni(data[COLUMN2_TITLE])
+        return cuni(data[COLUMN2_NAME])
+
+    def source_src_template(self, data):
+        return cuni(data[COLUMN2_TEMPLATE])
 
     def source_src_id(self, data):
         return cuni(data[COLUMN2_ID])
 
     def source_src_auth(self, data):
-        return cuni(data[COLUMN2_AUTHOR])
+        source = self.db.get_source_from_handle(data[COLUMN2_HANDLE])
+        return cuni(source.get_gedcom_author())
 
     def source_src_abbr(self, data):
         return cuni(data[COLUMN2_ABBREV])
 
     def source_src_pinfo(self, data):
-        return cuni(data[COLUMN2_PUBINFO])
+        source = self.db.get_source_from_handle(data[COLUMN2_HANDLE])
+        return cuni(source.get_gedcom_publication_info())
 
     def source_src_private(self, data):
         if data[COLUMN2_PRIV]:

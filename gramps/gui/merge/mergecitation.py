@@ -71,14 +71,14 @@ class MergeCitation(ManagedWindow):
                         _("Merge Citations"))
 
         # Detailed Selection widgets
-        page1 = self.citation1.get_page()
-        page2 = self.citation2.get_page()
-        entry1 = self.get_widget("page1")
-        entry2 = self.get_widget("page2")
-        entry1.set_text(page1)
-        entry2.set_text(page2)
+        name1 = self.citation1.get_name()
+        name2 = self.citation2.get_name()
+        entry1 = self.get_widget("name1")
+        entry2 = self.get_widget("name2")
+        entry1.set_text(name1)
+        entry2.set_text(name2)
         if entry1.get_text() == entry2.get_text():
-            for widget_name in ('page1', 'page2', 'page_btn1', 'page_btn2'):
+            for widget_name in ('name1', 'name2', 'name_btn1', 'name_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
         entry1 = self.get_widget("date1")
@@ -126,12 +126,12 @@ class MergeCitation(ManagedWindow):
     def on_handle1_toggled(self, obj):
         """first chosen citation changes"""
         if obj.get_active():
-            self.get_widget("page_btn1").set_active(True)
+            self.get_widget("name_btn1").set_active(True)
             self.get_widget("date_btn1").set_active(True)
             self.get_widget("confidence_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
-            self.get_widget("page_btn2").set_active(True)
+            self.get_widget("name_btn2").set_active(True)
             self.get_widget("date_btn2").set_active(True)
             self.get_widget("confidence_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
@@ -157,8 +157,8 @@ class MergeCitation(ManagedWindow):
             self.uistate.viewmanager.active_page.get_history().push(
                     phoenix.get_handle())
 
-        if self.get_widget("page_btn1").get_active() ^ use_handle1:
-            phoenix.set_page(titanic.get_page())
+        if self.get_widget("name_btn1").get_active() ^ use_handle1:
+            phoenix.set_name(titanic.get_name())
         if self.get_widget("date_btn1").get_active() ^ use_handle1:
             phoenix.set_date_object(titanic.get_date_object())
         if self.get_widget("confidence_btn1").get_active() ^ use_handle1:

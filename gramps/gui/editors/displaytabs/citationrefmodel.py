@@ -41,6 +41,6 @@ class CitationRefModel(Gtk.ListStore):
         for handle in citation_list:
             citation = self.db.get_citation_from_handle(handle) 
             src = self.db.get_source_from_handle(citation.get_reference_handle())
-            self.append(row=[src.title, src.author, citation.page,
+            self.append(row=[src.get_name(), src.get_gedcom_author(), citation.get_name(),
                              citation.gramps_id, citation.get_privacy(),
                              handle, ])
