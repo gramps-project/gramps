@@ -12,6 +12,7 @@
 #    Contribution 2009 by     Bob Ham <rah@bash.sh>
 #    Copyright (C) 2010       Jakim Friant
 #    Copyright (C) 2013       Paul Franklin
+#    Copyright (C) 2013       Fedir Zinchuk <fedikw@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,6 +62,7 @@ from gramps.gen.datehandler import get_date
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
 #------------------------------------------------------------------------
@@ -169,7 +171,20 @@ class RelGraphReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
+        self.center_person = database.get_person_from_gramps_id(
+                                                            get_value('pid'))
+        self.increlname = get_value('increlname')
+        if self.increlname :
+            self.rel_calc = get_relationship_calculator(reinit=True,
+                                                        clocale=self._locale)
+
+        if __debug__:
+            self.advrelinfo = get_value('advrelinfo')
+        else:
+            self.advrelinfo = False
 
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
@@ -340,6 +355,9 @@ class RelGraphReport(Report):
         elif gender == person.UNKNOWN:
             shape = "hexagon"
 
+        if person == self.center_person and self.increlname:
+            shape = "octagon"
+
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']
@@ -423,6 +441,22 @@ class RelGraphReport(Report):
                     label += '%s' % death
                 label += ')'
 
+        if self.increlname and self.center_person != person:
+            # display relationship info
+            if self.advrelinfo:
+                (relationship, Ga, Gb) = self.rel_calc.get_one_relationship(
+                            self.database, self.center_person, person,
+                            extra_info=True, olocale=self._locale)
+                if relationship:
+                    label += "%s(%s Ga=%d Gb=%d)" % (lineDelimiter,
+                                                     relationship, Ga, Gb)
+            else:
+                relationship = self.rel_calc.get_one_relationship(
+                            self.database, self.center_person, person,
+                            olocale=self._locale)
+                if relationship:
+                    label += "%s(%s)" % (lineDelimiter, relationship)
+
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
             label += '</TD></TR></TABLE>'
@@ -483,6 +517,8 @@ class RelGraphOptions(MenuReportOptions):
     def __init__(self, name, dbase):
         self.__pid = None
         self.__filter = None
+        self.__show_relships = None
+        self.__show_GaGb = None
         self.__include_images = None
         self.__image_on_side = None
         self.__db = dbase
@@ -500,8 +536,8 @@ class RelGraphOptions(MenuReportOptions):
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
         
-        self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
         add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
@@ -540,6 +576,22 @@ class RelGraphOptions(MenuReportOptions):
         incid.set_help(_("Include individual and family IDs."))
         add_option("incid", incid)
         
+        self.__show_relships = BooleanOption(
+                            _("Include relationship to center person"), False)
+        self.__show_relships.set_help(_("Whether to show every "
+                            "person's relationship to the center person"))
+        add_option("increlname", self.__show_relships)
+        self.__show_relships.connect('value-changed',
+                                     self.__show_relships_changed)
+
+        if __debug__:
+            self.__show_GaGb = BooleanOption(_("Include relationship "
+                                               "debugging numbers also"),
+                                             False)
+            self.__show_GaGb.set_help(_("Whether to include 'Ga' and 'Gb' "
+                            "also, to debug the relationship calculator"))
+            add_option("advrelinfo", self.__show_GaGb)
+
         self.__include_images = BooleanOption(
                                  _('Include thumbnail images of people'), False)
         self.__include_images.set_help(
@@ -638,6 +690,8 @@ class RelGraphOptions(MenuReportOptions):
         if filter_value in [1, 2, 3, 4]:
             # Filters 1, 2, 3 and 4 rely on the center person
             self.__pid.set_available(True)
+        elif self.__show_relships and self.__show_relships.get_value():
+            self.__pid.set_available(True)
         else:
             # The rest don't
             self.__pid.set_available(False)
@@ -648,3 +702,11 @@ class RelGraphOptions(MenuReportOptions):
         image location option unavailable.
         """
         self.__image_on_side.set_available(self.__include_images.get_value())
+        
+    def __show_relships_changed(self):
+        """
+        Enable/disable menu items if relationships are required
+        """
+        if self.__show_GaGb:
+            self.__show_GaGb.set_available(self.__show_relships.get_value())
+        self.__filter_changed()
