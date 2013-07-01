@@ -156,9 +156,6 @@ class StyledTextEditor(Gtk.TextView):
     @ivar match: currently matched string, used for generating the
     'match-changed' signal.
     @type match: tuple or None
-    @ivar show_unicode: stores the user's Gtk.settings['gtk-show-unicode-menu']
-    value.
-    @type show_unicode: bool
     @ivar spellcheck: spell checker object created for the editor instance.
     @type spellcheck: L{Spell}
     @ivar textbuffer: text buffer assigned to the edit instance.
@@ -209,8 +206,8 @@ class StyledTextEditor(Gtk.TextView):
             self.show_unicode = settings.get_property('gtk-show-unicode-menu')
             settings.set_property('gtk-show-unicode-menu', False)
         except:
-            #GTK 3.9+ no longer has show-unicode-menu
-            pass
+            #GTK wants to deprecate show-unicode-menu, this prepares for this
+            self.show_unicode = False
         
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
@@ -254,8 +251,12 @@ class StyledTextEditor(Gtk.TextView):
         Set the default Gtk settings back before leaving.
         
         """
-        settings = Gtk.Settings.get_default()
-        settings.set_property('gtk-show-unicode-menu', self.show_unicode)
+        try:
+            settings = Gtk.Settings.get_default()
+            settings.set_property('gtk-show-unicode-menu', self.show_unicode)
+        except:
+            #GTK wants to deprecate show-unicode-menu, this prepares for this
+            pass
         
     def on_key_press_event(self, widget, event):
         """Signal handler.
