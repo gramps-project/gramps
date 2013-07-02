@@ -42,10 +42,9 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-22 10:47+0200\n"
-"PO-Revision-Date: 2013-05-31 21:25+0100\n"
+"PO-Revision-Date: 2013-06-30 11:22+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10135,15 +10134,13 @@ msgstr ""
 "van het gegevensbestand dat nu geopend is."
 
 #: ../src/plugins/BookReport.py:939
-#, fuzzy
 msgid "No selected book item"
-msgstr "Het geselecteerde item verwijderen?"
+msgstr "Geen boekitem geselecteerd"
 
 # dit is een soort titel in een file-selector
 #: ../src/plugins/BookReport.py:940
-#, fuzzy
 msgid "Please select a book item to configure."
-msgstr "Een andere filter selecteren om aan te passen"
+msgstr "Een boekitem selecteren om te configureren."
 
 #: ../src/plugins/BookReport.py:1003
 msgid "Setup"
@@ -10159,11 +10156,11 @@ msgstr "Beschikbare items menu"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "No items"
-msgstr ""
+msgstr "Geen items"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "This book has no items."
-msgstr ""
+msgstr "Dit boek heeft geen items."
 
 #: ../src/plugins/BookReport.py:1065
 msgid "No book name"
@@ -23678,7 +23675,7 @@ msgstr "Jonge moeder"
 
 #: ../src/plugins/tool/Verify.py:1387
 msgid "Unborn father"
-msgstr "vader nog niet geboren"
+msgstr "Vader nog niet geboren"
 
 #: ../src/plugins/tool/Verify.py:1390
 msgid "Unborn mother"
