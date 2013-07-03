@@ -317,23 +317,25 @@ class CLIDbManager(object):
                  or (None, None) if no import was performed.
         """
         pmgr = BasePluginManager.get_instance()
-        # Allow URL names here; make temp file if necessary
-        url = urlparse.urlparse(filename)
-        if url.scheme != "":
-            if url.scheme == "file":
-                filename = urllib2.url2pathname(filename[7:])
-            else:
-                url_fp = urllib2.urlopen(filename) # open URL
-                # make a temp local file:
-                ext = os.path.splitext(url.path)[1]
-                fd, filename = tempfile.mkstemp(suffix=ext)
-                temp_fp = os.fdopen(fd, "w")
-                # read from URL:
-                data = url_fp.read()
-                # write locally:
-                temp_fp.write(data)
-                url_fp.close()
-                temp_fp.close()
+        # check to see if it isn't a filename directly:
+        if not os.path.isfile(filename):
+            # Allow URL names here; make temp file if necessary
+            url = urlparse.urlparse(filename)
+            if url.scheme != "":
+                if url.scheme == "file":
+                    filename = urllib2.url2pathname(filename[7:])
+                else:
+                    url_fp = urllib2.urlopen(filename) # open URL
+                    # make a temp local file:
+                    ext = os.path.splitext(url.path)[1]
+                    fd, filename = tempfile.mkstemp(suffix=ext)
+                    temp_fp = os.fdopen(fd, "w")
+                    # read from URL:
+                    data = url_fp.read()
+                    # write locally:
+                    temp_fp.write(data)
+                    url_fp.close()
+                    temp_fp.close()
 
         (name, ext) = os.path.splitext(os.path.basename(filename))
         format = ext[1:].lower()
